@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralLoadCase", 1281)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadCase : IfcStructuralLoadGroup, IInstantiableEntity, IIfcStructuralLoadCase, IEquatable<@IfcStructuralLoadCase>
+	public  partial class @IfcStructuralLoadCase : IfcStructuralLoadGroup, IInstantiableEntity, IIfcStructuralLoadCase, IContainsEntityReferences, IEquatable<@IfcStructuralLoadCase>
 	{
 		#region IIfcStructuralLoadCase explicit implementation
 		IEnumerable<IfcRatioMeasure> IIfcStructuralLoadCase.SelfWeightCoefficients { get { return @SelfWeightCoefficients; } }	
@@ -140,6 +140,17 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

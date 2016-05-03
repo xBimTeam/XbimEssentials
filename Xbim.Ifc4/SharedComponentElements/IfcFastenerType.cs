@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.SharedComponentElements
 {
 	[ExpressType("IfcFastenerType", 642)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFastenerType : IfcElementComponentType, IInstantiableEntity, IIfcFastenerType, IEquatable<@IfcFastenerType>
+	public  partial class @IfcFastenerType : IfcElementComponentType, IInstantiableEntity, IIfcFastenerType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFastenerType>
 	{
 		#region IIfcFastenerType explicit implementation
 		IfcFastenerTypeEnum IIfcFastenerType.PredefinedType { get { return @PredefinedType; } }	
@@ -140,6 +140,34 @@ namespace Xbim.Ifc4.SharedComponentElements
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @HasPropertySets)
+					yield return entity;
+				foreach(var entity in @RepresentationMaps)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @HasPropertySets)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

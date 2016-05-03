@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.CostResource
 {
 	[ExpressType("IfcReferencesValueDocument", 551)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReferencesValueDocument : INotifyPropertyChanged, IInstantiableEntity, IIfcReferencesValueDocument, IEquatable<@IfcReferencesValueDocument>
+	public  partial class @IfcReferencesValueDocument : INotifyPropertyChanged, IInstantiableEntity, IIfcReferencesValueDocument, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcReferencesValueDocument>
 	{
 		#region IIfcReferencesValueDocument explicit implementation
 		IIfcDocumentSelect IIfcReferencesValueDocument.ReferencedDocument { get { return @ReferencedDocument; } }	
@@ -298,6 +298,32 @@ namespace Xbim.Ifc2x3.CostResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@ReferencedDocument != null)
+					yield return @ReferencedDocument;
+				foreach(var entity in @ReferencingValues)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @ReferencingValues)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

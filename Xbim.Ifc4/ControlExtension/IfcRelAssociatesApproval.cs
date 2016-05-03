@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.ControlExtension
 {
 	[ExpressType("IfcRelAssociatesApproval", 342)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesApproval : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesApproval, IEquatable<@IfcRelAssociatesApproval>
+	public  partial class @IfcRelAssociatesApproval : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesApproval, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesApproval>
 	{
 		#region IIfcRelAssociatesApproval explicit implementation
 		IIfcApproval IIfcRelAssociatesApproval.RelatingApproval { get { return @RelatingApproval; } }	
@@ -139,6 +139,36 @@ namespace Xbim.Ifc4.ControlExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingApproval != null)
+					yield return @RelatingApproval;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingApproval != null)
+					yield return @RelatingApproval;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

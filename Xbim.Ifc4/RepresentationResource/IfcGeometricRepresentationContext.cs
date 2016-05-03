@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.RepresentationResource
 {
 	[ExpressType("IfcGeometricRepresentationContext", 555)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeometricRepresentationContext : IfcRepresentationContext, IInstantiableEntity, IIfcGeometricRepresentationContext, IEquatable<@IfcGeometricRepresentationContext>
+	public  partial class @IfcGeometricRepresentationContext : IfcRepresentationContext, IInstantiableEntity, IIfcGeometricRepresentationContext, IContainsEntityReferences, IEquatable<@IfcGeometricRepresentationContext>
 	{
 		#region IIfcGeometricRepresentationContext explicit implementation
 		IfcDimensionCount IIfcGeometricRepresentationContext.CoordinateSpaceDimension { get { return @CoordinateSpaceDimension; } }	
@@ -230,6 +230,19 @@ namespace Xbim.Ifc4.RepresentationResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@WorldCoordinateSystem != null)
+					yield return @WorldCoordinateSystem;
+				if (@TrueNorth != null)
+					yield return @TrueNorth;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

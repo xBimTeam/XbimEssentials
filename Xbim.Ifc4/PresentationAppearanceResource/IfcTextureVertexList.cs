@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcTextureVertexList", 1301)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextureVertexList : IfcPresentationItem, IInstantiableEntity, IIfcTextureVertexList, IEquatable<@IfcTextureVertexList>
+	public  partial class @IfcTextureVertexList : IfcPresentationItem, IInstantiableEntity, IIfcTextureVertexList, IContainsEntityReferences, IEquatable<@IfcTextureVertexList>
 	{
 		#region IIfcTextureVertexList explicit implementation
 		IEnumerable<IEnumerable<IfcParameterValue>> IIfcTextureVertexList.TexCoordsList { get { return @TexCoordsList; } }	
@@ -131,6 +131,15 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

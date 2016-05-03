@@ -55,6 +55,7 @@ namespace Xbim.Common.Metadata
         /// </summary>
         private static readonly Dictionary<Module, ExpressMetaData> Cache = new Dictionary<Module, ExpressMetaData>();
 
+        private static readonly object _lock = new object();
         /// <summary>
         /// This method creates metadata model for a specified module based on reflection and custom attributes.
         /// It only creates ExpressMetaData once for any module. If it already exists it is retrieved from a 
@@ -65,13 +66,16 @@ namespace Xbim.Common.Metadata
         /// <returns>Meta data structure for the schema defined within the module</returns>
         public static ExpressMetaData GetMetadata(Module module)
         {
-            ExpressMetaData result;
-            if (Cache.TryGetValue(module, out result))
-                return result;
+            lock (_lock)
+            {
+                ExpressMetaData result;
+                if (Cache.TryGetValue(module, out result))
+                    return result;
 
-            result = new ExpressMetaData(module);
-            Cache.Add(module, result);
-            return result;
+                result = new ExpressMetaData(module);
+                Cache.Add(module, result);
+                return result;
+            }
         }
 
         private ExpressMetaData(Module module)

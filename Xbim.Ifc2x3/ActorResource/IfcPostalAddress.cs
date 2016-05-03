@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.ActorResource
 {
 	[ExpressType("IfcPostalAddress", 662)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPostalAddress : IfcAddress, IInstantiableEntity, IIfcPostalAddress, IEquatable<@IfcPostalAddress>
+	public  partial class @IfcPostalAddress : IfcAddress, IInstantiableEntity, IIfcPostalAddress, IContainsEntityReferences, IEquatable<@IfcPostalAddress>
 	{
 		#region IIfcPostalAddress explicit implementation
 		IfcLabel? IIfcPostalAddress.InternalLocation { get { return @InternalLocation; } }	
@@ -253,6 +253,15 @@ namespace Xbim.Ifc2x3.ActorResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

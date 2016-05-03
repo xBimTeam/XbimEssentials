@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRelAssignsToResource", 9)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToResource : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToResource, IEquatable<@IfcRelAssignsToResource>
+	public  partial class @IfcRelAssignsToResource : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToResource, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToResource>
 	{
 		#region IIfcRelAssignsToResource explicit implementation
 		IIfcResource IIfcRelAssignsToResource.RelatingResource { get { return @RelatingResource; } }	
@@ -138,6 +138,36 @@ namespace Xbim.Ifc2x3.Kernel
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingResource != null)
+					yield return @RelatingResource;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingResource != null)
+					yield return @RelatingResource;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

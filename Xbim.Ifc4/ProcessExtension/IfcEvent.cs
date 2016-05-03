@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.ProcessExtension
 {
 	[ExpressType("IfcEvent", 1168)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEvent : IfcProcess, IInstantiableEntity, IIfcEvent, IEquatable<@IfcEvent>
+	public  partial class @IfcEvent : IfcProcess, IInstantiableEntity, IIfcEvent, IContainsEntityReferences, IEquatable<@IfcEvent>
 	{
 		#region IIfcEvent explicit implementation
 		IfcEventTypeEnum? IIfcEvent.PredefinedType { get { return @PredefinedType; } }	
@@ -202,6 +202,19 @@ namespace Xbim.Ifc4.ProcessExtension
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@EventOccurenceTime != null)
+					yield return @EventOccurenceTime;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

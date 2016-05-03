@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcStructuralLoadSingleForceWarping", 393)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadSingleForceWarping : IfcStructuralLoadSingleForce, IInstantiableEntity, IIfcStructuralLoadSingleForceWarping, IEquatable<@IfcStructuralLoadSingleForceWarping>
+	public  partial class @IfcStructuralLoadSingleForceWarping : IfcStructuralLoadSingleForce, IInstantiableEntity, IIfcStructuralLoadSingleForceWarping, IContainsEntityReferences, IEquatable<@IfcStructuralLoadSingleForceWarping>
 	{
 		#region IIfcStructuralLoadSingleForceWarping explicit implementation
 		IfcWarpingMomentMeasure? IIfcStructuralLoadSingleForceWarping.WarpingMoment { get { return @WarpingMoment; } }	
@@ -140,6 +140,15 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

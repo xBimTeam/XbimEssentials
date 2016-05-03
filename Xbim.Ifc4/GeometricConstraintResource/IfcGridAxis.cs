@@ -45,7 +45,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 {
 	[ExpressType("IfcGridAxis", 441)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGridAxis : INotifyPropertyChanged, IInstantiableEntity, IIfcGridAxis, IEquatable<@IfcGridAxis>
+	public  partial class @IfcGridAxis : INotifyPropertyChanged, IInstantiableEntity, IIfcGridAxis, IContainsEntityReferences, IEquatable<@IfcGridAxis>
 	{
 		#region IIfcGridAxis explicit implementation
 		IfcLabel? IIfcGridAxis.AxisTag { get { return @AxisTag; } }	
@@ -328,6 +328,17 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@AxisCurve != null)
+					yield return @AxisCurve;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

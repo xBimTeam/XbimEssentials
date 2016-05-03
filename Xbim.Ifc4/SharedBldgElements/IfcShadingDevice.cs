@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcShadingDevice", 1265)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcShadingDevice : IfcBuildingElement, IInstantiableEntity, IIfcShadingDevice, IEquatable<@IfcShadingDevice>
+	public  partial class @IfcShadingDevice : IfcBuildingElement, IInstantiableEntity, IIfcShadingDevice, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcShadingDevice>
 	{
 		#region IIfcShadingDevice explicit implementation
 		IfcShadingDeviceTypeEnum? IIfcShadingDevice.PredefinedType { get { return @PredefinedType; } }	
@@ -140,6 +140,36 @@ namespace Xbim.Ifc4.SharedBldgElements
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

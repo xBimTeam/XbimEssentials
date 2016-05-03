@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcFillAreaStyleTiles", 725)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFillAreaStyleTiles : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleTiles, IEquatable<@IfcFillAreaStyleTiles>
+	public  partial class @IfcFillAreaStyleTiles : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleTiles, IContainsEntityReferences, IEquatable<@IfcFillAreaStyleTiles>
 	{
 		#region IIfcFillAreaStyleTiles explicit implementation
 		IEnumerable<IIfcVector> IIfcFillAreaStyleTiles.TilingPattern { get { return @TilingPattern; } }	
@@ -176,6 +176,19 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @TilingPattern)
+					yield return entity;
+				foreach(var entity in @Tiles)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 {
 	[ExpressType("IfcCostSchedule", 695)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCostSchedule : IfcControl, IInstantiableEntity, IIfcCostSchedule, IEquatable<@IfcCostSchedule>
+	public  partial class @IfcCostSchedule : IfcControl, IInstantiableEntity, IIfcCostSchedule, IContainsEntityReferences, IEquatable<@IfcCostSchedule>
 	{
 		#region IIfcCostSchedule explicit implementation
 		IfcCostScheduleTypeEnum? IIfcCostSchedule.PredefinedType { get { return @PredefinedType; } }	
@@ -201,6 +201,17 @@ namespace Xbim.Ifc4.SharedMgmtElements
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

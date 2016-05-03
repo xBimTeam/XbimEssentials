@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcPreDefinedDimensionSymbol", 747)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPreDefinedDimensionSymbol : IfcPreDefinedSymbol, IInstantiableEntity, IIfcPreDefinedDimensionSymbol, IEquatable<@IfcPreDefinedDimensionSymbol>
+	public  partial class @IfcPreDefinedDimensionSymbol : IfcPreDefinedSymbol, IInstantiableEntity, IIfcPreDefinedDimensionSymbol, IContainsEntityReferences, IEquatable<@IfcPreDefinedDimensionSymbol>
 	{
 		#region IIfcPreDefinedDimensionSymbol explicit implementation
 		 
@@ -109,6 +109,15 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

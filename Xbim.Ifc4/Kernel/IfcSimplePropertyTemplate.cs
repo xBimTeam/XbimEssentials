@@ -43,7 +43,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcSimplePropertyTemplate", 1267)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSimplePropertyTemplate : IfcPropertyTemplate, IInstantiableEntity, IIfcSimplePropertyTemplate, IEquatable<@IfcSimplePropertyTemplate>
+	public  partial class @IfcSimplePropertyTemplate : IfcPropertyTemplate, IInstantiableEntity, IIfcSimplePropertyTemplate, IContainsEntityReferences, IEquatable<@IfcSimplePropertyTemplate>
 	{
 		#region IIfcSimplePropertyTemplate explicit implementation
 		IfcSimplePropertyTemplateTypeEnum? IIfcSimplePropertyTemplate.TemplateType { get { return @TemplateType; } }	
@@ -278,6 +278,23 @@ namespace Xbim.Ifc4.Kernel
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@Enumerators != null)
+					yield return @Enumerators;
+				if (@PrimaryUnit != null)
+					yield return @PrimaryUnit;
+				if (@SecondaryUnit != null)
+					yield return @SecondaryUnit;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcGridPlacement", 439)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGridPlacement : IfcObjectPlacement, IInstantiableEntity, IIfcGridPlacement, IEquatable<@IfcGridPlacement>
+	public  partial class @IfcGridPlacement : IfcObjectPlacement, IInstantiableEntity, IIfcGridPlacement, IContainsEntityReferences, IEquatable<@IfcGridPlacement>
 	{
 		#region IIfcGridPlacement explicit implementation
 		IIfcVirtualGridIntersection IIfcGridPlacement.PlacementLocation { get { return @PlacementLocation; } }	
@@ -150,6 +150,19 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@PlacementLocation != null)
+					yield return @PlacementLocation;
+				if (@PlacementRefDirection != null)
+					yield return @PlacementRefDirection;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

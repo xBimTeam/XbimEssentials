@@ -44,7 +44,7 @@ namespace Xbim.Ifc4.DateTimeResource
 {
 	[ExpressType("IfcRecurrencePattern", 1243)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRecurrencePattern : INotifyPropertyChanged, IInstantiableEntity, IIfcRecurrencePattern, IEquatable<@IfcRecurrencePattern>
+	public  partial class @IfcRecurrencePattern : INotifyPropertyChanged, IInstantiableEntity, IIfcRecurrencePattern, IContainsEntityReferences, IEquatable<@IfcRecurrencePattern>
 	{
 		#region IIfcRecurrencePattern explicit implementation
 		IfcRecurrenceTypeEnum IIfcRecurrencePattern.RecurrenceType { get { return @RecurrenceType; } }	
@@ -368,6 +368,17 @@ namespace Xbim.Ifc4.DateTimeResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @TimePeriods)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

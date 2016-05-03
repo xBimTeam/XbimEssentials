@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcTextStyleTextModel", 581)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextStyleTextModel : IfcPresentationItem, IInstantiableEntity, IIfcTextStyleTextModel, IEquatable<@IfcTextStyleTextModel>
+	public  partial class @IfcTextStyleTextModel : IfcPresentationItem, IInstantiableEntity, IIfcTextStyleTextModel, IContainsEntityReferences, IEquatable<@IfcTextStyleTextModel>
 	{
 		#region IIfcTextStyleTextModel explicit implementation
 		IIfcSizeSelect IIfcTextStyleTextModel.TextIndent { get { return @TextIndent; } }	
@@ -251,6 +251,15 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

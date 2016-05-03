@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.ProcessExtension
 {
 	[ExpressType("IfcWorkSchedule", 186)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWorkSchedule : IfcWorkControl, IInstantiableEntity, IIfcWorkSchedule, IEquatable<@IfcWorkSchedule>
+	public  partial class @IfcWorkSchedule : IfcWorkControl, IInstantiableEntity, IIfcWorkSchedule, IContainsEntityReferences, IEquatable<@IfcWorkSchedule>
 	{
 		#region IIfcWorkSchedule explicit implementation
 		IfcWorkScheduleTypeEnum? IIfcWorkSchedule.PredefinedType { get { return @PredefinedType; } }	
@@ -145,6 +145,19 @@ namespace Xbim.Ifc4.ProcessExtension
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @Creators)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

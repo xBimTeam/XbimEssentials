@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.MeasureResource
 {
 	[ExpressType("IfcDerivedUnitElement", 380)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDerivedUnitElement : INotifyPropertyChanged, IInstantiableEntity, IIfcDerivedUnitElement, IEquatable<@IfcDerivedUnitElement>
+	public  partial class @IfcDerivedUnitElement : INotifyPropertyChanged, IInstantiableEntity, IIfcDerivedUnitElement, IContainsEntityReferences, IEquatable<@IfcDerivedUnitElement>
 	{
 		#region IIfcDerivedUnitElement explicit implementation
 		IIfcNamedUnit IIfcDerivedUnitElement.Unit { get { return @Unit; } }	
@@ -259,6 +259,17 @@ namespace Xbim.Ifc4.MeasureResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Unit != null)
+					yield return @Unit;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

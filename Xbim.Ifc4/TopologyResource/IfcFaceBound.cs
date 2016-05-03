@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.TopologyResource
 {
 	[ExpressType("IfcFaceBound", 86)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFaceBound : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcFaceBound, IEquatable<@IfcFaceBound>
+	public  partial class @IfcFaceBound : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcFaceBound, IContainsEntityReferences, IEquatable<@IfcFaceBound>
 	{
 		#region IIfcFaceBound explicit implementation
 		IIfcLoop IIfcFaceBound.Bound { get { return @Bound; } }	
@@ -151,6 +151,17 @@ namespace Xbim.Ifc4.TopologyResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Bound != null)
+					yield return @Bound;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

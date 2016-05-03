@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralCurveReaction", 1280)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralCurveReaction : IfcStructuralReaction, IInstantiableEntity, IIfcStructuralCurveReaction, IEquatable<@IfcStructuralCurveReaction>
+	public  partial class @IfcStructuralCurveReaction : IfcStructuralReaction, IInstantiableEntity, IIfcStructuralCurveReaction, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralCurveReaction>
 	{
 		#region IIfcStructuralCurveReaction explicit implementation
 		IfcStructuralCurveActivityTypeEnum IIfcStructuralCurveReaction.PredefinedType { get { return @PredefinedType; } }	
@@ -140,6 +140,38 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				if (@AppliedLoad != null)
+					yield return @AppliedLoad;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

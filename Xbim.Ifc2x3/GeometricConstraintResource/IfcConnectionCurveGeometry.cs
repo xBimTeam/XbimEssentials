@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcConnectionCurveGeometry", 590)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectionCurveGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionCurveGeometry, IEquatable<@IfcConnectionCurveGeometry>
+	public  partial class @IfcConnectionCurveGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionCurveGeometry, IContainsEntityReferences, IEquatable<@IfcConnectionCurveGeometry>
 	{
 		#region IIfcConnectionCurveGeometry explicit implementation
 		IIfcCurveOrEdgeCurve IIfcConnectionCurveGeometry.CurveOnRelatingElement { get { return @CurveOnRelatingElement; } }	
@@ -150,6 +150,19 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@CurveOnRelatingElement != null)
+					yield return @CurveOnRelatingElement;
+				if (@CurveOnRelatedElement != null)
+					yield return @CurveOnRelatedElement;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

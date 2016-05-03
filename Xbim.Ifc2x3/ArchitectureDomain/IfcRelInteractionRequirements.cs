@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 {
 	[ExpressType("IfcRelInteractionRequirements", 708)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelInteractionRequirements : IfcRelConnects, IInstantiableEntity, IIfcRelInteractionRequirements, IEquatable<@IfcRelInteractionRequirements>
+	public  partial class @IfcRelInteractionRequirements : IfcRelConnects, IInstantiableEntity, IIfcRelInteractionRequirements, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelInteractionRequirements>
 	{
 		#region IIfcRelInteractionRequirements explicit implementation
 		IfcCountMeasure? IIfcRelInteractionRequirements.DailyInteraction { get { return @DailyInteraction; } }	
@@ -220,6 +220,38 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@LocationOfInteraction != null)
+					yield return @LocationOfInteraction;
+				if (@RelatedSpaceProgram != null)
+					yield return @RelatedSpaceProgram;
+				if (@RelatingSpaceProgram != null)
+					yield return @RelatingSpaceProgram;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatedSpaceProgram != null)
+					yield return @RelatedSpaceProgram;
+				if (@RelatingSpaceProgram != null)
+					yield return @RelatingSpaceProgram;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcSymbolStyle", 729)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSymbolStyle : IfcPresentationStyle, IInstantiableEntity, IIfcSymbolStyle, IEquatable<@IfcSymbolStyle>
+	public  partial class @IfcSymbolStyle : IfcPresentationStyle, IInstantiableEntity, IIfcSymbolStyle, IContainsEntityReferences, IEquatable<@IfcSymbolStyle>
 	{
 		#region IIfcSymbolStyle explicit implementation
 		IIfcSymbolStyleSelect IIfcSymbolStyle.StyleOfSymbol { get { return @StyleOfSymbol; } }	
@@ -143,6 +143,17 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@StyleOfSymbol != null)
+					yield return @StyleOfSymbol;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

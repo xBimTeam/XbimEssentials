@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcProject", 204)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProject : IfcObject, IInstantiableEntity, IIfcProject, IEquatable<@IfcProject>
+	public  partial class @IfcProject : IfcObject, IInstantiableEntity, IIfcProject, IContainsEntityReferences, IEquatable<@IfcProject>
 	{
 		#region IIfcProject explicit implementation
 		IfcLabel? IIfcProject.LongName { get { return @LongName; } }	
@@ -196,6 +196,21 @@ namespace Xbim.Ifc2x3.Kernel
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RepresentationContexts)
+					yield return entity;
+				if (@UnitsInContext != null)
+					yield return @UnitsInContext;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

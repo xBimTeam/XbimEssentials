@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[ExpressType("IfcSurfaceReinforcementArea", 1288)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceReinforcementArea : IfcStructuralLoadOrResult, IInstantiableEntity, IIfcSurfaceReinforcementArea, IEquatable<@IfcSurfaceReinforcementArea>
+	public  partial class @IfcSurfaceReinforcementArea : IfcStructuralLoadOrResult, IInstantiableEntity, IIfcSurfaceReinforcementArea, IContainsEntityReferences, IEquatable<@IfcSurfaceReinforcementArea>
 	{
 		#region IIfcSurfaceReinforcementArea explicit implementation
 		IEnumerable<IfcLengthMeasure> IIfcSurfaceReinforcementArea.SurfaceReinforcement1 { get { return @SurfaceReinforcement1; } }	
@@ -168,6 +168,15 @@ namespace Xbim.Ifc4.StructuralLoadResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -47,7 +47,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 {
 	[ExpressType("IfcApproval", 626)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcApproval : INotifyPropertyChanged, IInstantiableEntity, IIfcApproval, IEquatable<@IfcApproval>
+	public  partial class @IfcApproval : INotifyPropertyChanged, IInstantiableEntity, IIfcApproval, IContainsEntityReferences, IEquatable<@IfcApproval>
 	{
 		#region IIfcApproval explicit implementation
 		IfcText? IIfcApproval.Description { get { return @Description; } }	
@@ -396,6 +396,17 @@ namespace Xbim.Ifc2x3.ApprovalResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@ApprovalDateTime != null)
+					yield return @ApprovalDateTime;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

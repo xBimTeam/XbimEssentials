@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcArbitraryClosedProfileDef", 115)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcArbitraryClosedProfileDef : IfcProfileDef, IInstantiableEntity, IIfcArbitraryClosedProfileDef, IEquatable<@IfcArbitraryClosedProfileDef>
+	public  partial class @IfcArbitraryClosedProfileDef : IfcProfileDef, IInstantiableEntity, IIfcArbitraryClosedProfileDef, IContainsEntityReferences, IEquatable<@IfcArbitraryClosedProfileDef>
 	{
 		#region IIfcArbitraryClosedProfileDef explicit implementation
 		IIfcCurve IIfcArbitraryClosedProfileDef.OuterCurve { get { return @OuterCurve; } }	
@@ -135,6 +135,17 @@ namespace Xbim.Ifc2x3.ProfileResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OuterCurve != null)
+					yield return @OuterCurve;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

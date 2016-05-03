@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcStructuralLoadLinearForce", 419)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadLinearForce : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadLinearForce, IEquatable<@IfcStructuralLoadLinearForce>
+	public  partial class @IfcStructuralLoadLinearForce : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadLinearForce, IContainsEntityReferences, IEquatable<@IfcStructuralLoadLinearForce>
 	{
 		#region IIfcStructuralLoadLinearForce explicit implementation
 		IfcLinearForceMeasure? IIfcStructuralLoadLinearForce.LinearForceX { get { return @LinearForceX; } }	
@@ -234,6 +234,15 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

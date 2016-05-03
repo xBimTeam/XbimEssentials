@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcVirtualGridIntersection", 589)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVirtualGridIntersection : INotifyPropertyChanged, IInstantiableEntity, IIfcVirtualGridIntersection, IEquatable<@IfcVirtualGridIntersection>
+	public  partial class @IfcVirtualGridIntersection : INotifyPropertyChanged, IInstantiableEntity, IIfcVirtualGridIntersection, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcVirtualGridIntersection>
 	{
 		#region IIfcVirtualGridIntersection explicit implementation
 		IEnumerable<IIfcGridAxis> IIfcVirtualGridIntersection.IntersectingAxes { get { return @IntersectingAxes; } }	
@@ -254,6 +254,30 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @IntersectingAxes)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @IntersectingAxes)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.ActorResource
 {
 	[ExpressType("IfcTelecomAddress", 553)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTelecomAddress : IfcAddress, IInstantiableEntity, IIfcTelecomAddress, IEquatable<@IfcTelecomAddress>
+	public  partial class @IfcTelecomAddress : IfcAddress, IInstantiableEntity, IIfcTelecomAddress, IContainsEntityReferences, IEquatable<@IfcTelecomAddress>
 	{
 		#region IIfcTelecomAddress explicit implementation
 		IEnumerable<IfcLabel> IIfcTelecomAddress.TelephoneNumbers { get { return @TelephoneNumbers; } }	
@@ -207,6 +207,15 @@ namespace Xbim.Ifc2x3.ActorResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcIndexedColourMap", 1189)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcIndexedColourMap : IfcPresentationItem, IInstantiableEntity, IIfcIndexedColourMap, IEquatable<@IfcIndexedColourMap>
+	public  partial class @IfcIndexedColourMap : IfcPresentationItem, IInstantiableEntity, IIfcIndexedColourMap, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcIndexedColourMap>
 	{
 		#region IIfcIndexedColourMap explicit implementation
 		IIfcTessellatedFaceSet IIfcIndexedColourMap.MappedTo { get { return @MappedTo; } }	
@@ -190,6 +190,32 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@MappedTo != null)
+					yield return @MappedTo;
+				if (@Colours != null)
+					yield return @Colours;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@MappedTo != null)
+					yield return @MappedTo;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

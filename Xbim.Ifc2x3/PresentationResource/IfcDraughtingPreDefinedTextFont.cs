@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 {
 	[ExpressType("IfcDraughtingPreDefinedTextFont", 761)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDraughtingPreDefinedTextFont : IfcPreDefinedTextFont, IInstantiableEntity, IIfcDraughtingPreDefinedTextFont, IEquatable<@IfcDraughtingPreDefinedTextFont>
+	public  partial class @IfcDraughtingPreDefinedTextFont : IfcPreDefinedTextFont, IInstantiableEntity, IIfcDraughtingPreDefinedTextFont, IContainsEntityReferences, IEquatable<@IfcDraughtingPreDefinedTextFont>
 	{
 		#region IIfcDraughtingPreDefinedTextFont explicit implementation
 		 
@@ -108,6 +108,15 @@ namespace Xbim.Ifc2x3.PresentationResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

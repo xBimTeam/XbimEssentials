@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	[ExpressType("IfcLaborResource", 156)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLaborResource : IfcConstructionResource, IInstantiableEntity, IIfcLaborResource, IEquatable<@IfcLaborResource>
+	public  partial class @IfcLaborResource : IfcConstructionResource, IInstantiableEntity, IIfcLaborResource, IContainsEntityReferences, IEquatable<@IfcLaborResource>
 	{
 		#region IIfcLaborResource explicit implementation
 		IfcText? IIfcLaborResource.SkillSet { get { return @SkillSet; } }	
@@ -142,6 +142,19 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@BaseQuantity != null)
+					yield return @BaseQuantity;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

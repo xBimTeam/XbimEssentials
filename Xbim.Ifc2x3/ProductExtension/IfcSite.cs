@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcSite", 349)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSite : IfcSpatialStructureElement, IInstantiableEntity, IIfcSite, IEquatable<@IfcSite>
+	public  partial class @IfcSite : IfcSpatialStructureElement, IInstantiableEntity, IIfcSite, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSite>
 	{
 		#region IIfcSite explicit implementation
 		IfcCompoundPlaneAngleMeasure? IIfcSite.RefLatitude { get { return @RefLatitude; } }	
@@ -228,6 +228,38 @@ namespace Xbim.Ifc2x3.ProductExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				if (@SiteAddress != null)
+					yield return @SiteAddress;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -63,7 +63,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Type", 21)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieType : CobieTypeOrComponent, IInstantiableEntity, ICobieType, IEquatable<@CobieType>
+	public  partial class @CobieType : CobieTypeOrComponent, IInstantiableEntity, ICobieType, IContainsEntityReferences, IEquatable<@CobieType>
 	{
 		#region ICobieType explicit implementation
 		ICobieAssetType ICobieType.AssetType { get { return @AssetType; } }	
@@ -700,6 +700,45 @@ namespace Xbim.CobieExpress
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Created != null)
+					yield return @Created;
+				if (@ExternalSystem != null)
+					yield return @ExternalSystem;
+				if (@ExternalObject != null)
+					yield return @ExternalObject;
+				foreach(var entity in @Categories)
+					yield return entity;
+				foreach(var entity in @Impacts)
+					yield return entity;
+				foreach(var entity in @Documents)
+					yield return entity;
+				foreach(var entity in @Attributes)
+					yield return entity;
+				foreach(var entity in @Representations)
+					yield return entity;
+				foreach(var entity in @AssemblyOf)
+					yield return entity;
+				if (@AssetType != null)
+					yield return @AssetType;
+				if (@Manufacturer != null)
+					yield return @Manufacturer;
+				if (@WarrantyGuarantorParts != null)
+					yield return @WarrantyGuarantorParts;
+				if (@WarrantyGuarantorLabor != null)
+					yield return @WarrantyGuarantorLabor;
+				if (@WarrantyDurationUnit != null)
+					yield return @WarrantyDurationUnit;
+				if (@DurationUnit != null)
+					yield return @DurationUnit;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

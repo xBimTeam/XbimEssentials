@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("SpareType", 46)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieSpareType : CobiePickValue, IInstantiableEntity, ICobieSpareType, IEquatable<@CobieSpareType>
+	public  partial class @CobieSpareType : CobiePickValue, IInstantiableEntity, ICobieSpareType, IContainsEntityReferences, IEquatable<@CobieSpareType>
 	{
 		#region ICobieSpareType explicit implementation
 		 
@@ -108,6 +108,15 @@ namespace Xbim.CobieExpress
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

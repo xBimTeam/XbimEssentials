@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcGroup", 228)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGroup : IfcObject, IInstantiableEntity, IIfcGroup, IEquatable<@IfcGroup>
+	public  partial class @IfcGroup : IfcObject, IInstantiableEntity, IIfcGroup, IContainsEntityReferences, IEquatable<@IfcGroup>
 	{
 		#region IIfcGroup explicit implementation
 		 
@@ -125,6 +125,17 @@ namespace Xbim.Ifc2x3.Kernel
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

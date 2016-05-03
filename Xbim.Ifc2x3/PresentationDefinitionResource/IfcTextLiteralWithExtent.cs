@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcTextLiteralWithExtent", 426)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextLiteralWithExtent : IfcTextLiteral, IInstantiableEntity, IIfcTextLiteralWithExtent, IEquatable<@IfcTextLiteralWithExtent>
+	public  partial class @IfcTextLiteralWithExtent : IfcTextLiteral, IInstantiableEntity, IIfcTextLiteralWithExtent, IContainsEntityReferences, IEquatable<@IfcTextLiteralWithExtent>
 	{
 		#region IIfcTextLiteralWithExtent explicit implementation
 		IIfcPlanarExtent IIfcTextLiteralWithExtent.Extent { get { return @Extent; } }	
@@ -156,6 +156,19 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Placement != null)
+					yield return @Placement;
+				if (@Extent != null)
+					yield return @Extent;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

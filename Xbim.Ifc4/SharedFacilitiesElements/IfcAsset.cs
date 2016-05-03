@@ -47,7 +47,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 {
 	[ExpressType("IfcAsset", 767)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAsset : IfcGroup, IInstantiableEntity, IIfcAsset, IEquatable<@IfcAsset>
+	public  partial class @IfcAsset : IfcGroup, IInstantiableEntity, IIfcAsset, IContainsEntityReferences, IEquatable<@IfcAsset>
 	{
 		#region IIfcAsset explicit implementation
 		IfcIdentifier? IIfcAsset.Identification { get { return @Identification; } }	
@@ -302,6 +302,31 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@OriginalValue != null)
+					yield return @OriginalValue;
+				if (@CurrentValue != null)
+					yield return @CurrentValue;
+				if (@TotalReplacementCost != null)
+					yield return @TotalReplacementCost;
+				if (@Owner != null)
+					yield return @Owner;
+				if (@User != null)
+					yield return @User;
+				if (@ResponsiblePerson != null)
+					yield return @ResponsiblePerson;
+				if (@DepreciatedValue != null)
+					yield return @DepreciatedValue;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

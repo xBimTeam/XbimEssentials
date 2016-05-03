@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcOneDirectionRepeatFactor", 32)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOneDirectionRepeatFactor : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcOneDirectionRepeatFactor, IEquatable<@IfcOneDirectionRepeatFactor>
+	public  partial class @IfcOneDirectionRepeatFactor : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcOneDirectionRepeatFactor, IContainsEntityReferences, IEquatable<@IfcOneDirectionRepeatFactor>
 	{
 		#region IIfcOneDirectionRepeatFactor explicit implementation
 		IIfcVector IIfcOneDirectionRepeatFactor.RepeatFactor { get { return @RepeatFactor; } }	
@@ -141,6 +141,17 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@RepeatFactor != null)
+					yield return @RepeatFactor;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[ExpressType("IfcStructuralLoadConfiguration", 1282)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadConfiguration : IfcStructuralLoad, IInstantiableEntity, IIfcStructuralLoadConfiguration, IEquatable<@IfcStructuralLoadConfiguration>
+	public  partial class @IfcStructuralLoadConfiguration : IfcStructuralLoad, IInstantiableEntity, IIfcStructuralLoadConfiguration, IContainsEntityReferences, IEquatable<@IfcStructuralLoadConfiguration>
 	{
 		#region IIfcStructuralLoadConfiguration explicit implementation
 		IEnumerable<IIfcStructuralLoadOrResult> IIfcStructuralLoadConfiguration.Values { get { return @Values; } }	
@@ -150,6 +150,17 @@ namespace Xbim.Ifc4.StructuralLoadResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @Values)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 {
 	[ExpressType("IfcCrewResource", 659)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCrewResource : IfcConstructionResource, IInstantiableEntity, IIfcCrewResource, IEquatable<@IfcCrewResource>
+	public  partial class @IfcCrewResource : IfcConstructionResource, IInstantiableEntity, IIfcCrewResource, IContainsEntityReferences, IEquatable<@IfcCrewResource>
 	{
 		#region IIfcCrewResource explicit implementation
 		IfcCrewResourceTypeEnum? IIfcCrewResource.PredefinedType { get { return @PredefinedType; } }	
@@ -142,6 +142,23 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@Usage != null)
+					yield return @Usage;
+				foreach(var entity in @BaseCosts)
+					yield return entity;
+				if (@BaseQuantity != null)
+					yield return @BaseQuantity;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

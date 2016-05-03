@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.QuantityResource
 {
 	[ExpressType("IfcPhysicalComplexQuantity", 604)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPhysicalComplexQuantity : IfcPhysicalQuantity, IInstantiableEntity, IIfcPhysicalComplexQuantity, IEquatable<@IfcPhysicalComplexQuantity>
+	public  partial class @IfcPhysicalComplexQuantity : IfcPhysicalQuantity, IInstantiableEntity, IIfcPhysicalComplexQuantity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPhysicalComplexQuantity>
 	{
 		#region IIfcPhysicalComplexQuantity explicit implementation
 		IEnumerable<IIfcPhysicalQuantity> IIfcPhysicalComplexQuantity.HasQuantities { get { return @HasQuantities; } }	
@@ -192,6 +192,30 @@ namespace Xbim.Ifc4.QuantityResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @HasQuantities)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @HasQuantities)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

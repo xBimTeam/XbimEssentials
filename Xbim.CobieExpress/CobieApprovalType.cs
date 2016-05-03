@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("ApprovalType", 55)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieApprovalType : CobiePickValue, IInstantiableEntity, ICobieApprovalType, IEquatable<@CobieApprovalType>
+	public  partial class @CobieApprovalType : CobiePickValue, IInstantiableEntity, ICobieApprovalType, IContainsEntityReferences, IEquatable<@CobieApprovalType>
 	{
 		#region ICobieApprovalType explicit implementation
 		 
@@ -108,6 +108,15 @@ namespace Xbim.CobieExpress
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcRelConnectsPathElements", 668)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsPathElements : IfcRelConnectsElements, IInstantiableEntity, IIfcRelConnectsPathElements, IEquatable<@IfcRelConnectsPathElements>
+	public  partial class @IfcRelConnectsPathElements : IfcRelConnectsElements, IInstantiableEntity, IIfcRelConnectsPathElements, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsPathElements>
 	{
 		#region IIfcRelConnectsPathElements explicit implementation
 		IEnumerable<long> IIfcRelConnectsPathElements.RelatingPriorities { get { return @RelatingPriorities; } }	
@@ -193,6 +193,38 @@ namespace Xbim.Ifc2x3.SharedBldgElements
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ConnectionGeometry != null)
+					yield return @ConnectionGeometry;
+				if (@RelatingElement != null)
+					yield return @RelatingElement;
+				if (@RelatedElement != null)
+					yield return @RelatedElement;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingElement != null)
+					yield return @RelatingElement;
+				if (@RelatedElement != null)
+					yield return @RelatedElement;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

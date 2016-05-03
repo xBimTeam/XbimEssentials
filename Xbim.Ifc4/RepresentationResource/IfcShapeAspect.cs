@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.RepresentationResource
 {
 	[ExpressType("IfcShapeAspect", 665)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcShapeAspect : INotifyPropertyChanged, IInstantiableEntity, IIfcShapeAspect, IEquatable<@IfcShapeAspect>
+	public  partial class @IfcShapeAspect : INotifyPropertyChanged, IInstantiableEntity, IIfcShapeAspect, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcShapeAspect>
 	{
 		#region IIfcShapeAspect explicit implementation
 		IEnumerable<IIfcShapeModel> IIfcShapeAspect.ShapeRepresentations { get { return @ShapeRepresentations; } }	
@@ -318,6 +318,34 @@ namespace Xbim.Ifc4.RepresentationResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @ShapeRepresentations)
+					yield return entity;
+				if (@PartOfProductDefinitionShape != null)
+					yield return @PartOfProductDefinitionShape;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @ShapeRepresentations)
+					yield return entity;
+				if (@PartOfProductDefinitionShape != null)
+					yield return @PartOfProductDefinitionShape;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

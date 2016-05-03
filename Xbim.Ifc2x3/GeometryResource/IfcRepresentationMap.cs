@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcRepresentationMap", 95)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRepresentationMap : INotifyPropertyChanged, IInstantiableEntity, IIfcRepresentationMap, IEquatable<@IfcRepresentationMap>
+	public  partial class @IfcRepresentationMap : INotifyPropertyChanged, IInstantiableEntity, IIfcRepresentationMap, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRepresentationMap>
 	{
 		#region IIfcRepresentationMap explicit implementation
 		IIfcAxis2Placement IIfcRepresentationMap.MappingOrigin { get { return @MappingOrigin; } }	
@@ -273,6 +273,32 @@ namespace Xbim.Ifc2x3.GeometryResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@MappingOrigin != null)
+					yield return @MappingOrigin;
+				if (@MappedRepresentation != null)
+					yield return @MappedRepresentation;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@MappedRepresentation != null)
+					yield return @MappedRepresentation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

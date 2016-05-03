@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcBlock", 702)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBlock : IfcCsgPrimitive3D, IInstantiableEntity, IIfcBlock, IEquatable<@IfcBlock>
+	public  partial class @IfcBlock : IfcCsgPrimitive3D, IInstantiableEntity, IIfcBlock, IContainsEntityReferences, IEquatable<@IfcBlock>
 	{
 		#region IIfcBlock explicit implementation
 		IfcPositiveLengthMeasure IIfcBlock.XLength { get { return @XLength; } }	
@@ -174,6 +174,17 @@ namespace Xbim.Ifc4.GeometricModelResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Position != null)
+					yield return @Position;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

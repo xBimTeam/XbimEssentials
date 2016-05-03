@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcExternallyDefinedHatchStyle", 724)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExternallyDefinedHatchStyle : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedHatchStyle, IEquatable<@IfcExternallyDefinedHatchStyle>
+	public  partial class @IfcExternallyDefinedHatchStyle : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedHatchStyle, IContainsEntityReferences, IEquatable<@IfcExternallyDefinedHatchStyle>
 	{
 		#region IIfcExternallyDefinedHatchStyle explicit implementation
 		 
@@ -121,6 +121,15 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

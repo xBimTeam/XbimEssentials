@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcIndexedTriangleTextureMap", 1192)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcIndexedTriangleTextureMap : IfcIndexedTextureMap, IInstantiableEntity, IIfcIndexedTriangleTextureMap, IEquatable<@IfcIndexedTriangleTextureMap>
+	public  partial class @IfcIndexedTriangleTextureMap : IfcIndexedTextureMap, IInstantiableEntity, IIfcIndexedTriangleTextureMap, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcIndexedTriangleTextureMap>
 	{
 		#region IIfcIndexedTriangleTextureMap explicit implementation
 		IEnumerable<IEnumerable<IfcPositiveInteger>> IIfcIndexedTriangleTextureMap.TexCoordIndex { get { return @TexCoordIndex; } }	
@@ -134,6 +134,36 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @Maps)
+					yield return entity;
+				if (@MappedTo != null)
+					yield return @MappedTo;
+				if (@TexCoords != null)
+					yield return @TexCoords;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @Maps)
+					yield return entity;
+				if (@MappedTo != null)
+					yield return @MappedTo;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

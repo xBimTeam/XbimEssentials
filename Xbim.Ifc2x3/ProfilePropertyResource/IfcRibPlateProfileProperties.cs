@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IfcRibPlateProfileProperties", 763)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRibPlateProfileProperties : IfcProfileProperties, IInstantiableEntity, IIfcRibPlateProfileProperties, IEquatable<@IfcRibPlateProfileProperties>
+	public  partial class @IfcRibPlateProfileProperties : IfcProfileProperties, IInstantiableEntity, IIfcRibPlateProfileProperties, IContainsEntityReferences, IEquatable<@IfcRibPlateProfileProperties>
 	{
 		#region IIfcRibPlateProfileProperties explicit implementation
 		IfcPositiveLengthMeasure? IIfcRibPlateProfileProperties.Thickness { get { return @Thickness; } }	
@@ -215,6 +215,17 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@ProfileDefinition != null)
+					yield return @ProfileDefinition;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

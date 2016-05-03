@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IfcCompositeProfileDef", 172)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCompositeProfileDef : IfcProfileDef, IInstantiableEntity, IIfcCompositeProfileDef, IEquatable<@IfcCompositeProfileDef>
+	public  partial class @IfcCompositeProfileDef : IfcProfileDef, IInstantiableEntity, IIfcCompositeProfileDef, IContainsEntityReferences, IEquatable<@IfcCompositeProfileDef>
 	{
 		#region IIfcCompositeProfileDef explicit implementation
 		IEnumerable<IIfcProfileDef> IIfcCompositeProfileDef.Profiles { get { return @Profiles; } }	
@@ -152,6 +152,17 @@ namespace Xbim.Ifc4.ProfileResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @Profiles)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

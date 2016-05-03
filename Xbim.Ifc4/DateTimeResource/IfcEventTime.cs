@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.DateTimeResource
 {
 	[ExpressType("IfcEventTime", 1169)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEventTime : IfcSchedulingTime, IInstantiableEntity, IIfcEventTime, IEquatable<@IfcEventTime>
+	public  partial class @IfcEventTime : IfcSchedulingTime, IInstantiableEntity, IIfcEventTime, IContainsEntityReferences, IEquatable<@IfcEventTime>
 	{
 		#region IIfcEventTime explicit implementation
 		IfcDateTime? IIfcEventTime.ActualDate { get { return @ActualDate; } }	
@@ -195,6 +195,15 @@ namespace Xbim.Ifc4.DateTimeResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

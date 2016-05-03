@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[ExpressType("IfcClassificationItemRelationship", 210)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcClassificationItemRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcClassificationItemRelationship, IEquatable<@IfcClassificationItemRelationship>
+	public  partial class @IfcClassificationItemRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcClassificationItemRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcClassificationItemRelationship>
 	{
 		#region IIfcClassificationItemRelationship explicit implementation
 		IIfcClassificationItem IIfcClassificationItemRelationship.RelatingItem { get { return @RelatingItem; } }	
@@ -257,6 +257,34 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@RelatingItem != null)
+					yield return @RelatingItem;
+				foreach(var entity in @RelatedItems)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingItem != null)
+					yield return @RelatingItem;
+				foreach(var entity in @RelatedItems)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

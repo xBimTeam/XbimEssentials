@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.ActorResource
 {
 	[ExpressType("IfcOrganizationRelationship", 486)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOrganizationRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcOrganizationRelationship, IEquatable<@IfcOrganizationRelationship>
+	public  partial class @IfcOrganizationRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcOrganizationRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcOrganizationRelationship>
 	{
 		#region IIfcOrganizationRelationship explicit implementation
 		IIfcOrganization IIfcOrganizationRelationship.RelatingOrganization { get { return @RelatingOrganization; } }	
@@ -153,6 +153,34 @@ namespace Xbim.Ifc4.ActorResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@RelatingOrganization != null)
+					yield return @RelatingOrganization;
+				foreach(var entity in @RelatedOrganizations)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingOrganization != null)
+					yield return @RelatingOrganization;
+				foreach(var entity in @RelatedOrganizations)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

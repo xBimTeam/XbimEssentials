@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	[ExpressType("IfcMove", 74)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMove : IfcTask, IInstantiableEntity, IIfcMove, IEquatable<@IfcMove>
+	public  partial class @IfcMove : IfcTask, IInstantiableEntity, IIfcMove, IContainsEntityReferences, IEquatable<@IfcMove>
 	{
 		#region IIfcMove explicit implementation
 		IIfcSpatialStructureElement IIfcMove.MoveFrom { get { return @MoveFrom; } }	
@@ -182,6 +182,21 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@MoveFrom != null)
+					yield return @MoveFrom;
+				if (@MoveTo != null)
+					yield return @MoveTo;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

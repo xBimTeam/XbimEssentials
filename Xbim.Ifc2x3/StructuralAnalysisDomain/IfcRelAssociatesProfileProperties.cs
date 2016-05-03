@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcRelAssociatesProfileProperties", 676)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesProfileProperties : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesProfileProperties, IEquatable<@IfcRelAssociatesProfileProperties>
+	public  partial class @IfcRelAssociatesProfileProperties : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesProfileProperties, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesProfileProperties>
 	{
 		#region IIfcRelAssociatesProfileProperties explicit implementation
 		IIfcProfileProperties IIfcRelAssociatesProfileProperties.RelatingProfileProperties { get { return @RelatingProfileProperties; } }	
@@ -179,6 +179,36 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingProfileProperties != null)
+					yield return @RelatingProfileProperties;
+				if (@ProfileSectionLocation != null)
+					yield return @ProfileSectionLocation;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

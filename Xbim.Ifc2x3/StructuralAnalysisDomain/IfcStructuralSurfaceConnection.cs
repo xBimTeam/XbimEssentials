@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralSurfaceConnection", 264)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralSurfaceConnection : IfcStructuralConnection, IInstantiableEntity, IIfcStructuralSurfaceConnection, IEquatable<@IfcStructuralSurfaceConnection>
+	public  partial class @IfcStructuralSurfaceConnection : IfcStructuralConnection, IInstantiableEntity, IIfcStructuralSurfaceConnection, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralSurfaceConnection>
 	{
 		#region IIfcStructuralSurfaceConnection explicit implementation
 		 
@@ -114,6 +114,38 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				if (@AppliedCondition != null)
+					yield return @AppliedCondition;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

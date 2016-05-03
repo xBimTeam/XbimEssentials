@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("VolumeUnit", 41)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieVolumeUnit : CobiePickValue, IInstantiableEntity, ICobieVolumeUnit, IEquatable<@CobieVolumeUnit>
+	public  partial class @CobieVolumeUnit : CobiePickValue, IInstantiableEntity, ICobieVolumeUnit, IContainsEntityReferences, IEquatable<@CobieVolumeUnit>
 	{
 		#region ICobieVolumeUnit explicit implementation
 		 
@@ -108,6 +108,15 @@ namespace Xbim.CobieExpress
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

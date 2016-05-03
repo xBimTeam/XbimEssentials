@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.DateTimeResource
 {
 	[ExpressType("IfcTimePeriod", 1302)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTimePeriod : INotifyPropertyChanged, IInstantiableEntity, IIfcTimePeriod, IEquatable<@IfcTimePeriod>
+	public  partial class @IfcTimePeriod : INotifyPropertyChanged, IInstantiableEntity, IIfcTimePeriod, IContainsEntityReferences, IEquatable<@IfcTimePeriod>
 	{
 		#region IIfcTimePeriod explicit implementation
 		IfcTime IIfcTimePeriod.StartTime { get { return @StartTime; } }	
@@ -259,6 +259,15 @@ namespace Xbim.Ifc4.DateTimeResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

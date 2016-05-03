@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 {
 	[ExpressType("IfcTask", 72)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTask : IfcProcess, IInstantiableEntity, IIfcTask, IEquatable<@IfcTask>
+	public  partial class @IfcTask : IfcProcess, IInstantiableEntity, IIfcTask, IContainsEntityReferences, IEquatable<@IfcTask>
 	{
 		#region IIfcTask explicit implementation
 		IfcIdentifier IIfcTask.TaskId { get { return @TaskId; } }	
@@ -219,6 +219,17 @@ namespace Xbim.Ifc2x3.ProcessExtension
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

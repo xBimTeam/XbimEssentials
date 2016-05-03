@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.UtilityResource
 {
 	[ExpressType("IfcApplication", 627)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcApplication : INotifyPropertyChanged, IInstantiableEntity, IIfcApplication, IEquatable<@IfcApplication>
+	public  partial class @IfcApplication : INotifyPropertyChanged, IInstantiableEntity, IIfcApplication, IContainsEntityReferences, IEquatable<@IfcApplication>
 	{
 		#region IIfcApplication explicit implementation
 		IIfcOrganization IIfcApplication.ApplicationDeveloper { get { return @ApplicationDeveloper; } }	
@@ -301,6 +301,17 @@ namespace Xbim.Ifc4.UtilityResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@ApplicationDeveloper != null)
+					yield return @ApplicationDeveloper;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

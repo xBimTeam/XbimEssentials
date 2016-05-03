@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcSurfaceStyleWithTextures", 392)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyleWithTextures : IfcPresentationItem, IInstantiableEntity, IIfcSurfaceStyleWithTextures, IEquatable<@IfcSurfaceStyleWithTextures>
+	public  partial class @IfcSurfaceStyleWithTextures : IfcPresentationItem, IInstantiableEntity, IIfcSurfaceStyleWithTextures, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSurfaceStyleWithTextures>
 	{
 		#region IIfcSurfaceStyleWithTextures explicit implementation
 		IEnumerable<IIfcSurfaceTexture> IIfcSurfaceStyleWithTextures.Textures { get { return @Textures; } }	
@@ -138,6 +138,30 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		}
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @Textures)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @Textures)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

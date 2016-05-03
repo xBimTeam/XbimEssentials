@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.DateTimeResource
 {
 	[ExpressType("IfcTaskTimeRecurring", 1295)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTaskTimeRecurring : IfcTaskTime, IInstantiableEntity, IIfcTaskTimeRecurring, IEquatable<@IfcTaskTimeRecurring>
+	public  partial class @IfcTaskTimeRecurring : IfcTaskTime, IInstantiableEntity, IIfcTaskTimeRecurring, IContainsEntityReferences, IEquatable<@IfcTaskTimeRecurring>
 	{
 		#region IIfcTaskTimeRecurring explicit implementation
 		IIfcRecurrencePattern IIfcTaskTimeRecurring.Recurrence { get { return @Recurrence; } }	
@@ -152,6 +152,17 @@ namespace Xbim.Ifc4.DateTimeResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Recurrence != null)
+					yield return @Recurrence;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

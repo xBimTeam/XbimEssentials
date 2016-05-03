@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcOpenShell", 488)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOpenShell : IfcConnectedFaceSet, IInstantiableEntity, IIfcOpenShell, IEquatable<@IfcOpenShell>
+	public  partial class @IfcOpenShell : IfcConnectedFaceSet, IInstantiableEntity, IIfcOpenShell, IContainsEntityReferences, IEquatable<@IfcOpenShell>
 	{
 		#region IIfcOpenShell explicit implementation
 		 
@@ -118,6 +118,17 @@ namespace Xbim.Ifc2x3.TopologyResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @CfsFaces)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

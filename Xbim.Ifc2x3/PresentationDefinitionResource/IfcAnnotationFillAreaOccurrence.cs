@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcAnnotationFillAreaOccurrence", 544)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAnnotationFillAreaOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IIfcAnnotationFillAreaOccurrence, IEquatable<@IfcAnnotationFillAreaOccurrence>
+	public  partial class @IfcAnnotationFillAreaOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IIfcAnnotationFillAreaOccurrence, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAnnotationFillAreaOccurrence>
 	{
 		#region IIfcAnnotationFillAreaOccurrence explicit implementation
 		IIfcPoint IIfcAnnotationFillAreaOccurrence.FillStyleTarget { get { return @FillStyleTarget; } }	
@@ -156,6 +156,34 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Item != null)
+					yield return @Item;
+				foreach(var entity in @Styles)
+					yield return entity;
+				if (@FillStyleTarget != null)
+					yield return @FillStyleTarget;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@Item != null)
+					yield return @Item;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

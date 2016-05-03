@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcPcurve", 1220)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPcurve : IfcCurve, IInstantiableEntity, IIfcPcurve, IEquatable<@IfcPcurve>
+	public  partial class @IfcPcurve : IfcCurve, IInstantiableEntity, IIfcPcurve, IContainsEntityReferences, IEquatable<@IfcPcurve>
 	{
 		#region IIfcPcurve explicit implementation
 		IIfcSurface IIfcPcurve.BasisSurface { get { return @BasisSurface; } }	
@@ -160,6 +160,19 @@ namespace Xbim.Ifc4.GeometryResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@BasisSurface != null)
+					yield return @BasisSurface;
+				if (@ReferenceCurve != null)
+					yield return @ReferenceCurve;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

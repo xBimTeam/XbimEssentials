@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IfcRectangleProfileDef", 103)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRectangleProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcRectangleProfileDef, IEquatable<@IfcRectangleProfileDef>
+	public  partial class @IfcRectangleProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcRectangleProfileDef, IContainsEntityReferences, IEquatable<@IfcRectangleProfileDef>
 	{
 		#region IIfcRectangleProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcRectangleProfileDef.XDim { get { return @XDim; } }	
@@ -156,6 +156,17 @@ namespace Xbim.Ifc4.ProfileResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Position != null)
+					yield return @Position;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

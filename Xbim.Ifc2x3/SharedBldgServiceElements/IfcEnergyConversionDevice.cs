@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcEnergyConversionDevice", 175)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEnergyConversionDevice : IfcDistributionFlowElement, IInstantiableEntity, IIfcEnergyConversionDevice, IEquatable<@IfcEnergyConversionDevice>
+	public  partial class @IfcEnergyConversionDevice : IfcDistributionFlowElement, IInstantiableEntity, IIfcEnergyConversionDevice, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcEnergyConversionDevice>
 	{
 		#region IIfcEnergyConversionDevice explicit implementation
 		 
@@ -114,6 +114,36 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

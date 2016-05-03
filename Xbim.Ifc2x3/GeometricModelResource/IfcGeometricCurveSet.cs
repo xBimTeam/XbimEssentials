@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcGeometricCurveSet", 237)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeometricCurveSet : IfcGeometricSet, IInstantiableEntity, IIfcGeometricCurveSet, IEquatable<@IfcGeometricCurveSet>
+	public  partial class @IfcGeometricCurveSet : IfcGeometricSet, IInstantiableEntity, IIfcGeometricCurveSet, IContainsEntityReferences, IEquatable<@IfcGeometricCurveSet>
 	{
 		#region IIfcGeometricCurveSet explicit implementation
 		 
@@ -108,6 +108,17 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @Elements)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

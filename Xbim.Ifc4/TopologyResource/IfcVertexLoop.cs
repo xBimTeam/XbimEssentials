@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.TopologyResource
 {
 	[ExpressType("IfcVertexLoop", 244)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVertexLoop : IfcLoop, IInstantiableEntity, IIfcVertexLoop, IEquatable<@IfcVertexLoop>
+	public  partial class @IfcVertexLoop : IfcLoop, IInstantiableEntity, IIfcVertexLoop, IContainsEntityReferences, IEquatable<@IfcVertexLoop>
 	{
 		#region IIfcVertexLoop explicit implementation
 		IIfcVertex IIfcVertexLoop.LoopVertex { get { return @LoopVertex; } }	
@@ -130,6 +130,17 @@ namespace Xbim.Ifc4.TopologyResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@LoopVertex != null)
+					yield return @LoopVertex;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

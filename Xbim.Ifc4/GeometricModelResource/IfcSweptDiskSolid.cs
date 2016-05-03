@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcSweptDiskSolid", 547)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSweptDiskSolid : IfcSolidModel, IInstantiableEntity, IIfcSweptDiskSolid, IEquatable<@IfcSweptDiskSolid>
+	public  partial class @IfcSweptDiskSolid : IfcSolidModel, IInstantiableEntity, IIfcSweptDiskSolid, IContainsEntityReferences, IEquatable<@IfcSweptDiskSolid>
 	{
 		#region IIfcSweptDiskSolid explicit implementation
 		IIfcCurve IIfcSweptDiskSolid.Directrix { get { return @Directrix; } }	
@@ -212,6 +212,17 @@ namespace Xbim.Ifc4.GeometricModelResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Directrix != null)
+					yield return @Directrix;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

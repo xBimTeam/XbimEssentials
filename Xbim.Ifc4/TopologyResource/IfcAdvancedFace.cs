@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.TopologyResource
 {
 	[ExpressType("IfcAdvancedFace", 1094)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAdvancedFace : IfcFaceSurface, IInstantiableEntity, IIfcAdvancedFace, IEquatable<@IfcAdvancedFace>
+	public  partial class @IfcAdvancedFace : IfcFaceSurface, IInstantiableEntity, IIfcAdvancedFace, IContainsEntityReferences, IEquatable<@IfcAdvancedFace>
 	{
 		#region IIfcAdvancedFace explicit implementation
 		 
@@ -110,6 +110,19 @@ namespace Xbim.Ifc4.TopologyResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @Bounds)
+					yield return entity;
+				if (@FaceSurface != null)
+					yield return @FaceSurface;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcPolygonalBoundedHalfSpace", 623)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPolygonalBoundedHalfSpace : IfcHalfSpaceSolid, IInstantiableEntity, IIfcPolygonalBoundedHalfSpace, IEquatable<@IfcPolygonalBoundedHalfSpace>
+	public  partial class @IfcPolygonalBoundedHalfSpace : IfcHalfSpaceSolid, IInstantiableEntity, IIfcPolygonalBoundedHalfSpace, IContainsEntityReferences, IEquatable<@IfcPolygonalBoundedHalfSpace>
 	{
 		#region IIfcPolygonalBoundedHalfSpace explicit implementation
 		IIfcAxis2Placement3D IIfcPolygonalBoundedHalfSpace.Position { get { return @Position; } }	
@@ -155,6 +155,21 @@ namespace Xbim.Ifc4.GeometricModelResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@BaseSurface != null)
+					yield return @BaseSurface;
+				if (@Position != null)
+					yield return @Position;
+				if (@PolygonalBoundary != null)
+					yield return @PolygonalBoundary;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

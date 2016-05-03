@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcSoundValue", 266)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSoundValue : IfcPropertySetDefinition, IInstantiableEntity, IIfcSoundValue, IEquatable<@IfcSoundValue>
+	public  partial class @IfcSoundValue : IfcPropertySetDefinition, IInstantiableEntity, IIfcSoundValue, IContainsEntityReferences, IEquatable<@IfcSoundValue>
 	{
 		#region IIfcSoundValue explicit implementation
 		IIfcTimeSeries IIfcSoundValue.SoundLevelTimeSeries { get { return @SoundLevelTimeSeries; } }	
@@ -179,6 +179,19 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@SoundLevelTimeSeries != null)
+					yield return @SoundLevelTimeSeries;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

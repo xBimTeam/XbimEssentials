@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcExternallyDefinedTextFont", 132)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExternallyDefinedTextFont : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedTextFont, IEquatable<@IfcExternallyDefinedTextFont>
+	public  partial class @IfcExternallyDefinedTextFont : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedTextFont, IContainsEntityReferences, IEquatable<@IfcExternallyDefinedTextFont>
 	{
 		#region IIfcExternallyDefinedTextFont explicit implementation
 		 
@@ -121,6 +121,15 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

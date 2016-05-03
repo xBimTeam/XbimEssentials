@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IfcOutlet", 1219)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOutlet : IfcFlowTerminal, IInstantiableEntity, IIfcOutlet, IEquatable<@IfcOutlet>
+	public  partial class @IfcOutlet : IfcFlowTerminal, IInstantiableEntity, IIfcOutlet, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcOutlet>
 	{
 		#region IIfcOutlet explicit implementation
 		IfcOutletTypeEnum? IIfcOutlet.PredefinedType { get { return @PredefinedType; } }	
@@ -140,6 +140,36 @@ namespace Xbim.Ifc4.ElectricalDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

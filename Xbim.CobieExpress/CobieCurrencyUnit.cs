@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("CurrencyUnit", 42)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieCurrencyUnit : CobiePickValue, IInstantiableEntity, ICobieCurrencyUnit, IEquatable<@CobieCurrencyUnit>
+	public  partial class @CobieCurrencyUnit : CobiePickValue, IInstantiableEntity, ICobieCurrencyUnit, IContainsEntityReferences, IEquatable<@CobieCurrencyUnit>
 	{
 		#region ICobieCurrencyUnit explicit implementation
 		 
@@ -108,6 +108,15 @@ namespace Xbim.CobieExpress
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	[ExpressType("IfcProjectOrderRecord", 697)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProjectOrderRecord : IfcControl, IInstantiableEntity, IIfcProjectOrderRecord, IEquatable<@IfcProjectOrderRecord>
+	public  partial class @IfcProjectOrderRecord : IfcControl, IInstantiableEntity, IIfcProjectOrderRecord, IContainsEntityReferences, IEquatable<@IfcProjectOrderRecord>
 	{
 		#region IIfcProjectOrderRecord explicit implementation
 		IEnumerable<IIfcRelAssignsToProjectOrder> IIfcProjectOrderRecord.Records { get { return @Records; } }	
@@ -155,6 +155,19 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @Records)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcCartesianPointList3D", 1118)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCartesianPointList3D : IfcCartesianPointList, IInstantiableEntity, IIfcCartesianPointList3D, IEquatable<@IfcCartesianPointList3D>
+	public  partial class @IfcCartesianPointList3D : IfcCartesianPointList, IInstantiableEntity, IIfcCartesianPointList3D, IContainsEntityReferences, IEquatable<@IfcCartesianPointList3D>
 	{
 		#region IIfcCartesianPointList3D explicit implementation
 		IEnumerable<IEnumerable<IfcLengthMeasure>> IIfcCartesianPointList3D.CoordList { get { return @CoordList; } }	
@@ -130,6 +130,15 @@ namespace Xbim.Ifc4.GeometricModelResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

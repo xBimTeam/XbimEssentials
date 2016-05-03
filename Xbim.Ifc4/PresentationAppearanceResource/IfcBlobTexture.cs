@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcBlobTexture", 723)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBlobTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcBlobTexture, IEquatable<@IfcBlobTexture>
+	public  partial class @IfcBlobTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcBlobTexture, IContainsEntityReferences, IEquatable<@IfcBlobTexture>
 	{
 		#region IIfcBlobTexture explicit implementation
 		IfcIdentifier IIfcBlobTexture.RasterFormat { get { return @RasterFormat; } }	
@@ -158,6 +158,17 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@TextureTransform != null)
+					yield return @TextureTransform;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

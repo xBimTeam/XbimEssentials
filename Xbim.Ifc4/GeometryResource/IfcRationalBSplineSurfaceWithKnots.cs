@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcRationalBSplineSurfaceWithKnots", 1242)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRationalBSplineSurfaceWithKnots : IfcBSplineSurfaceWithKnots, IInstantiableEntity, IIfcRationalBSplineSurfaceWithKnots, IEquatable<@IfcRationalBSplineSurfaceWithKnots>
+	public  partial class @IfcRationalBSplineSurfaceWithKnots : IfcBSplineSurfaceWithKnots, IInstantiableEntity, IIfcRationalBSplineSurfaceWithKnots, IContainsEntityReferences, IEquatable<@IfcRationalBSplineSurfaceWithKnots>
 	{
 		#region IIfcRationalBSplineSurfaceWithKnots explicit implementation
 		IEnumerable<IEnumerable<IfcReal>> IIfcRationalBSplineSurfaceWithKnots.WeightsData { get { return @WeightsData; } }	
@@ -158,6 +158,15 @@ namespace Xbim.Ifc4.GeometryResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

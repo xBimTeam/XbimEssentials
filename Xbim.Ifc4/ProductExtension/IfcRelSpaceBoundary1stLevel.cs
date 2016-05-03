@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcRelSpaceBoundary1stLevel", 1253)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelSpaceBoundary1stLevel : IfcRelSpaceBoundary, IInstantiableEntity, IIfcRelSpaceBoundary1stLevel, IEquatable<@IfcRelSpaceBoundary1stLevel>
+	public  partial class @IfcRelSpaceBoundary1stLevel : IfcRelSpaceBoundary, IInstantiableEntity, IIfcRelSpaceBoundary1stLevel, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelSpaceBoundary1stLevel>
 	{
 		#region IIfcRelSpaceBoundary1stLevel explicit implementation
 		IIfcRelSpaceBoundary1stLevel IIfcRelSpaceBoundary1stLevel.ParentBoundary { get { return @ParentBoundary; } }	
@@ -154,6 +154,42 @@ namespace Xbim.Ifc4.ProductExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@RelatingSpace != null)
+					yield return @RelatingSpace;
+				if (@RelatedBuildingElement != null)
+					yield return @RelatedBuildingElement;
+				if (@ConnectionGeometry != null)
+					yield return @ConnectionGeometry;
+				if (@ParentBoundary != null)
+					yield return @ParentBoundary;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingSpace != null)
+					yield return @RelatingSpace;
+				if (@RelatedBuildingElement != null)
+					yield return @RelatedBuildingElement;
+				if (@ParentBoundary != null)
+					yield return @ParentBoundary;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

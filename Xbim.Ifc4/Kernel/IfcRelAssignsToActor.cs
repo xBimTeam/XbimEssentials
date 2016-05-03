@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcRelAssignsToActor", 323)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToActor : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToActor, IEquatable<@IfcRelAssignsToActor>
+	public  partial class @IfcRelAssignsToActor : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToActor, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToActor>
 	{
 		#region IIfcRelAssignsToActor explicit implementation
 		IIfcActor IIfcRelAssignsToActor.RelatingActor { get { return @RelatingActor; } }	
@@ -159,6 +159,38 @@ namespace Xbim.Ifc4.Kernel
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingActor != null)
+					yield return @RelatingActor;
+				if (@ActingRole != null)
+					yield return @ActingRole;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingActor != null)
+					yield return @RelatingActor;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 {
 	[ExpressType("IfcDateAndTime", 373)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDateAndTime : INotifyPropertyChanged, IInstantiableEntity, IIfcDateAndTime, IEquatable<@IfcDateAndTime>
+	public  partial class @IfcDateAndTime : INotifyPropertyChanged, IInstantiableEntity, IIfcDateAndTime, IContainsEntityReferences, IEquatable<@IfcDateAndTime>
 	{
 		#region IIfcDateAndTime explicit implementation
 		IIfcCalendarDate IIfcDateAndTime.DateComponent { get { return @DateComponent; } }	
@@ -280,6 +280,19 @@ namespace Xbim.Ifc2x3.DateTimeResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@DateComponent != null)
+					yield return @DateComponent;
+				if (@TimeComponent != null)
+					yield return @TimeComponent;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcDefinedSymbol", 461)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDefinedSymbol : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDefinedSymbol, IEquatable<@IfcDefinedSymbol>
+	public  partial class @IfcDefinedSymbol : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDefinedSymbol, IContainsEntityReferences, IEquatable<@IfcDefinedSymbol>
 	{
 		#region IIfcDefinedSymbol explicit implementation
 		IIfcDefinedSymbolSelect IIfcDefinedSymbol.Definition { get { return @Definition; } }	
@@ -151,6 +151,19 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Definition != null)
+					yield return @Definition;
+				if (@Target != null)
+					yield return @Target;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

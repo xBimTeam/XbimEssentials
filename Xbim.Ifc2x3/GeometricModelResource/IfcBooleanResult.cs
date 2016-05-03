@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcBooleanResult", 339)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBooleanResult : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcBooleanResult, IEquatable<@IfcBooleanResult>
+	public  partial class @IfcBooleanResult : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcBooleanResult, IContainsEntityReferences, IEquatable<@IfcBooleanResult>
 	{
 		#region IIfcBooleanResult explicit implementation
 		IfcBooleanOperator IIfcBooleanResult.Operator { get { return @Operator; } }	
@@ -204,6 +204,19 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@FirstOperand != null)
+					yield return @FirstOperand;
+				if (@SecondOperand != null)
+					yield return @SecondOperand;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

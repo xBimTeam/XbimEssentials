@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 {
 	[ExpressType("IfcLocalPlacement", 481)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLocalPlacement : IfcObjectPlacement, IInstantiableEntity, IIfcLocalPlacement, IEquatable<@IfcLocalPlacement>
+	public  partial class @IfcLocalPlacement : IfcObjectPlacement, IInstantiableEntity, IIfcLocalPlacement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcLocalPlacement>
 	{
 		#region IIfcLocalPlacement explicit implementation
 		IIfcObjectPlacement IIfcLocalPlacement.PlacementRelTo { get { return @PlacementRelTo; } }	
@@ -151,6 +151,32 @@ namespace Xbim.Ifc4.GeometricConstraintResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@PlacementRelTo != null)
+					yield return @PlacementRelTo;
+				if (@RelativePlacement != null)
+					yield return @RelativePlacement;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@PlacementRelTo != null)
+					yield return @PlacementRelTo;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

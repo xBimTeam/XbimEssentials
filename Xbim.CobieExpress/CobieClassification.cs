@@ -38,7 +38,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Classification", 37)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieClassification : INotifyPropertyChanged, IInstantiableEntity, ICobieClassification, IEquatable<@CobieClassification>
+	public  partial class @CobieClassification : INotifyPropertyChanged, IInstantiableEntity, ICobieClassification, IContainsEntityReferences, IEquatable<@CobieClassification>
 	{
 		#region ICobieClassification explicit implementation
 		string ICobieClassification.Name { get { return @Name; } }	
@@ -272,6 +272,15 @@ namespace Xbim.CobieExpress
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

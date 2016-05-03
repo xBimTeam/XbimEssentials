@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[ExpressType("IfcBoundaryFaceCondition", 674)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBoundaryFaceCondition : IfcBoundaryCondition, IInstantiableEntity, IIfcBoundaryFaceCondition, IEquatable<@IfcBoundaryFaceCondition>
+	public  partial class @IfcBoundaryFaceCondition : IfcBoundaryCondition, IInstantiableEntity, IIfcBoundaryFaceCondition, IContainsEntityReferences, IEquatable<@IfcBoundaryFaceCondition>
 	{
 		#region IIfcBoundaryFaceCondition explicit implementation
 		IIfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaX { get { return @TranslationalStiffnessByAreaX; } }	
@@ -173,6 +173,15 @@ namespace Xbim.Ifc4.StructuralLoadResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

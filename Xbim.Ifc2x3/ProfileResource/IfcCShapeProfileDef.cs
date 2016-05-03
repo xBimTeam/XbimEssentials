@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcCShapeProfileDef", 501)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCShapeProfileDef, IEquatable<@IfcCShapeProfileDef>
+	public  partial class @IfcCShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCShapeProfileDef, IContainsEntityReferences, IEquatable<@IfcCShapeProfileDef>
 	{
 		#region IIfcCShapeProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcCShapeProfileDef.Depth { get { return @Depth; } }	
@@ -236,6 +236,17 @@ namespace Xbim.Ifc2x3.ProfileResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Position != null)
+					yield return @Position;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

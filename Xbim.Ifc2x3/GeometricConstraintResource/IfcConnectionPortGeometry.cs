@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcConnectionPortGeometry", 713)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectionPortGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionPortGeometry, IEquatable<@IfcConnectionPortGeometry>
+	public  partial class @IfcConnectionPortGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionPortGeometry, IContainsEntityReferences, IEquatable<@IfcConnectionPortGeometry>
 	{
 		#region IIfcConnectionPortGeometry explicit implementation
 		IIfcAxis2Placement IIfcConnectionPortGeometry.LocationAtRelatingElement { get { return @LocationAtRelatingElement; } }	
@@ -172,6 +172,21 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@LocationAtRelatingElement != null)
+					yield return @LocationAtRelatingElement;
+				if (@LocationAtRelatedElement != null)
+					yield return @LocationAtRelatedElement;
+				if (@ProfileOfPort != null)
+					yield return @ProfileOfPort;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

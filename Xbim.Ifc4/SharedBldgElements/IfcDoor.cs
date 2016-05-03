@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcDoor", 213)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDoor : IfcBuildingElement, IInstantiableEntity, IIfcDoor, IEquatable<@IfcDoor>
+	public  partial class @IfcDoor : IfcBuildingElement, IInstantiableEntity, IIfcDoor, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDoor>
 	{
 		#region IIfcDoor explicit implementation
 		IfcPositiveLengthMeasure? IIfcDoor.OverallHeight { get { return @OverallHeight; } }	
@@ -221,6 +221,36 @@ namespace Xbim.Ifc4.SharedBldgElements
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

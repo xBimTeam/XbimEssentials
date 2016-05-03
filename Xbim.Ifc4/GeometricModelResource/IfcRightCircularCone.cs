@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcRightCircularCone", 703)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRightCircularCone : IfcCsgPrimitive3D, IInstantiableEntity, IIfcRightCircularCone, IEquatable<@IfcRightCircularCone>
+	public  partial class @IfcRightCircularCone : IfcCsgPrimitive3D, IInstantiableEntity, IIfcRightCircularCone, IContainsEntityReferences, IEquatable<@IfcRightCircularCone>
 	{
 		#region IIfcRightCircularCone explicit implementation
 		IfcPositiveLengthMeasure IIfcRightCircularCone.Height { get { return @Height; } }	
@@ -154,6 +154,17 @@ namespace Xbim.Ifc4.GeometricModelResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Position != null)
+					yield return @Position;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

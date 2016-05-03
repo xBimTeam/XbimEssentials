@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 {
 	[ExpressType("IfcRelAssignsTasks", 618)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsTasks : IfcRelAssignsToControl, IInstantiableEntity, IIfcRelAssignsTasks, IEquatable<@IfcRelAssignsTasks>
+	public  partial class @IfcRelAssignsTasks : IfcRelAssignsToControl, IInstantiableEntity, IIfcRelAssignsTasks, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsTasks>
 	{
 		#region IIfcRelAssignsTasks explicit implementation
 		IIfcScheduleTimeControl IIfcRelAssignsTasks.TimeForTask { get { return @TimeForTask; } }	
@@ -140,6 +140,40 @@ namespace Xbim.Ifc2x3.ProcessExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingControl != null)
+					yield return @RelatingControl;
+				if (@TimeForTask != null)
+					yield return @TimeForTask;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingControl != null)
+					yield return @RelatingControl;
+				if (@TimeForTask != null)
+					yield return @TimeForTask;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

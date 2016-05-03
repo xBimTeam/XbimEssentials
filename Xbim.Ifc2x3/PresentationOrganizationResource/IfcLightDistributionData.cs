@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IfcLightDistributionData", 753)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightDistributionData : INotifyPropertyChanged, IInstantiableEntity, IIfcLightDistributionData, IEquatable<@IfcLightDistributionData>
+	public  partial class @IfcLightDistributionData : INotifyPropertyChanged, IInstantiableEntity, IIfcLightDistributionData, IContainsEntityReferences, IEquatable<@IfcLightDistributionData>
 	{
 		#region IIfcLightDistributionData explicit implementation
 		IfcPlaneAngleMeasure IIfcLightDistributionData.MainPlaneAngle { get { return @MainPlaneAngle; } }	
@@ -274,6 +274,15 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

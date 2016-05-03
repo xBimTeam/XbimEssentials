@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.MaterialResource
 {
 	[ExpressType("IfcMaterialLayerSetUsage", 165)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialLayerSetUsage : IfcMaterialUsageDefinition, IInstantiableEntity, IIfcMaterialLayerSetUsage, IEquatable<@IfcMaterialLayerSetUsage>
+	public  partial class @IfcMaterialLayerSetUsage : IfcMaterialUsageDefinition, IInstantiableEntity, IIfcMaterialLayerSetUsage, IContainsEntityReferences, IEquatable<@IfcMaterialLayerSetUsage>
 	{
 		#region IIfcMaterialLayerSetUsage explicit implementation
 		IIfcMaterialLayerSet IIfcMaterialLayerSetUsage.ForLayerSet { get { return @ForLayerSet; } }	
@@ -211,6 +211,17 @@ namespace Xbim.Ifc4.MaterialResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@ForLayerSet != null)
+					yield return @ForLayerSet;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

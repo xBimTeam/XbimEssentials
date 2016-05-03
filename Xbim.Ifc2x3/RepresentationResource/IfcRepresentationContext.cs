@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[ExpressType("IfcRepresentationContext", 378)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRepresentationContext : INotifyPropertyChanged, IInstantiableEntity, IIfcRepresentationContext, IEquatable<@IfcRepresentationContext>
+	public  partial class @IfcRepresentationContext : INotifyPropertyChanged, IInstantiableEntity, IIfcRepresentationContext, IContainsEntityReferences, IEquatable<@IfcRepresentationContext>
 	{
 		#region IIfcRepresentationContext explicit implementation
 		IfcLabel? IIfcRepresentationContext.ContextIdentifier { get { return @ContextIdentifier; } }	
@@ -273,6 +273,15 @@ namespace Xbim.Ifc2x3.RepresentationResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

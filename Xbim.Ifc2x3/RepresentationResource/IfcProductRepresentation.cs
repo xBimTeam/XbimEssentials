@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[ExpressType("IfcProductRepresentation", 1)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProductRepresentation : INotifyPropertyChanged, IInstantiableEntity, IIfcProductRepresentation, IEquatable<@IfcProductRepresentation>
+	public  partial class @IfcProductRepresentation : INotifyPropertyChanged, IInstantiableEntity, IIfcProductRepresentation, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcProductRepresentation>
 	{
 		#region IIfcProductRepresentation explicit implementation
 		IfcLabel? IIfcProductRepresentation.Name { get { return @Name; } }	
@@ -277,6 +277,30 @@ namespace Xbim.Ifc2x3.RepresentationResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @Representations)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @Representations)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

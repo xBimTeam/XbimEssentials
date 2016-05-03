@@ -42,7 +42,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 {
 	[ExpressType("IfcLightSourceGoniometric", 758)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightSourceGoniometric : IfcLightSource, IInstantiableEntity, IIfcLightSourceGoniometric, IEquatable<@IfcLightSourceGoniometric>
+	public  partial class @IfcLightSourceGoniometric : IfcLightSource, IInstantiableEntity, IIfcLightSourceGoniometric, IContainsEntityReferences, IEquatable<@IfcLightSourceGoniometric>
 	{
 		#region IIfcLightSourceGoniometric explicit implementation
 		IIfcAxis2Placement3D IIfcLightSourceGoniometric.Position { get { return @Position; } }	
@@ -239,6 +239,23 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@LightColour != null)
+					yield return @LightColour;
+				if (@Position != null)
+					yield return @Position;
+				if (@ColourAppearance != null)
+					yield return @ColourAppearance;
+				if (@LightDistributionDataSource != null)
+					yield return @LightDistributionDataSource;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

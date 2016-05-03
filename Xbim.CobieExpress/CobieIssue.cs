@@ -43,7 +43,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Issue", 32)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieIssue : CobieReferencedObject, IInstantiableEntity, ICobieIssue, IEquatable<@CobieIssue>
+	public  partial class @CobieIssue : CobieReferencedObject, IInstantiableEntity, ICobieIssue, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieIssue>
 	{
 		#region ICobieIssue explicit implementation
 		string ICobieIssue.Name { get { return @Name; } }	
@@ -318,6 +318,50 @@ namespace Xbim.CobieExpress
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Created != null)
+					yield return @Created;
+				if (@ExternalSystem != null)
+					yield return @ExternalSystem;
+				if (@ExternalObject != null)
+					yield return @ExternalObject;
+				if (@IssueType != null)
+					yield return @IssueType;
+				if (@Risk != null)
+					yield return @Risk;
+				if (@Chance != null)
+					yield return @Chance;
+				if (@Impact != null)
+					yield return @Impact;
+				if (@Owner != null)
+					yield return @Owner;
+				if (@Causing != null)
+					yield return @Causing;
+				if (@Affected != null)
+					yield return @Affected;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@Causing != null)
+					yield return @Causing;
+				if (@Affected != null)
+					yield return @Affected;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

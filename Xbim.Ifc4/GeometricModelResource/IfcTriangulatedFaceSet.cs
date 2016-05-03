@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcTriangulatedFaceSet", 1304)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTriangulatedFaceSet : IfcTessellatedFaceSet, IInstantiableEntity, IIfcTriangulatedFaceSet, IEquatable<@IfcTriangulatedFaceSet>
+	public  partial class @IfcTriangulatedFaceSet : IfcTessellatedFaceSet, IInstantiableEntity, IIfcTriangulatedFaceSet, IContainsEntityReferences, IEquatable<@IfcTriangulatedFaceSet>
 	{
 		#region IIfcTriangulatedFaceSet explicit implementation
 		IEnumerable<IEnumerable<IfcPositiveInteger>> IIfcTriangulatedFaceSet.CoordIndex { get { return @CoordIndex; } }	
@@ -168,6 +168,17 @@ namespace Xbim.Ifc4.GeometricModelResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Coordinates != null)
+					yield return @Coordinates;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

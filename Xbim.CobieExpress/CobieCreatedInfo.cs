@@ -37,7 +37,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("CreatedInfo", 10)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieCreatedInfo : INotifyPropertyChanged, IInstantiableEntity, ICobieCreatedInfo, IEquatable<@CobieCreatedInfo>
+	public  partial class @CobieCreatedInfo : INotifyPropertyChanged, IInstantiableEntity, ICobieCreatedInfo, IContainsEntityReferences, IEquatable<@CobieCreatedInfo>
 	{
 		#region ICobieCreatedInfo explicit implementation
 		ICobieContact ICobieCreatedInfo.CreatedBy { get { return @CreatedBy; } }	
@@ -259,6 +259,17 @@ namespace Xbim.CobieExpress
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@CreatedBy != null)
+					yield return @CreatedBy;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

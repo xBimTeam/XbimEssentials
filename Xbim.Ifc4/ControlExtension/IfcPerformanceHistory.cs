@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.ControlExtension
 {
 	[ExpressType("IfcPerformanceHistory", 710)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPerformanceHistory : IfcControl, IInstantiableEntity, IIfcPerformanceHistory, IEquatable<@IfcPerformanceHistory>
+	public  partial class @IfcPerformanceHistory : IfcControl, IInstantiableEntity, IIfcPerformanceHistory, IContainsEntityReferences, IEquatable<@IfcPerformanceHistory>
 	{
 		#region IIfcPerformanceHistory explicit implementation
 		IfcLabel IIfcPerformanceHistory.LifeCyclePhase { get { return @LifeCyclePhase; } }	
@@ -160,6 +160,17 @@ namespace Xbim.Ifc4.ControlExtension
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

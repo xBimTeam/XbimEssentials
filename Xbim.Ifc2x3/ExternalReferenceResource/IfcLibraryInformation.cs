@@ -43,7 +43,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[ExpressType("IfcLibraryInformation", 449)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLibraryInformation : INotifyPropertyChanged, IInstantiableEntity, IIfcLibraryInformation, IEquatable<@IfcLibraryInformation>
+	public  partial class @IfcLibraryInformation : INotifyPropertyChanged, IInstantiableEntity, IIfcLibraryInformation, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcLibraryInformation>
 	{
 		#region IIfcLibraryInformation explicit implementation
 		IfcLabel IIfcLibraryInformation.Name { get { return @Name; } }	
@@ -329,6 +329,34 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		}
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Publisher != null)
+					yield return @Publisher;
+				if (@VersionDate != null)
+					yield return @VersionDate;
+				foreach(var entity in @LibraryReference)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @LibraryReference)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

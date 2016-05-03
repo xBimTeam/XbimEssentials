@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcGeneralMaterialProperties", 716)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeneralMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcGeneralMaterialProperties, IEquatable<@IfcGeneralMaterialProperties>
+	public  partial class @IfcGeneralMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcGeneralMaterialProperties, IContainsEntityReferences, IEquatable<@IfcGeneralMaterialProperties>
 	{
 		#region IIfcGeneralMaterialProperties explicit implementation
 		IfcMolecularWeightMeasure? IIfcGeneralMaterialProperties.MolecularWeight { get { return @MolecularWeight; } }	
@@ -174,6 +174,17 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Material != null)
+					yield return @Material;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

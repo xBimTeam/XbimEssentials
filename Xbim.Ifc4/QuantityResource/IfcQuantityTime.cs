@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.QuantityResource
 {
 	[ExpressType("IfcQuantityTime", 254)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityTime : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityTime, IEquatable<@IfcQuantityTime>
+	public  partial class @IfcQuantityTime : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityTime, IContainsEntityReferences, IEquatable<@IfcQuantityTime>
 	{
 		#region IIfcQuantityTime explicit implementation
 		IfcTimeMeasure IIfcQuantityTime.TimeValue { get { return @TimeValue; } }	
@@ -156,6 +156,17 @@ namespace Xbim.Ifc4.QuantityResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Unit != null)
+					yield return @Unit;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

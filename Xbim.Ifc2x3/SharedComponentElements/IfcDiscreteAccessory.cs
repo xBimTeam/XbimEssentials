@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	[ExpressType("IfcDiscreteAccessory", 423)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDiscreteAccessory : IfcElementComponent, IInstantiableEntity, IIfcDiscreteAccessory, IEquatable<@IfcDiscreteAccessory>
+	public  partial class @IfcDiscreteAccessory : IfcElementComponent, IInstantiableEntity, IIfcDiscreteAccessory, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDiscreteAccessory>
 	{
 		#region IIfcDiscreteAccessory explicit implementation
 		 
@@ -114,6 +114,36 @@ namespace Xbim.Ifc2x3.SharedComponentElements
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

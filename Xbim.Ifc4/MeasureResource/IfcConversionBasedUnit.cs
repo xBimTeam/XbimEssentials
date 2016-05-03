@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.MeasureResource
 {
 	[ExpressType("IfcConversionBasedUnit", 92)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConversionBasedUnit : IfcNamedUnit, IInstantiableEntity, IIfcConversionBasedUnit, IEquatable<@IfcConversionBasedUnit>
+	public  partial class @IfcConversionBasedUnit : IfcNamedUnit, IInstantiableEntity, IIfcConversionBasedUnit, IContainsEntityReferences, IEquatable<@IfcConversionBasedUnit>
 	{
 		#region IIfcConversionBasedUnit explicit implementation
 		IfcLabel IIfcConversionBasedUnit.Name { get { return @Name; } }	
@@ -178,6 +178,19 @@ namespace Xbim.Ifc4.MeasureResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Dimensions != null)
+					yield return @Dimensions;
+				if (@ConversionFactor != null)
+					yield return @ConversionFactor;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcCompressor", 1131)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCompressor : IfcFlowMovingDevice, IInstantiableEntity, IIfcCompressor, IEquatable<@IfcCompressor>
+	public  partial class @IfcCompressor : IfcFlowMovingDevice, IInstantiableEntity, IIfcCompressor, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCompressor>
 	{
 		#region IIfcCompressor explicit implementation
 		IfcCompressorTypeEnum? IIfcCompressor.PredefinedType { get { return @PredefinedType; } }	
@@ -140,6 +140,36 @@ namespace Xbim.Ifc4.HvacDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

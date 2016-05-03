@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcEdgeCurve", 203)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEdgeCurve : IfcEdge, IInstantiableEntity, IIfcEdgeCurve, IEquatable<@IfcEdgeCurve>
+	public  partial class @IfcEdgeCurve : IfcEdge, IInstantiableEntity, IIfcEdgeCurve, IContainsEntityReferences, IEquatable<@IfcEdgeCurve>
 	{
 		#region IIfcEdgeCurve explicit implementation
 		IIfcCurve IIfcEdgeCurve.EdgeGeometry { get { return @EdgeGeometry; } }	
@@ -166,6 +166,21 @@ namespace Xbim.Ifc2x3.TopologyResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@EdgeStart != null)
+					yield return @EdgeStart;
+				if (@EdgeEnd != null)
+					yield return @EdgeEnd;
+				if (@EdgeGeometry != null)
+					yield return @EdgeGeometry;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

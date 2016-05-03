@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelCoversSpaces", 17)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelCoversSpaces : IfcRelConnects, IInstantiableEntity, IIfcRelCoversSpaces, IEquatable<@IfcRelCoversSpaces>
+	public  partial class @IfcRelCoversSpaces : IfcRelConnects, IInstantiableEntity, IIfcRelCoversSpaces, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelCoversSpaces>
 	{
 		#region IIfcRelCoversSpaces explicit implementation
 		IIfcSpace IIfcRelCoversSpaces.RelatedSpace { get { return @RelatedSpace; } }	
@@ -155,6 +155,36 @@ namespace Xbim.Ifc2x3.ProductExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@RelatedSpace != null)
+					yield return @RelatedSpace;
+				foreach(var entity in @RelatedCoverings)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatedSpace != null)
+					yield return @RelatedSpace;
+				foreach(var entity in @RelatedCoverings)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

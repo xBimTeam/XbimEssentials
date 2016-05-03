@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRelOverridesProperties", 248)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelOverridesProperties : IfcRelDefinesByProperties, IInstantiableEntity, IIfcRelOverridesProperties, IEquatable<@IfcRelOverridesProperties>
+	public  partial class @IfcRelOverridesProperties : IfcRelDefinesByProperties, IInstantiableEntity, IIfcRelOverridesProperties, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelOverridesProperties>
 	{
 		#region IIfcRelOverridesProperties explicit implementation
 		IEnumerable<IIfcProperty> IIfcRelOverridesProperties.OverridingProperties { get { return @OverridingProperties; } }	
@@ -135,6 +135,38 @@ namespace Xbim.Ifc2x3.Kernel
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingPropertyDefinition != null)
+					yield return @RelatingPropertyDefinition;
+				foreach(var entity in @OverridingProperties)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingPropertyDefinition != null)
+					yield return @RelatingPropertyDefinition;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

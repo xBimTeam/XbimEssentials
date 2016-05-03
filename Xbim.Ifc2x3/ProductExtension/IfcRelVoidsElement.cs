@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelVoidsElement", 496)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelVoidsElement : IfcRelConnects, IInstantiableEntity, IIfcRelVoidsElement, IEquatable<@IfcRelVoidsElement>
+	public  partial class @IfcRelVoidsElement : IfcRelConnects, IInstantiableEntity, IIfcRelVoidsElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelVoidsElement>
 	{
 		#region IIfcRelVoidsElement explicit implementation
 		IIfcElement IIfcRelVoidsElement.RelatingBuildingElement { get { return @RelatingBuildingElement; } }	
@@ -158,6 +158,36 @@ namespace Xbim.Ifc2x3.ProductExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@RelatingBuildingElement != null)
+					yield return @RelatingBuildingElement;
+				if (@RelatedOpeningElement != null)
+					yield return @RelatedOpeningElement;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingBuildingElement != null)
+					yield return @RelatingBuildingElement;
+				if (@RelatedOpeningElement != null)
+					yield return @RelatedOpeningElement;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

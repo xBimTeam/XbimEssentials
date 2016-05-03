@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcBezierCurve", 166)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBezierCurve : IfcBSplineCurve, IInstantiableEntity, IIfcBezierCurve, IEquatable<@IfcBezierCurve>
+	public  partial class @IfcBezierCurve : IfcBSplineCurve, IInstantiableEntity, IIfcBezierCurve, IContainsEntityReferences, IEquatable<@IfcBezierCurve>
 	{
 		#region IIfcBezierCurve explicit implementation
 		 
@@ -112,6 +112,17 @@ namespace Xbim.Ifc2x3.GeometryResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @ControlPointsList)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.MaterialResource
 {
 	[ExpressType("IfcMaterialRelationship", 1210)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcMaterialRelationship, IEquatable<@IfcMaterialRelationship>
+	public  partial class @IfcMaterialRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcMaterialRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMaterialRelationship>
 	{
 		#region IIfcMaterialRelationship explicit implementation
 		IIfcMaterial IIfcMaterialRelationship.RelatingMaterial { get { return @RelatingMaterial; } }	
@@ -174,6 +174,34 @@ namespace Xbim.Ifc4.MaterialResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@RelatingMaterial != null)
+					yield return @RelatingMaterial;
+				foreach(var entity in @RelatedMaterials)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingMaterial != null)
+					yield return @RelatingMaterial;
+				foreach(var entity in @RelatedMaterials)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

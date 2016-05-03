@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IfcStructuralSteelProfileProperties", 692)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralSteelProfileProperties : IfcStructuralProfileProperties, IInstantiableEntity, IIfcStructuralSteelProfileProperties, IEquatable<@IfcStructuralSteelProfileProperties>
+	public  partial class @IfcStructuralSteelProfileProperties : IfcStructuralProfileProperties, IInstantiableEntity, IIfcStructuralSteelProfileProperties, IContainsEntityReferences, IEquatable<@IfcStructuralSteelProfileProperties>
 	{
 		#region IIfcStructuralSteelProfileProperties explicit implementation
 		IfcAreaMeasure? IIfcStructuralSteelProfileProperties.ShearAreaZ { get { return @ShearAreaZ; } }	
@@ -216,6 +216,17 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@ProfileDefinition != null)
+					yield return @ProfileDefinition;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

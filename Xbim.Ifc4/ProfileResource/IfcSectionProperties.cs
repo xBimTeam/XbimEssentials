@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IfcSectionProperties", 184)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSectionProperties : IfcPreDefinedProperties, IInstantiableEntity, IIfcSectionProperties, IEquatable<@IfcSectionProperties>
+	public  partial class @IfcSectionProperties : IfcPreDefinedProperties, IInstantiableEntity, IIfcSectionProperties, IContainsEntityReferences, IEquatable<@IfcSectionProperties>
 	{
 		#region IIfcSectionProperties explicit implementation
 		IfcSectionTypeEnum IIfcSectionProperties.SectionType { get { return @SectionType; } }	
@@ -171,6 +171,19 @@ namespace Xbim.Ifc4.ProfileResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@StartProfile != null)
+					yield return @StartProfile;
+				if (@EndProfile != null)
+					yield return @EndProfile;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.MeasureResource
 {
 	[ExpressType("IfcMeasureWithUnit", 7)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMeasureWithUnit : INotifyPropertyChanged, IInstantiableEntity, IIfcMeasureWithUnit, IEquatable<@IfcMeasureWithUnit>
+	public  partial class @IfcMeasureWithUnit : INotifyPropertyChanged, IInstantiableEntity, IIfcMeasureWithUnit, IContainsEntityReferences, IEquatable<@IfcMeasureWithUnit>
 	{
 		#region IIfcMeasureWithUnit explicit implementation
 		IIfcValue IIfcMeasureWithUnit.ValueComponent { get { return @ValueComponent; } }	
@@ -281,6 +281,17 @@ namespace Xbim.Ifc4.MeasureResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@UnitComponent != null)
+					yield return @UnitComponent;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

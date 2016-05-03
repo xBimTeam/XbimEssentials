@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 {
 	[ExpressType("IfcActionRequest", 516)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcActionRequest : IfcControl, IInstantiableEntity, IIfcActionRequest, IEquatable<@IfcActionRequest>
+	public  partial class @IfcActionRequest : IfcControl, IInstantiableEntity, IIfcActionRequest, IContainsEntityReferences, IEquatable<@IfcActionRequest>
 	{
 		#region IIfcActionRequest explicit implementation
 		IfcActionRequestTypeEnum? IIfcActionRequest.PredefinedType { get { return @PredefinedType; } }	
@@ -180,6 +180,17 @@ namespace Xbim.Ifc4.SharedMgmtElements
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

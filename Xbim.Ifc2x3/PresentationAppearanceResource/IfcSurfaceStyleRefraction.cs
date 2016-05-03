@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcSurfaceStyleRefraction", 636)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyleRefraction : INotifyPropertyChanged, IInstantiableEntity, IIfcSurfaceStyleRefraction, IEquatable<@IfcSurfaceStyleRefraction>
+	public  partial class @IfcSurfaceStyleRefraction : INotifyPropertyChanged, IInstantiableEntity, IIfcSurfaceStyleRefraction, IContainsEntityReferences, IEquatable<@IfcSurfaceStyleRefraction>
 	{
 		#region IIfcSurfaceStyleRefraction explicit implementation
 		IfcReal? IIfcSurfaceStyleRefraction.RefractionIndex { get { return @RefractionIndex; } }	
@@ -270,6 +270,15 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcRelCoversBldgElements", 24)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelCoversBldgElements : IfcRelConnects, IInstantiableEntity, IIfcRelCoversBldgElements, IEquatable<@IfcRelCoversBldgElements>
+	public  partial class @IfcRelCoversBldgElements : IfcRelConnects, IInstantiableEntity, IIfcRelCoversBldgElements, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelCoversBldgElements>
 	{
 		#region IIfcRelCoversBldgElements explicit implementation
 		IIfcElement IIfcRelCoversBldgElements.RelatingBuildingElement { get { return @RelatingBuildingElement; } }	
@@ -156,6 +156,36 @@ namespace Xbim.Ifc4.SharedBldgElements
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@RelatingBuildingElement != null)
+					yield return @RelatingBuildingElement;
+				foreach(var entity in @RelatedCoverings)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingBuildingElement != null)
+					yield return @RelatingBuildingElement;
+				foreach(var entity in @RelatedCoverings)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

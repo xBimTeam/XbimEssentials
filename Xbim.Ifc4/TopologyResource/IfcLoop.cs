@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.TopologyResource
 {
 	[ExpressType("IfcLoop", 199)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLoop : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcLoop, IEquatable<@IfcLoop>
+	public  partial class @IfcLoop : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcLoop, IContainsEntityReferences, IEquatable<@IfcLoop>
 	{
 		#region IIfcLoop explicit implementation
 		 
@@ -102,6 +102,15 @@ namespace Xbim.Ifc4.TopologyResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

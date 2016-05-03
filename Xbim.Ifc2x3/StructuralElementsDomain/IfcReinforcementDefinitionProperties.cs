@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	[ExpressType("IfcReinforcementDefinitionProperties", 263)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReinforcementDefinitionProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcReinforcementDefinitionProperties, IEquatable<@IfcReinforcementDefinitionProperties>
+	public  partial class @IfcReinforcementDefinitionProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcReinforcementDefinitionProperties, IContainsEntityReferences, IEquatable<@IfcReinforcementDefinitionProperties>
 	{
 		#region IIfcReinforcementDefinitionProperties explicit implementation
 		IfcLabel? IIfcReinforcementDefinitionProperties.DefinitionType { get { return @DefinitionType; } }	
@@ -156,6 +156,19 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @ReinforcementSectionDefinitions)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

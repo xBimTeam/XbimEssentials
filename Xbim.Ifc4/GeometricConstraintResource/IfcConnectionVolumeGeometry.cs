@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 {
 	[ExpressType("IfcConnectionVolumeGeometry", 1133)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectionVolumeGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionVolumeGeometry, IEquatable<@IfcConnectionVolumeGeometry>
+	public  partial class @IfcConnectionVolumeGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionVolumeGeometry, IContainsEntityReferences, IEquatable<@IfcConnectionVolumeGeometry>
 	{
 		#region IIfcConnectionVolumeGeometry explicit implementation
 		IIfcSolidOrShell IIfcConnectionVolumeGeometry.VolumeOnRelatingElement { get { return @VolumeOnRelatingElement; } }	
@@ -150,6 +150,19 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@VolumeOnRelatingElement != null)
+					yield return @VolumeOnRelatingElement;
+				if (@VolumeOnRelatedElement != null)
+					yield return @VolumeOnRelatedElement;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

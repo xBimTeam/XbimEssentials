@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IfcMirroredProfileDef", 1215)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMirroredProfileDef : IfcDerivedProfileDef, IInstantiableEntity, IIfcMirroredProfileDef, IEquatable<@IfcMirroredProfileDef>
+	public  partial class @IfcMirroredProfileDef : IfcDerivedProfileDef, IInstantiableEntity, IIfcMirroredProfileDef, IContainsEntityReferences, IEquatable<@IfcMirroredProfileDef>
 	{
 		#region IIfcMirroredProfileDef explicit implementation
 		 
@@ -130,6 +130,19 @@ namespace Xbim.Ifc4.ProfileResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@ParentProfile != null)
+					yield return @ParentProfile;
+				if (@Operator != null)
+					yield return @Operator;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

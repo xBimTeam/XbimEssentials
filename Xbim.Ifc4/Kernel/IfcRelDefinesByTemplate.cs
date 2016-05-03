@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcRelDefinesByTemplate", 1251)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelDefinesByTemplate : IfcRelDefines, IInstantiableEntity, IIfcRelDefinesByTemplate, IEquatable<@IfcRelDefinesByTemplate>
+	public  partial class @IfcRelDefinesByTemplate : IfcRelDefines, IInstantiableEntity, IIfcRelDefinesByTemplate, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelDefinesByTemplate>
 	{
 		#region IIfcRelDefinesByTemplate explicit implementation
 		IEnumerable<IIfcPropertySetDefinition> IIfcRelDefinesByTemplate.RelatedPropertySets { get { return @RelatedPropertySets; } }	
@@ -154,6 +154,36 @@ namespace Xbim.Ifc4.Kernel
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RelatedPropertySets)
+					yield return entity;
+				if (@RelatingTemplate != null)
+					yield return @RelatingTemplate;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @RelatedPropertySets)
+					yield return entity;
+				if (@RelatingTemplate != null)
+					yield return @RelatingTemplate;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

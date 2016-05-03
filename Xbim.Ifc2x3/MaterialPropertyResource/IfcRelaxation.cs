@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcRelaxation", 364)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelaxation : INotifyPropertyChanged, IInstantiableEntity, IIfcRelaxation, IEquatable<@IfcRelaxation>
+	public  partial class @IfcRelaxation : INotifyPropertyChanged, IInstantiableEntity, IIfcRelaxation, IContainsEntityReferences, IEquatable<@IfcRelaxation>
 	{
 		#region IIfcRelaxation explicit implementation
 		IfcNormalisedRatioMeasure IIfcRelaxation.RelaxationValue { get { return @RelaxationValue; } }	
@@ -260,6 +260,15 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

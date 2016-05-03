@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcRightCircularCylinder", 704)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRightCircularCylinder : IfcCsgPrimitive3D, IInstantiableEntity, IIfcRightCircularCylinder, IEquatable<@IfcRightCircularCylinder>
+	public  partial class @IfcRightCircularCylinder : IfcCsgPrimitive3D, IInstantiableEntity, IIfcRightCircularCylinder, IContainsEntityReferences, IEquatable<@IfcRightCircularCylinder>
 	{
 		#region IIfcRightCircularCylinder explicit implementation
 		IfcPositiveLengthMeasure IIfcRightCircularCylinder.Height { get { return @Height; } }	
@@ -154,6 +154,17 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Position != null)
+					yield return @Position;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

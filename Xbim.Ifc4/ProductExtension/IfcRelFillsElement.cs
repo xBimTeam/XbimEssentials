@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcRelFillsElement", 563)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelFillsElement : IfcRelConnects, IInstantiableEntity, IIfcRelFillsElement, IEquatable<@IfcRelFillsElement>
+	public  partial class @IfcRelFillsElement : IfcRelConnects, IInstantiableEntity, IIfcRelFillsElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelFillsElement>
 	{
 		#region IIfcRelFillsElement explicit implementation
 		IIfcOpeningElement IIfcRelFillsElement.RelatingOpeningElement { get { return @RelatingOpeningElement; } }	
@@ -158,6 +158,36 @@ namespace Xbim.Ifc4.ProductExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@RelatingOpeningElement != null)
+					yield return @RelatingOpeningElement;
+				if (@RelatedBuildingElement != null)
+					yield return @RelatedBuildingElement;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingOpeningElement != null)
+					yield return @RelatingOpeningElement;
+				if (@RelatedBuildingElement != null)
+					yield return @RelatedBuildingElement;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

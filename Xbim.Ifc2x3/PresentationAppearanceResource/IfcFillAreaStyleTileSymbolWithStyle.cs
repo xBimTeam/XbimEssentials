@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcFillAreaStyleTileSymbolWithStyle", 726)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFillAreaStyleTileSymbolWithStyle : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleTileSymbolWithStyle, IEquatable<@IfcFillAreaStyleTileSymbolWithStyle>
+	public  partial class @IfcFillAreaStyleTileSymbolWithStyle : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleTileSymbolWithStyle, IContainsEntityReferences, IEquatable<@IfcFillAreaStyleTileSymbolWithStyle>
 	{
 		#region IIfcFillAreaStyleTileSymbolWithStyle explicit implementation
 		IIfcAnnotationSymbolOccurrence IIfcFillAreaStyleTileSymbolWithStyle.Symbol { get { return @Symbol; } }	
@@ -142,6 +142,17 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Symbol != null)
+					yield return @Symbol;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

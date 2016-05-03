@@ -43,7 +43,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcCraneRailFShapeProfileDef", 112)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCraneRailFShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCraneRailFShapeProfileDef, IEquatable<@IfcCraneRailFShapeProfileDef>
+	public  partial class @IfcCraneRailFShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCraneRailFShapeProfileDef, IContainsEntityReferences, IEquatable<@IfcCraneRailFShapeProfileDef>
 	{
 		#region IIfcCraneRailFShapeProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.OverallHeight { get { return @OverallHeight; } }	
@@ -296,6 +296,17 @@ namespace Xbim.Ifc2x3.ProfileResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Position != null)
+					yield return @Position;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

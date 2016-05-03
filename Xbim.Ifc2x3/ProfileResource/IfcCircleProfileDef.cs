@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcCircleProfileDef", 113)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCircleProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCircleProfileDef, IEquatable<@IfcCircleProfileDef>
+	public  partial class @IfcCircleProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCircleProfileDef, IContainsEntityReferences, IEquatable<@IfcCircleProfileDef>
 	{
 		#region IIfcCircleProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcCircleProfileDef.Radius { get { return @Radius; } }	
@@ -136,6 +136,17 @@ namespace Xbim.Ifc2x3.ProfileResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Position != null)
+					yield return @Position;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelReferencedInSpatialStructure", 455)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelReferencedInSpatialStructure : IfcRelConnects, IInstantiableEntity, IIfcRelReferencedInSpatialStructure, IEquatable<@IfcRelReferencedInSpatialStructure>
+	public  partial class @IfcRelReferencedInSpatialStructure : IfcRelConnects, IInstantiableEntity, IIfcRelReferencedInSpatialStructure, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelReferencedInSpatialStructure>
 	{
 		#region IIfcRelReferencedInSpatialStructure explicit implementation
 		IEnumerable<IIfcProduct> IIfcRelReferencedInSpatialStructure.RelatedElements { get { return @RelatedElements; } }	
@@ -155,6 +155,36 @@ namespace Xbim.Ifc2x3.ProductExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RelatedElements)
+					yield return entity;
+				if (@RelatingStructure != null)
+					yield return @RelatingStructure;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @RelatedElements)
+					yield return entity;
+				if (@RelatingStructure != null)
+					yield return @RelatingStructure;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

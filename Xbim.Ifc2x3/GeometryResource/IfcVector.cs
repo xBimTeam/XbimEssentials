@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcVector", 652)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVector : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcVector, IEquatable<@IfcVector>
+	public  partial class @IfcVector : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcVector, IContainsEntityReferences, IEquatable<@IfcVector>
 	{
 		#region IIfcVector explicit implementation
 		IIfcDirection IIfcVector.Orientation { get { return @Orientation; } }	
@@ -175,6 +175,17 @@ namespace Xbim.Ifc2x3.GeometryResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Orientation != null)
+					yield return @Orientation;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

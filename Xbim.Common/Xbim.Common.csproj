@@ -57,6 +57,8 @@
     <Compile Include="Federation\FederatedModelInstances.cs" />
     <Compile Include="Geometry\IXbimSurface.cs" />
     <Compile Include="Geometry\XbimContextRegionCollection.cs" />
+    <Compile Include="IContainsEntityReferences.cs" />
+    <Compile Include="IContainsIndexedReference.cs" />
     <Compile Include="IInverseCache.cs" />
     <Compile Include="PlaceboTransaction.cs" />
     <Compile Include="Collections\MultiValueDictionary.cs" />

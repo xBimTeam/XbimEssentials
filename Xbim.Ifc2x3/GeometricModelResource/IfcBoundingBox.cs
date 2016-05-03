@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcBoundingBox", 151)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBoundingBox : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcBoundingBox, IEquatable<@IfcBoundingBox>
+	public  partial class @IfcBoundingBox : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcBoundingBox, IContainsEntityReferences, IEquatable<@IfcBoundingBox>
 	{
 		#region IIfcBoundingBox explicit implementation
 		IIfcCartesianPoint IIfcBoundingBox.Corner { get { return @Corner; } }	
@@ -206,6 +206,17 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Corner != null)
+					yield return @Corner;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

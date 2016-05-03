@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("LinearUnit", 39)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieLinearUnit : CobiePickValue, IInstantiableEntity, ICobieLinearUnit, IEquatable<@CobieLinearUnit>
+	public  partial class @CobieLinearUnit : CobiePickValue, IInstantiableEntity, ICobieLinearUnit, IContainsEntityReferences, IEquatable<@CobieLinearUnit>
 	{
 		#region ICobieLinearUnit explicit implementation
 		 
@@ -108,6 +108,15 @@ namespace Xbim.CobieExpress
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

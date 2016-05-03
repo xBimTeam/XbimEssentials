@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 {
 	[ExpressType("IfcTimeSeriesReferenceRelationship", 673)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTimeSeriesReferenceRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcTimeSeriesReferenceRelationship, IEquatable<@IfcTimeSeriesReferenceRelationship>
+	public  partial class @IfcTimeSeriesReferenceRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcTimeSeriesReferenceRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTimeSeriesReferenceRelationship>
 	{
 		#region IIfcTimeSeriesReferenceRelationship explicit implementation
 		IIfcTimeSeries IIfcTimeSeriesReferenceRelationship.ReferencedTimeSeries { get { return @ReferencedTimeSeries; } }	
@@ -257,6 +257,32 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@ReferencedTimeSeries != null)
+					yield return @ReferencedTimeSeries;
+				foreach(var entity in @TimeSeriesReferences)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ReferencedTimeSeries != null)
+					yield return @ReferencedTimeSeries;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

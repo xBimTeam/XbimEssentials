@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.ControlExtension
 {
 	[ExpressType("IfcTimeSeriesSchedule", 712)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTimeSeriesSchedule : IfcControl, IInstantiableEntity, IIfcTimeSeriesSchedule, IEquatable<@IfcTimeSeriesSchedule>
+	public  partial class @IfcTimeSeriesSchedule : IfcControl, IInstantiableEntity, IIfcTimeSeriesSchedule, IContainsEntityReferences, IEquatable<@IfcTimeSeriesSchedule>
 	{
 		#region IIfcTimeSeriesSchedule explicit implementation
 		IEnumerable<IIfcDateTimeSelect> IIfcTimeSeriesSchedule.ApplicableDates { get { return @ApplicableDates; } }	
@@ -177,6 +177,21 @@ namespace Xbim.Ifc2x3.ControlExtension
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @ApplicableDates)
+					yield return entity;
+				if (@TimeSeries != null)
+					yield return @TimeSeries;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

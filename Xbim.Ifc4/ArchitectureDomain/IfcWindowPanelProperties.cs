@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 {
 	[ExpressType("IfcWindowPanelProperties", 96)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWindowPanelProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcWindowPanelProperties, IEquatable<@IfcWindowPanelProperties>
+	public  partial class @IfcWindowPanelProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcWindowPanelProperties, IContainsEntityReferences, IEquatable<@IfcWindowPanelProperties>
 	{
 		#region IIfcWindowPanelProperties explicit implementation
 		IfcWindowPanelOperationEnum IIfcWindowPanelProperties.OperationType { get { return @OperationType; } }	
@@ -219,6 +219,19 @@ namespace Xbim.Ifc4.ArchitectureDomain
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ShapeAspectStyle != null)
+					yield return @ShapeAspectStyle;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

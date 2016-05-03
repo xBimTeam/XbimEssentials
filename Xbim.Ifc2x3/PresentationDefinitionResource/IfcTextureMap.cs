@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcTextureMap", 734)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextureMap : IfcTextureCoordinate, IInstantiableEntity, IIfcTextureMap, IEquatable<@IfcTextureMap>
+	public  partial class @IfcTextureMap : IfcTextureCoordinate, IInstantiableEntity, IIfcTextureMap, IContainsEntityReferences, IEquatable<@IfcTextureMap>
 	{
 		#region IIfcTextureMap explicit implementation
 		IEnumerable<IIfcVertexBasedTextureMap> IIfcTextureMap.TextureMaps { get { return @TextureMaps; } }	
@@ -127,6 +127,17 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @TextureMaps)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

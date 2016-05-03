@@ -42,7 +42,7 @@ namespace Xbim.Ifc4.MeasureResource
 {
 	[ExpressType("IfcDimensionalExponents", 303)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDimensionalExponents : INotifyPropertyChanged, IInstantiableEntity, IIfcDimensionalExponents, IEquatable<@IfcDimensionalExponents>
+	public  partial class @IfcDimensionalExponents : INotifyPropertyChanged, IInstantiableEntity, IIfcDimensionalExponents, IContainsEntityReferences, IEquatable<@IfcDimensionalExponents>
 	{
 		#region IIfcDimensionalExponents explicit implementation
 		long IIfcDimensionalExponents.LengthExponent { get { return @LengthExponent; } }	
@@ -359,6 +359,15 @@ namespace Xbim.Ifc4.MeasureResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
         public void Initialise(XbimDimensionalExponents exponent)

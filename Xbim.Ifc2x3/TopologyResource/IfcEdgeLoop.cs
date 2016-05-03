@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcEdgeLoop", 302)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEdgeLoop : IfcLoop, IInstantiableEntity, IIfcEdgeLoop, IEquatable<@IfcEdgeLoop>
+	public  partial class @IfcEdgeLoop : IfcLoop, IInstantiableEntity, IIfcEdgeLoop, IContainsEntityReferences, IEquatable<@IfcEdgeLoop>
 	{
 		#region IIfcEdgeLoop explicit implementation
 		IEnumerable<IIfcOrientedEdge> IIfcEdgeLoop.EdgeList { get { return @EdgeList; } }	
@@ -141,6 +141,17 @@ namespace Xbim.Ifc2x3.TopologyResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @EdgeList)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

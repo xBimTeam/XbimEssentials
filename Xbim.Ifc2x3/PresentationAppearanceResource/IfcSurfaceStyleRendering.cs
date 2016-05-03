@@ -42,7 +42,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcSurfaceStyleRendering", 317)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyleRendering : IfcSurfaceStyleShading, IInstantiableEntity, IIfcSurfaceStyleRendering, IEquatable<@IfcSurfaceStyleRendering>
+	public  partial class @IfcSurfaceStyleRendering : IfcSurfaceStyleShading, IInstantiableEntity, IIfcSurfaceStyleRendering, IContainsEntityReferences, IEquatable<@IfcSurfaceStyleRendering>
 	{
 		#region IIfcSurfaceStyleRendering explicit implementation
 		IfcNormalisedRatioMeasure? IIfcSurfaceStyleRendering.Transparency { get { return @Transparency; } }	
@@ -274,6 +274,17 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@SurfaceColour != null)
+					yield return @SurfaceColour;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

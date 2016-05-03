@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 {
 	[ExpressType("IfcPlanarBox", 762)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPlanarBox : IfcPlanarExtent, IInstantiableEntity, IIfcPlanarBox, IEquatable<@IfcPlanarBox>
+	public  partial class @IfcPlanarBox : IfcPlanarExtent, IInstantiableEntity, IIfcPlanarBox, IContainsEntityReferences, IEquatable<@IfcPlanarBox>
 	{
 		#region IIfcPlanarBox explicit implementation
 		IIfcAxis2Placement IIfcPlanarBox.Placement { get { return @Placement; } }	
@@ -135,6 +135,17 @@ namespace Xbim.Ifc2x3.PresentationResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Placement != null)
+					yield return @Placement;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

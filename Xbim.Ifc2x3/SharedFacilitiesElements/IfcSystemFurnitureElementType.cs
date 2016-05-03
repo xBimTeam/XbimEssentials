@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	[ExpressType("IfcSystemFurnitureElementType", 422)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSystemFurnitureElementType : IfcFurnishingElementType, IInstantiableEntity, IIfcSystemFurnitureElementType, IEquatable<@IfcSystemFurnitureElementType>
+	public  partial class @IfcSystemFurnitureElementType : IfcFurnishingElementType, IInstantiableEntity, IIfcSystemFurnitureElementType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSystemFurnitureElementType>
 	{
 		#region IIfcSystemFurnitureElementType explicit implementation
 		 
@@ -116,6 +116,34 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @HasPropertySets)
+					yield return entity;
+				foreach(var entity in @RepresentationMaps)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @HasPropertySets)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

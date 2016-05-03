@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcCurveBoundedPlane", 334)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurveBoundedPlane : IfcBoundedSurface, IInstantiableEntity, IIfcCurveBoundedPlane, IEquatable<@IfcCurveBoundedPlane>
+	public  partial class @IfcCurveBoundedPlane : IfcBoundedSurface, IInstantiableEntity, IIfcCurveBoundedPlane, IContainsEntityReferences, IEquatable<@IfcCurveBoundedPlane>
 	{
 		#region IIfcCurveBoundedPlane explicit implementation
 		IIfcPlane IIfcCurveBoundedPlane.BasisSurface { get { return @BasisSurface; } }	
@@ -167,6 +167,21 @@ namespace Xbim.Ifc4.GeometryResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@BasisSurface != null)
+					yield return @BasisSurface;
+				if (@OuterBoundary != null)
+					yield return @OuterBoundary;
+				foreach(var entity in @InnerBoundaries)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

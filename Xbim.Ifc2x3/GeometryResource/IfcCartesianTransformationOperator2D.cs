@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcCartesianTransformationOperator2D", 145)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCartesianTransformationOperator2D : IfcCartesianTransformationOperator, IInstantiableEntity, IIfcCartesianTransformationOperator2D, IEquatable<@IfcCartesianTransformationOperator2D>
+	public  partial class @IfcCartesianTransformationOperator2D : IfcCartesianTransformationOperator, IInstantiableEntity, IIfcCartesianTransformationOperator2D, IContainsEntityReferences, IEquatable<@IfcCartesianTransformationOperator2D>
 	{
 		#region IIfcCartesianTransformationOperator2D explicit implementation
 		 
@@ -126,6 +126,21 @@ namespace Xbim.Ifc2x3.GeometryResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Axis1 != null)
+					yield return @Axis1;
+				if (@Axis2 != null)
+					yield return @Axis2;
+				if (@LocalOrigin != null)
+					yield return @LocalOrigin;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

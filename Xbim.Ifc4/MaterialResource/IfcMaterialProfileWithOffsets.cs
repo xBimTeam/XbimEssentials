@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.MaterialResource
 {
 	[ExpressType("IfcMaterialProfileWithOffsets", 1209)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialProfileWithOffsets : IfcMaterialProfile, IInstantiableEntity, IIfcMaterialProfileWithOffsets, IEquatable<@IfcMaterialProfileWithOffsets>
+	public  partial class @IfcMaterialProfileWithOffsets : IfcMaterialProfile, IInstantiableEntity, IIfcMaterialProfileWithOffsets, IContainsEntityReferences, IEquatable<@IfcMaterialProfileWithOffsets>
 	{
 		#region IIfcMaterialProfileWithOffsets explicit implementation
 		IEnumerable<IfcLengthMeasure> IIfcMaterialProfileWithOffsets.OffsetValues { get { return @OffsetValues; } }	
@@ -136,6 +136,19 @@ namespace Xbim.Ifc4.MaterialResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Material != null)
+					yield return @Material;
+				if (@Profile != null)
+					yield return @Profile;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

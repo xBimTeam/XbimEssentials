@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[ExpressType("IfcShapeRepresentation", 664)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcShapeRepresentation : IfcShapeModel, IInstantiableEntity, IIfcShapeRepresentation, IEquatable<@IfcShapeRepresentation>
+	public  partial class @IfcShapeRepresentation : IfcShapeModel, IInstantiableEntity, IIfcShapeRepresentation, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcShapeRepresentation>
 	{
 		#region IIfcShapeRepresentation explicit implementation
 		 
@@ -110,6 +110,32 @@ namespace Xbim.Ifc2x3.RepresentationResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@ContextOfItems != null)
+					yield return @ContextOfItems;
+				foreach(var entity in @Items)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ContextOfItems != null)
+					yield return @ContextOfItems;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

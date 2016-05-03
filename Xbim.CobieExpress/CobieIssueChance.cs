@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("IssueChance", 57)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieIssueChance : CobiePickValue, IInstantiableEntity, ICobieIssueChance, IEquatable<@CobieIssueChance>
+	public  partial class @CobieIssueChance : CobiePickValue, IInstantiableEntity, ICobieIssueChance, IContainsEntityReferences, IEquatable<@CobieIssueChance>
 	{
 		#region ICobieIssueChance explicit implementation
 		 
@@ -108,6 +108,15 @@ namespace Xbim.CobieExpress
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

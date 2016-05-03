@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 {
 	[ExpressType("IfcConstraintClassificationRelationship", 274)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConstraintClassificationRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcConstraintClassificationRelationship, IEquatable<@IfcConstraintClassificationRelationship>
+	public  partial class @IfcConstraintClassificationRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcConstraintClassificationRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcConstraintClassificationRelationship>
 	{
 		#region IIfcConstraintClassificationRelationship explicit implementation
 		IIfcConstraint IIfcConstraintClassificationRelationship.ClassifiedConstraint { get { return @ClassifiedConstraint; } }	
@@ -257,6 +257,32 @@ namespace Xbim.Ifc2x3.ConstraintResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@ClassifiedConstraint != null)
+					yield return @ClassifiedConstraint;
+				foreach(var entity in @RelatedClassifications)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ClassifiedConstraint != null)
+					yield return @ClassifiedConstraint;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

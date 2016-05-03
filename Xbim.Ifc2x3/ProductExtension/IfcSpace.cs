@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcSpace", 454)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSpace : IfcSpatialStructureElement, IInstantiableEntity, IIfcSpace, IEquatable<@IfcSpace>
+	public  partial class @IfcSpace : IfcSpatialStructureElement, IInstantiableEntity, IIfcSpace, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSpace>
 	{
 		#region IIfcSpace explicit implementation
 		IfcInternalOrExternalEnum IIfcSpace.InteriorOrExteriorSpace { get { return @InteriorOrExteriorSpace; } }	
@@ -185,6 +185,36 @@ namespace Xbim.Ifc2x3.ProductExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

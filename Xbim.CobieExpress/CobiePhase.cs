@@ -37,7 +37,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Phase", 7)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobiePhase : INotifyPropertyChanged, IInstantiableEntity, ICobiePhase, IEquatable<@CobiePhase>
+	public  partial class @CobiePhase : INotifyPropertyChanged, IInstantiableEntity, ICobiePhase, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobiePhase>
 	{
 		#region ICobiePhase explicit implementation
 		string ICobiePhase.Name { get { return @Name; } }	
@@ -259,6 +259,30 @@ namespace Xbim.CobieExpress
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Project != null)
+					yield return @Project;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@Project != null)
+					yield return @Project;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

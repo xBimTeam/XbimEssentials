@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcRelInterferesElements", 1252)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelInterferesElements : IfcRelConnects, IInstantiableEntity, IIfcRelInterferesElements, IEquatable<@IfcRelInterferesElements>
+	public  partial class @IfcRelInterferesElements : IfcRelConnects, IInstantiableEntity, IIfcRelInterferesElements, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelInterferesElements>
 	{
 		#region IIfcRelInterferesElements explicit implementation
 		IIfcElement IIfcRelInterferesElements.RelatingElement { get { return @RelatingElement; } }	
@@ -220,6 +220,38 @@ namespace Xbim.Ifc4.ProductExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@RelatingElement != null)
+					yield return @RelatingElement;
+				if (@RelatedElement != null)
+					yield return @RelatedElement;
+				if (@InterferenceGeometry != null)
+					yield return @InterferenceGeometry;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingElement != null)
+					yield return @RelatingElement;
+				if (@RelatedElement != null)
+					yield return @RelatedElement;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

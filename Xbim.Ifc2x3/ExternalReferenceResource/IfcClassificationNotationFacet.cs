@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[ExpressType("IfcClassificationNotationFacet", 251)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcClassificationNotationFacet : INotifyPropertyChanged, IInstantiableEntity, IIfcClassificationNotationFacet, IEquatable<@IfcClassificationNotationFacet>
+	public  partial class @IfcClassificationNotationFacet : INotifyPropertyChanged, IInstantiableEntity, IIfcClassificationNotationFacet, IContainsEntityReferences, IEquatable<@IfcClassificationNotationFacet>
 	{
 		#region IIfcClassificationNotationFacet explicit implementation
 		IfcLabel IIfcClassificationNotationFacet.NotationValue { get { return @NotationValue; } }	
@@ -240,6 +240,15 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

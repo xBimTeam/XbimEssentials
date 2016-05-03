@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcColourRgb", 27)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcColourRgb : IfcColourSpecification, IInstantiableEntity, IIfcColourRgb, IEquatable<@IfcColourRgb>
+	public  partial class @IfcColourRgb : IfcColourSpecification, IInstantiableEntity, IIfcColourRgb, IContainsEntityReferences, IEquatable<@IfcColourRgb>
 	{
 		#region IIfcColourRgb explicit implementation
 		IfcNormalisedRatioMeasure IIfcColourRgb.Red { get { return @Red; } }	
@@ -184,6 +184,15 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

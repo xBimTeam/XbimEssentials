@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	[ExpressType("IfcOrderAction", 591)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOrderAction : IfcTask, IInstantiableEntity, IIfcOrderAction, IEquatable<@IfcOrderAction>
+	public  partial class @IfcOrderAction : IfcTask, IInstantiableEntity, IIfcOrderAction, IContainsEntityReferences, IEquatable<@IfcOrderAction>
 	{
 		#region IIfcOrderAction explicit implementation
 		IfcIdentifier IIfcOrderAction.ActionID { get { return @ActionID; } }	
@@ -144,6 +144,17 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -42,7 +42,7 @@ namespace Xbim.Ifc4.MaterialResource
 {
 	[ExpressType("IfcMaterialProfile", 1205)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialProfile : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialProfile, IEquatable<@IfcMaterialProfile>
+	public  partial class @IfcMaterialProfile : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialProfile, IContainsEntityReferences, IEquatable<@IfcMaterialProfile>
 	{
 		#region IIfcMaterialProfile explicit implementation
 		IfcLabel? IIfcMaterialProfile.Name { get { return @Name; } }	
@@ -245,6 +245,19 @@ namespace Xbim.Ifc4.MaterialResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Material != null)
+					yield return @Material;
+				if (@Profile != null)
+					yield return @Profile;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

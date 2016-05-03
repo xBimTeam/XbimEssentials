@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	[ExpressType("IfcElectricDistributionPoint", 242)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElectricDistributionPoint : IfcFlowController, IInstantiableEntity, IIfcElectricDistributionPoint, IEquatable<@IfcElectricDistributionPoint>
+	public  partial class @IfcElectricDistributionPoint : IfcFlowController, IInstantiableEntity, IIfcElectricDistributionPoint, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcElectricDistributionPoint>
 	{
 		#region IIfcElectricDistributionPoint explicit implementation
 		IfcElectricDistributionPointFunctionEnum IIfcElectricDistributionPoint.DistributionPointFunction { get { return @DistributionPointFunction; } }	
@@ -161,6 +161,36 @@ namespace Xbim.Ifc2x3.ElectricalDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

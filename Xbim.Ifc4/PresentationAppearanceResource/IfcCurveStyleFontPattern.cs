@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcCurveStyleFontPattern", 637)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurveStyleFontPattern : IfcPresentationItem, IInstantiableEntity, IIfcCurveStyleFontPattern, IEquatable<@IfcCurveStyleFontPattern>
+	public  partial class @IfcCurveStyleFontPattern : IfcPresentationItem, IInstantiableEntity, IIfcCurveStyleFontPattern, IContainsEntityReferences, IEquatable<@IfcCurveStyleFontPattern>
 	{
 		#region IIfcCurveStyleFontPattern explicit implementation
 		IfcLengthMeasure IIfcCurveStyleFontPattern.VisibleSegmentLength { get { return @VisibleSegmentLength; } }	
@@ -152,6 +152,15 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

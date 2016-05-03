@@ -45,7 +45,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 {
 	[ExpressType("IfcOwnerHistory", 519)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOwnerHistory : INotifyPropertyChanged, IInstantiableEntity, IIfcOwnerHistory, IEquatable<@IfcOwnerHistory>
+	public  partial class @IfcOwnerHistory : INotifyPropertyChanged, IInstantiableEntity, IIfcOwnerHistory, IContainsEntityReferences, IEquatable<@IfcOwnerHistory>
 	{
 		#region IIfcOwnerHistory explicit implementation
 		IIfcPersonAndOrganization IIfcOwnerHistory.OwningUser { get { return @OwningUser; } }	
@@ -381,6 +381,23 @@ namespace Xbim.Ifc2x3.UtilityResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwningUser != null)
+					yield return @OwningUser;
+				if (@OwningApplication != null)
+					yield return @OwningApplication;
+				if (@LastModifyingUser != null)
+					yield return @LastModifyingUser;
+				if (@LastModifyingApplication != null)
+					yield return @LastModifyingApplication;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

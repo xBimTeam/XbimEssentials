@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	[ExpressType("IfcReinforcingBar", 571)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReinforcingBar : IfcReinforcingElement, IInstantiableEntity, IIfcReinforcingBar, IEquatable<@IfcReinforcingBar>
+	public  partial class @IfcReinforcingBar : IfcReinforcingElement, IInstantiableEntity, IIfcReinforcingBar, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcReinforcingBar>
 	{
 		#region IIfcReinforcingBar explicit implementation
 		IfcPositiveLengthMeasure IIfcReinforcingBar.NominalDiameter { get { return @NominalDiameter; } }	
@@ -222,6 +222,36 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

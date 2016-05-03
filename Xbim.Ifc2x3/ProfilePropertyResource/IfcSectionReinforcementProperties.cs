@@ -42,7 +42,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IfcSectionReinforcementProperties", 508)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSectionReinforcementProperties : INotifyPropertyChanged, IInstantiableEntity, IIfcSectionReinforcementProperties, IEquatable<@IfcSectionReinforcementProperties>
+	public  partial class @IfcSectionReinforcementProperties : INotifyPropertyChanged, IInstantiableEntity, IIfcSectionReinforcementProperties, IContainsEntityReferences, IEquatable<@IfcSectionReinforcementProperties>
 	{
 		#region IIfcSectionReinforcementProperties explicit implementation
 		IfcLengthMeasure IIfcSectionReinforcementProperties.LongitudinalStartPosition { get { return @LongitudinalStartPosition; } }	
@@ -337,6 +337,19 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@SectionDefinition != null)
+					yield return @SectionDefinition;
+				foreach(var entity in @CrossSectionReinforcementDefinitions)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

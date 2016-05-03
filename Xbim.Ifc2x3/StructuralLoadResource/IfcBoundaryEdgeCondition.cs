@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcBoundaryEdgeCondition", 319)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBoundaryEdgeCondition : IfcBoundaryCondition, IInstantiableEntity, IIfcBoundaryEdgeCondition, IEquatable<@IfcBoundaryEdgeCondition>
+	public  partial class @IfcBoundaryEdgeCondition : IfcBoundaryCondition, IInstantiableEntity, IIfcBoundaryEdgeCondition, IContainsEntityReferences, IEquatable<@IfcBoundaryEdgeCondition>
 	{
 		#region IIfcBoundaryEdgeCondition explicit implementation
 		IfcModulusOfLinearSubgradeReactionMeasure? IIfcBoundaryEdgeCondition.LinearStiffnessByLengthX { get { return @LinearStiffnessByLengthX; } }	
@@ -234,6 +234,15 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcGrid", 564)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGrid : IfcProduct, IInstantiableEntity, IIfcGrid, IEquatable<@IfcGrid>
+	public  partial class @IfcGrid : IfcProduct, IInstantiableEntity, IIfcGrid, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcGrid>
 	{
 		#region IIfcGrid explicit implementation
 		IEnumerable<IIfcGridAxis> IIfcGrid.UAxes { get { return @UAxes; } }	
@@ -207,6 +207,48 @@ namespace Xbim.Ifc4.ProductExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				foreach(var entity in @UAxes)
+					yield return entity;
+				foreach(var entity in @VAxes)
+					yield return entity;
+				foreach(var entity in @WAxes)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				foreach(var entity in @UAxes)
+					yield return entity;
+				foreach(var entity in @VAxes)
+					yield return entity;
+				foreach(var entity in @WAxes)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

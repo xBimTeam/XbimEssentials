@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcValveType", 465)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcValveType : IfcFlowControllerType, IInstantiableEntity, IIfcValveType, IEquatable<@IfcValveType>
+	public  partial class @IfcValveType : IfcFlowControllerType, IInstantiableEntity, IIfcValveType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcValveType>
 	{
 		#region IIfcValveType explicit implementation
 		IfcValveTypeEnum IIfcValveType.PredefinedType { get { return @PredefinedType; } }	
@@ -141,6 +141,34 @@ namespace Xbim.Ifc2x3.HVACDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @HasPropertySets)
+					yield return entity;
+				foreach(var entity in @RepresentationMaps)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @HasPropertySets)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

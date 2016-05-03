@@ -45,7 +45,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	[ExpressType("IfcCostSchedule", 695)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCostSchedule : IfcControl, IInstantiableEntity, IIfcCostSchedule, IEquatable<@IfcCostSchedule>
+	public  partial class @IfcCostSchedule : IfcControl, IInstantiableEntity, IIfcCostSchedule, IContainsEntityReferences, IEquatable<@IfcCostSchedule>
 	{
 		#region IIfcCostSchedule explicit implementation
 		IIfcActorSelect IIfcCostSchedule.SubmittedBy { get { return @SubmittedBy; } }	
@@ -278,6 +278,27 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@SubmittedBy != null)
+					yield return @SubmittedBy;
+				if (@PreparedBy != null)
+					yield return @PreparedBy;
+				if (@SubmittedOn != null)
+					yield return @SubmittedOn;
+				foreach(var entity in @TargetUsers)
+					yield return entity;
+				if (@UpdateDate != null)
+					yield return @UpdateDate;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

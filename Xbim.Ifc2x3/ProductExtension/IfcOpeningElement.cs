@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcOpeningElement", 498)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOpeningElement : IfcFeatureElementSubtraction, IInstantiableEntity, IIfcOpeningElement, IEquatable<@IfcOpeningElement>
+	public  partial class @IfcOpeningElement : IfcFeatureElementSubtraction, IInstantiableEntity, IIfcOpeningElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcOpeningElement>
 	{
 		#region IIfcOpeningElement explicit implementation
 		 
@@ -127,6 +127,36 @@ namespace Xbim.Ifc2x3.ProductExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

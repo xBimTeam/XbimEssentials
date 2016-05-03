@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.ConstraintResource
 {
 	[ExpressType("IfcMetric", 80)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMetric : IfcConstraint, IInstantiableEntity, IIfcMetric, IEquatable<@IfcMetric>
+	public  partial class @IfcMetric : IfcConstraint, IInstantiableEntity, IIfcMetric, IContainsEntityReferences, IEquatable<@IfcMetric>
 	{
 		#region IIfcMetric explicit implementation
 		IfcBenchmarkEnum IIfcMetric.Benchmark { get { return @Benchmark; } }	
@@ -200,6 +200,19 @@ namespace Xbim.Ifc4.ConstraintResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@CreatingActor != null)
+					yield return @CreatingActor;
+				if (@ReferencePath != null)
+					yield return @ReferencePath;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

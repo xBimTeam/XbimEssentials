@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcRelFlowControlElements", 360)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelFlowControlElements : IfcRelConnects, IInstantiableEntity, IIfcRelFlowControlElements, IEquatable<@IfcRelFlowControlElements>
+	public  partial class @IfcRelFlowControlElements : IfcRelConnects, IInstantiableEntity, IIfcRelFlowControlElements, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelFlowControlElements>
 	{
 		#region IIfcRelFlowControlElements explicit implementation
 		IEnumerable<IIfcDistributionControlElement> IIfcRelFlowControlElements.RelatedControlElements { get { return @RelatedControlElements; } }	
@@ -155,6 +155,36 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RelatedControlElements)
+					yield return entity;
+				if (@RelatingFlowElement != null)
+					yield return @RelatingFlowElement;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @RelatedControlElements)
+					yield return entity;
+				if (@RelatingFlowElement != null)
+					yield return @RelatingFlowElement;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

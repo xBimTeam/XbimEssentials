@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("AssetType", 44)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieAssetType : CobiePickValue, IInstantiableEntity, ICobieAssetType, IEquatable<@CobieAssetType>
+	public  partial class @CobieAssetType : CobiePickValue, IInstantiableEntity, ICobieAssetType, IContainsEntityReferences, IEquatable<@CobieAssetType>
 	{
 		#region ICobieAssetType explicit implementation
 		 
@@ -108,6 +108,15 @@ namespace Xbim.CobieExpress
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

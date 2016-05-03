@@ -36,7 +36,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("ExternalObject", 9)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieExternalObject : INotifyPropertyChanged, IInstantiableEntity, ICobieExternalObject, IEquatable<@CobieExternalObject>
+	public  partial class @CobieExternalObject : INotifyPropertyChanged, IInstantiableEntity, ICobieExternalObject, IContainsEntityReferences, IEquatable<@CobieExternalObject>
 	{
 		#region ICobieExternalObject explicit implementation
 		string ICobieExternalObject.Name { get { return @Name; } }	
@@ -239,6 +239,15 @@ namespace Xbim.CobieExpress
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

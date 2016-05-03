@@ -42,7 +42,7 @@ namespace Xbim.Ifc4.UtilityResource
 {
 	[ExpressType("IfcTableColumn", 1292)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTableColumn : INotifyPropertyChanged, IInstantiableEntity, IIfcTableColumn, IEquatable<@IfcTableColumn>
+	public  partial class @IfcTableColumn : INotifyPropertyChanged, IInstantiableEntity, IIfcTableColumn, IContainsEntityReferences, IEquatable<@IfcTableColumn>
 	{
 		#region IIfcTableColumn explicit implementation
 		IfcIdentifier? IIfcTableColumn.Identifier { get { return @Identifier; } }	
@@ -321,6 +321,19 @@ namespace Xbim.Ifc4.UtilityResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Unit != null)
+					yield return @Unit;
+				if (@ReferencePath != null)
+					yield return @ReferencePath;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

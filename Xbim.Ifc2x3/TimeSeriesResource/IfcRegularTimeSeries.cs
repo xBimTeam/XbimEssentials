@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 {
 	[ExpressType("IfcRegularTimeSeries", 417)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRegularTimeSeries : IfcTimeSeries, IInstantiableEntity, IIfcRegularTimeSeries, IEquatable<@IfcRegularTimeSeries>
+	public  partial class @IfcRegularTimeSeries : IfcTimeSeries, IInstantiableEntity, IIfcRegularTimeSeries, IContainsEntityReferences, IEquatable<@IfcRegularTimeSeries>
 	{
 		#region IIfcRegularTimeSeries explicit implementation
 		IfcTimeMeasure IIfcRegularTimeSeries.TimeStep { get { return @TimeStep; } }	
@@ -158,6 +158,23 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@StartTime != null)
+					yield return @StartTime;
+				if (@EndTime != null)
+					yield return @EndTime;
+				if (@Unit != null)
+					yield return @Unit;
+				foreach(var entity in @Values)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

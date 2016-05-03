@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcSectionedSpine", 300)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSectionedSpine : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcSectionedSpine, IEquatable<@IfcSectionedSpine>
+	public  partial class @IfcSectionedSpine : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcSectionedSpine, IContainsEntityReferences, IEquatable<@IfcSectionedSpine>
 	{
 		#region IIfcSectionedSpine explicit implementation
 		IIfcCompositeCurve IIfcSectionedSpine.SpineCurve { get { return @SpineCurve; } }	
@@ -180,6 +180,21 @@ namespace Xbim.Ifc4.GeometricModelResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@SpineCurve != null)
+					yield return @SpineCurve;
+				foreach(var entity in @CrossSections)
+					yield return entity;
+				foreach(var entity in @CrossSectionPositions)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

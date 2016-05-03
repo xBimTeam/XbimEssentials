@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[ExpressType("IfcProductDefinitionShape", 90)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProductDefinitionShape : IfcProductRepresentation, IInstantiableEntity, IIfcProductDefinitionShape, IEquatable<@IfcProductDefinitionShape>
+	public  partial class @IfcProductDefinitionShape : IfcProductRepresentation, IInstantiableEntity, IIfcProductDefinitionShape, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcProductDefinitionShape>
 	{
 		#region IIfcProductDefinitionShape explicit implementation
 		 
@@ -134,6 +134,30 @@ namespace Xbim.Ifc2x3.RepresentationResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @Representations)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @Representations)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

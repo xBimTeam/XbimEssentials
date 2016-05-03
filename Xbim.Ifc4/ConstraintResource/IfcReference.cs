@@ -42,7 +42,7 @@ namespace Xbim.Ifc4.ConstraintResource
 {
 	[ExpressType("IfcReference", 1244)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReference : INotifyPropertyChanged, IInstantiableEntity, IIfcReference, IEquatable<@IfcReference>
+	public  partial class @IfcReference : INotifyPropertyChanged, IInstantiableEntity, IIfcReference, IContainsEntityReferences, IEquatable<@IfcReference>
 	{
 		#region IIfcReference explicit implementation
 		IfcIdentifier? IIfcReference.TypeIdentifier { get { return @TypeIdentifier; } }	
@@ -338,6 +338,17 @@ namespace Xbim.Ifc4.ConstraintResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@InnerReference != null)
+					yield return @InnerReference;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

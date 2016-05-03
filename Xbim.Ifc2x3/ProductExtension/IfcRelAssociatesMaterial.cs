@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelAssociatesMaterial", 497)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesMaterial : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesMaterial, IEquatable<@IfcRelAssociatesMaterial>
+	public  partial class @IfcRelAssociatesMaterial : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesMaterial, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesMaterial>
 	{
 		#region IIfcRelAssociatesMaterial explicit implementation
 		IIfcMaterialSelect IIfcRelAssociatesMaterial.RelatingMaterial { get { return @RelatingMaterial; } }	
@@ -138,6 +138,34 @@ namespace Xbim.Ifc2x3.ProductExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingMaterial != null)
+					yield return @RelatingMaterial;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

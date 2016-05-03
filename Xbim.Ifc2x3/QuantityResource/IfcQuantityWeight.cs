@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 {
 	[ExpressType("IfcQuantityWeight", 603)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityWeight : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityWeight, IEquatable<@IfcQuantityWeight>
+	public  partial class @IfcQuantityWeight : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityWeight, IContainsEntityReferences, IEquatable<@IfcQuantityWeight>
 	{
 		#region IIfcQuantityWeight explicit implementation
 		IfcMassMeasure IIfcQuantityWeight.WeightValue { get { return @WeightValue; } }	
@@ -136,6 +136,17 @@ namespace Xbim.Ifc2x3.QuantityResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Unit != null)
+					yield return @Unit;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

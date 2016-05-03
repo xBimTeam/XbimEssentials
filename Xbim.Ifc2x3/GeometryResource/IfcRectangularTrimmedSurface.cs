@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcRectangularTrimmedSurface", 653)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRectangularTrimmedSurface : IfcBoundedSurface, IInstantiableEntity, IIfcRectangularTrimmedSurface, IEquatable<@IfcRectangularTrimmedSurface>
+	public  partial class @IfcRectangularTrimmedSurface : IfcBoundedSurface, IInstantiableEntity, IIfcRectangularTrimmedSurface, IContainsEntityReferences, IEquatable<@IfcRectangularTrimmedSurface>
 	{
 		#region IIfcRectangularTrimmedSurface explicit implementation
 		IIfcSurface IIfcRectangularTrimmedSurface.BasisSurface { get { return @BasisSurface; } }	
@@ -264,6 +264,17 @@ namespace Xbim.Ifc2x3.GeometryResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@BasisSurface != null)
+					yield return @BasisSurface;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

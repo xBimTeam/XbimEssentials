@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	[ExpressType("IfcChamferEdgeFeature", 765)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcChamferEdgeFeature : IfcEdgeFeature, IInstantiableEntity, IIfcChamferEdgeFeature, IEquatable<@IfcChamferEdgeFeature>
+	public  partial class @IfcChamferEdgeFeature : IfcEdgeFeature, IInstantiableEntity, IIfcChamferEdgeFeature, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcChamferEdgeFeature>
 	{
 		#region IIfcChamferEdgeFeature explicit implementation
 		IfcPositiveLengthMeasure? IIfcChamferEdgeFeature.Width { get { return @Width; } }	
@@ -161,6 +161,36 @@ namespace Xbim.Ifc2x3.SharedComponentElements
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

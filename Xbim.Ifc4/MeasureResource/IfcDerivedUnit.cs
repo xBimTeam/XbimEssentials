@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.MeasureResource
 {
 	[ExpressType("IfcDerivedUnit", 630)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDerivedUnit : INotifyPropertyChanged, IInstantiableEntity, IIfcDerivedUnit, IEquatable<@IfcDerivedUnit>
+	public  partial class @IfcDerivedUnit : INotifyPropertyChanged, IInstantiableEntity, IIfcDerivedUnit, IContainsEntityReferences, IEquatable<@IfcDerivedUnit>
 	{
 		#region IIfcDerivedUnit explicit implementation
 		IEnumerable<IIfcDerivedUnitElement> IIfcDerivedUnit.Elements { get { return @Elements; } }	
@@ -327,6 +327,17 @@ namespace Xbim.Ifc4.MeasureResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @Elements)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

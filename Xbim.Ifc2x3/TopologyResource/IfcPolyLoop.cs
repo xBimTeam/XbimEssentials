@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcPolyLoop", 200)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPolyLoop : IfcLoop, IInstantiableEntity, IIfcPolyLoop, IEquatable<@IfcPolyLoop>
+	public  partial class @IfcPolyLoop : IfcLoop, IInstantiableEntity, IIfcPolyLoop, IContainsEntityReferences, IEquatable<@IfcPolyLoop>
 	{
 		#region IIfcPolyLoop explicit implementation
 		IEnumerable<IIfcCartesianPoint> IIfcPolyLoop.Polygon { get { return @Polygon; } }	
@@ -128,6 +128,17 @@ namespace Xbim.Ifc2x3.TopologyResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @Polygon)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

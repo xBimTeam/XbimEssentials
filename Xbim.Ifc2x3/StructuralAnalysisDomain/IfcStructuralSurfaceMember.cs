@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralSurfaceMember", 420)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralSurfaceMember : IfcStructuralMember, IInstantiableEntity, IIfcStructuralSurfaceMember, IEquatable<@IfcStructuralSurfaceMember>
+	public  partial class @IfcStructuralSurfaceMember : IfcStructuralMember, IInstantiableEntity, IIfcStructuralSurfaceMember, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralSurfaceMember>
 	{
 		#region IIfcStructuralSurfaceMember explicit implementation
 		IfcStructuralSurfaceTypeEnum IIfcStructuralSurfaceMember.PredefinedType { get { return @PredefinedType; } }	
@@ -159,6 +159,36 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

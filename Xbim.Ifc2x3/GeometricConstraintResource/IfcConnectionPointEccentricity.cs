@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcConnectionPointEccentricity", 405)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectionPointEccentricity : IfcConnectionPointGeometry, IInstantiableEntity, IIfcConnectionPointEccentricity, IEquatable<@IfcConnectionPointEccentricity>
+	public  partial class @IfcConnectionPointEccentricity : IfcConnectionPointGeometry, IInstantiableEntity, IIfcConnectionPointEccentricity, IContainsEntityReferences, IEquatable<@IfcConnectionPointEccentricity>
 	{
 		#region IIfcConnectionPointEccentricity explicit implementation
 		IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInX { get { return @EccentricityInX; } }	
@@ -175,6 +175,19 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@PointOnRelatingElement != null)
+					yield return @PointOnRelatingElement;
+				if (@PointOnRelatedElement != null)
+					yield return @PointOnRelatedElement;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

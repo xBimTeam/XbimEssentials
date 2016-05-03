@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[ExpressType("IfcSlippageConnectionCondition", 638)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSlippageConnectionCondition : IfcStructuralConnectionCondition, IInstantiableEntity, IIfcSlippageConnectionCondition, IEquatable<@IfcSlippageConnectionCondition>
+	public  partial class @IfcSlippageConnectionCondition : IfcStructuralConnectionCondition, IInstantiableEntity, IIfcSlippageConnectionCondition, IContainsEntityReferences, IEquatable<@IfcSlippageConnectionCondition>
 	{
 		#region IIfcSlippageConnectionCondition explicit implementation
 		IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageX { get { return @SlippageX; } }	
@@ -174,6 +174,15 @@ namespace Xbim.Ifc4.StructuralLoadResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

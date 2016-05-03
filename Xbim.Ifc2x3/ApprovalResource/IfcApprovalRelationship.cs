@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 {
 	[ExpressType("IfcApprovalRelationship", 552)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcApprovalRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcApprovalRelationship, IEquatable<@IfcApprovalRelationship>
+	public  partial class @IfcApprovalRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcApprovalRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcApprovalRelationship>
 	{
 		#region IIfcApprovalRelationship explicit implementation
 		IIfcApproval IIfcApprovalRelationship.RelatedApproval { get { return @RelatedApproval; } }	
@@ -301,6 +301,34 @@ namespace Xbim.Ifc2x3.ApprovalResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@RelatedApproval != null)
+					yield return @RelatedApproval;
+				if (@RelatingApproval != null)
+					yield return @RelatingApproval;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatedApproval != null)
+					yield return @RelatedApproval;
+				if (@RelatingApproval != null)
+					yield return @RelatingApproval;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

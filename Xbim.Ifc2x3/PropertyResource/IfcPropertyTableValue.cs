@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 {
 	[ExpressType("IfcPropertyTableValue", 557)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyTableValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyTableValue, IEquatable<@IfcPropertyTableValue>
+	public  partial class @IfcPropertyTableValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyTableValue, IContainsEntityReferences, IEquatable<@IfcPropertyTableValue>
 	{
 		#region IIfcPropertyTableValue explicit implementation
 		IEnumerable<IIfcValue> IIfcPropertyTableValue.DefiningValues { get { return @DefiningValues; } }	
@@ -209,6 +209,19 @@ namespace Xbim.Ifc2x3.PropertyResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@DefiningUnit != null)
+					yield return @DefiningUnit;
+				if (@DefinedUnit != null)
+					yield return @DefinedUnit;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

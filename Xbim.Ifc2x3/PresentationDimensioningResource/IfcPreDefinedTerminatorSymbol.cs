@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcPreDefinedTerminatorSymbol", 749)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPreDefinedTerminatorSymbol : IfcPreDefinedSymbol, IInstantiableEntity, IIfcPreDefinedTerminatorSymbol, IEquatable<@IfcPreDefinedTerminatorSymbol>
+	public  partial class @IfcPreDefinedTerminatorSymbol : IfcPreDefinedSymbol, IInstantiableEntity, IIfcPreDefinedTerminatorSymbol, IContainsEntityReferences, IEquatable<@IfcPreDefinedTerminatorSymbol>
 	{
 		#region IIfcPreDefinedTerminatorSymbol explicit implementation
 		 
@@ -109,6 +109,15 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

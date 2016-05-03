@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcTextStyleWithBoxCharacteristics", 730)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextStyleWithBoxCharacteristics : INotifyPropertyChanged, IInstantiableEntity, IIfcTextStyleWithBoxCharacteristics, IEquatable<@IfcTextStyleWithBoxCharacteristics>
+	public  partial class @IfcTextStyleWithBoxCharacteristics : INotifyPropertyChanged, IInstantiableEntity, IIfcTextStyleWithBoxCharacteristics, IContainsEntityReferences, IEquatable<@IfcTextStyleWithBoxCharacteristics>
 	{
 		#region IIfcTextStyleWithBoxCharacteristics explicit implementation
 		IfcPositiveLengthMeasure? IIfcTextStyleWithBoxCharacteristics.BoxHeight { get { return @BoxHeight; } }	
@@ -330,6 +330,15 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

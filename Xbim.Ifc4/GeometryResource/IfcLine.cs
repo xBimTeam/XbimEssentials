@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcLine", 272)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLine : IfcCurve, IInstantiableEntity, IIfcLine, IEquatable<@IfcLine>
+	public  partial class @IfcLine : IfcCurve, IInstantiableEntity, IIfcLine, IContainsEntityReferences, IEquatable<@IfcLine>
 	{
 		#region IIfcLine explicit implementation
 		IIfcCartesianPoint IIfcLine.Pnt { get { return @Pnt; } }	
@@ -150,6 +150,19 @@ namespace Xbim.Ifc4.GeometryResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Pnt != null)
+					yield return @Pnt;
+				if (@Dir != null)
+					yield return @Dir;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

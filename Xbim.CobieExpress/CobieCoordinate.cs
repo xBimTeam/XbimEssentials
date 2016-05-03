@@ -41,7 +41,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Coordinate", 33)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieCoordinate : CobieReferencedObject, IInstantiableEntity, ICobieCoordinate, IEquatable<@CobieCoordinate>
+	public  partial class @CobieCoordinate : CobieReferencedObject, IInstantiableEntity, ICobieCoordinate, IContainsEntityReferences, IEquatable<@CobieCoordinate>
 	{
 		#region ICobieCoordinate explicit implementation
 		string ICobieCoordinate.Name { get { return @Name; } }	
@@ -277,6 +277,21 @@ namespace Xbim.CobieExpress
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Created != null)
+					yield return @Created;
+				if (@ExternalSystem != null)
+					yield return @ExternalSystem;
+				if (@ExternalObject != null)
+					yield return @ExternalObject;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

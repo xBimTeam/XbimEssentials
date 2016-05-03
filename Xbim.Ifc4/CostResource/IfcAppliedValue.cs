@@ -51,7 +51,7 @@ namespace Xbim.Ifc4.CostResource
 {
 	[ExpressType("IfcAppliedValue", 79)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAppliedValue : INotifyPropertyChanged, IInstantiableEntity, IIfcAppliedValue, IEquatable<@IfcAppliedValue>
+	public  partial class @IfcAppliedValue : INotifyPropertyChanged, IInstantiableEntity, IIfcAppliedValue, IContainsEntityReferences, IEquatable<@IfcAppliedValue>
 	{
 		#region IIfcAppliedValue explicit implementation
 		IfcLabel? IIfcAppliedValue.Name { get { return @Name; } }	
@@ -464,6 +464,19 @@ namespace Xbim.Ifc4.CostResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@UnitBasis != null)
+					yield return @UnitBasis;
+				foreach(var entity in @Components)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -42,7 +42,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcElectricalBaseProperties", 177)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElectricalBaseProperties : IfcEnergyProperties, IInstantiableEntity, IIfcElectricalBaseProperties, IEquatable<@IfcElectricalBaseProperties>
+	public  partial class @IfcElectricalBaseProperties : IfcEnergyProperties, IInstantiableEntity, IIfcElectricalBaseProperties, IContainsEntityReferences, IEquatable<@IfcElectricalBaseProperties>
 	{
 		#region IIfcElectricalBaseProperties explicit implementation
 		IfcElectricCurrentEnum? IIfcElectricalBaseProperties.ElectricCurrentType { get { return @ElectricCurrentType; } }	
@@ -279,6 +279,17 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

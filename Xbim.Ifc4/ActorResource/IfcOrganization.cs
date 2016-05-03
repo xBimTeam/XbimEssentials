@@ -46,7 +46,7 @@ namespace Xbim.Ifc4.ActorResource
 {
 	[ExpressType("IfcOrganization", 276)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOrganization : INotifyPropertyChanged, IInstantiableEntity, IIfcOrganization, IEquatable<@IfcOrganization>
+	public  partial class @IfcOrganization : INotifyPropertyChanged, IInstantiableEntity, IIfcOrganization, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcOrganization>
 	{
 		#region IIfcOrganization explicit implementation
 		IfcIdentifier? IIfcOrganization.Identification { get { return @Identification; } }	
@@ -381,6 +381,32 @@ namespace Xbim.Ifc4.ActorResource
 		}
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @Roles)
+					yield return entity;
+				foreach(var entity in @Addresses)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @Addresses)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

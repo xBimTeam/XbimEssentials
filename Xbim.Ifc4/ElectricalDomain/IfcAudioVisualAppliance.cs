@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IfcAudioVisualAppliance", 1099)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAudioVisualAppliance : IfcFlowTerminal, IInstantiableEntity, IIfcAudioVisualAppliance, IEquatable<@IfcAudioVisualAppliance>
+	public  partial class @IfcAudioVisualAppliance : IfcFlowTerminal, IInstantiableEntity, IIfcAudioVisualAppliance, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAudioVisualAppliance>
 	{
 		#region IIfcAudioVisualAppliance explicit implementation
 		IfcAudioVisualApplianceTypeEnum? IIfcAudioVisualAppliance.PredefinedType { get { return @PredefinedType; } }	
@@ -140,6 +140,36 @@ namespace Xbim.Ifc4.ElectricalDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

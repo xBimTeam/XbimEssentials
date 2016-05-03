@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	[ExpressType("IfcServiceLife", 769)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcServiceLife : IfcControl, IInstantiableEntity, IIfcServiceLife, IEquatable<@IfcServiceLife>
+	public  partial class @IfcServiceLife : IfcControl, IInstantiableEntity, IIfcServiceLife, IContainsEntityReferences, IEquatable<@IfcServiceLife>
 	{
 		#region IIfcServiceLife explicit implementation
 		IfcServiceLifeTypeEnum IIfcServiceLife.ServiceLifeType { get { return @ServiceLifeType; } }	
@@ -159,6 +159,17 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

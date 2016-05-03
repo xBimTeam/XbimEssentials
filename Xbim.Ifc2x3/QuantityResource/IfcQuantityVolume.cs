@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 {
 	[ExpressType("IfcQuantityVolume", 100)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityVolume : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityVolume, IEquatable<@IfcQuantityVolume>
+	public  partial class @IfcQuantityVolume : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityVolume, IContainsEntityReferences, IEquatable<@IfcQuantityVolume>
 	{
 		#region IIfcQuantityVolume explicit implementation
 		IfcVolumeMeasure IIfcQuantityVolume.VolumeValue { get { return @VolumeValue; } }	
@@ -136,6 +136,17 @@ namespace Xbim.Ifc2x3.QuantityResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Unit != null)
+					yield return @Unit;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

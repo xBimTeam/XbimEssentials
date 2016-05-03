@@ -46,7 +46,7 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IfcAsymmetricIShapeProfileDef", 672)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAsymmetricIShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcAsymmetricIShapeProfileDef, IEquatable<@IfcAsymmetricIShapeProfileDef>
+	public  partial class @IfcAsymmetricIShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcAsymmetricIShapeProfileDef, IContainsEntityReferences, IEquatable<@IfcAsymmetricIShapeProfileDef>
 	{
 		#region IIfcAsymmetricIShapeProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.BottomFlangeWidth { get { return @BottomFlangeWidth; } }	
@@ -356,6 +356,17 @@ namespace Xbim.Ifc4.ProfileResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Position != null)
+					yield return @Position;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

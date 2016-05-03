@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcRelAssignsToProduct", 309)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToProduct : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToProduct, IEquatable<@IfcRelAssignsToProduct>
+	public  partial class @IfcRelAssignsToProduct : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToProduct, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToProduct>
 	{
 		#region IIfcRelAssignsToProduct explicit implementation
 		IIfcProductSelect IIfcRelAssignsToProduct.RelatingProduct { get { return @RelatingProduct; } }	
@@ -138,6 +138,36 @@ namespace Xbim.Ifc4.Kernel
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingProduct != null)
+					yield return @RelatingProduct;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingProduct != null)
+					yield return @RelatingProduct;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

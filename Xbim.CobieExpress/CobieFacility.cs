@@ -43,7 +43,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Facility", 14)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieFacility : CobieAsset, IInstantiableEntity, ICobieFacility, IEquatable<@CobieFacility>
+	public  partial class @CobieFacility : CobieAsset, IInstantiableEntity, ICobieFacility, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieFacility>
 	{
 		#region ICobieFacility explicit implementation
 		ICobieLinearUnit ICobieFacility.LinearUnits { get { return @LinearUnits; } }	
@@ -319,6 +319,60 @@ namespace Xbim.CobieExpress
 		}
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Created != null)
+					yield return @Created;
+				if (@ExternalSystem != null)
+					yield return @ExternalSystem;
+				if (@ExternalObject != null)
+					yield return @ExternalObject;
+				foreach(var entity in @Categories)
+					yield return entity;
+				foreach(var entity in @Impacts)
+					yield return entity;
+				foreach(var entity in @Documents)
+					yield return entity;
+				foreach(var entity in @Attributes)
+					yield return entity;
+				foreach(var entity in @Representations)
+					yield return entity;
+				if (@LinearUnits != null)
+					yield return @LinearUnits;
+				if (@AreaUnits != null)
+					yield return @AreaUnits;
+				if (@VolumeUnits != null)
+					yield return @VolumeUnits;
+				if (@CurrencyUnit != null)
+					yield return @CurrencyUnit;
+				if (@Project != null)
+					yield return @Project;
+				if (@Site != null)
+					yield return @Site;
+				if (@Phase != null)
+					yield return @Phase;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@Project != null)
+					yield return @Project;
+				if (@Site != null)
+					yield return @Site;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

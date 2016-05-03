@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcCartesianTransformationOperator3DnonUniform", 479)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCartesianTransformationOperator3DnonUniform : IfcCartesianTransformationOperator3D, IInstantiableEntity, IIfcCartesianTransformationOperator3DnonUniform, IEquatable<@IfcCartesianTransformationOperator3DnonUniform>
+	public  partial class @IfcCartesianTransformationOperator3DnonUniform : IfcCartesianTransformationOperator3D, IInstantiableEntity, IIfcCartesianTransformationOperator3DnonUniform, IContainsEntityReferences, IEquatable<@IfcCartesianTransformationOperator3DnonUniform>
 	{
 		#region IIfcCartesianTransformationOperator3DnonUniform explicit implementation
 		IfcReal? IIfcCartesianTransformationOperator3DnonUniform.Scale2 { get { return @Scale2; } }	
@@ -184,6 +184,23 @@ namespace Xbim.Ifc4.GeometryResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Axis1 != null)
+					yield return @Axis1;
+				if (@Axis2 != null)
+					yield return @Axis2;
+				if (@LocalOrigin != null)
+					yield return @LocalOrigin;
+				if (@Axis3 != null)
+					yield return @Axis3;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcFailureConnectionCondition", 640)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFailureConnectionCondition : IfcStructuralConnectionCondition, IInstantiableEntity, IIfcFailureConnectionCondition, IEquatable<@IfcFailureConnectionCondition>
+	public  partial class @IfcFailureConnectionCondition : IfcStructuralConnectionCondition, IInstantiableEntity, IIfcFailureConnectionCondition, IContainsEntityReferences, IEquatable<@IfcFailureConnectionCondition>
 	{
 		#region IIfcFailureConnectionCondition explicit implementation
 		IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureX { get { return @TensionFailureX; } }	
@@ -234,6 +234,15 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

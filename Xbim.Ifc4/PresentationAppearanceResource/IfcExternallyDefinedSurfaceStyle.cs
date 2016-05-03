@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcExternallyDefinedSurfaceStyle", 318)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExternallyDefinedSurfaceStyle : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedSurfaceStyle, IEquatable<@IfcExternallyDefinedSurfaceStyle>
+	public  partial class @IfcExternallyDefinedSurfaceStyle : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedSurfaceStyle, IContainsEntityReferences, IEquatable<@IfcExternallyDefinedSurfaceStyle>
 	{
 		#region IIfcExternallyDefinedSurfaceStyle explicit implementation
 		 
@@ -121,6 +121,15 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

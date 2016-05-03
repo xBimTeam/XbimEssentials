@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcChillerType", 368)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcChillerType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcChillerType, IEquatable<@IfcChillerType>
+	public  partial class @IfcChillerType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcChillerType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcChillerType>
 	{
 		#region IIfcChillerType explicit implementation
 		IfcChillerTypeEnum IIfcChillerType.PredefinedType { get { return @PredefinedType; } }	
@@ -141,6 +141,34 @@ namespace Xbim.Ifc2x3.HVACDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @HasPropertySets)
+					yield return entity;
+				foreach(var entity in @RepresentationMaps)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @HasPropertySets)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcDimensionCurve", 742)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDimensionCurve : IfcAnnotationCurveOccurrence, IInstantiableEntity, IIfcDimensionCurve, IEquatable<@IfcDimensionCurve>
+	public  partial class @IfcDimensionCurve : IfcAnnotationCurveOccurrence, IInstantiableEntity, IIfcDimensionCurve, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDimensionCurve>
 	{
 		#region IIfcDimensionCurve explicit implementation
 		 
@@ -123,6 +123,32 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Item != null)
+					yield return @Item;
+				foreach(var entity in @Styles)
+					yield return entity;
+				yield break;	
+			}
+		}
+		#endregion
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@Item != null)
+					yield return @Item;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

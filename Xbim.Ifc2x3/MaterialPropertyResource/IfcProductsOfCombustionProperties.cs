@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcProductsOfCombustionProperties", 719)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProductsOfCombustionProperties : IfcMaterialProperties, IInstantiableEntity, IIfcProductsOfCombustionProperties, IEquatable<@IfcProductsOfCombustionProperties>
+	public  partial class @IfcProductsOfCombustionProperties : IfcMaterialProperties, IInstantiableEntity, IIfcProductsOfCombustionProperties, IContainsEntityReferences, IEquatable<@IfcProductsOfCombustionProperties>
 	{
 		#region IIfcProductsOfCombustionProperties explicit implementation
 		IfcSpecificHeatCapacityMeasure? IIfcProductsOfCombustionProperties.SpecificHeatCapacity { get { return @SpecificHeatCapacity; } }	
@@ -194,6 +194,17 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Material != null)
+					yield return @Material;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

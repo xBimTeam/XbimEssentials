@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcCsgSolid", 548)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCsgSolid : IfcSolidModel, IInstantiableEntity, IIfcCsgSolid, IEquatable<@IfcCsgSolid>
+	public  partial class @IfcCsgSolid : IfcSolidModel, IInstantiableEntity, IIfcCsgSolid, IContainsEntityReferences, IEquatable<@IfcCsgSolid>
 	{
 		#region IIfcCsgSolid explicit implementation
 		IIfcCsgSelect IIfcCsgSolid.TreeRootExpression { get { return @TreeRootExpression; } }	
@@ -130,6 +130,17 @@ namespace Xbim.Ifc4.GeometricModelResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@TreeRootExpression != null)
+					yield return @TreeRootExpression;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

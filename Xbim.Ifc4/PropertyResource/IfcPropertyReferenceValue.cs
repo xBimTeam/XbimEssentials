@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.PropertyResource
 {
 	[ExpressType("IfcPropertyReferenceValue", 277)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyReferenceValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyReferenceValue, IEquatable<@IfcPropertyReferenceValue>
+	public  partial class @IfcPropertyReferenceValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyReferenceValue, IContainsEntityReferences, IEquatable<@IfcPropertyReferenceValue>
 	{
 		#region IIfcPropertyReferenceValue explicit implementation
 		IfcText? IIfcPropertyReferenceValue.UsageName { get { return @UsageName; } }	
@@ -155,6 +155,17 @@ namespace Xbim.Ifc4.PropertyResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@PropertyReference != null)
+					yield return @PropertyReference;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

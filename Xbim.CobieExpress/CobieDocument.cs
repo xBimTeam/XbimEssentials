@@ -42,7 +42,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Document", 30)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieDocument : CobieReferencedObject, IInstantiableEntity, ICobieDocument, IEquatable<@CobieDocument>
+	public  partial class @CobieDocument : CobieReferencedObject, IInstantiableEntity, ICobieDocument, IContainsEntityReferences, IEquatable<@CobieDocument>
 	{
 		#region ICobieDocument explicit implementation
 		string ICobieDocument.Name { get { return @Name; } }	
@@ -297,6 +297,27 @@ namespace Xbim.CobieExpress
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Created != null)
+					yield return @Created;
+				if (@ExternalSystem != null)
+					yield return @ExternalSystem;
+				if (@ExternalObject != null)
+					yield return @ExternalObject;
+				if (@DocumentType != null)
+					yield return @DocumentType;
+				if (@ApprovalType != null)
+					yield return @ApprovalType;
+				if (@Stage != null)
+					yield return @Stage;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

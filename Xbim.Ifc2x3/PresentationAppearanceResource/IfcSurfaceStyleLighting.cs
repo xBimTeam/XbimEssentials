@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcSurfaceStyleLighting", 117)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyleLighting : INotifyPropertyChanged, IInstantiableEntity, IIfcSurfaceStyleLighting, IEquatable<@IfcSurfaceStyleLighting>
+	public  partial class @IfcSurfaceStyleLighting : INotifyPropertyChanged, IInstantiableEntity, IIfcSurfaceStyleLighting, IContainsEntityReferences, IEquatable<@IfcSurfaceStyleLighting>
 	{
 		#region IIfcSurfaceStyleLighting explicit implementation
 		IIfcColourRgb IIfcSurfaceStyleLighting.DiffuseTransmissionColour { get { return @DiffuseTransmissionColour; } }	
@@ -310,6 +310,23 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 
         #endregion
 
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@DiffuseTransmissionColour != null)
+					yield return @DiffuseTransmissionColour;
+				if (@DiffuseReflectionColour != null)
+					yield return @DiffuseReflectionColour;
+				if (@TransmissionColour != null)
+					yield return @TransmissionColour;
+				if (@ReflectanceColour != null)
+					yield return @ReflectanceColour;
+				yield break;	
+			}
+		}
+		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##
