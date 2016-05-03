@@ -152,10 +152,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				if (@ReferencedSource != null)
 					yield return @ReferencedSource;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

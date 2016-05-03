@@ -160,10 +160,10 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 					yield return @Definition;
 				if (@Target != null)
 					yield return @Target;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

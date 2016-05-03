@@ -161,10 +161,10 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 					yield return @Item;
 				if (@TextureCoordinates != null)
 					yield return @TextureCoordinates;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

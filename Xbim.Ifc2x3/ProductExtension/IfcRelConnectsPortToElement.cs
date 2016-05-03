@@ -170,10 +170,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 					yield return @RelatingPort;
 				if (@RelatedElement != null)
 					yield return @RelatedElement;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

@@ -289,10 +289,10 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 					yield return @StartProfile;
 				if (@EndProfile != null)
 					yield return @EndProfile;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

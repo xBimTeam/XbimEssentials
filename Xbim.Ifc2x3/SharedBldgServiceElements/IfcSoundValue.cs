@@ -188,10 +188,10 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 					yield return @OwnerHistory;
 				if (@SoundLevelTimeSeries != null)
 					yield return @SoundLevelTimeSeries;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

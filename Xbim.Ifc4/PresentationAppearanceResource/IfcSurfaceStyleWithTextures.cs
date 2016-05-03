@@ -146,10 +146,10 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				foreach(var entity in @Textures)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

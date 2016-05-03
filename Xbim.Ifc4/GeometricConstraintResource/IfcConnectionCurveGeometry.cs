@@ -159,10 +159,10 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 					yield return @CurveOnRelatingElement;
 				if (@CurveOnRelatedElement != null)
 					yield return @CurveOnRelatedElement;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

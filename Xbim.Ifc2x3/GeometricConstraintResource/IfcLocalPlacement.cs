@@ -161,10 +161,10 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 					yield return @PlacementRelTo;
 				if (@RelativePlacement != null)
 					yield return @RelativePlacement;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

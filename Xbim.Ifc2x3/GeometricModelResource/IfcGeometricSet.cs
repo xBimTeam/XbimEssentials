@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcGeometricSet", 236)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeometricSet : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcGeometricSet, IContainsEntityReferences, IEquatable<@IfcGeometricSet>
+	public  partial class @IfcGeometricSet : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcGeometricSet, IEquatable<@IfcGeometricSet>
 	{
 		#region IIfcGeometricSet explicit implementation
 		IEnumerable<IIfcGeometricSetSelect> IIfcGeometricSet.Elements { get { return @Elements; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 
         #endregion
 
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				foreach(var entity in @Elements)
-					yield return entity;
-				yield break;	
-			}
-		}
-		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

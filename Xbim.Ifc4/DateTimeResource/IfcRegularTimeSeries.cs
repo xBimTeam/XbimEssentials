@@ -167,10 +167,10 @@ namespace Xbim.Ifc4.DateTimeResource
 					yield return @Unit;
 				foreach(var entity in @Values)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

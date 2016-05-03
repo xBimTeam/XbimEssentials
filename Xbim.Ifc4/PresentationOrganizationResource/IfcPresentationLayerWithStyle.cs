@@ -204,10 +204,10 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 					yield return entity;
 				foreach(var entity in @LayerStyles)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

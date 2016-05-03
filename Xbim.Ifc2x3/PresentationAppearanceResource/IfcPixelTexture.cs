@@ -201,10 +201,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				if (@TextureTransform != null)
 					yield return @TextureTransform;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

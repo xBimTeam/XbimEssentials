@@ -129,10 +129,10 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 					yield return @RelatingActor;
 				if (@ActingRole != null)
 					yield return @ActingRole;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

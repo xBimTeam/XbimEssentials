@@ -213,10 +213,10 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					yield return @CurveFont;
 				if (@CurveColour != null)
 					yield return @CurveColour;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -193,10 +193,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					yield return @RelatingProfileProperties;
 				if (@ProfileSectionLocation != null)
 					yield return @ProfileSectionLocation;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

@@ -285,10 +285,10 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			{
 				foreach(var entity in @Representations)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

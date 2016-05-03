@@ -150,10 +150,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 					yield return entity;
 				if (@RelatingMaterial != null)
 					yield return @RelatingMaterial;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

@@ -51,7 +51,7 @@ namespace Xbim.Ifc4.DateTimeResource
 {
 	[ExpressType("IfcTaskTime", 1294)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTaskTime : IfcSchedulingTime, IInstantiableEntity, IIfcTaskTime, IContainsEntityReferences, IEquatable<@IfcTaskTime>
+	public  partial class @IfcTaskTime : IfcSchedulingTime, IInstantiableEntity, IIfcTaskTime, IEquatable<@IfcTaskTime>
 	{
 		#region IIfcTaskTime explicit implementation
 		IfcTaskDurationEnum? IIfcTaskTime.DurationType { get { return @DurationType; } }	
@@ -456,15 +456,6 @@ namespace Xbim.Ifc4.DateTimeResource
 
         #endregion
 
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				yield break;	
-			}
-		}
-		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

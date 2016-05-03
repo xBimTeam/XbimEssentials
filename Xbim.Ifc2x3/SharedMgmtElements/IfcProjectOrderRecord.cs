@@ -164,10 +164,10 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 					yield return @OwnerHistory;
 				foreach(var entity in @Records)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

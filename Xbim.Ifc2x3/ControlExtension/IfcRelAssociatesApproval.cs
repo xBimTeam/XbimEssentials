@@ -150,10 +150,10 @@ namespace Xbim.Ifc2x3.ControlExtension
 					yield return entity;
 				if (@RelatingApproval != null)
 					yield return @RelatingApproval;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

@@ -175,10 +175,10 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 					yield return @Representation;
 				if (@AppliedLoad != null)
 					yield return @AppliedLoad;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

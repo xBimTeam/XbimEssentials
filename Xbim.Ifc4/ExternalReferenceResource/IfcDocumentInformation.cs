@@ -516,10 +516,10 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 					yield return @DocumentOwner;
 				foreach(var entity in @Editors)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

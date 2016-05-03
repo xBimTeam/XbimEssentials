@@ -182,10 +182,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				if (@Orientation != null)
 					yield return @Orientation;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

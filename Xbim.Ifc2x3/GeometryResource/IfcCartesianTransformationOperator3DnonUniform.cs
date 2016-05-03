@@ -196,10 +196,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 					yield return @LocalOrigin;
 				if (@Axis3 != null)
 					yield return @Axis3;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

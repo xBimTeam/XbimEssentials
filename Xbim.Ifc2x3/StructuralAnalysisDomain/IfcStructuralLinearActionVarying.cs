@@ -198,10 +198,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					yield return @VaryingAppliedLoadLocation;
 				foreach(var entity in @SubsequentAppliedLoads)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

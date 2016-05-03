@@ -142,10 +142,10 @@ namespace Xbim.Ifc2x3.ProfileResource
 					yield return @OuterCurve;
 				foreach(var entity in @InnerCurves)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

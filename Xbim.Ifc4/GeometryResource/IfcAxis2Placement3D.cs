@@ -208,10 +208,10 @@ namespace Xbim.Ifc4.GeometryResource
 					yield return @Axis;
 				if (@RefDirection != null)
 					yield return @RefDirection;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

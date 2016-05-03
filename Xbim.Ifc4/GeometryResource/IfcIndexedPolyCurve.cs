@@ -176,10 +176,10 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				if (@Points != null)
 					yield return @Points;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

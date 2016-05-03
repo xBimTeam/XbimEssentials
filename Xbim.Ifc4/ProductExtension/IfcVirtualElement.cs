@@ -126,10 +126,10 @@ namespace Xbim.Ifc4.ProductExtension
 					yield return @ObjectPlacement;
 				if (@Representation != null)
 					yield return @Representation;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

@@ -163,10 +163,10 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					yield return entity;
 				if (@MappedTo != null)
 					yield return @MappedTo;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

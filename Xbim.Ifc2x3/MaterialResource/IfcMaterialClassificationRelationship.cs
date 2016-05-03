@@ -267,10 +267,10 @@ namespace Xbim.Ifc2x3.MaterialResource
 					yield return entity;
 				if (@ClassifiedMaterial != null)
 					yield return @ClassifiedMaterial;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

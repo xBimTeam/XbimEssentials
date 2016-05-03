@@ -173,10 +173,10 @@ namespace Xbim.Ifc4.ProductExtension
 					yield return @ParentBoundary;
 				if (@CorrespondingBoundary != null)
 					yield return @CorrespondingBoundary;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

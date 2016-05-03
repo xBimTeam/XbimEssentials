@@ -354,10 +354,10 @@ namespace Xbim.Ifc2x3.RepresentationResource
 					yield return @ContextOfItems;
 				foreach(var entity in @Items)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

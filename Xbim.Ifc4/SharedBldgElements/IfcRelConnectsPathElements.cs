@@ -208,10 +208,10 @@ namespace Xbim.Ifc4.SharedBldgElements
 					yield return @RelatingElement;
 				if (@RelatedElement != null)
 					yield return @RelatedElement;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

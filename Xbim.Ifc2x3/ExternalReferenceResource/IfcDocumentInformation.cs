@@ -612,10 +612,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 					yield return @ValidFrom;
 				if (@ValidUntil != null)
 					yield return @ValidUntil;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

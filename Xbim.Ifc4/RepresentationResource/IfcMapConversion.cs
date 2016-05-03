@@ -244,10 +244,10 @@ namespace Xbim.Ifc4.RepresentationResource
 					yield return @SourceCRS;
 				if (@TargetCRS != null)
 					yield return @TargetCRS;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

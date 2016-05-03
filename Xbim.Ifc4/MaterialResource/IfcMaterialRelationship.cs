@@ -184,10 +184,10 @@ namespace Xbim.Ifc4.MaterialResource
 					yield return @RelatingMaterial;
 				foreach(var entity in @RelatedMaterials)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

@@ -162,10 +162,10 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 					yield return @RelatingReference;
 				foreach(var entity in @RelatedResourceObjects)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

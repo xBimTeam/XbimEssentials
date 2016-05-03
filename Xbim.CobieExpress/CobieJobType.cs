@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("JobType", 48)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieJobType : CobiePickValue, IInstantiableEntity, ICobieJobType, IContainsEntityReferences, IEquatable<@CobieJobType>
+	public  partial class @CobieJobType : CobiePickValue, IInstantiableEntity, ICobieJobType, IEquatable<@CobieJobType>
 	{
 		#region ICobieJobType explicit implementation
 		 
@@ -108,15 +108,6 @@ namespace Xbim.CobieExpress
 
         #endregion
 
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				yield break;	
-			}
-		}
-		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

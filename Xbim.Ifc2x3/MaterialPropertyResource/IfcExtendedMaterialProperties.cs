@@ -181,10 +181,10 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 					yield return @Material;
 				foreach(var entity in @ExtendedProperties)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

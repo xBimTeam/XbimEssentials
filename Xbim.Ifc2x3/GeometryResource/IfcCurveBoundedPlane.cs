@@ -191,10 +191,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 					yield return @OuterBoundary;
 				foreach(var entity in @InnerBoundaries)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

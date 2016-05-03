@@ -314,10 +314,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 					yield return @Notation;
 				if (@ItemOf != null)
 					yield return @ItemOf;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

@@ -159,10 +159,10 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 					yield return @PlacementLocation;
 				if (@PlacementRefDirection != null)
 					yield return @PlacementRefDirection;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

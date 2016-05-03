@@ -344,10 +344,10 @@ namespace Xbim.CobieExpress
 					yield return @Causing;
 				if (@Affected != null)
 					yield return @Affected;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

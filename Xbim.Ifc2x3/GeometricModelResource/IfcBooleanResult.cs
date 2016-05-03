@@ -213,10 +213,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 					yield return @FirstOperand;
 				if (@SecondOperand != null)
 					yield return @SecondOperand;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

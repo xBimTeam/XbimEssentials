@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcCartesianPoint", 410)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCartesianPoint : IfcPoint, IInstantiableEntity, IIfcCartesianPoint, IContainsEntityReferences, IEquatable<@IfcCartesianPoint>
+	public  partial class @IfcCartesianPoint : IfcPoint, IInstantiableEntity, IIfcCartesianPoint, IEquatable<@IfcCartesianPoint>
 	{
 		#region IIfcCartesianPoint explicit implementation
 		IEnumerable<IfcLengthMeasure> IIfcCartesianPoint.Coordinates { get { return @Coordinates; } }	
@@ -151,15 +151,6 @@ namespace Xbim.Ifc4.GeometryResource
 
         #endregion
 
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				yield break;	
-			}
-		}
-		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

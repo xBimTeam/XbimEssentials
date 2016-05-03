@@ -133,10 +133,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					yield return @AppliedLoad;
 				if (@CausedBy != null)
 					yield return @CausedBy;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

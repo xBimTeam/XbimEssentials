@@ -304,10 +304,10 @@ namespace Xbim.Ifc4.GeometryResource
 					yield return @MappingOrigin;
 				if (@MappedRepresentation != null)
 					yield return @MappedRepresentation;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

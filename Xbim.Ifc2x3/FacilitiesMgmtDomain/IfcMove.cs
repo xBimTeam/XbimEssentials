@@ -193,10 +193,10 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 					yield return @MoveFrom;
 				if (@MoveTo != null)
 					yield return @MoveTo;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 {
 	[ExpressType("IfcCoordinatedUniversalTimeOffset", 690)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCoordinatedUniversalTimeOffset : INotifyPropertyChanged, IInstantiableEntity, IIfcCoordinatedUniversalTimeOffset, IContainsEntityReferences, IEquatable<@IfcCoordinatedUniversalTimeOffset>
+	public  partial class @IfcCoordinatedUniversalTimeOffset : INotifyPropertyChanged, IInstantiableEntity, IIfcCoordinatedUniversalTimeOffset, IEquatable<@IfcCoordinatedUniversalTimeOffset>
 	{
 		#region IIfcCoordinatedUniversalTimeOffset explicit implementation
 		IfcHourInDay IIfcCoordinatedUniversalTimeOffset.HourOffset { get { return @HourOffset; } }	
@@ -279,15 +279,6 @@ namespace Xbim.Ifc2x3.DateTimeResource
 
         #endregion
 
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				yield break;	
-			}
-		}
-		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

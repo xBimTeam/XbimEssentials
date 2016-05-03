@@ -151,10 +151,10 @@ namespace Xbim.Ifc4.ProcessExtension
 					yield return @OwnerHistory;
 				foreach(var entity in @HasPropertySets)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

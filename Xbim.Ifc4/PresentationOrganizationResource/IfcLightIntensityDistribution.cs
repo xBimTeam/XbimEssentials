@@ -273,10 +273,10 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			{
 				foreach(var entity in @DistributionData)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

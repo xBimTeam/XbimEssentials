@@ -184,10 +184,10 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 					yield return @OwnerHistory;
 				foreach(var entity in @SoundValues)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

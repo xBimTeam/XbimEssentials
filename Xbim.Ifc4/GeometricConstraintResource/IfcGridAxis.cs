@@ -335,10 +335,10 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			{
 				if (@AxisCurve != null)
 					yield return @AxisCurve;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

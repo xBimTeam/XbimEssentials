@@ -199,10 +199,10 @@ namespace Xbim.Ifc4.MaterialResource
 					yield return entity;
 				if (@CompositeProfile != null)
 					yield return @CompositeProfile;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

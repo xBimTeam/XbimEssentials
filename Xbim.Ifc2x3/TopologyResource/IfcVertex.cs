@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcVertex", 520)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVertex : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcVertex, IContainsEntityReferences, IEquatable<@IfcVertex>
+	public  partial class @IfcVertex : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcVertex, IEquatable<@IfcVertex>
 	{
 		#region IIfcVertex explicit implementation
 		 
@@ -102,15 +102,6 @@ namespace Xbim.Ifc2x3.TopologyResource
 
         #endregion
 
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				yield break;	
-			}
-		}
-		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

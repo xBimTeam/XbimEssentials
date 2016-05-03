@@ -142,10 +142,10 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				if (@OuterCurve != null)
 					yield return @OuterCurve;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

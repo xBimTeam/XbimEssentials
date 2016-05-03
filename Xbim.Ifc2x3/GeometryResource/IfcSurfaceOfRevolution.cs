@@ -167,10 +167,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 					yield return @Position;
 				if (@AxisPosition != null)
 					yield return @AxisPosition;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

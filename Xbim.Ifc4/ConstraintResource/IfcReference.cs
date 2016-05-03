@@ -345,10 +345,10 @@ namespace Xbim.Ifc4.ConstraintResource
 			{
 				if (@InnerReference != null)
 					yield return @InnerReference;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

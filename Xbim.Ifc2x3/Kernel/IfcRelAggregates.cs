@@ -124,10 +124,10 @@ namespace Xbim.Ifc2x3.Kernel
 					yield return @RelatingObject;
 				foreach(var entity in @RelatedObjects)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

@@ -129,10 +129,10 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 					yield return @Representation;
 				if (@Axis != null)
 					yield return @Axis;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

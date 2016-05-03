@@ -328,10 +328,10 @@ namespace Xbim.Ifc4.RepresentationResource
 					yield return entity;
 				if (@PartOfProductDefinitionShape != null)
 					yield return @PartOfProductDefinitionShape;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

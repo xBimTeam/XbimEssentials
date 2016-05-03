@@ -253,10 +253,10 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 					yield return @OwnerHistory;
 				if (@RequestedLocation != null)
 					yield return @RequestedLocation;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

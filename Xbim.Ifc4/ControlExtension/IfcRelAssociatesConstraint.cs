@@ -171,10 +171,10 @@ namespace Xbim.Ifc4.ControlExtension
 					yield return entity;
 				if (@RelatingConstraint != null)
 					yield return @RelatingConstraint;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

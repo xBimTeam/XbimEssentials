@@ -167,10 +167,10 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 					yield return entity;
 				if (@RelatingFlowElement != null)
 					yield return @RelatingFlowElement;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

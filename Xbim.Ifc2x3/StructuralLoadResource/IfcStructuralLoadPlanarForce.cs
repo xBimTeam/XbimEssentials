@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcStructuralLoadPlanarForce", 174)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadPlanarForce : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadPlanarForce, IContainsEntityReferences, IEquatable<@IfcStructuralLoadPlanarForce>
+	public  partial class @IfcStructuralLoadPlanarForce : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadPlanarForce, IEquatable<@IfcStructuralLoadPlanarForce>
 	{
 		#region IIfcStructuralLoadPlanarForce explicit implementation
 		IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceX { get { return @PlanarForceX; } }	
@@ -174,15 +174,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 
         #endregion
 
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				yield break;	
-			}
-		}
-		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

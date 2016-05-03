@@ -167,10 +167,10 @@ namespace Xbim.Ifc4.Kernel
 				if(RelatingPropertyDefinition != null)
 					foreach (var definition in RelatingPropertyDefinition.PropertySetDefinitions)
 						yield return definition;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

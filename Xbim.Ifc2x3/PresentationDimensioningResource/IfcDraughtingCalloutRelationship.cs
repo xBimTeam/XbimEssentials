@@ -311,10 +311,10 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 					yield return @RelatingDraughtingCallout;
 				if (@RelatedDraughtingCallout != null)
 					yield return @RelatedDraughtingCallout;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

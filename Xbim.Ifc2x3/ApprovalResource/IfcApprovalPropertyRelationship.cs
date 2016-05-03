@@ -266,10 +266,10 @@ namespace Xbim.Ifc2x3.ApprovalResource
 					yield return entity;
 				if (@Approval != null)
 					yield return @Approval;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

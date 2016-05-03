@@ -272,10 +272,10 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			{
 				foreach(var entity in @IntersectingAxes)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

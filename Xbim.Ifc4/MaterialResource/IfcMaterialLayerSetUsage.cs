@@ -218,10 +218,10 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				if (@ForLayerSet != null)
 					yield return @ForLayerSet;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

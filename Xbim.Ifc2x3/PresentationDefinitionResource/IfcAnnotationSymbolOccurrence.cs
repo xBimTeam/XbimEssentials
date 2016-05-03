@@ -130,10 +130,10 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 					yield return @Item;
 				foreach(var entity in @Styles)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

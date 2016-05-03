@@ -165,10 +165,10 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 					yield return @OwnerHistory;
 				foreach(var entity in @ReinforcementSectionDefinitions)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

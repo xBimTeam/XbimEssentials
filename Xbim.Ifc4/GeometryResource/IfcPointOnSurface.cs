@@ -193,10 +193,10 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				if (@BasisSurface != null)
 					yield return @BasisSurface;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

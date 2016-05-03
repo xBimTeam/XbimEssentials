@@ -195,10 +195,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					yield return @TextStyle;
 				if (@TextFontStyle != null)
 					yield return @TextFontStyle;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

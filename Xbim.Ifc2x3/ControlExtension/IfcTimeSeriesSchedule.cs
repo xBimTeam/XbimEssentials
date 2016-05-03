@@ -188,10 +188,10 @@ namespace Xbim.Ifc2x3.ControlExtension
 					yield return entity;
 				if (@TimeSeries != null)
 					yield return @TimeSeries;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

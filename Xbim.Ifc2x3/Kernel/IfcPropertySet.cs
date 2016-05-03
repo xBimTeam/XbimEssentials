@@ -143,10 +143,10 @@ namespace Xbim.Ifc2x3.Kernel
 					yield return @OwnerHistory;
 				foreach(var entity in @HasProperties)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -308,10 +308,10 @@ namespace Xbim.Ifc2x3.ConstraintResource
 					yield return @RelatingConstraint;
 				foreach(var entity in @RelatedConstraints)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

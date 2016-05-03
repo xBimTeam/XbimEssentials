@@ -175,10 +175,10 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				if (@Coordinates != null)
 					yield return @Coordinates;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -173,10 +173,10 @@ namespace Xbim.Ifc2x3.Kernel
 					yield return @RelatingProcess;
 				if (@QuantityInProcess != null)
 					yield return @QuantityInProcess;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

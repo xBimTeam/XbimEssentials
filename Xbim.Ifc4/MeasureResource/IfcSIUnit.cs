@@ -175,10 +175,10 @@ namespace Xbim.Ifc4.MeasureResource
 			{
 				if (@Dimensions != null)
 					yield return @Dimensions;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

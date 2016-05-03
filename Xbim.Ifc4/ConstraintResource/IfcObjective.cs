@@ -206,10 +206,10 @@ namespace Xbim.Ifc4.ConstraintResource
 					yield return @CreatingActor;
 				foreach(var entity in @BenchmarkValues)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

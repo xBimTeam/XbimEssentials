@@ -252,10 +252,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 					yield return @ColourAppearance;
 				if (@LightDistributionDataSource != null)
 					yield return @LightDistributionDataSource;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

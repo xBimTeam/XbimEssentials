@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.ActorResource
 {
 	[ExpressType("IfcActorRole", 595)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcActorRole : INotifyPropertyChanged, IInstantiableEntity, IIfcActorRole, IContainsEntityReferences, IEquatable<@IfcActorRole>
+	public  partial class @IfcActorRole : INotifyPropertyChanged, IInstantiableEntity, IIfcActorRole, IEquatable<@IfcActorRole>
 	{
 		#region IIfcActorRole explicit implementation
 		IfcRoleEnum IIfcActorRole.Role { get { return @Role; } }	
@@ -304,15 +304,6 @@ namespace Xbim.Ifc4.ActorResource
 
         #endregion
 
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				yield break;	
-			}
-		}
-		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

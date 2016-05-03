@@ -145,10 +145,10 @@ namespace Xbim.Ifc4.MaterialResource
 					yield return @Material;
 				if (@Profile != null)
 					yield return @Profile;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

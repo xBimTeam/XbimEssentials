@@ -185,10 +185,10 @@ namespace Xbim.Ifc2x3.ProfileResource
 					yield return @ParentProfile;
 				if (@Operator != null)
 					yield return @Operator;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

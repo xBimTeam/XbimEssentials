@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IfcReinforcementBarProperties", 684)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReinforcementBarProperties : IfcPreDefinedProperties, IInstantiableEntity, IIfcReinforcementBarProperties, IContainsEntityReferences, IEquatable<@IfcReinforcementBarProperties>
+	public  partial class @IfcReinforcementBarProperties : IfcPreDefinedProperties, IInstantiableEntity, IIfcReinforcementBarProperties, IEquatable<@IfcReinforcementBarProperties>
 	{
 		#region IIfcReinforcementBarProperties explicit implementation
 		IfcAreaMeasure IIfcReinforcementBarProperties.TotalCrossSectionArea { get { return @TotalCrossSectionArea; } }	
@@ -232,15 +232,6 @@ namespace Xbim.Ifc4.ProfileResource
 
         #endregion
 
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				yield break;	
-			}
-		}
-		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

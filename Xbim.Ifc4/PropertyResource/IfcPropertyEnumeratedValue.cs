@@ -159,10 +159,10 @@ namespace Xbim.Ifc4.PropertyResource
 			{
 				if (@EnumerationReference != null)
 					yield return @EnumerationReference;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

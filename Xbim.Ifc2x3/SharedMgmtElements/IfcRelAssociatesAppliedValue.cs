@@ -150,10 +150,10 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 					yield return entity;
 				if (@RelatingAppliedValue != null)
 					yield return @RelatingAppliedValue;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

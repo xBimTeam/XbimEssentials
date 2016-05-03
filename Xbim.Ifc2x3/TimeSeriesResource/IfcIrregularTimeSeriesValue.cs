@@ -265,10 +265,10 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			{
 				if (@TimeStamp != null)
 					yield return @TimeStamp;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

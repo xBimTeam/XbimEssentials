@@ -441,10 +441,10 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 					yield return @WetBulbTemperatureTimeSeries;
 				if (@TemperatureTimeSeries != null)
 					yield return @TemperatureTimeSeries;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

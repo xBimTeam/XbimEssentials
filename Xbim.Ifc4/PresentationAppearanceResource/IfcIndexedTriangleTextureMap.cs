@@ -146,10 +146,10 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					yield return @MappedTo;
 				if (@TexCoords != null)
 					yield return @TexCoords;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

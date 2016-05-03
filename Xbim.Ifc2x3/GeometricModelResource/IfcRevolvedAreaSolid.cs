@@ -189,10 +189,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 					yield return @Position;
 				if (@Axis != null)
 					yield return @Axis;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

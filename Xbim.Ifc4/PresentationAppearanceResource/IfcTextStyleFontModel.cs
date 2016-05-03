@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcTextStyleFontModel", 503)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextStyleFontModel : IfcPreDefinedTextFont, IInstantiableEntity, IIfcTextStyleFontModel, IContainsEntityReferences, IEquatable<@IfcTextStyleFontModel>
+	public  partial class @IfcTextStyleFontModel : IfcPreDefinedTextFont, IInstantiableEntity, IIfcTextStyleFontModel, IEquatable<@IfcTextStyleFontModel>
 	{
 		#region IIfcTextStyleFontModel explicit implementation
 		IEnumerable<IfcTextFontName> IIfcTextStyleFontModel.FontFamily { get { return @FontFamily; } }	
@@ -210,15 +210,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
         #endregion
 
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				yield break;	
-			}
-		}
-		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

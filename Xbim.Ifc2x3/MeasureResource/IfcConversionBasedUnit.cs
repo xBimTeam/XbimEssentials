@@ -163,10 +163,10 @@ namespace Xbim.Ifc2x3.MeasureResource
 					yield return @Dimensions;
 				if (@ConversionFactor != null)
 					yield return @ConversionFactor;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

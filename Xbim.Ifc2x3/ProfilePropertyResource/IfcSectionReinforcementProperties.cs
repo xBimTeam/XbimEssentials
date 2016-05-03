@@ -346,10 +346,10 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 					yield return @SectionDefinition;
 				foreach(var entity in @CrossSectionReinforcementDefinitions)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

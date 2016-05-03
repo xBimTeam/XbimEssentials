@@ -183,10 +183,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 					yield return @Position;
 				if (@ExtrudedDirection != null)
 					yield return @ExtrudedDirection;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

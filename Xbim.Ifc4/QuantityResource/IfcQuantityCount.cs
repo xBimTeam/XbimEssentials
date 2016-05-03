@@ -163,10 +163,10 @@ namespace Xbim.Ifc4.QuantityResource
 			{
 				if (@Unit != null)
 					yield return @Unit;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

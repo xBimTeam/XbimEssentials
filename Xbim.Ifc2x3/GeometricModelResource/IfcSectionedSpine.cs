@@ -191,10 +191,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 					yield return entity;
 				foreach(var entity in @CrossSectionPositions)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

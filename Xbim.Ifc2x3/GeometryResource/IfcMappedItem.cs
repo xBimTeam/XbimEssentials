@@ -160,10 +160,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 					yield return @MappingSource;
 				if (@MappingTarget != null)
 					yield return @MappingTarget;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

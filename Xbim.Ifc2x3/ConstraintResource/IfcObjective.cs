@@ -213,10 +213,10 @@ namespace Xbim.Ifc2x3.ConstraintResource
 					yield return @BenchmarkValues;
 				if (@ResultValues != null)
 					yield return @ResultValues;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -403,10 +403,10 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			{
 				if (@ApprovalDateTime != null)
 					yield return @ApprovalDateTime;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

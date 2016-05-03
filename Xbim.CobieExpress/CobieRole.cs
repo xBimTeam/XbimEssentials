@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Role", 38)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieRole : CobiePickValue, IInstantiableEntity, ICobieRole, IContainsEntityReferences, IEquatable<@CobieRole>
+	public  partial class @CobieRole : CobiePickValue, IInstantiableEntity, ICobieRole, IEquatable<@CobieRole>
 	{
 		#region ICobieRole explicit implementation
 		 
@@ -108,15 +108,6 @@ namespace Xbim.CobieExpress
 
         #endregion
 
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				yield break;	
-			}
-		}
-		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

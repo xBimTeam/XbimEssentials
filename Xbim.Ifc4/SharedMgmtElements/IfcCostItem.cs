@@ -186,10 +186,10 @@ namespace Xbim.Ifc4.SharedMgmtElements
 					yield return entity;
 				foreach(var entity in @CostQuantities)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -177,10 +177,10 @@ namespace Xbim.Ifc4.GeometryResource
 					yield return @BasisSurface;
 				foreach(var entity in @Boundaries)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

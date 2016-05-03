@@ -246,10 +246,10 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				if (@Material != null)
 					yield return @Material;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

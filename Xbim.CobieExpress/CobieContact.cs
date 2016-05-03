@@ -410,10 +410,10 @@ namespace Xbim.CobieExpress
 					yield return @ExternalObject;
 				if (@Category != null)
 					yield return @Category;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

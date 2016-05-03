@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcDraughtingPreDefinedColour", 607)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDraughtingPreDefinedColour : IfcPreDefinedColour, IInstantiableEntity, IIfcDraughtingPreDefinedColour, IContainsEntityReferences, IEquatable<@IfcDraughtingPreDefinedColour>
+	public  partial class @IfcDraughtingPreDefinedColour : IfcPreDefinedColour, IInstantiableEntity, IIfcDraughtingPreDefinedColour, IEquatable<@IfcDraughtingPreDefinedColour>
 	{
 		#region IIfcDraughtingPreDefinedColour explicit implementation
 		 
@@ -108,15 +108,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
         #endregion
 
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				yield break;	
-			}
-		}
-		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -196,10 +196,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 					yield return @Representation;
 				if (@BuildingAddress != null)
 					yield return @BuildingAddress;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

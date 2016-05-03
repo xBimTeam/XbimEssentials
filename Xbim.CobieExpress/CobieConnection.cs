@@ -299,10 +299,10 @@ namespace Xbim.CobieExpress
 					yield return @ComponentB;
 				if (@RealizingComponent != null)
 					yield return @RealizingComponent;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

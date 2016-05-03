@@ -234,10 +234,10 @@ namespace Xbim.Ifc4.ProcessExtension
 					yield return @RelatedProcess;
 				if (@TimeLag != null)
 					yield return @TimeLag;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

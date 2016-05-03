@@ -159,10 +159,10 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				foreach(var entity in @Profiles)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

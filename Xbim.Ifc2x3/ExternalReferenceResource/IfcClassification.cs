@@ -321,10 +321,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				if (@EditionDate != null)
 					yield return @EditionDate;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

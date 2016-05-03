@@ -167,10 +167,10 @@ namespace Xbim.Ifc4.ProductExtension
 					yield return entity;
 				if (@RelatingStructure != null)
 					yield return @RelatingStructure;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

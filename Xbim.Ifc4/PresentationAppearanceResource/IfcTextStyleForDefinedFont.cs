@@ -160,10 +160,10 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					yield return @Colour;
 				if (@BackgroundColour != null)
 					yield return @BackgroundColour;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

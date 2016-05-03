@@ -150,10 +150,10 @@ namespace Xbim.Ifc2x3.Kernel
 					yield return entity;
 				if (@RelatingResource != null)
 					yield return @RelatingResource;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

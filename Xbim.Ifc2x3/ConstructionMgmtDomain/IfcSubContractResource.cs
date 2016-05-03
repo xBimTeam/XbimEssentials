@@ -174,10 +174,10 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 					yield return @BaseQuantity;
 				if (@SubContractor != null)
 					yield return @SubContractor;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

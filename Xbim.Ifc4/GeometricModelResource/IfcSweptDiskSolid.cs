@@ -219,10 +219,10 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				if (@Directrix != null)
 					yield return @Directrix;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

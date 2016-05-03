@@ -149,10 +149,10 @@ namespace Xbim.Ifc4.TopologyResource
 			{
 				if (@VertexGeometry != null)
 					yield return @VertexGeometry;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("StageType", 54)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieStageType : CobiePickValue, IInstantiableEntity, ICobieStageType, IContainsEntityReferences, IEquatable<@CobieStageType>
+	public  partial class @CobieStageType : CobiePickValue, IInstantiableEntity, ICobieStageType, IEquatable<@CobieStageType>
 	{
 		#region ICobieStageType explicit implementation
 		 
@@ -108,15 +108,6 @@ namespace Xbim.CobieExpress
 
         #endregion
 
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				yield break;	
-			}
-		}
-		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

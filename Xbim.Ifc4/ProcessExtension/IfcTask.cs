@@ -251,10 +251,10 @@ namespace Xbim.Ifc4.ProcessExtension
 					yield return @OwnerHistory;
 				if (@TaskTime != null)
 					yield return @TaskTime;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

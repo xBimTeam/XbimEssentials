@@ -126,10 +126,10 @@ namespace Xbim.Ifc4.CostResource
 					yield return @UnitBasis;
 				foreach(var entity in @Components)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

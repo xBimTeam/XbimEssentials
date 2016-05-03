@@ -184,10 +184,10 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				if (@MapUnit != null)
 					yield return @MapUnit;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

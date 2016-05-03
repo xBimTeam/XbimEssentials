@@ -336,10 +336,10 @@ namespace Xbim.CobieExpress
 					yield return @ImpactUnit;
 				if (@DurationUnit != null)
 					yield return @DurationUnit;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

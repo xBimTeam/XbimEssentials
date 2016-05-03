@@ -335,10 +335,10 @@ namespace Xbim.Ifc2x3.CostResource
 					yield return @RateDateTime;
 				if (@RateSource != null)
 					yield return @RateSource;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -315,10 +315,10 @@ namespace Xbim.Ifc2x3.UtilityResource
 			{
 				foreach(var entity in @Rows)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

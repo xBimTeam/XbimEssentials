@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcBoundedSurface", 335)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBoundedSurface : IfcSurface, IInstantiableEntity, IIfcBoundedSurface, IContainsEntityReferences, IEquatable<@IfcBoundedSurface>
+	public  partial class @IfcBoundedSurface : IfcSurface, IInstantiableEntity, IIfcBoundedSurface, IEquatable<@IfcBoundedSurface>
 	{
 		#region IIfcBoundedSurface explicit implementation
 		 
@@ -102,15 +102,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 
         #endregion
 
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				yield break;	
-			}
-		}
-		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

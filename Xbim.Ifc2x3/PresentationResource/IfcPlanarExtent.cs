@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 {
 	[ExpressType("IfcPlanarExtent", 469)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPlanarExtent : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcPlanarExtent, IContainsEntityReferences, IEquatable<@IfcPlanarExtent>
+	public  partial class @IfcPlanarExtent : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcPlanarExtent, IEquatable<@IfcPlanarExtent>
 	{
 		#region IIfcPlanarExtent explicit implementation
 		IfcLengthMeasure IIfcPlanarExtent.SizeInX { get { return @SizeInX; } }	
@@ -152,15 +152,6 @@ namespace Xbim.Ifc2x3.PresentationResource
 
         #endregion
 
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				yield break;	
-			}
-		}
-		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

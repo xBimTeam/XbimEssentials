@@ -238,10 +238,10 @@ namespace Xbim.Ifc4.PropertyResource
 					yield return @DefiningUnit;
 				if (@DefinedUnit != null)
 					yield return @DefinedUnit;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -266,10 +266,10 @@ namespace Xbim.Ifc4.MaterialResource
 					yield return entity;
 				if (@ClassifiedMaterial != null)
 					yield return @ClassifiedMaterial;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

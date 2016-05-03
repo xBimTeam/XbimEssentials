@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IfcPresentationLayerAssignment", 258)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPresentationLayerAssignment : INotifyPropertyChanged, IInstantiableEntity, IIfcPresentationLayerAssignment, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPresentationLayerAssignment>
+	public  partial class @IfcPresentationLayerAssignment : INotifyPropertyChanged, IInstantiableEntity, IIfcPresentationLayerAssignment, IEquatable<@IfcPresentationLayerAssignment>
 	{
 		#region IIfcPresentationLayerAssignment explicit implementation
 		IfcLabel IIfcPresentationLayerAssignment.Name { get { return @Name; } }	
@@ -297,30 +297,6 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
         }
 
         #endregion
-
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				foreach(var entity in @AssignedItems)
-					yield return entity;
-				yield break;	
-			}
-		}
-		#endregion
-
-		#region IContainsIndexedReferences
-        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
-		{ 
-			get
-			{
-				foreach(var entity in @AssignedItems)
-					yield return entity;
-				
-			} 
-		}
-		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

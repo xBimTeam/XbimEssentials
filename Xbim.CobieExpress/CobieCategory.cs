@@ -161,10 +161,10 @@ namespace Xbim.CobieExpress
 			{
 				if (@Classification != null)
 					yield return @Classification;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

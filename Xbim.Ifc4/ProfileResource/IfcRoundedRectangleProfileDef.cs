@@ -145,10 +145,10 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				if (@Position != null)
 					yield return @Position;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

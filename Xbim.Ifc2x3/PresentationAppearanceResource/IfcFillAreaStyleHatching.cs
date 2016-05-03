@@ -233,10 +233,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					yield return @PointOfReferenceHatchLine;
 				if (@PatternStart != null)
 					yield return @PatternStart;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -125,10 +125,10 @@ namespace Xbim.Ifc4.TopologyResource
 			{
 				foreach(var entity in @CfsFaces)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

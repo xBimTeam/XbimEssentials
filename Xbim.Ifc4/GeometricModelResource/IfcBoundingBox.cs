@@ -213,10 +213,10 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				if (@Corner != null)
 					yield return @Corner;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

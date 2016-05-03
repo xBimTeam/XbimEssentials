@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.DateTimeResource
 {
 	[ExpressType("IfcLagTime", 1197)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLagTime : IfcSchedulingTime, IInstantiableEntity, IIfcLagTime, IContainsEntityReferences, IEquatable<@IfcLagTime>
+	public  partial class @IfcLagTime : IfcSchedulingTime, IInstantiableEntity, IIfcLagTime, IEquatable<@IfcLagTime>
 	{
 		#region IIfcLagTime explicit implementation
 		IIfcTimeOrRatioSelect IIfcLagTime.LagValue { get { return @LagValue; } }	
@@ -155,15 +155,6 @@ namespace Xbim.Ifc4.DateTimeResource
 
         #endregion
 
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				yield break;	
-			}
-		}
-		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

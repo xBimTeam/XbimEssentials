@@ -201,10 +201,10 @@ namespace Xbim.Ifc4.TopologyResource
 					yield return @EdgeEnd;
 				if (@EdgeElement != null)
 					yield return @EdgeElement;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

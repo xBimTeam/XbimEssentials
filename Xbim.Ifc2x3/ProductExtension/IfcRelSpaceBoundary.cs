@@ -233,10 +233,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 					yield return @RelatedBuildingElement;
 				if (@ConnectionGeometry != null)
 					yield return @ConnectionGeometry;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

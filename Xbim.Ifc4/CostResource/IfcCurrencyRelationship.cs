@@ -228,10 +228,10 @@ namespace Xbim.Ifc4.CostResource
 					yield return @RelatedMonetaryUnit;
 				if (@RateSource != null)
 					yield return @RateSource;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

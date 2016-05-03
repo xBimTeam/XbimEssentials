@@ -375,10 +375,10 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				foreach(var entity in @TimePeriods)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

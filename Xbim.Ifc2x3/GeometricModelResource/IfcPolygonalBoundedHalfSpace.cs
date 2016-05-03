@@ -166,10 +166,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 					yield return @Position;
 				if (@PolygonalBoundary != null)
 					yield return @PolygonalBoundary;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

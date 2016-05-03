@@ -295,10 +295,10 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 					yield return entity;
 				if (@UpdateDate != null)
 					yield return @UpdateDate;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

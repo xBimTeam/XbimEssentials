@@ -158,10 +158,10 @@ namespace Xbim.Ifc4.TopologyResource
 			{
 				if (@Bound != null)
 					yield return @Bound;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

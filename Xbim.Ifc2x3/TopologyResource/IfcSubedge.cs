@@ -145,10 +145,10 @@ namespace Xbim.Ifc2x3.TopologyResource
 					yield return @EdgeEnd;
 				if (@ParentEdge != null)
 					yield return @ParentEdge;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

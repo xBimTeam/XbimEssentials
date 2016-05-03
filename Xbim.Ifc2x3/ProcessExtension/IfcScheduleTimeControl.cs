@@ -518,10 +518,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
 					yield return @ScheduleFinish;
 				if (@StatusTime != null)
 					yield return @StatusTime;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

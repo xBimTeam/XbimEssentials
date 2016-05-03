@@ -183,10 +183,10 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 					yield return @LocationAtRelatedElement;
 				if (@ProfileOfPort != null)
 					yield return @ProfileOfPort;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

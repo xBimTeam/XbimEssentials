@@ -143,10 +143,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					yield return @RepeatFactor;
 				if (@SecondRepeatFactor != null)
 					yield return @SecondRepeatFactor;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -146,10 +146,10 @@ namespace Xbim.Ifc4.ProfileResource
 					yield return entity;
 				if (@ProfileDefinition != null)
 					yield return @ProfileDefinition;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

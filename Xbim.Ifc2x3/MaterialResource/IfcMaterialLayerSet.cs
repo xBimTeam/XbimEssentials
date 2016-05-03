@@ -289,10 +289,10 @@ namespace Xbim.Ifc2x3.MaterialResource
 			{
 				foreach(var entity in @MaterialLayers)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

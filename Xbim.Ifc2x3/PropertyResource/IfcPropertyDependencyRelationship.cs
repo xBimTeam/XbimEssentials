@@ -331,10 +331,10 @@ namespace Xbim.Ifc2x3.PropertyResource
 					yield return @DependingProperty;
 				if (@DependantProperty != null)
 					yield return @DependantProperty;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

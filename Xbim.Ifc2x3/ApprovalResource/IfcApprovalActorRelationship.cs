@@ -292,10 +292,10 @@ namespace Xbim.Ifc2x3.ApprovalResource
 					yield return @Approval;
 				if (@Role != null)
 					yield return @Role;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

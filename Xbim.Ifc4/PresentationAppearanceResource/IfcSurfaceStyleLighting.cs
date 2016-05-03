@@ -214,10 +214,10 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					yield return @TransmissionColour;
 				if (@ReflectanceColour != null)
 					yield return @ReflectanceColour;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

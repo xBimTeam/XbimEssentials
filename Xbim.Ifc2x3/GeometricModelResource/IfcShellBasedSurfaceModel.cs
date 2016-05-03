@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcShellBasedSurfaceModel", 235)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcShellBasedSurfaceModel : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcShellBasedSurfaceModel, IContainsEntityReferences, IEquatable<@IfcShellBasedSurfaceModel>
+	public  partial class @IfcShellBasedSurfaceModel : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcShellBasedSurfaceModel, IEquatable<@IfcShellBasedSurfaceModel>
 	{
 		#region IIfcShellBasedSurfaceModel explicit implementation
 		IEnumerable<IIfcShell> IIfcShellBasedSurfaceModel.SbsmBoundary { get { return @SbsmBoundary; } }	
@@ -143,17 +143,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 
         #endregion
 
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				foreach(var entity in @SbsmBoundary)
-					yield return entity;
-				yield break;	
-			}
-		}
-		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

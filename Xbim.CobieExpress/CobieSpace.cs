@@ -282,10 +282,10 @@ namespace Xbim.CobieExpress
 					yield return entity;
 				if (@Floor != null)
 					yield return @Floor;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

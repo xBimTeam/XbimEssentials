@@ -160,10 +160,10 @@ namespace Xbim.Ifc4.PropertyResource
 			{
 				foreach(var entity in @HasProperties)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

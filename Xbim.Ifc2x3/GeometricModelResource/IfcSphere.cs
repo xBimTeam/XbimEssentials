@@ -141,10 +141,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				if (@Position != null)
 					yield return @Position;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

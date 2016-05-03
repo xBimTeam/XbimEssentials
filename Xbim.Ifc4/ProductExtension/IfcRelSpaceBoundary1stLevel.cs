@@ -170,10 +170,10 @@ namespace Xbim.Ifc4.ProductExtension
 					yield return @ConnectionGeometry;
 				if (@ParentBoundary != null)
 					yield return @ParentBoundary;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

@@ -143,10 +143,10 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				if (@ParentCurve != null)
 					yield return @ParentCurve;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

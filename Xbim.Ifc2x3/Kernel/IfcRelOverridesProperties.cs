@@ -149,10 +149,10 @@ namespace Xbim.Ifc2x3.Kernel
 					yield return @RelatingPropertyDefinition;
 				foreach(var entity in @OverridingProperties)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

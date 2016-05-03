@@ -201,10 +201,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					yield return @OwnerHistory;
 				if (@ResultForLoadGroup != null)
 					yield return @ResultForLoadGroup;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

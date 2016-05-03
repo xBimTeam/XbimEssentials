@@ -263,10 +263,10 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 					yield return entity;
 				foreach(var entity in @TexturePoints)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

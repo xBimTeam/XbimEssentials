@@ -239,10 +239,10 @@ namespace Xbim.Ifc4.RepresentationResource
 					yield return @WorldCoordinateSystem;
 				if (@TrueNorth != null)
 					yield return @TrueNorth;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

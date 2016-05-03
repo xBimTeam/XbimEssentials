@@ -185,10 +185,10 @@ namespace Xbim.Ifc4.ProcessExtension
 					yield return entity;
 				foreach(var entity in @ExceptionTimes)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

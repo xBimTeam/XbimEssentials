@@ -288,10 +288,10 @@ namespace Xbim.Ifc4.MeasureResource
 			{
 				if (@UnitComponent != null)
 					yield return @UnitComponent;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

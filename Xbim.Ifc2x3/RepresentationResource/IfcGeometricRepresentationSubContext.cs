@@ -262,10 +262,10 @@ namespace Xbim.Ifc2x3.RepresentationResource
 					yield return @TrueNorth;
 				if (@ParentContext != null)
 					yield return @ParentContext;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

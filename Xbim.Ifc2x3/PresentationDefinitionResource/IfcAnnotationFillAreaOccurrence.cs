@@ -168,10 +168,10 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 					yield return entity;
 				if (@FillStyleTarget != null)
 					yield return @FillStyleTarget;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

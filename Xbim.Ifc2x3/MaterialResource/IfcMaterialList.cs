@@ -264,10 +264,10 @@ namespace Xbim.Ifc2x3.MaterialResource
 			{
 				foreach(var entity in @Materials)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

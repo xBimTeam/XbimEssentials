@@ -156,10 +156,10 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 					yield return @AppliedCondition;
 				if (@ConditionCoordinateSystem != null)
 					yield return @ConditionCoordinateSystem;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

@@ -188,10 +188,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					yield return @TilingPattern;
 				foreach(var entity in @Tiles)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -151,10 +151,10 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 					yield return @OwnerHistory;
 				if (@BaseQuantity != null)
 					yield return @BaseQuantity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

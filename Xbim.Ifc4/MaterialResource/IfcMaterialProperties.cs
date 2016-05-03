@@ -146,10 +146,10 @@ namespace Xbim.Ifc4.MaterialResource
 					yield return entity;
 				if (@Material != null)
 					yield return @Material;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

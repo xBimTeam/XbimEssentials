@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcStructuralLoadSingleDisplacement", 289)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadSingleDisplacement : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadSingleDisplacement, IContainsEntityReferences, IEquatable<@IfcStructuralLoadSingleDisplacement>
+	public  partial class @IfcStructuralLoadSingleDisplacement : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadSingleDisplacement, IEquatable<@IfcStructuralLoadSingleDisplacement>
 	{
 		#region IIfcStructuralLoadSingleDisplacement explicit implementation
 		IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementX { get { return @DisplacementX; } }	
@@ -234,15 +234,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 
         #endregion
 
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				yield break;	
-			}
-		}
-		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

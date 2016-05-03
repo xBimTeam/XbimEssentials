@@ -308,10 +308,10 @@ namespace Xbim.Ifc2x3.CostResource
 					yield return @ReferencedDocument;
 				foreach(var entity in @ReferencingValues)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

@@ -183,10 +183,10 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				foreach(var entity in @Segments)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

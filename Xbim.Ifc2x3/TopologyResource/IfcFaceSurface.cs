@@ -174,10 +174,10 @@ namespace Xbim.Ifc2x3.TopologyResource
 					yield return entity;
 				if (@FaceSurface != null)
 					yield return @FaceSurface;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

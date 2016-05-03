@@ -272,10 +272,10 @@ namespace Xbim.CobieExpress
 					yield return @Type;
 				foreach(var entity in @Suppliers)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

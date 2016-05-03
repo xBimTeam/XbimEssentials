@@ -314,10 +314,10 @@ namespace Xbim.CobieExpress
 					yield return @ApprovalType;
 				if (@Stage != null)
 					yield return @Stage;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

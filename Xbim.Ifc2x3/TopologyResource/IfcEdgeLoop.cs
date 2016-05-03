@@ -148,10 +148,10 @@ namespace Xbim.Ifc2x3.TopologyResource
 			{
 				foreach(var entity in @EdgeList)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

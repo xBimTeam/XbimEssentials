@@ -394,10 +394,10 @@ namespace Xbim.Ifc4.UtilityResource
 					yield return @LastModifyingUser;
 				if (@LastModifyingApplication != null)
 					yield return @LastModifyingApplication;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

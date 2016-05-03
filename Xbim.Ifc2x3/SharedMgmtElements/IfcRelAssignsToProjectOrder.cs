@@ -126,10 +126,10 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 					yield return entity;
 				if (@RelatingControl != null)
 					yield return @RelatingControl;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

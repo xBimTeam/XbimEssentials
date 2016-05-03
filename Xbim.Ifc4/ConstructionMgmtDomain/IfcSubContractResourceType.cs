@@ -156,10 +156,10 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 					yield return entity;
 				if (@BaseQuantity != null)
 					yield return @BaseQuantity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

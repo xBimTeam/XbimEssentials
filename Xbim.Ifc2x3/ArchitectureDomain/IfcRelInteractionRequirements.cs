@@ -234,10 +234,10 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 					yield return @RelatedSpaceProgram;
 				if (@RelatingSpaceProgram != null)
 					yield return @RelatingSpaceProgram;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

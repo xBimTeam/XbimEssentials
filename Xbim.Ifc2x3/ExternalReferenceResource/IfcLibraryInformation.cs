@@ -341,10 +341,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 					yield return @VersionDate;
 				foreach(var entity in @LibraryReference)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

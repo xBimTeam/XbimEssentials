@@ -154,10 +154,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
 					yield return @RelatingControl;
 				if (@TimeForTask != null)
 					yield return @TimeForTask;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

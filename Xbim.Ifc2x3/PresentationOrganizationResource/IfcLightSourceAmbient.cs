@@ -118,10 +118,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				if (@LightColour != null)
 					yield return @LightColour;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

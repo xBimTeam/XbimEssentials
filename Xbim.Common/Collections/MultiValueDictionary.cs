@@ -815,6 +815,7 @@ namespace System.Collections.Generic
         /// An <see cref="IEnumerable{TKey}"/> containing each <typeparamref name="TKey"/> 
         /// in this <see cref="XbimMultiValueDictionary{TKey,TValue}"/> that has one or more associated 
         /// <typeparamref name="TValue"/>.
+        /// </value>
      
         public IEnumerable<TKey> Keys
         {

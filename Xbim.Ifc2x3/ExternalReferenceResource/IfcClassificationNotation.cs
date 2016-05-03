@@ -253,10 +253,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				foreach(var entity in @NotationFacets)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

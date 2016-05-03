@@ -149,10 +149,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				if (@Symbol != null)
 					yield return @Symbol;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -422,10 +422,10 @@ namespace Xbim.CobieExpress
 					yield return entity;
 				if (@Type != null)
 					yield return @Type;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

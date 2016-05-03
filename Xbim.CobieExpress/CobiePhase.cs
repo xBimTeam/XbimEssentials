@@ -267,10 +267,10 @@ namespace Xbim.CobieExpress
 			{
 				if (@Project != null)
 					yield return @Project;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

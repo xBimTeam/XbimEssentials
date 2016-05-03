@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[ExpressType("IfcLibraryReference", 598)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLibraryReference : IfcExternalReference, IInstantiableEntity, IIfcLibraryReference, IContainsEntityReferences, IEquatable<@IfcLibraryReference>
+	public  partial class @IfcLibraryReference : IfcExternalReference, IInstantiableEntity, IIfcLibraryReference, IEquatable<@IfcLibraryReference>
 	{
 		#region IIfcLibraryReference explicit implementation
 		 
@@ -133,15 +133,6 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 
         #endregion
 
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				yield break;	
-			}
-		}
-		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

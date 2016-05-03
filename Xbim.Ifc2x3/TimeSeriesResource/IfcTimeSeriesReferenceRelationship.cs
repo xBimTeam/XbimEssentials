@@ -267,10 +267,10 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 					yield return @ReferencedTimeSeries;
 				foreach(var entity in @TimeSeriesReferences)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

@@ -192,10 +192,10 @@ namespace Xbim.Ifc4.ProductExtension
 					yield return @RelatedPort;
 				if (@RealizingElement != null)
 					yield return @RealizingElement;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

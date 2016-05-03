@@ -266,10 +266,10 @@ namespace Xbim.CobieExpress
 			{
 				if (@CreatedBy != null)
 					yield return @CreatedBy;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

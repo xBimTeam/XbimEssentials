@@ -166,10 +166,10 @@ namespace Xbim.Ifc4.Kernel
 					yield return entity;
 				if (@RelatingObject != null)
 					yield return @RelatingObject;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

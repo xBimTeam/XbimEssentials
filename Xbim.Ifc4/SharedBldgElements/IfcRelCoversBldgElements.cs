@@ -168,10 +168,10 @@ namespace Xbim.Ifc4.SharedBldgElements
 					yield return @RelatingBuildingElement;
 				foreach(var entity in @RelatedCoverings)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

@@ -171,10 +171,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				if (@BasisCurve != null)
 					yield return @BasisCurve;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

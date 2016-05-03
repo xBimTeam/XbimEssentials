@@ -150,10 +150,10 @@ namespace Xbim.Ifc4.GeometricModelResource
 					yield return @Axis;
 				if (@EndSweptArea != null)
 					yield return @EndSweptArea;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

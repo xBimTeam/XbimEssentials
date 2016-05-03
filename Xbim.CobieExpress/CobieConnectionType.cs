@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("ConnectionType", 45)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieConnectionType : CobiePickValue, IInstantiableEntity, ICobieConnectionType, IContainsEntityReferences, IEquatable<@CobieConnectionType>
+	public  partial class @CobieConnectionType : CobiePickValue, IInstantiableEntity, ICobieConnectionType, IEquatable<@CobieConnectionType>
 	{
 		#region ICobieConnectionType explicit implementation
 		 
@@ -108,15 +108,6 @@ namespace Xbim.CobieExpress
 
         #endregion
 
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				yield break;	
-			}
-		}
-		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

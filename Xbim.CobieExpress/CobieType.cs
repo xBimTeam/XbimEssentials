@@ -735,10 +735,10 @@ namespace Xbim.CobieExpress
 					yield return @WarrantyDurationUnit;
 				if (@DurationUnit != null)
 					yield return @DurationUnit;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -345,10 +345,10 @@ namespace Xbim.Ifc4.UtilityResource
 					yield return entity;
 				foreach(var entity in @Columns)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

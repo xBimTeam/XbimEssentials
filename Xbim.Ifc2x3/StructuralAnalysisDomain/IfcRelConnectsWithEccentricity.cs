@@ -162,10 +162,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					yield return @ConditionCoordinateSystem;
 				if (@ConnectionConstraint != null)
 					yield return @ConnectionConstraint;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

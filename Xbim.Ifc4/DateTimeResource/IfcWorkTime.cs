@@ -182,10 +182,10 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				if (@RecurrencePattern != null)
 					yield return @RecurrencePattern;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

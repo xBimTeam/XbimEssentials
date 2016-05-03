@@ -330,10 +330,10 @@ namespace Xbim.Ifc4.UtilityResource
 					yield return @Unit;
 				if (@ReferencePath != null)
 					yield return @ReferencePath;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

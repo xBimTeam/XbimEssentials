@@ -163,10 +163,10 @@ namespace Xbim.Ifc4.ApprovalResource
 					yield return @RelatingApproval;
 				foreach(var entity in @RelatedApprovals)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

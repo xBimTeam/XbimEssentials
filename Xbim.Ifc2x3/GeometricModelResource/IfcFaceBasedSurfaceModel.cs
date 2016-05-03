@@ -161,10 +161,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				foreach(var entity in @FbsmFaces)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -181,10 +181,10 @@ namespace Xbim.Ifc2x3.CostResource
 					yield return @ApplicableDate;
 				if (@FixedUntilDate != null)
 					yield return @FixedUntilDate;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

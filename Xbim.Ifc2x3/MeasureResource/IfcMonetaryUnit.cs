@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcMonetaryUnit", 545)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMonetaryUnit : INotifyPropertyChanged, IInstantiableEntity, IIfcMonetaryUnit, IContainsEntityReferences, IEquatable<@IfcMonetaryUnit>
+	public  partial class @IfcMonetaryUnit : INotifyPropertyChanged, IInstantiableEntity, IIfcMonetaryUnit, IEquatable<@IfcMonetaryUnit>
 	{
 		#region IIfcMonetaryUnit explicit implementation
 		IfcCurrencyEnum IIfcMonetaryUnit.Currency { get { return @Currency; } }	
@@ -249,15 +249,6 @@ namespace Xbim.Ifc2x3.MeasureResource
 
         #endregion
 
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				yield break;	
-			}
-		}
-		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

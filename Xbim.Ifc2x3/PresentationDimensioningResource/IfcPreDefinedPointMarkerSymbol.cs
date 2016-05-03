@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcPreDefinedPointMarkerSymbol", 748)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPreDefinedPointMarkerSymbol : IfcPreDefinedSymbol, IInstantiableEntity, IIfcPreDefinedPointMarkerSymbol, IContainsEntityReferences, IEquatable<@IfcPreDefinedPointMarkerSymbol>
+	public  partial class @IfcPreDefinedPointMarkerSymbol : IfcPreDefinedSymbol, IInstantiableEntity, IIfcPreDefinedPointMarkerSymbol, IEquatable<@IfcPreDefinedPointMarkerSymbol>
 	{
 		#region IIfcPreDefinedPointMarkerSymbol explicit implementation
 		 
@@ -109,15 +109,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 
         #endregion
 
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				yield break;	
-			}
-		}
-		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

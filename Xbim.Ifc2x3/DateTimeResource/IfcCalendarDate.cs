@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 {
 	[ExpressType("IfcCalendarDate", 407)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCalendarDate : INotifyPropertyChanged, IInstantiableEntity, IIfcCalendarDate, IContainsEntityReferences, IEquatable<@IfcCalendarDate>
+	public  partial class @IfcCalendarDate : INotifyPropertyChanged, IInstantiableEntity, IIfcCalendarDate, IEquatable<@IfcCalendarDate>
 	{
 		#region IIfcCalendarDate explicit implementation
 		IfcDayInMonthNumber IIfcCalendarDate.DayComponent { get { return @DayComponent; } }	
@@ -300,15 +300,6 @@ namespace Xbim.Ifc2x3.DateTimeResource
 
         #endregion
 
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				yield break;	
-			}
-		}
-		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

@@ -189,10 +189,10 @@ namespace Xbim.Ifc2x3.ConstraintResource
 					yield return @CreatingActor;
 				if (@CreationTime != null)
 					yield return @CreationTime;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

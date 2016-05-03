@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcDirection", 344)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDirection : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDirection, IContainsEntityReferences, IEquatable<@IfcDirection>
+	public  partial class @IfcDirection : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDirection, IEquatable<@IfcDirection>
 	{
 		#region IIfcDirection explicit implementation
 		IEnumerable<double> IIfcDirection.DirectionRatios { get { return @DirectionRatios; } }	
@@ -162,15 +162,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 
         #endregion
 
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				yield break;	
-			}
-		}
-		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
         /// <summary>

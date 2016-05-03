@@ -153,10 +153,10 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 					yield return entity;
 				foreach(var entity in @RepresentationMaps)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

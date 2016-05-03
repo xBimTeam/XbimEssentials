@@ -321,10 +321,10 @@ namespace Xbim.Ifc4.ActorResource
 					yield return @TheOrganization;
 				foreach(var entity in @Roles)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

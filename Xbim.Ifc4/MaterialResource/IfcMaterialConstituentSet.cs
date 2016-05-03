@@ -176,10 +176,10 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				foreach(var entity in @MaterialConstituents)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

@@ -200,10 +200,10 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					yield return @MappedTo;
 				if (@Colours != null)
 					yield return @Colours;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

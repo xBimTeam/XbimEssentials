@@ -163,10 +163,13 @@ namespace Xbim.Ifc4.GeometryResource
 		{
 			get 
 			{
-				yield break;	
+				foreach (var item in @ControlPointsList)
+					foreach (var entity in item)
+						yield return entity;
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

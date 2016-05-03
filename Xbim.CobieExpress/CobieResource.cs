@@ -190,10 +190,10 @@ namespace Xbim.CobieExpress
 					yield return @ExternalObject;
 				if (@ResourceType != null)
 					yield return @ResourceType;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

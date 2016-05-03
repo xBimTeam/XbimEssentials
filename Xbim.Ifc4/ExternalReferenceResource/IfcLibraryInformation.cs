@@ -275,10 +275,10 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				if (@Publisher != null)
 					yield return @Publisher;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

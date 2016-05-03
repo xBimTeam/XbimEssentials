@@ -291,10 +291,10 @@ namespace Xbim.Ifc4.Kernel
 					yield return @PrimaryUnit;
 				if (@SecondaryUnit != null)
 					yield return @SecondaryUnit;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

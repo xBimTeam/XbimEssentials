@@ -148,10 +148,10 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 					yield return @OwnerHistory;
 				if (@TheActor != null)
 					yield return @TheActor;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

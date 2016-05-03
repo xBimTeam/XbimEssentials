@@ -170,10 +170,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					yield return @RelatingElement;
 				if (@RelatedStructuralActivity != null)
 					yield return @RelatedStructuralActivity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

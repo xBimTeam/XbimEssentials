@@ -323,10 +323,10 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 					yield return @ResponsiblePerson;
 				if (@DepreciatedValue != null)
 					yield return @DepreciatedValue;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

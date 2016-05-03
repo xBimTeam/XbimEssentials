@@ -208,10 +208,10 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				if (@ReferencedLibrary != null)
 					yield return @ReferencedLibrary;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

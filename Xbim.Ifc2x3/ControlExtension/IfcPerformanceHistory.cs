@@ -146,10 +146,10 @@ namespace Xbim.Ifc2x3.ControlExtension
 			{
 				if (@OwnerHistory != null)
 					yield return @OwnerHistory;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

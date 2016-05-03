@@ -137,10 +137,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				if (@TreeRootExpression != null)
 					yield return @TreeRootExpression;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

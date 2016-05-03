@@ -267,10 +267,10 @@ namespace Xbim.Ifc2x3.ConstraintResource
 					yield return @ClassifiedConstraint;
 				foreach(var entity in @RelatedClassifications)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

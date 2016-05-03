@@ -140,10 +140,10 @@ namespace Xbim.Ifc4.GeometricModelResource
 					yield return @Outer;
 				foreach(var entity in @Voids)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

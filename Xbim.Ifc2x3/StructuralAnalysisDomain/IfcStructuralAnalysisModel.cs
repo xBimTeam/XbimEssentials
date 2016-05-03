@@ -208,10 +208,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					yield return entity;
 				foreach(var entity in @HasResults)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

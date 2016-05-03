@@ -127,10 +127,10 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 					yield return entity;
 				foreach(var entity in @RepresentationMaps)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 

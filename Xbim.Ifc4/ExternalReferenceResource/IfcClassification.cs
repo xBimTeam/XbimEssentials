@@ -45,7 +45,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 {
 	[ExpressType("IfcClassification", 412)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcClassification : IfcExternalInformation, IInstantiableEntity, IIfcClassification, IContainsEntityReferences, IEquatable<@IfcClassification>
+	public  partial class @IfcClassification : IfcExternalInformation, IInstantiableEntity, IIfcClassification, IEquatable<@IfcClassification>
 	{
 		#region IIfcClassification explicit implementation
 		IfcLabel? IIfcClassification.Source { get { return @Source; } }	
@@ -294,15 +294,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 
         #endregion
 
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				yield break;	
-			}
-		}
-		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

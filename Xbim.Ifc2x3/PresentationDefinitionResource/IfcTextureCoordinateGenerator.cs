@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcTextureCoordinateGenerator", 733)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextureCoordinateGenerator : IfcTextureCoordinate, IInstantiableEntity, IIfcTextureCoordinateGenerator, IContainsEntityReferences, IEquatable<@IfcTextureCoordinateGenerator>
+	public  partial class @IfcTextureCoordinateGenerator : IfcTextureCoordinate, IInstantiableEntity, IIfcTextureCoordinateGenerator, IEquatable<@IfcTextureCoordinateGenerator>
 	{
 		#region IIfcTextureCoordinateGenerator explicit implementation
 		IfcLabel IIfcTextureCoordinateGenerator.Mode { get { return @Mode; } }	
@@ -148,15 +148,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 
         #endregion
 
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				yield break;	
-			}
-		}
-		#endregion
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

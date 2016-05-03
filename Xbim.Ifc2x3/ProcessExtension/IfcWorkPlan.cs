@@ -137,10 +137,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
 					yield return @StartTime;
 				if (@FinishTime != null)
 					yield return @FinishTime;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

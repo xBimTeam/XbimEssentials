@@ -255,10 +255,10 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 					yield return @CurrentValue;
 				if (@OriginalValue != null)
 					yield return @OriginalValue;
-				yield break;	
 			}
 		}
 		#endregion
+
 		#region Custom code (will survive code regeneration)
 		//## Custom code
 		//##

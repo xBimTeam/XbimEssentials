@@ -200,10 +200,10 @@ namespace Xbim.Ifc2x3.QuantityResource
 			{
 				foreach(var entity in @HasQuantities)
 					yield return entity;
-				yield break;	
 			}
 		}
 		#endregion
+
 
 		#region IContainsIndexedReferences
         IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
