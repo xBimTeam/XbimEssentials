@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common;
 using Xbim.Ifc2x3;
@@ -46,6 +47,22 @@ namespace Xbim.MemoryModel.Tests
                 relObj.Clear();
                 Assert.IsTrue(instance.ActivationStatus == ActivationStatus.ActivatedReadWrite);
             }
+
+            var tRel = model.Instances.FirstOrDefault<IfcRelDefinesByType>();
+            instance = tRel;
+            Assert.IsTrue(instance.ActivationStatus == ActivationStatus.NotActivated);
+
+            var numObj = tRel.RelatedObjects.Count;
+            Assert.IsTrue(instance.ActivationStatus == ActivationStatus.ActivatedRead);
+
+            using (model.BeginTransaction("Test"))
+            {
+                tRel.Name = "New name";
+                Assert.IsTrue(instance.ActivationStatus == ActivationStatus.ActivatedReadWrite);
+            }
+
+            //activation for write shouldn't load the data again
+            Assert.AreEqual(numObj, tRel.RelatedObjects.Count);
         }
     }
 }

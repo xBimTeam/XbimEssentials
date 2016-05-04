@@ -284,7 +284,7 @@ namespace Xbim.IO.Esent
                 //if (!Transaction.IsRollingBack)
                 InstanceCache.AddModified(entity);
             }
-            //else //we want to read so load from db if necessary
+            if(entity.ActivationStatus == ActivationStatus.NotActivated)
             {
                 InstanceCache.Activate(entity);
             }
