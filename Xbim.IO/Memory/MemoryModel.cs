@@ -142,6 +142,17 @@ namespace Xbim.IO.Memory
         }
 
         /// <summary>
+        /// This implementation of IModel keeps all data in memory
+        /// so this doesn't have any effect.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="depth"></param>
+        public void Activate(IPersistEntity entity, int depth)
+        {
+            
+        }
+
+        /// <summary>
         /// This function will try and release a persistant entity from the model, if the entity is referenced by another entity 
         /// it will stay in the model but can only be accessed via other entities,however if the model is saved and then reloaded 
         /// the entity will be restored to persisted status

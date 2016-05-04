@@ -291,12 +291,17 @@ namespace Xbim.IO.Esent
             return true;
         }
 
+        /// <summary>
+        /// EsentModel doesn't support activation of data island of defined depth
+        /// </summary>
+        /// <param name="entity">Entity to be activated</param>
+        /// <param name="depth">Depth of activation</param>
+        public void Activate(IPersistEntity entity, int depth)
+        {
+            
+        }
+
         #region Transaction support
-
-
-
-      
-
         public XbimReadWriteTransaction BeginTransaction()
         {
             return BeginTransaction(null);

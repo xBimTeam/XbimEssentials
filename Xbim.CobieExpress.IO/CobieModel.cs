@@ -220,6 +220,11 @@ namespace Xbim.CobieExpress.IO
             return _model.Activate(owningEntity, write);
         }
 
+        public void Activate(IPersistEntity entity, int depth)
+        {
+            _model.Activate(entity, depth);
+        }
+
         public void Delete(IPersistEntity entity)
         {
             _model.Delete(entity);
