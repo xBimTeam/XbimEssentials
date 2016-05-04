@@ -917,6 +917,7 @@ namespace Xbim.Ifc
         /// <param name="products">Optional products to be written to the wexBIM file. If null, all products from the model will be saved</param>
         public void SaveAsWexBim(BinaryWriter binaryStream, IEnumerable<IIfcProduct> products = null)
         {
+            products = products ?? Instances.OfType<IIfcProduct>();
             // ReSharper disable RedundantCast
             if(GeometryStore==null) throw new XbimException("Geometry store has not been initialised");
             // ReSharper disable once CollectionNeverUpdated.Local
@@ -990,9 +991,11 @@ namespace Xbim.Ifc
                 }
 
                 //write out all the product bounding boxes
-                foreach (var product in products ?? Instances.OfType<IIfcProduct>())
+                var prodIds = new HashSet<int>();
+                foreach (var product in products)
                 {
                     if (product is IIfcFeatureElement) continue;
+                    prodIds.Add(product.EntityLabel);
 
                     var bb = XbimRect3D.Empty;
                     foreach (var si in geomRead.ShapeInstancesOfEntity(product))
@@ -1036,7 +1039,7 @@ namespace Xbim.Ifc
                         var xbimShapeInstances = instances.Where(si => !toIgnore.Contains(si.IfcTypeId) &&
                                                                      si.RepresentationType ==
                                                                      XbimGeometryRepresentationType
-                                                                         .OpeningsAndAdditionsIncluded).ToList();
+                                                                         .OpeningsAndAdditionsIncluded && prodIds.Contains(si.IfcProductLabel)).ToList();
                         if (!xbimShapeInstances.Any()) continue;
                         numberOfGeometries++;
                         binaryStream.Write(xbimShapeInstances.Count); //the number of repetitions of the geometry
@@ -1068,7 +1071,7 @@ namespace Xbim.Ifc
                         var xbimShapeInstance = geomRead.ShapeInstancesOfGeometry(geometry.ShapeLabel).FirstOrDefault();
 
                         if (xbimShapeInstance == null || toIgnore.Contains(xbimShapeInstance.IfcTypeId) ||
-                            xbimShapeInstance.RepresentationType != XbimGeometryRepresentationType.OpeningsAndAdditionsIncluded)                           
+                            xbimShapeInstance.RepresentationType != XbimGeometryRepresentationType.OpeningsAndAdditionsIncluded || !prodIds.Contains(xbimShapeInstance.IfcProductLabel))                           
                             continue;
                         numberOfGeometries++;
 
@@ -1157,7 +1160,7 @@ namespace Xbim.Ifc
 
             var gcs =
                 Instances.OfType<IIfcGeometricRepresentationContext>();
-            double defaultPrecision = 1e-5;
+            var defaultPrecision = 1e-5;
             //get the Model precision if it is correctly defined
             foreach (var gc in gcs.Where(g => !(g is IIfcGeometricRepresentationSubContext)))
             {
