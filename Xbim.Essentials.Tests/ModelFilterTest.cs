@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using System.Linq;
 
@@ -28,7 +28,7 @@ namespace Xbim.Essentials.Tests
                     var value = prop.PropertyInfo.GetValue(toCopy, null);
                     return value;
                 };
-               
+
                 using (var model2 = IfcStore.Open(model2File))
                 {
 
@@ -51,7 +51,7 @@ namespace Xbim.Essentials.Tests
                                 {
                                     rencontre = true;
                                 }
-                            }      
+                            }
                             if (!rencontre)
                             {
                                 newModel.InsertCopy(item, copied, propTransform, false, false);
@@ -73,13 +73,13 @@ namespace Xbim.Essentials.Tests
             const string copyFile = "copy.ifc";
             using (var source = new Ifc2x3.IO.XbimModel())
             {
-                PropertyTranformDelegate propTransform = delegate (ExpressMetaProperty prop, object toCopy)
+                PropertyTranformDelegate propTransform = delegate(ExpressMetaProperty prop, object toCopy)
                 {
                     var value = prop.PropertyInfo.GetValue(toCopy, null);
                     return value;
                 };
                 //source.CreateFrom(@"C:\Users\Steve\Downloads\Test Models\crash\NBS_LakesideRestaurant_EcoBuild2015_Revit2014_.ifc","source.xbim",null,true);
-               
+
                 //source.CreateFrom(@"C:\Users\Steve\Downloads\Test Models\Wall with complex openings.ifc", "source.xbim",null,true);
                 source.Open("BIM Logo-LetterM.xBIM");
                 source.SaveAs(sourceFile);
@@ -100,8 +100,9 @@ namespace Xbim.Essentials.Tests
                     target.SaveAs(copyFile);
                 }
                 source.Close();
+                IfcFileCompare(sourceFile, copyFile);
                 //the two files should be the same
-               FileCompare(sourceFile, copyFile);
+                FileCompare(sourceFile, copyFile);
             }
         }
 
@@ -110,7 +111,7 @@ namespace Xbim.Essentials.Tests
         {
             using (var source = new Ifc2x3.IO.XbimModel())
             {
-                PropertyTranformDelegate propTransform = delegate (ExpressMetaProperty prop, object toCopy)
+                PropertyTranformDelegate propTransform = delegate(ExpressMetaProperty prop, object toCopy)
                 {
 
                     if (toCopy is IfcProduct)
@@ -156,6 +157,32 @@ namespace Xbim.Essentials.Tests
             }
         }
 
+        // For the case when the Entity Label are not sorted
+        private static void IfcFileCompare(string file1, string file2)
+        {
+            // Determine if the same file was referenced two times.
+            if (file1 == file2)
+            {
+                // Return to indicate that the files are the same.
+                return;
+            }
+            using (var fs1 = new StreamReader(file1))
+            {
+                var file2String = File.ReadAllText(file2);
+                while (!fs1.EndOfStream)
+                {
+                    var file1Line = fs1.ReadLine();
+                    if (file1Line == null) continue;
+                    if (file1Line.Contains("FILE_DESCRIPTION")) continue;
+                    if (file1Line.Contains("FILE_NAME")) continue;
+                    // ignore comments
+                    if (file1Line.First() == '/') continue;
+                    if (file1Line.First() == '*') continue;
+                    Assert.IsTrue(file2String.Contains(file1Line), "file1 != file2");
+                }
+            }
+        }
+
         // This method accepts two strings the represent two files to 
         // compare. A return value of 0 indicates that the contents of the files
         // are the same. A return value of any other value indicates that the 
@@ -195,7 +222,7 @@ namespace Xbim.Essentials.Tests
                         Assert.IsTrue(file1Line == file2Line, string.Format("'{0}' != '{1}'", file1Line, file2Line));
                     }
                     while (file1Line != null);
-                    Assert.IsTrue(file2Line == null, "Copy file is longer than the source file");                   
+                    Assert.IsTrue(file2Line == null, "Copy file is longer than the source file");
                 }
             }
         }
