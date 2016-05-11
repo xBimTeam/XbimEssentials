@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using System.Linq;
@@ -81,6 +82,9 @@ namespace Xbim.Essentials.Tests
                 //source.CreateFrom(@"C:\Users\Steve\Downloads\Test Models\crash\NBS_LakesideRestaurant_EcoBuild2015_Revit2014_.ifc","source.xbim",null,true);
 
                 //source.CreateFrom(@"C:\Users\Steve\Downloads\Test Models\Wall with complex openings.ifc", "source.xbim",null,true);
+                // todo: If use ifc file It does not work! 
+                //const string modelName = @"House";
+                //source.CreateFrom(Path.ChangeExtension(modelName, "ifc"), null, null, true);
                 source.Open("BIM Logo-LetterM.xBIM");
                 source.SaveAs(sourceFile);
                 using (var target = Ifc2x3.IO.XbimModel.CreateTemporaryModel())
@@ -166,19 +170,31 @@ namespace Xbim.Essentials.Tests
                 // Return to indicate that the files are the same.
                 return;
             }
-            using (var fs1 = new StreamReader(file1))
+            var file2List = new List<string>();
+            using (var fs2 = new StreamReader(file2))
             {
-                var file2String = File.ReadAllText(file2);
+                while (!fs2.EndOfStream)
+                {
+                    var file2Line = fs2.ReadLine();
+                    if (file2Line == null) continue;
+                    file2Line = file2Line.Replace(" ", string.Empty).Trim();
+                    file2List.Add(file2Line);
+                }
+            }
+            using (var fs1 = new StreamReader(file1))
+            {   
                 while (!fs1.EndOfStream)
                 {
                     var file1Line = fs1.ReadLine();
                     if (file1Line == null) continue;
+                    file1Line = file1Line.Replace(" ", string.Empty).Trim();
                     if (file1Line.Contains("FILE_DESCRIPTION")) continue;
                     if (file1Line.Contains("FILE_NAME")) continue;
                     // ignore comments
                     if (file1Line.First() == '/') continue;
                     if (file1Line.First() == '*') continue;
-                    Assert.IsTrue(file2String.Contains(file1Line), "file1 != file2");
+                    Assert.IsTrue(file2List.Any(s => s.Equals(file1Line)), 
+                        string.Format("file1 != file2 problem in line: {0}", file1Line));
                 }
             }
         }
