@@ -35,7 +35,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Category", 36)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieCategory : CobiePickValue, IInstantiableEntity, ICobieCategory, IEquatable<@CobieCategory>
+	public  partial class @CobieCategory : CobiePickValue, IInstantiableEntity, ICobieCategory, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieCategory>
 	{
 		#region ICobieCategory explicit implementation
 		string ICobieCategory.Description { get { return @Description; } }	
@@ -153,6 +153,30 @@ namespace Xbim.CobieExpress
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Classification != null)
+					yield return @Classification;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@Classification != null)
+					yield return @Classification;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

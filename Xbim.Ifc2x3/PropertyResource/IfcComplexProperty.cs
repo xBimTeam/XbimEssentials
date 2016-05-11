@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 {
 	[ExpressType("IfcComplexProperty", 379)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcComplexProperty : IfcProperty, IInstantiableEntity, IIfcComplexProperty, IEquatable<@IfcComplexProperty>
+	public  partial class @IfcComplexProperty : IfcProperty, IInstantiableEntity, IIfcComplexProperty, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcComplexProperty>
 	{
 		#region IIfcComplexProperty explicit implementation
 		IfcIdentifier IIfcComplexProperty.UsageName { get { return @UsageName; } }	
@@ -152,6 +152,30 @@ namespace Xbim.Ifc2x3.PropertyResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @HasProperties)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @HasProperties)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

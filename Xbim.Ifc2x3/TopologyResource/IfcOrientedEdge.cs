@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcOrientedEdge", 596)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOrientedEdge : IfcEdge, IInstantiableEntity, IIfcOrientedEdge, IEquatable<@IfcOrientedEdge>
+	public  partial class @IfcOrientedEdge : IfcEdge, IInstantiableEntity, IIfcOrientedEdge, IContainsEntityReferences, IEquatable<@IfcOrientedEdge>
 	{
 		#region IIfcOrientedEdge explicit implementation
 		IIfcEdge IIfcOrientedEdge.EdgeElement { get { return @EdgeElement; } }	
@@ -187,6 +187,21 @@ namespace Xbim.Ifc2x3.TopologyResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@EdgeStart != null)
+					yield return @EdgeStart;
+				if (@EdgeEnd != null)
+					yield return @EdgeEnd;
+				if (@EdgeElement != null)
+					yield return @EdgeElement;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

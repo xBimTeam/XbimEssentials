@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 {
 	[ExpressType("IfcPropertyDependencyRelationship", 444)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyDependencyRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcPropertyDependencyRelationship, IEquatable<@IfcPropertyDependencyRelationship>
+	public  partial class @IfcPropertyDependencyRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcPropertyDependencyRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPropertyDependencyRelationship>
 	{
 		#region IIfcPropertyDependencyRelationship explicit implementation
 		IIfcProperty IIfcPropertyDependencyRelationship.DependingProperty { get { return @DependingProperty; } }	
@@ -321,6 +321,34 @@ namespace Xbim.Ifc2x3.PropertyResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@DependingProperty != null)
+					yield return @DependingProperty;
+				if (@DependantProperty != null)
+					yield return @DependantProperty;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@DependingProperty != null)
+					yield return @DependingProperty;
+				if (@DependantProperty != null)
+					yield return @DependantProperty;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

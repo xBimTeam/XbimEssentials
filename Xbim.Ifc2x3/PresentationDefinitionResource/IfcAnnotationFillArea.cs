@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcAnnotationFillArea", 173)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAnnotationFillArea : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcAnnotationFillArea, IEquatable<@IfcAnnotationFillArea>
+	public  partial class @IfcAnnotationFillArea : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcAnnotationFillArea, IContainsEntityReferences, IEquatable<@IfcAnnotationFillArea>
 	{
 		#region IIfcAnnotationFillArea explicit implementation
 		IIfcCurve IIfcAnnotationFillArea.OuterBoundary { get { return @OuterBoundary; } }	
@@ -147,6 +147,19 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OuterBoundary != null)
+					yield return @OuterBoundary;
+				foreach(var entity in @InnerBoundaries)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcHygroscopicMaterialProperties", 717)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcHygroscopicMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcHygroscopicMaterialProperties, IEquatable<@IfcHygroscopicMaterialProperties>
+	public  partial class @IfcHygroscopicMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcHygroscopicMaterialProperties, IContainsEntityReferences, IEquatable<@IfcHygroscopicMaterialProperties>
 	{
 		#region IIfcHygroscopicMaterialProperties explicit implementation
 		IfcPositiveRatioMeasure? IIfcHygroscopicMaterialProperties.UpperVaporResistanceFactor { get { return @UpperVaporResistanceFactor; } }	
@@ -213,6 +213,17 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Material != null)
+					yield return @Material;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

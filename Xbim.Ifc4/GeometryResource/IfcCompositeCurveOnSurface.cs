@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcCompositeCurveOnSurface", 1130)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCompositeCurveOnSurface : IfcCompositeCurve, IInstantiableEntity, IIfcCompositeCurveOnSurface, IEquatable<@IfcCompositeCurveOnSurface>
+	public  partial class @IfcCompositeCurveOnSurface : IfcCompositeCurve, IInstantiableEntity, IIfcCompositeCurveOnSurface, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCompositeCurveOnSurface>
 	{
 		#region IIfcCompositeCurveOnSurface explicit implementation
 		 
@@ -132,6 +132,30 @@ namespace Xbim.Ifc4.GeometryResource
 		}
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @Segments)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @Segments)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

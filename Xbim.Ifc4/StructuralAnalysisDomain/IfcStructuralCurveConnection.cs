@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralCurveConnection", 534)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralCurveConnection : IfcStructuralConnection, IInstantiableEntity, IIfcStructuralCurveConnection, IEquatable<@IfcStructuralCurveConnection>
+	public  partial class @IfcStructuralCurveConnection : IfcStructuralConnection, IInstantiableEntity, IIfcStructuralCurveConnection, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralCurveConnection>
 	{
 		#region IIfcStructuralCurveConnection explicit implementation
 		IIfcDirection IIfcStructuralCurveConnection.Axis { get { return @Axis; } }	
@@ -140,6 +140,40 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				if (@AppliedCondition != null)
+					yield return @AppliedCondition;
+				if (@Axis != null)
+					yield return @Axis;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

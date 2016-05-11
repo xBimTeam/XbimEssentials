@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcSlabElementedCase", 1268)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSlabElementedCase : IfcSlab, IInstantiableEntity, IIfcSlabElementedCase, IEquatable<@IfcSlabElementedCase>
+	public  partial class @IfcSlabElementedCase : IfcSlab, IInstantiableEntity, IIfcSlabElementedCase, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSlabElementedCase>
 	{
 		#region IIfcSlabElementedCase explicit implementation
 		 
@@ -115,6 +115,36 @@ namespace Xbim.Ifc4.SharedBldgElements
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

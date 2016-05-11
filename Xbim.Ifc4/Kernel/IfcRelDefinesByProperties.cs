@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcRelDefinesByProperties", 247)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelDefinesByProperties : IfcRelDefines, IInstantiableEntity, IIfcRelDefinesByProperties, IEquatable<@IfcRelDefinesByProperties>
+	public  partial class @IfcRelDefinesByProperties : IfcRelDefines, IInstantiableEntity, IIfcRelDefinesByProperties, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelDefinesByProperties>
 	{
 		#region IIfcRelDefinesByProperties explicit implementation
 		IEnumerable<IIfcObjectDefinition> IIfcRelDefinesByProperties.RelatedObjects { get { return @RelatedObjects; } }	
@@ -154,6 +154,38 @@ namespace Xbim.Ifc4.Kernel
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if(RelatingPropertyDefinition != null)
+					foreach (var definition in RelatingPropertyDefinition.PropertySetDefinitions)
+						yield return definition;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if(RelatingPropertyDefinition != null)
+					foreach (var definition in RelatingPropertyDefinition.PropertySetDefinitions)
+						yield return definition;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

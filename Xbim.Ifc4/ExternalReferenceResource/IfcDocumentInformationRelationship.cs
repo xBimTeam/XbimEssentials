@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 {
 	[ExpressType("IfcDocumentInformationRelationship", 491)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDocumentInformationRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcDocumentInformationRelationship, IEquatable<@IfcDocumentInformationRelationship>
+	public  partial class @IfcDocumentInformationRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcDocumentInformationRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDocumentInformationRelationship>
 	{
 		#region IIfcDocumentInformationRelationship explicit implementation
 		IIfcDocumentInformation IIfcDocumentInformationRelationship.RelatingDocument { get { return @RelatingDocument; } }	
@@ -173,6 +173,34 @@ namespace Xbim.Ifc4.ExternalReferenceResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@RelatingDocument != null)
+					yield return @RelatingDocument;
+				foreach(var entity in @RelatedDocuments)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingDocument != null)
+					yield return @RelatingDocument;
+				foreach(var entity in @RelatedDocuments)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

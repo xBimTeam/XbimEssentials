@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 {
 	[ExpressType("IfcExternalReferenceRelationship", 1173)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExternalReferenceRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcExternalReferenceRelationship, IEquatable<@IfcExternalReferenceRelationship>
+	public  partial class @IfcExternalReferenceRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcExternalReferenceRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcExternalReferenceRelationship>
 	{
 		#region IIfcExternalReferenceRelationship explicit implementation
 		IIfcExternalReference IIfcExternalReferenceRelationship.RelatingReference { get { return @RelatingReference; } }	
@@ -152,6 +152,34 @@ namespace Xbim.Ifc4.ExternalReferenceResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@RelatingReference != null)
+					yield return @RelatingReference;
+				foreach(var entity in @RelatedResourceObjects)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingReference != null)
+					yield return @RelatingReference;
+				foreach(var entity in @RelatedResourceObjects)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

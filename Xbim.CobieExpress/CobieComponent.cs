@@ -42,7 +42,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Component", 23)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieComponent : CobieTypeOrComponent, IInstantiableEntity, ICobieComponent, IEquatable<@CobieComponent>
+	public  partial class @CobieComponent : CobieTypeOrComponent, IInstantiableEntity, ICobieComponent, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieComponent>
 	{
 		#region ICobieComponent explicit implementation
 		string ICobieComponent.SerialNumber { get { return @SerialNumber; } }	
@@ -296,6 +296,52 @@ namespace Xbim.CobieExpress
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Created != null)
+					yield return @Created;
+				if (@ExternalSystem != null)
+					yield return @ExternalSystem;
+				if (@ExternalObject != null)
+					yield return @ExternalObject;
+				foreach(var entity in @Categories)
+					yield return entity;
+				foreach(var entity in @Impacts)
+					yield return entity;
+				foreach(var entity in @Documents)
+					yield return entity;
+				foreach(var entity in @Attributes)
+					yield return entity;
+				foreach(var entity in @Representations)
+					yield return entity;
+				foreach(var entity in @AssemblyOf)
+					yield return entity;
+				if (@Type != null)
+					yield return @Type;
+				foreach(var entity in @Spaces)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@Type != null)
+					yield return @Type;
+				foreach(var entity in @Spaces)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -42,7 +42,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralLoadGroup", 573)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadGroup : IfcGroup, IInstantiableEntity, IIfcStructuralLoadGroup, IEquatable<@IfcStructuralLoadGroup>
+	public  partial class @IfcStructuralLoadGroup : IfcGroup, IInstantiableEntity, IIfcStructuralLoadGroup, IContainsEntityReferences, IEquatable<@IfcStructuralLoadGroup>
 	{
 		#region IIfcStructuralLoadGroup explicit implementation
 		IfcLoadGroupTypeEnum IIfcStructuralLoadGroup.PredefinedType { get { return @PredefinedType; } }	
@@ -242,6 +242,17 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

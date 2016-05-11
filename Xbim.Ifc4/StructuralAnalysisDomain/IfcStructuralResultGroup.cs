@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralResultGroup", 532)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralResultGroup : IfcGroup, IInstantiableEntity, IIfcStructuralResultGroup, IEquatable<@IfcStructuralResultGroup>
+	public  partial class @IfcStructuralResultGroup : IfcGroup, IInstantiableEntity, IIfcStructuralResultGroup, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralResultGroup>
 	{
 		#region IIfcStructuralResultGroup explicit implementation
 		IfcAnalysisTheoryTypeEnum IIfcStructuralResultGroup.TheoryType { get { return @TheoryType; } }	
@@ -192,6 +192,32 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ResultForLoadGroup != null)
+					yield return @ResultForLoadGroup;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ResultForLoadGroup != null)
+					yield return @ResultForLoadGroup;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

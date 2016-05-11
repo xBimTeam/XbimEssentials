@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcExtendedMaterialProperties", 585)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExtendedMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcExtendedMaterialProperties, IEquatable<@IfcExtendedMaterialProperties>
+	public  partial class @IfcExtendedMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcExtendedMaterialProperties, IContainsEntityReferences, IEquatable<@IfcExtendedMaterialProperties>
 	{
 		#region IIfcExtendedMaterialProperties explicit implementation
 		IEnumerable<IIfcProperty> IIfcExtendedMaterialProperties.ExtendedProperties { get { return @ExtendedProperties; } }	
@@ -171,6 +171,19 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Material != null)
+					yield return @Material;
+				foreach(var entity in @ExtendedProperties)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

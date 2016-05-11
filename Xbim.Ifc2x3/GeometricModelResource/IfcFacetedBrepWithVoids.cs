@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcFacetedBrepWithVoids", 369)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFacetedBrepWithVoids : IfcManifoldSolidBrep, IInstantiableEntity, IIfcFacetedBrepWithVoids, IEquatable<@IfcFacetedBrepWithVoids>
+	public  partial class @IfcFacetedBrepWithVoids : IfcManifoldSolidBrep, IInstantiableEntity, IIfcFacetedBrepWithVoids, IContainsEntityReferences, IEquatable<@IfcFacetedBrepWithVoids>
 	{
 		#region IIfcFacetedBrepWithVoids explicit implementation
 		IEnumerable<IIfcClosedShell> IIfcFacetedBrepWithVoids.Voids { get { return @Voids; } }	
@@ -130,6 +130,19 @@ namespace Xbim.Ifc2x3.GeometricModelResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Outer != null)
+					yield return @Outer;
+				foreach(var entity in @Voids)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -55,7 +55,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 {
 	[ExpressType("IfcScheduleTimeControl", 402)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcScheduleTimeControl : IfcControl, IInstantiableEntity, IIfcScheduleTimeControl, IEquatable<@IfcScheduleTimeControl>
+	public  partial class @IfcScheduleTimeControl : IfcControl, IInstantiableEntity, IIfcScheduleTimeControl, IContainsEntityReferences, IEquatable<@IfcScheduleTimeControl>
 	{
 		#region IIfcScheduleTimeControl explicit implementation
 		IIfcDateTimeSelect IIfcScheduleTimeControl.ActualStart { get { return @ActualStart; } }	
@@ -492,6 +492,35 @@ namespace Xbim.Ifc2x3.ProcessExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ActualStart != null)
+					yield return @ActualStart;
+				if (@EarlyStart != null)
+					yield return @EarlyStart;
+				if (@LateStart != null)
+					yield return @LateStart;
+				if (@ScheduleStart != null)
+					yield return @ScheduleStart;
+				if (@ActualFinish != null)
+					yield return @ActualFinish;
+				if (@EarlyFinish != null)
+					yield return @EarlyFinish;
+				if (@LateFinish != null)
+					yield return @LateFinish;
+				if (@ScheduleFinish != null)
+					yield return @ScheduleFinish;
+				if (@StatusTime != null)
+					yield return @StatusTime;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

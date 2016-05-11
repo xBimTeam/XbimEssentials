@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcMechanicalMaterialProperties", 436)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMechanicalMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcMechanicalMaterialProperties, IEquatable<@IfcMechanicalMaterialProperties>
+	public  partial class @IfcMechanicalMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcMechanicalMaterialProperties, IContainsEntityReferences, IEquatable<@IfcMechanicalMaterialProperties>
 	{
 		#region IIfcMechanicalMaterialProperties explicit implementation
 		IfcDynamicViscosityMeasure? IIfcMechanicalMaterialProperties.DynamicViscosity { get { return @DynamicViscosity; } }	
@@ -213,6 +213,17 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Material != null)
+					yield return @Material;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

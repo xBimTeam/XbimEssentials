@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcPlane", 388)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPlane : IfcElementarySurface, IInstantiableEntity, IIfcPlane, IEquatable<@IfcPlane>
+	public  partial class @IfcPlane : IfcElementarySurface, IInstantiableEntity, IIfcPlane, IContainsEntityReferences, IEquatable<@IfcPlane>
 	{
 		#region IIfcPlane explicit implementation
 		 
@@ -107,6 +107,17 @@ namespace Xbim.Ifc4.GeometryResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Position != null)
+					yield return @Position;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

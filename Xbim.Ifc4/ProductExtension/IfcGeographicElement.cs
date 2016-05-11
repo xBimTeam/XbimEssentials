@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcGeographicElement", 1185)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeographicElement : IfcElement, IInstantiableEntity, IIfcGeographicElement, IEquatable<@IfcGeographicElement>
+	public  partial class @IfcGeographicElement : IfcElement, IInstantiableEntity, IIfcGeographicElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcGeographicElement>
 	{
 		#region IIfcGeographicElement explicit implementation
 		IfcGeographicElementTypeEnum? IIfcGeographicElement.PredefinedType { get { return @PredefinedType; } }	
@@ -139,6 +139,36 @@ namespace Xbim.Ifc4.ProductExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

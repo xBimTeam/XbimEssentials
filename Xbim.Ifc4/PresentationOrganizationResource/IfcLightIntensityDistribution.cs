@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 {
 	[ExpressType("IfcLightIntensityDistribution", 754)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightIntensityDistribution : INotifyPropertyChanged, IInstantiableEntity, IIfcLightIntensityDistribution, IEquatable<@IfcLightIntensityDistribution>
+	public  partial class @IfcLightIntensityDistribution : INotifyPropertyChanged, IInstantiableEntity, IIfcLightIntensityDistribution, IContainsEntityReferences, IEquatable<@IfcLightIntensityDistribution>
 	{
 		#region IIfcLightIntensityDistribution explicit implementation
 		IfcLightDistributionCurveEnum IIfcLightIntensityDistribution.LightDistributionCurve { get { return @LightDistributionCurve; } }	
@@ -265,6 +265,17 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		}
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @DistributionData)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

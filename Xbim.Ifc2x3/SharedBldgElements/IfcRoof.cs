@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcRoof", 347)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRoof : IfcBuildingElement, IInstantiableEntity, IIfcRoof, IEquatable<@IfcRoof>
+	public  partial class @IfcRoof : IfcBuildingElement, IInstantiableEntity, IIfcRoof, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRoof>
 	{
 		#region IIfcRoof explicit implementation
 		IfcRoofTypeEnum IIfcRoof.ShapeType { get { return @ShapeType; } }	
@@ -140,6 +140,36 @@ namespace Xbim.Ifc2x3.SharedBldgElements
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

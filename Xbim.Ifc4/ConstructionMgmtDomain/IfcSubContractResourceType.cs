@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 {
 	[ExpressType("IfcSubContractResourceType", 1286)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSubContractResourceType : IfcConstructionResourceType, IInstantiableEntity, IIfcSubContractResourceType, IEquatable<@IfcSubContractResourceType>
+	public  partial class @IfcSubContractResourceType : IfcConstructionResourceType, IInstantiableEntity, IIfcSubContractResourceType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSubContractResourceType>
 	{
 		#region IIfcSubContractResourceType explicit implementation
 		IfcSubContractResourceTypeEnum IIfcSubContractResourceType.PredefinedType { get { return @PredefinedType; } }	
@@ -142,6 +142,36 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @HasPropertySets)
+					yield return entity;
+				foreach(var entity in @BaseCosts)
+					yield return entity;
+				if (@BaseQuantity != null)
+					yield return @BaseQuantity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @HasPropertySets)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

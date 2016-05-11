@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	[ExpressType("IfcConstructionProductResource", 660)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConstructionProductResource : IfcConstructionResource, IInstantiableEntity, IIfcConstructionProductResource, IEquatable<@IfcConstructionProductResource>
+	public  partial class @IfcConstructionProductResource : IfcConstructionResource, IInstantiableEntity, IIfcConstructionProductResource, IContainsEntityReferences, IEquatable<@IfcConstructionProductResource>
 	{
 		#region IIfcConstructionProductResource explicit implementation
 		 
@@ -115,6 +115,19 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@BaseQuantity != null)
+					yield return @BaseQuantity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

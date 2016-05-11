@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 {
 	[ExpressType("IfcLocalTime", 483)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLocalTime : INotifyPropertyChanged, IInstantiableEntity, IIfcLocalTime, IEquatable<@IfcLocalTime>
+	public  partial class @IfcLocalTime : INotifyPropertyChanged, IInstantiableEntity, IIfcLocalTime, IContainsEntityReferences, IEquatable<@IfcLocalTime>
 	{
 		#region IIfcLocalTime explicit implementation
 		IfcHourInDay IIfcLocalTime.HourComponent { get { return @HourComponent; } }	
@@ -339,6 +339,17 @@ namespace Xbim.Ifc2x3.DateTimeResource
 		}
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Zone != null)
+					yield return @Zone;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

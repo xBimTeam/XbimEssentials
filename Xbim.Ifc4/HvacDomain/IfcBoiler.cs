@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcBoiler", 1105)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBoiler : IfcEnergyConversionDevice, IInstantiableEntity, IIfcBoiler, IEquatable<@IfcBoiler>
+	public  partial class @IfcBoiler : IfcEnergyConversionDevice, IInstantiableEntity, IIfcBoiler, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBoiler>
 	{
 		#region IIfcBoiler explicit implementation
 		IfcBoilerTypeEnum? IIfcBoiler.PredefinedType { get { return @PredefinedType; } }	
@@ -140,6 +140,36 @@ namespace Xbim.Ifc4.HvacDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

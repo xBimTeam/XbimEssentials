@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcMechanicalSteelMaterialProperties", 510)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMechanicalSteelMaterialProperties : IfcMechanicalMaterialProperties, IInstantiableEntity, IIfcMechanicalSteelMaterialProperties, IEquatable<@IfcMechanicalSteelMaterialProperties>
+	public  partial class @IfcMechanicalSteelMaterialProperties : IfcMechanicalMaterialProperties, IInstantiableEntity, IIfcMechanicalSteelMaterialProperties, IContainsEntityReferences, IEquatable<@IfcMechanicalSteelMaterialProperties>
 	{
 		#region IIfcMechanicalSteelMaterialProperties explicit implementation
 		IfcPressureMeasure? IIfcMechanicalSteelMaterialProperties.YieldStress { get { return @YieldStress; } }	
@@ -255,6 +255,19 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Material != null)
+					yield return @Material;
+				foreach(var entity in @Relaxations)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

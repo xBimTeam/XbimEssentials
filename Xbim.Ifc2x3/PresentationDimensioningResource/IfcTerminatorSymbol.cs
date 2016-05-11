@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcTerminatorSymbol", 743)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTerminatorSymbol : IfcAnnotationSymbolOccurrence, IInstantiableEntity, IIfcTerminatorSymbol, IEquatable<@IfcTerminatorSymbol>
+	public  partial class @IfcTerminatorSymbol : IfcAnnotationSymbolOccurrence, IInstantiableEntity, IIfcTerminatorSymbol, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTerminatorSymbol>
 	{
 		#region IIfcTerminatorSymbol explicit implementation
 		IIfcAnnotationCurveOccurrence IIfcTerminatorSymbol.AnnotatedCurve { get { return @AnnotatedCurve; } }	
@@ -136,6 +136,36 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Item != null)
+					yield return @Item;
+				foreach(var entity in @Styles)
+					yield return entity;
+				if (@AnnotatedCurve != null)
+					yield return @AnnotatedCurve;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@Item != null)
+					yield return @Item;
+				if (@AnnotatedCurve != null)
+					yield return @AnnotatedCurve;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

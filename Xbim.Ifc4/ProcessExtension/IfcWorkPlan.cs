@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.ProcessExtension
 {
 	[ExpressType("IfcWorkPlan", 187)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWorkPlan : IfcWorkControl, IInstantiableEntity, IIfcWorkPlan, IEquatable<@IfcWorkPlan>
+	public  partial class @IfcWorkPlan : IfcWorkControl, IInstantiableEntity, IIfcWorkPlan, IContainsEntityReferences, IEquatable<@IfcWorkPlan>
 	{
 		#region IIfcWorkPlan explicit implementation
 		IfcWorkPlanTypeEnum? IIfcWorkPlan.PredefinedType { get { return @PredefinedType; } }	
@@ -144,6 +144,19 @@ namespace Xbim.Ifc4.ProcessExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @Creators)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

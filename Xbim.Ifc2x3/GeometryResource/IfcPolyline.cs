@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcPolyline", 500)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPolyline : IfcBoundedCurve, IInstantiableEntity, IIfcPolyline, IEquatable<@IfcPolyline>
+	public  partial class @IfcPolyline : IfcBoundedCurve, IInstantiableEntity, IIfcPolyline, IContainsEntityReferences, IEquatable<@IfcPolyline>
 	{
 		#region IIfcPolyline explicit implementation
 		IEnumerable<IIfcCartesianPoint> IIfcPolyline.Points { get { return @Points; } }	
@@ -126,6 +126,17 @@ namespace Xbim.Ifc2x3.GeometryResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @Points)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

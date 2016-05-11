@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcSlab", 99)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSlab : IfcBuildingElement, IInstantiableEntity, IIfcSlab, IEquatable<@IfcSlab>
+	public  partial class @IfcSlab : IfcBuildingElement, IInstantiableEntity, IIfcSlab, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSlab>
 	{
 		#region IIfcSlab explicit implementation
 		IfcSlabTypeEnum? IIfcSlab.PredefinedType { get { return @PredefinedType; } }	
@@ -140,6 +140,36 @@ namespace Xbim.Ifc4.SharedBldgElements
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

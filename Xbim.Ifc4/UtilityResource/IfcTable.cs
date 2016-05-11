@@ -44,7 +44,7 @@ namespace Xbim.Ifc4.UtilityResource
 {
 	[ExpressType("IfcTable", 377)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTable : INotifyPropertyChanged, IInstantiableEntity, IIfcTable, IEquatable<@IfcTable>
+	public  partial class @IfcTable : INotifyPropertyChanged, IInstantiableEntity, IIfcTable, IContainsEntityReferences, IEquatable<@IfcTable>
 	{
 		#region IIfcTable explicit implementation
 		IfcLabel? IIfcTable.Name { get { return @Name; } }	
@@ -335,6 +335,19 @@ namespace Xbim.Ifc4.UtilityResource
 		}
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @Rows)
+					yield return entity;
+				foreach(var entity in @Columns)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

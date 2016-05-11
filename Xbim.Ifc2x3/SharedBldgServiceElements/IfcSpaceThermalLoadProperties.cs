@@ -46,7 +46,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcSpaceThermalLoadProperties", 610)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSpaceThermalLoadProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcSpaceThermalLoadProperties, IEquatable<@IfcSpaceThermalLoadProperties>
+	public  partial class @IfcSpaceThermalLoadProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcSpaceThermalLoadProperties, IContainsEntityReferences, IEquatable<@IfcSpaceThermalLoadProperties>
 	{
 		#region IIfcSpaceThermalLoadProperties explicit implementation
 		IfcPositiveRatioMeasure? IIfcSpaceThermalLoadProperties.ApplicableValueRatio { get { return @ApplicableValueRatio; } }	
@@ -318,6 +318,19 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ThermalLoadTimeSeriesValues != null)
+					yield return @ThermalLoadTimeSeriesValues;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

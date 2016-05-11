@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralAnalysisModel", 230)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralAnalysisModel : IfcSystem, IInstantiableEntity, IIfcStructuralAnalysisModel, IEquatable<@IfcStructuralAnalysisModel>
+	public  partial class @IfcStructuralAnalysisModel : IfcSystem, IInstantiableEntity, IIfcStructuralAnalysisModel, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralAnalysisModel>
 	{
 		#region IIfcStructuralAnalysisModel explicit implementation
 		IfcAnalysisModelTypeEnum IIfcStructuralAnalysisModel.PredefinedType { get { return @PredefinedType; } }	
@@ -215,6 +215,40 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@OrientationOf2DPlane != null)
+					yield return @OrientationOf2DPlane;
+				foreach(var entity in @LoadedBy)
+					yield return entity;
+				foreach(var entity in @HasResults)
+					yield return entity;
+				if (@SharedPlacement != null)
+					yield return @SharedPlacement;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @LoadedBy)
+					yield return entity;
+				foreach(var entity in @HasResults)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

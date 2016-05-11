@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	[ExpressType("IfcElectricalCircuit", 406)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElectricalCircuit : IfcSystem, IInstantiableEntity, IIfcElectricalCircuit, IEquatable<@IfcElectricalCircuit>
+	public  partial class @IfcElectricalCircuit : IfcSystem, IInstantiableEntity, IIfcElectricalCircuit, IContainsEntityReferences, IEquatable<@IfcElectricalCircuit>
 	{
 		#region IIfcElectricalCircuit explicit implementation
 		 
@@ -112,6 +112,17 @@ namespace Xbim.Ifc2x3.ElectricalDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

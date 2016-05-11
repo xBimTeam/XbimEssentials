@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelConnectsElements", 312)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsElements : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsElements, IEquatable<@IfcRelConnectsElements>
+	public  partial class @IfcRelConnectsElements : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsElements, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsElements>
 	{
 		#region IIfcRelConnectsElements explicit implementation
 		IIfcConnectionGeometry IIfcRelConnectsElements.ConnectionGeometry { get { return @ConnectionGeometry; } }	
@@ -179,6 +179,38 @@ namespace Xbim.Ifc2x3.ProductExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ConnectionGeometry != null)
+					yield return @ConnectionGeometry;
+				if (@RelatingElement != null)
+					yield return @RelatingElement;
+				if (@RelatedElement != null)
+					yield return @RelatedElement;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingElement != null)
+					yield return @RelatingElement;
+				if (@RelatedElement != null)
+					yield return @RelatedElement;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

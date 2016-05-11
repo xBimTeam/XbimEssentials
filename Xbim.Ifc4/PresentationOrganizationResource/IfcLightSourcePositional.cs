@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 {
 	[ExpressType("IfcLightSourcePositional", 759)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightSourcePositional : IfcLightSource, IInstantiableEntity, IIfcLightSourcePositional, IEquatable<@IfcLightSourcePositional>
+	public  partial class @IfcLightSourcePositional : IfcLightSource, IInstantiableEntity, IIfcLightSourcePositional, IContainsEntityReferences, IEquatable<@IfcLightSourcePositional>
 	{
 		#region IIfcLightSourcePositional explicit implementation
 		IIfcCartesianPoint IIfcLightSourcePositional.Position { get { return @Position; } }	
@@ -217,6 +217,19 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@LightColour != null)
+					yield return @LightColour;
+				if (@Position != null)
+					yield return @Position;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

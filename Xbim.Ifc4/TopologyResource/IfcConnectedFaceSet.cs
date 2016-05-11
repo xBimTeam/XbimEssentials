@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.TopologyResource
 {
 	[ExpressType("IfcConnectedFaceSet", 160)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectedFaceSet : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcConnectedFaceSet, IEquatable<@IfcConnectedFaceSet>
+	public  partial class @IfcConnectedFaceSet : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcConnectedFaceSet, IContainsEntityReferences, IEquatable<@IfcConnectedFaceSet>
 	{
 		#region IIfcConnectedFaceSet explicit implementation
 		IEnumerable<IIfcFace> IIfcConnectedFaceSet.CfsFaces { get { return @CfsFaces; } }	
@@ -126,6 +126,17 @@ namespace Xbim.Ifc4.TopologyResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @CfsFaces)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcEllipseProfileDef", 285)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEllipseProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcEllipseProfileDef, IEquatable<@IfcEllipseProfileDef>
+	public  partial class @IfcEllipseProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcEllipseProfileDef, IContainsEntityReferences, IEquatable<@IfcEllipseProfileDef>
 	{
 		#region IIfcEllipseProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcEllipseProfileDef.SemiAxis1 { get { return @SemiAxis1; } }	
@@ -155,6 +155,17 @@ namespace Xbim.Ifc2x3.ProfileResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Position != null)
+					yield return @Position;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

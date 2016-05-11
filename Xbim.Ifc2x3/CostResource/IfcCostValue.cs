@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.CostResource
 {
 	[ExpressType("IfcCostValue", 658)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCostValue : IfcAppliedValue, IInstantiableEntity, IIfcCostValue, IEquatable<@IfcCostValue>
+	public  partial class @IfcCostValue : IfcAppliedValue, IInstantiableEntity, IIfcCostValue, IContainsEntityReferences, IEquatable<@IfcCostValue>
 	{
 		#region IIfcCostValue explicit implementation
 		IfcLabel IIfcCostValue.CostType { get { return @CostType; } }	
@@ -169,6 +169,21 @@ namespace Xbim.Ifc2x3.CostResource
 		}
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@UnitBasis != null)
+					yield return @UnitBasis;
+				if (@ApplicableDate != null)
+					yield return @ApplicableDate;
+				if (@FixedUntilDate != null)
+					yield return @FixedUntilDate;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

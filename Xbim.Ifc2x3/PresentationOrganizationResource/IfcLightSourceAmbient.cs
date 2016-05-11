@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IfcLightSourceAmbient", 756)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightSourceAmbient : IfcLightSource, IInstantiableEntity, IIfcLightSourceAmbient, IEquatable<@IfcLightSourceAmbient>
+	public  partial class @IfcLightSourceAmbient : IfcLightSource, IInstantiableEntity, IIfcLightSourceAmbient, IContainsEntityReferences, IEquatable<@IfcLightSourceAmbient>
 	{
 		#region IIfcLightSourceAmbient explicit implementation
 		 
@@ -110,6 +110,17 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@LightColour != null)
+					yield return @LightColour;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

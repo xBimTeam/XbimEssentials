@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.ProcessExtension
 {
 	[ExpressType("IfcRelSequence", 490)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelSequence : IfcRelConnects, IInstantiableEntity, IIfcRelSequence, IEquatable<@IfcRelSequence>
+	public  partial class @IfcRelSequence : IfcRelConnects, IInstantiableEntity, IIfcRelSequence, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelSequence>
 	{
 		#region IIfcRelSequence explicit implementation
 		IIfcProcess IIfcRelSequence.RelatingProcess { get { return @RelatingProcess; } }	
@@ -220,6 +220,38 @@ namespace Xbim.Ifc4.ProcessExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@RelatingProcess != null)
+					yield return @RelatingProcess;
+				if (@RelatedProcess != null)
+					yield return @RelatedProcess;
+				if (@TimeLag != null)
+					yield return @TimeLag;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingProcess != null)
+					yield return @RelatingProcess;
+				if (@RelatedProcess != null)
+					yield return @RelatedProcess;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

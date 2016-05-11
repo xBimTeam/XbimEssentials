@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 {
 	[ExpressType("IfcDistributionSystem", 1150)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDistributionSystem : IfcSystem, IInstantiableEntity, IIfcDistributionSystem, IEquatable<@IfcDistributionSystem>
+	public  partial class @IfcDistributionSystem : IfcSystem, IInstantiableEntity, IIfcDistributionSystem, IContainsEntityReferences, IEquatable<@IfcDistributionSystem>
 	{
 		#region IIfcDistributionSystem explicit implementation
 		IfcLabel? IIfcDistributionSystem.LongName { get { return @LongName; } }	
@@ -158,6 +158,17 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

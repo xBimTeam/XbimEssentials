@@ -34,7 +34,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Zone", 19)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieZone : CobieAsset, IInstantiableEntity, ICobieZone, IEquatable<@CobieZone>
+	public  partial class @CobieZone : CobieAsset, IInstantiableEntity, ICobieZone, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieZone>
 	{
 		#region ICobieZone explicit implementation
 		IEnumerable<ICobieSpace> ICobieZone.Spaces { get { return @Spaces; } }	
@@ -141,6 +141,46 @@ namespace Xbim.CobieExpress
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Created != null)
+					yield return @Created;
+				if (@ExternalSystem != null)
+					yield return @ExternalSystem;
+				if (@ExternalObject != null)
+					yield return @ExternalObject;
+				foreach(var entity in @Categories)
+					yield return entity;
+				foreach(var entity in @Impacts)
+					yield return entity;
+				foreach(var entity in @Documents)
+					yield return entity;
+				foreach(var entity in @Attributes)
+					yield return entity;
+				foreach(var entity in @Representations)
+					yield return entity;
+				foreach(var entity in @Spaces)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @Spaces)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

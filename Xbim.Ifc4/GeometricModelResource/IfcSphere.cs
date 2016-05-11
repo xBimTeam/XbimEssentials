@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcSphere", 706)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSphere : IfcCsgPrimitive3D, IInstantiableEntity, IIfcSphere, IEquatable<@IfcSphere>
+	public  partial class @IfcSphere : IfcCsgPrimitive3D, IInstantiableEntity, IIfcSphere, IContainsEntityReferences, IEquatable<@IfcSphere>
 	{
 		#region IIfcSphere explicit implementation
 		IfcPositiveLengthMeasure IIfcSphere.Radius { get { return @Radius; } }	
@@ -133,6 +133,17 @@ namespace Xbim.Ifc4.GeometricModelResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Position != null)
+					yield return @Position;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

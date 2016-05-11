@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcFacetedBrep", 148)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFacetedBrep : IfcManifoldSolidBrep, IInstantiableEntity, IIfcFacetedBrep, IEquatable<@IfcFacetedBrep>
+	public  partial class @IfcFacetedBrep : IfcManifoldSolidBrep, IInstantiableEntity, IIfcFacetedBrep, IContainsEntityReferences, IEquatable<@IfcFacetedBrep>
 	{
 		#region IIfcFacetedBrep explicit implementation
 		 
@@ -107,6 +107,17 @@ namespace Xbim.Ifc4.GeometricModelResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Outer != null)
+					yield return @Outer;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

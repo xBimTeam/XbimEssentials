@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.MeasureResource
 {
 	[ExpressType("IfcContextDependentUnit", 304)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcContextDependentUnit : IfcNamedUnit, IInstantiableEntity, IIfcContextDependentUnit, IEquatable<@IfcContextDependentUnit>
+	public  partial class @IfcContextDependentUnit : IfcNamedUnit, IInstantiableEntity, IIfcContextDependentUnit, IContainsEntityReferences, IEquatable<@IfcContextDependentUnit>
 	{
 		#region IIfcContextDependentUnit explicit implementation
 		IfcLabel IIfcContextDependentUnit.Name { get { return @Name; } }	
@@ -157,6 +157,17 @@ namespace Xbim.Ifc4.MeasureResource
 		}
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Dimensions != null)
+					yield return @Dimensions;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcEnergyProperties", 176)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEnergyProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcEnergyProperties, IEquatable<@IfcEnergyProperties>
+	public  partial class @IfcEnergyProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcEnergyProperties, IContainsEntityReferences, IEquatable<@IfcEnergyProperties>
 	{
 		#region IIfcEnergyProperties explicit implementation
 		IfcEnergySequenceEnum? IIfcEnergyProperties.EnergySequence { get { return @EnergySequence; } }	
@@ -157,6 +157,17 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

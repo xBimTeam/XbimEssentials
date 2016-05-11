@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcRevolvedAreaSolidTapered", 1260)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRevolvedAreaSolidTapered : IfcRevolvedAreaSolid, IInstantiableEntity, IIfcRevolvedAreaSolidTapered, IEquatable<@IfcRevolvedAreaSolidTapered>
+	public  partial class @IfcRevolvedAreaSolidTapered : IfcRevolvedAreaSolid, IInstantiableEntity, IIfcRevolvedAreaSolidTapered, IContainsEntityReferences, IEquatable<@IfcRevolvedAreaSolidTapered>
 	{
 		#region IIfcRevolvedAreaSolidTapered explicit implementation
 		IIfcProfileDef IIfcRevolvedAreaSolidTapered.EndSweptArea { get { return @EndSweptArea; } }	
@@ -136,6 +136,23 @@ namespace Xbim.Ifc4.GeometricModelResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@SweptArea != null)
+					yield return @SweptArea;
+				if (@Position != null)
+					yield return @Position;
+				if (@Axis != null)
+					yield return @Axis;
+				if (@EndSweptArea != null)
+					yield return @EndSweptArea;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

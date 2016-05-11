@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcBooleanClippingResult", 340)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBooleanClippingResult : IfcBooleanResult, IInstantiableEntity, IIfcBooleanClippingResult, IEquatable<@IfcBooleanClippingResult>
+	public  partial class @IfcBooleanClippingResult : IfcBooleanResult, IInstantiableEntity, IIfcBooleanClippingResult, IContainsEntityReferences, IEquatable<@IfcBooleanClippingResult>
 	{
 		#region IIfcBooleanClippingResult explicit implementation
 		 
@@ -109,6 +109,19 @@ namespace Xbim.Ifc4.GeometricModelResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@FirstOperand != null)
+					yield return @FirstOperand;
+				if (@SecondOperand != null)
+					yield return @SecondOperand;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

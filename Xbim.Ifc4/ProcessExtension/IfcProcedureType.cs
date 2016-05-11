@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ProcessExtension
 {
 	[ExpressType("IfcProcedureType", 1228)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProcedureType : IfcTypeProcess, IInstantiableEntity, IIfcProcedureType, IEquatable<@IfcProcedureType>
+	public  partial class @IfcProcedureType : IfcTypeProcess, IInstantiableEntity, IIfcProcedureType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcProcedureType>
 	{
 		#region IIfcProcedureType explicit implementation
 		IfcProcedureTypeEnum IIfcProcedureType.PredefinedType { get { return @PredefinedType; } }	
@@ -141,6 +141,32 @@ namespace Xbim.Ifc4.ProcessExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @HasPropertySets)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @HasPropertySets)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

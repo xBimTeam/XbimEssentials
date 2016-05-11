@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.ControlExtension
 {
 	[ExpressType("IfcRelAssociatesConstraint", 711)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesConstraint : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesConstraint, IEquatable<@IfcRelAssociatesConstraint>
+	public  partial class @IfcRelAssociatesConstraint : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesConstraint, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesConstraint>
 	{
 		#region IIfcRelAssociatesConstraint explicit implementation
 		IfcLabel? IIfcRelAssociatesConstraint.Intent { get { return @Intent; } }	
@@ -159,6 +159,34 @@ namespace Xbim.Ifc4.ControlExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingConstraint != null)
+					yield return @RelatingConstraint;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

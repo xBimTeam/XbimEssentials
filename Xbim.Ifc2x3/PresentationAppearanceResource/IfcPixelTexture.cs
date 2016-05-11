@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcPixelTexture", 728)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPixelTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcPixelTexture, IEquatable<@IfcPixelTexture>
+	public  partial class @IfcPixelTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcPixelTexture, IContainsEntityReferences, IEquatable<@IfcPixelTexture>
 	{
 		#region IIfcPixelTexture explicit implementation
 		IfcInteger IIfcPixelTexture.Width { get { return @Width; } }	
@@ -193,6 +193,17 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@TextureTransform != null)
+					yield return @TextureTransform;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

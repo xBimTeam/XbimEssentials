@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[ExpressType("IfcMaterialDefinitionRepresentation", 2)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialDefinitionRepresentation : IfcProductRepresentation, IInstantiableEntity, IIfcMaterialDefinitionRepresentation, IEquatable<@IfcMaterialDefinitionRepresentation>
+	public  partial class @IfcMaterialDefinitionRepresentation : IfcProductRepresentation, IInstantiableEntity, IIfcMaterialDefinitionRepresentation, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMaterialDefinitionRepresentation>
 	{
 		#region IIfcMaterialDefinitionRepresentation explicit implementation
 		IIfcMaterial IIfcMaterialDefinitionRepresentation.RepresentedMaterial { get { return @RepresentedMaterial; } }	
@@ -136,6 +136,34 @@ namespace Xbim.Ifc2x3.RepresentationResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @Representations)
+					yield return entity;
+				if (@RepresentedMaterial != null)
+					yield return @RepresentedMaterial;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @Representations)
+					yield return entity;
+				if (@RepresentedMaterial != null)
+					yield return @RepresentedMaterial;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

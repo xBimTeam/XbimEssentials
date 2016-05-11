@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcCircle", 336)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCircle : IfcConic, IInstantiableEntity, IIfcCircle, IEquatable<@IfcCircle>
+	public  partial class @IfcCircle : IfcConic, IInstantiableEntity, IIfcCircle, IContainsEntityReferences, IEquatable<@IfcCircle>
 	{
 		#region IIfcCircle explicit implementation
 		IfcPositiveLengthMeasure IIfcCircle.Radius { get { return @Radius; } }	
@@ -133,6 +133,17 @@ namespace Xbim.Ifc2x3.GeometryResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Position != null)
+					yield return @Position;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

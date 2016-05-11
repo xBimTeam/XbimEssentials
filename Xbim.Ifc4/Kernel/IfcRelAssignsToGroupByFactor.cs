@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcRelAssignsToGroupByFactor", 1248)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToGroupByFactor : IfcRelAssignsToGroup, IInstantiableEntity, IIfcRelAssignsToGroupByFactor, IEquatable<@IfcRelAssignsToGroupByFactor>
+	public  partial class @IfcRelAssignsToGroupByFactor : IfcRelAssignsToGroup, IInstantiableEntity, IIfcRelAssignsToGroupByFactor, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToGroupByFactor>
 	{
 		#region IIfcRelAssignsToGroupByFactor explicit implementation
 		IfcRatioMeasure IIfcRelAssignsToGroupByFactor.Factor { get { return @Factor; } }	
@@ -139,6 +139,36 @@ namespace Xbim.Ifc4.Kernel
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingGroup != null)
+					yield return @RelatingGroup;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingGroup != null)
+					yield return @RelatingGroup;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

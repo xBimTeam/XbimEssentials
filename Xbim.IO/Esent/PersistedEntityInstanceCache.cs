@@ -1367,7 +1367,7 @@ namespace Xbim.IO.Esent
         /// <param name="indexKey">if the entity has a key object, optimises to search for this handle</param>
         /// <param name="overrideType">if specified this parameter overrides the expressType used internally (but not TIfcType) for filtering purposes</param>
         /// <returns></returns>
-        public IEnumerable<TOType> OfType<TOType>(bool activate = false, int? indexKey = null, ExpressType overrideType = null) where TOType : IPersistEntity
+        internal IEnumerable<TOType> OfType<TOType>(bool activate = false, int? indexKey = null, ExpressType overrideType = null) where TOType : IPersistEntity
         {
             //srl this needs to be removed, but preserves compatibility with old databases, the -1 should not be used in future
             int indexKeyAsInt;
@@ -1738,38 +1738,33 @@ namespace Xbim.IO.Esent
         {
             var type = typeof(T);
             var et = Model.Metadata.ExpressType(type);
-            IEnumerable<ExpressType> expressTypes;
+            List<ExpressType> expressTypes;
             if (et != null)
-                expressTypes = new[] { et };
+                expressTypes = new List<ExpressType>{ et };
             else
             {
                 //get specific interface implementations and make sure it doesn't overlap
                 var implementations = Model.Metadata.ExpressTypesImplementing(type).Where(t => !t.Type.IsAbstract).ToList();
-                expressTypes = implementations.Where(implementation => !implementations.Any(i => i != implementation && i.NonAbstractSubTypes.Contains(implementation)));
+                expressTypes = implementations.Where(implementation => !implementations.Any(i => i != implementation && i.NonAbstractSubTypes.Contains(implementation))).ToList();
             }
 
-            foreach (var expressType in expressTypes)
-            {
-                if (inverseProperty != null && inverseArgument != null &&
-                    expressType.HasIndexedAttribute &&
-                    expressType.IndexedProperties.Any(p => p.Name == inverseProperty))
-                {
-                    //we can use a secondary index to look up
-                    foreach (
-                        var item in
-                            OfType<T>(true, inverseArgument.EntityLabel, expressType).Where(condition))
-                    {
-                        yield return item;
-                    }
-                    continue;
-                }
+            var canUseSecondaryIndex = inverseProperty != null && inverseArgument != null &&
+                                       expressTypes.All(e => e.HasIndexedAttribute &&
+                                                             e.IndexedProperties.Any(
+                                                                 p => p.Name == inverseProperty));
+            if (!canUseSecondaryIndex)
+                return expressTypes.SelectMany(expressType => OfType<T>(true, null, expressType).Where(condition));
 
-                //we cannot optimise so just do it
-                foreach (var item in OfType<T>(true, null, expressType).Where(condition))
-                {
-                    yield return item;
-                }
-            }
+            //we can use a secondary index to look up
+            var cache = _model.InverseCache;
+            IEnumerable<T> result;
+            if (cache != null && _model.InverseCache.TryGet(inverseProperty, inverseArgument, out result))
+                return result;
+            result = expressTypes.SelectMany(t => OfType<T>(true, inverseArgument.EntityLabel, t).Where(condition));
+            var entities = result as IList<T> ?? result.ToList();
+            if (cache != null)
+                cache.Add(inverseProperty, inverseArgument, entities);
+            return entities;
         }
 
         //public IEnumerable<T> Where<T>(Expression<Func<T, bool>> expr) where T : IPersistEntity

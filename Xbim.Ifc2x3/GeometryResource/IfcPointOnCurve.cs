@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcPointOnCurve", 654)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPointOnCurve : IfcPoint, IInstantiableEntity, IIfcPointOnCurve, IEquatable<@IfcPointOnCurve>
+	public  partial class @IfcPointOnCurve : IfcPoint, IInstantiableEntity, IIfcPointOnCurve, IContainsEntityReferences, IEquatable<@IfcPointOnCurve>
 	{
 		#region IIfcPointOnCurve explicit implementation
 		IIfcCurve IIfcPointOnCurve.BasisCurve { get { return @BasisCurve; } }	
@@ -163,6 +163,17 @@ namespace Xbim.Ifc2x3.GeometryResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@BasisCurve != null)
+					yield return @BasisCurve;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

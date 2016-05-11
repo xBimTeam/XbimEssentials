@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcSurfaceStyleRendering", 317)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyleRendering : IfcSurfaceStyleShading, IInstantiableEntity, IIfcSurfaceStyleRendering, IEquatable<@IfcSurfaceStyleRendering>
+	public  partial class @IfcSurfaceStyleRendering : IfcSurfaceStyleShading, IInstantiableEntity, IIfcSurfaceStyleRendering, IContainsEntityReferences, IEquatable<@IfcSurfaceStyleRendering>
 	{
 		#region IIfcSurfaceStyleRendering explicit implementation
 		IIfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseColour { get { return @DiffuseColour; } }	
@@ -253,6 +253,17 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@SurfaceColour != null)
+					yield return @SurfaceColour;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

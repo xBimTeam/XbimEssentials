@@ -2,12 +2,13 @@
 using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xbim.Common;
 using Xbim.Common.Step21;
 using Xbim.Ifc;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.PropertyResource;
 using Xbim.Ifc2x3.SharedBldgElements;
-using Xbim.IO;
+using PersistEntityExtensions = Xbim.IO.PersistEntityExtensions;
 
 namespace Xbim.Essentials.Tests
 {
@@ -21,6 +22,7 @@ namespace Xbim.Essentials.Tests
             {
                 var changed = new List<string>();
                 var valuesLog = new StringWriter();
+                var initialLog = new StringWriter();
                 model.EntityModified += (entity, property) =>
                 {
                     //use reflection to get property information for the changed property
@@ -30,12 +32,35 @@ namespace Xbim.Essentials.Tests
                     //express indices are 1 based
                     var propertyIndex = property - 1;
 
-                    //you can use reflection to get the current (new) value
-                    var value = pInfo.PropertyInfo.GetValue(entity, null);
+                    //overriden attributes have to be treated specially. But these are not present in CobieExpress.
+                    if (pInfo.EntityAttribute.State == EntityAttributeState.DerivedOverride)
+                        initialLog.Write("*");
+                    else
+                    {
+                        //you can use reflection to get the current (new) value
+                        var value = pInfo.PropertyInfo.GetValue(entity, null);
 
-                    //this is part of the serialization engine but you can use it for a single property as well
-                    PersistEntityExtensions.WriteProperty(pInfo.PropertyInfo.PropertyType, value, valuesLog, null, model.Metadata);
+                        //this is part of the serialization engine but you can use it for a single property as well
+                        PersistEntityExtensions.WriteProperty(pInfo.PropertyInfo.PropertyType, value, valuesLog, null, model.Metadata);
+                    }
+                    
                     valuesLog.WriteLine();
+                };
+                model.EntityNew += entity =>
+                {
+                    //iterate over all properties. These are sorted in the right order already.
+                    foreach (var property in entity.ExpressType.Properties.Values)
+                    {
+                        //overriden attributes have to be treated specially. But these are not present in CobieExpress.
+                        if (property.EntityAttribute.State == EntityAttributeState.DerivedOverride)
+                            initialLog.Write("*");
+                        else
+                        {
+                            var value = property.PropertyInfo.GetValue(entity, null);
+                            PersistEntityExtensions.WriteProperty(property.PropertyInfo.PropertyType, value, initialLog, null, model.Metadata);
+                        }
+                        initialLog.WriteLine();
+                    }
                 };
                 using (var txn = model.BeginTransaction())
                 {

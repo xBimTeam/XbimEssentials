@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcRelAssignsToProcess", 249)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToProcess : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToProcess, IEquatable<@IfcRelAssignsToProcess>
+	public  partial class @IfcRelAssignsToProcess : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToProcess, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToProcess>
 	{
 		#region IIfcRelAssignsToProcess explicit implementation
 		IIfcProcessSelect IIfcRelAssignsToProcess.RelatingProcess { get { return @RelatingProcess; } }	
@@ -159,6 +159,38 @@ namespace Xbim.Ifc4.Kernel
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingProcess != null)
+					yield return @RelatingProcess;
+				if (@QuantityInProcess != null)
+					yield return @QuantityInProcess;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingProcess != null)
+					yield return @RelatingProcess;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

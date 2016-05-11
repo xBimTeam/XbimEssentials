@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcRectangularPyramid", 705)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRectangularPyramid : IfcCsgPrimitive3D, IInstantiableEntity, IIfcRectangularPyramid, IEquatable<@IfcRectangularPyramid>
+	public  partial class @IfcRectangularPyramid : IfcCsgPrimitive3D, IInstantiableEntity, IIfcRectangularPyramid, IContainsEntityReferences, IEquatable<@IfcRectangularPyramid>
 	{
 		#region IIfcRectangularPyramid explicit implementation
 		IfcPositiveLengthMeasure IIfcRectangularPyramid.XLength { get { return @XLength; } }	
@@ -173,6 +173,17 @@ namespace Xbim.Ifc2x3.GeometricModelResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Position != null)
+					yield return @Position;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

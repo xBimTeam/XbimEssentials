@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcAnnotationCurveOccurrence", 57)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAnnotationCurveOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IIfcAnnotationCurveOccurrence, IEquatable<@IfcAnnotationCurveOccurrence>
+	public  partial class @IfcAnnotationCurveOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IIfcAnnotationCurveOccurrence, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAnnotationCurveOccurrence>
 	{
 		#region IIfcAnnotationCurveOccurrence explicit implementation
 		 
@@ -120,6 +120,32 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		}
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Item != null)
+					yield return @Item;
+				foreach(var entity in @Styles)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@Item != null)
+					yield return @Item;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

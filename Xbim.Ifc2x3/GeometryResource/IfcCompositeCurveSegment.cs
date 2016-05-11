@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcCompositeCurveSegment", 460)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCompositeCurveSegment : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcCompositeCurveSegment, IEquatable<@IfcCompositeCurveSegment>
+	public  partial class @IfcCompositeCurveSegment : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcCompositeCurveSegment, IContainsEntityReferences, IEquatable<@IfcCompositeCurveSegment>
 	{
 		#region IIfcCompositeCurveSegment explicit implementation
 		IfcTransitionCode IIfcCompositeCurveSegment.Transition { get { return @Transition; } }	
@@ -196,6 +196,17 @@ namespace Xbim.Ifc2x3.GeometryResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@ParentCurve != null)
+					yield return @ParentCurve;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

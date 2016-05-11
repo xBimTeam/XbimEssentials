@@ -49,7 +49,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 {
 	[ExpressType("IfcDoorLiningProperties", 493)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDoorLiningProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcDoorLiningProperties, IEquatable<@IfcDoorLiningProperties>
+	public  partial class @IfcDoorLiningProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcDoorLiningProperties, IContainsEntityReferences, IEquatable<@IfcDoorLiningProperties>
 	{
 		#region IIfcDoorLiningProperties explicit implementation
 		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.LiningDepth { get { return @LiningDepth; } }	
@@ -378,6 +378,19 @@ namespace Xbim.Ifc4.ArchitectureDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ShapeAspectStyle != null)
+					yield return @ShapeAspectStyle;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

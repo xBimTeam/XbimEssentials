@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelConnectsPorts", 215)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsPorts : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsPorts, IEquatable<@IfcRelConnectsPorts>
+	public  partial class @IfcRelConnectsPorts : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsPorts, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsPorts>
 	{
 		#region IIfcRelConnectsPorts explicit implementation
 		IIfcPort IIfcRelConnectsPorts.RelatingPort { get { return @RelatingPort; } }	
@@ -178,6 +178,38 @@ namespace Xbim.Ifc2x3.ProductExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@RelatingPort != null)
+					yield return @RelatingPort;
+				if (@RelatedPort != null)
+					yield return @RelatedPort;
+				if (@RealizingElement != null)
+					yield return @RealizingElement;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingPort != null)
+					yield return @RelatingPort;
+				if (@RelatedPort != null)
+					yield return @RelatedPort;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

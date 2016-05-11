@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcBoxedHalfSpace", 655)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBoxedHalfSpace : IfcHalfSpaceSolid, IInstantiableEntity, IIfcBoxedHalfSpace, IEquatable<@IfcBoxedHalfSpace>
+	public  partial class @IfcBoxedHalfSpace : IfcHalfSpaceSolid, IInstantiableEntity, IIfcBoxedHalfSpace, IContainsEntityReferences, IEquatable<@IfcBoxedHalfSpace>
 	{
 		#region IIfcBoxedHalfSpace explicit implementation
 		IIfcBoundingBox IIfcBoxedHalfSpace.Enclosure { get { return @Enclosure; } }	
@@ -133,6 +133,19 @@ namespace Xbim.Ifc4.GeometricModelResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@BaseSurface != null)
+					yield return @BaseSurface;
+				if (@Enclosure != null)
+					yield return @Enclosure;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

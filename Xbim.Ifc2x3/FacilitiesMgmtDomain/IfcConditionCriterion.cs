@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	[ExpressType("IfcConditionCriterion", 688)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConditionCriterion : IfcControl, IInstantiableEntity, IIfcConditionCriterion, IEquatable<@IfcConditionCriterion>
+	public  partial class @IfcConditionCriterion : IfcControl, IInstantiableEntity, IIfcConditionCriterion, IContainsEntityReferences, IEquatable<@IfcConditionCriterion>
 	{
 		#region IIfcConditionCriterion explicit implementation
 		IIfcConditionCriterionSelect IIfcConditionCriterion.Criterion { get { return @Criterion; } }	
@@ -158,6 +158,19 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@CriterionDateTime != null)
+					yield return @CriterionDateTime;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

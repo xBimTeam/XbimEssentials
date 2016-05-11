@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	[ExpressType("IfcSubContractResource", 594)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSubContractResource : IfcConstructionResource, IInstantiableEntity, IIfcSubContractResource, IEquatable<@IfcSubContractResource>
+	public  partial class @IfcSubContractResource : IfcConstructionResource, IInstantiableEntity, IIfcSubContractResource, IContainsEntityReferences, IEquatable<@IfcSubContractResource>
 	{
 		#region IIfcSubContractResource explicit implementation
 		IIfcActorSelect IIfcSubContractResource.SubContractor { get { return @SubContractor; } }	
@@ -162,6 +162,21 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@BaseQuantity != null)
+					yield return @BaseQuantity;
+				if (@SubContractor != null)
+					yield return @SubContractor;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

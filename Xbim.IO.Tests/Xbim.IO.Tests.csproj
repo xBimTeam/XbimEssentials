@@ -84,6 +84,7 @@
     <Compile Include="Ifc4GeometryTests.cs" />
     <Compile Include="ReadingFileWithComments.cs" />
     <Compile Include="TableStorageTests.cs" />
+    <Compile Include="ActivationTests.cs" />
     <Compile Include="WexBIMTests.cs" />
     <Compile Include="XmlTests4.cs" />
     <Compile Include="XmlTests2x3.cs" />

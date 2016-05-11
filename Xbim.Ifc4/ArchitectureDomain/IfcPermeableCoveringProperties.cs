@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 {
 	[ExpressType("IfcPermeableCoveringProperties", 707)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPermeableCoveringProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcPermeableCoveringProperties, IEquatable<@IfcPermeableCoveringProperties>
+	public  partial class @IfcPermeableCoveringProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcPermeableCoveringProperties, IContainsEntityReferences, IEquatable<@IfcPermeableCoveringProperties>
 	{
 		#region IIfcPermeableCoveringProperties explicit implementation
 		IfcPermeableCoveringOperationEnum IIfcPermeableCoveringProperties.OperationType { get { return @OperationType; } }	
@@ -218,6 +218,19 @@ namespace Xbim.Ifc4.ArchitectureDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ShapeAspectStyle != null)
+					yield return @ShapeAspectStyle;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

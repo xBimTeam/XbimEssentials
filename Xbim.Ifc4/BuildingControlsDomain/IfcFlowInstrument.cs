@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 {
 	[ExpressType("IfcFlowInstrument", 1181)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFlowInstrument : IfcDistributionControlElement, IInstantiableEntity, IIfcFlowInstrument, IEquatable<@IfcFlowInstrument>
+	public  partial class @IfcFlowInstrument : IfcDistributionControlElement, IInstantiableEntity, IIfcFlowInstrument, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFlowInstrument>
 	{
 		#region IIfcFlowInstrument explicit implementation
 		IfcFlowInstrumentTypeEnum? IIfcFlowInstrument.PredefinedType { get { return @PredefinedType; } }	
@@ -140,6 +140,36 @@ namespace Xbim.Ifc4.BuildingControlsDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

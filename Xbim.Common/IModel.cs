@@ -23,12 +23,48 @@ namespace Xbim.Common
 
         IList<XbimInstanceHandle> InstanceHandles { get; }
 
+        /// <summary>
+        /// All instances which exist within a scope of the model.
+        /// Use thit property to retrieve the data from model.
+        /// </summary>
 	    IEntityCollection Instances { get; }
 
+        /// <summary>
+        /// This function is to be used by entities in the model
+        /// in cases where data are persisted and entities are activated 
+        /// on-the-fly as their properties are accessed.
+        /// </summary>
+        /// <param name="owningEntity">Entity to be activated</param>
+        /// <param name="write">True if the entity should be activated for writing</param>
+        /// <returns>True if activation was successful, False otherwise</returns>
 	    bool Activate(IPersistEntity owningEntity, bool write);
 
+        /// <summary>
+        /// This function is to be used to activate data island of certain depth.
+        /// It only makes sense for implementation of IModel which use some kind
+        /// of persistence storage and load the data on-demand. It is usually more
+        /// efficient to retrieve complete data island in batch especially for operations
+        /// like geometry processing.
+        /// </summary>
+        /// <param name="entity">Entity to be activated</param>
+        /// <param name="depth">Depth of activation.</param>
+	    void Activate(IPersistEntity entity, int depth);
+
+        /// <summary>
+        /// Deletes entity from the model and removes all references to this entity in all entities
+        /// in the model. This operation is potentially very expensive and some implementations of
+        /// IModel migh not implement it at all.
+        /// </summary>
+        /// <param name="entity"></param>
 		void Delete (IPersistEntity entity);
 		
+        /// <summary>
+        /// Begins transaction on the model to handle all modifications. You should use this function within
+        /// a 'using' statement to restrict scope of the transaction. IModel shoulc only hold weak reference to
+        /// this object in 'CurrentTransaction' property.
+        /// </summary>
+        /// <param name="name">Name of the transaction. This is usefull in case you keep the transactions for undo-redo sessions</param>
+        /// <returns>Transaction object.</returns>
 		ITransaction BeginTransaction(string name);
 		
 		/// <summary>
@@ -38,8 +74,16 @@ namespace Xbim.Common
         /// </summary>
 		ITransaction CurrentTransaction { get; }
 
+        /// <summary>
+        /// Metadata representing current data schema of the model. This keeps pre-cached reflection information
+        /// for efficient operations on the schema.
+        /// </summary>
 		ExpressMetaData Metadata { get; }
 
+        /// <summary>
+        /// If model contains a geometry and if IModel implementation supports it this property will return conversion factors for 
+        /// base units to be used for geometry processing and other tasks.
+        /// </summary>
 		IModelFactors ModelFactors { get; }
 
         ///<summary>
@@ -82,6 +126,27 @@ namespace Xbim.Common
         /// This event is fired every time when entity gets deleted from model.
         /// </summary>
         event DeletedEntityHandler EntityDeleted;
+
+        /// <summary>
+        /// This will start to cache inverse relations which are heavily used in EXPRESS schema
+        /// to model bidirectional relations. You shouldn't only use cache outside of transaction
+        /// when you query the data but you don't change any values. Implementations of IModel
+        /// might throw an exception in case you call this function inside of transaction
+        /// or if you begin transaction before you stop caching. You should always keep the caching
+        /// object inside of using statement as IModel should only hold the weak reference to it.
+        /// </summary>
+        /// <returns></returns>
+        IInverseCache BeginCaching();
+        /// <summary>
+        /// Stops caching of inverse relations and forces it to dispose and not to be used anymore
+        /// </summary>
+        void StopCaching();
+        /// <summary>
+        /// Implementations of IModel should only keep a weak reference to the caching object so that
+        /// user can use using statement to constrain existence of the cache. Entity collection might use
+        /// this cache to speed up search for inverse relations.
+        /// </summary>
+	    IInverseCache InverseCache { get; }
 
 	}
 

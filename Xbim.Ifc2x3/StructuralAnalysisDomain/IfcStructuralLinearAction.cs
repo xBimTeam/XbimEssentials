@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralLinearAction", 463)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLinearAction : IfcStructuralAction, IInstantiableEntity, IIfcStructuralLinearAction, IEquatable<@IfcStructuralLinearAction>
+	public  partial class @IfcStructuralLinearAction : IfcStructuralAction, IInstantiableEntity, IIfcStructuralLinearAction, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralLinearAction>
 	{
 		#region IIfcStructuralLinearAction explicit implementation
 		IfcProjectedOrTrueLengthEnum IIfcStructuralLinearAction.ProjectedOrTrue { get { return @ProjectedOrTrue; } }	
@@ -142,6 +142,42 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				if (@AppliedLoad != null)
+					yield return @AppliedLoad;
+				if (@CausedBy != null)
+					yield return @CausedBy;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				if (@CausedBy != null)
+					yield return @CausedBy;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -116,18 +116,18 @@
         <PropertyMapping Header="AssetType" Column="F" Status="PickValue" MultiRow="None" DefaultValue="unknown" Paths="AssetType.Value" />
         <PropertyMapping Header="Manufacturer" Column="G" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Manufacturer.Email" />
         <PropertyMapping Header="ModelNumber" Column="H" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="ModelNumber" />
-        <PropertyMapping Header="WarrantyGuarantorParts" Column="I" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Warranty.GuarantorParts.Email" />
-        <PropertyMapping Header="WarrantyDurationParts" Column="J" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Warranty.DurationParts" />
-        <PropertyMapping Header="WarrantyGuarantorLabor" Column="K" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Warranty.GuarantorLabor.Email" />
-        <PropertyMapping Header="WarrantyDurationLabor" Column="L" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Warranty.DurationLabor" />
-        <PropertyMapping Header="WarrantyDurationUnit" Column="M" Status="PickValue" MultiRow="None" DefaultValue="unknown" Paths="Warranty.DurationUnit.Value" />
+        <PropertyMapping Header="WarrantyGuarantorParts" Column="I" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="WarrantyGuarantorParts.Email" />
+        <PropertyMapping Header="WarrantyDurationParts" Column="J" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="WarrantyDurationParts" />
+        <PropertyMapping Header="WarrantyGuarantorLabor" Column="K" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="WarrantyGuarantorLabor.Email" />
+        <PropertyMapping Header="WarrantyDurationLabor" Column="L" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="WarrantyDurationLabor" />
+        <PropertyMapping Header="WarrantyDurationUnit" Column="M" Status="PickValue" MultiRow="None" DefaultValue="unknown" Paths="WarrantyDurationUnit.Value" />
         <PropertyMapping Header="ExtSystem" Column="N" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalSystem.Name"  Hidden="true"/>
         <PropertyMapping Header="ExtObject" Column="O" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalObject.Name"  Hidden="true"/>
         <PropertyMapping Header="ExtIdentifier" Column="P" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalId"  Hidden="true"/>
         <PropertyMapping Header="ReplacementCost" Column="Q" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="ReplacementCost" />
         <PropertyMapping Header="ExpectedLife" Column="R" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="ExpectedLife" />
         <PropertyMapping Header="DurationUnit" Column="S" Status="PickValue" MultiRow="None" DefaultValue="unknown" Paths="DurationUnit.Value" />
-        <PropertyMapping Header="WarrantyDescription" Column="T" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="Warranty.Description" />
+        <PropertyMapping Header="WarrantyDescription" Column="T" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="WarrantyDescription" />
         <PropertyMapping Header="NominalLength" Column="U" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="NominalLength" />
         <PropertyMapping Header="NominalWidth" Column="V" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="NominalWidth" />
         <PropertyMapping Header="NominalHeight" Column="W" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="NominalHeight" />

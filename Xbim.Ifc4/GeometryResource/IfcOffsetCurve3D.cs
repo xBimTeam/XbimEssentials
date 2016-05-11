@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcOffsetCurve3D", 67)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOffsetCurve3D : IfcCurve, IInstantiableEntity, IIfcOffsetCurve3D, IEquatable<@IfcOffsetCurve3D>
+	public  partial class @IfcOffsetCurve3D : IfcCurve, IInstantiableEntity, IIfcOffsetCurve3D, IContainsEntityReferences, IEquatable<@IfcOffsetCurve3D>
 	{
 		#region IIfcOffsetCurve3D explicit implementation
 		IIfcCurve IIfcOffsetCurve3D.BasisCurve { get { return @BasisCurve; } }	
@@ -190,6 +190,19 @@ namespace Xbim.Ifc4.GeometryResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@BasisCurve != null)
+					yield return @BasisCurve;
+				if (@RefDirection != null)
+					yield return @RefDirection;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcBuilding", 169)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBuilding : IfcSpatialStructureElement, IInstantiableEntity, IIfcBuilding, IEquatable<@IfcBuilding>
+	public  partial class @IfcBuilding : IfcSpatialStructureElement, IInstantiableEntity, IIfcBuilding, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBuilding>
 	{
 		#region IIfcBuilding explicit implementation
 		IfcLengthMeasure? IIfcBuilding.ElevationOfRefHeight { get { return @ElevationOfRefHeight; } }	
@@ -182,6 +182,38 @@ namespace Xbim.Ifc4.ProductExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				if (@BuildingAddress != null)
+					yield return @BuildingAddress;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

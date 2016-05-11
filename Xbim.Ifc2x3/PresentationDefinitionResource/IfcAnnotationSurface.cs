@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcAnnotationSurface", 731)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAnnotationSurface : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcAnnotationSurface, IEquatable<@IfcAnnotationSurface>
+	public  partial class @IfcAnnotationSurface : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcAnnotationSurface, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAnnotationSurface>
 	{
 		#region IIfcAnnotationSurface explicit implementation
 		IIfcGeometricRepresentationItem IIfcAnnotationSurface.Item { get { return @Item; } }	
@@ -151,6 +151,32 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Item != null)
+					yield return @Item;
+				if (@TextureCoordinates != null)
+					yield return @TextureCoordinates;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@TextureCoordinates != null)
+					yield return @TextureCoordinates;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

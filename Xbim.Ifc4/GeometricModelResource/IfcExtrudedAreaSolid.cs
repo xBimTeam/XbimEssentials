@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcExtrudedAreaSolid", 238)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExtrudedAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcExtrudedAreaSolid, IEquatable<@IfcExtrudedAreaSolid>
+	public  partial class @IfcExtrudedAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcExtrudedAreaSolid, IContainsEntityReferences, IEquatable<@IfcExtrudedAreaSolid>
 	{
 		#region IIfcExtrudedAreaSolid explicit implementation
 		IIfcDirection IIfcExtrudedAreaSolid.ExtrudedDirection { get { return @ExtrudedDirection; } }	
@@ -155,6 +155,21 @@ namespace Xbim.Ifc4.GeometricModelResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@SweptArea != null)
+					yield return @SweptArea;
+				if (@Position != null)
+					yield return @Position;
+				if (@ExtrudedDirection != null)
+					yield return @ExtrudedDirection;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

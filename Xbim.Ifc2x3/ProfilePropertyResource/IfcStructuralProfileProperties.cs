@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IfcStructuralProfileProperties", 683)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralProfileProperties : IfcGeneralProfileProperties, IInstantiableEntity, IIfcStructuralProfileProperties, IEquatable<@IfcStructuralProfileProperties>
+	public  partial class @IfcStructuralProfileProperties : IfcGeneralProfileProperties, IInstantiableEntity, IIfcStructuralProfileProperties, IContainsEntityReferences, IEquatable<@IfcStructuralProfileProperties>
 	{
 		#region IIfcStructuralProfileProperties explicit implementation
 		IfcMomentOfInertiaMeasure? IIfcStructuralProfileProperties.TorsionalConstantX { get { return @TorsionalConstantX; } }	
@@ -439,6 +439,17 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@ProfileDefinition != null)
+					yield return @ProfileDefinition;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

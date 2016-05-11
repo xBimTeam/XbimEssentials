@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcRamp", 414)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRamp : IfcBuildingElement, IInstantiableEntity, IIfcRamp, IEquatable<@IfcRamp>
+	public  partial class @IfcRamp : IfcBuildingElement, IInstantiableEntity, IIfcRamp, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRamp>
 	{
 		#region IIfcRamp explicit implementation
 		IfcRampTypeEnum IIfcRamp.ShapeType { get { return @ShapeType; } }	
@@ -140,6 +140,36 @@ namespace Xbim.Ifc2x3.SharedBldgElements
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcCurveStyleFont", 223)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurveStyleFont : INotifyPropertyChanged, IInstantiableEntity, IIfcCurveStyleFont, IEquatable<@IfcCurveStyleFont>
+	public  partial class @IfcCurveStyleFont : INotifyPropertyChanged, IInstantiableEntity, IIfcCurveStyleFont, IContainsEntityReferences, IEquatable<@IfcCurveStyleFont>
 	{
 		#region IIfcCurveStyleFont explicit implementation
 		IfcLabel? IIfcCurveStyleFont.Name { get { return @Name; } }	
@@ -266,6 +266,17 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		}
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @PatternList)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

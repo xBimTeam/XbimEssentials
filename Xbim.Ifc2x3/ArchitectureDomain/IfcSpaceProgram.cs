@@ -43,7 +43,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 {
 	[ExpressType("IfcSpaceProgram", 709)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSpaceProgram : IfcControl, IInstantiableEntity, IIfcSpaceProgram, IEquatable<@IfcSpaceProgram>
+	public  partial class @IfcSpaceProgram : IfcControl, IInstantiableEntity, IIfcSpaceProgram, IContainsEntityReferences, IEquatable<@IfcSpaceProgram>
 	{
 		#region IIfcSpaceProgram explicit implementation
 		IfcIdentifier IIfcSpaceProgram.SpaceProgramIdentifier { get { return @SpaceProgramIdentifier; } }	
@@ -243,6 +243,19 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@RequestedLocation != null)
+					yield return @RequestedLocation;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

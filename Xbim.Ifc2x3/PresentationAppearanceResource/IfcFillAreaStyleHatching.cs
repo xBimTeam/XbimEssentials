@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcFillAreaStyleHatching", 462)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFillAreaStyleHatching : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleHatching, IEquatable<@IfcFillAreaStyleHatching>
+	public  partial class @IfcFillAreaStyleHatching : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleHatching, IContainsEntityReferences, IEquatable<@IfcFillAreaStyleHatching>
 	{
 		#region IIfcFillAreaStyleHatching explicit implementation
 		IIfcCurveStyle IIfcFillAreaStyleHatching.HatchLineAppearance { get { return @HatchLineAppearance; } }	
@@ -221,6 +221,21 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		}
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@HatchLineAppearance != null)
+					yield return @HatchLineAppearance;
+				if (@PointOfReferenceHatchLine != null)
+					yield return @PointOfReferenceHatchLine;
+				if (@PatternStart != null)
+					yield return @PatternStart;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

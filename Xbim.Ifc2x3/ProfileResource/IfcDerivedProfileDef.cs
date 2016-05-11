@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcDerivedProfileDef", 390)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDerivedProfileDef : IfcProfileDef, IInstantiableEntity, IIfcDerivedProfileDef, IEquatable<@IfcDerivedProfileDef>
+	public  partial class @IfcDerivedProfileDef : IfcProfileDef, IInstantiableEntity, IIfcDerivedProfileDef, IContainsEntityReferences, IEquatable<@IfcDerivedProfileDef>
 	{
 		#region IIfcDerivedProfileDef explicit implementation
 		IIfcProfileDef IIfcDerivedProfileDef.ParentProfile { get { return @ParentProfile; } }	
@@ -175,6 +175,19 @@ namespace Xbim.Ifc2x3.ProfileResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@ParentProfile != null)
+					yield return @ParentProfile;
+				if (@Operator != null)
+					yield return @Operator;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

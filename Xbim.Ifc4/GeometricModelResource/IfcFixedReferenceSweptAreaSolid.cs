@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcFixedReferenceSweptAreaSolid", 1180)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFixedReferenceSweptAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcFixedReferenceSweptAreaSolid, IEquatable<@IfcFixedReferenceSweptAreaSolid>
+	public  partial class @IfcFixedReferenceSweptAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcFixedReferenceSweptAreaSolid, IContainsEntityReferences, IEquatable<@IfcFixedReferenceSweptAreaSolid>
 	{
 		#region IIfcFixedReferenceSweptAreaSolid explicit implementation
 		IIfcCurve IIfcFixedReferenceSweptAreaSolid.Directrix { get { return @Directrix; } }	
@@ -195,6 +195,23 @@ namespace Xbim.Ifc4.GeometricModelResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@SweptArea != null)
+					yield return @SweptArea;
+				if (@Position != null)
+					yield return @Position;
+				if (@Directrix != null)
+					yield return @Directrix;
+				if (@FixedReference != null)
+					yield return @FixedReference;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

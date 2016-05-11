@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.SharedComponentElements
 {
 	[ExpressType("IfcBuildingElementPartType", 1107)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBuildingElementPartType : IfcElementComponentType, IInstantiableEntity, IIfcBuildingElementPartType, IEquatable<@IfcBuildingElementPartType>
+	public  partial class @IfcBuildingElementPartType : IfcElementComponentType, IInstantiableEntity, IIfcBuildingElementPartType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBuildingElementPartType>
 	{
 		#region IIfcBuildingElementPartType explicit implementation
 		IfcBuildingElementPartTypeEnum IIfcBuildingElementPartType.PredefinedType { get { return @PredefinedType; } }	
@@ -140,6 +140,34 @@ namespace Xbim.Ifc4.SharedComponentElements
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @HasPropertySets)
+					yield return entity;
+				foreach(var entity in @RepresentationMaps)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @HasPropertySets)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

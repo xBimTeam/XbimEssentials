@@ -41,7 +41,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Connection", 25)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieConnection : CobieReferencedObject, IInstantiableEntity, ICobieConnection, IEquatable<@CobieConnection>
+	public  partial class @CobieConnection : CobieReferencedObject, IInstantiableEntity, ICobieConnection, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieConnection>
 	{
 		#region ICobieConnection explicit implementation
 		string ICobieConnection.Name { get { return @Name; } }	
@@ -279,6 +279,46 @@ namespace Xbim.CobieExpress
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Created != null)
+					yield return @Created;
+				if (@ExternalSystem != null)
+					yield return @ExternalSystem;
+				if (@ExternalObject != null)
+					yield return @ExternalObject;
+				if (@ConnectionType != null)
+					yield return @ConnectionType;
+				if (@ComponentA != null)
+					yield return @ComponentA;
+				if (@ComponentB != null)
+					yield return @ComponentB;
+				if (@RealizingComponent != null)
+					yield return @RealizingComponent;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ComponentA != null)
+					yield return @ComponentA;
+				if (@ComponentB != null)
+					yield return @ComponentB;
+				if (@RealizingComponent != null)
+					yield return @RealizingComponent;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Xml;
 using ICSharpCode.SharpZipLib.Zip;
 using Xbim.Common;
+using Xbim.Common.Exceptions;
 using Xbim.Common.Geometry;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
@@ -138,6 +139,17 @@ namespace Xbim.IO.Memory
         public virtual bool Activate(IPersistEntity owningEntity, bool write)
         {
             return true;
+        }
+
+        /// <summary>
+        /// This implementation of IModel keeps all data in memory
+        /// so this doesn't have any effect.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="depth"></param>
+        public void Activate(IPersistEntity entity, int depth)
+        {
+            
         }
 
         /// <summary>
@@ -301,7 +313,9 @@ namespace Xbim.IO.Memory
         public virtual ITransaction BeginTransaction(string name)
         {
             if (CurrentTransaction != null)
-                throw new Exception("Transaction is opened already.");
+                throw new XbimException("Transaction is opened already.");
+            if(InverseCache != null)
+                throw new XbimException("Transaction can't be open when cache is in operation.");
 
             var txn = new Transaction(this);
             CurrentTransaction = txn;
@@ -371,6 +385,50 @@ namespace Xbim.IO.Memory
         /// This event is fired every time when entity gets deleted from model.
         /// </summary>
         public event DeletedEntityHandler EntityDeleted;
+
+        public IInverseCache BeginCaching()
+        {
+            if (CurrentTransaction != null)
+                throw new XbimException("Caching is not allowed within active transaction.");
+
+            var c = InverseCache;
+            if (c != null)
+                return c;
+            return InverseCache = new InverseCache();
+        }
+
+        public void StopCaching()
+        {
+            var c = InverseCache;
+            if (c == null)
+                return;
+
+            c.Dispose();
+            InverseCache = null;
+        }
+
+        private WeakReference _cacheReference;
+        public IInverseCache InverseCache
+        {
+            get
+            {
+                if (_cacheReference == null || !_cacheReference.IsAlive)
+                    return null;
+                return _cacheReference.Target as IInverseCache;
+            }
+            private set
+            {
+                if (value == null)
+                {
+                    _cacheReference = null;
+                    return;
+                }
+                if (_cacheReference == null)
+                    _cacheReference = new WeakReference(value);
+                else
+                    _cacheReference.Target = value;
+            }
+        }
 
         internal void HandleEntityChange(ChangeType changeType, IPersistEntity entity, byte propertyOrder)
         {

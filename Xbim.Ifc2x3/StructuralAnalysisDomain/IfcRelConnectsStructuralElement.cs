@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcRelConnectsStructuralElement", 413)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsStructuralElement : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsStructuralElement, IEquatable<@IfcRelConnectsStructuralElement>
+	public  partial class @IfcRelConnectsStructuralElement : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsStructuralElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsStructuralElement>
 	{
 		#region IIfcRelConnectsStructuralElement explicit implementation
 		IIfcElement IIfcRelConnectsStructuralElement.RelatingElement { get { return @RelatingElement; } }	
@@ -159,6 +159,36 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@RelatingElement != null)
+					yield return @RelatingElement;
+				if (@RelatedStructuralMember != null)
+					yield return @RelatedStructuralMember;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingElement != null)
+					yield return @RelatingElement;
+				if (@RelatedStructuralMember != null)
+					yield return @RelatedStructuralMember;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

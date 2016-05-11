@@ -43,7 +43,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 {
 	[ExpressType("IfcInventory", 768)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcInventory : IfcGroup, IInstantiableEntity, IIfcInventory, IEquatable<@IfcInventory>
+	public  partial class @IfcInventory : IfcGroup, IInstantiableEntity, IIfcInventory, IContainsEntityReferences, IEquatable<@IfcInventory>
 	{
 		#region IIfcInventory explicit implementation
 		IfcInventoryTypeEnum? IIfcInventory.PredefinedType { get { return @PredefinedType; } }	
@@ -237,6 +237,25 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@Jurisdiction != null)
+					yield return @Jurisdiction;
+				foreach(var entity in @ResponsiblePersons)
+					yield return entity;
+				if (@CurrentValue != null)
+					yield return @CurrentValue;
+				if (@OriginalValue != null)
+					yield return @OriginalValue;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

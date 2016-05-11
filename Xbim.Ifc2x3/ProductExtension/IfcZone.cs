@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcZone", 669)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcZone : IfcGroup, IInstantiableEntity, IIfcZone, IEquatable<@IfcZone>
+	public  partial class @IfcZone : IfcGroup, IInstantiableEntity, IIfcZone, IContainsEntityReferences, IEquatable<@IfcZone>
 	{
 		#region IIfcZone explicit implementation
 		 
@@ -112,6 +112,17 @@ namespace Xbim.Ifc2x3.ProductExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 {
 	[ExpressType("IfcPile", 572)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPile : IfcBuildingElement, IInstantiableEntity, IIfcPile, IEquatable<@IfcPile>
+	public  partial class @IfcPile : IfcBuildingElement, IInstantiableEntity, IIfcPile, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPile>
 	{
 		#region IIfcPile explicit implementation
 		IfcPileTypeEnum? IIfcPile.PredefinedType { get { return @PredefinedType; } }	
@@ -160,6 +160,36 @@ namespace Xbim.Ifc4.StructuralElementsDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

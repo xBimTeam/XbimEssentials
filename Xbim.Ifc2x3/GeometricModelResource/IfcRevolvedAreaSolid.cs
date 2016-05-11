@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcRevolvedAreaSolid", 515)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRevolvedAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcRevolvedAreaSolid, IEquatable<@IfcRevolvedAreaSolid>
+	public  partial class @IfcRevolvedAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcRevolvedAreaSolid, IContainsEntityReferences, IEquatable<@IfcRevolvedAreaSolid>
 	{
 		#region IIfcRevolvedAreaSolid explicit implementation
 		IIfcAxis1Placement IIfcRevolvedAreaSolid.Axis { get { return @Axis; } }	
@@ -177,6 +177,21 @@ namespace Xbim.Ifc2x3.GeometricModelResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@SweptArea != null)
+					yield return @SweptArea;
+				if (@Position != null)
+					yield return @Position;
+				if (@Axis != null)
+					yield return @Axis;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

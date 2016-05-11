@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcFlowController", 121)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFlowController : IfcDistributionFlowElement, IInstantiableEntity, IIfcFlowController, IEquatable<@IfcFlowController>
+	public  partial class @IfcFlowController : IfcDistributionFlowElement, IInstantiableEntity, IIfcFlowController, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFlowController>
 	{
 		#region IIfcFlowController explicit implementation
 		 
@@ -114,6 +114,36 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

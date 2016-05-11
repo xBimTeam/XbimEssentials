@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.MaterialResource
 {
 	[ExpressType("IfcMaterialProfileSetUsageTapering", 1208)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialProfileSetUsageTapering : IfcMaterialProfileSetUsage, IInstantiableEntity, IIfcMaterialProfileSetUsageTapering, IEquatable<@IfcMaterialProfileSetUsageTapering>
+	public  partial class @IfcMaterialProfileSetUsageTapering : IfcMaterialProfileSetUsage, IInstantiableEntity, IIfcMaterialProfileSetUsageTapering, IContainsEntityReferences, IEquatable<@IfcMaterialProfileSetUsageTapering>
 	{
 		#region IIfcMaterialProfileSetUsageTapering explicit implementation
 		IIfcMaterialProfileSet IIfcMaterialProfileSetUsageTapering.ForProfileEndSet { get { return @ForProfileEndSet; } }	
@@ -154,6 +154,19 @@ namespace Xbim.Ifc4.MaterialResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@ForProfileSet != null)
+					yield return @ForProfileSet;
+				if (@ForProfileEndSet != null)
+					yield return @ForProfileEndSet;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

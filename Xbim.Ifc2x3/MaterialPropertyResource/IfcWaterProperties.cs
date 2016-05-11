@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcWaterProperties", 721)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWaterProperties : IfcMaterialProperties, IInstantiableEntity, IIfcWaterProperties, IEquatable<@IfcWaterProperties>
+	public  partial class @IfcWaterProperties : IfcMaterialProperties, IInstantiableEntity, IIfcWaterProperties, IContainsEntityReferences, IEquatable<@IfcWaterProperties>
 	{
 		#region IIfcWaterProperties explicit implementation
 		bool? IIfcWaterProperties.IsPotable { get { return @IsPotable; } }	
@@ -253,6 +253,17 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Material != null)
+					yield return @Material;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

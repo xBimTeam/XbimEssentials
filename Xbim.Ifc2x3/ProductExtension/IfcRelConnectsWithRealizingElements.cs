@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelConnectsWithRealizingElements", 313)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsWithRealizingElements : IfcRelConnectsElements, IInstantiableEntity, IIfcRelConnectsWithRealizingElements, IEquatable<@IfcRelConnectsWithRealizingElements>
+	public  partial class @IfcRelConnectsWithRealizingElements : IfcRelConnectsElements, IInstantiableEntity, IIfcRelConnectsWithRealizingElements, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsWithRealizingElements>
 	{
 		#region IIfcRelConnectsWithRealizingElements explicit implementation
 		IEnumerable<IIfcElement> IIfcRelConnectsWithRealizingElements.RealizingElements { get { return @RealizingElements; } }	
@@ -157,6 +157,42 @@ namespace Xbim.Ifc2x3.ProductExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ConnectionGeometry != null)
+					yield return @ConnectionGeometry;
+				if (@RelatingElement != null)
+					yield return @RelatingElement;
+				if (@RelatedElement != null)
+					yield return @RelatedElement;
+				foreach(var entity in @RealizingElements)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingElement != null)
+					yield return @RelatingElement;
+				if (@RelatedElement != null)
+					yield return @RelatedElement;
+				foreach(var entity in @RealizingElements)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

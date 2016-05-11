@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.RepresentationResource
 {
 	[ExpressType("IfcGeometricRepresentationSubContext", 556)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeometricRepresentationSubContext : IfcGeometricRepresentationContext, IInstantiableEntity, IIfcGeometricRepresentationSubContext, IEquatable<@IfcGeometricRepresentationSubContext>
+	public  partial class @IfcGeometricRepresentationSubContext : IfcGeometricRepresentationContext, IInstantiableEntity, IIfcGeometricRepresentationSubContext, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcGeometricRepresentationSubContext>
 	{
 		#region IIfcGeometricRepresentationSubContext explicit implementation
 		IIfcGeometricRepresentationContext IIfcGeometricRepresentationSubContext.ParentContext { get { return @ParentContext; } }	
@@ -257,6 +257,34 @@ namespace Xbim.Ifc4.RepresentationResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@WorldCoordinateSystem != null)
+					yield return @WorldCoordinateSystem;
+				if (@TrueNorth != null)
+					yield return @TrueNorth;
+				if (@ParentContext != null)
+					yield return @ParentContext;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ParentContext != null)
+					yield return @ParentContext;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -45,7 +45,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[ExpressType("IfcRepresentation", 87)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRepresentation : INotifyPropertyChanged, IInstantiableEntity, IIfcRepresentation, IEquatable<@IfcRepresentation>
+	public  partial class @IfcRepresentation : INotifyPropertyChanged, IInstantiableEntity, IIfcRepresentation, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRepresentation>
 	{
 		#region IIfcRepresentation explicit implementation
 		IIfcRepresentationContext IIfcRepresentation.ContextOfItems { get { return @ContextOfItems; } }	
@@ -344,6 +344,32 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		}
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@ContextOfItems != null)
+					yield return @ContextOfItems;
+				foreach(var entity in @Items)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ContextOfItems != null)
+					yield return @ContextOfItems;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

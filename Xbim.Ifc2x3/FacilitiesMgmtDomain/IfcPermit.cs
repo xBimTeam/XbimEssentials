@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	[ExpressType("IfcPermit", 189)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPermit : IfcControl, IInstantiableEntity, IIfcPermit, IEquatable<@IfcPermit>
+	public  partial class @IfcPermit : IfcControl, IInstantiableEntity, IIfcPermit, IContainsEntityReferences, IEquatable<@IfcPermit>
 	{
 		#region IIfcPermit explicit implementation
 		IfcIdentifier IIfcPermit.PermitID { get { return @PermitID; } }	
@@ -138,6 +138,17 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

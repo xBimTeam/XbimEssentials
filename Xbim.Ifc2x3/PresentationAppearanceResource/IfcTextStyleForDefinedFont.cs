@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcTextStyleForDefinedFont", 611)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextStyleForDefinedFont : INotifyPropertyChanged, IInstantiableEntity, IIfcTextStyleForDefinedFont, IEquatable<@IfcTextStyleForDefinedFont>
+	public  partial class @IfcTextStyleForDefinedFont : INotifyPropertyChanged, IInstantiableEntity, IIfcTextStyleForDefinedFont, IContainsEntityReferences, IEquatable<@IfcTextStyleForDefinedFont>
 	{
 		#region IIfcTextStyleForDefinedFont explicit implementation
 		IIfcColour IIfcTextStyleForDefinedFont.Colour { get { return @Colour; } }	
@@ -269,6 +269,19 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		}
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Colour != null)
+					yield return @Colour;
+				if (@BackgroundColour != null)
+					yield return @BackgroundColour;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

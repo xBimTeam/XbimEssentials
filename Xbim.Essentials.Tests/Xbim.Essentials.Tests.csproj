@@ -70,7 +70,9 @@
     <Compile Include="NullStyleTests.cs" />
     <Compile Include="ListOfListTest.cs" />
     <Compile Include="Ifc4DateTimeTests.cs" />
+    <Compile Include="SearchTests.cs" />
     <Compile Include="TransactionalChanges.cs" />
+    <Compile Include="InverseCacheTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj">

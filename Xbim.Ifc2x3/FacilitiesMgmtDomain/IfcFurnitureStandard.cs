@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	[ExpressType("IfcFurnitureStandard", 75)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFurnitureStandard : IfcControl, IInstantiableEntity, IIfcFurnitureStandard, IEquatable<@IfcFurnitureStandard>
+	public  partial class @IfcFurnitureStandard : IfcControl, IInstantiableEntity, IIfcFurnitureStandard, IContainsEntityReferences, IEquatable<@IfcFurnitureStandard>
 	{
 		#region IIfcFurnitureStandard explicit implementation
 		 
@@ -112,6 +112,17 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

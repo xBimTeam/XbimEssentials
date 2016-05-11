@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	[ExpressType("IfcRelSchedulesCostItems", 700)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelSchedulesCostItems : IfcRelAssignsToControl, IInstantiableEntity, IIfcRelSchedulesCostItems, IEquatable<@IfcRelSchedulesCostItems>
+	public  partial class @IfcRelSchedulesCostItems : IfcRelAssignsToControl, IInstantiableEntity, IIfcRelSchedulesCostItems, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelSchedulesCostItems>
 	{
 		#region IIfcRelSchedulesCostItems explicit implementation
 		 
@@ -114,6 +114,36 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingControl != null)
+					yield return @RelatingControl;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingControl != null)
+					yield return @RelatingControl;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

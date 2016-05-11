@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IfcRelConnectsWithEccentricity", 322)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsWithEccentricity : IfcRelConnectsStructuralMember, IInstantiableEntity, IIfcRelConnectsWithEccentricity, IEquatable<@IfcRelConnectsWithEccentricity>
+	public  partial class @IfcRelConnectsWithEccentricity : IfcRelConnectsStructuralMember, IInstantiableEntity, IIfcRelConnectsWithEccentricity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsWithEccentricity>
 	{
 		#region IIfcRelConnectsWithEccentricity explicit implementation
 		IIfcConnectionGeometry IIfcRelConnectsWithEccentricity.ConnectionConstraint { get { return @ConnectionConstraint; } }	
@@ -142,6 +142,44 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@RelatingStructuralMember != null)
+					yield return @RelatingStructuralMember;
+				if (@RelatedStructuralConnection != null)
+					yield return @RelatedStructuralConnection;
+				if (@AppliedCondition != null)
+					yield return @AppliedCondition;
+				if (@AdditionalConditions != null)
+					yield return @AdditionalConditions;
+				if (@ConditionCoordinateSystem != null)
+					yield return @ConditionCoordinateSystem;
+				if (@ConnectionConstraint != null)
+					yield return @ConnectionConstraint;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingStructuralMember != null)
+					yield return @RelatingStructuralMember;
+				if (@RelatedStructuralConnection != null)
+					yield return @RelatedStructuralConnection;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

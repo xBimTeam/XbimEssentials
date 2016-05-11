@@ -43,7 +43,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Impact", 29)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieImpact : CobieReferencedObject, IInstantiableEntity, ICobieImpact, IEquatable<@CobieImpact>
+	public  partial class @CobieImpact : CobieReferencedObject, IInstantiableEntity, ICobieImpact, IContainsEntityReferences, IEquatable<@CobieImpact>
 	{
 		#region ICobieImpact explicit implementation
 		string ICobieImpact.Name { get { return @Name; } }	
@@ -316,6 +316,29 @@ namespace Xbim.CobieExpress
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Created != null)
+					yield return @Created;
+				if (@ExternalSystem != null)
+					yield return @ExternalSystem;
+				if (@ExternalObject != null)
+					yield return @ExternalObject;
+				if (@ImpactType != null)
+					yield return @ImpactType;
+				if (@ImpactStage != null)
+					yield return @ImpactStage;
+				if (@ImpactUnit != null)
+					yield return @ImpactUnit;
+				if (@DurationUnit != null)
+					yield return @DurationUnit;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

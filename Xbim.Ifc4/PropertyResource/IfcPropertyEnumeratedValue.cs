@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.PropertyResource
 {
 	[ExpressType("IfcPropertyEnumeratedValue", 629)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyEnumeratedValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyEnumeratedValue, IEquatable<@IfcPropertyEnumeratedValue>
+	public  partial class @IfcPropertyEnumeratedValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyEnumeratedValue, IContainsEntityReferences, IEquatable<@IfcPropertyEnumeratedValue>
 	{
 		#region IIfcPropertyEnumeratedValue explicit implementation
 		IEnumerable<IIfcValue> IIfcPropertyEnumeratedValue.EnumerationValues { get { return @EnumerationValues; } }	
@@ -151,6 +151,17 @@ namespace Xbim.Ifc4.PropertyResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@EnumerationReference != null)
+					yield return @EnumerationReference;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

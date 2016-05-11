@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.CostResource
 {
 	[ExpressType("IfcCostValue", 658)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCostValue : IfcAppliedValue, IInstantiableEntity, IIfcCostValue, IEquatable<@IfcCostValue>
+	public  partial class @IfcCostValue : IfcAppliedValue, IInstantiableEntity, IIfcCostValue, IContainsEntityReferences, IEquatable<@IfcCostValue>
 	{
 		#region IIfcCostValue explicit implementation
 		 
@@ -116,6 +116,19 @@ namespace Xbim.Ifc4.CostResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@UnitBasis != null)
+					yield return @UnitBasis;
+				foreach(var entity in @Components)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

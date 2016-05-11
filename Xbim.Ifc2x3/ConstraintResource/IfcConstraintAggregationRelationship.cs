@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 {
 	[ExpressType("IfcConstraintAggregationRelationship", 82)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConstraintAggregationRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcConstraintAggregationRelationship, IEquatable<@IfcConstraintAggregationRelationship>
+	public  partial class @IfcConstraintAggregationRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcConstraintAggregationRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcConstraintAggregationRelationship>
 	{
 		#region IIfcConstraintAggregationRelationship explicit implementation
 		IfcLabel? IIfcConstraintAggregationRelationship.Name { get { return @Name; } }	
@@ -318,6 +318,34 @@ namespace Xbim.Ifc2x3.ConstraintResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@RelatingConstraint != null)
+					yield return @RelatingConstraint;
+				foreach(var entity in @RelatedConstraints)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingConstraint != null)
+					yield return @RelatingConstraint;
+				foreach(var entity in @RelatedConstraints)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

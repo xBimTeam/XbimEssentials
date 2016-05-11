@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 {
 	[ExpressType("IfcStackTerminal", 1277)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStackTerminal : IfcFlowTerminal, IInstantiableEntity, IIfcStackTerminal, IEquatable<@IfcStackTerminal>
+	public  partial class @IfcStackTerminal : IfcFlowTerminal, IInstantiableEntity, IIfcStackTerminal, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStackTerminal>
 	{
 		#region IIfcStackTerminal explicit implementation
 		IfcStackTerminalTypeEnum? IIfcStackTerminal.PredefinedType { get { return @PredefinedType; } }	
@@ -140,6 +140,36 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

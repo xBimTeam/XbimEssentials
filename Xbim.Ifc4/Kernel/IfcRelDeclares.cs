@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcRelDeclares", 1249)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelDeclares : IfcRelationship, IInstantiableEntity, IIfcRelDeclares, IEquatable<@IfcRelDeclares>
+	public  partial class @IfcRelDeclares : IfcRelationship, IInstantiableEntity, IIfcRelDeclares, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelDeclares>
 	{
 		#region IIfcRelDeclares explicit implementation
 		IIfcContext IIfcRelDeclares.RelatingContext { get { return @RelatingContext; } }	
@@ -154,6 +154,36 @@ namespace Xbim.Ifc4.Kernel
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@RelatingContext != null)
+					yield return @RelatingContext;
+				foreach(var entity in @RelatedDefinitions)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingContext != null)
+					yield return @RelatingContext;
+				foreach(var entity in @RelatedDefinitions)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

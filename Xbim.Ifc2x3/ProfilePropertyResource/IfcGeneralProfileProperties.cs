@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IfcGeneralProfileProperties", 648)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeneralProfileProperties : IfcProfileProperties, IInstantiableEntity, IIfcGeneralProfileProperties, IEquatable<@IfcGeneralProfileProperties>
+	public  partial class @IfcGeneralProfileProperties : IfcProfileProperties, IInstantiableEntity, IIfcGeneralProfileProperties, IContainsEntityReferences, IEquatable<@IfcGeneralProfileProperties>
 	{
 		#region IIfcGeneralProfileProperties explicit implementation
 		IfcMassPerLengthMeasure? IIfcGeneralProfileProperties.PhysicalWeight { get { return @PhysicalWeight; } }	
@@ -214,6 +214,17 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@ProfileDefinition != null)
+					yield return @ProfileDefinition;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

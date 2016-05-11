@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcTypeObject", 42)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTypeObject : IfcObjectDefinition, IInstantiableEntity, IIfcTypeObject, IEquatable<@IfcTypeObject>
+	public  partial class @IfcTypeObject : IfcObjectDefinition, IInstantiableEntity, IIfcTypeObject, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTypeObject>
 	{
 		#region IIfcTypeObject explicit implementation
 		IfcIdentifier? IIfcTypeObject.ApplicableOccurrence { get { return @ApplicableOccurrence; } }	
@@ -167,6 +167,32 @@ namespace Xbim.Ifc4.Kernel
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @HasPropertySets)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @HasPropertySets)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcProjectLibrary", 1229)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProjectLibrary : IfcContext, IInstantiableEntity, IIfcProjectLibrary, IEquatable<@IfcProjectLibrary>
+	public  partial class @IfcProjectLibrary : IfcContext, IInstantiableEntity, IIfcProjectLibrary, IContainsEntityReferences, IEquatable<@IfcProjectLibrary>
 	{
 		#region IIfcProjectLibrary explicit implementation
 		 
@@ -115,6 +115,21 @@ namespace Xbim.Ifc4.Kernel
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RepresentationContexts)
+					yield return entity;
+				if (@UnitsInContext != null)
+					yield return @UnitsInContext;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

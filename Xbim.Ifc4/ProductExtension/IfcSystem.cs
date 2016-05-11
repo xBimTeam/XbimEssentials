@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcSystem", 229)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSystem : IfcGroup, IInstantiableEntity, IIfcSystem, IEquatable<@IfcSystem>
+	public  partial class @IfcSystem : IfcGroup, IInstantiableEntity, IIfcSystem, IContainsEntityReferences, IEquatable<@IfcSystem>
 	{
 		#region IIfcSystem explicit implementation
 		 
@@ -125,6 +125,17 @@ namespace Xbim.Ifc4.ProductExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

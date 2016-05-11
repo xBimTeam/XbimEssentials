@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcReparametrisedCompositeCurveSegment", 1255)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReparametrisedCompositeCurveSegment : IfcCompositeCurveSegment, IInstantiableEntity, IIfcReparametrisedCompositeCurveSegment, IEquatable<@IfcReparametrisedCompositeCurveSegment>
+	public  partial class @IfcReparametrisedCompositeCurveSegment : IfcCompositeCurveSegment, IInstantiableEntity, IIfcReparametrisedCompositeCurveSegment, IContainsEntityReferences, IEquatable<@IfcReparametrisedCompositeCurveSegment>
 	{
 		#region IIfcReparametrisedCompositeCurveSegment explicit implementation
 		IfcParameterValue IIfcReparametrisedCompositeCurveSegment.ParamLength { get { return @ParamLength; } }	
@@ -135,6 +135,17 @@ namespace Xbim.Ifc4.GeometryResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@ParentCurve != null)
+					yield return @ParentCurve;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

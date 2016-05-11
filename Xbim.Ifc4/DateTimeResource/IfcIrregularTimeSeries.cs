@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.DateTimeResource
 {
 	[ExpressType("IfcIrregularTimeSeries", 570)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcIrregularTimeSeries : IfcTimeSeries, IInstantiableEntity, IIfcIrregularTimeSeries, IEquatable<@IfcIrregularTimeSeries>
+	public  partial class @IfcIrregularTimeSeries : IfcTimeSeries, IInstantiableEntity, IIfcIrregularTimeSeries, IContainsEntityReferences, IEquatable<@IfcIrregularTimeSeries>
 	{
 		#region IIfcIrregularTimeSeries explicit implementation
 		IEnumerable<IIfcIrregularTimeSeriesValue> IIfcIrregularTimeSeries.Values { get { return @Values; } }	
@@ -136,6 +136,19 @@ namespace Xbim.Ifc4.DateTimeResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Unit != null)
+					yield return @Unit;
+				foreach(var entity in @Values)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

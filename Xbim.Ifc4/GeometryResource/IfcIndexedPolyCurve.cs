@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcIndexedPolyCurve", 1190)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcIndexedPolyCurve : IfcBoundedCurve, IInstantiableEntity, IIfcIndexedPolyCurve, IEquatable<@IfcIndexedPolyCurve>
+	public  partial class @IfcIndexedPolyCurve : IfcBoundedCurve, IInstantiableEntity, IIfcIndexedPolyCurve, IContainsEntityReferences, IEquatable<@IfcIndexedPolyCurve>
 	{
 		#region IIfcIndexedPolyCurve explicit implementation
 		IIfcCartesianPointList IIfcIndexedPolyCurve.Points { get { return @Points; } }	
@@ -168,6 +168,17 @@ namespace Xbim.Ifc4.GeometryResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Points != null)
+					yield return @Points;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelSpaceBoundary", 15)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelSpaceBoundary : IfcRelConnects, IInstantiableEntity, IIfcRelSpaceBoundary, IEquatable<@IfcRelSpaceBoundary>
+	public  partial class @IfcRelSpaceBoundary : IfcRelConnects, IInstantiableEntity, IIfcRelSpaceBoundary, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelSpaceBoundary>
 	{
 		#region IIfcRelSpaceBoundary explicit implementation
 		IIfcSpace IIfcRelSpaceBoundary.RelatingSpace { get { return @RelatingSpace; } }	
@@ -219,6 +219,38 @@ namespace Xbim.Ifc2x3.ProductExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@RelatingSpace != null)
+					yield return @RelatingSpace;
+				if (@RelatedBuildingElement != null)
+					yield return @RelatedBuildingElement;
+				if (@ConnectionGeometry != null)
+					yield return @ConnectionGeometry;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingSpace != null)
+					yield return @RelatingSpace;
+				if (@RelatedBuildingElement != null)
+					yield return @RelatedBuildingElement;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

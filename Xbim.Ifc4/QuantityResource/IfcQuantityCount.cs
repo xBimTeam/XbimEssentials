@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.QuantityResource
 {
 	[ExpressType("IfcQuantityCount", 457)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityCount : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityCount, IEquatable<@IfcQuantityCount>
+	public  partial class @IfcQuantityCount : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityCount, IContainsEntityReferences, IEquatable<@IfcQuantityCount>
 	{
 		#region IIfcQuantityCount explicit implementation
 		IfcCountMeasure IIfcQuantityCount.CountValue { get { return @CountValue; } }	
@@ -155,6 +155,17 @@ namespace Xbim.Ifc4.QuantityResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Unit != null)
+					yield return @Unit;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

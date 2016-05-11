@@ -220,6 +220,11 @@ namespace Xbim.CobieExpress.IO
             return _model.Activate(owningEntity, write);
         }
 
+        public void Activate(IPersistEntity entity, int depth)
+        {
+            _model.Activate(entity, depth);
+        }
+
         public void Delete(IPersistEntity entity)
         {
             _model.Delete(entity);
@@ -254,6 +259,20 @@ namespace Xbim.CobieExpress.IO
         public event NewEntityHandler EntityNew;
         public event ModifiedEntityHandler EntityModified;
         public event DeletedEntityHandler EntityDeleted;
+        public IInverseCache BeginCaching()
+        {
+            return _model.BeginCaching();
+        }
+
+        public void StopCaching()
+        {
+            _model.StopCaching();
+        }
+
+        public IInverseCache InverseCache
+        {
+            get { return _model.InverseCache; }
+        }
 
         private void InitEvents()
         {

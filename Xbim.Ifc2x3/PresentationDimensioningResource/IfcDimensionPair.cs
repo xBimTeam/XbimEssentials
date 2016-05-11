@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcDimensionPair", 745)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDimensionPair : IfcDraughtingCalloutRelationship, IInstantiableEntity, IIfcDimensionPair, IEquatable<@IfcDimensionPair>
+	public  partial class @IfcDimensionPair : IfcDraughtingCalloutRelationship, IInstantiableEntity, IIfcDimensionPair, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDimensionPair>
 	{
 		#region IIfcDimensionPair explicit implementation
 		 
@@ -110,6 +110,34 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@RelatingDraughtingCallout != null)
+					yield return @RelatingDraughtingCallout;
+				if (@RelatedDraughtingCallout != null)
+					yield return @RelatedDraughtingCallout;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingDraughtingCallout != null)
+					yield return @RelatingDraughtingCallout;
+				if (@RelatedDraughtingCallout != null)
+					yield return @RelatedDraughtingCallout;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

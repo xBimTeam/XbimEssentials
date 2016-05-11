@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 {
 	[ExpressType("IfcOccupant", 641)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOccupant : IfcActor, IInstantiableEntity, IIfcOccupant, IEquatable<@IfcOccupant>
+	public  partial class @IfcOccupant : IfcActor, IInstantiableEntity, IIfcOccupant, IContainsEntityReferences, IEquatable<@IfcOccupant>
 	{
 		#region IIfcOccupant explicit implementation
 		IfcOccupantTypeEnum? IIfcOccupant.PredefinedType { get { return @PredefinedType; } }	
@@ -138,6 +138,19 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@TheActor != null)
+					yield return @TheActor;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

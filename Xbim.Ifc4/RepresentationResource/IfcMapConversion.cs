@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.RepresentationResource
 {
 	[ExpressType("IfcMapConversion", 1200)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMapConversion : IfcCoordinateOperation, IInstantiableEntity, IIfcMapConversion, IEquatable<@IfcMapConversion>
+	public  partial class @IfcMapConversion : IfcCoordinateOperation, IInstantiableEntity, IIfcMapConversion, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMapConversion>
 	{
 		#region IIfcMapConversion explicit implementation
 		IfcLengthMeasure IIfcMapConversion.Eastings { get { return @Eastings; } }	
@@ -234,6 +234,32 @@ namespace Xbim.Ifc4.RepresentationResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@SourceCRS != null)
+					yield return @SourceCRS;
+				if (@TargetCRS != null)
+					yield return @TargetCRS;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@SourceCRS != null)
+					yield return @SourceCRS;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

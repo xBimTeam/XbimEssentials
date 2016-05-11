@@ -43,7 +43,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcOpticalMaterialProperties", 718)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOpticalMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcOpticalMaterialProperties, IEquatable<@IfcOpticalMaterialProperties>
+	public  partial class @IfcOpticalMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcOpticalMaterialProperties, IContainsEntityReferences, IEquatable<@IfcOpticalMaterialProperties>
 	{
 		#region IIfcOpticalMaterialProperties explicit implementation
 		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.VisibleTransmittance { get { return @VisibleTransmittance; } }	
@@ -293,6 +293,17 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Material != null)
+					yield return @Material;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

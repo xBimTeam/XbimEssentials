@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcFaceSurface", 85)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFaceSurface : IfcFace, IInstantiableEntity, IIfcFaceSurface, IEquatable<@IfcFaceSurface>
+	public  partial class @IfcFaceSurface : IfcFace, IInstantiableEntity, IIfcFaceSurface, IContainsEntityReferences, IEquatable<@IfcFaceSurface>
 	{
 		#region IIfcFaceSurface explicit implementation
 		IIfcSurface IIfcFaceSurface.FaceSurface { get { return @FaceSurface; } }	
@@ -164,6 +164,19 @@ namespace Xbim.Ifc2x3.TopologyResource
 		}
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @Bounds)
+					yield return entity;
+				if (@FaceSurface != null)
+					yield return @FaceSurface;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

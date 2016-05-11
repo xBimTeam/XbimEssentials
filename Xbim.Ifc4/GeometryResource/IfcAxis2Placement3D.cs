@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcAxis2Placement3D", 448)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAxis2Placement3D : IfcPlacement, IInstantiableEntity, IIfcAxis2Placement3D, IEquatable<@IfcAxis2Placement3D>
+	public  partial class @IfcAxis2Placement3D : IfcPlacement, IInstantiableEntity, IIfcAxis2Placement3D, IContainsEntityReferences, IEquatable<@IfcAxis2Placement3D>
 	{
 		#region IIfcAxis2Placement3D explicit implementation
 		IIfcDirection IIfcAxis2Placement3D.Axis { get { return @Axis; } }	
@@ -196,6 +196,21 @@ namespace Xbim.Ifc4.GeometryResource
 		}
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Location != null)
+					yield return @Location;
+				if (@Axis != null)
+					yield return @Axis;
+				if (@RefDirection != null)
+					yield return @RefDirection;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

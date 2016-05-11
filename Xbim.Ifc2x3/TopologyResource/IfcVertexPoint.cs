@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcVertexPoint", 521)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVertexPoint : IfcVertex, IInstantiableEntity, IIfcVertexPoint, IEquatable<@IfcVertexPoint>
+	public  partial class @IfcVertexPoint : IfcVertex, IInstantiableEntity, IIfcVertexPoint, IContainsEntityReferences, IEquatable<@IfcVertexPoint>
 	{
 		#region IIfcVertexPoint explicit implementation
 		IIfcPoint IIfcVertexPoint.VertexGeometry { get { return @VertexGeometry; } }	
@@ -141,6 +141,17 @@ namespace Xbim.Ifc2x3.TopologyResource
 		}
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@VertexGeometry != null)
+					yield return @VertexGeometry;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

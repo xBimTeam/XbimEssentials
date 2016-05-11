@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IfcCircleHollowProfileDef", 114)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCircleHollowProfileDef : IfcCircleProfileDef, IInstantiableEntity, IIfcCircleHollowProfileDef, IEquatable<@IfcCircleHollowProfileDef>
+	public  partial class @IfcCircleHollowProfileDef : IfcCircleProfileDef, IInstantiableEntity, IIfcCircleHollowProfileDef, IContainsEntityReferences, IEquatable<@IfcCircleHollowProfileDef>
 	{
 		#region IIfcCircleHollowProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcCircleHollowProfileDef.WallThickness { get { return @WallThickness; } }	
@@ -136,6 +136,17 @@ namespace Xbim.Ifc4.ProfileResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Position != null)
+					yield return @Position;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

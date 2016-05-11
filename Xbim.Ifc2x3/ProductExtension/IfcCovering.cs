@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcCovering", 382)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCovering : IfcBuildingElement, IInstantiableEntity, IIfcCovering, IEquatable<@IfcCovering>
+	public  partial class @IfcCovering : IfcBuildingElement, IInstantiableEntity, IIfcCovering, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCovering>
 	{
 		#region IIfcCovering explicit implementation
 		IfcCoveringTypeEnum? IIfcCovering.PredefinedType { get { return @PredefinedType; } }	
@@ -163,6 +163,36 @@ namespace Xbim.Ifc2x3.ProductExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

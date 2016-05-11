@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcTrapeziumProfileDef", 561)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTrapeziumProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcTrapeziumProfileDef, IEquatable<@IfcTrapeziumProfileDef>
+	public  partial class @IfcTrapeziumProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcTrapeziumProfileDef, IContainsEntityReferences, IEquatable<@IfcTrapeziumProfileDef>
 	{
 		#region IIfcTrapeziumProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.BottomXDim { get { return @BottomXDim; } }	
@@ -195,6 +195,17 @@ namespace Xbim.Ifc2x3.ProfileResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Position != null)
+					yield return @Position;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

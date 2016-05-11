@@ -47,7 +47,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Job", 28)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieJob : CobieReferencedObject, IInstantiableEntity, ICobieJob, IEquatable<@CobieJob>
+	public  partial class @CobieJob : CobieReferencedObject, IInstantiableEntity, ICobieJob, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieJob>
 	{
 		#region ICobieJob explicit implementation
 		string ICobieJob.TaskNumber { get { return @TaskNumber; } }	
@@ -394,6 +394,50 @@ namespace Xbim.CobieExpress
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Created != null)
+					yield return @Created;
+				if (@ExternalSystem != null)
+					yield return @ExternalSystem;
+				if (@ExternalObject != null)
+					yield return @ExternalObject;
+				if (@JobType != null)
+					yield return @JobType;
+				if (@JobStatusType != null)
+					yield return @JobStatusType;
+				if (@DurationUnit != null)
+					yield return @DurationUnit;
+				if (@StartUnit != null)
+					yield return @StartUnit;
+				if (@FrequencyUnit != null)
+					yield return @FrequencyUnit;
+				if (@Priors != null)
+					yield return @Priors;
+				foreach(var entity in @Resources)
+					yield return entity;
+				if (@Type != null)
+					yield return @Type;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@Type != null)
+					yield return @Type;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

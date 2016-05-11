@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	[ExpressType("IfcServiceLifeFactor", 770)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcServiceLifeFactor : IfcPropertySetDefinition, IInstantiableEntity, IIfcServiceLifeFactor, IEquatable<@IfcServiceLifeFactor>
+	public  partial class @IfcServiceLifeFactor : IfcPropertySetDefinition, IInstantiableEntity, IIfcServiceLifeFactor, IContainsEntityReferences, IEquatable<@IfcServiceLifeFactor>
 	{
 		#region IIfcServiceLifeFactor explicit implementation
 		IfcServiceLifeFactorTypeEnum IIfcServiceLifeFactor.PredefinedType { get { return @PredefinedType; } }	
@@ -197,6 +197,17 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

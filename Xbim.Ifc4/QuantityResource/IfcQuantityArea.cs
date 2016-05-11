@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.QuantityResource
 {
 	[ExpressType("IfcQuantityArea", 495)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityArea : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityArea, IEquatable<@IfcQuantityArea>
+	public  partial class @IfcQuantityArea : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityArea, IContainsEntityReferences, IEquatable<@IfcQuantityArea>
 	{
 		#region IIfcQuantityArea explicit implementation
 		IfcAreaMeasure IIfcQuantityArea.AreaValue { get { return @AreaValue; } }	
@@ -155,6 +155,17 @@ namespace Xbim.Ifc4.QuantityResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Unit != null)
+					yield return @Unit;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

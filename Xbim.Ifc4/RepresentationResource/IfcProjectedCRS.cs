@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.RepresentationResource
 {
 	[ExpressType("IfcProjectedCRS", 1230)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProjectedCRS : IfcCoordinateReferenceSystem, IInstantiableEntity, IIfcProjectedCRS, IEquatable<@IfcProjectedCRS>
+	public  partial class @IfcProjectedCRS : IfcCoordinateReferenceSystem, IInstantiableEntity, IIfcProjectedCRS, IContainsEntityReferences, IEquatable<@IfcProjectedCRS>
 	{
 		#region IIfcProjectedCRS explicit implementation
 		IfcIdentifier? IIfcProjectedCRS.MapProjection { get { return @MapProjection; } }	
@@ -176,6 +176,17 @@ namespace Xbim.Ifc4.RepresentationResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@MapUnit != null)
+					yield return @MapUnit;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

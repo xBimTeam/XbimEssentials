@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralPlanarActionVarying", 357)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralPlanarActionVarying : IfcStructuralPlanarAction, IInstantiableEntity, IIfcStructuralPlanarActionVarying, IEquatable<@IfcStructuralPlanarActionVarying>
+	public  partial class @IfcStructuralPlanarActionVarying : IfcStructuralPlanarAction, IInstantiableEntity, IIfcStructuralPlanarActionVarying, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralPlanarActionVarying>
 	{
 		#region IIfcStructuralPlanarActionVarying explicit implementation
 		IIfcShapeAspect IIfcStructuralPlanarActionVarying.VaryingAppliedLoadLocation { get { return @VaryingAppliedLoadLocation; } }	
@@ -178,6 +178,46 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				if (@AppliedLoad != null)
+					yield return @AppliedLoad;
+				if (@CausedBy != null)
+					yield return @CausedBy;
+				if (@VaryingAppliedLoadLocation != null)
+					yield return @VaryingAppliedLoadLocation;
+				foreach(var entity in @SubsequentAppliedLoads)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				if (@CausedBy != null)
+					yield return @CausedBy;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

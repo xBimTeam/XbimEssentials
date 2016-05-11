@@ -43,7 +43,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcRelConnectsStructuralMember", 321)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsStructuralMember : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsStructuralMember, IEquatable<@IfcRelConnectsStructuralMember>
+	public  partial class @IfcRelConnectsStructuralMember : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsStructuralMember, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsStructuralMember>
 	{
 		#region IIfcRelConnectsStructuralMember explicit implementation
 		IIfcStructuralMember IIfcRelConnectsStructuralMember.RelatingStructuralMember { get { return @RelatingStructuralMember; } }	
@@ -241,6 +241,42 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@RelatingStructuralMember != null)
+					yield return @RelatingStructuralMember;
+				if (@RelatedStructuralConnection != null)
+					yield return @RelatedStructuralConnection;
+				if (@AppliedCondition != null)
+					yield return @AppliedCondition;
+				if (@AdditionalConditions != null)
+					yield return @AdditionalConditions;
+				if (@ConditionCoordinateSystem != null)
+					yield return @ConditionCoordinateSystem;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingStructuralMember != null)
+					yield return @RelatingStructuralMember;
+				if (@RelatedStructuralConnection != null)
+					yield return @RelatedStructuralConnection;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

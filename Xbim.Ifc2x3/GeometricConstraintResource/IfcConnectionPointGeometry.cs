@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcConnectionPointGeometry", 71)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectionPointGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionPointGeometry, IEquatable<@IfcConnectionPointGeometry>
+	public  partial class @IfcConnectionPointGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionPointGeometry, IContainsEntityReferences, IEquatable<@IfcConnectionPointGeometry>
 	{
 		#region IIfcConnectionPointGeometry explicit implementation
 		IIfcPointOrVertexPoint IIfcConnectionPointGeometry.PointOnRelatingElement { get { return @PointOnRelatingElement; } }	
@@ -149,6 +149,19 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@PointOnRelatingElement != null)
+					yield return @PointOnRelatingElement;
+				if (@PointOnRelatedElement != null)
+					yield return @PointOnRelatedElement;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

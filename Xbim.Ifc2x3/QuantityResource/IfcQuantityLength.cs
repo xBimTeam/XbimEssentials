@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 {
 	[ExpressType("IfcQuantityLength", 527)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityLength : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityLength, IEquatable<@IfcQuantityLength>
+	public  partial class @IfcQuantityLength : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityLength, IContainsEntityReferences, IEquatable<@IfcQuantityLength>
 	{
 		#region IIfcQuantityLength explicit implementation
 		IfcLengthMeasure IIfcQuantityLength.LengthValue { get { return @LengthValue; } }	
@@ -135,6 +135,17 @@ namespace Xbim.Ifc2x3.QuantityResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Unit != null)
+					yield return @Unit;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

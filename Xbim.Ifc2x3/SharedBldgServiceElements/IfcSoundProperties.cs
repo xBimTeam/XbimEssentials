@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcSoundProperties", 474)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSoundProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcSoundProperties, IEquatable<@IfcSoundProperties>
+	public  partial class @IfcSoundProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcSoundProperties, IContainsEntityReferences, IEquatable<@IfcSoundProperties>
 	{
 		#region IIfcSoundProperties explicit implementation
 		IfcBoolean IIfcSoundProperties.IsAttenuating { get { return @IsAttenuating; } }	
@@ -174,6 +174,19 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @SoundValues)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

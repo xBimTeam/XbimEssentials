@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 {
 	[ExpressType("IfcLightSourceSpot", 760)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightSourceSpot : IfcLightSourcePositional, IInstantiableEntity, IIfcLightSourceSpot, IEquatable<@IfcLightSourceSpot>
+	public  partial class @IfcLightSourceSpot : IfcLightSourcePositional, IInstantiableEntity, IIfcLightSourceSpot, IContainsEntityReferences, IEquatable<@IfcLightSourceSpot>
 	{
 		#region IIfcLightSourceSpot explicit implementation
 		IIfcDirection IIfcLightSourceSpot.Orientation { get { return @Orientation; } }	
@@ -202,6 +202,21 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@LightColour != null)
+					yield return @LightColour;
+				if (@Position != null)
+					yield return @Position;
+				if (@Orientation != null)
+					yield return @Orientation;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

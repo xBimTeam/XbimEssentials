@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcActor", 250)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcActor : IfcObject, IInstantiableEntity, IIfcActor, IEquatable<@IfcActor>
+	public  partial class @IfcActor : IfcObject, IInstantiableEntity, IIfcActor, IContainsEntityReferences, IEquatable<@IfcActor>
 	{
 		#region IIfcActor explicit implementation
 		IIfcActorSelect IIfcActor.TheActor { get { return @TheActor; } }	
@@ -150,6 +150,19 @@ namespace Xbim.Ifc4.Kernel
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@TheActor != null)
+					yield return @TheActor;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcRelAggregates", 631)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAggregates : IfcRelDecomposes, IInstantiableEntity, IIfcRelAggregates, IEquatable<@IfcRelAggregates>
+	public  partial class @IfcRelAggregates : IfcRelDecomposes, IInstantiableEntity, IIfcRelAggregates, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAggregates>
 	{
 		#region IIfcRelAggregates explicit implementation
 		IIfcObjectDefinition IIfcRelAggregates.RelatingObject { get { return @RelatingObject; } }	
@@ -154,6 +154,36 @@ namespace Xbim.Ifc4.Kernel
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@RelatingObject != null)
+					yield return @RelatingObject;
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingObject != null)
+					yield return @RelatingObject;
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

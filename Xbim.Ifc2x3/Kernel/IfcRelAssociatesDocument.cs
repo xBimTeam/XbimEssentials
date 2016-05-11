@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRelAssociatesDocument", 307)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesDocument : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesDocument, IEquatable<@IfcRelAssociatesDocument>
+	public  partial class @IfcRelAssociatesDocument : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesDocument, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesDocument>
 	{
 		#region IIfcRelAssociatesDocument explicit implementation
 		IIfcDocumentSelect IIfcRelAssociatesDocument.RelatingDocument { get { return @RelatingDocument; } }	
@@ -137,6 +137,34 @@ namespace Xbim.Ifc2x3.Kernel
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingDocument != null)
+					yield return @RelatingDocument;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

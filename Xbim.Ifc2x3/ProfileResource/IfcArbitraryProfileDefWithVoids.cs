@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcArbitraryProfileDefWithVoids", 116)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcArbitraryProfileDefWithVoids : IfcArbitraryClosedProfileDef, IInstantiableEntity, IIfcArbitraryProfileDefWithVoids, IEquatable<@IfcArbitraryProfileDefWithVoids>
+	public  partial class @IfcArbitraryProfileDefWithVoids : IfcArbitraryClosedProfileDef, IInstantiableEntity, IIfcArbitraryProfileDefWithVoids, IContainsEntityReferences, IEquatable<@IfcArbitraryProfileDefWithVoids>
 	{
 		#region IIfcArbitraryProfileDefWithVoids explicit implementation
 		IEnumerable<IIfcCurve> IIfcArbitraryProfileDefWithVoids.InnerCurves { get { return @InnerCurves; } }	
@@ -132,6 +132,19 @@ namespace Xbim.Ifc2x3.ProfileResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OuterCurve != null)
+					yield return @OuterCurve;
+				foreach(var entity in @InnerCurves)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

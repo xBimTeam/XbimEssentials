@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 {
 	[ExpressType("IfcPresentationLayerWithStyle", 259)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPresentationLayerWithStyle : IfcPresentationLayerAssignment, IInstantiableEntity, IIfcPresentationLayerWithStyle, IEquatable<@IfcPresentationLayerWithStyle>
+	public  partial class @IfcPresentationLayerWithStyle : IfcPresentationLayerAssignment, IInstantiableEntity, IIfcPresentationLayerWithStyle, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPresentationLayerWithStyle>
 	{
 		#region IIfcPresentationLayerWithStyle explicit implementation
 		IfcLogical IIfcPresentationLayerWithStyle.LayerOn { get { return @LayerOn; } }	
@@ -194,6 +194,32 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @AssignedItems)
+					yield return entity;
+				foreach(var entity in @LayerStyles)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @AssignedItems)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

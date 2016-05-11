@@ -47,7 +47,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Contact", 12)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieContact : CobieReferencedObject, IInstantiableEntity, ICobieContact, IEquatable<@CobieContact>
+	public  partial class @CobieContact : CobieReferencedObject, IInstantiableEntity, ICobieContact, IContainsEntityReferences, IEquatable<@CobieContact>
 	{
 		#region ICobieContact explicit implementation
 		string ICobieContact.Email { get { return @Email; } }	
@@ -396,6 +396,23 @@ namespace Xbim.CobieExpress
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Created != null)
+					yield return @Created;
+				if (@ExternalSystem != null)
+					yield return @ExternalSystem;
+				if (@ExternalObject != null)
+					yield return @ExternalObject;
+				if (@Category != null)
+					yield return @Category;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

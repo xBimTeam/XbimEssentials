@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcElementQuantity", 458)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElementQuantity : IfcQuantitySet, IInstantiableEntity, IIfcElementQuantity, IEquatable<@IfcElementQuantity>
+	public  partial class @IfcElementQuantity : IfcQuantitySet, IInstantiableEntity, IIfcElementQuantity, IContainsEntityReferences, IEquatable<@IfcElementQuantity>
 	{
 		#region IIfcElementQuantity explicit implementation
 		IfcLabel? IIfcElementQuantity.MethodOfMeasurement { get { return @MethodOfMeasurement; } }	
@@ -155,6 +155,19 @@ namespace Xbim.Ifc4.ProductExtension
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @Quantities)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

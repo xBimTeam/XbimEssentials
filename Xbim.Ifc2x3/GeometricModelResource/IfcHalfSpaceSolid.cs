@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcHalfSpaceSolid", 338)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcHalfSpaceSolid : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcHalfSpaceSolid, IEquatable<@IfcHalfSpaceSolid>
+	public  partial class @IfcHalfSpaceSolid : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcHalfSpaceSolid, IContainsEntityReferences, IEquatable<@IfcHalfSpaceSolid>
 	{
 		#region IIfcHalfSpaceSolid explicit implementation
 		IIfcSurface IIfcHalfSpaceSolid.BaseSurface { get { return @BaseSurface; } }	
@@ -173,6 +173,17 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		}
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@BaseSurface != null)
+					yield return @BaseSurface;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -40,7 +40,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Spare", 26)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieSpare : CobieReferencedObject, IInstantiableEntity, ICobieSpare, IEquatable<@CobieSpare>
+	public  partial class @CobieSpare : CobieReferencedObject, IInstantiableEntity, ICobieSpare, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieSpare>
 	{
 		#region ICobieSpare explicit implementation
 		string ICobieSpare.Name { get { return @Name; } }	
@@ -254,6 +254,40 @@ namespace Xbim.CobieExpress
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Created != null)
+					yield return @Created;
+				if (@ExternalSystem != null)
+					yield return @ExternalSystem;
+				if (@ExternalObject != null)
+					yield return @ExternalObject;
+				if (@SpareType != null)
+					yield return @SpareType;
+				if (@Type != null)
+					yield return @Type;
+				foreach(var entity in @Suppliers)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@Type != null)
+					yield return @Type;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

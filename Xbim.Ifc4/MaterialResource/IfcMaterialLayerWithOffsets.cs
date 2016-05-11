@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.MaterialResource
 {
 	[ExpressType("IfcMaterialLayerWithOffsets", 1204)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialLayerWithOffsets : IfcMaterialLayer, IInstantiableEntity, IIfcMaterialLayerWithOffsets, IEquatable<@IfcMaterialLayerWithOffsets>
+	public  partial class @IfcMaterialLayerWithOffsets : IfcMaterialLayer, IInstantiableEntity, IIfcMaterialLayerWithOffsets, IContainsEntityReferences, IEquatable<@IfcMaterialLayerWithOffsets>
 	{
 		#region IIfcMaterialLayerWithOffsets explicit implementation
 		IfcLayerSetDirectionEnum IIfcMaterialLayerWithOffsets.OffsetDirection { get { return @OffsetDirection; } }	
@@ -156,6 +156,17 @@ namespace Xbim.Ifc4.MaterialResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Material != null)
+					yield return @Material;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

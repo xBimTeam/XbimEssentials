@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IfcElectricTimeControl", 1162)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElectricTimeControl : IfcFlowController, IInstantiableEntity, IIfcElectricTimeControl, IEquatable<@IfcElectricTimeControl>
+	public  partial class @IfcElectricTimeControl : IfcFlowController, IInstantiableEntity, IIfcElectricTimeControl, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcElectricTimeControl>
 	{
 		#region IIfcElectricTimeControl explicit implementation
 		IfcElectricTimeControlTypeEnum? IIfcElectricTimeControl.PredefinedType { get { return @PredefinedType; } }	
@@ -140,6 +140,36 @@ namespace Xbim.Ifc4.ElectricalDomain
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

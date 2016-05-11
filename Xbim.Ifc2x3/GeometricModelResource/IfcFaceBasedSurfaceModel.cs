@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcFaceBasedSurfaceModel", 438)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFaceBasedSurfaceModel : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFaceBasedSurfaceModel, IEquatable<@IfcFaceBasedSurfaceModel>
+	public  partial class @IfcFaceBasedSurfaceModel : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFaceBasedSurfaceModel, IContainsEntityReferences, IEquatable<@IfcFaceBasedSurfaceModel>
 	{
 		#region IIfcFaceBasedSurfaceModel explicit implementation
 		IEnumerable<IIfcConnectedFaceSet> IIfcFaceBasedSurfaceModel.FbsmFaces { get { return @FbsmFaces; } }	
@@ -153,6 +153,17 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		}
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @FbsmFaces)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

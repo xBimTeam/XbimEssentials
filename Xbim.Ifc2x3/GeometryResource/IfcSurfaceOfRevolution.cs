@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcSurfaceOfRevolution", 109)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceOfRevolution : IfcSweptSurface, IInstantiableEntity, IIfcSurfaceOfRevolution, IEquatable<@IfcSurfaceOfRevolution>
+	public  partial class @IfcSurfaceOfRevolution : IfcSweptSurface, IInstantiableEntity, IIfcSurfaceOfRevolution, IContainsEntityReferences, IEquatable<@IfcSurfaceOfRevolution>
 	{
 		#region IIfcSurfaceOfRevolution explicit implementation
 		IIfcAxis1Placement IIfcSurfaceOfRevolution.AxisPosition { get { return @AxisPosition; } }	
@@ -155,6 +155,21 @@ namespace Xbim.Ifc2x3.GeometryResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@SweptCurve != null)
+					yield return @SweptCurve;
+				if (@Position != null)
+					yield return @Position;
+				if (@AxisPosition != null)
+					yield return @AxisPosition;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

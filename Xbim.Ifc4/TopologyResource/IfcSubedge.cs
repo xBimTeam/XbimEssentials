@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.TopologyResource
 {
 	[ExpressType("IfcSubedge", 487)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSubedge : IfcEdge, IInstantiableEntity, IIfcSubedge, IEquatable<@IfcSubedge>
+	public  partial class @IfcSubedge : IfcEdge, IInstantiableEntity, IIfcSubedge, IContainsEntityReferences, IEquatable<@IfcSubedge>
 	{
 		#region IIfcSubedge explicit implementation
 		IIfcEdge IIfcSubedge.ParentEdge { get { return @ParentEdge; } }	
@@ -133,6 +133,21 @@ namespace Xbim.Ifc4.TopologyResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@EdgeStart != null)
+					yield return @EdgeStart;
+				if (@EdgeEnd != null)
+					yield return @EdgeEnd;
+				if (@ParentEdge != null)
+					yield return @ParentEdge;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

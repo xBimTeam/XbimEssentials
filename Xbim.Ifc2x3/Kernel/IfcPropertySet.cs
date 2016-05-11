@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcPropertySet", 666)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertySet : IfcPropertySetDefinition, IInstantiableEntity, IIfcPropertySet, IEquatable<@IfcPropertySet>
+	public  partial class @IfcPropertySet : IfcPropertySetDefinition, IInstantiableEntity, IIfcPropertySet, IContainsEntityReferences, IEquatable<@IfcPropertySet>
 	{
 		#region IIfcPropertySet explicit implementation
 		IEnumerable<IIfcProperty> IIfcPropertySet.HasProperties { get { return @HasProperties; } }	
@@ -133,6 +133,19 @@ namespace Xbim.Ifc2x3.Kernel
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @HasProperties)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

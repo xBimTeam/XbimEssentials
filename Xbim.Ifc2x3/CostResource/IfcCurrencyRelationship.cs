@@ -43,7 +43,7 @@ namespace Xbim.Ifc2x3.CostResource
 {
 	[ExpressType("IfcCurrencyRelationship", 195)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurrencyRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcCurrencyRelationship, IEquatable<@IfcCurrencyRelationship>
+	public  partial class @IfcCurrencyRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcCurrencyRelationship, IContainsEntityReferences, IEquatable<@IfcCurrencyRelationship>
 	{
 		#region IIfcCurrencyRelationship explicit implementation
 		IIfcMonetaryUnit IIfcCurrencyRelationship.RelatingMonetaryUnit { get { return @RelatingMonetaryUnit; } }	
@@ -321,6 +321,23 @@ namespace Xbim.Ifc2x3.CostResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@RelatingMonetaryUnit != null)
+					yield return @RelatingMonetaryUnit;
+				if (@RelatedMonetaryUnit != null)
+					yield return @RelatedMonetaryUnit;
+				if (@RateDateTime != null)
+					yield return @RateDateTime;
+				if (@RateSource != null)
+					yield return @RateSource;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

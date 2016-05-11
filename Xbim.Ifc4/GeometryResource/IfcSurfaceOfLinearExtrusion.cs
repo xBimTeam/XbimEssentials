@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcSurfaceOfLinearExtrusion", 256)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceOfLinearExtrusion : IfcSweptSurface, IInstantiableEntity, IIfcSurfaceOfLinearExtrusion, IEquatable<@IfcSurfaceOfLinearExtrusion>
+	public  partial class @IfcSurfaceOfLinearExtrusion : IfcSweptSurface, IInstantiableEntity, IIfcSurfaceOfLinearExtrusion, IContainsEntityReferences, IEquatable<@IfcSurfaceOfLinearExtrusion>
 	{
 		#region IIfcSurfaceOfLinearExtrusion explicit implementation
 		IIfcDirection IIfcSurfaceOfLinearExtrusion.ExtrudedDirection { get { return @ExtrudedDirection; } }	
@@ -171,6 +171,21 @@ namespace Xbim.Ifc4.GeometryResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@SweptCurve != null)
+					yield return @SweptCurve;
+				if (@Position != null)
+					yield return @Position;
+				if (@ExtrudedDirection != null)
+					yield return @ExtrudedDirection;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

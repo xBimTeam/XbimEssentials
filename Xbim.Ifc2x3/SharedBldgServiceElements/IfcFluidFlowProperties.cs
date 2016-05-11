@@ -52,7 +52,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcFluidFlowProperties", 466)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFluidFlowProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcFluidFlowProperties, IEquatable<@IfcFluidFlowProperties>
+	public  partial class @IfcFluidFlowProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcFluidFlowProperties, IContainsEntityReferences, IEquatable<@IfcFluidFlowProperties>
 	{
 		#region IIfcFluidFlowProperties explicit implementation
 		IfcPropertySourceEnum IIfcFluidFlowProperties.PropertySource { get { return @PropertySource; } }	
@@ -419,6 +419,31 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@FlowConditionTimeSeries != null)
+					yield return @FlowConditionTimeSeries;
+				if (@VelocityTimeSeries != null)
+					yield return @VelocityTimeSeries;
+				if (@FlowrateTimeSeries != null)
+					yield return @FlowrateTimeSeries;
+				if (@Fluid != null)
+					yield return @Fluid;
+				if (@PressureTimeSeries != null)
+					yield return @PressureTimeSeries;
+				if (@WetBulbTemperatureTimeSeries != null)
+					yield return @WetBulbTemperatureTimeSeries;
+				if (@TemperatureTimeSeries != null)
+					yield return @TemperatureTimeSeries;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

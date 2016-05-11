@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 {
 	[ExpressType("IfcDistributionCircuit", 1149)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDistributionCircuit : IfcDistributionSystem, IInstantiableEntity, IIfcDistributionCircuit, IEquatable<@IfcDistributionCircuit>
+	public  partial class @IfcDistributionCircuit : IfcDistributionSystem, IInstantiableEntity, IIfcDistributionCircuit, IContainsEntityReferences, IEquatable<@IfcDistributionCircuit>
 	{
 		#region IIfcDistributionCircuit explicit implementation
 		 
@@ -113,6 +113,17 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

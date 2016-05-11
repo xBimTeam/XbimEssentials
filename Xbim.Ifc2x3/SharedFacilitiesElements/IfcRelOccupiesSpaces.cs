@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	[ExpressType("IfcRelOccupiesSpaces", 324)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelOccupiesSpaces : IfcRelAssignsToActor, IInstantiableEntity, IIfcRelOccupiesSpaces, IEquatable<@IfcRelOccupiesSpaces>
+	public  partial class @IfcRelOccupiesSpaces : IfcRelAssignsToActor, IInstantiableEntity, IIfcRelOccupiesSpaces, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelOccupiesSpaces>
 	{
 		#region IIfcRelOccupiesSpaces explicit implementation
 		 
@@ -115,6 +115,38 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingActor != null)
+					yield return @RelatingActor;
+				if (@ActingRole != null)
+					yield return @ActingRole;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingActor != null)
+					yield return @RelatingActor;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

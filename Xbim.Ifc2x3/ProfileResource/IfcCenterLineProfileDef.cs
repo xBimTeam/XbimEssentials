@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcCenterLineProfileDef", 353)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCenterLineProfileDef : IfcArbitraryOpenProfileDef, IInstantiableEntity, IIfcCenterLineProfileDef, IEquatable<@IfcCenterLineProfileDef>
+	public  partial class @IfcCenterLineProfileDef : IfcArbitraryOpenProfileDef, IInstantiableEntity, IIfcCenterLineProfileDef, IContainsEntityReferences, IEquatable<@IfcCenterLineProfileDef>
 	{
 		#region IIfcCenterLineProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcCenterLineProfileDef.Thickness { get { return @Thickness; } }	
@@ -135,6 +135,17 @@ namespace Xbim.Ifc2x3.ProfileResource
         }
 
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Curve != null)
+					yield return @Curve;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code
