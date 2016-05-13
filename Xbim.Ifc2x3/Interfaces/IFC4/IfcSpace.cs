@@ -24,6 +24,10 @@ namespace Xbim.Ifc2x3.ProductExtension
                 return null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcSpace.ElevationWithFlooring 
 		{ 
@@ -32,6 +36,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 				if (!ElevationWithFlooring.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLengthMeasure(ElevationWithFlooring.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
 		{ 
@@ -41,6 +49,10 @@ namespace Xbim.Ifc2x3.ProductExtension
                 return !Name.HasValue ? null : new Ifc4.MeasureResource.IfcLabel(Name.Value);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcRelCoversSpaces> IIfcSpace.HasCoverings 
 		{ 

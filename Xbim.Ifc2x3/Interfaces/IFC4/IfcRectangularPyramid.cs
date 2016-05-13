@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(XLength);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRectangularPyramid.YLength 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(YLength);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRectangularPyramid.Height 
 		{ 
@@ -36,6 +44,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Height);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

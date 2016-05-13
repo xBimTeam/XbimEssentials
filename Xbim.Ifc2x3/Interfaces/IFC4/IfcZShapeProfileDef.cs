@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Depth);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcZShapeProfileDef.FlangeWidth 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(FlangeWidth);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcZShapeProfileDef.WebThickness 
 		{ 
@@ -36,6 +44,10 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(WebThickness);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcZShapeProfileDef.FlangeThickness 
 		{ 
@@ -43,6 +55,10 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(FlangeThickness);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcZShapeProfileDef.FilletRadius 
 		{ 
@@ -51,6 +67,10 @@ namespace Xbim.Ifc2x3.ProfileResource
 				if (!FilletRadius.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(FilletRadius.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcZShapeProfileDef.EdgeRadius 
 		{ 
@@ -59,6 +79,10 @@ namespace Xbim.Ifc2x3.ProfileResource
 				if (!EdgeRadius.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(EdgeRadius.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

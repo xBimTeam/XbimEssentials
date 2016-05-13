@@ -32,6 +32,10 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				return RelatingPropertyDefinition;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

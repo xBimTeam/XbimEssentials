@@ -29,6 +29,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 					return ifccsgprimitive3d;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

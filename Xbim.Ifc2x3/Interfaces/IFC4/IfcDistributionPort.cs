@@ -39,6 +39,10 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcDistributionPortTypeEnum? IIfcDistributionPort.PredefinedType 
 		{ 
@@ -48,6 +52,10 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcDistributionSystemEnum? IIfcDistributionPort.SystemType 
 		{ 
@@ -57,6 +65,10 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

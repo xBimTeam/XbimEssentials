@@ -24,6 +24,10 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
                 return IfcActionRequestTypeEnum.NOTDEFINED;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcActionRequest.Status 
 		{ 
@@ -33,6 +37,10 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcActionRequest.LongDescription 
 		{ 
@@ -42,6 +50,10 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			    return Name != null ? new Ifc4.MeasureResource.IfcText(Name) : null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

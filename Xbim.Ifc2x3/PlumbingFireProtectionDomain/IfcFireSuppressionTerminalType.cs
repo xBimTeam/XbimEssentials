@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcFireSuppressionTerminalType : IIfcFlowTerminalType
 	{
-		IfcFireSuppressionTerminalTypeEnum @PredefinedType { get; }
+		IfcFireSuppressionTerminalTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 	public  partial class @IfcFireSuppressionTerminalType : IfcFlowTerminalType, IInstantiableEntity, IIfcFireSuppressionTerminalType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFireSuppressionTerminalType>
 	{
 		#region IIfcFireSuppressionTerminalType explicit implementation
-		IfcFireSuppressionTerminalTypeEnum IIfcFireSuppressionTerminalType.PredefinedType { get { return @PredefinedType; } }	
+		IfcFireSuppressionTerminalTypeEnum IIfcFireSuppressionTerminalType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

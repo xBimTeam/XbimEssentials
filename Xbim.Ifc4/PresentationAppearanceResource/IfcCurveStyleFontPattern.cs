@@ -27,8 +27,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCurveStyleFontPattern : IIfcPresentationItem
 	{
-		IfcLengthMeasure @VisibleSegmentLength { get; }
-		IfcPositiveLengthMeasure @InvisibleSegmentLength { get; }
+		IfcLengthMeasure @VisibleSegmentLength { get;  set; }
+		IfcPositiveLengthMeasure @InvisibleSegmentLength { get;  set; }
 	
 	}
 }
@@ -40,8 +40,16 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcCurveStyleFontPattern : IfcPresentationItem, IInstantiableEntity, IIfcCurveStyleFontPattern, IEquatable<@IfcCurveStyleFontPattern>
 	{
 		#region IIfcCurveStyleFontPattern explicit implementation
-		IfcLengthMeasure IIfcCurveStyleFontPattern.VisibleSegmentLength { get { return @VisibleSegmentLength; } }	
-		IfcPositiveLengthMeasure IIfcCurveStyleFontPattern.InvisibleSegmentLength { get { return @InvisibleSegmentLength; } }	
+		IfcLengthMeasure IIfcCurveStyleFontPattern.VisibleSegmentLength { 
+			get { return @VisibleSegmentLength; } 
+ 
+			set { VisibleSegmentLength = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcCurveStyleFontPattern.InvisibleSegmentLength { 
+			get { return @InvisibleSegmentLength; } 
+ 
+			set { InvisibleSegmentLength = value;}
+		}	
 		 
 		#endregion
 

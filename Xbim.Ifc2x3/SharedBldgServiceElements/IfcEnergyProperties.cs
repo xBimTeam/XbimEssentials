@@ -27,8 +27,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcEnergyProperties : IIfcPropertySetDefinition
 	{
-		IfcEnergySequenceEnum? @EnergySequence { get; }
-		IfcLabel? @UserDefinedEnergySequence { get; }
+		IfcEnergySequenceEnum? @EnergySequence { get;  set; }
+		IfcLabel? @UserDefinedEnergySequence { get;  set; }
 	
 	}
 }
@@ -40,8 +40,16 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 	public  partial class @IfcEnergyProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcEnergyProperties, IContainsEntityReferences, IEquatable<@IfcEnergyProperties>
 	{
 		#region IIfcEnergyProperties explicit implementation
-		IfcEnergySequenceEnum? IIfcEnergyProperties.EnergySequence { get { return @EnergySequence; } }	
-		IfcLabel? IIfcEnergyProperties.UserDefinedEnergySequence { get { return @UserDefinedEnergySequence; } }	
+		IfcEnergySequenceEnum? IIfcEnergyProperties.EnergySequence { 
+			get { return @EnergySequence; } 
+ 
+			set { EnergySequence = value;}
+		}	
+		IfcLabel? IIfcEnergyProperties.UserDefinedEnergySequence { 
+			get { return @UserDefinedEnergySequence; } 
+ 
+			set { UserDefinedEnergySequence = value;}
+		}	
 		 
 		#endregion
 

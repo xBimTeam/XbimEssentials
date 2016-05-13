@@ -26,6 +26,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 return new Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure(value.Value);
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcModulusOfTranslationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.TranslationalStiffnessByLengthY 
 		{ 
@@ -37,6 +41,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 return new Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure(value.Value);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcModulusOfTranslationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.TranslationalStiffnessByLengthZ 
 		{ 
@@ -48,6 +56,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 return new Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure(value.Value);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthX 
 		{ 
@@ -57,6 +69,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if(!RotationalStiffnessByLengthX.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure(RotationalStiffnessByLengthX.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthY 
 		{ 
@@ -66,6 +82,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if(!RotationalStiffnessByLengthY.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure(RotationalStiffnessByLengthY.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthZ 
 		{ 
@@ -75,6 +95,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if(!RotationalStiffnessByLengthZ.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure(RotationalStiffnessByLengthZ.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

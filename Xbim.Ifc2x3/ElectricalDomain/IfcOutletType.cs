@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcOutletType : IIfcFlowTerminalType
 	{
-		IfcOutletTypeEnum @PredefinedType { get; }
+		IfcOutletTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 	public  partial class @IfcOutletType : IfcFlowTerminalType, IInstantiableEntity, IIfcOutletType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcOutletType>
 	{
 		#region IIfcOutletType explicit implementation
-		IfcOutletTypeEnum IIfcOutletType.PredefinedType { get { return @PredefinedType; } }	
+		IfcOutletTypeEnum IIfcOutletType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

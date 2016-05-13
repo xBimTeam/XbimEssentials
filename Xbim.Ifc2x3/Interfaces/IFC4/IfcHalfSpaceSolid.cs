@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				return BaseSurface;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcBoolean IIfcHalfSpaceSolid.AgreementFlag 
 		{ 
@@ -31,6 +35,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
                 return new Ifc4.MeasureResource.IfcBoolean(AgreementFlag);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.GeometryResource.IfcDimensionCount Ifc4.GeometricModelResource.IfcBooleanOperand.Dim 
 		{

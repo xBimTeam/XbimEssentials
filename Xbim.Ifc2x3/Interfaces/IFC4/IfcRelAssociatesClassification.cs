@@ -25,6 +25,10 @@ namespace Xbim.Ifc2x3.Kernel
 			    return reference;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

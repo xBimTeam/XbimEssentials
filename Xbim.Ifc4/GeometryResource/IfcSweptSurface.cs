@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSweptSurface : IIfcSurface
 	{
-		IIfcProfileDef @SweptCurve { get; }
-		IIfcAxis2Placement3D @Position { get; }
+		IIfcProfileDef @SweptCurve { get;  set; }
+		IIfcAxis2Placement3D @Position { get;  set; }
 	
 	}
 }
@@ -39,8 +39,18 @@ namespace Xbim.Ifc4.GeometryResource
 	public abstract partial class @IfcSweptSurface : IfcSurface, IIfcSweptSurface, IEquatable<@IfcSweptSurface>
 	{
 		#region IIfcSweptSurface explicit implementation
-		IIfcProfileDef IIfcSweptSurface.SweptCurve { get { return @SweptCurve; } }	
-		IIfcAxis2Placement3D IIfcSweptSurface.Position { get { return @Position; } }	
+		IIfcProfileDef IIfcSweptSurface.SweptCurve { 
+			get { return @SweptCurve; } 
+ 
+ 
+			set { SweptCurve = value as IfcProfileDef;}
+		}	
+		IIfcAxis2Placement3D IIfcSweptSurface.Position { 
+			get { return @Position; } 
+ 
+ 
+			set { Position = value as IfcAxis2Placement3D;}
+		}	
 		 
 		#endregion
 

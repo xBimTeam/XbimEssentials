@@ -26,11 +26,11 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRibPlateProfileProperties : IIfcProfileProperties
 	{
-		IfcPositiveLengthMeasure? @Thickness { get; }
-		IfcPositiveLengthMeasure? @RibHeight { get; }
-		IfcPositiveLengthMeasure? @RibWidth { get; }
-		IfcPositiveLengthMeasure? @RibSpacing { get; }
-		IfcRibPlateDirectionEnum @Direction { get; }
+		IfcPositiveLengthMeasure? @Thickness { get;  set; }
+		IfcPositiveLengthMeasure? @RibHeight { get;  set; }
+		IfcPositiveLengthMeasure? @RibWidth { get;  set; }
+		IfcPositiveLengthMeasure? @RibSpacing { get;  set; }
+		IfcRibPlateDirectionEnum @Direction { get;  set; }
 	
 	}
 }
@@ -42,11 +42,31 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 	public  partial class @IfcRibPlateProfileProperties : IfcProfileProperties, IInstantiableEntity, IIfcRibPlateProfileProperties, IContainsEntityReferences, IEquatable<@IfcRibPlateProfileProperties>
 	{
 		#region IIfcRibPlateProfileProperties explicit implementation
-		IfcPositiveLengthMeasure? IIfcRibPlateProfileProperties.Thickness { get { return @Thickness; } }	
-		IfcPositiveLengthMeasure? IIfcRibPlateProfileProperties.RibHeight { get { return @RibHeight; } }	
-		IfcPositiveLengthMeasure? IIfcRibPlateProfileProperties.RibWidth { get { return @RibWidth; } }	
-		IfcPositiveLengthMeasure? IIfcRibPlateProfileProperties.RibSpacing { get { return @RibSpacing; } }	
-		IfcRibPlateDirectionEnum IIfcRibPlateProfileProperties.Direction { get { return @Direction; } }	
+		IfcPositiveLengthMeasure? IIfcRibPlateProfileProperties.Thickness { 
+			get { return @Thickness; } 
+ 
+			set { Thickness = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcRibPlateProfileProperties.RibHeight { 
+			get { return @RibHeight; } 
+ 
+			set { RibHeight = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcRibPlateProfileProperties.RibWidth { 
+			get { return @RibWidth; } 
+ 
+			set { RibWidth = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcRibPlateProfileProperties.RibSpacing { 
+			get { return @RibSpacing; } 
+ 
+			set { RibSpacing = value;}
+		}	
+		IfcRibPlateDirectionEnum IIfcRibPlateProfileProperties.Direction { 
+			get { return @Direction; } 
+ 
+			set { Direction = value;}
+		}	
 		 
 		#endregion
 

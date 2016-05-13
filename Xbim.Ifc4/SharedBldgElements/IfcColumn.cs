@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcColumn : IIfcBuildingElement
 	{
-		IfcColumnTypeEnum? @PredefinedType { get; }
+		IfcColumnTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.SharedBldgElements
 	public  partial class @IfcColumn : IfcBuildingElement, IInstantiableEntity, IIfcColumn, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcColumn>
 	{
 		#region IIfcColumn explicit implementation
-		IfcColumnTypeEnum? IIfcColumn.PredefinedType { get { return @PredefinedType; } }	
+		IfcColumnTypeEnum? IIfcColumn.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

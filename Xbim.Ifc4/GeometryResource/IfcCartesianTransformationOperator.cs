@@ -26,10 +26,10 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCartesianTransformationOperator : IIfcGeometricRepresentationItem
 	{
-		IIfcDirection @Axis1 { get; }
-		IIfcDirection @Axis2 { get; }
-		IIfcCartesianPoint @LocalOrigin { get; }
-		IfcReal? @Scale { get; }
+		IIfcDirection @Axis1 { get;  set; }
+		IIfcDirection @Axis2 { get;  set; }
+		IIfcCartesianPoint @LocalOrigin { get;  set; }
+		IfcReal? @Scale { get;  set; }
 		IfcReal @Scl  { get ; }
 		IfcDimensionCount @Dim  { get ; }
 	
@@ -43,10 +43,29 @@ namespace Xbim.Ifc4.GeometryResource
 	public abstract partial class @IfcCartesianTransformationOperator : IfcGeometricRepresentationItem, IIfcCartesianTransformationOperator, IEquatable<@IfcCartesianTransformationOperator>
 	{
 		#region IIfcCartesianTransformationOperator explicit implementation
-		IIfcDirection IIfcCartesianTransformationOperator.Axis1 { get { return @Axis1; } }	
-		IIfcDirection IIfcCartesianTransformationOperator.Axis2 { get { return @Axis2; } }	
-		IIfcCartesianPoint IIfcCartesianTransformationOperator.LocalOrigin { get { return @LocalOrigin; } }	
-		IfcReal? IIfcCartesianTransformationOperator.Scale { get { return @Scale; } }	
+		IIfcDirection IIfcCartesianTransformationOperator.Axis1 { 
+			get { return @Axis1; } 
+ 
+ 
+			set { Axis1 = value as IfcDirection;}
+		}	
+		IIfcDirection IIfcCartesianTransformationOperator.Axis2 { 
+			get { return @Axis2; } 
+ 
+ 
+			set { Axis2 = value as IfcDirection;}
+		}	
+		IIfcCartesianPoint IIfcCartesianTransformationOperator.LocalOrigin { 
+			get { return @LocalOrigin; } 
+ 
+ 
+			set { LocalOrigin = value as IfcCartesianPoint;}
+		}	
+		IfcReal? IIfcCartesianTransformationOperator.Scale { 
+			get { return @Scale; } 
+ 
+			set { Scale = value;}
+		}	
 		 
 		#endregion
 

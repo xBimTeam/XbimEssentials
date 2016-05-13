@@ -26,12 +26,12 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCShapeProfileDef : IIfcParameterizedProfileDef
 	{
-		IfcPositiveLengthMeasure @Depth { get; }
-		IfcPositiveLengthMeasure @Width { get; }
-		IfcPositiveLengthMeasure @WallThickness { get; }
-		IfcPositiveLengthMeasure @Girth { get; }
-		IfcPositiveLengthMeasure? @InternalFilletRadius { get; }
-		IfcPositiveLengthMeasure? @CentreOfGravityInX { get; }
+		IfcPositiveLengthMeasure @Depth { get;  set; }
+		IfcPositiveLengthMeasure @Width { get;  set; }
+		IfcPositiveLengthMeasure @WallThickness { get;  set; }
+		IfcPositiveLengthMeasure @Girth { get;  set; }
+		IfcPositiveLengthMeasure? @InternalFilletRadius { get;  set; }
+		IfcPositiveLengthMeasure? @CentreOfGravityInX { get;  set; }
 	
 	}
 }
@@ -43,12 +43,36 @@ namespace Xbim.Ifc2x3.ProfileResource
 	public  partial class @IfcCShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCShapeProfileDef, IContainsEntityReferences, IEquatable<@IfcCShapeProfileDef>
 	{
 		#region IIfcCShapeProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcCShapeProfileDef.Depth { get { return @Depth; } }	
-		IfcPositiveLengthMeasure IIfcCShapeProfileDef.Width { get { return @Width; } }	
-		IfcPositiveLengthMeasure IIfcCShapeProfileDef.WallThickness { get { return @WallThickness; } }	
-		IfcPositiveLengthMeasure IIfcCShapeProfileDef.Girth { get { return @Girth; } }	
-		IfcPositiveLengthMeasure? IIfcCShapeProfileDef.InternalFilletRadius { get { return @InternalFilletRadius; } }	
-		IfcPositiveLengthMeasure? IIfcCShapeProfileDef.CentreOfGravityInX { get { return @CentreOfGravityInX; } }	
+		IfcPositiveLengthMeasure IIfcCShapeProfileDef.Depth { 
+			get { return @Depth; } 
+ 
+			set { Depth = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcCShapeProfileDef.Width { 
+			get { return @Width; } 
+ 
+			set { Width = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcCShapeProfileDef.WallThickness { 
+			get { return @WallThickness; } 
+ 
+			set { WallThickness = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcCShapeProfileDef.Girth { 
+			get { return @Girth; } 
+ 
+			set { Girth = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcCShapeProfileDef.InternalFilletRadius { 
+			get { return @InternalFilletRadius; } 
+ 
+			set { InternalFilletRadius = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcCShapeProfileDef.CentreOfGravityInX { 
+			get { return @CentreOfGravityInX; } 
+ 
+			set { CentreOfGravityInX = value;}
+		}	
 		 
 		#endregion
 

@@ -24,6 +24,10 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
                 return null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

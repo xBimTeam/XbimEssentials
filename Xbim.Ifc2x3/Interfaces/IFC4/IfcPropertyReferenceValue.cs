@@ -23,6 +23,10 @@ namespace Xbim.Ifc2x3.PropertyResource
 				if (!UsageName.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(UsageName.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcObjectReferenceSelect IIfcPropertyReferenceValue.PropertyReference 
 		{ 
@@ -90,6 +94,10 @@ namespace Xbim.Ifc2x3.PropertyResource
 					return ifcappliedvalue;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 
 		{ 

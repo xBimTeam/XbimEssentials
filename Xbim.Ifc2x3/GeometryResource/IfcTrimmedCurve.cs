@@ -25,11 +25,11 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTrimmedCurve : IIfcBoundedCurve
 	{
-		IIfcCurve @BasisCurve { get; }
+		IIfcCurve @BasisCurve { get;  set; }
 		IEnumerable<IIfcTrimmingSelect> @Trim1 { get; }
 		IEnumerable<IIfcTrimmingSelect> @Trim2 { get; }
-		bool @SenseAgreement { get; }
-		IfcTrimmingPreference @MasterRepresentation { get; }
+		bool @SenseAgreement { get;  set; }
+		IfcTrimmingPreference @MasterRepresentation { get;  set; }
 	
 	}
 }
@@ -41,11 +41,28 @@ namespace Xbim.Ifc2x3.GeometryResource
 	public  partial class @IfcTrimmedCurve : IfcBoundedCurve, IInstantiableEntity, IIfcTrimmedCurve, IContainsEntityReferences, IEquatable<@IfcTrimmedCurve>
 	{
 		#region IIfcTrimmedCurve explicit implementation
-		IIfcCurve IIfcTrimmedCurve.BasisCurve { get { return @BasisCurve; } }	
-		IEnumerable<IIfcTrimmingSelect> IIfcTrimmedCurve.Trim1 { get { return @Trim1; } }	
-		IEnumerable<IIfcTrimmingSelect> IIfcTrimmedCurve.Trim2 { get { return @Trim2; } }	
-		bool IIfcTrimmedCurve.SenseAgreement { get { return @SenseAgreement; } }	
-		IfcTrimmingPreference IIfcTrimmedCurve.MasterRepresentation { get { return @MasterRepresentation; } }	
+		IIfcCurve IIfcTrimmedCurve.BasisCurve { 
+			get { return @BasisCurve; } 
+ 
+ 
+			set { BasisCurve = value as IfcCurve;}
+		}	
+		IEnumerable<IIfcTrimmingSelect> IIfcTrimmedCurve.Trim1 { 
+			get { return @Trim1; } 
+		}	
+		IEnumerable<IIfcTrimmingSelect> IIfcTrimmedCurve.Trim2 { 
+			get { return @Trim2; } 
+		}	
+		bool IIfcTrimmedCurve.SenseAgreement { 
+			get { return @SenseAgreement; } 
+ 
+			set { SenseAgreement = value;}
+		}	
+		IfcTrimmingPreference IIfcTrimmedCurve.MasterRepresentation { 
+			get { return @MasterRepresentation; } 
+ 
+			set { MasterRepresentation = value;}
+		}	
 		 
 		#endregion
 

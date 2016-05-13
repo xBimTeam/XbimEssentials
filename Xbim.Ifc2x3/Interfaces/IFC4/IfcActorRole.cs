@@ -98,6 +98,10 @@ namespace Xbim.Ifc2x3.ActorResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcActorRole.UserDefinedRole 
 		{ 
@@ -106,6 +110,10 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!UserDefinedRole.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(UserDefinedRole.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcActorRole.Description 
 		{ 
@@ -114,6 +122,10 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!Description.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcActorRole.HasExternalReference 
 		{ 

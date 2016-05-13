@@ -23,6 +23,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!PanelDepth.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(PanelDepth.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcDoorPanelOperationEnum IIfcDoorPanelProperties.PanelOperation 
 		{ 
@@ -59,6 +63,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcDoorPanelProperties.PanelWidth 
 		{ 
@@ -67,6 +75,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!PanelWidth.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(PanelWidth.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcDoorPanelPositionEnum IIfcDoorPanelProperties.PanelPosition 
 		{ 
@@ -91,6 +103,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcShapeAspect IIfcDoorPanelProperties.ShapeAspectStyle 
 		{ 
@@ -98,6 +114,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				return ShapeAspectStyle;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

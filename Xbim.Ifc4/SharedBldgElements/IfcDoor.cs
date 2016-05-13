@@ -27,11 +27,11 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDoor : IIfcBuildingElement
 	{
-		IfcPositiveLengthMeasure? @OverallHeight { get; }
-		IfcPositiveLengthMeasure? @OverallWidth { get; }
-		IfcDoorTypeEnum? @PredefinedType { get; }
-		IfcDoorTypeOperationEnum? @OperationType { get; }
-		IfcLabel? @UserDefinedOperationType { get; }
+		IfcPositiveLengthMeasure? @OverallHeight { get;  set; }
+		IfcPositiveLengthMeasure? @OverallWidth { get;  set; }
+		IfcDoorTypeEnum? @PredefinedType { get;  set; }
+		IfcDoorTypeOperationEnum? @OperationType { get;  set; }
+		IfcLabel? @UserDefinedOperationType { get;  set; }
 	
 	}
 }
@@ -43,11 +43,31 @@ namespace Xbim.Ifc4.SharedBldgElements
 	public  partial class @IfcDoor : IfcBuildingElement, IInstantiableEntity, IIfcDoor, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDoor>
 	{
 		#region IIfcDoor explicit implementation
-		IfcPositiveLengthMeasure? IIfcDoor.OverallHeight { get { return @OverallHeight; } }	
-		IfcPositiveLengthMeasure? IIfcDoor.OverallWidth { get { return @OverallWidth; } }	
-		IfcDoorTypeEnum? IIfcDoor.PredefinedType { get { return @PredefinedType; } }	
-		IfcDoorTypeOperationEnum? IIfcDoor.OperationType { get { return @OperationType; } }	
-		IfcLabel? IIfcDoor.UserDefinedOperationType { get { return @UserDefinedOperationType; } }	
+		IfcPositiveLengthMeasure? IIfcDoor.OverallHeight { 
+			get { return @OverallHeight; } 
+ 
+			set { OverallHeight = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcDoor.OverallWidth { 
+			get { return @OverallWidth; } 
+ 
+			set { OverallWidth = value;}
+		}	
+		IfcDoorTypeEnum? IIfcDoor.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
+		IfcDoorTypeOperationEnum? IIfcDoor.OperationType { 
+			get { return @OperationType; } 
+ 
+			set { OperationType = value;}
+		}	
+		IfcLabel? IIfcDoor.UserDefinedOperationType { 
+			get { return @UserDefinedOperationType; } 
+ 
+			set { UserDefinedOperationType = value;}
+		}	
 		 
 		#endregion
 

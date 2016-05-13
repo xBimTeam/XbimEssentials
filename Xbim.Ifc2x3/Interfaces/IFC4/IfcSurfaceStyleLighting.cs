@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				return DiffuseTransmissionColour;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcColourRgb IIfcSurfaceStyleLighting.DiffuseReflectionColour 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				return DiffuseReflectionColour;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcColourRgb IIfcSurfaceStyleLighting.TransmissionColour 
 		{ 
@@ -36,6 +44,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				return TransmissionColour;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcColourRgb IIfcSurfaceStyleLighting.ReflectanceColour 
 		{ 
@@ -43,6 +55,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				return ReflectanceColour;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

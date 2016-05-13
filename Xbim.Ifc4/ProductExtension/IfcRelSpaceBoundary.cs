@@ -27,11 +27,11 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelSpaceBoundary : IIfcRelConnects
 	{
-		IIfcSpaceBoundarySelect @RelatingSpace { get; }
-		IIfcElement @RelatedBuildingElement { get; }
-		IIfcConnectionGeometry @ConnectionGeometry { get; }
-		IfcPhysicalOrVirtualEnum @PhysicalOrVirtualBoundary { get; }
-		IfcInternalOrExternalEnum @InternalOrExternalBoundary { get; }
+		IIfcSpaceBoundarySelect @RelatingSpace { get;  set; }
+		IIfcElement @RelatedBuildingElement { get;  set; }
+		IIfcConnectionGeometry @ConnectionGeometry { get;  set; }
+		IfcPhysicalOrVirtualEnum @PhysicalOrVirtualBoundary { get;  set; }
+		IfcInternalOrExternalEnum @InternalOrExternalBoundary { get;  set; }
 	
 	}
 }
@@ -43,11 +43,34 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcRelSpaceBoundary : IfcRelConnects, IInstantiableEntity, IIfcRelSpaceBoundary, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelSpaceBoundary>
 	{
 		#region IIfcRelSpaceBoundary explicit implementation
-		IIfcSpaceBoundarySelect IIfcRelSpaceBoundary.RelatingSpace { get { return @RelatingSpace; } }	
-		IIfcElement IIfcRelSpaceBoundary.RelatedBuildingElement { get { return @RelatedBuildingElement; } }	
-		IIfcConnectionGeometry IIfcRelSpaceBoundary.ConnectionGeometry { get { return @ConnectionGeometry; } }	
-		IfcPhysicalOrVirtualEnum IIfcRelSpaceBoundary.PhysicalOrVirtualBoundary { get { return @PhysicalOrVirtualBoundary; } }	
-		IfcInternalOrExternalEnum IIfcRelSpaceBoundary.InternalOrExternalBoundary { get { return @InternalOrExternalBoundary; } }	
+		IIfcSpaceBoundarySelect IIfcRelSpaceBoundary.RelatingSpace { 
+			get { return @RelatingSpace; } 
+ 
+ 
+			set { RelatingSpace = value as IfcSpaceBoundarySelect;}
+		}	
+		IIfcElement IIfcRelSpaceBoundary.RelatedBuildingElement { 
+			get { return @RelatedBuildingElement; } 
+ 
+ 
+			set { RelatedBuildingElement = value as IfcElement;}
+		}	
+		IIfcConnectionGeometry IIfcRelSpaceBoundary.ConnectionGeometry { 
+			get { return @ConnectionGeometry; } 
+ 
+ 
+			set { ConnectionGeometry = value as IfcConnectionGeometry;}
+		}	
+		IfcPhysicalOrVirtualEnum IIfcRelSpaceBoundary.PhysicalOrVirtualBoundary { 
+			get { return @PhysicalOrVirtualBoundary; } 
+ 
+			set { PhysicalOrVirtualBoundary = value;}
+		}	
+		IfcInternalOrExternalEnum IIfcRelSpaceBoundary.InternalOrExternalBoundary { 
+			get { return @InternalOrExternalBoundary; } 
+ 
+			set { InternalOrExternalBoundary = value;}
+		}	
 		 
 		#endregion
 

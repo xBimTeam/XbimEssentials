@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcActuatorType : IIfcDistributionControlElementType
 	{
-		IfcActuatorTypeEnum @PredefinedType { get; }
+		IfcActuatorTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 	public  partial class @IfcActuatorType : IfcDistributionControlElementType, IInstantiableEntity, IIfcActuatorType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcActuatorType>
 	{
 		#region IIfcActuatorType explicit implementation
-		IfcActuatorTypeEnum IIfcActuatorType.PredefinedType { get { return @PredefinedType; } }	
+		IfcActuatorTypeEnum IIfcActuatorType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				return SweptArea;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcAxis2Placement3D IIfcSweptAreaSolid.Position 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				return Position;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

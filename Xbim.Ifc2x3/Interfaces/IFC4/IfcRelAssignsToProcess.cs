@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				return RelatingProcess;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcMeasureWithUnit IIfcRelAssignsToProcess.QuantityInProcess 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				return QuantityInProcess;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

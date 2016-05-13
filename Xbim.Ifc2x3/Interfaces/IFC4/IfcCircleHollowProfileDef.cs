@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(WallThickness);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

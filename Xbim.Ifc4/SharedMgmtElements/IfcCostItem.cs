@@ -28,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCostItem : IIfcControl
 	{
-		IfcCostItemTypeEnum? @PredefinedType { get; }
+		IfcCostItemTypeEnum? @PredefinedType { get;  set; }
 		IEnumerable<IIfcCostValue> @CostValues { get; }
 		IEnumerable<IIfcPhysicalQuantity> @CostQuantities { get; }
 	
@@ -42,9 +42,17 @@ namespace Xbim.Ifc4.SharedMgmtElements
 	public  partial class @IfcCostItem : IfcControl, IInstantiableEntity, IIfcCostItem, IContainsEntityReferences, IEquatable<@IfcCostItem>
 	{
 		#region IIfcCostItem explicit implementation
-		IfcCostItemTypeEnum? IIfcCostItem.PredefinedType { get { return @PredefinedType; } }	
-		IEnumerable<IIfcCostValue> IIfcCostItem.CostValues { get { return @CostValues; } }	
-		IEnumerable<IIfcPhysicalQuantity> IIfcCostItem.CostQuantities { get { return @CostQuantities; } }	
+		IfcCostItemTypeEnum? IIfcCostItem.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
+		IEnumerable<IIfcCostValue> IIfcCostItem.CostValues { 
+			get { return @CostValues; } 
+		}	
+		IEnumerable<IIfcPhysicalQuantity> IIfcCostItem.CostQuantities { 
+			get { return @CostQuantities; } 
+		}	
 		 
 		#endregion
 

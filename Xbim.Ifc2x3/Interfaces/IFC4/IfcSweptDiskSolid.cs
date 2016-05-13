@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				return Directrix;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcSweptDiskSolid.Radius 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Radius);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcSweptDiskSolid.InnerRadius 
 		{ 
@@ -37,6 +45,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				if (!InnerRadius.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(InnerRadius.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcParameterValue? IIfcSweptDiskSolid.StartParam 
 		{ 
@@ -44,6 +56,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				return new Ifc4.MeasureResource.IfcParameterValue(StartParam);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcParameterValue? IIfcSweptDiskSolid.EndParam 
 		{ 
@@ -51,6 +67,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				return new Ifc4.MeasureResource.IfcParameterValue(EndParam);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

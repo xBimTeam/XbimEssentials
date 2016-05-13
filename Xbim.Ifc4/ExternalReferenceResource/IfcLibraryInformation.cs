@@ -29,12 +29,12 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcLibraryInformation : IIfcExternalInformation, IfcLibrarySelect
 	{
-		IfcLabel @Name { get; }
-		IfcLabel? @Version { get; }
-		IIfcActorSelect @Publisher { get; }
-		IfcDateTime? @VersionDate { get; }
-		IfcURIReference? @Location { get; }
-		IfcText? @Description { get; }
+		IfcLabel @Name { get;  set; }
+		IfcLabel? @Version { get;  set; }
+		IIfcActorSelect @Publisher { get;  set; }
+		IfcDateTime? @VersionDate { get;  set; }
+		IfcURIReference? @Location { get;  set; }
+		IfcText? @Description { get;  set; }
 		IEnumerable<IIfcRelAssociatesLibrary> @LibraryInfoForObjects {  get; }
 		IEnumerable<IIfcLibraryReference> @HasLibraryReferences {  get; }
 	
@@ -48,12 +48,37 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 	public  partial class @IfcLibraryInformation : IfcExternalInformation, IInstantiableEntity, IIfcLibraryInformation, IContainsEntityReferences, IEquatable<@IfcLibraryInformation>
 	{
 		#region IIfcLibraryInformation explicit implementation
-		IfcLabel IIfcLibraryInformation.Name { get { return @Name; } }	
-		IfcLabel? IIfcLibraryInformation.Version { get { return @Version; } }	
-		IIfcActorSelect IIfcLibraryInformation.Publisher { get { return @Publisher; } }	
-		IfcDateTime? IIfcLibraryInformation.VersionDate { get { return @VersionDate; } }	
-		IfcURIReference? IIfcLibraryInformation.Location { get { return @Location; } }	
-		IfcText? IIfcLibraryInformation.Description { get { return @Description; } }	
+		IfcLabel IIfcLibraryInformation.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcLabel? IIfcLibraryInformation.Version { 
+			get { return @Version; } 
+ 
+			set { Version = value;}
+		}	
+		IIfcActorSelect IIfcLibraryInformation.Publisher { 
+			get { return @Publisher; } 
+ 
+ 
+			set { Publisher = value as IfcActorSelect;}
+		}	
+		IfcDateTime? IIfcLibraryInformation.VersionDate { 
+			get { return @VersionDate; } 
+ 
+			set { VersionDate = value;}
+		}	
+		IfcURIReference? IIfcLibraryInformation.Location { 
+			get { return @Location; } 
+ 
+			set { Location = value;}
+		}	
+		IfcText? IIfcLibraryInformation.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
 		 
 		IEnumerable<IIfcRelAssociatesLibrary> IIfcLibraryInformation.LibraryInfoForObjects {  get { return @LibraryInfoForObjects; } }
 		IEnumerable<IIfcLibraryReference> IIfcLibraryInformation.HasLibraryReferences {  get { return @HasLibraryReferences; } }

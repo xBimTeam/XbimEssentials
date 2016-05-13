@@ -27,8 +27,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDocumentReference : IIfcExternalReference, IfcDocumentSelect
 	{
-		IfcText? @Description { get; }
-		IIfcDocumentInformation @ReferencedDocument { get; }
+		IfcText? @Description { get;  set; }
+		IIfcDocumentInformation @ReferencedDocument { get;  set; }
 		IEnumerable<IIfcRelAssociatesDocument> @DocumentRefForObjects {  get; }
 	
 	}
@@ -41,8 +41,17 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 	public  partial class @IfcDocumentReference : IfcExternalReference, IInstantiableEntity, IIfcDocumentReference, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDocumentReference>
 	{
 		#region IIfcDocumentReference explicit implementation
-		IfcText? IIfcDocumentReference.Description { get { return @Description; } }	
-		IIfcDocumentInformation IIfcDocumentReference.ReferencedDocument { get { return @ReferencedDocument; } }	
+		IfcText? IIfcDocumentReference.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IIfcDocumentInformation IIfcDocumentReference.ReferencedDocument { 
+			get { return @ReferencedDocument; } 
+ 
+ 
+			set { ReferencedDocument = value as IfcDocumentInformation;}
+		}	
 		 
 		IEnumerable<IIfcRelAssociatesDocument> IIfcDocumentReference.DocumentRefForObjects {  get { return @DocumentRefForObjects; } }
 		#endregion

@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			{
 				return ParentContext;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveRatioMeasure? IIfcGeometricRepresentationSubContext.TargetScale 
 		{ 
@@ -30,6 +34,10 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				if (!TargetScale.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveRatioMeasure(TargetScale.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcGeometricProjectionEnum IIfcGeometricRepresentationSubContext.TargetView 
 		{ 
@@ -69,6 +77,10 @@ namespace Xbim.Ifc2x3.RepresentationResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcGeometricRepresentationSubContext.UserDefinedTargetView 
 		{ 
@@ -77,6 +89,10 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				if (!UserDefinedTargetView.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(UserDefinedTargetView.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

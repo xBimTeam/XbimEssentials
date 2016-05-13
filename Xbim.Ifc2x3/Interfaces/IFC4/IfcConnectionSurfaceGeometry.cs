@@ -32,6 +32,10 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 					return ifcfacebasedsurfacemodel;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcSurfaceOrFaceSurface IIfcConnectionSurfaceGeometry.SurfaceOnRelatedElement 
 		{ 
@@ -49,6 +53,10 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 					return ifcfacebasedsurfacemodel;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

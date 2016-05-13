@@ -23,6 +23,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (!Location.HasValue) return null;
 				return new Ifc4.ExternalReferenceResource.IfcURIReference(Location.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcIdentifier? IIfcExternalReference.Identification 
 		{ 
@@ -31,6 +35,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (!ItemReference.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcIdentifier(ItemReference.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcExternalReference.Name 
 		{ 
@@ -39,6 +47,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (!Name.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcExternalReference.ExternalReferenceForResources 
 		{ 

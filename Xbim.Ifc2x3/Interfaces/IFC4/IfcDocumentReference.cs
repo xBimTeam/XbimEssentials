@@ -24,6 +24,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcDocumentInformation IIfcDocumentReference.ReferencedDocument 
 		{ 
@@ -33,6 +37,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			    return ReferenceToDocument.FirstOrDefault();
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcRelAssociatesDocument> IIfcDocumentReference.DocumentRefForObjects 
 		{ 

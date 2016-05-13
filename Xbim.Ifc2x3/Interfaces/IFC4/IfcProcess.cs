@@ -24,6 +24,10 @@ namespace Xbim.Ifc2x3.Kernel
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcProcess.LongDescription 
 		{ 
@@ -33,6 +37,10 @@ namespace Xbim.Ifc2x3.Kernel
                 return null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcRelSequence> IIfcProcess.IsPredecessorTo 
 		{ 

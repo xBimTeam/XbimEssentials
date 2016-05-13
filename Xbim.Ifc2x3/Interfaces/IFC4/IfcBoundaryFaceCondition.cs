@@ -26,6 +26,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 return new Ifc4.MeasureResource.IfcModulusOfSubgradeReactionMeasure(value.Value);
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaY 
 		{ 
@@ -37,6 +41,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 return new Ifc4.MeasureResource.IfcModulusOfSubgradeReactionMeasure(value.Value);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaZ 
 		{ 
@@ -48,6 +56,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 return new Ifc4.MeasureResource.IfcModulusOfSubgradeReactionMeasure(value.Value);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPolygonalBoundedHalfSpace : IIfcHalfSpaceSolid
 	{
-		IIfcAxis2Placement3D @Position { get; }
-		IIfcBoundedCurve @PolygonalBoundary { get; }
+		IIfcAxis2Placement3D @Position { get;  set; }
+		IIfcBoundedCurve @PolygonalBoundary { get;  set; }
 	
 	}
 }
@@ -39,8 +39,18 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public  partial class @IfcPolygonalBoundedHalfSpace : IfcHalfSpaceSolid, IInstantiableEntity, IIfcPolygonalBoundedHalfSpace, IContainsEntityReferences, IEquatable<@IfcPolygonalBoundedHalfSpace>
 	{
 		#region IIfcPolygonalBoundedHalfSpace explicit implementation
-		IIfcAxis2Placement3D IIfcPolygonalBoundedHalfSpace.Position { get { return @Position; } }	
-		IIfcBoundedCurve IIfcPolygonalBoundedHalfSpace.PolygonalBoundary { get { return @PolygonalBoundary; } }	
+		IIfcAxis2Placement3D IIfcPolygonalBoundedHalfSpace.Position { 
+			get { return @Position; } 
+ 
+ 
+			set { Position = value as IfcAxis2Placement3D;}
+		}	
+		IIfcBoundedCurve IIfcPolygonalBoundedHalfSpace.PolygonalBoundary { 
+			get { return @PolygonalBoundary; } 
+ 
+ 
+			set { PolygonalBoundary = value as IfcBoundedCurve;}
+		}	
 		 
 		#endregion
 

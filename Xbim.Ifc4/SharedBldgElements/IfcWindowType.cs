@@ -27,10 +27,10 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcWindowType : IIfcBuildingElementType
 	{
-		IfcWindowTypeEnum @PredefinedType { get; }
-		IfcWindowTypePartitioningEnum @PartitioningType { get; }
-		IfcBoolean? @ParameterTakesPrecedence { get; }
-		IfcLabel? @UserDefinedPartitioningType { get; }
+		IfcWindowTypeEnum @PredefinedType { get;  set; }
+		IfcWindowTypePartitioningEnum @PartitioningType { get;  set; }
+		IfcBoolean? @ParameterTakesPrecedence { get;  set; }
+		IfcLabel? @UserDefinedPartitioningType { get;  set; }
 	
 	}
 }
@@ -42,10 +42,26 @@ namespace Xbim.Ifc4.SharedBldgElements
 	public  partial class @IfcWindowType : IfcBuildingElementType, IInstantiableEntity, IIfcWindowType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcWindowType>
 	{
 		#region IIfcWindowType explicit implementation
-		IfcWindowTypeEnum IIfcWindowType.PredefinedType { get { return @PredefinedType; } }	
-		IfcWindowTypePartitioningEnum IIfcWindowType.PartitioningType { get { return @PartitioningType; } }	
-		IfcBoolean? IIfcWindowType.ParameterTakesPrecedence { get { return @ParameterTakesPrecedence; } }	
-		IfcLabel? IIfcWindowType.UserDefinedPartitioningType { get { return @UserDefinedPartitioningType; } }	
+		IfcWindowTypeEnum IIfcWindowType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
+		IfcWindowTypePartitioningEnum IIfcWindowType.PartitioningType { 
+			get { return @PartitioningType; } 
+ 
+			set { PartitioningType = value;}
+		}	
+		IfcBoolean? IIfcWindowType.ParameterTakesPrecedence { 
+			get { return @ParameterTakesPrecedence; } 
+ 
+			set { ParameterTakesPrecedence = value;}
+		}	
+		IfcLabel? IIfcWindowType.UserDefinedPartitioningType { 
+			get { return @UserDefinedPartitioningType; } 
+ 
+			set { UserDefinedPartitioningType = value;}
+		}	
 		 
 		#endregion
 

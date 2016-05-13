@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcTimeSeries.Description 
 		{ 
@@ -30,6 +34,10 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 				if (!Description.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDateTime IIfcTimeSeries.StartTime 
 		{ 
@@ -39,6 +47,10 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
                 return new Ifc4.DateTimeResource.IfcDateTime(StartTime.ToISODateTimeString());
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDateTime IIfcTimeSeries.EndTime 
 		{ 
@@ -48,6 +60,10 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
                 return new Ifc4.DateTimeResource.IfcDateTime(EndTime.ToISODateTimeString());
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcTimeSeriesDataTypeEnum IIfcTimeSeries.TimeSeriesDataType 
 		{ 
@@ -81,6 +97,10 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcDataOriginEnum IIfcTimeSeries.DataOrigin 
 		{ 
@@ -108,6 +128,10 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcTimeSeries.UserDefinedDataOrigin 
 		{ 
@@ -116,6 +140,10 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 				if (!UserDefinedDataOrigin.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(UserDefinedDataOrigin.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcUnit IIfcTimeSeries.Unit 
 		{ 
@@ -133,6 +161,10 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 					return ifcmonetaryunit;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcTimeSeries.HasExternalReference 
 		{ 

@@ -45,6 +45,10 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

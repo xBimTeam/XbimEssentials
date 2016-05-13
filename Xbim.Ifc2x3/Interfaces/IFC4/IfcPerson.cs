@@ -23,6 +23,10 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!Id.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcIdentifier(Id.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcPerson.FamilyName 
 		{ 
@@ -31,6 +35,10 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!FamilyName.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(FamilyName.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcPerson.GivenName 
 		{ 
@@ -39,6 +47,10 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!GivenName.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(GivenName.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.MiddleNames 
 		{ 

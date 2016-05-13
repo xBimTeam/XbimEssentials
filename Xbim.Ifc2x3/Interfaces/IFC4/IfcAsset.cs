@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				return new Ifc4.MeasureResource.IfcIdentifier(AssetID);
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcCostValue IIfcAsset.OriginalValue 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				return OriginalValue;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcCostValue IIfcAsset.CurrentValue 
 		{ 
@@ -36,6 +44,10 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				return CurrentValue;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcCostValue IIfcAsset.TotalReplacementCost 
 		{ 
@@ -43,6 +55,10 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				return TotalReplacementCost;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcActorSelect IIfcAsset.Owner 
 		{ 
@@ -60,6 +76,10 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 					return ifcpersonandorganization;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcActorSelect IIfcAsset.User 
 		{ 
@@ -77,6 +97,10 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 					return ifcpersonandorganization;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcPerson IIfcAsset.ResponsiblePerson 
 		{ 
@@ -84,6 +108,10 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				return ResponsiblePerson;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDate? IIfcAsset.IncorporationDate 
 		{ 
@@ -95,6 +123,10 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			        : null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcCostValue IIfcAsset.DepreciatedValue 
 		{ 
@@ -102,6 +134,10 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				return DepreciatedValue;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

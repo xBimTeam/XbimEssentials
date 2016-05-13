@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBlobTexture : IIfcSurfaceTexture
 	{
-		IfcIdentifier @RasterFormat { get; }
-		IfcBinary @RasterCode { get; }
+		IfcIdentifier @RasterFormat { get;  set; }
+		IfcBinary @RasterCode { get;  set; }
 	
 	}
 }
@@ -39,8 +39,16 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcBlobTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcBlobTexture, IContainsEntityReferences, IEquatable<@IfcBlobTexture>
 	{
 		#region IIfcBlobTexture explicit implementation
-		IfcIdentifier IIfcBlobTexture.RasterFormat { get { return @RasterFormat; } }	
-		IfcBinary IIfcBlobTexture.RasterCode { get { return @RasterCode; } }	
+		IfcIdentifier IIfcBlobTexture.RasterFormat { 
+			get { return @RasterFormat; } 
+ 
+			set { RasterFormat = value;}
+		}	
+		IfcBinary IIfcBlobTexture.RasterCode { 
+			get { return @RasterCode; } 
+ 
+			set { RasterCode = value;}
+		}	
 		 
 		#endregion
 

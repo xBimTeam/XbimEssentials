@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcArbitraryOpenProfileDef : IIfcProfileDef
 	{
-		IIfcBoundedCurve @Curve { get; }
+		IIfcBoundedCurve @Curve { get;  set; }
 	
 	}
 }
@@ -38,7 +38,12 @@ namespace Xbim.Ifc2x3.ProfileResource
 	public  partial class @IfcArbitraryOpenProfileDef : IfcProfileDef, IInstantiableEntity, IIfcArbitraryOpenProfileDef, IContainsEntityReferences, IEquatable<@IfcArbitraryOpenProfileDef>
 	{
 		#region IIfcArbitraryOpenProfileDef explicit implementation
-		IIfcBoundedCurve IIfcArbitraryOpenProfileDef.Curve { get { return @Curve; } }	
+		IIfcBoundedCurve IIfcArbitraryOpenProfileDef.Curve { 
+			get { return @Curve; } 
+ 
+ 
+			set { Curve = value as IfcBoundedCurve;}
+		}	
 		 
 		#endregion
 

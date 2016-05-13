@@ -28,11 +28,11 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelSequence : IIfcRelConnects
 	{
-		IIfcProcess @RelatingProcess { get; }
-		IIfcProcess @RelatedProcess { get; }
-		IIfcLagTime @TimeLag { get; }
-		IfcSequenceEnum? @SequenceType { get; }
-		IfcLabel? @UserDefinedSequenceType { get; }
+		IIfcProcess @RelatingProcess { get;  set; }
+		IIfcProcess @RelatedProcess { get;  set; }
+		IIfcLagTime @TimeLag { get;  set; }
+		IfcSequenceEnum? @SequenceType { get;  set; }
+		IfcLabel? @UserDefinedSequenceType { get;  set; }
 	
 	}
 }
@@ -44,11 +44,34 @@ namespace Xbim.Ifc4.ProcessExtension
 	public  partial class @IfcRelSequence : IfcRelConnects, IInstantiableEntity, IIfcRelSequence, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelSequence>
 	{
 		#region IIfcRelSequence explicit implementation
-		IIfcProcess IIfcRelSequence.RelatingProcess { get { return @RelatingProcess; } }	
-		IIfcProcess IIfcRelSequence.RelatedProcess { get { return @RelatedProcess; } }	
-		IIfcLagTime IIfcRelSequence.TimeLag { get { return @TimeLag; } }	
-		IfcSequenceEnum? IIfcRelSequence.SequenceType { get { return @SequenceType; } }	
-		IfcLabel? IIfcRelSequence.UserDefinedSequenceType { get { return @UserDefinedSequenceType; } }	
+		IIfcProcess IIfcRelSequence.RelatingProcess { 
+			get { return @RelatingProcess; } 
+ 
+ 
+			set { RelatingProcess = value as IfcProcess;}
+		}	
+		IIfcProcess IIfcRelSequence.RelatedProcess { 
+			get { return @RelatedProcess; } 
+ 
+ 
+			set { RelatedProcess = value as IfcProcess;}
+		}	
+		IIfcLagTime IIfcRelSequence.TimeLag { 
+			get { return @TimeLag; } 
+ 
+ 
+			set { TimeLag = value as IfcLagTime;}
+		}	
+		IfcSequenceEnum? IIfcRelSequence.SequenceType { 
+			get { return @SequenceType; } 
+ 
+			set { SequenceType = value;}
+		}	
+		IfcLabel? IIfcRelSequence.UserDefinedSequenceType { 
+			get { return @UserDefinedSequenceType; } 
+ 
+			set { UserDefinedSequenceType = value;}
+		}	
 		 
 		#endregion
 

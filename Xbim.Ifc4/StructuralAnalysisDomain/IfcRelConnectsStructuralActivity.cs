@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelConnectsStructuralActivity : IIfcRelConnects
 	{
-		IIfcStructuralActivityAssignmentSelect @RelatingElement { get; }
-		IIfcStructuralActivity @RelatedStructuralActivity { get; }
+		IIfcStructuralActivityAssignmentSelect @RelatingElement { get;  set; }
+		IIfcStructuralActivity @RelatedStructuralActivity { get;  set; }
 	
 	}
 }
@@ -39,8 +39,18 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	public  partial class @IfcRelConnectsStructuralActivity : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsStructuralActivity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsStructuralActivity>
 	{
 		#region IIfcRelConnectsStructuralActivity explicit implementation
-		IIfcStructuralActivityAssignmentSelect IIfcRelConnectsStructuralActivity.RelatingElement { get { return @RelatingElement; } }	
-		IIfcStructuralActivity IIfcRelConnectsStructuralActivity.RelatedStructuralActivity { get { return @RelatedStructuralActivity; } }	
+		IIfcStructuralActivityAssignmentSelect IIfcRelConnectsStructuralActivity.RelatingElement { 
+			get { return @RelatingElement; } 
+ 
+ 
+			set { RelatingElement = value as IfcStructuralActivityAssignmentSelect;}
+		}	
+		IIfcStructuralActivity IIfcRelConnectsStructuralActivity.RelatedStructuralActivity { 
+			get { return @RelatedStructuralActivity; } 
+ 
+ 
+			set { RelatedStructuralActivity = value as IfcStructuralActivity;}
+		}	
 		 
 		#endregion
 

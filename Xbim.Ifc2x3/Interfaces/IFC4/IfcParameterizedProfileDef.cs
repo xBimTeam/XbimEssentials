@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				return Position;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

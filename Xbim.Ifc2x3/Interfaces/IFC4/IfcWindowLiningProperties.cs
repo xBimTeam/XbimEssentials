@@ -23,6 +23,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!LiningDepth.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(LiningDepth.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcWindowLiningProperties.LiningThickness 
 		{ 
@@ -31,6 +35,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!LiningThickness.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(LiningThickness.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcWindowLiningProperties.TransomThickness 
 		{ 
@@ -39,6 +47,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!TransomThickness.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(TransomThickness.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcWindowLiningProperties.MullionThickness 
 		{ 
@@ -47,6 +59,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!MullionThickness.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(MullionThickness.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.FirstTransomOffset 
 		{ 
@@ -55,6 +71,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!FirstTransomOffset.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(FirstTransomOffset.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.SecondTransomOffset 
 		{ 
@@ -63,6 +83,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!SecondTransomOffset.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(SecondTransomOffset.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.FirstMullionOffset 
 		{ 
@@ -71,6 +95,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!FirstMullionOffset.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(FirstMullionOffset.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.SecondMullionOffset 
 		{ 
@@ -79,6 +107,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!SecondMullionOffset.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(SecondMullionOffset.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcShapeAspect IIfcWindowLiningProperties.ShapeAspectStyle 
 		{ 
@@ -86,6 +118,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				return ShapeAspectStyle;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcWindowLiningProperties.LiningOffset 
 		{ 
@@ -95,6 +131,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
                 return null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcWindowLiningProperties.LiningToPanelOffsetX 
 		{ 
@@ -104,6 +144,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
                 return null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcWindowLiningProperties.LiningToPanelOffsetY 
 		{ 
@@ -113,6 +157,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
                 return null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

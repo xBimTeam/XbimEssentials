@@ -33,6 +33,10 @@ namespace Xbim.Ifc2x3.PresentationResource
 				if (!FontStyle.HasValue) return null;
 				return new Ifc4.PresentationAppearanceResource.IfcFontStyle(FontStyle.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.PresentationAppearanceResource.IfcFontVariant? IIfcTextStyleFontModel.FontVariant 
 		{ 
@@ -41,6 +45,10 @@ namespace Xbim.Ifc2x3.PresentationResource
 				if (!FontVariant.HasValue) return null;
 				return new Ifc4.PresentationAppearanceResource.IfcFontVariant(FontVariant.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.PresentationAppearanceResource.IfcFontWeight? IIfcTextStyleFontModel.FontWeight 
 		{ 
@@ -49,6 +57,10 @@ namespace Xbim.Ifc2x3.PresentationResource
 				if (!FontWeight.HasValue) return null;
 				return new Ifc4.PresentationAppearanceResource.IfcFontWeight(FontWeight.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcSizeSelect IIfcTextStyleFontModel.FontSize 
 		{ 
@@ -69,6 +81,10 @@ namespace Xbim.Ifc2x3.PresentationResource
 					return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)(MeasureResource.IfcPositiveRatioMeasure)FontSize);
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcParameterizedProfileDef : IIfcProfileDef
 	{
-		IIfcAxis2Placement2D @Position { get; }
+		IIfcAxis2Placement2D @Position { get;  set; }
 	
 	}
 }
@@ -38,7 +38,12 @@ namespace Xbim.Ifc4.ProfileResource
 	public abstract partial class @IfcParameterizedProfileDef : IfcProfileDef, IIfcParameterizedProfileDef, IEquatable<@IfcParameterizedProfileDef>
 	{
 		#region IIfcParameterizedProfileDef explicit implementation
-		IIfcAxis2Placement2D IIfcParameterizedProfileDef.Position { get { return @Position; } }	
+		IIfcAxis2Placement2D IIfcParameterizedProfileDef.Position { 
+			get { return @Position; } 
+ 
+ 
+			set { Position = value as IfcAxis2Placement2D;}
+		}	
 		 
 		#endregion
 

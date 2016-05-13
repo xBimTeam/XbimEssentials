@@ -26,9 +26,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRectangularPyramid : IIfcCsgPrimitive3D
 	{
-		IfcPositiveLengthMeasure @XLength { get; }
-		IfcPositiveLengthMeasure @YLength { get; }
-		IfcPositiveLengthMeasure @Height { get; }
+		IfcPositiveLengthMeasure @XLength { get;  set; }
+		IfcPositiveLengthMeasure @YLength { get;  set; }
+		IfcPositiveLengthMeasure @Height { get;  set; }
 	
 	}
 }
@@ -40,9 +40,21 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 	public  partial class @IfcRectangularPyramid : IfcCsgPrimitive3D, IInstantiableEntity, IIfcRectangularPyramid, IContainsEntityReferences, IEquatable<@IfcRectangularPyramid>
 	{
 		#region IIfcRectangularPyramid explicit implementation
-		IfcPositiveLengthMeasure IIfcRectangularPyramid.XLength { get { return @XLength; } }	
-		IfcPositiveLengthMeasure IIfcRectangularPyramid.YLength { get { return @YLength; } }	
-		IfcPositiveLengthMeasure IIfcRectangularPyramid.Height { get { return @Height; } }	
+		IfcPositiveLengthMeasure IIfcRectangularPyramid.XLength { 
+			get { return @XLength; } 
+ 
+			set { XLength = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcRectangularPyramid.YLength { 
+			get { return @YLength; } 
+ 
+			set { YLength = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcRectangularPyramid.Height { 
+			get { return @Height; } 
+ 
+			set { Height = value;}
+		}	
 		 
 		#endregion
 

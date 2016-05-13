@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcImageTexture : IIfcSurfaceTexture
 	{
-		IfcURIReference @URLReference { get; }
+		IfcURIReference @URLReference { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcImageTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcImageTexture, IContainsEntityReferences, IEquatable<@IfcImageTexture>
 	{
 		#region IIfcImageTexture explicit implementation
-		IfcURIReference IIfcImageTexture.URLReference { get { return @URLReference; } }	
+		IfcURIReference IIfcImageTexture.URLReference { 
+			get { return @URLReference; } 
+ 
+			set { URLReference = value;}
+		}	
 		 
 		#endregion
 

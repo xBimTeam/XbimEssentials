@@ -23,6 +23,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				if (!Name.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcColourRgb IIfcLightSource.LightColour 
 		{ 
@@ -30,6 +34,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				return LightColour;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcLightSource.AmbientIntensity 
 		{ 
@@ -38,6 +46,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				if (!AmbientIntensity.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(AmbientIntensity.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcLightSource.Intensity 
 		{ 
@@ -46,6 +58,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				if (!Intensity.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(Intensity.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -28,6 +28,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(MeasureResource.IfcNormalisedRatioMeasure)DiffuseColour);
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcColourOrFactor IIfcSurfaceStyleRendering.TransmissionColour 
 		{ 
@@ -41,6 +45,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(MeasureResource.IfcNormalisedRatioMeasure)TransmissionColour);
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseTransmissionColour 
 		{ 
@@ -54,6 +62,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(MeasureResource.IfcNormalisedRatioMeasure)DiffuseTransmissionColour);
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcColourOrFactor IIfcSurfaceStyleRendering.ReflectionColour 
 		{ 
@@ -67,6 +79,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(MeasureResource.IfcNormalisedRatioMeasure)ReflectionColour);
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcColourOrFactor IIfcSurfaceStyleRendering.SpecularColour 
 		{ 
@@ -80,6 +96,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(MeasureResource.IfcNormalisedRatioMeasure)SpecularColour);
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcSpecularHighlightSelect IIfcSurfaceStyleRendering.SpecularHighlight 
 		{ 
@@ -92,6 +112,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					return new Ifc4.PresentationAppearanceResource.IfcSpecularRoughness((double)(IfcSpecularRoughness)SpecularHighlight);
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcReflectanceMethodEnum IIfcSurfaceStyleRendering.ReflectanceMethod 
 		{ 
@@ -134,6 +158,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

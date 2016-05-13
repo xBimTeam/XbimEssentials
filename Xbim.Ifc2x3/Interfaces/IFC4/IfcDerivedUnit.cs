@@ -184,6 +184,10 @@ namespace Xbim.Ifc2x3.MeasureResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcDerivedUnit.UserDefinedType 
 		{ 
@@ -192,6 +196,10 @@ namespace Xbim.Ifc2x3.MeasureResource
 				if (!UserDefinedType.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(UserDefinedType.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Common.Geometry.XbimDimensionalExponents IIfcDerivedUnit.Dimensions 
 		{

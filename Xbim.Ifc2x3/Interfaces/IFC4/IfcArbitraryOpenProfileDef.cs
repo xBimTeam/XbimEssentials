@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				return Curve;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

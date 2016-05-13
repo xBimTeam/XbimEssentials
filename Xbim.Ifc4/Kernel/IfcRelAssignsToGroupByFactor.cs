@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelAssignsToGroupByFactor : IIfcRelAssignsToGroup
 	{
-		IfcRatioMeasure @Factor { get; }
+		IfcRatioMeasure @Factor { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.Kernel
 	public  partial class @IfcRelAssignsToGroupByFactor : IfcRelAssignsToGroup, IInstantiableEntity, IIfcRelAssignsToGroupByFactor, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToGroupByFactor>
 	{
 		#region IIfcRelAssignsToGroupByFactor explicit implementation
-		IfcRatioMeasure IIfcRelAssignsToGroupByFactor.Factor { get { return @Factor; } }	
+		IfcRatioMeasure IIfcRelAssignsToGroupByFactor.Factor { 
+			get { return @Factor; } 
+ 
+			set { Factor = value;}
+		}	
 		 
 		#endregion
 

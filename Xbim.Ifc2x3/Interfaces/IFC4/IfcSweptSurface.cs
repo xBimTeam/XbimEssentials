@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return SweptCurve;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcAxis2Placement3D IIfcSweptSurface.Position 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return Position;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcCompositeCurve : IIfcBoundedCurve
 	{
 		IEnumerable<IIfcCompositeCurveSegment> @Segments { get; }
-		bool? @SelfIntersect { get; }
+		bool? @SelfIntersect { get;  set; }
 		long @NSegments  { get ; }
 		bool? @ClosedCurve  { get ; }
 	
@@ -40,8 +40,14 @@ namespace Xbim.Ifc2x3.GeometryResource
 	public  partial class @IfcCompositeCurve : IfcBoundedCurve, IInstantiableEntity, IIfcCompositeCurve, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCompositeCurve>
 	{
 		#region IIfcCompositeCurve explicit implementation
-		IEnumerable<IIfcCompositeCurveSegment> IIfcCompositeCurve.Segments { get { return @Segments; } }	
-		bool? IIfcCompositeCurve.SelfIntersect { get { return @SelfIntersect; } }	
+		IEnumerable<IIfcCompositeCurveSegment> IIfcCompositeCurve.Segments { 
+			get { return @Segments; } 
+		}	
+		bool? IIfcCompositeCurve.SelfIntersect { 
+			get { return @SelfIntersect; } 
+ 
+			set { SelfIntersect = value;}
+		}	
 		 
 		#endregion
 

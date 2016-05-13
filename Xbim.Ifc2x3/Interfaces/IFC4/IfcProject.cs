@@ -26,6 +26,10 @@ namespace Xbim.Ifc2x3.Kernel
 			        : null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcContext.LongName 
 		{ 
@@ -35,6 +39,10 @@ namespace Xbim.Ifc2x3.Kernel
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcContext.Phase 
 		{ 
@@ -46,6 +54,10 @@ namespace Xbim.Ifc2x3.Kernel
 			        : null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcRepresentationContext> IIfcContext.RepresentationContexts 
 		{ 
@@ -64,6 +76,10 @@ namespace Xbim.Ifc2x3.Kernel
 			    return UnitsInContext;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcRelDefinesByProperties> IIfcContext.IsDefinedBy 
 		{ 

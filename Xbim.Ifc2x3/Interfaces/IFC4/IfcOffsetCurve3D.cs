@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return BasisCurve;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure IIfcOffsetCurve3D.Distance 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return new Ifc4.MeasureResource.IfcLengthMeasure(Distance);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLogical IIfcOffsetCurve3D.SelfIntersect 
 		{ 
@@ -38,6 +46,10 @@ namespace Xbim.Ifc2x3.GeometryResource
                 return new Ifc4.MeasureResource.IfcLogical(SelfIntersect);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcDirection IIfcOffsetCurve3D.RefDirection 
 		{ 
@@ -45,6 +57,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return RefDirection;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

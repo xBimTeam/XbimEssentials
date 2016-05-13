@@ -33,6 +33,10 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
                 return new Xbim.Ifc2x3.Interfaces.Conversions.IfcTextureMapTransient(this).MappedTo;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

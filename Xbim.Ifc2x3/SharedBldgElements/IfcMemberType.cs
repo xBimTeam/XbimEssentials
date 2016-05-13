@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMemberType : IIfcBuildingElementType
 	{
-		IfcMemberTypeEnum @PredefinedType { get; }
+		IfcMemberTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 	public  partial class @IfcMemberType : IfcBuildingElementType, IInstantiableEntity, IIfcMemberType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMemberType>
 	{
 		#region IIfcMemberType explicit implementation
-		IfcMemberTypeEnum IIfcMemberType.PredefinedType { get { return @PredefinedType; } }	
+		IfcMemberTypeEnum IIfcMemberType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

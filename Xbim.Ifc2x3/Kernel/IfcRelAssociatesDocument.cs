@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelAssociatesDocument : IIfcRelAssociates
 	{
-		IIfcDocumentSelect @RelatingDocument { get; }
+		IIfcDocumentSelect @RelatingDocument { get;  set; }
 	
 	}
 }
@@ -38,7 +38,12 @@ namespace Xbim.Ifc2x3.Kernel
 	public  partial class @IfcRelAssociatesDocument : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesDocument, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesDocument>
 	{
 		#region IIfcRelAssociatesDocument explicit implementation
-		IIfcDocumentSelect IIfcRelAssociatesDocument.RelatingDocument { get { return @RelatingDocument; } }	
+		IIfcDocumentSelect IIfcRelAssociatesDocument.RelatingDocument { 
+			get { return @RelatingDocument; } 
+ 
+ 
+			set { RelatingDocument = value as IfcDocumentSelect;}
+		}	
 		 
 		#endregion
 

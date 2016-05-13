@@ -27,9 +27,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcProcedure : IIfcProcess
 	{
-		IfcIdentifier @ProcedureID { get; }
-		IfcProcedureTypeEnum @ProcedureType { get; }
-		IfcLabel? @UserDefinedProcedureType { get; }
+		IfcIdentifier @ProcedureID { get;  set; }
+		IfcProcedureTypeEnum @ProcedureType { get;  set; }
+		IfcLabel? @UserDefinedProcedureType { get;  set; }
 	
 	}
 }
@@ -41,9 +41,21 @@ namespace Xbim.Ifc2x3.ProcessExtension
 	public  partial class @IfcProcedure : IfcProcess, IInstantiableEntity, IIfcProcedure, IContainsEntityReferences, IEquatable<@IfcProcedure>
 	{
 		#region IIfcProcedure explicit implementation
-		IfcIdentifier IIfcProcedure.ProcedureID { get { return @ProcedureID; } }	
-		IfcProcedureTypeEnum IIfcProcedure.ProcedureType { get { return @ProcedureType; } }	
-		IfcLabel? IIfcProcedure.UserDefinedProcedureType { get { return @UserDefinedProcedureType; } }	
+		IfcIdentifier IIfcProcedure.ProcedureID { 
+			get { return @ProcedureID; } 
+ 
+			set { ProcedureID = value;}
+		}	
+		IfcProcedureTypeEnum IIfcProcedure.ProcedureType { 
+			get { return @ProcedureType; } 
+ 
+			set { ProcedureType = value;}
+		}	
+		IfcLabel? IIfcProcedure.UserDefinedProcedureType { 
+			get { return @UserDefinedProcedureType; } 
+ 
+			set { UserDefinedProcedureType = value;}
+		}	
 		 
 		#endregion
 

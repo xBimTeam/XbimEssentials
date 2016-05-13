@@ -28,10 +28,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPresentationLayerAssignment : IPersistEntity
 	{
-		IfcLabel @Name { get; }
-		IfcText? @Description { get; }
+		IfcLabel @Name { get;  set; }
+		IfcText? @Description { get;  set; }
 		IEnumerable<IIfcLayeredItem> @AssignedItems { get; }
-		IfcIdentifier? @Identifier { get; }
+		IfcIdentifier? @Identifier { get;  set; }
 	
 	}
 }
@@ -43,10 +43,24 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 	public  partial class @IfcPresentationLayerAssignment : INotifyPropertyChanged, IInstantiableEntity, IIfcPresentationLayerAssignment, IEquatable<@IfcPresentationLayerAssignment>
 	{
 		#region IIfcPresentationLayerAssignment explicit implementation
-		IfcLabel IIfcPresentationLayerAssignment.Name { get { return @Name; } }	
-		IfcText? IIfcPresentationLayerAssignment.Description { get { return @Description; } }	
-		IEnumerable<IIfcLayeredItem> IIfcPresentationLayerAssignment.AssignedItems { get { return @AssignedItems; } }	
-		IfcIdentifier? IIfcPresentationLayerAssignment.Identifier { get { return @Identifier; } }	
+		IfcLabel IIfcPresentationLayerAssignment.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcPresentationLayerAssignment.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IEnumerable<IIfcLayeredItem> IIfcPresentationLayerAssignment.AssignedItems { 
+			get { return @AssignedItems; } 
+		}	
+		IfcIdentifier? IIfcPresentationLayerAssignment.Identifier { 
+			get { return @Identifier; } 
+ 
+			set { Identifier = value;}
+		}	
 		 
 		#endregion
 

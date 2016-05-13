@@ -27,11 +27,11 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTask : IIfcProcess
 	{
-		IfcIdentifier @TaskId { get; }
-		IfcLabel? @Status { get; }
-		IfcLabel? @WorkMethod { get; }
-		bool @IsMilestone { get; }
-		long? @Priority { get; }
+		IfcIdentifier @TaskId { get;  set; }
+		IfcLabel? @Status { get;  set; }
+		IfcLabel? @WorkMethod { get;  set; }
+		bool @IsMilestone { get;  set; }
+		long? @Priority { get;  set; }
 	
 	}
 }
@@ -43,11 +43,31 @@ namespace Xbim.Ifc2x3.ProcessExtension
 	public  partial class @IfcTask : IfcProcess, IInstantiableEntity, IIfcTask, IContainsEntityReferences, IEquatable<@IfcTask>
 	{
 		#region IIfcTask explicit implementation
-		IfcIdentifier IIfcTask.TaskId { get { return @TaskId; } }	
-		IfcLabel? IIfcTask.Status { get { return @Status; } }	
-		IfcLabel? IIfcTask.WorkMethod { get { return @WorkMethod; } }	
-		bool IIfcTask.IsMilestone { get { return @IsMilestone; } }	
-		long? IIfcTask.Priority { get { return @Priority; } }	
+		IfcIdentifier IIfcTask.TaskId { 
+			get { return @TaskId; } 
+ 
+			set { TaskId = value;}
+		}	
+		IfcLabel? IIfcTask.Status { 
+			get { return @Status; } 
+ 
+			set { Status = value;}
+		}	
+		IfcLabel? IIfcTask.WorkMethod { 
+			get { return @WorkMethod; } 
+ 
+			set { WorkMethod = value;}
+		}	
+		bool IIfcTask.IsMilestone { 
+			get { return @IsMilestone; } 
+ 
+			set { IsMilestone = value;}
+		}	
+		long? IIfcTask.Priority { 
+			get { return @Priority; } 
+ 
+			set { Priority = value;}
+		}	
 		 
 		#endregion
 

@@ -27,8 +27,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSoundProperties : IIfcPropertySetDefinition
 	{
-		IfcBoolean @IsAttenuating { get; }
-		IfcSoundScaleEnum? @SoundScale { get; }
+		IfcBoolean @IsAttenuating { get;  set; }
+		IfcSoundScaleEnum? @SoundScale { get;  set; }
 		IEnumerable<IIfcSoundValue> @SoundValues { get; }
 	
 	}
@@ -41,9 +41,19 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 	public  partial class @IfcSoundProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcSoundProperties, IContainsEntityReferences, IEquatable<@IfcSoundProperties>
 	{
 		#region IIfcSoundProperties explicit implementation
-		IfcBoolean IIfcSoundProperties.IsAttenuating { get { return @IsAttenuating; } }	
-		IfcSoundScaleEnum? IIfcSoundProperties.SoundScale { get { return @SoundScale; } }	
-		IEnumerable<IIfcSoundValue> IIfcSoundProperties.SoundValues { get { return @SoundValues; } }	
+		IfcBoolean IIfcSoundProperties.IsAttenuating { 
+			get { return @IsAttenuating; } 
+ 
+			set { IsAttenuating = value;}
+		}	
+		IfcSoundScaleEnum? IIfcSoundProperties.SoundScale { 
+			get { return @SoundScale; } 
+ 
+			set { SoundScale = value;}
+		}	
+		IEnumerable<IIfcSoundValue> IIfcSoundProperties.SoundValues { 
+			get { return @SoundValues; } 
+		}	
 		 
 		#endregion
 

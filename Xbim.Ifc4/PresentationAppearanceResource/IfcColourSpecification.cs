@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcColourSpecification : IIfcPresentationItem, IfcColour
 	{
-		IfcLabel? @Name { get; }
+		IfcLabel? @Name { get;  set; }
 	
 	}
 }
@@ -39,7 +39,11 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public abstract partial class @IfcColourSpecification : IfcPresentationItem, IIfcColourSpecification, IEquatable<@IfcColourSpecification>
 	{
 		#region IIfcColourSpecification explicit implementation
-		IfcLabel? IIfcColourSpecification.Name { get { return @Name; } }	
+		IfcLabel? IIfcColourSpecification.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
 		 
 		#endregion
 

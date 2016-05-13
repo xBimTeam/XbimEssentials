@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcExtendedProperties : IIfcPropertyAbstraction
 	{
-		IfcIdentifier? @Name { get; }
-		IfcText? @Description { get; }
+		IfcIdentifier? @Name { get;  set; }
+		IfcText? @Description { get;  set; }
 		IEnumerable<IIfcProperty> @Properties { get; }
 	
 	}
@@ -40,9 +40,19 @@ namespace Xbim.Ifc4.PropertyResource
 	public abstract partial class @IfcExtendedProperties : IfcPropertyAbstraction, IIfcExtendedProperties, IEquatable<@IfcExtendedProperties>
 	{
 		#region IIfcExtendedProperties explicit implementation
-		IfcIdentifier? IIfcExtendedProperties.Name { get { return @Name; } }	
-		IfcText? IIfcExtendedProperties.Description { get { return @Description; } }	
-		IEnumerable<IIfcProperty> IIfcExtendedProperties.Properties { get { return @Properties; } }	
+		IfcIdentifier? IIfcExtendedProperties.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcExtendedProperties.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IEnumerable<IIfcProperty> IIfcExtendedProperties.Properties { 
+			get { return @Properties; } 
+		}	
 		 
 		#endregion
 

@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return AxisPosition;
 			} 
+			set
+			{
+				
+			}
 		}
 		Common.Geometry.XbimLine IIfcSurfaceOfRevolution.AxisLine 
 		{

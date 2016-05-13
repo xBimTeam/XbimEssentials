@@ -28,9 +28,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSchedulingTime : IPersistEntity
 	{
-		IfcLabel? @Name { get; }
-		IfcDataOriginEnum? @DataOrigin { get; }
-		IfcLabel? @UserDefinedDataOrigin { get; }
+		IfcLabel? @Name { get;  set; }
+		IfcDataOriginEnum? @DataOrigin { get;  set; }
+		IfcLabel? @UserDefinedDataOrigin { get;  set; }
 	
 	}
 }
@@ -42,9 +42,21 @@ namespace Xbim.Ifc4.DateTimeResource
 	public abstract partial class @IfcSchedulingTime : IPersistEntity, INotifyPropertyChanged, IIfcSchedulingTime, IEquatable<@IfcSchedulingTime>
 	{
 		#region IIfcSchedulingTime explicit implementation
-		IfcLabel? IIfcSchedulingTime.Name { get { return @Name; } }	
-		IfcDataOriginEnum? IIfcSchedulingTime.DataOrigin { get { return @DataOrigin; } }	
-		IfcLabel? IIfcSchedulingTime.UserDefinedDataOrigin { get { return @UserDefinedDataOrigin; } }	
+		IfcLabel? IIfcSchedulingTime.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcDataOriginEnum? IIfcSchedulingTime.DataOrigin { 
+			get { return @DataOrigin; } 
+ 
+			set { DataOrigin = value;}
+		}	
+		IfcLabel? IIfcSchedulingTime.UserDefinedDataOrigin { 
+			get { return @UserDefinedDataOrigin; } 
+ 
+			set { UserDefinedDataOrigin = value;}
+		}	
 		 
 		#endregion
 

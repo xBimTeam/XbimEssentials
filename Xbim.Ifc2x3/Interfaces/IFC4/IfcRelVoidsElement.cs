@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				return RelatingBuildingElement;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcFeatureElementSubtraction IIfcRelVoidsElement.RelatedOpeningElement 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				return RelatedOpeningElement;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

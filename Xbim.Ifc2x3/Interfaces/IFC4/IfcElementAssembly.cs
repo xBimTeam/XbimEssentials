@@ -36,6 +36,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcElementAssemblyTypeEnum? IIfcElementAssembly.PredefinedType 
 		{ 
@@ -81,6 +85,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				return ProfileDefinition;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcIdentifier? IIfcExtendedProperties.Name 
 		{ 
@@ -31,6 +35,10 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			    return new Ifc4.MeasureResource.IfcIdentifier(ProfileName);
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcExtendedProperties.Description 
 		{ 
@@ -40,6 +48,10 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcProperty> IIfcExtendedProperties.Properties 
 		{ 

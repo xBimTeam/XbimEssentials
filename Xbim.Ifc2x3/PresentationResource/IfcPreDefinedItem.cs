@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPreDefinedItem : IPersistEntity
 	{
-		IfcLabel @Name { get; }
+		IfcLabel @Name { get;  set; }
 	
 	}
 }
@@ -40,7 +40,11 @@ namespace Xbim.Ifc2x3.PresentationResource
 	public abstract partial class @IfcPreDefinedItem : IPersistEntity, INotifyPropertyChanged, IIfcPreDefinedItem, IEquatable<@IfcPreDefinedItem>
 	{
 		#region IIfcPreDefinedItem explicit implementation
-		IfcLabel IIfcPreDefinedItem.Name { get { return @Name; } }	
+		IfcLabel IIfcPreDefinedItem.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
 		 
 		#endregion
 

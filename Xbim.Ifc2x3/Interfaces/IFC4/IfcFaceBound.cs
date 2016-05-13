@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.TopologyResource
 			{
 				return Bound;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcBoolean IIfcFaceBound.Orientation 
 		{ 
@@ -31,6 +35,10 @@ namespace Xbim.Ifc2x3.TopologyResource
 			    return new Ifc4.MeasureResource.IfcBoolean(Orientation);
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

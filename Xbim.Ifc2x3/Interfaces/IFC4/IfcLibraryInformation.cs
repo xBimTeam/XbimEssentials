@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcLibraryInformation.Version 
 		{ 
@@ -30,6 +34,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (!Version.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Version.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcActorSelect IIfcLibraryInformation.Publisher 
 		{ 
@@ -37,6 +45,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				return Publisher;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDateTime? IIfcLibraryInformation.VersionDate 
 		{ 
@@ -48,6 +60,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			        : null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcLibraryInformation.Location 
 		{ 
@@ -61,6 +77,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			        : null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcLibraryInformation.Description 
 		{ 
@@ -70,6 +90,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcRelAssociatesLibrary> IIfcLibraryInformation.LibraryInfoForObjects 
 		{ 

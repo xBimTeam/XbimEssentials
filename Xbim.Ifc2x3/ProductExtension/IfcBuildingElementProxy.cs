@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBuildingElementProxy : IIfcBuildingElement
 	{
-		IfcElementCompositionEnum? @CompositionType { get; }
+		IfcElementCompositionEnum? @CompositionType { get;  set; }
 	
 	}
 }
@@ -37,7 +37,11 @@ namespace Xbim.Ifc2x3.ProductExtension
 	public  partial class @IfcBuildingElementProxy : IfcBuildingElement, IInstantiableEntity, IIfcBuildingElementProxy, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBuildingElementProxy>
 	{
 		#region IIfcBuildingElementProxy explicit implementation
-		IfcElementCompositionEnum? IIfcBuildingElementProxy.CompositionType { get { return @CompositionType; } }	
+		IfcElementCompositionEnum? IIfcBuildingElementProxy.CompositionType { 
+			get { return @CompositionType; } 
+ 
+			set { CompositionType = value;}
+		}	
 		 
 		#endregion
 

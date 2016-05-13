@@ -28,10 +28,10 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCoordinateReferenceSystem : IPersistEntity, IfcCoordinateReferenceSystemSelect
 	{
-		IfcLabel @Name { get; }
-		IfcText? @Description { get; }
-		IfcIdentifier? @GeodeticDatum { get; }
-		IfcIdentifier? @VerticalDatum { get; }
+		IfcLabel @Name { get;  set; }
+		IfcText? @Description { get;  set; }
+		IfcIdentifier? @GeodeticDatum { get;  set; }
+		IfcIdentifier? @VerticalDatum { get;  set; }
 		IEnumerable<IIfcCoordinateOperation> @HasCoordinateOperation {  get; }
 	
 	}
@@ -44,10 +44,26 @@ namespace Xbim.Ifc4.RepresentationResource
 	public abstract partial class @IfcCoordinateReferenceSystem : IPersistEntity, INotifyPropertyChanged, IIfcCoordinateReferenceSystem, IEquatable<@IfcCoordinateReferenceSystem>
 	{
 		#region IIfcCoordinateReferenceSystem explicit implementation
-		IfcLabel IIfcCoordinateReferenceSystem.Name { get { return @Name; } }	
-		IfcText? IIfcCoordinateReferenceSystem.Description { get { return @Description; } }	
-		IfcIdentifier? IIfcCoordinateReferenceSystem.GeodeticDatum { get { return @GeodeticDatum; } }	
-		IfcIdentifier? IIfcCoordinateReferenceSystem.VerticalDatum { get { return @VerticalDatum; } }	
+		IfcLabel IIfcCoordinateReferenceSystem.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcCoordinateReferenceSystem.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IfcIdentifier? IIfcCoordinateReferenceSystem.GeodeticDatum { 
+			get { return @GeodeticDatum; } 
+ 
+			set { GeodeticDatum = value;}
+		}	
+		IfcIdentifier? IIfcCoordinateReferenceSystem.VerticalDatum { 
+			get { return @VerticalDatum; } 
+ 
+			set { VerticalDatum = value;}
+		}	
 		 
 		IEnumerable<IIfcCoordinateOperation> IIfcCoordinateReferenceSystem.HasCoordinateOperation {  get { return @HasCoordinateOperation; } }
 		#endregion

@@ -23,6 +23,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!Name.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

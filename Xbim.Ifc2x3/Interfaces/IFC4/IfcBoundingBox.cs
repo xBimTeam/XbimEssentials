@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				return Corner;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcBoundingBox.XDim 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(XDim);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcBoundingBox.YDim 
 		{ 
@@ -36,6 +44,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(YDim);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcBoundingBox.ZDim 
 		{ 
@@ -43,6 +55,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(ZDim);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.GeometryResource.IfcDimensionCount IIfcBoundingBox.Dim 
 		{

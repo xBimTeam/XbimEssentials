@@ -38,7 +38,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public  partial class @IfcAdvancedBrepWithVoids : IfcAdvancedBrep, IInstantiableEntity, IIfcAdvancedBrepWithVoids, IContainsEntityReferences, IEquatable<@IfcAdvancedBrepWithVoids>
 	{
 		#region IIfcAdvancedBrepWithVoids explicit implementation
-		IEnumerable<IIfcClosedShell> IIfcAdvancedBrepWithVoids.Voids { get { return @Voids; } }	
+		IEnumerable<IIfcClosedShell> IIfcAdvancedBrepWithVoids.Voids { 
+			get { return @Voids; } 
+		}	
 		 
 		#endregion
 

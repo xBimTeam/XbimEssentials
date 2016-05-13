@@ -26,13 +26,13 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRectangularTrimmedSurface : IIfcBoundedSurface
 	{
-		IIfcSurface @BasisSurface { get; }
-		IfcParameterValue @U1 { get; }
-		IfcParameterValue @V1 { get; }
-		IfcParameterValue @U2 { get; }
-		IfcParameterValue @V2 { get; }
-		bool @Usense { get; }
-		bool @Vsense { get; }
+		IIfcSurface @BasisSurface { get;  set; }
+		IfcParameterValue @U1 { get;  set; }
+		IfcParameterValue @V1 { get;  set; }
+		IfcParameterValue @U2 { get;  set; }
+		IfcParameterValue @V2 { get;  set; }
+		bool @Usense { get;  set; }
+		bool @Vsense { get;  set; }
 	
 	}
 }
@@ -44,13 +44,42 @@ namespace Xbim.Ifc2x3.GeometryResource
 	public  partial class @IfcRectangularTrimmedSurface : IfcBoundedSurface, IInstantiableEntity, IIfcRectangularTrimmedSurface, IContainsEntityReferences, IEquatable<@IfcRectangularTrimmedSurface>
 	{
 		#region IIfcRectangularTrimmedSurface explicit implementation
-		IIfcSurface IIfcRectangularTrimmedSurface.BasisSurface { get { return @BasisSurface; } }	
-		IfcParameterValue IIfcRectangularTrimmedSurface.U1 { get { return @U1; } }	
-		IfcParameterValue IIfcRectangularTrimmedSurface.V1 { get { return @V1; } }	
-		IfcParameterValue IIfcRectangularTrimmedSurface.U2 { get { return @U2; } }	
-		IfcParameterValue IIfcRectangularTrimmedSurface.V2 { get { return @V2; } }	
-		bool IIfcRectangularTrimmedSurface.Usense { get { return @Usense; } }	
-		bool IIfcRectangularTrimmedSurface.Vsense { get { return @Vsense; } }	
+		IIfcSurface IIfcRectangularTrimmedSurface.BasisSurface { 
+			get { return @BasisSurface; } 
+ 
+ 
+			set { BasisSurface = value as IfcSurface;}
+		}	
+		IfcParameterValue IIfcRectangularTrimmedSurface.U1 { 
+			get { return @U1; } 
+ 
+			set { U1 = value;}
+		}	
+		IfcParameterValue IIfcRectangularTrimmedSurface.V1 { 
+			get { return @V1; } 
+ 
+			set { V1 = value;}
+		}	
+		IfcParameterValue IIfcRectangularTrimmedSurface.U2 { 
+			get { return @U2; } 
+ 
+			set { U2 = value;}
+		}	
+		IfcParameterValue IIfcRectangularTrimmedSurface.V2 { 
+			get { return @V2; } 
+ 
+			set { V2 = value;}
+		}	
+		bool IIfcRectangularTrimmedSurface.Usense { 
+			get { return @Usense; } 
+ 
+			set { Usense = value;}
+		}	
+		bool IIfcRectangularTrimmedSurface.Vsense { 
+			get { return @Vsense; } 
+ 
+			set { Vsense = value;}
+		}	
 		 
 		#endregion
 

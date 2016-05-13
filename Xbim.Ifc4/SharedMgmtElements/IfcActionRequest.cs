@@ -27,9 +27,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcActionRequest : IIfcControl
 	{
-		IfcActionRequestTypeEnum? @PredefinedType { get; }
-		IfcLabel? @Status { get; }
-		IfcText? @LongDescription { get; }
+		IfcActionRequestTypeEnum? @PredefinedType { get;  set; }
+		IfcLabel? @Status { get;  set; }
+		IfcText? @LongDescription { get;  set; }
 	
 	}
 }
@@ -41,9 +41,21 @@ namespace Xbim.Ifc4.SharedMgmtElements
 	public  partial class @IfcActionRequest : IfcControl, IInstantiableEntity, IIfcActionRequest, IContainsEntityReferences, IEquatable<@IfcActionRequest>
 	{
 		#region IIfcActionRequest explicit implementation
-		IfcActionRequestTypeEnum? IIfcActionRequest.PredefinedType { get { return @PredefinedType; } }	
-		IfcLabel? IIfcActionRequest.Status { get { return @Status; } }	
-		IfcText? IIfcActionRequest.LongDescription { get { return @LongDescription; } }	
+		IfcActionRequestTypeEnum? IIfcActionRequest.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
+		IfcLabel? IIfcActionRequest.Status { 
+			get { return @Status; } 
+ 
+			set { Status = value;}
+		}	
+		IfcText? IIfcActionRequest.LongDescription { 
+			get { return @LongDescription; } 
+ 
+			set { LongDescription = value;}
+		}	
 		 
 		#endregion
 

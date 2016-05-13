@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSweptDiskSolidPolygonal : IIfcSweptDiskSolid
 	{
-		IfcPositiveLengthMeasure? @FilletRadius { get; }
+		IfcPositiveLengthMeasure? @FilletRadius { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public  partial class @IfcSweptDiskSolidPolygonal : IfcSweptDiskSolid, IInstantiableEntity, IIfcSweptDiskSolidPolygonal, IContainsEntityReferences, IEquatable<@IfcSweptDiskSolidPolygonal>
 	{
 		#region IIfcSweptDiskSolidPolygonal explicit implementation
-		IfcPositiveLengthMeasure? IIfcSweptDiskSolidPolygonal.FilletRadius { get { return @FilletRadius; } }	
+		IfcPositiveLengthMeasure? IIfcSweptDiskSolidPolygonal.FilletRadius { 
+			get { return @FilletRadius; } 
+ 
+			set { FilletRadius = value;}
+		}	
 		 
 		#endregion
 

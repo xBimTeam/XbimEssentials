@@ -28,10 +28,10 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcGeometricRepresentationSubContext : IIfcGeometricRepresentationContext
 	{
-		IIfcGeometricRepresentationContext @ParentContext { get; }
-		IfcPositiveRatioMeasure? @TargetScale { get; }
-		IfcGeometricProjectionEnum @TargetView { get; }
-		IfcLabel? @UserDefinedTargetView { get; }
+		IIfcGeometricRepresentationContext @ParentContext { get;  set; }
+		IfcPositiveRatioMeasure? @TargetScale { get;  set; }
+		IfcGeometricProjectionEnum @TargetView { get;  set; }
+		IfcLabel? @UserDefinedTargetView { get;  set; }
 	
 	}
 }
@@ -43,10 +43,27 @@ namespace Xbim.Ifc4.RepresentationResource
 	public  partial class @IfcGeometricRepresentationSubContext : IfcGeometricRepresentationContext, IInstantiableEntity, IIfcGeometricRepresentationSubContext, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcGeometricRepresentationSubContext>
 	{
 		#region IIfcGeometricRepresentationSubContext explicit implementation
-		IIfcGeometricRepresentationContext IIfcGeometricRepresentationSubContext.ParentContext { get { return @ParentContext; } }	
-		IfcPositiveRatioMeasure? IIfcGeometricRepresentationSubContext.TargetScale { get { return @TargetScale; } }	
-		IfcGeometricProjectionEnum IIfcGeometricRepresentationSubContext.TargetView { get { return @TargetView; } }	
-		IfcLabel? IIfcGeometricRepresentationSubContext.UserDefinedTargetView { get { return @UserDefinedTargetView; } }	
+		IIfcGeometricRepresentationContext IIfcGeometricRepresentationSubContext.ParentContext { 
+			get { return @ParentContext; } 
+ 
+ 
+			set { ParentContext = value as IfcGeometricRepresentationContext;}
+		}	
+		IfcPositiveRatioMeasure? IIfcGeometricRepresentationSubContext.TargetScale { 
+			get { return @TargetScale; } 
+ 
+			set { TargetScale = value;}
+		}	
+		IfcGeometricProjectionEnum IIfcGeometricRepresentationSubContext.TargetView { 
+			get { return @TargetView; } 
+ 
+			set { TargetView = value;}
+		}	
+		IfcLabel? IIfcGeometricRepresentationSubContext.UserDefinedTargetView { 
+			get { return @UserDefinedTargetView; } 
+ 
+			set { UserDefinedTargetView = value;}
+		}	
 		 
 		#endregion
 

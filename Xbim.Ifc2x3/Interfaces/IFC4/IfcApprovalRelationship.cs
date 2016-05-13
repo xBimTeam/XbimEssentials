@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			{
 				return RelatingApproval;
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcApproval> IIfcApprovalRelationship.RelatedApprovals 
 		{ 
@@ -40,6 +44,10 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			    return new Ifc4.MeasureResource.IfcLabel(Name);
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
 		{ 
@@ -49,6 +57,10 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			    return new Ifc4.MeasureResource.IfcText(Description);
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

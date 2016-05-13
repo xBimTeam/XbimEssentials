@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcTypeProduct : IIfcTypeObject
 	{
 		IEnumerable<IIfcRepresentationMap> @RepresentationMaps { get; }
-		IfcLabel? @Tag { get; }
+		IfcLabel? @Tag { get;  set; }
 	
 	}
 }
@@ -40,8 +40,14 @@ namespace Xbim.Ifc2x3.Kernel
 	public  partial class @IfcTypeProduct : IfcTypeObject, IInstantiableEntity, IIfcTypeProduct, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTypeProduct>
 	{
 		#region IIfcTypeProduct explicit implementation
-		IEnumerable<IIfcRepresentationMap> IIfcTypeProduct.RepresentationMaps { get { return @RepresentationMaps; } }	
-		IfcLabel? IIfcTypeProduct.Tag { get { return @Tag; } }	
+		IEnumerable<IIfcRepresentationMap> IIfcTypeProduct.RepresentationMaps { 
+			get { return @RepresentationMaps; } 
+		}	
+		IfcLabel? IIfcTypeProduct.Tag { 
+			get { return @Tag; } 
+ 
+			set { Tag = value;}
+		}	
 		 
 		#endregion
 

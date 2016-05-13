@@ -29,6 +29,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 					return ifcaxis2placement3d;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcRepresentation IIfcRepresentationMap.MappedRepresentation 
 		{ 
@@ -36,6 +40,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return MappedRepresentation;
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcShapeAspect> IIfcRepresentationMap.HasShapeAspects 
 		{ 

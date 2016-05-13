@@ -23,6 +23,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				if (!RefractionIndex.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcReal(RefractionIndex.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcReal? IIfcSurfaceStyleRefraction.DispersionFactor 
 		{ 
@@ -31,6 +35,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				if (!DispersionFactor.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcReal(DispersionFactor.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -28,8 +28,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelaxation : IPersistEntity
 	{
-		IfcNormalisedRatioMeasure @RelaxationValue { get; }
-		IfcNormalisedRatioMeasure @InitialStress { get; }
+		IfcNormalisedRatioMeasure @RelaxationValue { get;  set; }
+		IfcNormalisedRatioMeasure @InitialStress { get;  set; }
 	
 	}
 }
@@ -41,8 +41,16 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	public  partial class @IfcRelaxation : INotifyPropertyChanged, IInstantiableEntity, IIfcRelaxation, IEquatable<@IfcRelaxation>
 	{
 		#region IIfcRelaxation explicit implementation
-		IfcNormalisedRatioMeasure IIfcRelaxation.RelaxationValue { get { return @RelaxationValue; } }	
-		IfcNormalisedRatioMeasure IIfcRelaxation.InitialStress { get { return @InitialStress; } }	
+		IfcNormalisedRatioMeasure IIfcRelaxation.RelaxationValue { 
+			get { return @RelaxationValue; } 
+ 
+			set { RelaxationValue = value;}
+		}	
+		IfcNormalisedRatioMeasure IIfcRelaxation.InitialStress { 
+			get { return @InitialStress; } 
+ 
+			set { InitialStress = value;}
+		}	
 		 
 		#endregion
 

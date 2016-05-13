@@ -24,6 +24,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
                 return IfcWorkScheduleTypeEnum.NOTDEFINED;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

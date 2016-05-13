@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				return Axis;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure IIfcRevolvedAreaSolid.Angle 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				return new Ifc4.MeasureResource.IfcPlaneAngleMeasure(Angle);
 			} 
+			set
+			{
+				
+			}
 		}
 		Common.Geometry.XbimLine IIfcRevolvedAreaSolid.AxisLine 
 		{

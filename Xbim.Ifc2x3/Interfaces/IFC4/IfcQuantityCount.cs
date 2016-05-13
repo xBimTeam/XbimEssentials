@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.QuantityResource
 			{
 				return new Ifc4.MeasureResource.IfcCountMeasure(CountValue);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcQuantityCount.Formula 
 		{ 
@@ -31,6 +35,10 @@ namespace Xbim.Ifc2x3.QuantityResource
                 return null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

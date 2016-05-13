@@ -51,6 +51,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

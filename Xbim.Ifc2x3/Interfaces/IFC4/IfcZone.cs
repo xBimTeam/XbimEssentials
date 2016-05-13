@@ -24,6 +24,10 @@ namespace Xbim.Ifc2x3.ProductExtension
                 return Name != null ? new Ifc4.MeasureResource.IfcLabel(Name) : null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcRelServicesBuildings> IIfcSystem.ServicesBuildings 
 		{ 

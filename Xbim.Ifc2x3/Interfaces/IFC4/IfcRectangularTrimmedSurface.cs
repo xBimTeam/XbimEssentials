@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return BasisSurface;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcParameterValue IIfcRectangularTrimmedSurface.U1 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return new Ifc4.MeasureResource.IfcParameterValue(U1);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcParameterValue IIfcRectangularTrimmedSurface.V1 
 		{ 
@@ -36,6 +44,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return new Ifc4.MeasureResource.IfcParameterValue(V1);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcParameterValue IIfcRectangularTrimmedSurface.U2 
 		{ 
@@ -43,6 +55,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return new Ifc4.MeasureResource.IfcParameterValue(U2);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcParameterValue IIfcRectangularTrimmedSurface.V2 
 		{ 
@@ -50,6 +66,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return new Ifc4.MeasureResource.IfcParameterValue(V2);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcBoolean IIfcRectangularTrimmedSurface.Usense 
 		{ 
@@ -59,6 +79,10 @@ namespace Xbim.Ifc2x3.GeometryResource
                 return new Ifc4.MeasureResource.IfcBoolean(Usense);
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcBoolean IIfcRectangularTrimmedSurface.Vsense 
 		{ 
@@ -68,6 +92,10 @@ namespace Xbim.Ifc2x3.GeometryResource
                 return new Ifc4.MeasureResource.IfcBoolean(Vsense);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

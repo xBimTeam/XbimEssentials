@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				return RelatingDocument;
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcDocumentInformation> IIfcDocumentInformationRelationship.RelatedDocuments 
 		{ 
@@ -40,6 +44,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (!RelationshipType.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(RelationshipType.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
 		{ 
@@ -49,6 +57,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
 		{ 
@@ -58,6 +70,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

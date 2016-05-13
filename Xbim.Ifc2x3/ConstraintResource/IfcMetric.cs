@@ -26,9 +26,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMetric : IIfcConstraint
 	{
-		IfcBenchmarkEnum @Benchmark { get; }
-		IfcLabel? @ValueSource { get; }
-		IIfcMetricValueSelect @DataValue { get; }
+		IfcBenchmarkEnum @Benchmark { get;  set; }
+		IfcLabel? @ValueSource { get;  set; }
+		IIfcMetricValueSelect @DataValue { get;  set; }
 	
 	}
 }
@@ -40,9 +40,22 @@ namespace Xbim.Ifc2x3.ConstraintResource
 	public  partial class @IfcMetric : IfcConstraint, IInstantiableEntity, IIfcMetric, IContainsEntityReferences, IEquatable<@IfcMetric>
 	{
 		#region IIfcMetric explicit implementation
-		IfcBenchmarkEnum IIfcMetric.Benchmark { get { return @Benchmark; } }	
-		IfcLabel? IIfcMetric.ValueSource { get { return @ValueSource; } }	
-		IIfcMetricValueSelect IIfcMetric.DataValue { get { return @DataValue; } }	
+		IfcBenchmarkEnum IIfcMetric.Benchmark { 
+			get { return @Benchmark; } 
+ 
+			set { Benchmark = value;}
+		}	
+		IfcLabel? IIfcMetric.ValueSource { 
+			get { return @ValueSource; } 
+ 
+			set { ValueSource = value;}
+		}	
+		IIfcMetricValueSelect IIfcMetric.DataValue { 
+			get { return @DataValue; } 
+ 
+ 
+			set { DataValue = value as IfcMetricValueSelect;}
+		}	
 		 
 		#endregion
 

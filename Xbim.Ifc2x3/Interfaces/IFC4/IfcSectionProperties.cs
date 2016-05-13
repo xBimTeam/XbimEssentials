@@ -33,6 +33,10 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcProfileDef IIfcSectionProperties.StartProfile 
 		{ 
@@ -40,6 +44,10 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				return StartProfile;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcProfileDef IIfcSectionProperties.EndProfile 
 		{ 
@@ -47,6 +55,10 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				return EndProfile;
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 
 		{ 

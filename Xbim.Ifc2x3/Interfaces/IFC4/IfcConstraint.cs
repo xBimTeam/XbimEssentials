@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcConstraint.Description 
 		{ 
@@ -30,6 +34,10 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				if (!Description.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcConstraintEnum IIfcConstraint.ConstraintGrade 
 		{ 
@@ -57,6 +65,10 @@ namespace Xbim.Ifc2x3.ConstraintResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcConstraint.ConstraintSource 
 		{ 
@@ -65,6 +77,10 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				if (!ConstraintSource.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(ConstraintSource.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcActorSelect IIfcConstraint.CreatingActor 
 		{ 
@@ -82,6 +98,10 @@ namespace Xbim.Ifc2x3.ConstraintResource
 					return ifcpersonandorganization;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDateTime? IIfcConstraint.CreationTime 
 		{ 
@@ -93,6 +113,10 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			        : new Ifc4.DateTimeResource.IfcDateTime(CreationTime.ToISODateTimeString());
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcConstraint.UserDefinedGrade 
 		{ 
@@ -101,6 +125,10 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				if (!UserDefinedGrade.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(UserDefinedGrade.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcConstraint.HasExternalReferences 
 		{ 

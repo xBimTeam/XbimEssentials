@@ -26,8 +26,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcEllipseProfileDef : IIfcParameterizedProfileDef
 	{
-		IfcPositiveLengthMeasure @SemiAxis1 { get; }
-		IfcPositiveLengthMeasure @SemiAxis2 { get; }
+		IfcPositiveLengthMeasure @SemiAxis1 { get;  set; }
+		IfcPositiveLengthMeasure @SemiAxis2 { get;  set; }
 	
 	}
 }
@@ -39,8 +39,16 @@ namespace Xbim.Ifc2x3.ProfileResource
 	public  partial class @IfcEllipseProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcEllipseProfileDef, IContainsEntityReferences, IEquatable<@IfcEllipseProfileDef>
 	{
 		#region IIfcEllipseProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcEllipseProfileDef.SemiAxis1 { get { return @SemiAxis1; } }	
-		IfcPositiveLengthMeasure IIfcEllipseProfileDef.SemiAxis2 { get { return @SemiAxis2; } }	
+		IfcPositiveLengthMeasure IIfcEllipseProfileDef.SemiAxis1 { 
+			get { return @SemiAxis1; } 
+ 
+			set { SemiAxis1 = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcEllipseProfileDef.SemiAxis2 { 
+			get { return @SemiAxis2; } 
+ 
+			set { SemiAxis2 = value;}
+		}	
 		 
 		#endregion
 

@@ -24,6 +24,10 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

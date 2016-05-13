@@ -26,12 +26,12 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMechanicalSteelMaterialProperties : IIfcMechanicalMaterialProperties
 	{
-		IfcPressureMeasure? @YieldStress { get; }
-		IfcPressureMeasure? @UltimateStress { get; }
-		IfcPositiveRatioMeasure? @UltimateStrain { get; }
-		IfcModulusOfElasticityMeasure? @HardeningModule { get; }
-		IfcPressureMeasure? @ProportionalStress { get; }
-		IfcPositiveRatioMeasure? @PlasticStrain { get; }
+		IfcPressureMeasure? @YieldStress { get;  set; }
+		IfcPressureMeasure? @UltimateStress { get;  set; }
+		IfcPositiveRatioMeasure? @UltimateStrain { get;  set; }
+		IfcModulusOfElasticityMeasure? @HardeningModule { get;  set; }
+		IfcPressureMeasure? @ProportionalStress { get;  set; }
+		IfcPositiveRatioMeasure? @PlasticStrain { get;  set; }
 		IEnumerable<IIfcRelaxation> @Relaxations { get; }
 	
 	}
@@ -44,13 +44,39 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	public  partial class @IfcMechanicalSteelMaterialProperties : IfcMechanicalMaterialProperties, IInstantiableEntity, IIfcMechanicalSteelMaterialProperties, IContainsEntityReferences, IEquatable<@IfcMechanicalSteelMaterialProperties>
 	{
 		#region IIfcMechanicalSteelMaterialProperties explicit implementation
-		IfcPressureMeasure? IIfcMechanicalSteelMaterialProperties.YieldStress { get { return @YieldStress; } }	
-		IfcPressureMeasure? IIfcMechanicalSteelMaterialProperties.UltimateStress { get { return @UltimateStress; } }	
-		IfcPositiveRatioMeasure? IIfcMechanicalSteelMaterialProperties.UltimateStrain { get { return @UltimateStrain; } }	
-		IfcModulusOfElasticityMeasure? IIfcMechanicalSteelMaterialProperties.HardeningModule { get { return @HardeningModule; } }	
-		IfcPressureMeasure? IIfcMechanicalSteelMaterialProperties.ProportionalStress { get { return @ProportionalStress; } }	
-		IfcPositiveRatioMeasure? IIfcMechanicalSteelMaterialProperties.PlasticStrain { get { return @PlasticStrain; } }	
-		IEnumerable<IIfcRelaxation> IIfcMechanicalSteelMaterialProperties.Relaxations { get { return @Relaxations; } }	
+		IfcPressureMeasure? IIfcMechanicalSteelMaterialProperties.YieldStress { 
+			get { return @YieldStress; } 
+ 
+			set { YieldStress = value;}
+		}	
+		IfcPressureMeasure? IIfcMechanicalSteelMaterialProperties.UltimateStress { 
+			get { return @UltimateStress; } 
+ 
+			set { UltimateStress = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcMechanicalSteelMaterialProperties.UltimateStrain { 
+			get { return @UltimateStrain; } 
+ 
+			set { UltimateStrain = value;}
+		}	
+		IfcModulusOfElasticityMeasure? IIfcMechanicalSteelMaterialProperties.HardeningModule { 
+			get { return @HardeningModule; } 
+ 
+			set { HardeningModule = value;}
+		}	
+		IfcPressureMeasure? IIfcMechanicalSteelMaterialProperties.ProportionalStress { 
+			get { return @ProportionalStress; } 
+ 
+			set { ProportionalStress = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcMechanicalSteelMaterialProperties.PlasticStrain { 
+			get { return @PlasticStrain; } 
+ 
+			set { PlasticStrain = value;}
+		}	
+		IEnumerable<IIfcRelaxation> IIfcMechanicalSteelMaterialProperties.Relaxations { 
+			get { return @Relaxations; } 
+		}	
 		 
 		#endregion
 

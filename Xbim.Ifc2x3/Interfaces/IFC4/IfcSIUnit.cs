@@ -75,6 +75,10 @@ namespace Xbim.Ifc2x3.MeasureResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcSIUnitName IIfcSIUnit.Name 
 		{ 
@@ -177,6 +181,10 @@ namespace Xbim.Ifc2x3.MeasureResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

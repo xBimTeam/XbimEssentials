@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.ControlExtension
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Intent);
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcConstraint IIfcRelAssociatesConstraint.RelatingConstraint 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.ControlExtension
 			{
 				return RelatingConstraint;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

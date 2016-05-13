@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCircleHollowProfileDef : IIfcCircleProfileDef
 	{
-		IfcPositiveLengthMeasure @WallThickness { get; }
+		IfcPositiveLengthMeasure @WallThickness { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.ProfileResource
 	public  partial class @IfcCircleHollowProfileDef : IfcCircleProfileDef, IInstantiableEntity, IIfcCircleHollowProfileDef, IContainsEntityReferences, IEquatable<@IfcCircleHollowProfileDef>
 	{
 		#region IIfcCircleHollowProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcCircleHollowProfileDef.WallThickness { get { return @WallThickness; } }	
+		IfcPositiveLengthMeasure IIfcCircleHollowProfileDef.WallThickness { 
+			get { return @WallThickness; } 
+ 
+			set { WallThickness = value;}
+		}	
 		 
 		#endregion
 

@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			{
 				return new Ifc4.GeometryResource.IfcDimensionCount(CoordinateSpaceDimension);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcReal? IIfcGeometricRepresentationContext.Precision 
 		{ 
@@ -31,6 +35,10 @@ namespace Xbim.Ifc2x3.RepresentationResource
                 return Precision.HasValue ? new Ifc4.MeasureResource.IfcReal(Precision.Value) : (Ifc4.MeasureResource.IfcReal?)null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcAxis2Placement IIfcGeometricRepresentationContext.WorldCoordinateSystem 
 		{ 
@@ -45,6 +53,10 @@ namespace Xbim.Ifc2x3.RepresentationResource
 					return ifcaxis2placement3d;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcDirection IIfcGeometricRepresentationContext.TrueNorth 
 		{ 
@@ -52,6 +64,10 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			{
 				return TrueNorth;
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcGeometricRepresentationSubContext> IIfcGeometricRepresentationContext.HasSubContexts 
 		{ 

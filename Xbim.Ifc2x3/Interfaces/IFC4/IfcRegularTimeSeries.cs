@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			{
 				return new Ifc4.MeasureResource.IfcTimeMeasure(TimeStep);
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcTimeSeriesValue> IIfcRegularTimeSeries.Values 
 		{ 

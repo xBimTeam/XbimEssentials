@@ -25,8 +25,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcFaceBound : IIfcTopologicalRepresentationItem
 	{
-		IIfcLoop @Bound { get; }
-		bool @Orientation { get; }
+		IIfcLoop @Bound { get;  set; }
+		bool @Orientation { get;  set; }
 	
 	}
 }
@@ -38,8 +38,17 @@ namespace Xbim.Ifc2x3.TopologyResource
 	public  partial class @IfcFaceBound : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcFaceBound, IContainsEntityReferences, IEquatable<@IfcFaceBound>
 	{
 		#region IIfcFaceBound explicit implementation
-		IIfcLoop IIfcFaceBound.Bound { get { return @Bound; } }	
-		bool IIfcFaceBound.Orientation { get { return @Orientation; } }	
+		IIfcLoop IIfcFaceBound.Bound { 
+			get { return @Bound; } 
+ 
+ 
+			set { Bound = value as IfcLoop;}
+		}	
+		bool IIfcFaceBound.Orientation { 
+			get { return @Orientation; } 
+ 
+			set { Orientation = value;}
+		}	
 		 
 		#endregion
 

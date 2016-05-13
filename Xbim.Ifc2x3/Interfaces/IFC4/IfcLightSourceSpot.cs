@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				return Orientation;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcReal? IIfcLightSourceSpot.ConcentrationExponent 
 		{ 
@@ -30,6 +34,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				if (!ConcentrationExponent.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcReal(ConcentrationExponent.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositivePlaneAngleMeasure IIfcLightSourceSpot.SpreadAngle 
 		{ 
@@ -37,6 +45,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				return new Ifc4.MeasureResource.IfcPositivePlaneAngleMeasure(SpreadAngle);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositivePlaneAngleMeasure IIfcLightSourceSpot.BeamWidthAngle 
 		{ 
@@ -44,6 +56,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				return new Ifc4.MeasureResource.IfcPositivePlaneAngleMeasure(BeamWidthAngle);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

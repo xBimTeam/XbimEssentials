@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Source);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcClassification.Edition 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Edition);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDate? IIfcClassification.EditionDate 
 		{ 
@@ -38,6 +46,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
                 return EditionDate == null ? null : new Ifc4.DateTimeResource.IfcDate(EditionDate.ToISODateTimeString());
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel IIfcClassification.Name 
 		{ 
@@ -45,6 +57,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcClassification.Description 
 		{ 
@@ -54,6 +70,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcClassification.Location 
 		{ 
@@ -63,6 +83,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcIdentifier> IIfcClassification.ReferenceTokens 
 		{ 

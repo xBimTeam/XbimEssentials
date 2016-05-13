@@ -39,6 +39,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcBoolean IIfcCompositeCurveSegment.SameSense 
 		{ 
@@ -48,6 +52,10 @@ namespace Xbim.Ifc2x3.GeometryResource
                 return new Ifc4.MeasureResource.IfcBoolean(SameSense);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcCurve IIfcCompositeCurveSegment.ParentCurve 
 		{ 
@@ -55,6 +63,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return ParentCurve;
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcCompositeCurve> IIfcCompositeCurveSegment.UsingCurves 
 		{ 

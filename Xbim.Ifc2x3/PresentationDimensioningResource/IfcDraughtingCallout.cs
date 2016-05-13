@@ -40,7 +40,9 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 	public  partial class @IfcDraughtingCallout : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDraughtingCallout, IEquatable<@IfcDraughtingCallout>
 	{
 		#region IIfcDraughtingCallout explicit implementation
-		IEnumerable<IIfcDraughtingCalloutElement> IIfcDraughtingCallout.Contents { get { return @Contents; } }	
+		IEnumerable<IIfcDraughtingCalloutElement> IIfcDraughtingCallout.Contents { 
+			get { return @Contents; } 
+		}	
 		 
 		IEnumerable<IIfcDraughtingCalloutRelationship> IIfcDraughtingCallout.IsRelatedFromCallout {  get { return @IsRelatedFromCallout; } }
 		IEnumerable<IIfcDraughtingCalloutRelationship> IIfcDraughtingCallout.IsRelatedToCallout {  get { return @IsRelatedToCallout; } }

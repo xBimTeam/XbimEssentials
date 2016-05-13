@@ -23,6 +23,10 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 				if (!NominalDiameter.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(NominalDiameter.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalLength 
 		{ 
@@ -31,6 +35,10 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 				if (!NominalLength.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(NominalLength.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum? IIfcMechanicalFastener.PredefinedType 
 		{ 
@@ -40,6 +48,10 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

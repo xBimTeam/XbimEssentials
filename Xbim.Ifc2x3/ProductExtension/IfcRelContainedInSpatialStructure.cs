@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcRelContainedInSpatialStructure : IIfcRelConnects
 	{
 		IEnumerable<IIfcProduct> @RelatedElements { get; }
-		IIfcSpatialStructureElement @RelatingStructure { get; }
+		IIfcSpatialStructureElement @RelatingStructure { get;  set; }
 	
 	}
 }
@@ -39,8 +39,15 @@ namespace Xbim.Ifc2x3.ProductExtension
 	public  partial class @IfcRelContainedInSpatialStructure : IfcRelConnects, IInstantiableEntity, IIfcRelContainedInSpatialStructure, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelContainedInSpatialStructure>
 	{
 		#region IIfcRelContainedInSpatialStructure explicit implementation
-		IEnumerable<IIfcProduct> IIfcRelContainedInSpatialStructure.RelatedElements { get { return @RelatedElements; } }	
-		IIfcSpatialStructureElement IIfcRelContainedInSpatialStructure.RelatingStructure { get { return @RelatingStructure; } }	
+		IEnumerable<IIfcProduct> IIfcRelContainedInSpatialStructure.RelatedElements { 
+			get { return @RelatedElements; } 
+		}	
+		IIfcSpatialStructureElement IIfcRelContainedInSpatialStructure.RelatingStructure { 
+			get { return @RelatingStructure; } 
+ 
+ 
+			set { RelatingStructure = value as IfcSpatialStructureElement;}
+		}	
 		 
 		#endregion
 

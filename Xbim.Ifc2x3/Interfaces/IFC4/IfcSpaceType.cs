@@ -33,6 +33,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcSpaceType.LongName 
 		{ 
@@ -42,6 +46,10 @@ namespace Xbim.Ifc2x3.ProductExtension
                 return null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcSpatialElementType.ElementType 
 		{ 
@@ -51,6 +59,10 @@ namespace Xbim.Ifc2x3.ProductExtension
                 if (!this.ElementType.HasValue) return null; else return new Xbim.Ifc4.MeasureResource.IfcLabel(this.ElementType.Value);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

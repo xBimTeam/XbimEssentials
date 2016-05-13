@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.TopologyResource
 			{
 				return LoopVertex;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

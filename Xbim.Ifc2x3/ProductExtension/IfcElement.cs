@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcElement : IIfcProduct, IfcStructuralActivityAssignmentSelect
 	{
-		IfcIdentifier? @Tag { get; }
+		IfcIdentifier? @Tag { get;  set; }
 		IEnumerable<IIfcRelConnectsStructuralElement> @HasStructuralMember {  get; }
 		IEnumerable<IIfcRelFillsElement> @FillsVoids {  get; }
 		IEnumerable<IIfcRelConnectsElements> @ConnectedTo {  get; }
@@ -52,7 +52,11 @@ namespace Xbim.Ifc2x3.ProductExtension
 	public abstract partial class @IfcElement : IfcProduct, IIfcElement, IEquatable<@IfcElement>
 	{
 		#region IIfcElement explicit implementation
-		IfcIdentifier? IIfcElement.Tag { get { return @Tag; } }	
+		IfcIdentifier? IIfcElement.Tag { 
+			get { return @Tag; } 
+ 
+			set { Tag = value;}
+		}	
 		 
 		IEnumerable<IIfcRelConnectsStructuralElement> IIfcElement.HasStructuralMember {  get { return @HasStructuralMember; } }
 		IEnumerable<IIfcRelFillsElement> IIfcElement.FillsVoids {  get { return @FillsVoids; } }

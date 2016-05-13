@@ -54,6 +54,10 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcCostSchedule.Status 
 		{ 
@@ -62,6 +66,10 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				if (!Status.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Status.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDateTime? IIfcCostSchedule.SubmittedOn 
 		{ 
@@ -73,6 +81,10 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			        : null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDateTime? IIfcCostSchedule.UpdateDate 
 		{ 
@@ -84,6 +96,10 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
                     : null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

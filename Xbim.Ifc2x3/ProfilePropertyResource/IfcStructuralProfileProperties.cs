@@ -26,22 +26,22 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralProfileProperties : IIfcGeneralProfileProperties
 	{
-		IfcMomentOfInertiaMeasure? @TorsionalConstantX { get; }
-		IfcMomentOfInertiaMeasure? @MomentOfInertiaYZ { get; }
-		IfcMomentOfInertiaMeasure? @MomentOfInertiaY { get; }
-		IfcMomentOfInertiaMeasure? @MomentOfInertiaZ { get; }
-		IfcWarpingConstantMeasure? @WarpingConstant { get; }
-		IfcLengthMeasure? @ShearCentreZ { get; }
-		IfcLengthMeasure? @ShearCentreY { get; }
-		IfcAreaMeasure? @ShearDeformationAreaZ { get; }
-		IfcAreaMeasure? @ShearDeformationAreaY { get; }
-		IfcSectionModulusMeasure? @MaximumSectionModulusY { get; }
-		IfcSectionModulusMeasure? @MinimumSectionModulusY { get; }
-		IfcSectionModulusMeasure? @MaximumSectionModulusZ { get; }
-		IfcSectionModulusMeasure? @MinimumSectionModulusZ { get; }
-		IfcSectionModulusMeasure? @TorsionalSectionModulus { get; }
-		IfcLengthMeasure? @CentreOfGravityInX { get; }
-		IfcLengthMeasure? @CentreOfGravityInY { get; }
+		IfcMomentOfInertiaMeasure? @TorsionalConstantX { get;  set; }
+		IfcMomentOfInertiaMeasure? @MomentOfInertiaYZ { get;  set; }
+		IfcMomentOfInertiaMeasure? @MomentOfInertiaY { get;  set; }
+		IfcMomentOfInertiaMeasure? @MomentOfInertiaZ { get;  set; }
+		IfcWarpingConstantMeasure? @WarpingConstant { get;  set; }
+		IfcLengthMeasure? @ShearCentreZ { get;  set; }
+		IfcLengthMeasure? @ShearCentreY { get;  set; }
+		IfcAreaMeasure? @ShearDeformationAreaZ { get;  set; }
+		IfcAreaMeasure? @ShearDeformationAreaY { get;  set; }
+		IfcSectionModulusMeasure? @MaximumSectionModulusY { get;  set; }
+		IfcSectionModulusMeasure? @MinimumSectionModulusY { get;  set; }
+		IfcSectionModulusMeasure? @MaximumSectionModulusZ { get;  set; }
+		IfcSectionModulusMeasure? @MinimumSectionModulusZ { get;  set; }
+		IfcSectionModulusMeasure? @TorsionalSectionModulus { get;  set; }
+		IfcLengthMeasure? @CentreOfGravityInX { get;  set; }
+		IfcLengthMeasure? @CentreOfGravityInY { get;  set; }
 	
 	}
 }
@@ -53,22 +53,86 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 	public  partial class @IfcStructuralProfileProperties : IfcGeneralProfileProperties, IInstantiableEntity, IIfcStructuralProfileProperties, IContainsEntityReferences, IEquatable<@IfcStructuralProfileProperties>
 	{
 		#region IIfcStructuralProfileProperties explicit implementation
-		IfcMomentOfInertiaMeasure? IIfcStructuralProfileProperties.TorsionalConstantX { get { return @TorsionalConstantX; } }	
-		IfcMomentOfInertiaMeasure? IIfcStructuralProfileProperties.MomentOfInertiaYZ { get { return @MomentOfInertiaYZ; } }	
-		IfcMomentOfInertiaMeasure? IIfcStructuralProfileProperties.MomentOfInertiaY { get { return @MomentOfInertiaY; } }	
-		IfcMomentOfInertiaMeasure? IIfcStructuralProfileProperties.MomentOfInertiaZ { get { return @MomentOfInertiaZ; } }	
-		IfcWarpingConstantMeasure? IIfcStructuralProfileProperties.WarpingConstant { get { return @WarpingConstant; } }	
-		IfcLengthMeasure? IIfcStructuralProfileProperties.ShearCentreZ { get { return @ShearCentreZ; } }	
-		IfcLengthMeasure? IIfcStructuralProfileProperties.ShearCentreY { get { return @ShearCentreY; } }	
-		IfcAreaMeasure? IIfcStructuralProfileProperties.ShearDeformationAreaZ { get { return @ShearDeformationAreaZ; } }	
-		IfcAreaMeasure? IIfcStructuralProfileProperties.ShearDeformationAreaY { get { return @ShearDeformationAreaY; } }	
-		IfcSectionModulusMeasure? IIfcStructuralProfileProperties.MaximumSectionModulusY { get { return @MaximumSectionModulusY; } }	
-		IfcSectionModulusMeasure? IIfcStructuralProfileProperties.MinimumSectionModulusY { get { return @MinimumSectionModulusY; } }	
-		IfcSectionModulusMeasure? IIfcStructuralProfileProperties.MaximumSectionModulusZ { get { return @MaximumSectionModulusZ; } }	
-		IfcSectionModulusMeasure? IIfcStructuralProfileProperties.MinimumSectionModulusZ { get { return @MinimumSectionModulusZ; } }	
-		IfcSectionModulusMeasure? IIfcStructuralProfileProperties.TorsionalSectionModulus { get { return @TorsionalSectionModulus; } }	
-		IfcLengthMeasure? IIfcStructuralProfileProperties.CentreOfGravityInX { get { return @CentreOfGravityInX; } }	
-		IfcLengthMeasure? IIfcStructuralProfileProperties.CentreOfGravityInY { get { return @CentreOfGravityInY; } }	
+		IfcMomentOfInertiaMeasure? IIfcStructuralProfileProperties.TorsionalConstantX { 
+			get { return @TorsionalConstantX; } 
+ 
+			set { TorsionalConstantX = value;}
+		}	
+		IfcMomentOfInertiaMeasure? IIfcStructuralProfileProperties.MomentOfInertiaYZ { 
+			get { return @MomentOfInertiaYZ; } 
+ 
+			set { MomentOfInertiaYZ = value;}
+		}	
+		IfcMomentOfInertiaMeasure? IIfcStructuralProfileProperties.MomentOfInertiaY { 
+			get { return @MomentOfInertiaY; } 
+ 
+			set { MomentOfInertiaY = value;}
+		}	
+		IfcMomentOfInertiaMeasure? IIfcStructuralProfileProperties.MomentOfInertiaZ { 
+			get { return @MomentOfInertiaZ; } 
+ 
+			set { MomentOfInertiaZ = value;}
+		}	
+		IfcWarpingConstantMeasure? IIfcStructuralProfileProperties.WarpingConstant { 
+			get { return @WarpingConstant; } 
+ 
+			set { WarpingConstant = value;}
+		}	
+		IfcLengthMeasure? IIfcStructuralProfileProperties.ShearCentreZ { 
+			get { return @ShearCentreZ; } 
+ 
+			set { ShearCentreZ = value;}
+		}	
+		IfcLengthMeasure? IIfcStructuralProfileProperties.ShearCentreY { 
+			get { return @ShearCentreY; } 
+ 
+			set { ShearCentreY = value;}
+		}	
+		IfcAreaMeasure? IIfcStructuralProfileProperties.ShearDeformationAreaZ { 
+			get { return @ShearDeformationAreaZ; } 
+ 
+			set { ShearDeformationAreaZ = value;}
+		}	
+		IfcAreaMeasure? IIfcStructuralProfileProperties.ShearDeformationAreaY { 
+			get { return @ShearDeformationAreaY; } 
+ 
+			set { ShearDeformationAreaY = value;}
+		}	
+		IfcSectionModulusMeasure? IIfcStructuralProfileProperties.MaximumSectionModulusY { 
+			get { return @MaximumSectionModulusY; } 
+ 
+			set { MaximumSectionModulusY = value;}
+		}	
+		IfcSectionModulusMeasure? IIfcStructuralProfileProperties.MinimumSectionModulusY { 
+			get { return @MinimumSectionModulusY; } 
+ 
+			set { MinimumSectionModulusY = value;}
+		}	
+		IfcSectionModulusMeasure? IIfcStructuralProfileProperties.MaximumSectionModulusZ { 
+			get { return @MaximumSectionModulusZ; } 
+ 
+			set { MaximumSectionModulusZ = value;}
+		}	
+		IfcSectionModulusMeasure? IIfcStructuralProfileProperties.MinimumSectionModulusZ { 
+			get { return @MinimumSectionModulusZ; } 
+ 
+			set { MinimumSectionModulusZ = value;}
+		}	
+		IfcSectionModulusMeasure? IIfcStructuralProfileProperties.TorsionalSectionModulus { 
+			get { return @TorsionalSectionModulus; } 
+ 
+			set { TorsionalSectionModulus = value;}
+		}	
+		IfcLengthMeasure? IIfcStructuralProfileProperties.CentreOfGravityInX { 
+			get { return @CentreOfGravityInX; } 
+ 
+			set { CentreOfGravityInX = value;}
+		}	
+		IfcLengthMeasure? IIfcStructuralProfileProperties.CentreOfGravityInY { 
+			get { return @CentreOfGravityInY; } 
+ 
+			set { CentreOfGravityInY = value;}
+		}	
 		 
 		#endregion
 

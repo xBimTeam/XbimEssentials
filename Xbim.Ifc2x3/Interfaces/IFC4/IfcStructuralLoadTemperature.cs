@@ -27,6 +27,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                     return new Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure(DeltaT_Constant.Value);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaTY 
 		{ 
@@ -39,6 +43,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                     return new Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure(DeltaT_Y.Value);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaTZ 
 		{ 
@@ -51,6 +59,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                     return new Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure(DeltaT_Z.Value);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

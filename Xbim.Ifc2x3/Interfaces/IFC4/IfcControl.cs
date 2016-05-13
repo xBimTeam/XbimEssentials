@@ -24,6 +24,10 @@ namespace Xbim.Ifc2x3.Kernel
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcRelAssignsToControl> IIfcControl.Controls 
 		{ 

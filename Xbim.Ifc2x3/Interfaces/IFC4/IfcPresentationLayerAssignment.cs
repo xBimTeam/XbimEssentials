@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcPresentationLayerAssignment.Description 
 		{ 
@@ -30,6 +34,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				if (!Description.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcLayeredItem> IIfcPresentationLayerAssignment.AssignedItems 
 		{ 
@@ -53,6 +61,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				if (!Identifier.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcIdentifier(Identifier.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

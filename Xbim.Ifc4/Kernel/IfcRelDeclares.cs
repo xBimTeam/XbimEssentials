@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelDeclares : IIfcRelationship
 	{
-		IIfcContext @RelatingContext { get; }
+		IIfcContext @RelatingContext { get;  set; }
 		IEnumerable<IIfcDefinitionSelect> @RelatedDefinitions { get; }
 	
 	}
@@ -38,8 +38,15 @@ namespace Xbim.Ifc4.Kernel
 	public  partial class @IfcRelDeclares : IfcRelationship, IInstantiableEntity, IIfcRelDeclares, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelDeclares>
 	{
 		#region IIfcRelDeclares explicit implementation
-		IIfcContext IIfcRelDeclares.RelatingContext { get { return @RelatingContext; } }	
-		IEnumerable<IIfcDefinitionSelect> IIfcRelDeclares.RelatedDefinitions { get { return @RelatedDefinitions; } }	
+		IIfcContext IIfcRelDeclares.RelatingContext { 
+			get { return @RelatingContext; } 
+ 
+ 
+			set { RelatingContext = value as IfcContext;}
+		}	
+		IEnumerable<IIfcDefinitionSelect> IIfcRelDeclares.RelatedDefinitions { 
+			get { return @RelatedDefinitions; } 
+		}	
 		 
 		#endregion
 

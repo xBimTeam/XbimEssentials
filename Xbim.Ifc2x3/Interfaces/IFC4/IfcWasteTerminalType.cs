@@ -69,6 +69,10 @@ namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

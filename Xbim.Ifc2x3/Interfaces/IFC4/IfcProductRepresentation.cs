@@ -23,6 +23,10 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				if (!Name.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcProductRepresentation.Description 
 		{ 
@@ -31,6 +35,10 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				if (!Description.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcRepresentation> IIfcProductRepresentation.Representations 
 		{ 

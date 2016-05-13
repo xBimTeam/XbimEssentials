@@ -43,6 +43,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
                 
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcDirection IIfcStructuralCurveMember.Axis 
 		{ 
@@ -52,6 +56,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
                 return new Xbim.Ifc2x3.Interfaces.Conversions.IfcDirectionTransient();
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.MeasureResource;
 
@@ -19,6 +16,19 @@ namespace Xbim.Ifc2x3.HVACDomain
                 if (PredefinedType == IfcTankTypeEnum.PREFORMED)
                     return new IfcLabel("PREFORMED");
                 return ElementType.HasValue ? new IfcLabel(ElementType) : null;
+            }
+            set
+            {
+                ElementType = value.HasValue
+                    ? value.Value.ToString()
+                    : null;
+
+                if (!value.HasValue)
+                    return;
+
+                IfcTankTypeEnum e;
+                if (Enum.TryParse(value.Value.ToString(), true, out e))
+                    PredefinedType = e;
             }
         }
     }

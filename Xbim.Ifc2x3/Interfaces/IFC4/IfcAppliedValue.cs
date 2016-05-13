@@ -23,6 +23,10 @@ namespace Xbim.Ifc2x3.CostResource
 				if (!Name.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcAppliedValue.Description 
 		{ 
@@ -31,6 +35,10 @@ namespace Xbim.Ifc2x3.CostResource
 				if (!Description.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcAppliedValueSelect IIfcAppliedValue.AppliedValue 
 		{ 
@@ -46,6 +54,10 @@ namespace Xbim.Ifc2x3.CostResource
 					return new Ifc4.MeasureResource.IfcMonetaryMeasure((double)(MeasureResource.IfcMonetaryMeasure)AppliedValue);
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcMeasureWithUnit IIfcAppliedValue.UnitBasis 
 		{ 
@@ -53,6 +65,10 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				return UnitBasis;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDate? IIfcAppliedValue.ApplicableDate 
 		{ 
@@ -62,6 +78,10 @@ namespace Xbim.Ifc2x3.CostResource
 				return ApplicableDate != null ? new Ifc4.DateTimeResource.IfcDate(ApplicableDate.ToISODateTimeString()) : null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDate? IIfcAppliedValue.FixedUntilDate 
 		{ 
@@ -71,6 +91,10 @@ namespace Xbim.Ifc2x3.CostResource
                 return FixedUntilDate != null ? new Ifc4.DateTimeResource.IfcDate(FixedUntilDate.ToISODateTimeString()) : null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcAppliedValue.Category 
 		{ 
@@ -80,6 +104,10 @@ namespace Xbim.Ifc2x3.CostResource
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcAppliedValue.Condition 
 		{ 
@@ -89,6 +117,10 @@ namespace Xbim.Ifc2x3.CostResource
                 return null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcArithmeticOperatorEnum? IIfcAppliedValue.ArithmeticOperator 
 		{ 
@@ -113,6 +145,10 @@ namespace Xbim.Ifc2x3.CostResource
 			    }
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcAppliedValue> IIfcAppliedValue.Components 
 		{ 

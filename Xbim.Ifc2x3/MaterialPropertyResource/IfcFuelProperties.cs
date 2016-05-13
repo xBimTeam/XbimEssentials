@@ -26,10 +26,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcFuelProperties : IIfcMaterialProperties
 	{
-		IfcThermodynamicTemperatureMeasure? @CombustionTemperature { get; }
-		IfcPositiveRatioMeasure? @CarbonContent { get; }
-		IfcHeatingValueMeasure? @LowerHeatingValue { get; }
-		IfcHeatingValueMeasure? @HigherHeatingValue { get; }
+		IfcThermodynamicTemperatureMeasure? @CombustionTemperature { get;  set; }
+		IfcPositiveRatioMeasure? @CarbonContent { get;  set; }
+		IfcHeatingValueMeasure? @LowerHeatingValue { get;  set; }
+		IfcHeatingValueMeasure? @HigherHeatingValue { get;  set; }
 	
 	}
 }
@@ -41,10 +41,26 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	public  partial class @IfcFuelProperties : IfcMaterialProperties, IInstantiableEntity, IIfcFuelProperties, IContainsEntityReferences, IEquatable<@IfcFuelProperties>
 	{
 		#region IIfcFuelProperties explicit implementation
-		IfcThermodynamicTemperatureMeasure? IIfcFuelProperties.CombustionTemperature { get { return @CombustionTemperature; } }	
-		IfcPositiveRatioMeasure? IIfcFuelProperties.CarbonContent { get { return @CarbonContent; } }	
-		IfcHeatingValueMeasure? IIfcFuelProperties.LowerHeatingValue { get { return @LowerHeatingValue; } }	
-		IfcHeatingValueMeasure? IIfcFuelProperties.HigherHeatingValue { get { return @HigherHeatingValue; } }	
+		IfcThermodynamicTemperatureMeasure? IIfcFuelProperties.CombustionTemperature { 
+			get { return @CombustionTemperature; } 
+ 
+			set { CombustionTemperature = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcFuelProperties.CarbonContent { 
+			get { return @CarbonContent; } 
+ 
+			set { CarbonContent = value;}
+		}	
+		IfcHeatingValueMeasure? IIfcFuelProperties.LowerHeatingValue { 
+			get { return @LowerHeatingValue; } 
+ 
+			set { LowerHeatingValue = value;}
+		}	
+		IfcHeatingValueMeasure? IIfcFuelProperties.HigherHeatingValue { 
+			get { return @HigherHeatingValue; } 
+ 
+			set { HigherHeatingValue = value;}
+		}	
 		 
 		#endregion
 

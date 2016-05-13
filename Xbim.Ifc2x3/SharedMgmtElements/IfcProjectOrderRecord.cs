@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcProjectOrderRecord : IIfcControl
 	{
 		IEnumerable<IIfcRelAssignsToProjectOrder> @Records { get; }
-		IfcProjectOrderRecordTypeEnum @PredefinedType { get; }
+		IfcProjectOrderRecordTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -39,8 +39,14 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 	public  partial class @IfcProjectOrderRecord : IfcControl, IInstantiableEntity, IIfcProjectOrderRecord, IContainsEntityReferences, IEquatable<@IfcProjectOrderRecord>
 	{
 		#region IIfcProjectOrderRecord explicit implementation
-		IEnumerable<IIfcRelAssignsToProjectOrder> IIfcProjectOrderRecord.Records { get { return @Records; } }	
-		IfcProjectOrderRecordTypeEnum IIfcProjectOrderRecord.PredefinedType { get { return @PredefinedType; } }	
+		IEnumerable<IIfcRelAssignsToProjectOrder> IIfcProjectOrderRecord.Records { 
+			get { return @Records; } 
+		}	
+		IfcProjectOrderRecordTypeEnum IIfcProjectOrderRecord.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

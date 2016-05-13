@@ -61,6 +61,10 @@ namespace Xbim.Ifc2x3.Kernel
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

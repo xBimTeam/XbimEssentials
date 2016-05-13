@@ -69,6 +69,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcWindowPanelPositionEnum IIfcWindowPanelProperties.PanelPosition 
 		{ 
@@ -99,6 +103,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcWindowPanelProperties.FrameDepth 
 		{ 
@@ -107,6 +115,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!FrameDepth.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(FrameDepth.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcWindowPanelProperties.FrameThickness 
 		{ 
@@ -115,6 +127,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!FrameThickness.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(FrameThickness.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcShapeAspect IIfcWindowPanelProperties.ShapeAspectStyle 
 		{ 
@@ -122,6 +138,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				return ShapeAspectStyle;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				return SurfaceColour;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcSurfaceStyleShading.Transparency 
 		{ 
@@ -34,6 +38,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
                 return null;   
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

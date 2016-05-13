@@ -26,21 +26,21 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcResourceTime : IIfcSchedulingTime
 	{
-		IfcDuration? @ScheduleWork { get; }
-		IfcPositiveRatioMeasure? @ScheduleUsage { get; }
-		IfcDateTime? @ScheduleStart { get; }
-		IfcDateTime? @ScheduleFinish { get; }
-		IfcLabel? @ScheduleContour { get; }
-		IfcDuration? @LevelingDelay { get; }
-		IfcBoolean? @IsOverAllocated { get; }
-		IfcDateTime? @StatusTime { get; }
-		IfcDuration? @ActualWork { get; }
-		IfcPositiveRatioMeasure? @ActualUsage { get; }
-		IfcDateTime? @ActualStart { get; }
-		IfcDateTime? @ActualFinish { get; }
-		IfcDuration? @RemainingWork { get; }
-		IfcPositiveRatioMeasure? @RemainingUsage { get; }
-		IfcPositiveRatioMeasure? @Completion { get; }
+		IfcDuration? @ScheduleWork { get;  set; }
+		IfcPositiveRatioMeasure? @ScheduleUsage { get;  set; }
+		IfcDateTime? @ScheduleStart { get;  set; }
+		IfcDateTime? @ScheduleFinish { get;  set; }
+		IfcLabel? @ScheduleContour { get;  set; }
+		IfcDuration? @LevelingDelay { get;  set; }
+		IfcBoolean? @IsOverAllocated { get;  set; }
+		IfcDateTime? @StatusTime { get;  set; }
+		IfcDuration? @ActualWork { get;  set; }
+		IfcPositiveRatioMeasure? @ActualUsage { get;  set; }
+		IfcDateTime? @ActualStart { get;  set; }
+		IfcDateTime? @ActualFinish { get;  set; }
+		IfcDuration? @RemainingWork { get;  set; }
+		IfcPositiveRatioMeasure? @RemainingUsage { get;  set; }
+		IfcPositiveRatioMeasure? @Completion { get;  set; }
 	
 	}
 }
@@ -52,21 +52,81 @@ namespace Xbim.Ifc4.DateTimeResource
 	public  partial class @IfcResourceTime : IfcSchedulingTime, IInstantiableEntity, IIfcResourceTime, IEquatable<@IfcResourceTime>
 	{
 		#region IIfcResourceTime explicit implementation
-		IfcDuration? IIfcResourceTime.ScheduleWork { get { return @ScheduleWork; } }	
-		IfcPositiveRatioMeasure? IIfcResourceTime.ScheduleUsage { get { return @ScheduleUsage; } }	
-		IfcDateTime? IIfcResourceTime.ScheduleStart { get { return @ScheduleStart; } }	
-		IfcDateTime? IIfcResourceTime.ScheduleFinish { get { return @ScheduleFinish; } }	
-		IfcLabel? IIfcResourceTime.ScheduleContour { get { return @ScheduleContour; } }	
-		IfcDuration? IIfcResourceTime.LevelingDelay { get { return @LevelingDelay; } }	
-		IfcBoolean? IIfcResourceTime.IsOverAllocated { get { return @IsOverAllocated; } }	
-		IfcDateTime? IIfcResourceTime.StatusTime { get { return @StatusTime; } }	
-		IfcDuration? IIfcResourceTime.ActualWork { get { return @ActualWork; } }	
-		IfcPositiveRatioMeasure? IIfcResourceTime.ActualUsage { get { return @ActualUsage; } }	
-		IfcDateTime? IIfcResourceTime.ActualStart { get { return @ActualStart; } }	
-		IfcDateTime? IIfcResourceTime.ActualFinish { get { return @ActualFinish; } }	
-		IfcDuration? IIfcResourceTime.RemainingWork { get { return @RemainingWork; } }	
-		IfcPositiveRatioMeasure? IIfcResourceTime.RemainingUsage { get { return @RemainingUsage; } }	
-		IfcPositiveRatioMeasure? IIfcResourceTime.Completion { get { return @Completion; } }	
+		IfcDuration? IIfcResourceTime.ScheduleWork { 
+			get { return @ScheduleWork; } 
+ 
+			set { ScheduleWork = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcResourceTime.ScheduleUsage { 
+			get { return @ScheduleUsage; } 
+ 
+			set { ScheduleUsage = value;}
+		}	
+		IfcDateTime? IIfcResourceTime.ScheduleStart { 
+			get { return @ScheduleStart; } 
+ 
+			set { ScheduleStart = value;}
+		}	
+		IfcDateTime? IIfcResourceTime.ScheduleFinish { 
+			get { return @ScheduleFinish; } 
+ 
+			set { ScheduleFinish = value;}
+		}	
+		IfcLabel? IIfcResourceTime.ScheduleContour { 
+			get { return @ScheduleContour; } 
+ 
+			set { ScheduleContour = value;}
+		}	
+		IfcDuration? IIfcResourceTime.LevelingDelay { 
+			get { return @LevelingDelay; } 
+ 
+			set { LevelingDelay = value;}
+		}	
+		IfcBoolean? IIfcResourceTime.IsOverAllocated { 
+			get { return @IsOverAllocated; } 
+ 
+			set { IsOverAllocated = value;}
+		}	
+		IfcDateTime? IIfcResourceTime.StatusTime { 
+			get { return @StatusTime; } 
+ 
+			set { StatusTime = value;}
+		}	
+		IfcDuration? IIfcResourceTime.ActualWork { 
+			get { return @ActualWork; } 
+ 
+			set { ActualWork = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcResourceTime.ActualUsage { 
+			get { return @ActualUsage; } 
+ 
+			set { ActualUsage = value;}
+		}	
+		IfcDateTime? IIfcResourceTime.ActualStart { 
+			get { return @ActualStart; } 
+ 
+			set { ActualStart = value;}
+		}	
+		IfcDateTime? IIfcResourceTime.ActualFinish { 
+			get { return @ActualFinish; } 
+ 
+			set { ActualFinish = value;}
+		}	
+		IfcDuration? IIfcResourceTime.RemainingWork { 
+			get { return @RemainingWork; } 
+ 
+			set { RemainingWork = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcResourceTime.RemainingUsage { 
+			get { return @RemainingUsage; } 
+ 
+			set { RemainingUsage = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcResourceTime.Completion { 
+			get { return @Completion; } 
+ 
+			set { Completion = value;}
+		}	
 		 
 		#endregion
 

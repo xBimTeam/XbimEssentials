@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.MaterialResource
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcMaterial.Description 
 		{ 
@@ -31,6 +35,10 @@ namespace Xbim.Ifc2x3.MaterialResource
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcMaterial.Category 
 		{ 
@@ -40,6 +48,10 @@ namespace Xbim.Ifc2x3.MaterialResource
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcMaterialDefinitionRepresentation> IIfcMaterial.HasRepresentation 
 		{ 

@@ -217,6 +217,10 @@ namespace Xbim.Ifc2x3.PropertyResource
 					return new Ifc4.MeasureResource.IfcIonConcentrationMeasure((double)(MeasureResource.IfcIonConcentrationMeasure)UpperBoundValue);
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcValue IIfcPropertyBoundedValue.LowerBoundValue 
 		{ 
@@ -419,6 +423,10 @@ namespace Xbim.Ifc2x3.PropertyResource
 					return new Ifc4.MeasureResource.IfcIonConcentrationMeasure((double)(MeasureResource.IfcIonConcentrationMeasure)LowerBoundValue);
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcUnit IIfcPropertyBoundedValue.Unit 
 		{ 
@@ -436,6 +444,10 @@ namespace Xbim.Ifc2x3.PropertyResource
 					return ifcmonetaryunit;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcValue IIfcPropertyBoundedValue.SetPointValue 
 		{ 
@@ -445,6 +457,10 @@ namespace Xbim.Ifc2x3.PropertyResource
                 return null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 
 		{ 

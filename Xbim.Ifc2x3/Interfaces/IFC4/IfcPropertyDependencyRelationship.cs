@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.PropertyResource
 			{
 				return DependingProperty;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcProperty IIfcPropertyDependencyRelationship.DependantProperty 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.PropertyResource
 			{
 				return DependantProperty;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcPropertyDependencyRelationship.Expression 
 		{ 
@@ -37,6 +45,10 @@ namespace Xbim.Ifc2x3.PropertyResource
 				if (!Expression.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Expression.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
 		{ 
@@ -46,6 +58,10 @@ namespace Xbim.Ifc2x3.PropertyResource
                 return Name.HasValue ? new Ifc4.MeasureResource.IfcLabel(Name.Value) : null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
 		{ 
@@ -55,6 +71,10 @@ namespace Xbim.Ifc2x3.PropertyResource
                 return Description.HasValue ? new Ifc4.MeasureResource.IfcText(Description.Value) : null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

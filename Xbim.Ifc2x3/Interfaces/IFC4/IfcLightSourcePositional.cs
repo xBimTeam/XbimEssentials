@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				return Position;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcLightSourcePositional.Radius 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Radius);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcReal IIfcLightSourcePositional.ConstantAttenuation 
 		{ 
@@ -36,6 +44,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				return new Ifc4.MeasureResource.IfcReal(ConstantAttenuation);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcReal IIfcLightSourcePositional.DistanceAttenuation 
 		{ 
@@ -43,6 +55,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				return new Ifc4.MeasureResource.IfcReal(DistanceAttenuation);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcReal IIfcLightSourcePositional.QuadricAttenuation 
 		{ 
@@ -50,6 +66,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				return new Ifc4.MeasureResource.IfcReal(QuadricAttenuation);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

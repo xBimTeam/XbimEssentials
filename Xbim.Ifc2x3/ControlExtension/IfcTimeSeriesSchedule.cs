@@ -29,8 +29,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcTimeSeriesSchedule : IIfcControl
 	{
 		IEnumerable<IIfcDateTimeSelect> @ApplicableDates { get; }
-		IfcTimeSeriesScheduleTypeEnum @TimeSeriesScheduleType { get; }
-		IIfcTimeSeries @TimeSeries { get; }
+		IfcTimeSeriesScheduleTypeEnum @TimeSeriesScheduleType { get;  set; }
+		IIfcTimeSeries @TimeSeries { get;  set; }
 	
 	}
 }
@@ -42,9 +42,20 @@ namespace Xbim.Ifc2x3.ControlExtension
 	public  partial class @IfcTimeSeriesSchedule : IfcControl, IInstantiableEntity, IIfcTimeSeriesSchedule, IContainsEntityReferences, IEquatable<@IfcTimeSeriesSchedule>
 	{
 		#region IIfcTimeSeriesSchedule explicit implementation
-		IEnumerable<IIfcDateTimeSelect> IIfcTimeSeriesSchedule.ApplicableDates { get { return @ApplicableDates; } }	
-		IfcTimeSeriesScheduleTypeEnum IIfcTimeSeriesSchedule.TimeSeriesScheduleType { get { return @TimeSeriesScheduleType; } }	
-		IIfcTimeSeries IIfcTimeSeriesSchedule.TimeSeries { get { return @TimeSeries; } }	
+		IEnumerable<IIfcDateTimeSelect> IIfcTimeSeriesSchedule.ApplicableDates { 
+			get { return @ApplicableDates; } 
+		}	
+		IfcTimeSeriesScheduleTypeEnum IIfcTimeSeriesSchedule.TimeSeriesScheduleType { 
+			get { return @TimeSeriesScheduleType; } 
+ 
+			set { TimeSeriesScheduleType = value;}
+		}	
+		IIfcTimeSeries IIfcTimeSeriesSchedule.TimeSeries { 
+			get { return @TimeSeries; } 
+ 
+ 
+			set { TimeSeries = value as IfcTimeSeries;}
+		}	
 		 
 		#endregion
 

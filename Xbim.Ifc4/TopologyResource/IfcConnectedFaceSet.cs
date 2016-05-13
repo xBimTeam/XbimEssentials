@@ -37,7 +37,9 @@ namespace Xbim.Ifc4.TopologyResource
 	public  partial class @IfcConnectedFaceSet : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcConnectedFaceSet, IContainsEntityReferences, IEquatable<@IfcConnectedFaceSet>
 	{
 		#region IIfcConnectedFaceSet explicit implementation
-		IEnumerable<IIfcFace> IIfcConnectedFaceSet.CfsFaces { get { return @CfsFaces; } }	
+		IEnumerable<IIfcFace> IIfcConnectedFaceSet.CfsFaces { 
+			get { return @CfsFaces; } 
+		}	
 		 
 		#endregion
 

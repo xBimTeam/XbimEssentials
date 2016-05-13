@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			{
 				return RepresentedMaterial;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

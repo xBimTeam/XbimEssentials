@@ -36,6 +36,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcSurfaceStyleElementSelect> IIfcSurfaceStyle.Styles 
 		{ 

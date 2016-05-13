@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTable : IPersistEntity, IfcMetricValueSelect
 	{
-		string @Name { get; }
+		string @Name { get;  set; }
 		IEnumerable<IIfcTableRow> @Rows { get; }
 		long @NumberOfCellsInRow  { get ; }
 		long @NumberOfHeadings  { get ; }
@@ -44,8 +44,14 @@ namespace Xbim.Ifc2x3.UtilityResource
 	public  partial class @IfcTable : INotifyPropertyChanged, IInstantiableEntity, IIfcTable, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTable>
 	{
 		#region IIfcTable explicit implementation
-		string IIfcTable.Name { get { return @Name; } }	
-		IEnumerable<IIfcTableRow> IIfcTable.Rows { get { return @Rows; } }	
+		string IIfcTable.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IEnumerable<IIfcTableRow> IIfcTable.Rows { 
+			get { return @Rows; } 
+		}	
 		 
 		#endregion
 

@@ -23,6 +23,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 				if (!RefLatitude.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure(RefLatitude.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure? IIfcSite.RefLongitude 
 		{ 
@@ -31,6 +35,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 				if (!RefLongitude.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure(RefLongitude.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcSite.RefElevation 
 		{ 
@@ -39,6 +47,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 				if (!RefElevation.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLengthMeasure(RefElevation.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcSite.LandTitleNumber 
 		{ 
@@ -47,6 +59,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 				if (!LandTitleNumber.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(LandTitleNumber.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcPostalAddress IIfcSite.SiteAddress 
 		{ 
@@ -54,6 +70,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				return SiteAddress;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
 		{ 
@@ -63,6 +83,10 @@ namespace Xbim.Ifc2x3.ProductExtension
                 return !Name.HasValue ? null : new Ifc4.MeasureResource.IfcLabel(Name.Value);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcSpatialElement.ContainsElements 
 		{ 

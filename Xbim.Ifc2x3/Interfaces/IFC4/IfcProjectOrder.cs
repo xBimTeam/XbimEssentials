@@ -48,6 +48,10 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcProjectOrder.Status 
 		{ 
@@ -56,6 +60,10 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				if (!Status.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Status.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcProjectOrder.LongDescription 
 		{ 
@@ -63,6 +71,10 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			{
 				return new Ifc4.MeasureResource.IfcText(ID);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

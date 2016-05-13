@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				return Position;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcColourRgb IIfcLightSourceGoniometric.ColourAppearance 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				return ColourAppearance;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure IIfcLightSourceGoniometric.ColourTemperature 
 		{ 
@@ -36,6 +44,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				return new Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure(ColourTemperature);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLuminousFluxMeasure IIfcLightSourceGoniometric.LuminousFlux 
 		{ 
@@ -43,6 +55,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				return new Ifc4.MeasureResource.IfcLuminousFluxMeasure(LuminousFlux);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcLightEmissionSourceEnum IIfcLightSourceGoniometric.LightEmissionSource 
 		{ 
@@ -88,6 +104,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcLightDistributionDataSourceSelect IIfcLightSourceGoniometric.LightDistributionDataSource 
 		{ 
@@ -102,6 +122,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 					return ifclightintensitydistribution;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

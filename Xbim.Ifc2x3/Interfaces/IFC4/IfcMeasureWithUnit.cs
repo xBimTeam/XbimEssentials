@@ -217,6 +217,10 @@ namespace Xbim.Ifc2x3.MeasureResource
 					return new Ifc4.MeasureResource.IfcIonConcentrationMeasure((double)(IfcIonConcentrationMeasure)ValueComponent);
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcUnit IIfcMeasureWithUnit.UnitComponent 
 		{ 
@@ -234,6 +238,10 @@ namespace Xbim.Ifc2x3.MeasureResource
 					return ifcmonetaryunit;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

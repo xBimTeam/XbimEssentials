@@ -24,6 +24,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			    return new Ifc4.MeasureResource.IfcIdentifier(DocumentId);
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel IIfcDocumentInformation.Name 
 		{ 
@@ -31,6 +35,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.Description 
 		{ 
@@ -39,6 +47,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (!Description.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcDocumentInformation.Location 
 		{ 
@@ -51,6 +63,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			        : null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.Purpose 
 		{ 
@@ -59,6 +75,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (!Purpose.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Purpose.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.IntendedUse 
 		{ 
@@ -67,6 +87,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (!IntendedUse.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(IntendedUse.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.Scope 
 		{ 
@@ -75,6 +99,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (!Scope.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Scope.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcDocumentInformation.Revision 
 		{ 
@@ -83,6 +111,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (!Revision.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Revision.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcActorSelect IIfcDocumentInformation.DocumentOwner 
 		{ 
@@ -100,6 +132,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 					return ifcpersonandorganization;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcActorSelect> IIfcDocumentInformation.Editors 
 		{ 
@@ -129,6 +165,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			        : null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDateTime? IIfcDocumentInformation.LastRevisionTime 
 		{ 
@@ -140,6 +180,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
                     : null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcIdentifier? IIfcDocumentInformation.ElectronicFormat 
 		{ 
@@ -154,9 +198,13 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			    string ext = ElectronicFormat.FileExtension.Value;
 			    ext = ext.Trim('.').ToLowerInvariant();
 			    string mime;
-			    return MimeTypeLoopUp.Types.TryGetValue(ext, out mime) ? mime : null;
+			    return MimeTypeLookUp.Types.TryGetValue(ext, out mime) ? mime : null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDate? IIfcDocumentInformation.ValidFrom 
 		{ 
@@ -168,6 +216,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
                     : null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDate? IIfcDocumentInformation.ValidUntil 
 		{ 
@@ -179,6 +231,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
                     : null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcDocumentConfidentialityEnum? IIfcDocumentInformation.Confidentiality 
 		{ 
@@ -209,6 +265,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcDocumentStatusEnum? IIfcDocumentInformation.Status 
 		{ 
@@ -236,6 +296,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcRelAssociatesDocument> IIfcDocumentInformation.DocumentInfoForObjects 
 		{ 

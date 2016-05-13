@@ -42,6 +42,10 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcActorSelect IIfcInventory.Jurisdiction 
 		{ 
@@ -59,6 +63,10 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 					return ifcpersonandorganization;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcPerson> IIfcInventory.ResponsiblePersons 
 		{ 
@@ -80,6 +88,10 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			        : null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcCostValue IIfcInventory.CurrentValue 
 		{ 
@@ -87,6 +99,10 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				return CurrentValue;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcCostValue IIfcInventory.OriginalValue 
 		{ 
@@ -94,6 +110,10 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				return OriginalValue;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -24,6 +24,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
                 return Ifc4.Interfaces.IfcStructuralSurfaceMemberTypeEnum.NOTDEFINED;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcStructuralSurfaceMember.Thickness 
 		{ 
@@ -32,6 +36,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				if (!Thickness.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Thickness.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

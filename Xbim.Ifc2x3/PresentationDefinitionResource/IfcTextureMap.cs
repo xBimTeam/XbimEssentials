@@ -37,7 +37,9 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 	public  partial class @IfcTextureMap : IfcTextureCoordinate, IInstantiableEntity, IIfcTextureMap, IContainsEntityReferences, IEquatable<@IfcTextureMap>
 	{
 		#region IIfcTextureMap explicit implementation
-		IEnumerable<IIfcVertexBasedTextureMap> IIfcTextureMap.TextureMaps { get { return @TextureMaps; } }	
+		IEnumerable<IIfcVertexBasedTextureMap> IIfcTextureMap.TextureMaps { 
+			get { return @TextureMaps; } 
+		}	
 		 
 		#endregion
 

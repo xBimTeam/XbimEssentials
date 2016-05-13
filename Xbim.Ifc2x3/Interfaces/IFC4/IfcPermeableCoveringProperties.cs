@@ -42,6 +42,10 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcWindowPanelPositionEnum IIfcPermeableCoveringProperties.PanelPosition 
 		{ 
@@ -72,6 +76,10 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcPermeableCoveringProperties.FrameDepth 
 		{ 
@@ -80,6 +88,10 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 				if (!FrameDepth.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(FrameDepth.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcPermeableCoveringProperties.FrameThickness 
 		{ 
@@ -88,6 +100,10 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 				if (!FrameThickness.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(FrameThickness.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcShapeAspect IIfcPermeableCoveringProperties.ShapeAspectStyle 
 		{ 
@@ -95,6 +111,10 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			{
 				return ShapeAspectStyle;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

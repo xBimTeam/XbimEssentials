@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcColourSpecification : IPersistEntity, IfcColour
 	{
-		IfcLabel? @Name { get; }
+		IfcLabel? @Name { get;  set; }
 	
 	}
 }
@@ -40,7 +40,11 @@ namespace Xbim.Ifc2x3.PresentationResource
 	public abstract partial class @IfcColourSpecification : IPersistEntity, INotifyPropertyChanged, IIfcColourSpecification, IEquatable<@IfcColourSpecification>
 	{
 		#region IIfcColourSpecification explicit implementation
-		IfcLabel? IIfcColourSpecification.Name { get { return @Name; } }	
+		IfcLabel? IIfcColourSpecification.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
 		 
 		#endregion
 

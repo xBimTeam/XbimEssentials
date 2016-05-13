@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcComplexPropertyTemplate : IIfcPropertyTemplate
 	{
-		IfcLabel? @UsageName { get; }
-		IfcComplexPropertyTemplateTypeEnum? @TemplateType { get; }
+		IfcLabel? @UsageName { get;  set; }
+		IfcComplexPropertyTemplateTypeEnum? @TemplateType { get;  set; }
 		IEnumerable<IIfcPropertyTemplate> @HasPropertyTemplates { get; }
 	
 	}
@@ -40,9 +40,19 @@ namespace Xbim.Ifc4.Kernel
 	public  partial class @IfcComplexPropertyTemplate : IfcPropertyTemplate, IInstantiableEntity, IIfcComplexPropertyTemplate, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcComplexPropertyTemplate>
 	{
 		#region IIfcComplexPropertyTemplate explicit implementation
-		IfcLabel? IIfcComplexPropertyTemplate.UsageName { get { return @UsageName; } }	
-		IfcComplexPropertyTemplateTypeEnum? IIfcComplexPropertyTemplate.TemplateType { get { return @TemplateType; } }	
-		IEnumerable<IIfcPropertyTemplate> IIfcComplexPropertyTemplate.HasPropertyTemplates { get { return @HasPropertyTemplates; } }	
+		IfcLabel? IIfcComplexPropertyTemplate.UsageName { 
+			get { return @UsageName; } 
+ 
+			set { UsageName = value;}
+		}	
+		IfcComplexPropertyTemplateTypeEnum? IIfcComplexPropertyTemplate.TemplateType { 
+			get { return @TemplateType; } 
+ 
+			set { TemplateType = value;}
+		}	
+		IEnumerable<IIfcPropertyTemplate> IIfcComplexPropertyTemplate.HasPropertyTemplates { 
+			get { return @HasPropertyTemplates; } 
+		}	
 		 
 		#endregion
 

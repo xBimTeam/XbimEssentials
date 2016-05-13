@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPermit : IIfcControl
 	{
-		IfcIdentifier @PermitID { get; }
+		IfcIdentifier @PermitID { get;  set; }
 	
 	}
 }
@@ -39,7 +39,11 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 	public  partial class @IfcPermit : IfcControl, IInstantiableEntity, IIfcPermit, IContainsEntityReferences, IEquatable<@IfcPermit>
 	{
 		#region IIfcPermit explicit implementation
-		IfcIdentifier IIfcPermit.PermitID { get { return @PermitID; } }	
+		IfcIdentifier IIfcPermit.PermitID { 
+			get { return @PermitID; } 
+ 
+			set { PermitID = value;}
+		}	
 		 
 		#endregion
 

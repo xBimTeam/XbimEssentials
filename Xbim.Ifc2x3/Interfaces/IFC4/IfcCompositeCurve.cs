@@ -34,6 +34,10 @@ namespace Xbim.Ifc2x3.GeometryResource
                 return new Ifc4.MeasureResource.IfcLogical(SelfIntersect);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcInteger IIfcCompositeCurve.NSegments 
 		{

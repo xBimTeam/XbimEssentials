@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBuildingElementProxy : IIfcBuildingElement
 	{
-		IfcBuildingElementProxyTypeEnum? @PredefinedType { get; }
+		IfcBuildingElementProxyTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.SharedBldgElements
 	public  partial class @IfcBuildingElementProxy : IfcBuildingElement, IInstantiableEntity, IIfcBuildingElementProxy, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBuildingElementProxy>
 	{
 		#region IIfcBuildingElementProxy explicit implementation
-		IfcBuildingElementProxyTypeEnum? IIfcBuildingElementProxy.PredefinedType { get { return @PredefinedType; } }	
+		IfcBuildingElementProxyTypeEnum? IIfcBuildingElementProxy.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

@@ -24,6 +24,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			    return new Ifc4.MeasureResource.IfcLogical(LayerOn);
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLogical IIfcPresentationLayerWithStyle.LayerFrozen 
 		{ 
@@ -33,6 +37,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
                 return new Ifc4.MeasureResource.IfcLogical(LayerFrozen);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLogical IIfcPresentationLayerWithStyle.LayerBlocked 
 		{ 
@@ -42,6 +50,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
                 return new Ifc4.MeasureResource.IfcLogical(LayerBlocked);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcPresentationStyle> IIfcPresentationLayerWithStyle.LayerStyles 
 		{ 

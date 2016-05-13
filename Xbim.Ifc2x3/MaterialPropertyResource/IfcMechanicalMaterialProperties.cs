@@ -26,11 +26,11 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMechanicalMaterialProperties : IIfcMaterialProperties
 	{
-		IfcDynamicViscosityMeasure? @DynamicViscosity { get; }
-		IfcModulusOfElasticityMeasure? @YoungModulus { get; }
-		IfcModulusOfElasticityMeasure? @ShearModulus { get; }
-		IfcPositiveRatioMeasure? @PoissonRatio { get; }
-		IfcThermalExpansionCoefficientMeasure? @ThermalExpansionCoefficient { get; }
+		IfcDynamicViscosityMeasure? @DynamicViscosity { get;  set; }
+		IfcModulusOfElasticityMeasure? @YoungModulus { get;  set; }
+		IfcModulusOfElasticityMeasure? @ShearModulus { get;  set; }
+		IfcPositiveRatioMeasure? @PoissonRatio { get;  set; }
+		IfcThermalExpansionCoefficientMeasure? @ThermalExpansionCoefficient { get;  set; }
 	
 	}
 }
@@ -42,11 +42,31 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	public  partial class @IfcMechanicalMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcMechanicalMaterialProperties, IContainsEntityReferences, IEquatable<@IfcMechanicalMaterialProperties>
 	{
 		#region IIfcMechanicalMaterialProperties explicit implementation
-		IfcDynamicViscosityMeasure? IIfcMechanicalMaterialProperties.DynamicViscosity { get { return @DynamicViscosity; } }	
-		IfcModulusOfElasticityMeasure? IIfcMechanicalMaterialProperties.YoungModulus { get { return @YoungModulus; } }	
-		IfcModulusOfElasticityMeasure? IIfcMechanicalMaterialProperties.ShearModulus { get { return @ShearModulus; } }	
-		IfcPositiveRatioMeasure? IIfcMechanicalMaterialProperties.PoissonRatio { get { return @PoissonRatio; } }	
-		IfcThermalExpansionCoefficientMeasure? IIfcMechanicalMaterialProperties.ThermalExpansionCoefficient { get { return @ThermalExpansionCoefficient; } }	
+		IfcDynamicViscosityMeasure? IIfcMechanicalMaterialProperties.DynamicViscosity { 
+			get { return @DynamicViscosity; } 
+ 
+			set { DynamicViscosity = value;}
+		}	
+		IfcModulusOfElasticityMeasure? IIfcMechanicalMaterialProperties.YoungModulus { 
+			get { return @YoungModulus; } 
+ 
+			set { YoungModulus = value;}
+		}	
+		IfcModulusOfElasticityMeasure? IIfcMechanicalMaterialProperties.ShearModulus { 
+			get { return @ShearModulus; } 
+ 
+			set { ShearModulus = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcMechanicalMaterialProperties.PoissonRatio { 
+			get { return @PoissonRatio; } 
+ 
+			set { PoissonRatio = value;}
+		}	
+		IfcThermalExpansionCoefficientMeasure? IIfcMechanicalMaterialProperties.ThermalExpansionCoefficient { 
+			get { return @ThermalExpansionCoefficient; } 
+ 
+			set { ThermalExpansionCoefficient = value;}
+		}	
 		 
 		#endregion
 

@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialLayerWithOffsets : IIfcMaterialLayer
 	{
-		IfcLayerSetDirectionEnum @OffsetDirection { get; }
+		IfcLayerSetDirectionEnum @OffsetDirection { get;  set; }
 		IEnumerable<IfcLengthMeasure> @OffsetValues { get; }
 	
 	}
@@ -39,8 +39,14 @@ namespace Xbim.Ifc4.MaterialResource
 	public  partial class @IfcMaterialLayerWithOffsets : IfcMaterialLayer, IInstantiableEntity, IIfcMaterialLayerWithOffsets, IContainsEntityReferences, IEquatable<@IfcMaterialLayerWithOffsets>
 	{
 		#region IIfcMaterialLayerWithOffsets explicit implementation
-		IfcLayerSetDirectionEnum IIfcMaterialLayerWithOffsets.OffsetDirection { get { return @OffsetDirection; } }	
-		IEnumerable<IfcLengthMeasure> IIfcMaterialLayerWithOffsets.OffsetValues { get { return @OffsetValues; } }	
+		IfcLayerSetDirectionEnum IIfcMaterialLayerWithOffsets.OffsetDirection { 
+			get { return @OffsetDirection; } 
+ 
+			set { OffsetDirection = value;}
+		}	
+		IEnumerable<IfcLengthMeasure> IIfcMaterialLayerWithOffsets.OffsetValues { 
+			get { return @OffsetValues; } 
+		}	
 		 
 		#endregion
 

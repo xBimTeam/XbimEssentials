@@ -24,6 +24,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if(!WarpingStiffness.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcWarpingMomentMeasure(WarpingStiffness.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

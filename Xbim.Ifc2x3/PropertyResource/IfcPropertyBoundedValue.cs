@@ -26,9 +26,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPropertyBoundedValue : IIfcSimpleProperty
 	{
-		IIfcValue @UpperBoundValue { get; }
-		IIfcValue @LowerBoundValue { get; }
-		IIfcUnit @Unit { get; }
+		IIfcValue @UpperBoundValue { get;  set; }
+		IIfcValue @LowerBoundValue { get;  set; }
+		IIfcUnit @Unit { get;  set; }
 	
 	}
 }
@@ -40,9 +40,24 @@ namespace Xbim.Ifc2x3.PropertyResource
 	public  partial class @IfcPropertyBoundedValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyBoundedValue, IContainsEntityReferences, IEquatable<@IfcPropertyBoundedValue>
 	{
 		#region IIfcPropertyBoundedValue explicit implementation
-		IIfcValue IIfcPropertyBoundedValue.UpperBoundValue { get { return @UpperBoundValue; } }	
-		IIfcValue IIfcPropertyBoundedValue.LowerBoundValue { get { return @LowerBoundValue; } }	
-		IIfcUnit IIfcPropertyBoundedValue.Unit { get { return @Unit; } }	
+		IIfcValue IIfcPropertyBoundedValue.UpperBoundValue { 
+			get { return @UpperBoundValue; } 
+ 
+ 
+			set { UpperBoundValue = value as IfcValue;}
+		}	
+		IIfcValue IIfcPropertyBoundedValue.LowerBoundValue { 
+			get { return @LowerBoundValue; } 
+ 
+ 
+			set { LowerBoundValue = value as IfcValue;}
+		}	
+		IIfcUnit IIfcPropertyBoundedValue.Unit { 
+			get { return @Unit; } 
+ 
+ 
+			set { Unit = value as IfcUnit;}
+		}	
 		 
 		#endregion
 

@@ -26,9 +26,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBoundaryFaceCondition : IIfcBoundaryCondition
 	{
-		IfcModulusOfSubgradeReactionMeasure? @LinearStiffnessByAreaX { get; }
-		IfcModulusOfSubgradeReactionMeasure? @LinearStiffnessByAreaY { get; }
-		IfcModulusOfSubgradeReactionMeasure? @LinearStiffnessByAreaZ { get; }
+		IfcModulusOfSubgradeReactionMeasure? @LinearStiffnessByAreaX { get;  set; }
+		IfcModulusOfSubgradeReactionMeasure? @LinearStiffnessByAreaY { get;  set; }
+		IfcModulusOfSubgradeReactionMeasure? @LinearStiffnessByAreaZ { get;  set; }
 	
 	}
 }
@@ -40,9 +40,21 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 	public  partial class @IfcBoundaryFaceCondition : IfcBoundaryCondition, IInstantiableEntity, IIfcBoundaryFaceCondition, IEquatable<@IfcBoundaryFaceCondition>
 	{
 		#region IIfcBoundaryFaceCondition explicit implementation
-		IfcModulusOfSubgradeReactionMeasure? IIfcBoundaryFaceCondition.LinearStiffnessByAreaX { get { return @LinearStiffnessByAreaX; } }	
-		IfcModulusOfSubgradeReactionMeasure? IIfcBoundaryFaceCondition.LinearStiffnessByAreaY { get { return @LinearStiffnessByAreaY; } }	
-		IfcModulusOfSubgradeReactionMeasure? IIfcBoundaryFaceCondition.LinearStiffnessByAreaZ { get { return @LinearStiffnessByAreaZ; } }	
+		IfcModulusOfSubgradeReactionMeasure? IIfcBoundaryFaceCondition.LinearStiffnessByAreaX { 
+			get { return @LinearStiffnessByAreaX; } 
+ 
+			set { LinearStiffnessByAreaX = value;}
+		}	
+		IfcModulusOfSubgradeReactionMeasure? IIfcBoundaryFaceCondition.LinearStiffnessByAreaY { 
+			get { return @LinearStiffnessByAreaY; } 
+ 
+			set { LinearStiffnessByAreaY = value;}
+		}	
+		IfcModulusOfSubgradeReactionMeasure? IIfcBoundaryFaceCondition.LinearStiffnessByAreaZ { 
+			get { return @LinearStiffnessByAreaZ; } 
+ 
+			set { LinearStiffnessByAreaZ = value;}
+		}	
 		 
 		#endregion
 

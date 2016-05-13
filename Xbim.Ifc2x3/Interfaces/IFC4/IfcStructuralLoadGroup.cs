@@ -47,6 +47,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcActionTypeEnum IIfcStructuralLoadGroup.ActionType 
 		{ 
@@ -74,6 +78,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcActionSourceTypeEnum IIfcStructuralLoadGroup.ActionSource 
 		{ 
@@ -167,6 +175,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcRatioMeasure? IIfcStructuralLoadGroup.Coefficient 
 		{ 
@@ -175,6 +187,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				if (!Coefficient.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcRatioMeasure(Coefficient.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcStructuralLoadGroup.Purpose 
 		{ 
@@ -183,6 +199,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				if (!Purpose.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Purpose.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcStructuralResultGroup> IIfcStructuralLoadGroup.SourceOfResultGroup 
 		{ 

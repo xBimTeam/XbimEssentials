@@ -25,8 +25,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralSurfaceAction : IIfcStructuralAction
 	{
-		IfcProjectedOrTrueLengthEnum? @ProjectedOrTrue { get; }
-		IfcStructuralSurfaceActivityTypeEnum @PredefinedType { get; }
+		IfcProjectedOrTrueLengthEnum? @ProjectedOrTrue { get;  set; }
+		IfcStructuralSurfaceActivityTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,8 +38,16 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	public  partial class @IfcStructuralSurfaceAction : IfcStructuralAction, IInstantiableEntity, IIfcStructuralSurfaceAction, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralSurfaceAction>
 	{
 		#region IIfcStructuralSurfaceAction explicit implementation
-		IfcProjectedOrTrueLengthEnum? IIfcStructuralSurfaceAction.ProjectedOrTrue { get { return @ProjectedOrTrue; } }	
-		IfcStructuralSurfaceActivityTypeEnum IIfcStructuralSurfaceAction.PredefinedType { get { return @PredefinedType; } }	
+		IfcProjectedOrTrueLengthEnum? IIfcStructuralSurfaceAction.ProjectedOrTrue { 
+			get { return @ProjectedOrTrue; } 
+ 
+			set { ProjectedOrTrue = value;}
+		}	
+		IfcStructuralSurfaceActivityTypeEnum IIfcStructuralSurfaceAction.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

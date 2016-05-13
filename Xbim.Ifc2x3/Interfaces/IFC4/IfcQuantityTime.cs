@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.QuantityResource
 			{
 				return new Ifc4.MeasureResource.IfcTimeMeasure(TimeValue);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcQuantityTime.Formula 
 		{ 
@@ -31,6 +35,10 @@ namespace Xbim.Ifc2x3.QuantityResource
                 return null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

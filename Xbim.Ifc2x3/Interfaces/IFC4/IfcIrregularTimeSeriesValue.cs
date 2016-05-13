@@ -26,6 +26,10 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
                     : new Ifc4.DateTimeResource.IfcDateTime();
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcValue> IIfcIrregularTimeSeriesValue.ListValues 
 		{ 

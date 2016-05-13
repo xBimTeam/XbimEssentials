@@ -24,6 +24,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
                 return NumberOfRiser.HasValue ? new Ifc4.MeasureResource.IfcInteger(NumberOfRiser.Value) : (Ifc4.MeasureResource.IfcInteger?)null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcInteger? IIfcStairFlight.NumberOfTreads 
 		{ 
@@ -33,6 +37,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
                 return NumberOfTreads.HasValue ? new Ifc4.MeasureResource.IfcInteger(NumberOfTreads.Value) : (Ifc4.MeasureResource.IfcInteger?)null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcStairFlight.RiserHeight 
 		{ 
@@ -41,6 +49,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!RiserHeight.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(RiserHeight.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcStairFlight.TreadLength 
 		{ 
@@ -49,6 +61,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!TreadLength.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(TreadLength.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcStairFlightTypeEnum? IIfcStairFlight.PredefinedType 
 		{ 
@@ -58,6 +74,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
                 return null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

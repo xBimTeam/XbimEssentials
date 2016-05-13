@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelAssociatesClassification : IIfcRelAssociates
 	{
-		IIfcClassificationNotationSelect @RelatingClassification { get; }
+		IIfcClassificationNotationSelect @RelatingClassification { get;  set; }
 	
 	}
 }
@@ -38,7 +38,12 @@ namespace Xbim.Ifc2x3.Kernel
 	public  partial class @IfcRelAssociatesClassification : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesClassification, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesClassification>
 	{
 		#region IIfcRelAssociatesClassification explicit implementation
-		IIfcClassificationNotationSelect IIfcRelAssociatesClassification.RelatingClassification { get { return @RelatingClassification; } }	
+		IIfcClassificationNotationSelect IIfcRelAssociatesClassification.RelatingClassification { 
+			get { return @RelatingClassification; } 
+ 
+ 
+			set { RelatingClassification = value as IfcClassificationNotationSelect;}
+		}	
 		 
 		#endregion
 

@@ -29,6 +29,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 					return ifcaxis2placement3d;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

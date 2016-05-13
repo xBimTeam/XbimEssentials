@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcFillAreaStyle : IIfcPresentationStyle, IfcPresentationStyleSelect
 	{
 		IEnumerable<IIfcFillStyleSelect> @FillStyles { get; }
-		IfcBoolean? @ModelorDraughting { get; }
+		IfcBoolean? @ModelorDraughting { get;  set; }
 	
 	}
 }
@@ -39,8 +39,14 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcFillAreaStyle : IfcPresentationStyle, IInstantiableEntity, IIfcFillAreaStyle, IEquatable<@IfcFillAreaStyle>
 	{
 		#region IIfcFillAreaStyle explicit implementation
-		IEnumerable<IIfcFillStyleSelect> IIfcFillAreaStyle.FillStyles { get { return @FillStyles; } }	
-		IfcBoolean? IIfcFillAreaStyle.ModelorDraughting { get { return @ModelorDraughting; } }	
+		IEnumerable<IIfcFillStyleSelect> IIfcFillAreaStyle.FillStyles { 
+			get { return @FillStyles; } 
+		}	
+		IfcBoolean? IIfcFillAreaStyle.ModelorDraughting { 
+			get { return @ModelorDraughting; } 
+ 
+			set { ModelorDraughting = value;}
+		}	
 		 
 		#endregion
 

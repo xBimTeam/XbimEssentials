@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				return RelatingResource;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

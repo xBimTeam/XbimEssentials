@@ -25,14 +25,14 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieConnection : ICobieReferencedObject
 	{
-		string @Name { get; }
-		string @Description { get; }
-		ICobieConnectionType @ConnectionType { get; }
-		ICobieTypeOrComponent @ComponentA { get; }
-		ICobieTypeOrComponent @ComponentB { get; }
-		ICobieTypeOrComponent @RealizingComponent { get; }
-		string @PortNameA { get; }
-		string @PortNameB { get; }
+		string @Name { get;  set; }
+		string @Description { get;  set; }
+		ICobieConnectionType @ConnectionType { get;  set; }
+		ICobieTypeOrComponent @ComponentA { get;  set; }
+		ICobieTypeOrComponent @ComponentB { get;  set; }
+		ICobieTypeOrComponent @RealizingComponent { get;  set; }
+		string @PortNameA { get;  set; }
+		string @PortNameB { get;  set; }
 	
 	}
 }
@@ -44,14 +44,50 @@ namespace Xbim.CobieExpress
 	public  partial class @CobieConnection : CobieReferencedObject, IInstantiableEntity, ICobieConnection, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieConnection>
 	{
 		#region ICobieConnection explicit implementation
-		string ICobieConnection.Name { get { return @Name; } }	
-		string ICobieConnection.Description { get { return @Description; } }	
-		ICobieConnectionType ICobieConnection.ConnectionType { get { return @ConnectionType; } }	
-		ICobieTypeOrComponent ICobieConnection.ComponentA { get { return @ComponentA; } }	
-		ICobieTypeOrComponent ICobieConnection.ComponentB { get { return @ComponentB; } }	
-		ICobieTypeOrComponent ICobieConnection.RealizingComponent { get { return @RealizingComponent; } }	
-		string ICobieConnection.PortNameA { get { return @PortNameA; } }	
-		string ICobieConnection.PortNameB { get { return @PortNameB; } }	
+		string ICobieConnection.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		string ICobieConnection.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		ICobieConnectionType ICobieConnection.ConnectionType { 
+			get { return @ConnectionType; } 
+ 
+ 
+			set { ConnectionType = value as CobieConnectionType;}
+		}	
+		ICobieTypeOrComponent ICobieConnection.ComponentA { 
+			get { return @ComponentA; } 
+ 
+ 
+			set { ComponentA = value as CobieTypeOrComponent;}
+		}	
+		ICobieTypeOrComponent ICobieConnection.ComponentB { 
+			get { return @ComponentB; } 
+ 
+ 
+			set { ComponentB = value as CobieTypeOrComponent;}
+		}	
+		ICobieTypeOrComponent ICobieConnection.RealizingComponent { 
+			get { return @RealizingComponent; } 
+ 
+ 
+			set { RealizingComponent = value as CobieTypeOrComponent;}
+		}	
+		string ICobieConnection.PortNameA { 
+			get { return @PortNameA; } 
+ 
+			set { PortNameA = value;}
+		}	
+		string ICobieConnection.PortNameB { 
+			get { return @PortNameB; } 
+ 
+			set { PortNameB = value;}
+		}	
 		 
 		#endregion
 

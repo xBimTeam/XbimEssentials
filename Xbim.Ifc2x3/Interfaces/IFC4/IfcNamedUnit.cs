@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.MeasureResource
 			{
 				return Dimensions;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcUnitEnum IIfcNamedUnit.UnitType 
 		{ 
@@ -124,6 +128,10 @@ namespace Xbim.Ifc2x3.MeasureResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

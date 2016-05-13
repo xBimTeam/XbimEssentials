@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				return ConnectionGeometry;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcElement IIfcRelConnectsElements.RelatingElement 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				return RelatingElement;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcElement IIfcRelConnectsElements.RelatedElement 
 		{ 
@@ -36,6 +44,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				return RelatedElement;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

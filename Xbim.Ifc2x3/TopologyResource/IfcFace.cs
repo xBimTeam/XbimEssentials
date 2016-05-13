@@ -37,7 +37,9 @@ namespace Xbim.Ifc2x3.TopologyResource
 	public  partial class @IfcFace : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcFace, IContainsEntityReferences, IEquatable<@IfcFace>
 	{
 		#region IIfcFace explicit implementation
-		IEnumerable<IIfcFaceBound> IIfcFace.Bounds { get { return @Bounds; } }	
+		IEnumerable<IIfcFaceBound> IIfcFace.Bounds { 
+			get { return @Bounds; } 
+		}	
 		 
 		#endregion
 

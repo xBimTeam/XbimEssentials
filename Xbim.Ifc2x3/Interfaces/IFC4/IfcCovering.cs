@@ -57,6 +57,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcRelCoversSpaces> IIfcCovering.CoversSpaces 
 		{ 

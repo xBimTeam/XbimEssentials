@@ -51,6 +51,10 @@ namespace Xbim.Ifc2x3.Kernel
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcProxy.Tag 
 		{ 
@@ -59,6 +63,10 @@ namespace Xbim.Ifc2x3.Kernel
 				if (!Tag.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Tag.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

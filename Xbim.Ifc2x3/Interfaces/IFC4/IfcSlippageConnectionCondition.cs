@@ -23,6 +23,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!SlippageX.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLengthMeasure(SlippageX.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageY 
 		{ 
@@ -31,6 +35,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!SlippageY.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLengthMeasure(SlippageY.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageZ 
 		{ 
@@ -39,6 +47,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!SlippageZ.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLengthMeasure(SlippageZ.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

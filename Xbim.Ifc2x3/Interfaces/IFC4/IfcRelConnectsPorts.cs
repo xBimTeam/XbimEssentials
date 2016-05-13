@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				return RelatingPort;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcPort IIfcRelConnectsPorts.RelatedPort 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				return RelatedPort;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcElement IIfcRelConnectsPorts.RealizingElement 
 		{ 
@@ -36,6 +44,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				return RealizingElement;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

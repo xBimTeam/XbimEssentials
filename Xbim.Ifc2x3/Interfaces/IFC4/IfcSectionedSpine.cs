@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				return SpineCurve;
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcProfileDef> IIfcSectionedSpine.CrossSections 
 		{ 

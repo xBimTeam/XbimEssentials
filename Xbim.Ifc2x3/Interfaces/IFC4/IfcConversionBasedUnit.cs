@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.MeasureResource
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcMeasureWithUnit IIfcConversionBasedUnit.ConversionFactor 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.MeasureResource
 			{
 				return ConversionFactor;
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcConversionBasedUnit.HasExternalReference 
 		{ 

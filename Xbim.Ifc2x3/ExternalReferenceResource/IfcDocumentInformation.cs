@@ -30,23 +30,23 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDocumentInformation : IPersistEntity, IfcDocumentSelect
 	{
-		IfcIdentifier @DocumentId { get; }
-		IfcLabel @Name { get; }
-		IfcText? @Description { get; }
+		IfcIdentifier @DocumentId { get;  set; }
+		IfcLabel @Name { get;  set; }
+		IfcText? @Description { get;  set; }
 		IEnumerable<IIfcDocumentReference> @DocumentReferences { get; }
-		IfcText? @Purpose { get; }
-		IfcText? @IntendedUse { get; }
-		IfcText? @Scope { get; }
-		IfcLabel? @Revision { get; }
-		IIfcActorSelect @DocumentOwner { get; }
+		IfcText? @Purpose { get;  set; }
+		IfcText? @IntendedUse { get;  set; }
+		IfcText? @Scope { get;  set; }
+		IfcLabel? @Revision { get;  set; }
+		IIfcActorSelect @DocumentOwner { get;  set; }
 		IEnumerable<IIfcActorSelect> @Editors { get; }
-		IIfcDateAndTime @CreationTime { get; }
-		IIfcDateAndTime @LastRevisionTime { get; }
-		IIfcDocumentElectronicFormat @ElectronicFormat { get; }
-		IIfcCalendarDate @ValidFrom { get; }
-		IIfcCalendarDate @ValidUntil { get; }
-		IfcDocumentConfidentialityEnum? @Confidentiality { get; }
-		IfcDocumentStatusEnum? @Status { get; }
+		IIfcDateAndTime @CreationTime { get;  set; }
+		IIfcDateAndTime @LastRevisionTime { get;  set; }
+		IIfcDocumentElectronicFormat @ElectronicFormat { get;  set; }
+		IIfcCalendarDate @ValidFrom { get;  set; }
+		IIfcCalendarDate @ValidUntil { get;  set; }
+		IfcDocumentConfidentialityEnum? @Confidentiality { get;  set; }
+		IfcDocumentStatusEnum? @Status { get;  set; }
 		IEnumerable<IIfcDocumentInformationRelationship> @IsPointedTo {  get; }
 		IEnumerable<IIfcDocumentInformationRelationship> @IsPointer {  get; }
 	
@@ -60,23 +60,93 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 	public  partial class @IfcDocumentInformation : INotifyPropertyChanged, IInstantiableEntity, IIfcDocumentInformation, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDocumentInformation>
 	{
 		#region IIfcDocumentInformation explicit implementation
-		IfcIdentifier IIfcDocumentInformation.DocumentId { get { return @DocumentId; } }	
-		IfcLabel IIfcDocumentInformation.Name { get { return @Name; } }	
-		IfcText? IIfcDocumentInformation.Description { get { return @Description; } }	
-		IEnumerable<IIfcDocumentReference> IIfcDocumentInformation.DocumentReferences { get { return @DocumentReferences; } }	
-		IfcText? IIfcDocumentInformation.Purpose { get { return @Purpose; } }	
-		IfcText? IIfcDocumentInformation.IntendedUse { get { return @IntendedUse; } }	
-		IfcText? IIfcDocumentInformation.Scope { get { return @Scope; } }	
-		IfcLabel? IIfcDocumentInformation.Revision { get { return @Revision; } }	
-		IIfcActorSelect IIfcDocumentInformation.DocumentOwner { get { return @DocumentOwner; } }	
-		IEnumerable<IIfcActorSelect> IIfcDocumentInformation.Editors { get { return @Editors; } }	
-		IIfcDateAndTime IIfcDocumentInformation.CreationTime { get { return @CreationTime; } }	
-		IIfcDateAndTime IIfcDocumentInformation.LastRevisionTime { get { return @LastRevisionTime; } }	
-		IIfcDocumentElectronicFormat IIfcDocumentInformation.ElectronicFormat { get { return @ElectronicFormat; } }	
-		IIfcCalendarDate IIfcDocumentInformation.ValidFrom { get { return @ValidFrom; } }	
-		IIfcCalendarDate IIfcDocumentInformation.ValidUntil { get { return @ValidUntil; } }	
-		IfcDocumentConfidentialityEnum? IIfcDocumentInformation.Confidentiality { get { return @Confidentiality; } }	
-		IfcDocumentStatusEnum? IIfcDocumentInformation.Status { get { return @Status; } }	
+		IfcIdentifier IIfcDocumentInformation.DocumentId { 
+			get { return @DocumentId; } 
+ 
+			set { DocumentId = value;}
+		}	
+		IfcLabel IIfcDocumentInformation.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcDocumentInformation.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IEnumerable<IIfcDocumentReference> IIfcDocumentInformation.DocumentReferences { 
+			get { return @DocumentReferences; } 
+		}	
+		IfcText? IIfcDocumentInformation.Purpose { 
+			get { return @Purpose; } 
+ 
+			set { Purpose = value;}
+		}	
+		IfcText? IIfcDocumentInformation.IntendedUse { 
+			get { return @IntendedUse; } 
+ 
+			set { IntendedUse = value;}
+		}	
+		IfcText? IIfcDocumentInformation.Scope { 
+			get { return @Scope; } 
+ 
+			set { Scope = value;}
+		}	
+		IfcLabel? IIfcDocumentInformation.Revision { 
+			get { return @Revision; } 
+ 
+			set { Revision = value;}
+		}	
+		IIfcActorSelect IIfcDocumentInformation.DocumentOwner { 
+			get { return @DocumentOwner; } 
+ 
+ 
+			set { DocumentOwner = value as IfcActorSelect;}
+		}	
+		IEnumerable<IIfcActorSelect> IIfcDocumentInformation.Editors { 
+			get { return @Editors; } 
+		}	
+		IIfcDateAndTime IIfcDocumentInformation.CreationTime { 
+			get { return @CreationTime; } 
+ 
+ 
+			set { CreationTime = value as IfcDateAndTime;}
+		}	
+		IIfcDateAndTime IIfcDocumentInformation.LastRevisionTime { 
+			get { return @LastRevisionTime; } 
+ 
+ 
+			set { LastRevisionTime = value as IfcDateAndTime;}
+		}	
+		IIfcDocumentElectronicFormat IIfcDocumentInformation.ElectronicFormat { 
+			get { return @ElectronicFormat; } 
+ 
+ 
+			set { ElectronicFormat = value as IfcDocumentElectronicFormat;}
+		}	
+		IIfcCalendarDate IIfcDocumentInformation.ValidFrom { 
+			get { return @ValidFrom; } 
+ 
+ 
+			set { ValidFrom = value as IfcCalendarDate;}
+		}	
+		IIfcCalendarDate IIfcDocumentInformation.ValidUntil { 
+			get { return @ValidUntil; } 
+ 
+ 
+			set { ValidUntil = value as IfcCalendarDate;}
+		}	
+		IfcDocumentConfidentialityEnum? IIfcDocumentInformation.Confidentiality { 
+			get { return @Confidentiality; } 
+ 
+			set { Confidentiality = value;}
+		}	
+		IfcDocumentStatusEnum? IIfcDocumentInformation.Status { 
+			get { return @Status; } 
+ 
+			set { Status = value;}
+		}	
 		 
 		IEnumerable<IIfcDocumentInformationRelationship> IIfcDocumentInformation.IsPointedTo {  get { return @IsPointedTo; } }
 		IEnumerable<IIfcDocumentInformationRelationship> IIfcDocumentInformation.IsPointer {  get { return @IsPointer; } }

@@ -28,15 +28,15 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcWindowLiningProperties : IIfcPropertySetDefinition
 	{
-		IfcPositiveLengthMeasure? @LiningDepth { get; }
-		IfcPositiveLengthMeasure? @LiningThickness { get; }
-		IfcPositiveLengthMeasure? @TransomThickness { get; }
-		IfcPositiveLengthMeasure? @MullionThickness { get; }
-		IfcNormalisedRatioMeasure? @FirstTransomOffset { get; }
-		IfcNormalisedRatioMeasure? @SecondTransomOffset { get; }
-		IfcNormalisedRatioMeasure? @FirstMullionOffset { get; }
-		IfcNormalisedRatioMeasure? @SecondMullionOffset { get; }
-		IIfcShapeAspect @ShapeAspectStyle { get; }
+		IfcPositiveLengthMeasure? @LiningDepth { get;  set; }
+		IfcPositiveLengthMeasure? @LiningThickness { get;  set; }
+		IfcPositiveLengthMeasure? @TransomThickness { get;  set; }
+		IfcPositiveLengthMeasure? @MullionThickness { get;  set; }
+		IfcNormalisedRatioMeasure? @FirstTransomOffset { get;  set; }
+		IfcNormalisedRatioMeasure? @SecondTransomOffset { get;  set; }
+		IfcNormalisedRatioMeasure? @FirstMullionOffset { get;  set; }
+		IfcNormalisedRatioMeasure? @SecondMullionOffset { get;  set; }
+		IIfcShapeAspect @ShapeAspectStyle { get;  set; }
 	
 	}
 }
@@ -48,15 +48,52 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 	public  partial class @IfcWindowLiningProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcWindowLiningProperties, IContainsEntityReferences, IEquatable<@IfcWindowLiningProperties>
 	{
 		#region IIfcWindowLiningProperties explicit implementation
-		IfcPositiveLengthMeasure? IIfcWindowLiningProperties.LiningDepth { get { return @LiningDepth; } }	
-		IfcPositiveLengthMeasure? IIfcWindowLiningProperties.LiningThickness { get { return @LiningThickness; } }	
-		IfcPositiveLengthMeasure? IIfcWindowLiningProperties.TransomThickness { get { return @TransomThickness; } }	
-		IfcPositiveLengthMeasure? IIfcWindowLiningProperties.MullionThickness { get { return @MullionThickness; } }	
-		IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.FirstTransomOffset { get { return @FirstTransomOffset; } }	
-		IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.SecondTransomOffset { get { return @SecondTransomOffset; } }	
-		IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.FirstMullionOffset { get { return @FirstMullionOffset; } }	
-		IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.SecondMullionOffset { get { return @SecondMullionOffset; } }	
-		IIfcShapeAspect IIfcWindowLiningProperties.ShapeAspectStyle { get { return @ShapeAspectStyle; } }	
+		IfcPositiveLengthMeasure? IIfcWindowLiningProperties.LiningDepth { 
+			get { return @LiningDepth; } 
+ 
+			set { LiningDepth = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcWindowLiningProperties.LiningThickness { 
+			get { return @LiningThickness; } 
+ 
+			set { LiningThickness = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcWindowLiningProperties.TransomThickness { 
+			get { return @TransomThickness; } 
+ 
+			set { TransomThickness = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcWindowLiningProperties.MullionThickness { 
+			get { return @MullionThickness; } 
+ 
+			set { MullionThickness = value;}
+		}	
+		IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.FirstTransomOffset { 
+			get { return @FirstTransomOffset; } 
+ 
+			set { FirstTransomOffset = value;}
+		}	
+		IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.SecondTransomOffset { 
+			get { return @SecondTransomOffset; } 
+ 
+			set { SecondTransomOffset = value;}
+		}	
+		IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.FirstMullionOffset { 
+			get { return @FirstMullionOffset; } 
+ 
+			set { FirstMullionOffset = value;}
+		}	
+		IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.SecondMullionOffset { 
+			get { return @SecondMullionOffset; } 
+ 
+			set { SecondMullionOffset = value;}
+		}	
+		IIfcShapeAspect IIfcWindowLiningProperties.ShapeAspectStyle { 
+			get { return @ShapeAspectStyle; } 
+ 
+ 
+			set { ShapeAspectStyle = value as IfcShapeAspect;}
+		}	
 		 
 		#endregion
 

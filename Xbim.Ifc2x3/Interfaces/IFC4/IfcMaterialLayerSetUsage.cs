@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.MaterialResource
 			{
 				return ForLayerSet;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcLayerSetDirectionEnum IIfcMaterialLayerSetUsage.LayerSetDirection 
 		{ 
@@ -43,6 +47,10 @@ namespace Xbim.Ifc2x3.MaterialResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcDirectionSenseEnum IIfcMaterialLayerSetUsage.DirectionSense 
 		{ 
@@ -61,6 +69,10 @@ namespace Xbim.Ifc2x3.MaterialResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure IIfcMaterialLayerSetUsage.OffsetFromReferenceLine 
 		{ 
@@ -68,6 +80,10 @@ namespace Xbim.Ifc2x3.MaterialResource
 			{
 				return new Ifc4.MeasureResource.IfcLengthMeasure(OffsetFromReferenceLine);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMaterialLayerSetUsage.ReferenceExtent 
 		{ 
@@ -77,6 +93,10 @@ namespace Xbim.Ifc2x3.MaterialResource
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcRelAssociatesMaterial> IIfcMaterialUsageDefinition.AssociatedTo 
 		{ 

@@ -24,6 +24,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
                 return new Xbim.Ifc4.DateTimeResource.IfcDateTime(CreationDate.ToISODateTimeString());
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcPerson> IIfcWorkControl.Creators 
 		{ 
@@ -42,6 +46,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				if (!Purpose.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Purpose.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDuration? IIfcWorkControl.Duration 
 		{ 
@@ -52,6 +60,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
                 return new Xbim.Ifc4.DateTimeResource.IfcDuration(Duration.Value.ToISODateTimeString());
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDuration? IIfcWorkControl.TotalFloat 
 		{ 
@@ -62,6 +74,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
                 return new Xbim.Ifc4.DateTimeResource.IfcDuration(Duration.Value.ToISODateTimeString());
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDateTime IIfcWorkControl.StartTime 
 		{ 
@@ -71,6 +87,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
                 return new Xbim.Ifc4.DateTimeResource.IfcDateTime(StartTime.ToISODateTimeString());
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDateTime? IIfcWorkControl.FinishTime 
 		{ 
@@ -80,6 +100,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
                 return new Xbim.Ifc4.DateTimeResource.IfcDateTime(FinishTime.ToISODateTimeString());
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

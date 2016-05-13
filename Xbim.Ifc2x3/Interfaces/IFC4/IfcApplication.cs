@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.UtilityResource
 			{
 				return ApplicationDeveloper;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel IIfcApplication.Version 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.UtilityResource
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Version);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel IIfcApplication.ApplicationFullName 
 		{ 
@@ -36,6 +44,10 @@ namespace Xbim.Ifc2x3.UtilityResource
 			{
 				return new Ifc4.MeasureResource.IfcLabel(ApplicationFullName);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcIdentifier IIfcApplication.ApplicationIdentifier 
 		{ 
@@ -43,6 +55,10 @@ namespace Xbim.Ifc2x3.UtilityResource
 			{
 				return new Ifc4.MeasureResource.IfcIdentifier(ApplicationIdentifier);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

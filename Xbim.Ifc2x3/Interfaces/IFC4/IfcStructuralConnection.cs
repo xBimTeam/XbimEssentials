@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				return AppliedCondition;
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcRelConnectsStructuralMember> IIfcStructuralConnection.ConnectsStructuralMembers 
 		{ 

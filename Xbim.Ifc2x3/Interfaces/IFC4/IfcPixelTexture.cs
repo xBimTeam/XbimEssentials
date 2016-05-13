@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				return new Ifc4.MeasureResource.IfcInteger(Width);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcInteger IIfcPixelTexture.Height 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				return new Ifc4.MeasureResource.IfcInteger(Height);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcInteger IIfcPixelTexture.ColourComponents 
 		{ 
@@ -36,6 +44,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				return new Ifc4.MeasureResource.IfcInteger(ColourComponents);
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcBinary> IIfcPixelTexture.Pixel 
 		{ 

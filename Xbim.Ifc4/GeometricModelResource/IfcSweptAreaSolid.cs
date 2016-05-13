@@ -27,8 +27,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSweptAreaSolid : IIfcSolidModel
 	{
-		IIfcProfileDef @SweptArea { get; }
-		IIfcAxis2Placement3D @Position { get; }
+		IIfcProfileDef @SweptArea { get;  set; }
+		IIfcAxis2Placement3D @Position { get;  set; }
 	
 	}
 }
@@ -40,8 +40,18 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public abstract partial class @IfcSweptAreaSolid : IfcSolidModel, IIfcSweptAreaSolid, IEquatable<@IfcSweptAreaSolid>
 	{
 		#region IIfcSweptAreaSolid explicit implementation
-		IIfcProfileDef IIfcSweptAreaSolid.SweptArea { get { return @SweptArea; } }	
-		IIfcAxis2Placement3D IIfcSweptAreaSolid.Position { get { return @Position; } }	
+		IIfcProfileDef IIfcSweptAreaSolid.SweptArea { 
+			get { return @SweptArea; } 
+ 
+ 
+			set { SweptArea = value as IfcProfileDef;}
+		}	
+		IIfcAxis2Placement3D IIfcSweptAreaSolid.Position { 
+			get { return @Position; } 
+ 
+ 
+			set { Position = value as IfcAxis2Placement3D;}
+		}	
 		 
 		#endregion
 

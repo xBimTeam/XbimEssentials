@@ -26,10 +26,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcGeometricRepresentationContext : IIfcRepresentationContext
 	{
-		IfcDimensionCount @CoordinateSpaceDimension { get; }
-		double? @Precision { get; }
-		IIfcAxis2Placement @WorldCoordinateSystem { get; }
-		IIfcDirection @TrueNorth { get; }
+		IfcDimensionCount @CoordinateSpaceDimension { get;  set; }
+		double? @Precision { get;  set; }
+		IIfcAxis2Placement @WorldCoordinateSystem { get;  set; }
+		IIfcDirection @TrueNorth { get;  set; }
 		IEnumerable<IIfcGeometricRepresentationSubContext> @HasSubContexts {  get; }
 	
 	}
@@ -42,10 +42,28 @@ namespace Xbim.Ifc2x3.RepresentationResource
 	public  partial class @IfcGeometricRepresentationContext : IfcRepresentationContext, IInstantiableEntity, IIfcGeometricRepresentationContext, IContainsEntityReferences, IEquatable<@IfcGeometricRepresentationContext>
 	{
 		#region IIfcGeometricRepresentationContext explicit implementation
-		IfcDimensionCount IIfcGeometricRepresentationContext.CoordinateSpaceDimension { get { return @CoordinateSpaceDimension; } }	
-		double? IIfcGeometricRepresentationContext.Precision { get { return @Precision; } }	
-		IIfcAxis2Placement IIfcGeometricRepresentationContext.WorldCoordinateSystem { get { return @WorldCoordinateSystem; } }	
-		IIfcDirection IIfcGeometricRepresentationContext.TrueNorth { get { return @TrueNorth; } }	
+		IfcDimensionCount IIfcGeometricRepresentationContext.CoordinateSpaceDimension { 
+			get { return @CoordinateSpaceDimension; } 
+ 
+			set { CoordinateSpaceDimension = value;}
+		}	
+		double? IIfcGeometricRepresentationContext.Precision { 
+			get { return @Precision; } 
+ 
+			set { Precision = value;}
+		}	
+		IIfcAxis2Placement IIfcGeometricRepresentationContext.WorldCoordinateSystem { 
+			get { return @WorldCoordinateSystem; } 
+ 
+ 
+			set { WorldCoordinateSystem = value as IfcAxis2Placement;}
+		}	
+		IIfcDirection IIfcGeometricRepresentationContext.TrueNorth { 
+			get { return @TrueNorth; } 
+ 
+ 
+			set { TrueNorth = value as IfcDirection;}
+		}	
 		 
 		IEnumerable<IIfcGeometricRepresentationSubContext> IIfcGeometricRepresentationContext.HasSubContexts {  get { return @HasSubContexts; } }
 		#endregion

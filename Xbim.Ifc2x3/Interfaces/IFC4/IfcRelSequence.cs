@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				return RelatingProcess;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcProcess IIfcRelSequence.RelatedProcess 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				return RelatedProcess;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcLagTime IIfcRelSequence.TimeLag 
 		{ 
@@ -43,6 +51,10 @@ namespace Xbim.Ifc2x3.Kernel
 			    return lag;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcSequenceEnum? IIfcRelSequence.SequenceType 
 		{ 
@@ -70,6 +82,10 @@ namespace Xbim.Ifc2x3.Kernel
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcRelSequence.UserDefinedSequenceType 
 		{ 
@@ -79,6 +95,10 @@ namespace Xbim.Ifc2x3.Kernel
                 return null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

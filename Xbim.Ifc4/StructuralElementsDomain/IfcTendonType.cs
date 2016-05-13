@@ -26,10 +26,10 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTendonType : IIfcReinforcingElementType
 	{
-		IfcTendonTypeEnum @PredefinedType { get; }
-		IfcPositiveLengthMeasure? @NominalDiameter { get; }
-		IfcAreaMeasure? @CrossSectionArea { get; }
-		IfcPositiveLengthMeasure? @SheethDiameter { get; }
+		IfcTendonTypeEnum @PredefinedType { get;  set; }
+		IfcPositiveLengthMeasure? @NominalDiameter { get;  set; }
+		IfcAreaMeasure? @CrossSectionArea { get;  set; }
+		IfcPositiveLengthMeasure? @SheethDiameter { get;  set; }
 	
 	}
 }
@@ -41,10 +41,26 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 	public  partial class @IfcTendonType : IfcReinforcingElementType, IInstantiableEntity, IIfcTendonType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTendonType>
 	{
 		#region IIfcTendonType explicit implementation
-		IfcTendonTypeEnum IIfcTendonType.PredefinedType { get { return @PredefinedType; } }	
-		IfcPositiveLengthMeasure? IIfcTendonType.NominalDiameter { get { return @NominalDiameter; } }	
-		IfcAreaMeasure? IIfcTendonType.CrossSectionArea { get { return @CrossSectionArea; } }	
-		IfcPositiveLengthMeasure? IIfcTendonType.SheethDiameter { get { return @SheethDiameter; } }	
+		IfcTendonTypeEnum IIfcTendonType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcTendonType.NominalDiameter { 
+			get { return @NominalDiameter; } 
+ 
+			set { NominalDiameter = value;}
+		}	
+		IfcAreaMeasure? IIfcTendonType.CrossSectionArea { 
+			get { return @CrossSectionArea; } 
+ 
+			set { CrossSectionArea = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcTendonType.SheethDiameter { 
+			get { return @SheethDiameter; } 
+ 
+			set { SheethDiameter = value;}
+		}	
 		 
 		#endregion
 

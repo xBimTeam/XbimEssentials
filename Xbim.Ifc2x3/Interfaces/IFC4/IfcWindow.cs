@@ -23,6 +23,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!OverallHeight.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallHeight.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcWindow.OverallWidth 
 		{ 
@@ -31,6 +35,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!OverallWidth.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallWidth.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcWindowTypeEnum? IIfcWindow.PredefinedType 
 		{ 
@@ -40,6 +48,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
                 return Ifc4.Interfaces.IfcWindowTypeEnum.NOTDEFINED;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcWindowTypePartitioningEnum? IIfcWindow.PartitioningType 
 		{ 
@@ -49,6 +61,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
                 return Ifc4.Interfaces.IfcWindowTypePartitioningEnum.NOTDEFINED;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcWindow.UserDefinedPartitioningType 
 		{ 
@@ -58,6 +74,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
                 return null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 

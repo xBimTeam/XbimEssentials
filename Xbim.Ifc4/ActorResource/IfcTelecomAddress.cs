@@ -29,9 +29,9 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IEnumerable<IfcLabel> @TelephoneNumbers { get; }
 		IEnumerable<IfcLabel> @FacsimileNumbers { get; }
-		IfcLabel? @PagerNumber { get; }
+		IfcLabel? @PagerNumber { get;  set; }
 		IEnumerable<IfcLabel> @ElectronicMailAddresses { get; }
-		IfcURIReference? @WWWHomePageURL { get; }
+		IfcURIReference? @WWWHomePageURL { get;  set; }
 		IEnumerable<IfcURIReference> @MessagingIDs { get; }
 	
 	}
@@ -44,12 +44,28 @@ namespace Xbim.Ifc4.ActorResource
 	public  partial class @IfcTelecomAddress : IfcAddress, IInstantiableEntity, IIfcTelecomAddress, IEquatable<@IfcTelecomAddress>
 	{
 		#region IIfcTelecomAddress explicit implementation
-		IEnumerable<IfcLabel> IIfcTelecomAddress.TelephoneNumbers { get { return @TelephoneNumbers; } }	
-		IEnumerable<IfcLabel> IIfcTelecomAddress.FacsimileNumbers { get { return @FacsimileNumbers; } }	
-		IfcLabel? IIfcTelecomAddress.PagerNumber { get { return @PagerNumber; } }	
-		IEnumerable<IfcLabel> IIfcTelecomAddress.ElectronicMailAddresses { get { return @ElectronicMailAddresses; } }	
-		IfcURIReference? IIfcTelecomAddress.WWWHomePageURL { get { return @WWWHomePageURL; } }	
-		IEnumerable<IfcURIReference> IIfcTelecomAddress.MessagingIDs { get { return @MessagingIDs; } }	
+		IEnumerable<IfcLabel> IIfcTelecomAddress.TelephoneNumbers { 
+			get { return @TelephoneNumbers; } 
+		}	
+		IEnumerable<IfcLabel> IIfcTelecomAddress.FacsimileNumbers { 
+			get { return @FacsimileNumbers; } 
+		}	
+		IfcLabel? IIfcTelecomAddress.PagerNumber { 
+			get { return @PagerNumber; } 
+ 
+			set { PagerNumber = value;}
+		}	
+		IEnumerable<IfcLabel> IIfcTelecomAddress.ElectronicMailAddresses { 
+			get { return @ElectronicMailAddresses; } 
+		}	
+		IfcURIReference? IIfcTelecomAddress.WWWHomePageURL { 
+			get { return @WWWHomePageURL; } 
+ 
+			set { WWWHomePageURL = value;}
+		}	
+		IEnumerable<IfcURIReference> IIfcTelecomAddress.MessagingIDs { 
+			get { return @MessagingIDs; } 
+		}	
 		 
 		#endregion
 

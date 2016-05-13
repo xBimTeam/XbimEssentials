@@ -25,9 +25,9 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieResource : ICobieReferencedObject
 	{
-		string @Name { get; }
-		string @Description { get; }
-		ICobieResourceType @ResourceType { get; }
+		string @Name { get;  set; }
+		string @Description { get;  set; }
+		ICobieResourceType @ResourceType { get;  set; }
 	
 	}
 }
@@ -39,9 +39,22 @@ namespace Xbim.CobieExpress
 	public  partial class @CobieResource : CobieReferencedObject, IInstantiableEntity, ICobieResource, IContainsEntityReferences, IEquatable<@CobieResource>
 	{
 		#region ICobieResource explicit implementation
-		string ICobieResource.Name { get { return @Name; } }	
-		string ICobieResource.Description { get { return @Description; } }	
-		ICobieResourceType ICobieResource.ResourceType { get { return @ResourceType; } }	
+		string ICobieResource.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		string ICobieResource.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		ICobieResourceType ICobieResource.ResourceType { 
+			get { return @ResourceType; } 
+ 
+ 
+			set { ResourceType = value as CobieResourceType;}
+		}	
 		 
 		#endregion
 

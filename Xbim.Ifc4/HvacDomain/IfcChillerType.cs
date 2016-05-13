@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcChillerType : IIfcEnergyConversionDeviceType
 	{
-		IfcChillerTypeEnum @PredefinedType { get; }
+		IfcChillerTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.HvacDomain
 	public  partial class @IfcChillerType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcChillerType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcChillerType>
 	{
 		#region IIfcChillerType explicit implementation
-		IfcChillerTypeEnum IIfcChillerType.PredefinedType { get { return @PredefinedType; } }	
+		IfcChillerTypeEnum IIfcChillerType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

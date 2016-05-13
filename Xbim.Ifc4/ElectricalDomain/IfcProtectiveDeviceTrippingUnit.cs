@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcProtectiveDeviceTrippingUnit : IIfcDistributionControlElement
 	{
-		IfcProtectiveDeviceTrippingUnitTypeEnum? @PredefinedType { get; }
+		IfcProtectiveDeviceTrippingUnitTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.ElectricalDomain
 	public  partial class @IfcProtectiveDeviceTrippingUnit : IfcDistributionControlElement, IInstantiableEntity, IIfcProtectiveDeviceTrippingUnit, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcProtectiveDeviceTrippingUnit>
 	{
 		#region IIfcProtectiveDeviceTrippingUnit explicit implementation
-		IfcProtectiveDeviceTrippingUnitTypeEnum? IIfcProtectiveDeviceTrippingUnit.PredefinedType { get { return @PredefinedType; } }	
+		IfcProtectiveDeviceTrippingUnitTypeEnum? IIfcProtectiveDeviceTrippingUnit.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

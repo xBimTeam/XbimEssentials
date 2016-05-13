@@ -42,6 +42,10 @@ namespace Xbim.Ifc2x3.ActorResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcAddress.Description 
 		{ 
@@ -50,6 +54,10 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!Description.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcAddress.UserDefinedPurpose 
 		{ 
@@ -58,6 +66,10 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!UserDefinedPurpose.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(UserDefinedPurpose.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcPerson> IIfcAddress.OfPerson 
 		{ 

@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMonetaryUnit : IPersistEntity, IfcUnit
 	{
-		IfcCurrencyEnum @Currency { get; }
+		IfcCurrencyEnum @Currency { get;  set; }
 	
 	}
 }
@@ -39,7 +39,11 @@ namespace Xbim.Ifc2x3.MeasureResource
 	public  partial class @IfcMonetaryUnit : INotifyPropertyChanged, IInstantiableEntity, IIfcMonetaryUnit, IEquatable<@IfcMonetaryUnit>
 	{
 		#region IIfcMonetaryUnit explicit implementation
-		IfcCurrencyEnum IIfcMonetaryUnit.Currency { get { return @Currency; } }	
+		IfcCurrencyEnum IIfcMonetaryUnit.Currency { 
+			get { return @Currency; } 
+ 
+			set { Currency = value;}
+		}	
 		 
 		#endregion
 

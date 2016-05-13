@@ -23,6 +23,10 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!Id.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcIdentifier(Id.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel IIfcOrganization.Name 
 		{ 
@@ -30,6 +34,10 @@ namespace Xbim.Ifc2x3.ActorResource
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcOrganization.Description 
 		{ 
@@ -38,6 +46,10 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!Description.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcActorRole> IIfcOrganization.Roles 
 		{ 

@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			{
 				return new Ifc4.MeasureResource.IfcIdentifier(Identifier);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcApproval.Name 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcApproval.Description 
 		{ 
@@ -37,6 +45,10 @@ namespace Xbim.Ifc2x3.ApprovalResource
 				if (!Description.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDateTime? IIfcApproval.TimeOfApproval 
 		{ 
@@ -48,6 +60,10 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			        : null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcApproval.Status 
 		{ 
@@ -59,6 +75,10 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			        : null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcApproval.Level 
 		{ 
@@ -70,6 +90,10 @@ namespace Xbim.Ifc2x3.ApprovalResource
                     : null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcApproval.Qualifier 
 		{ 
@@ -81,6 +105,10 @@ namespace Xbim.Ifc2x3.ApprovalResource
                     : null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcActorSelect IIfcApproval.RequestingApproval 
 		{ 
@@ -103,6 +131,10 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			    return personAndOrganization;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcActorSelect IIfcApproval.GivingApproval 
 		{ 
@@ -128,6 +160,10 @@ namespace Xbim.Ifc2x3.ApprovalResource
                 return personAndOrganization;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcApproval.HasExternalReferences 
 		{ 

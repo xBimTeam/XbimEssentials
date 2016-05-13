@@ -26,12 +26,12 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralLoadLinearForce : IIfcStructuralLoadStatic
 	{
-		IfcLinearForceMeasure? @LinearForceX { get; }
-		IfcLinearForceMeasure? @LinearForceY { get; }
-		IfcLinearForceMeasure? @LinearForceZ { get; }
-		IfcLinearMomentMeasure? @LinearMomentX { get; }
-		IfcLinearMomentMeasure? @LinearMomentY { get; }
-		IfcLinearMomentMeasure? @LinearMomentZ { get; }
+		IfcLinearForceMeasure? @LinearForceX { get;  set; }
+		IfcLinearForceMeasure? @LinearForceY { get;  set; }
+		IfcLinearForceMeasure? @LinearForceZ { get;  set; }
+		IfcLinearMomentMeasure? @LinearMomentX { get;  set; }
+		IfcLinearMomentMeasure? @LinearMomentY { get;  set; }
+		IfcLinearMomentMeasure? @LinearMomentZ { get;  set; }
 	
 	}
 }
@@ -43,12 +43,36 @@ namespace Xbim.Ifc4.StructuralLoadResource
 	public  partial class @IfcStructuralLoadLinearForce : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadLinearForce, IEquatable<@IfcStructuralLoadLinearForce>
 	{
 		#region IIfcStructuralLoadLinearForce explicit implementation
-		IfcLinearForceMeasure? IIfcStructuralLoadLinearForce.LinearForceX { get { return @LinearForceX; } }	
-		IfcLinearForceMeasure? IIfcStructuralLoadLinearForce.LinearForceY { get { return @LinearForceY; } }	
-		IfcLinearForceMeasure? IIfcStructuralLoadLinearForce.LinearForceZ { get { return @LinearForceZ; } }	
-		IfcLinearMomentMeasure? IIfcStructuralLoadLinearForce.LinearMomentX { get { return @LinearMomentX; } }	
-		IfcLinearMomentMeasure? IIfcStructuralLoadLinearForce.LinearMomentY { get { return @LinearMomentY; } }	
-		IfcLinearMomentMeasure? IIfcStructuralLoadLinearForce.LinearMomentZ { get { return @LinearMomentZ; } }	
+		IfcLinearForceMeasure? IIfcStructuralLoadLinearForce.LinearForceX { 
+			get { return @LinearForceX; } 
+ 
+			set { LinearForceX = value;}
+		}	
+		IfcLinearForceMeasure? IIfcStructuralLoadLinearForce.LinearForceY { 
+			get { return @LinearForceY; } 
+ 
+			set { LinearForceY = value;}
+		}	
+		IfcLinearForceMeasure? IIfcStructuralLoadLinearForce.LinearForceZ { 
+			get { return @LinearForceZ; } 
+ 
+			set { LinearForceZ = value;}
+		}	
+		IfcLinearMomentMeasure? IIfcStructuralLoadLinearForce.LinearMomentX { 
+			get { return @LinearMomentX; } 
+ 
+			set { LinearMomentX = value;}
+		}	
+		IfcLinearMomentMeasure? IIfcStructuralLoadLinearForce.LinearMomentY { 
+			get { return @LinearMomentY; } 
+ 
+			set { LinearMomentY = value;}
+		}	
+		IfcLinearMomentMeasure? IIfcStructuralLoadLinearForce.LinearMomentZ { 
+			get { return @LinearMomentZ; } 
+ 
+			set { LinearMomentZ = value;}
+		}	
 		 
 		#endregion
 

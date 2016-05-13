@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				return RelatingOpeningElement;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcElement IIfcRelFillsElement.RelatedBuildingElement 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				return RelatedBuildingElement;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.MeasureResource
 			{
 				return LengthExponent;
 			} 
+			set
+			{
+				
+			}
 		}
 		long IIfcDimensionalExponents.MassExponent 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.MeasureResource
 			{
 				return MassExponent;
 			} 
+			set
+			{
+				
+			}
 		}
 		long IIfcDimensionalExponents.TimeExponent 
 		{ 
@@ -36,6 +44,10 @@ namespace Xbim.Ifc2x3.MeasureResource
 			{
 				return TimeExponent;
 			} 
+			set
+			{
+				
+			}
 		}
 		long IIfcDimensionalExponents.ElectricCurrentExponent 
 		{ 
@@ -43,6 +55,10 @@ namespace Xbim.Ifc2x3.MeasureResource
 			{
 				return ElectricCurrentExponent;
 			} 
+			set
+			{
+				
+			}
 		}
 		long IIfcDimensionalExponents.ThermodynamicTemperatureExponent 
 		{ 
@@ -50,6 +66,10 @@ namespace Xbim.Ifc2x3.MeasureResource
 			{
 				return ThermodynamicTemperatureExponent;
 			} 
+			set
+			{
+				
+			}
 		}
 		long IIfcDimensionalExponents.AmountOfSubstanceExponent 
 		{ 
@@ -57,6 +77,10 @@ namespace Xbim.Ifc2x3.MeasureResource
 			{
 				return AmountOfSubstanceExponent;
 			} 
+			set
+			{
+				
+			}
 		}
 		long IIfcDimensionalExponents.LuminousIntensityExponent 
 		{ 
@@ -64,6 +88,10 @@ namespace Xbim.Ifc2x3.MeasureResource
 			{
 				return LuminousIntensityExponent;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

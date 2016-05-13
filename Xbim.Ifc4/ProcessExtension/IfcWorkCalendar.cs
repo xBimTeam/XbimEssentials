@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IEnumerable<IIfcWorkTime> @WorkingTimes { get; }
 		IEnumerable<IIfcWorkTime> @ExceptionTimes { get; }
-		IfcWorkCalendarTypeEnum? @PredefinedType { get; }
+		IfcWorkCalendarTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -41,9 +41,17 @@ namespace Xbim.Ifc4.ProcessExtension
 	public  partial class @IfcWorkCalendar : IfcControl, IInstantiableEntity, IIfcWorkCalendar, IContainsEntityReferences, IEquatable<@IfcWorkCalendar>
 	{
 		#region IIfcWorkCalendar explicit implementation
-		IEnumerable<IIfcWorkTime> IIfcWorkCalendar.WorkingTimes { get { return @WorkingTimes; } }	
-		IEnumerable<IIfcWorkTime> IIfcWorkCalendar.ExceptionTimes { get { return @ExceptionTimes; } }	
-		IfcWorkCalendarTypeEnum? IIfcWorkCalendar.PredefinedType { get { return @PredefinedType; } }	
+		IEnumerable<IIfcWorkTime> IIfcWorkCalendar.WorkingTimes { 
+			get { return @WorkingTimes; } 
+		}	
+		IEnumerable<IIfcWorkTime> IIfcWorkCalendar.ExceptionTimes { 
+			get { return @ExceptionTimes; } 
+		}	
+		IfcWorkCalendarTypeEnum? IIfcWorkCalendar.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

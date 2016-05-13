@@ -217,6 +217,10 @@ namespace Xbim.Ifc2x3.PropertyResource
 					return new Ifc4.MeasureResource.IfcIonConcentrationMeasure((double)(MeasureResource.IfcIonConcentrationMeasure)NominalValue);
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcUnit IIfcPropertySingleValue.Unit 
 		{ 
@@ -234,6 +238,10 @@ namespace Xbim.Ifc2x3.PropertyResource
 					return ifcmonetaryunit;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 
 		{ 

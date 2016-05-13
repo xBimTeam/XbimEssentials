@@ -46,6 +46,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			    }
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	    //##

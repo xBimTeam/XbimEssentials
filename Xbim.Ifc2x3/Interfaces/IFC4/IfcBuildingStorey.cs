@@ -23,6 +23,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 				if (!Elevation.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLengthMeasure(Elevation.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
 		{ 
@@ -32,6 +36,10 @@ namespace Xbim.Ifc2x3.ProductExtension
                 return !Name.HasValue ? null : new Ifc4.MeasureResource.IfcLabel(Name.Value);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcSpatialElement.ContainsElements 
 		{ 

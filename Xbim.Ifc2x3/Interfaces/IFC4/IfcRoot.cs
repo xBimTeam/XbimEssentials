@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				return new Ifc4.UtilityResource.IfcGloballyUniqueId(GlobalId);
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcOwnerHistory IIfcRoot.OwnerHistory 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				return OwnerHistory;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcRoot.Name 
 		{ 
@@ -37,6 +45,10 @@ namespace Xbim.Ifc2x3.Kernel
 				if (!Name.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcRoot.Description 
 		{ 
@@ -45,6 +57,10 @@ namespace Xbim.Ifc2x3.Kernel
 				if (!Description.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -33,6 +33,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 				if (!ConnectionType.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(ConnectionType.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

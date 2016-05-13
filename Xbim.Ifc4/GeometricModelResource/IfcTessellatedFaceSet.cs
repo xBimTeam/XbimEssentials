@@ -27,9 +27,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTessellatedFaceSet : IIfcTessellatedItem
 	{
-		IIfcCartesianPointList3D @Coordinates { get; }
+		IIfcCartesianPointList3D @Coordinates { get;  set; }
 		IEnumerable<IEnumerable<IfcParameterValue>> @Normals { get; }
-		IfcBoolean? @Closed { get; }
+		IfcBoolean? @Closed { get;  set; }
 		IEnumerable<IIfcIndexedColourMap> @HasColours {  get; }
 		IEnumerable<IIfcIndexedTextureMap> @HasTextures {  get; }
 	
@@ -43,9 +43,20 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public abstract partial class @IfcTessellatedFaceSet : IfcTessellatedItem, IIfcTessellatedFaceSet, IEquatable<@IfcTessellatedFaceSet>
 	{
 		#region IIfcTessellatedFaceSet explicit implementation
-		IIfcCartesianPointList3D IIfcTessellatedFaceSet.Coordinates { get { return @Coordinates; } }	
-		IEnumerable<IEnumerable<IfcParameterValue>> IIfcTessellatedFaceSet.Normals { get { return @Normals; } }	
-		IfcBoolean? IIfcTessellatedFaceSet.Closed { get { return @Closed; } }	
+		IIfcCartesianPointList3D IIfcTessellatedFaceSet.Coordinates { 
+			get { return @Coordinates; } 
+ 
+ 
+			set { Coordinates = value as IfcCartesianPointList3D;}
+		}	
+		IEnumerable<IEnumerable<IfcParameterValue>> IIfcTessellatedFaceSet.Normals { 
+			get { return @Normals; } 
+		}	
+		IfcBoolean? IIfcTessellatedFaceSet.Closed { 
+			get { return @Closed; } 
+ 
+			set { Closed = value;}
+		}	
 		 
 		IEnumerable<IIfcIndexedColourMap> IIfcTessellatedFaceSet.HasColours {  get { return @HasColours; } }
 		IEnumerable<IIfcIndexedTextureMap> IIfcTessellatedFaceSet.HasTextures {  get { return @HasTextures; } }

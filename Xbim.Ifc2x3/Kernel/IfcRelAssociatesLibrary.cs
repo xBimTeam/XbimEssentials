@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelAssociatesLibrary : IIfcRelAssociates
 	{
-		IIfcLibrarySelect @RelatingLibrary { get; }
+		IIfcLibrarySelect @RelatingLibrary { get;  set; }
 	
 	}
 }
@@ -38,7 +38,12 @@ namespace Xbim.Ifc2x3.Kernel
 	public  partial class @IfcRelAssociatesLibrary : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesLibrary, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesLibrary>
 	{
 		#region IIfcRelAssociatesLibrary explicit implementation
-		IIfcLibrarySelect IIfcRelAssociatesLibrary.RelatingLibrary { get { return @RelatingLibrary; } }	
+		IIfcLibrarySelect IIfcRelAssociatesLibrary.RelatingLibrary { 
+			get { return @RelatingLibrary; } 
+ 
+ 
+			set { RelatingLibrary = value as IfcLibrarySelect;}
+		}	
 		 
 		#endregion
 

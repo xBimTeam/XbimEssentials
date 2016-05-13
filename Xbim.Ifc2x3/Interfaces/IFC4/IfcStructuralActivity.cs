@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				return AppliedLoad;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcGlobalOrLocalEnum IIfcStructuralActivity.GlobalOrLocal 
 		{ 
@@ -40,6 +44,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcRelConnectsStructuralActivity> IIfcStructuralActivity.AssignedToStructuralItem 
 		{ 

@@ -24,6 +24,10 @@ namespace Xbim.Ifc2x3.SharedComponentElements
                 return Ifc4.Interfaces.IfcFastenerTypeEnum.NOTDEFINED;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

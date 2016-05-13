@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcUnitaryControlElementType : IIfcDistributionControlElementType
 	{
-		IfcUnitaryControlElementTypeEnum @PredefinedType { get; }
+		IfcUnitaryControlElementTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 	public  partial class @IfcUnitaryControlElementType : IfcDistributionControlElementType, IInstantiableEntity, IIfcUnitaryControlElementType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcUnitaryControlElementType>
 	{
 		#region IIfcUnitaryControlElementType explicit implementation
-		IfcUnitaryControlElementTypeEnum IIfcUnitaryControlElementType.PredefinedType { get { return @PredefinedType; } }	
+		IfcUnitaryControlElementTypeEnum IIfcUnitaryControlElementType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

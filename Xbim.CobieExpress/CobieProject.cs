@@ -27,11 +27,11 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieProject : IPersistEntity
 	{
-		string @Name { get; }
-		string @Description { get; }
-		ICobieExternalObject @ExternalObject { get; }
-		string @ExternalId { get; }
-		string @AltExternalId { get; }
+		string @Name { get;  set; }
+		string @Description { get;  set; }
+		ICobieExternalObject @ExternalObject { get;  set; }
+		string @ExternalId { get;  set; }
+		string @AltExternalId { get;  set; }
 		IEnumerable<ICobiePhase> @Phases {  get; }
 		IEnumerable<ICobieFacility> @Facilities {  get; }
 	
@@ -45,11 +45,32 @@ namespace Xbim.CobieExpress
 	public  partial class @CobieProject : INotifyPropertyChanged, IInstantiableEntity, ICobieProject, IContainsEntityReferences, IEquatable<@CobieProject>
 	{
 		#region ICobieProject explicit implementation
-		string ICobieProject.Name { get { return @Name; } }	
-		string ICobieProject.Description { get { return @Description; } }	
-		ICobieExternalObject ICobieProject.ExternalObject { get { return @ExternalObject; } }	
-		string ICobieProject.ExternalId { get { return @ExternalId; } }	
-		string ICobieProject.AltExternalId { get { return @AltExternalId; } }	
+		string ICobieProject.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		string ICobieProject.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		ICobieExternalObject ICobieProject.ExternalObject { 
+			get { return @ExternalObject; } 
+ 
+ 
+			set { ExternalObject = value as CobieExternalObject;}
+		}	
+		string ICobieProject.ExternalId { 
+			get { return @ExternalId; } 
+ 
+			set { ExternalId = value;}
+		}	
+		string ICobieProject.AltExternalId { 
+			get { return @AltExternalId; } 
+ 
+			set { AltExternalId = value;}
+		}	
 		 
 		IEnumerable<ICobiePhase> ICobieProject.Phases {  get { return @Phases; } }
 		IEnumerable<ICobieFacility> ICobieProject.Facilities {  get { return @Facilities; } }

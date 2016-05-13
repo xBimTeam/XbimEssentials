@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcConstructionResourceType : IIfcTypeResource
 	{
 		IEnumerable<IIfcAppliedValue> @BaseCosts { get; }
-		IIfcPhysicalQuantity @BaseQuantity { get; }
+		IIfcPhysicalQuantity @BaseQuantity { get;  set; }
 	
 	}
 }
@@ -41,8 +41,15 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 	public abstract partial class @IfcConstructionResourceType : IfcTypeResource, IIfcConstructionResourceType, IEquatable<@IfcConstructionResourceType>
 	{
 		#region IIfcConstructionResourceType explicit implementation
-		IEnumerable<IIfcAppliedValue> IIfcConstructionResourceType.BaseCosts { get { return @BaseCosts; } }	
-		IIfcPhysicalQuantity IIfcConstructionResourceType.BaseQuantity { get { return @BaseQuantity; } }	
+		IEnumerable<IIfcAppliedValue> IIfcConstructionResourceType.BaseCosts { 
+			get { return @BaseCosts; } 
+		}	
+		IIfcPhysicalQuantity IIfcConstructionResourceType.BaseQuantity { 
+			get { return @BaseQuantity; } 
+ 
+ 
+			set { BaseQuantity = value as IfcPhysicalQuantity;}
+		}	
 		 
 		#endregion
 

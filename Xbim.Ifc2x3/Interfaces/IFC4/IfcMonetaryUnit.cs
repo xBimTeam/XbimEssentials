@@ -24,6 +24,10 @@ namespace Xbim.Ifc2x3.MeasureResource
 			    return new Ifc4.MeasureResource.IfcLabel(System.Enum.GetName(typeof(IfcCurrencyEnum),Currency));
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.TopologyResource
 			{
 				return FaceSurface;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcBoolean IIfcFaceSurface.SameSense 
 		{ 
@@ -31,6 +35,10 @@ namespace Xbim.Ifc2x3.TopologyResource
                 return new Ifc4.MeasureResource.IfcBoolean(SameSense);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -45,6 +45,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcStructuralLoadGroup IIfcStructuralResultGroup.ResultForLoadGroup 
 		{ 
@@ -52,6 +56,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				return ResultForLoadGroup;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcBoolean IIfcStructuralResultGroup.IsLinear 
 		{ 
@@ -61,6 +69,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
                 return new Ifc4.MeasureResource.IfcBoolean(IsLinear);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcStructuralAnalysisModel> IIfcStructuralResultGroup.ResultGroupFor 
 		{ 

@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConversionBasedUnit : IIfcNamedUnit, IfcResourceObjectSelect
 	{
-		IfcLabel @Name { get; }
-		IIfcMeasureWithUnit @ConversionFactor { get; }
+		IfcLabel @Name { get;  set; }
+		IIfcMeasureWithUnit @ConversionFactor { get;  set; }
 		IEnumerable<IIfcExternalReferenceRelationship> @HasExternalReference {  get; }
 	
 	}
@@ -40,8 +40,17 @@ namespace Xbim.Ifc4.MeasureResource
 	public  partial class @IfcConversionBasedUnit : IfcNamedUnit, IInstantiableEntity, IIfcConversionBasedUnit, IContainsEntityReferences, IEquatable<@IfcConversionBasedUnit>
 	{
 		#region IIfcConversionBasedUnit explicit implementation
-		IfcLabel IIfcConversionBasedUnit.Name { get { return @Name; } }	
-		IIfcMeasureWithUnit IIfcConversionBasedUnit.ConversionFactor { get { return @ConversionFactor; } }	
+		IfcLabel IIfcConversionBasedUnit.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IIfcMeasureWithUnit IIfcConversionBasedUnit.ConversionFactor { 
+			get { return @ConversionFactor; } 
+ 
+ 
+			set { ConversionFactor = value as IfcMeasureWithUnit;}
+		}	
 		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcConversionBasedUnit.HasExternalReference {  get { return @HasExternalReference; } }
 		#endregion

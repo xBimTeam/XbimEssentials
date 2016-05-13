@@ -23,6 +23,10 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				if (!ContextIdentifier.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(ContextIdentifier.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcRepresentationContext.ContextType 
 		{ 
@@ -31,6 +35,10 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				if (!ContextType.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(ContextType.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcRepresentation> IIfcRepresentationContext.RepresentationsInContext 
 		{ 

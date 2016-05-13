@@ -26,9 +26,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcEnvironmentalImpactValue : IIfcAppliedValue
 	{
-		IfcLabel @ImpactType { get; }
-		IfcEnvironmentalImpactCategoryEnum @Category { get; }
-		IfcLabel? @UserDefinedCategory { get; }
+		IfcLabel @ImpactType { get;  set; }
+		IfcEnvironmentalImpactCategoryEnum @Category { get;  set; }
+		IfcLabel? @UserDefinedCategory { get;  set; }
 	
 	}
 }
@@ -40,9 +40,21 @@ namespace Xbim.Ifc2x3.CostResource
 	public  partial class @IfcEnvironmentalImpactValue : IfcAppliedValue, IInstantiableEntity, IIfcEnvironmentalImpactValue, IContainsEntityReferences, IEquatable<@IfcEnvironmentalImpactValue>
 	{
 		#region IIfcEnvironmentalImpactValue explicit implementation
-		IfcLabel IIfcEnvironmentalImpactValue.ImpactType { get { return @ImpactType; } }	
-		IfcEnvironmentalImpactCategoryEnum IIfcEnvironmentalImpactValue.Category { get { return @Category; } }	
-		IfcLabel? IIfcEnvironmentalImpactValue.UserDefinedCategory { get { return @UserDefinedCategory; } }	
+		IfcLabel IIfcEnvironmentalImpactValue.ImpactType { 
+			get { return @ImpactType; } 
+ 
+			set { ImpactType = value;}
+		}	
+		IfcEnvironmentalImpactCategoryEnum IIfcEnvironmentalImpactValue.Category { 
+			get { return @Category; } 
+ 
+			set { Category = value;}
+		}	
+		IfcLabel? IIfcEnvironmentalImpactValue.UserDefinedCategory { 
+			get { return @UserDefinedCategory; } 
+ 
+			set { UserDefinedCategory = value;}
+		}	
 		 
 		#endregion
 

@@ -26,9 +26,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPixelTexture : IIfcSurfaceTexture
 	{
-		IfcInteger @Width { get; }
-		IfcInteger @Height { get; }
-		IfcInteger @ColourComponents { get; }
+		IfcInteger @Width { get;  set; }
+		IfcInteger @Height { get;  set; }
+		IfcInteger @ColourComponents { get;  set; }
 		IEnumerable<long> @Pixel { get; }
 	
 	}
@@ -41,10 +41,24 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	public  partial class @IfcPixelTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcPixelTexture, IContainsEntityReferences, IEquatable<@IfcPixelTexture>
 	{
 		#region IIfcPixelTexture explicit implementation
-		IfcInteger IIfcPixelTexture.Width { get { return @Width; } }	
-		IfcInteger IIfcPixelTexture.Height { get { return @Height; } }	
-		IfcInteger IIfcPixelTexture.ColourComponents { get { return @ColourComponents; } }	
-		IEnumerable<long> IIfcPixelTexture.Pixel { get { return @Pixel; } }	
+		IfcInteger IIfcPixelTexture.Width { 
+			get { return @Width; } 
+ 
+			set { Width = value;}
+		}	
+		IfcInteger IIfcPixelTexture.Height { 
+			get { return @Height; } 
+ 
+			set { Height = value;}
+		}	
+		IfcInteger IIfcPixelTexture.ColourComponents { 
+			get { return @ColourComponents; } 
+ 
+			set { ColourComponents = value;}
+		}	
+		IEnumerable<long> IIfcPixelTexture.Pixel { 
+			get { return @Pixel; } 
+		}	
 		 
 		#endregion
 

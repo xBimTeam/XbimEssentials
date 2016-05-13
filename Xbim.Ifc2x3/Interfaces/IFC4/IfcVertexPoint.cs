@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.TopologyResource
 			{
 				return VertexGeometry;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

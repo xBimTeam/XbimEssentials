@@ -28,6 +28,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
                 return null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcStructuralCurveActivityTypeEnum IIfcStructuralCurveAction.PredefinedType 
 		{ 
@@ -37,6 +41,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
                 return IfcStructuralCurveActivityTypeEnum.NOTDEFINED;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

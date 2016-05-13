@@ -29,6 +29,10 @@ namespace Xbim.Ifc2x3.PresentationResource
 					return ifcaxis2placement3d;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

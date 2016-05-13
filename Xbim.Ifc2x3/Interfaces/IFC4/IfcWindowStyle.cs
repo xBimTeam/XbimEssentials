@@ -51,6 +51,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcWindowStyleOperationEnum IIfcWindowStyle.OperationType 
 		{ 
@@ -96,6 +100,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcBoolean IIfcWindowStyle.ParameterTakesPrecedence 
 		{ 
@@ -105,6 +113,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
                 return new Ifc4.MeasureResource.IfcBoolean(ParameterTakesPrecedence);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcBoolean IIfcWindowStyle.Sizeable 
 		{ 
@@ -114,6 +126,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
                 return new Ifc4.MeasureResource.IfcBoolean(Sizeable);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelVoidsElement : IIfcRelDecomposes
 	{
-		IIfcElement @RelatingBuildingElement { get; }
-		IIfcFeatureElementSubtraction @RelatedOpeningElement { get; }
+		IIfcElement @RelatingBuildingElement { get;  set; }
+		IIfcFeatureElementSubtraction @RelatedOpeningElement { get;  set; }
 	
 	}
 }
@@ -39,8 +39,18 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcRelVoidsElement : IfcRelDecomposes, IInstantiableEntity, IIfcRelVoidsElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelVoidsElement>
 	{
 		#region IIfcRelVoidsElement explicit implementation
-		IIfcElement IIfcRelVoidsElement.RelatingBuildingElement { get { return @RelatingBuildingElement; } }	
-		IIfcFeatureElementSubtraction IIfcRelVoidsElement.RelatedOpeningElement { get { return @RelatedOpeningElement; } }	
+		IIfcElement IIfcRelVoidsElement.RelatingBuildingElement { 
+			get { return @RelatingBuildingElement; } 
+ 
+ 
+			set { RelatingBuildingElement = value as IfcElement;}
+		}	
+		IIfcFeatureElementSubtraction IIfcRelVoidsElement.RelatedOpeningElement { 
+			get { return @RelatedOpeningElement; } 
+ 
+ 
+			set { RelatedOpeningElement = value as IfcFeatureElementSubtraction;}
+		}	
 		 
 		#endregion
 

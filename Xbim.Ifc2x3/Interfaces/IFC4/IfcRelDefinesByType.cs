@@ -32,6 +32,10 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				return RelatingType;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

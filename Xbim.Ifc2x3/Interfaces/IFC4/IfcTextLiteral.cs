@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			{
 				return new Ifc4.PresentationAppearanceResource.IfcPresentableText(Literal);
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcAxis2Placement IIfcTextLiteral.Placement 
 		{ 
@@ -36,6 +40,10 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 					return ifcaxis2placement3d;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcTextPath IIfcTextLiteral.Path 
 		{ 
@@ -60,6 +68,10 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

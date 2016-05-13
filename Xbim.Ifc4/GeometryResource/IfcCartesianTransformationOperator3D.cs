@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCartesianTransformationOperator3D : IIfcCartesianTransformationOperator
 	{
-		IIfcDirection @Axis3 { get; }
+		IIfcDirection @Axis3 { get;  set; }
 		List<Common.Geometry.XbimVector3D> @U  { get ; }
 	
 	}
@@ -38,7 +38,12 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcCartesianTransformationOperator3D : IfcCartesianTransformationOperator, IInstantiableEntity, IIfcCartesianTransformationOperator3D, IContainsEntityReferences, IEquatable<@IfcCartesianTransformationOperator3D>
 	{
 		#region IIfcCartesianTransformationOperator3D explicit implementation
-		IIfcDirection IIfcCartesianTransformationOperator3D.Axis3 { get { return @Axis3; } }	
+		IIfcDirection IIfcCartesianTransformationOperator3D.Axis3 { 
+			get { return @Axis3; } 
+ 
+ 
+			set { Axis3 = value as IfcDirection;}
+		}	
 		 
 		#endregion
 

@@ -29,6 +29,10 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 					return ifcvertexpoint;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcPointOrVertexPoint IIfcConnectionPointGeometry.PointOnRelatedElement 
 		{ 
@@ -43,6 +47,10 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 					return ifcvertexpoint;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -28,9 +28,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcIndexedColourMap : IIfcPresentationItem
 	{
-		IIfcTessellatedFaceSet @MappedTo { get; }
-		IfcNormalisedRatioMeasure? @Opacity { get; }
-		IIfcColourRgbList @Colours { get; }
+		IIfcTessellatedFaceSet @MappedTo { get;  set; }
+		IfcNormalisedRatioMeasure? @Opacity { get;  set; }
+		IIfcColourRgbList @Colours { get;  set; }
 		IEnumerable<IfcPositiveInteger> @ColourIndex { get; }
 	
 	}
@@ -43,10 +43,26 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcIndexedColourMap : IfcPresentationItem, IInstantiableEntity, IIfcIndexedColourMap, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcIndexedColourMap>
 	{
 		#region IIfcIndexedColourMap explicit implementation
-		IIfcTessellatedFaceSet IIfcIndexedColourMap.MappedTo { get { return @MappedTo; } }	
-		IfcNormalisedRatioMeasure? IIfcIndexedColourMap.Opacity { get { return @Opacity; } }	
-		IIfcColourRgbList IIfcIndexedColourMap.Colours { get { return @Colours; } }	
-		IEnumerable<IfcPositiveInteger> IIfcIndexedColourMap.ColourIndex { get { return @ColourIndex; } }	
+		IIfcTessellatedFaceSet IIfcIndexedColourMap.MappedTo { 
+			get { return @MappedTo; } 
+ 
+ 
+			set { MappedTo = value as IfcTessellatedFaceSet;}
+		}	
+		IfcNormalisedRatioMeasure? IIfcIndexedColourMap.Opacity { 
+			get { return @Opacity; } 
+ 
+			set { Opacity = value;}
+		}	
+		IIfcColourRgbList IIfcIndexedColourMap.Colours { 
+			get { return @Colours; } 
+ 
+ 
+			set { Colours = value as IfcColourRgbList;}
+		}	
+		IEnumerable<IfcPositiveInteger> IIfcIndexedColourMap.ColourIndex { 
+			get { return @ColourIndex; } 
+		}	
 		 
 		#endregion
 

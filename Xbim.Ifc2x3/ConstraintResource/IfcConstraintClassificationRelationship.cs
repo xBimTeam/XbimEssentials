@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConstraintClassificationRelationship : IPersistEntity
 	{
-		IIfcConstraint @ClassifiedConstraint { get; }
+		IIfcConstraint @ClassifiedConstraint { get;  set; }
 		IEnumerable<IIfcClassificationNotationSelect> @RelatedClassifications { get; }
 	
 	}
@@ -41,8 +41,15 @@ namespace Xbim.Ifc2x3.ConstraintResource
 	public  partial class @IfcConstraintClassificationRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcConstraintClassificationRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcConstraintClassificationRelationship>
 	{
 		#region IIfcConstraintClassificationRelationship explicit implementation
-		IIfcConstraint IIfcConstraintClassificationRelationship.ClassifiedConstraint { get { return @ClassifiedConstraint; } }	
-		IEnumerable<IIfcClassificationNotationSelect> IIfcConstraintClassificationRelationship.RelatedClassifications { get { return @RelatedClassifications; } }	
+		IIfcConstraint IIfcConstraintClassificationRelationship.ClassifiedConstraint { 
+			get { return @ClassifiedConstraint; } 
+ 
+ 
+			set { ClassifiedConstraint = value as IfcConstraint;}
+		}	
+		IEnumerable<IIfcClassificationNotationSelect> IIfcConstraintClassificationRelationship.RelatedClassifications { 
+			get { return @RelatedClassifications; } 
+		}	
 		 
 		#endregion
 

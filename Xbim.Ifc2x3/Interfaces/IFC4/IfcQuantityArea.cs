@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.QuantityResource
 			{
 				return new Ifc4.MeasureResource.IfcAreaMeasure(AreaValue);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcQuantityArea.Formula 
 		{ 
@@ -31,6 +35,10 @@ namespace Xbim.Ifc2x3.QuantityResource
                 return null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

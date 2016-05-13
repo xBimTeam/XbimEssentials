@@ -26,8 +26,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelAssignsToActor : IIfcRelAssigns
 	{
-		IIfcActor @RelatingActor { get; }
-		IIfcActorRole @ActingRole { get; }
+		IIfcActor @RelatingActor { get;  set; }
+		IIfcActorRole @ActingRole { get;  set; }
 	
 	}
 }
@@ -39,8 +39,18 @@ namespace Xbim.Ifc2x3.Kernel
 	public  partial class @IfcRelAssignsToActor : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToActor, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToActor>
 	{
 		#region IIfcRelAssignsToActor explicit implementation
-		IIfcActor IIfcRelAssignsToActor.RelatingActor { get { return @RelatingActor; } }	
-		IIfcActorRole IIfcRelAssignsToActor.ActingRole { get { return @ActingRole; } }	
+		IIfcActor IIfcRelAssignsToActor.RelatingActor { 
+			get { return @RelatingActor; } 
+ 
+ 
+			set { RelatingActor = value as IfcActor;}
+		}	
+		IIfcActorRole IIfcRelAssignsToActor.ActingRole { 
+			get { return @ActingRole; } 
+ 
+ 
+			set { ActingRole = value as IfcActorRole;}
+		}	
 		 
 		#endregion
 

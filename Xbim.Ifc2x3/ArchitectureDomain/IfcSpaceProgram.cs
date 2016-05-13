@@ -28,11 +28,11 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSpaceProgram : IIfcControl
 	{
-		IfcIdentifier @SpaceProgramIdentifier { get; }
-		IfcAreaMeasure? @MaxRequiredArea { get; }
-		IfcAreaMeasure? @MinRequiredArea { get; }
-		IIfcSpatialStructureElement @RequestedLocation { get; }
-		IfcAreaMeasure @StandardRequiredArea { get; }
+		IfcIdentifier @SpaceProgramIdentifier { get;  set; }
+		IfcAreaMeasure? @MaxRequiredArea { get;  set; }
+		IfcAreaMeasure? @MinRequiredArea { get;  set; }
+		IIfcSpatialStructureElement @RequestedLocation { get;  set; }
+		IfcAreaMeasure @StandardRequiredArea { get;  set; }
 		IEnumerable<IIfcRelInteractionRequirements> @HasInteractionReqsFrom {  get; }
 		IEnumerable<IIfcRelInteractionRequirements> @HasInteractionReqsTo {  get; }
 	
@@ -46,11 +46,32 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 	public  partial class @IfcSpaceProgram : IfcControl, IInstantiableEntity, IIfcSpaceProgram, IContainsEntityReferences, IEquatable<@IfcSpaceProgram>
 	{
 		#region IIfcSpaceProgram explicit implementation
-		IfcIdentifier IIfcSpaceProgram.SpaceProgramIdentifier { get { return @SpaceProgramIdentifier; } }	
-		IfcAreaMeasure? IIfcSpaceProgram.MaxRequiredArea { get { return @MaxRequiredArea; } }	
-		IfcAreaMeasure? IIfcSpaceProgram.MinRequiredArea { get { return @MinRequiredArea; } }	
-		IIfcSpatialStructureElement IIfcSpaceProgram.RequestedLocation { get { return @RequestedLocation; } }	
-		IfcAreaMeasure IIfcSpaceProgram.StandardRequiredArea { get { return @StandardRequiredArea; } }	
+		IfcIdentifier IIfcSpaceProgram.SpaceProgramIdentifier { 
+			get { return @SpaceProgramIdentifier; } 
+ 
+			set { SpaceProgramIdentifier = value;}
+		}	
+		IfcAreaMeasure? IIfcSpaceProgram.MaxRequiredArea { 
+			get { return @MaxRequiredArea; } 
+ 
+			set { MaxRequiredArea = value;}
+		}	
+		IfcAreaMeasure? IIfcSpaceProgram.MinRequiredArea { 
+			get { return @MinRequiredArea; } 
+ 
+			set { MinRequiredArea = value;}
+		}	
+		IIfcSpatialStructureElement IIfcSpaceProgram.RequestedLocation { 
+			get { return @RequestedLocation; } 
+ 
+ 
+			set { RequestedLocation = value as IfcSpatialStructureElement;}
+		}	
+		IfcAreaMeasure IIfcSpaceProgram.StandardRequiredArea { 
+			get { return @StandardRequiredArea; } 
+ 
+			set { StandardRequiredArea = value;}
+		}	
 		 
 		IEnumerable<IIfcRelInteractionRequirements> IIfcSpaceProgram.HasInteractionReqsFrom {  get { return @HasInteractionReqsFrom; } }
 		IEnumerable<IIfcRelInteractionRequirements> IIfcSpaceProgram.HasInteractionReqsTo {  get { return @HasInteractionReqsTo; } }

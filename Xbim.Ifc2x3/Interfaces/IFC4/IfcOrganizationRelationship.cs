@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.ActorResource
 			{
 				return RelatingOrganization;
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcOrganization> IIfcOrganizationRelationship.RelatedOrganizations 
 		{ 
@@ -41,6 +45,10 @@ namespace Xbim.Ifc2x3.ActorResource
 			    return new Ifc4.MeasureResource.IfcLabel(Name);
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
 		{ 
@@ -52,6 +60,10 @@ namespace Xbim.Ifc2x3.ActorResource
 			        : null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

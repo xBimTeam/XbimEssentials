@@ -32,6 +32,10 @@ namespace Xbim.Ifc2x3.QuantityResource
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Discrimination);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcPhysicalComplexQuantity.Quality 
 		{ 
@@ -40,6 +44,10 @@ namespace Xbim.Ifc2x3.QuantityResource
 				if (!Quality.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Quality.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcPhysicalComplexQuantity.Usage 
 		{ 
@@ -48,6 +56,10 @@ namespace Xbim.Ifc2x3.QuantityResource
 				if (!Usage.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Usage.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

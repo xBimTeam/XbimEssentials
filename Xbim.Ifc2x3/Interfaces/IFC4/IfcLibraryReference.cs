@@ -24,6 +24,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.ExternalReferenceResource.IfcLanguageId? IIfcLibraryReference.Language 
 		{ 
@@ -33,6 +37,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcLibraryInformation IIfcLibraryReference.ReferencedLibrary 
 		{ 
@@ -42,6 +50,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcRelAssociatesLibrary> IIfcLibraryReference.LibraryRefForObjects 
 		{ 

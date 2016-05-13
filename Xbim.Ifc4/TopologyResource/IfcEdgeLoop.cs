@@ -39,7 +39,9 @@ namespace Xbim.Ifc4.TopologyResource
 	public  partial class @IfcEdgeLoop : IfcLoop, IInstantiableEntity, IIfcEdgeLoop, IContainsEntityReferences, IEquatable<@IfcEdgeLoop>
 	{
 		#region IIfcEdgeLoop explicit implementation
-		IEnumerable<IIfcOrientedEdge> IIfcEdgeLoop.EdgeList { get { return @EdgeList; } }	
+		IEnumerable<IIfcOrientedEdge> IIfcEdgeLoop.EdgeList { 
+			get { return @EdgeList; } 
+		}	
 		 
 		#endregion
 

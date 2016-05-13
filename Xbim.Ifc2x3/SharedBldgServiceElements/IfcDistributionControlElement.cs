@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDistributionControlElement : IIfcDistributionElement
 	{
-		IfcIdentifier? @ControlElementId { get; }
+		IfcIdentifier? @ControlElementId { get;  set; }
 		IEnumerable<IIfcRelFlowControlElements> @AssignedToFlowElement {  get; }
 	
 	}
@@ -40,7 +40,11 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 	public  partial class @IfcDistributionControlElement : IfcDistributionElement, IInstantiableEntity, IIfcDistributionControlElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDistributionControlElement>
 	{
 		#region IIfcDistributionControlElement explicit implementation
-		IfcIdentifier? IIfcDistributionControlElement.ControlElementId { get { return @ControlElementId; } }	
+		IfcIdentifier? IIfcDistributionControlElement.ControlElementId { 
+			get { return @ControlElementId; } 
+ 
+			set { ControlElementId = value;}
+		}	
 		 
 		IEnumerable<IIfcRelFlowControlElements> IIfcDistributionControlElement.AssignedToFlowElement {  get { return @AssignedToFlowElement; } }
 		#endregion

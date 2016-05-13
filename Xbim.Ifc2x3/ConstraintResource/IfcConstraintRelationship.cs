@@ -28,9 +28,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConstraintRelationship : IPersistEntity
 	{
-		IfcLabel? @Name { get; }
-		IfcText? @Description { get; }
-		IIfcConstraint @RelatingConstraint { get; }
+		IfcLabel? @Name { get;  set; }
+		IfcText? @Description { get;  set; }
+		IIfcConstraint @RelatingConstraint { get;  set; }
 		IEnumerable<IIfcConstraint> @RelatedConstraints { get; }
 	
 	}
@@ -43,10 +43,25 @@ namespace Xbim.Ifc2x3.ConstraintResource
 	public  partial class @IfcConstraintRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcConstraintRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcConstraintRelationship>
 	{
 		#region IIfcConstraintRelationship explicit implementation
-		IfcLabel? IIfcConstraintRelationship.Name { get { return @Name; } }	
-		IfcText? IIfcConstraintRelationship.Description { get { return @Description; } }	
-		IIfcConstraint IIfcConstraintRelationship.RelatingConstraint { get { return @RelatingConstraint; } }	
-		IEnumerable<IIfcConstraint> IIfcConstraintRelationship.RelatedConstraints { get { return @RelatedConstraints; } }	
+		IfcLabel? IIfcConstraintRelationship.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcConstraintRelationship.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IIfcConstraint IIfcConstraintRelationship.RelatingConstraint { 
+			get { return @RelatingConstraint; } 
+ 
+ 
+			set { RelatingConstraint = value as IfcConstraint;}
+		}	
+		IEnumerable<IIfcConstraint> IIfcConstraintRelationship.RelatedConstraints { 
+			get { return @RelatedConstraints; } 
+		}	
 		 
 		#endregion
 

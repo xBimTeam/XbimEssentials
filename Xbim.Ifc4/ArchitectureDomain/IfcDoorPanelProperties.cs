@@ -28,11 +28,11 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDoorPanelProperties : IIfcPreDefinedPropertySet
 	{
-		IfcPositiveLengthMeasure? @PanelDepth { get; }
-		IfcDoorPanelOperationEnum @PanelOperation { get; }
-		IfcNormalisedRatioMeasure? @PanelWidth { get; }
-		IfcDoorPanelPositionEnum @PanelPosition { get; }
-		IIfcShapeAspect @ShapeAspectStyle { get; }
+		IfcPositiveLengthMeasure? @PanelDepth { get;  set; }
+		IfcDoorPanelOperationEnum @PanelOperation { get;  set; }
+		IfcNormalisedRatioMeasure? @PanelWidth { get;  set; }
+		IfcDoorPanelPositionEnum @PanelPosition { get;  set; }
+		IIfcShapeAspect @ShapeAspectStyle { get;  set; }
 	
 	}
 }
@@ -44,11 +44,32 @@ namespace Xbim.Ifc4.ArchitectureDomain
 	public  partial class @IfcDoorPanelProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcDoorPanelProperties, IContainsEntityReferences, IEquatable<@IfcDoorPanelProperties>
 	{
 		#region IIfcDoorPanelProperties explicit implementation
-		IfcPositiveLengthMeasure? IIfcDoorPanelProperties.PanelDepth { get { return @PanelDepth; } }	
-		IfcDoorPanelOperationEnum IIfcDoorPanelProperties.PanelOperation { get { return @PanelOperation; } }	
-		IfcNormalisedRatioMeasure? IIfcDoorPanelProperties.PanelWidth { get { return @PanelWidth; } }	
-		IfcDoorPanelPositionEnum IIfcDoorPanelProperties.PanelPosition { get { return @PanelPosition; } }	
-		IIfcShapeAspect IIfcDoorPanelProperties.ShapeAspectStyle { get { return @ShapeAspectStyle; } }	
+		IfcPositiveLengthMeasure? IIfcDoorPanelProperties.PanelDepth { 
+			get { return @PanelDepth; } 
+ 
+			set { PanelDepth = value;}
+		}	
+		IfcDoorPanelOperationEnum IIfcDoorPanelProperties.PanelOperation { 
+			get { return @PanelOperation; } 
+ 
+			set { PanelOperation = value;}
+		}	
+		IfcNormalisedRatioMeasure? IIfcDoorPanelProperties.PanelWidth { 
+			get { return @PanelWidth; } 
+ 
+			set { PanelWidth = value;}
+		}	
+		IfcDoorPanelPositionEnum IIfcDoorPanelProperties.PanelPosition { 
+			get { return @PanelPosition; } 
+ 
+			set { PanelPosition = value;}
+		}	
+		IIfcShapeAspect IIfcDoorPanelProperties.ShapeAspectStyle { 
+			get { return @ShapeAspectStyle; } 
+ 
+ 
+			set { ShapeAspectStyle = value as IfcShapeAspect;}
+		}	
 		 
 		#endregion
 

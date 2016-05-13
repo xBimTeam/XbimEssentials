@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return BasisSurface;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcCurve IIfcCurveBoundedPlane.OuterBoundary 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return OuterBoundary;
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcCurve> IIfcCurveBoundedPlane.InnerBoundaries 
 		{ 

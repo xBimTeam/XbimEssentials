@@ -24,6 +24,10 @@ namespace Xbim.Ifc2x3.SharedComponentElements
                 return IfcDiscreteAccessoryTypeEnum.NOTDEFINED;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				return new Ifc4.ExternalReferenceResource.IfcURIReference(UrlReference);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

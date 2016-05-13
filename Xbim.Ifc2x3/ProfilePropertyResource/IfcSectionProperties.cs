@@ -28,9 +28,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSectionProperties : IPersistEntity
 	{
-		IfcSectionTypeEnum @SectionType { get; }
-		IIfcProfileDef @StartProfile { get; }
-		IIfcProfileDef @EndProfile { get; }
+		IfcSectionTypeEnum @SectionType { get;  set; }
+		IIfcProfileDef @StartProfile { get;  set; }
+		IIfcProfileDef @EndProfile { get;  set; }
 	
 	}
 }
@@ -42,9 +42,23 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 	public  partial class @IfcSectionProperties : INotifyPropertyChanged, IInstantiableEntity, IIfcSectionProperties, IContainsEntityReferences, IEquatable<@IfcSectionProperties>
 	{
 		#region IIfcSectionProperties explicit implementation
-		IfcSectionTypeEnum IIfcSectionProperties.SectionType { get { return @SectionType; } }	
-		IIfcProfileDef IIfcSectionProperties.StartProfile { get { return @StartProfile; } }	
-		IIfcProfileDef IIfcSectionProperties.EndProfile { get { return @EndProfile; } }	
+		IfcSectionTypeEnum IIfcSectionProperties.SectionType { 
+			get { return @SectionType; } 
+ 
+			set { SectionType = value;}
+		}	
+		IIfcProfileDef IIfcSectionProperties.StartProfile { 
+			get { return @StartProfile; } 
+ 
+ 
+			set { StartProfile = value as IfcProfileDef;}
+		}	
+		IIfcProfileDef IIfcSectionProperties.EndProfile { 
+			get { return @EndProfile; } 
+ 
+ 
+			set { EndProfile = value as IfcProfileDef;}
+		}	
 		 
 		#endregion
 

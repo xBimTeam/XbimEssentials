@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			{
 				return PlacementLocation;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcGridPlacementDirectionSelect IIfcGridPlacement.PlacementRefDirection 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			{
 				return PlacementRefDirection;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

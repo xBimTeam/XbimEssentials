@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelDefinesByProperties : IIfcRelDefines
 	{
-		IIfcPropertySetDefinition @RelatingPropertyDefinition { get; }
+		IIfcPropertySetDefinition @RelatingPropertyDefinition { get;  set; }
 	
 	}
 }
@@ -37,7 +37,12 @@ namespace Xbim.Ifc2x3.Kernel
 	public  partial class @IfcRelDefinesByProperties : IfcRelDefines, IInstantiableEntity, IIfcRelDefinesByProperties, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelDefinesByProperties>
 	{
 		#region IIfcRelDefinesByProperties explicit implementation
-		IIfcPropertySetDefinition IIfcRelDefinesByProperties.RelatingPropertyDefinition { get { return @RelatingPropertyDefinition; } }	
+		IIfcPropertySetDefinition IIfcRelDefinesByProperties.RelatingPropertyDefinition { 
+			get { return @RelatingPropertyDefinition; } 
+ 
+ 
+			set { RelatingPropertyDefinition = value as IfcPropertySetDefinition;}
+		}	
 		 
 		#endregion
 

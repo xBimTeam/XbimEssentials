@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcRelDefinesByType : IIfcRelDefines
 	{
 		IEnumerable<IIfcObject> @RelatedObjects { get; }
-		IIfcTypeObject @RelatingType { get; }
+		IIfcTypeObject @RelatingType { get;  set; }
 	
 	}
 }
@@ -38,8 +38,15 @@ namespace Xbim.Ifc4.Kernel
 	public  partial class @IfcRelDefinesByType : IfcRelDefines, IInstantiableEntity, IIfcRelDefinesByType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelDefinesByType>
 	{
 		#region IIfcRelDefinesByType explicit implementation
-		IEnumerable<IIfcObject> IIfcRelDefinesByType.RelatedObjects { get { return @RelatedObjects; } }	
-		IIfcTypeObject IIfcRelDefinesByType.RelatingType { get { return @RelatingType; } }	
+		IEnumerable<IIfcObject> IIfcRelDefinesByType.RelatedObjects { 
+			get { return @RelatedObjects; } 
+		}	
+		IIfcTypeObject IIfcRelDefinesByType.RelatingType { 
+			get { return @RelatingType; } 
+ 
+ 
+			set { RelatingType = value as IfcTypeObject;}
+		}	
 		 
 		#endregion
 

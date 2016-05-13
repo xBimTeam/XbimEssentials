@@ -26,6 +26,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 return new Ifc4.MeasureResource.IfcLinearStiffnessMeasure(value.Value);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessY 
 		{ 
@@ -37,6 +41,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 return new Ifc4.MeasureResource.IfcLinearStiffnessMeasure(value.Value);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessZ 
 		{ 
@@ -48,6 +56,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 return new Ifc4.MeasureResource.IfcLinearStiffnessMeasure(value.Value);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessX 
 		{ 
@@ -57,6 +69,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if(!RotationalStiffnessX.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcRotationalStiffnessMeasure(RotationalStiffnessX.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessY 
 		{ 
@@ -66,6 +82,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if(!RotationalStiffnessY.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcRotationalStiffnessMeasure(RotationalStiffnessY.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessZ 
 		{ 
@@ -75,6 +95,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if(!RotationalStiffnessZ.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcRotationalStiffnessMeasure(RotationalStiffnessZ.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

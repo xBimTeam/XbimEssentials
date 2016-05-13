@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcElectricFlowStorageDeviceType : IIfcFlowStorageDeviceType
 	{
-		IfcElectricFlowStorageDeviceTypeEnum @PredefinedType { get; }
+		IfcElectricFlowStorageDeviceTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.ElectricalDomain
 	public  partial class @IfcElectricFlowStorageDeviceType : IfcFlowStorageDeviceType, IInstantiableEntity, IIfcElectricFlowStorageDeviceType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcElectricFlowStorageDeviceType>
 	{
 		#region IIfcElectricFlowStorageDeviceType explicit implementation
-		IfcElectricFlowStorageDeviceTypeEnum IIfcElectricFlowStorageDeviceType.PredefinedType { get { return @PredefinedType; } }	
+		IfcElectricFlowStorageDeviceTypeEnum IIfcElectricFlowStorageDeviceType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

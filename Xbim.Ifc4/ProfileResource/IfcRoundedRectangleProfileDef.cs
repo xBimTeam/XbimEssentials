@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRoundedRectangleProfileDef : IIfcRectangleProfileDef
 	{
-		IfcPositiveLengthMeasure @RoundingRadius { get; }
+		IfcPositiveLengthMeasure @RoundingRadius { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.ProfileResource
 	public  partial class @IfcRoundedRectangleProfileDef : IfcRectangleProfileDef, IInstantiableEntity, IIfcRoundedRectangleProfileDef, IContainsEntityReferences, IEquatable<@IfcRoundedRectangleProfileDef>
 	{
 		#region IIfcRoundedRectangleProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcRoundedRectangleProfileDef.RoundingRadius { get { return @RoundingRadius; } }	
+		IfcPositiveLengthMeasure IIfcRoundedRectangleProfileDef.RoundingRadius { 
+			get { return @RoundingRadius; } 
+ 
+			set { RoundingRadius = value;}
+		}	
 		 
 		#endregion
 

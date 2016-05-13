@@ -33,6 +33,10 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcObjectiveEnum IIfcObjective.ObjectiveQualifier 
 		{ 
@@ -69,6 +73,10 @@ namespace Xbim.Ifc2x3.ConstraintResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcObjective.UserDefinedQualifier 
 		{ 
@@ -77,6 +85,10 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				if (!UserDefinedQualifier.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(UserDefinedQualifier.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

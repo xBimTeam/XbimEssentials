@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			{
 				return Extent;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.PresentationDefinitionResource.IfcBoxAlignment IIfcTextLiteralWithExtent.BoxAlignment 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			{
 				return new Ifc4.PresentationDefinitionResource.IfcBoxAlignment(BoxAlignment);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

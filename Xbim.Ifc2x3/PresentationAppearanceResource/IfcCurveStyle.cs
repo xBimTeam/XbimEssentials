@@ -26,9 +26,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCurveStyle : IIfcPresentationStyle, IfcPresentationStyleSelect
 	{
-		IIfcCurveFontOrScaledCurveFontSelect @CurveFont { get; }
-		IIfcSizeSelect @CurveWidth { get; }
-		IIfcColour @CurveColour { get; }
+		IIfcCurveFontOrScaledCurveFontSelect @CurveFont { get;  set; }
+		IIfcSizeSelect @CurveWidth { get;  set; }
+		IIfcColour @CurveColour { get;  set; }
 	
 	}
 }
@@ -40,9 +40,24 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	public  partial class @IfcCurveStyle : IfcPresentationStyle, IInstantiableEntity, IIfcCurveStyle, IContainsEntityReferences, IEquatable<@IfcCurveStyle>
 	{
 		#region IIfcCurveStyle explicit implementation
-		IIfcCurveFontOrScaledCurveFontSelect IIfcCurveStyle.CurveFont { get { return @CurveFont; } }	
-		IIfcSizeSelect IIfcCurveStyle.CurveWidth { get { return @CurveWidth; } }	
-		IIfcColour IIfcCurveStyle.CurveColour { get { return @CurveColour; } }	
+		IIfcCurveFontOrScaledCurveFontSelect IIfcCurveStyle.CurveFont { 
+			get { return @CurveFont; } 
+ 
+ 
+			set { CurveFont = value as IfcCurveFontOrScaledCurveFontSelect;}
+		}	
+		IIfcSizeSelect IIfcCurveStyle.CurveWidth { 
+			get { return @CurveWidth; } 
+ 
+ 
+			set { CurveWidth = value as IfcSizeSelect;}
+		}	
+		IIfcColour IIfcCurveStyle.CurveColour { 
+			get { return @CurveColour; } 
+ 
+ 
+			set { CurveColour = value as IfcColour;}
+		}	
 		 
 		#endregion
 

@@ -26,8 +26,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPile : IIfcBuildingElement
 	{
-		IfcPileTypeEnum @PredefinedType { get; }
-		IfcPileConstructionEnum? @ConstructionType { get; }
+		IfcPileTypeEnum @PredefinedType { get;  set; }
+		IfcPileConstructionEnum? @ConstructionType { get;  set; }
 	
 	}
 }
@@ -39,8 +39,16 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 	public  partial class @IfcPile : IfcBuildingElement, IInstantiableEntity, IIfcPile, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPile>
 	{
 		#region IIfcPile explicit implementation
-		IfcPileTypeEnum IIfcPile.PredefinedType { get { return @PredefinedType; } }	
-		IfcPileConstructionEnum? IIfcPile.ConstructionType { get { return @ConstructionType; } }	
+		IfcPileTypeEnum IIfcPile.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
+		IfcPileConstructionEnum? IIfcPile.ConstructionType { 
+			get { return @ConstructionType; } 
+ 
+			set { ConstructionType = value;}
+		}	
 		 
 		#endregion
 

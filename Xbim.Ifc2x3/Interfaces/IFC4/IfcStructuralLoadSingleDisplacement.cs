@@ -23,6 +23,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!DisplacementX.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLengthMeasure(DisplacementX.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementY 
 		{ 
@@ -31,6 +35,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!DisplacementY.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLengthMeasure(DisplacementY.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementZ 
 		{ 
@@ -39,6 +47,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!DisplacementZ.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLengthMeasure(DisplacementZ.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRX 
 		{ 
@@ -47,6 +59,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!RotationalDisplacementRX.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPlaneAngleMeasure(RotationalDisplacementRX.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRY 
 		{ 
@@ -55,6 +71,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!RotationalDisplacementRY.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPlaneAngleMeasure(RotationalDisplacementRY.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRZ 
 		{ 
@@ -63,6 +83,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!RotationalDisplacementRZ.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPlaneAngleMeasure(RotationalDisplacementRZ.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

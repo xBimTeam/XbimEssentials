@@ -54,6 +54,10 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

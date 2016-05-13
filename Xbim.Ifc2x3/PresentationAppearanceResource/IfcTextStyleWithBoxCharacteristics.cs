@@ -28,11 +28,11 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTextStyleWithBoxCharacteristics : IPersistEntity, IfcTextStyleSelect
 	{
-		IfcPositiveLengthMeasure? @BoxHeight { get; }
-		IfcPositiveLengthMeasure? @BoxWidth { get; }
-		IfcPlaneAngleMeasure? @BoxSlantAngle { get; }
-		IfcPlaneAngleMeasure? @BoxRotateAngle { get; }
-		IIfcSizeSelect @CharacterSpacing { get; }
+		IfcPositiveLengthMeasure? @BoxHeight { get;  set; }
+		IfcPositiveLengthMeasure? @BoxWidth { get;  set; }
+		IfcPlaneAngleMeasure? @BoxSlantAngle { get;  set; }
+		IfcPlaneAngleMeasure? @BoxRotateAngle { get;  set; }
+		IIfcSizeSelect @CharacterSpacing { get;  set; }
 	
 	}
 }
@@ -44,11 +44,32 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	public  partial class @IfcTextStyleWithBoxCharacteristics : INotifyPropertyChanged, IInstantiableEntity, IIfcTextStyleWithBoxCharacteristics, IEquatable<@IfcTextStyleWithBoxCharacteristics>
 	{
 		#region IIfcTextStyleWithBoxCharacteristics explicit implementation
-		IfcPositiveLengthMeasure? IIfcTextStyleWithBoxCharacteristics.BoxHeight { get { return @BoxHeight; } }	
-		IfcPositiveLengthMeasure? IIfcTextStyleWithBoxCharacteristics.BoxWidth { get { return @BoxWidth; } }	
-		IfcPlaneAngleMeasure? IIfcTextStyleWithBoxCharacteristics.BoxSlantAngle { get { return @BoxSlantAngle; } }	
-		IfcPlaneAngleMeasure? IIfcTextStyleWithBoxCharacteristics.BoxRotateAngle { get { return @BoxRotateAngle; } }	
-		IIfcSizeSelect IIfcTextStyleWithBoxCharacteristics.CharacterSpacing { get { return @CharacterSpacing; } }	
+		IfcPositiveLengthMeasure? IIfcTextStyleWithBoxCharacteristics.BoxHeight { 
+			get { return @BoxHeight; } 
+ 
+			set { BoxHeight = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcTextStyleWithBoxCharacteristics.BoxWidth { 
+			get { return @BoxWidth; } 
+ 
+			set { BoxWidth = value;}
+		}	
+		IfcPlaneAngleMeasure? IIfcTextStyleWithBoxCharacteristics.BoxSlantAngle { 
+			get { return @BoxSlantAngle; } 
+ 
+			set { BoxSlantAngle = value;}
+		}	
+		IfcPlaneAngleMeasure? IIfcTextStyleWithBoxCharacteristics.BoxRotateAngle { 
+			get { return @BoxRotateAngle; } 
+ 
+			set { BoxRotateAngle = value;}
+		}	
+		IIfcSizeSelect IIfcTextStyleWithBoxCharacteristics.CharacterSpacing { 
+			get { return @CharacterSpacing; } 
+ 
+ 
+			set { CharacterSpacing = value as IfcSizeSelect;}
+		}	
 		 
 		#endregion
 

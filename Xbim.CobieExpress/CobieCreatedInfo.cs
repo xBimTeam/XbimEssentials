@@ -27,8 +27,8 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieCreatedInfo : IPersistEntity
 	{
-		ICobieContact @CreatedBy { get; }
-		DateTimeValue @CreatedOn { get; }
+		ICobieContact @CreatedBy { get;  set; }
+		DateTimeValue @CreatedOn { get;  set; }
 	
 	}
 }
@@ -40,8 +40,17 @@ namespace Xbim.CobieExpress
 	public  partial class @CobieCreatedInfo : INotifyPropertyChanged, IInstantiableEntity, ICobieCreatedInfo, IContainsEntityReferences, IEquatable<@CobieCreatedInfo>
 	{
 		#region ICobieCreatedInfo explicit implementation
-		ICobieContact ICobieCreatedInfo.CreatedBy { get { return @CreatedBy; } }	
-		DateTimeValue ICobieCreatedInfo.CreatedOn { get { return @CreatedOn; } }	
+		ICobieContact ICobieCreatedInfo.CreatedBy { 
+			get { return @CreatedBy; } 
+ 
+ 
+			set { CreatedBy = value as CobieContact;}
+		}	
+		DateTimeValue ICobieCreatedInfo.CreatedOn { 
+			get { return @CreatedOn; } 
+ 
+			set { CreatedOn = value;}
+		}	
 		 
 		#endregion
 

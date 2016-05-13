@@ -429,6 +429,10 @@ namespace Xbim.Ifc2x3.PropertyResource
 				if (!Expression.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Expression.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcUnit IIfcPropertyTableValue.DefiningUnit 
 		{ 
@@ -446,6 +450,10 @@ namespace Xbim.Ifc2x3.PropertyResource
 					return ifcmonetaryunit;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcUnit IIfcPropertyTableValue.DefinedUnit 
 		{ 
@@ -463,6 +471,10 @@ namespace Xbim.Ifc2x3.PropertyResource
 					return ifcmonetaryunit;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcCurveInterpolationEnum? IIfcPropertyTableValue.CurveInterpolation 
 		{ 
@@ -472,6 +484,10 @@ namespace Xbim.Ifc2x3.PropertyResource
                 return null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 
 		{ 

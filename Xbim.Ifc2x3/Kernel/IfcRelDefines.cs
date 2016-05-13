@@ -37,7 +37,9 @@ namespace Xbim.Ifc2x3.Kernel
 	public abstract partial class @IfcRelDefines : IfcRelationship, IIfcRelDefines, IEquatable<@IfcRelDefines>
 	{
 		#region IIfcRelDefines explicit implementation
-		IEnumerable<IIfcObject> IIfcRelDefines.RelatedObjects { get { return @RelatedObjects; } }	
+		IEnumerable<IIfcObject> IIfcRelDefines.RelatedObjects { 
+			get { return @RelatedObjects; } 
+		}	
 		 
 		#endregion
 

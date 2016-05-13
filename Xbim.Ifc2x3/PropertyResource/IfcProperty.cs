@@ -28,8 +28,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcProperty : IPersistEntity
 	{
-		IfcIdentifier @Name { get; }
-		IfcText? @Description { get; }
+		IfcIdentifier @Name { get;  set; }
+		IfcText? @Description { get;  set; }
 		IEnumerable<IIfcPropertyDependencyRelationship> @PropertyForDependance {  get; }
 		IEnumerable<IIfcPropertyDependencyRelationship> @PropertyDependsOn {  get; }
 		IEnumerable<IIfcComplexProperty> @PartOfComplex {  get; }
@@ -44,8 +44,16 @@ namespace Xbim.Ifc2x3.PropertyResource
 	public abstract partial class @IfcProperty : IPersistEntity, INotifyPropertyChanged, IIfcProperty, IEquatable<@IfcProperty>
 	{
 		#region IIfcProperty explicit implementation
-		IfcIdentifier IIfcProperty.Name { get { return @Name; } }	
-		IfcText? IIfcProperty.Description { get { return @Description; } }	
+		IfcIdentifier IIfcProperty.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcProperty.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
 		 
 		IEnumerable<IIfcPropertyDependencyRelationship> IIfcProperty.PropertyForDependance {  get { return @PropertyForDependance; } }
 		IEnumerable<IIfcPropertyDependencyRelationship> IIfcProperty.PropertyDependsOn {  get { return @PropertyDependsOn; } }

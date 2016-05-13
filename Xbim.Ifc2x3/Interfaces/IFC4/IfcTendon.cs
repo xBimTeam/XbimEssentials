@@ -45,6 +45,10 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcTendon.NominalDiameter 
 		{ 
@@ -52,6 +56,10 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(NominalDiameter);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcAreaMeasure? IIfcTendon.CrossSectionArea 
 		{ 
@@ -59,6 +67,10 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			{
 				return new Ifc4.MeasureResource.IfcAreaMeasure(CrossSectionArea);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcForceMeasure? IIfcTendon.TensionForce 
 		{ 
@@ -67,6 +79,10 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				if (!TensionForce.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcForceMeasure(TensionForce.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPressureMeasure? IIfcTendon.PreStress 
 		{ 
@@ -75,6 +91,10 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				if (!PreStress.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPressureMeasure(PreStress.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcTendon.FrictionCoefficient 
 		{ 
@@ -83,6 +103,10 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				if (!FrictionCoefficient.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(FrictionCoefficient.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcTendon.AnchorageSlip 
 		{ 
@@ -91,6 +115,10 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				if (!AnchorageSlip.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(AnchorageSlip.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcTendon.MinCurvatureRadius 
 		{ 
@@ -99,6 +127,10 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				if (!MinCurvatureRadius.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(MinCurvatureRadius.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

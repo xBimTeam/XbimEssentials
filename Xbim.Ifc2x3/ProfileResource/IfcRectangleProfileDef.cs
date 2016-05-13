@@ -26,8 +26,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRectangleProfileDef : IIfcParameterizedProfileDef
 	{
-		IfcPositiveLengthMeasure @XDim { get; }
-		IfcPositiveLengthMeasure @YDim { get; }
+		IfcPositiveLengthMeasure @XDim { get;  set; }
+		IfcPositiveLengthMeasure @YDim { get;  set; }
 	
 	}
 }
@@ -39,8 +39,16 @@ namespace Xbim.Ifc2x3.ProfileResource
 	public  partial class @IfcRectangleProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcRectangleProfileDef, IContainsEntityReferences, IEquatable<@IfcRectangleProfileDef>
 	{
 		#region IIfcRectangleProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcRectangleProfileDef.XDim { get { return @XDim; } }	
-		IfcPositiveLengthMeasure IIfcRectangleProfileDef.YDim { get { return @YDim; } }	
+		IfcPositiveLengthMeasure IIfcRectangleProfileDef.XDim { 
+			get { return @XDim; } 
+ 
+			set { XDim = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcRectangleProfileDef.YDim { 
+			get { return @YDim; } 
+ 
+			set { YDim = value;}
+		}	
 		 
 		#endregion
 

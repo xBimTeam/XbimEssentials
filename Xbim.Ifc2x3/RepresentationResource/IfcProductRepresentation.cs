@@ -28,8 +28,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcProductRepresentation : IPersistEntity
 	{
-		IfcLabel? @Name { get; }
-		IfcText? @Description { get; }
+		IfcLabel? @Name { get;  set; }
+		IfcText? @Description { get;  set; }
 		IEnumerable<IIfcRepresentation> @Representations { get; }
 	
 	}
@@ -42,9 +42,19 @@ namespace Xbim.Ifc2x3.RepresentationResource
 	public  partial class @IfcProductRepresentation : INotifyPropertyChanged, IInstantiableEntity, IIfcProductRepresentation, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcProductRepresentation>
 	{
 		#region IIfcProductRepresentation explicit implementation
-		IfcLabel? IIfcProductRepresentation.Name { get { return @Name; } }	
-		IfcText? IIfcProductRepresentation.Description { get { return @Description; } }	
-		IEnumerable<IIfcRepresentation> IIfcProductRepresentation.Representations { get { return @Representations; } }	
+		IfcLabel? IIfcProductRepresentation.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcProductRepresentation.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IEnumerable<IIfcRepresentation> IIfcProductRepresentation.Representations { 
+			get { return @Representations; } 
+		}	
 		 
 		#endregion
 

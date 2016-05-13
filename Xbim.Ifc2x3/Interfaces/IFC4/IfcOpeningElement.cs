@@ -24,6 +24,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcRelFillsElement> IIfcOpeningElement.HasFillings 
 		{ 

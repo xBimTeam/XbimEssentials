@@ -28,11 +28,11 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPropertyDependencyRelationship : IPersistEntity
 	{
-		IIfcProperty @DependingProperty { get; }
-		IIfcProperty @DependantProperty { get; }
-		IfcLabel? @Name { get; }
-		IfcText? @Description { get; }
-		IfcText? @Expression { get; }
+		IIfcProperty @DependingProperty { get;  set; }
+		IIfcProperty @DependantProperty { get;  set; }
+		IfcLabel? @Name { get;  set; }
+		IfcText? @Description { get;  set; }
+		IfcText? @Expression { get;  set; }
 	
 	}
 }
@@ -44,11 +44,33 @@ namespace Xbim.Ifc2x3.PropertyResource
 	public  partial class @IfcPropertyDependencyRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcPropertyDependencyRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPropertyDependencyRelationship>
 	{
 		#region IIfcPropertyDependencyRelationship explicit implementation
-		IIfcProperty IIfcPropertyDependencyRelationship.DependingProperty { get { return @DependingProperty; } }	
-		IIfcProperty IIfcPropertyDependencyRelationship.DependantProperty { get { return @DependantProperty; } }	
-		IfcLabel? IIfcPropertyDependencyRelationship.Name { get { return @Name; } }	
-		IfcText? IIfcPropertyDependencyRelationship.Description { get { return @Description; } }	
-		IfcText? IIfcPropertyDependencyRelationship.Expression { get { return @Expression; } }	
+		IIfcProperty IIfcPropertyDependencyRelationship.DependingProperty { 
+			get { return @DependingProperty; } 
+ 
+ 
+			set { DependingProperty = value as IfcProperty;}
+		}	
+		IIfcProperty IIfcPropertyDependencyRelationship.DependantProperty { 
+			get { return @DependantProperty; } 
+ 
+ 
+			set { DependantProperty = value as IfcProperty;}
+		}	
+		IfcLabel? IIfcPropertyDependencyRelationship.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcPropertyDependencyRelationship.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IfcText? IIfcPropertyDependencyRelationship.Expression { 
+			get { return @Expression; } 
+ 
+			set { Expression = value;}
+		}	
 		 
 		#endregion
 

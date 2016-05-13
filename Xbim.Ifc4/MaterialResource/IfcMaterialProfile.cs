@@ -27,12 +27,12 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialProfile : IIfcMaterialDefinition
 	{
-		IfcLabel? @Name { get; }
-		IfcText? @Description { get; }
-		IIfcMaterial @Material { get; }
-		IIfcProfileDef @Profile { get; }
-		IfcInteger? @Priority { get; }
-		IfcLabel? @Category { get; }
+		IfcLabel? @Name { get;  set; }
+		IfcText? @Description { get;  set; }
+		IIfcMaterial @Material { get;  set; }
+		IIfcProfileDef @Profile { get;  set; }
+		IfcInteger? @Priority { get;  set; }
+		IfcLabel? @Category { get;  set; }
 		IIfcMaterialProfileSet @ToMaterialProfileSet {  get; }
 	
 	}
@@ -45,12 +45,38 @@ namespace Xbim.Ifc4.MaterialResource
 	public  partial class @IfcMaterialProfile : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialProfile, IContainsEntityReferences, IEquatable<@IfcMaterialProfile>
 	{
 		#region IIfcMaterialProfile explicit implementation
-		IfcLabel? IIfcMaterialProfile.Name { get { return @Name; } }	
-		IfcText? IIfcMaterialProfile.Description { get { return @Description; } }	
-		IIfcMaterial IIfcMaterialProfile.Material { get { return @Material; } }	
-		IIfcProfileDef IIfcMaterialProfile.Profile { get { return @Profile; } }	
-		IfcInteger? IIfcMaterialProfile.Priority { get { return @Priority; } }	
-		IfcLabel? IIfcMaterialProfile.Category { get { return @Category; } }	
+		IfcLabel? IIfcMaterialProfile.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcMaterialProfile.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IIfcMaterial IIfcMaterialProfile.Material { 
+			get { return @Material; } 
+ 
+ 
+			set { Material = value as IfcMaterial;}
+		}	
+		IIfcProfileDef IIfcMaterialProfile.Profile { 
+			get { return @Profile; } 
+ 
+ 
+			set { Profile = value as IfcProfileDef;}
+		}	
+		IfcInteger? IIfcMaterialProfile.Priority { 
+			get { return @Priority; } 
+ 
+			set { Priority = value;}
+		}	
+		IfcLabel? IIfcMaterialProfile.Category { 
+			get { return @Category; } 
+ 
+			set { Category = value;}
+		}	
 		 
 		IIfcMaterialProfileSet IIfcMaterialProfile.ToMaterialProfileSet {  get { return @ToMaterialProfileSet; } }
 		#endregion

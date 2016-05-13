@@ -41,8 +41,12 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 	public  partial class @IfcVirtualGridIntersection : INotifyPropertyChanged, IInstantiableEntity, IIfcVirtualGridIntersection, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcVirtualGridIntersection>
 	{
 		#region IIfcVirtualGridIntersection explicit implementation
-		IEnumerable<IIfcGridAxis> IIfcVirtualGridIntersection.IntersectingAxes { get { return @IntersectingAxes; } }	
-		IEnumerable<IfcLengthMeasure> IIfcVirtualGridIntersection.OffsetDistances { get { return @OffsetDistances; } }	
+		IEnumerable<IIfcGridAxis> IIfcVirtualGridIntersection.IntersectingAxes { 
+			get { return @IntersectingAxes; } 
+		}	
+		IEnumerable<IfcLengthMeasure> IIfcVirtualGridIntersection.OffsetDistances { 
+			get { return @OffsetDistances; } 
+		}	
 		 
 		#endregion
 

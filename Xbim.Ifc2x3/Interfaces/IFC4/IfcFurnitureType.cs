@@ -36,6 +36,10 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcFurnitureTypeEnum? IIfcFurnitureType.PredefinedType 
 		{ 
@@ -45,6 +49,10 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

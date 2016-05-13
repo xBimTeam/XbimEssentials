@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSpatialElement : IIfcProduct
 	{
-		IfcLabel? @LongName { get; }
+		IfcLabel? @LongName { get;  set; }
 		IEnumerable<IIfcRelContainedInSpatialStructure> @ContainsElements {  get; }
 		IEnumerable<IIfcRelServicesBuildings> @ServicedBySystems {  get; }
 		IEnumerable<IIfcRelReferencedInSpatialStructure> @ReferencesElements {  get; }
@@ -42,7 +42,11 @@ namespace Xbim.Ifc4.ProductExtension
 	public abstract partial class @IfcSpatialElement : IfcProduct, IIfcSpatialElement, IEquatable<@IfcSpatialElement>
 	{
 		#region IIfcSpatialElement explicit implementation
-		IfcLabel? IIfcSpatialElement.LongName { get { return @LongName; } }	
+		IfcLabel? IIfcSpatialElement.LongName { 
+			get { return @LongName; } 
+ 
+			set { LongName = value;}
+		}	
 		 
 		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcSpatialElement.ContainsElements {  get { return @ContainsElements; } }
 		IEnumerable<IIfcRelServicesBuildings> IIfcSpatialElement.ServicedBySystems {  get { return @ServicedBySystems; } }

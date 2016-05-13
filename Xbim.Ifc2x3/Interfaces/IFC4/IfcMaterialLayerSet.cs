@@ -33,6 +33,10 @@ namespace Xbim.Ifc2x3.MaterialResource
 				if (!LayerSetName.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(LayerSetName.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcMaterialLayerSet.Description 
 		{ 
@@ -42,6 +46,10 @@ namespace Xbim.Ifc2x3.MaterialResource
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcRelAssociatesMaterial> IIfcMaterialDefinition.AssociatedTo 
 		{ 

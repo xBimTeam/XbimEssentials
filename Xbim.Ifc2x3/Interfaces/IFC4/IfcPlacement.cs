@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return Location;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.GeometryResource.IfcDimensionCount IIfcPlacement.Dim 
 		{

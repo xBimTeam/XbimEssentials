@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			{
 				return OuterBoundary;
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcCurve> IIfcAnnotationFillArea.InnerBoundaries 
 		{ 

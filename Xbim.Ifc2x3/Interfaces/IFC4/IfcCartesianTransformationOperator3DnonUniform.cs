@@ -24,6 +24,10 @@ namespace Xbim.Ifc2x3.GeometryResource
                 return Scale2.HasValue ? new Ifc4.MeasureResource.IfcReal(Scale2.Value) : (Ifc4.MeasureResource.IfcReal?)null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcReal? IIfcCartesianTransformationOperator3DnonUniform.Scale3 
 		{ 
@@ -33,6 +37,10 @@ namespace Xbim.Ifc2x3.GeometryResource
                 return Scale3.HasValue ? new Ifc4.MeasureResource.IfcReal(Scale3.Value) : (Ifc4.MeasureResource.IfcReal?)null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcReal IIfcCartesianTransformationOperator3DnonUniform.Scl2 
 		{

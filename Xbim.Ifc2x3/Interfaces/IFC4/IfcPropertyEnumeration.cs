@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.PropertyResource
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcValue> IIfcPropertyEnumeration.EnumerationValues 
 		{ 
@@ -242,6 +246,10 @@ namespace Xbim.Ifc2x3.PropertyResource
 					return ifcmonetaryunit;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 
 		{ 

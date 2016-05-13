@@ -62,6 +62,10 @@ namespace Xbim.Ifc2x3.HVACDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
         Ifc4.MeasureResource.IfcLabel? IIfcElementType.ElementType
@@ -77,6 +81,19 @@ namespace Xbim.Ifc2x3.HVACDomain
                         return new Ifc4.MeasureResource.IfcLabel(System.Enum.GetName(typeof(IfcAirTerminalTypeEnum), PredefinedType));
                 }
                 return !ElementType.HasValue ? null : new Ifc4.MeasureResource.IfcLabel(ElementType.Value);
+            }
+            set
+            {
+                ElementType = value.HasValue
+                    ? value.Value.ToString()
+                    : null;
+
+                if (!value.HasValue)
+                    return;
+
+                IfcAirTerminalTypeEnum e;
+                if (System.Enum.TryParse(value.Value.ToString(), true, out e))
+                    PredefinedType = e;
             }
         }
 	//##

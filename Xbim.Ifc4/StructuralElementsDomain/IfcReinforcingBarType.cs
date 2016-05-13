@@ -26,12 +26,12 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcReinforcingBarType : IIfcReinforcingElementType
 	{
-		IfcReinforcingBarTypeEnum @PredefinedType { get; }
-		IfcPositiveLengthMeasure? @NominalDiameter { get; }
-		IfcAreaMeasure? @CrossSectionArea { get; }
-		IfcPositiveLengthMeasure? @BarLength { get; }
-		IfcReinforcingBarSurfaceEnum? @BarSurface { get; }
-		IfcLabel? @BendingShapeCode { get; }
+		IfcReinforcingBarTypeEnum @PredefinedType { get;  set; }
+		IfcPositiveLengthMeasure? @NominalDiameter { get;  set; }
+		IfcAreaMeasure? @CrossSectionArea { get;  set; }
+		IfcPositiveLengthMeasure? @BarLength { get;  set; }
+		IfcReinforcingBarSurfaceEnum? @BarSurface { get;  set; }
+		IfcLabel? @BendingShapeCode { get;  set; }
 		IEnumerable<IIfcBendingParameterSelect> @BendingParameters { get; }
 	
 	}
@@ -44,13 +44,39 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 	public  partial class @IfcReinforcingBarType : IfcReinforcingElementType, IInstantiableEntity, IIfcReinforcingBarType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcReinforcingBarType>
 	{
 		#region IIfcReinforcingBarType explicit implementation
-		IfcReinforcingBarTypeEnum IIfcReinforcingBarType.PredefinedType { get { return @PredefinedType; } }	
-		IfcPositiveLengthMeasure? IIfcReinforcingBarType.NominalDiameter { get { return @NominalDiameter; } }	
-		IfcAreaMeasure? IIfcReinforcingBarType.CrossSectionArea { get { return @CrossSectionArea; } }	
-		IfcPositiveLengthMeasure? IIfcReinforcingBarType.BarLength { get { return @BarLength; } }	
-		IfcReinforcingBarSurfaceEnum? IIfcReinforcingBarType.BarSurface { get { return @BarSurface; } }	
-		IfcLabel? IIfcReinforcingBarType.BendingShapeCode { get { return @BendingShapeCode; } }	
-		IEnumerable<IIfcBendingParameterSelect> IIfcReinforcingBarType.BendingParameters { get { return @BendingParameters; } }	
+		IfcReinforcingBarTypeEnum IIfcReinforcingBarType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcReinforcingBarType.NominalDiameter { 
+			get { return @NominalDiameter; } 
+ 
+			set { NominalDiameter = value;}
+		}	
+		IfcAreaMeasure? IIfcReinforcingBarType.CrossSectionArea { 
+			get { return @CrossSectionArea; } 
+ 
+			set { CrossSectionArea = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcReinforcingBarType.BarLength { 
+			get { return @BarLength; } 
+ 
+			set { BarLength = value;}
+		}	
+		IfcReinforcingBarSurfaceEnum? IIfcReinforcingBarType.BarSurface { 
+			get { return @BarSurface; } 
+ 
+			set { BarSurface = value;}
+		}	
+		IfcLabel? IIfcReinforcingBarType.BendingShapeCode { 
+			get { return @BendingShapeCode; } 
+ 
+			set { BendingShapeCode = value;}
+		}	
+		IEnumerable<IIfcBendingParameterSelect> IIfcReinforcingBarType.BendingParameters { 
+			get { return @BendingParameters; } 
+		}	
 		 
 		#endregion
 

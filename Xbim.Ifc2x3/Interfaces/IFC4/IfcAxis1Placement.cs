@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return Axis;
 			} 
+			set
+			{
+				
+			}
 		}
 		Common.Geometry.XbimVector3D IIfcAxis1Placement.Z 
 		{

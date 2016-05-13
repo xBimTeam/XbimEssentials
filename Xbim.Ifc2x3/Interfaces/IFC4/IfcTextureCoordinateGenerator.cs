@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Mode);
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcReal> IIfcTextureCoordinateGenerator.Parameter 
 		{ 

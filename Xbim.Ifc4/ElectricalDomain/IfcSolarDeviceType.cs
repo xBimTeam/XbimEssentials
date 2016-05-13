@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSolarDeviceType : IIfcEnergyConversionDeviceType
 	{
-		IfcSolarDeviceTypeEnum @PredefinedType { get; }
+		IfcSolarDeviceTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.ElectricalDomain
 	public  partial class @IfcSolarDeviceType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcSolarDeviceType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSolarDeviceType>
 	{
 		#region IIfcSolarDeviceType explicit implementation
-		IfcSolarDeviceTypeEnum IIfcSolarDeviceType.PredefinedType { get { return @PredefinedType; } }	
+		IfcSolarDeviceTypeEnum IIfcSolarDeviceType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

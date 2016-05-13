@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcResourceApprovalRelationship : IIfcResourceLevelRelationship
 	{
 		IEnumerable<IIfcResourceObjectSelect> @RelatedResourceObjects { get; }
-		IIfcApproval @RelatingApproval { get; }
+		IIfcApproval @RelatingApproval { get;  set; }
 	
 	}
 }
@@ -39,8 +39,15 @@ namespace Xbim.Ifc4.ApprovalResource
 	public  partial class @IfcResourceApprovalRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcResourceApprovalRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcResourceApprovalRelationship>
 	{
 		#region IIfcResourceApprovalRelationship explicit implementation
-		IEnumerable<IIfcResourceObjectSelect> IIfcResourceApprovalRelationship.RelatedResourceObjects { get { return @RelatedResourceObjects; } }	
-		IIfcApproval IIfcResourceApprovalRelationship.RelatingApproval { get { return @RelatingApproval; } }	
+		IEnumerable<IIfcResourceObjectSelect> IIfcResourceApprovalRelationship.RelatedResourceObjects { 
+			get { return @RelatedResourceObjects; } 
+		}	
+		IIfcApproval IIfcResourceApprovalRelationship.RelatingApproval { 
+			get { return @RelatingApproval; } 
+ 
+ 
+			set { RelatingApproval = value as IfcApproval;}
+		}	
 		 
 		#endregion
 

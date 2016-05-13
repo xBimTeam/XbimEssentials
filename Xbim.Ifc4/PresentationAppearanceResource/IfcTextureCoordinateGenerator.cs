@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTextureCoordinateGenerator : IIfcTextureCoordinate
 	{
-		IfcLabel @Mode { get; }
+		IfcLabel @Mode { get;  set; }
 		IEnumerable<IfcReal> @Parameter { get; }
 	
 	}
@@ -39,8 +39,14 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcTextureCoordinateGenerator : IfcTextureCoordinate, IInstantiableEntity, IIfcTextureCoordinateGenerator, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTextureCoordinateGenerator>
 	{
 		#region IIfcTextureCoordinateGenerator explicit implementation
-		IfcLabel IIfcTextureCoordinateGenerator.Mode { get { return @Mode; } }	
-		IEnumerable<IfcReal> IIfcTextureCoordinateGenerator.Parameter { get { return @Parameter; } }	
+		IfcLabel IIfcTextureCoordinateGenerator.Mode { 
+			get { return @Mode; } 
+ 
+			set { Mode = value;}
+		}	
+		IEnumerable<IfcReal> IIfcTextureCoordinateGenerator.Parameter { 
+			get { return @Parameter; } 
+		}	
 		 
 		#endregion
 

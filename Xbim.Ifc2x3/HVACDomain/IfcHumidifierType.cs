@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcHumidifierType : IIfcEnergyConversionDeviceType
 	{
-		IfcHumidifierTypeEnum @PredefinedType { get; }
+		IfcHumidifierTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.HVACDomain
 	public  partial class @IfcHumidifierType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcHumidifierType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcHumidifierType>
 	{
 		#region IIfcHumidifierType explicit implementation
-		IfcHumidifierTypeEnum IIfcHumidifierType.PredefinedType { get { return @PredefinedType; } }	
+		IfcHumidifierTypeEnum IIfcHumidifierType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

@@ -36,6 +36,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcBooleanOperand IIfcBooleanResult.FirstOperand 
 		{ 
@@ -56,6 +60,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 					return ifccsgprimitive3d;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcBooleanOperand IIfcBooleanResult.SecondOperand 
 		{ 
@@ -76,6 +84,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 					return ifccsgprimitive3d;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.GeometryResource.IfcDimensionCount Ifc4.GeometricModelResource.IfcBooleanOperand.Dim 
 		{

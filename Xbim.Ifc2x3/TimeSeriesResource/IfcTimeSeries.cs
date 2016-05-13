@@ -31,14 +31,14 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTimeSeries : IPersistEntity, IfcMetricValueSelect, IfcObjectReferenceSelect
 	{
-		IfcLabel @Name { get; }
-		IfcText? @Description { get; }
-		IIfcDateTimeSelect @StartTime { get; }
-		IIfcDateTimeSelect @EndTime { get; }
-		IfcTimeSeriesDataTypeEnum @TimeSeriesDataType { get; }
-		IfcDataOriginEnum @DataOrigin { get; }
-		IfcLabel? @UserDefinedDataOrigin { get; }
-		IIfcUnit @Unit { get; }
+		IfcLabel @Name { get;  set; }
+		IfcText? @Description { get;  set; }
+		IIfcDateTimeSelect @StartTime { get;  set; }
+		IIfcDateTimeSelect @EndTime { get;  set; }
+		IfcTimeSeriesDataTypeEnum @TimeSeriesDataType { get;  set; }
+		IfcDataOriginEnum @DataOrigin { get;  set; }
+		IfcLabel? @UserDefinedDataOrigin { get;  set; }
+		IIfcUnit @Unit { get;  set; }
 		IEnumerable<IIfcTimeSeriesReferenceRelationship> @DocumentedBy {  get; }
 	
 	}
@@ -51,14 +51,49 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 	public abstract partial class @IfcTimeSeries : IPersistEntity, INotifyPropertyChanged, IIfcTimeSeries, IEquatable<@IfcTimeSeries>
 	{
 		#region IIfcTimeSeries explicit implementation
-		IfcLabel IIfcTimeSeries.Name { get { return @Name; } }	
-		IfcText? IIfcTimeSeries.Description { get { return @Description; } }	
-		IIfcDateTimeSelect IIfcTimeSeries.StartTime { get { return @StartTime; } }	
-		IIfcDateTimeSelect IIfcTimeSeries.EndTime { get { return @EndTime; } }	
-		IfcTimeSeriesDataTypeEnum IIfcTimeSeries.TimeSeriesDataType { get { return @TimeSeriesDataType; } }	
-		IfcDataOriginEnum IIfcTimeSeries.DataOrigin { get { return @DataOrigin; } }	
-		IfcLabel? IIfcTimeSeries.UserDefinedDataOrigin { get { return @UserDefinedDataOrigin; } }	
-		IIfcUnit IIfcTimeSeries.Unit { get { return @Unit; } }	
+		IfcLabel IIfcTimeSeries.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcTimeSeries.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IIfcDateTimeSelect IIfcTimeSeries.StartTime { 
+			get { return @StartTime; } 
+ 
+ 
+			set { StartTime = value as IfcDateTimeSelect;}
+		}	
+		IIfcDateTimeSelect IIfcTimeSeries.EndTime { 
+			get { return @EndTime; } 
+ 
+ 
+			set { EndTime = value as IfcDateTimeSelect;}
+		}	
+		IfcTimeSeriesDataTypeEnum IIfcTimeSeries.TimeSeriesDataType { 
+			get { return @TimeSeriesDataType; } 
+ 
+			set { TimeSeriesDataType = value;}
+		}	
+		IfcDataOriginEnum IIfcTimeSeries.DataOrigin { 
+			get { return @DataOrigin; } 
+ 
+			set { DataOrigin = value;}
+		}	
+		IfcLabel? IIfcTimeSeries.UserDefinedDataOrigin { 
+			get { return @UserDefinedDataOrigin; } 
+ 
+			set { UserDefinedDataOrigin = value;}
+		}	
+		IIfcUnit IIfcTimeSeries.Unit { 
+			get { return @Unit; } 
+ 
+ 
+			set { Unit = value as IfcUnit;}
+		}	
 		 
 		IEnumerable<IIfcTimeSeriesReferenceRelationship> IIfcTimeSeries.DocumentedBy {  get { return @DocumentedBy; } }
 		#endregion

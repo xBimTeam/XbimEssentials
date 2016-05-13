@@ -29,6 +29,10 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 					return ifcedgecurve;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcCurveOrEdgeCurve IIfcConnectionCurveGeometry.CurveOnRelatedElement 
 		{ 
@@ -43,6 +47,10 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 					return ifcedgecurve;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -28,10 +28,10 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSurfaceTexture : IIfcPresentationItem
 	{
-		IfcBoolean @RepeatS { get; }
-		IfcBoolean @RepeatT { get; }
-		IfcIdentifier? @Mode { get; }
-		IIfcCartesianTransformationOperator2D @TextureTransform { get; }
+		IfcBoolean @RepeatS { get;  set; }
+		IfcBoolean @RepeatT { get;  set; }
+		IfcIdentifier? @Mode { get;  set; }
+		IIfcCartesianTransformationOperator2D @TextureTransform { get;  set; }
 		IEnumerable<IfcIdentifier> @Parameter { get; }
 		IEnumerable<IIfcTextureCoordinate> @IsMappedBy {  get; }
 		IEnumerable<IIfcSurfaceStyleWithTextures> @UsedInStyles {  get; }
@@ -46,11 +46,30 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public abstract partial class @IfcSurfaceTexture : IfcPresentationItem, IIfcSurfaceTexture, IEquatable<@IfcSurfaceTexture>
 	{
 		#region IIfcSurfaceTexture explicit implementation
-		IfcBoolean IIfcSurfaceTexture.RepeatS { get { return @RepeatS; } }	
-		IfcBoolean IIfcSurfaceTexture.RepeatT { get { return @RepeatT; } }	
-		IfcIdentifier? IIfcSurfaceTexture.Mode { get { return @Mode; } }	
-		IIfcCartesianTransformationOperator2D IIfcSurfaceTexture.TextureTransform { get { return @TextureTransform; } }	
-		IEnumerable<IfcIdentifier> IIfcSurfaceTexture.Parameter { get { return @Parameter; } }	
+		IfcBoolean IIfcSurfaceTexture.RepeatS { 
+			get { return @RepeatS; } 
+ 
+			set { RepeatS = value;}
+		}	
+		IfcBoolean IIfcSurfaceTexture.RepeatT { 
+			get { return @RepeatT; } 
+ 
+			set { RepeatT = value;}
+		}	
+		IfcIdentifier? IIfcSurfaceTexture.Mode { 
+			get { return @Mode; } 
+ 
+			set { Mode = value;}
+		}	
+		IIfcCartesianTransformationOperator2D IIfcSurfaceTexture.TextureTransform { 
+			get { return @TextureTransform; } 
+ 
+ 
+			set { TextureTransform = value as IfcCartesianTransformationOperator2D;}
+		}	
+		IEnumerable<IfcIdentifier> IIfcSurfaceTexture.Parameter { 
+			get { return @Parameter; } 
+		}	
 		 
 		IEnumerable<IIfcTextureCoordinate> IIfcSurfaceTexture.IsMappedBy {  get { return @IsMappedBy; } }
 		IEnumerable<IIfcSurfaceStyleWithTextures> IIfcSurfaceTexture.UsedInStyles {  get { return @UsedInStyles; } }

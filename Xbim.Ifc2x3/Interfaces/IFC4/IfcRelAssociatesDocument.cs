@@ -29,6 +29,10 @@ namespace Xbim.Ifc2x3.Kernel
 					return ifcdocumentinformation;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

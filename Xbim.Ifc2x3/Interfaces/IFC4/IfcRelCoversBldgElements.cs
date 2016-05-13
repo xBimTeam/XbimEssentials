@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				return RelatingBuildingElement;
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcCovering> IIfcRelCoversBldgElements.RelatedCoverings 
 		{ 

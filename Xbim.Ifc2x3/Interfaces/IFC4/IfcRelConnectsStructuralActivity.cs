@@ -29,6 +29,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					return ifcelement;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcStructuralActivity IIfcRelConnectsStructuralActivity.RelatedStructuralActivity 
 		{ 
@@ -36,6 +40,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				return RelatedStructuralActivity;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

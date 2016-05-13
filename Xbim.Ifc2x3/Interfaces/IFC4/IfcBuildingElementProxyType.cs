@@ -33,6 +33,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -28,10 +28,10 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCostSchedule : IIfcControl
 	{
-		IfcCostScheduleTypeEnum? @PredefinedType { get; }
-		IfcLabel? @Status { get; }
-		IfcDateTime? @SubmittedOn { get; }
-		IfcDateTime? @UpdateDate { get; }
+		IfcCostScheduleTypeEnum? @PredefinedType { get;  set; }
+		IfcLabel? @Status { get;  set; }
+		IfcDateTime? @SubmittedOn { get;  set; }
+		IfcDateTime? @UpdateDate { get;  set; }
 	
 	}
 }
@@ -43,10 +43,26 @@ namespace Xbim.Ifc4.SharedMgmtElements
 	public  partial class @IfcCostSchedule : IfcControl, IInstantiableEntity, IIfcCostSchedule, IContainsEntityReferences, IEquatable<@IfcCostSchedule>
 	{
 		#region IIfcCostSchedule explicit implementation
-		IfcCostScheduleTypeEnum? IIfcCostSchedule.PredefinedType { get { return @PredefinedType; } }	
-		IfcLabel? IIfcCostSchedule.Status { get { return @Status; } }	
-		IfcDateTime? IIfcCostSchedule.SubmittedOn { get { return @SubmittedOn; } }	
-		IfcDateTime? IIfcCostSchedule.UpdateDate { get { return @UpdateDate; } }	
+		IfcCostScheduleTypeEnum? IIfcCostSchedule.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
+		IfcLabel? IIfcCostSchedule.Status { 
+			get { return @Status; } 
+ 
+			set { Status = value;}
+		}	
+		IfcDateTime? IIfcCostSchedule.SubmittedOn { 
+			get { return @SubmittedOn; } 
+ 
+			set { SubmittedOn = value;}
+		}	
+		IfcDateTime? IIfcCostSchedule.UpdateDate { 
+			get { return @UpdateDate; } 
+ 
+			set { UpdateDate = value;}
+		}	
 		 
 		#endregion
 

@@ -26,10 +26,10 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMetric : IIfcConstraint
 	{
-		IfcBenchmarkEnum @Benchmark { get; }
-		IfcLabel? @ValueSource { get; }
-		IIfcMetricValueSelect @DataValue { get; }
-		IIfcReference @ReferencePath { get; }
+		IfcBenchmarkEnum @Benchmark { get;  set; }
+		IfcLabel? @ValueSource { get;  set; }
+		IIfcMetricValueSelect @DataValue { get;  set; }
+		IIfcReference @ReferencePath { get;  set; }
 	
 	}
 }
@@ -41,10 +41,28 @@ namespace Xbim.Ifc4.ConstraintResource
 	public  partial class @IfcMetric : IfcConstraint, IInstantiableEntity, IIfcMetric, IContainsEntityReferences, IEquatable<@IfcMetric>
 	{
 		#region IIfcMetric explicit implementation
-		IfcBenchmarkEnum IIfcMetric.Benchmark { get { return @Benchmark; } }	
-		IfcLabel? IIfcMetric.ValueSource { get { return @ValueSource; } }	
-		IIfcMetricValueSelect IIfcMetric.DataValue { get { return @DataValue; } }	
-		IIfcReference IIfcMetric.ReferencePath { get { return @ReferencePath; } }	
+		IfcBenchmarkEnum IIfcMetric.Benchmark { 
+			get { return @Benchmark; } 
+ 
+			set { Benchmark = value;}
+		}	
+		IfcLabel? IIfcMetric.ValueSource { 
+			get { return @ValueSource; } 
+ 
+			set { ValueSource = value;}
+		}	
+		IIfcMetricValueSelect IIfcMetric.DataValue { 
+			get { return @DataValue; } 
+ 
+ 
+			set { DataValue = value as IfcMetricValueSelect;}
+		}	
+		IIfcReference IIfcMetric.ReferencePath { 
+			get { return @ReferencePath; } 
+ 
+ 
+			set { ReferencePath = value as IfcReference;}
+		}	
 		 
 		#endregion
 

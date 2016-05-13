@@ -32,6 +32,10 @@ namespace Xbim.Ifc2x3.Kernel
 					return ifcpersonandorganization;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcRelAssignsToActor> IIfcActor.IsActingUpon 
 		{ 

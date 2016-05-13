@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				return HatchLineAppearance;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcHatchLineDistanceSelect IIfcFillAreaStyleHatching.StartOfNextHatchLine 
 		{ 
@@ -38,6 +42,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)(MeasureResource.IfcPositiveLengthMeasure)StartOfNextHatchLine);
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcCartesianPoint IIfcFillAreaStyleHatching.PointOfReferenceHatchLine 
 		{ 
@@ -45,6 +53,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				return PointOfReferenceHatchLine;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcCartesianPoint IIfcFillAreaStyleHatching.PatternStart 
 		{ 
@@ -52,6 +64,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				return PatternStart;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure IIfcFillAreaStyleHatching.HatchLineAngle 
 		{ 
@@ -59,6 +75,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				return new Ifc4.MeasureResource.IfcPlaneAngleMeasure(HatchLineAngle);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

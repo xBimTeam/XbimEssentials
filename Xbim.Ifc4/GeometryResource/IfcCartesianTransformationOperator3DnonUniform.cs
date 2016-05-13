@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCartesianTransformationOperator3DnonUniform : IIfcCartesianTransformationOperator3D
 	{
-		IfcReal? @Scale2 { get; }
-		IfcReal? @Scale3 { get; }
+		IfcReal? @Scale2 { get;  set; }
+		IfcReal? @Scale3 { get;  set; }
 		IfcReal @Scl2  { get ; }
 		IfcReal @Scl3  { get ; }
 	
@@ -41,8 +41,16 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcCartesianTransformationOperator3DnonUniform : IfcCartesianTransformationOperator3D, IInstantiableEntity, IIfcCartesianTransformationOperator3DnonUniform, IContainsEntityReferences, IEquatable<@IfcCartesianTransformationOperator3DnonUniform>
 	{
 		#region IIfcCartesianTransformationOperator3DnonUniform explicit implementation
-		IfcReal? IIfcCartesianTransformationOperator3DnonUniform.Scale2 { get { return @Scale2; } }	
-		IfcReal? IIfcCartesianTransformationOperator3DnonUniform.Scale3 { get { return @Scale3; } }	
+		IfcReal? IIfcCartesianTransformationOperator3DnonUniform.Scale2 { 
+			get { return @Scale2; } 
+ 
+			set { Scale2 = value;}
+		}	
+		IfcReal? IIfcCartesianTransformationOperator3DnonUniform.Scale3 { 
+			get { return @Scale3; } 
+ 
+			set { Scale3 = value;}
+		}	
 		 
 		#endregion
 

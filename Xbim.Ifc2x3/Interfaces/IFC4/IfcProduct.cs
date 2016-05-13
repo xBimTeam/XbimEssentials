@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				return ObjectPlacement;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcProductRepresentation IIfcProduct.Representation 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				return Representation;
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcRelAssignsToProduct> IIfcProduct.ReferencedBy 
 		{ 

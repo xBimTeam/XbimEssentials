@@ -27,6 +27,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
                     return null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcTextStyleTextModel IIfcTextStyle.TextStyle 
 		{ 
@@ -39,6 +43,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
                     return null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcTextFontSelect IIfcTextStyle.TextFontStyle 
 		{ 
@@ -53,6 +61,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					return ifcexternallydefinedtextfont;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcBoolean? IIfcTextStyle.ModelOrDraughting 
 		{ 
@@ -62,6 +74,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
                 return null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

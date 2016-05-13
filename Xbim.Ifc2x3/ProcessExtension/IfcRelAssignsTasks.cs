@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelAssignsTasks : IIfcRelAssignsToControl
 	{
-		IIfcScheduleTimeControl @TimeForTask { get; }
+		IIfcScheduleTimeControl @TimeForTask { get;  set; }
 	
 	}
 }
@@ -38,7 +38,12 @@ namespace Xbim.Ifc2x3.ProcessExtension
 	public  partial class @IfcRelAssignsTasks : IfcRelAssignsToControl, IInstantiableEntity, IIfcRelAssignsTasks, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsTasks>
 	{
 		#region IIfcRelAssignsTasks explicit implementation
-		IIfcScheduleTimeControl IIfcRelAssignsTasks.TimeForTask { get { return @TimeForTask; } }	
+		IIfcScheduleTimeControl IIfcRelAssignsTasks.TimeForTask { 
+			get { return @TimeForTask; } 
+ 
+ 
+			set { TimeForTask = value as IfcScheduleTimeControl;}
+		}	
 		 
 		#endregion
 

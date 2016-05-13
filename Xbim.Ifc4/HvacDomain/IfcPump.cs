@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPump : IIfcFlowMovingDevice
 	{
-		IfcPumpTypeEnum? @PredefinedType { get; }
+		IfcPumpTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.HvacDomain
 	public  partial class @IfcPump : IfcFlowMovingDevice, IInstantiableEntity, IIfcPump, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPump>
 	{
 		#region IIfcPump explicit implementation
-		IfcPumpTypeEnum? IIfcPump.PredefinedType { get { return @PredefinedType; } }	
+		IfcPumpTypeEnum? IIfcPump.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

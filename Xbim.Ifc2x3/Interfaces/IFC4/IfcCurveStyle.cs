@@ -32,6 +32,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					return ifccurvestylefontandscaling;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcSizeSelect IIfcCurveStyle.CurveWidth 
 		{ 
@@ -52,6 +56,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)(MeasureResource.IfcPositiveRatioMeasure)CurveWidth);
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcColour IIfcCurveStyle.CurveColour 
 		{ 
@@ -66,6 +74,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					return ifcpredefinedcolour;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcBoolean? IIfcCurveStyle.ModelOrDraughting 
 		{ 
@@ -75,6 +87,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

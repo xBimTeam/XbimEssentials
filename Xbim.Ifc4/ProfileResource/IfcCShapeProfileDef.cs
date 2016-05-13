@@ -26,11 +26,11 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCShapeProfileDef : IIfcParameterizedProfileDef
 	{
-		IfcPositiveLengthMeasure @Depth { get; }
-		IfcPositiveLengthMeasure @Width { get; }
-		IfcPositiveLengthMeasure @WallThickness { get; }
-		IfcPositiveLengthMeasure @Girth { get; }
-		IfcNonNegativeLengthMeasure? @InternalFilletRadius { get; }
+		IfcPositiveLengthMeasure @Depth { get;  set; }
+		IfcPositiveLengthMeasure @Width { get;  set; }
+		IfcPositiveLengthMeasure @WallThickness { get;  set; }
+		IfcPositiveLengthMeasure @Girth { get;  set; }
+		IfcNonNegativeLengthMeasure? @InternalFilletRadius { get;  set; }
 	
 	}
 }
@@ -42,11 +42,31 @@ namespace Xbim.Ifc4.ProfileResource
 	public  partial class @IfcCShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCShapeProfileDef, IContainsEntityReferences, IEquatable<@IfcCShapeProfileDef>
 	{
 		#region IIfcCShapeProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcCShapeProfileDef.Depth { get { return @Depth; } }	
-		IfcPositiveLengthMeasure IIfcCShapeProfileDef.Width { get { return @Width; } }	
-		IfcPositiveLengthMeasure IIfcCShapeProfileDef.WallThickness { get { return @WallThickness; } }	
-		IfcPositiveLengthMeasure IIfcCShapeProfileDef.Girth { get { return @Girth; } }	
-		IfcNonNegativeLengthMeasure? IIfcCShapeProfileDef.InternalFilletRadius { get { return @InternalFilletRadius; } }	
+		IfcPositiveLengthMeasure IIfcCShapeProfileDef.Depth { 
+			get { return @Depth; } 
+ 
+			set { Depth = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcCShapeProfileDef.Width { 
+			get { return @Width; } 
+ 
+			set { Width = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcCShapeProfileDef.WallThickness { 
+			get { return @WallThickness; } 
+ 
+			set { WallThickness = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcCShapeProfileDef.Girth { 
+			get { return @Girth; } 
+ 
+			set { Girth = value;}
+		}	
+		IfcNonNegativeLengthMeasure? IIfcCShapeProfileDef.InternalFilletRadius { 
+			get { return @InternalFilletRadius; } 
+ 
+			set { InternalFilletRadius = value;}
+		}	
 		 
 		#endregion
 

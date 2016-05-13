@@ -27,8 +27,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSubContractResource : IIfcConstructionResource
 	{
-		IIfcActorSelect @SubContractor { get; }
-		IfcText? @JobDescription { get; }
+		IIfcActorSelect @SubContractor { get;  set; }
+		IfcText? @JobDescription { get;  set; }
 	
 	}
 }
@@ -40,8 +40,17 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 	public  partial class @IfcSubContractResource : IfcConstructionResource, IInstantiableEntity, IIfcSubContractResource, IContainsEntityReferences, IEquatable<@IfcSubContractResource>
 	{
 		#region IIfcSubContractResource explicit implementation
-		IIfcActorSelect IIfcSubContractResource.SubContractor { get { return @SubContractor; } }	
-		IfcText? IIfcSubContractResource.JobDescription { get { return @JobDescription; } }	
+		IIfcActorSelect IIfcSubContractResource.SubContractor { 
+			get { return @SubContractor; } 
+ 
+ 
+			set { SubContractor = value as IfcActorSelect;}
+		}	
+		IfcText? IIfcSubContractResource.JobDescription { 
+			get { return @JobDescription; } 
+ 
+			set { JobDescription = value;}
+		}	
 		 
 		#endregion
 

@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				return ReferencedSource;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcClassificationReference.Description 
 		{ 
@@ -31,6 +35,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcIdentifier? IIfcClassificationReference.Sort 
 		{ 
@@ -40,6 +48,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcRelAssociatesClassification> IIfcClassificationReference.ClassificationRefForObjects 
 		{ 

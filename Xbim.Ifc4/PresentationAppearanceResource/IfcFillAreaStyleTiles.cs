@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IEnumerable<IIfcVector> @TilingPattern { get; }
 		IEnumerable<IIfcStyledItem> @Tiles { get; }
-		IfcPositiveRatioMeasure @TilingScale { get; }
+		IfcPositiveRatioMeasure @TilingScale { get;  set; }
 	
 	}
 }
@@ -41,9 +41,17 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcFillAreaStyleTiles : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleTiles, IContainsEntityReferences, IEquatable<@IfcFillAreaStyleTiles>
 	{
 		#region IIfcFillAreaStyleTiles explicit implementation
-		IEnumerable<IIfcVector> IIfcFillAreaStyleTiles.TilingPattern { get { return @TilingPattern; } }	
-		IEnumerable<IIfcStyledItem> IIfcFillAreaStyleTiles.Tiles { get { return @Tiles; } }	
-		IfcPositiveRatioMeasure IIfcFillAreaStyleTiles.TilingScale { get { return @TilingScale; } }	
+		IEnumerable<IIfcVector> IIfcFillAreaStyleTiles.TilingPattern { 
+			get { return @TilingPattern; } 
+		}	
+		IEnumerable<IIfcStyledItem> IIfcFillAreaStyleTiles.Tiles { 
+			get { return @Tiles; } 
+		}	
+		IfcPositiveRatioMeasure IIfcFillAreaStyleTiles.TilingScale { 
+			get { return @TilingScale; } 
+ 
+			set { TilingScale = value;}
+		}	
 		 
 		#endregion
 

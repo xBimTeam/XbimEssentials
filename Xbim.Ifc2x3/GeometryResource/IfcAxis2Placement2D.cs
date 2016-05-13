@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcAxis2Placement2D : IIfcPlacement, IfcAxis2Placement
 	{
-		IIfcDirection @RefDirection { get; }
+		IIfcDirection @RefDirection { get;  set; }
 	
 	}
 }
@@ -37,7 +37,12 @@ namespace Xbim.Ifc2x3.GeometryResource
 	public  partial class @IfcAxis2Placement2D : IfcPlacement, IInstantiableEntity, IIfcAxis2Placement2D, IContainsEntityReferences, IEquatable<@IfcAxis2Placement2D>
 	{
 		#region IIfcAxis2Placement2D explicit implementation
-		IIfcDirection IIfcAxis2Placement2D.RefDirection { get { return @RefDirection; } }	
+		IIfcDirection IIfcAxis2Placement2D.RefDirection { 
+			get { return @RefDirection; } 
+ 
+ 
+			set { RefDirection = value as IfcDirection;}
+		}	
 		 
 		#endregion
 

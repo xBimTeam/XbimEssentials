@@ -23,6 +23,10 @@ namespace Xbim.Ifc2x3.PresentationResource
 				if (!Name.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

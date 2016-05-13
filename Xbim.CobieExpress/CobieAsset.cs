@@ -25,8 +25,8 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieAsset : ICobieReferencedObject
 	{
-		string @Name { get; }
-		string @Description { get; }
+		string @Name { get;  set; }
+		string @Description { get;  set; }
 		IEnumerable<ICobieCategory> @Categories { get; }
 		IEnumerable<ICobieImpact> @Impacts { get; }
 		IEnumerable<ICobieDocument> @Documents { get; }
@@ -45,13 +45,31 @@ namespace Xbim.CobieExpress
 	public abstract partial class @CobieAsset : CobieReferencedObject, ICobieAsset, IEquatable<@CobieAsset>
 	{
 		#region ICobieAsset explicit implementation
-		string ICobieAsset.Name { get { return @Name; } }	
-		string ICobieAsset.Description { get { return @Description; } }	
-		IEnumerable<ICobieCategory> ICobieAsset.Categories { get { return @Categories; } }	
-		IEnumerable<ICobieImpact> ICobieAsset.Impacts { get { return @Impacts; } }	
-		IEnumerable<ICobieDocument> ICobieAsset.Documents { get { return @Documents; } }	
-		IEnumerable<ICobieAttribute> ICobieAsset.Attributes { get { return @Attributes; } }	
-		IEnumerable<ICobieCoordinate> ICobieAsset.Representations { get { return @Representations; } }	
+		string ICobieAsset.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		string ICobieAsset.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IEnumerable<ICobieCategory> ICobieAsset.Categories { 
+			get { return @Categories; } 
+		}	
+		IEnumerable<ICobieImpact> ICobieAsset.Impacts { 
+			get { return @Impacts; } 
+		}	
+		IEnumerable<ICobieDocument> ICobieAsset.Documents { 
+			get { return @Documents; } 
+		}	
+		IEnumerable<ICobieAttribute> ICobieAsset.Attributes { 
+			get { return @Attributes; } 
+		}	
+		IEnumerable<ICobieCoordinate> ICobieAsset.Representations { 
+			get { return @Representations; } 
+		}	
 		 
 		IEnumerable<ICobieIssue> ICobieAsset.CausingIssues {  get { return @CausingIssues; } }
 		IEnumerable<ICobieIssue> ICobieAsset.AffectedBy {  get { return @AffectedBy; } }

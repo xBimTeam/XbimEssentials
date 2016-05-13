@@ -27,8 +27,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCostValue : IIfcAppliedValue, IfcMetricValueSelect
 	{
-		IfcLabel @CostType { get; }
-		IfcText? @Condition { get; }
+		IfcLabel @CostType { get;  set; }
+		IfcText? @Condition { get;  set; }
 	
 	}
 }
@@ -40,8 +40,16 @@ namespace Xbim.Ifc2x3.CostResource
 	public  partial class @IfcCostValue : IfcAppliedValue, IInstantiableEntity, IIfcCostValue, IContainsEntityReferences, IEquatable<@IfcCostValue>
 	{
 		#region IIfcCostValue explicit implementation
-		IfcLabel IIfcCostValue.CostType { get { return @CostType; } }	
-		IfcText? IIfcCostValue.Condition { get { return @Condition; } }	
+		IfcLabel IIfcCostValue.CostType { 
+			get { return @CostType; } 
+ 
+			set { CostType = value;}
+		}	
+		IfcText? IIfcCostValue.Condition { 
+			get { return @Condition; } 
+ 
+			set { Condition = value;}
+		}	
 		 
 		#endregion
 

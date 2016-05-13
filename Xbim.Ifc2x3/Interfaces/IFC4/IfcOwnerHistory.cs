@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.UtilityResource
 			{
 				return OwningUser;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcApplication IIfcOwnerHistory.OwningApplication 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.UtilityResource
 			{
 				return OwningApplication;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcStateEnum? IIfcOwnerHistory.State 
 		{ 
@@ -56,6 +64,10 @@ namespace Xbim.Ifc2x3.UtilityResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcChangeActionEnum? IIfcOwnerHistory.ChangeAction 
 		{ 
@@ -90,6 +102,10 @@ namespace Xbim.Ifc2x3.UtilityResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcTimeStamp? IIfcOwnerHistory.LastModifiedDate 
 		{ 
@@ -98,6 +114,10 @@ namespace Xbim.Ifc2x3.UtilityResource
 				if (!LastModifiedDate.HasValue) return null;
 				return new Ifc4.DateTimeResource.IfcTimeStamp(LastModifiedDate.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcPersonAndOrganization IIfcOwnerHistory.LastModifyingUser 
 		{ 
@@ -105,6 +125,10 @@ namespace Xbim.Ifc2x3.UtilityResource
 			{
 				return LastModifyingUser;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcApplication IIfcOwnerHistory.LastModifyingApplication 
 		{ 
@@ -112,6 +136,10 @@ namespace Xbim.Ifc2x3.UtilityResource
 			{
 				return LastModifyingApplication;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcTimeStamp IIfcOwnerHistory.CreationDate 
 		{ 
@@ -119,6 +147,10 @@ namespace Xbim.Ifc2x3.UtilityResource
 			{
 				return new Ifc4.DateTimeResource.IfcTimeStamp(CreationDate);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -57,6 +57,10 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

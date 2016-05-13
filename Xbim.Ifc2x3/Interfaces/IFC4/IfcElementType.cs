@@ -23,6 +23,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 				if (!ElementType.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(ElementType.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

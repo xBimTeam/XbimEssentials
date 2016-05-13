@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				return RelatingProduct;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

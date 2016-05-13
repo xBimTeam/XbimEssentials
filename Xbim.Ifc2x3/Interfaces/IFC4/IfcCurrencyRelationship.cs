@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				return RelatingMonetaryUnit;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcMonetaryUnit IIfcCurrencyRelationship.RelatedMonetaryUnit 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				return RelatedMonetaryUnit;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveRatioMeasure IIfcCurrencyRelationship.ExchangeRate 
 		{ 
@@ -36,6 +44,10 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveRatioMeasure(ExchangeRate);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDateTime? IIfcCurrencyRelationship.RateDateTime 
 		{ 
@@ -47,6 +59,10 @@ namespace Xbim.Ifc2x3.CostResource
 			        : null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcLibraryInformation IIfcCurrencyRelationship.RateSource 
 		{ 
@@ -54,6 +70,10 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				return RateSource;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
 		{ 
@@ -63,6 +83,10 @@ namespace Xbim.Ifc2x3.CostResource
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
 		{ 
@@ -72,6 +96,10 @@ namespace Xbim.Ifc2x3.CostResource
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

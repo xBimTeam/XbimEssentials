@@ -23,6 +23,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				if (!Name.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcCurveStyleFontPattern> IIfcCurveStyleFont.PatternList 
 		{ 

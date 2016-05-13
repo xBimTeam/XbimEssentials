@@ -33,6 +33,10 @@ namespace Xbim.Ifc2x3.ProfileResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcProfileDef.ProfileName 
 		{ 
@@ -41,6 +45,10 @@ namespace Xbim.Ifc2x3.ProfileResource
 				if (!ProfileName.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(ProfileName.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcProfileDef.HasExternalReference 
 		{ 

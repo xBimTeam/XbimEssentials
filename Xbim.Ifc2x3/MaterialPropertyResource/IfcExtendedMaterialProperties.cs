@@ -28,8 +28,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcExtendedMaterialProperties : IIfcMaterialProperties
 	{
 		IEnumerable<IIfcProperty> @ExtendedProperties { get; }
-		IfcText? @Description { get; }
-		IfcLabel @Name { get; }
+		IfcText? @Description { get;  set; }
+		IfcLabel @Name { get;  set; }
 	
 	}
 }
@@ -41,9 +41,19 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	public  partial class @IfcExtendedMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcExtendedMaterialProperties, IContainsEntityReferences, IEquatable<@IfcExtendedMaterialProperties>
 	{
 		#region IIfcExtendedMaterialProperties explicit implementation
-		IEnumerable<IIfcProperty> IIfcExtendedMaterialProperties.ExtendedProperties { get { return @ExtendedProperties; } }	
-		IfcText? IIfcExtendedMaterialProperties.Description { get { return @Description; } }	
-		IfcLabel IIfcExtendedMaterialProperties.Name { get { return @Name; } }	
+		IEnumerable<IIfcProperty> IIfcExtendedMaterialProperties.ExtendedProperties { 
+			get { return @ExtendedProperties; } 
+		}	
+		IfcText? IIfcExtendedMaterialProperties.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IfcLabel IIfcExtendedMaterialProperties.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
 		 
 		#endregion
 

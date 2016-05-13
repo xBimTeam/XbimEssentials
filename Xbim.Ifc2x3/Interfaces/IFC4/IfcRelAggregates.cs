@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				return RelatingObject;
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcObjectDefinition> IIfcRelAggregates.RelatedObjects 
 		{ 

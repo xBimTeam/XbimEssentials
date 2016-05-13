@@ -227,6 +227,10 @@ namespace Xbim.Ifc2x3.UtilityResource
                 return new Ifc4.MeasureResource.IfcBoolean(IsHeading);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

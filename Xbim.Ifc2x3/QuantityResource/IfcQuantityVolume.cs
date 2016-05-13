@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcQuantityVolume : IIfcPhysicalSimpleQuantity
 	{
-		IfcVolumeMeasure @VolumeValue { get; }
+		IfcVolumeMeasure @VolumeValue { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.QuantityResource
 	public  partial class @IfcQuantityVolume : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityVolume, IContainsEntityReferences, IEquatable<@IfcQuantityVolume>
 	{
 		#region IIfcQuantityVolume explicit implementation
-		IfcVolumeMeasure IIfcQuantityVolume.VolumeValue { get { return @VolumeValue; } }	
+		IfcVolumeMeasure IIfcQuantityVolume.VolumeValue { 
+			get { return @VolumeValue; } 
+ 
+			set { VolumeValue = value;}
+		}	
 		 
 		#endregion
 

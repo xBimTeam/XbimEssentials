@@ -45,6 +45,10 @@ namespace Xbim.Ifc2x3.ConstraintResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcMetric.ValueSource 
 		{ 
@@ -53,6 +57,10 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				if (!ValueSource.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(ValueSource.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcMetricValueSelect IIfcMetric.DataValue 
 		{ 
@@ -90,6 +98,10 @@ namespace Xbim.Ifc2x3.ConstraintResource
 					return ifccostvalue;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcReference IIfcMetric.ReferencePath 
 		{ 
@@ -99,6 +111,10 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

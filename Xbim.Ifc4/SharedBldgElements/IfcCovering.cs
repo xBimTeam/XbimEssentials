@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCovering : IIfcBuildingElement
 	{
-		IfcCoveringTypeEnum? @PredefinedType { get; }
+		IfcCoveringTypeEnum? @PredefinedType { get;  set; }
 		IEnumerable<IIfcRelCoversSpaces> @CoversSpaces {  get; }
 		IEnumerable<IIfcRelCoversBldgElements> @CoversElements {  get; }
 	
@@ -40,7 +40,11 @@ namespace Xbim.Ifc4.SharedBldgElements
 	public  partial class @IfcCovering : IfcBuildingElement, IInstantiableEntity, IIfcCovering, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCovering>
 	{
 		#region IIfcCovering explicit implementation
-		IfcCoveringTypeEnum? IIfcCovering.PredefinedType { get { return @PredefinedType; } }	
+		IfcCoveringTypeEnum? IIfcCovering.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		IEnumerable<IIfcRelCoversSpaces> IIfcCovering.CoversSpaces {  get { return @CoversSpaces; } }
 		IEnumerable<IIfcRelCoversBldgElements> IIfcCovering.CoversElements {  get { return @CoversElements; } }

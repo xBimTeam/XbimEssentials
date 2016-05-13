@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(NominalDiameter);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcAreaMeasure? IIfcReinforcingBar.CrossSectionArea 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			{
 				return new Ifc4.MeasureResource.IfcAreaMeasure(CrossSectionArea);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcReinforcingBar.BarLength 
 		{ 
@@ -37,6 +45,10 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				if (!BarLength.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(BarLength.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcReinforcingBarTypeEnum? IIfcReinforcingBar.PredefinedType 
 		{ 
@@ -46,6 +58,10 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
                 return null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcReinforcingBarSurfaceEnum? IIfcReinforcingBar.BarSurface 
 		{ 
@@ -64,6 +80,10 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -24,6 +24,10 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcPermit.Status 
 		{ 
@@ -33,6 +37,10 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcPermit.LongDescription 
 		{ 
@@ -42,6 +50,10 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
                 return null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

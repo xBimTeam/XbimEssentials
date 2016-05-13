@@ -24,6 +24,10 @@ namespace Xbim.Ifc2x3.GeometryResource
                 return new Ifc4.MeasureResource.IfcInteger(Degree);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcCartesianPoint> IIfcBSplineCurve.ControlPointsList 
 		{ 
@@ -64,6 +68,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLogical IIfcBSplineCurve.ClosedCurve 
 		{ 
@@ -73,6 +81,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			    return new Ifc4.MeasureResource.IfcLogical(ClosedCurve);
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLogical IIfcBSplineCurve.SelfIntersect 
 		{ 
@@ -82,6 +94,10 @@ namespace Xbim.Ifc2x3.GeometryResource
                 return new Ifc4.MeasureResource.IfcLogical(SelfIntersect);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcInteger IIfcBSplineCurve.UpperIndexOnControlPoints 
 		{

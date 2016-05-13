@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcQuantityCount : IIfcPhysicalSimpleQuantity
 	{
-		IfcCountMeasure @CountValue { get; }
+		IfcCountMeasure @CountValue { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.QuantityResource
 	public  partial class @IfcQuantityCount : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityCount, IContainsEntityReferences, IEquatable<@IfcQuantityCount>
 	{
 		#region IIfcQuantityCount explicit implementation
-		IfcCountMeasure IIfcQuantityCount.CountValue { get { return @CountValue; } }	
+		IfcCountMeasure IIfcQuantityCount.CountValue { 
+			get { return @CountValue; } 
+ 
+			set { CountValue = value;}
+		}	
 		 
 		#endregion
 

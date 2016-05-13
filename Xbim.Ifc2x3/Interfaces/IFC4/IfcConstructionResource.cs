@@ -24,6 +24,10 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			    return null;
 			    //##
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcAppliedValue> IIfcConstructionResource.BaseCosts 
 		{ 
@@ -42,6 +46,10 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			    return BaseQuantity.ToPhysicalSimpleQuantity();
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

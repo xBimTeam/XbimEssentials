@@ -25,8 +25,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCurveBoundedPlane : IIfcBoundedSurface
 	{
-		IIfcPlane @BasisSurface { get; }
-		IIfcCurve @OuterBoundary { get; }
+		IIfcPlane @BasisSurface { get;  set; }
+		IIfcCurve @OuterBoundary { get;  set; }
 		IEnumerable<IIfcCurve> @InnerBoundaries { get; }
 	
 	}
@@ -39,9 +39,21 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcCurveBoundedPlane : IfcBoundedSurface, IInstantiableEntity, IIfcCurveBoundedPlane, IContainsEntityReferences, IEquatable<@IfcCurveBoundedPlane>
 	{
 		#region IIfcCurveBoundedPlane explicit implementation
-		IIfcPlane IIfcCurveBoundedPlane.BasisSurface { get { return @BasisSurface; } }	
-		IIfcCurve IIfcCurveBoundedPlane.OuterBoundary { get { return @OuterBoundary; } }	
-		IEnumerable<IIfcCurve> IIfcCurveBoundedPlane.InnerBoundaries { get { return @InnerBoundaries; } }	
+		IIfcPlane IIfcCurveBoundedPlane.BasisSurface { 
+			get { return @BasisSurface; } 
+ 
+ 
+			set { BasisSurface = value as IfcPlane;}
+		}	
+		IIfcCurve IIfcCurveBoundedPlane.OuterBoundary { 
+			get { return @OuterBoundary; } 
+ 
+ 
+			set { OuterBoundary = value as IfcCurve;}
+		}	
+		IEnumerable<IIfcCurve> IIfcCurveBoundedPlane.InnerBoundaries { 
+			get { return @InnerBoundaries; } 
+		}	
 		 
 		#endregion
 

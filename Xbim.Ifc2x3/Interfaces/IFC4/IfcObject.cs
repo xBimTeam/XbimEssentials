@@ -23,6 +23,10 @@ namespace Xbim.Ifc2x3.Kernel
 				if (!ObjectType.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(ObjectType.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcRelDefinesByObject> IIfcObject.IsDeclaredBy 
 		{ 

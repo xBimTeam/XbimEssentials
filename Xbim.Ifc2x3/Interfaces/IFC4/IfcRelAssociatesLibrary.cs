@@ -29,6 +29,10 @@ namespace Xbim.Ifc2x3.Kernel
 					return ifclibraryinformation;
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

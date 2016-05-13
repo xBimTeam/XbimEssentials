@@ -23,6 +23,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				if (!Status.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Status.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcTask.WorkMethod 
 		{ 
@@ -31,6 +35,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				if (!WorkMethod.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(WorkMethod.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcBoolean IIfcTask.IsMilestone 
 		{ 
@@ -40,6 +48,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
                 return new Ifc4.MeasureResource.IfcBoolean(IsMilestone);
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcInteger? IIfcTask.Priority 
 		{ 
@@ -49,6 +61,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
                 return Priority.HasValue ? new Ifc4.MeasureResource.IfcInteger(Priority.Value) : (Ifc4.MeasureResource.IfcInteger?)null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcTaskTime IIfcTask.TaskTime 
 		{ 
@@ -58,6 +74,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
                 return null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcTaskTypeEnum? IIfcTask.PredefinedType 
 		{ 
@@ -67,6 +87,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				return null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

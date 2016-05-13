@@ -53,6 +53,10 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

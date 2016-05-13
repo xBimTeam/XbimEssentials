@@ -29,10 +29,10 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcShapeAspect : IPersistEntity
 	{
 		IEnumerable<IIfcShapeModel> @ShapeRepresentations { get; }
-		IfcLabel? @Name { get; }
-		IfcText? @Description { get; }
-		IfcLogical @ProductDefinitional { get; }
-		IIfcProductRepresentationSelect @PartOfProductDefinitionShape { get; }
+		IfcLabel? @Name { get;  set; }
+		IfcText? @Description { get;  set; }
+		IfcLogical @ProductDefinitional { get;  set; }
+		IIfcProductRepresentationSelect @PartOfProductDefinitionShape { get;  set; }
 	
 	}
 }
@@ -44,11 +44,30 @@ namespace Xbim.Ifc4.RepresentationResource
 	public  partial class @IfcShapeAspect : INotifyPropertyChanged, IInstantiableEntity, IIfcShapeAspect, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcShapeAspect>
 	{
 		#region IIfcShapeAspect explicit implementation
-		IEnumerable<IIfcShapeModel> IIfcShapeAspect.ShapeRepresentations { get { return @ShapeRepresentations; } }	
-		IfcLabel? IIfcShapeAspect.Name { get { return @Name; } }	
-		IfcText? IIfcShapeAspect.Description { get { return @Description; } }	
-		IfcLogical IIfcShapeAspect.ProductDefinitional { get { return @ProductDefinitional; } }	
-		IIfcProductRepresentationSelect IIfcShapeAspect.PartOfProductDefinitionShape { get { return @PartOfProductDefinitionShape; } }	
+		IEnumerable<IIfcShapeModel> IIfcShapeAspect.ShapeRepresentations { 
+			get { return @ShapeRepresentations; } 
+		}	
+		IfcLabel? IIfcShapeAspect.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcShapeAspect.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IfcLogical IIfcShapeAspect.ProductDefinitional { 
+			get { return @ProductDefinitional; } 
+ 
+			set { ProductDefinitional = value;}
+		}	
+		IIfcProductRepresentationSelect IIfcShapeAspect.PartOfProductDefinitionShape { 
+			get { return @PartOfProductDefinitionShape; } 
+ 
+ 
+			set { PartOfProductDefinitionShape = value as IfcProductRepresentationSelect;}
+		}	
 		 
 		#endregion
 

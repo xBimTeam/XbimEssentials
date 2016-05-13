@@ -39,6 +39,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcLightDistributionData> IIfcLightIntensityDistribution.DistributionData 
 		{ 

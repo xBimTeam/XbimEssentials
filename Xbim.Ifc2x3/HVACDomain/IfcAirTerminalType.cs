@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcAirTerminalType : IIfcFlowTerminalType
 	{
-		IfcAirTerminalTypeEnum @PredefinedType { get; }
+		IfcAirTerminalTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.HVACDomain
 	public  partial class @IfcAirTerminalType : IfcFlowTerminalType, IInstantiableEntity, IIfcAirTerminalType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAirTerminalType>
 	{
 		#region IIfcAirTerminalType explicit implementation
-		IfcAirTerminalTypeEnum IIfcAirTerminalType.PredefinedType { get { return @PredefinedType; } }	
+		IfcAirTerminalTypeEnum IIfcAirTerminalType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

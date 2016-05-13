@@ -28,8 +28,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDateAndTime : IPersistEntity, IfcDateTimeSelect, IfcObjectReferenceSelect
 	{
-		IIfcCalendarDate @DateComponent { get; }
-		IIfcLocalTime @TimeComponent { get; }
+		IIfcCalendarDate @DateComponent { get;  set; }
+		IIfcLocalTime @TimeComponent { get;  set; }
 	
 	}
 }
@@ -41,8 +41,18 @@ namespace Xbim.Ifc2x3.DateTimeResource
 	public  partial class @IfcDateAndTime : INotifyPropertyChanged, IInstantiableEntity, IIfcDateAndTime, IContainsEntityReferences, IEquatable<@IfcDateAndTime>
 	{
 		#region IIfcDateAndTime explicit implementation
-		IIfcCalendarDate IIfcDateAndTime.DateComponent { get { return @DateComponent; } }	
-		IIfcLocalTime IIfcDateAndTime.TimeComponent { get { return @TimeComponent; } }	
+		IIfcCalendarDate IIfcDateAndTime.DateComponent { 
+			get { return @DateComponent; } 
+ 
+ 
+			set { DateComponent = value as IfcCalendarDate;}
+		}	
+		IIfcLocalTime IIfcDateAndTime.TimeComponent { 
+			get { return @TimeComponent; } 
+ 
+ 
+			set { TimeComponent = value as IfcLocalTime;}
+		}	
 		 
 		#endregion
 

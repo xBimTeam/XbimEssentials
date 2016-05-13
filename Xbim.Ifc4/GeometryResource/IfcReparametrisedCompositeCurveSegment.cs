@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcReparametrisedCompositeCurveSegment : IIfcCompositeCurveSegment
 	{
-		IfcParameterValue @ParamLength { get; }
+		IfcParameterValue @ParamLength { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcReparametrisedCompositeCurveSegment : IfcCompositeCurveSegment, IInstantiableEntity, IIfcReparametrisedCompositeCurveSegment, IContainsEntityReferences, IEquatable<@IfcReparametrisedCompositeCurveSegment>
 	{
 		#region IIfcReparametrisedCompositeCurveSegment explicit implementation
-		IfcParameterValue IIfcReparametrisedCompositeCurveSegment.ParamLength { get { return @ParamLength; } }	
+		IfcParameterValue IIfcReparametrisedCompositeCurveSegment.ParamLength { 
+			get { return @ParamLength; } 
+ 
+			set { ParamLength = value;}
+		}	
 		 
 		#endregion
 

@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				return Position;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcBoundedCurve IIfcPolygonalBoundedHalfSpace.PolygonalBoundary 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				return PolygonalBoundary;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

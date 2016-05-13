@@ -35,6 +35,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)(MeasureResource.IfcPositiveRatioMeasure)TextIndent);
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.PresentationAppearanceResource.IfcTextAlignment? IIfcTextStyleTextModel.TextAlign 
 		{ 
@@ -43,6 +47,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				if (!TextAlign.HasValue) return null;
 				return new Ifc4.PresentationAppearanceResource.IfcTextAlignment(TextAlign.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.PresentationAppearanceResource.IfcTextDecoration? IIfcTextStyleTextModel.TextDecoration 
 		{ 
@@ -51,6 +59,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				if (!TextDecoration.HasValue) return null;
 				return new Ifc4.PresentationAppearanceResource.IfcTextDecoration(TextDecoration.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcSizeSelect IIfcTextStyleTextModel.LetterSpacing 
 		{ 
@@ -71,6 +83,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)(MeasureResource.IfcPositiveRatioMeasure)LetterSpacing);
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcSizeSelect IIfcTextStyleTextModel.WordSpacing 
 		{ 
@@ -91,6 +107,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)(MeasureResource.IfcPositiveRatioMeasure)WordSpacing);
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.PresentationAppearanceResource.IfcTextTransformation? IIfcTextStyleTextModel.TextTransform 
 		{ 
@@ -99,6 +119,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				if (!TextTransform.HasValue) return null;
 				return new Ifc4.PresentationAppearanceResource.IfcTextTransformation(TextTransform.Value);
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcSizeSelect IIfcTextStyleTextModel.LineHeight 
 		{ 
@@ -119,6 +143,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)(MeasureResource.IfcPositiveRatioMeasure)LineHeight);
 				return null;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcElectricGeneratorType : IIfcEnergyConversionDeviceType
 	{
-		IfcElectricGeneratorTypeEnum @PredefinedType { get; }
+		IfcElectricGeneratorTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 	public  partial class @IfcElectricGeneratorType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcElectricGeneratorType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcElectricGeneratorType>
 	{
 		#region IIfcElectricGeneratorType explicit implementation
-		IfcElectricGeneratorTypeEnum IIfcElectricGeneratorType.PredefinedType { get { return @PredefinedType; } }	
+		IfcElectricGeneratorTypeEnum IIfcElectricGeneratorType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

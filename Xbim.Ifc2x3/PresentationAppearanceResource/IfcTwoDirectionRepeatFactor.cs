@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTwoDirectionRepeatFactor : IIfcOneDirectionRepeatFactor
 	{
-		IIfcVector @SecondRepeatFactor { get; }
+		IIfcVector @SecondRepeatFactor { get;  set; }
 	
 	}
 }
@@ -38,7 +38,12 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	public  partial class @IfcTwoDirectionRepeatFactor : IfcOneDirectionRepeatFactor, IInstantiableEntity, IIfcTwoDirectionRepeatFactor, IContainsEntityReferences, IEquatable<@IfcTwoDirectionRepeatFactor>
 	{
 		#region IIfcTwoDirectionRepeatFactor explicit implementation
-		IIfcVector IIfcTwoDirectionRepeatFactor.SecondRepeatFactor { get { return @SecondRepeatFactor; } }	
+		IIfcVector IIfcTwoDirectionRepeatFactor.SecondRepeatFactor { 
+			get { return @SecondRepeatFactor; } 
+ 
+ 
+			set { SecondRepeatFactor = value as IfcVector;}
+		}	
 		 
 		#endregion
 

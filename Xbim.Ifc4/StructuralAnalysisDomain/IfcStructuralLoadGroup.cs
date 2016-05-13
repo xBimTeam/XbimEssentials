@@ -27,11 +27,11 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralLoadGroup : IIfcGroup
 	{
-		IfcLoadGroupTypeEnum @PredefinedType { get; }
-		IfcActionTypeEnum @ActionType { get; }
-		IfcActionSourceTypeEnum @ActionSource { get; }
-		IfcRatioMeasure? @Coefficient { get; }
-		IfcLabel? @Purpose { get; }
+		IfcLoadGroupTypeEnum @PredefinedType { get;  set; }
+		IfcActionTypeEnum @ActionType { get;  set; }
+		IfcActionSourceTypeEnum @ActionSource { get;  set; }
+		IfcRatioMeasure? @Coefficient { get;  set; }
+		IfcLabel? @Purpose { get;  set; }
 		IEnumerable<IIfcStructuralResultGroup> @SourceOfResultGroup {  get; }
 		IEnumerable<IIfcStructuralAnalysisModel> @LoadGroupFor {  get; }
 	
@@ -45,11 +45,31 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	public  partial class @IfcStructuralLoadGroup : IfcGroup, IInstantiableEntity, IIfcStructuralLoadGroup, IContainsEntityReferences, IEquatable<@IfcStructuralLoadGroup>
 	{
 		#region IIfcStructuralLoadGroup explicit implementation
-		IfcLoadGroupTypeEnum IIfcStructuralLoadGroup.PredefinedType { get { return @PredefinedType; } }	
-		IfcActionTypeEnum IIfcStructuralLoadGroup.ActionType { get { return @ActionType; } }	
-		IfcActionSourceTypeEnum IIfcStructuralLoadGroup.ActionSource { get { return @ActionSource; } }	
-		IfcRatioMeasure? IIfcStructuralLoadGroup.Coefficient { get { return @Coefficient; } }	
-		IfcLabel? IIfcStructuralLoadGroup.Purpose { get { return @Purpose; } }	
+		IfcLoadGroupTypeEnum IIfcStructuralLoadGroup.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
+		IfcActionTypeEnum IIfcStructuralLoadGroup.ActionType { 
+			get { return @ActionType; } 
+ 
+			set { ActionType = value;}
+		}	
+		IfcActionSourceTypeEnum IIfcStructuralLoadGroup.ActionSource { 
+			get { return @ActionSource; } 
+ 
+			set { ActionSource = value;}
+		}	
+		IfcRatioMeasure? IIfcStructuralLoadGroup.Coefficient { 
+			get { return @Coefficient; } 
+ 
+			set { Coefficient = value;}
+		}	
+		IfcLabel? IIfcStructuralLoadGroup.Purpose { 
+			get { return @Purpose; } 
+ 
+			set { Purpose = value;}
+		}	
 		 
 		IEnumerable<IIfcStructuralResultGroup> IIfcStructuralLoadGroup.SourceOfResultGroup {  get { return @SourceOfResultGroup; } }
 		IEnumerable<IIfcStructuralAnalysisModel> IIfcStructuralLoadGroup.LoadGroupFor {  get { return @LoadGroupFor; } }

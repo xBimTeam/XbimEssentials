@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return Axis;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcDirection IIfcAxis2Placement3D.RefDirection 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return RefDirection;
 			} 
+			set
+			{
+				
+			}
 		}
 		List<Common.Geometry.XbimVector3D> Ifc4.GeometryResource.IfcAxis2Placement.P 
 		{

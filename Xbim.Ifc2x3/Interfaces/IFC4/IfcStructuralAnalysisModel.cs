@@ -42,6 +42,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcAxis2Placement3D IIfcStructuralAnalysisModel.OrientationOf2DPlane 
 		{ 
@@ -49,6 +53,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				return OrientationOf2DPlane;
 			} 
+			set
+			{
+				
+			}
 		}
 		IEnumerable<IIfcStructuralLoadGroup> IIfcStructuralAnalysisModel.LoadedBy 
 		{ 
@@ -78,6 +86,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
                 return null;
 				//##
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTendonAnchorType : IIfcReinforcingElementType
 	{
-		IfcTendonAnchorTypeEnum @PredefinedType { get; }
+		IfcTendonAnchorTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -37,7 +37,11 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 	public  partial class @IfcTendonAnchorType : IfcReinforcingElementType, IInstantiableEntity, IIfcTendonAnchorType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTendonAnchorType>
 	{
 		#region IIfcTendonAnchorType explicit implementation
-		IfcTendonAnchorTypeEnum IIfcTendonAnchorType.PredefinedType { get { return @PredefinedType; } }	
+		IfcTendonAnchorTypeEnum IIfcTendonAnchorType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

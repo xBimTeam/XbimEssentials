@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.QuantityResource
 			{
 				return Unit;
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##

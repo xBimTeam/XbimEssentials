@@ -22,6 +22,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				return RelatingSpace;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcElement IIfcRelSpaceBoundary.RelatedBuildingElement 
 		{ 
@@ -29,6 +33,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				return RelatedBuildingElement;
 			} 
+			set
+			{
+				
+			}
 		}
 		IIfcConnectionGeometry IIfcRelSpaceBoundary.ConnectionGeometry 
 		{ 
@@ -36,6 +44,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				return ConnectionGeometry;
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcPhysicalOrVirtualEnum IIfcRelSpaceBoundary.PhysicalOrVirtualBoundary 
 		{ 
@@ -57,6 +69,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 		Ifc4.Interfaces.IfcInternalOrExternalEnum IIfcRelSpaceBoundary.InternalOrExternalBoundary 
 		{ 
@@ -78,6 +94,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				
+			}
 		}
 	//## Custom code
 	//##
