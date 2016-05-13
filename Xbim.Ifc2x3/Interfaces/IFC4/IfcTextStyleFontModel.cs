@@ -35,6 +35,12 @@ namespace Xbim.Ifc2x3.PresentationResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					FontStyle =  null ;
+					return;
+				}
+				FontStyle = new IfcFontStyle(value.Value);
 				
 			}
 		}
@@ -47,6 +53,12 @@ namespace Xbim.Ifc2x3.PresentationResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					FontVariant =  null ;
+					return;
+				}
+				FontVariant = new IfcFontVariant(value.Value);
 				
 			}
 		}
@@ -59,6 +71,12 @@ namespace Xbim.Ifc2x3.PresentationResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					FontWeight =  null ;
+					return;
+				}
+				FontWeight = new IfcFontWeight(value.Value);
 				
 			}
 		}
@@ -83,6 +101,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}

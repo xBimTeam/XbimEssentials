@@ -44,6 +44,7 @@ namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}

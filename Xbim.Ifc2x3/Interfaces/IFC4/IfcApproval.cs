@@ -24,6 +24,12 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Identifier =  default(MeasureResource.IfcIdentifier) ;
+					return;
+				}
+				Identifier = new MeasureResource.IfcIdentifier(value.Value);
 				
 			}
 		}
@@ -35,6 +41,12 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Name =  default(MeasureResource.IfcLabel) ;
+					return;
+				}
+				Name = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -47,6 +59,12 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Description =  null ;
+					return;
+				}
+				Description = new MeasureResource.IfcText(value.Value);
 				
 			}
 		}
@@ -62,6 +80,10 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
+				//## Handle setting of TimeOfApproval for which no match was found
+				//TODO: Handle setting of TimeOfApproval for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -77,6 +99,10 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
+				//## Handle setting of Status for which no match was found
+				//TODO: Handle setting of Status for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -92,6 +118,10 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
+				//## Handle setting of Level for which no match was found
+				//TODO: Handle setting of Level for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -107,6 +137,10 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
+				//## Handle setting of Qualifier for which no match was found
+				//TODO: Handle setting of Qualifier for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -133,6 +167,10 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
+				//## Handle setting of RequestingApproval for which no match was found
+				//TODO: Handle setting of RequestingApproval for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -162,6 +200,10 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
+				//## Handle setting of GivingApproval for which no match was found
+				//TODO: Handle setting of GivingApproval for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

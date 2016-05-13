@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				GlobalId = new UtilityResource.IfcGloballyUniqueId(value);
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				OwnerHistory = value as UtilityResource.IfcOwnerHistory;
 				
 			}
 		}
@@ -47,6 +49,12 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Name =  null ;
+					return;
+				}
+				Name = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -59,6 +67,12 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Description =  null ;
+					return;
+				}
+				Description = new MeasureResource.IfcText(value.Value);
 				
 			}
 		}

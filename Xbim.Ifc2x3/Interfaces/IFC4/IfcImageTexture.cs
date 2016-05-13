@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				UrlReference = new MeasureResource.IfcIdentifier(value);
 				
 			}
 		}

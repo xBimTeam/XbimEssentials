@@ -31,6 +31,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -42,6 +43,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				RelatedStructuralActivity = value as IfcStructuralActivity;
 				
 			}
 		}

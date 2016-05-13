@@ -47,6 +47,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -58,6 +59,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				ResultForLoadGroup = value as IfcStructuralLoadGroup;
 				
 			}
 		}
@@ -71,6 +73,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				//## Handle setting of IsLinear for which no match was found
+				//TODO: Handle setting of IsLinear for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

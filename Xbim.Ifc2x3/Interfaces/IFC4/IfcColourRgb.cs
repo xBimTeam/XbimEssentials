@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 			} 
 			set
 			{
+				Red = new MeasureResource.IfcNormalisedRatioMeasure(value);
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 			} 
 			set
 			{
+				Green = new MeasureResource.IfcNormalisedRatioMeasure(value);
 				
 			}
 		}
@@ -46,6 +48,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 			} 
 			set
 			{
+				Blue = new MeasureResource.IfcNormalisedRatioMeasure(value);
 				
 			}
 		}

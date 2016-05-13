@@ -24,6 +24,12 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					NominalDiameter =  default(MeasureResource.IfcPositiveLengthMeasure) ;
+					return;
+				}
+				NominalDiameter = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -35,6 +41,12 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					CrossSectionArea =  default(MeasureResource.IfcAreaMeasure) ;
+					return;
+				}
+				CrossSectionArea = new MeasureResource.IfcAreaMeasure(value.Value);
 				
 			}
 		}
@@ -47,6 +59,12 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					BarLength =  null ;
+					return;
+				}
+				BarLength = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -60,6 +78,10 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
+				//## Handle setting of PredefinedType for which no match was found
+				//TODO: Handle setting of PredefinedType for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -82,6 +104,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}

@@ -131,6 +131,7 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}

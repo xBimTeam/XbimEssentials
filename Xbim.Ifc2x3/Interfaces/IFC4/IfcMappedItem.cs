@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				MappingSource = value as IfcRepresentationMap;
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				MappingTarget = value as IfcCartesianTransformationOperator;
 				
 			}
 		}

@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				SemiAxis1 = new MeasureResource.IfcPositiveLengthMeasure(value);
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				SemiAxis2 = new MeasureResource.IfcPositiveLengthMeasure(value);
 				
 			}
 		}

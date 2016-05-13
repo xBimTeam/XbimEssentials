@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
+				Corner = value as GeometryResource.IfcCartesianPoint;
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
+				XDim = new MeasureResource.IfcPositiveLengthMeasure(value);
 				
 			}
 		}
@@ -46,6 +48,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
+				YDim = new MeasureResource.IfcPositiveLengthMeasure(value);
 				
 			}
 		}
@@ -57,6 +60,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
+				ZDim = new MeasureResource.IfcPositiveLengthMeasure(value);
 				
 			}
 		}

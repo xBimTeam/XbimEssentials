@@ -26,6 +26,10 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			} 
 			set
 			{
+				//## Handle setting of PredefinedType for which no match was found
+				//TODO: Handle setting of PredefinedType for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -39,6 +43,10 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			} 
 			set
 			{
+				//## Handle setting of Status for which no match was found
+				//TODO: Handle setting of Status for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -52,6 +60,10 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			} 
 			set
 			{
+				//## Handle setting of LongDescription for which no match was found
+				//TODO: Handle setting of LongDescription for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

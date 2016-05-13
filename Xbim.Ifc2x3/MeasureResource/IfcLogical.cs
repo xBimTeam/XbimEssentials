@@ -15,7 +15,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 	[ExpressType("IfcLogical", 54)]
 	[DefinedType(typeof(bool?))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcLogical : IfcSimpleValue, IExpressValueType, System.IEquatable<bool?>
+	public partial struct IfcLogical : IfcSimpleValue, IExpressValueType, IExpressLogicalType, System.IEquatable<bool?>
 	{ 
 		private bool? _value;
         
@@ -23,6 +23,9 @@ namespace Xbim.Ifc2x3.MeasureResource
         {
             get { return _value; }
         }
+
+ 
+		bool? IExpressLogicalType.Value { get { return _value; } }
 
 		public override string ToString()
         {

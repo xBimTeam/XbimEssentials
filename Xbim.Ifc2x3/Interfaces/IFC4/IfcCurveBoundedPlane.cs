@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				BasisSurface = value as IfcPlane;
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				OuterBoundary = value as IfcCurve;
 				
 			}
 		}

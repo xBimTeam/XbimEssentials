@@ -25,6 +25,12 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Id =  null ;
+					return;
+				}
+				Id = new MeasureResource.IfcIdentifier(value.Value);
 				
 			}
 		}
@@ -37,6 +43,12 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					FamilyName =  null ;
+					return;
+				}
+				FamilyName = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -49,6 +61,12 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					GivenName =  null ;
+					return;
+				}
+				GivenName = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}

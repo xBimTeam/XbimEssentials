@@ -83,6 +83,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -126,6 +127,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -139,6 +141,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				//## Handle setting of ParameterTakesPrecedence for which no match was found
+				//TODO: Handle setting of ParameterTakesPrecedence for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -152,6 +158,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				//## Handle setting of Sizeable for which no match was found
+				//TODO: Handle setting of Sizeable for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

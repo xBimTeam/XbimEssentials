@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
+				Material = value as IfcMaterial;
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
+				LayerThickness = new MeasureResource.IfcPositiveLengthMeasure(value);
 				
 			}
 		}
@@ -47,6 +49,12 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					IsVentilated =  null ;
+					return;
+				}
+				IsVentilated = new MeasureResource.IfcLogical(value.Value);
 				
 			}
 		}
@@ -60,6 +68,10 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
+				//## Handle setting of Name for which no match was found
+				//TODO: Handle setting of Name for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -73,6 +85,10 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
+				//## Handle setting of Description for which no match was found
+				//TODO: Handle setting of Description for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -86,6 +102,10 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
+				//## Handle setting of Category for which no match was found
+				//TODO: Handle setting of Category for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -99,6 +119,10 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
+				//## Handle setting of Priority for which no match was found
+				//TODO: Handle setting of Priority for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

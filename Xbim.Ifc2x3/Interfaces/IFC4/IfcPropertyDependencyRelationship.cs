@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
+				DependingProperty = value as IfcProperty;
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
+				DependantProperty = value as IfcProperty;
 				
 			}
 		}
@@ -47,6 +49,12 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Expression =  null ;
+					return;
+				}
+				Expression = new MeasureResource.IfcText(value.Value);
 				
 			}
 		}
@@ -60,6 +68,10 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
+				//## Handle setting of Name for which no match was found
+				//TODO: Handle setting of Name for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -73,6 +85,10 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
+				//## Handle setting of Description for which no match was found
+				//TODO: Handle setting of Description for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

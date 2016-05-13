@@ -25,6 +25,12 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Name =  null ;
+					return;
+				}
+				Name = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -36,6 +42,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
+				LightColour = value as PresentationResource.IfcColourRgb;
 				
 			}
 		}
@@ -48,6 +55,12 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					AmbientIntensity =  null ;
+					return;
+				}
+				AmbientIntensity = new MeasureResource.IfcNormalisedRatioMeasure(value.Value);
 				
 			}
 		}
@@ -60,6 +73,12 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Intensity =  null ;
+					return;
+				}
+				Intensity = new MeasureResource.IfcNormalisedRatioMeasure(value.Value);
 				
 			}
 		}

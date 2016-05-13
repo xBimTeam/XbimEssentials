@@ -34,6 +34,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
+				RelatingFlowElement = value as IfcDistributionFlowElement;
 				
 			}
 		}

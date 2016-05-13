@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
+				Depth = new MeasureResource.IfcPositiveLengthMeasure(value);
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
+				Width = new MeasureResource.IfcPositiveLengthMeasure(value);
 				
 			}
 		}
@@ -46,6 +48,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
+				WallThickness = new MeasureResource.IfcPositiveLengthMeasure(value);
 				
 			}
 		}
@@ -57,6 +60,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
+				Girth = new MeasureResource.IfcPositiveLengthMeasure(value);
 				
 			}
 		}
@@ -69,6 +73,12 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					InternalFilletRadius =  null ;
+					return;
+				}
+				InternalFilletRadius = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}

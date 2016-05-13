@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
+				ParentContext = value as IfcGeometricRepresentationContext;
 				
 			}
 		}
@@ -36,6 +37,12 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					TargetScale =  null ;
+					return;
+				}
+				TargetScale = new MeasureResource.IfcPositiveRatioMeasure(value.Value);
 				
 			}
 		}
@@ -79,6 +86,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -91,6 +99,12 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					UserDefinedTargetView =  null ;
+					return;
+				}
+				UserDefinedTargetView = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}

@@ -25,6 +25,12 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					UsageName =  null ;
+					return;
+				}
+				UsageName = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -96,6 +102,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}

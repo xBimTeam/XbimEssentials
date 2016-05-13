@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				RelatingStructuralMember = value as IfcStructuralMember;
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				RelatedStructuralConnection = value as IfcStructuralConnection;
 				
 			}
 		}
@@ -46,6 +48,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				AppliedCondition = value as StructuralLoadResource.IfcBoundaryCondition;
 				
 			}
 		}
@@ -57,6 +60,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				AdditionalConditions = value as StructuralLoadResource.IfcStructuralConnectionCondition;
 				
 			}
 		}
@@ -69,6 +73,12 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					SupportedLength =  null ;
+					return;
+				}
+				SupportedLength = new MeasureResource.IfcLengthMeasure(value.Value);
 				
 			}
 		}
@@ -80,6 +90,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				ConditionCoordinateSystem = value as GeometryResource.IfcAxis2Placement3D;
 				
 			}
 		}

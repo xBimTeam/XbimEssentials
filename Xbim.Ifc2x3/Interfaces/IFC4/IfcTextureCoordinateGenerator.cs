@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			} 
 			set
 			{
+				Mode = new MeasureResource.IfcLabel(value);
 				
 			}
 		}

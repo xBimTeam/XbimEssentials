@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				RelatingElement = value as IfcElement;
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				RelatedFeatureElement = value as IfcFeatureElementAddition;
 				
 			}
 		}

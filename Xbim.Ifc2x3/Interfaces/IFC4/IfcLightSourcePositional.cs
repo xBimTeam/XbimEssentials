@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
+				Position = value as GeometryResource.IfcCartesianPoint;
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
+				Radius = new MeasureResource.IfcPositiveLengthMeasure(value);
 				
 			}
 		}
@@ -46,6 +48,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
+				ConstantAttenuation = new MeasureResource.IfcReal(value);
 				
 			}
 		}
@@ -57,6 +60,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
+				DistanceAttenuation = new MeasureResource.IfcReal(value);
 				
 			}
 		}
@@ -68,6 +72,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
+				QuadricAttenuation = new MeasureResource.IfcReal(value);
 				
 			}
 		}

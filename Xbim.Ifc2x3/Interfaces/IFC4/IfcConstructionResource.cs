@@ -26,6 +26,10 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			} 
 			set
 			{
+				//## Handle setting of Usage for which no match was found
+				//TODO: Handle setting of Usage for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -48,6 +52,10 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			} 
 			set
 			{
+				//## Handle setting of BaseQuantity for which no match was found
+				//TODO: Handle setting of BaseQuantity for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

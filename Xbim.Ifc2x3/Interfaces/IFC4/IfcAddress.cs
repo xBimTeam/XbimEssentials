@@ -44,6 +44,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -56,6 +57,12 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Description =  null ;
+					return;
+				}
+				Description = new MeasureResource.IfcText(value.Value);
 				
 			}
 		}
@@ -68,6 +75,12 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					UserDefinedPurpose =  null ;
+					return;
+				}
+				UserDefinedPurpose = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}

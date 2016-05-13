@@ -36,6 +36,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				//## Handle setting of SelfIntersect for which no match was found
+				//TODO: Handle setting of SelfIntersect for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

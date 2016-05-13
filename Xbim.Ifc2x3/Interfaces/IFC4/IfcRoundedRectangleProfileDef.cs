@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
+				RoundingRadius = new MeasureResource.IfcPositiveLengthMeasure(value);
 				
 			}
 		}

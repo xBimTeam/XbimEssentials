@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
+				ExtrudedDirection = value as GeometryResource.IfcDirection;
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
+				Depth = new MeasureResource.IfcPositiveLengthMeasure(value);
 				
 			}
 		}

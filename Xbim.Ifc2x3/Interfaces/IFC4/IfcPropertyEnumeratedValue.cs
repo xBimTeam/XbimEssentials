@@ -227,6 +227,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
+				EnumerationReference = value as IfcPropertyEnumeration;
 				
 			}
 		}

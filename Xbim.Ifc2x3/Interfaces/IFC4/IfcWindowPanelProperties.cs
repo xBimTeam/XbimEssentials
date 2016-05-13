@@ -71,6 +71,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -105,6 +106,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -117,6 +119,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					FrameDepth =  null ;
+					return;
+				}
+				FrameDepth = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -129,6 +137,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					FrameThickness =  null ;
+					return;
+				}
+				FrameThickness = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -140,6 +154,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				ShapeAspectStyle = value as RepresentationResource.IfcShapeAspect;
 				
 			}
 		}

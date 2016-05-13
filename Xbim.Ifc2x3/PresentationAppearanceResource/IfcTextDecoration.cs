@@ -15,7 +15,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	[ExpressType("IfcTextDecoration", 582)]
 	[DefinedType(typeof(string))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcTextDecoration : IExpressValueType, System.IEquatable<string>
+	public partial struct IfcTextDecoration : IExpressValueType, IExpressStringType, System.IEquatable<string>
 	{ 
 		private string _value;
         
@@ -23,6 +23,9 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
         {
             get { return _value; }
         }
+
+ 
+		string IExpressStringType.Value { get { return _value; } }
 
 		public override string ToString()
         {

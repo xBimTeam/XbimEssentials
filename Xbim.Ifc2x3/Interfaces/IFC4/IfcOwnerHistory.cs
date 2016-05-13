@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 			} 
 			set
 			{
+				OwningUser = value as ActorResource.IfcPersonAndOrganization;
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 			} 
 			set
 			{
+				OwningApplication = value as IfcApplication;
 				
 			}
 		}
@@ -66,6 +68,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -104,6 +107,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -116,6 +120,12 @@ namespace Xbim.Ifc2x3.UtilityResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					LastModifiedDate =  null ;
+					return;
+				}
+				LastModifiedDate = new MeasureResource.IfcTimeStamp(value.Value);
 				
 			}
 		}
@@ -127,6 +137,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 			} 
 			set
 			{
+				LastModifyingUser = value as ActorResource.IfcPersonAndOrganization;
 				
 			}
 		}
@@ -138,6 +149,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 			} 
 			set
 			{
+				LastModifyingApplication = value as IfcApplication;
 				
 			}
 		}
@@ -149,6 +161,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 			} 
 			set
 			{
+				CreationDate = new MeasureResource.IfcTimeStamp(value);
 				
 			}
 		}

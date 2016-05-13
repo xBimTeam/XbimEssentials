@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
+				RelatingMonetaryUnit = value as MeasureResource.IfcMonetaryUnit;
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
+				RelatedMonetaryUnit = value as MeasureResource.IfcMonetaryUnit;
 				
 			}
 		}
@@ -46,6 +48,7 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
+				ExchangeRate = new MeasureResource.IfcPositiveRatioMeasure(value);
 				
 			}
 		}
@@ -61,6 +64,10 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
+				//## Handle setting of RateDateTime for which no match was found
+				//TODO: Handle setting of RateDateTime for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -72,6 +79,7 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
+				RateSource = value as ExternalReferenceResource.IfcLibraryInformation;
 				
 			}
 		}
@@ -85,6 +93,10 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
+				//## Handle setting of Name for which no match was found
+				//TODO: Handle setting of Name for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -98,6 +110,10 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
+				//## Handle setting of Description for which no match was found
+				//TODO: Handle setting of Description for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

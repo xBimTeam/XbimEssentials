@@ -25,6 +25,12 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					NominalDiameter =  null ;
+					return;
+				}
+				NominalDiameter = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -37,6 +43,12 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					NominalLength =  null ;
+					return;
+				}
+				NominalLength = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -50,6 +62,10 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 			} 
 			set
 			{
+				//## Handle setting of PredefinedType for which no match was found
+				//TODO: Handle setting of PredefinedType for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

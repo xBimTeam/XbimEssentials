@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				ObjectPlacement = value as GeometricConstraintResource.IfcObjectPlacement;
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				Representation = value as RepresentationResource.IfcProductRepresentation;
 				
 			}
 		}

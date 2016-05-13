@@ -35,6 +35,12 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Label =  null ;
+					return;
+				}
+				Label = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}

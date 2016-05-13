@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				Axis1 = value as IfcDirection;
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				Axis2 = value as IfcDirection;
 				
 			}
 		}
@@ -46,6 +48,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				LocalOrigin = value as IfcCartesianPoint;
 				
 			}
 		}
@@ -59,6 +62,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				//## Handle setting of Scale for which no match was found
+				//TODO: Handle setting of Scale for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
+				CoordinateSpaceDimension = new GeometryResource.IfcDimensionCount(value);
 				
 			}
 		}
@@ -37,6 +38,10 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
+				//## Handle setting of Precision for which no match was found
+				//TODO: Handle setting of Precision for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -55,6 +60,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -66,6 +72,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
+				TrueNorth = value as GeometryResource.IfcDirection;
 				
 			}
 		}

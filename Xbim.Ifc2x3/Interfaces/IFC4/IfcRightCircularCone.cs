@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
+				Height = new MeasureResource.IfcPositiveLengthMeasure(value);
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
+				BottomRadius = new MeasureResource.IfcPositiveLengthMeasure(value);
 				
 			}
 		}

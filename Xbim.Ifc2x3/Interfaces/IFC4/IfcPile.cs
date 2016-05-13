@@ -44,6 +44,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -78,6 +79,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}

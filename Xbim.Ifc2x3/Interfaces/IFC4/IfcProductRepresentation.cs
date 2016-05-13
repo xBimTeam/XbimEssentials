@@ -25,6 +25,12 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Name =  null ;
+					return;
+				}
+				Name = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -37,6 +43,12 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Description =  null ;
+					return;
+				}
+				Description = new MeasureResource.IfcText(value.Value);
 				
 			}
 		}

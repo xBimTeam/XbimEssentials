@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
+				ThePerson = value as IfcPerson;
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
+				TheOrganization = value as IfcOrganization;
 				
 			}
 		}

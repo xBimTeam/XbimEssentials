@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				RelatingActor = value as IfcActor;
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				ActingRole = value as ActorResource.IfcActorRole;
 				
 			}
 		}

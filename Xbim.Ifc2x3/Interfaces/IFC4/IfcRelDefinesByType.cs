@@ -34,6 +34,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				RelatingType = value as IfcTypeObject;
 				
 			}
 		}

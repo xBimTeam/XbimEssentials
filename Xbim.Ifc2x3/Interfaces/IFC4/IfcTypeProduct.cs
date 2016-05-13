@@ -35,6 +35,12 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Tag =  null ;
+					return;
+				}
+				Tag = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}

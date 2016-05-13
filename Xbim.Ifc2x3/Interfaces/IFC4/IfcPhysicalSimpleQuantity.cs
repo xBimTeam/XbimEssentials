@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 			} 
 			set
 			{
+				Unit = value as MeasureResource.IfcNamedUnit;
 				
 			}
 		}

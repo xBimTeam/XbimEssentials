@@ -34,6 +34,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 			} 
 			set
 			{
+				Discrimination = new MeasureResource.IfcLabel(value);
 				
 			}
 		}
@@ -46,6 +47,12 @@ namespace Xbim.Ifc2x3.QuantityResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Quality =  null ;
+					return;
+				}
+				Quality = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -58,6 +65,12 @@ namespace Xbim.Ifc2x3.QuantityResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Usage =  null ;
+					return;
+				}
+				Usage = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}

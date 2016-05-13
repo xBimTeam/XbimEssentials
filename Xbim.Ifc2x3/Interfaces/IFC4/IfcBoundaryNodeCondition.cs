@@ -28,6 +28,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
+				//## Handle setting of TranslationalStiffnessX for which no match was found
+				//TODO: Handle setting of TranslationalStiffnessX for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -43,6 +47,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
+				//## Handle setting of TranslationalStiffnessY for which no match was found
+				//TODO: Handle setting of TranslationalStiffnessY for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -58,6 +66,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
+				//## Handle setting of TranslationalStiffnessZ for which no match was found
+				//TODO: Handle setting of TranslationalStiffnessZ for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -71,6 +83,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -84,6 +97,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -97,6 +111,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}

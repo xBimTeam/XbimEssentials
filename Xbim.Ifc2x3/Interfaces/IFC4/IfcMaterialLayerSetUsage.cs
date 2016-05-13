@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
+				ForLayerSet = value as IfcMaterialLayerSet;
 				
 			}
 		}
@@ -49,6 +50,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -71,6 +73,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -82,6 +85,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
+				OffsetFromReferenceLine = new MeasureResource.IfcLengthMeasure(value);
 				
 			}
 		}
@@ -95,6 +99,10 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
+				//## Handle setting of ReferenceExtent for which no match was found
+				//TODO: Handle setting of ReferenceExtent for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

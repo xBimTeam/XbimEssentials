@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
+				Orientation = value as GeometryResource.IfcDirection;
 				
 			}
 		}
@@ -36,6 +37,12 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					ConcentrationExponent =  null ;
+					return;
+				}
+				ConcentrationExponent = new MeasureResource.IfcReal(value.Value);
 				
 			}
 		}
@@ -47,6 +54,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
+				SpreadAngle = new MeasureResource.IfcPositivePlaneAngleMeasure(value);
 				
 			}
 		}
@@ -58,6 +66,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
+				BeamWidthAngle = new MeasureResource.IfcPositivePlaneAngleMeasure(value);
 				
 			}
 		}

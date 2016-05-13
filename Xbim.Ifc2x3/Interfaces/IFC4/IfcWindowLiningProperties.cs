@@ -25,6 +25,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					LiningDepth =  null ;
+					return;
+				}
+				LiningDepth = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -37,6 +43,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					LiningThickness =  null ;
+					return;
+				}
+				LiningThickness = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -49,6 +61,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					TransomThickness =  null ;
+					return;
+				}
+				TransomThickness = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -61,6 +79,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					MullionThickness =  null ;
+					return;
+				}
+				MullionThickness = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -73,6 +97,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					FirstTransomOffset =  null ;
+					return;
+				}
+				FirstTransomOffset = new MeasureResource.IfcNormalisedRatioMeasure(value.Value);
 				
 			}
 		}
@@ -85,6 +115,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					SecondTransomOffset =  null ;
+					return;
+				}
+				SecondTransomOffset = new MeasureResource.IfcNormalisedRatioMeasure(value.Value);
 				
 			}
 		}
@@ -97,6 +133,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					FirstMullionOffset =  null ;
+					return;
+				}
+				FirstMullionOffset = new MeasureResource.IfcNormalisedRatioMeasure(value.Value);
 				
 			}
 		}
@@ -109,6 +151,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					SecondMullionOffset =  null ;
+					return;
+				}
+				SecondMullionOffset = new MeasureResource.IfcNormalisedRatioMeasure(value.Value);
 				
 			}
 		}
@@ -120,6 +168,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				ShapeAspectStyle = value as RepresentationResource.IfcShapeAspect;
 				
 			}
 		}
@@ -133,6 +182,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				//## Handle setting of LiningOffset for which no match was found
+				//TODO: Handle setting of LiningOffset for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -146,6 +199,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				//## Handle setting of LiningToPanelOffsetX for which no match was found
+				//TODO: Handle setting of LiningToPanelOffsetX for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -159,6 +216,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				//## Handle setting of LiningToPanelOffsetY for which no match was found
+				//TODO: Handle setting of LiningToPanelOffsetY for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

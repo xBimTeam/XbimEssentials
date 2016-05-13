@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				RelatedBuildingElement = value as IfcElement;
 				
 			}
 		}
@@ -46,6 +48,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				ConnectionGeometry = value as GeometricConstraintResource.IfcConnectionGeometry;
 				
 			}
 		}
@@ -71,6 +74,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -96,6 +100,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}

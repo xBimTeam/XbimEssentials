@@ -26,6 +26,10 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				//## Handle setting of Identification for which no match was found
+				//TODO: Handle setting of Identification for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -39,6 +43,10 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				//## Handle setting of LongDescription for which no match was found
+				//TODO: Handle setting of LongDescription for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

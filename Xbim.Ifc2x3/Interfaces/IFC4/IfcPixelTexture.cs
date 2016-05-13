@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				Width = new MeasureResource.IfcInteger(value);
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				Height = new MeasureResource.IfcInteger(value);
 				
 			}
 		}
@@ -46,6 +48,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				ColourComponents = new MeasureResource.IfcInteger(value);
 				
 			}
 		}

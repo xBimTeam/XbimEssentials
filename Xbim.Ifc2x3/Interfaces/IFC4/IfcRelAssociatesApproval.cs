@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.ControlExtension
 			} 
 			set
 			{
+				RelatingApproval = value as ApprovalResource.IfcApproval;
 				
 			}
 		}

@@ -56,6 +56,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -68,6 +69,12 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Status =  null ;
+					return;
+				}
+				Status = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -83,6 +90,10 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			} 
 			set
 			{
+				//## Handle setting of SubmittedOn for which no match was found
+				//TODO: Handle setting of SubmittedOn for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -98,6 +109,10 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			} 
 			set
 			{
+				//## Handle setting of UpdateDate for which no match was found
+				//TODO: Handle setting of UpdateDate for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

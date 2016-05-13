@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
+				Name = new IfcLabel(value);
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
+				ConversionFactor = value as IfcMeasureWithUnit;
 				
 			}
 		}

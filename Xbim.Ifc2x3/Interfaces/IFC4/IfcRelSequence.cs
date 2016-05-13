@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				RelatingProcess = value as IfcProcess;
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				RelatedProcess = value as IfcProcess;
 				
 			}
 		}
@@ -43,16 +45,14 @@ namespace Xbim.Ifc2x3.Kernel
 			get
 			{
 				//## Handle return of TimeLag for which no match was found
-			    var lag = new Interfaces.Conversions.IfcLagTimeTransient
-			    {
-                    DurationType = IfcTaskDurationEnum.NOTDEFINED,
-			        LagValue = new Ifc4.DateTimeResource.IfcDuration(TimeLag.ToISODateTimeString())
-			    };
-			    return lag;
+			    return new Interfaces.Conversions.IfcLagTimeTransient(TimeLag.ToISODateTimeString());
 				//##
 			} 
 			set
 			{
+				//## Handle setting of TimeLag for which no match was found
+				throw new System.PlatformNotSupportedException();
+				//##
 				
 			}
 		}
@@ -84,6 +84,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -97,6 +98,9 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				//## Handle setting of UserDefinedSequenceType for which no match was found
+                throw new System.PlatformNotSupportedException();
+				//##
 				
 			}
 		}

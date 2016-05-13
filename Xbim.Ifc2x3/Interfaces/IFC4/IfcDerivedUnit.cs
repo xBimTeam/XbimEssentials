@@ -186,6 +186,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -198,6 +199,12 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					UserDefinedType =  null ;
+					return;
+				}
+				UserDefinedType = new IfcLabel(value.Value);
 				
 			}
 		}

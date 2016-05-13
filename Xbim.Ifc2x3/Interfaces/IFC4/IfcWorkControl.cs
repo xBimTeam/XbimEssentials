@@ -26,6 +26,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
+				//## Handle setting of CreationDate for which no match was found
+				//TODO: Handle setting of CreationDate for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -48,6 +52,12 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Purpose =  null ;
+					return;
+				}
+				Purpose = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -62,6 +72,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
+				//## Handle setting of Duration for which no match was found
+				//TODO: Handle setting of Duration for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -76,6 +90,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
+				//## Handle setting of TotalFloat for which no match was found
+				//TODO: Handle setting of TotalFloat for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -89,6 +107,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
+				//## Handle setting of StartTime for which no match was found
+				//TODO: Handle setting of StartTime for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -102,6 +124,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
+				//## Handle setting of FinishTime for which no match was found
+				//TODO: Handle setting of FinishTime for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

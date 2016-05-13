@@ -25,6 +25,12 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					WarpingMoment =  null ;
+					return;
+				}
+				WarpingMoment = new MeasureResource.IfcWarpingMomentMeasure(value.Value);
 				
 			}
 		}

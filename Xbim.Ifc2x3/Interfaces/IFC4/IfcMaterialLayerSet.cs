@@ -35,6 +35,12 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					LayerSetName =  null ;
+					return;
+				}
+				LayerSetName = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -48,6 +54,10 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
+				//## Handle setting of Description for which no match was found
+				//TODO: Handle setting of Description for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

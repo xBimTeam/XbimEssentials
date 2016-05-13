@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			} 
 			set
 			{
+				Literal = new PresentationResource.IfcPresentableText(value);
 				
 			}
 		}
@@ -42,6 +43,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -70,6 +72,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}

@@ -219,6 +219,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -425,6 +426,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -446,6 +448,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -459,6 +462,10 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
+				//## Handle setting of SetPointValue for which no match was found
+				//TODO: Handle setting of SetPointValue for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

@@ -48,6 +48,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}

@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				RelatingDocument = value as IfcDocumentInformation;
 				
 			}
 		}
@@ -46,6 +47,12 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					RelationshipType =  null ;
+					return;
+				}
+				RelationshipType = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -59,6 +66,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				//## Handle setting of Name for which no match was found
+				//TODO: Handle setting of Name for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -72,6 +83,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				//## Handle setting of Description for which no match was found
+				//TODO: Handle setting of Description for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

@@ -158,7 +158,6 @@
     <Compile Include="Interfaces\Conversions\IfcQuantityTimeTransient.cs" />
     <Compile Include="Interfaces\Conversions\IfcQuantityVolumeTransient.cs" />
     <Compile Include="Interfaces\Conversions\IfcQuantityWeightTransient.cs" />
-    <Compile Include="Interfaces\Conversions\IfcTextureMapTransient.cs" />
     <Compile Include="Interfaces\Conversions\IPersistEntityTransient.cs" />
     <Compile Include="Interfaces\Conversions\MeasureWithUnitExtensions.cs" />
     <Compile Include="Interfaces\Conversions\MimeTypeLoopUp.cs" />

@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				Orientation = value as IfcDirection;
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				Magnitude = new MeasureResource.IfcLengthMeasure(value);
 				
 			}
 		}

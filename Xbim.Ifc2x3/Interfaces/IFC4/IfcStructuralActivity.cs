@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				AppliedLoad = value as StructuralLoadResource.IfcStructuralLoad;
 				
 			}
 		}
@@ -46,6 +47,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}

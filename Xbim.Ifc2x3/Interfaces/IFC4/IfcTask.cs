@@ -25,6 +25,12 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Status =  null ;
+					return;
+				}
+				Status = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -37,6 +43,12 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					WorkMethod =  null ;
+					return;
+				}
+				WorkMethod = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -50,6 +62,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
+				//## Handle setting of IsMilestone for which no match was found
+				//TODO: Handle setting of IsMilestone for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -63,6 +79,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
+				//## Handle setting of Priority for which no match was found
+				//TODO: Handle setting of Priority for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -76,6 +96,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
+				//## Handle setting of TaskTime for which no match was found
+				//TODO: Handle setting of TaskTime for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -89,6 +113,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
+				//## Handle setting of PredefinedType for which no match was found
+				//TODO: Handle setting of PredefinedType for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

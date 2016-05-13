@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 			} 
 			set
 			{
+				VertexGeometry = value as GeometryResource.IfcPoint;
 				
 			}
 		}

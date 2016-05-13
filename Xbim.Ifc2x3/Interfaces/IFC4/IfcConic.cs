@@ -31,6 +31,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}

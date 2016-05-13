@@ -25,6 +25,12 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					AxisTag =  null ;
+					return;
+				}
+				AxisTag = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -36,6 +42,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			} 
 			set
 			{
+				AxisCurve = value as GeometryResource.IfcCurve;
 				
 			}
 		}
@@ -47,6 +54,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			} 
 			set
 			{
+				SameSense = new MeasureResource.IfcBoolean(value);
 				
 			}
 		}

@@ -26,6 +26,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				//## Handle setting of Identification for which no match was found
+				//TODO: Handle setting of Identification for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -37,6 +41,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				Name = new MeasureResource.IfcLabel(value);
 				
 			}
 		}
@@ -49,6 +54,12 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Description =  null ;
+					return;
+				}
+				Description = new MeasureResource.IfcText(value.Value);
 				
 			}
 		}
@@ -65,6 +76,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				//## Handle setting of Location for which no match was found
+				//TODO: Handle setting of Location for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -77,6 +92,12 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Purpose =  null ;
+					return;
+				}
+				Purpose = new MeasureResource.IfcText(value.Value);
 				
 			}
 		}
@@ -89,6 +110,12 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					IntendedUse =  null ;
+					return;
+				}
+				IntendedUse = new MeasureResource.IfcText(value.Value);
 				
 			}
 		}
@@ -101,6 +128,12 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Scope =  null ;
+					return;
+				}
+				Scope = new MeasureResource.IfcText(value.Value);
 				
 			}
 		}
@@ -113,6 +146,12 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Revision =  null ;
+					return;
+				}
+				Revision = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -134,6 +173,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -167,6 +207,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				//## Handle setting of CreationTime for which no match was found
+				//TODO: Handle setting of CreationTime for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -182,6 +226,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				//## Handle setting of LastRevisionTime for which no match was found
+				//TODO: Handle setting of LastRevisionTime for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -203,6 +251,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				//## Handle setting of ElectronicFormat for which no match was found
+				//TODO: Handle setting of ElectronicFormat for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -218,6 +270,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				//## Handle setting of ValidFrom for which no match was found
+				//TODO: Handle setting of ValidFrom for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -233,6 +289,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				//## Handle setting of ValidUntil for which no match was found
+				//TODO: Handle setting of ValidUntil for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -267,6 +327,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -298,6 +359,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}

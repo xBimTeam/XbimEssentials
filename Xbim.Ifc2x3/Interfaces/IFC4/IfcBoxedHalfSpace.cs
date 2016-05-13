@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
+				Enclosure = value as IfcBoundingBox;
 				
 			}
 		}

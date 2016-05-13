@@ -31,6 +31,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -49,6 +50,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}

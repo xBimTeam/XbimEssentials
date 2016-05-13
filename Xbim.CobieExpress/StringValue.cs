@@ -15,7 +15,7 @@ namespace Xbim.CobieExpress
 	[ExpressType("StringValue", 2)]
 	[DefinedType(typeof(string))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct StringValue : AttributeValue, IExpressValueType, System.IEquatable<string>
+	public partial struct StringValue : AttributeValue, IExpressValueType, IExpressStringType, System.IEquatable<string>
 	{ 
 		private string _value;
         
@@ -23,6 +23,9 @@ namespace Xbim.CobieExpress
         {
             get { return _value; }
         }
+
+ 
+		string IExpressStringType.Value { get { return _value; } }
 
 		public override string ToString()
         {

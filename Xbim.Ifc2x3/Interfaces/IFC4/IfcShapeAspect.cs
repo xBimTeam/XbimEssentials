@@ -35,6 +35,12 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Name =  null ;
+					return;
+				}
+				Name = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -47,6 +53,12 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Description =  null ;
+					return;
+				}
+				Description = new MeasureResource.IfcText(value.Value);
 				
 			}
 		}
@@ -60,6 +72,10 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
+				//## Handle setting of ProductDefinitional for which no match was found
+				//TODO: Handle setting of ProductDefinitional for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -71,6 +87,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}

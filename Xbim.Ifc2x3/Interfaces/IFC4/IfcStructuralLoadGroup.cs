@@ -49,6 +49,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -80,6 +81,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -177,6 +179,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -189,6 +192,12 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Coefficient =  null ;
+					return;
+				}
+				Coefficient = new MeasureResource.IfcRatioMeasure(value.Value);
 				
 			}
 		}
@@ -201,6 +210,12 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Purpose =  null ;
+					return;
+				}
+				Purpose = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}

@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				BasisSurface = value as IfcSurface;
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				U1 = new MeasureResource.IfcParameterValue(value);
 				
 			}
 		}
@@ -46,6 +48,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				V1 = new MeasureResource.IfcParameterValue(value);
 				
 			}
 		}
@@ -57,6 +60,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				U2 = new MeasureResource.IfcParameterValue(value);
 				
 			}
 		}
@@ -68,6 +72,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				V2 = new MeasureResource.IfcParameterValue(value);
 				
 			}
 		}
@@ -81,6 +86,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				//## Handle setting of Usense for which no match was found
+				//TODO: Handle setting of Usense for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -94,6 +103,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				//## Handle setting of Vsense for which no match was found
+				//TODO: Handle setting of Vsense for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

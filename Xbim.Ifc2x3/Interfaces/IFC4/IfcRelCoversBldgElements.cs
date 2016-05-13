@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				RelatingBuildingElement = value as IfcElement;
 				
 			}
 		}

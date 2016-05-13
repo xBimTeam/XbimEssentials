@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			} 
 			set
 			{
+				OuterBoundary = value as GeometryResource.IfcCurve;
 				
 			}
 		}

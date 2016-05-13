@@ -25,6 +25,12 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					RefLatitude =  null ;
+					return;
+				}
+				RefLatitude = new MeasureResource.IfcCompoundPlaneAngleMeasure(value.Value);
 				
 			}
 		}
@@ -37,6 +43,12 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					RefLongitude =  null ;
+					return;
+				}
+				RefLongitude = new MeasureResource.IfcCompoundPlaneAngleMeasure(value.Value);
 				
 			}
 		}
@@ -49,6 +61,12 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					RefElevation =  null ;
+					return;
+				}
+				RefElevation = new MeasureResource.IfcLengthMeasure(value.Value);
 				
 			}
 		}
@@ -61,6 +79,12 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					LandTitleNumber =  null ;
+					return;
+				}
+				LandTitleNumber = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -72,6 +96,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				SiteAddress = value as ActorResource.IfcPostalAddress;
 				
 			}
 		}
@@ -85,6 +110,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				//## Handle setting of LongName for which no match was found
+				//##
 				
 			}
 		}

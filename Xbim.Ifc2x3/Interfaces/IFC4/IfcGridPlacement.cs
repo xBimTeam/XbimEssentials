@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			} 
 			set
 			{
+				PlacementLocation = value as IfcVirtualGridIntersection;
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}

@@ -25,6 +25,12 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					DefinitionType =  null ;
+					return;
+				}
+				DefinitionType = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}

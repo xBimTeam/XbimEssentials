@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 	[ExpressType("IfcDescriptiveMeasure", 131)]
 	[DefinedType(typeof(string))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcDescriptiveMeasure : IfcMeasureValue, IfcSizeSelect, IExpressValueType, System.IEquatable<string>
+	public partial struct IfcDescriptiveMeasure : IfcMeasureValue, IfcSizeSelect, IExpressValueType, IExpressStringType, System.IEquatable<string>
 	{ 
 		private string _value;
         
@@ -24,6 +24,9 @@ namespace Xbim.Ifc2x3.MeasureResource
         {
             get { return _value; }
         }
+
+ 
+		string IExpressStringType.Value { get { return _value; } }
 
 		public override string ToString()
         {

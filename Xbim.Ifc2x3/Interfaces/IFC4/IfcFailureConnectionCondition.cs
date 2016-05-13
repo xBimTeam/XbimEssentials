@@ -25,6 +25,12 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					TensionFailureX =  null ;
+					return;
+				}
+				TensionFailureX = new MeasureResource.IfcForceMeasure(value.Value);
 				
 			}
 		}
@@ -37,6 +43,12 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					TensionFailureY =  null ;
+					return;
+				}
+				TensionFailureY = new MeasureResource.IfcForceMeasure(value.Value);
 				
 			}
 		}
@@ -49,6 +61,12 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					TensionFailureZ =  null ;
+					return;
+				}
+				TensionFailureZ = new MeasureResource.IfcForceMeasure(value.Value);
 				
 			}
 		}
@@ -61,6 +79,12 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					CompressionFailureX =  null ;
+					return;
+				}
+				CompressionFailureX = new MeasureResource.IfcForceMeasure(value.Value);
 				
 			}
 		}
@@ -73,6 +97,12 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					CompressionFailureY =  null ;
+					return;
+				}
+				CompressionFailureY = new MeasureResource.IfcForceMeasure(value.Value);
 				
 			}
 		}
@@ -85,6 +115,12 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					CompressionFailureZ =  null ;
+					return;
+				}
+				CompressionFailureZ = new MeasureResource.IfcForceMeasure(value.Value);
 				
 			}
 		}

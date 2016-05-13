@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				BasisSurface = value as IfcSurface;
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				PointParameterU = new MeasureResource.IfcParameterValue(value);
 				
 			}
 		}
@@ -46,6 +48,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				PointParameterV = new MeasureResource.IfcParameterValue(value);
 				
 			}
 		}

@@ -35,6 +35,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -48,6 +49,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				//## Handle setting of LongName for which no match was found
+				//TODO: Handle setting of LongName for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -61,6 +66,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				//## Handle setting of ElementType for which no match was found
+				//TODO: Handle setting of ElementType for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

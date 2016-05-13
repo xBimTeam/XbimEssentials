@@ -44,6 +44,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -65,6 +66,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -90,6 +92,10 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
+				//## Handle setting of LastUpdateDate for which no match was found
+				//TODO: Handle setting of LastUpdateDate for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -101,6 +107,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
+				CurrentValue = value as CostResource.IfcCostValue;
 				
 			}
 		}
@@ -112,6 +119,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
+				OriginalValue = value as CostResource.IfcCostValue;
 				
 			}
 		}

@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				ExtrudedDirection = value as IfcDirection;
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				Depth = new MeasureResource.IfcLengthMeasure(value);
 				
 			}
 		}

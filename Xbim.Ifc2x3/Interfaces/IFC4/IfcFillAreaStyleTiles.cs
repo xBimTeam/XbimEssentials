@@ -42,6 +42,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				TilingScale = new MeasureResource.IfcPositiveRatioMeasure(value);
 				
 			}
 		}

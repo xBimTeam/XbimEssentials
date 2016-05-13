@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				VisibleSegmentLength = new MeasureResource.IfcLengthMeasure(value);
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				InvisibleSegmentLength = new MeasureResource.IfcPositiveLengthMeasure(value);
 				
 			}
 		}

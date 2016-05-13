@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				AxisPosition = value as IfcAxis1Placement;
 				
 			}
 		}

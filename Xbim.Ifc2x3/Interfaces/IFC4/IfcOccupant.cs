@@ -56,6 +56,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}

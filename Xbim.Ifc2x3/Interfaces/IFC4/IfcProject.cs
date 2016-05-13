@@ -28,6 +28,10 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				//## Handle setting of ObjectType for which no match was found
+				//TODO: Handle setting of ObjectType for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -41,6 +45,10 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				//## Handle setting of LongName for which no match was found
+				//TODO: Handle setting of LongName for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -56,6 +64,10 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				//## Handle setting of Phase for which no match was found
+				//TODO: Handle setting of Phase for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -78,6 +90,10 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				//## Handle setting of UnitsInContext for which no match was found
+				//TODO: Handle setting of UnitsInContext for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

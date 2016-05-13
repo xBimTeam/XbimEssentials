@@ -54,6 +54,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
+				ClassifiedMaterial = value as IfcMaterial;
 				
 			}
 		}

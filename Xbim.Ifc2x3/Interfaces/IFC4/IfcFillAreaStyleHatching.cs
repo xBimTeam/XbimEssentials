@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				HatchLineAppearance = value as IfcCurveStyle;
 				
 			}
 		}
@@ -44,6 +45,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -55,6 +57,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				PointOfReferenceHatchLine = value as GeometryResource.IfcCartesianPoint;
 				
 			}
 		}
@@ -66,6 +69,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				PatternStart = value as GeometryResource.IfcCartesianPoint;
 				
 			}
 		}
@@ -77,6 +81,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				HatchLineAngle = new MeasureResource.IfcPlaneAngleMeasure(value);
 				
 			}
 		}

@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
+				Name = new MeasureResource.IfcLabel(value);
 				
 			}
 		}
@@ -248,6 +249,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}

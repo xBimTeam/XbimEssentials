@@ -44,6 +44,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -55,6 +56,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				OrientationOf2DPlane = value as GeometryResource.IfcAxis2Placement3D;
 				
 			}
 		}
@@ -88,6 +90,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				//## Handle setting of SharedPlacement for which no match was found
+				//TODO: Handle setting of SharedPlacement for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

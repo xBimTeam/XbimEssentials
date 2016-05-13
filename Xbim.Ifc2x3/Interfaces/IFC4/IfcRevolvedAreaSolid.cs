@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
+				Axis = value as GeometryResource.IfcAxis1Placement;
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
+				Angle = new MeasureResource.IfcPlaneAngleMeasure(value);
 				
 			}
 		}

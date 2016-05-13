@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
+				RelatingApproval = value as IfcApproval;
 				
 			}
 		}
@@ -46,7 +47,10 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
-				
+				//## Handle setting of Name for which no match was found
+			    Name = value.HasValue ? new MeasureResource.IfcLabel(value.Value) : new MeasureResource.IfcLabel();
+			    //##
+
 			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
@@ -59,6 +63,9 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
+				//## Handle setting of Description for which no match was found
+				Description = value.HasValue ? new MeasureResource.IfcText(value.Value) : null;
+				//##
 				
 			}
 		}

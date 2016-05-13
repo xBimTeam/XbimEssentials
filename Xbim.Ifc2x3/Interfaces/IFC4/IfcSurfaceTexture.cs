@@ -26,6 +26,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				//## Handle setting of RepeatS for which no match was found
+				//TODO: Handle setting of RepeatS for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -39,6 +43,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				//## Handle setting of RepeatT for which no match was found
+				//TODO: Handle setting of RepeatT for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -52,6 +60,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				//## Handle setting of Mode for which no match was found
+				//TODO: Handle setting of Mode for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -63,6 +75,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				TextureTransform = value as GeometryResource.IfcCartesianTransformationOperator2D;
 				
 			}
 		}

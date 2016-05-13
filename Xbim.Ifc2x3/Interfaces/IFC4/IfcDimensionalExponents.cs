@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -46,6 +48,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -57,6 +60,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -68,6 +72,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -79,6 +84,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -90,6 +96,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}

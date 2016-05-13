@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
+				Position = value as GeometryResource.IfcAxis2Placement3D;
 				
 			}
 		}

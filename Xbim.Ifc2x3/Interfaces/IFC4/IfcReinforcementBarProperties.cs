@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
+				TotalCrossSectionArea = new MeasureResource.IfcAreaMeasure(value);
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
+				SteelGrade = new MeasureResource.IfcLabel(value);
 				
 			}
 		}
@@ -57,6 +59,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -69,6 +72,12 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					EffectiveDepth =  null ;
+					return;
+				}
+				EffectiveDepth = new MeasureResource.IfcLengthMeasure(value.Value);
 				
 			}
 		}
@@ -81,6 +90,12 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					NominalBarDiameter =  null ;
+					return;
+				}
+				NominalBarDiameter = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -93,6 +108,12 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					BarCount =  null ;
+					return;
+				}
+				BarCount = new MeasureResource.IfcCountMeasure(value.Value);
 				
 			}
 		}

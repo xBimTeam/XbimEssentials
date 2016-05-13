@@ -25,6 +25,12 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Distortion =  null ;
+					return;
+				}
+				Distortion = new MeasureResource.IfcCurvatureMeasure(value.Value);
 				
 			}
 		}

@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
+				UsageName = new MeasureResource.IfcIdentifier(value);
 				
 			}
 		}

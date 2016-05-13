@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			} 
 			set
 			{
+				TimeStep = new MeasureResource.IfcTimeMeasure(value);
 				
 			}
 		}

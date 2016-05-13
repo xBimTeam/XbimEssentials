@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
+				Name = new MeasureResource.IfcLabel(value);
 				
 			}
 		}
@@ -36,6 +37,12 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Description =  null ;
+					return;
+				}
+				Description = new MeasureResource.IfcText(value.Value);
 				
 			}
 		}
@@ -67,6 +74,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -79,6 +87,12 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					ConstraintSource =  null ;
+					return;
+				}
+				ConstraintSource = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -100,6 +114,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -115,6 +130,10 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
+				//## Handle setting of CreationTime for which no match was found
+				//TODO: Handle setting of CreationTime for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -127,6 +146,12 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					UserDefinedGrade =  null ;
+					return;
+				}
+				UserDefinedGrade = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}

@@ -25,6 +25,12 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Elevation =  null ;
+					return;
+				}
+				Elevation = new MeasureResource.IfcLengthMeasure(value.Value);
 				
 			}
 		}
@@ -38,6 +44,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				//## Handle setting of LongName for which no match was found
+				//TODO: Handle setting of LongName for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

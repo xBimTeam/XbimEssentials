@@ -21,15 +21,24 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			get
 			{
 				//## Handle return of PredefinedType for which no match was found
-				return null;
+                return _predefinedType;
 				//##
 			} 
 			set
 			{
-				
+				//## Handle setting of PredefinedType for which no match was found
+                SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+                Common.Logging.LoggerFactory.GetLogger()
+                    .WarnFormat("Setting property {0} in {1} (#{2}) is not supported in IFC2x3. Change won't be persisted.", 
+                    "PredefinedType", 
+                    GetType().Name, 
+                    EntityLabel);
+			    //##
+
 			}
 		}
 	//## Custom code
-	//##
+        private Ifc4.Interfaces.IfcBeamTypeEnum? _predefinedType;
+    //##
 	}
 }

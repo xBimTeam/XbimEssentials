@@ -37,6 +37,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -49,6 +50,12 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					TextAlign =  null ;
+					return;
+				}
+				TextAlign = new IfcTextAlignment(value.Value);
 				
 			}
 		}
@@ -61,6 +68,12 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					TextDecoration =  null ;
+					return;
+				}
+				TextDecoration = new IfcTextDecoration(value.Value);
 				
 			}
 		}
@@ -85,6 +98,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -109,6 +123,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -121,6 +136,12 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					TextTransform =  null ;
+					return;
+				}
+				TextTransform = new IfcTextTransformation(value.Value);
 				
 			}
 		}
@@ -145,6 +166,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}

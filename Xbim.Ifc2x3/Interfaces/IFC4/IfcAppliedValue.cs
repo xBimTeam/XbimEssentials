@@ -25,6 +25,12 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Name =  null ;
+					return;
+				}
+				Name = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -37,6 +43,12 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Description =  null ;
+					return;
+				}
+				Description = new MeasureResource.IfcText(value.Value);
 				
 			}
 		}
@@ -56,6 +68,7 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -67,6 +80,7 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
+				UnitBasis = value as MeasureResource.IfcMeasureWithUnit;
 				
 			}
 		}
@@ -80,6 +94,10 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
+				//## Handle setting of ApplicableDate for which no match was found
+				//TODO: Handle setting of ApplicableDate for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -93,6 +111,10 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
+				//## Handle setting of FixedUntilDate for which no match was found
+				//TODO: Handle setting of FixedUntilDate for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -106,6 +128,10 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
+				//## Handle setting of Category for which no match was found
+				//TODO: Handle setting of Category for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -119,6 +145,10 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
+				//## Handle setting of Condition for which no match was found
+				//TODO: Handle setting of Condition for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -147,6 +177,10 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
+				//## Handle setting of ArithmeticOperator for which no match was found
+				//TODO: Handle setting of ArithmeticOperator for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

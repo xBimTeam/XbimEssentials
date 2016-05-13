@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
+				Material = value as MaterialResource.IfcMaterial;
 				
 			}
 		}
@@ -37,6 +38,10 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
+				//## Handle setting of Name for which no match was found
+				//TODO: Handle setting of Name for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -50,6 +55,10 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
+				//## Handle setting of Description for which no match was found
+				//TODO: Handle setting of Description for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -78,11 +87,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			                            System.StringComparison.InvariantCultureIgnoreCase) == 0);
 			        if (targetType == null) continue;
 			        var targetValue = System.Activator.CreateInstance(targetType, value) as Ifc4.MeasureResource.IfcValue;
-                    yield return new Interfaces.Conversions.IfcPropertySingleValueTransient
-                    {
-                        Name = name, 
-                        NominalValue = targetValue
-                    };
+                    yield return new Interfaces.Conversions.IfcPropertySingleValueTransient(name, targetValue);
 			    }
 				//##
 			} 

@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				RelatingControl = value as IfcControl;
 				
 			}
 		}

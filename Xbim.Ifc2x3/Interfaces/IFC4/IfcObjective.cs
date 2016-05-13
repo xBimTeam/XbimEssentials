@@ -35,6 +35,10 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
+				//## Handle setting of LogicalAggregator for which no match was found
+				//TODO: Handle setting of LogicalAggregator for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -75,6 +79,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -87,6 +92,12 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					UserDefinedQualifier =  null ;
+					return;
+				}
+				UserDefinedQualifier = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}

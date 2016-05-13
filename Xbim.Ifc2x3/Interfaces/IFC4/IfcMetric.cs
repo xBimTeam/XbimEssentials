@@ -47,6 +47,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -59,6 +60,12 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					ValueSource =  null ;
+					return;
+				}
+				ValueSource = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -100,6 +107,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -113,6 +121,10 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
+				//## Handle setting of ReferencePath for which no match was found
+				//TODO: Handle setting of ReferencePath for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

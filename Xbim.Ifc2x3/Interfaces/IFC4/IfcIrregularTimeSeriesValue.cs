@@ -28,6 +28,10 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			} 
 			set
 			{
+				//## Handle setting of TimeStamp for which no match was found
+				//TODO: Handle setting of TimeStamp for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

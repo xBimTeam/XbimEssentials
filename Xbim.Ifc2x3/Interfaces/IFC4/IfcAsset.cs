@@ -24,6 +24,12 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					AssetID =  default(MeasureResource.IfcIdentifier) ;
+					return;
+				}
+				AssetID = new MeasureResource.IfcIdentifier(value.Value);
 				
 			}
 		}
@@ -35,6 +41,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
+				OriginalValue = value as CostResource.IfcCostValue;
 				
 			}
 		}
@@ -46,6 +53,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
+				CurrentValue = value as CostResource.IfcCostValue;
 				
 			}
 		}
@@ -57,6 +65,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
+				TotalReplacementCost = value as CostResource.IfcCostValue;
 				
 			}
 		}
@@ -78,6 +87,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -99,6 +109,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -110,6 +121,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
+				ResponsiblePerson = value as ActorResource.IfcPerson;
 				
 			}
 		}
@@ -125,6 +137,10 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
+				//## Handle setting of IncorporationDate for which no match was found
+				//TODO: Handle setting of IncorporationDate for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -136,6 +152,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
+				DepreciatedValue = value as CostResource.IfcCostValue;
 				
 			}
 		}

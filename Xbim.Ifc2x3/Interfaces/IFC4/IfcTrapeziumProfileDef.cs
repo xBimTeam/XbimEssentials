@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
+				BottomXDim = new MeasureResource.IfcPositiveLengthMeasure(value);
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
+				TopXDim = new MeasureResource.IfcPositiveLengthMeasure(value);
 				
 			}
 		}
@@ -46,6 +48,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
+				YDim = new MeasureResource.IfcPositiveLengthMeasure(value);
 				
 			}
 		}
@@ -57,6 +60,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
+				TopXOffset = new MeasureResource.IfcLengthMeasure(value);
 				
 			}
 		}

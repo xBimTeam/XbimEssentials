@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
+				LongitudinalStartPosition = new MeasureResource.IfcLengthMeasure(value);
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
+				LongitudinalEndPosition = new MeasureResource.IfcLengthMeasure(value);
 				
 			}
 		}
@@ -47,6 +49,12 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					TransversePosition =  null ;
+					return;
+				}
+				TransversePosition = new MeasureResource.IfcLengthMeasure(value.Value);
 				
 			}
 		}
@@ -90,6 +98,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -101,6 +110,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
+				SectionDefinition = value as IfcSectionProperties;
 				
 			}
 		}

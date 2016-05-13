@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				DiffuseTransmissionColour = value as PresentationResource.IfcColourRgb;
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				DiffuseReflectionColour = value as PresentationResource.IfcColourRgb;
 				
 			}
 		}
@@ -46,6 +48,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				TransmissionColour = value as PresentationResource.IfcColourRgb;
 				
 			}
 		}
@@ -57,6 +60,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				ReflectanceColour = value as PresentationResource.IfcColourRgb;
 				
 			}
 		}

@@ -25,6 +25,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					LiningDepth =  null ;
+					return;
+				}
+				LiningDepth = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -37,6 +43,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					LiningThickness =  null ;
+					return;
+				}
+				LiningThickness = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -49,6 +61,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					ThresholdDepth =  null ;
+					return;
+				}
+				ThresholdDepth = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -61,6 +79,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					ThresholdThickness =  null ;
+					return;
+				}
+				ThresholdThickness = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -73,6 +97,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					TransomThickness =  null ;
+					return;
+				}
+				TransomThickness = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -85,6 +115,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					TransomOffset =  null ;
+					return;
+				}
+				TransomOffset = new MeasureResource.IfcLengthMeasure(value.Value);
 				
 			}
 		}
@@ -97,6 +133,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					LiningOffset =  null ;
+					return;
+				}
+				LiningOffset = new MeasureResource.IfcLengthMeasure(value.Value);
 				
 			}
 		}
@@ -109,6 +151,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					ThresholdOffset =  null ;
+					return;
+				}
+				ThresholdOffset = new MeasureResource.IfcLengthMeasure(value.Value);
 				
 			}
 		}
@@ -121,6 +169,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					CasingThickness =  null ;
+					return;
+				}
+				CasingThickness = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -133,6 +187,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					CasingDepth =  null ;
+					return;
+				}
+				CasingDepth = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -144,6 +204,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				ShapeAspectStyle = value as RepresentationResource.IfcShapeAspect;
 				
 			}
 		}
@@ -157,6 +218,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				//## Handle setting of LiningToPanelOffsetX for which no match was found
+				//TODO: Handle setting of LiningToPanelOffsetX for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -170,6 +235,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				//## Handle setting of LiningToPanelOffsetY for which no match was found
+				//TODO: Handle setting of LiningToPanelOffsetY for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

@@ -25,6 +25,12 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					LinearForceX =  null ;
+					return;
+				}
+				LinearForceX = new MeasureResource.IfcLinearForceMeasure(value.Value);
 				
 			}
 		}
@@ -37,6 +43,12 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					LinearForceY =  null ;
+					return;
+				}
+				LinearForceY = new MeasureResource.IfcLinearForceMeasure(value.Value);
 				
 			}
 		}
@@ -49,6 +61,12 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					LinearForceZ =  null ;
+					return;
+				}
+				LinearForceZ = new MeasureResource.IfcLinearForceMeasure(value.Value);
 				
 			}
 		}
@@ -61,6 +79,12 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					LinearMomentX =  null ;
+					return;
+				}
+				LinearMomentX = new MeasureResource.IfcLinearMomentMeasure(value.Value);
 				
 			}
 		}
@@ -73,6 +97,12 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					LinearMomentY =  null ;
+					return;
+				}
+				LinearMomentY = new MeasureResource.IfcLinearMomentMeasure(value.Value);
 				
 			}
 		}
@@ -85,6 +115,12 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					LinearMomentZ =  null ;
+					return;
+				}
+				LinearMomentZ = new MeasureResource.IfcLinearMomentMeasure(value.Value);
 				
 			}
 		}

@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 			} 
 			set
 			{
+				ApplicationDeveloper = value as ActorResource.IfcOrganization;
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 			} 
 			set
 			{
+				Version = new MeasureResource.IfcLabel(value);
 				
 			}
 		}
@@ -46,6 +48,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 			} 
 			set
 			{
+				ApplicationFullName = new MeasureResource.IfcLabel(value);
 				
 			}
 		}
@@ -57,6 +60,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 			} 
 			set
 			{
+				ApplicationIdentifier = new MeasureResource.IfcIdentifier(value);
 				
 			}
 		}

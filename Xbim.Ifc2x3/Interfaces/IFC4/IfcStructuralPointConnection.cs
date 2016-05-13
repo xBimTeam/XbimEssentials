@@ -26,6 +26,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				//## Handle setting of ConditionCoordinateSystem for which no match was found
+				//TODO: Handle setting of ConditionCoordinateSystem for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 			} 
 			set
 			{
+				SizeInX = new MeasureResource.IfcLengthMeasure(value);
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 			} 
 			set
 			{
+				SizeInY = new MeasureResource.IfcLengthMeasure(value);
 				
 			}
 		}

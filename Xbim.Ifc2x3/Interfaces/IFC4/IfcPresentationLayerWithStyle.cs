@@ -26,6 +26,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
+				//## Handle setting of LayerOn for which no match was found
+				//TODO: Handle setting of LayerOn for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -39,6 +43,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
+				//## Handle setting of LayerFrozen for which no match was found
+				//TODO: Handle setting of LayerFrozen for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -52,6 +60,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
+				//## Handle setting of LayerBlocked for which no match was found
+				//TODO: Handle setting of LayerBlocked for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

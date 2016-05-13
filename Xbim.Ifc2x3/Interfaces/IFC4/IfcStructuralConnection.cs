@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				AppliedCondition = value as StructuralLoadResource.IfcBoundaryCondition;
 				
 			}
 		}

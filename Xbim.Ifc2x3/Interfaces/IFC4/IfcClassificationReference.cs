@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -37,6 +38,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				//## Handle setting of Description for which no match was found
+				//TODO: Handle setting of Description for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -50,6 +55,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				//## Handle setting of Sort for which no match was found
+				//TODO: Handle setting of Sort for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

@@ -15,7 +15,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	[ExpressType("IfcSpecularRoughness", 772)]
 	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcSpecularRoughness : IfcSpecularHighlightSelect, IExpressValueType, System.IEquatable<double>
+	public partial struct IfcSpecularRoughness : IfcSpecularHighlightSelect, IExpressValueType, IExpressRealType, System.IEquatable<double>
 	{ 
 		private double _value;
         
@@ -23,6 +23,9 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
         {
             get { return _value; }
         }
+
+ 
+		double IExpressRealType.Value { get { return _value; } }
 
 		public override string ToString()
         {

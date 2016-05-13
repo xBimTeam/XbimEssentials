@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
+				Position = value as GeometryResource.IfcAxis2Placement2D;
 				
 			}
 		}

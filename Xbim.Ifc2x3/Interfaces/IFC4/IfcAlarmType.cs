@@ -53,6 +53,7 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}

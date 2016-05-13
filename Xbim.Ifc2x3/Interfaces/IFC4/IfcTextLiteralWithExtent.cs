@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			} 
 			set
 			{
+				Extent = value as PresentationResource.IfcPlanarExtent;
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			} 
 			set
 			{
+				BoxAlignment = new IfcBoxAlignment(value);
 				
 			}
 		}

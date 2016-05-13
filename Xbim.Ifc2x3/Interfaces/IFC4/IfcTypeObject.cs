@@ -25,6 +25,12 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					ApplicableOccurrence =  null ;
+					return;
+				}
+				ApplicableOccurrence = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}

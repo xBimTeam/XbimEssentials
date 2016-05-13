@@ -26,6 +26,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				//## Handle setting of Scale2 for which no match was found
+				//TODO: Handle setting of Scale2 for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -39,6 +43,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				//## Handle setting of Scale3 for which no match was found
+				//TODO: Handle setting of Scale3 for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

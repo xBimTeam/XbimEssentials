@@ -25,6 +25,12 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Tag =  null ;
+					return;
+				}
+				Tag = new MeasureResource.IfcIdentifier(value.Value);
 				
 			}
 		}

@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
+				Position = value as GeometryResource.IfcAxis2Placement3D;
 				
 			}
 		}
@@ -35,6 +36,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
+				ColourAppearance = value as PresentationResource.IfcColourRgb;
 				
 			}
 		}
@@ -46,6 +48,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
+				ColourTemperature = new MeasureResource.IfcThermodynamicTemperatureMeasure(value);
 				
 			}
 		}
@@ -57,6 +60,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
+				LuminousFlux = new MeasureResource.IfcLuminousFluxMeasure(value);
 				
 			}
 		}
@@ -106,6 +110,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -124,6 +129,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}

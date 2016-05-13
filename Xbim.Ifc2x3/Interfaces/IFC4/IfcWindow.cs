@@ -25,6 +25,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					OverallHeight =  null ;
+					return;
+				}
+				OverallHeight = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -37,6 +43,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					OverallWidth =  null ;
+					return;
+				}
+				OverallWidth = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -50,6 +62,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				//## Handle setting of PredefinedType for which no match was found
+				//TODO: Handle setting of PredefinedType for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -63,6 +79,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				//## Handle setting of PartitioningType for which no match was found
+				//TODO: Handle setting of PartitioningType for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -76,6 +96,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				//## Handle setting of UserDefinedPartitioningType for which no match was found
+				//TODO: Handle setting of UserDefinedPartitioningType for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

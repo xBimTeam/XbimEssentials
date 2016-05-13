@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
+				Name = new MeasureResource.IfcIdentifier(value);
 				
 			}
 		}
@@ -36,6 +37,12 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Description =  null ;
+					return;
+				}
+				Description = new MeasureResource.IfcText(value.Value);
 				
 			}
 		}

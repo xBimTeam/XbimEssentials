@@ -25,6 +25,12 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					ForceX =  null ;
+					return;
+				}
+				ForceX = new MeasureResource.IfcForceMeasure(value.Value);
 				
 			}
 		}
@@ -37,6 +43,12 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					ForceY =  null ;
+					return;
+				}
+				ForceY = new MeasureResource.IfcForceMeasure(value.Value);
 				
 			}
 		}
@@ -49,6 +61,12 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					ForceZ =  null ;
+					return;
+				}
+				ForceZ = new MeasureResource.IfcForceMeasure(value.Value);
 				
 			}
 		}
@@ -61,6 +79,12 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					MomentX =  null ;
+					return;
+				}
+				MomentX = new MeasureResource.IfcTorqueMeasure(value.Value);
 				
 			}
 		}
@@ -73,6 +97,12 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					MomentY =  null ;
+					return;
+				}
+				MomentY = new MeasureResource.IfcTorqueMeasure(value.Value);
 				
 			}
 		}
@@ -85,6 +115,12 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					MomentZ =  null ;
+					return;
+				}
+				MomentZ = new MeasureResource.IfcTorqueMeasure(value.Value);
 				
 			}
 		}

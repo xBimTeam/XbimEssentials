@@ -26,6 +26,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				//## Handle setting of NumberOfRisers for which no match was found
+				//TODO: Handle setting of NumberOfRisers for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -39,6 +43,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				//## Handle setting of NumberOfTreads for which no match was found
+				//TODO: Handle setting of NumberOfTreads for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -51,6 +59,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					RiserHeight =  null ;
+					return;
+				}
+				RiserHeight = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -63,6 +77,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					TreadLength =  null ;
+					return;
+				}
+				TreadLength = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -76,6 +96,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				//## Handle setting of PredefinedType for which no match was found
+				//TODO: Handle setting of PredefinedType for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

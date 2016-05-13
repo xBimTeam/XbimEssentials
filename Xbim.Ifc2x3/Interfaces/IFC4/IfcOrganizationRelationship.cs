@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
+				RelatingOrganization = value as IfcOrganization;
 				
 			}
 		}
@@ -47,6 +48,10 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
+				//## Handle setting of Name for which no match was found
+				//TODO: Handle setting of Name for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -62,6 +67,10 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
+				//## Handle setting of Description for which no match was found
+				//TODO: Handle setting of Description for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

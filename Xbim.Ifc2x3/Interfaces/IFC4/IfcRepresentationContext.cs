@@ -25,6 +25,12 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					ContextIdentifier =  null ;
+					return;
+				}
+				ContextIdentifier = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -37,6 +43,12 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					ContextType =  null ;
+					return;
+				}
+				ContextType = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}

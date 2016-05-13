@@ -59,6 +59,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}

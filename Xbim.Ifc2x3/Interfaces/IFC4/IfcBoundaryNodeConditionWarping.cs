@@ -26,6 +26,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}

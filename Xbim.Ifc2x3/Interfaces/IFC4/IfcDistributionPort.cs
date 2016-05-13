@@ -41,6 +41,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -54,6 +55,10 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
+				//## Handle setting of PredefinedType for which no match was found
+				//TODO: Handle setting of PredefinedType for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -67,6 +72,10 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
+				//## Handle setting of SystemType for which no match was found
+				//TODO: Handle setting of SystemType for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

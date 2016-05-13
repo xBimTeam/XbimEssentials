@@ -24,6 +24,12 @@ namespace Xbim.Ifc2x3.ControlExtension
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Intent =  default(MeasureResource.IfcLabel) ;
+					return;
+				}
+				Intent = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -35,6 +41,7 @@ namespace Xbim.Ifc2x3.ControlExtension
 			} 
 			set
 			{
+				RelatingConstraint = value as ConstraintResource.IfcConstraint;
 				
 			}
 		}

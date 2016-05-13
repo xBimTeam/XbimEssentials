@@ -26,6 +26,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				//## Handle setting of Description for which no match was found
+				//TODO: Handle setting of Description for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -39,6 +43,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				//## Handle setting of Language for which no match was found
+				//TODO: Handle setting of Language for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -52,6 +60,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				//## Handle setting of ReferencedLibrary for which no match was found
+				//TODO: Handle setting of ReferencedLibrary for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

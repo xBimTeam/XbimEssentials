@@ -1,9 +1,12 @@
-﻿using Xbim.Ifc4.MeasureResource;
+﻿using System;
+using Xbim.Ifc4.MeasureResource;
 
 namespace Xbim.Ifc2x3.Interfaces.Conversions
 {
     internal class IfcQuantityVolumeTransient : IfcPhysicalSimpleQuantityTransient, Ifc4.Interfaces.IIfcQuantityVolume
     {
+        private readonly IfcVolumeMeasure _volumeValue;
+
         internal IfcQuantityVolumeTransient()
         {
         }
@@ -11,12 +14,21 @@ namespace Xbim.Ifc2x3.Interfaces.Conversions
         internal IfcQuantityVolumeTransient(MeasureResource.IfcMeasureWithUnit measure)
         {
             var value = measure.ValueComponent;
-            Unit = measure.UnitComponent as Ifc4.Interfaces.IIfcNamedUnit;
+            _unit = measure.UnitComponent as Ifc4.Interfaces.IIfcNamedUnit;
             if (!(value is MeasureResource.IfcVolumeMeasure)) return;
-            VolumeValue = new IfcVolumeMeasure((MeasureResource.IfcVolumeMeasure)value);
+            _volumeValue = new IfcVolumeMeasure((MeasureResource.IfcVolumeMeasure)value);
         }
 
-        public IfcVolumeMeasure VolumeValue { get; internal set; }
-        public IfcLabel? Formula { get; internal set; }
+        public IfcVolumeMeasure VolumeValue
+        {
+            get { return _volumeValue; }
+            set {  throw new NotSupportedException(); }
+        }
+
+        public IfcLabel? Formula
+        {
+            get { return null; }
+            set { throw new NotSupportedException(); }
+        }
     }
 }

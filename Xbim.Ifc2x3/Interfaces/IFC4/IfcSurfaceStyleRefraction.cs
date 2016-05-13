@@ -25,6 +25,12 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					RefractionIndex =  null ;
+					return;
+				}
+				RefractionIndex = new MeasureResource.IfcReal(value.Value);
 				
 			}
 		}
@@ -37,6 +43,12 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					DispersionFactor =  null ;
+					return;
+				}
+				DispersionFactor = new MeasureResource.IfcReal(value.Value);
 				
 			}
 		}

@@ -24,6 +24,12 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Source =  default(MeasureResource.IfcLabel) ;
+					return;
+				}
+				Source = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -35,6 +41,12 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Edition =  default(MeasureResource.IfcLabel) ;
+					return;
+				}
+				Edition = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -48,6 +60,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				//## Handle setting of EditionDate for which no match was found
+				//TODO: Handle setting of EditionDate for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -59,6 +75,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				Name = new MeasureResource.IfcLabel(value);
 				
 			}
 		}
@@ -72,6 +89,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				//## Handle setting of Description for which no match was found
+				//TODO: Handle setting of Description for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -85,6 +106,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				//## Handle setting of Location for which no match was found
+				//TODO: Handle setting of Location for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

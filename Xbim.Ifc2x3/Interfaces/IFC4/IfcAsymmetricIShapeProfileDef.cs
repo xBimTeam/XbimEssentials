@@ -26,6 +26,10 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
+				//## Handle setting of BottomFlangeWidth for which no match was found
+				//TODO: Handle setting of BottomFlangeWidth for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -37,6 +41,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
+				OverallDepth = new MeasureResource.IfcPositiveLengthMeasure(value);
 				
 			}
 		}
@@ -48,6 +53,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
+				WebThickness = new MeasureResource.IfcPositiveLengthMeasure(value);
 				
 			}
 		}
@@ -61,6 +67,10 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
+				//## Handle setting of BottomFlangeThickness for which no match was found
+				//TODO: Handle setting of BottomFlangeThickness for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -76,6 +86,10 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
+				//## Handle setting of BottomFlangeFilletRadius for which no match was found
+				//TODO: Handle setting of BottomFlangeFilletRadius for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -87,6 +101,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
+				TopFlangeWidth = new MeasureResource.IfcPositiveLengthMeasure(value);
 				
 			}
 		}
@@ -99,6 +114,12 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					TopFlangeThickness =  null ;
+					return;
+				}
+				TopFlangeThickness = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -111,6 +132,12 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					TopFlangeFilletRadius =  null ;
+					return;
+				}
+				TopFlangeFilletRadius = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -125,6 +152,10 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
+				//## Handle setting of BottomFlangeEdgeRadius for which no match was found
+				//TODO: Handle setting of BottomFlangeEdgeRadius for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -138,6 +169,10 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
+				//## Handle setting of BottomFlangeSlope for which no match was found
+				//TODO: Handle setting of BottomFlangeSlope for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -151,6 +186,10 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
+				//## Handle setting of TopFlangeEdgeRadius for which no match was found
+				//TODO: Handle setting of TopFlangeEdgeRadius for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -164,6 +203,10 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
+				//## Handle setting of TopFlangeSlope for which no match was found
+				//TODO: Handle setting of TopFlangeSlope for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

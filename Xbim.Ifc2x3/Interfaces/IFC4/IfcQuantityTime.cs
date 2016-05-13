@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 			} 
 			set
 			{
+				TimeValue = new MeasureResource.IfcTimeMeasure(value);
 				
 			}
 		}
@@ -37,6 +38,10 @@ namespace Xbim.Ifc2x3.QuantityResource
 			} 
 			set
 			{
+				//## Handle setting of Formula for which no match was found
+				//TODO: Handle setting of Formula for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

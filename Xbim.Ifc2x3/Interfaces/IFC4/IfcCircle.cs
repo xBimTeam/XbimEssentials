@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				Radius = new MeasureResource.IfcPositiveLengthMeasure(value);
 				
 			}
 		}

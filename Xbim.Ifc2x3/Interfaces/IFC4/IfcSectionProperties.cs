@@ -35,6 +35,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -46,6 +47,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
+				StartProfile = value as ProfileResource.IfcProfileDef;
 				
 			}
 		}
@@ -57,6 +59,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
+				EndProfile = value as ProfileResource.IfcProfileDef;
 				
 			}
 		}

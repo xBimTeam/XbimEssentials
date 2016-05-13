@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				SurfaceColour = value as PresentationResource.IfcColourRgb;
 				
 			}
 		}
@@ -40,6 +41,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				//## Handle setting of Transparency for which no match was found
+				//TODO: Handle setting of Transparency for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

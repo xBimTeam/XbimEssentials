@@ -44,6 +44,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -78,6 +79,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -90,6 +92,12 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					FrameDepth =  null ;
+					return;
+				}
+				FrameDepth = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -102,6 +110,12 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					FrameThickness =  null ;
+					return;
+				}
+				FrameThickness = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -113,6 +127,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			} 
 			set
 			{
+				ShapeAspectStyle = value as RepresentationResource.IfcShapeAspect;
 				
 			}
 		}

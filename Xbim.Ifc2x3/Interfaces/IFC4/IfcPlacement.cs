@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				Location = value as IfcCartesianPoint;
 				
 			}
 		}

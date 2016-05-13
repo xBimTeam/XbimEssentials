@@ -100,6 +100,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -112,6 +113,12 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					UserDefinedRole =  null ;
+					return;
+				}
+				UserDefinedRole = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -124,6 +131,12 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Description =  null ;
+					return;
+				}
+				Description = new MeasureResource.IfcText(value.Value);
 				
 			}
 		}

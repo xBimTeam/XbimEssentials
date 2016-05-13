@@ -25,6 +25,12 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					MethodOfMeasurement =  null ;
+					return;
+				}
+				MethodOfMeasurement = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}

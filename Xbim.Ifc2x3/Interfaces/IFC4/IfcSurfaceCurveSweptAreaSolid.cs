@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
+				Directrix = value as GeometryResource.IfcCurve;
 				
 			}
 		}
@@ -35,6 +36,12 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					StartParam =  default(MeasureResource.IfcParameterValue) ;
+					return;
+				}
+				StartParam = new MeasureResource.IfcParameterValue(value.Value);
 				
 			}
 		}
@@ -46,6 +53,12 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					EndParam =  default(MeasureResource.IfcParameterValue) ;
+					return;
+				}
+				EndParam = new MeasureResource.IfcParameterValue(value.Value);
 				
 			}
 		}
@@ -57,6 +70,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
+				ReferenceSurface = value as GeometryResource.IfcSurface;
 				
 			}
 		}

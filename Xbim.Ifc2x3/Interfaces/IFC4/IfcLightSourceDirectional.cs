@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
+				Orientation = value as GeometryResource.IfcDirection;
 				
 			}
 		}

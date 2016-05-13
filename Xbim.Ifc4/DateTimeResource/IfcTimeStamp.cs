@@ -16,7 +16,7 @@ namespace Xbim.Ifc4.DateTimeResource
 	[ExpressType("IfcTimeStamp", 605)]
 	[DefinedType(typeof(long))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcTimeStamp : IfcSimpleValue, IExpressValueType, System.IEquatable<long>
+	public partial struct IfcTimeStamp : IfcSimpleValue, IExpressValueType, IExpressIntegerType, System.IEquatable<long>
 	{ 
 		private long _value;
         
@@ -24,6 +24,9 @@ namespace Xbim.Ifc4.DateTimeResource
         {
             get { return _value; }
         }
+
+ 
+		long IExpressIntegerType.Value { get { return _value; } }
 
 		public override string ToString()
         {

@@ -31,6 +31,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}

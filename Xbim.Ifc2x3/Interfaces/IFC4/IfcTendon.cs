@@ -47,6 +47,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
+				throw new System.NotImplementedException();
 				
 			}
 		}
@@ -58,6 +59,12 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					NominalDiameter =  default(MeasureResource.IfcPositiveLengthMeasure) ;
+					return;
+				}
+				NominalDiameter = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -69,6 +76,12 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					CrossSectionArea =  default(MeasureResource.IfcAreaMeasure) ;
+					return;
+				}
+				CrossSectionArea = new MeasureResource.IfcAreaMeasure(value.Value);
 				
 			}
 		}
@@ -81,6 +94,12 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					TensionForce =  null ;
+					return;
+				}
+				TensionForce = new MeasureResource.IfcForceMeasure(value.Value);
 				
 			}
 		}
@@ -93,6 +112,12 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					PreStress =  null ;
+					return;
+				}
+				PreStress = new MeasureResource.IfcPressureMeasure(value.Value);
 				
 			}
 		}
@@ -105,6 +130,12 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					FrictionCoefficient =  null ;
+					return;
+				}
+				FrictionCoefficient = new MeasureResource.IfcNormalisedRatioMeasure(value.Value);
 				
 			}
 		}
@@ -117,6 +148,12 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					AnchorageSlip =  null ;
+					return;
+				}
+				AnchorageSlip = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}
@@ -129,6 +166,12 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					MinCurvatureRadius =  null ;
+					return;
+				}
+				MinCurvatureRadius = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
 				
 			}
 		}

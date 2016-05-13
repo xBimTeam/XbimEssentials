@@ -25,6 +25,12 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					InternalLocation =  null ;
+					return;
+				}
+				InternalLocation = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -47,6 +53,12 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					PostalBox =  null ;
+					return;
+				}
+				PostalBox = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -59,6 +71,12 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Town =  null ;
+					return;
+				}
+				Town = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -71,6 +89,12 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Region =  null ;
+					return;
+				}
+				Region = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -83,6 +107,12 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					PostalCode =  null ;
+					return;
+				}
+				PostalCode = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -95,6 +125,12 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
+				if (!value.HasValue)
+				{
+					Country =  null ;
+					return;
+				}
+				Country = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
