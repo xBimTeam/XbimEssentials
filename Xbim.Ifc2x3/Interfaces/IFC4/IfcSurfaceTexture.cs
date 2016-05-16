@@ -50,20 +50,17 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+		private  Ifc4.MeasureResource.IfcIdentifier? _mode;
+
 		Ifc4.MeasureResource.IfcIdentifier? IIfcSurfaceTexture.Mode 
 		{ 
 			get
 			{
-				//## Handle return of Mode for which no match was found
-                return null;
-				//##
+				return _mode;
 			} 
 			set
 			{
-				//## Handle setting of Mode for which no match was found
-				//TODO: Handle setting of Mode for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _mode = v, _mode, value, "Mode", byte.MaxValue);
 				
 			}
 		}

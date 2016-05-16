@@ -46,16 +46,17 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				//## Handle return of LongName for which no match was found
-                if (!this.LongName.HasValue) return null; else return new Xbim.Ifc4.MeasureResource.IfcLabel(this.LongName.Value);
-				//##
+				if (!LongName.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(LongName.Value);
 			} 
 			set
 			{
-				//## Handle setting of LongName for which no match was found
-				//TODO: Handle setting of LongName for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				if (!value.HasValue)
+				{
+					LongName =  null ;
+					return;
+				}
+				LongName = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}

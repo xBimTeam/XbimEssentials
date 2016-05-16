@@ -104,14 +104,17 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				//## Handle return of LongName for which no match was found
-                return !Name.HasValue ? null : new Ifc4.MeasureResource.IfcLabel(Name.Value);
-				//##
+				if (!LongName.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(LongName.Value);
 			} 
 			set
 			{
-				//## Handle setting of LongName for which no match was found
-				//##
+				if (!value.HasValue)
+				{
+					LongName =  null ;
+					return;
+				}
+				LongName = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}

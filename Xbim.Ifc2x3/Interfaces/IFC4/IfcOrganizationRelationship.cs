@@ -42,16 +42,16 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				//## Handle return of Name for which no match was found
-			    return new Ifc4.MeasureResource.IfcLabel(Name);
-			    //##
+				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
 			set
 			{
-				//## Handle setting of Name for which no match was found
-				//TODO: Handle setting of Name for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				if (!value.HasValue)
+				{
+					Name =  default(MeasureResource.IfcLabel) ;
+					return;
+				}
+				Name = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -59,18 +59,17 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				//## Handle return of Description for which no match was found
-			    return Description.HasValue
-			        ? new Ifc4.MeasureResource.IfcText(Description.Value)
-			        : null;
-			    //##
+				if (!Description.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
 			set
 			{
-				//## Handle setting of Description for which no match was found
-				//TODO: Handle setting of Description for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				if (!value.HasValue)
+				{
+					Description =  null ;
+					return;
+				}
+				Description = new MeasureResource.IfcText(value.Value);
 				
 			}
 		}

@@ -52,20 +52,17 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 				
 			}
 		}
+		private  Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum? _predefinedType;
+
 		Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum? IIfcMechanicalFastener.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-			    return null;
-			    //##
+				return _predefinedType;
 			} 
 			set
 			{
-				//## Handle setting of PredefinedType for which no match was found
-				//TODO: Handle setting of PredefinedType for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
 				
 			}
 		}

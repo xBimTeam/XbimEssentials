@@ -20,16 +20,31 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-                return Ifc4.Interfaces.IfcStructuralSurfaceMemberTypeEnum.NOTDEFINED;
-				//##
+				switch (PredefinedType)
+				{
+					case IfcStructuralSurfaceTypeEnum.BENDING_ELEMENT:
+						return Ifc4.Interfaces.IfcStructuralSurfaceMemberTypeEnum.BENDING_ELEMENT;
+					
+					case IfcStructuralSurfaceTypeEnum.MEMBRANE_ELEMENT:
+						return Ifc4.Interfaces.IfcStructuralSurfaceMemberTypeEnum.MEMBRANE_ELEMENT;
+					
+					case IfcStructuralSurfaceTypeEnum.SHELL:
+						return Ifc4.Interfaces.IfcStructuralSurfaceMemberTypeEnum.SHELL;
+					
+					case IfcStructuralSurfaceTypeEnum.USERDEFINED:
+						return Ifc4.Interfaces.IfcStructuralSurfaceMemberTypeEnum.USERDEFINED;
+					
+					case IfcStructuralSurfaceTypeEnum.NOTDEFINED:
+						return Ifc4.Interfaces.IfcStructuralSurfaceMemberTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 			set
 			{
-				//## Handle setting of PredefinedType for which no match was found
-				//TODO: Handle setting of PredefinedType for which no match was found
 				throw new System.NotImplementedException();
-				//##
 				
 			}
 		}

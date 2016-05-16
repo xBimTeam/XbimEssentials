@@ -16,20 +16,17 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcSpace : IIfcSpace
 	{
+		private  Ifc4.Interfaces.IfcSpaceTypeEnum? _predefinedType;
+
 		Ifc4.Interfaces.IfcSpaceTypeEnum? IIfcSpace.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-                return null;
-				//##
+				return _predefinedType;
 			} 
 			set
 			{
-				//## Handle setting of PredefinedType for which no match was found
-				//TODO: Handle setting of PredefinedType for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
 				
 			}
 		}
@@ -55,16 +52,17 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				//## Handle return of LongName for which no match was found
-                return !Name.HasValue ? null : new Ifc4.MeasureResource.IfcLabel(Name.Value);
-				//##
+				if (!LongName.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(LongName.Value);
 			} 
 			set
 			{
-				//## Handle setting of LongName for which no match was found
-				//TODO: Handle setting of LongName for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				if (!value.HasValue)
+				{
+					LongName =  null ;
+					return;
+				}
+				LongName = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}

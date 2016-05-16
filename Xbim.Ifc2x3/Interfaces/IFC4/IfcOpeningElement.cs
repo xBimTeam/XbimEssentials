@@ -16,20 +16,17 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcOpeningElement : IIfcOpeningElement
 	{
+		private  Ifc4.Interfaces.IfcOpeningElementTypeEnum? _predefinedType;
+
 		Ifc4.Interfaces.IfcOpeningElementTypeEnum? IIfcOpeningElement.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-			    return null;
-			    //##
+				return _predefinedType;
 			} 
 			set
 			{
-				//## Handle setting of PredefinedType for which no match was found
-				//TODO: Handle setting of PredefinedType for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
 				
 			}
 		}

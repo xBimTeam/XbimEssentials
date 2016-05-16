@@ -39,20 +39,17 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
+		private  Ifc4.MeasureResource.IfcLabel? _longName;
+
 		Ifc4.MeasureResource.IfcLabel? IIfcSpaceType.LongName 
 		{ 
 			get
 			{
-				//## Handle return of LongName for which no match was found
-                return null;
-				//##
+				return _longName;
 			} 
 			set
 			{
-				//## Handle setting of LongName for which no match was found
-				//TODO: Handle setting of LongName for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _longName = v, _longName, value, "LongName", byte.MaxValue);
 				
 			}
 		}
@@ -60,16 +57,17 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				//## Handle return of ElementType for which no match was found
-                if (!this.ElementType.HasValue) return null; else return new Xbim.Ifc4.MeasureResource.IfcLabel(this.ElementType.Value);
-				//##
+				if (!ElementType.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(ElementType.Value);
 			} 
 			set
 			{
-				//## Handle setting of ElementType for which no match was found
-				//TODO: Handle setting of ElementType for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				if (!value.HasValue)
+				{
+					ElementType =  null ;
+					return;
+				}
+				ElementType = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}

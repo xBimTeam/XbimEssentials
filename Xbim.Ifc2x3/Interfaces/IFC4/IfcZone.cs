@@ -16,20 +16,17 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcZone : IIfcZone
 	{
+		private  Ifc4.MeasureResource.IfcLabel? _longName;
+
 		Ifc4.MeasureResource.IfcLabel? IIfcZone.LongName 
 		{ 
 			get
 			{
-				//## Handle return of LongName for which no match was found
-                return Name != null ? new Ifc4.MeasureResource.IfcLabel(Name) : null;
-			    //##
+				return _longName;
 			} 
 			set
 			{
-				//## Handle setting of LongName for which no match was found
-				//TODO: Handle setting of LongName for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _longName = v, _longName, value, "LongName", byte.MaxValue);
 				
 			}
 		}

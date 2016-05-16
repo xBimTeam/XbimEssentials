@@ -28,20 +28,17 @@ namespace Xbim.Ifc2x3.QuantityResource
 				
 			}
 		}
+		private  Ifc4.MeasureResource.IfcLabel? _formula;
+
 		Ifc4.MeasureResource.IfcLabel? IIfcQuantityVolume.Formula 
 		{ 
 			get
 			{
-				//## Handle return of Formula for which no match was found
-                return null;
-				//##
+				return _formula;
 			} 
 			set
 			{
-				//## Handle setting of Formula for which no match was found
-				//TODO: Handle setting of Formula for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _formula = v, _formula, value, "Formula", byte.MaxValue);
 				
 			}
 		}

@@ -56,37 +56,31 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+		private  Ifc4.MeasureResource.IfcLabel? _name;
+
 		Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
 		{ 
 			get
 			{
-				//## Handle return of Name for which no match was found
-			    return null;
-			    //##
+				return _name;
 			} 
 			set
 			{
-				//## Handle setting of Name for which no match was found
-				//TODO: Handle setting of Name for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _name = v, _name, value, "Name", byte.MaxValue);
 				
 			}
 		}
+		private  Ifc4.MeasureResource.IfcText? _description;
+
 		Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
 		{ 
 			get
 			{
-				//## Handle return of Description for which no match was found
-			    return null;
-			    //##
+				return _description;
 			} 
 			set
 			{
-				//## Handle setting of Description for which no match was found
-				//TODO: Handle setting of Description for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _description = v, _description, value, "Description", byte.MaxValue);
 				
 			}
 		}

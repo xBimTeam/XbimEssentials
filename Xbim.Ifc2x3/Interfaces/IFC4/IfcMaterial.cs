@@ -28,37 +28,31 @@ namespace Xbim.Ifc2x3.MaterialResource
 				
 			}
 		}
+		private  Ifc4.MeasureResource.IfcText? _description;
+
 		Ifc4.MeasureResource.IfcText? IIfcMaterial.Description 
 		{ 
 			get
 			{
-				//## Handle return of Description for which no match was found
-			    return null;
-			    //##
+				return _description;
 			} 
 			set
 			{
-				//## Handle setting of Description for which no match was found
-				//TODO: Handle setting of Description for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _description = v, _description, value, "Description", byte.MaxValue);
 				
 			}
 		}
+		private  Ifc4.MeasureResource.IfcLabel? _category;
+
 		Ifc4.MeasureResource.IfcLabel? IIfcMaterial.Category 
 		{ 
 			get
 			{
-				//## Handle return of Category for which no match was found
-			    return null;
-			    //##
+				return _category;
 			} 
 			set
 			{
-				//## Handle setting of Category for which no match was found
-				//TODO: Handle setting of Category for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _category = v, _category, value, "Category", byte.MaxValue);
 				
 			}
 		}

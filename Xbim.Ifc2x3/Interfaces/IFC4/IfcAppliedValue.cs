@@ -118,37 +118,31 @@ namespace Xbim.Ifc2x3.CostResource
 				
 			}
 		}
+		private  Ifc4.MeasureResource.IfcLabel? _category;
+
 		Ifc4.MeasureResource.IfcLabel? IIfcAppliedValue.Category 
 		{ 
 			get
 			{
-				//## Handle return of Category for which no match was found
-			    return null;
-			    //##
+				return _category;
 			} 
 			set
 			{
-				//## Handle setting of Category for which no match was found
-				//TODO: Handle setting of Category for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _category = v, _category, value, "Category", byte.MaxValue);
 				
 			}
 		}
+		private  Ifc4.MeasureResource.IfcLabel? _condition;
+
 		Ifc4.MeasureResource.IfcLabel? IIfcAppliedValue.Condition 
 		{ 
 			get
 			{
-				//## Handle return of Condition for which no match was found
-                return null;
-				//##
+				return _condition;
 			} 
 			set
 			{
-				//## Handle setting of Condition for which no match was found
-				//TODO: Handle setting of Condition for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _condition = v, _condition, value, "Condition", byte.MaxValue);
 				
 			}
 		}

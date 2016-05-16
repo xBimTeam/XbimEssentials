@@ -27,8 +27,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			set
 			{
 				//## Handle setting of Identification for which no match was found
-				//TODO: Handle setting of Identification for which no match was found
-				throw new System.NotImplementedException();
+				DocumentId = new MeasureResource.IfcIdentifier(value);
 				//##
 				
 			}

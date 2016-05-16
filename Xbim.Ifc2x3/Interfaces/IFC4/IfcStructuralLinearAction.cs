@@ -20,37 +20,36 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
-				//## Handle return of ProjectedOrTrue for which no match was found
-                if (ProjectedOrTrue == IfcProjectedOrTrueLengthEnum.PROJECTED_LENGTH)
-                    return Ifc4.Interfaces.IfcProjectedOrTrueLengthEnum.PROJECTED_LENGTH;
-                if (ProjectedOrTrue == IfcProjectedOrTrueLengthEnum.TRUE_LENGTH)
-                    return Ifc4.Interfaces.IfcProjectedOrTrueLengthEnum.TRUE_LENGTH;
-                return null;
-				//##
+				switch (ProjectedOrTrue)
+				{
+					case IfcProjectedOrTrueLengthEnum.PROJECTED_LENGTH:
+						return Ifc4.Interfaces.IfcProjectedOrTrueLengthEnum.PROJECTED_LENGTH;
+					
+					case IfcProjectedOrTrueLengthEnum.TRUE_LENGTH:
+						return Ifc4.Interfaces.IfcProjectedOrTrueLengthEnum.TRUE_LENGTH;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 			set
 			{
-				//## Handle setting of ProjectedOrTrue for which no match was found
-				//TODO: Handle setting of ProjectedOrTrue for which no match was found
 				throw new System.NotImplementedException();
-				//##
 				
 			}
 		}
+		private  Ifc4.Interfaces.IfcStructuralCurveActivityTypeEnum _predefinedType;
+
 		Ifc4.Interfaces.IfcStructuralCurveActivityTypeEnum IIfcStructuralCurveAction.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-                return IfcStructuralCurveActivityTypeEnum.NOTDEFINED;
-				//##
+				return _predefinedType;
 			} 
 			set
 			{
-				//## Handle setting of PredefinedType for which no match was found
-				//TODO: Handle setting of PredefinedType for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
 				
 			}
 		}

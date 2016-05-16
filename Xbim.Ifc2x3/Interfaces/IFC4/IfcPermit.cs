@@ -16,20 +16,17 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	public partial class @IfcPermit : IIfcPermit
 	{
+		private  Ifc4.Interfaces.IfcPermitTypeEnum? _predefinedType;
+
 		Ifc4.Interfaces.IfcPermitTypeEnum? IIfcPermit.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-			    return null;
-			    //##
+				return _predefinedType;
 			} 
 			set
 			{
-				//## Handle setting of PredefinedType for which no match was found
-				//TODO: Handle setting of PredefinedType for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
 				
 			}
 		}
@@ -50,20 +47,17 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 				
 			}
 		}
+		private  Ifc4.MeasureResource.IfcText? _longDescription;
+
 		Ifc4.MeasureResource.IfcText? IIfcPermit.LongDescription 
 		{ 
 			get
 			{
-				//## Handle return of LongDescription for which no match was found
-                return null;
-				//##
+				return _longDescription;
 			} 
 			set
 			{
-				//## Handle setting of LongDescription for which no match was found
-				//TODO: Handle setting of LongDescription for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _longDescription = v, _longDescription, value, "LongDescription", byte.MaxValue);
 				
 			}
 		}

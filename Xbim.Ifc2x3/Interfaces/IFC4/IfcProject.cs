@@ -20,18 +20,17 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				//## Handle return of ObjectType for which no match was found
-			    return ObjectType.HasValue
-			        ? new Ifc4.MeasureResource.IfcLabel(ObjectType.Value)
-			        : null;
-			    //##
+				if (!ObjectType.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(ObjectType.Value);
 			} 
 			set
 			{
-				//## Handle setting of ObjectType for which no match was found
-				//TODO: Handle setting of ObjectType for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				if (!value.HasValue)
+				{
+					ObjectType =  null ;
+					return;
+				}
+				ObjectType = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -39,16 +38,17 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				//## Handle return of LongName for which no match was found
-			    return null;
-			    //##
+				if (!LongName.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(LongName.Value);
 			} 
 			set
 			{
-				//## Handle setting of LongName for which no match was found
-				//TODO: Handle setting of LongName for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				if (!value.HasValue)
+				{
+					LongName =  null ;
+					return;
+				}
+				LongName = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -56,18 +56,17 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				//## Handle return of Phase for which no match was found
-			    return Phase.HasValue
-			        ? new Ifc4.MeasureResource.IfcLabel(Phase.Value)
-			        : null;
-			    //##
+				if (!Phase.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Phase.Value);
 			} 
 			set
 			{
-				//## Handle setting of Phase for which no match was found
-				//TODO: Handle setting of Phase for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				if (!value.HasValue)
+				{
+					Phase =  null ;
+					return;
+				}
+				Phase = new MeasureResource.IfcLabel(value.Value);
 				
 			}
 		}
@@ -75,25 +74,21 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				//## Handle return of RepresentationContexts for which no match was found
-			    return RepresentationContexts;
-			    //##
+				foreach (var member in RepresentationContexts)
+				{
+					yield return member as IIfcRepresentationContext;
+				}
 			} 
 		}
 		IIfcUnitAssignment IIfcContext.UnitsInContext 
 		{ 
 			get
 			{
-				//## Handle return of UnitsInContext for which no match was found
-			    return UnitsInContext;
-			    //##
+				return UnitsInContext;
 			} 
 			set
 			{
-				//## Handle setting of UnitsInContext for which no match was found
-				//TODO: Handle setting of UnitsInContext for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				UnitsInContext = value as MeasureResource.IfcUnitAssignment;
 				
 			}
 		}

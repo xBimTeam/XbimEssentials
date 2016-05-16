@@ -100,9 +100,8 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			set
 			{
 				//## Handle setting of Status for which no match was found
-				//TODO: Handle setting of Status for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    ApprovalStatus = value.HasValue ? new MeasureResource.IfcLabel(value) : null;
+			    //##
 				
 			}
 		}
