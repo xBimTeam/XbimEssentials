@@ -23,7 +23,8 @@ using Xbim.IO.Xml.BsConf;
 
 namespace Xbim.Ifc
 {
-    public class IfcStore : IModel, IDisposable, IFederatedModel
+    public class IfcStore : IModel, IDisposable, IFederatedModel, IEquatable<IModel>
+
     {
         private readonly IModel _model;
         private readonly IfcSchemaVersion _schema;
@@ -1670,6 +1671,26 @@ namespace Xbim.Ifc
             }
         }
         #endregion
+
+        #region Equality
+
+        public bool Equals(IModel other)
+        {
+            return ReferenceEquals(this, other) || ReferenceEquals(other, _model);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return _model.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return _model.GetHashCode();
+        }
+
+        #endregion
+
     }
 
 }
