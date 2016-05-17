@@ -818,7 +818,6 @@ namespace Xbim.IO.Esent
 
         public bool SaveAs(string outputFileName, IfcStorageType? storageType = null, ReportProgressDelegate progress = null, IDictionary<int, int> map = null)
         {
-
             try
             {
                 if (!storageType.HasValue)
@@ -828,7 +827,7 @@ namespace Xbim.IO.Esent
                     var ext = Path.GetExtension(outputFileName);
                     if(string.IsNullOrWhiteSpace(ext))
                         throw new XbimException("Invalid file type, no extension specified in file " + outputFileName);
-                    throw new XbimException("Invalid file type ." + ext.ToUpper() + " in file " + outputFileName);
+                    throw new XbimException("Invalid file extension " + ext.ToUpper() + " in file " + outputFileName);
                 }
                 if (storageType.Value == IfcStorageType.Xbim && DatabaseName != null) //make a copy
                 {
@@ -839,7 +838,6 @@ namespace Xbim.IO.Esent
                     var accessMode = InstanceCache.AccessMode;
                     try
                     {
-                       
                         _deleteOnClose = false; //regardless we need to keep it to copy it
                         Close(); 
                         File.Copy(srcFile, outputFileName);

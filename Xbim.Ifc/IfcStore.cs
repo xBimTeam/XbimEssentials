@@ -764,7 +764,7 @@ namespace Xbim.Ifc
                 {
                     extension = ".xbim";
                     actualFormat = IfcStorageType.Xbim;
-                }  
+                }
             }
             else
             {
@@ -777,9 +777,16 @@ namespace Xbim.Ifc
                     actualFormat = IfcStorageType.IfcXml;
                 else if (extension == ".xbim")
                     actualFormat = IfcStorageType.Xbim;
-                else
+                else if (extension == ".ifc")
                 {
                     extension = ".ifc";
+                    actualFormat = IfcStorageType.Ifc; //the default
+                }
+                else 
+                {
+                    // we don't want to loose the original extension required by the user, but we need to add .ifc 
+                    // and set IfcStorageType.Ifc as default
+                    extension = extension + ".ifc";
                     actualFormat = IfcStorageType.Ifc; //the default
                 }
             }

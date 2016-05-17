@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -25,6 +26,19 @@ namespace Xbim.MemoryModel.Tests
                 Assert.IsTrue(count > 0, "Should have more than zero instances");
                 store.Close();
             }
+        }
+
+        [TestMethod]
+        [DeploymentItem("TestFiles")]
+        public void DefaultsToIfcFormatOnUnrecognisedExtension()
+        {
+            const string fname = "4walls1floorSite.Cobie";
+            using (var store = IfcStore.Open("4walls1floorSite.ifc"))
+            {
+                store.SaveAs(fname);
+                store.Close();
+            }
+            Debug.Assert(File.Exists(fname + ".ifc"));
         }
 
         [TestMethod]
