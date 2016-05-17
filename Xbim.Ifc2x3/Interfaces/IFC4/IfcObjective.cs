@@ -92,12 +92,9 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					UserDefinedQualifier =  null ;
-					return;
-				}
-				UserDefinedQualifier = new MeasureResource.IfcLabel(value.Value);
+				UserDefinedQualifier = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}

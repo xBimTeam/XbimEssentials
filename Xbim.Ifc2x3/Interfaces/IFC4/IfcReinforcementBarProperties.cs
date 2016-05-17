@@ -72,12 +72,9 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					EffectiveDepth =  null ;
-					return;
-				}
-				EffectiveDepth = new MeasureResource.IfcLengthMeasure(value.Value);
+				EffectiveDepth = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
 				
 			}
 		}
@@ -90,12 +87,9 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					NominalBarDiameter =  null ;
-					return;
-				}
-				NominalBarDiameter = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				NominalBarDiameter = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
@@ -108,12 +102,9 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					BarCount =  null ;
-					return;
-				}
-				BarCount = new MeasureResource.IfcCountMeasure(value.Value);
+				BarCount = value.HasValue ? 
+					new MeasureResource.IfcCountMeasure(value.Value) :  
+					 new MeasureResource.IfcCountMeasure?() ;
 				
 			}
 		}

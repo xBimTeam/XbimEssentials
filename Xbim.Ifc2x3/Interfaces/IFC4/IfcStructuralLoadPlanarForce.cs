@@ -25,12 +25,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					PlanarForceX =  null ;
-					return;
-				}
-				PlanarForceX = new MeasureResource.IfcPlanarForceMeasure(value.Value);
+				PlanarForceX = value.HasValue ? 
+					new MeasureResource.IfcPlanarForceMeasure(value.Value) :  
+					 new MeasureResource.IfcPlanarForceMeasure?() ;
 				
 			}
 		}
@@ -43,12 +40,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					PlanarForceY =  null ;
-					return;
-				}
-				PlanarForceY = new MeasureResource.IfcPlanarForceMeasure(value.Value);
+				PlanarForceY = value.HasValue ? 
+					new MeasureResource.IfcPlanarForceMeasure(value.Value) :  
+					 new MeasureResource.IfcPlanarForceMeasure?() ;
 				
 			}
 		}
@@ -61,12 +55,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					PlanarForceZ =  null ;
-					return;
-				}
-				PlanarForceZ = new MeasureResource.IfcPlanarForceMeasure(value.Value);
+				PlanarForceZ = value.HasValue ? 
+					new MeasureResource.IfcPlanarForceMeasure(value.Value) :  
+					 new MeasureResource.IfcPlanarForceMeasure?() ;
 				
 			}
 		}

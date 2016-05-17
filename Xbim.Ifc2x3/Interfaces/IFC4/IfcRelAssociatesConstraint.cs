@@ -24,12 +24,9 @@ namespace Xbim.Ifc2x3.ControlExtension
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Intent =  default(MeasureResource.IfcLabel) ;
-					return;
-				}
-				Intent = new MeasureResource.IfcLabel(value.Value);
+				Intent = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 default(MeasureResource.IfcLabel) ;
 				
 			}
 		}

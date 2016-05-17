@@ -49,12 +49,9 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					InnerRadius =  null ;
-					return;
-				}
-				InnerRadius = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				InnerRadius = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
@@ -66,12 +63,9 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					StartParam =  default(MeasureResource.IfcParameterValue) ;
-					return;
-				}
-				StartParam = new MeasureResource.IfcParameterValue(value.Value);
+				StartParam = value.HasValue ? 
+					new MeasureResource.IfcParameterValue(value.Value) :  
+					 default(MeasureResource.IfcParameterValue) ;
 				
 			}
 		}
@@ -83,12 +77,9 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					EndParam =  default(MeasureResource.IfcParameterValue) ;
-					return;
-				}
-				EndParam = new MeasureResource.IfcParameterValue(value.Value);
+				EndParam = value.HasValue ? 
+					new MeasureResource.IfcParameterValue(value.Value) :  
+					 default(MeasureResource.IfcParameterValue) ;
 				
 			}
 		}

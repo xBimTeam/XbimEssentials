@@ -24,12 +24,9 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Identifier =  default(MeasureResource.IfcIdentifier) ;
-					return;
-				}
-				Identifier = new MeasureResource.IfcIdentifier(value.Value);
+				Identifier = value.HasValue ? 
+					new MeasureResource.IfcIdentifier(value.Value) :  
+					 default(MeasureResource.IfcIdentifier) ;
 				
 			}
 		}
@@ -41,12 +38,9 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Name =  default(MeasureResource.IfcLabel) ;
-					return;
-				}
-				Name = new MeasureResource.IfcLabel(value.Value);
+				Name = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 default(MeasureResource.IfcLabel) ;
 				
 			}
 		}
@@ -59,12 +53,9 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Description =  null ;
-					return;
-				}
-				Description = new MeasureResource.IfcText(value.Value);
+				Description = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
 				
 			}
 		}
@@ -91,17 +82,14 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get
 			{
-				//## Handle return of Status for which no match was found
-			    return ApprovalStatus.HasValue
-			        ? new Ifc4.MeasureResource.IfcLabel(ApprovalStatus)
-			        : null;
-			    //##
+				if (!ApprovalStatus.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(ApprovalStatus.Value);
 			} 
 			set
 			{
-				//## Handle setting of Status for which no match was found
-			    ApprovalStatus = value.HasValue ? new MeasureResource.IfcLabel(value) : null;
-			    //##
+				ApprovalStatus = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}
@@ -109,18 +97,14 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get
 			{
-				//## Handle return of Level for which no match was found
-                return ApprovalLevel.HasValue
-                    ? new Ifc4.MeasureResource.IfcLabel(ApprovalLevel)
-                    : null;
-				//##
+				if (!ApprovalLevel.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(ApprovalLevel.Value);
 			} 
 			set
 			{
-				//## Handle setting of Level for which no match was found
-				//TODO: Handle setting of Level for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				ApprovalLevel = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}
@@ -128,18 +112,14 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get
 			{
-				//## Handle return of Qualifier for which no match was found
-                return ApprovalQualifier.HasValue
-                    ? new Ifc4.MeasureResource.IfcText(ApprovalQualifier)
-                    : null;
-				//##
+				if (!ApprovalQualifier.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(ApprovalQualifier.Value);
 			} 
 			set
 			{
-				//## Handle setting of Qualifier for which no match was found
-				//TODO: Handle setting of Qualifier for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				ApprovalQualifier = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
 				
 			}
 		}

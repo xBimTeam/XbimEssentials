@@ -25,12 +25,9 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Name =  null ;
-					return;
-				}
-				Name = new MeasureResource.IfcLabel(value.Value);
+				Name = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}
@@ -43,12 +40,9 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Description =  null ;
-					return;
-				}
-				Description = new MeasureResource.IfcText(value.Value);
+				Description = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
 				
 			}
 		}
@@ -95,9 +89,19 @@ namespace Xbim.Ifc2x3.CostResource
 			set
 			{
 				//## Handle setting of ApplicableDate for which no match was found
-				//TODO: Handle setting of ApplicableDate for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    if (!value.HasValue)
+			    {
+			        ApplicableDate = null;
+			        return;
+			    }
+			    System.DateTime date = value.Value;
+			    ApplicableDate = Model.Instances.New<DateTimeResource.IfcCalendarDate>(d =>
+			    {
+			        d.YearComponent = date.Year;
+			        d.MonthComponent = date.Month;
+			        d.DayComponent = date.Day;
+			    });
+			    //##
 				
 			}
 		}
@@ -112,8 +116,18 @@ namespace Xbim.Ifc2x3.CostResource
 			set
 			{
 				//## Handle setting of FixedUntilDate for which no match was found
-				//TODO: Handle setting of FixedUntilDate for which no match was found
-				throw new System.NotImplementedException();
+                if (!value.HasValue)
+                {
+                    FixedUntilDate = null;
+                    return;
+                }
+                System.DateTime date = value.Value;
+                FixedUntilDate = Model.Instances.New<DateTimeResource.IfcCalendarDate>(d =>
+                {
+                    d.YearComponent = date.Year;
+                    d.MonthComponent = date.Month;
+                    d.DayComponent = date.Day;
+                });
 				//##
 				
 			}
@@ -172,9 +186,33 @@ namespace Xbim.Ifc2x3.CostResource
 			set
 			{
 				//## Handle setting of ArithmeticOperator for which no match was found
-				//TODO: Handle setting of ArithmeticOperator for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    if (!value.HasValue)
+			    {
+                    ValueOfComponents.ToList().ForEach(r => r.ComponentOfTotal = null);
+			        return;
+			    }
+			    var rel = ValueOfComponents.FirstOrDefault() ??
+			              Model.Instances.New<IfcAppliedValueRelationship>(r => r.ComponentOfTotal = this);
+			    switch (value)
+			    {
+			        case Ifc4.Interfaces.IfcArithmeticOperatorEnum.ADD:
+                        rel.ArithmeticOperator = IfcArithmeticOperatorEnum.ADD;
+			            break;
+			        case Ifc4.Interfaces.IfcArithmeticOperatorEnum.DIVIDE:
+                        rel.ArithmeticOperator = IfcArithmeticOperatorEnum.DIVIDE;
+			            break;
+			        case Ifc4.Interfaces.IfcArithmeticOperatorEnum.MULTIPLY:
+                        rel.ArithmeticOperator = IfcArithmeticOperatorEnum.MULTIPLY;
+			            break;
+			        case Ifc4.Interfaces.IfcArithmeticOperatorEnum.SUBTRACT:
+                        rel.ArithmeticOperator = IfcArithmeticOperatorEnum.SUBTRACT;
+			            break;
+			        case null:
+			            break;
+			        default:
+			            throw new System.ArgumentOutOfRangeException("value", value, null);
+			    }
+			    //##
 				
 			}
 		}
@@ -195,6 +233,6 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 		}
 	//## Custom code
-	//##
+	    //##
 	}
 }

@@ -37,12 +37,9 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Version =  null ;
-					return;
-				}
-				Version = new MeasureResource.IfcLabel(value.Value);
+				Version = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}

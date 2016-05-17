@@ -25,12 +25,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					SlippageX =  null ;
-					return;
-				}
-				SlippageX = new MeasureResource.IfcLengthMeasure(value.Value);
+				SlippageX = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
 				
 			}
 		}
@@ -43,12 +40,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					SlippageY =  null ;
-					return;
-				}
-				SlippageY = new MeasureResource.IfcLengthMeasure(value.Value);
+				SlippageY = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
 				
 			}
 		}
@@ -61,12 +55,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					SlippageZ =  null ;
-					return;
-				}
-				SlippageZ = new MeasureResource.IfcLengthMeasure(value.Value);
+				SlippageZ = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
 				
 			}
 		}

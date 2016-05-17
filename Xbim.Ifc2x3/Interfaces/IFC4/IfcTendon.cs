@@ -59,12 +59,9 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					NominalDiameter =  default(MeasureResource.IfcPositiveLengthMeasure) ;
-					return;
-				}
-				NominalDiameter = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				NominalDiameter = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 default(MeasureResource.IfcPositiveLengthMeasure) ;
 				
 			}
 		}
@@ -76,12 +73,9 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					CrossSectionArea =  default(MeasureResource.IfcAreaMeasure) ;
-					return;
-				}
-				CrossSectionArea = new MeasureResource.IfcAreaMeasure(value.Value);
+				CrossSectionArea = value.HasValue ? 
+					new MeasureResource.IfcAreaMeasure(value.Value) :  
+					 default(MeasureResource.IfcAreaMeasure) ;
 				
 			}
 		}
@@ -94,12 +88,9 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					TensionForce =  null ;
-					return;
-				}
-				TensionForce = new MeasureResource.IfcForceMeasure(value.Value);
+				TensionForce = value.HasValue ? 
+					new MeasureResource.IfcForceMeasure(value.Value) :  
+					 new MeasureResource.IfcForceMeasure?() ;
 				
 			}
 		}
@@ -112,12 +103,9 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					PreStress =  null ;
-					return;
-				}
-				PreStress = new MeasureResource.IfcPressureMeasure(value.Value);
+				PreStress = value.HasValue ? 
+					new MeasureResource.IfcPressureMeasure(value.Value) :  
+					 new MeasureResource.IfcPressureMeasure?() ;
 				
 			}
 		}
@@ -130,12 +118,9 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					FrictionCoefficient =  null ;
-					return;
-				}
-				FrictionCoefficient = new MeasureResource.IfcNormalisedRatioMeasure(value.Value);
+				FrictionCoefficient = value.HasValue ? 
+					new MeasureResource.IfcNormalisedRatioMeasure(value.Value) :  
+					 new MeasureResource.IfcNormalisedRatioMeasure?() ;
 				
 			}
 		}
@@ -148,12 +133,9 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					AnchorageSlip =  null ;
-					return;
-				}
-				AnchorageSlip = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				AnchorageSlip = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
@@ -166,12 +148,9 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					MinCurvatureRadius =  null ;
-					return;
-				}
-				MinCurvatureRadius = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				MinCurvatureRadius = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}

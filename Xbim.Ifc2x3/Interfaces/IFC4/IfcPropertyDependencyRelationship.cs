@@ -49,12 +49,9 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Expression =  null ;
-					return;
-				}
-				Expression = new MeasureResource.IfcText(value.Value);
+				Expression = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
 				
 			}
 		}
@@ -67,12 +64,9 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Name =  null ;
-					return;
-				}
-				Name = new MeasureResource.IfcLabel(value.Value);
+				Name = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}
@@ -85,12 +79,9 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Description =  null ;
-					return;
-				}
-				Description = new MeasureResource.IfcText(value.Value);
+				Description = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
 				
 			}
 		}

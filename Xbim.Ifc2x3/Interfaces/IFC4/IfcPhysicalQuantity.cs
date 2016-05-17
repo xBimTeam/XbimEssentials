@@ -37,12 +37,9 @@ namespace Xbim.Ifc2x3.QuantityResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Description =  null ;
-					return;
-				}
-				Description = new MeasureResource.IfcText(value.Value);
+				Description = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
 				
 			}
 		}

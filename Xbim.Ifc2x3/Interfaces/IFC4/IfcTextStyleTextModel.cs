@@ -50,12 +50,9 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					TextAlign =  null ;
-					return;
-				}
-				TextAlign = new IfcTextAlignment(value.Value);
+				TextAlign = value.HasValue ? 
+					new IfcTextAlignment(value.Value) :  
+					 new IfcTextAlignment?() ;
 				
 			}
 		}
@@ -68,12 +65,9 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					TextDecoration =  null ;
-					return;
-				}
-				TextDecoration = new IfcTextDecoration(value.Value);
+				TextDecoration = value.HasValue ? 
+					new IfcTextDecoration(value.Value) :  
+					 new IfcTextDecoration?() ;
 				
 			}
 		}
@@ -136,12 +130,9 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					TextTransform =  null ;
-					return;
-				}
-				TextTransform = new IfcTextTransformation(value.Value);
+				TextTransform = value.HasValue ? 
+					new IfcTextTransformation(value.Value) :  
+					 new IfcTextTransformation?() ;
 				
 			}
 		}

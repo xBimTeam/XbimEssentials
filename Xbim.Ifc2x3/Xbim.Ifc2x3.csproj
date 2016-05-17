@@ -145,7 +145,6 @@
     <Compile Include="MeasureResource\IfcUnitExtensions.cs" />
     <Compile Include="MeasureResource\XbimDimensionalExponents.cs" />
     <Compile Include="Interfaces\Conversions\DateAndTimeExtensions.cs" />
-    <Compile Include="Interfaces\Conversions\IfcDirectionTransient.cs" />
     <Compile Include="Interfaces\Conversions\IfcFaceBoundTransient.cs" />
     <Compile Include="Interfaces\Conversions\IfcFaceTransient.cs" />
     <Compile Include="Interfaces\Conversions\IfcLagTimeTransient.cs" />

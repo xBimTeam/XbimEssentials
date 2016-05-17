@@ -37,12 +37,9 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Width =  null ;
-					return;
-				}
-				Width = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				Width = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
@@ -67,12 +64,9 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					FilletRadius =  null ;
-					return;
-				}
-				FilletRadius = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				FilletRadius = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
@@ -85,12 +79,9 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					EdgeRadius =  null ;
-					return;
-				}
-				EdgeRadius = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				EdgeRadius = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
@@ -103,12 +94,9 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					LegSlope =  null ;
-					return;
-				}
-				LegSlope = new MeasureResource.IfcPlaneAngleMeasure(value.Value);
+				LegSlope = value.HasValue ? 
+					new MeasureResource.IfcPlaneAngleMeasure(value.Value) :  
+					 new MeasureResource.IfcPlaneAngleMeasure?() ;
 				
 			}
 		}

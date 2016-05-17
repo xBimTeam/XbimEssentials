@@ -25,12 +25,9 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Location =  null ;
-					return;
-				}
-				Location = new MeasureResource.IfcLabel(value.Value);
+				Location = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}
@@ -43,12 +40,9 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					ItemReference =  null ;
-					return;
-				}
-				ItemReference = new MeasureResource.IfcIdentifier(value.Value);
+				ItemReference = value.HasValue ? 
+					new MeasureResource.IfcIdentifier(value.Value) :  
+					 new MeasureResource.IfcIdentifier?() ;
 				
 			}
 		}
@@ -61,12 +55,9 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Name =  null ;
-					return;
-				}
-				Name = new MeasureResource.IfcLabel(value.Value);
+				Name = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}

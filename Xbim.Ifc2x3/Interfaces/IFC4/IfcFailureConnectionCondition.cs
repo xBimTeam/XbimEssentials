@@ -25,12 +25,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					TensionFailureX =  null ;
-					return;
-				}
-				TensionFailureX = new MeasureResource.IfcForceMeasure(value.Value);
+				TensionFailureX = value.HasValue ? 
+					new MeasureResource.IfcForceMeasure(value.Value) :  
+					 new MeasureResource.IfcForceMeasure?() ;
 				
 			}
 		}
@@ -43,12 +40,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					TensionFailureY =  null ;
-					return;
-				}
-				TensionFailureY = new MeasureResource.IfcForceMeasure(value.Value);
+				TensionFailureY = value.HasValue ? 
+					new MeasureResource.IfcForceMeasure(value.Value) :  
+					 new MeasureResource.IfcForceMeasure?() ;
 				
 			}
 		}
@@ -61,12 +55,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					TensionFailureZ =  null ;
-					return;
-				}
-				TensionFailureZ = new MeasureResource.IfcForceMeasure(value.Value);
+				TensionFailureZ = value.HasValue ? 
+					new MeasureResource.IfcForceMeasure(value.Value) :  
+					 new MeasureResource.IfcForceMeasure?() ;
 				
 			}
 		}
@@ -79,12 +70,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					CompressionFailureX =  null ;
-					return;
-				}
-				CompressionFailureX = new MeasureResource.IfcForceMeasure(value.Value);
+				CompressionFailureX = value.HasValue ? 
+					new MeasureResource.IfcForceMeasure(value.Value) :  
+					 new MeasureResource.IfcForceMeasure?() ;
 				
 			}
 		}
@@ -97,12 +85,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					CompressionFailureY =  null ;
-					return;
-				}
-				CompressionFailureY = new MeasureResource.IfcForceMeasure(value.Value);
+				CompressionFailureY = value.HasValue ? 
+					new MeasureResource.IfcForceMeasure(value.Value) :  
+					 new MeasureResource.IfcForceMeasure?() ;
 				
 			}
 		}
@@ -115,12 +100,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					CompressionFailureZ =  null ;
-					return;
-				}
-				CompressionFailureZ = new MeasureResource.IfcForceMeasure(value.Value);
+				CompressionFailureZ = value.HasValue ? 
+					new MeasureResource.IfcForceMeasure(value.Value) :  
+					 new MeasureResource.IfcForceMeasure?() ;
 				
 			}
 		}

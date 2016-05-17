@@ -25,12 +25,9 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					InternalLocation =  null ;
-					return;
-				}
-				InternalLocation = new MeasureResource.IfcLabel(value.Value);
+				InternalLocation = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}
@@ -53,12 +50,9 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					PostalBox =  null ;
-					return;
-				}
-				PostalBox = new MeasureResource.IfcLabel(value.Value);
+				PostalBox = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}
@@ -71,12 +65,9 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Town =  null ;
-					return;
-				}
-				Town = new MeasureResource.IfcLabel(value.Value);
+				Town = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}
@@ -89,12 +80,9 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Region =  null ;
-					return;
-				}
-				Region = new MeasureResource.IfcLabel(value.Value);
+				Region = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}
@@ -107,12 +95,9 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					PostalCode =  null ;
-					return;
-				}
-				PostalCode = new MeasureResource.IfcLabel(value.Value);
+				PostalCode = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}
@@ -125,12 +110,9 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Country =  null ;
-					return;
-				}
-				Country = new MeasureResource.IfcLabel(value.Value);
+				Country = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}

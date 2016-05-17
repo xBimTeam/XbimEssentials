@@ -24,12 +24,9 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					AssetID =  default(MeasureResource.IfcIdentifier) ;
-					return;
-				}
-				AssetID = new MeasureResource.IfcIdentifier(value.Value);
+				AssetID = value.HasValue ? 
+					new MeasureResource.IfcIdentifier(value.Value) :  
+					 default(MeasureResource.IfcIdentifier) ;
 				
 			}
 		}

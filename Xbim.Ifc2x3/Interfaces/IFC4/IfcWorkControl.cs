@@ -7,9 +7,11 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using System;
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProcessExtension
@@ -23,14 +25,28 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				//## Handle return of CreationDate for which no match was found               
                 return new Xbim.Ifc4.DateTimeResource.IfcDateTime(CreationDate.ToISODateTimeString());
 				//##
-			} 
+			}
 			set
 			{
 				//## Handle setting of CreationDate for which no match was found
-				//TODO: Handle setting of CreationDate for which no match was found
-				throw new System.NotImplementedException();
-				//##
-				
+			    System.DateTime d = value;
+			    CreationDate = Model.Instances.New<DateTimeResource.IfcDateAndTime>(dt =>
+			    {
+			        dt.DateComponent = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+			        {
+			            date.YearComponent = d.Year;
+			            date.MonthComponent = d.Month;
+			            date.DayComponent = d.Day;
+			        });
+			        dt.TimeComponent = Model.Instances.New<DateTimeResource.IfcLocalTime>(t =>
+			        {
+			            t.HourComponent = d.Hour;
+			            t.MinuteComponent = d.Minute;
+			            t.SecondComponent = d.Second;
+			        });
+			    });
+			    //##
+
 			}
 		}
 		IEnumerable<IIfcPerson> IIfcWorkControl.Creators 
@@ -52,12 +68,9 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Purpose =  null ;
-					return;
-				}
-				Purpose = new MeasureResource.IfcLabel(value.Value);
+				Purpose = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}
@@ -73,10 +86,16 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			set
 			{
 				//## Handle setting of Duration for which no match was found
-				//TODO: Handle setting of Duration for which no match was found
-				throw new System.NotImplementedException();
-				//##
-				
+			    if (!value.HasValue)
+			    {
+			        Duration = null;
+			        return;
+			    }
+                //PnYnMnDTnHnMnS
+                //TODO: Handle setting of Duration for which no match was found
+                throw new System.NotImplementedException();
+			    //##
+
 			}
 		}
 		Ifc4.DateTimeResource.IfcDuration? IIfcWorkControl.TotalFloat 
@@ -108,8 +127,22 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			set
 			{
 				//## Handle setting of StartTime for which no match was found
-				//TODO: Handle setting of StartTime for which no match was found
-				throw new System.NotImplementedException();
+                System.DateTime d = value;
+                StartTime = Model.Instances.New<DateTimeResource.IfcDateAndTime>(dt =>
+                {
+                    dt.DateComponent = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+                    {
+                        date.YearComponent = d.Year;
+                        date.MonthComponent = d.Month;
+                        date.DayComponent = d.Day;
+                    });
+                    dt.TimeComponent = Model.Instances.New<DateTimeResource.IfcLocalTime>(t =>
+                    {
+                        t.HourComponent = d.Hour;
+                        t.MinuteComponent = d.Minute;
+                        t.SecondComponent = d.Second;
+                    });
+                });
 				//##
 				
 			}
@@ -125,8 +158,28 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			set
 			{
 				//## Handle setting of FinishTime for which no match was found
-				//TODO: Handle setting of FinishTime for which no match was found
-				throw new System.NotImplementedException();
+			    if (!value.HasValue)
+			    {
+			        FinishTime = null;
+			        return;
+			    }
+
+                System.DateTime d = value.Value;
+                FinishTime = Model.Instances.New<DateTimeResource.IfcDateAndTime>(dt =>
+                {
+                    dt.DateComponent = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+                    {
+                        date.YearComponent = d.Year;
+                        date.MonthComponent = d.Month;
+                        date.DayComponent = d.Day;
+                    });
+                    dt.TimeComponent = Model.Instances.New<DateTimeResource.IfcLocalTime>(t =>
+                    {
+                        t.HourComponent = d.Hour;
+                        t.MinuteComponent = d.Minute;
+                        t.SecondComponent = d.Second;
+                    });
+                });
 				//##
 				
 			}

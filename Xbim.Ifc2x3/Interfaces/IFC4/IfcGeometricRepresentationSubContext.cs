@@ -37,12 +37,9 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					TargetScale =  null ;
-					return;
-				}
-				TargetScale = new MeasureResource.IfcPositiveRatioMeasure(value.Value);
+				TargetScale = value.HasValue ? 
+					new MeasureResource.IfcPositiveRatioMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveRatioMeasure?() ;
 				
 			}
 		}
@@ -99,12 +96,9 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					UserDefinedTargetView =  null ;
-					return;
-				}
-				UserDefinedTargetView = new MeasureResource.IfcLabel(value.Value);
+				UserDefinedTargetView = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}

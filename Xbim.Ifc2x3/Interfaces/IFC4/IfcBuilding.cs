@@ -25,12 +25,9 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					ElevationOfRefHeight =  null ;
-					return;
-				}
-				ElevationOfRefHeight = new MeasureResource.IfcLengthMeasure(value.Value);
+				ElevationOfRefHeight = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
 				
 			}
 		}
@@ -43,12 +40,9 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					ElevationOfTerrain =  null ;
-					return;
-				}
-				ElevationOfTerrain = new MeasureResource.IfcLengthMeasure(value.Value);
+				ElevationOfTerrain = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
 				
 			}
 		}
@@ -73,12 +67,9 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					LongName =  null ;
-					return;
-				}
-				LongName = new MeasureResource.IfcLabel(value.Value);
+				LongName = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}

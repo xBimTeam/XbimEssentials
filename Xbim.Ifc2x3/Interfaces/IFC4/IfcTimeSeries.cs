@@ -37,12 +37,9 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Description =  null ;
-					return;
-				}
-				Description = new MeasureResource.IfcText(value.Value);
+				Description = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
 				
 			}
 		}
@@ -159,12 +156,9 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					UserDefinedDataOrigin =  null ;
-					return;
-				}
-				UserDefinedDataOrigin = new MeasureResource.IfcLabel(value.Value);
+				UserDefinedDataOrigin = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}

@@ -25,12 +25,9 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					NominalDiameter =  null ;
-					return;
-				}
-				NominalDiameter = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				NominalDiameter = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
@@ -43,12 +40,9 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					NominalLength =  null ;
-					return;
-				}
-				NominalLength = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				NominalLength = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}

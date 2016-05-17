@@ -63,12 +63,9 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Status =  null ;
-					return;
-				}
-				Status = new MeasureResource.IfcLabel(value.Value);
+				Status = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}
@@ -80,12 +77,9 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					ID =  default(MeasureResource.IfcIdentifier) ;
-					return;
-				}
-				ID = new MeasureResource.IfcIdentifier(value.Value);
+				ID = value.HasValue ? 
+					new MeasureResource.IfcIdentifier(value.Value) :  
+					 default(MeasureResource.IfcIdentifier) ;
 				
 			}
 		}

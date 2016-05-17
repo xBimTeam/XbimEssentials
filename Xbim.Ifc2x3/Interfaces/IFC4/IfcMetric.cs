@@ -60,12 +60,9 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					ValueSource =  null ;
-					return;
-				}
-				ValueSource = new MeasureResource.IfcLabel(value.Value);
+				ValueSource = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}

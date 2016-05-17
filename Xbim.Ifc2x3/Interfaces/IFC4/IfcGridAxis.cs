@@ -25,12 +25,9 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					AxisTag =  null ;
-					return;
-				}
-				AxisTag = new MeasureResource.IfcLabel(value.Value);
+				AxisTag = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}

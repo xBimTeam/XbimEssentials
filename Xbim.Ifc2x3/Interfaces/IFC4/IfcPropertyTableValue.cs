@@ -431,12 +431,9 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Expression =  null ;
-					return;
-				}
-				Expression = new MeasureResource.IfcText(value.Value);
+				Expression = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
 				
 			}
 		}

@@ -119,12 +119,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					FrameDepth =  null ;
-					return;
-				}
-				FrameDepth = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				FrameDepth = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
@@ -137,12 +134,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					FrameThickness =  null ;
-					return;
-				}
-				FrameThickness = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				FrameThickness = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}

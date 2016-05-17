@@ -120,12 +120,9 @@ namespace Xbim.Ifc2x3.UtilityResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					LastModifiedDate =  null ;
-					return;
-				}
-				LastModifiedDate = new MeasureResource.IfcTimeStamp(value.Value);
+				LastModifiedDate = value.HasValue ? 
+					new MeasureResource.IfcTimeStamp(value.Value) :  
+					 new MeasureResource.IfcTimeStamp?() ;
 				
 			}
 		}

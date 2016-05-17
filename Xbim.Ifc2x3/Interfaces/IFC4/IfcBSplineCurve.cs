@@ -27,10 +27,9 @@ namespace Xbim.Ifc2x3.GeometryResource
 			set
 			{
 				//## Handle setting of Degree for which no match was found
-				//TODO: Handle setting of Degree for which no match was found
-				throw new System.NotImplementedException();
-				//##
-				
+			    Degree = value;
+			    //##
+
 			}
 		}
 		IEnumerable<IIfcCartesianPoint> IIfcBSplineCurve.ControlPointsList 
@@ -89,10 +88,9 @@ namespace Xbim.Ifc2x3.GeometryResource
 			set
 			{
 				//## Handle setting of ClosedCurve for which no match was found
-				//TODO: Handle setting of ClosedCurve for which no match was found
-				throw new System.NotImplementedException();
-				//##
-				
+			    ClosedCurve = value;
+			    //##
+
 			}
 		}
 		Ifc4.MeasureResource.IfcLogical IIfcBSplineCurve.SelfIntersect 
@@ -106,10 +104,9 @@ namespace Xbim.Ifc2x3.GeometryResource
 			set
 			{
 				//## Handle setting of SelfIntersect for which no match was found
-				//TODO: Handle setting of SelfIntersect for which no match was found
-				throw new System.NotImplementedException();
-				//##
-				
+			    SelfIntersect = value;
+			    //##
+
 			}
 		}
 		Ifc4.MeasureResource.IfcInteger IIfcBSplineCurve.UpperIndexOnControlPoints 

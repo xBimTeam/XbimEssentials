@@ -47,12 +47,9 @@ namespace Xbim.Ifc2x3.QuantityResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Quality =  null ;
-					return;
-				}
-				Quality = new MeasureResource.IfcLabel(value.Value);
+				Quality = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}
@@ -65,12 +62,9 @@ namespace Xbim.Ifc2x3.QuantityResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Usage =  null ;
-					return;
-				}
-				Usage = new MeasureResource.IfcLabel(value.Value);
+				Usage = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}

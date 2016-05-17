@@ -28,17 +28,18 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				
 			}
 		}
-		private  Ifc4.MeasureResource.IfcIdentifier? _name;
-
 		Ifc4.MeasureResource.IfcIdentifier? IIfcExtendedProperties.Name 
 		{ 
 			get
 			{
-				return _name;
+				if (!ProfileName.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcIdentifier(ProfileName.Value);
 			} 
 			set
 			{
-				SetValue(v => _name = v, _name, value, "Name", byte.MaxValue);
+				ProfileName = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}

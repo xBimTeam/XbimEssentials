@@ -73,12 +73,9 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					FilletRadius =  null ;
-					return;
-				}
-				FilletRadius = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				FilletRadius = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
@@ -91,12 +88,9 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					FlangeEdgeRadius =  null ;
-					return;
-				}
-				FlangeEdgeRadius = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				FlangeEdgeRadius = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
@@ -109,12 +103,9 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					WebEdgeRadius =  null ;
-					return;
-				}
-				WebEdgeRadius = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				WebEdgeRadius = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
@@ -127,12 +118,9 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					WebSlope =  null ;
-					return;
-				}
-				WebSlope = new MeasureResource.IfcPlaneAngleMeasure(value.Value);
+				WebSlope = value.HasValue ? 
+					new MeasureResource.IfcPlaneAngleMeasure(value.Value) :  
+					 new MeasureResource.IfcPlaneAngleMeasure?() ;
 				
 			}
 		}
@@ -145,12 +133,9 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					FlangeSlope =  null ;
-					return;
-				}
-				FlangeSlope = new MeasureResource.IfcPlaneAngleMeasure(value.Value);
+				FlangeSlope = value.HasValue ? 
+					new MeasureResource.IfcPlaneAngleMeasure(value.Value) :  
+					 new MeasureResource.IfcPlaneAngleMeasure?() ;
 				
 			}
 		}

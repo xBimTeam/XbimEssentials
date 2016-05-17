@@ -37,12 +37,9 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					InnerFilletRadius =  null ;
-					return;
-				}
-				InnerFilletRadius = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				InnerFilletRadius = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
@@ -55,12 +52,9 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					OuterFilletRadius =  null ;
-					return;
-				}
-				OuterFilletRadius = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				OuterFilletRadius = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}

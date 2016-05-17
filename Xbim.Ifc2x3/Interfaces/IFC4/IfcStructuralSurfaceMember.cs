@@ -57,12 +57,9 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Thickness =  null ;
-					return;
-				}
-				Thickness = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				Thickness = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}

@@ -199,12 +199,9 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					UserDefinedType =  null ;
-					return;
-				}
-				UserDefinedType = new IfcLabel(value.Value);
+				UserDefinedType = value.HasValue ? 
+					new IfcLabel(value.Value) :  
+					 new IfcLabel?() ;
 				
 			}
 		}

@@ -49,12 +49,9 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					IsVentilated =  null ;
-					return;
-				}
-				IsVentilated = new MeasureResource.IfcLogical(value.Value);
+				IsVentilated = value.HasValue ? 
+					new MeasureResource.IfcLogical(value.Value) :  
+					 new MeasureResource.IfcLogical?() ;
 				
 			}
 		}

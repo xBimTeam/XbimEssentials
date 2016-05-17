@@ -25,12 +25,9 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					RefLatitude =  null ;
-					return;
-				}
-				RefLatitude = new MeasureResource.IfcCompoundPlaneAngleMeasure(value.Value);
+				RefLatitude = value.HasValue ? 
+					new MeasureResource.IfcCompoundPlaneAngleMeasure(value.Value) :  
+					 new MeasureResource.IfcCompoundPlaneAngleMeasure?() ;
 				
 			}
 		}
@@ -43,12 +40,9 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					RefLongitude =  null ;
-					return;
-				}
-				RefLongitude = new MeasureResource.IfcCompoundPlaneAngleMeasure(value.Value);
+				RefLongitude = value.HasValue ? 
+					new MeasureResource.IfcCompoundPlaneAngleMeasure(value.Value) :  
+					 new MeasureResource.IfcCompoundPlaneAngleMeasure?() ;
 				
 			}
 		}
@@ -61,12 +55,9 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					RefElevation =  null ;
-					return;
-				}
-				RefElevation = new MeasureResource.IfcLengthMeasure(value.Value);
+				RefElevation = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
 				
 			}
 		}
@@ -79,12 +70,9 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					LandTitleNumber =  null ;
-					return;
-				}
-				LandTitleNumber = new MeasureResource.IfcLabel(value.Value);
+				LandTitleNumber = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}
@@ -109,12 +97,9 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					LongName =  null ;
-					return;
-				}
-				LongName = new MeasureResource.IfcLabel(value.Value);
+				LongName = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}

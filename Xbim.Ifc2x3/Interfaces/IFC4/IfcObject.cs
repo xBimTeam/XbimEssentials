@@ -25,12 +25,9 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					ObjectType =  null ;
-					return;
-				}
-				ObjectType = new MeasureResource.IfcLabel(value.Value);
+				ObjectType = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}

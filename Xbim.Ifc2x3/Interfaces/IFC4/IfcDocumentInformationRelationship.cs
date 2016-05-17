@@ -47,12 +47,9 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					RelationshipType =  null ;
-					return;
-				}
-				RelationshipType = new MeasureResource.IfcLabel(value.Value);
+				RelationshipType = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}

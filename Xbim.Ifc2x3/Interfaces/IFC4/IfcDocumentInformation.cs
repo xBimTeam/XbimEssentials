@@ -53,12 +53,9 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Description =  null ;
-					return;
-				}
-				Description = new MeasureResource.IfcText(value.Value);
+				Description = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
 				
 			}
 		}
@@ -91,12 +88,9 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Purpose =  null ;
-					return;
-				}
-				Purpose = new MeasureResource.IfcText(value.Value);
+				Purpose = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
 				
 			}
 		}
@@ -109,12 +103,9 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					IntendedUse =  null ;
-					return;
-				}
-				IntendedUse = new MeasureResource.IfcText(value.Value);
+				IntendedUse = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
 				
 			}
 		}
@@ -127,12 +118,9 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Scope =  null ;
-					return;
-				}
-				Scope = new MeasureResource.IfcText(value.Value);
+				Scope = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
 				
 			}
 		}
@@ -145,12 +133,9 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Revision =  null ;
-					return;
-				}
-				Revision = new MeasureResource.IfcLabel(value.Value);
+				Revision = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}

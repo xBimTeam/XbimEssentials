@@ -25,12 +25,9 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Status =  null ;
-					return;
-				}
-				Status = new MeasureResource.IfcLabel(value.Value);
+				Status = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}
@@ -43,12 +40,9 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					WorkMethod =  null ;
-					return;
-				}
-				WorkMethod = new MeasureResource.IfcLabel(value.Value);
+				WorkMethod = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}

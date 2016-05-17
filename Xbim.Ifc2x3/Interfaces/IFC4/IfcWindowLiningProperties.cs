@@ -25,12 +25,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					LiningDepth =  null ;
-					return;
-				}
-				LiningDepth = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				LiningDepth = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
@@ -43,12 +40,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					LiningThickness =  null ;
-					return;
-				}
-				LiningThickness = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				LiningThickness = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
@@ -61,12 +55,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					TransomThickness =  null ;
-					return;
-				}
-				TransomThickness = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				TransomThickness = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
@@ -79,12 +70,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					MullionThickness =  null ;
-					return;
-				}
-				MullionThickness = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				MullionThickness = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
@@ -97,12 +85,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					FirstTransomOffset =  null ;
-					return;
-				}
-				FirstTransomOffset = new MeasureResource.IfcNormalisedRatioMeasure(value.Value);
+				FirstTransomOffset = value.HasValue ? 
+					new MeasureResource.IfcNormalisedRatioMeasure(value.Value) :  
+					 new MeasureResource.IfcNormalisedRatioMeasure?() ;
 				
 			}
 		}
@@ -115,12 +100,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					SecondTransomOffset =  null ;
-					return;
-				}
-				SecondTransomOffset = new MeasureResource.IfcNormalisedRatioMeasure(value.Value);
+				SecondTransomOffset = value.HasValue ? 
+					new MeasureResource.IfcNormalisedRatioMeasure(value.Value) :  
+					 new MeasureResource.IfcNormalisedRatioMeasure?() ;
 				
 			}
 		}
@@ -133,12 +115,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					FirstMullionOffset =  null ;
-					return;
-				}
-				FirstMullionOffset = new MeasureResource.IfcNormalisedRatioMeasure(value.Value);
+				FirstMullionOffset = value.HasValue ? 
+					new MeasureResource.IfcNormalisedRatioMeasure(value.Value) :  
+					 new MeasureResource.IfcNormalisedRatioMeasure?() ;
 				
 			}
 		}
@@ -151,12 +130,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					SecondMullionOffset =  null ;
-					return;
-				}
-				SecondMullionOffset = new MeasureResource.IfcNormalisedRatioMeasure(value.Value);
+				SecondMullionOffset = value.HasValue ? 
+					new MeasureResource.IfcNormalisedRatioMeasure(value.Value) :  
+					 new MeasureResource.IfcNormalisedRatioMeasure?() ;
 				
 			}
 		}

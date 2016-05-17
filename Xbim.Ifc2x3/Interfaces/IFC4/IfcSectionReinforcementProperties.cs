@@ -49,12 +49,9 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					TransversePosition =  null ;
-					return;
-				}
-				TransversePosition = new MeasureResource.IfcLengthMeasure(value.Value);
+				TransversePosition = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
 				
 			}
 		}

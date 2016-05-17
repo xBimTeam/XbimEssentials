@@ -25,12 +25,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					LiningDepth =  null ;
-					return;
-				}
-				LiningDepth = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				LiningDepth = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
@@ -43,12 +40,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					LiningThickness =  null ;
-					return;
-				}
-				LiningThickness = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				LiningThickness = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
@@ -61,12 +55,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					ThresholdDepth =  null ;
-					return;
-				}
-				ThresholdDepth = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				ThresholdDepth = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
@@ -79,12 +70,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					ThresholdThickness =  null ;
-					return;
-				}
-				ThresholdThickness = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				ThresholdThickness = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
@@ -97,12 +85,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					TransomThickness =  null ;
-					return;
-				}
-				TransomThickness = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				TransomThickness = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
@@ -115,12 +100,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					TransomOffset =  null ;
-					return;
-				}
-				TransomOffset = new MeasureResource.IfcLengthMeasure(value.Value);
+				TransomOffset = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
 				
 			}
 		}
@@ -133,12 +115,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					LiningOffset =  null ;
-					return;
-				}
-				LiningOffset = new MeasureResource.IfcLengthMeasure(value.Value);
+				LiningOffset = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
 				
 			}
 		}
@@ -151,12 +130,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					ThresholdOffset =  null ;
-					return;
-				}
-				ThresholdOffset = new MeasureResource.IfcLengthMeasure(value.Value);
+				ThresholdOffset = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
 				
 			}
 		}
@@ -169,12 +145,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					CasingThickness =  null ;
-					return;
-				}
-				CasingThickness = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				CasingThickness = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
@@ -187,12 +160,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					CasingDepth =  null ;
-					return;
-				}
-				CasingDepth = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				CasingDepth = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}

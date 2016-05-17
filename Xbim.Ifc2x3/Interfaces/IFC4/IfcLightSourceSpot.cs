@@ -37,12 +37,9 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					ConcentrationExponent =  null ;
-					return;
-				}
-				ConcentrationExponent = new MeasureResource.IfcReal(value.Value);
+				ConcentrationExponent = value.HasValue ? 
+					new MeasureResource.IfcReal(value.Value) :  
+					 new MeasureResource.IfcReal?() ;
 				
 			}
 		}

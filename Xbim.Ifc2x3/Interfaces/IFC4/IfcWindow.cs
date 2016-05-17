@@ -25,12 +25,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					OverallHeight =  null ;
-					return;
-				}
-				OverallHeight = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				OverallHeight = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
@@ -43,12 +40,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					OverallWidth =  null ;
-					return;
-				}
-				OverallWidth = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				OverallWidth = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}

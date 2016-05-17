@@ -35,12 +35,9 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					LayerSetName =  null ;
-					return;
-				}
-				LayerSetName = new MeasureResource.IfcLabel(value.Value);
+				LayerSetName = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}

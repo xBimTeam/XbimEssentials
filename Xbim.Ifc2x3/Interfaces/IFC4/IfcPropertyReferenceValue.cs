@@ -25,12 +25,9 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					UsageName =  null ;
-					return;
-				}
-				UsageName = new MeasureResource.IfcLabel(value.Value);
+				UsageName = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}

@@ -59,12 +59,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					RiserHeight =  null ;
-					return;
-				}
-				RiserHeight = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				RiserHeight = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
@@ -77,12 +74,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					TreadLength =  null ;
-					return;
-				}
-				TreadLength = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				TreadLength = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}

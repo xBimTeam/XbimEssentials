@@ -37,12 +37,9 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Description =  null ;
-					return;
-				}
-				Description = new MeasureResource.IfcText(value.Value);
+				Description = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
 				
 			}
 		}
@@ -87,12 +84,9 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					ConstraintSource =  null ;
-					return;
-				}
-				ConstraintSource = new MeasureResource.IfcLabel(value.Value);
+				ConstraintSource = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}
@@ -146,12 +140,9 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					UserDefinedGrade =  null ;
-					return;
-				}
-				UserDefinedGrade = new MeasureResource.IfcLabel(value.Value);
+				UserDefinedGrade = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}

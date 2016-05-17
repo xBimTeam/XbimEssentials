@@ -69,12 +69,9 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Status =  null ;
-					return;
-				}
-				Status = new MeasureResource.IfcLabel(value.Value);
+				Status = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}

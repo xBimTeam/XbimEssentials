@@ -48,12 +48,9 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					ProfileName =  null ;
-					return;
-				}
-				ProfileName = new MeasureResource.IfcLabel(value.Value);
+				ProfileName = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}

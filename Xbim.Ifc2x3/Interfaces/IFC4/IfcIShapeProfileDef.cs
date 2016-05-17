@@ -73,46 +73,37 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					FilletRadius =  null ;
-					return;
-				}
-				FilletRadius = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				FilletRadius = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
+		private  Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? _flangeEdgeRadius;
+
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcIShapeProfileDef.FlangeEdgeRadius 
 		{ 
 			get
 			{
-				//## Handle return of FlangeEdgeRadius for which no match was found
-			    return null;
-			    //##
+				return _flangeEdgeRadius;
 			} 
 			set
 			{
-				//## Handle setting of FlangeEdgeRadius for which no match was found
-				//TODO: Handle setting of FlangeEdgeRadius for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _flangeEdgeRadius = v, _flangeEdgeRadius, value, "FlangeEdgeRadius", byte.MaxValue);
 				
 			}
 		}
+		private  Ifc4.MeasureResource.IfcPlaneAngleMeasure? _flangeSlope;
+
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcIShapeProfileDef.FlangeSlope 
 		{ 
 			get
 			{
-				//## Handle return of FlangeSlope for which no match was found
-			    return null;
-			    //##
+				return _flangeSlope;
 			} 
 			set
 			{
-				//## Handle setting of FlangeSlope for which no match was found
-				//TODO: Handle setting of FlangeSlope for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _flangeSlope = v, _flangeSlope, value, "FlangeSlope", byte.MaxValue);
 				
 			}
 		}

@@ -73,12 +73,9 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					SupportedLength =  null ;
-					return;
-				}
-				SupportedLength = new MeasureResource.IfcLengthMeasure(value.Value);
+				SupportedLength = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
 				
 			}
 		}

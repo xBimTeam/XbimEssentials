@@ -25,12 +25,9 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					MeshLength =  null ;
-					return;
-				}
-				MeshLength = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				MeshLength = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
@@ -43,12 +40,9 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					MeshWidth =  null ;
-					return;
-				}
-				MeshWidth = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				MeshWidth = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
@@ -60,12 +54,9 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					LongitudinalBarNominalDiameter =  default(MeasureResource.IfcPositiveLengthMeasure) ;
-					return;
-				}
-				LongitudinalBarNominalDiameter = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				LongitudinalBarNominalDiameter = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 default(MeasureResource.IfcPositiveLengthMeasure) ;
 				
 			}
 		}
@@ -77,12 +68,9 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					TransverseBarNominalDiameter =  default(MeasureResource.IfcPositiveLengthMeasure) ;
-					return;
-				}
-				TransverseBarNominalDiameter = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				TransverseBarNominalDiameter = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 default(MeasureResource.IfcPositiveLengthMeasure) ;
 				
 			}
 		}
@@ -94,12 +82,9 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					LongitudinalBarCrossSectionArea =  default(MeasureResource.IfcAreaMeasure) ;
-					return;
-				}
-				LongitudinalBarCrossSectionArea = new MeasureResource.IfcAreaMeasure(value.Value);
+				LongitudinalBarCrossSectionArea = value.HasValue ? 
+					new MeasureResource.IfcAreaMeasure(value.Value) :  
+					 default(MeasureResource.IfcAreaMeasure) ;
 				
 			}
 		}
@@ -111,12 +96,9 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					TransverseBarCrossSectionArea =  default(MeasureResource.IfcAreaMeasure) ;
-					return;
-				}
-				TransverseBarCrossSectionArea = new MeasureResource.IfcAreaMeasure(value.Value);
+				TransverseBarCrossSectionArea = value.HasValue ? 
+					new MeasureResource.IfcAreaMeasure(value.Value) :  
+					 default(MeasureResource.IfcAreaMeasure) ;
 				
 			}
 		}
@@ -128,12 +110,9 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					LongitudinalBarSpacing =  default(MeasureResource.IfcPositiveLengthMeasure) ;
-					return;
-				}
-				LongitudinalBarSpacing = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				LongitudinalBarSpacing = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 default(MeasureResource.IfcPositiveLengthMeasure) ;
 				
 			}
 		}
@@ -145,12 +124,9 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					TransverseBarSpacing =  default(MeasureResource.IfcPositiveLengthMeasure) ;
-					return;
-				}
-				TransverseBarSpacing = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				TransverseBarSpacing = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 default(MeasureResource.IfcPositiveLengthMeasure) ;
 				
 			}
 		}

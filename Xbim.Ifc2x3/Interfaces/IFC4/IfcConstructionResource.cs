@@ -16,20 +16,17 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	public partial class @IfcConstructionResource : IIfcConstructionResource
 	{
+		private  IIfcResourceTime _usage;
+
 		IIfcResourceTime IIfcConstructionResource.Usage 
 		{ 
 			get
 			{
-				//## Handle return of Usage for which no match was found
-			    return null;
-			    //##
+				return _usage;
 			} 
 			set
 			{
-				//## Handle setting of Usage for which no match was found
-				//TODO: Handle setting of Usage for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _usage = v, _usage, value, "Usage", byte.MaxValue);
 				
 			}
 		}
@@ -53,8 +50,40 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			set
 			{
 				//## Handle setting of BaseQuantity for which no match was found
-				//TODO: Handle setting of BaseQuantity for which no match was found
-				throw new System.NotImplementedException();
+			    var val = value as QuantityResource.IfcPhysicalSimpleQuantity;
+			    if (val == null)
+			    {
+			        BaseQuantity = null;
+			        return;
+			    }
+			    BaseQuantity = Model.Instances.New<MeasureResource.IfcMeasureWithUnit>(m =>
+			    {
+			        m.UnitComponent = val.Unit;
+
+			        var l = val as QuantityResource.IfcQuantityLength;
+			        if (l != null)
+			            m.ValueComponent = l.LengthValue;
+
+			        var a = val as QuantityResource.IfcQuantityArea;
+                    if (a != null)
+                        m.ValueComponent = a.AreaValue;
+
+                    var v = val as QuantityResource.IfcQuantityVolume;
+                    if (v != null)
+                        m.ValueComponent = v.VolumeValue;
+
+                    var c = val as QuantityResource.IfcQuantityCount;
+                    if (c != null)
+                        m.ValueComponent = c.CountValue;
+
+                    var w = val as QuantityResource.IfcQuantityWeight;
+                    if (w != null)
+                        m.ValueComponent = w.WeightValue;
+
+                    var t = val as QuantityResource.IfcQuantityTime;
+                    if (t != null)
+                        m.ValueComponent = t.TimeValue;
+			    });
 				//##
 				
 			}

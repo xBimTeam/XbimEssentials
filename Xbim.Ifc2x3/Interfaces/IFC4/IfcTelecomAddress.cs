@@ -45,12 +45,9 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					PagerNumber =  null ;
-					return;
-				}
-				PagerNumber = new MeasureResource.IfcLabel(value.Value);
+				PagerNumber = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}
@@ -73,12 +70,9 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					WWWHomePageURL =  null ;
-					return;
-				}
-				WWWHomePageURL = new MeasureResource.IfcLabel(value.Value);
+				WWWHomePageURL = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}

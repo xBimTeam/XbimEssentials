@@ -25,12 +25,9 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					EccentricityInX =  null ;
-					return;
-				}
-				EccentricityInX = new MeasureResource.IfcLengthMeasure(value.Value);
+				EccentricityInX = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
 				
 			}
 		}
@@ -43,12 +40,9 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					EccentricityInY =  null ;
-					return;
-				}
-				EccentricityInY = new MeasureResource.IfcLengthMeasure(value.Value);
+				EccentricityInY = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
 				
 			}
 		}
@@ -61,12 +55,9 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					EccentricityInZ =  null ;
-					return;
-				}
-				EccentricityInZ = new MeasureResource.IfcLengthMeasure(value.Value);
+				EccentricityInZ = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
 				
 			}
 		}

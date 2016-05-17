@@ -46,12 +46,9 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Name =  default(MeasureResource.IfcLabel) ;
-					return;
-				}
-				Name = new MeasureResource.IfcLabel(value.Value);
+				Name = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 default(MeasureResource.IfcLabel) ;
 				
 			}
 		}
@@ -64,12 +61,9 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Description =  null ;
-					return;
-				}
-				Description = new MeasureResource.IfcText(value.Value);
+				Description = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
 				
 			}
 		}

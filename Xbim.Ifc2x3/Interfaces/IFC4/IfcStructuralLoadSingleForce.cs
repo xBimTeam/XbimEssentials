@@ -25,12 +25,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					ForceX =  null ;
-					return;
-				}
-				ForceX = new MeasureResource.IfcForceMeasure(value.Value);
+				ForceX = value.HasValue ? 
+					new MeasureResource.IfcForceMeasure(value.Value) :  
+					 new MeasureResource.IfcForceMeasure?() ;
 				
 			}
 		}
@@ -43,12 +40,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					ForceY =  null ;
-					return;
-				}
-				ForceY = new MeasureResource.IfcForceMeasure(value.Value);
+				ForceY = value.HasValue ? 
+					new MeasureResource.IfcForceMeasure(value.Value) :  
+					 new MeasureResource.IfcForceMeasure?() ;
 				
 			}
 		}
@@ -61,12 +55,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					ForceZ =  null ;
-					return;
-				}
-				ForceZ = new MeasureResource.IfcForceMeasure(value.Value);
+				ForceZ = value.HasValue ? 
+					new MeasureResource.IfcForceMeasure(value.Value) :  
+					 new MeasureResource.IfcForceMeasure?() ;
 				
 			}
 		}
@@ -79,12 +70,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					MomentX =  null ;
-					return;
-				}
-				MomentX = new MeasureResource.IfcTorqueMeasure(value.Value);
+				MomentX = value.HasValue ? 
+					new MeasureResource.IfcTorqueMeasure(value.Value) :  
+					 new MeasureResource.IfcTorqueMeasure?() ;
 				
 			}
 		}
@@ -97,12 +85,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					MomentY =  null ;
-					return;
-				}
-				MomentY = new MeasureResource.IfcTorqueMeasure(value.Value);
+				MomentY = value.HasValue ? 
+					new MeasureResource.IfcTorqueMeasure(value.Value) :  
+					 new MeasureResource.IfcTorqueMeasure?() ;
 				
 			}
 		}
@@ -115,12 +100,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					MomentZ =  null ;
-					return;
-				}
-				MomentZ = new MeasureResource.IfcTorqueMeasure(value.Value);
+				MomentZ = value.HasValue ? 
+					new MeasureResource.IfcTorqueMeasure(value.Value) :  
+					 new MeasureResource.IfcTorqueMeasure?() ;
 				
 			}
 		}

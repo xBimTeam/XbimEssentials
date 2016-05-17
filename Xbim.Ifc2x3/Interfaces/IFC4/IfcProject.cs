@@ -25,12 +25,9 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					ObjectType =  null ;
-					return;
-				}
-				ObjectType = new MeasureResource.IfcLabel(value.Value);
+				ObjectType = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}
@@ -43,12 +40,9 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					LongName =  null ;
-					return;
-				}
-				LongName = new MeasureResource.IfcLabel(value.Value);
+				LongName = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}
@@ -61,12 +55,9 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Phase =  null ;
-					return;
-				}
-				Phase = new MeasureResource.IfcLabel(value.Value);
+				Phase = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}

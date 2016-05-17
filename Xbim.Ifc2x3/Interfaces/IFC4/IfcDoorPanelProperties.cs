@@ -25,12 +25,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					PanelDepth =  null ;
-					return;
-				}
-				PanelDepth = new MeasureResource.IfcPositiveLengthMeasure(value.Value);
+				PanelDepth = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
 				
 			}
 		}
@@ -84,12 +81,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					PanelWidth =  null ;
-					return;
-				}
-				PanelWidth = new MeasureResource.IfcNormalisedRatioMeasure(value.Value);
+				PanelWidth = value.HasValue ? 
+					new MeasureResource.IfcNormalisedRatioMeasure(value.Value) :  
+					 new MeasureResource.IfcNormalisedRatioMeasure?() ;
 				
 			}
 		}

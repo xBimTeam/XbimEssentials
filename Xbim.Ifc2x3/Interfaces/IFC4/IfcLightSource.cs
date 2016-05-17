@@ -25,12 +25,9 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Name =  null ;
-					return;
-				}
-				Name = new MeasureResource.IfcLabel(value.Value);
+				Name = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
 				
 			}
 		}
@@ -55,12 +52,9 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					AmbientIntensity =  null ;
-					return;
-				}
-				AmbientIntensity = new MeasureResource.IfcNormalisedRatioMeasure(value.Value);
+				AmbientIntensity = value.HasValue ? 
+					new MeasureResource.IfcNormalisedRatioMeasure(value.Value) :  
+					 new MeasureResource.IfcNormalisedRatioMeasure?() ;
 				
 			}
 		}
@@ -73,12 +67,9 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
-				if (!value.HasValue)
-				{
-					Intensity =  null ;
-					return;
-				}
-				Intensity = new MeasureResource.IfcNormalisedRatioMeasure(value.Value);
+				Intensity = value.HasValue ? 
+					new MeasureResource.IfcNormalisedRatioMeasure(value.Value) :  
+					 new MeasureResource.IfcNormalisedRatioMeasure?() ;
 				
 			}
 		}
