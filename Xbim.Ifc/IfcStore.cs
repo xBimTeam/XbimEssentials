@@ -667,7 +667,10 @@ namespace Xbim.Ifc
             }
         }
 
-        public IfcSchemaVersion IfcSchemaVersion => _schema;
+        public IfcSchemaVersion IfcSchemaVersion
+        {
+            get { return _schema; }
+        }
 
         internal IIfcOwnerHistory OwnerHistoryModifyObject
         {
@@ -695,7 +698,10 @@ namespace Xbim.Ifc
             }
         }
 
-        protected XbimEditorCredentials EditorDetails => _editorDetails;
+        protected XbimEditorCredentials EditorDetails
+        {
+            get { return _editorDetails; }
+        }
 
         #endregion
 
@@ -1328,7 +1334,10 @@ namespace Xbim.Ifc
         /// <summary>
         /// Returns true if the model contains reference models or the model has extension xBIMf
         /// </summary>
-        public virtual bool IsFederation => _referencedModels.Any();
+        public virtual bool IsFederation
+        {
+            get { return _referencedModels.Any(); }
+        }
 
         ///// <summary>
         ///// Returns an enumerable of the handles to all entities in the model
