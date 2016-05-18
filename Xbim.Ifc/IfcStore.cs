@@ -48,7 +48,10 @@ namespace Xbim.Ifc
             _model.StopCaching();
         }
 
-        public IInverseCache InverseCache => _model.InverseCache;
+        public IInverseCache InverseCache
+        {
+            get { return _model.InverseCache; }
+        }
 
         private bool _disposed;
         /// <summary>
@@ -321,13 +324,25 @@ namespace Xbim.Ifc
             set { _model.UserDefinedId = value; }
         }
 
-        public IGeometryStore GeometryStore => _model.GeometryStore;
+        public IGeometryStore GeometryStore
+        {
+            get { return _model.GeometryStore; }
+        }
 
-        public IStepFileHeader Header => _model.Header;
+        public IStepFileHeader Header
+        {
+            get { return _model.Header; }
+        }
 
-        public bool IsTransactional => _model.IsTransactional;
+        public bool IsTransactional
+        {
+            get { return _model.IsTransactional; }
+        }
 
-        public IEntityCollection Instances => _model.Instances;
+        public IEntityCollection Instances
+        {
+            get { return _model.Instances; }
+        }
 
         public bool Activate(IPersistEntity owningEntity, bool write)
         {
@@ -360,11 +375,20 @@ namespace Xbim.Ifc
             return memoryModel.BeginTransaction(name);
         }
 
-        public ITransaction CurrentTransaction => _model.CurrentTransaction;
+        public ITransaction CurrentTransaction
+        {
+            get { return _model.CurrentTransaction; }
+        }
 
-        public ExpressMetaData Metadata => _model.Metadata;
+        public ExpressMetaData Metadata
+        {
+            get { return _model.Metadata; }
+        }
 
-        public IModelFactors ModelFactors => _model.ModelFactors;
+        public IModelFactors ModelFactors
+        {
+            get { return _model.ModelFactors; }
+        }
 
         public string FileName { get; set; }
         
@@ -1334,7 +1358,10 @@ namespace Xbim.Ifc
         }
         #endregion
 
-        public IModel ReferencingModel => _model;
+        public IModel ReferencingModel
+        {
+            get { return _model; }
+        }
 
         public IReadOnlyEntityCollection FederatedInstances => new FederatedModelInstances(this);
 
@@ -1352,7 +1379,10 @@ namespace Xbim.Ifc
         /// Note this do NOT include entities that are in any federated models
         /// </summary>
 
-        public IList<XbimInstanceHandle> InstanceHandles => _model.InstanceHandles.ToList();
+        public IList<XbimInstanceHandle> InstanceHandles
+        {
+            get { return _model.InstanceHandles.ToList(); }
+        }
 
         #region Insert products with context
 
