@@ -118,17 +118,17 @@ namespace Xbim.Ifc
 
         private void _model_EntityDeleted(IPersistEntity entity)
         {
-            EntityDeleted?.Invoke(entity);
+            if(EntityDeleted!=null) EntityDeleted.Invoke(entity);
         }
 
         private void _model_EntityNew(IPersistEntity entity)
         {
-            EntityNew?.Invoke(entity);
+            if(EntityNew!=null) EntityNew.Invoke(entity);
         }
 
         private void _model_EntityModified(IPersistEntity entity, byte property)
         {
-            EntityModified?.Invoke(entity, property);
+            if(EntityModified !=null)EntityModified.Invoke(entity, property);
         }
         //public static IfcStore LoadStep21( Stream inputStream, XbimStorageType storageType, string xbimDbName, XbimDBAccess accessMode = XbimDBAccess.Read, double? ifcDatabaseSizeThreshHold = null, ReportProgressDelegate progDelegate = null)
         //{
@@ -424,7 +424,7 @@ namespace Xbim.Ifc
                     {
                         //managed resources
                         var disposeInterface = _model as IDisposable;
-                        disposeInterface?.Dispose();
+                        if(disposeInterface!=null) disposeInterface.Dispose();
                     }
                     //unmanaged, mostly esent related                  
                 }
@@ -441,7 +441,7 @@ namespace Xbim.Ifc
         public void Close()
         {
             var esent = _model as EsentModel;
-            esent?.Close();
+            if(esent!=null) esent.Close();
 
             try //try and tidy up if required
             {
