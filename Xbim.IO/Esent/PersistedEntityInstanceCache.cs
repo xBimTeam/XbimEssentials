@@ -1988,6 +1988,28 @@ namespace Xbim.IO.Esent
                             var cpy = InsertCopy((IPersistEntity)item, mappings, txn, includeInverses, propTransform, keepLabels);
                             copyColl.Add(cpy);
                         }
+                        else if (typeof(IList).IsAssignableFrom(actualItemType)) //list of lists
+                        {
+                            var listColl = (IList)item;
+                            var getAt = copyColl.GetType().GetMethod("GetAt");
+                            if (getAt == null) throw new Exception(string.Format("GetAt Method not found on ({0}) found", copyColl.GetType().Name));
+                            var copyListColl = getAt.Invoke(copyColl, new object[] { copyColl.Count }) as IList;
+                            foreach (var listItem in listColl)
+                            {
+                                var actualListItemType = listItem.GetType();
+                                if (actualListItemType.IsValueType ||
+                                    typeof(ExpressType).IsAssignableFrom(actualListItemType))
+                                    copyListColl.Add(listItem);
+                                else if (typeof(IPersistEntity).IsAssignableFrom(actualListItemType))
+                                {
+                                    var cpy = InsertCopy((IPersistEntity)listItem, mappings, txn, includeInverses, propTransform, keepLabels);
+                                    copyListColl.Add(cpy);
+                                }
+                                else
+                                    throw new Exception(string.Format("Unexpected collection item type ({0}) found",
+                                        itemType.Name));
+                            }
+                        }
                         else
                             throw new XbimException(string.Format("Unexpected collection item type ({0}) found", itemType.Name));
                     }
