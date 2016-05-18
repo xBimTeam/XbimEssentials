@@ -1324,7 +1324,10 @@ namespace Xbim.Ifc
         #endregion
         #region Federation
 
-        public IEnumerable<IReferencedModel> ReferencedModels => _referencedModels.AsEnumerable();
+        public IEnumerable<IReferencedModel> ReferencedModels
+        {
+            get { return _referencedModels.AsEnumerable(); }
+        }
 
         public void AddModelReference(IReferencedModel model)
         {
@@ -1372,7 +1375,10 @@ namespace Xbim.Ifc
             get { return _model; }
         }
 
-        public IReadOnlyEntityCollection FederatedInstances => new FederatedModelInstances(this);
+        public IReadOnlyEntityCollection FederatedInstances
+        {
+            get { return new FederatedModelInstances(this); }
+        }
 
         public IList<XbimInstanceHandle> FederatedInstanceHandles
         {
