@@ -539,7 +539,7 @@ namespace Xbim.IO.TableStore
             var vals = scalar.Values;
             var eVal = prop.GetValue(entity, null);
             if (scalar.ContextType != ReferenceContextType.ScalarList)
-                return eVal != null && vals.Any(v => v.Equals(eVal));
+                return eVal != null && vals.Any(v => v!=null && v.Equals(eVal));
             var list = eVal as IEnumerable;
             return list != null &&
                 //it might be a multivalue
@@ -648,7 +648,7 @@ namespace Xbim.IO.TableStore
 
                     context.AllScalarChildren.OrderBy(c => c.Segment)
                         .Where(c => c.Values != null)
-                        .SelectMany(c => c.Values.Select(v => v.ToString()));
+                        .SelectMany(c => c.Values.Where(cv=>cv!=null).Select(v => v.ToString()));
             var key = string.Join(", ", keys);
             if (entities.TryGetValue(key, out entity))
                 return true;
