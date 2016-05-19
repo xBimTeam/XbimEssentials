@@ -35,18 +35,20 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 if (value == null)
                 {
                     LinearStiffnessByLengthX = null;
-                    SetValue(v => _translationalStiffnessByLengthX = v, _translationalStiffnessByLengthX, null, "TranslationalStiffnessByAreaX", byte.MaxValue);
+                    if (_translationalStiffnessByLengthX != null)
+                        SetValue(v => _translationalStiffnessByLengthX = v, _translationalStiffnessByLengthX, null, "TranslationalStiffnessByLengthX", byte.MaxValue);
                     return;
 
                 }
                 if (value is Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure)
                 {
                     LinearStiffnessByLengthX = new MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure((Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure)value);
-                    SetValue(v => _translationalStiffnessByLengthX = v, _translationalStiffnessByLengthX, null, "TranslationalStiffnessByAreaX", byte.MaxValue);
+                    if (_translationalStiffnessByLengthX != null)
+                        SetValue(v => _translationalStiffnessByLengthX = v, _translationalStiffnessByLengthX, null, "TranslationalStiffnessByLengthX", byte.MaxValue);
                     return;
                 }
 
-                SetValue(v => _translationalStiffnessByLengthX = v, _translationalStiffnessByLengthX, value, "TranslationalStiffnessByAreaX", byte.MaxValue);
+                SetValue(v => _translationalStiffnessByLengthX = v, _translationalStiffnessByLengthX, value, "TranslationalStiffnessByLengthX", byte.MaxValue);
                 return;
                 
 				//##
@@ -73,18 +75,20 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 if (value == null)
                 {
                     LinearStiffnessByLengthY = null;
-                    SetValue(v => _translationalStiffnessByLengthY = v, _translationalStiffnessByLengthY, null, "TranslationalStiffnessByAreaY", byte.MaxValue);
+                    if (_translationalStiffnessByLengthY != null)
+                        SetValue(v => _translationalStiffnessByLengthY = v, _translationalStiffnessByLengthY, null, "LinearStiffnessByLengthY", byte.MaxValue);
                     return;
 
                 }
                 if (value is Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure)
                 {
                     LinearStiffnessByLengthY = new MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure((Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure)value);
-                    SetValue(v => _translationalStiffnessByLengthY = v, _translationalStiffnessByLengthY, null, "TranslationalStiffnessByAreaY", byte.MaxValue);
+                    if (_translationalStiffnessByLengthY != null)
+                        SetValue(v => _translationalStiffnessByLengthY = v, _translationalStiffnessByLengthY, null, "LinearStiffnessByLengthY", byte.MaxValue);
                     return;
                 }
 
-                SetValue(v => _translationalStiffnessByLengthY = v, _translationalStiffnessByLengthY, value, "TranslationalStiffnessByAreaY", byte.MaxValue);
+                SetValue(v => _translationalStiffnessByLengthY = v, _translationalStiffnessByLengthY, value, "LinearStiffnessByLengthY", byte.MaxValue);
                 return;
 
                 //##
@@ -111,14 +115,16 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 if (value == null)
                 {
                     LinearStiffnessByLengthZ = null;
-                    SetValue(v => _translationalStiffnessByLengthZ = v, _translationalStiffnessByLengthZ, null, "TranslationalStiffnessByAreaZ", byte.MaxValue);
+                    if (_translationalStiffnessByLengthZ != null)
+                        SetValue(v => _translationalStiffnessByLengthZ = v, _translationalStiffnessByLengthZ, null, "TranslationalStiffnessByLengthZ", byte.MaxValue);
                     return;
 
                 }
                 if (value is Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure)
                 {
                     LinearStiffnessByLengthZ = new MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure((Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure)value);
-                    SetValue(v => _translationalStiffnessByLengthZ = v, _translationalStiffnessByLengthZ, null, "TranslationalStiffnessByAreaZ", byte.MaxValue);
+                    if (_translationalStiffnessByLengthZ != null)
+                        SetValue(v => _translationalStiffnessByLengthZ = v, _translationalStiffnessByLengthZ, null, "TranslationalStiffnessByLengthZ", byte.MaxValue);
                     return;
                 }
 
@@ -134,48 +140,121 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get
 			{
- 
-				if(!RotationalStiffnessByLengthX.HasValue) return null;
-				return new Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure(RotationalStiffnessByLengthX.Value);
+				//## Handle return of RotationalStiffnessByLengthX for which no match was found
+                if (_rotationalStiffnessByLengthX4 != null)
+                    return _rotationalStiffnessByLengthX4;
+
+                var value = RotationalStiffnessByLengthX;
+                if (!value.HasValue) return null;
+                return new Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure(value.Value);
+				//##
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				//## Handle setting of RotationalStiffnessByLengthX for which no match was found
+                if (value == null)
+                {
+                    RotationalStiffnessByLengthX = null;
+                    if (_rotationalStiffnessByLengthX4 != null)
+                        SetValue(v => _rotationalStiffnessByLengthX4 = v, _rotationalStiffnessByLengthX4, null, "TranslationalStiffnessByAreaZ", byte.MaxValue);
+                    return;
+
+                }
+                if (value is Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure)
+                {
+                    RotationalStiffnessByLengthX = new MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure((Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure)value);
+                    if (_rotationalStiffnessByLengthX4 != null)
+                        SetValue(v => _rotationalStiffnessByLengthX4 = v, _rotationalStiffnessByLengthX4, null, "TranslationalStiffnessByAreaZ", byte.MaxValue);
+                    return;
+                }
+
+                SetValue(v => _rotationalStiffnessByLengthX4 = v, _rotationalStiffnessByLengthX4, value, "TranslationalStiffnessByAreaZ", byte.MaxValue);
+				//##
 				
 			}
 		}
 		IIfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthY 
-		{ 
-			get
-			{
- 
-				if(!RotationalStiffnessByLengthY.HasValue) return null;
-				return new Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure(RotationalStiffnessByLengthY.Value);
-			} 
-			set
-			{
-				throw new System.NotImplementedException();
-				
-			}
+		{
+            get
+            {
+                //## Handle return of RotationalStiffnessByLengthY for which no match was found
+                if (_rotationalStiffnessByLengthY4 != null)
+                    return _rotationalStiffnessByLengthY4;
+
+                var value = RotationalStiffnessByLengthY;
+                if (!value.HasValue) return null;
+                return new Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure(value.Value);
+                //##
+            }
+            set
+            {
+                //## Handle setting of RotationalStiffnessByLengthY for which no match was found
+                if (value == null)
+                {
+                    RotationalStiffnessByLengthY = null;
+                    if (_rotationalStiffnessByLengthY4 != null)
+                        SetValue(v => _rotationalStiffnessByLengthY4 = v, _rotationalStiffnessByLengthY4, null, "TranslationalStiffnessByAreaZ", byte.MaxValue);
+                    return;
+
+                }
+                if (value is Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure)
+                {
+                    RotationalStiffnessByLengthY = new MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure((Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure)value);
+                    if (_rotationalStiffnessByLengthY4 != null)
+                        SetValue(v => _rotationalStiffnessByLengthY4 = v, _rotationalStiffnessByLengthY4, null, "TranslationalStiffnessByAreaZ", byte.MaxValue);
+                    return;
+                }
+
+                SetValue(v => _rotationalStiffnessByLengthY4 = v, _rotationalStiffnessByLengthY4, value, "TranslationalStiffnessByAreaZ", byte.MaxValue);
+                //##
+
+            }
 		}
 		IIfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthZ 
-		{ 
-			get
-			{
- 
-				if(!RotationalStiffnessByLengthZ.HasValue) return null;
-				return new Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure(RotationalStiffnessByLengthZ.Value);
-			} 
-			set
-			{
-				throw new System.NotImplementedException();
-				
-			}
+		{
+            get
+            {
+                //## Handle return of RotationalStiffnessByLengthZ for which no match was found
+                if (_rotationalStiffnessByLengthZ4 != null)
+                    return _rotationalStiffnessByLengthZ4;
+
+                var value = RotationalStiffnessByLengthZ;
+                if (!value.HasValue) return null;
+                return new Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure(value.Value);
+                //##
+            }
+            set
+            {
+                //## Handle setting of RotationalStiffnessByLengthZ for which no match was found
+                if (value == null)
+                {
+                    RotationalStiffnessByLengthZ = null;
+                    if (_rotationalStiffnessByLengthZ4 != null)
+                        SetValue(v => _rotationalStiffnessByLengthZ4 = v, _rotationalStiffnessByLengthZ4, null, "TranslationalStiffnessByAreaZ", byte.MaxValue);
+                    return;
+
+                }
+                if (value is Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure)
+                {
+                    RotationalStiffnessByLengthZ = new MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure((Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure)value);
+                    if (_rotationalStiffnessByLengthZ4 != null)
+                        SetValue(v => _rotationalStiffnessByLengthZ4 = v, _rotationalStiffnessByLengthZ4, null, "TranslationalStiffnessByAreaZ", byte.MaxValue);
+                    return;
+                }
+
+                SetValue(v => _rotationalStiffnessByLengthZ4 = v, _rotationalStiffnessByLengthZ4, value, "TranslationalStiffnessByAreaZ", byte.MaxValue);
+                //##
+
+            }
 		}
 	//## Custom code
         private IIfcModulusOfTranslationalSubgradeReactionSelect _translationalStiffnessByLengthX;
         private IIfcModulusOfTranslationalSubgradeReactionSelect _translationalStiffnessByLengthY;
         private IIfcModulusOfTranslationalSubgradeReactionSelect _translationalStiffnessByLengthZ;
-	//##
+
+        private IIfcModulusOfRotationalSubgradeReactionSelect _rotationalStiffnessByLengthX4;
+        private IIfcModulusOfRotationalSubgradeReactionSelect _rotationalStiffnessByLengthY4;
+        private IIfcModulusOfRotationalSubgradeReactionSelect _rotationalStiffnessByLengthZ4;
+	    //##
 	}
 }

@@ -35,14 +35,16 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			    if (value == null)
 			    {
 			        LinearStiffnessByAreaX = null;
-                    SetValue(v => _translationalStiffnessByAreaX = v, _translationalStiffnessByAreaX, null, "TranslationalStiffnessByAreaX", byte.MaxValue);
+                    if (_translationalStiffnessByAreaX != null)
+                        SetValue(v => _translationalStiffnessByAreaX = v, _translationalStiffnessByAreaX, null, "TranslationalStiffnessByAreaX", byte.MaxValue);
 			        return;
 
 			    }
                 if (value is Ifc4.MeasureResource.IfcModulusOfSubgradeReactionMeasure)
                 {
                     LinearStiffnessByAreaX = new MeasureResource.IfcModulusOfSubgradeReactionMeasure((Ifc4.MeasureResource.IfcModulusOfSubgradeReactionMeasure)value);
-                    SetValue(v => _translationalStiffnessByAreaX = v, _translationalStiffnessByAreaX, null, "TranslationalStiffnessByAreaX", byte.MaxValue);
+                    if (_translationalStiffnessByAreaX != null)
+                        SetValue(v => _translationalStiffnessByAreaX = v, _translationalStiffnessByAreaX, null, "TranslationalStiffnessByAreaX", byte.MaxValue);
                     return;
                 }
 
@@ -73,14 +75,16 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 if (value == null)
                 {
                     LinearStiffnessByAreaY = null;
-                    SetValue(v => _translationalStiffnessByAreaY = v, _translationalStiffnessByAreaY, null, "TranslationalStiffnessByAreaY", byte.MaxValue);
+                    if (_translationalStiffnessByAreaY != null)
+                        SetValue(v => _translationalStiffnessByAreaY = v, _translationalStiffnessByAreaY, null, "TranslationalStiffnessByAreaY", byte.MaxValue);
                     return;
 
                 }
                 if (value is Ifc4.MeasureResource.IfcModulusOfSubgradeReactionMeasure)
                 {
                     LinearStiffnessByAreaY = new MeasureResource.IfcModulusOfSubgradeReactionMeasure((Ifc4.MeasureResource.IfcModulusOfSubgradeReactionMeasure)value);
-                    SetValue(v => _translationalStiffnessByAreaY = v, _translationalStiffnessByAreaY, null, "TranslationalStiffnessByAreaY", byte.MaxValue);
+                    if (_translationalStiffnessByAreaY != null)
+                        SetValue(v => _translationalStiffnessByAreaY = v, _translationalStiffnessByAreaY, null, "TranslationalStiffnessByAreaY", byte.MaxValue);
                     return;
                 }
 
@@ -111,14 +115,16 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 if (value == null)
                 {
                     LinearStiffnessByAreaZ = null;
-                    SetValue(v => _translationalStiffnessByAreaZ = v, _translationalStiffnessByAreaZ, null, "TranslationalStiffnessByAreaZ", byte.MaxValue);
+                    if (_translationalStiffnessByAreaZ != null)
+                        SetValue(v => _translationalStiffnessByAreaZ = v, _translationalStiffnessByAreaZ, null, "TranslationalStiffnessByAreaZ", byte.MaxValue);
                     return;
 
                 }
                 if (value is Ifc4.MeasureResource.IfcModulusOfSubgradeReactionMeasure)
                 {
                     LinearStiffnessByAreaZ = new MeasureResource.IfcModulusOfSubgradeReactionMeasure((Ifc4.MeasureResource.IfcModulusOfSubgradeReactionMeasure)value);
-                    SetValue(v => _translationalStiffnessByAreaZ = v, _translationalStiffnessByAreaZ, null, "TranslationalStiffnessByAreaZ", byte.MaxValue);
+                    if (_translationalStiffnessByAreaZ != null)
+                        SetValue(v => _translationalStiffnessByAreaZ = v, _translationalStiffnessByAreaZ, null, "TranslationalStiffnessByAreaZ", byte.MaxValue);
                     return;
                 }
 
