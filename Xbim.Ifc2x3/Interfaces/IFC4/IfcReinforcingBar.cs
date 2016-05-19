@@ -59,6 +59,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				
 			}
 		}
+
 		private  Ifc4.Interfaces.IfcReinforcingBarTypeEnum? _predefinedType;
 
 		Ifc4.Interfaces.IfcReinforcingBarTypeEnum? IIfcReinforcingBar.PredefinedType 

@@ -101,6 +101,7 @@ namespace Xbim.Ifc2x3.Kernel
 				//## Handle setting of UserDefinedSequenceType for which no match was found
                 throw new System.PlatformNotSupportedException();
 				//##
+				NotifyPropertyChanged("UserDefinedSequenceType");
 				
 			}
 		}

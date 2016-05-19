@@ -230,8 +230,10 @@ namespace Xbim.Ifc2x3.UtilityResource
 			set
 			{
 				//## Handle setting of IsHeading for which no match was found
-				//TODO: Handle setting of IsHeading for which no match was found
-				throw new System.NotImplementedException();
+                if (!value.HasValue)
+                    IsHeading = false;
+                else
+                    IsHeading = value.Value;
 				//##
 				
 			}

@@ -46,6 +46,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				
 			}
 		}
+
 		private  Ifc4.Interfaces.IfcDoorTypeEnum? _predefinedType;
 
 		Ifc4.Interfaces.IfcDoorTypeEnum? IIfcDoor.PredefinedType 
@@ -60,37 +61,33 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				
 			}
 		}
+
+		private  Ifc4.Interfaces.IfcDoorTypeOperationEnum? _operationType;
+
 		Ifc4.Interfaces.IfcDoorTypeOperationEnum? IIfcDoor.OperationType 
 		{ 
 			get
 			{
-				//## Handle return of OperationType for which no match was found
-			    return null;
-			    //##
+				return _operationType;
 			} 
 			set
 			{
-				//## Handle setting of OperationType for which no match was found
-				//TODO: Handle setting of OperationType for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _operationType = v, _operationType, value, "OperationType", byte.MaxValue);
 				
 			}
 		}
+
+		private  Ifc4.MeasureResource.IfcLabel? _userDefinedOperationType;
+
 		Ifc4.MeasureResource.IfcLabel? IIfcDoor.UserDefinedOperationType 
 		{ 
 			get
 			{
-				//## Handle return of UserDefinedOperationType for which no match was found
-			    return null;
-			    //##
+				return _userDefinedOperationType;
 			} 
 			set
 			{
-				//## Handle setting of UserDefinedOperationType for which no match was found
-				//TODO: Handle setting of UserDefinedOperationType for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _userDefinedOperationType = v, _userDefinedOperationType, value, "UserDefinedOperationType", byte.MaxValue);
 				
 			}
 		}

@@ -16,6 +16,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcSpace : IIfcSpace
 	{
+
 		private  Ifc4.Interfaces.IfcSpaceTypeEnum? _predefinedType;
 
 		Ifc4.Interfaces.IfcSpaceTypeEnum? IIfcSpace.PredefinedType 

@@ -16,6 +16,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcResource : IIfcResource
 	{
+
 		private  Ifc4.MeasureResource.IfcIdentifier? _identification;
 
 		Ifc4.MeasureResource.IfcIdentifier? IIfcResource.Identification 
@@ -30,6 +31,7 @@ namespace Xbim.Ifc2x3.Kernel
 				
 			}
 		}
+
 		private  Ifc4.MeasureResource.IfcText? _longDescription;
 
 		Ifc4.MeasureResource.IfcText? IIfcResource.LongDescription 

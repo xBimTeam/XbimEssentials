@@ -29,11 +29,6 @@ namespace Xbim.Ifc2x3.UtilityResource
 			set
 			{
 				//## Handle setting of Name for which no match was found
-			    if (!value.HasValue)
-			    {
-			        Name = null;
-			        return;
-			    }
 			    Name = value;
 			    //##
 				

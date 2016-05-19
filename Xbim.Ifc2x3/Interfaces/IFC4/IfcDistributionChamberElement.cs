@@ -16,6 +16,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	public partial class @IfcDistributionChamberElement : IIfcDistributionChamberElement
 	{
+
 		private  Ifc4.Interfaces.IfcDistributionChamberElementTypeEnum? _predefinedType;
 
 		Ifc4.Interfaces.IfcDistributionChamberElementTypeEnum? IIfcDistributionChamberElement.PredefinedType 

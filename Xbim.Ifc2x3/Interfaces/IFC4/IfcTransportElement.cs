@@ -16,6 +16,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcTransportElement : IIfcTransportElement
 	{
+
 		private  Ifc4.Interfaces.IfcTransportElementTypeEnum? _predefinedType;
 
 		Ifc4.Interfaces.IfcTransportElementTypeEnum? IIfcTransportElement.PredefinedType 

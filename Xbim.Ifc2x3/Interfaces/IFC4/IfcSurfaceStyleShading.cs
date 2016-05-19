@@ -34,21 +34,36 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				//## Handle return of Transparency for which no match was found
                 var rendering = this as IfcSurfaceStyleRendering;
-                if (rendering != null && rendering.Transparency.HasValue)
-                    return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)rendering.Transparency);
-                return null;   
-				//##
+			    if (rendering == null) return _transparency;
+
+			    if (rendering.Transparency.HasValue)
+			        return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)rendering.Transparency);
+			    return null;
+			    //##
 			} 
 			set
 			{
 				//## Handle setting of Transparency for which no match was found
-				//TODO: Handle setting of Transparency for which no match was found
-				throw new System.NotImplementedException();
+                var rendering = this as IfcSurfaceStyleRendering;
+			    if (rendering == null)
+			    {
+			        SetValue(v => _transparency = v, _transparency, value, "Transparency", byte.MaxValue);
+			        return;
+			    }
+
+			    if (value.HasValue)
+			        rendering.Transparency = new MeasureResource.IfcNormalisedRatioMeasure(value.Value);
+			    else
+			        rendering.Transparency = null;
+                //avoid duplicated notification
+			    return;
 				//##
+				NotifyPropertyChanged("Transparency");
 				
 			}
 		}
 	//## Custom code
-	//##
+	    private Ifc4.MeasureResource.IfcNormalisedRatioMeasure? _transparency ;
+	    //##
 	}
 }

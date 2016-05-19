@@ -29,8 +29,22 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			set
 			{
 				//## Handle setting of TimeStamp for which no match was found
-				//TODO: Handle setting of TimeStamp for which no match was found
-				throw new System.NotImplementedException();
+                System.DateTime d = value;
+                TimeStamp = Model.Instances.New<DateTimeResource.IfcDateAndTime>(dt =>
+                {
+                    dt.DateComponent = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+                    {
+                        date.YearComponent = d.Year;
+                        date.MonthComponent = d.Month;
+                        date.DayComponent = d.Day;
+                    });
+                    dt.TimeComponent = Model.Instances.New<DateTimeResource.IfcLocalTime>(t =>
+                    {
+                        t.HourComponent = d.Hour;
+                        t.MinuteComponent = d.Minute;
+                        t.SecondComponent = d.Second;
+                    });
+                });
 				//##
 				
 			}

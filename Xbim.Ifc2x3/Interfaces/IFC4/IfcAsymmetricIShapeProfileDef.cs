@@ -121,6 +121,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
 		private  Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? _bottomFlangeEdgeRadius;
 
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeEdgeRadius 
@@ -135,6 +136,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
 		private  Ifc4.MeasureResource.IfcPlaneAngleMeasure? _bottomFlangeSlope;
 
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeSlope 
@@ -149,6 +151,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
 		private  Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? _topFlangeEdgeRadius;
 
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeEdgeRadius 
@@ -163,6 +166,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
 		private  Ifc4.MeasureResource.IfcPlaneAngleMeasure? _topFlangeSlope;
 
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeSlope 

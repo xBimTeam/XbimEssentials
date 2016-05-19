@@ -16,6 +16,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	public partial class @IfcDocumentReference : IIfcDocumentReference
 	{
+
 		private  Ifc4.MeasureResource.IfcText? _description;
 
 		Ifc4.MeasureResource.IfcText? IIfcDocumentReference.Description 
@@ -41,9 +42,16 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			set
 			{
 				//## Handle setting of ReferencedDocument for which no match was found
-				//TODO: Handle setting of ReferencedDocument for which no match was found
-				throw new System.NotImplementedException();
+			    if (value == null)
+			        ReferenceToDocument.ToList().ForEach(d => d.DocumentReferences.Remove(this));
+			    else
+			    {
+                    var document = value as IfcDocumentInformation;
+                    if (document != null && !document.DocumentReferences.Contains(this))
+                        document.DocumentReferences.Add(this);    
+			    }
 				//##
+				NotifyPropertyChanged("ReferencedDocument");
 				
 			}
 		}

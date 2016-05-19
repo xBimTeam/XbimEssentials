@@ -79,6 +79,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
 		private  Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? _flangeEdgeRadius;
 
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcIShapeProfileDef.FlangeEdgeRadius 
@@ -93,6 +94,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
 		private  Ifc4.MeasureResource.IfcPlaneAngleMeasure? _flangeSlope;
 
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcIShapeProfileDef.FlangeSlope 

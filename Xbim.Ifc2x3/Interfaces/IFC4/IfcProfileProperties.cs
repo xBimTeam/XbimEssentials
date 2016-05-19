@@ -43,6 +43,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				
 			}
 		}
+
 		private  Ifc4.MeasureResource.IfcText? _description;
 
 		Ifc4.MeasureResource.IfcText? IIfcExtendedProperties.Description 

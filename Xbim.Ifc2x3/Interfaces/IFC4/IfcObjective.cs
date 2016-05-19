@@ -25,20 +25,18 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				//##
 			} 
 		}
+
+		private  Ifc4.Interfaces.IfcLogicalOperatorEnum? _logicalAggregator;
+
 		Ifc4.Interfaces.IfcLogicalOperatorEnum? IIfcObjective.LogicalAggregator 
 		{ 
 			get
 			{
-				//## Handle return of LogicalAggregator for which no match was found
-			    return null;
-			    //##
+				return _logicalAggregator;
 			} 
 			set
 			{
-				//## Handle setting of LogicalAggregator for which no match was found
-				//TODO: Handle setting of LogicalAggregator for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _logicalAggregator = v, _logicalAggregator, value, "LogicalAggregator", byte.MaxValue);
 				
 			}
 		}

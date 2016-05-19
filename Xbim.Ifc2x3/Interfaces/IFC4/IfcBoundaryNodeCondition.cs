@@ -21,6 +21,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			get
 			{
 				//## Handle return of TranslationalStiffnessX for which no match was found
+                if (_translationalStiffnessX != null)
+                    return _translationalStiffnessX;
+
                 var value = LinearStiffnessX;
                 if (!value.HasValue) return null;
                 return new Ifc4.MeasureResource.IfcLinearStiffnessMeasure(value.Value);
@@ -29,9 +32,24 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			set
 			{
 				//## Handle setting of TranslationalStiffnessX for which no match was found
-				//TODO: Handle setting of TranslationalStiffnessX for which no match was found
-				throw new System.NotImplementedException();
+                if (value == null)
+                {
+                    LinearStiffnessX = null;
+                    SetValue(v => _translationalStiffnessX = v, _translationalStiffnessX, null, "TranslationalStiffnessByAreaX", byte.MaxValue);
+                    return;
+
+                }
+                if (value is Ifc4.MeasureResource.IfcLinearStiffnessMeasure)
+                {
+                    LinearStiffnessX = new MeasureResource.IfcLinearStiffnessMeasure((Ifc4.MeasureResource.IfcLinearStiffnessMeasure)value);
+                    SetValue(v => _translationalStiffnessX = v, _translationalStiffnessX, null, "TranslationalStiffnessByAreaX", byte.MaxValue);
+                    return;
+                }
+
+                SetValue(v => _translationalStiffnessX = v, _translationalStiffnessX, value, "TranslationalStiffnessByAreaX", byte.MaxValue);
+                return;
 				//##
+				NotifyPropertyChanged("TranslationalStiffnessX");
 				
 			}
 		}
@@ -40,17 +58,35 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			get
 			{
 				//## Handle return of TranslationalStiffnessY for which no match was found
+                if (_translationalStiffnessY != null)
+                    return _translationalStiffnessY;
+
                 var value = LinearStiffnessY;
                 if (!value.HasValue) return null;
                 return new Ifc4.MeasureResource.IfcLinearStiffnessMeasure(value.Value);
-				//##
+                //##
 			} 
 			set
 			{
 				//## Handle setting of TranslationalStiffnessY for which no match was found
-				//TODO: Handle setting of TranslationalStiffnessY for which no match was found
-				throw new System.NotImplementedException();
-				//##
+                if (value == null)
+                {
+                    LinearStiffnessY = null;
+                    SetValue(v => _translationalStiffnessY = v, _translationalStiffnessY, null, "TranslationalStiffnessByAreaY", byte.MaxValue);
+                    return;
+
+                }
+                if (value is Ifc4.MeasureResource.IfcLinearStiffnessMeasure)
+                {
+                    LinearStiffnessY = new MeasureResource.IfcLinearStiffnessMeasure((Ifc4.MeasureResource.IfcLinearStiffnessMeasure)value);
+                    SetValue(v => _translationalStiffnessY = v, _translationalStiffnessY, null, "TranslationalStiffnessByAreaY", byte.MaxValue);
+                    return;
+                }
+
+                SetValue(v => _translationalStiffnessY = v, _translationalStiffnessY, value, "TranslationalStiffnessByAreaY", byte.MaxValue);
+                return;
+                //##
+				NotifyPropertyChanged("TranslationalStiffnessY");
 				
 			}
 		}
@@ -59,17 +95,35 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			get
 			{
 				//## Handle return of TranslationalStiffnessZ for which no match was found
+                if (_translationalStiffnessZ != null)
+                    return _translationalStiffnessZ;
+
                 var value = LinearStiffnessZ;
                 if (!value.HasValue) return null;
                 return new Ifc4.MeasureResource.IfcLinearStiffnessMeasure(value.Value);
-				//##
+                //##
 			} 
 			set
 			{
 				//## Handle setting of TranslationalStiffnessZ for which no match was found
-				//TODO: Handle setting of TranslationalStiffnessZ for which no match was found
-				throw new System.NotImplementedException();
-				//##
+                if (value == null)
+                {
+                    LinearStiffnessZ = null;
+                    SetValue(v => _translationalStiffnessZ = v, _translationalStiffnessZ, null, "TranslationalStiffnessByAreaZ", byte.MaxValue);
+                    return;
+
+                }
+                if (value is Ifc4.MeasureResource.IfcLinearStiffnessMeasure)
+                {
+                    LinearStiffnessZ = new MeasureResource.IfcLinearStiffnessMeasure((Ifc4.MeasureResource.IfcLinearStiffnessMeasure)value);
+                    SetValue(v => _translationalStiffnessZ = v, _translationalStiffnessZ, null, "TranslationalStiffnessByAreaZ", byte.MaxValue);
+                    return;
+                }
+
+                SetValue(v => _translationalStiffnessZ = v, _translationalStiffnessZ, value, "TranslationalStiffnessByAreaZ", byte.MaxValue);
+                return;
+                //##
+				NotifyPropertyChanged("TranslationalStiffnessZ");
 				
 			}
 		}
@@ -116,6 +170,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			}
 		}
 	//## Custom code
-	//##
+        private IIfcTranslationalStiffnessSelect _translationalStiffnessX;
+        private IIfcTranslationalStiffnessSelect _translationalStiffnessY;
+        private IIfcTranslationalStiffnessSelect _translationalStiffnessZ;
+	    //##
 	}
 }

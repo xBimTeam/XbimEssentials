@@ -26,10 +26,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
-				//## Handle setting of RepeatS for which no match was found
-				//TODO: Handle setting of RepeatS for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				RepeatS = value;
 				
 			}
 		}
@@ -43,13 +40,11 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
-				//## Handle setting of RepeatT for which no match was found
-				//TODO: Handle setting of RepeatT for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				RepeatT = value;
 				
 			}
 		}
+
 		private  Ifc4.MeasureResource.IfcIdentifier? _mode;
 
 		Ifc4.MeasureResource.IfcIdentifier? IIfcSurfaceTexture.Mode 

@@ -55,8 +55,18 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			set
 			{
 				//## Handle setting of EditionDate for which no match was found
-				//TODO: Handle setting of EditionDate for which no match was found
-				throw new System.NotImplementedException();
+                if (!value.HasValue)
+                {
+                    EditionDate = null;
+                    return;
+                }
+                System.DateTime date = value.Value;
+                EditionDate = Model.Instances.New<DateTimeResource.IfcCalendarDate>(d =>
+                {
+                    d.YearComponent = date.Year;
+                    d.MonthComponent = date.Month;
+                    d.DayComponent = date.Day;
+                });
 				//##
 				
 			}
@@ -73,6 +83,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
 		private  Ifc4.MeasureResource.IfcText? _description;
 
 		Ifc4.MeasureResource.IfcText? IIfcClassification.Description 
@@ -87,6 +98,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
 		private  Ifc4.ExternalReferenceResource.IfcURIReference? _location;
 
 		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcClassification.Location 

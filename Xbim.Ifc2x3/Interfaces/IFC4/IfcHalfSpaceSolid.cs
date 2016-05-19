@@ -38,9 +38,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
-				//## Handle setting of AgreementFlag for which no match was found
-			    AgreementFlag = value;
-			    //##
+				AgreementFlag = value;
 				
 			}
 		}

@@ -93,8 +93,18 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			set
 			{
 				//## Handle setting of LastUpdateDate for which no match was found
-				//TODO: Handle setting of LastUpdateDate for which no match was found
-				throw new System.NotImplementedException();
+                if (!value.HasValue)
+                {
+                    LastUpdateDate = null;
+                    return;
+                }
+                System.DateTime date = value.Value;
+                LastUpdateDate = Model.Instances.New<DateTimeResource.IfcCalendarDate>(d =>
+                {
+                    d.YearComponent = date.Year;
+                    d.MonthComponent = date.Month;
+                    d.DayComponent = date.Day;
+                });
 				//##
 				
 			}

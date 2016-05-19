@@ -88,8 +88,27 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			set
 			{
 				//## Handle setting of SubmittedOn for which no match was found
-				//TODO: Handle setting of SubmittedOn for which no match was found
-				throw new System.NotImplementedException();
+                if (!value.HasValue)
+                {
+                    SubmittedOn = null;
+                    return;
+                }
+                System.DateTime d = value.Value;
+                SubmittedOn = Model.Instances.New<DateTimeResource.IfcDateAndTime>(dt =>
+                {
+                    dt.DateComponent = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+                    {
+                        date.YearComponent = d.Year;
+                        date.MonthComponent = d.Month;
+                        date.DayComponent = d.Day;
+                    });
+                    dt.TimeComponent = Model.Instances.New<DateTimeResource.IfcLocalTime>(t =>
+                    {
+                        t.HourComponent = d.Hour;
+                        t.MinuteComponent = d.Minute;
+                        t.SecondComponent = d.Second;
+                    });
+                });
 				//##
 				
 			}
@@ -107,8 +126,27 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			set
 			{
 				//## Handle setting of UpdateDate for which no match was found
-				//TODO: Handle setting of UpdateDate for which no match was found
-				throw new System.NotImplementedException();
+                if (!value.HasValue)
+                {
+                    UpdateDate = null;
+                    return;
+                }
+                System.DateTime d = value.Value;
+                UpdateDate = Model.Instances.New<DateTimeResource.IfcDateAndTime>(dt =>
+                {
+                    dt.DateComponent = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+                    {
+                        date.YearComponent = d.Year;
+                        date.MonthComponent = d.Month;
+                        date.DayComponent = d.Day;
+                    });
+                    dt.TimeComponent = Model.Instances.New<DateTimeResource.IfcLocalTime>(t =>
+                    {
+                        t.HourComponent = d.Hour;
+                        t.MinuteComponent = d.Minute;
+                        t.SecondComponent = d.Second;
+                    });
+                });
 				//##
 				
 			}

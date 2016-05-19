@@ -21,17 +21,36 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			get
 			{
 				//## Handle return of TranslationalStiffnessByLengthX for which no match was found
-			    var value = LinearStiffnessByLengthX;
-			    if (!value.HasValue) return null;
+                if (_translationalStiffnessByLengthX != null)
+                    return _translationalStiffnessByLengthX;
+
+                var value = LinearStiffnessByLengthX;
+                if (!value.HasValue) return null;
                 return new Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure(value.Value);
 			    //##
 			} 
 			set
 			{
 				//## Handle setting of TranslationalStiffnessByLengthX for which no match was found
-				//TODO: Handle setting of TranslationalStiffnessByLengthX for which no match was found
-				throw new System.NotImplementedException();
+                if (value == null)
+                {
+                    LinearStiffnessByLengthX = null;
+                    SetValue(v => _translationalStiffnessByLengthX = v, _translationalStiffnessByLengthX, null, "TranslationalStiffnessByAreaX", byte.MaxValue);
+                    return;
+
+                }
+                if (value is Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure)
+                {
+                    LinearStiffnessByLengthX = new MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure((Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure)value);
+                    SetValue(v => _translationalStiffnessByLengthX = v, _translationalStiffnessByLengthX, null, "TranslationalStiffnessByAreaX", byte.MaxValue);
+                    return;
+                }
+
+                SetValue(v => _translationalStiffnessByLengthX = v, _translationalStiffnessByLengthX, value, "TranslationalStiffnessByAreaX", byte.MaxValue);
+                return;
+                
 				//##
+				NotifyPropertyChanged("TranslationalStiffnessByLengthX");
 				
 			}
 		}
@@ -40,17 +59,36 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			get
 			{
 				//## Handle return of TranslationalStiffnessByLengthY for which no match was found
+                if (_translationalStiffnessByLengthY != null)
+                    return _translationalStiffnessByLengthY;
+
                 var value = LinearStiffnessByLengthY;
                 if (!value.HasValue) return null;
                 return new Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure(value.Value);
-				//##
+                //##
 			} 
 			set
 			{
 				//## Handle setting of TranslationalStiffnessByLengthY for which no match was found
-				//TODO: Handle setting of TranslationalStiffnessByLengthY for which no match was found
-				throw new System.NotImplementedException();
-				//##
+                if (value == null)
+                {
+                    LinearStiffnessByLengthY = null;
+                    SetValue(v => _translationalStiffnessByLengthY = v, _translationalStiffnessByLengthY, null, "TranslationalStiffnessByAreaY", byte.MaxValue);
+                    return;
+
+                }
+                if (value is Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure)
+                {
+                    LinearStiffnessByLengthY = new MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure((Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure)value);
+                    SetValue(v => _translationalStiffnessByLengthY = v, _translationalStiffnessByLengthY, null, "TranslationalStiffnessByAreaY", byte.MaxValue);
+                    return;
+                }
+
+                SetValue(v => _translationalStiffnessByLengthY = v, _translationalStiffnessByLengthY, value, "TranslationalStiffnessByAreaY", byte.MaxValue);
+                return;
+
+                //##
+				NotifyPropertyChanged("TranslationalStiffnessByLengthY");
 				
 			}
 		}
@@ -59,17 +97,36 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			get
 			{
 				//## Handle return of TranslationalStiffnessByLengthZ for which no match was found
+                if (_translationalStiffnessByLengthZ != null)
+                    return _translationalStiffnessByLengthZ;
+
                 var value = LinearStiffnessByLengthZ;
                 if (!value.HasValue) return null;
                 return new Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure(value.Value);
-				//##
+                //##
 			} 
 			set
 			{
 				//## Handle setting of TranslationalStiffnessByLengthZ for which no match was found
-				//TODO: Handle setting of TranslationalStiffnessByLengthZ for which no match was found
-				throw new System.NotImplementedException();
-				//##
+                if (value == null)
+                {
+                    LinearStiffnessByLengthZ = null;
+                    SetValue(v => _translationalStiffnessByLengthZ = v, _translationalStiffnessByLengthZ, null, "TranslationalStiffnessByAreaZ", byte.MaxValue);
+                    return;
+
+                }
+                if (value is Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure)
+                {
+                    LinearStiffnessByLengthZ = new MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure((Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure)value);
+                    SetValue(v => _translationalStiffnessByLengthZ = v, _translationalStiffnessByLengthZ, null, "TranslationalStiffnessByAreaZ", byte.MaxValue);
+                    return;
+                }
+
+                SetValue(v => _translationalStiffnessByLengthZ = v, _translationalStiffnessByLengthZ, value, "TranslationalStiffnessByAreaZ", byte.MaxValue);
+                return;
+
+                //##
+				NotifyPropertyChanged("TranslationalStiffnessByLengthZ");
 				
 			}
 		}
@@ -116,6 +173,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			}
 		}
 	//## Custom code
+        private IIfcModulusOfTranslationalSubgradeReactionSelect _translationalStiffnessByLengthX;
+        private IIfcModulusOfTranslationalSubgradeReactionSelect _translationalStiffnessByLengthY;
+        private IIfcModulusOfTranslationalSubgradeReactionSelect _translationalStiffnessByLengthZ;
 	//##
 	}
 }

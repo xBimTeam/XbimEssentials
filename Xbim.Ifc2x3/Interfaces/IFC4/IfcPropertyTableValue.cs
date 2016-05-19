@@ -481,20 +481,18 @@ namespace Xbim.Ifc2x3.PropertyResource
 				
 			}
 		}
+
+		private  Ifc4.Interfaces.IfcCurveInterpolationEnum? _curveInterpolation;
+
 		Ifc4.Interfaces.IfcCurveInterpolationEnum? IIfcPropertyTableValue.CurveInterpolation 
 		{ 
 			get
 			{
-				//## Handle return of CurveInterpolation for which no match was found
-                return null;
-				//##
+				return _curveInterpolation;
 			} 
 			set
 			{
-				//## Handle setting of CurveInterpolation for which no match was found
-				//TODO: Handle setting of CurveInterpolation for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _curveInterpolation = v, _curveInterpolation, value, "CurveInterpolation", byte.MaxValue);
 				
 			}
 		}

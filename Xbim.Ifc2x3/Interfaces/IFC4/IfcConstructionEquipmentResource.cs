@@ -16,6 +16,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	public partial class @IfcConstructionEquipmentResource : IIfcConstructionEquipmentResource
 	{
+
 		private  Ifc4.Interfaces.IfcConstructionEquipmentResourceTypeEnum? _predefinedType;
 
 		Ifc4.Interfaces.IfcConstructionEquipmentResourceTypeEnum? IIfcConstructionEquipmentResource.PredefinedType 

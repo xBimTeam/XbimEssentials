@@ -29,6 +29,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				//## Handle setting of Identification for which no match was found
 				DocumentId = new MeasureResource.IfcIdentifier(value);
 				//##
+				NotifyPropertyChanged("Identification");
 				
 			}
 		}
@@ -73,9 +74,20 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			set
 			{
 				//## Handle setting of Location for which no match was found
-				//TODO: Handle setting of Location for which no match was found
-				throw new System.NotImplementedException();
+                var reference = DocumentReferences.FirstOrDefault(r => r.Location != null);
+			    if (!value.HasValue)
+			    {
+			        if (reference != null)
+			            reference.Location = null;
+			    }
+			    else
+			    {
+			        if (reference == null)
+			            reference = Model.Instances.New<IfcDocumentReference>();
+			        reference.Location = value.Value.ToString();
+			    }
 				//##
+				NotifyPropertyChanged("Location");
 				
 			}
 		}
@@ -192,8 +204,27 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			set
 			{
 				//## Handle setting of CreationTime for which no match was found
-				//TODO: Handle setting of CreationTime for which no match was found
-				throw new System.NotImplementedException();
+                if (!value.HasValue)
+                {
+                    CreationTime = null;
+                    return;
+                }
+                System.DateTime d = value.Value;
+                CreationTime = Model.Instances.New<DateTimeResource.IfcDateAndTime>(dt =>
+                {
+                    dt.DateComponent = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+                    {
+                        date.YearComponent = d.Year;
+                        date.MonthComponent = d.Month;
+                        date.DayComponent = d.Day;
+                    });
+                    dt.TimeComponent = Model.Instances.New<DateTimeResource.IfcLocalTime>(t =>
+                    {
+                        t.HourComponent = d.Hour;
+                        t.MinuteComponent = d.Minute;
+                        t.SecondComponent = d.Second;
+                    });
+                });
 				//##
 				
 			}
@@ -211,8 +242,27 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			set
 			{
 				//## Handle setting of LastRevisionTime for which no match was found
-				//TODO: Handle setting of LastRevisionTime for which no match was found
-				throw new System.NotImplementedException();
+                if (!value.HasValue)
+                {
+                    LastRevisionTime = null;
+                    return;
+                }
+                System.DateTime d = value.Value;
+                LastRevisionTime = Model.Instances.New<DateTimeResource.IfcDateAndTime>(dt =>
+                {
+                    dt.DateComponent = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+                    {
+                        date.YearComponent = d.Year;
+                        date.MonthComponent = d.Month;
+                        date.DayComponent = d.Day;
+                    });
+                    dt.TimeComponent = Model.Instances.New<DateTimeResource.IfcLocalTime>(t =>
+                    {
+                        t.HourComponent = d.Hour;
+                        t.MinuteComponent = d.Minute;
+                        t.SecondComponent = d.Second;
+                    });
+                });
 				//##
 				
 			}
@@ -236,9 +286,18 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			set
 			{
 				//## Handle setting of ElectronicFormat for which no match was found
-				//TODO: Handle setting of ElectronicFormat for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    if (!value.HasValue)
+			    {
+			        if (ElectronicFormat == null)
+			            return;
+			        ElectronicFormat.MimeContentType = null;
+			        return;
+			    }
+			    if (ElectronicFormat == null)
+			        ElectronicFormat = Model.Instances.New<IfcDocumentElectronicFormat>();
+			    ElectronicFormat.MimeContentType = value.Value.ToString();
+
+			    //##
 				
 			}
 		}
@@ -255,8 +314,18 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			set
 			{
 				//## Handle setting of ValidFrom for which no match was found
-				//TODO: Handle setting of ValidFrom for which no match was found
-				throw new System.NotImplementedException();
+                if (!value.HasValue)
+                {
+                    ValidFrom = null;
+                    return;
+                }
+                System.DateTime date = value.Value;
+                ValidFrom = Model.Instances.New<DateTimeResource.IfcCalendarDate>(d =>
+                {
+                    d.YearComponent = date.Year;
+                    d.MonthComponent = date.Month;
+                    d.DayComponent = date.Day;
+                });
 				//##
 				
 			}
@@ -274,8 +343,18 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			set
 			{
 				//## Handle setting of ValidUntil for which no match was found
-				//TODO: Handle setting of ValidUntil for which no match was found
-				throw new System.NotImplementedException();
+                if (!value.HasValue)
+                {
+                    ValidUntil = null;
+                    return;
+                }
+                System.DateTime date = value.Value;
+                ValidUntil = Model.Instances.New<DateTimeResource.IfcCalendarDate>(d =>
+                {
+                    d.YearComponent = date.Year;
+                    d.MonthComponent = date.Month;
+                    d.DayComponent = date.Day;
+                });
 				//##
 				
 			}

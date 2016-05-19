@@ -108,20 +108,18 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				
 			}
 		}
+
+		private  IIfcReference _referencePath;
+
 		IIfcReference IIfcMetric.ReferencePath 
 		{ 
 			get
 			{
-				//## Handle return of ReferencePath for which no match was found
-			    return null;
-			    //##
+				return _referencePath;
 			} 
 			set
 			{
-				//## Handle setting of ReferencePath for which no match was found
-				//TODO: Handle setting of ReferencePath for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _referencePath = v, _referencePath, value, "ReferencePath", byte.MaxValue);
 				
 			}
 		}

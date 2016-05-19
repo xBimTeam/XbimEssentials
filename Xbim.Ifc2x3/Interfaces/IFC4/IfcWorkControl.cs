@@ -7,11 +7,9 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using System;
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProcessExtension
@@ -25,7 +23,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				//## Handle return of CreationDate for which no match was found               
                 return new Xbim.Ifc4.DateTimeResource.IfcDateTime(CreationDate.ToISODateTimeString());
 				//##
-			}
+			} 
 			set
 			{
 				//## Handle setting of CreationDate for which no match was found
@@ -46,7 +44,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			        });
 			    });
 			    //##
-
+				
 			}
 		}
 		IEnumerable<IIfcPerson> IIfcWorkControl.Creators 
@@ -91,11 +89,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			        Duration = null;
 			        return;
 			    }
-                //PnYnMnDTnHnMnS
-                //TODO: Handle setting of Duration for which no match was found
-                throw new System.NotImplementedException();
+			    System.TimeSpan span = value.Value;
+                Duration = new MeasureResource.IfcTimeMeasure(span.TotalSeconds);
 			    //##
-
+				
 			}
 		}
 		Ifc4.DateTimeResource.IfcDuration? IIfcWorkControl.TotalFloat 
@@ -103,15 +100,20 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			get
 			{
 				//## Handle return of TotalFloat for which no match was found
-                if (!Duration.HasValue) return null;
-                return new Xbim.Ifc4.DateTimeResource.IfcDuration(Duration.Value.ToISODateTimeString());
+                if (!TotalFloat.HasValue) return null;
+                return new Xbim.Ifc4.DateTimeResource.IfcDuration(TotalFloat.Value.ToISODateTimeString());
 				//##
 			} 
 			set
 			{
 				//## Handle setting of TotalFloat for which no match was found
-				//TODO: Handle setting of TotalFloat for which no match was found
-				throw new System.NotImplementedException();
+                if (!value.HasValue)
+                {
+                    Duration = null;
+                    return;
+                }
+                System.TimeSpan span = value.Value;
+                TotalFloat = new MeasureResource.IfcTimeMeasure(span.TotalSeconds);
 				//##
 				
 			}

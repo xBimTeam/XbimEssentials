@@ -28,6 +28,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 				
 			}
 		}
+
 		private  Ifc4.MeasureResource.IfcText? _description;
 
 		Ifc4.MeasureResource.IfcText? IIfcMaterial.Description 
@@ -42,6 +43,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 				
 			}
 		}
+
 		private  Ifc4.MeasureResource.IfcLabel? _category;
 
 		Ifc4.MeasureResource.IfcLabel? IIfcMaterial.Category 

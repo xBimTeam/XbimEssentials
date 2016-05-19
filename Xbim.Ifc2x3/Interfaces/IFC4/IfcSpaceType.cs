@@ -39,6 +39,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
+
 		private  Ifc4.MeasureResource.IfcLabel? _longName;
 
 		Ifc4.MeasureResource.IfcLabel? IIfcSpaceType.LongName 

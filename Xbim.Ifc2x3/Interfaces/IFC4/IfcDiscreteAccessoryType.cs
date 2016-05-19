@@ -16,6 +16,7 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	public partial class @IfcDiscreteAccessoryType : IIfcDiscreteAccessoryType
 	{
+
 		private  Ifc4.Interfaces.IfcDiscreteAccessoryTypeEnum _predefinedType;
 
 		Ifc4.Interfaces.IfcDiscreteAccessoryTypeEnum IIfcDiscreteAccessoryType.PredefinedType 

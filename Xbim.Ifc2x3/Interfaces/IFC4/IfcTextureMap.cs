@@ -39,6 +39,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				//## Handle setting of MappedTo for which no match was found
 			    throw new System.PlatformNotSupportedException();
 			    //##
+				NotifyPropertyChanged("MappedTo");
 				
 			}
 		}

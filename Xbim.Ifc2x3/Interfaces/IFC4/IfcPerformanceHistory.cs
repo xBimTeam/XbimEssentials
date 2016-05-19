@@ -28,6 +28,7 @@ namespace Xbim.Ifc2x3.ControlExtension
 				
 			}
 		}
+
 		private  Ifc4.Interfaces.IfcPerformanceHistoryTypeEnum? _predefinedType;
 
 		Ifc4.Interfaces.IfcPerformanceHistoryTypeEnum? IIfcPerformanceHistory.PredefinedType 

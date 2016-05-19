@@ -65,8 +65,27 @@ namespace Xbim.Ifc2x3.CostResource
 			set
 			{
 				//## Handle setting of RateDateTime for which no match was found
-				//TODO: Handle setting of RateDateTime for which no match was found
-				throw new System.NotImplementedException();
+                if (!value.HasValue)
+                {
+                    RateDateTime = null;
+                    return;
+                }
+                System.DateTime d = value.Value;
+                RateDateTime = Model.Instances.New<DateTimeResource.IfcDateAndTime>(dt =>
+                {
+                    dt.DateComponent = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+                    {
+                        date.YearComponent = d.Year;
+                        date.MonthComponent = d.Month;
+                        date.DayComponent = d.Day;
+                    });
+                    dt.TimeComponent = Model.Instances.New<DateTimeResource.IfcLocalTime>(t =>
+                    {
+                        t.HourComponent = d.Hour;
+                        t.MinuteComponent = d.Minute;
+                        t.SecondComponent = d.Second;
+                    });
+                });
 				//##
 				
 			}
@@ -83,6 +102,7 @@ namespace Xbim.Ifc2x3.CostResource
 				
 			}
 		}
+
 		private  Ifc4.MeasureResource.IfcLabel? _name;
 
 		Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
@@ -97,6 +117,7 @@ namespace Xbim.Ifc2x3.CostResource
 				
 			}
 		}
+
 		private  Ifc4.MeasureResource.IfcText? _description;
 
 		Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 

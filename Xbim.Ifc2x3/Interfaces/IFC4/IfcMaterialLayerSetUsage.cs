@@ -89,20 +89,18 @@ namespace Xbim.Ifc2x3.MaterialResource
 				
 			}
 		}
+
+		private  Ifc4.MeasureResource.IfcPositiveLengthMeasure? _referenceExtent;
+
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMaterialLayerSetUsage.ReferenceExtent 
 		{ 
 			get
 			{
-				//## Handle return of ReferenceExtent for which no match was found
-			    return null;
-			    //##
+				return _referenceExtent;
 			} 
 			set
 			{
-				//## Handle setting of ReferenceExtent for which no match was found
-				//TODO: Handle setting of ReferenceExtent for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _referenceExtent = v, _referenceExtent, value, "ReferenceExtent", byte.MaxValue);
 				
 			}
 		}

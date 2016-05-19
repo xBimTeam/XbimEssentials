@@ -36,8 +36,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				var ifconedirectionrepeatfactor = StartOfNextHatchLine as IfcOneDirectionRepeatFactor;
 				if (ifconedirectionrepeatfactor != null) 
 					//## Handle entity IfcOneDirectionRepeatFactor which is not a part of the target select interface IIfcHatchLineDistanceSelect in property StartOfNextHatchLine
-					//TODO: Handle entity IfcOneDirectionRepeatFactor which is not a part of the target select interface IIfcHatchLineDistanceSelect in property StartOfNextHatchLine
-					throw new System.NotImplementedException();
+			        //TODO: Handle entity IfcOneDirectionRepeatFactor which is not a part of the target select interface IIfcHatchLineDistanceSelect in property StartOfNextHatchLine
+			        return null;
 					//##
 				if (StartOfNextHatchLine is MeasureResource.IfcPositiveLengthMeasure) 
 					return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)(MeasureResource.IfcPositiveLengthMeasure)StartOfNextHatchLine);

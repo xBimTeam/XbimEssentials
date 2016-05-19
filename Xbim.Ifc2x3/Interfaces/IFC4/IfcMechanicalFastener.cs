@@ -46,6 +46,7 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 				
 			}
 		}
+
 		private  Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum? _predefinedType;
 
 		Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum? IIfcMechanicalFastener.PredefinedType 

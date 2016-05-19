@@ -80,20 +80,18 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				}
 			} 
 		}
+
+		private  IIfcObjectPlacement _sharedPlacement;
+
 		IIfcObjectPlacement IIfcStructuralAnalysisModel.SharedPlacement 
 		{ 
 			get
 			{
-				//## Handle return of SharedPlacement for which no match was found
-                return null;
-				//##
+				return _sharedPlacement;
 			} 
 			set
 			{
-				//## Handle setting of SharedPlacement for which no match was found
-				//TODO: Handle setting of SharedPlacement for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _sharedPlacement = v, _sharedPlacement, value, "SharedPlacement", byte.MaxValue);
 				
 			}
 		}

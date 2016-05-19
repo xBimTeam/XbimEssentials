@@ -28,6 +28,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 				
 			}
 		}
+
 		private  Ifc4.MeasureResource.IfcLabel? _formula;
 
 		Ifc4.MeasureResource.IfcLabel? IIfcQuantityCount.Formula 

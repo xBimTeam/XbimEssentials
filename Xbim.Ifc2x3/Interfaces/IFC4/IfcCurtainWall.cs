@@ -16,6 +16,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcCurtainWall : IIfcCurtainWall
 	{
+
 		private  Ifc4.Interfaces.IfcCurtainWallTypeEnum? _predefinedType;
 
 		Ifc4.Interfaces.IfcCurtainWallTypeEnum? IIfcCurtainWall.PredefinedType 

@@ -46,6 +46,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 				}
 			} 
 		}
+
 		private  Ifc4.Interfaces.IfcGridTypeEnum? _predefinedType;
 
 		Ifc4.Interfaces.IfcGridTypeEnum? IIfcGrid.PredefinedType 

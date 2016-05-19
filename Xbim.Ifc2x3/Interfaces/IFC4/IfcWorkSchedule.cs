@@ -16,6 +16,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 {
 	public partial class @IfcWorkSchedule : IIfcWorkSchedule
 	{
+
 		private  Ifc4.Interfaces.IfcWorkScheduleTypeEnum? _predefinedType;
 
 		Ifc4.Interfaces.IfcWorkScheduleTypeEnum? IIfcWorkSchedule.PredefinedType 

@@ -39,6 +39,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				
 			}
 		}
+
 		private  Ifc4.Interfaces.IfcStructuralCurveActivityTypeEnum _predefinedType;
 
 		Ifc4.Interfaces.IfcStructuralCurveActivityTypeEnum IIfcStructuralCurveAction.PredefinedType 

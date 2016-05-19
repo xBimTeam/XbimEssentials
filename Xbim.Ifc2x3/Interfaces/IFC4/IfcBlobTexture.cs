@@ -33,19 +33,19 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			get
 			{
 				//## Handle return of RasterCode for which no match was found
-			    return 0;
+			    return _rasterCode4;
 			    //##
 			} 
 			set
 			{
 				//## Handle setting of RasterCode for which no match was found
-				//TODO: Handle setting of RasterCode for which no match was found
-				throw new System.NotImplementedException();
+                SetValue(v => _rasterCode4 = v, _rasterCode4, value, "RasterCode", byte.MaxValue);
 				//##
 				
 			}
 		}
 	//## Custom code
-	//##
+	    private Ifc4.MeasureResource.IfcBinary _rasterCode4;
+	    //##
 	}
 }

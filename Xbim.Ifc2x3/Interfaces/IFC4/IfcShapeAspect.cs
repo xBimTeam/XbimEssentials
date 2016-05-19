@@ -66,10 +66,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
-				//## Handle setting of ProductDefinitional for which no match was found
-				//TODO: Handle setting of ProductDefinitional for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				ProductDefinitional = value;
 				
 			}
 		}

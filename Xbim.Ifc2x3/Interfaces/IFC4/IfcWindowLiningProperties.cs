@@ -148,54 +148,48 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				
 			}
 		}
+
+		private  Ifc4.MeasureResource.IfcLengthMeasure? _liningOffset;
+
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcWindowLiningProperties.LiningOffset 
 		{ 
 			get
 			{
-				//## Handle return of LiningOffset for which no match was found
-                return null;
-				//##
+				return _liningOffset;
 			} 
 			set
 			{
-				//## Handle setting of LiningOffset for which no match was found
-				//TODO: Handle setting of LiningOffset for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _liningOffset = v, _liningOffset, value, "LiningOffset", byte.MaxValue);
 				
 			}
 		}
+
+		private  Ifc4.MeasureResource.IfcLengthMeasure? _liningToPanelOffsetX;
+
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcWindowLiningProperties.LiningToPanelOffsetX 
 		{ 
 			get
 			{
-				//## Handle return of LiningToPanelOffsetX for which no match was found
-                return null;
-				//##
+				return _liningToPanelOffsetX;
 			} 
 			set
 			{
-				//## Handle setting of LiningToPanelOffsetX for which no match was found
-				//TODO: Handle setting of LiningToPanelOffsetX for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _liningToPanelOffsetX = v, _liningToPanelOffsetX, value, "LiningToPanelOffsetX", byte.MaxValue);
 				
 			}
 		}
+
+		private  Ifc4.MeasureResource.IfcLengthMeasure? _liningToPanelOffsetY;
+
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcWindowLiningProperties.LiningToPanelOffsetY 
 		{ 
 			get
 			{
-				//## Handle return of LiningToPanelOffsetY for which no match was found
-                return null;
-				//##
+				return _liningToPanelOffsetY;
 			} 
 			set
 			{
-				//## Handle setting of LiningToPanelOffsetY for which no match was found
-				//TODO: Handle setting of LiningToPanelOffsetY for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _liningToPanelOffsetY = v, _liningToPanelOffsetY, value, "LiningToPanelOffsetY", byte.MaxValue);
 				
 			}
 		}

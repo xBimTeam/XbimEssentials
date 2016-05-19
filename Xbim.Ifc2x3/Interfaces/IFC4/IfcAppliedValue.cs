@@ -132,6 +132,7 @@ namespace Xbim.Ifc2x3.CostResource
 				
 			}
 		}
+
 		private  Ifc4.MeasureResource.IfcLabel? _category;
 
 		Ifc4.MeasureResource.IfcLabel? IIfcAppliedValue.Category 
@@ -146,6 +147,7 @@ namespace Xbim.Ifc2x3.CostResource
 				
 			}
 		}
+
 		private  Ifc4.MeasureResource.IfcLabel? _condition;
 
 		Ifc4.MeasureResource.IfcLabel? IIfcAppliedValue.Condition 
@@ -213,6 +215,7 @@ namespace Xbim.Ifc2x3.CostResource
 			            throw new System.ArgumentOutOfRangeException("value", value, null);
 			    }
 			    //##
+				NotifyPropertyChanged("ArithmeticOperator");
 				
 			}
 		}

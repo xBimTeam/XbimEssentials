@@ -21,15 +21,13 @@ namespace Xbim.Ifc2x3.Kernel
 			get
 			{
 				//## Handle return of RelatingClassification for which no match was found
-                var reference = RelatingClassification as ExternalReferenceResource.IfcClassificationReference;
-			    return reference;
+			    return RelatingClassification as IIfcClassificationSelect;
 			    //##
 			} 
 			set
 			{
 				//## Handle setting of RelatingClassification for which no match was found
-				//TODO: Handle setting of RelatingClassification for which no match was found
-				throw new System.NotImplementedException();
+				RelatingClassification = value as ExternalReferenceResource.IfcClassificationNotationSelect;
 				//##
 				
 			}

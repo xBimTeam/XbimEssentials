@@ -45,6 +45,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 				
 			}
 		}
+
 		private  Ifc4.Interfaces.IfcDistributionPortTypeEnum? _predefinedType;
 
 		Ifc4.Interfaces.IfcDistributionPortTypeEnum? IIfcDistributionPort.PredefinedType 
@@ -59,20 +60,18 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 				
 			}
 		}
+
+		private  Ifc4.Interfaces.IfcDistributionSystemEnum? _systemType;
+
 		Ifc4.Interfaces.IfcDistributionSystemEnum? IIfcDistributionPort.SystemType 
 		{ 
 			get
 			{
-				//## Handle return of SystemType for which no match was found
-			    return null;
-			    //##
+				return _systemType;
 			} 
 			set
 			{
-				//## Handle setting of SystemType for which no match was found
-				//TODO: Handle setting of SystemType for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _systemType = v, _systemType, value, "SystemType", byte.MaxValue);
 				
 			}
 		}

@@ -55,10 +55,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				//## Handle setting of SameSense for which no match was found
-				//TODO: Handle setting of SameSense for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SameSense = value;
 				
 			}
 		}

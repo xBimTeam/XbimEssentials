@@ -16,6 +16,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	public partial class @IfcPermit : IIfcPermit
 	{
+
 		private  Ifc4.Interfaces.IfcPermitTypeEnum? _predefinedType;
 
 		Ifc4.Interfaces.IfcPermitTypeEnum? IIfcPermit.PredefinedType 
@@ -30,23 +31,22 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 				
 			}
 		}
+
+		private  Ifc4.MeasureResource.IfcLabel? _status;
+
 		Ifc4.MeasureResource.IfcLabel? IIfcPermit.Status 
 		{ 
 			get
 			{
-				//## Handle return of Status for which no match was found
-			    return null;
-			    //##
+				return _status;
 			} 
 			set
 			{
-				//## Handle setting of Status for which no match was found
-				//TODO: Handle setting of Status for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _status = v, _status, value, "Status", byte.MaxValue);
 				
 			}
 		}
+
 		private  Ifc4.MeasureResource.IfcText? _longDescription;
 
 		Ifc4.MeasureResource.IfcText? IIfcPermit.LongDescription 

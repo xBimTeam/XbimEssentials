@@ -16,6 +16,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	public partial class @IfcConstructionResource : IIfcConstructionResource
 	{
+
 		private  IIfcResourceTime _usage;
 
 		IIfcResourceTime IIfcConstructionResource.Usage 

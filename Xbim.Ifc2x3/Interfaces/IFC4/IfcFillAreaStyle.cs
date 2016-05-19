@@ -40,20 +40,18 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				}
 			} 
 		}
+
+		private  Ifc4.MeasureResource.IfcBoolean? _modelorDraughting;
+
 		Ifc4.MeasureResource.IfcBoolean? IIfcFillAreaStyle.ModelorDraughting 
 		{ 
 			get
 			{
-				//## Handle return of ModelorDraughting for which no match was found
-			    return null;
-			    //##
+				return _modelorDraughting;
 			} 
 			set
 			{
-				//## Handle setting of ModelorDraughting for which no match was found
-				//TODO: Handle setting of ModelorDraughting for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _modelorDraughting = v, _modelorDraughting, value, "ModelorDraughting", byte.MaxValue);
 				
 			}
 		}

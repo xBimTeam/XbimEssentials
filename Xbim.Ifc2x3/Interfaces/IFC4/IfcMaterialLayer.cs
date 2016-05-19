@@ -55,6 +55,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 				
 			}
 		}
+
 		private  Ifc4.MeasureResource.IfcLabel? _name;
 
 		Ifc4.MeasureResource.IfcLabel? IIfcMaterialLayer.Name 
@@ -69,6 +70,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 				
 			}
 		}
+
 		private  Ifc4.MeasureResource.IfcText? _description;
 
 		Ifc4.MeasureResource.IfcText? IIfcMaterialLayer.Description 
@@ -83,6 +85,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 				
 			}
 		}
+
 		private  Ifc4.MeasureResource.IfcLabel? _category;
 
 		Ifc4.MeasureResource.IfcLabel? IIfcMaterialLayer.Category 
@@ -97,20 +100,18 @@ namespace Xbim.Ifc2x3.MaterialResource
 				
 			}
 		}
+
+		private  Ifc4.MeasureResource.IfcInteger? _priority;
+
 		Ifc4.MeasureResource.IfcInteger? IIfcMaterialLayer.Priority 
 		{ 
 			get
 			{
-				//## Handle return of Priority for which no match was found
-			    return null;
-			    //##
+				return _priority;
 			} 
 			set
 			{
-				//## Handle setting of Priority for which no match was found
-				//TODO: Handle setting of Priority for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _priority = v, _priority, value, "Priority", byte.MaxValue);
 				
 			}
 		}

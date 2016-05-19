@@ -16,20 +16,18 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralPointConnection : IIfcStructuralPointConnection
 	{
+
+		private  IIfcAxis2Placement3D _conditionCoordinateSystem;
+
 		IIfcAxis2Placement3D IIfcStructuralPointConnection.ConditionCoordinateSystem 
 		{ 
 			get
 			{
-				//## Handle return of ConditionCoordinateSystem for which no match was found
-                return null;
-				//##
+				return _conditionCoordinateSystem;
 			} 
 			set
 			{
-				//## Handle setting of ConditionCoordinateSystem for which no match was found
-				//TODO: Handle setting of ConditionCoordinateSystem for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _conditionCoordinateSystem = v, _conditionCoordinateSystem, value, "ConditionCoordinateSystem", byte.MaxValue);
 				
 			}
 		}

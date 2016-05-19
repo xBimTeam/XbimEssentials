@@ -56,10 +56,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				//## Handle setting of IsMilestone for which no match was found
-				//TODO: Handle setting of IsMilestone for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				IsMilestone = value;
 				
 			}
 		}
@@ -73,30 +70,26 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				//## Handle setting of Priority for which no match was found
-				//TODO: Handle setting of Priority for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				Priority = value;
 				
 			}
 		}
+
+		private  IIfcTaskTime _taskTime;
+
 		IIfcTaskTime IIfcTask.TaskTime 
 		{ 
 			get
 			{
-				//## Handle return of TaskTime for which no match was found
-                return null;
-				//##
+				return _taskTime;
 			} 
 			set
 			{
-				//## Handle setting of TaskTime for which no match was found
-				//TODO: Handle setting of TaskTime for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _taskTime = v, _taskTime, value, "TaskTime", byte.MaxValue);
 				
 			}
 		}
+
 		private  Ifc4.Interfaces.IfcTaskTypeEnum? _predefinedType;
 
 		Ifc4.Interfaces.IfcTaskTypeEnum? IIfcTask.PredefinedType 

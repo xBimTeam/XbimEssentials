@@ -54,6 +54,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				
 			}
 		}
+
 		private  IIfcDirection _axis;
 
 		IIfcDirection IIfcStructuralCurveMember.Axis 

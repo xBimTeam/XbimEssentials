@@ -130,6 +130,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				
 			}
 		}
+
 		private  Ifc4.Interfaces.IfcReinforcingMeshTypeEnum? _predefinedType;
 
 		Ifc4.Interfaces.IfcReinforcingMeshTypeEnum? IIfcReinforcingMesh.PredefinedType 

@@ -16,6 +16,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	public partial class @IfcLaborResource : IIfcLaborResource
 	{
+
 		private  Ifc4.Interfaces.IfcLaborResourceTypeEnum? _predefinedType;
 
 		Ifc4.Interfaces.IfcLaborResourceTypeEnum? IIfcLaborResource.PredefinedType 

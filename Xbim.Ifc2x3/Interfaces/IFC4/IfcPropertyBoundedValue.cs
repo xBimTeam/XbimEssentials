@@ -452,20 +452,18 @@ namespace Xbim.Ifc2x3.PropertyResource
 				
 			}
 		}
+
+		private  IIfcValue _setPointValue;
+
 		IIfcValue IIfcPropertyBoundedValue.SetPointValue 
 		{ 
 			get
 			{
-				//## Handle return of SetPointValue for which no match was found
-                return null;
-				//##
+				return _setPointValue;
 			} 
 			set
 			{
-				//## Handle setting of SetPointValue for which no match was found
-				//TODO: Handle setting of SetPointValue for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _setPointValue = v, _setPointValue, value, "SetPointValue", byte.MaxValue);
 				
 			}
 		}

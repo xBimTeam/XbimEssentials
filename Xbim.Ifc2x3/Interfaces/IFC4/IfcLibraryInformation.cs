@@ -68,8 +68,18 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			set
 			{
 				//## Handle setting of VersionDate for which no match was found
-				//TODO: Handle setting of VersionDate for which no match was found
-				throw new System.NotImplementedException();
+                if (!value.HasValue)
+                {
+                    VersionDate = null;
+                    return;
+                }
+                System.DateTime d = value.Value;
+                VersionDate = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+                {
+                    date.YearComponent = d.Year;
+                    date.MonthComponent = d.Month;
+                    date.DayComponent = d.Day;
+                });
 				//##
 				
 			}
@@ -89,12 +99,24 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			set
 			{
 				//## Handle setting of Location for which no match was found
-				//TODO: Handle setting of Location for which no match was found
-				throw new System.NotImplementedException();
+                var reference = LibraryReference.FirstOrDefault(r => r.Location != null);
+                if (!value.HasValue)
+                {
+                    if (reference != null)
+                        reference.Location = null;
+                }
+                else
+                {
+                    if (reference == null)
+                        reference = Model.Instances.New<IfcLibraryReference>();
+                    reference.Location = value.Value.ToString();
+                }
 				//##
+				NotifyPropertyChanged("Location");
 				
 			}
 		}
+
 		private  Ifc4.MeasureResource.IfcText? _description;
 
 		Ifc4.MeasureResource.IfcText? IIfcLibraryInformation.Description 

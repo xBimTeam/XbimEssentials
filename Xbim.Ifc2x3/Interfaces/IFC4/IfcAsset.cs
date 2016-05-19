@@ -135,8 +135,18 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			set
 			{
 				//## Handle setting of IncorporationDate for which no match was found
-				//TODO: Handle setting of IncorporationDate for which no match was found
-				throw new System.NotImplementedException();
+                if (!value.HasValue)
+                {
+                    IncorporationDate = null;
+                    return;
+                }
+                System.DateTime d = value.Value;
+                IncorporationDate = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+                {
+                    date.YearComponent = d.Year;
+                    date.MonthComponent = d.Month;
+                    date.DayComponent = d.Day;
+                });
 				//##
 				
 			}

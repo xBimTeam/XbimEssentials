@@ -16,6 +16,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralCurveConnection : IIfcStructuralCurveConnection
 	{
+
 		private  IIfcDirection _axis;
 
 		IIfcDirection IIfcStructuralCurveConnection.Axis 

@@ -82,20 +82,18 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		private  Ifc4.MeasureResource.IfcBoolean? _modelOrDraughting;
+
 		Ifc4.MeasureResource.IfcBoolean? IIfcCurveStyle.ModelOrDraughting 
 		{ 
 			get
 			{
-				//## Handle return of ModelOrDraughting for which no match was found
-				return null;
-				//##
+				return _modelOrDraughting;
 			} 
 			set
 			{
-				//## Handle setting of ModelOrDraughting for which no match was found
-				//TODO: Handle setting of ModelOrDraughting for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _modelOrDraughting = v, _modelOrDraughting, value, "ModelOrDraughting", byte.MaxValue);
 				
 			}
 		}

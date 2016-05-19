@@ -46,6 +46,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				
 			}
 		}
+
 		private  Ifc4.Interfaces.IfcWindowTypeEnum? _predefinedType;
 
 		Ifc4.Interfaces.IfcWindowTypeEnum? IIfcWindow.PredefinedType 
@@ -60,37 +61,33 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				
 			}
 		}
+
+		private  Ifc4.Interfaces.IfcWindowTypePartitioningEnum? _partitioningType;
+
 		Ifc4.Interfaces.IfcWindowTypePartitioningEnum? IIfcWindow.PartitioningType 
 		{ 
 			get
 			{
-				//## Handle return of PartitioningType for which no match was found
-                return Ifc4.Interfaces.IfcWindowTypePartitioningEnum.NOTDEFINED;
-				//##
+				return _partitioningType;
 			} 
 			set
 			{
-				//## Handle setting of PartitioningType for which no match was found
-				//TODO: Handle setting of PartitioningType for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _partitioningType = v, _partitioningType, value, "PartitioningType", byte.MaxValue);
 				
 			}
 		}
+
+		private  Ifc4.MeasureResource.IfcLabel? _userDefinedPartitioningType;
+
 		Ifc4.MeasureResource.IfcLabel? IIfcWindow.UserDefinedPartitioningType 
 		{ 
 			get
 			{
-				//## Handle return of UserDefinedPartitioningType for which no match was found
-                return null;
-				//##
+				return _userDefinedPartitioningType;
 			} 
 			set
 			{
-				//## Handle setting of UserDefinedPartitioningType for which no match was found
-				//TODO: Handle setting of UserDefinedPartitioningType for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _userDefinedPartitioningType = v, _userDefinedPartitioningType, value, "UserDefinedPartitioningType", byte.MaxValue);
 				
 			}
 		}

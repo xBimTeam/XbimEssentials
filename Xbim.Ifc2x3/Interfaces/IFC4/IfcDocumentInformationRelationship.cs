@@ -53,6 +53,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
 		private  Ifc4.MeasureResource.IfcLabel? _name;
 
 		Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
@@ -67,6 +68,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
 		private  Ifc4.MeasureResource.IfcText? _description;
 
 		Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 

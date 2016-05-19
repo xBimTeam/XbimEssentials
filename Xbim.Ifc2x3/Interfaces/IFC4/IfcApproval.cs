@@ -72,9 +72,29 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			set
 			{
 				//## Handle setting of TimeOfApproval for which no match was found
-				//TODO: Handle setting of TimeOfApproval for which no match was found
-				throw new System.NotImplementedException();
+                if (!value.HasValue)
+                {
+                    ApprovalDateTime = null;
+                    return;
+                }
+                System.DateTime d = value.Value;
+                ApprovalDateTime = Model.Instances.New<DateTimeResource.IfcDateAndTime>(dt =>
+                {
+                    dt.DateComponent = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+                    {
+                        date.YearComponent = d.Year;
+                        date.MonthComponent = d.Month;
+                        date.DayComponent = d.Day;
+                    });
+                    dt.TimeComponent = Model.Instances.New<DateTimeResource.IfcLocalTime>(t =>
+                    {
+                        t.HourComponent = d.Hour;
+                        t.MinuteComponent = d.Minute;
+                        t.SecondComponent = d.Second;
+                    });
+                });
 				//##
+				NotifyPropertyChanged("TimeOfApproval");
 				
 			}
 		}
@@ -123,66 +143,33 @@ namespace Xbim.Ifc2x3.ApprovalResource
 				
 			}
 		}
+
+		private  IIfcActorSelect _requestingApproval;
+
 		IIfcActorSelect IIfcApproval.RequestingApproval 
 		{ 
 			get
 			{
-				//## Handle return of RequestingApproval for which no match was found
-			    var actorRel = Actors.FirstOrDefault();
-			    if (actorRel == null)
-			        return null;
-			    if (actorRel.Actor == null)
-			        return null;
-
-			    var organization = actorRel.Actor as IIfcOrganization;
-			    if (organization != null) return organization;
-
-			    var person = actorRel.Actor as IIfcPerson;
-			    if (person != null) return person;
-
-			    var personAndOrganization = actorRel.Actor as IIfcPersonAndOrganization;
-			    return personAndOrganization;
-			    //##
+				return _requestingApproval;
 			} 
 			set
 			{
-				//## Handle setting of RequestingApproval for which no match was found
-				//TODO: Handle setting of RequestingApproval for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _requestingApproval = v, _requestingApproval, value, "RequestingApproval", byte.MaxValue);
 				
 			}
 		}
+
+		private  IIfcActorSelect _givingApproval;
+
 		IIfcActorSelect IIfcApproval.GivingApproval 
 		{ 
 			get
 			{
-				//## Handle return of GivingApproval for which no match was found
-			    var rels = Actors.ToList();
-			    if (rels.Count < 2)
-			        return null;
-                var actorRel = rels[1];
-                if (actorRel == null)
-                    return null;
-                if (actorRel.Actor == null)
-                    return null;
-
-                var organization = actorRel.Actor as IIfcOrganization;
-                if (organization != null) return organization;
-
-                var person = actorRel.Actor as IIfcPerson;
-                if (person != null) return person;
-
-                var personAndOrganization = actorRel.Actor as IIfcPersonAndOrganization;
-                return personAndOrganization;
-				//##
+				return _givingApproval;
 			} 
 			set
 			{
-				//## Handle setting of GivingApproval for which no match was found
-				//TODO: Handle setting of GivingApproval for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _givingApproval = v, _givingApproval, value, "GivingApproval", byte.MaxValue);
 				
 			}
 		}

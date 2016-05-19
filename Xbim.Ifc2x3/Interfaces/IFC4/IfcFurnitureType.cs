@@ -42,6 +42,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				
 			}
 		}
+
 		private  Ifc4.Interfaces.IfcFurnitureTypeEnum? _predefinedType;
 
 		Ifc4.Interfaces.IfcFurnitureTypeEnum? IIfcFurnitureType.PredefinedType 

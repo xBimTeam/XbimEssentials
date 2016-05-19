@@ -28,6 +28,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
 		private  Ifc4.MeasureResource.IfcText? _description;
 
 		Ifc4.MeasureResource.IfcText? IIfcClassificationReference.Description 
@@ -42,20 +43,18 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
+		private  Ifc4.MeasureResource.IfcIdentifier? _sort;
+
 		Ifc4.MeasureResource.IfcIdentifier? IIfcClassificationReference.Sort 
 		{ 
 			get
 			{
-				//## Handle return of Sort for which no match was found
-			    return null;
-			    //##
+				return _sort;
 			} 
 			set
 			{
-				//## Handle setting of Sort for which no match was found
-				//TODO: Handle setting of Sort for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				SetValue(v => _sort = v, _sort, value, "Sort", byte.MaxValue);
 				
 			}
 		}
