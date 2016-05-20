@@ -235,12 +235,12 @@ namespace Xbim.MemoryModel.Tests
         //}
 
         [TestMethod]
-        [DeploymentItem("TestFiles/2016-02-29-Dormitory-COBie.xls")]
+        [DeploymentItem("TestFiles/2016-02-29-Dormitory-COBie.xlsx")]
         public void LoadFromXLSX()
         {
             string report;
-            var cobieModel = CobieModel.ImportFromTable(@"2016-02-29-Dormitory-COBie.xls", out report);
-         //   Assert.IsTrue(string.IsNullOrWhiteSpace(report), "Errors loading cobie xlsx file" );
+            var cobieModel = CobieModel.ImportFromTable(@"2016-02-29-Dormitory-COBie.xlsx", out report);
+            Assert.IsTrue(string.IsNullOrWhiteSpace(report), "Errors loading cobie xlsx file" );
 
         }
 

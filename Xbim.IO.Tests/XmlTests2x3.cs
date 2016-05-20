@@ -24,6 +24,7 @@ namespace Xbim.MemoryModel.Tests
                 esent.SaveAs(output, IfcStorageType.IfcXml);
                 var errs = ValidateIfc2X3("..\\..\\4walls1floorSite.ifcxml");
                 Assert.AreEqual(0, errs);
+                esent.Close();
             }
 
             using (var esent = new IO.Esent.EsentModel(new EntityFactory()))
@@ -31,6 +32,7 @@ namespace Xbim.MemoryModel.Tests
                 var success = esent.CreateFrom(output, null, null, true, true);
                 Assert.IsTrue(success);
                 Assert.AreEqual(4, esent.Instances.CountOf<IfcWall>());
+                esent.Close();
             }
 
             //check version info
