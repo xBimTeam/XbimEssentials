@@ -43,15 +43,34 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
+		private  IIfcActorSelect _publisher4;
+
 		IIfcActorSelect IIfcLibraryInformation.Publisher 
 		{ 
 			get
 			{
-				return Publisher;
+				return  _publisher4 ?? Publisher;
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					Publisher = null;
+					SetValue(v => _publisher4 = v, _publisher4, null, "Publisher", byte.MaxValue);
+					return;
+				}
+				
+				var val = value as ActorResource.IfcOrganization;
+				if (val != null)
+				{
+					Publisher = val;
+					SetValue(v => _publisher4 = v, _publisher4, null, "Publisher", byte.MaxValue);
+					return;
+				} 
+
+					Publisher = null;
+					SetValue(v => _publisher4 = v, _publisher4, value, "Publisher", byte.MaxValue);
 				
 			}
 		}

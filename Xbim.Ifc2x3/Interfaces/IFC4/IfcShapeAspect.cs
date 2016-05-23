@@ -70,15 +70,34 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				
 			}
 		}
+
+		private  IIfcProductRepresentationSelect _partOfProductDefinitionShape4;
+
 		IIfcProductRepresentationSelect IIfcShapeAspect.PartOfProductDefinitionShape 
 		{ 
 			get
 			{
-				return PartOfProductDefinitionShape;
+				return  _partOfProductDefinitionShape4 ?? PartOfProductDefinitionShape;
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					PartOfProductDefinitionShape = null;
+					SetValue(v => _partOfProductDefinitionShape4 = v, _partOfProductDefinitionShape4, null, "PartOfProductDefinitionShape", byte.MaxValue);
+					return;
+				}
+				
+				var val = value as IfcProductDefinitionShape;
+				if (val != null)
+				{
+					PartOfProductDefinitionShape = val;
+					SetValue(v => _partOfProductDefinitionShape4 = v, _partOfProductDefinitionShape4, null, "PartOfProductDefinitionShape", byte.MaxValue);
+					return;
+				} 
+
+					PartOfProductDefinitionShape = null;
+					SetValue(v => _partOfProductDefinitionShape4 = v, _partOfProductDefinitionShape4, value, "PartOfProductDefinitionShape", byte.MaxValue);
 				
 			}
 		}

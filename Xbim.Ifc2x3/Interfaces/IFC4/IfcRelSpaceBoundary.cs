@@ -16,15 +16,34 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcRelSpaceBoundary : IIfcRelSpaceBoundary
 	{
+
+		private  IIfcSpaceBoundarySelect _relatingSpace4;
+
 		IIfcSpaceBoundarySelect IIfcRelSpaceBoundary.RelatingSpace 
 		{ 
 			get
 			{
-				return RelatingSpace;
+				return  _relatingSpace4 ?? RelatingSpace;
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					RelatingSpace = null;
+					SetValue(v => _relatingSpace4 = v, _relatingSpace4, null, "RelatingSpace", byte.MaxValue);
+					return;
+				}
+				
+				var val = value as IfcSpace;
+				if (val != null)
+				{
+					RelatingSpace = val;
+					SetValue(v => _relatingSpace4 = v, _relatingSpace4, null, "RelatingSpace", byte.MaxValue);
+					return;
+				} 
+
+					RelatingSpace = null;
+					SetValue(v => _relatingSpace4 = v, _relatingSpace4, value, "RelatingSpace", byte.MaxValue);
 				
 			}
 		}

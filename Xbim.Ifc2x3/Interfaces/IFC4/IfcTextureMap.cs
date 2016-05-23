@@ -31,19 +31,20 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			get
 			{
 				//## Handle return of MappedTo for which no match was found
-                return new  Interfaces.Conversions.IfcFaceTransient(TextureMaps.First());;
+                return _mappedTo ?? new  Interfaces.Conversions.IfcFaceTransient(TextureMaps.First());;
 				//##
 			} 
 			set
 			{
 				//## Handle setting of MappedTo for which no match was found
-			    throw new System.PlatformNotSupportedException();
+                SetValue(v => _mappedTo = v, _mappedTo, value, "MappedTo", byte.MaxValue);
 			    //##
 				NotifyPropertyChanged("MappedTo");
 				
 			}
 		}
 	//## Custom code
-	//##
+	    private IIfcFace _mappedTo;
+	    //##
 	}
 }

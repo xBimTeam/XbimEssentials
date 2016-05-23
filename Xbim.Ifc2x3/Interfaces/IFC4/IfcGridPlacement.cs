@@ -28,15 +28,34 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				
 			}
 		}
+
+		private  IIfcGridPlacementDirectionSelect _placementRefDirection4;
+
 		IIfcGridPlacementDirectionSelect IIfcGridPlacement.PlacementRefDirection 
 		{ 
 			get
 			{
-				return PlacementRefDirection;
+				return  _placementRefDirection4 ?? PlacementRefDirection;
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					PlacementRefDirection = null;
+					SetValue(v => _placementRefDirection4 = v, _placementRefDirection4, null, "PlacementRefDirection", byte.MaxValue);
+					return;
+				}
+				
+				var val = value as IfcVirtualGridIntersection;
+				if (val != null)
+				{
+					PlacementRefDirection = val;
+					SetValue(v => _placementRefDirection4 = v, _placementRefDirection4, null, "PlacementRefDirection", byte.MaxValue);
+					return;
+				} 
+
+					PlacementRefDirection = null;
+					SetValue(v => _placementRefDirection4 = v, _placementRefDirection4, value, "PlacementRefDirection", byte.MaxValue);
 				
 			}
 		}

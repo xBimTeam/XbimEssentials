@@ -170,10 +170,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			}
 		}
 		IIfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessY 
-		{
-            get
-            {
-                //## Handle return of RotationalStiffnessY for which no match was found
+		{ 
+			get
+			{
+				//## Handle return of RotationalStiffnessY for which no match was found
                 if (_rotationalStiffnessY4 != null)
                     return _rotationalStiffnessY4;
 
@@ -181,10 +181,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 if (!value.HasValue) return null;
                 return new Ifc4.MeasureResource.IfcRotationalStiffnessMeasure(value.Value);
                 //##
-            }
-            set
-            {
-                //## Handle setting of RotationalStiffnessY for which no match was found
+			} 
+			set
+			{
+				//## Handle setting of RotationalStiffnessY for which no match was found
                 if (value == null)
                 {
                     RotationalStiffnessY = null;
@@ -203,14 +203,14 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 
                 SetValue(v => _rotationalStiffnessY4 = v, _rotationalStiffnessY4, value, "RotationalStiffnessY", byte.MaxValue);
                 //##
-
-            }
+				
+			}
 		}
 		IIfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessZ 
-		{
-            get
-            {
-                //## Handle return of RotationalStiffnessZ for which no match was found
+		{ 
+			get
+			{
+				//## Handle return of RotationalStiffnessZ for which no match was found
                 if (_rotationalStiffnessZ4 != null)
                     return _rotationalStiffnessZ4;
 
@@ -218,10 +218,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 if (!value.HasValue) return null;
                 return new Ifc4.MeasureResource.IfcRotationalStiffnessMeasure(value.Value);
                 //##
-            }
-            set
-            {
-                //## Handle setting of RotationalStiffnessZ for which no match was found
+			} 
+			set
+			{
+				//## Handle setting of RotationalStiffnessZ for which no match was found
                 if (value == null)
                 {
                     RotationalStiffnessZ = null;
@@ -240,8 +240,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 
                 SetValue(v => _rotationalStiffnessZ4 = v, _rotationalStiffnessZ4, value, "RotationalStiffnessZ", byte.MaxValue);
                 //##
-
-            }
+				
+			}
 		}
 	//## Custom code
         private IIfcTranslationalStiffnessSelect _translationalStiffnessX;

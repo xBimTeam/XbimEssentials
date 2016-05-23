@@ -16,15 +16,34 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelAssignsToProcess : IIfcRelAssignsToProcess
 	{
+
+		private  IIfcProcessSelect _relatingProcess4;
+
 		IIfcProcessSelect IIfcRelAssignsToProcess.RelatingProcess 
 		{ 
 			get
 			{
-				return RelatingProcess;
+				return  _relatingProcess4 ?? RelatingProcess;
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					RelatingProcess = null;
+					SetValue(v => _relatingProcess4 = v, _relatingProcess4, null, "RelatingProcess", byte.MaxValue);
+					return;
+				}
+				
+				var val = value as IfcProcess;
+				if (val != null)
+				{
+					RelatingProcess = val;
+					SetValue(v => _relatingProcess4 = v, _relatingProcess4, null, "RelatingProcess", byte.MaxValue);
+					return;
+				} 
+
+					RelatingProcess = null;
+					SetValue(v => _relatingProcess4 = v, _relatingProcess4, value, "RelatingProcess", byte.MaxValue);
 				
 			}
 		}

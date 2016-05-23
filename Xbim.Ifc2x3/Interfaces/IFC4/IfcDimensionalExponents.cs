@@ -24,7 +24,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				LengthExponent = value;
 				
 			}
 		}
@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				MassExponent = value;
 				
 			}
 		}
@@ -48,7 +48,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				TimeExponent = value;
 				
 			}
 		}
@@ -60,7 +60,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				ElectricCurrentExponent = value;
 				
 			}
 		}
@@ -72,7 +72,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				ThermodynamicTemperatureExponent = value;
 				
 			}
 		}
@@ -84,7 +84,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				AmountOfSubstanceExponent = value;
 				
 			}
 		}
@@ -96,7 +96,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				LuminousIntensityExponent = value;
 				
 			}
 		}

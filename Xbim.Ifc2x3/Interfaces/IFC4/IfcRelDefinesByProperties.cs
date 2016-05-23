@@ -26,15 +26,34 @@ namespace Xbim.Ifc2x3.Kernel
 				}
 			} 
 		}
+
+		private  IIfcPropertySetDefinitionSelect _relatingPropertyDefinition4;
+
 		IIfcPropertySetDefinitionSelect IIfcRelDefinesByProperties.RelatingPropertyDefinition 
 		{ 
 			get
 			{
-				return RelatingPropertyDefinition;
+				return  _relatingPropertyDefinition4 ?? RelatingPropertyDefinition;
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					RelatingPropertyDefinition = null;
+					SetValue(v => _relatingPropertyDefinition4 = v, _relatingPropertyDefinition4, null, "RelatingPropertyDefinition", byte.MaxValue);
+					return;
+				}
+				
+				var val = value as IfcPropertySetDefinition;
+				if (val != null)
+				{
+					RelatingPropertyDefinition = val;
+					SetValue(v => _relatingPropertyDefinition4 = v, _relatingPropertyDefinition4, null, "RelatingPropertyDefinition", byte.MaxValue);
+					return;
+				} 
+
+					RelatingPropertyDefinition = null;
+					SetValue(v => _relatingPropertyDefinition4 = v, _relatingPropertyDefinition4, value, "RelatingPropertyDefinition", byte.MaxValue);
 				
 			}
 		}

@@ -16,15 +16,34 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	public partial class @IfcClassificationReference : IIfcClassificationReference
 	{
+
+		private  IIfcClassificationReferenceSelect _referencedSource4;
+
 		IIfcClassificationReferenceSelect IIfcClassificationReference.ReferencedSource 
 		{ 
 			get
 			{
-				return ReferencedSource;
+				return  _referencedSource4 ?? ReferencedSource;
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					ReferencedSource = null;
+					SetValue(v => _referencedSource4 = v, _referencedSource4, null, "ReferencedSource", byte.MaxValue);
+					return;
+				}
+				
+				var val = value as IfcClassification;
+				if (val != null)
+				{
+					ReferencedSource = val;
+					SetValue(v => _referencedSource4 = v, _referencedSource4, null, "ReferencedSource", byte.MaxValue);
+					return;
+				} 
+
+					ReferencedSource = null;
+					SetValue(v => _referencedSource4 = v, _referencedSource4, value, "ReferencedSource", byte.MaxValue);
 				
 			}
 		}
