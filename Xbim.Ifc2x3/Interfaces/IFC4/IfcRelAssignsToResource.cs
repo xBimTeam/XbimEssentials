@@ -30,7 +30,8 @@ namespace Xbim.Ifc2x3.Kernel
 				if (value == null)
 				{
 					RelatingResource = null;
-					SetValue(v => _relatingResource4 = v, _relatingResource4, null, "RelatingResource", byte.MaxValue);
+					if (_relatingResource4 != null)
+						SetValue(v => _relatingResource4 = v, _relatingResource4, null, "RelatingResource", byte.MaxValue);
 					return;
 				}
 				
@@ -38,12 +39,14 @@ namespace Xbim.Ifc2x3.Kernel
 				if (val != null)
 				{
 					RelatingResource = val;
-					SetValue(v => _relatingResource4 = v, _relatingResource4, null, "RelatingResource", byte.MaxValue);
+					if (_relatingResource4 != null)
+						SetValue(v => _relatingResource4 = v, _relatingResource4, null, "RelatingResource", byte.MaxValue);
 					return;
 				} 
 
+				if(RelatingResource != null)
 					RelatingResource = null;
-					SetValue(v => _relatingResource4 = v, _relatingResource4, value, "RelatingResource", byte.MaxValue);
+				SetValue(v => _relatingResource4 = v, _relatingResource4, value, "RelatingResource", byte.MaxValue);
 				
 			}
 		}

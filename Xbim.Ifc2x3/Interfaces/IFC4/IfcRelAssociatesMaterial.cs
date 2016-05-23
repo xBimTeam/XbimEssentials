@@ -48,7 +48,17 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					RelatingMaterial = null;
+					return;
+				}	
+				var ifcmateriallist = value as MaterialResource.IfcMaterialList;
+				if (ifcmateriallist != null) 
+				{
+					RelatingMaterial = ifcmateriallist;
+					return;
+				}
 				
 			}
 		}

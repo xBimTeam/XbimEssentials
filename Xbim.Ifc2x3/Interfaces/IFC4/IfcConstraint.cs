@@ -108,7 +108,29 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					CreatingActor = null;
+					return;
+				}	
+				var ifcorganization = value as ActorResource.IfcOrganization;
+				if (ifcorganization != null) 
+				{
+					CreatingActor = ifcorganization;
+					return;
+				}
+				var ifcperson = value as ActorResource.IfcPerson;
+				if (ifcperson != null) 
+				{
+					CreatingActor = ifcperson;
+					return;
+				}
+				var ifcpersonandorganization = value as ActorResource.IfcPersonAndOrganization;
+				if (ifcpersonandorganization != null) 
+				{
+					CreatingActor = ifcpersonandorganization;
+					return;
+				}
 				
 			}
 		}

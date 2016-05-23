@@ -42,7 +42,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				if (value == null)
 				{
 					PlacementRefDirection = null;
-					SetValue(v => _placementRefDirection4 = v, _placementRefDirection4, null, "PlacementRefDirection", byte.MaxValue);
+					if (_placementRefDirection4 != null)
+						SetValue(v => _placementRefDirection4 = v, _placementRefDirection4, null, "PlacementRefDirection", byte.MaxValue);
 					return;
 				}
 				
@@ -50,12 +51,14 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				if (val != null)
 				{
 					PlacementRefDirection = val;
-					SetValue(v => _placementRefDirection4 = v, _placementRefDirection4, null, "PlacementRefDirection", byte.MaxValue);
+					if (_placementRefDirection4 != null)
+						SetValue(v => _placementRefDirection4 = v, _placementRefDirection4, null, "PlacementRefDirection", byte.MaxValue);
 					return;
 				} 
 
+				if(PlacementRefDirection != null)
 					PlacementRefDirection = null;
-					SetValue(v => _placementRefDirection4 = v, _placementRefDirection4, value, "PlacementRefDirection", byte.MaxValue);
+				SetValue(v => _placementRefDirection4 = v, _placementRefDirection4, value, "PlacementRefDirection", byte.MaxValue);
 				
 			}
 		}

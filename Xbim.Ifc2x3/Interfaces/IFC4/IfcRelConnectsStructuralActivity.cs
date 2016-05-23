@@ -31,7 +31,23 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					RelatingElement = null;
+					return;
+				}	
+				var ifcelement = value as ProductExtension.IfcElement;
+				if (ifcelement != null) 
+				{
+					RelatingElement = ifcelement;
+					return;
+				}
+				var ifcstructuralitem = value as IfcStructuralItem;
+				if (ifcstructuralitem != null) 
+				{
+					RelatingElement = ifcstructuralitem;
+					return;
+				}
 				
 			}
 		}

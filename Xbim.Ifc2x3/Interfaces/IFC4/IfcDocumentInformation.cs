@@ -169,7 +169,29 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					DocumentOwner = null;
+					return;
+				}	
+				var ifcorganization = value as ActorResource.IfcOrganization;
+				if (ifcorganization != null) 
+				{
+					DocumentOwner = ifcorganization;
+					return;
+				}
+				var ifcperson = value as ActorResource.IfcPerson;
+				if (ifcperson != null) 
+				{
+					DocumentOwner = ifcperson;
+					return;
+				}
+				var ifcpersonandorganization = value as ActorResource.IfcPersonAndOrganization;
+				if (ifcpersonandorganization != null) 
+				{
+					DocumentOwner = ifcpersonandorganization;
+					return;
+				}
 				
 			}
 		}

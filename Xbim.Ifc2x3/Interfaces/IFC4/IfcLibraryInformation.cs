@@ -57,7 +57,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (value == null)
 				{
 					Publisher = null;
-					SetValue(v => _publisher4 = v, _publisher4, null, "Publisher", byte.MaxValue);
+					if (_publisher4 != null)
+						SetValue(v => _publisher4 = v, _publisher4, null, "Publisher", byte.MaxValue);
 					return;
 				}
 				
@@ -65,12 +66,14 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (val != null)
 				{
 					Publisher = val;
-					SetValue(v => _publisher4 = v, _publisher4, null, "Publisher", byte.MaxValue);
+					if (_publisher4 != null)
+						SetValue(v => _publisher4 = v, _publisher4, null, "Publisher", byte.MaxValue);
 					return;
 				} 
 
+				if(Publisher != null)
 					Publisher = null;
-					SetValue(v => _publisher4 = v, _publisher4, value, "Publisher", byte.MaxValue);
+				SetValue(v => _publisher4 = v, _publisher4, value, "Publisher", byte.MaxValue);
 				
 			}
 		}

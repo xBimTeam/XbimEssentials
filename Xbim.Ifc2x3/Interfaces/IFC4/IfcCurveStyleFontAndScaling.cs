@@ -46,7 +46,23 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					CurveFont = null;
+					return;
+				}	
+				var ifccurvestylefont = value as IfcCurveStyleFont;
+				if (ifccurvestylefont != null) 
+				{
+					CurveFont = ifccurvestylefont;
+					return;
+				}
+				var ifcpredefinedcurvefont = value as IfcPreDefinedCurveFont;
+				if (ifcpredefinedcurvefont != null) 
+				{
+					CurveFont = ifcpredefinedcurvefont;
+					return;
+				}
 				
 			}
 		}

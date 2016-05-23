@@ -40,12 +40,29 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			        return null;
 					//##
 				if (StartOfNextHatchLine is MeasureResource.IfcPositiveLengthMeasure) 
-					return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)(MeasureResource.IfcPositiveLengthMeasure)StartOfNextHatchLine);
+					return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((MeasureResource.IfcPositiveLengthMeasure)StartOfNextHatchLine);
 				return null;
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					StartOfNextHatchLine = null;
+					return;
+				}	
+				var ifcvector = value as GeometryResource.IfcVector;
+				if (ifcvector != null) 
+				{
+					//## Handle setting of entity IfcVector which is not a part of the target select interface IIfcHatchLineDistanceSelect in property StartOfNextHatchLine
+					//TODO: Handle setting of entity IfcVector which is not a part of the target select interface IIfcHatchLineDistanceSelect in property StartOfNextHatchLine
+					throw new System.NotImplementedException();
+					//##
+				}
+				if (value is Ifc4.MeasureResource.IfcPositiveLengthMeasure) 
+				{
+					StartOfNextHatchLine = new MeasureResource.IfcPositiveLengthMeasure((Ifc4.MeasureResource.IfcPositiveLengthMeasure)value);
+					return;
+				}
 				
 			}
 		}

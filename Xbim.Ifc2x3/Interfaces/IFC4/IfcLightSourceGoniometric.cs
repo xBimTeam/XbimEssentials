@@ -129,7 +129,23 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					LightDistributionDataSource = null;
+					return;
+				}	
+				var ifcexternalreference = value as ExternalReferenceResource.IfcExternalReference;
+				if (ifcexternalreference != null) 
+				{
+					LightDistributionDataSource = ifcexternalreference;
+					return;
+				}
+				var ifclightintensitydistribution = value as IfcLightIntensityDistribution;
+				if (ifclightintensitydistribution != null) 
+				{
+					LightDistributionDataSource = ifclightintensitydistribution;
+					return;
+				}
 				
 			}
 		}

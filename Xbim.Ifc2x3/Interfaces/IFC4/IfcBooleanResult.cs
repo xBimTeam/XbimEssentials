@@ -63,7 +63,35 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					FirstOperand = null;
+					return;
+				}	
+				var ifcbooleanresult = value as IfcBooleanResult;
+				if (ifcbooleanresult != null) 
+				{
+					FirstOperand = ifcbooleanresult;
+					return;
+				}
+				var ifccsgprimitive3d = value as IfcCsgPrimitive3D;
+				if (ifccsgprimitive3d != null) 
+				{
+					FirstOperand = ifccsgprimitive3d;
+					return;
+				}
+				var ifchalfspacesolid = value as IfcHalfSpaceSolid;
+				if (ifchalfspacesolid != null) 
+				{
+					FirstOperand = ifchalfspacesolid;
+					return;
+				}
+				var ifcsolidmodel = value as IfcSolidModel;
+				if (ifcsolidmodel != null) 
+				{
+					FirstOperand = ifcsolidmodel;
+					return;
+				}
 				
 			}
 		}
@@ -88,7 +116,35 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					SecondOperand = null;
+					return;
+				}	
+				var ifcbooleanresult = value as IfcBooleanResult;
+				if (ifcbooleanresult != null) 
+				{
+					SecondOperand = ifcbooleanresult;
+					return;
+				}
+				var ifccsgprimitive3d = value as IfcCsgPrimitive3D;
+				if (ifccsgprimitive3d != null) 
+				{
+					SecondOperand = ifccsgprimitive3d;
+					return;
+				}
+				var ifchalfspacesolid = value as IfcHalfSpaceSolid;
+				if (ifchalfspacesolid != null) 
+				{
+					SecondOperand = ifchalfspacesolid;
+					return;
+				}
+				var ifcsolidmodel = value as IfcSolidModel;
+				if (ifcsolidmodel != null) 
+				{
+					SecondOperand = ifcsolidmodel;
+					return;
+				}
 				
 			}
 		}

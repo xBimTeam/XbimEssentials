@@ -31,7 +31,23 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					TreeRootExpression = null;
+					return;
+				}	
+				var ifcbooleanresult = value as IfcBooleanResult;
+				if (ifcbooleanresult != null) 
+				{
+					TreeRootExpression = ifcbooleanresult;
+					return;
+				}
+				var ifccsgprimitive3d = value as IfcCsgPrimitive3D;
+				if (ifccsgprimitive3d != null) 
+				{
+					TreeRootExpression = ifccsgprimitive3d;
+					return;
+				}
 				
 			}
 		}

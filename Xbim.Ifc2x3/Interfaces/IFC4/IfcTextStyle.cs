@@ -63,7 +63,23 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					TextFontStyle = null;
+					return;
+				}	
+				var ifcexternallydefinedtextfont = value as PresentationResource.IfcExternallyDefinedTextFont;
+				if (ifcexternallydefinedtextfont != null) 
+				{
+					TextFontStyle = ifcexternallydefinedtextfont;
+					return;
+				}
+				var ifcpredefinedtextfont = value as PresentationResource.IfcPreDefinedTextFont;
+				if (ifcpredefinedtextfont != null) 
+				{
+					TextFontStyle = ifcpredefinedtextfont;
+					return;
+				}
 				
 			}
 		}

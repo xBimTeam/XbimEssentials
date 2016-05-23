@@ -34,7 +34,29 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					TheActor = null;
+					return;
+				}	
+				var ifcorganization = value as ActorResource.IfcOrganization;
+				if (ifcorganization != null) 
+				{
+					TheActor = ifcorganization;
+					return;
+				}
+				var ifcperson = value as ActorResource.IfcPerson;
+				if (ifcperson != null) 
+				{
+					TheActor = ifcperson;
+					return;
+				}
+				var ifcpersonandorganization = value as ActorResource.IfcPersonAndOrganization;
+				if (ifcpersonandorganization != null) 
+				{
+					TheActor = ifcpersonandorganization;
+					return;
+				}
 				
 			}
 		}

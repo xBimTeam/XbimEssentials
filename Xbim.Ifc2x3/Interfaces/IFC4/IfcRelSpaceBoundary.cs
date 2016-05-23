@@ -30,7 +30,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				if (value == null)
 				{
 					RelatingSpace = null;
-					SetValue(v => _relatingSpace4 = v, _relatingSpace4, null, "RelatingSpace", byte.MaxValue);
+					if (_relatingSpace4 != null)
+						SetValue(v => _relatingSpace4 = v, _relatingSpace4, null, "RelatingSpace", byte.MaxValue);
 					return;
 				}
 				
@@ -38,12 +39,14 @@ namespace Xbim.Ifc2x3.ProductExtension
 				if (val != null)
 				{
 					RelatingSpace = val;
-					SetValue(v => _relatingSpace4 = v, _relatingSpace4, null, "RelatingSpace", byte.MaxValue);
+					if (_relatingSpace4 != null)
+						SetValue(v => _relatingSpace4 = v, _relatingSpace4, null, "RelatingSpace", byte.MaxValue);
 					return;
 				} 
 
+				if(RelatingSpace != null)
 					RelatingSpace = null;
-					SetValue(v => _relatingSpace4 = v, _relatingSpace4, value, "RelatingSpace", byte.MaxValue);
+				SetValue(v => _relatingSpace4 = v, _relatingSpace4, value, "RelatingSpace", byte.MaxValue);
 				
 			}
 		}

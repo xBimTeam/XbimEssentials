@@ -40,7 +40,8 @@ namespace Xbim.Ifc2x3.Kernel
 				if (value == null)
 				{
 					RelatingPropertyDefinition = null;
-					SetValue(v => _relatingPropertyDefinition4 = v, _relatingPropertyDefinition4, null, "RelatingPropertyDefinition", byte.MaxValue);
+					if (_relatingPropertyDefinition4 != null)
+						SetValue(v => _relatingPropertyDefinition4 = v, _relatingPropertyDefinition4, null, "RelatingPropertyDefinition", byte.MaxValue);
 					return;
 				}
 				
@@ -48,12 +49,14 @@ namespace Xbim.Ifc2x3.Kernel
 				if (val != null)
 				{
 					RelatingPropertyDefinition = val;
-					SetValue(v => _relatingPropertyDefinition4 = v, _relatingPropertyDefinition4, null, "RelatingPropertyDefinition", byte.MaxValue);
+					if (_relatingPropertyDefinition4 != null)
+						SetValue(v => _relatingPropertyDefinition4 = v, _relatingPropertyDefinition4, null, "RelatingPropertyDefinition", byte.MaxValue);
 					return;
 				} 
 
+				if(RelatingPropertyDefinition != null)
 					RelatingPropertyDefinition = null;
-					SetValue(v => _relatingPropertyDefinition4 = v, _relatingPropertyDefinition4, value, "RelatingPropertyDefinition", byte.MaxValue);
+				SetValue(v => _relatingPropertyDefinition4 = v, _relatingPropertyDefinition4, value, "RelatingPropertyDefinition", byte.MaxValue);
 				
 			}
 		}

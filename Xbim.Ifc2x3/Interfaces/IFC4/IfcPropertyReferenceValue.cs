@@ -99,7 +99,61 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					PropertyReference = null;
+					return;
+				}	
+				var ifcaddress = value as ActorResource.IfcAddress;
+				if (ifcaddress != null) 
+				{
+					PropertyReference = ifcaddress;
+					return;
+				}
+				var ifcappliedvalue = value as CostResource.IfcAppliedValue;
+				if (ifcappliedvalue != null) 
+				{
+					PropertyReference = ifcappliedvalue;
+					return;
+				}
+				var ifcexternalreference = value as ExternalReferenceResource.IfcExternalReference;
+				if (ifcexternalreference != null) 
+				{
+					PropertyReference = ifcexternalreference;
+					return;
+				}
+				var ifcorganization = value as ActorResource.IfcOrganization;
+				if (ifcorganization != null) 
+				{
+					PropertyReference = ifcorganization;
+					return;
+				}
+				var ifcperson = value as ActorResource.IfcPerson;
+				if (ifcperson != null) 
+				{
+					PropertyReference = ifcperson;
+					return;
+				}
+				var ifcpersonandorganization = value as ActorResource.IfcPersonAndOrganization;
+				if (ifcpersonandorganization != null) 
+				{
+					PropertyReference = ifcpersonandorganization;
+					return;
+				}
+				var ifctable = value as UtilityResource.IfcTable;
+				if (ifctable != null) 
+				{
+					//## Handle setting of entity IfcTable which is not a part of the target select interface IIfcObjectReferenceSelect in property PropertyReference
+					//TODO: Handle setting of entity IfcTable which is not a part of the target select interface IIfcObjectReferenceSelect in property PropertyReference
+					throw new System.NotImplementedException();
+					//##
+				}
+				var ifctimeseries = value as TimeSeriesResource.IfcTimeSeries;
+				if (ifctimeseries != null) 
+				{
+					PropertyReference = ifctimeseries;
+					return;
+				}
 				
 			}
 		}

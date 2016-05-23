@@ -31,7 +31,23 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					Position = null;
+					return;
+				}	
+				var ifcaxis2placement2d = value as IfcAxis2Placement2D;
+				if (ifcaxis2placement2d != null) 
+				{
+					Position = ifcaxis2placement2d;
+					return;
+				}
+				var ifcaxis2placement3d = value as IfcAxis2Placement3D;
+				if (ifcaxis2placement3d != null) 
+				{
+					Position = ifcaxis2placement3d;
+					return;
+				}
 				
 			}
 		}

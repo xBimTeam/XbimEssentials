@@ -34,7 +34,29 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					SurfaceOnRelatingElement = null;
+					return;
+				}	
+				var ifcfacebasedsurfacemodel = value as GeometricModelResource.IfcFaceBasedSurfaceModel;
+				if (ifcfacebasedsurfacemodel != null) 
+				{
+					SurfaceOnRelatingElement = ifcfacebasedsurfacemodel;
+					return;
+				}
+				var ifcfacesurface = value as TopologyResource.IfcFaceSurface;
+				if (ifcfacesurface != null) 
+				{
+					SurfaceOnRelatingElement = ifcfacesurface;
+					return;
+				}
+				var ifcsurface = value as GeometryResource.IfcSurface;
+				if (ifcsurface != null) 
+				{
+					SurfaceOnRelatingElement = ifcsurface;
+					return;
+				}
 				
 			}
 		}
@@ -56,7 +78,29 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					SurfaceOnRelatedElement = null;
+					return;
+				}	
+				var ifcfacebasedsurfacemodel = value as GeometricModelResource.IfcFaceBasedSurfaceModel;
+				if (ifcfacebasedsurfacemodel != null) 
+				{
+					SurfaceOnRelatedElement = ifcfacebasedsurfacemodel;
+					return;
+				}
+				var ifcfacesurface = value as TopologyResource.IfcFaceSurface;
+				if (ifcfacesurface != null) 
+				{
+					SurfaceOnRelatedElement = ifcfacesurface;
+					return;
+				}
+				var ifcsurface = value as GeometryResource.IfcSurface;
+				if (ifcsurface != null) 
+				{
+					SurfaceOnRelatedElement = ifcsurface;
+					return;
+				}
 				
 			}
 		}

@@ -84,7 +84,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				if (value == null)
 				{
 					PartOfProductDefinitionShape = null;
-					SetValue(v => _partOfProductDefinitionShape4 = v, _partOfProductDefinitionShape4, null, "PartOfProductDefinitionShape", byte.MaxValue);
+					if (_partOfProductDefinitionShape4 != null)
+						SetValue(v => _partOfProductDefinitionShape4 = v, _partOfProductDefinitionShape4, null, "PartOfProductDefinitionShape", byte.MaxValue);
 					return;
 				}
 				
@@ -92,12 +93,14 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				if (val != null)
 				{
 					PartOfProductDefinitionShape = val;
-					SetValue(v => _partOfProductDefinitionShape4 = v, _partOfProductDefinitionShape4, null, "PartOfProductDefinitionShape", byte.MaxValue);
+					if (_partOfProductDefinitionShape4 != null)
+						SetValue(v => _partOfProductDefinitionShape4 = v, _partOfProductDefinitionShape4, null, "PartOfProductDefinitionShape", byte.MaxValue);
 					return;
 				} 
 
+				if(PartOfProductDefinitionShape != null)
 					PartOfProductDefinitionShape = null;
-					SetValue(v => _partOfProductDefinitionShape4 = v, _partOfProductDefinitionShape4, value, "PartOfProductDefinitionShape", byte.MaxValue);
+				SetValue(v => _partOfProductDefinitionShape4 = v, _partOfProductDefinitionShape4, value, "PartOfProductDefinitionShape", byte.MaxValue);
 				
 			}
 		}

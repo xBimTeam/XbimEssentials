@@ -455,7 +455,29 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					DefiningUnit = null;
+					return;
+				}	
+				var ifcderivedunit = value as MeasureResource.IfcDerivedUnit;
+				if (ifcderivedunit != null) 
+				{
+					DefiningUnit = ifcderivedunit;
+					return;
+				}
+				var ifcmonetaryunit = value as MeasureResource.IfcMonetaryUnit;
+				if (ifcmonetaryunit != null) 
+				{
+					DefiningUnit = ifcmonetaryunit;
+					return;
+				}
+				var ifcnamedunit = value as MeasureResource.IfcNamedUnit;
+				if (ifcnamedunit != null) 
+				{
+					DefiningUnit = ifcnamedunit;
+					return;
+				}
 				
 			}
 		}
@@ -477,7 +499,29 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					DefinedUnit = null;
+					return;
+				}	
+				var ifcderivedunit = value as MeasureResource.IfcDerivedUnit;
+				if (ifcderivedunit != null) 
+				{
+					DefinedUnit = ifcderivedunit;
+					return;
+				}
+				var ifcmonetaryunit = value as MeasureResource.IfcMonetaryUnit;
+				if (ifcmonetaryunit != null) 
+				{
+					DefinedUnit = ifcmonetaryunit;
+					return;
+				}
+				var ifcnamedunit = value as MeasureResource.IfcNamedUnit;
+				if (ifcnamedunit != null) 
+				{
+					DefinedUnit = ifcnamedunit;
+					return;
+				}
 				
 			}
 		}

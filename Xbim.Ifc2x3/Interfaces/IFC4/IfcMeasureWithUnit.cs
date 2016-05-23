@@ -16,210 +16,966 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	public partial class @IfcMeasureWithUnit : IIfcMeasureWithUnit
 	{
+
+		private  IIfcValue _valueComponent4;
+
 		IIfcValue IIfcMeasureWithUnit.ValueComponent 
 		{ 
 			get
 			{
 				if (ValueComponent == null) return null;
 				if (ValueComponent is IfcVolumeMeasure) 
-					return new Ifc4.MeasureResource.IfcVolumeMeasure((double)(IfcVolumeMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcVolumeMeasure((IfcVolumeMeasure)ValueComponent);
 				if (ValueComponent is IfcTimeMeasure) 
-					return new Ifc4.MeasureResource.IfcTimeMeasure((double)(IfcTimeMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcTimeMeasure((IfcTimeMeasure)ValueComponent);
 				if (ValueComponent is IfcThermodynamicTemperatureMeasure) 
-					return new Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure((double)(IfcThermodynamicTemperatureMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure((IfcThermodynamicTemperatureMeasure)ValueComponent);
 				if (ValueComponent is IfcSolidAngleMeasure) 
-					return new Ifc4.MeasureResource.IfcSolidAngleMeasure((double)(IfcSolidAngleMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcSolidAngleMeasure((IfcSolidAngleMeasure)ValueComponent);
 				if (ValueComponent is IfcPositiveRatioMeasure) 
-					return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)(IfcPositiveRatioMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((IfcPositiveRatioMeasure)ValueComponent);
 				if (ValueComponent is IfcRatioMeasure) 
-					return new Ifc4.MeasureResource.IfcRatioMeasure((double)(IfcRatioMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcRatioMeasure((IfcRatioMeasure)ValueComponent);
 				if (ValueComponent is IfcPositivePlaneAngleMeasure) 
-					return new Ifc4.MeasureResource.IfcPositivePlaneAngleMeasure((double)(IfcPositivePlaneAngleMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcPositivePlaneAngleMeasure((IfcPositivePlaneAngleMeasure)ValueComponent);
 				if (ValueComponent is IfcPlaneAngleMeasure) 
-					return new Ifc4.MeasureResource.IfcPlaneAngleMeasure((double)(IfcPlaneAngleMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcPlaneAngleMeasure((IfcPlaneAngleMeasure)ValueComponent);
 				if (ValueComponent is IfcParameterValue) 
-					return new Ifc4.MeasureResource.IfcParameterValue((double)(IfcParameterValue)ValueComponent);
+					return new Ifc4.MeasureResource.IfcParameterValue((IfcParameterValue)ValueComponent);
 				if (ValueComponent is IfcNumericMeasure) 
-					return new Ifc4.MeasureResource.IfcNumericMeasure((double)(IfcNumericMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcNumericMeasure((IfcNumericMeasure)ValueComponent);
 				if (ValueComponent is IfcMassMeasure) 
-					return new Ifc4.MeasureResource.IfcMassMeasure((double)(IfcMassMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcMassMeasure((IfcMassMeasure)ValueComponent);
 				if (ValueComponent is IfcPositiveLengthMeasure) 
-					return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)(IfcPositiveLengthMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((IfcPositiveLengthMeasure)ValueComponent);
 				if (ValueComponent is IfcLengthMeasure) 
-					return new Ifc4.MeasureResource.IfcLengthMeasure((double)(IfcLengthMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcLengthMeasure((IfcLengthMeasure)ValueComponent);
 				if (ValueComponent is IfcElectricCurrentMeasure) 
-					return new Ifc4.MeasureResource.IfcElectricCurrentMeasure((double)(IfcElectricCurrentMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcElectricCurrentMeasure((IfcElectricCurrentMeasure)ValueComponent);
 				if (ValueComponent is IfcDescriptiveMeasure) 
-					return new Ifc4.MeasureResource.IfcDescriptiveMeasure((string)(IfcDescriptiveMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcDescriptiveMeasure((IfcDescriptiveMeasure)ValueComponent);
 				if (ValueComponent is IfcCountMeasure) 
-					return new Ifc4.MeasureResource.IfcCountMeasure((double)(IfcCountMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcCountMeasure((IfcCountMeasure)ValueComponent);
 				if (ValueComponent is IfcContextDependentMeasure) 
-					return new Ifc4.MeasureResource.IfcContextDependentMeasure((double)(IfcContextDependentMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcContextDependentMeasure((IfcContextDependentMeasure)ValueComponent);
 				if (ValueComponent is IfcAreaMeasure) 
-					return new Ifc4.MeasureResource.IfcAreaMeasure((double)(IfcAreaMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcAreaMeasure((IfcAreaMeasure)ValueComponent);
 				if (ValueComponent is IfcAmountOfSubstanceMeasure) 
-					return new Ifc4.MeasureResource.IfcAmountOfSubstanceMeasure((double)(IfcAmountOfSubstanceMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcAmountOfSubstanceMeasure((IfcAmountOfSubstanceMeasure)ValueComponent);
 				if (ValueComponent is IfcLuminousIntensityMeasure) 
-					return new Ifc4.MeasureResource.IfcLuminousIntensityMeasure((double)(IfcLuminousIntensityMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcLuminousIntensityMeasure((IfcLuminousIntensityMeasure)ValueComponent);
 				if (ValueComponent is IfcNormalisedRatioMeasure) 
-					return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(IfcNormalisedRatioMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((IfcNormalisedRatioMeasure)ValueComponent);
 				if (ValueComponent is IfcComplexNumber) 
-					return new Ifc4.MeasureResource.IfcComplexNumber((List<double>)(IfcComplexNumber)ValueComponent);
+					return new Ifc4.MeasureResource.IfcComplexNumber((IfcComplexNumber)ValueComponent);
 				if (ValueComponent is IfcInteger) 
-					return new Ifc4.MeasureResource.IfcInteger((long)(IfcInteger)ValueComponent);
+					return new Ifc4.MeasureResource.IfcInteger((IfcInteger)ValueComponent);
 				if (ValueComponent is IfcReal) 
-					return new Ifc4.MeasureResource.IfcReal((double)(IfcReal)ValueComponent);
+					return new Ifc4.MeasureResource.IfcReal((IfcReal)ValueComponent);
 				if (ValueComponent is IfcBoolean) 
-					return new Ifc4.MeasureResource.IfcBoolean((bool)(IfcBoolean)ValueComponent);
+					return new Ifc4.MeasureResource.IfcBoolean((IfcBoolean)ValueComponent);
 				if (ValueComponent is IfcIdentifier) 
-					return new Ifc4.MeasureResource.IfcIdentifier((string)(IfcIdentifier)ValueComponent);
+					return new Ifc4.MeasureResource.IfcIdentifier((IfcIdentifier)ValueComponent);
 				if (ValueComponent is IfcText) 
-					return new Ifc4.MeasureResource.IfcText((string)(IfcText)ValueComponent);
+					return new Ifc4.MeasureResource.IfcText((IfcText)ValueComponent);
 				if (ValueComponent is IfcLabel) 
-					return new Ifc4.MeasureResource.IfcLabel((string)(IfcLabel)ValueComponent);
+					return new Ifc4.MeasureResource.IfcLabel((IfcLabel)ValueComponent);
 				if (ValueComponent is IfcLogical) 
-					return new Ifc4.MeasureResource.IfcLogical((bool?)(IfcLogical)ValueComponent);
+					return new Ifc4.MeasureResource.IfcLogical((IfcLogical)ValueComponent);
 				if (ValueComponent is IfcVolumetricFlowRateMeasure) 
-					return new Ifc4.MeasureResource.IfcVolumetricFlowRateMeasure((double)(IfcVolumetricFlowRateMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcVolumetricFlowRateMeasure((IfcVolumetricFlowRateMeasure)ValueComponent);
 				if (ValueComponent is IfcTimeStamp) 
-					return new Ifc4.DateTimeResource.IfcTimeStamp((long)(IfcTimeStamp)ValueComponent);
+					return new Ifc4.DateTimeResource.IfcTimeStamp((IfcTimeStamp)ValueComponent);
 				if (ValueComponent is IfcThermalTransmittanceMeasure) 
-					return new Ifc4.MeasureResource.IfcThermalTransmittanceMeasure((double)(IfcThermalTransmittanceMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcThermalTransmittanceMeasure((IfcThermalTransmittanceMeasure)ValueComponent);
 				if (ValueComponent is IfcThermalResistanceMeasure) 
-					return new Ifc4.MeasureResource.IfcThermalResistanceMeasure((double)(IfcThermalResistanceMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcThermalResistanceMeasure((IfcThermalResistanceMeasure)ValueComponent);
 				if (ValueComponent is IfcThermalAdmittanceMeasure) 
-					return new Ifc4.MeasureResource.IfcThermalAdmittanceMeasure((double)(IfcThermalAdmittanceMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcThermalAdmittanceMeasure((IfcThermalAdmittanceMeasure)ValueComponent);
 				if (ValueComponent is IfcPressureMeasure) 
-					return new Ifc4.MeasureResource.IfcPressureMeasure((double)(IfcPressureMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcPressureMeasure((IfcPressureMeasure)ValueComponent);
 				if (ValueComponent is IfcPowerMeasure) 
-					return new Ifc4.MeasureResource.IfcPowerMeasure((double)(IfcPowerMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcPowerMeasure((IfcPowerMeasure)ValueComponent);
 				if (ValueComponent is IfcMassFlowRateMeasure) 
-					return new Ifc4.MeasureResource.IfcMassFlowRateMeasure((double)(IfcMassFlowRateMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcMassFlowRateMeasure((IfcMassFlowRateMeasure)ValueComponent);
 				if (ValueComponent is IfcMassDensityMeasure) 
-					return new Ifc4.MeasureResource.IfcMassDensityMeasure((double)(IfcMassDensityMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcMassDensityMeasure((IfcMassDensityMeasure)ValueComponent);
 				if (ValueComponent is IfcLinearVelocityMeasure) 
-					return new Ifc4.MeasureResource.IfcLinearVelocityMeasure((double)(IfcLinearVelocityMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcLinearVelocityMeasure((IfcLinearVelocityMeasure)ValueComponent);
 				if (ValueComponent is IfcKinematicViscosityMeasure) 
-					return new Ifc4.MeasureResource.IfcKinematicViscosityMeasure((double)(IfcKinematicViscosityMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcKinematicViscosityMeasure((IfcKinematicViscosityMeasure)ValueComponent);
 				if (ValueComponent is IfcIntegerCountRateMeasure) 
-					return new Ifc4.MeasureResource.IfcIntegerCountRateMeasure((long)(IfcIntegerCountRateMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcIntegerCountRateMeasure((IfcIntegerCountRateMeasure)ValueComponent);
 				if (ValueComponent is IfcHeatFluxDensityMeasure) 
-					return new Ifc4.MeasureResource.IfcHeatFluxDensityMeasure((double)(IfcHeatFluxDensityMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcHeatFluxDensityMeasure((IfcHeatFluxDensityMeasure)ValueComponent);
 				if (ValueComponent is IfcFrequencyMeasure) 
-					return new Ifc4.MeasureResource.IfcFrequencyMeasure((double)(IfcFrequencyMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcFrequencyMeasure((IfcFrequencyMeasure)ValueComponent);
 				if (ValueComponent is IfcEnergyMeasure) 
-					return new Ifc4.MeasureResource.IfcEnergyMeasure((double)(IfcEnergyMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcEnergyMeasure((IfcEnergyMeasure)ValueComponent);
 				if (ValueComponent is IfcElectricVoltageMeasure) 
-					return new Ifc4.MeasureResource.IfcElectricVoltageMeasure((double)(IfcElectricVoltageMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcElectricVoltageMeasure((IfcElectricVoltageMeasure)ValueComponent);
 				if (ValueComponent is IfcDynamicViscosityMeasure) 
-					return new Ifc4.MeasureResource.IfcDynamicViscosityMeasure((double)(IfcDynamicViscosityMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcDynamicViscosityMeasure((IfcDynamicViscosityMeasure)ValueComponent);
 				if (ValueComponent is IfcCompoundPlaneAngleMeasure) 
-					return new Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure((List<long>)(IfcCompoundPlaneAngleMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure((IfcCompoundPlaneAngleMeasure)ValueComponent);
 				if (ValueComponent is IfcAngularVelocityMeasure) 
-					return new Ifc4.MeasureResource.IfcAngularVelocityMeasure((double)(IfcAngularVelocityMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcAngularVelocityMeasure((IfcAngularVelocityMeasure)ValueComponent);
 				if (ValueComponent is IfcThermalConductivityMeasure) 
-					return new Ifc4.MeasureResource.IfcThermalConductivityMeasure((double)(IfcThermalConductivityMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcThermalConductivityMeasure((IfcThermalConductivityMeasure)ValueComponent);
 				if (ValueComponent is IfcMolecularWeightMeasure) 
-					return new Ifc4.MeasureResource.IfcMolecularWeightMeasure((double)(IfcMolecularWeightMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcMolecularWeightMeasure((IfcMolecularWeightMeasure)ValueComponent);
 				if (ValueComponent is IfcVaporPermeabilityMeasure) 
-					return new Ifc4.MeasureResource.IfcVaporPermeabilityMeasure((double)(IfcVaporPermeabilityMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcVaporPermeabilityMeasure((IfcVaporPermeabilityMeasure)ValueComponent);
 				if (ValueComponent is IfcMoistureDiffusivityMeasure) 
-					return new Ifc4.MeasureResource.IfcMoistureDiffusivityMeasure((double)(IfcMoistureDiffusivityMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcMoistureDiffusivityMeasure((IfcMoistureDiffusivityMeasure)ValueComponent);
 				if (ValueComponent is IfcIsothermalMoistureCapacityMeasure) 
-					return new Ifc4.MeasureResource.IfcIsothermalMoistureCapacityMeasure((double)(IfcIsothermalMoistureCapacityMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcIsothermalMoistureCapacityMeasure((IfcIsothermalMoistureCapacityMeasure)ValueComponent);
 				if (ValueComponent is IfcSpecificHeatCapacityMeasure) 
-					return new Ifc4.MeasureResource.IfcSpecificHeatCapacityMeasure((double)(IfcSpecificHeatCapacityMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcSpecificHeatCapacityMeasure((IfcSpecificHeatCapacityMeasure)ValueComponent);
 				if (ValueComponent is IfcMonetaryMeasure) 
-					return new Ifc4.MeasureResource.IfcMonetaryMeasure((double)(IfcMonetaryMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcMonetaryMeasure((IfcMonetaryMeasure)ValueComponent);
 				if (ValueComponent is IfcMagneticFluxDensityMeasure) 
-					return new Ifc4.MeasureResource.IfcMagneticFluxDensityMeasure((double)(IfcMagneticFluxDensityMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcMagneticFluxDensityMeasure((IfcMagneticFluxDensityMeasure)ValueComponent);
 				if (ValueComponent is IfcMagneticFluxMeasure) 
-					return new Ifc4.MeasureResource.IfcMagneticFluxMeasure((double)(IfcMagneticFluxMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcMagneticFluxMeasure((IfcMagneticFluxMeasure)ValueComponent);
 				if (ValueComponent is IfcLuminousFluxMeasure) 
-					return new Ifc4.MeasureResource.IfcLuminousFluxMeasure((double)(IfcLuminousFluxMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcLuminousFluxMeasure((IfcLuminousFluxMeasure)ValueComponent);
 				if (ValueComponent is IfcForceMeasure) 
-					return new Ifc4.MeasureResource.IfcForceMeasure((double)(IfcForceMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcForceMeasure((IfcForceMeasure)ValueComponent);
 				if (ValueComponent is IfcInductanceMeasure) 
-					return new Ifc4.MeasureResource.IfcInductanceMeasure((double)(IfcInductanceMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcInductanceMeasure((IfcInductanceMeasure)ValueComponent);
 				if (ValueComponent is IfcIlluminanceMeasure) 
-					return new Ifc4.MeasureResource.IfcIlluminanceMeasure((double)(IfcIlluminanceMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcIlluminanceMeasure((IfcIlluminanceMeasure)ValueComponent);
 				if (ValueComponent is IfcElectricResistanceMeasure) 
-					return new Ifc4.MeasureResource.IfcElectricResistanceMeasure((double)(IfcElectricResistanceMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcElectricResistanceMeasure((IfcElectricResistanceMeasure)ValueComponent);
 				if (ValueComponent is IfcElectricConductanceMeasure) 
-					return new Ifc4.MeasureResource.IfcElectricConductanceMeasure((double)(IfcElectricConductanceMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcElectricConductanceMeasure((IfcElectricConductanceMeasure)ValueComponent);
 				if (ValueComponent is IfcElectricChargeMeasure) 
-					return new Ifc4.MeasureResource.IfcElectricChargeMeasure((double)(IfcElectricChargeMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcElectricChargeMeasure((IfcElectricChargeMeasure)ValueComponent);
 				if (ValueComponent is IfcDoseEquivalentMeasure) 
-					return new Ifc4.MeasureResource.IfcDoseEquivalentMeasure((double)(IfcDoseEquivalentMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcDoseEquivalentMeasure((IfcDoseEquivalentMeasure)ValueComponent);
 				if (ValueComponent is IfcElectricCapacitanceMeasure) 
-					return new Ifc4.MeasureResource.IfcElectricCapacitanceMeasure((double)(IfcElectricCapacitanceMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcElectricCapacitanceMeasure((IfcElectricCapacitanceMeasure)ValueComponent);
 				if (ValueComponent is IfcAbsorbedDoseMeasure) 
-					return new Ifc4.MeasureResource.IfcAbsorbedDoseMeasure((double)(IfcAbsorbedDoseMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcAbsorbedDoseMeasure((IfcAbsorbedDoseMeasure)ValueComponent);
 				if (ValueComponent is IfcRadioActivityMeasure) 
-					return new Ifc4.MeasureResource.IfcRadioActivityMeasure((double)(IfcRadioActivityMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcRadioActivityMeasure((IfcRadioActivityMeasure)ValueComponent);
 				if (ValueComponent is IfcRotationalFrequencyMeasure) 
-					return new Ifc4.MeasureResource.IfcRotationalFrequencyMeasure((double)(IfcRotationalFrequencyMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcRotationalFrequencyMeasure((IfcRotationalFrequencyMeasure)ValueComponent);
 				if (ValueComponent is IfcTorqueMeasure) 
-					return new Ifc4.MeasureResource.IfcTorqueMeasure((double)(IfcTorqueMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcTorqueMeasure((IfcTorqueMeasure)ValueComponent);
 				if (ValueComponent is IfcAccelerationMeasure) 
-					return new Ifc4.MeasureResource.IfcAccelerationMeasure((double)(IfcAccelerationMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcAccelerationMeasure((IfcAccelerationMeasure)ValueComponent);
 				if (ValueComponent is IfcLinearForceMeasure) 
-					return new Ifc4.MeasureResource.IfcLinearForceMeasure((double)(IfcLinearForceMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcLinearForceMeasure((IfcLinearForceMeasure)ValueComponent);
 				if (ValueComponent is IfcLinearStiffnessMeasure) 
-					return new Ifc4.MeasureResource.IfcLinearStiffnessMeasure((double)(IfcLinearStiffnessMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcLinearStiffnessMeasure((IfcLinearStiffnessMeasure)ValueComponent);
 				if (ValueComponent is IfcModulusOfSubgradeReactionMeasure) 
-					return new Ifc4.MeasureResource.IfcModulusOfSubgradeReactionMeasure((double)(IfcModulusOfSubgradeReactionMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcModulusOfSubgradeReactionMeasure((IfcModulusOfSubgradeReactionMeasure)ValueComponent);
 				if (ValueComponent is IfcModulusOfElasticityMeasure) 
-					return new Ifc4.MeasureResource.IfcModulusOfElasticityMeasure((double)(IfcModulusOfElasticityMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcModulusOfElasticityMeasure((IfcModulusOfElasticityMeasure)ValueComponent);
 				if (ValueComponent is IfcMomentOfInertiaMeasure) 
-					return new Ifc4.MeasureResource.IfcMomentOfInertiaMeasure((double)(IfcMomentOfInertiaMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcMomentOfInertiaMeasure((IfcMomentOfInertiaMeasure)ValueComponent);
 				if (ValueComponent is IfcPlanarForceMeasure) 
-					return new Ifc4.MeasureResource.IfcPlanarForceMeasure((double)(IfcPlanarForceMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcPlanarForceMeasure((IfcPlanarForceMeasure)ValueComponent);
 				if (ValueComponent is IfcRotationalStiffnessMeasure) 
-					return new Ifc4.MeasureResource.IfcRotationalStiffnessMeasure((double)(IfcRotationalStiffnessMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcRotationalStiffnessMeasure((IfcRotationalStiffnessMeasure)ValueComponent);
 				if (ValueComponent is IfcShearModulusMeasure) 
-					return new Ifc4.MeasureResource.IfcShearModulusMeasure((double)(IfcShearModulusMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcShearModulusMeasure((IfcShearModulusMeasure)ValueComponent);
 				if (ValueComponent is IfcLinearMomentMeasure) 
-					return new Ifc4.MeasureResource.IfcLinearMomentMeasure((double)(IfcLinearMomentMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcLinearMomentMeasure((IfcLinearMomentMeasure)ValueComponent);
 				if (ValueComponent is IfcLuminousIntensityDistributionMeasure) 
-					return new Ifc4.MeasureResource.IfcLuminousIntensityDistributionMeasure((double)(IfcLuminousIntensityDistributionMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcLuminousIntensityDistributionMeasure((IfcLuminousIntensityDistributionMeasure)ValueComponent);
 				if (ValueComponent is IfcCurvatureMeasure) 
-					return new Ifc4.MeasureResource.IfcCurvatureMeasure((double)(IfcCurvatureMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcCurvatureMeasure((IfcCurvatureMeasure)ValueComponent);
 				if (ValueComponent is IfcMassPerLengthMeasure) 
-					return new Ifc4.MeasureResource.IfcMassPerLengthMeasure((double)(IfcMassPerLengthMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcMassPerLengthMeasure((IfcMassPerLengthMeasure)ValueComponent);
 				if (ValueComponent is IfcModulusOfLinearSubgradeReactionMeasure) 
-					return new Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure((double)(IfcModulusOfLinearSubgradeReactionMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure((IfcModulusOfLinearSubgradeReactionMeasure)ValueComponent);
 				if (ValueComponent is IfcModulusOfRotationalSubgradeReactionMeasure) 
-					return new Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure((double)(IfcModulusOfRotationalSubgradeReactionMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure((IfcModulusOfRotationalSubgradeReactionMeasure)ValueComponent);
 				if (ValueComponent is IfcRotationalMassMeasure) 
-					return new Ifc4.MeasureResource.IfcRotationalMassMeasure((double)(IfcRotationalMassMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcRotationalMassMeasure((IfcRotationalMassMeasure)ValueComponent);
 				if (ValueComponent is IfcSectionalAreaIntegralMeasure) 
-					return new Ifc4.MeasureResource.IfcSectionalAreaIntegralMeasure((double)(IfcSectionalAreaIntegralMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcSectionalAreaIntegralMeasure((IfcSectionalAreaIntegralMeasure)ValueComponent);
 				if (ValueComponent is IfcSectionModulusMeasure) 
-					return new Ifc4.MeasureResource.IfcSectionModulusMeasure((double)(IfcSectionModulusMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcSectionModulusMeasure((IfcSectionModulusMeasure)ValueComponent);
 				if (ValueComponent is IfcTemperatureGradientMeasure) 
-					return new Ifc4.MeasureResource.IfcTemperatureGradientMeasure((double)(IfcTemperatureGradientMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcTemperatureGradientMeasure((IfcTemperatureGradientMeasure)ValueComponent);
 				if (ValueComponent is IfcThermalExpansionCoefficientMeasure) 
-					return new Ifc4.MeasureResource.IfcThermalExpansionCoefficientMeasure((double)(IfcThermalExpansionCoefficientMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcThermalExpansionCoefficientMeasure((IfcThermalExpansionCoefficientMeasure)ValueComponent);
 				if (ValueComponent is IfcWarpingConstantMeasure) 
-					return new Ifc4.MeasureResource.IfcWarpingConstantMeasure((double)(IfcWarpingConstantMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcWarpingConstantMeasure((IfcWarpingConstantMeasure)ValueComponent);
 				if (ValueComponent is IfcWarpingMomentMeasure) 
-					return new Ifc4.MeasureResource.IfcWarpingMomentMeasure((double)(IfcWarpingMomentMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcWarpingMomentMeasure((IfcWarpingMomentMeasure)ValueComponent);
 				if (ValueComponent is IfcSoundPowerMeasure) 
-					return new Ifc4.MeasureResource.IfcSoundPowerMeasure((double)(IfcSoundPowerMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcSoundPowerMeasure((IfcSoundPowerMeasure)ValueComponent);
 				if (ValueComponent is IfcSoundPressureMeasure) 
-					return new Ifc4.MeasureResource.IfcSoundPressureMeasure((double)(IfcSoundPressureMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcSoundPressureMeasure((IfcSoundPressureMeasure)ValueComponent);
 				if (ValueComponent is IfcHeatingValueMeasure) 
-					return new Ifc4.MeasureResource.IfcHeatingValueMeasure((double)(IfcHeatingValueMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcHeatingValueMeasure((IfcHeatingValueMeasure)ValueComponent);
 				if (ValueComponent is IfcPHMeasure) 
-					return new Ifc4.MeasureResource.IfcPHMeasure((double)(IfcPHMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcPHMeasure((IfcPHMeasure)ValueComponent);
 				if (ValueComponent is IfcIonConcentrationMeasure) 
-					return new Ifc4.MeasureResource.IfcIonConcentrationMeasure((double)(IfcIonConcentrationMeasure)ValueComponent);
+					return new Ifc4.MeasureResource.IfcIonConcentrationMeasure((IfcIonConcentrationMeasure)ValueComponent);
 				return null;
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					ValueComponent = null;
+					return;
+				}	
+				if (value is Ifc4.MeasureResource.IfcAbsorbedDoseMeasure) 
+				{
+					ValueComponent = new IfcAbsorbedDoseMeasure((Ifc4.MeasureResource.IfcAbsorbedDoseMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcAccelerationMeasure) 
+				{
+					ValueComponent = new IfcAccelerationMeasure((Ifc4.MeasureResource.IfcAccelerationMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcAngularVelocityMeasure) 
+				{
+					ValueComponent = new IfcAngularVelocityMeasure((Ifc4.MeasureResource.IfcAngularVelocityMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcAreaDensityMeasure) 
+				{
+					if (ValueComponent != null)
+						ValueComponent = null;
+					SetValue(v => _valueComponent4 = v, _valueComponent4, value, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure) 
+				{
+					ValueComponent = new IfcCompoundPlaneAngleMeasure((Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcCurvatureMeasure) 
+				{
+					ValueComponent = new IfcCurvatureMeasure((Ifc4.MeasureResource.IfcCurvatureMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcDoseEquivalentMeasure) 
+				{
+					ValueComponent = new IfcDoseEquivalentMeasure((Ifc4.MeasureResource.IfcDoseEquivalentMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcDynamicViscosityMeasure) 
+				{
+					ValueComponent = new IfcDynamicViscosityMeasure((Ifc4.MeasureResource.IfcDynamicViscosityMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcElectricCapacitanceMeasure) 
+				{
+					ValueComponent = new IfcElectricCapacitanceMeasure((Ifc4.MeasureResource.IfcElectricCapacitanceMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcElectricChargeMeasure) 
+				{
+					ValueComponent = new IfcElectricChargeMeasure((Ifc4.MeasureResource.IfcElectricChargeMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcElectricConductanceMeasure) 
+				{
+					ValueComponent = new IfcElectricConductanceMeasure((Ifc4.MeasureResource.IfcElectricConductanceMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcElectricResistanceMeasure) 
+				{
+					ValueComponent = new IfcElectricResistanceMeasure((Ifc4.MeasureResource.IfcElectricResistanceMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcElectricVoltageMeasure) 
+				{
+					ValueComponent = new IfcElectricVoltageMeasure((Ifc4.MeasureResource.IfcElectricVoltageMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcEnergyMeasure) 
+				{
+					ValueComponent = new IfcEnergyMeasure((Ifc4.MeasureResource.IfcEnergyMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcForceMeasure) 
+				{
+					ValueComponent = new IfcForceMeasure((Ifc4.MeasureResource.IfcForceMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcFrequencyMeasure) 
+				{
+					ValueComponent = new IfcFrequencyMeasure((Ifc4.MeasureResource.IfcFrequencyMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcHeatFluxDensityMeasure) 
+				{
+					ValueComponent = new IfcHeatFluxDensityMeasure((Ifc4.MeasureResource.IfcHeatFluxDensityMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcHeatingValueMeasure) 
+				{
+					ValueComponent = new IfcHeatingValueMeasure((Ifc4.MeasureResource.IfcHeatingValueMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcIlluminanceMeasure) 
+				{
+					ValueComponent = new IfcIlluminanceMeasure((Ifc4.MeasureResource.IfcIlluminanceMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcInductanceMeasure) 
+				{
+					ValueComponent = new IfcInductanceMeasure((Ifc4.MeasureResource.IfcInductanceMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcIntegerCountRateMeasure) 
+				{
+					ValueComponent = new IfcIntegerCountRateMeasure((Ifc4.MeasureResource.IfcIntegerCountRateMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcIonConcentrationMeasure) 
+				{
+					ValueComponent = new IfcIonConcentrationMeasure((Ifc4.MeasureResource.IfcIonConcentrationMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcIsothermalMoistureCapacityMeasure) 
+				{
+					ValueComponent = new IfcIsothermalMoistureCapacityMeasure((Ifc4.MeasureResource.IfcIsothermalMoistureCapacityMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcKinematicViscosityMeasure) 
+				{
+					ValueComponent = new IfcKinematicViscosityMeasure((Ifc4.MeasureResource.IfcKinematicViscosityMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcLinearForceMeasure) 
+				{
+					ValueComponent = new IfcLinearForceMeasure((Ifc4.MeasureResource.IfcLinearForceMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcLinearMomentMeasure) 
+				{
+					ValueComponent = new IfcLinearMomentMeasure((Ifc4.MeasureResource.IfcLinearMomentMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcLinearStiffnessMeasure) 
+				{
+					ValueComponent = new IfcLinearStiffnessMeasure((Ifc4.MeasureResource.IfcLinearStiffnessMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcLinearVelocityMeasure) 
+				{
+					ValueComponent = new IfcLinearVelocityMeasure((Ifc4.MeasureResource.IfcLinearVelocityMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcLuminousFluxMeasure) 
+				{
+					ValueComponent = new IfcLuminousFluxMeasure((Ifc4.MeasureResource.IfcLuminousFluxMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcLuminousIntensityDistributionMeasure) 
+				{
+					ValueComponent = new IfcLuminousIntensityDistributionMeasure((Ifc4.MeasureResource.IfcLuminousIntensityDistributionMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcMagneticFluxDensityMeasure) 
+				{
+					ValueComponent = new IfcMagneticFluxDensityMeasure((Ifc4.MeasureResource.IfcMagneticFluxDensityMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcMagneticFluxMeasure) 
+				{
+					ValueComponent = new IfcMagneticFluxMeasure((Ifc4.MeasureResource.IfcMagneticFluxMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcMassDensityMeasure) 
+				{
+					ValueComponent = new IfcMassDensityMeasure((Ifc4.MeasureResource.IfcMassDensityMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcMassFlowRateMeasure) 
+				{
+					ValueComponent = new IfcMassFlowRateMeasure((Ifc4.MeasureResource.IfcMassFlowRateMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcMassPerLengthMeasure) 
+				{
+					ValueComponent = new IfcMassPerLengthMeasure((Ifc4.MeasureResource.IfcMassPerLengthMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcModulusOfElasticityMeasure) 
+				{
+					ValueComponent = new IfcModulusOfElasticityMeasure((Ifc4.MeasureResource.IfcModulusOfElasticityMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure) 
+				{
+					ValueComponent = new IfcModulusOfLinearSubgradeReactionMeasure((Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure) 
+				{
+					ValueComponent = new IfcModulusOfRotationalSubgradeReactionMeasure((Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcModulusOfSubgradeReactionMeasure) 
+				{
+					ValueComponent = new IfcModulusOfSubgradeReactionMeasure((Ifc4.MeasureResource.IfcModulusOfSubgradeReactionMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcMoistureDiffusivityMeasure) 
+				{
+					ValueComponent = new IfcMoistureDiffusivityMeasure((Ifc4.MeasureResource.IfcMoistureDiffusivityMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcMolecularWeightMeasure) 
+				{
+					ValueComponent = new IfcMolecularWeightMeasure((Ifc4.MeasureResource.IfcMolecularWeightMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcMomentOfInertiaMeasure) 
+				{
+					ValueComponent = new IfcMomentOfInertiaMeasure((Ifc4.MeasureResource.IfcMomentOfInertiaMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcMonetaryMeasure) 
+				{
+					ValueComponent = new IfcMonetaryMeasure((Ifc4.MeasureResource.IfcMonetaryMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcPHMeasure) 
+				{
+					ValueComponent = new IfcPHMeasure((Ifc4.MeasureResource.IfcPHMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcPlanarForceMeasure) 
+				{
+					ValueComponent = new IfcPlanarForceMeasure((Ifc4.MeasureResource.IfcPlanarForceMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcPowerMeasure) 
+				{
+					ValueComponent = new IfcPowerMeasure((Ifc4.MeasureResource.IfcPowerMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcPressureMeasure) 
+				{
+					ValueComponent = new IfcPressureMeasure((Ifc4.MeasureResource.IfcPressureMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcRadioActivityMeasure) 
+				{
+					ValueComponent = new IfcRadioActivityMeasure((Ifc4.MeasureResource.IfcRadioActivityMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcRotationalFrequencyMeasure) 
+				{
+					ValueComponent = new IfcRotationalFrequencyMeasure((Ifc4.MeasureResource.IfcRotationalFrequencyMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcRotationalMassMeasure) 
+				{
+					ValueComponent = new IfcRotationalMassMeasure((Ifc4.MeasureResource.IfcRotationalMassMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcRotationalStiffnessMeasure) 
+				{
+					ValueComponent = new IfcRotationalStiffnessMeasure((Ifc4.MeasureResource.IfcRotationalStiffnessMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcSectionModulusMeasure) 
+				{
+					ValueComponent = new IfcSectionModulusMeasure((Ifc4.MeasureResource.IfcSectionModulusMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcSectionalAreaIntegralMeasure) 
+				{
+					ValueComponent = new IfcSectionalAreaIntegralMeasure((Ifc4.MeasureResource.IfcSectionalAreaIntegralMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcShearModulusMeasure) 
+				{
+					ValueComponent = new IfcShearModulusMeasure((Ifc4.MeasureResource.IfcShearModulusMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcSoundPowerLevelMeasure) 
+				{
+					ValueComponent = new IfcSoundPowerMeasure((Ifc4.MeasureResource.IfcSoundPowerLevelMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcSoundPowerMeasure) 
+				{
+					ValueComponent = new IfcSoundPowerMeasure((Ifc4.MeasureResource.IfcSoundPowerMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcSoundPressureLevelMeasure) 
+				{
+					ValueComponent = new IfcSoundPressureMeasure((Ifc4.MeasureResource.IfcSoundPressureLevelMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcSoundPressureMeasure) 
+				{
+					ValueComponent = new IfcSoundPressureMeasure((Ifc4.MeasureResource.IfcSoundPressureMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcSpecificHeatCapacityMeasure) 
+				{
+					ValueComponent = new IfcSpecificHeatCapacityMeasure((Ifc4.MeasureResource.IfcSpecificHeatCapacityMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcTemperatureGradientMeasure) 
+				{
+					ValueComponent = new IfcTemperatureGradientMeasure((Ifc4.MeasureResource.IfcTemperatureGradientMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcTemperatureRateOfChangeMeasure) 
+				{
+					if (ValueComponent != null)
+						ValueComponent = null;
+					SetValue(v => _valueComponent4 = v, _valueComponent4, value, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcThermalAdmittanceMeasure) 
+				{
+					ValueComponent = new IfcThermalAdmittanceMeasure((Ifc4.MeasureResource.IfcThermalAdmittanceMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcThermalConductivityMeasure) 
+				{
+					ValueComponent = new IfcThermalConductivityMeasure((Ifc4.MeasureResource.IfcThermalConductivityMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcThermalExpansionCoefficientMeasure) 
+				{
+					ValueComponent = new IfcThermalExpansionCoefficientMeasure((Ifc4.MeasureResource.IfcThermalExpansionCoefficientMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcThermalResistanceMeasure) 
+				{
+					ValueComponent = new IfcThermalResistanceMeasure((Ifc4.MeasureResource.IfcThermalResistanceMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcThermalTransmittanceMeasure) 
+				{
+					ValueComponent = new IfcThermalTransmittanceMeasure((Ifc4.MeasureResource.IfcThermalTransmittanceMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcTorqueMeasure) 
+				{
+					ValueComponent = new IfcTorqueMeasure((Ifc4.MeasureResource.IfcTorqueMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcVaporPermeabilityMeasure) 
+				{
+					ValueComponent = new IfcVaporPermeabilityMeasure((Ifc4.MeasureResource.IfcVaporPermeabilityMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcVolumetricFlowRateMeasure) 
+				{
+					ValueComponent = new IfcVolumetricFlowRateMeasure((Ifc4.MeasureResource.IfcVolumetricFlowRateMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcWarpingConstantMeasure) 
+				{
+					ValueComponent = new IfcWarpingConstantMeasure((Ifc4.MeasureResource.IfcWarpingConstantMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcWarpingMomentMeasure) 
+				{
+					ValueComponent = new IfcWarpingMomentMeasure((Ifc4.MeasureResource.IfcWarpingMomentMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcAmountOfSubstanceMeasure) 
+				{
+					ValueComponent = new IfcAmountOfSubstanceMeasure((Ifc4.MeasureResource.IfcAmountOfSubstanceMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcAreaMeasure) 
+				{
+					ValueComponent = new IfcAreaMeasure((Ifc4.MeasureResource.IfcAreaMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcComplexNumber) 
+				{
+					ValueComponent = new IfcComplexNumber((Ifc4.MeasureResource.IfcComplexNumber)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcContextDependentMeasure) 
+				{
+					ValueComponent = new IfcContextDependentMeasure((Ifc4.MeasureResource.IfcContextDependentMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcCountMeasure) 
+				{
+					ValueComponent = new IfcCountMeasure((Ifc4.MeasureResource.IfcCountMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcDescriptiveMeasure) 
+				{
+					ValueComponent = new IfcDescriptiveMeasure((Ifc4.MeasureResource.IfcDescriptiveMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcElectricCurrentMeasure) 
+				{
+					ValueComponent = new IfcElectricCurrentMeasure((Ifc4.MeasureResource.IfcElectricCurrentMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcLengthMeasure) 
+				{
+					ValueComponent = new IfcLengthMeasure((Ifc4.MeasureResource.IfcLengthMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcLuminousIntensityMeasure) 
+				{
+					ValueComponent = new IfcLuminousIntensityMeasure((Ifc4.MeasureResource.IfcLuminousIntensityMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcMassMeasure) 
+				{
+					ValueComponent = new IfcMassMeasure((Ifc4.MeasureResource.IfcMassMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcNonNegativeLengthMeasure) 
+				{
+					if (ValueComponent != null)
+						ValueComponent = null;
+					SetValue(v => _valueComponent4 = v, _valueComponent4, value, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcNormalisedRatioMeasure) 
+				{
+					ValueComponent = new IfcNormalisedRatioMeasure((Ifc4.MeasureResource.IfcNormalisedRatioMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcNumericMeasure) 
+				{
+					ValueComponent = new IfcNumericMeasure((Ifc4.MeasureResource.IfcNumericMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcParameterValue) 
+				{
+					ValueComponent = new IfcParameterValue((Ifc4.MeasureResource.IfcParameterValue)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcPlaneAngleMeasure) 
+				{
+					ValueComponent = new IfcPlaneAngleMeasure((Ifc4.MeasureResource.IfcPlaneAngleMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcPositiveLengthMeasure) 
+				{
+					ValueComponent = new IfcPositiveLengthMeasure((Ifc4.MeasureResource.IfcPositiveLengthMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcPositivePlaneAngleMeasure) 
+				{
+					ValueComponent = new IfcPositivePlaneAngleMeasure((Ifc4.MeasureResource.IfcPositivePlaneAngleMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcPositiveRatioMeasure) 
+				{
+					ValueComponent = new IfcPositiveRatioMeasure((Ifc4.MeasureResource.IfcPositiveRatioMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcRatioMeasure) 
+				{
+					ValueComponent = new IfcRatioMeasure((Ifc4.MeasureResource.IfcRatioMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcSolidAngleMeasure) 
+				{
+					ValueComponent = new IfcSolidAngleMeasure((Ifc4.MeasureResource.IfcSolidAngleMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure) 
+				{
+					ValueComponent = new IfcThermodynamicTemperatureMeasure((Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcTimeMeasure) 
+				{
+					ValueComponent = new IfcTimeMeasure((Ifc4.MeasureResource.IfcTimeMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcVolumeMeasure) 
+				{
+					ValueComponent = new IfcVolumeMeasure((Ifc4.MeasureResource.IfcVolumeMeasure)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcBoolean) 
+				{
+					ValueComponent = new IfcBoolean((Ifc4.MeasureResource.IfcBoolean)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.DateTimeResource.IfcDate) 
+				{
+					if (ValueComponent != null)
+						ValueComponent = null;
+					SetValue(v => _valueComponent4 = v, _valueComponent4, value, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.DateTimeResource.IfcDateTime) 
+				{
+					if (ValueComponent != null)
+						ValueComponent = null;
+					SetValue(v => _valueComponent4 = v, _valueComponent4, value, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.DateTimeResource.IfcDuration) 
+				{
+					if (ValueComponent != null)
+						ValueComponent = null;
+					SetValue(v => _valueComponent4 = v, _valueComponent4, value, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcIdentifier) 
+				{
+					ValueComponent = new IfcIdentifier((Ifc4.MeasureResource.IfcIdentifier)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcInteger) 
+				{
+					ValueComponent = new IfcInteger((Ifc4.MeasureResource.IfcInteger)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcLabel) 
+				{
+					ValueComponent = new IfcLabel((Ifc4.MeasureResource.IfcLabel)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcLogical) 
+				{
+					ValueComponent = new IfcLogical((Ifc4.MeasureResource.IfcLogical)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcPositiveInteger) 
+				{
+					if (ValueComponent != null)
+						ValueComponent = null;
+					SetValue(v => _valueComponent4 = v, _valueComponent4, value, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcReal) 
+				{
+					ValueComponent = new IfcReal((Ifc4.MeasureResource.IfcReal)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcText) 
+				{
+					ValueComponent = new IfcText((Ifc4.MeasureResource.IfcText)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.DateTimeResource.IfcTime) 
+				{
+					if (ValueComponent != null)
+						ValueComponent = null;
+					SetValue(v => _valueComponent4 = v, _valueComponent4, value, "ValueComponent", byte.MaxValue);
+					return;
+				}
+				if (value is Ifc4.DateTimeResource.IfcTimeStamp) 
+				{
+					ValueComponent = new IfcTimeStamp((Ifc4.DateTimeResource.IfcTimeStamp)value);
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
+					return;
+				}
 				
 			}
 		}
@@ -241,7 +997,29 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					UnitComponent = null;
+					return;
+				}	
+				var ifcderivedunit = value as IfcDerivedUnit;
+				if (ifcderivedunit != null) 
+				{
+					UnitComponent = ifcderivedunit;
+					return;
+				}
+				var ifcmonetaryunit = value as IfcMonetaryUnit;
+				if (ifcmonetaryunit != null) 
+				{
+					UnitComponent = ifcmonetaryunit;
+					return;
+				}
+				var ifcnamedunit = value as IfcNamedUnit;
+				if (ifcnamedunit != null) 
+				{
+					UnitComponent = ifcnamedunit;
+					return;
+				}
 				
 			}
 		}

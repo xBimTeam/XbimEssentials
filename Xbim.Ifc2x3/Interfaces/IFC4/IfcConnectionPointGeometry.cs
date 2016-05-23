@@ -31,7 +31,23 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					PointOnRelatingElement = null;
+					return;
+				}	
+				var ifcpoint = value as GeometryResource.IfcPoint;
+				if (ifcpoint != null) 
+				{
+					PointOnRelatingElement = ifcpoint;
+					return;
+				}
+				var ifcvertexpoint = value as TopologyResource.IfcVertexPoint;
+				if (ifcvertexpoint != null) 
+				{
+					PointOnRelatingElement = ifcvertexpoint;
+					return;
+				}
 				
 			}
 		}
@@ -50,7 +66,23 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					PointOnRelatedElement = null;
+					return;
+				}	
+				var ifcpoint = value as GeometryResource.IfcPoint;
+				if (ifcpoint != null) 
+				{
+					PointOnRelatedElement = ifcpoint;
+					return;
+				}
+				var ifcvertexpoint = value as TopologyResource.IfcVertexPoint;
+				if (ifcvertexpoint != null) 
+				{
+					PointOnRelatedElement = ifcvertexpoint;
+					return;
+				}
 				
 			}
 		}

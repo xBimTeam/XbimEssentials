@@ -30,7 +30,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (value == null)
 				{
 					ReferencedSource = null;
-					SetValue(v => _referencedSource4 = v, _referencedSource4, null, "ReferencedSource", byte.MaxValue);
+					if (_referencedSource4 != null)
+						SetValue(v => _referencedSource4 = v, _referencedSource4, null, "ReferencedSource", byte.MaxValue);
 					return;
 				}
 				
@@ -38,12 +39,14 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (val != null)
 				{
 					ReferencedSource = val;
-					SetValue(v => _referencedSource4 = v, _referencedSource4, null, "ReferencedSource", byte.MaxValue);
+					if (_referencedSource4 != null)
+						SetValue(v => _referencedSource4 = v, _referencedSource4, null, "ReferencedSource", byte.MaxValue);
 					return;
 				} 
 
+				if(ReferencedSource != null)
 					ReferencedSource = null;
-					SetValue(v => _referencedSource4 = v, _referencedSource4, value, "ReferencedSource", byte.MaxValue);
+				SetValue(v => _referencedSource4 = v, _referencedSource4, value, "ReferencedSource", byte.MaxValue);
 				
 			}
 		}

@@ -30,7 +30,8 @@ namespace Xbim.Ifc2x3.Kernel
 				if (value == null)
 				{
 					RelatingProduct = null;
-					SetValue(v => _relatingProduct4 = v, _relatingProduct4, null, "RelatingProduct", byte.MaxValue);
+					if (_relatingProduct4 != null)
+						SetValue(v => _relatingProduct4 = v, _relatingProduct4, null, "RelatingProduct", byte.MaxValue);
 					return;
 				}
 				
@@ -38,12 +39,14 @@ namespace Xbim.Ifc2x3.Kernel
 				if (val != null)
 				{
 					RelatingProduct = val;
-					SetValue(v => _relatingProduct4 = v, _relatingProduct4, null, "RelatingProduct", byte.MaxValue);
+					if (_relatingProduct4 != null)
+						SetValue(v => _relatingProduct4 = v, _relatingProduct4, null, "RelatingProduct", byte.MaxValue);
 					return;
 				} 
 
+				if(RelatingProduct != null)
 					RelatingProduct = null;
-					SetValue(v => _relatingProduct4 = v, _relatingProduct4, value, "RelatingProduct", byte.MaxValue);
+				SetValue(v => _relatingProduct4 = v, _relatingProduct4, value, "RelatingProduct", byte.MaxValue);
 				
 			}
 		}

@@ -31,7 +31,23 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				if (value == null)
+				{
+					RelatingDocument = null;
+					return;
+				}	
+				var ifcdocumentinformation = value as ExternalReferenceResource.IfcDocumentInformation;
+				if (ifcdocumentinformation != null) 
+				{
+					RelatingDocument = ifcdocumentinformation;
+					return;
+				}
+				var ifcdocumentreference = value as ExternalReferenceResource.IfcDocumentReference;
+				if (ifcdocumentreference != null) 
+				{
+					RelatingDocument = ifcdocumentreference;
+					return;
+				}
 				
 			}
 		}

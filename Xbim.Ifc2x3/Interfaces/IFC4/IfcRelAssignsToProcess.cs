@@ -30,7 +30,8 @@ namespace Xbim.Ifc2x3.Kernel
 				if (value == null)
 				{
 					RelatingProcess = null;
-					SetValue(v => _relatingProcess4 = v, _relatingProcess4, null, "RelatingProcess", byte.MaxValue);
+					if (_relatingProcess4 != null)
+						SetValue(v => _relatingProcess4 = v, _relatingProcess4, null, "RelatingProcess", byte.MaxValue);
 					return;
 				}
 				
@@ -38,12 +39,14 @@ namespace Xbim.Ifc2x3.Kernel
 				if (val != null)
 				{
 					RelatingProcess = val;
-					SetValue(v => _relatingProcess4 = v, _relatingProcess4, null, "RelatingProcess", byte.MaxValue);
+					if (_relatingProcess4 != null)
+						SetValue(v => _relatingProcess4 = v, _relatingProcess4, null, "RelatingProcess", byte.MaxValue);
 					return;
 				} 
 
+				if(RelatingProcess != null)
 					RelatingProcess = null;
-					SetValue(v => _relatingProcess4 = v, _relatingProcess4, value, "RelatingProcess", byte.MaxValue);
+				SetValue(v => _relatingProcess4 = v, _relatingProcess4, value, "RelatingProcess", byte.MaxValue);
 				
 			}
 		}
