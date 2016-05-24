@@ -71,7 +71,68 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.SIDEHUNGRIGHTHAND:
+						OperationType = IfcWindowPanelOperationEnum.SIDEHUNGRIGHTHAND;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.SIDEHUNGLEFTHAND:
+						OperationType = IfcWindowPanelOperationEnum.SIDEHUNGLEFTHAND;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.TILTANDTURNRIGHTHAND:
+						OperationType = IfcWindowPanelOperationEnum.TILTANDTURNRIGHTHAND;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.TILTANDTURNLEFTHAND:
+						OperationType = IfcWindowPanelOperationEnum.TILTANDTURNLEFTHAND;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.TOPHUNG:
+						OperationType = IfcWindowPanelOperationEnum.TOPHUNG;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.BOTTOMHUNG:
+						OperationType = IfcWindowPanelOperationEnum.BOTTOMHUNG;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.PIVOTHORIZONTAL:
+						OperationType = IfcWindowPanelOperationEnum.PIVOTHORIZONTAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.PIVOTVERTICAL:
+						OperationType = IfcWindowPanelOperationEnum.PIVOTVERTICAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.SLIDINGHORIZONTAL:
+						OperationType = IfcWindowPanelOperationEnum.SLIDINGHORIZONTAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.SLIDINGVERTICAL:
+						OperationType = IfcWindowPanelOperationEnum.SLIDINGVERTICAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.REMOVABLECASEMENT:
+						OperationType = IfcWindowPanelOperationEnum.REMOVABLECASEMENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.FIXEDCASEMENT:
+						OperationType = IfcWindowPanelOperationEnum.FIXEDCASEMENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.OTHEROPERATION:
+						OperationType = IfcWindowPanelOperationEnum.OTHEROPERATION;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.NOTDEFINED:
+						OperationType = IfcWindowPanelOperationEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}
@@ -106,7 +167,36 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcWindowPanelPositionEnum.LEFT:
+						PanelPosition = IfcWindowPanelPositionEnum.LEFT;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelPositionEnum.MIDDLE:
+						PanelPosition = IfcWindowPanelPositionEnum.MIDDLE;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelPositionEnum.RIGHT:
+						PanelPosition = IfcWindowPanelPositionEnum.RIGHT;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelPositionEnum.BOTTOM:
+						PanelPosition = IfcWindowPanelPositionEnum.BOTTOM;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelPositionEnum.TOP:
+						PanelPosition = IfcWindowPanelPositionEnum.TOP;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelPositionEnum.NOTDEFINED:
+						PanelPosition = IfcWindowPanelPositionEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

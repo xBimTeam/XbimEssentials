@@ -119,6 +119,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 						//##
 										
 					case IfcElectricApplianceTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.USERDEFINED;
 					
 					case IfcElectricApplianceTypeEnum.NOTDEFINED:
@@ -131,7 +133,92 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.DISHWASHER:
+						PredefinedType = IfcElectricApplianceTypeEnum.DISHWASHER;
+						return;
+					
+					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.ELECTRICCOOKER:
+						PredefinedType = IfcElectricApplianceTypeEnum.ELECTRICCOOKER;
+						return;
+					
+					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FREESTANDINGELECTRICHEATER:
+						//## Handle setting of FREESTANDINGELECTRICHEATER member from IfcElectricApplianceTypeEnum in property PredefinedType
+						//TODO: Handle setting of FREESTANDINGELECTRICHEATER member from IfcElectricApplianceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FREESTANDINGFAN:
+						PredefinedType = IfcElectricApplianceTypeEnum.FREESTANDINGFAN;
+						return;
+					
+					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FREESTANDINGWATERHEATER:
+						//## Handle setting of FREESTANDINGWATERHEATER member from IfcElectricApplianceTypeEnum in property PredefinedType
+						//TODO: Handle setting of FREESTANDINGWATERHEATER member from IfcElectricApplianceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FREESTANDINGWATERCOOLER:
+						//## Handle setting of FREESTANDINGWATERCOOLER member from IfcElectricApplianceTypeEnum in property PredefinedType
+						//TODO: Handle setting of FREESTANDINGWATERCOOLER member from IfcElectricApplianceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FREEZER:
+						PredefinedType = IfcElectricApplianceTypeEnum.FREEZER;
+						return;
+					
+					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FRIDGE_FREEZER:
+						PredefinedType = IfcElectricApplianceTypeEnum.FRIDGE_FREEZER;
+						return;
+					
+					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.HANDDRYER:
+						PredefinedType = IfcElectricApplianceTypeEnum.HANDDRYER;
+						return;
+					
+					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.KITCHENMACHINE:
+						//## Handle setting of KITCHENMACHINE member from IfcElectricApplianceTypeEnum in property PredefinedType
+						//TODO: Handle setting of KITCHENMACHINE member from IfcElectricApplianceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.MICROWAVE:
+						PredefinedType = IfcElectricApplianceTypeEnum.MICROWAVE;
+						return;
+					
+					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.PHOTOCOPIER:
+						PredefinedType = IfcElectricApplianceTypeEnum.PHOTOCOPIER;
+						return;
+					
+					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.REFRIGERATOR:
+						PredefinedType = IfcElectricApplianceTypeEnum.REFRIGERATOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.TUMBLEDRYER:
+						PredefinedType = IfcElectricApplianceTypeEnum.TUMBLEDRYER;
+						return;
+					
+					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.VENDINGMACHINE:
+						PredefinedType = IfcElectricApplianceTypeEnum.VENDINGMACHINE;
+						return;
+					
+					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.WASHINGMACHINE:
+						PredefinedType = IfcElectricApplianceTypeEnum.WASHINGMACHINE;
+						return;
+					
+					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.USERDEFINED:
+						PredefinedType = IfcElectricApplianceTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.NOTDEFINED:
+						PredefinedType = IfcElectricApplianceTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

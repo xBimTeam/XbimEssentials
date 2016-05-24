@@ -47,7 +47,60 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcBenchmarkEnum.GREATERTHAN:
+						Benchmark = IfcBenchmarkEnum.GREATERTHAN;
+						return;
+					
+					case Ifc4.Interfaces.IfcBenchmarkEnum.GREATERTHANOREQUALTO:
+						Benchmark = IfcBenchmarkEnum.GREATERTHANOREQUALTO;
+						return;
+					
+					case Ifc4.Interfaces.IfcBenchmarkEnum.LESSTHAN:
+						Benchmark = IfcBenchmarkEnum.LESSTHAN;
+						return;
+					
+					case Ifc4.Interfaces.IfcBenchmarkEnum.LESSTHANOREQUALTO:
+						Benchmark = IfcBenchmarkEnum.LESSTHANOREQUALTO;
+						return;
+					
+					case Ifc4.Interfaces.IfcBenchmarkEnum.EQUALTO:
+						Benchmark = IfcBenchmarkEnum.EQUALTO;
+						return;
+					
+					case Ifc4.Interfaces.IfcBenchmarkEnum.NOTEQUALTO:
+						Benchmark = IfcBenchmarkEnum.NOTEQUALTO;
+						return;
+					
+					case Ifc4.Interfaces.IfcBenchmarkEnum.INCLUDES:
+						//## Handle setting of INCLUDES member from IfcBenchmarkEnum in property Benchmark
+						//TODO: Handle setting of INCLUDES member from IfcBenchmarkEnum in property Benchmark
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcBenchmarkEnum.NOTINCLUDES:
+						//## Handle setting of NOTINCLUDES member from IfcBenchmarkEnum in property Benchmark
+						//TODO: Handle setting of NOTINCLUDES member from IfcBenchmarkEnum in property Benchmark
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcBenchmarkEnum.INCLUDEDIN:
+						//## Handle setting of INCLUDEDIN member from IfcBenchmarkEnum in property Benchmark
+						//TODO: Handle setting of INCLUDEDIN member from IfcBenchmarkEnum in property Benchmark
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcBenchmarkEnum.NOTINCLUDEDIN:
+						//## Handle setting of NOTINCLUDEDIN member from IfcBenchmarkEnum in property Benchmark
+						//TODO: Handle setting of NOTINCLUDEDIN member from IfcBenchmarkEnum in property Benchmark
+						throw new System.NotImplementedException();
+						//##
+										
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

@@ -71,7 +71,36 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcBSplineCurveForm.POLYLINE_FORM:
+						CurveForm = IfcBSplineCurveForm.POLYLINE_FORM;
+						return;
+					
+					case Ifc4.Interfaces.IfcBSplineCurveForm.CIRCULAR_ARC:
+						CurveForm = IfcBSplineCurveForm.CIRCULAR_ARC;
+						return;
+					
+					case Ifc4.Interfaces.IfcBSplineCurveForm.ELLIPTIC_ARC:
+						CurveForm = IfcBSplineCurveForm.ELLIPTIC_ARC;
+						return;
+					
+					case Ifc4.Interfaces.IfcBSplineCurveForm.PARABOLIC_ARC:
+						CurveForm = IfcBSplineCurveForm.PARABOLIC_ARC;
+						return;
+					
+					case Ifc4.Interfaces.IfcBSplineCurveForm.HYPERBOLIC_ARC:
+						CurveForm = IfcBSplineCurveForm.HYPERBOLIC_ARC;
+						return;
+					
+					case Ifc4.Interfaces.IfcBSplineCurveForm.UNSPECIFIED:
+						CurveForm = IfcBSplineCurveForm.UNSPECIFIED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

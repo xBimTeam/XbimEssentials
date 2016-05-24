@@ -139,7 +139,40 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcTimeSeriesDataTypeEnum.CONTINUOUS:
+						TimeSeriesDataType = IfcTimeSeriesDataTypeEnum.CONTINUOUS;
+						return;
+					
+					case Ifc4.Interfaces.IfcTimeSeriesDataTypeEnum.DISCRETE:
+						TimeSeriesDataType = IfcTimeSeriesDataTypeEnum.DISCRETE;
+						return;
+					
+					case Ifc4.Interfaces.IfcTimeSeriesDataTypeEnum.DISCRETEBINARY:
+						TimeSeriesDataType = IfcTimeSeriesDataTypeEnum.DISCRETEBINARY;
+						return;
+					
+					case Ifc4.Interfaces.IfcTimeSeriesDataTypeEnum.PIECEWISEBINARY:
+						TimeSeriesDataType = IfcTimeSeriesDataTypeEnum.PIECEWISEBINARY;
+						return;
+					
+					case Ifc4.Interfaces.IfcTimeSeriesDataTypeEnum.PIECEWISECONSTANT:
+						TimeSeriesDataType = IfcTimeSeriesDataTypeEnum.PIECEWISECONSTANT;
+						return;
+					
+					case Ifc4.Interfaces.IfcTimeSeriesDataTypeEnum.PIECEWISECONTINUOUS:
+						TimeSeriesDataType = IfcTimeSeriesDataTypeEnum.PIECEWISECONTINUOUS;
+						return;
+					
+					case Ifc4.Interfaces.IfcTimeSeriesDataTypeEnum.NOTDEFINED:
+						TimeSeriesDataType = IfcTimeSeriesDataTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}
@@ -159,6 +192,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 						return Ifc4.Interfaces.IfcDataOriginEnum.SIMULATED;
 					
 					case IfcDataOriginEnum.USERDEFINED:
+						//## Optional custom handling of DataOrigin == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcDataOriginEnum.USERDEFINED;
 					
 					case IfcDataOriginEnum.NOTDEFINED:
@@ -171,7 +206,32 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcDataOriginEnum.MEASURED:
+						DataOrigin = IfcDataOriginEnum.MEASURED;
+						return;
+					
+					case Ifc4.Interfaces.IfcDataOriginEnum.PREDICTED:
+						DataOrigin = IfcDataOriginEnum.PREDICTED;
+						return;
+					
+					case Ifc4.Interfaces.IfcDataOriginEnum.SIMULATED:
+						DataOrigin = IfcDataOriginEnum.SIMULATED;
+						return;
+					
+					case Ifc4.Interfaces.IfcDataOriginEnum.USERDEFINED:
+						DataOrigin = IfcDataOriginEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcDataOriginEnum.NOTDEFINED:
+						DataOrigin = IfcDataOriginEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

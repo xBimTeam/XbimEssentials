@@ -41,7 +41,28 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcFlowDirectionEnum.SOURCE:
+						FlowDirection = IfcFlowDirectionEnum.SOURCE;
+						return;
+					
+					case Ifc4.Interfaces.IfcFlowDirectionEnum.SINK:
+						FlowDirection = IfcFlowDirectionEnum.SINK;
+						return;
+					
+					case Ifc4.Interfaces.IfcFlowDirectionEnum.SOURCEANDSINK:
+						FlowDirection = IfcFlowDirectionEnum.SOURCEANDSINK;
+						return;
+					
+					case Ifc4.Interfaces.IfcFlowDirectionEnum.NOTDEFINED:
+						FlowDirection = IfcFlowDirectionEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

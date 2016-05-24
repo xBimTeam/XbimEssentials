@@ -47,6 +47,8 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 						return Ifc4.Interfaces.IfcControllerTypeEnum.TWOPOSITION;
 					
 					case IfcControllerTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcControllerTypeEnum.USERDEFINED;
 					
 					case IfcControllerTypeEnum.NOTDEFINED:
@@ -59,7 +61,44 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcControllerTypeEnum.FLOATING:
+						PredefinedType = IfcControllerTypeEnum.FLOATING;
+						return;
+					
+					case Ifc4.Interfaces.IfcControllerTypeEnum.PROGRAMMABLE:
+						//## Handle setting of PROGRAMMABLE member from IfcControllerTypeEnum in property PredefinedType
+						//TODO: Handle setting of PROGRAMMABLE member from IfcControllerTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcControllerTypeEnum.PROPORTIONAL:
+						PredefinedType = IfcControllerTypeEnum.PROPORTIONAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcControllerTypeEnum.MULTIPOSITION:
+						//## Handle setting of MULTIPOSITION member from IfcControllerTypeEnum in property PredefinedType
+						//TODO: Handle setting of MULTIPOSITION member from IfcControllerTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcControllerTypeEnum.TWOPOSITION:
+						PredefinedType = IfcControllerTypeEnum.TWOPOSITION;
+						return;
+					
+					case Ifc4.Interfaces.IfcControllerTypeEnum.USERDEFINED:
+						PredefinedType = IfcControllerTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcControllerTypeEnum.NOTDEFINED:
+						PredefinedType = IfcControllerTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

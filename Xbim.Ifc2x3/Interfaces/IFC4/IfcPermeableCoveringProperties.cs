@@ -32,6 +32,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 						return Ifc4.Interfaces.IfcPermeableCoveringOperationEnum.SCREEN;
 					
 					case IfcPermeableCoveringOperationEnum.USERDEFINED:
+						//## Optional custom handling of OperationType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcPermeableCoveringOperationEnum.USERDEFINED;
 					
 					case IfcPermeableCoveringOperationEnum.NOTDEFINED:
@@ -44,7 +46,32 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcPermeableCoveringOperationEnum.GRILL:
+						OperationType = IfcPermeableCoveringOperationEnum.GRILL;
+						return;
+					
+					case Ifc4.Interfaces.IfcPermeableCoveringOperationEnum.LOUVER:
+						OperationType = IfcPermeableCoveringOperationEnum.LOUVER;
+						return;
+					
+					case Ifc4.Interfaces.IfcPermeableCoveringOperationEnum.SCREEN:
+						OperationType = IfcPermeableCoveringOperationEnum.SCREEN;
+						return;
+					
+					case Ifc4.Interfaces.IfcPermeableCoveringOperationEnum.USERDEFINED:
+						OperationType = IfcPermeableCoveringOperationEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcPermeableCoveringOperationEnum.NOTDEFINED:
+						OperationType = IfcPermeableCoveringOperationEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}
@@ -79,7 +106,36 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcWindowPanelPositionEnum.LEFT:
+						PanelPosition = SharedBldgElements.IfcWindowPanelPositionEnum.LEFT;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelPositionEnum.MIDDLE:
+						PanelPosition = SharedBldgElements.IfcWindowPanelPositionEnum.MIDDLE;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelPositionEnum.RIGHT:
+						PanelPosition = SharedBldgElements.IfcWindowPanelPositionEnum.RIGHT;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelPositionEnum.BOTTOM:
+						PanelPosition = SharedBldgElements.IfcWindowPanelPositionEnum.BOTTOM;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelPositionEnum.TOP:
+						PanelPosition = SharedBldgElements.IfcWindowPanelPositionEnum.TOP;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelPositionEnum.NOTDEFINED:
+						PanelPosition = SharedBldgElements.IfcWindowPanelPositionEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

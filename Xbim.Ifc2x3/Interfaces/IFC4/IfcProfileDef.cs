@@ -35,7 +35,20 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcProfileTypeEnum.CURVE:
+						ProfileType = IfcProfileTypeEnum.CURVE;
+						return;
+					
+					case Ifc4.Interfaces.IfcProfileTypeEnum.AREA:
+						ProfileType = IfcProfileTypeEnum.AREA;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

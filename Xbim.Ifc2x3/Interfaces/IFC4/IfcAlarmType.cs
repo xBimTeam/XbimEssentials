@@ -41,6 +41,8 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 						return Ifc4.Interfaces.IfcAlarmTypeEnum.WHISTLE;
 					
 					case IfcAlarmTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcAlarmTypeEnum.USERDEFINED;
 					
 					case IfcAlarmTypeEnum.NOTDEFINED:
@@ -53,7 +55,44 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcAlarmTypeEnum.BELL:
+						PredefinedType = IfcAlarmTypeEnum.BELL;
+						return;
+					
+					case Ifc4.Interfaces.IfcAlarmTypeEnum.BREAKGLASSBUTTON:
+						PredefinedType = IfcAlarmTypeEnum.BREAKGLASSBUTTON;
+						return;
+					
+					case Ifc4.Interfaces.IfcAlarmTypeEnum.LIGHT:
+						PredefinedType = IfcAlarmTypeEnum.LIGHT;
+						return;
+					
+					case Ifc4.Interfaces.IfcAlarmTypeEnum.MANUALPULLBOX:
+						PredefinedType = IfcAlarmTypeEnum.MANUALPULLBOX;
+						return;
+					
+					case Ifc4.Interfaces.IfcAlarmTypeEnum.SIREN:
+						PredefinedType = IfcAlarmTypeEnum.SIREN;
+						return;
+					
+					case Ifc4.Interfaces.IfcAlarmTypeEnum.WHISTLE:
+						PredefinedType = IfcAlarmTypeEnum.WHISTLE;
+						return;
+					
+					case Ifc4.Interfaces.IfcAlarmTypeEnum.USERDEFINED:
+						PredefinedType = IfcAlarmTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcAlarmTypeEnum.NOTDEFINED:
+						PredefinedType = IfcAlarmTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

@@ -62,6 +62,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ASSISTEDSTEAM;
 					
 					case IfcHumidifierTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcHumidifierTypeEnum.USERDEFINED;
 					
 					case IfcHumidifierTypeEnum.NOTDEFINED:
@@ -74,7 +76,72 @@ namespace Xbim.Ifc2x3.HVACDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcHumidifierTypeEnum.STEAMINJECTION:
+						PredefinedType = IfcHumidifierTypeEnum.STEAMINJECTION;
+						return;
+					
+					case Ifc4.Interfaces.IfcHumidifierTypeEnum.ADIABATICAIRWASHER:
+						PredefinedType = IfcHumidifierTypeEnum.ADIABATICAIRWASHER;
+						return;
+					
+					case Ifc4.Interfaces.IfcHumidifierTypeEnum.ADIABATICPAN:
+						PredefinedType = IfcHumidifierTypeEnum.ADIABATICPAN;
+						return;
+					
+					case Ifc4.Interfaces.IfcHumidifierTypeEnum.ADIABATICWETTEDELEMENT:
+						PredefinedType = IfcHumidifierTypeEnum.ADIABATICWETTEDELEMENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcHumidifierTypeEnum.ADIABATICATOMIZING:
+						PredefinedType = IfcHumidifierTypeEnum.ADIABATICATOMIZING;
+						return;
+					
+					case Ifc4.Interfaces.IfcHumidifierTypeEnum.ADIABATICULTRASONIC:
+						PredefinedType = IfcHumidifierTypeEnum.ADIABATICULTRASONIC;
+						return;
+					
+					case Ifc4.Interfaces.IfcHumidifierTypeEnum.ADIABATICRIGIDMEDIA:
+						PredefinedType = IfcHumidifierTypeEnum.ADIABATICRIGIDMEDIA;
+						return;
+					
+					case Ifc4.Interfaces.IfcHumidifierTypeEnum.ADIABATICCOMPRESSEDAIRNOZZLE:
+						PredefinedType = IfcHumidifierTypeEnum.ADIABATICCOMPRESSEDAIRNOZZLE;
+						return;
+					
+					case Ifc4.Interfaces.IfcHumidifierTypeEnum.ASSISTEDELECTRIC:
+						PredefinedType = IfcHumidifierTypeEnum.ASSISTEDELECTRIC;
+						return;
+					
+					case Ifc4.Interfaces.IfcHumidifierTypeEnum.ASSISTEDNATURALGAS:
+						PredefinedType = IfcHumidifierTypeEnum.ASSISTEDNATURALGAS;
+						return;
+					
+					case Ifc4.Interfaces.IfcHumidifierTypeEnum.ASSISTEDPROPANE:
+						PredefinedType = IfcHumidifierTypeEnum.ASSISTEDPROPANE;
+						return;
+					
+					case Ifc4.Interfaces.IfcHumidifierTypeEnum.ASSISTEDBUTANE:
+						PredefinedType = IfcHumidifierTypeEnum.ASSISTEDBUTANE;
+						return;
+					
+					case Ifc4.Interfaces.IfcHumidifierTypeEnum.ASSISTEDSTEAM:
+						PredefinedType = IfcHumidifierTypeEnum.ASSISTEDSTEAM;
+						return;
+					
+					case Ifc4.Interfaces.IfcHumidifierTypeEnum.USERDEFINED:
+						PredefinedType = IfcHumidifierTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcHumidifierTypeEnum.NOTDEFINED:
+						PredefinedType = IfcHumidifierTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

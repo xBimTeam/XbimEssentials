@@ -38,6 +38,8 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 						return Ifc4.Interfaces.IfcProjectOrderTypeEnum.WORKORDER;
 					
 					case IfcProjectOrderTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcProjectOrderTypeEnum.USERDEFINED;
 					
 					case IfcProjectOrderTypeEnum.NOTDEFINED:
@@ -50,7 +52,40 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcProjectOrderTypeEnum.CHANGEORDER:
+						PredefinedType = IfcProjectOrderTypeEnum.CHANGEORDER;
+						return;
+					
+					case Ifc4.Interfaces.IfcProjectOrderTypeEnum.MAINTENANCEWORKORDER:
+						PredefinedType = IfcProjectOrderTypeEnum.MAINTENANCEWORKORDER;
+						return;
+					
+					case Ifc4.Interfaces.IfcProjectOrderTypeEnum.MOVEORDER:
+						PredefinedType = IfcProjectOrderTypeEnum.MOVEORDER;
+						return;
+					
+					case Ifc4.Interfaces.IfcProjectOrderTypeEnum.PURCHASEORDER:
+						PredefinedType = IfcProjectOrderTypeEnum.PURCHASEORDER;
+						return;
+					
+					case Ifc4.Interfaces.IfcProjectOrderTypeEnum.WORKORDER:
+						PredefinedType = IfcProjectOrderTypeEnum.WORKORDER;
+						return;
+					
+					case Ifc4.Interfaces.IfcProjectOrderTypeEnum.USERDEFINED:
+						PredefinedType = IfcProjectOrderTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcProjectOrderTypeEnum.NOTDEFINED:
+						PredefinedType = IfcProjectOrderTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

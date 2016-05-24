@@ -53,7 +53,44 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcObjectTypeEnum.PRODUCT:
+						ProxyType = IfcObjectTypeEnum.PRODUCT;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectTypeEnum.PROCESS:
+						ProxyType = IfcObjectTypeEnum.PROCESS;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectTypeEnum.CONTROL:
+						ProxyType = IfcObjectTypeEnum.CONTROL;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectTypeEnum.RESOURCE:
+						ProxyType = IfcObjectTypeEnum.RESOURCE;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectTypeEnum.ACTOR:
+						ProxyType = IfcObjectTypeEnum.ACTOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectTypeEnum.GROUP:
+						ProxyType = IfcObjectTypeEnum.GROUP;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectTypeEnum.PROJECT:
+						ProxyType = IfcObjectTypeEnum.PROJECT;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectTypeEnum.NOTDEFINED:
+						ProxyType = IfcObjectTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

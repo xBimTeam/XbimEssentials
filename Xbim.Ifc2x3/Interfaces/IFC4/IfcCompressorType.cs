@@ -68,6 +68,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 						return Ifc4.Interfaces.IfcCompressorTypeEnum.TWINSCREW;
 					
 					case IfcCompressorTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcCompressorTypeEnum.USERDEFINED;
 					
 					case IfcCompressorTypeEnum.NOTDEFINED:
@@ -80,7 +82,80 @@ namespace Xbim.Ifc2x3.HVACDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcCompressorTypeEnum.DYNAMIC:
+						PredefinedType = IfcCompressorTypeEnum.DYNAMIC;
+						return;
+					
+					case Ifc4.Interfaces.IfcCompressorTypeEnum.RECIPROCATING:
+						PredefinedType = IfcCompressorTypeEnum.RECIPROCATING;
+						return;
+					
+					case Ifc4.Interfaces.IfcCompressorTypeEnum.ROTARY:
+						PredefinedType = IfcCompressorTypeEnum.ROTARY;
+						return;
+					
+					case Ifc4.Interfaces.IfcCompressorTypeEnum.SCROLL:
+						PredefinedType = IfcCompressorTypeEnum.SCROLL;
+						return;
+					
+					case Ifc4.Interfaces.IfcCompressorTypeEnum.TROCHOIDAL:
+						PredefinedType = IfcCompressorTypeEnum.TROCHOIDAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcCompressorTypeEnum.SINGLESTAGE:
+						PredefinedType = IfcCompressorTypeEnum.SINGLESTAGE;
+						return;
+					
+					case Ifc4.Interfaces.IfcCompressorTypeEnum.BOOSTER:
+						PredefinedType = IfcCompressorTypeEnum.BOOSTER;
+						return;
+					
+					case Ifc4.Interfaces.IfcCompressorTypeEnum.OPENTYPE:
+						PredefinedType = IfcCompressorTypeEnum.OPENTYPE;
+						return;
+					
+					case Ifc4.Interfaces.IfcCompressorTypeEnum.HERMETIC:
+						PredefinedType = IfcCompressorTypeEnum.HERMETIC;
+						return;
+					
+					case Ifc4.Interfaces.IfcCompressorTypeEnum.SEMIHERMETIC:
+						PredefinedType = IfcCompressorTypeEnum.SEMIHERMETIC;
+						return;
+					
+					case Ifc4.Interfaces.IfcCompressorTypeEnum.WELDEDSHELLHERMETIC:
+						PredefinedType = IfcCompressorTypeEnum.WELDEDSHELLHERMETIC;
+						return;
+					
+					case Ifc4.Interfaces.IfcCompressorTypeEnum.ROLLINGPISTON:
+						PredefinedType = IfcCompressorTypeEnum.ROLLINGPISTON;
+						return;
+					
+					case Ifc4.Interfaces.IfcCompressorTypeEnum.ROTARYVANE:
+						PredefinedType = IfcCompressorTypeEnum.ROTARYVANE;
+						return;
+					
+					case Ifc4.Interfaces.IfcCompressorTypeEnum.SINGLESCREW:
+						PredefinedType = IfcCompressorTypeEnum.SINGLESCREW;
+						return;
+					
+					case Ifc4.Interfaces.IfcCompressorTypeEnum.TWINSCREW:
+						PredefinedType = IfcCompressorTypeEnum.TWINSCREW;
+						return;
+					
+					case Ifc4.Interfaces.IfcCompressorTypeEnum.USERDEFINED:
+						PredefinedType = IfcCompressorTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcCompressorTypeEnum.NOTDEFINED:
+						PredefinedType = IfcCompressorTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

@@ -400,6 +400,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.PERSONAL;
 					
 					case IfcDocumentConfidentialityEnum.USERDEFINED:
+						//## Optional custom handling of Confidentiality == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.USERDEFINED;
 					
 					case IfcDocumentConfidentialityEnum.NOTDEFINED:
@@ -412,7 +414,36 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcDocumentConfidentialityEnum.PUBLIC:
+						Confidentiality = IfcDocumentConfidentialityEnum.PUBLIC;
+						return;
+					
+					case Ifc4.Interfaces.IfcDocumentConfidentialityEnum.RESTRICTED:
+						Confidentiality = IfcDocumentConfidentialityEnum.RESTRICTED;
+						return;
+					
+					case Ifc4.Interfaces.IfcDocumentConfidentialityEnum.CONFIDENTIAL:
+						Confidentiality = IfcDocumentConfidentialityEnum.CONFIDENTIAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcDocumentConfidentialityEnum.PERSONAL:
+						Confidentiality = IfcDocumentConfidentialityEnum.PERSONAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcDocumentConfidentialityEnum.USERDEFINED:
+						Confidentiality = IfcDocumentConfidentialityEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcDocumentConfidentialityEnum.NOTDEFINED:
+						Confidentiality = IfcDocumentConfidentialityEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}
@@ -444,7 +475,32 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcDocumentStatusEnum.DRAFT:
+						Status = IfcDocumentStatusEnum.DRAFT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDocumentStatusEnum.FINALDRAFT:
+						Status = IfcDocumentStatusEnum.FINALDRAFT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDocumentStatusEnum.FINAL:
+						Status = IfcDocumentStatusEnum.FINAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcDocumentStatusEnum.REVISION:
+						Status = IfcDocumentStatusEnum.REVISION;
+						return;
+					
+					case Ifc4.Interfaces.IfcDocumentStatusEnum.NOTDEFINED:
+						Status = IfcDocumentStatusEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

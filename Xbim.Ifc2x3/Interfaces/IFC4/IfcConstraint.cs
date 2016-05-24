@@ -59,6 +59,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 						return Ifc4.Interfaces.IfcConstraintEnum.ADVISORY;
 					
 					case IfcConstraintEnum.USERDEFINED:
+						//## Optional custom handling of ConstraintGrade == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcConstraintEnum.USERDEFINED;
 					
 					case IfcConstraintEnum.NOTDEFINED:
@@ -71,7 +73,32 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcConstraintEnum.HARD:
+						ConstraintGrade = IfcConstraintEnum.HARD;
+						return;
+					
+					case Ifc4.Interfaces.IfcConstraintEnum.SOFT:
+						ConstraintGrade = IfcConstraintEnum.SOFT;
+						return;
+					
+					case Ifc4.Interfaces.IfcConstraintEnum.ADVISORY:
+						ConstraintGrade = IfcConstraintEnum.ADVISORY;
+						return;
+					
+					case Ifc4.Interfaces.IfcConstraintEnum.USERDEFINED:
+						ConstraintGrade = IfcConstraintEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcConstraintEnum.NOTDEFINED:
+						ConstraintGrade = IfcConstraintEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

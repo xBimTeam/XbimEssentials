@@ -255,7 +255,52 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcReflectanceMethodEnum.BLINN:
+						ReflectanceMethod = IfcReflectanceMethodEnum.BLINN;
+						return;
+					
+					case Ifc4.Interfaces.IfcReflectanceMethodEnum.FLAT:
+						ReflectanceMethod = IfcReflectanceMethodEnum.FLAT;
+						return;
+					
+					case Ifc4.Interfaces.IfcReflectanceMethodEnum.GLASS:
+						ReflectanceMethod = IfcReflectanceMethodEnum.GLASS;
+						return;
+					
+					case Ifc4.Interfaces.IfcReflectanceMethodEnum.MATT:
+						ReflectanceMethod = IfcReflectanceMethodEnum.MATT;
+						return;
+					
+					case Ifc4.Interfaces.IfcReflectanceMethodEnum.METAL:
+						ReflectanceMethod = IfcReflectanceMethodEnum.METAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcReflectanceMethodEnum.MIRROR:
+						ReflectanceMethod = IfcReflectanceMethodEnum.MIRROR;
+						return;
+					
+					case Ifc4.Interfaces.IfcReflectanceMethodEnum.PHONG:
+						ReflectanceMethod = IfcReflectanceMethodEnum.PHONG;
+						return;
+					
+					case Ifc4.Interfaces.IfcReflectanceMethodEnum.PLASTIC:
+						ReflectanceMethod = IfcReflectanceMethodEnum.PLASTIC;
+						return;
+					
+					case Ifc4.Interfaces.IfcReflectanceMethodEnum.STRAUSS:
+						ReflectanceMethod = IfcReflectanceMethodEnum.STRAUSS;
+						return;
+					
+					case Ifc4.Interfaces.IfcReflectanceMethodEnum.NOTDEFINED:
+						ReflectanceMethod = IfcReflectanceMethodEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

@@ -29,6 +29,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 						return Ifc4.Interfaces.IfcLightFixtureTypeEnum.DIRECTIONSOURCE;
 					
 					case IfcLightFixtureTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcLightFixtureTypeEnum.USERDEFINED;
 					
 					case IfcLightFixtureTypeEnum.NOTDEFINED:
@@ -41,7 +43,34 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcLightFixtureTypeEnum.POINTSOURCE:
+						PredefinedType = IfcLightFixtureTypeEnum.POINTSOURCE;
+						return;
+					
+					case Ifc4.Interfaces.IfcLightFixtureTypeEnum.DIRECTIONSOURCE:
+						PredefinedType = IfcLightFixtureTypeEnum.DIRECTIONSOURCE;
+						return;
+					
+					case Ifc4.Interfaces.IfcLightFixtureTypeEnum.SECURITYLIGHTING:
+						//## Handle setting of SECURITYLIGHTING member from IfcLightFixtureTypeEnum in property PredefinedType
+						//TODO: Handle setting of SECURITYLIGHTING member from IfcLightFixtureTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcLightFixtureTypeEnum.USERDEFINED:
+						PredefinedType = IfcLightFixtureTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcLightFixtureTypeEnum.NOTDEFINED:
+						PredefinedType = IfcLightFixtureTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

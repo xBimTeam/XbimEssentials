@@ -35,6 +35,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 						return Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CONDUITSEGMENT;
 					
 					case IfcCableCarrierSegmentTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.USERDEFINED;
 					
 					case IfcCableCarrierSegmentTypeEnum.NOTDEFINED:
@@ -47,7 +49,36 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CABLELADDERSEGMENT:
+						PredefinedType = IfcCableCarrierSegmentTypeEnum.CABLELADDERSEGMENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CABLETRAYSEGMENT:
+						PredefinedType = IfcCableCarrierSegmentTypeEnum.CABLETRAYSEGMENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CABLETRUNKINGSEGMENT:
+						PredefinedType = IfcCableCarrierSegmentTypeEnum.CABLETRUNKINGSEGMENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CONDUITSEGMENT:
+						PredefinedType = IfcCableCarrierSegmentTypeEnum.CONDUITSEGMENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.USERDEFINED:
+						PredefinedType = IfcCableCarrierSegmentTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.NOTDEFINED:
+						PredefinedType = IfcCableCarrierSegmentTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

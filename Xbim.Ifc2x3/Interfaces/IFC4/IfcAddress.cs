@@ -35,6 +35,8 @@ namespace Xbim.Ifc2x3.ActorResource
 						return Ifc4.Interfaces.IfcAddressTypeEnum.DISTRIBUTIONPOINT;
 					
 					case IfcAddressTypeEnum.USERDEFINED:
+						//## Optional custom handling of Purpose == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcAddressTypeEnum.USERDEFINED;
 					
 					
@@ -44,7 +46,32 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcAddressTypeEnum.OFFICE:
+						Purpose = IfcAddressTypeEnum.OFFICE;
+						return;
+					
+					case Ifc4.Interfaces.IfcAddressTypeEnum.SITE:
+						Purpose = IfcAddressTypeEnum.SITE;
+						return;
+					
+					case Ifc4.Interfaces.IfcAddressTypeEnum.HOME:
+						Purpose = IfcAddressTypeEnum.HOME;
+						return;
+					
+					case Ifc4.Interfaces.IfcAddressTypeEnum.DISTRIBUTIONPOINT:
+						Purpose = IfcAddressTypeEnum.DISTRIBUTIONPOINT;
+						return;
+					
+					case Ifc4.Interfaces.IfcAddressTypeEnum.USERDEFINED:
+						Purpose = IfcAddressTypeEnum.USERDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

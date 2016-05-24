@@ -45,6 +45,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 						return Ifc4.Interfaces.IfcFlowMeterTypeEnum.WATERMETER;
 					
 					case IfcFlowMeterTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcFlowMeterTypeEnum.USERDEFINED;
 					
 					case IfcFlowMeterTypeEnum.NOTDEFINED:
@@ -57,7 +59,36 @@ namespace Xbim.Ifc2x3.HVACDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcFlowMeterTypeEnum.ENERGYMETER:
+						PredefinedType = IfcFlowMeterTypeEnum.ENERGYMETER;
+						return;
+					
+					case Ifc4.Interfaces.IfcFlowMeterTypeEnum.GASMETER:
+						PredefinedType = IfcFlowMeterTypeEnum.GASMETER;
+						return;
+					
+					case Ifc4.Interfaces.IfcFlowMeterTypeEnum.OILMETER:
+						PredefinedType = IfcFlowMeterTypeEnum.OILMETER;
+						return;
+					
+					case Ifc4.Interfaces.IfcFlowMeterTypeEnum.WATERMETER:
+						PredefinedType = IfcFlowMeterTypeEnum.WATERMETER;
+						return;
+					
+					case Ifc4.Interfaces.IfcFlowMeterTypeEnum.USERDEFINED:
+						PredefinedType = IfcFlowMeterTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcFlowMeterTypeEnum.NOTDEFINED:
+						PredefinedType = IfcFlowMeterTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

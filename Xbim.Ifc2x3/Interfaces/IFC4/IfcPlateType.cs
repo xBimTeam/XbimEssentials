@@ -29,6 +29,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 						return Ifc4.Interfaces.IfcPlateTypeEnum.SHEET;
 					
 					case IfcPlateTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcPlateTypeEnum.USERDEFINED;
 					
 					case IfcPlateTypeEnum.NOTDEFINED:
@@ -41,7 +43,28 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcPlateTypeEnum.CURTAIN_PANEL:
+						PredefinedType = IfcPlateTypeEnum.CURTAIN_PANEL;
+						return;
+					
+					case Ifc4.Interfaces.IfcPlateTypeEnum.SHEET:
+						PredefinedType = IfcPlateTypeEnum.SHEET;
+						return;
+					
+					case Ifc4.Interfaces.IfcPlateTypeEnum.USERDEFINED:
+						PredefinedType = IfcPlateTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcPlateTypeEnum.NOTDEFINED:
+						PredefinedType = IfcPlateTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

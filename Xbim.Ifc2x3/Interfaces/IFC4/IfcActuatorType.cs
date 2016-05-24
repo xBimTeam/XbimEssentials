@@ -38,6 +38,8 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 						return Ifc4.Interfaces.IfcActuatorTypeEnum.THERMOSTATICACTUATOR;
 					
 					case IfcActuatorTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcActuatorTypeEnum.USERDEFINED;
 					
 					case IfcActuatorTypeEnum.NOTDEFINED:
@@ -50,7 +52,40 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcActuatorTypeEnum.ELECTRICACTUATOR:
+						PredefinedType = IfcActuatorTypeEnum.ELECTRICACTUATOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcActuatorTypeEnum.HANDOPERATEDACTUATOR:
+						PredefinedType = IfcActuatorTypeEnum.HANDOPERATEDACTUATOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcActuatorTypeEnum.HYDRAULICACTUATOR:
+						PredefinedType = IfcActuatorTypeEnum.HYDRAULICACTUATOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcActuatorTypeEnum.PNEUMATICACTUATOR:
+						PredefinedType = IfcActuatorTypeEnum.PNEUMATICACTUATOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcActuatorTypeEnum.THERMOSTATICACTUATOR:
+						PredefinedType = IfcActuatorTypeEnum.THERMOSTATICACTUATOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcActuatorTypeEnum.USERDEFINED:
+						PredefinedType = IfcActuatorTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcActuatorTypeEnum.NOTDEFINED:
+						PredefinedType = IfcActuatorTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

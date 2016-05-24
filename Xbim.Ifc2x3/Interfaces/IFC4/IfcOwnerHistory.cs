@@ -68,7 +68,32 @@ namespace Xbim.Ifc2x3.UtilityResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcStateEnum.READWRITE:
+						State = IfcStateEnum.READWRITE;
+						return;
+					
+					case Ifc4.Interfaces.IfcStateEnum.READONLY:
+						State = IfcStateEnum.READONLY;
+						return;
+					
+					case Ifc4.Interfaces.IfcStateEnum.LOCKED:
+						State = IfcStateEnum.LOCKED;
+						return;
+					
+					case Ifc4.Interfaces.IfcStateEnum.READWRITELOCKED:
+						State = IfcStateEnum.READWRITELOCKED;
+						return;
+					
+					case Ifc4.Interfaces.IfcStateEnum.READONLYLOCKED:
+						State = IfcStateEnum.READONLYLOCKED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}
@@ -107,7 +132,34 @@ namespace Xbim.Ifc2x3.UtilityResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcChangeActionEnum.NOCHANGE:
+						ChangeAction = IfcChangeActionEnum.NOCHANGE;
+						return;
+					
+					case Ifc4.Interfaces.IfcChangeActionEnum.MODIFIED:
+						ChangeAction = IfcChangeActionEnum.MODIFIED;
+						return;
+					
+					case Ifc4.Interfaces.IfcChangeActionEnum.ADDED:
+						ChangeAction = IfcChangeActionEnum.ADDED;
+						return;
+					
+					case Ifc4.Interfaces.IfcChangeActionEnum.DELETED:
+						ChangeAction = IfcChangeActionEnum.DELETED;
+						return;
+					
+					case Ifc4.Interfaces.IfcChangeActionEnum.NOTDEFINED:
+						//## Handle setting of NOTDEFINED member from IfcChangeActionEnum in property ChangeAction
+						//TODO: Handle setting of NOTDEFINED member from IfcChangeActionEnum in property ChangeAction
+						throw new System.NotImplementedException();
+						//##
+										
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

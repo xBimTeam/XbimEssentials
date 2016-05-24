@@ -23,6 +23,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				switch (PredefinedType)
 				{
 					case IfcSpaceTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcSpaceTypeEnum.USERDEFINED;
 					
 					case IfcSpaceTypeEnum.NOTDEFINED:
@@ -35,7 +37,50 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcSpaceTypeEnum.SPACE:
+						//## Handle setting of SPACE member from IfcSpaceTypeEnum in property PredefinedType
+						//TODO: Handle setting of SPACE member from IfcSpaceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcSpaceTypeEnum.PARKING:
+						//## Handle setting of PARKING member from IfcSpaceTypeEnum in property PredefinedType
+						//TODO: Handle setting of PARKING member from IfcSpaceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcSpaceTypeEnum.GFA:
+						//## Handle setting of GFA member from IfcSpaceTypeEnum in property PredefinedType
+						//TODO: Handle setting of GFA member from IfcSpaceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcSpaceTypeEnum.INTERNAL:
+						//## Handle setting of INTERNAL member from IfcSpaceTypeEnum in property PredefinedType
+						//TODO: Handle setting of INTERNAL member from IfcSpaceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcSpaceTypeEnum.EXTERNAL:
+						//## Handle setting of EXTERNAL member from IfcSpaceTypeEnum in property PredefinedType
+						//TODO: Handle setting of EXTERNAL member from IfcSpaceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcSpaceTypeEnum.USERDEFINED:
+						PredefinedType = IfcSpaceTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcSpaceTypeEnum.NOTDEFINED:
+						PredefinedType = IfcSpaceTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

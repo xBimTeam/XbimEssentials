@@ -23,6 +23,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 				switch (PredefinedType)
 				{
 					case IfcJunctionBoxTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcJunctionBoxTypeEnum.USERDEFINED;
 					
 					case IfcJunctionBoxTypeEnum.NOTDEFINED:
@@ -35,7 +37,32 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcJunctionBoxTypeEnum.DATA:
+						//## Handle setting of DATA member from IfcJunctionBoxTypeEnum in property PredefinedType
+						//TODO: Handle setting of DATA member from IfcJunctionBoxTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcJunctionBoxTypeEnum.POWER:
+						//## Handle setting of POWER member from IfcJunctionBoxTypeEnum in property PredefinedType
+						//TODO: Handle setting of POWER member from IfcJunctionBoxTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcJunctionBoxTypeEnum.USERDEFINED:
+						PredefinedType = IfcJunctionBoxTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcJunctionBoxTypeEnum.NOTDEFINED:
+						PredefinedType = IfcJunctionBoxTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

@@ -92,7 +92,24 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcTrimmingPreference.CARTESIAN:
+						MasterRepresentation = IfcTrimmingPreference.CARTESIAN;
+						return;
+					
+					case Ifc4.Interfaces.IfcTrimmingPreference.PARAMETER:
+						MasterRepresentation = IfcTrimmingPreference.PARAMETER;
+						return;
+					
+					case Ifc4.Interfaces.IfcTrimmingPreference.UNSPECIFIED:
+						MasterRepresentation = IfcTrimmingPreference.UNSPECIFIED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

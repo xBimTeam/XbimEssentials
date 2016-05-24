@@ -65,6 +65,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 						return Ifc4.Interfaces.IfcObjectiveEnum.TRIGGERCONDITION;
 					
 					case IfcObjectiveEnum.USERDEFINED:
+						//## Optional custom handling of ObjectiveQualifier == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcObjectiveEnum.USERDEFINED;
 					
 					case IfcObjectiveEnum.NOTDEFINED:
@@ -77,7 +79,74 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcObjectiveEnum.CODECOMPLIANCE:
+						ObjectiveQualifier = IfcObjectiveEnum.CODECOMPLIANCE;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectiveEnum.CODEWAIVER:
+						//## Handle setting of CODEWAIVER member from IfcObjectiveEnum in property ObjectiveQualifier
+						//TODO: Handle setting of CODEWAIVER member from IfcObjectiveEnum in property ObjectiveQualifier
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcObjectiveEnum.DESIGNINTENT:
+						ObjectiveQualifier = IfcObjectiveEnum.DESIGNINTENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectiveEnum.EXTERNAL:
+						//## Handle setting of EXTERNAL member from IfcObjectiveEnum in property ObjectiveQualifier
+						//TODO: Handle setting of EXTERNAL member from IfcObjectiveEnum in property ObjectiveQualifier
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcObjectiveEnum.HEALTHANDSAFETY:
+						ObjectiveQualifier = IfcObjectiveEnum.HEALTHANDSAFETY;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectiveEnum.MERGECONFLICT:
+						//## Handle setting of MERGECONFLICT member from IfcObjectiveEnum in property ObjectiveQualifier
+						//TODO: Handle setting of MERGECONFLICT member from IfcObjectiveEnum in property ObjectiveQualifier
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcObjectiveEnum.MODELVIEW:
+						//## Handle setting of MODELVIEW member from IfcObjectiveEnum in property ObjectiveQualifier
+						//TODO: Handle setting of MODELVIEW member from IfcObjectiveEnum in property ObjectiveQualifier
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcObjectiveEnum.PARAMETER:
+						//## Handle setting of PARAMETER member from IfcObjectiveEnum in property ObjectiveQualifier
+						//TODO: Handle setting of PARAMETER member from IfcObjectiveEnum in property ObjectiveQualifier
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcObjectiveEnum.REQUIREMENT:
+						ObjectiveQualifier = IfcObjectiveEnum.REQUIREMENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectiveEnum.SPECIFICATION:
+						ObjectiveQualifier = IfcObjectiveEnum.SPECIFICATION;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectiveEnum.TRIGGERCONDITION:
+						ObjectiveQualifier = IfcObjectiveEnum.TRIGGERCONDITION;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectiveEnum.USERDEFINED:
+						ObjectiveQualifier = IfcObjectiveEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectiveEnum.NOTDEFINED:
+						ObjectiveQualifier = IfcObjectiveEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

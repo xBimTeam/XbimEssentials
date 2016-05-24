@@ -29,6 +29,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 						return Ifc4.Interfaces.IfcHeatExchangerTypeEnum.SHELLANDTUBE;
 					
 					case IfcHeatExchangerTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcHeatExchangerTypeEnum.USERDEFINED;
 					
 					case IfcHeatExchangerTypeEnum.NOTDEFINED:
@@ -41,7 +43,28 @@ namespace Xbim.Ifc2x3.HVACDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcHeatExchangerTypeEnum.PLATE:
+						PredefinedType = IfcHeatExchangerTypeEnum.PLATE;
+						return;
+					
+					case Ifc4.Interfaces.IfcHeatExchangerTypeEnum.SHELLANDTUBE:
+						PredefinedType = IfcHeatExchangerTypeEnum.SHELLANDTUBE;
+						return;
+					
+					case Ifc4.Interfaces.IfcHeatExchangerTypeEnum.USERDEFINED:
+						PredefinedType = IfcHeatExchangerTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcHeatExchangerTypeEnum.NOTDEFINED:
+						PredefinedType = IfcHeatExchangerTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

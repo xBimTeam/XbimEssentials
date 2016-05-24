@@ -38,7 +38,24 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcAssemblyPlaceEnum.SITE:
+						AssemblyPlace = IfcAssemblyPlaceEnum.SITE;
+						return;
+					
+					case Ifc4.Interfaces.IfcAssemblyPlaceEnum.FACTORY:
+						AssemblyPlace = IfcAssemblyPlaceEnum.FACTORY;
+						return;
+					
+					case Ifc4.Interfaces.IfcAssemblyPlaceEnum.NOTDEFINED:
+						AssemblyPlace = IfcAssemblyPlaceEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}
@@ -76,6 +93,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 						return Ifc4.Interfaces.IfcElementAssemblyTypeEnum.TRUSS;
 					
 					case IfcElementAssemblyTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcElementAssemblyTypeEnum.USERDEFINED;
 					
 					case IfcElementAssemblyTypeEnum.NOTDEFINED:
@@ -88,7 +107,56 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcElementAssemblyTypeEnum.ACCESSORY_ASSEMBLY:
+						PredefinedType = IfcElementAssemblyTypeEnum.ACCESSORY_ASSEMBLY;
+						return;
+					
+					case Ifc4.Interfaces.IfcElementAssemblyTypeEnum.ARCH:
+						PredefinedType = IfcElementAssemblyTypeEnum.ARCH;
+						return;
+					
+					case Ifc4.Interfaces.IfcElementAssemblyTypeEnum.BEAM_GRID:
+						PredefinedType = IfcElementAssemblyTypeEnum.BEAM_GRID;
+						return;
+					
+					case Ifc4.Interfaces.IfcElementAssemblyTypeEnum.BRACED_FRAME:
+						PredefinedType = IfcElementAssemblyTypeEnum.BRACED_FRAME;
+						return;
+					
+					case Ifc4.Interfaces.IfcElementAssemblyTypeEnum.GIRDER:
+						PredefinedType = IfcElementAssemblyTypeEnum.GIRDER;
+						return;
+					
+					case Ifc4.Interfaces.IfcElementAssemblyTypeEnum.REINFORCEMENT_UNIT:
+						PredefinedType = IfcElementAssemblyTypeEnum.REINFORCEMENT_UNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcElementAssemblyTypeEnum.RIGID_FRAME:
+						PredefinedType = IfcElementAssemblyTypeEnum.RIGID_FRAME;
+						return;
+					
+					case Ifc4.Interfaces.IfcElementAssemblyTypeEnum.SLAB_FIELD:
+						PredefinedType = IfcElementAssemblyTypeEnum.SLAB_FIELD;
+						return;
+					
+					case Ifc4.Interfaces.IfcElementAssemblyTypeEnum.TRUSS:
+						PredefinedType = IfcElementAssemblyTypeEnum.TRUSS;
+						return;
+					
+					case Ifc4.Interfaces.IfcElementAssemblyTypeEnum.USERDEFINED:
+						PredefinedType = IfcElementAssemblyTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcElementAssemblyTypeEnum.NOTDEFINED:
+						PredefinedType = IfcElementAssemblyTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

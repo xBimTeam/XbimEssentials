@@ -35,6 +35,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 						return Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.ROOFTOPUNIT;
 					
 					case IfcUnitaryEquipmentTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.USERDEFINED;
 					
 					case IfcUnitaryEquipmentTypeEnum.NOTDEFINED:
@@ -47,7 +49,42 @@ namespace Xbim.Ifc2x3.HVACDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.AIRHANDLER:
+						PredefinedType = IfcUnitaryEquipmentTypeEnum.AIRHANDLER;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.AIRCONDITIONINGUNIT:
+						PredefinedType = IfcUnitaryEquipmentTypeEnum.AIRCONDITIONINGUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.DEHUMIDIFIER:
+						//## Handle setting of DEHUMIDIFIER member from IfcUnitaryEquipmentTypeEnum in property PredefinedType
+						//TODO: Handle setting of DEHUMIDIFIER member from IfcUnitaryEquipmentTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.SPLITSYSTEM:
+						PredefinedType = IfcUnitaryEquipmentTypeEnum.SPLITSYSTEM;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.ROOFTOPUNIT:
+						PredefinedType = IfcUnitaryEquipmentTypeEnum.ROOFTOPUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.USERDEFINED:
+						PredefinedType = IfcUnitaryEquipmentTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.NOTDEFINED:
+						PredefinedType = IfcUnitaryEquipmentTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

@@ -38,6 +38,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 						return Ifc4.Interfaces.IfcWallTypeEnum.PLUMBINGWALL;
 					
 					case IfcWallTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcWallTypeEnum.USERDEFINED;
 					
 					case IfcWallTypeEnum.NOTDEFINED:
@@ -50,7 +52,64 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcWallTypeEnum.MOVABLE:
+						//## Handle setting of MOVABLE member from IfcWallTypeEnum in property PredefinedType
+						//TODO: Handle setting of MOVABLE member from IfcWallTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcWallTypeEnum.PARAPET:
+						//## Handle setting of PARAPET member from IfcWallTypeEnum in property PredefinedType
+						//TODO: Handle setting of PARAPET member from IfcWallTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcWallTypeEnum.PARTITIONING:
+						//## Handle setting of PARTITIONING member from IfcWallTypeEnum in property PredefinedType
+						//TODO: Handle setting of PARTITIONING member from IfcWallTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcWallTypeEnum.PLUMBINGWALL:
+						PredefinedType = IfcWallTypeEnum.PLUMBINGWALL;
+						return;
+					
+					case Ifc4.Interfaces.IfcWallTypeEnum.SHEAR:
+						PredefinedType = IfcWallTypeEnum.SHEAR;
+						return;
+					
+					case Ifc4.Interfaces.IfcWallTypeEnum.SOLIDWALL:
+						//## Handle setting of SOLIDWALL member from IfcWallTypeEnum in property PredefinedType
+						//TODO: Handle setting of SOLIDWALL member from IfcWallTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcWallTypeEnum.STANDARD:
+						PredefinedType = IfcWallTypeEnum.STANDARD;
+						return;
+					
+					case Ifc4.Interfaces.IfcWallTypeEnum.POLYGONAL:
+						PredefinedType = IfcWallTypeEnum.POLYGONAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcWallTypeEnum.ELEMENTEDWALL:
+						PredefinedType = IfcWallTypeEnum.ELEMENTEDWALL;
+						return;
+					
+					case Ifc4.Interfaces.IfcWallTypeEnum.USERDEFINED:
+						PredefinedType = IfcWallTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcWallTypeEnum.NOTDEFINED:
+						PredefinedType = IfcWallTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

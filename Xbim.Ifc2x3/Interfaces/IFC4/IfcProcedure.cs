@@ -44,6 +44,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 						return Ifc4.Interfaces.IfcProcedureTypeEnum.STARTUP;
 					
 					case IfcProcedureTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcProcedureTypeEnum.USERDEFINED;
 					
 					case IfcProcedureTypeEnum.NOTDEFINED:
@@ -56,7 +58,48 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcProcedureTypeEnum.ADVICE_CAUTION:
+						ProcedureType = IfcProcedureTypeEnum.ADVICE_CAUTION;
+						return;
+					
+					case Ifc4.Interfaces.IfcProcedureTypeEnum.ADVICE_NOTE:
+						ProcedureType = IfcProcedureTypeEnum.ADVICE_NOTE;
+						return;
+					
+					case Ifc4.Interfaces.IfcProcedureTypeEnum.ADVICE_WARNING:
+						ProcedureType = IfcProcedureTypeEnum.ADVICE_WARNING;
+						return;
+					
+					case Ifc4.Interfaces.IfcProcedureTypeEnum.CALIBRATION:
+						ProcedureType = IfcProcedureTypeEnum.CALIBRATION;
+						return;
+					
+					case Ifc4.Interfaces.IfcProcedureTypeEnum.DIAGNOSTIC:
+						ProcedureType = IfcProcedureTypeEnum.DIAGNOSTIC;
+						return;
+					
+					case Ifc4.Interfaces.IfcProcedureTypeEnum.SHUTDOWN:
+						ProcedureType = IfcProcedureTypeEnum.SHUTDOWN;
+						return;
+					
+					case Ifc4.Interfaces.IfcProcedureTypeEnum.STARTUP:
+						ProcedureType = IfcProcedureTypeEnum.STARTUP;
+						return;
+					
+					case Ifc4.Interfaces.IfcProcedureTypeEnum.USERDEFINED:
+						ProcedureType = IfcProcedureTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcProcedureTypeEnum.NOTDEFINED:
+						ProcedureType = IfcProcedureTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

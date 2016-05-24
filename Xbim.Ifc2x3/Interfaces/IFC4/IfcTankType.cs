@@ -39,6 +39,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 						return Ifc4.Interfaces.IfcTankTypeEnum.PRESSUREVESSEL;
 					
 					case IfcTankTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcTankTypeEnum.USERDEFINED;
 					
 					case IfcTankTypeEnum.NOTDEFINED:
@@ -51,7 +53,58 @@ namespace Xbim.Ifc2x3.HVACDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcTankTypeEnum.BASIN:
+						//## Handle setting of BASIN member from IfcTankTypeEnum in property PredefinedType
+						//TODO: Handle setting of BASIN member from IfcTankTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcTankTypeEnum.BREAKPRESSURE:
+						//## Handle setting of BREAKPRESSURE member from IfcTankTypeEnum in property PredefinedType
+						//TODO: Handle setting of BREAKPRESSURE member from IfcTankTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcTankTypeEnum.EXPANSION:
+						PredefinedType = IfcTankTypeEnum.EXPANSION;
+						return;
+					
+					case Ifc4.Interfaces.IfcTankTypeEnum.FEEDANDEXPANSION:
+						//## Handle setting of FEEDANDEXPANSION member from IfcTankTypeEnum in property PredefinedType
+						//TODO: Handle setting of FEEDANDEXPANSION member from IfcTankTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcTankTypeEnum.PRESSUREVESSEL:
+						PredefinedType = IfcTankTypeEnum.PRESSUREVESSEL;
+						return;
+					
+					case Ifc4.Interfaces.IfcTankTypeEnum.STORAGE:
+						//## Handle setting of STORAGE member from IfcTankTypeEnum in property PredefinedType
+						//TODO: Handle setting of STORAGE member from IfcTankTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcTankTypeEnum.VESSEL:
+						//## Handle setting of VESSEL member from IfcTankTypeEnum in property PredefinedType
+						//TODO: Handle setting of VESSEL member from IfcTankTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcTankTypeEnum.USERDEFINED:
+						PredefinedType = IfcTankTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcTankTypeEnum.NOTDEFINED:
+						PredefinedType = IfcTankTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

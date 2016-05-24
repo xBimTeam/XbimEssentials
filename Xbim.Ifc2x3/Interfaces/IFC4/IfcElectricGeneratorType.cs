@@ -23,6 +23,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 				switch (PredefinedType)
 				{
 					case IfcElectricGeneratorTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcElectricGeneratorTypeEnum.USERDEFINED;
 					
 					case IfcElectricGeneratorTypeEnum.NOTDEFINED:
@@ -35,7 +37,38 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcElectricGeneratorTypeEnum.CHP:
+						//## Handle setting of CHP member from IfcElectricGeneratorTypeEnum in property PredefinedType
+						//TODO: Handle setting of CHP member from IfcElectricGeneratorTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcElectricGeneratorTypeEnum.ENGINEGENERATOR:
+						//## Handle setting of ENGINEGENERATOR member from IfcElectricGeneratorTypeEnum in property PredefinedType
+						//TODO: Handle setting of ENGINEGENERATOR member from IfcElectricGeneratorTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcElectricGeneratorTypeEnum.STANDALONE:
+						//## Handle setting of STANDALONE member from IfcElectricGeneratorTypeEnum in property PredefinedType
+						//TODO: Handle setting of STANDALONE member from IfcElectricGeneratorTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcElectricGeneratorTypeEnum.USERDEFINED:
+						PredefinedType = IfcElectricGeneratorTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcElectricGeneratorTypeEnum.NOTDEFINED:
+						PredefinedType = IfcElectricGeneratorTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

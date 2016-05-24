@@ -26,6 +26,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 						return Ifc4.Interfaces.IfcColumnTypeEnum.COLUMN;
 					
 					case IfcColumnTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcColumnTypeEnum.USERDEFINED;
 					
 					case IfcColumnTypeEnum.NOTDEFINED:
@@ -38,7 +40,30 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcColumnTypeEnum.COLUMN:
+						PredefinedType = IfcColumnTypeEnum.COLUMN;
+						return;
+					
+					case Ifc4.Interfaces.IfcColumnTypeEnum.PILASTER:
+						//## Handle setting of PILASTER member from IfcColumnTypeEnum in property PredefinedType
+						//TODO: Handle setting of PILASTER member from IfcColumnTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcColumnTypeEnum.USERDEFINED:
+						PredefinedType = IfcColumnTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcColumnTypeEnum.NOTDEFINED:
+						PredefinedType = IfcColumnTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

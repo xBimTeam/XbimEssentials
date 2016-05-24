@@ -32,6 +32,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 						return Ifc4.Interfaces.IfcAnalysisModelTypeEnum.LOADING_3D;
 					
 					case IfcAnalysisModelTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcAnalysisModelTypeEnum.USERDEFINED;
 					
 					case IfcAnalysisModelTypeEnum.NOTDEFINED:
@@ -44,7 +46,32 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcAnalysisModelTypeEnum.IN_PLANE_LOADING_2D:
+						PredefinedType = IfcAnalysisModelTypeEnum.IN_PLANE_LOADING_2D;
+						return;
+					
+					case Ifc4.Interfaces.IfcAnalysisModelTypeEnum.OUT_PLANE_LOADING_2D:
+						PredefinedType = IfcAnalysisModelTypeEnum.OUT_PLANE_LOADING_2D;
+						return;
+					
+					case Ifc4.Interfaces.IfcAnalysisModelTypeEnum.LOADING_3D:
+						PredefinedType = IfcAnalysisModelTypeEnum.LOADING_3D;
+						return;
+					
+					case Ifc4.Interfaces.IfcAnalysisModelTypeEnum.USERDEFINED:
+						PredefinedType = IfcAnalysisModelTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcAnalysisModelTypeEnum.NOTDEFINED:
+						PredefinedType = IfcAnalysisModelTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

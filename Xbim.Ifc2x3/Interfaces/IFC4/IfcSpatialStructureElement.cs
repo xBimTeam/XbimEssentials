@@ -38,7 +38,24 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcElementCompositionEnum.COMPLEX:
+						CompositionType = IfcElementCompositionEnum.COMPLEX;
+						return;
+					
+					case Ifc4.Interfaces.IfcElementCompositionEnum.ELEMENT:
+						CompositionType = IfcElementCompositionEnum.ELEMENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcElementCompositionEnum.PARTIAL:
+						CompositionType = IfcElementCompositionEnum.PARTIAL;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

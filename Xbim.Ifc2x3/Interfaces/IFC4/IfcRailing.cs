@@ -32,6 +32,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 						return Ifc4.Interfaces.IfcRailingTypeEnum.BALUSTRADE;
 					
 					case IfcRailingTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcRailingTypeEnum.USERDEFINED;
 					
 					case IfcRailingTypeEnum.NOTDEFINED:
@@ -44,7 +46,32 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcRailingTypeEnum.HANDRAIL:
+						PredefinedType = IfcRailingTypeEnum.HANDRAIL;
+						return;
+					
+					case Ifc4.Interfaces.IfcRailingTypeEnum.GUARDRAIL:
+						PredefinedType = IfcRailingTypeEnum.GUARDRAIL;
+						return;
+					
+					case Ifc4.Interfaces.IfcRailingTypeEnum.BALUSTRADE:
+						PredefinedType = IfcRailingTypeEnum.BALUSTRADE;
+						return;
+					
+					case Ifc4.Interfaces.IfcRailingTypeEnum.USERDEFINED:
+						PredefinedType = IfcRailingTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcRailingTypeEnum.NOTDEFINED:
+						PredefinedType = IfcRailingTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

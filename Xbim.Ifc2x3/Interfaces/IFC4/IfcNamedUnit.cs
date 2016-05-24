@@ -122,6 +122,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 						return Ifc4.Interfaces.IfcUnitEnum.VOLUMEUNIT;
 					
 					case IfcUnitEnum.USERDEFINED:
+						//## Optional custom handling of UnitType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcUnitEnum.USERDEFINED;
 					
 					
@@ -131,7 +133,132 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcUnitEnum.ABSORBEDDOSEUNIT:
+						UnitType = IfcUnitEnum.ABSORBEDDOSEUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.AMOUNTOFSUBSTANCEUNIT:
+						UnitType = IfcUnitEnum.AMOUNTOFSUBSTANCEUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.AREAUNIT:
+						UnitType = IfcUnitEnum.AREAUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.DOSEEQUIVALENTUNIT:
+						UnitType = IfcUnitEnum.DOSEEQUIVALENTUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.ELECTRICCAPACITANCEUNIT:
+						UnitType = IfcUnitEnum.ELECTRICCAPACITANCEUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.ELECTRICCHARGEUNIT:
+						UnitType = IfcUnitEnum.ELECTRICCHARGEUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.ELECTRICCONDUCTANCEUNIT:
+						UnitType = IfcUnitEnum.ELECTRICCONDUCTANCEUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.ELECTRICCURRENTUNIT:
+						UnitType = IfcUnitEnum.ELECTRICCURRENTUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.ELECTRICRESISTANCEUNIT:
+						UnitType = IfcUnitEnum.ELECTRICRESISTANCEUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.ELECTRICVOLTAGEUNIT:
+						UnitType = IfcUnitEnum.ELECTRICVOLTAGEUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.ENERGYUNIT:
+						UnitType = IfcUnitEnum.ENERGYUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.FORCEUNIT:
+						UnitType = IfcUnitEnum.FORCEUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.FREQUENCYUNIT:
+						UnitType = IfcUnitEnum.FREQUENCYUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.ILLUMINANCEUNIT:
+						UnitType = IfcUnitEnum.ILLUMINANCEUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.INDUCTANCEUNIT:
+						UnitType = IfcUnitEnum.INDUCTANCEUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.LENGTHUNIT:
+						UnitType = IfcUnitEnum.LENGTHUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.LUMINOUSFLUXUNIT:
+						UnitType = IfcUnitEnum.LUMINOUSFLUXUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.LUMINOUSINTENSITYUNIT:
+						UnitType = IfcUnitEnum.LUMINOUSINTENSITYUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.MAGNETICFLUXDENSITYUNIT:
+						UnitType = IfcUnitEnum.MAGNETICFLUXDENSITYUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.MAGNETICFLUXUNIT:
+						UnitType = IfcUnitEnum.MAGNETICFLUXUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.MASSUNIT:
+						UnitType = IfcUnitEnum.MASSUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.PLANEANGLEUNIT:
+						UnitType = IfcUnitEnum.PLANEANGLEUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.POWERUNIT:
+						UnitType = IfcUnitEnum.POWERUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.PRESSUREUNIT:
+						UnitType = IfcUnitEnum.PRESSUREUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.RADIOACTIVITYUNIT:
+						UnitType = IfcUnitEnum.RADIOACTIVITYUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.SOLIDANGLEUNIT:
+						UnitType = IfcUnitEnum.SOLIDANGLEUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.THERMODYNAMICTEMPERATUREUNIT:
+						UnitType = IfcUnitEnum.THERMODYNAMICTEMPERATUREUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.TIMEUNIT:
+						UnitType = IfcUnitEnum.TIMEUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.VOLUMEUNIT:
+						UnitType = IfcUnitEnum.VOLUMEUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcUnitEnum.USERDEFINED:
+						UnitType = IfcUnitEnum.USERDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

@@ -50,7 +50,24 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcLayerSetDirectionEnum.AXIS1:
+						LayerSetDirection = IfcLayerSetDirectionEnum.AXIS1;
+						return;
+					
+					case Ifc4.Interfaces.IfcLayerSetDirectionEnum.AXIS2:
+						LayerSetDirection = IfcLayerSetDirectionEnum.AXIS2;
+						return;
+					
+					case Ifc4.Interfaces.IfcLayerSetDirectionEnum.AXIS3:
+						LayerSetDirection = IfcLayerSetDirectionEnum.AXIS3;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}
@@ -73,7 +90,20 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcDirectionSenseEnum.POSITIVE:
+						DirectionSense = IfcDirectionSenseEnum.POSITIVE;
+						return;
+					
+					case Ifc4.Interfaces.IfcDirectionSenseEnum.NEGATIVE:
+						DirectionSense = IfcDirectionSenseEnum.NEGATIVE;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

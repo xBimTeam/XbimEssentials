@@ -41,7 +41,28 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcTransitionCode.DISCONTINUOUS:
+						Transition = IfcTransitionCode.DISCONTINUOUS;
+						return;
+					
+					case Ifc4.Interfaces.IfcTransitionCode.CONTINUOUS:
+						Transition = IfcTransitionCode.CONTINUOUS;
+						return;
+					
+					case Ifc4.Interfaces.IfcTransitionCode.CONTSAMEGRADIENT:
+						Transition = IfcTransitionCode.CONTSAMEGRADIENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcTransitionCode.CONTSAMEGRADIENTSAMECURVATURE:
+						Transition = IfcTransitionCode.CONTSAMEGRADIENTSAMECURVATURE;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

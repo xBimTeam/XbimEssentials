@@ -83,6 +83,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.RING;
 					
 					case IfcReinforcingBarRoleEnum.USERDEFINED:
+						//## Optional custom handling of ReinforcementRole == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.USERDEFINED;
 					
 					case IfcReinforcingBarRoleEnum.NOTDEFINED:
@@ -95,7 +97,54 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcReinforcingBarRoleEnum.MAIN:
+						ReinforcementRole = IfcReinforcingBarRoleEnum.MAIN;
+						return;
+					
+					case Ifc4.Interfaces.IfcReinforcingBarRoleEnum.SHEAR:
+						ReinforcementRole = IfcReinforcingBarRoleEnum.SHEAR;
+						return;
+					
+					case Ifc4.Interfaces.IfcReinforcingBarRoleEnum.LIGATURE:
+						ReinforcementRole = IfcReinforcingBarRoleEnum.LIGATURE;
+						return;
+					
+					case Ifc4.Interfaces.IfcReinforcingBarRoleEnum.STUD:
+						ReinforcementRole = IfcReinforcingBarRoleEnum.STUD;
+						return;
+					
+					case Ifc4.Interfaces.IfcReinforcingBarRoleEnum.PUNCHING:
+						ReinforcementRole = IfcReinforcingBarRoleEnum.PUNCHING;
+						return;
+					
+					case Ifc4.Interfaces.IfcReinforcingBarRoleEnum.EDGE:
+						ReinforcementRole = IfcReinforcingBarRoleEnum.EDGE;
+						return;
+					
+					case Ifc4.Interfaces.IfcReinforcingBarRoleEnum.RING:
+						ReinforcementRole = IfcReinforcingBarRoleEnum.RING;
+						return;
+					
+					case Ifc4.Interfaces.IfcReinforcingBarRoleEnum.ANCHORING:
+						//## Handle setting of ANCHORING member from IfcReinforcingBarRoleEnum in property ReinforcementRole
+						//TODO: Handle setting of ANCHORING member from IfcReinforcingBarRoleEnum in property ReinforcementRole
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcReinforcingBarRoleEnum.USERDEFINED:
+						ReinforcementRole = IfcReinforcingBarRoleEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcReinforcingBarRoleEnum.NOTDEFINED:
+						ReinforcementRole = IfcReinforcingBarRoleEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

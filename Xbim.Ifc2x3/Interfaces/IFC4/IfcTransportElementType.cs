@@ -32,6 +32,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 						return Ifc4.Interfaces.IfcTransportElementTypeEnum.MOVINGWALKWAY;
 					
 					case IfcTransportElementTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcTransportElementTypeEnum.USERDEFINED;
 					
 					case IfcTransportElementTypeEnum.NOTDEFINED:
@@ -44,7 +46,44 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcTransportElementTypeEnum.ELEVATOR:
+						PredefinedType = IfcTransportElementTypeEnum.ELEVATOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcTransportElementTypeEnum.ESCALATOR:
+						PredefinedType = IfcTransportElementTypeEnum.ESCALATOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcTransportElementTypeEnum.MOVINGWALKWAY:
+						PredefinedType = IfcTransportElementTypeEnum.MOVINGWALKWAY;
+						return;
+					
+					case Ifc4.Interfaces.IfcTransportElementTypeEnum.CRANEWAY:
+						//## Handle setting of CRANEWAY member from IfcTransportElementTypeEnum in property PredefinedType
+						//TODO: Handle setting of CRANEWAY member from IfcTransportElementTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcTransportElementTypeEnum.LIFTINGGEAR:
+						//## Handle setting of LIFTINGGEAR member from IfcTransportElementTypeEnum in property PredefinedType
+						//TODO: Handle setting of LIFTINGGEAR member from IfcTransportElementTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcTransportElementTypeEnum.USERDEFINED:
+						PredefinedType = IfcTransportElementTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcTransportElementTypeEnum.NOTDEFINED:
+						PredefinedType = IfcTransportElementTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

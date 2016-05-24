@@ -35,6 +35,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 						return Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.FULL_NONLINEAR_THEORY;
 					
 					case IfcAnalysisTheoryTypeEnum.USERDEFINED:
+						//## Optional custom handling of TheoryType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.USERDEFINED;
 					
 					case IfcAnalysisTheoryTypeEnum.NOTDEFINED:
@@ -47,7 +49,36 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.FIRST_ORDER_THEORY:
+						TheoryType = IfcAnalysisTheoryTypeEnum.FIRST_ORDER_THEORY;
+						return;
+					
+					case Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.SECOND_ORDER_THEORY:
+						TheoryType = IfcAnalysisTheoryTypeEnum.SECOND_ORDER_THEORY;
+						return;
+					
+					case Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.THIRD_ORDER_THEORY:
+						TheoryType = IfcAnalysisTheoryTypeEnum.THIRD_ORDER_THEORY;
+						return;
+					
+					case Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.FULL_NONLINEAR_THEORY:
+						TheoryType = IfcAnalysisTheoryTypeEnum.FULL_NONLINEAR_THEORY;
+						return;
+					
+					case Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.USERDEFINED:
+						TheoryType = IfcAnalysisTheoryTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.NOTDEFINED:
+						TheoryType = IfcAnalysisTheoryTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

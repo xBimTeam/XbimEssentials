@@ -63,7 +63,44 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcObjectTypeEnum.PRODUCT:
+						RelatedObjectsType = IfcObjectTypeEnum.PRODUCT;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectTypeEnum.PROCESS:
+						RelatedObjectsType = IfcObjectTypeEnum.PROCESS;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectTypeEnum.CONTROL:
+						RelatedObjectsType = IfcObjectTypeEnum.CONTROL;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectTypeEnum.RESOURCE:
+						RelatedObjectsType = IfcObjectTypeEnum.RESOURCE;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectTypeEnum.ACTOR:
+						RelatedObjectsType = IfcObjectTypeEnum.ACTOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectTypeEnum.GROUP:
+						RelatedObjectsType = IfcObjectTypeEnum.GROUP;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectTypeEnum.PROJECT:
+						RelatedObjectsType = IfcObjectTypeEnum.PROJECT;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectTypeEnum.NOTDEFINED:
+						RelatedObjectsType = IfcObjectTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

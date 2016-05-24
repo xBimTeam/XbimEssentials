@@ -62,6 +62,8 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 						return Ifc4.Interfaces.IfcSensorTypeEnum.TEMPERATURESENSOR;
 					
 					case IfcSensorTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcSensorTypeEnum.USERDEFINED;
 					
 					case IfcSensorTypeEnum.NOTDEFINED:
@@ -74,7 +76,132 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcSensorTypeEnum.CO2SENSOR:
+						PredefinedType = IfcSensorTypeEnum.CO2SENSOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcSensorTypeEnum.CONDUCTANCESENSOR:
+						//## Handle setting of CONDUCTANCESENSOR member from IfcSensorTypeEnum in property PredefinedType
+						//TODO: Handle setting of CONDUCTANCESENSOR member from IfcSensorTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcSensorTypeEnum.CONTACTSENSOR:
+						//## Handle setting of CONTACTSENSOR member from IfcSensorTypeEnum in property PredefinedType
+						//TODO: Handle setting of CONTACTSENSOR member from IfcSensorTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcSensorTypeEnum.FIRESENSOR:
+						PredefinedType = IfcSensorTypeEnum.FIRESENSOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcSensorTypeEnum.FLOWSENSOR:
+						PredefinedType = IfcSensorTypeEnum.FLOWSENSOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcSensorTypeEnum.FROSTSENSOR:
+						//## Handle setting of FROSTSENSOR member from IfcSensorTypeEnum in property PredefinedType
+						//TODO: Handle setting of FROSTSENSOR member from IfcSensorTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcSensorTypeEnum.GASSENSOR:
+						PredefinedType = IfcSensorTypeEnum.GASSENSOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcSensorTypeEnum.HEATSENSOR:
+						PredefinedType = IfcSensorTypeEnum.HEATSENSOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcSensorTypeEnum.HUMIDITYSENSOR:
+						PredefinedType = IfcSensorTypeEnum.HUMIDITYSENSOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcSensorTypeEnum.IDENTIFIERSENSOR:
+						//## Handle setting of IDENTIFIERSENSOR member from IfcSensorTypeEnum in property PredefinedType
+						//TODO: Handle setting of IDENTIFIERSENSOR member from IfcSensorTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcSensorTypeEnum.IONCONCENTRATIONSENSOR:
+						//## Handle setting of IONCONCENTRATIONSENSOR member from IfcSensorTypeEnum in property PredefinedType
+						//TODO: Handle setting of IONCONCENTRATIONSENSOR member from IfcSensorTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcSensorTypeEnum.LEVELSENSOR:
+						//## Handle setting of LEVELSENSOR member from IfcSensorTypeEnum in property PredefinedType
+						//TODO: Handle setting of LEVELSENSOR member from IfcSensorTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcSensorTypeEnum.LIGHTSENSOR:
+						PredefinedType = IfcSensorTypeEnum.LIGHTSENSOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcSensorTypeEnum.MOISTURESENSOR:
+						PredefinedType = IfcSensorTypeEnum.MOISTURESENSOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcSensorTypeEnum.MOVEMENTSENSOR:
+						PredefinedType = IfcSensorTypeEnum.MOVEMENTSENSOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcSensorTypeEnum.PHSENSOR:
+						//## Handle setting of PHSENSOR member from IfcSensorTypeEnum in property PredefinedType
+						//TODO: Handle setting of PHSENSOR member from IfcSensorTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcSensorTypeEnum.PRESSURESENSOR:
+						PredefinedType = IfcSensorTypeEnum.PRESSURESENSOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcSensorTypeEnum.RADIATIONSENSOR:
+						//## Handle setting of RADIATIONSENSOR member from IfcSensorTypeEnum in property PredefinedType
+						//TODO: Handle setting of RADIATIONSENSOR member from IfcSensorTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcSensorTypeEnum.RADIOACTIVITYSENSOR:
+						//## Handle setting of RADIOACTIVITYSENSOR member from IfcSensorTypeEnum in property PredefinedType
+						//TODO: Handle setting of RADIOACTIVITYSENSOR member from IfcSensorTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcSensorTypeEnum.SMOKESENSOR:
+						PredefinedType = IfcSensorTypeEnum.SMOKESENSOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcSensorTypeEnum.SOUNDSENSOR:
+						PredefinedType = IfcSensorTypeEnum.SOUNDSENSOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcSensorTypeEnum.TEMPERATURESENSOR:
+						PredefinedType = IfcSensorTypeEnum.TEMPERATURESENSOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcSensorTypeEnum.WINDSENSOR:
+						//## Handle setting of WINDSENSOR member from IfcSensorTypeEnum in property PredefinedType
+						//TODO: Handle setting of WINDSENSOR member from IfcSensorTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcSensorTypeEnum.USERDEFINED:
+						PredefinedType = IfcSensorTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcSensorTypeEnum.NOTDEFINED:
+						PredefinedType = IfcSensorTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

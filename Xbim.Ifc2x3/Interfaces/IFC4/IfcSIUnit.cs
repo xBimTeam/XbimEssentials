@@ -77,7 +77,76 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcSIPrefix.EXA:
+						Prefix = IfcSIPrefix.EXA;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIPrefix.PETA:
+						Prefix = IfcSIPrefix.PETA;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIPrefix.TERA:
+						Prefix = IfcSIPrefix.TERA;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIPrefix.GIGA:
+						Prefix = IfcSIPrefix.GIGA;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIPrefix.MEGA:
+						Prefix = IfcSIPrefix.MEGA;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIPrefix.KILO:
+						Prefix = IfcSIPrefix.KILO;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIPrefix.HECTO:
+						Prefix = IfcSIPrefix.HECTO;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIPrefix.DECA:
+						Prefix = IfcSIPrefix.DECA;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIPrefix.DECI:
+						Prefix = IfcSIPrefix.DECI;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIPrefix.CENTI:
+						Prefix = IfcSIPrefix.CENTI;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIPrefix.MILLI:
+						Prefix = IfcSIPrefix.MILLI;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIPrefix.MICRO:
+						Prefix = IfcSIPrefix.MICRO;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIPrefix.NANO:
+						Prefix = IfcSIPrefix.NANO;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIPrefix.PICO:
+						Prefix = IfcSIPrefix.PICO;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIPrefix.FEMTO:
+						Prefix = IfcSIPrefix.FEMTO;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIPrefix.ATTO:
+						Prefix = IfcSIPrefix.ATTO;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}
@@ -184,7 +253,132 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcSIUnitName.AMPERE:
+						Name = IfcSIUnitName.AMPERE;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.BECQUEREL:
+						Name = IfcSIUnitName.BECQUEREL;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.CANDELA:
+						Name = IfcSIUnitName.CANDELA;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.COULOMB:
+						Name = IfcSIUnitName.COULOMB;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.CUBIC_METRE:
+						Name = IfcSIUnitName.CUBIC_METRE;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.DEGREE_CELSIUS:
+						Name = IfcSIUnitName.DEGREE_CELSIUS;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.FARAD:
+						Name = IfcSIUnitName.FARAD;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.GRAM:
+						Name = IfcSIUnitName.GRAM;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.GRAY:
+						Name = IfcSIUnitName.GRAY;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.HENRY:
+						Name = IfcSIUnitName.HENRY;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.HERTZ:
+						Name = IfcSIUnitName.HERTZ;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.JOULE:
+						Name = IfcSIUnitName.JOULE;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.KELVIN:
+						Name = IfcSIUnitName.KELVIN;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.LUMEN:
+						Name = IfcSIUnitName.LUMEN;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.LUX:
+						Name = IfcSIUnitName.LUX;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.METRE:
+						Name = IfcSIUnitName.METRE;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.MOLE:
+						Name = IfcSIUnitName.MOLE;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.NEWTON:
+						Name = IfcSIUnitName.NEWTON;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.OHM:
+						Name = IfcSIUnitName.OHM;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.PASCAL:
+						Name = IfcSIUnitName.PASCAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.RADIAN:
+						Name = IfcSIUnitName.RADIAN;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.SECOND:
+						Name = IfcSIUnitName.SECOND;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.SIEMENS:
+						Name = IfcSIUnitName.SIEMENS;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.SIEVERT:
+						Name = IfcSIUnitName.SIEVERT;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.SQUARE_METRE:
+						Name = IfcSIUnitName.SQUARE_METRE;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.STERADIAN:
+						Name = IfcSIUnitName.STERADIAN;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.TESLA:
+						Name = IfcSIUnitName.TESLA;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.VOLT:
+						Name = IfcSIUnitName.VOLT;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.WATT:
+						Name = IfcSIUnitName.WATT;
+						return;
+					
+					case Ifc4.Interfaces.IfcSIUnitName.WEBER:
+						Name = IfcSIUnitName.WEBER;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

@@ -177,6 +177,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 						return Ifc4.Interfaces.IfcDerivedUnitEnum.WARPINGMOMENTUNIT;
 					
 					case IfcDerivedUnitEnum.USERDEFINED:
+						//## Optional custom handling of UnitType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcDerivedUnitEnum.USERDEFINED;
 					
 					
@@ -186,7 +188,232 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.ANGULARVELOCITYUNIT:
+						UnitType = IfcDerivedUnitEnum.ANGULARVELOCITYUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.AREADENSITYUNIT:
+						//## Handle setting of AREADENSITYUNIT member from IfcDerivedUnitEnum in property UnitType
+						//TODO: Handle setting of AREADENSITYUNIT member from IfcDerivedUnitEnum in property UnitType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.COMPOUNDPLANEANGLEUNIT:
+						UnitType = IfcDerivedUnitEnum.COMPOUNDPLANEANGLEUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.DYNAMICVISCOSITYUNIT:
+						UnitType = IfcDerivedUnitEnum.DYNAMICVISCOSITYUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.HEATFLUXDENSITYUNIT:
+						UnitType = IfcDerivedUnitEnum.HEATFLUXDENSITYUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.INTEGERCOUNTRATEUNIT:
+						UnitType = IfcDerivedUnitEnum.INTEGERCOUNTRATEUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.ISOTHERMALMOISTURECAPACITYUNIT:
+						UnitType = IfcDerivedUnitEnum.ISOTHERMALMOISTURECAPACITYUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.KINEMATICVISCOSITYUNIT:
+						UnitType = IfcDerivedUnitEnum.KINEMATICVISCOSITYUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.LINEARVELOCITYUNIT:
+						UnitType = IfcDerivedUnitEnum.LINEARVELOCITYUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.MASSDENSITYUNIT:
+						UnitType = IfcDerivedUnitEnum.MASSDENSITYUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.MASSFLOWRATEUNIT:
+						UnitType = IfcDerivedUnitEnum.MASSFLOWRATEUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.MOISTUREDIFFUSIVITYUNIT:
+						UnitType = IfcDerivedUnitEnum.MOISTUREDIFFUSIVITYUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.MOLECULARWEIGHTUNIT:
+						UnitType = IfcDerivedUnitEnum.MOLECULARWEIGHTUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.SPECIFICHEATCAPACITYUNIT:
+						UnitType = IfcDerivedUnitEnum.SPECIFICHEATCAPACITYUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.THERMALADMITTANCEUNIT:
+						UnitType = IfcDerivedUnitEnum.THERMALADMITTANCEUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.THERMALCONDUCTANCEUNIT:
+						UnitType = IfcDerivedUnitEnum.THERMALCONDUCTANCEUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.THERMALRESISTANCEUNIT:
+						UnitType = IfcDerivedUnitEnum.THERMALRESISTANCEUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.THERMALTRANSMITTANCEUNIT:
+						UnitType = IfcDerivedUnitEnum.THERMALTRANSMITTANCEUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.VAPORPERMEABILITYUNIT:
+						UnitType = IfcDerivedUnitEnum.VAPORPERMEABILITYUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.VOLUMETRICFLOWRATEUNIT:
+						UnitType = IfcDerivedUnitEnum.VOLUMETRICFLOWRATEUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.ROTATIONALFREQUENCYUNIT:
+						UnitType = IfcDerivedUnitEnum.ROTATIONALFREQUENCYUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.TORQUEUNIT:
+						UnitType = IfcDerivedUnitEnum.TORQUEUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.MOMENTOFINERTIAUNIT:
+						UnitType = IfcDerivedUnitEnum.MOMENTOFINERTIAUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.LINEARMOMENTUNIT:
+						UnitType = IfcDerivedUnitEnum.LINEARMOMENTUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.LINEARFORCEUNIT:
+						UnitType = IfcDerivedUnitEnum.LINEARFORCEUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.PLANARFORCEUNIT:
+						UnitType = IfcDerivedUnitEnum.PLANARFORCEUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.MODULUSOFELASTICITYUNIT:
+						UnitType = IfcDerivedUnitEnum.MODULUSOFELASTICITYUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.SHEARMODULUSUNIT:
+						UnitType = IfcDerivedUnitEnum.SHEARMODULUSUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.LINEARSTIFFNESSUNIT:
+						UnitType = IfcDerivedUnitEnum.LINEARSTIFFNESSUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.ROTATIONALSTIFFNESSUNIT:
+						UnitType = IfcDerivedUnitEnum.ROTATIONALSTIFFNESSUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.MODULUSOFSUBGRADEREACTIONUNIT:
+						UnitType = IfcDerivedUnitEnum.MODULUSOFSUBGRADEREACTIONUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.ACCELERATIONUNIT:
+						UnitType = IfcDerivedUnitEnum.ACCELERATIONUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.CURVATUREUNIT:
+						UnitType = IfcDerivedUnitEnum.CURVATUREUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.HEATINGVALUEUNIT:
+						UnitType = IfcDerivedUnitEnum.HEATINGVALUEUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.IONCONCENTRATIONUNIT:
+						UnitType = IfcDerivedUnitEnum.IONCONCENTRATIONUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.LUMINOUSINTENSITYDISTRIBUTIONUNIT:
+						UnitType = IfcDerivedUnitEnum.LUMINOUSINTENSITYDISTRIBUTIONUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.MASSPERLENGTHUNIT:
+						UnitType = IfcDerivedUnitEnum.MASSPERLENGTHUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.MODULUSOFLINEARSUBGRADEREACTIONUNIT:
+						UnitType = IfcDerivedUnitEnum.MODULUSOFLINEARSUBGRADEREACTIONUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.MODULUSOFROTATIONALSUBGRADEREACTIONUNIT:
+						UnitType = IfcDerivedUnitEnum.MODULUSOFROTATIONALSUBGRADEREACTIONUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.PHUNIT:
+						UnitType = IfcDerivedUnitEnum.PHUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.ROTATIONALMASSUNIT:
+						UnitType = IfcDerivedUnitEnum.ROTATIONALMASSUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.SECTIONAREAINTEGRALUNIT:
+						UnitType = IfcDerivedUnitEnum.SECTIONAREAINTEGRALUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.SECTIONMODULUSUNIT:
+						UnitType = IfcDerivedUnitEnum.SECTIONMODULUSUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.SOUNDPOWERLEVELUNIT:
+						//## Handle setting of SOUNDPOWERLEVELUNIT member from IfcDerivedUnitEnum in property UnitType
+						//TODO: Handle setting of SOUNDPOWERLEVELUNIT member from IfcDerivedUnitEnum in property UnitType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.SOUNDPOWERUNIT:
+						UnitType = IfcDerivedUnitEnum.SOUNDPOWERUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.SOUNDPRESSURELEVELUNIT:
+						//## Handle setting of SOUNDPRESSURELEVELUNIT member from IfcDerivedUnitEnum in property UnitType
+						//TODO: Handle setting of SOUNDPRESSURELEVELUNIT member from IfcDerivedUnitEnum in property UnitType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.SOUNDPRESSUREUNIT:
+						UnitType = IfcDerivedUnitEnum.SOUNDPRESSUREUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.TEMPERATUREGRADIENTUNIT:
+						UnitType = IfcDerivedUnitEnum.TEMPERATUREGRADIENTUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.TEMPERATURERATEOFCHANGEUNIT:
+						//## Handle setting of TEMPERATURERATEOFCHANGEUNIT member from IfcDerivedUnitEnum in property UnitType
+						//TODO: Handle setting of TEMPERATURERATEOFCHANGEUNIT member from IfcDerivedUnitEnum in property UnitType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.THERMALEXPANSIONCOEFFICIENTUNIT:
+						UnitType = IfcDerivedUnitEnum.THERMALEXPANSIONCOEFFICIENTUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.WARPINGCONSTANTUNIT:
+						UnitType = IfcDerivedUnitEnum.WARPINGCONSTANTUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.WARPINGMOMENTUNIT:
+						UnitType = IfcDerivedUnitEnum.WARPINGMOMENTUNIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDerivedUnitEnum.USERDEFINED:
+						UnitType = IfcDerivedUnitEnum.USERDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

@@ -41,6 +41,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 						return Ifc4.Interfaces.IfcRampTypeEnum.SPIRAL_RAMP;
 					
 					case IfcRampTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcRampTypeEnum.USERDEFINED;
 					
 					case IfcRampTypeEnum.NOTDEFINED:
@@ -53,7 +55,44 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcRampTypeEnum.STRAIGHT_RUN_RAMP:
+						ShapeType = IfcRampTypeEnum.STRAIGHT_RUN_RAMP;
+						return;
+					
+					case Ifc4.Interfaces.IfcRampTypeEnum.TWO_STRAIGHT_RUN_RAMP:
+						ShapeType = IfcRampTypeEnum.TWO_STRAIGHT_RUN_RAMP;
+						return;
+					
+					case Ifc4.Interfaces.IfcRampTypeEnum.QUARTER_TURN_RAMP:
+						ShapeType = IfcRampTypeEnum.QUARTER_TURN_RAMP;
+						return;
+					
+					case Ifc4.Interfaces.IfcRampTypeEnum.TWO_QUARTER_TURN_RAMP:
+						ShapeType = IfcRampTypeEnum.TWO_QUARTER_TURN_RAMP;
+						return;
+					
+					case Ifc4.Interfaces.IfcRampTypeEnum.HALF_TURN_RAMP:
+						ShapeType = IfcRampTypeEnum.HALF_TURN_RAMP;
+						return;
+					
+					case Ifc4.Interfaces.IfcRampTypeEnum.SPIRAL_RAMP:
+						ShapeType = IfcRampTypeEnum.SPIRAL_RAMP;
+						return;
+					
+					case Ifc4.Interfaces.IfcRampTypeEnum.USERDEFINED:
+						ShapeType = IfcRampTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcRampTypeEnum.NOTDEFINED:
+						ShapeType = IfcRampTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

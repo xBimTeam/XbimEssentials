@@ -52,6 +52,10 @@ namespace Xbim.Ifc2x3.HVACDomain
 						//##
 										
 					case IfcAirTerminalTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType == "LOUVRE")
+                            return Ifc4.Interfaces.IfcAirTerminalTypeEnum.LOUVRE;
+						//##
 						return Ifc4.Interfaces.IfcAirTerminalTypeEnum.USERDEFINED;
 					
 					case IfcAirTerminalTypeEnum.NOTDEFINED:
@@ -64,7 +68,39 @@ namespace Xbim.Ifc2x3.HVACDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcAirTerminalTypeEnum.DIFFUSER:
+						PredefinedType = IfcAirTerminalTypeEnum.DIFFUSER;
+						return;
+					
+					case Ifc4.Interfaces.IfcAirTerminalTypeEnum.GRILLE:
+						PredefinedType = IfcAirTerminalTypeEnum.GRILLE;
+						return;
+					
+					case Ifc4.Interfaces.IfcAirTerminalTypeEnum.LOUVRE:
+						//## Handle setting of LOUVRE member from IfcAirTerminalTypeEnum in property PredefinedType
+						PredefinedType = IfcAirTerminalTypeEnum.USERDEFINED;
+				        ElementType = "LOUVRE";
+				        return;
+						//##
+										
+					case Ifc4.Interfaces.IfcAirTerminalTypeEnum.REGISTER:
+						PredefinedType = IfcAirTerminalTypeEnum.REGISTER;
+						return;
+					
+					case Ifc4.Interfaces.IfcAirTerminalTypeEnum.USERDEFINED:
+						PredefinedType = IfcAirTerminalTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcAirTerminalTypeEnum.NOTDEFINED:
+						PredefinedType = IfcAirTerminalTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

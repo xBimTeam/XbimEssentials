@@ -88,7 +88,28 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcTextPath.LEFT:
+						Path = IfcTextPath.LEFT;
+						return;
+					
+					case Ifc4.Interfaces.IfcTextPath.RIGHT:
+						Path = IfcTextPath.RIGHT;
+						return;
+					
+					case Ifc4.Interfaces.IfcTextPath.UP:
+						Path = IfcTextPath.UP;
+						return;
+					
+					case Ifc4.Interfaces.IfcTextPath.DOWN:
+						Path = IfcTextPath.DOWN;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

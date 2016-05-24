@@ -35,6 +35,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 						return Ifc4.Interfaces.IfcSlabTypeEnum.BASESLAB;
 					
 					case IfcSlabTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcSlabTypeEnum.USERDEFINED;
 					
 					case IfcSlabTypeEnum.NOTDEFINED:
@@ -47,7 +49,36 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcSlabTypeEnum.FLOOR:
+						PredefinedType = IfcSlabTypeEnum.FLOOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcSlabTypeEnum.ROOF:
+						PredefinedType = IfcSlabTypeEnum.ROOF;
+						return;
+					
+					case Ifc4.Interfaces.IfcSlabTypeEnum.LANDING:
+						PredefinedType = IfcSlabTypeEnum.LANDING;
+						return;
+					
+					case Ifc4.Interfaces.IfcSlabTypeEnum.BASESLAB:
+						PredefinedType = IfcSlabTypeEnum.BASESLAB;
+						return;
+					
+					case Ifc4.Interfaces.IfcSlabTypeEnum.USERDEFINED:
+						PredefinedType = IfcSlabTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcSlabTypeEnum.NOTDEFINED:
+						PredefinedType = IfcSlabTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

@@ -91,6 +91,10 @@ namespace Xbim.Ifc2x3.ActorResource
 						return Ifc4.Interfaces.IfcRoleEnum.RESELLER;
 					
 					case IfcRoleEnum.USERDEFINED:
+						//## Optional custom handling of Role == .USERDEFINED. 
+				        if (UserDefinedRole == "COMMISSIONINGENGINEER")
+				            return Ifc4.Interfaces.IfcRoleEnum.COMMISSIONINGENGINEER;
+						//##
 						return Ifc4.Interfaces.IfcRoleEnum.USERDEFINED;
 					
 					
@@ -100,7 +104,107 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcRoleEnum.SUPPLIER:
+						Role = IfcRoleEnum.SUPPLIER;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoleEnum.MANUFACTURER:
+						Role = IfcRoleEnum.MANUFACTURER;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoleEnum.CONTRACTOR:
+						Role = IfcRoleEnum.CONTRACTOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoleEnum.SUBCONTRACTOR:
+						Role = IfcRoleEnum.SUBCONTRACTOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoleEnum.ARCHITECT:
+						Role = IfcRoleEnum.ARCHITECT;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoleEnum.STRUCTURALENGINEER:
+						Role = IfcRoleEnum.STRUCTURALENGINEER;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoleEnum.COSTENGINEER:
+						Role = IfcRoleEnum.COSTENGINEER;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoleEnum.CLIENT:
+						Role = IfcRoleEnum.CLIENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoleEnum.BUILDINGOWNER:
+						Role = IfcRoleEnum.BUILDINGOWNER;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoleEnum.BUILDINGOPERATOR:
+						Role = IfcRoleEnum.BUILDINGOPERATOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoleEnum.MECHANICALENGINEER:
+						Role = IfcRoleEnum.MECHANICALENGINEER;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoleEnum.ELECTRICALENGINEER:
+						Role = IfcRoleEnum.ELECTRICALENGINEER;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoleEnum.PROJECTMANAGER:
+						Role = IfcRoleEnum.PROJECTMANAGER;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoleEnum.FACILITIESMANAGER:
+						Role = IfcRoleEnum.FACILITIESMANAGER;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoleEnum.CIVILENGINEER:
+						Role = IfcRoleEnum.CIVILENGINEER;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoleEnum.COMMISSIONINGENGINEER:
+						//## Handle setting of COMMISSIONINGENGINEER member from IfcRoleEnum in property Role
+                        Role = IfcRoleEnum.USERDEFINED;
+                        UserDefinedRole = "COMMISSIONINGENGINEER";
+				        return;
+						//##
+										
+					case Ifc4.Interfaces.IfcRoleEnum.ENGINEER:
+						Role = IfcRoleEnum.ENGINEER;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoleEnum.OWNER:
+						Role = IfcRoleEnum.OWNER;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoleEnum.CONSULTANT:
+						Role = IfcRoleEnum.CONSULTANT;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoleEnum.CONSTRUCTIONMANAGER:
+						Role = IfcRoleEnum.CONSTRUCTIONMANAGER;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoleEnum.FIELDCONSTRUCTIONMANAGER:
+						Role = IfcRoleEnum.FIELDCONSTRUCTIONMANAGER;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoleEnum.RESELLER:
+						Role = IfcRoleEnum.RESELLER;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoleEnum.USERDEFINED:
+						Role = IfcRoleEnum.USERDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

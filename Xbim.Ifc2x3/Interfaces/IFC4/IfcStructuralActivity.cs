@@ -47,7 +47,20 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcGlobalOrLocalEnum.GLOBAL_COORDS:
+						GlobalOrLocal = RepresentationResource.IfcGlobalOrLocalEnum.GLOBAL_COORDS;
+						return;
+					
+					case Ifc4.Interfaces.IfcGlobalOrLocalEnum.LOCAL_COORDS:
+						GlobalOrLocal = RepresentationResource.IfcGlobalOrLocalEnum.LOCAL_COORDS;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

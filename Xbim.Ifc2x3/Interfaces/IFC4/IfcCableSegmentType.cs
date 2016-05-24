@@ -29,6 +29,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 						return Ifc4.Interfaces.IfcCableSegmentTypeEnum.CONDUCTORSEGMENT;
 					
 					case IfcCableSegmentTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcCableSegmentTypeEnum.USERDEFINED;
 					
 					case IfcCableSegmentTypeEnum.NOTDEFINED:
@@ -41,7 +43,40 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcCableSegmentTypeEnum.BUSBARSEGMENT:
+						//## Handle setting of BUSBARSEGMENT member from IfcCableSegmentTypeEnum in property PredefinedType
+						//TODO: Handle setting of BUSBARSEGMENT member from IfcCableSegmentTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcCableSegmentTypeEnum.CABLESEGMENT:
+						PredefinedType = IfcCableSegmentTypeEnum.CABLESEGMENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcCableSegmentTypeEnum.CONDUCTORSEGMENT:
+						PredefinedType = IfcCableSegmentTypeEnum.CONDUCTORSEGMENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcCableSegmentTypeEnum.CORESEGMENT:
+						//## Handle setting of CORESEGMENT member from IfcCableSegmentTypeEnum in property PredefinedType
+						//TODO: Handle setting of CORESEGMENT member from IfcCableSegmentTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcCableSegmentTypeEnum.USERDEFINED:
+						PredefinedType = IfcCableSegmentTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcCableSegmentTypeEnum.NOTDEFINED:
+						PredefinedType = IfcCableSegmentTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

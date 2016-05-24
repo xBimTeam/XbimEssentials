@@ -84,7 +84,38 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcSequenceEnum.START_START:
+						SequenceType = IfcSequenceEnum.START_START;
+						return;
+					
+					case Ifc4.Interfaces.IfcSequenceEnum.START_FINISH:
+						SequenceType = IfcSequenceEnum.START_FINISH;
+						return;
+					
+					case Ifc4.Interfaces.IfcSequenceEnum.FINISH_START:
+						SequenceType = IfcSequenceEnum.FINISH_START;
+						return;
+					
+					case Ifc4.Interfaces.IfcSequenceEnum.FINISH_FINISH:
+						SequenceType = IfcSequenceEnum.FINISH_FINISH;
+						return;
+					
+					case Ifc4.Interfaces.IfcSequenceEnum.USERDEFINED:
+						//## Handle setting of USERDEFINED member from IfcSequenceEnum in property SequenceType
+						//TODO: Handle setting of USERDEFINED member from IfcSequenceEnum in property SequenceType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcSequenceEnum.NOTDEFINED:
+						SequenceType = IfcSequenceEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

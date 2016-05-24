@@ -96,7 +96,24 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcPhysicalOrVirtualEnum.PHYSICAL:
+						PhysicalOrVirtualBoundary = IfcPhysicalOrVirtualEnum.PHYSICAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcPhysicalOrVirtualEnum.VIRTUAL:
+						PhysicalOrVirtualBoundary = IfcPhysicalOrVirtualEnum.VIRTUAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcPhysicalOrVirtualEnum.NOTDEFINED:
+						PhysicalOrVirtualBoundary = IfcPhysicalOrVirtualEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}
@@ -122,7 +139,42 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcInternalOrExternalEnum.INTERNAL:
+						InternalOrExternalBoundary = IfcInternalOrExternalEnum.INTERNAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcInternalOrExternalEnum.EXTERNAL:
+						InternalOrExternalBoundary = IfcInternalOrExternalEnum.EXTERNAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcInternalOrExternalEnum.EXTERNAL_EARTH:
+						//## Handle setting of EXTERNAL_EARTH member from IfcInternalOrExternalEnum in property InternalOrExternalBoundary
+						//TODO: Handle setting of EXTERNAL_EARTH member from IfcInternalOrExternalEnum in property InternalOrExternalBoundary
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcInternalOrExternalEnum.EXTERNAL_WATER:
+						//## Handle setting of EXTERNAL_WATER member from IfcInternalOrExternalEnum in property InternalOrExternalBoundary
+						//TODO: Handle setting of EXTERNAL_WATER member from IfcInternalOrExternalEnum in property InternalOrExternalBoundary
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcInternalOrExternalEnum.EXTERNAL_FIRE:
+						//## Handle setting of EXTERNAL_FIRE member from IfcInternalOrExternalEnum in property InternalOrExternalBoundary
+						//TODO: Handle setting of EXTERNAL_FIRE member from IfcInternalOrExternalEnum in property InternalOrExternalBoundary
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcInternalOrExternalEnum.NOTDEFINED:
+						InternalOrExternalBoundary = IfcInternalOrExternalEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

@@ -38,6 +38,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 						return Ifc4.Interfaces.IfcEvaporatorTypeEnum.SHELLANDCOIL;
 					
 					case IfcEvaporatorTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcEvaporatorTypeEnum.USERDEFINED;
 					
 					case IfcEvaporatorTypeEnum.NOTDEFINED:
@@ -50,7 +52,46 @@ namespace Xbim.Ifc2x3.HVACDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcEvaporatorTypeEnum.DIRECTEXPANSION:
+						//## Handle setting of DIRECTEXPANSION member from IfcEvaporatorTypeEnum in property PredefinedType
+						//TODO: Handle setting of DIRECTEXPANSION member from IfcEvaporatorTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcEvaporatorTypeEnum.DIRECTEXPANSIONSHELLANDTUBE:
+						PredefinedType = IfcEvaporatorTypeEnum.DIRECTEXPANSIONSHELLANDTUBE;
+						return;
+					
+					case Ifc4.Interfaces.IfcEvaporatorTypeEnum.DIRECTEXPANSIONTUBEINTUBE:
+						PredefinedType = IfcEvaporatorTypeEnum.DIRECTEXPANSIONTUBEINTUBE;
+						return;
+					
+					case Ifc4.Interfaces.IfcEvaporatorTypeEnum.DIRECTEXPANSIONBRAZEDPLATE:
+						PredefinedType = IfcEvaporatorTypeEnum.DIRECTEXPANSIONBRAZEDPLATE;
+						return;
+					
+					case Ifc4.Interfaces.IfcEvaporatorTypeEnum.FLOODEDSHELLANDTUBE:
+						PredefinedType = IfcEvaporatorTypeEnum.FLOODEDSHELLANDTUBE;
+						return;
+					
+					case Ifc4.Interfaces.IfcEvaporatorTypeEnum.SHELLANDCOIL:
+						PredefinedType = IfcEvaporatorTypeEnum.SHELLANDCOIL;
+						return;
+					
+					case Ifc4.Interfaces.IfcEvaporatorTypeEnum.USERDEFINED:
+						PredefinedType = IfcEvaporatorTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcEvaporatorTypeEnum.NOTDEFINED:
+						PredefinedType = IfcEvaporatorTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

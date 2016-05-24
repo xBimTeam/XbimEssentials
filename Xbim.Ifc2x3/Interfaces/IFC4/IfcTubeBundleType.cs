@@ -26,6 +26,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 						return Ifc4.Interfaces.IfcTubeBundleTypeEnum.FINNED;
 					
 					case IfcTubeBundleTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcTubeBundleTypeEnum.USERDEFINED;
 					
 					case IfcTubeBundleTypeEnum.NOTDEFINED:
@@ -38,7 +40,24 @@ namespace Xbim.Ifc2x3.HVACDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcTubeBundleTypeEnum.FINNED:
+						PredefinedType = IfcTubeBundleTypeEnum.FINNED;
+						return;
+					
+					case Ifc4.Interfaces.IfcTubeBundleTypeEnum.USERDEFINED:
+						PredefinedType = IfcTubeBundleTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcTubeBundleTypeEnum.NOTDEFINED:
+						PredefinedType = IfcTubeBundleTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

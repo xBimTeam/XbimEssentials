@@ -41,7 +41,28 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcLightDistributionCurveEnum.TYPE_A:
+						LightDistributionCurve = IfcLightDistributionCurveEnum.TYPE_A;
+						return;
+					
+					case Ifc4.Interfaces.IfcLightDistributionCurveEnum.TYPE_B:
+						LightDistributionCurve = IfcLightDistributionCurveEnum.TYPE_B;
+						return;
+					
+					case Ifc4.Interfaces.IfcLightDistributionCurveEnum.TYPE_C:
+						LightDistributionCurve = IfcLightDistributionCurveEnum.TYPE_C;
+						return;
+					
+					case Ifc4.Interfaces.IfcLightDistributionCurveEnum.NOTDEFINED:
+						LightDistributionCurve = IfcLightDistributionCurveEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

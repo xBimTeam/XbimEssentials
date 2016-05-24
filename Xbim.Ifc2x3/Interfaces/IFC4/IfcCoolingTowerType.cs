@@ -32,6 +32,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 						return Ifc4.Interfaces.IfcCoolingTowerTypeEnum.MECHANICALFORCEDDRAFT;
 					
 					case IfcCoolingTowerTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcCoolingTowerTypeEnum.USERDEFINED;
 					
 					case IfcCoolingTowerTypeEnum.NOTDEFINED:
@@ -44,7 +46,32 @@ namespace Xbim.Ifc2x3.HVACDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcCoolingTowerTypeEnum.NATURALDRAFT:
+						PredefinedType = IfcCoolingTowerTypeEnum.NATURALDRAFT;
+						return;
+					
+					case Ifc4.Interfaces.IfcCoolingTowerTypeEnum.MECHANICALINDUCEDDRAFT:
+						PredefinedType = IfcCoolingTowerTypeEnum.MECHANICALINDUCEDDRAFT;
+						return;
+					
+					case Ifc4.Interfaces.IfcCoolingTowerTypeEnum.MECHANICALFORCEDDRAFT:
+						PredefinedType = IfcCoolingTowerTypeEnum.MECHANICALFORCEDDRAFT;
+						return;
+					
+					case Ifc4.Interfaces.IfcCoolingTowerTypeEnum.USERDEFINED:
+						PredefinedType = IfcCoolingTowerTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcCoolingTowerTypeEnum.NOTDEFINED:
+						PredefinedType = IfcCoolingTowerTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

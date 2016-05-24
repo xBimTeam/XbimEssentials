@@ -37,6 +37,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 						return Ifc4.Interfaces.IfcLoadGroupTypeEnum.LOAD_COMBINATION;
 					
 					case IfcLoadGroupTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcLoadGroupTypeEnum.USERDEFINED;
 					
 					case IfcLoadGroupTypeEnum.NOTDEFINED:
@@ -49,7 +51,32 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcLoadGroupTypeEnum.LOAD_GROUP:
+						PredefinedType = IfcLoadGroupTypeEnum.LOAD_GROUP;
+						return;
+					
+					case Ifc4.Interfaces.IfcLoadGroupTypeEnum.LOAD_CASE:
+						PredefinedType = IfcLoadGroupTypeEnum.LOAD_CASE;
+						return;
+					
+					case Ifc4.Interfaces.IfcLoadGroupTypeEnum.LOAD_COMBINATION:
+						PredefinedType = IfcLoadGroupTypeEnum.LOAD_COMBINATION;
+						return;
+					
+					case Ifc4.Interfaces.IfcLoadGroupTypeEnum.USERDEFINED:
+						PredefinedType = IfcLoadGroupTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcLoadGroupTypeEnum.NOTDEFINED:
+						PredefinedType = IfcLoadGroupTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}
@@ -69,6 +96,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 						return Ifc4.Interfaces.IfcActionTypeEnum.EXTRAORDINARY_A;
 					
 					case IfcActionTypeEnum.USERDEFINED:
+						//## Optional custom handling of ActionType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcActionTypeEnum.USERDEFINED;
 					
 					case IfcActionTypeEnum.NOTDEFINED:
@@ -81,7 +110,32 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcActionTypeEnum.PERMANENT_G:
+						ActionType = IfcActionTypeEnum.PERMANENT_G;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionTypeEnum.VARIABLE_Q:
+						ActionType = IfcActionTypeEnum.VARIABLE_Q;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionTypeEnum.EXTRAORDINARY_A:
+						ActionType = IfcActionTypeEnum.EXTRAORDINARY_A;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionTypeEnum.USERDEFINED:
+						ActionType = IfcActionTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionTypeEnum.NOTDEFINED:
+						ActionType = IfcActionTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}
@@ -167,6 +221,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 						return Ifc4.Interfaces.IfcActionSourceTypeEnum.BRAKES;
 					
 					case IfcActionSourceTypeEnum.USERDEFINED:
+						//## Optional custom handling of ActionSource == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcActionSourceTypeEnum.USERDEFINED;
 					
 					case IfcActionSourceTypeEnum.NOTDEFINED:
@@ -179,7 +235,120 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcActionSourceTypeEnum.DEAD_LOAD_G:
+						ActionSource = IfcActionSourceTypeEnum.DEAD_LOAD_G;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionSourceTypeEnum.COMPLETION_G1:
+						ActionSource = IfcActionSourceTypeEnum.COMPLETION_G1;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionSourceTypeEnum.LIVE_LOAD_Q:
+						ActionSource = IfcActionSourceTypeEnum.LIVE_LOAD_Q;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionSourceTypeEnum.SNOW_S:
+						ActionSource = IfcActionSourceTypeEnum.SNOW_S;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionSourceTypeEnum.WIND_W:
+						ActionSource = IfcActionSourceTypeEnum.WIND_W;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionSourceTypeEnum.PRESTRESSING_P:
+						ActionSource = IfcActionSourceTypeEnum.PRESTRESSING_P;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionSourceTypeEnum.SETTLEMENT_U:
+						ActionSource = IfcActionSourceTypeEnum.SETTLEMENT_U;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionSourceTypeEnum.TEMPERATURE_T:
+						ActionSource = IfcActionSourceTypeEnum.TEMPERATURE_T;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionSourceTypeEnum.EARTHQUAKE_E:
+						ActionSource = IfcActionSourceTypeEnum.EARTHQUAKE_E;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionSourceTypeEnum.FIRE:
+						ActionSource = IfcActionSourceTypeEnum.FIRE;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionSourceTypeEnum.IMPULSE:
+						ActionSource = IfcActionSourceTypeEnum.IMPULSE;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionSourceTypeEnum.IMPACT:
+						ActionSource = IfcActionSourceTypeEnum.IMPACT;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionSourceTypeEnum.TRANSPORT:
+						ActionSource = IfcActionSourceTypeEnum.TRANSPORT;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionSourceTypeEnum.ERECTION:
+						ActionSource = IfcActionSourceTypeEnum.ERECTION;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionSourceTypeEnum.PROPPING:
+						ActionSource = IfcActionSourceTypeEnum.PROPPING;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionSourceTypeEnum.SYSTEM_IMPERFECTION:
+						ActionSource = IfcActionSourceTypeEnum.SYSTEM_IMPERFECTION;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionSourceTypeEnum.SHRINKAGE:
+						ActionSource = IfcActionSourceTypeEnum.SHRINKAGE;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionSourceTypeEnum.CREEP:
+						ActionSource = IfcActionSourceTypeEnum.CREEP;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionSourceTypeEnum.LACK_OF_FIT:
+						ActionSource = IfcActionSourceTypeEnum.LACK_OF_FIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionSourceTypeEnum.BUOYANCY:
+						ActionSource = IfcActionSourceTypeEnum.BUOYANCY;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionSourceTypeEnum.ICE:
+						ActionSource = IfcActionSourceTypeEnum.ICE;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionSourceTypeEnum.CURRENT:
+						ActionSource = IfcActionSourceTypeEnum.CURRENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionSourceTypeEnum.WAVE:
+						ActionSource = IfcActionSourceTypeEnum.WAVE;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionSourceTypeEnum.RAIN:
+						ActionSource = IfcActionSourceTypeEnum.RAIN;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionSourceTypeEnum.BRAKES:
+						ActionSource = IfcActionSourceTypeEnum.BRAKES;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionSourceTypeEnum.USERDEFINED:
+						ActionSource = IfcActionSourceTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcActionSourceTypeEnum.NOTDEFINED:
+						ActionSource = IfcActionSourceTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

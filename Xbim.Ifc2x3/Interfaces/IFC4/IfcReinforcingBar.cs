@@ -93,7 +93,20 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcReinforcingBarSurfaceEnum.PLAIN:
+						BarSurface = ProfilePropertyResource.IfcReinforcingBarSurfaceEnum.PLAIN;
+						return;
+					
+					case Ifc4.Interfaces.IfcReinforcingBarSurfaceEnum.TEXTURED:
+						BarSurface = ProfilePropertyResource.IfcReinforcingBarSurfaceEnum.TEXTURED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

@@ -38,7 +38,24 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcAssemblyPlaceEnum.SITE:
+						AssemblyPlace = ProductExtension.IfcAssemblyPlaceEnum.SITE;
+						return;
+					
+					case Ifc4.Interfaces.IfcAssemblyPlaceEnum.FACTORY:
+						AssemblyPlace = ProductExtension.IfcAssemblyPlaceEnum.FACTORY;
+						return;
+					
+					case Ifc4.Interfaces.IfcAssemblyPlaceEnum.NOTDEFINED:
+						AssemblyPlace = ProductExtension.IfcAssemblyPlaceEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

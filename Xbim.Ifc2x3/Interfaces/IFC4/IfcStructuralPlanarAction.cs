@@ -35,7 +35,20 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
-				throw new System.NotImplementedException();
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcProjectedOrTrueLengthEnum.PROJECTED_LENGTH:
+						ProjectedOrTrue = IfcProjectedOrTrueLengthEnum.PROJECTED_LENGTH;
+						return;
+					
+					case Ifc4.Interfaces.IfcProjectedOrTrueLengthEnum.TRUE_LENGTH:
+						ProjectedOrTrue = IfcProjectedOrTrueLengthEnum.TRUE_LENGTH;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}
