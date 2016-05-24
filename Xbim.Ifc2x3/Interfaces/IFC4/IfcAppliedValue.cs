@@ -75,6 +75,8 @@ namespace Xbim.Ifc2x3.CostResource
 				if (ifcmeasurewithunit != null) 
 				{
 					AppliedValue = ifcmeasurewithunit;
+					if (_appliedValue4 != null)
+						SetValue(v => _appliedValue4 = v, _appliedValue4, null, "AppliedValue", byte.MaxValue);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcAbsorbedDoseMeasure) 

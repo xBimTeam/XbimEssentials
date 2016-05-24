@@ -117,26 +117,42 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				if (ifcappliedvalue != null) 
 				{
 					//## Handle setting of entity IfcAppliedValue which is not a part of the target select interface IIfcMetricValueSelect in property DataValue
-					//TODO: Handle setting of entity IfcAppliedValue which is not a part of the target select interface IIfcMetricValueSelect in property DataValue
-					throw new System.NotImplementedException();
+                    var ifccostvalue = value as CostResource.IfcCostValue;
+				    if (ifccostvalue != null)
+				    {
+				        DataValue = ifccostvalue;
+                        if (_dataValue4 != null)
+                            SetValue(v => _dataValue4 = v, _dataValue4, null, "DataValue", byte.MaxValue);
+				    }
+
+				    if (DataValue != null)
+                        DataValue = null;
+                    SetValue(v => _dataValue4 = v, _dataValue4, value, "DataValue", byte.MaxValue);
+                    return;
 					//##
 				}
 				var ifcmeasurewithunit = value as MeasureResource.IfcMeasureWithUnit;
 				if (ifcmeasurewithunit != null) 
 				{
 					DataValue = ifcmeasurewithunit;
+					if (_dataValue4 != null)
+						SetValue(v => _dataValue4 = v, _dataValue4, null, "DataValue", byte.MaxValue);
 					return;
 				}
 				var ifctable = value as UtilityResource.IfcTable;
 				if (ifctable != null) 
 				{
 					DataValue = ifctable;
+					if (_dataValue4 != null)
+						SetValue(v => _dataValue4 = v, _dataValue4, null, "DataValue", byte.MaxValue);
 					return;
 				}
 				var ifctimeseries = value as TimeSeriesResource.IfcTimeSeries;
 				if (ifctimeseries != null) 
 				{
 					DataValue = ifctimeseries;
+					if (_dataValue4 != null)
+						SetValue(v => _dataValue4 = v, _dataValue4, null, "DataValue", byte.MaxValue);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcAbsorbedDoseMeasure) 
