@@ -73,6 +73,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get
 			{
+				if (_dataValue4 != null) return _dataValue4;
 				if (DataValue == null) return null;
 				var ifccalendardate = DataValue as DateTimeResource.IfcCalendarDate;
 				if (ifccalendardate != null) 

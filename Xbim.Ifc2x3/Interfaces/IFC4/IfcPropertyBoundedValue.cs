@@ -23,6 +23,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get
 			{
+				if (_upperBoundValue4 != null) return _upperBoundValue4;
 				if (UpperBoundValue == null) return null;
 				if (UpperBoundValue is MeasureResource.IfcVolumeMeasure) 
 					return new Ifc4.MeasureResource.IfcVolumeMeasure((MeasureResource.IfcVolumeMeasure)UpperBoundValue);
@@ -986,6 +987,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get
 			{
+				if (_lowerBoundValue4 != null) return _lowerBoundValue4;
 				if (LowerBoundValue == null) return null;
 				if (LowerBoundValue is MeasureResource.IfcVolumeMeasure) 
 					return new Ifc4.MeasureResource.IfcVolumeMeasure((MeasureResource.IfcVolumeMeasure)LowerBoundValue);

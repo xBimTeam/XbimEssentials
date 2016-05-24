@@ -23,6 +23,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 		{ 
 			get
 			{
+				if (_valueComponent4 != null) return _valueComponent4;
 				if (ValueComponent == null) return null;
 				if (ValueComponent is IfcVolumeMeasure) 
 					return new Ifc4.MeasureResource.IfcVolumeMeasure((IfcVolumeMeasure)ValueComponent);

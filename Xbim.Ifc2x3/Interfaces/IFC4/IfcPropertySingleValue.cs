@@ -23,6 +23,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get
 			{
+				if (_nominalValue4 != null) return _nominalValue4;
 				if (NominalValue == null) return null;
 				if (NominalValue is MeasureResource.IfcVolumeMeasure) 
 					return new Ifc4.MeasureResource.IfcVolumeMeasure((MeasureResource.IfcVolumeMeasure)NominalValue);

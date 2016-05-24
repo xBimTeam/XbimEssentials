@@ -53,6 +53,7 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get
 			{
+				if (_appliedValue4 != null) return _appliedValue4;
 				if (AppliedValue == null) return null;
 				if (AppliedValue is MeasureResource.IfcRatioMeasure) 
 					return new Ifc4.MeasureResource.IfcRatioMeasure((MeasureResource.IfcRatioMeasure)AppliedValue);
