@@ -23,11 +23,7 @@ using Xbim.IO.Xml.BsConf;
 
 namespace Xbim.Ifc
 {
-    // todo: consider a safe and reliable solution to identify where IfcStores are the same of the underlying IModel
-    // An initial implementation of IEquatable<IModel> hash: acbcf12acd0b36edf18ca0eca8f30e78fa1fdc33
-    // was reverted as it did not provide the expected outcomes.
-    // An example of a correct implementaion could be found in Kernel.IfcRoot implementation.
-    
+    public class IfcStore : IModel, IDisposable, IFederatedModel, IEquatable<IModel>
     {
         private readonly IModel _model;
         private readonly IfcSchemaVersion _schema;
@@ -1641,6 +1637,23 @@ namespace Xbim.Ifc
         public override int GetHashCode()
         {
             return _model.GetHashCode();
+        }
+
+        public static bool operator ==(IfcStore store, IModel model)
+        {
+            if (ReferenceEquals(store, model))
+                return true;
+            if (ReferenceEquals(store, null))
+                return false;
+            if (ReferenceEquals(model, null))
+                return false;
+
+            return store._model.Equals(model);
+        }
+
+        public static bool operator !=(IfcStore store, IModel model)
+        {
+            return !(store == model);
         }
 
         #endregion
