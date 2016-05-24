@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.PropertyResource
 			{
 				return DependingProperty;
 			} 
+			set
+			{
+				DependingProperty = value as IfcProperty;
+				
+			}
 		}
 		IIfcProperty IIfcPropertyDependencyRelationship.DependantProperty 
 		{ 
@@ -29,6 +34,11 @@ namespace Xbim.Ifc2x3.PropertyResource
 			{
 				return DependantProperty;
 			} 
+			set
+			{
+				DependantProperty = value as IfcProperty;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcPropertyDependencyRelationship.Expression 
 		{ 
@@ -37,24 +47,43 @@ namespace Xbim.Ifc2x3.PropertyResource
 				if (!Expression.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Expression.Value);
 			} 
+			set
+			{
+				Expression = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
 		{ 
 			get
 			{
-				//## Handle return of Name for which no match was found
-                return Name.HasValue ? new Ifc4.MeasureResource.IfcLabel(Name.Value) : null;
-				//##
+				if (!Name.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
+			set
+			{
+				Name = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
 		{ 
 			get
 			{
-				//## Handle return of Description for which no match was found
-                return Description.HasValue ? new Ifc4.MeasureResource.IfcText(Description.Value) : null;
-				//##
+				if (!Description.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				Description = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

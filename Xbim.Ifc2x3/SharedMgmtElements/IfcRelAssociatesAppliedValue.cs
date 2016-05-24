@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelAssociatesAppliedValue : IIfcRelAssociates
 	{
-		IIfcAppliedValue @RelatingAppliedValue { get; }
+		IIfcAppliedValue @RelatingAppliedValue { get;  set; }
 	
 	}
 }
@@ -39,7 +39,12 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 	public  partial class @IfcRelAssociatesAppliedValue : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesAppliedValue, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesAppliedValue>
 	{
 		#region IIfcRelAssociatesAppliedValue explicit implementation
-		IIfcAppliedValue IIfcRelAssociatesAppliedValue.RelatingAppliedValue { get { return @RelatingAppliedValue; } }	
+		IIfcAppliedValue IIfcRelAssociatesAppliedValue.RelatingAppliedValue { 
+			get { return @RelatingAppliedValue; } 
+ 
+ 
+			set { RelatingAppliedValue = value as IfcAppliedValue;}
+		}	
 		 
 		#endregion
 

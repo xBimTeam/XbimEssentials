@@ -26,10 +26,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcAsymmetricIShapeProfileDef : IIfcIShapeProfileDef
 	{
-		IfcPositiveLengthMeasure @TopFlangeWidth { get; }
-		IfcPositiveLengthMeasure? @TopFlangeThickness { get; }
-		IfcPositiveLengthMeasure? @TopFlangeFilletRadius { get; }
-		IfcPositiveLengthMeasure? @CentreOfGravityInY { get; }
+		IfcPositiveLengthMeasure @TopFlangeWidth { get;  set; }
+		IfcPositiveLengthMeasure? @TopFlangeThickness { get;  set; }
+		IfcPositiveLengthMeasure? @TopFlangeFilletRadius { get;  set; }
+		IfcPositiveLengthMeasure? @CentreOfGravityInY { get;  set; }
 	
 	}
 }
@@ -41,10 +41,26 @@ namespace Xbim.Ifc2x3.ProfileResource
 	public  partial class @IfcAsymmetricIShapeProfileDef : IfcIShapeProfileDef, IInstantiableEntity, IIfcAsymmetricIShapeProfileDef, IContainsEntityReferences, IEquatable<@IfcAsymmetricIShapeProfileDef>
 	{
 		#region IIfcAsymmetricIShapeProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.TopFlangeWidth { get { return @TopFlangeWidth; } }	
-		IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeThickness { get { return @TopFlangeThickness; } }	
-		IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeFilletRadius { get { return @TopFlangeFilletRadius; } }	
-		IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.CentreOfGravityInY { get { return @CentreOfGravityInY; } }	
+		IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.TopFlangeWidth { 
+			get { return @TopFlangeWidth; } 
+ 
+			set { TopFlangeWidth = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeThickness { 
+			get { return @TopFlangeThickness; } 
+ 
+			set { TopFlangeThickness = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeFilletRadius { 
+			get { return @TopFlangeFilletRadius; } 
+ 
+			set { TopFlangeFilletRadius = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.CentreOfGravityInY { 
+			get { return @CentreOfGravityInY; } 
+ 
+			set { CentreOfGravityInY = value;}
+		}	
 		 
 		#endregion
 

@@ -27,8 +27,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPerformanceHistory : IIfcControl
 	{
-		IfcLabel @LifeCyclePhase { get; }
-		IfcPerformanceHistoryTypeEnum? @PredefinedType { get; }
+		IfcLabel @LifeCyclePhase { get;  set; }
+		IfcPerformanceHistoryTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -40,8 +40,16 @@ namespace Xbim.Ifc4.ControlExtension
 	public  partial class @IfcPerformanceHistory : IfcControl, IInstantiableEntity, IIfcPerformanceHistory, IContainsEntityReferences, IEquatable<@IfcPerformanceHistory>
 	{
 		#region IIfcPerformanceHistory explicit implementation
-		IfcLabel IIfcPerformanceHistory.LifeCyclePhase { get { return @LifeCyclePhase; } }	
-		IfcPerformanceHistoryTypeEnum? IIfcPerformanceHistory.PredefinedType { get { return @PredefinedType; } }	
+		IfcLabel IIfcPerformanceHistory.LifeCyclePhase { 
+			get { return @LifeCyclePhase; } 
+ 
+			set { LifeCyclePhase = value;}
+		}	
+		IfcPerformanceHistoryTypeEnum? IIfcPerformanceHistory.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

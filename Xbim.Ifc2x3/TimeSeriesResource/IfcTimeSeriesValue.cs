@@ -40,7 +40,9 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 	public  partial class @IfcTimeSeriesValue : INotifyPropertyChanged, IInstantiableEntity, IIfcTimeSeriesValue, IEquatable<@IfcTimeSeriesValue>
 	{
 		#region IIfcTimeSeriesValue explicit implementation
-		IEnumerable<IIfcValue> IIfcTimeSeriesValue.ListValues { get { return @ListValues; } }	
+		IEnumerable<IIfcValue> IIfcTimeSeriesValue.ListValues { 
+			get { return @ListValues; } 
+		}	
 		 
 		#endregion
 

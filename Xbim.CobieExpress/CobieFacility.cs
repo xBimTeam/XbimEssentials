@@ -25,14 +25,14 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieFacility : ICobieAsset, SpatialDivision
 	{
-		ICobieLinearUnit @LinearUnits { get; }
-		ICobieAreaUnit @AreaUnits { get; }
-		ICobieVolumeUnit @VolumeUnits { get; }
-		ICobieCurrencyUnit @CurrencyUnit { get; }
-		string @AreaMeasurement { get; }
-		ICobieProject @Project { get; }
-		ICobieSite @Site { get; }
-		ICobiePhase @Phase { get; }
+		ICobieLinearUnit @LinearUnits { get;  set; }
+		ICobieAreaUnit @AreaUnits { get;  set; }
+		ICobieVolumeUnit @VolumeUnits { get;  set; }
+		ICobieCurrencyUnit @CurrencyUnit { get;  set; }
+		string @AreaMeasurement { get;  set; }
+		ICobieProject @Project { get;  set; }
+		ICobieSite @Site { get;  set; }
+		ICobiePhase @Phase { get;  set; }
 		IEnumerable<ICobieFloor> @Floors {  get; }
 		IEnumerable<ICobieSystem> @Systems {  get; }
 	
@@ -46,14 +46,53 @@ namespace Xbim.CobieExpress
 	public  partial class @CobieFacility : CobieAsset, IInstantiableEntity, ICobieFacility, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieFacility>
 	{
 		#region ICobieFacility explicit implementation
-		ICobieLinearUnit ICobieFacility.LinearUnits { get { return @LinearUnits; } }	
-		ICobieAreaUnit ICobieFacility.AreaUnits { get { return @AreaUnits; } }	
-		ICobieVolumeUnit ICobieFacility.VolumeUnits { get { return @VolumeUnits; } }	
-		ICobieCurrencyUnit ICobieFacility.CurrencyUnit { get { return @CurrencyUnit; } }	
-		string ICobieFacility.AreaMeasurement { get { return @AreaMeasurement; } }	
-		ICobieProject ICobieFacility.Project { get { return @Project; } }	
-		ICobieSite ICobieFacility.Site { get { return @Site; } }	
-		ICobiePhase ICobieFacility.Phase { get { return @Phase; } }	
+		ICobieLinearUnit ICobieFacility.LinearUnits { 
+			get { return @LinearUnits; } 
+ 
+ 
+			set { LinearUnits = value as CobieLinearUnit;}
+		}	
+		ICobieAreaUnit ICobieFacility.AreaUnits { 
+			get { return @AreaUnits; } 
+ 
+ 
+			set { AreaUnits = value as CobieAreaUnit;}
+		}	
+		ICobieVolumeUnit ICobieFacility.VolumeUnits { 
+			get { return @VolumeUnits; } 
+ 
+ 
+			set { VolumeUnits = value as CobieVolumeUnit;}
+		}	
+		ICobieCurrencyUnit ICobieFacility.CurrencyUnit { 
+			get { return @CurrencyUnit; } 
+ 
+ 
+			set { CurrencyUnit = value as CobieCurrencyUnit;}
+		}	
+		string ICobieFacility.AreaMeasurement { 
+			get { return @AreaMeasurement; } 
+ 
+			set { AreaMeasurement = value;}
+		}	
+		ICobieProject ICobieFacility.Project { 
+			get { return @Project; } 
+ 
+ 
+			set { Project = value as CobieProject;}
+		}	
+		ICobieSite ICobieFacility.Site { 
+			get { return @Site; } 
+ 
+ 
+			set { Site = value as CobieSite;}
+		}	
+		ICobiePhase ICobieFacility.Phase { 
+			get { return @Phase; } 
+ 
+ 
+			set { Phase = value as CobiePhase;}
+		}	
 		 
 		IEnumerable<ICobieFloor> ICobieFacility.Floors {  get { return @Floors; } }
 		IEnumerable<ICobieSystem> ICobieFacility.Systems {  get { return @Systems; } }

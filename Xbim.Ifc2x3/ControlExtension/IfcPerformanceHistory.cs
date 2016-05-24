@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPerformanceHistory : IIfcControl
 	{
-		IfcLabel @LifeCyclePhase { get; }
+		IfcLabel @LifeCyclePhase { get;  set; }
 	
 	}
 }
@@ -39,7 +39,11 @@ namespace Xbim.Ifc2x3.ControlExtension
 	public  partial class @IfcPerformanceHistory : IfcControl, IInstantiableEntity, IIfcPerformanceHistory, IContainsEntityReferences, IEquatable<@IfcPerformanceHistory>
 	{
 		#region IIfcPerformanceHistory explicit implementation
-		IfcLabel IIfcPerformanceHistory.LifeCyclePhase { get { return @LifeCyclePhase; } }	
+		IfcLabel IIfcPerformanceHistory.LifeCyclePhase { 
+			get { return @LifeCyclePhase; } 
+ 
+			set { LifeCyclePhase = value;}
+		}	
 		 
 		#endregion
 

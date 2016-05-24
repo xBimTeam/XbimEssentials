@@ -29,16 +29,16 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcWorkControl : IIfcControl
 	{
-		IfcIdentifier @Identifier { get; }
-		IIfcDateTimeSelect @CreationDate { get; }
+		IfcIdentifier @Identifier { get;  set; }
+		IIfcDateTimeSelect @CreationDate { get;  set; }
 		IEnumerable<IIfcPerson> @Creators { get; }
-		IfcLabel? @Purpose { get; }
-		IfcTimeMeasure? @Duration { get; }
-		IfcTimeMeasure? @TotalFloat { get; }
-		IIfcDateTimeSelect @StartTime { get; }
-		IIfcDateTimeSelect @FinishTime { get; }
-		IfcWorkControlTypeEnum? @WorkControlType { get; }
-		IfcLabel? @UserDefinedControlType { get; }
+		IfcLabel? @Purpose { get;  set; }
+		IfcTimeMeasure? @Duration { get;  set; }
+		IfcTimeMeasure? @TotalFloat { get;  set; }
+		IIfcDateTimeSelect @StartTime { get;  set; }
+		IIfcDateTimeSelect @FinishTime { get;  set; }
+		IfcWorkControlTypeEnum? @WorkControlType { get;  set; }
+		IfcLabel? @UserDefinedControlType { get;  set; }
 	
 	}
 }
@@ -50,16 +50,57 @@ namespace Xbim.Ifc2x3.ProcessExtension
 	public abstract partial class @IfcWorkControl : IfcControl, IIfcWorkControl, IEquatable<@IfcWorkControl>
 	{
 		#region IIfcWorkControl explicit implementation
-		IfcIdentifier IIfcWorkControl.Identifier { get { return @Identifier; } }	
-		IIfcDateTimeSelect IIfcWorkControl.CreationDate { get { return @CreationDate; } }	
-		IEnumerable<IIfcPerson> IIfcWorkControl.Creators { get { return @Creators; } }	
-		IfcLabel? IIfcWorkControl.Purpose { get { return @Purpose; } }	
-		IfcTimeMeasure? IIfcWorkControl.Duration { get { return @Duration; } }	
-		IfcTimeMeasure? IIfcWorkControl.TotalFloat { get { return @TotalFloat; } }	
-		IIfcDateTimeSelect IIfcWorkControl.StartTime { get { return @StartTime; } }	
-		IIfcDateTimeSelect IIfcWorkControl.FinishTime { get { return @FinishTime; } }	
-		IfcWorkControlTypeEnum? IIfcWorkControl.WorkControlType { get { return @WorkControlType; } }	
-		IfcLabel? IIfcWorkControl.UserDefinedControlType { get { return @UserDefinedControlType; } }	
+		IfcIdentifier IIfcWorkControl.Identifier { 
+			get { return @Identifier; } 
+ 
+			set { Identifier = value;}
+		}	
+		IIfcDateTimeSelect IIfcWorkControl.CreationDate { 
+			get { return @CreationDate; } 
+ 
+ 
+			set { CreationDate = value as IfcDateTimeSelect;}
+		}	
+		IEnumerable<IIfcPerson> IIfcWorkControl.Creators { 
+			get { return @Creators; } 
+		}	
+		IfcLabel? IIfcWorkControl.Purpose { 
+			get { return @Purpose; } 
+ 
+			set { Purpose = value;}
+		}	
+		IfcTimeMeasure? IIfcWorkControl.Duration { 
+			get { return @Duration; } 
+ 
+			set { Duration = value;}
+		}	
+		IfcTimeMeasure? IIfcWorkControl.TotalFloat { 
+			get { return @TotalFloat; } 
+ 
+			set { TotalFloat = value;}
+		}	
+		IIfcDateTimeSelect IIfcWorkControl.StartTime { 
+			get { return @StartTime; } 
+ 
+ 
+			set { StartTime = value as IfcDateTimeSelect;}
+		}	
+		IIfcDateTimeSelect IIfcWorkControl.FinishTime { 
+			get { return @FinishTime; } 
+ 
+ 
+			set { FinishTime = value as IfcDateTimeSelect;}
+		}	
+		IfcWorkControlTypeEnum? IIfcWorkControl.WorkControlType { 
+			get { return @WorkControlType; } 
+ 
+			set { WorkControlType = value;}
+		}	
+		IfcLabel? IIfcWorkControl.UserDefinedControlType { 
+			get { return @UserDefinedControlType; } 
+ 
+			set { UserDefinedControlType = value;}
+		}	
 		 
 		#endregion
 

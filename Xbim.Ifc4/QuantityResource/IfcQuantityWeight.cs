@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcQuantityWeight : IIfcPhysicalSimpleQuantity
 	{
-		IfcMassMeasure @WeightValue { get; }
-		IfcLabel? @Formula { get; }
+		IfcMassMeasure @WeightValue { get;  set; }
+		IfcLabel? @Formula { get;  set; }
 	
 	}
 }
@@ -39,8 +39,16 @@ namespace Xbim.Ifc4.QuantityResource
 	public  partial class @IfcQuantityWeight : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityWeight, IContainsEntityReferences, IEquatable<@IfcQuantityWeight>
 	{
 		#region IIfcQuantityWeight explicit implementation
-		IfcMassMeasure IIfcQuantityWeight.WeightValue { get { return @WeightValue; } }	
-		IfcLabel? IIfcQuantityWeight.Formula { get { return @Formula; } }	
+		IfcMassMeasure IIfcQuantityWeight.WeightValue { 
+			get { return @WeightValue; } 
+ 
+			set { WeightValue = value;}
+		}	
+		IfcLabel? IIfcQuantityWeight.Formula { 
+			get { return @Formula; } 
+ 
+			set { Formula = value;}
+		}	
 		 
 		#endregion
 

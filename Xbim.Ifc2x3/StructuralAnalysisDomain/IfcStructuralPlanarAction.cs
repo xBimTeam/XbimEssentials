@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralPlanarAction : IIfcStructuralAction
 	{
-		IfcProjectedOrTrueLengthEnum @ProjectedOrTrue { get; }
+		IfcProjectedOrTrueLengthEnum @ProjectedOrTrue { get;  set; }
 	
 	}
 }
@@ -37,7 +37,11 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 	public  partial class @IfcStructuralPlanarAction : IfcStructuralAction, IInstantiableEntity, IIfcStructuralPlanarAction, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralPlanarAction>
 	{
 		#region IIfcStructuralPlanarAction explicit implementation
-		IfcProjectedOrTrueLengthEnum IIfcStructuralPlanarAction.ProjectedOrTrue { get { return @ProjectedOrTrue; } }	
+		IfcProjectedOrTrueLengthEnum IIfcStructuralPlanarAction.ProjectedOrTrue { 
+			get { return @ProjectedOrTrue; } 
+ 
+			set { ProjectedOrTrue = value;}
+		}	
 		 
 		#endregion
 

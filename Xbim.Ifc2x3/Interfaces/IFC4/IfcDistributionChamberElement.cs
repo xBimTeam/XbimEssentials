@@ -16,14 +16,20 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	public partial class @IfcDistributionChamberElement : IIfcDistributionChamberElement
 	{
+
+		private  Ifc4.Interfaces.IfcDistributionChamberElementTypeEnum? _predefinedType;
+
 		Ifc4.Interfaces.IfcDistributionChamberElementTypeEnum? IIfcDistributionChamberElement.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-			    return null;
-			    //##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				
+			}
 		}
 	//## Custom code
 	//##

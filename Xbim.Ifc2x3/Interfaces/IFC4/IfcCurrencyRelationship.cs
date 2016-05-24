@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				return RelatingMonetaryUnit;
 			} 
+			set
+			{
+				RelatingMonetaryUnit = value as MeasureResource.IfcMonetaryUnit;
+				
+			}
 		}
 		IIfcMonetaryUnit IIfcCurrencyRelationship.RelatedMonetaryUnit 
 		{ 
@@ -29,6 +34,11 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				return RelatedMonetaryUnit;
 			} 
+			set
+			{
+				RelatedMonetaryUnit = value as MeasureResource.IfcMonetaryUnit;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveRatioMeasure IIfcCurrencyRelationship.ExchangeRate 
 		{ 
@@ -36,6 +46,11 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveRatioMeasure(ExchangeRate);
 			} 
+			set
+			{
+				ExchangeRate = new MeasureResource.IfcPositiveRatioMeasure(value);
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDateTime? IIfcCurrencyRelationship.RateDateTime 
 		{ 
@@ -47,6 +62,33 @@ namespace Xbim.Ifc2x3.CostResource
 			        : null;
 			    //##
 			} 
+			set
+			{
+				//## Handle setting of RateDateTime for which no match was found
+                if (!value.HasValue)
+                {
+                    RateDateTime = null;
+                    return;
+                }
+                System.DateTime d = value.Value;
+                RateDateTime = Model.Instances.New<DateTimeResource.IfcDateAndTime>(dt =>
+                {
+                    dt.DateComponent = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+                    {
+                        date.YearComponent = d.Year;
+                        date.MonthComponent = d.Month;
+                        date.DayComponent = d.Day;
+                    });
+                    dt.TimeComponent = Model.Instances.New<DateTimeResource.IfcLocalTime>(t =>
+                    {
+                        t.HourComponent = d.Hour;
+                        t.MinuteComponent = d.Minute;
+                        t.SecondComponent = d.Second;
+                    });
+                });
+				//##
+				
+			}
 		}
 		IIfcLibraryInformation IIfcCurrencyRelationship.RateSource 
 		{ 
@@ -54,24 +96,41 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				return RateSource;
 			} 
+			set
+			{
+				RateSource = value as ExternalReferenceResource.IfcLibraryInformation;
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcLabel? _name;
+
 		Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
 		{ 
 			get
 			{
-				//## Handle return of Name for which no match was found
-			    return null;
-			    //##
+				return _name;
 			} 
+			set
+			{
+				SetValue(v => _name = v, _name, value, "Name", byte.MaxValue);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcText? _description;
+
 		Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
 		{ 
 			get
 			{
-				//## Handle return of Description for which no match was found
-			    return null;
-			    //##
+				return _description;
 			} 
+			set
+			{
+				SetValue(v => _description = v, _description, value, "Description", byte.MaxValue);
+				
+			}
 		}
 	//## Custom code
 	//##

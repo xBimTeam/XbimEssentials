@@ -27,9 +27,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTextLiteral : IIfcGeometricRepresentationItem
 	{
-		IfcPresentableText @Literal { get; }
-		IIfcAxis2Placement @Placement { get; }
-		IfcTextPath @Path { get; }
+		IfcPresentableText @Literal { get;  set; }
+		IIfcAxis2Placement @Placement { get;  set; }
+		IfcTextPath @Path { get;  set; }
 	
 	}
 }
@@ -41,9 +41,22 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 	public  partial class @IfcTextLiteral : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcTextLiteral, IContainsEntityReferences, IEquatable<@IfcTextLiteral>
 	{
 		#region IIfcTextLiteral explicit implementation
-		IfcPresentableText IIfcTextLiteral.Literal { get { return @Literal; } }	
-		IIfcAxis2Placement IIfcTextLiteral.Placement { get { return @Placement; } }	
-		IfcTextPath IIfcTextLiteral.Path { get { return @Path; } }	
+		IfcPresentableText IIfcTextLiteral.Literal { 
+			get { return @Literal; } 
+ 
+			set { Literal = value;}
+		}	
+		IIfcAxis2Placement IIfcTextLiteral.Placement { 
+			get { return @Placement; } 
+ 
+ 
+			set { Placement = value as IfcAxis2Placement;}
+		}	
+		IfcTextPath IIfcTextLiteral.Path { 
+			get { return @Path; } 
+ 
+			set { Path = value;}
+		}	
 		 
 		#endregion
 

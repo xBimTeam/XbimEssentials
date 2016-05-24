@@ -16,30 +16,69 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	public partial class @IfcClassificationReference : IIfcClassificationReference
 	{
+
+		private  IIfcClassificationReferenceSelect _referencedSource4;
+
 		IIfcClassificationReferenceSelect IIfcClassificationReference.ReferencedSource 
 		{ 
 			get
 			{
-				return ReferencedSource;
+				return  _referencedSource4 ?? ReferencedSource;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					ReferencedSource = null;
+					if (_referencedSource4 != null)
+						SetValue(v => _referencedSource4 = v, _referencedSource4, null, "ReferencedSource", byte.MaxValue);
+					return;
+				}
+				
+				var val = value as IfcClassification;
+				if (val != null)
+				{
+					ReferencedSource = val;
+					if (_referencedSource4 != null)
+						SetValue(v => _referencedSource4 = v, _referencedSource4, null, "ReferencedSource", byte.MaxValue);
+					return;
+				} 
+
+				if(ReferencedSource != null)
+					ReferencedSource = null;
+				SetValue(v => _referencedSource4 = v, _referencedSource4, value, "ReferencedSource", byte.MaxValue);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcText? _description;
+
 		Ifc4.MeasureResource.IfcText? IIfcClassificationReference.Description 
 		{ 
 			get
 			{
-				//## Handle return of Description for which no match was found
-			    return null;
-			    //##
+				return _description;
 			} 
+			set
+			{
+				SetValue(v => _description = v, _description, value, "Description", byte.MaxValue);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcIdentifier? _sort;
+
 		Ifc4.MeasureResource.IfcIdentifier? IIfcClassificationReference.Sort 
 		{ 
 			get
 			{
-				//## Handle return of Sort for which no match was found
-			    return null;
-			    //##
+				return _sort;
 			} 
+			set
+			{
+				SetValue(v => _sort = v, _sort, value, "Sort", byte.MaxValue);
+				
+			}
 		}
 		IEnumerable<IIfcRelAssociatesClassification> IIfcClassificationReference.ClassificationRefForObjects 
 		{ 

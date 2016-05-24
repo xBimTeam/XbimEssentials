@@ -38,7 +38,9 @@ namespace Xbim.Ifc2x3.Kernel
 	public  partial class @IfcPropertySet : IfcPropertySetDefinition, IInstantiableEntity, IIfcPropertySet, IContainsEntityReferences, IEquatable<@IfcPropertySet>
 	{
 		#region IIfcPropertySet explicit implementation
-		IEnumerable<IIfcProperty> IIfcPropertySet.HasProperties { get { return @HasProperties; } }	
+		IEnumerable<IIfcProperty> IIfcPropertySet.HasProperties { 
+			get { return @HasProperties; } 
+		}	
 		 
 		#endregion
 

@@ -26,9 +26,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBooleanResult : IIfcGeometricRepresentationItem, IfcBooleanOperand, IfcCsgSelect
 	{
-		IfcBooleanOperator @Operator { get; }
-		IIfcBooleanOperand @FirstOperand { get; }
-		IIfcBooleanOperand @SecondOperand { get; }
+		IfcBooleanOperator @Operator { get;  set; }
+		IIfcBooleanOperand @FirstOperand { get;  set; }
+		IIfcBooleanOperand @SecondOperand { get;  set; }
 	
 	}
 }
@@ -40,9 +40,23 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public  partial class @IfcBooleanResult : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcBooleanResult, IContainsEntityReferences, IEquatable<@IfcBooleanResult>
 	{
 		#region IIfcBooleanResult explicit implementation
-		IfcBooleanOperator IIfcBooleanResult.Operator { get { return @Operator; } }	
-		IIfcBooleanOperand IIfcBooleanResult.FirstOperand { get { return @FirstOperand; } }	
-		IIfcBooleanOperand IIfcBooleanResult.SecondOperand { get { return @SecondOperand; } }	
+		IfcBooleanOperator IIfcBooleanResult.Operator { 
+			get { return @Operator; } 
+ 
+			set { Operator = value;}
+		}	
+		IIfcBooleanOperand IIfcBooleanResult.FirstOperand { 
+			get { return @FirstOperand; } 
+ 
+ 
+			set { FirstOperand = value as IfcBooleanOperand;}
+		}	
+		IIfcBooleanOperand IIfcBooleanResult.SecondOperand { 
+			get { return @SecondOperand; } 
+ 
+ 
+			set { SecondOperand = value as IfcBooleanOperand;}
+		}	
 		 
 		#endregion
 

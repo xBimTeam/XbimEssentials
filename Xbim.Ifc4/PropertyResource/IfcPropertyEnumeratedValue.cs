@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcPropertyEnumeratedValue : IIfcSimpleProperty
 	{
 		IEnumerable<IIfcValue> @EnumerationValues { get; }
-		IIfcPropertyEnumeration @EnumerationReference { get; }
+		IIfcPropertyEnumeration @EnumerationReference { get;  set; }
 	
 	}
 }
@@ -39,8 +39,15 @@ namespace Xbim.Ifc4.PropertyResource
 	public  partial class @IfcPropertyEnumeratedValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyEnumeratedValue, IContainsEntityReferences, IEquatable<@IfcPropertyEnumeratedValue>
 	{
 		#region IIfcPropertyEnumeratedValue explicit implementation
-		IEnumerable<IIfcValue> IIfcPropertyEnumeratedValue.EnumerationValues { get { return @EnumerationValues; } }	
-		IIfcPropertyEnumeration IIfcPropertyEnumeratedValue.EnumerationReference { get { return @EnumerationReference; } }	
+		IEnumerable<IIfcValue> IIfcPropertyEnumeratedValue.EnumerationValues { 
+			get { return @EnumerationValues; } 
+		}	
+		IIfcPropertyEnumeration IIfcPropertyEnumeratedValue.EnumerationReference { 
+			get { return @EnumerationReference; } 
+ 
+ 
+			set { EnumerationReference = value as IfcPropertyEnumeration;}
+		}	
 		 
 		#endregion
 

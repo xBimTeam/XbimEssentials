@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcStructuralSurfaceMemberVarying : IIfcStructuralSurfaceMember
 	{
 		IEnumerable<IfcPositiveLengthMeasure> @SubsequentThickness { get; }
-		IIfcShapeAspect @VaryingThicknessLocation { get; }
+		IIfcShapeAspect @VaryingThicknessLocation { get;  set; }
 		List<IfcPositiveLengthMeasure> @VaryingThickness  { get ; }
 	
 	}
@@ -41,8 +41,15 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 	public  partial class @IfcStructuralSurfaceMemberVarying : IfcStructuralSurfaceMember, IInstantiableEntity, IIfcStructuralSurfaceMemberVarying, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralSurfaceMemberVarying>
 	{
 		#region IIfcStructuralSurfaceMemberVarying explicit implementation
-		IEnumerable<IfcPositiveLengthMeasure> IIfcStructuralSurfaceMemberVarying.SubsequentThickness { get { return @SubsequentThickness; } }	
-		IIfcShapeAspect IIfcStructuralSurfaceMemberVarying.VaryingThicknessLocation { get { return @VaryingThicknessLocation; } }	
+		IEnumerable<IfcPositiveLengthMeasure> IIfcStructuralSurfaceMemberVarying.SubsequentThickness { 
+			get { return @SubsequentThickness; } 
+		}	
+		IIfcShapeAspect IIfcStructuralSurfaceMemberVarying.VaryingThicknessLocation { 
+			get { return @VaryingThicknessLocation; } 
+ 
+ 
+			set { VaryingThicknessLocation = value as IfcShapeAspect;}
+		}	
 		 
 		#endregion
 

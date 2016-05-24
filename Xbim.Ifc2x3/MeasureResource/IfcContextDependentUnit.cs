@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcContextDependentUnit : IIfcNamedUnit
 	{
-		IfcLabel @Name { get; }
+		IfcLabel @Name { get;  set; }
 	
 	}
 }
@@ -37,7 +37,11 @@ namespace Xbim.Ifc2x3.MeasureResource
 	public  partial class @IfcContextDependentUnit : IfcNamedUnit, IInstantiableEntity, IIfcContextDependentUnit, IContainsEntityReferences, IEquatable<@IfcContextDependentUnit>
 	{
 		#region IIfcContextDependentUnit explicit implementation
-		IfcLabel IIfcContextDependentUnit.Name { get { return @Name; } }	
+		IfcLabel IIfcContextDependentUnit.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
 		 
 		#endregion
 

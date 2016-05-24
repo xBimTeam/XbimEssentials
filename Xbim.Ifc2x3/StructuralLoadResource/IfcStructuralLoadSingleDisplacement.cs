@@ -26,12 +26,12 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralLoadSingleDisplacement : IIfcStructuralLoadStatic
 	{
-		IfcLengthMeasure? @DisplacementX { get; }
-		IfcLengthMeasure? @DisplacementY { get; }
-		IfcLengthMeasure? @DisplacementZ { get; }
-		IfcPlaneAngleMeasure? @RotationalDisplacementRX { get; }
-		IfcPlaneAngleMeasure? @RotationalDisplacementRY { get; }
-		IfcPlaneAngleMeasure? @RotationalDisplacementRZ { get; }
+		IfcLengthMeasure? @DisplacementX { get;  set; }
+		IfcLengthMeasure? @DisplacementY { get;  set; }
+		IfcLengthMeasure? @DisplacementZ { get;  set; }
+		IfcPlaneAngleMeasure? @RotationalDisplacementRX { get;  set; }
+		IfcPlaneAngleMeasure? @RotationalDisplacementRY { get;  set; }
+		IfcPlaneAngleMeasure? @RotationalDisplacementRZ { get;  set; }
 	
 	}
 }
@@ -43,12 +43,36 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 	public  partial class @IfcStructuralLoadSingleDisplacement : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadSingleDisplacement, IEquatable<@IfcStructuralLoadSingleDisplacement>
 	{
 		#region IIfcStructuralLoadSingleDisplacement explicit implementation
-		IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementX { get { return @DisplacementX; } }	
-		IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementY { get { return @DisplacementY; } }	
-		IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementZ { get { return @DisplacementZ; } }	
-		IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRX { get { return @RotationalDisplacementRX; } }	
-		IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRY { get { return @RotationalDisplacementRY; } }	
-		IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRZ { get { return @RotationalDisplacementRZ; } }	
+		IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementX { 
+			get { return @DisplacementX; } 
+ 
+			set { DisplacementX = value;}
+		}	
+		IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementY { 
+			get { return @DisplacementY; } 
+ 
+			set { DisplacementY = value;}
+		}	
+		IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementZ { 
+			get { return @DisplacementZ; } 
+ 
+			set { DisplacementZ = value;}
+		}	
+		IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRX { 
+			get { return @RotationalDisplacementRX; } 
+ 
+			set { RotationalDisplacementRX = value;}
+		}	
+		IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRY { 
+			get { return @RotationalDisplacementRY; } 
+ 
+			set { RotationalDisplacementRY = value;}
+		}	
+		IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRZ { 
+			get { return @RotationalDisplacementRZ; } 
+ 
+			set { RotationalDisplacementRZ = value;}
+		}	
 		 
 		#endregion
 

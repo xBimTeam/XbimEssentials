@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcFurniture : IIfcFurnishingElement
 	{
-		IfcFurnitureTypeEnum? @PredefinedType { get; }
+		IfcFurnitureTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 	public  partial class @IfcFurniture : IfcFurnishingElement, IInstantiableEntity, IIfcFurniture, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFurniture>
 	{
 		#region IIfcFurniture explicit implementation
-		IfcFurnitureTypeEnum? IIfcFurniture.PredefinedType { get { return @PredefinedType; } }	
+		IfcFurnitureTypeEnum? IIfcFurniture.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using Xbim.Ifc2x3.PresentationDefinitionResource;
 
 namespace Xbim.Ifc2x3.Interfaces.Conversions
 {
-    internal class IfcFaceTransient: PersistEntityTransient, Xbim.Ifc4.Interfaces.IIfcFace
+    internal class IfcFaceTransient: PersistEntityTransient, Ifc4.Interfaces.IIfcFace
     {
-        Xbim.Ifc2x3.PresentationDefinitionResource.IfcVertexBasedTextureMap _textureMap;
-        List<IfcFaceBoundTransient> _faceBounds;
-        public IfcFaceTransient(Xbim.Ifc2x3.PresentationDefinitionResource.IfcVertexBasedTextureMap textureMap)
+        readonly List<IfcFaceBoundTransient> _faceBounds;
+        public IfcFaceTransient(IfcVertexBasedTextureMap textureMap)
         {
-            _textureMap = textureMap;
-            _faceBounds = new List<IfcFaceBoundTransient>(1);
-            _faceBounds.Add( new IfcFaceBoundTransient(_textureMap.TexturePoints));
+            _faceBounds = new List<IfcFaceBoundTransient>(1) {new IfcFaceBoundTransient(textureMap.TexturePoints)};
         }
         public IEnumerable<Ifc4.Interfaces.IIfcFaceBound> Bounds
         {

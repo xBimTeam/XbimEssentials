@@ -29,8 +29,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPersonAndOrganization : IPersistEntity, IfcActorSelect, IfcObjectReferenceSelect, IfcResourceObjectSelect
 	{
-		IIfcPerson @ThePerson { get; }
-		IIfcOrganization @TheOrganization { get; }
+		IIfcPerson @ThePerson { get;  set; }
+		IIfcOrganization @TheOrganization { get;  set; }
 		IEnumerable<IIfcActorRole> @Roles { get; }
 	
 	}
@@ -43,9 +43,21 @@ namespace Xbim.Ifc4.ActorResource
 	public  partial class @IfcPersonAndOrganization : INotifyPropertyChanged, IInstantiableEntity, IIfcPersonAndOrganization, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPersonAndOrganization>
 	{
 		#region IIfcPersonAndOrganization explicit implementation
-		IIfcPerson IIfcPersonAndOrganization.ThePerson { get { return @ThePerson; } }	
-		IIfcOrganization IIfcPersonAndOrganization.TheOrganization { get { return @TheOrganization; } }	
-		IEnumerable<IIfcActorRole> IIfcPersonAndOrganization.Roles { get { return @Roles; } }	
+		IIfcPerson IIfcPersonAndOrganization.ThePerson { 
+			get { return @ThePerson; } 
+ 
+ 
+			set { ThePerson = value as IfcPerson;}
+		}	
+		IIfcOrganization IIfcPersonAndOrganization.TheOrganization { 
+			get { return @TheOrganization; } 
+ 
+ 
+			set { TheOrganization = value as IfcOrganization;}
+		}	
+		IEnumerable<IIfcActorRole> IIfcPersonAndOrganization.Roles { 
+			get { return @Roles; } 
+		}	
 		 
 		#endregion
 

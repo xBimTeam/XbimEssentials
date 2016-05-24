@@ -15,7 +15,7 @@ namespace Xbim.Ifc4.MeasureResource
 	[ExpressType("IfcReal", 538)]
 	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcReal : IfcSimpleValue, IExpressValueType, System.IEquatable<double>
+	public partial struct IfcReal : IfcSimpleValue, IExpressValueType, IExpressRealType, System.IEquatable<double>
 	{ 
 		private double _value;
         
@@ -23,6 +23,9 @@ namespace Xbim.Ifc4.MeasureResource
         {
             get { return _value; }
         }
+
+ 
+		double IExpressRealType.Value { get { return _value; } }
 
 		public override string ToString()
         {

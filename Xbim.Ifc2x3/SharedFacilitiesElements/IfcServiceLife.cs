@@ -27,8 +27,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcServiceLife : IIfcControl
 	{
-		IfcServiceLifeTypeEnum @ServiceLifeType { get; }
-		IfcTimeMeasure @ServiceLifeDuration { get; }
+		IfcServiceLifeTypeEnum @ServiceLifeType { get;  set; }
+		IfcTimeMeasure @ServiceLifeDuration { get;  set; }
 	
 	}
 }
@@ -40,8 +40,16 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 	public  partial class @IfcServiceLife : IfcControl, IInstantiableEntity, IIfcServiceLife, IContainsEntityReferences, IEquatable<@IfcServiceLife>
 	{
 		#region IIfcServiceLife explicit implementation
-		IfcServiceLifeTypeEnum IIfcServiceLife.ServiceLifeType { get { return @ServiceLifeType; } }	
-		IfcTimeMeasure IIfcServiceLife.ServiceLifeDuration { get { return @ServiceLifeDuration; } }	
+		IfcServiceLifeTypeEnum IIfcServiceLife.ServiceLifeType { 
+			get { return @ServiceLifeType; } 
+ 
+			set { ServiceLifeType = value;}
+		}	
+		IfcTimeMeasure IIfcServiceLife.ServiceLifeDuration { 
+			get { return @ServiceLifeDuration; } 
+ 
+			set { ServiceLifeDuration = value;}
+		}	
 		 
 		#endregion
 

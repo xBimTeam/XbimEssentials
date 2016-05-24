@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRevolvedAreaSolidTapered : IIfcRevolvedAreaSolid
 	{
-		IIfcProfileDef @EndSweptArea { get; }
+		IIfcProfileDef @EndSweptArea { get;  set; }
 	
 	}
 }
@@ -38,7 +38,12 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public  partial class @IfcRevolvedAreaSolidTapered : IfcRevolvedAreaSolid, IInstantiableEntity, IIfcRevolvedAreaSolidTapered, IContainsEntityReferences, IEquatable<@IfcRevolvedAreaSolidTapered>
 	{
 		#region IIfcRevolvedAreaSolidTapered explicit implementation
-		IIfcProfileDef IIfcRevolvedAreaSolidTapered.EndSweptArea { get { return @EndSweptArea; } }	
+		IIfcProfileDef IIfcRevolvedAreaSolidTapered.EndSweptArea { 
+			get { return @EndSweptArea; } 
+ 
+ 
+			set { EndSweptArea = value as IfcProfileDef;}
+		}	
 		 
 		#endregion
 

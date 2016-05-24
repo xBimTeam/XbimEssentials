@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcElectricTimeControlType : IIfcFlowControllerType
 	{
-		IfcElectricTimeControlTypeEnum @PredefinedType { get; }
+		IfcElectricTimeControlTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.ElectricalDomain
 	public  partial class @IfcElectricTimeControlType : IfcFlowControllerType, IInstantiableEntity, IIfcElectricTimeControlType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcElectricTimeControlType>
 	{
 		#region IIfcElectricTimeControlType explicit implementation
-		IfcElectricTimeControlTypeEnum IIfcElectricTimeControlType.PredefinedType { get { return @PredefinedType; } }	
+		IfcElectricTimeControlTypeEnum IIfcElectricTimeControlType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

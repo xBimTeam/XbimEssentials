@@ -26,10 +26,10 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcTextStyleFontModel : IIfcPreDefinedTextFont
 	{
 		IEnumerable<IfcTextFontName> @FontFamily { get; }
-		IfcFontStyle? @FontStyle { get; }
-		IfcFontVariant? @FontVariant { get; }
-		IfcFontWeight? @FontWeight { get; }
-		IIfcSizeSelect @FontSize { get; }
+		IfcFontStyle? @FontStyle { get;  set; }
+		IfcFontVariant? @FontVariant { get;  set; }
+		IfcFontWeight? @FontWeight { get;  set; }
+		IIfcSizeSelect @FontSize { get;  set; }
 	
 	}
 }
@@ -41,11 +41,30 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcTextStyleFontModel : IfcPreDefinedTextFont, IInstantiableEntity, IIfcTextStyleFontModel, IEquatable<@IfcTextStyleFontModel>
 	{
 		#region IIfcTextStyleFontModel explicit implementation
-		IEnumerable<IfcTextFontName> IIfcTextStyleFontModel.FontFamily { get { return @FontFamily; } }	
-		IfcFontStyle? IIfcTextStyleFontModel.FontStyle { get { return @FontStyle; } }	
-		IfcFontVariant? IIfcTextStyleFontModel.FontVariant { get { return @FontVariant; } }	
-		IfcFontWeight? IIfcTextStyleFontModel.FontWeight { get { return @FontWeight; } }	
-		IIfcSizeSelect IIfcTextStyleFontModel.FontSize { get { return @FontSize; } }	
+		IEnumerable<IfcTextFontName> IIfcTextStyleFontModel.FontFamily { 
+			get { return @FontFamily; } 
+		}	
+		IfcFontStyle? IIfcTextStyleFontModel.FontStyle { 
+			get { return @FontStyle; } 
+ 
+			set { FontStyle = value;}
+		}	
+		IfcFontVariant? IIfcTextStyleFontModel.FontVariant { 
+			get { return @FontVariant; } 
+ 
+			set { FontVariant = value;}
+		}	
+		IfcFontWeight? IIfcTextStyleFontModel.FontWeight { 
+			get { return @FontWeight; } 
+ 
+			set { FontWeight = value;}
+		}	
+		IIfcSizeSelect IIfcTextStyleFontModel.FontSize { 
+			get { return @FontSize; } 
+ 
+ 
+			set { FontSize = value as IfcSizeSelect;}
+		}	
 		 
 		#endregion
 

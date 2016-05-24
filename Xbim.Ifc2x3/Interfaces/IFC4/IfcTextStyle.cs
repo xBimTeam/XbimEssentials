@@ -21,24 +21,32 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			get
 			{
 				//## Handle return of TextCharacterAppearance for which no match was found
-                if (TextCharacterAppearance is IfcTextStyleForDefinedFont)
-                    return (IIfcTextStyleForDefinedFont)TextCharacterAppearance;
-                else
-                    return null;
+                return TextCharacterAppearance as IIfcTextStyleForDefinedFont;
 				//##
 			} 
+			set
+			{
+				//## Handle setting of TextCharacterAppearance for which no match was found
+                TextCharacterAppearance = value as IfcCharacterStyleSelect; ;
+				//##
+				
+			}
 		}
 		IIfcTextStyleTextModel IIfcTextStyle.TextStyle 
 		{ 
 			get
 			{
 				//## Handle return of TextStyle for which no match was found
-                if (this.TextStyle is Xbim.Ifc2x3.PresentationAppearanceResource.IfcTextStyleTextModel)
-                    return (IIfcTextStyleTextModel)TextCharacterAppearance;
-                else
-                    return null;
+                return TextStyle as IIfcTextStyleTextModel;
 				//##
 			} 
+			set
+			{
+				//## Handle setting of TextStyle for which no match was found
+				TextStyle = value as IfcTextStyleSelect;
+				//##
+				
+			}
 		}
 		IIfcTextFontSelect IIfcTextStyle.TextFontStyle 
 		{ 
@@ -53,15 +61,42 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					return ifcexternallydefinedtextfont;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					TextFontStyle = null;
+					return;
+				}	
+				var ifcexternallydefinedtextfont = value as PresentationResource.IfcExternallyDefinedTextFont;
+				if (ifcexternallydefinedtextfont != null) 
+				{
+					TextFontStyle = ifcexternallydefinedtextfont;
+					return;
+				}
+				var ifcpredefinedtextfont = value as PresentationResource.IfcPreDefinedTextFont;
+				if (ifcpredefinedtextfont != null) 
+				{
+					TextFontStyle = ifcpredefinedtextfont;
+					return;
+				}
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcBoolean? _modelOrDraughting;
+
 		Ifc4.MeasureResource.IfcBoolean? IIfcTextStyle.ModelOrDraughting 
 		{ 
 			get
 			{
-				//## Handle return of ModelOrDraughting for which no match was found
-                return null;
-				//##
+				return _modelOrDraughting;
 			} 
+			set
+			{
+				SetValue(v => _modelOrDraughting = v, _modelOrDraughting, value, "ModelOrDraughting", byte.MaxValue);
+				
+			}
 		}
 	//## Custom code
 	//##

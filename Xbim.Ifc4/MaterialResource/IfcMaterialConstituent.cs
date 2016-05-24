@@ -26,11 +26,11 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialConstituent : IIfcMaterialDefinition
 	{
-		IfcLabel? @Name { get; }
-		IfcText? @Description { get; }
-		IIfcMaterial @Material { get; }
-		IfcNormalisedRatioMeasure? @Fraction { get; }
-		IfcLabel? @Category { get; }
+		IfcLabel? @Name { get;  set; }
+		IfcText? @Description { get;  set; }
+		IIfcMaterial @Material { get;  set; }
+		IfcNormalisedRatioMeasure? @Fraction { get;  set; }
+		IfcLabel? @Category { get;  set; }
 		IIfcMaterialConstituentSet @ToMaterialConstituentSet {  get; }
 	
 	}
@@ -43,11 +43,32 @@ namespace Xbim.Ifc4.MaterialResource
 	public  partial class @IfcMaterialConstituent : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialConstituent, IContainsEntityReferences, IEquatable<@IfcMaterialConstituent>
 	{
 		#region IIfcMaterialConstituent explicit implementation
-		IfcLabel? IIfcMaterialConstituent.Name { get { return @Name; } }	
-		IfcText? IIfcMaterialConstituent.Description { get { return @Description; } }	
-		IIfcMaterial IIfcMaterialConstituent.Material { get { return @Material; } }	
-		IfcNormalisedRatioMeasure? IIfcMaterialConstituent.Fraction { get { return @Fraction; } }	
-		IfcLabel? IIfcMaterialConstituent.Category { get { return @Category; } }	
+		IfcLabel? IIfcMaterialConstituent.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcMaterialConstituent.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IIfcMaterial IIfcMaterialConstituent.Material { 
+			get { return @Material; } 
+ 
+ 
+			set { Material = value as IfcMaterial;}
+		}	
+		IfcNormalisedRatioMeasure? IIfcMaterialConstituent.Fraction { 
+			get { return @Fraction; } 
+ 
+			set { Fraction = value;}
+		}	
+		IfcLabel? IIfcMaterialConstituent.Category { 
+			get { return @Category; } 
+ 
+			set { Category = value;}
+		}	
 		 
 		IIfcMaterialConstituentSet IIfcMaterialConstituent.ToMaterialConstituentSet {  get { return @ToMaterialConstituentSet; } }
 		#endregion

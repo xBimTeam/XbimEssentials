@@ -26,8 +26,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcChamferEdgeFeature : IIfcEdgeFeature
 	{
-		IfcPositiveLengthMeasure? @Width { get; }
-		IfcPositiveLengthMeasure? @Height { get; }
+		IfcPositiveLengthMeasure? @Width { get;  set; }
+		IfcPositiveLengthMeasure? @Height { get;  set; }
 	
 	}
 }
@@ -39,8 +39,16 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 	public  partial class @IfcChamferEdgeFeature : IfcEdgeFeature, IInstantiableEntity, IIfcChamferEdgeFeature, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcChamferEdgeFeature>
 	{
 		#region IIfcChamferEdgeFeature explicit implementation
-		IfcPositiveLengthMeasure? IIfcChamferEdgeFeature.Width { get { return @Width; } }	
-		IfcPositiveLengthMeasure? IIfcChamferEdgeFeature.Height { get { return @Height; } }	
+		IfcPositiveLengthMeasure? IIfcChamferEdgeFeature.Width { 
+			get { return @Width; } 
+ 
+			set { Width = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcChamferEdgeFeature.Height { 
+			get { return @Height; } 
+ 
+			set { Height = value;}
+		}	
 		 
 		#endregion
 

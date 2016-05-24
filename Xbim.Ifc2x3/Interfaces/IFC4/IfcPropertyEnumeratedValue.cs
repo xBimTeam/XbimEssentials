@@ -225,6 +225,11 @@ namespace Xbim.Ifc2x3.PropertyResource
 			{
 				return EnumerationReference;
 			} 
+			set
+			{
+				EnumerationReference = value as IfcPropertyEnumeration;
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 
 		{ 

@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcLightFixture : IIfcFlowTerminal
 	{
-		IfcLightFixtureTypeEnum? @PredefinedType { get; }
+		IfcLightFixtureTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.ElectricalDomain
 	public  partial class @IfcLightFixture : IfcFlowTerminal, IInstantiableEntity, IIfcLightFixture, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcLightFixture>
 	{
 		#region IIfcLightFixture explicit implementation
-		IfcLightFixtureTypeEnum? IIfcLightFixture.PredefinedType { get { return @PredefinedType; } }	
+		IfcLightFixtureTypeEnum? IIfcLightFixture.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

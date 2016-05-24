@@ -21,8 +21,9 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			get
 			{
 				//## Handle return of Vertices for which no match was found
-                return new Xbim.Ifc2x3.Interfaces.Conversions.IfcTextureMapTransient(this).Vertices;
-				//##
+			    var map = TextureMaps.FirstOrDefault();
+			    return map == null ? Enumerable.Empty<IIfcTextureVertex>() : map.TextureVertices;
+			    //##
 			} 
 		}
 		IIfcFace IIfcTextureMap.MappedTo 
@@ -30,11 +31,20 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			get
 			{
 				//## Handle return of MappedTo for which no match was found
-                return new Xbim.Ifc2x3.Interfaces.Conversions.IfcTextureMapTransient(this).MappedTo;
+                return _mappedTo ?? new  Interfaces.Conversions.IfcFaceTransient(TextureMaps.First());;
 				//##
 			} 
+			set
+			{
+				//## Handle setting of MappedTo for which no match was found
+                SetValue(v => _mappedTo = v, _mappedTo, value, "MappedTo", byte.MaxValue);
+			    //##
+				NotifyPropertyChanged("MappedTo");
+				
+			}
 		}
 	//## Custom code
-	//##
+	    private IIfcFace _mappedTo;
+	    //##
 	}
 }

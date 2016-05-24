@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcJunctionBoxType : IIfcFlowFittingType
 	{
-		IfcJunctionBoxTypeEnum @PredefinedType { get; }
+		IfcJunctionBoxTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 	public  partial class @IfcJunctionBoxType : IfcFlowFittingType, IInstantiableEntity, IIfcJunctionBoxType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcJunctionBoxType>
 	{
 		#region IIfcJunctionBoxType explicit implementation
-		IfcJunctionBoxTypeEnum IIfcJunctionBoxType.PredefinedType { get { return @PredefinedType; } }	
+		IfcJunctionBoxTypeEnum IIfcJunctionBoxType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

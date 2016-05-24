@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSpaceType : IIfcSpatialStructureElementType
 	{
-		IfcSpaceTypeEnum @PredefinedType { get; }
-		IfcLabel? @LongName { get; }
+		IfcSpaceTypeEnum @PredefinedType { get;  set; }
+		IfcLabel? @LongName { get;  set; }
 	
 	}
 }
@@ -39,8 +39,16 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcSpaceType : IfcSpatialStructureElementType, IInstantiableEntity, IIfcSpaceType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSpaceType>
 	{
 		#region IIfcSpaceType explicit implementation
-		IfcSpaceTypeEnum IIfcSpaceType.PredefinedType { get { return @PredefinedType; } }	
-		IfcLabel? IIfcSpaceType.LongName { get { return @LongName; } }	
+		IfcSpaceTypeEnum IIfcSpaceType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
+		IfcLabel? IIfcSpaceType.LongName { 
+			get { return @LongName; } 
+ 
+			set { LongName = value;}
+		}	
 		 
 		#endregion
 

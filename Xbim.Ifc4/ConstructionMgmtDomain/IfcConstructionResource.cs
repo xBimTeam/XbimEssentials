@@ -29,9 +29,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConstructionResource : IIfcResource
 	{
-		IIfcResourceTime @Usage { get; }
+		IIfcResourceTime @Usage { get;  set; }
 		IEnumerable<IIfcAppliedValue> @BaseCosts { get; }
-		IIfcPhysicalQuantity @BaseQuantity { get; }
+		IIfcPhysicalQuantity @BaseQuantity { get;  set; }
 	
 	}
 }
@@ -43,9 +43,21 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 	public abstract partial class @IfcConstructionResource : IfcResource, IIfcConstructionResource, IEquatable<@IfcConstructionResource>
 	{
 		#region IIfcConstructionResource explicit implementation
-		IIfcResourceTime IIfcConstructionResource.Usage { get { return @Usage; } }	
-		IEnumerable<IIfcAppliedValue> IIfcConstructionResource.BaseCosts { get { return @BaseCosts; } }	
-		IIfcPhysicalQuantity IIfcConstructionResource.BaseQuantity { get { return @BaseQuantity; } }	
+		IIfcResourceTime IIfcConstructionResource.Usage { 
+			get { return @Usage; } 
+ 
+ 
+			set { Usage = value as IfcResourceTime;}
+		}	
+		IEnumerable<IIfcAppliedValue> IIfcConstructionResource.BaseCosts { 
+			get { return @BaseCosts; } 
+		}	
+		IIfcPhysicalQuantity IIfcConstructionResource.BaseQuantity { 
+			get { return @BaseQuantity; } 
+ 
+ 
+			set { BaseQuantity = value as IfcPhysicalQuantity;}
+		}	
 		 
 		#endregion
 

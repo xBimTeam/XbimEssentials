@@ -26,15 +26,15 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcOpticalMaterialProperties : IIfcMaterialProperties
 	{
-		IfcPositiveRatioMeasure? @VisibleTransmittance { get; }
-		IfcPositiveRatioMeasure? @SolarTransmittance { get; }
-		IfcPositiveRatioMeasure? @ThermalIrTransmittance { get; }
-		IfcPositiveRatioMeasure? @ThermalIrEmissivityBack { get; }
-		IfcPositiveRatioMeasure? @ThermalIrEmissivityFront { get; }
-		IfcPositiveRatioMeasure? @VisibleReflectanceBack { get; }
-		IfcPositiveRatioMeasure? @VisibleReflectanceFront { get; }
-		IfcPositiveRatioMeasure? @SolarReflectanceFront { get; }
-		IfcPositiveRatioMeasure? @SolarReflectanceBack { get; }
+		IfcPositiveRatioMeasure? @VisibleTransmittance { get;  set; }
+		IfcPositiveRatioMeasure? @SolarTransmittance { get;  set; }
+		IfcPositiveRatioMeasure? @ThermalIrTransmittance { get;  set; }
+		IfcPositiveRatioMeasure? @ThermalIrEmissivityBack { get;  set; }
+		IfcPositiveRatioMeasure? @ThermalIrEmissivityFront { get;  set; }
+		IfcPositiveRatioMeasure? @VisibleReflectanceBack { get;  set; }
+		IfcPositiveRatioMeasure? @VisibleReflectanceFront { get;  set; }
+		IfcPositiveRatioMeasure? @SolarReflectanceFront { get;  set; }
+		IfcPositiveRatioMeasure? @SolarReflectanceBack { get;  set; }
 	
 	}
 }
@@ -46,15 +46,51 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	public  partial class @IfcOpticalMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcOpticalMaterialProperties, IContainsEntityReferences, IEquatable<@IfcOpticalMaterialProperties>
 	{
 		#region IIfcOpticalMaterialProperties explicit implementation
-		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.VisibleTransmittance { get { return @VisibleTransmittance; } }	
-		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.SolarTransmittance { get { return @SolarTransmittance; } }	
-		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.ThermalIrTransmittance { get { return @ThermalIrTransmittance; } }	
-		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.ThermalIrEmissivityBack { get { return @ThermalIrEmissivityBack; } }	
-		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.ThermalIrEmissivityFront { get { return @ThermalIrEmissivityFront; } }	
-		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.VisibleReflectanceBack { get { return @VisibleReflectanceBack; } }	
-		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.VisibleReflectanceFront { get { return @VisibleReflectanceFront; } }	
-		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.SolarReflectanceFront { get { return @SolarReflectanceFront; } }	
-		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.SolarReflectanceBack { get { return @SolarReflectanceBack; } }	
+		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.VisibleTransmittance { 
+			get { return @VisibleTransmittance; } 
+ 
+			set { VisibleTransmittance = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.SolarTransmittance { 
+			get { return @SolarTransmittance; } 
+ 
+			set { SolarTransmittance = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.ThermalIrTransmittance { 
+			get { return @ThermalIrTransmittance; } 
+ 
+			set { ThermalIrTransmittance = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.ThermalIrEmissivityBack { 
+			get { return @ThermalIrEmissivityBack; } 
+ 
+			set { ThermalIrEmissivityBack = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.ThermalIrEmissivityFront { 
+			get { return @ThermalIrEmissivityFront; } 
+ 
+			set { ThermalIrEmissivityFront = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.VisibleReflectanceBack { 
+			get { return @VisibleReflectanceBack; } 
+ 
+			set { VisibleReflectanceBack = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.VisibleReflectanceFront { 
+			get { return @VisibleReflectanceFront; } 
+ 
+			set { VisibleReflectanceFront = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.SolarReflectanceFront { 
+			get { return @SolarReflectanceFront; } 
+ 
+			set { SolarReflectanceFront = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.SolarReflectanceBack { 
+			get { return @SolarReflectanceBack; } 
+ 
+			set { SolarReflectanceBack = value;}
+		}	
 		 
 		#endregion
 

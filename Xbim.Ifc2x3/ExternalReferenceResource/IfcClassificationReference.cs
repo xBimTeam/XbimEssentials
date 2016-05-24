@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcClassificationReference : IIfcExternalReference, IfcClassificationNotationSelect
 	{
-		IIfcClassification @ReferencedSource { get; }
+		IIfcClassification @ReferencedSource { get;  set; }
 	
 	}
 }
@@ -37,7 +37,12 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 	public  partial class @IfcClassificationReference : IfcExternalReference, IInstantiableEntity, IIfcClassificationReference, IContainsEntityReferences, IEquatable<@IfcClassificationReference>
 	{
 		#region IIfcClassificationReference explicit implementation
-		IIfcClassification IIfcClassificationReference.ReferencedSource { get { return @ReferencedSource; } }	
+		IIfcClassification IIfcClassificationReference.ReferencedSource { 
+			get { return @ReferencedSource; } 
+ 
+ 
+			set { ReferencedSource = value as IfcClassification;}
+		}	
 		 
 		#endregion
 

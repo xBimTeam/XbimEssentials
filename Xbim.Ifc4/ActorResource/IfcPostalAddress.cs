@@ -26,13 +26,13 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPostalAddress : IIfcAddress
 	{
-		IfcLabel? @InternalLocation { get; }
+		IfcLabel? @InternalLocation { get;  set; }
 		IEnumerable<IfcLabel> @AddressLines { get; }
-		IfcLabel? @PostalBox { get; }
-		IfcLabel? @Town { get; }
-		IfcLabel? @Region { get; }
-		IfcLabel? @PostalCode { get; }
-		IfcLabel? @Country { get; }
+		IfcLabel? @PostalBox { get;  set; }
+		IfcLabel? @Town { get;  set; }
+		IfcLabel? @Region { get;  set; }
+		IfcLabel? @PostalCode { get;  set; }
+		IfcLabel? @Country { get;  set; }
 	
 	}
 }
@@ -44,13 +44,39 @@ namespace Xbim.Ifc4.ActorResource
 	public  partial class @IfcPostalAddress : IfcAddress, IInstantiableEntity, IIfcPostalAddress, IEquatable<@IfcPostalAddress>
 	{
 		#region IIfcPostalAddress explicit implementation
-		IfcLabel? IIfcPostalAddress.InternalLocation { get { return @InternalLocation; } }	
-		IEnumerable<IfcLabel> IIfcPostalAddress.AddressLines { get { return @AddressLines; } }	
-		IfcLabel? IIfcPostalAddress.PostalBox { get { return @PostalBox; } }	
-		IfcLabel? IIfcPostalAddress.Town { get { return @Town; } }	
-		IfcLabel? IIfcPostalAddress.Region { get { return @Region; } }	
-		IfcLabel? IIfcPostalAddress.PostalCode { get { return @PostalCode; } }	
-		IfcLabel? IIfcPostalAddress.Country { get { return @Country; } }	
+		IfcLabel? IIfcPostalAddress.InternalLocation { 
+			get { return @InternalLocation; } 
+ 
+			set { InternalLocation = value;}
+		}	
+		IEnumerable<IfcLabel> IIfcPostalAddress.AddressLines { 
+			get { return @AddressLines; } 
+		}	
+		IfcLabel? IIfcPostalAddress.PostalBox { 
+			get { return @PostalBox; } 
+ 
+			set { PostalBox = value;}
+		}	
+		IfcLabel? IIfcPostalAddress.Town { 
+			get { return @Town; } 
+ 
+			set { Town = value;}
+		}	
+		IfcLabel? IIfcPostalAddress.Region { 
+			get { return @Region; } 
+ 
+			set { Region = value;}
+		}	
+		IfcLabel? IIfcPostalAddress.PostalCode { 
+			get { return @PostalCode; } 
+ 
+			set { PostalCode = value;}
+		}	
+		IfcLabel? IIfcPostalAddress.Country { 
+			get { return @Country; } 
+ 
+			set { Country = value;}
+		}	
 		 
 		#endregion
 

@@ -26,9 +26,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPointOnSurface : IIfcPoint
 	{
-		IIfcSurface @BasisSurface { get; }
-		IfcParameterValue @PointParameterU { get; }
-		IfcParameterValue @PointParameterV { get; }
+		IIfcSurface @BasisSurface { get;  set; }
+		IfcParameterValue @PointParameterU { get;  set; }
+		IfcParameterValue @PointParameterV { get;  set; }
 	
 	}
 }
@@ -40,9 +40,22 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcPointOnSurface : IfcPoint, IInstantiableEntity, IIfcPointOnSurface, IContainsEntityReferences, IEquatable<@IfcPointOnSurface>
 	{
 		#region IIfcPointOnSurface explicit implementation
-		IIfcSurface IIfcPointOnSurface.BasisSurface { get { return @BasisSurface; } }	
-		IfcParameterValue IIfcPointOnSurface.PointParameterU { get { return @PointParameterU; } }	
-		IfcParameterValue IIfcPointOnSurface.PointParameterV { get { return @PointParameterV; } }	
+		IIfcSurface IIfcPointOnSurface.BasisSurface { 
+			get { return @BasisSurface; } 
+ 
+ 
+			set { BasisSurface = value as IfcSurface;}
+		}	
+		IfcParameterValue IIfcPointOnSurface.PointParameterU { 
+			get { return @PointParameterU; } 
+ 
+			set { PointParameterU = value;}
+		}	
+		IfcParameterValue IIfcPointOnSurface.PointParameterV { 
+			get { return @PointParameterV; } 
+ 
+			set { PointParameterV = value;}
+		}	
 		 
 		#endregion
 

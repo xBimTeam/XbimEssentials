@@ -29,9 +29,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcOrganization : IPersistEntity, IfcActorSelect, IfcObjectReferenceSelect
 	{
-		IfcIdentifier? @Id { get; }
-		IfcLabel @Name { get; }
-		IfcText? @Description { get; }
+		IfcIdentifier? @Id { get;  set; }
+		IfcLabel @Name { get;  set; }
+		IfcText? @Description { get;  set; }
 		IEnumerable<IIfcActorRole> @Roles { get; }
 		IEnumerable<IIfcAddress> @Addresses { get; }
 		IEnumerable<IIfcOrganizationRelationship> @IsRelatedBy {  get; }
@@ -48,11 +48,27 @@ namespace Xbim.Ifc2x3.ActorResource
 	public  partial class @IfcOrganization : INotifyPropertyChanged, IInstantiableEntity, IIfcOrganization, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcOrganization>
 	{
 		#region IIfcOrganization explicit implementation
-		IfcIdentifier? IIfcOrganization.Id { get { return @Id; } }	
-		IfcLabel IIfcOrganization.Name { get { return @Name; } }	
-		IfcText? IIfcOrganization.Description { get { return @Description; } }	
-		IEnumerable<IIfcActorRole> IIfcOrganization.Roles { get { return @Roles; } }	
-		IEnumerable<IIfcAddress> IIfcOrganization.Addresses { get { return @Addresses; } }	
+		IfcIdentifier? IIfcOrganization.Id { 
+			get { return @Id; } 
+ 
+			set { Id = value;}
+		}	
+		IfcLabel IIfcOrganization.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcOrganization.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IEnumerable<IIfcActorRole> IIfcOrganization.Roles { 
+			get { return @Roles; } 
+		}	
+		IEnumerable<IIfcAddress> IIfcOrganization.Addresses { 
+			get { return @Addresses; } 
+		}	
 		 
 		IEnumerable<IIfcOrganizationRelationship> IIfcOrganization.IsRelatedBy {  get { return @IsRelatedBy; } }
 		IEnumerable<IIfcOrganizationRelationship> IIfcOrganization.Relates {  get { return @Relates; } }

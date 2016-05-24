@@ -53,6 +53,8 @@ namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 						return Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.WCSEAT;
 					
 					case IfcSanitaryTerminalTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.USERDEFINED;
 					
 					case IfcSanitaryTerminalTypeEnum.NOTDEFINED:
@@ -63,6 +65,64 @@ namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.BATH:
+						PredefinedType = IfcSanitaryTerminalTypeEnum.BATH;
+						return;
+					
+					case Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.BIDET:
+						PredefinedType = IfcSanitaryTerminalTypeEnum.BIDET;
+						return;
+					
+					case Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.CISTERN:
+						PredefinedType = IfcSanitaryTerminalTypeEnum.CISTERN;
+						return;
+					
+					case Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.SHOWER:
+						PredefinedType = IfcSanitaryTerminalTypeEnum.SHOWER;
+						return;
+					
+					case Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.SINK:
+						PredefinedType = IfcSanitaryTerminalTypeEnum.SINK;
+						return;
+					
+					case Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.SANITARYFOUNTAIN:
+						PredefinedType = IfcSanitaryTerminalTypeEnum.SANITARYFOUNTAIN;
+						return;
+					
+					case Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.TOILETPAN:
+						PredefinedType = IfcSanitaryTerminalTypeEnum.TOILETPAN;
+						return;
+					
+					case Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.URINAL:
+						PredefinedType = IfcSanitaryTerminalTypeEnum.URINAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.WASHHANDBASIN:
+						PredefinedType = IfcSanitaryTerminalTypeEnum.WASHHANDBASIN;
+						return;
+					
+					case Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.WCSEAT:
+						PredefinedType = IfcSanitaryTerminalTypeEnum.WCSEAT;
+						return;
+					
+					case Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.USERDEFINED:
+						PredefinedType = IfcSanitaryTerminalTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.NOTDEFINED:
+						PredefinedType = IfcSanitaryTerminalTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

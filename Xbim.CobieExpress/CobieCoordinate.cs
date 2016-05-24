@@ -25,14 +25,14 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieCoordinate : ICobieReferencedObject
 	{
-		string @Name { get; }
-		CoordinateTypeEnum? @CoordinateType { get; }
-		double @X { get; }
-		double @Y { get; }
-		double @Z { get; }
-		double? @RotationX { get; }
-		double? @RotationY { get; }
-		double? @RotationZ { get; }
+		string @Name { get;  set; }
+		CoordinateTypeEnum? @CoordinateType { get;  set; }
+		double @X { get;  set; }
+		double @Y { get;  set; }
+		double @Z { get;  set; }
+		double? @RotationX { get;  set; }
+		double? @RotationY { get;  set; }
+		double? @RotationZ { get;  set; }
 	
 	}
 }
@@ -44,14 +44,46 @@ namespace Xbim.CobieExpress
 	public  partial class @CobieCoordinate : CobieReferencedObject, IInstantiableEntity, ICobieCoordinate, IContainsEntityReferences, IEquatable<@CobieCoordinate>
 	{
 		#region ICobieCoordinate explicit implementation
-		string ICobieCoordinate.Name { get { return @Name; } }	
-		CoordinateTypeEnum? ICobieCoordinate.CoordinateType { get { return @CoordinateType; } }	
-		double ICobieCoordinate.X { get { return @X; } }	
-		double ICobieCoordinate.Y { get { return @Y; } }	
-		double ICobieCoordinate.Z { get { return @Z; } }	
-		double? ICobieCoordinate.RotationX { get { return @RotationX; } }	
-		double? ICobieCoordinate.RotationY { get { return @RotationY; } }	
-		double? ICobieCoordinate.RotationZ { get { return @RotationZ; } }	
+		string ICobieCoordinate.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		CoordinateTypeEnum? ICobieCoordinate.CoordinateType { 
+			get { return @CoordinateType; } 
+ 
+			set { CoordinateType = value;}
+		}	
+		double ICobieCoordinate.X { 
+			get { return @X; } 
+ 
+			set { X = value;}
+		}	
+		double ICobieCoordinate.Y { 
+			get { return @Y; } 
+ 
+			set { Y = value;}
+		}	
+		double ICobieCoordinate.Z { 
+			get { return @Z; } 
+ 
+			set { Z = value;}
+		}	
+		double? ICobieCoordinate.RotationX { 
+			get { return @RotationX; } 
+ 
+			set { RotationX = value;}
+		}	
+		double? ICobieCoordinate.RotationY { 
+			get { return @RotationY; } 
+ 
+			set { RotationY = value;}
+		}	
+		double? ICobieCoordinate.RotationZ { 
+			get { return @RotationZ; } 
+ 
+			set { RotationZ = value;}
+		}	
 		 
 		#endregion
 

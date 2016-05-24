@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRoundedEdgeFeature : IIfcEdgeFeature
 	{
-		IfcPositiveLengthMeasure? @Radius { get; }
+		IfcPositiveLengthMeasure? @Radius { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 	public  partial class @IfcRoundedEdgeFeature : IfcEdgeFeature, IInstantiableEntity, IIfcRoundedEdgeFeature, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRoundedEdgeFeature>
 	{
 		#region IIfcRoundedEdgeFeature explicit implementation
-		IfcPositiveLengthMeasure? IIfcRoundedEdgeFeature.Radius { get { return @Radius; } }	
+		IfcPositiveLengthMeasure? IIfcRoundedEdgeFeature.Radius { 
+			get { return @Radius; } 
+ 
+			set { Radius = value;}
+		}	
 		 
 		#endregion
 

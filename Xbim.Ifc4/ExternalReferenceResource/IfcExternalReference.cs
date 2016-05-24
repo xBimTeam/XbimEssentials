@@ -30,9 +30,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcExternalReference : IPersistEntity, IfcLightDistributionDataSourceSelect, IfcObjectReferenceSelect, IfcResourceObjectSelect
 	{
-		IfcURIReference? @Location { get; }
-		IfcIdentifier? @Identification { get; }
-		IfcLabel? @Name { get; }
+		IfcURIReference? @Location { get;  set; }
+		IfcIdentifier? @Identification { get;  set; }
+		IfcLabel? @Name { get;  set; }
 		IEnumerable<IIfcExternalReferenceRelationship> @ExternalReferenceForResources {  get; }
 	
 	}
@@ -45,9 +45,21 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 	public abstract partial class @IfcExternalReference : IPersistEntity, INotifyPropertyChanged, IIfcExternalReference, IEquatable<@IfcExternalReference>
 	{
 		#region IIfcExternalReference explicit implementation
-		IfcURIReference? IIfcExternalReference.Location { get { return @Location; } }	
-		IfcIdentifier? IIfcExternalReference.Identification { get { return @Identification; } }	
-		IfcLabel? IIfcExternalReference.Name { get { return @Name; } }	
+		IfcURIReference? IIfcExternalReference.Location { 
+			get { return @Location; } 
+ 
+			set { Location = value;}
+		}	
+		IfcIdentifier? IIfcExternalReference.Identification { 
+			get { return @Identification; } 
+ 
+			set { Identification = value;}
+		}	
+		IfcLabel? IIfcExternalReference.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
 		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcExternalReference.ExternalReferenceForResources {  get { return @ExternalReferenceForResources; } }
 		#endregion

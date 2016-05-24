@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Xbim.Ifc2x3.GeometryResource;
 using Xbim.Ifc4.MeasureResource;
 
 namespace Xbim.Ifc2x3.Interfaces.Conversions
 {
-    internal class IfcFaceBoundTransient : PersistEntityTransient, Xbim.Ifc4.Interfaces.IIfcFaceBound
+    internal class IfcFaceBoundTransient : PersistEntityTransient, Ifc4.Interfaces.IIfcFaceBound
     {
-        IfcPolyLoopTransient _polyLoop;
+        readonly IfcPolyLoopTransient _polyLoop;
         public IfcFaceBoundTransient(IEnumerable<IfcCartesianPoint> points)
         {
             _polyLoop = new IfcPolyLoopTransient(points);
@@ -18,11 +17,13 @@ namespace Xbim.Ifc2x3.Interfaces.Conversions
         public Ifc4.Interfaces.IIfcLoop Bound
         {
             get { return _polyLoop; }
+            set { throw new NotSupportedException();}
         }
 
         public IfcBoolean Orientation
         {
             get { return true; }
+            set { throw new NotSupportedException(); }
         }
 
         public IEnumerable<Ifc4.Interfaces.IIfcPresentationLayerAssignment> LayerAssignment

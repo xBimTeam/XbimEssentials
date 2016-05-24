@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPlate : IIfcBuildingElement
 	{
-		IfcPlateTypeEnum? @PredefinedType { get; }
+		IfcPlateTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.SharedBldgElements
 	public  partial class @IfcPlate : IfcBuildingElement, IInstantiableEntity, IIfcPlate, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPlate>
 	{
 		#region IIfcPlate explicit implementation
-		IfcPlateTypeEnum? IIfcPlate.PredefinedType { get { return @PredefinedType; } }	
+		IfcPlateTypeEnum? IIfcPlate.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

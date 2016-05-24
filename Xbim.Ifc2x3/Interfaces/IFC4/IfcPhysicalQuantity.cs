@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.QuantityResource
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				Name = new MeasureResource.IfcLabel(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcPhysicalQuantity.Description 
 		{ 
@@ -30,6 +35,13 @@ namespace Xbim.Ifc2x3.QuantityResource
 				if (!Description.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				Description = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPhysicalQuantity.HasExternalReferences 
 		{ 

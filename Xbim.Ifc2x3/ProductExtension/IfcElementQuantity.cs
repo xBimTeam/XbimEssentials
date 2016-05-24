@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcElementQuantity : IIfcPropertySetDefinition
 	{
-		IfcLabel? @MethodOfMeasurement { get; }
+		IfcLabel? @MethodOfMeasurement { get;  set; }
 		IEnumerable<IIfcPhysicalQuantity> @Quantities { get; }
 	
 	}
@@ -41,8 +41,14 @@ namespace Xbim.Ifc2x3.ProductExtension
 	public  partial class @IfcElementQuantity : IfcPropertySetDefinition, IInstantiableEntity, IIfcElementQuantity, IContainsEntityReferences, IEquatable<@IfcElementQuantity>
 	{
 		#region IIfcElementQuantity explicit implementation
-		IfcLabel? IIfcElementQuantity.MethodOfMeasurement { get { return @MethodOfMeasurement; } }	
-		IEnumerable<IIfcPhysicalQuantity> IIfcElementQuantity.Quantities { get { return @Quantities; } }	
+		IfcLabel? IIfcElementQuantity.MethodOfMeasurement { 
+			get { return @MethodOfMeasurement; } 
+ 
+			set { MethodOfMeasurement = value;}
+		}	
+		IEnumerable<IIfcPhysicalQuantity> IIfcElementQuantity.Quantities { 
+			get { return @Quantities; } 
+		}	
 		 
 		#endregion
 

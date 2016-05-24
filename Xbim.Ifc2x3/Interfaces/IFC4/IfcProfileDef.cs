@@ -33,6 +33,24 @@ namespace Xbim.Ifc2x3.ProfileResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcProfileTypeEnum.CURVE:
+						ProfileType = IfcProfileTypeEnum.CURVE;
+						return;
+					
+					case Ifc4.Interfaces.IfcProfileTypeEnum.AREA:
+						ProfileType = IfcProfileTypeEnum.AREA;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcProfileDef.ProfileName 
 		{ 
@@ -41,6 +59,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 				if (!ProfileName.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(ProfileName.Value);
 			} 
+			set
+			{
+				ProfileName = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcProfileDef.HasExternalReference 
 		{ 

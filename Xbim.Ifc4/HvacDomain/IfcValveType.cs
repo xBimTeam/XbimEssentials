@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcValveType : IIfcFlowControllerType
 	{
-		IfcValveTypeEnum @PredefinedType { get; }
+		IfcValveTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.HvacDomain
 	public  partial class @IfcValveType : IfcFlowControllerType, IInstantiableEntity, IIfcValveType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcValveType>
 	{
 		#region IIfcValveType explicit implementation
-		IfcValveTypeEnum IIfcValveType.PredefinedType { get { return @PredefinedType; } }	
+		IfcValveTypeEnum IIfcValveType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

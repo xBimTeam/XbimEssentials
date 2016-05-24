@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcVoidingFeature : IIfcFeatureElementSubtraction
 	{
-		IfcVoidingFeatureTypeEnum? @PredefinedType { get; }
+		IfcVoidingFeatureTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 	public  partial class @IfcVoidingFeature : IfcFeatureElementSubtraction, IInstantiableEntity, IIfcVoidingFeature, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcVoidingFeature>
 	{
 		#region IIfcVoidingFeature explicit implementation
-		IfcVoidingFeatureTypeEnum? IIfcVoidingFeature.PredefinedType { get { return @PredefinedType; } }	
+		IfcVoidingFeatureTypeEnum? IIfcVoidingFeature.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

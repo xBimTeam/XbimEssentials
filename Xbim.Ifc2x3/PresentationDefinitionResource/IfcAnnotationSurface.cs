@@ -26,8 +26,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcAnnotationSurface : IIfcGeometricRepresentationItem
 	{
-		IIfcGeometricRepresentationItem @Item { get; }
-		IIfcTextureCoordinate @TextureCoordinates { get; }
+		IIfcGeometricRepresentationItem @Item { get;  set; }
+		IIfcTextureCoordinate @TextureCoordinates { get;  set; }
 	
 	}
 }
@@ -39,8 +39,18 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 	public  partial class @IfcAnnotationSurface : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcAnnotationSurface, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAnnotationSurface>
 	{
 		#region IIfcAnnotationSurface explicit implementation
-		IIfcGeometricRepresentationItem IIfcAnnotationSurface.Item { get { return @Item; } }	
-		IIfcTextureCoordinate IIfcAnnotationSurface.TextureCoordinates { get { return @TextureCoordinates; } }	
+		IIfcGeometricRepresentationItem IIfcAnnotationSurface.Item { 
+			get { return @Item; } 
+ 
+ 
+			set { Item = value as IfcGeometricRepresentationItem;}
+		}	
+		IIfcTextureCoordinate IIfcAnnotationSurface.TextureCoordinates { 
+			get { return @TextureCoordinates; } 
+ 
+ 
+			set { TextureCoordinates = value as IfcTextureCoordinate;}
+		}	
 		 
 		#endregion
 

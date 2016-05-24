@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCurveStyleFont : IIfcPresentationItem, IfcCurveStyleFontSelect
 	{
-		IfcLabel? @Name { get; }
+		IfcLabel? @Name { get;  set; }
 		IEnumerable<IIfcCurveStyleFontPattern> @PatternList { get; }
 	
 	}
@@ -40,8 +40,14 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcCurveStyleFont : IfcPresentationItem, IInstantiableEntity, IIfcCurveStyleFont, IContainsEntityReferences, IEquatable<@IfcCurveStyleFont>
 	{
 		#region IIfcCurveStyleFont explicit implementation
-		IfcLabel? IIfcCurveStyleFont.Name { get { return @Name; } }	
-		IEnumerable<IIfcCurveStyleFontPattern> IIfcCurveStyleFont.PatternList { get { return @PatternList; } }	
+		IfcLabel? IIfcCurveStyleFont.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IEnumerable<IIfcCurveStyleFontPattern> IIfcCurveStyleFont.PatternList { 
+			get { return @PatternList; } 
+		}	
 		 
 		#endregion
 

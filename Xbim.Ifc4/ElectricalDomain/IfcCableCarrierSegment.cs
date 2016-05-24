@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCableCarrierSegment : IIfcFlowSegment
 	{
-		IfcCableCarrierSegmentTypeEnum? @PredefinedType { get; }
+		IfcCableCarrierSegmentTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.ElectricalDomain
 	public  partial class @IfcCableCarrierSegment : IfcFlowSegment, IInstantiableEntity, IIfcCableCarrierSegment, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCableCarrierSegment>
 	{
 		#region IIfcCableCarrierSegment explicit implementation
-		IfcCableCarrierSegmentTypeEnum? IIfcCableCarrierSegment.PredefinedType { get { return @PredefinedType; } }	
+		IfcCableCarrierSegmentTypeEnum? IIfcCableCarrierSegment.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

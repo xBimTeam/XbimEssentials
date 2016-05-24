@@ -20,10 +20,16 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				//## Handle return of ElementType for which no match was found
-                if (!this.ElementType.HasValue) return null; else return new Xbim.Ifc4.MeasureResource.IfcLabel(this.ElementType.Value);
-				//##
+				if (!ElementType.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(ElementType.Value);
 			} 
+			set
+			{
+				ElementType = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				return RelatingProcess;
 			} 
+			set
+			{
+				RelatingProcess = value as IfcProcess;
+				
+			}
 		}
 		IIfcProcess IIfcRelSequence.RelatedProcess 
 		{ 
@@ -29,20 +34,27 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				return RelatedProcess;
 			} 
+			set
+			{
+				RelatedProcess = value as IfcProcess;
+				
+			}
 		}
 		IIfcLagTime IIfcRelSequence.TimeLag 
 		{ 
 			get
 			{
 				//## Handle return of TimeLag for which no match was found
-			    var lag = new Interfaces.Conversions.IfcLagTimeTransient
-			    {
-                    DurationType = IfcTaskDurationEnum.NOTDEFINED,
-			        LagValue = new Ifc4.DateTimeResource.IfcDuration(TimeLag.ToISODateTimeString())
-			    };
-			    return lag;
+			    return new Interfaces.Conversions.IfcLagTimeTransient(TimeLag.ToISODateTimeString());
 				//##
 			} 
+			set
+			{
+				//## Handle setting of TimeLag for which no match was found
+				throw new System.PlatformNotSupportedException();
+				//##
+				
+			}
 		}
 		Ifc4.Interfaces.IfcSequenceEnum? IIfcRelSequence.SequenceType 
 		{ 
@@ -70,6 +82,42 @@ namespace Xbim.Ifc2x3.Kernel
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcSequenceEnum.START_START:
+						SequenceType = IfcSequenceEnum.START_START;
+						return;
+					
+					case Ifc4.Interfaces.IfcSequenceEnum.START_FINISH:
+						SequenceType = IfcSequenceEnum.START_FINISH;
+						return;
+					
+					case Ifc4.Interfaces.IfcSequenceEnum.FINISH_START:
+						SequenceType = IfcSequenceEnum.FINISH_START;
+						return;
+					
+					case Ifc4.Interfaces.IfcSequenceEnum.FINISH_FINISH:
+						SequenceType = IfcSequenceEnum.FINISH_FINISH;
+						return;
+					
+					case Ifc4.Interfaces.IfcSequenceEnum.USERDEFINED:
+						//## Handle setting of USERDEFINED member from IfcSequenceEnum in property SequenceType
+						//TODO: Handle setting of USERDEFINED member from IfcSequenceEnum in property SequenceType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcSequenceEnum.NOTDEFINED:
+						SequenceType = IfcSequenceEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcRelSequence.UserDefinedSequenceType 
 		{ 
@@ -79,6 +127,14 @@ namespace Xbim.Ifc2x3.Kernel
                 return null;
 				//##
 			} 
+			set
+			{
+				//## Handle setting of UserDefinedSequenceType for which no match was found
+                throw new System.PlatformNotSupportedException();
+				//##
+				NotifyPropertyChanged("UserDefinedSequenceType");
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCircleProfileDef : IIfcParameterizedProfileDef
 	{
-		IfcPositiveLengthMeasure @Radius { get; }
+		IfcPositiveLengthMeasure @Radius { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.ProfileResource
 	public  partial class @IfcCircleProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCircleProfileDef, IContainsEntityReferences, IEquatable<@IfcCircleProfileDef>
 	{
 		#region IIfcCircleProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcCircleProfileDef.Radius { get { return @Radius; } }	
+		IfcPositiveLengthMeasure IIfcCircleProfileDef.Radius { 
+			get { return @Radius; } 
+ 
+			set { Radius = value;}
+		}	
 		 
 		#endregion
 

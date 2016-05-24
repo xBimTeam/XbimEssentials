@@ -29,14 +29,14 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcOwnerHistory : IPersistEntity
 	{
-		IIfcPersonAndOrganization @OwningUser { get; }
-		IIfcApplication @OwningApplication { get; }
-		IfcStateEnum? @State { get; }
-		IfcChangeActionEnum @ChangeAction { get; }
-		IfcTimeStamp? @LastModifiedDate { get; }
-		IIfcPersonAndOrganization @LastModifyingUser { get; }
-		IIfcApplication @LastModifyingApplication { get; }
-		IfcTimeStamp @CreationDate { get; }
+		IIfcPersonAndOrganization @OwningUser { get;  set; }
+		IIfcApplication @OwningApplication { get;  set; }
+		IfcStateEnum? @State { get;  set; }
+		IfcChangeActionEnum @ChangeAction { get;  set; }
+		IfcTimeStamp? @LastModifiedDate { get;  set; }
+		IIfcPersonAndOrganization @LastModifyingUser { get;  set; }
+		IIfcApplication @LastModifyingApplication { get;  set; }
+		IfcTimeStamp @CreationDate { get;  set; }
 	
 	}
 }
@@ -48,14 +48,50 @@ namespace Xbim.Ifc2x3.UtilityResource
 	public  partial class @IfcOwnerHistory : INotifyPropertyChanged, IInstantiableEntity, IIfcOwnerHistory, IContainsEntityReferences, IEquatable<@IfcOwnerHistory>
 	{
 		#region IIfcOwnerHistory explicit implementation
-		IIfcPersonAndOrganization IIfcOwnerHistory.OwningUser { get { return @OwningUser; } }	
-		IIfcApplication IIfcOwnerHistory.OwningApplication { get { return @OwningApplication; } }	
-		IfcStateEnum? IIfcOwnerHistory.State { get { return @State; } }	
-		IfcChangeActionEnum IIfcOwnerHistory.ChangeAction { get { return @ChangeAction; } }	
-		IfcTimeStamp? IIfcOwnerHistory.LastModifiedDate { get { return @LastModifiedDate; } }	
-		IIfcPersonAndOrganization IIfcOwnerHistory.LastModifyingUser { get { return @LastModifyingUser; } }	
-		IIfcApplication IIfcOwnerHistory.LastModifyingApplication { get { return @LastModifyingApplication; } }	
-		IfcTimeStamp IIfcOwnerHistory.CreationDate { get { return @CreationDate; } }	
+		IIfcPersonAndOrganization IIfcOwnerHistory.OwningUser { 
+			get { return @OwningUser; } 
+ 
+ 
+			set { OwningUser = value as IfcPersonAndOrganization;}
+		}	
+		IIfcApplication IIfcOwnerHistory.OwningApplication { 
+			get { return @OwningApplication; } 
+ 
+ 
+			set { OwningApplication = value as IfcApplication;}
+		}	
+		IfcStateEnum? IIfcOwnerHistory.State { 
+			get { return @State; } 
+ 
+			set { State = value;}
+		}	
+		IfcChangeActionEnum IIfcOwnerHistory.ChangeAction { 
+			get { return @ChangeAction; } 
+ 
+			set { ChangeAction = value;}
+		}	
+		IfcTimeStamp? IIfcOwnerHistory.LastModifiedDate { 
+			get { return @LastModifiedDate; } 
+ 
+			set { LastModifiedDate = value;}
+		}	
+		IIfcPersonAndOrganization IIfcOwnerHistory.LastModifyingUser { 
+			get { return @LastModifyingUser; } 
+ 
+ 
+			set { LastModifyingUser = value as IfcPersonAndOrganization;}
+		}	
+		IIfcApplication IIfcOwnerHistory.LastModifyingApplication { 
+			get { return @LastModifyingApplication; } 
+ 
+ 
+			set { LastModifyingApplication = value as IfcApplication;}
+		}	
+		IfcTimeStamp IIfcOwnerHistory.CreationDate { 
+			get { return @CreationDate; } 
+ 
+			set { CreationDate = value;}
+		}	
 		 
 		#endregion
 

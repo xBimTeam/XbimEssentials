@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRightCircularCylinder : IIfcCsgPrimitive3D
 	{
-		IfcPositiveLengthMeasure @Height { get; }
-		IfcPositiveLengthMeasure @Radius { get; }
+		IfcPositiveLengthMeasure @Height { get;  set; }
+		IfcPositiveLengthMeasure @Radius { get;  set; }
 	
 	}
 }
@@ -39,8 +39,16 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public  partial class @IfcRightCircularCylinder : IfcCsgPrimitive3D, IInstantiableEntity, IIfcRightCircularCylinder, IContainsEntityReferences, IEquatable<@IfcRightCircularCylinder>
 	{
 		#region IIfcRightCircularCylinder explicit implementation
-		IfcPositiveLengthMeasure IIfcRightCircularCylinder.Height { get { return @Height; } }	
-		IfcPositiveLengthMeasure IIfcRightCircularCylinder.Radius { get { return @Radius; } }	
+		IfcPositiveLengthMeasure IIfcRightCircularCylinder.Height { 
+			get { return @Height; } 
+ 
+			set { Height = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcRightCircularCylinder.Radius { 
+			get { return @Radius; } 
+ 
+			set { Radius = value;}
+		}	
 		 
 		#endregion
 

@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTypeObject : IIfcObjectDefinition
 	{
-		IfcIdentifier? @ApplicableOccurrence { get; }
+		IfcIdentifier? @ApplicableOccurrence { get;  set; }
 		IEnumerable<IIfcPropertySetDefinition> @HasPropertySets { get; }
 		IEnumerable<IIfcRelDefinesByType> @Types {  get; }
 	
@@ -40,8 +40,14 @@ namespace Xbim.Ifc4.Kernel
 	public  partial class @IfcTypeObject : IfcObjectDefinition, IInstantiableEntity, IIfcTypeObject, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTypeObject>
 	{
 		#region IIfcTypeObject explicit implementation
-		IfcIdentifier? IIfcTypeObject.ApplicableOccurrence { get { return @ApplicableOccurrence; } }	
-		IEnumerable<IIfcPropertySetDefinition> IIfcTypeObject.HasPropertySets { get { return @HasPropertySets; } }	
+		IfcIdentifier? IIfcTypeObject.ApplicableOccurrence { 
+			get { return @ApplicableOccurrence; } 
+ 
+			set { ApplicableOccurrence = value;}
+		}	
+		IEnumerable<IIfcPropertySetDefinition> IIfcTypeObject.HasPropertySets { 
+			get { return @HasPropertySets; } 
+		}	
 		 
 		IEnumerable<IIfcRelDefinesByType> IIfcTypeObject.Types {  get { return @Types; } }
 		#endregion

@@ -56,6 +56,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 						return Ifc4.Interfaces.IfcDamperTypeEnum.FUMEHOODEXHAUST;
 					
 					case IfcDamperTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcDamperTypeEnum.USERDEFINED;
 					
 					case IfcDamperTypeEnum.NOTDEFINED:
@@ -66,6 +68,68 @@ namespace Xbim.Ifc2x3.HVACDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcDamperTypeEnum.BACKDRAFTDAMPER:
+						PredefinedType = IfcDamperTypeEnum.BACKDRAFTDAMPER;
+						return;
+					
+					case Ifc4.Interfaces.IfcDamperTypeEnum.BALANCINGDAMPER:
+						PredefinedType = IfcDamperTypeEnum.BALANCINGDAMPER;
+						return;
+					
+					case Ifc4.Interfaces.IfcDamperTypeEnum.BLASTDAMPER:
+						PredefinedType = IfcDamperTypeEnum.BLASTDAMPER;
+						return;
+					
+					case Ifc4.Interfaces.IfcDamperTypeEnum.CONTROLDAMPER:
+						PredefinedType = IfcDamperTypeEnum.CONTROLDAMPER;
+						return;
+					
+					case Ifc4.Interfaces.IfcDamperTypeEnum.FIREDAMPER:
+						PredefinedType = IfcDamperTypeEnum.FIREDAMPER;
+						return;
+					
+					case Ifc4.Interfaces.IfcDamperTypeEnum.FIRESMOKEDAMPER:
+						PredefinedType = IfcDamperTypeEnum.FIRESMOKEDAMPER;
+						return;
+					
+					case Ifc4.Interfaces.IfcDamperTypeEnum.FUMEHOODEXHAUST:
+						PredefinedType = IfcDamperTypeEnum.FUMEHOODEXHAUST;
+						return;
+					
+					case Ifc4.Interfaces.IfcDamperTypeEnum.GRAVITYDAMPER:
+						PredefinedType = IfcDamperTypeEnum.GRAVITYDAMPER;
+						return;
+					
+					case Ifc4.Interfaces.IfcDamperTypeEnum.GRAVITYRELIEFDAMPER:
+						PredefinedType = IfcDamperTypeEnum.GRAVITYRELIEFDAMPER;
+						return;
+					
+					case Ifc4.Interfaces.IfcDamperTypeEnum.RELIEFDAMPER:
+						PredefinedType = IfcDamperTypeEnum.RELIEFDAMPER;
+						return;
+					
+					case Ifc4.Interfaces.IfcDamperTypeEnum.SMOKEDAMPER:
+						PredefinedType = IfcDamperTypeEnum.SMOKEDAMPER;
+						return;
+					
+					case Ifc4.Interfaces.IfcDamperTypeEnum.USERDEFINED:
+						PredefinedType = IfcDamperTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcDamperTypeEnum.NOTDEFINED:
+						PredefinedType = IfcDamperTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

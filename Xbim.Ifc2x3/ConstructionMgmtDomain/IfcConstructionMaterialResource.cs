@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcConstructionMaterialResource : IIfcConstructionResource
 	{
 		IEnumerable<IIfcActorSelect> @Suppliers { get; }
-		IfcRatioMeasure? @UsageRatio { get; }
+		IfcRatioMeasure? @UsageRatio { get;  set; }
 	
 	}
 }
@@ -40,8 +40,14 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 	public  partial class @IfcConstructionMaterialResource : IfcConstructionResource, IInstantiableEntity, IIfcConstructionMaterialResource, IContainsEntityReferences, IEquatable<@IfcConstructionMaterialResource>
 	{
 		#region IIfcConstructionMaterialResource explicit implementation
-		IEnumerable<IIfcActorSelect> IIfcConstructionMaterialResource.Suppliers { get { return @Suppliers; } }	
-		IfcRatioMeasure? IIfcConstructionMaterialResource.UsageRatio { get { return @UsageRatio; } }	
+		IEnumerable<IIfcActorSelect> IIfcConstructionMaterialResource.Suppliers { 
+			get { return @Suppliers; } 
+		}	
+		IfcRatioMeasure? IIfcConstructionMaterialResource.UsageRatio { 
+			get { return @UsageRatio; } 
+ 
+			set { UsageRatio = value;}
+		}	
 		 
 		#endregion
 

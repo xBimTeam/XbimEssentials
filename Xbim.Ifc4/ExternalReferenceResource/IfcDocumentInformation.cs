@@ -29,23 +29,23 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDocumentInformation : IIfcExternalInformation, IfcDocumentSelect
 	{
-		IfcIdentifier @Identification { get; }
-		IfcLabel @Name { get; }
-		IfcText? @Description { get; }
-		IfcURIReference? @Location { get; }
-		IfcText? @Purpose { get; }
-		IfcText? @IntendedUse { get; }
-		IfcText? @Scope { get; }
-		IfcLabel? @Revision { get; }
-		IIfcActorSelect @DocumentOwner { get; }
+		IfcIdentifier @Identification { get;  set; }
+		IfcLabel @Name { get;  set; }
+		IfcText? @Description { get;  set; }
+		IfcURIReference? @Location { get;  set; }
+		IfcText? @Purpose { get;  set; }
+		IfcText? @IntendedUse { get;  set; }
+		IfcText? @Scope { get;  set; }
+		IfcLabel? @Revision { get;  set; }
+		IIfcActorSelect @DocumentOwner { get;  set; }
 		IEnumerable<IIfcActorSelect> @Editors { get; }
-		IfcDateTime? @CreationTime { get; }
-		IfcDateTime? @LastRevisionTime { get; }
-		IfcIdentifier? @ElectronicFormat { get; }
-		IfcDate? @ValidFrom { get; }
-		IfcDate? @ValidUntil { get; }
-		IfcDocumentConfidentialityEnum? @Confidentiality { get; }
-		IfcDocumentStatusEnum? @Status { get; }
+		IfcDateTime? @CreationTime { get;  set; }
+		IfcDateTime? @LastRevisionTime { get;  set; }
+		IfcIdentifier? @ElectronicFormat { get;  set; }
+		IfcDate? @ValidFrom { get;  set; }
+		IfcDate? @ValidUntil { get;  set; }
+		IfcDocumentConfidentialityEnum? @Confidentiality { get;  set; }
+		IfcDocumentStatusEnum? @Status { get;  set; }
 		IEnumerable<IIfcRelAssociatesDocument> @DocumentInfoForObjects {  get; }
 		IEnumerable<IIfcDocumentReference> @HasDocumentReferences {  get; }
 		IEnumerable<IIfcDocumentInformationRelationship> @IsPointedTo {  get; }
@@ -61,23 +61,90 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 	public  partial class @IfcDocumentInformation : IfcExternalInformation, IInstantiableEntity, IIfcDocumentInformation, IContainsEntityReferences, IEquatable<@IfcDocumentInformation>
 	{
 		#region IIfcDocumentInformation explicit implementation
-		IfcIdentifier IIfcDocumentInformation.Identification { get { return @Identification; } }	
-		IfcLabel IIfcDocumentInformation.Name { get { return @Name; } }	
-		IfcText? IIfcDocumentInformation.Description { get { return @Description; } }	
-		IfcURIReference? IIfcDocumentInformation.Location { get { return @Location; } }	
-		IfcText? IIfcDocumentInformation.Purpose { get { return @Purpose; } }	
-		IfcText? IIfcDocumentInformation.IntendedUse { get { return @IntendedUse; } }	
-		IfcText? IIfcDocumentInformation.Scope { get { return @Scope; } }	
-		IfcLabel? IIfcDocumentInformation.Revision { get { return @Revision; } }	
-		IIfcActorSelect IIfcDocumentInformation.DocumentOwner { get { return @DocumentOwner; } }	
-		IEnumerable<IIfcActorSelect> IIfcDocumentInformation.Editors { get { return @Editors; } }	
-		IfcDateTime? IIfcDocumentInformation.CreationTime { get { return @CreationTime; } }	
-		IfcDateTime? IIfcDocumentInformation.LastRevisionTime { get { return @LastRevisionTime; } }	
-		IfcIdentifier? IIfcDocumentInformation.ElectronicFormat { get { return @ElectronicFormat; } }	
-		IfcDate? IIfcDocumentInformation.ValidFrom { get { return @ValidFrom; } }	
-		IfcDate? IIfcDocumentInformation.ValidUntil { get { return @ValidUntil; } }	
-		IfcDocumentConfidentialityEnum? IIfcDocumentInformation.Confidentiality { get { return @Confidentiality; } }	
-		IfcDocumentStatusEnum? IIfcDocumentInformation.Status { get { return @Status; } }	
+		IfcIdentifier IIfcDocumentInformation.Identification { 
+			get { return @Identification; } 
+ 
+			set { Identification = value;}
+		}	
+		IfcLabel IIfcDocumentInformation.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcDocumentInformation.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IfcURIReference? IIfcDocumentInformation.Location { 
+			get { return @Location; } 
+ 
+			set { Location = value;}
+		}	
+		IfcText? IIfcDocumentInformation.Purpose { 
+			get { return @Purpose; } 
+ 
+			set { Purpose = value;}
+		}	
+		IfcText? IIfcDocumentInformation.IntendedUse { 
+			get { return @IntendedUse; } 
+ 
+			set { IntendedUse = value;}
+		}	
+		IfcText? IIfcDocumentInformation.Scope { 
+			get { return @Scope; } 
+ 
+			set { Scope = value;}
+		}	
+		IfcLabel? IIfcDocumentInformation.Revision { 
+			get { return @Revision; } 
+ 
+			set { Revision = value;}
+		}	
+		IIfcActorSelect IIfcDocumentInformation.DocumentOwner { 
+			get { return @DocumentOwner; } 
+ 
+ 
+			set { DocumentOwner = value as IfcActorSelect;}
+		}	
+		IEnumerable<IIfcActorSelect> IIfcDocumentInformation.Editors { 
+			get { return @Editors; } 
+		}	
+		IfcDateTime? IIfcDocumentInformation.CreationTime { 
+			get { return @CreationTime; } 
+ 
+			set { CreationTime = value;}
+		}	
+		IfcDateTime? IIfcDocumentInformation.LastRevisionTime { 
+			get { return @LastRevisionTime; } 
+ 
+			set { LastRevisionTime = value;}
+		}	
+		IfcIdentifier? IIfcDocumentInformation.ElectronicFormat { 
+			get { return @ElectronicFormat; } 
+ 
+			set { ElectronicFormat = value;}
+		}	
+		IfcDate? IIfcDocumentInformation.ValidFrom { 
+			get { return @ValidFrom; } 
+ 
+			set { ValidFrom = value;}
+		}	
+		IfcDate? IIfcDocumentInformation.ValidUntil { 
+			get { return @ValidUntil; } 
+ 
+			set { ValidUntil = value;}
+		}	
+		IfcDocumentConfidentialityEnum? IIfcDocumentInformation.Confidentiality { 
+			get { return @Confidentiality; } 
+ 
+			set { Confidentiality = value;}
+		}	
+		IfcDocumentStatusEnum? IIfcDocumentInformation.Status { 
+			get { return @Status; } 
+ 
+			set { Status = value;}
+		}	
 		 
 		IEnumerable<IIfcRelAssociatesDocument> IIfcDocumentInformation.DocumentInfoForObjects {  get { return @DocumentInfoForObjects; } }
 		IEnumerable<IIfcDocumentReference> IIfcDocumentInformation.HasDocumentReferences {  get { return @HasDocumentReferences; } }

@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcObject : IIfcObjectDefinition
 	{
-		IfcLabel? @ObjectType { get; }
+		IfcLabel? @ObjectType { get;  set; }
 		IEnumerable<IIfcRelDefinesByObject> @IsDeclaredBy {  get; }
 		IEnumerable<IIfcRelDefinesByObject> @Declares {  get; }
 		IEnumerable<IIfcRelDefinesByType> @IsTypedBy {  get; }
@@ -42,7 +42,11 @@ namespace Xbim.Ifc4.Kernel
 	public abstract partial class @IfcObject : IfcObjectDefinition, IIfcObject, IEquatable<@IfcObject>
 	{
 		#region IIfcObject explicit implementation
-		IfcLabel? IIfcObject.ObjectType { get { return @ObjectType; } }	
+		IfcLabel? IIfcObject.ObjectType { 
+			get { return @ObjectType; } 
+ 
+			set { ObjectType = value;}
+		}	
 		 
 		IEnumerable<IIfcRelDefinesByObject> IIfcObject.IsDeclaredBy {  get { return @IsDeclaredBy; } }
 		IEnumerable<IIfcRelDefinesByObject> IIfcObject.Declares {  get { return @Declares; } }

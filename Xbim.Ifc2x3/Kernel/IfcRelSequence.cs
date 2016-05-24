@@ -26,10 +26,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelSequence : IIfcRelConnects
 	{
-		IIfcProcess @RelatingProcess { get; }
-		IIfcProcess @RelatedProcess { get; }
-		IfcTimeMeasure @TimeLag { get; }
-		IfcSequenceEnum @SequenceType { get; }
+		IIfcProcess @RelatingProcess { get;  set; }
+		IIfcProcess @RelatedProcess { get;  set; }
+		IfcTimeMeasure @TimeLag { get;  set; }
+		IfcSequenceEnum @SequenceType { get;  set; }
 	
 	}
 }
@@ -41,10 +41,28 @@ namespace Xbim.Ifc2x3.Kernel
 	public  partial class @IfcRelSequence : IfcRelConnects, IInstantiableEntity, IIfcRelSequence, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelSequence>
 	{
 		#region IIfcRelSequence explicit implementation
-		IIfcProcess IIfcRelSequence.RelatingProcess { get { return @RelatingProcess; } }	
-		IIfcProcess IIfcRelSequence.RelatedProcess { get { return @RelatedProcess; } }	
-		IfcTimeMeasure IIfcRelSequence.TimeLag { get { return @TimeLag; } }	
-		IfcSequenceEnum IIfcRelSequence.SequenceType { get { return @SequenceType; } }	
+		IIfcProcess IIfcRelSequence.RelatingProcess { 
+			get { return @RelatingProcess; } 
+ 
+ 
+			set { RelatingProcess = value as IfcProcess;}
+		}	
+		IIfcProcess IIfcRelSequence.RelatedProcess { 
+			get { return @RelatedProcess; } 
+ 
+ 
+			set { RelatedProcess = value as IfcProcess;}
+		}	
+		IfcTimeMeasure IIfcRelSequence.TimeLag { 
+			get { return @TimeLag; } 
+ 
+			set { TimeLag = value;}
+		}	
+		IfcSequenceEnum IIfcRelSequence.SequenceType { 
+			get { return @SequenceType; } 
+ 
+			set { SequenceType = value;}
+		}	
 		 
 		#endregion
 

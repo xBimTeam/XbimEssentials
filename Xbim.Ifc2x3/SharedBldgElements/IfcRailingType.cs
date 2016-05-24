@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRailingType : IIfcBuildingElementType
 	{
-		IfcRailingTypeEnum @PredefinedType { get; }
+		IfcRailingTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 	public  partial class @IfcRailingType : IfcBuildingElementType, IInstantiableEntity, IIfcRailingType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRailingType>
 	{
 		#region IIfcRailingType explicit implementation
-		IfcRailingTypeEnum IIfcRailingType.PredefinedType { get { return @PredefinedType; } }	
+		IfcRailingTypeEnum IIfcRailingType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

@@ -28,9 +28,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcClassificationItem : IPersistEntity
 	{
-		IIfcClassificationNotationFacet @Notation { get; }
-		IIfcClassification @ItemOf { get; }
-		IfcLabel @Title { get; }
+		IIfcClassificationNotationFacet @Notation { get;  set; }
+		IIfcClassification @ItemOf { get;  set; }
+		IfcLabel @Title { get;  set; }
 		IEnumerable<IIfcClassificationItemRelationship> @IsClassifiedItemIn {  get; }
 		IEnumerable<IIfcClassificationItemRelationship> @IsClassifyingItemIn {  get; }
 	
@@ -44,9 +44,23 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 	public  partial class @IfcClassificationItem : INotifyPropertyChanged, IInstantiableEntity, IIfcClassificationItem, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcClassificationItem>
 	{
 		#region IIfcClassificationItem explicit implementation
-		IIfcClassificationNotationFacet IIfcClassificationItem.Notation { get { return @Notation; } }	
-		IIfcClassification IIfcClassificationItem.ItemOf { get { return @ItemOf; } }	
-		IfcLabel IIfcClassificationItem.Title { get { return @Title; } }	
+		IIfcClassificationNotationFacet IIfcClassificationItem.Notation { 
+			get { return @Notation; } 
+ 
+ 
+			set { Notation = value as IfcClassificationNotationFacet;}
+		}	
+		IIfcClassification IIfcClassificationItem.ItemOf { 
+			get { return @ItemOf; } 
+ 
+ 
+			set { ItemOf = value as IfcClassification;}
+		}	
+		IfcLabel IIfcClassificationItem.Title { 
+			get { return @Title; } 
+ 
+			set { Title = value;}
+		}	
 		 
 		IEnumerable<IIfcClassificationItemRelationship> IIfcClassificationItem.IsClassifiedItemIn {  get { return @IsClassifiedItemIn; } }
 		IEnumerable<IIfcClassificationItemRelationship> IIfcClassificationItem.IsClassifyingItemIn {  get { return @IsClassifyingItemIn; } }

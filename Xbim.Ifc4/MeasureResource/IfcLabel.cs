@@ -15,7 +15,7 @@ namespace Xbim.Ifc4.MeasureResource
 	[ExpressType("IfcLabel", 128)]
 	[DefinedType(typeof(string))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcLabel : IfcSimpleValue, IExpressValueType, System.IEquatable<string>
+	public partial struct IfcLabel : IfcSimpleValue, IExpressValueType, IExpressStringType, System.IEquatable<string>
 	{ 
 		private string _value;
         
@@ -23,6 +23,9 @@ namespace Xbim.Ifc4.MeasureResource
         {
             get { return _value; }
         }
+
+ 
+		string IExpressStringType.Value { get { return _value; } }
 
 		public override string ToString()
         {

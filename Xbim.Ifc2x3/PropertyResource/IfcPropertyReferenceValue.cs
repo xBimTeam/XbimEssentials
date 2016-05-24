@@ -26,8 +26,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPropertyReferenceValue : IIfcSimpleProperty
 	{
-		IfcLabel? @UsageName { get; }
-		IIfcObjectReferenceSelect @PropertyReference { get; }
+		IfcLabel? @UsageName { get;  set; }
+		IIfcObjectReferenceSelect @PropertyReference { get;  set; }
 	
 	}
 }
@@ -39,8 +39,17 @@ namespace Xbim.Ifc2x3.PropertyResource
 	public  partial class @IfcPropertyReferenceValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyReferenceValue, IContainsEntityReferences, IEquatable<@IfcPropertyReferenceValue>
 	{
 		#region IIfcPropertyReferenceValue explicit implementation
-		IfcLabel? IIfcPropertyReferenceValue.UsageName { get { return @UsageName; } }	
-		IIfcObjectReferenceSelect IIfcPropertyReferenceValue.PropertyReference { get { return @PropertyReference; } }	
+		IfcLabel? IIfcPropertyReferenceValue.UsageName { 
+			get { return @UsageName; } 
+ 
+			set { UsageName = value;}
+		}	
+		IIfcObjectReferenceSelect IIfcPropertyReferenceValue.PropertyReference { 
+			get { return @PropertyReference; } 
+ 
+ 
+			set { PropertyReference = value as IfcObjectReferenceSelect;}
+		}	
 		 
 		#endregion
 

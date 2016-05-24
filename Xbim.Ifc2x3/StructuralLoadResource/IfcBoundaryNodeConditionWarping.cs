@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBoundaryNodeConditionWarping : IIfcBoundaryNodeCondition
 	{
-		IfcWarpingMomentMeasure? @WarpingStiffness { get; }
+		IfcWarpingMomentMeasure? @WarpingStiffness { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 	public  partial class @IfcBoundaryNodeConditionWarping : IfcBoundaryNodeCondition, IInstantiableEntity, IIfcBoundaryNodeConditionWarping, IEquatable<@IfcBoundaryNodeConditionWarping>
 	{
 		#region IIfcBoundaryNodeConditionWarping explicit implementation
-		IfcWarpingMomentMeasure? IIfcBoundaryNodeConditionWarping.WarpingStiffness { get { return @WarpingStiffness; } }	
+		IfcWarpingMomentMeasure? IIfcBoundaryNodeConditionWarping.WarpingStiffness { 
+			get { return @WarpingStiffness; } 
+ 
+			set { WarpingStiffness = value;}
+		}	
 		 
 		#endregion
 

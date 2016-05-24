@@ -16,14 +16,20 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	public partial class @IfcDiscreteAccessoryType : IIfcDiscreteAccessoryType
 	{
+
+		private  Ifc4.Interfaces.IfcDiscreteAccessoryTypeEnum _predefinedType;
+
 		Ifc4.Interfaces.IfcDiscreteAccessoryTypeEnum IIfcDiscreteAccessoryType.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-                return IfcDiscreteAccessoryTypeEnum.NOTDEFINED;
-			    //##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				
+			}
 		}
 	//## Custom code
 	//##

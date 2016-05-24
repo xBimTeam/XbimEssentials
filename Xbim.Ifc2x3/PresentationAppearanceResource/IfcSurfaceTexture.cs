@@ -28,10 +28,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSurfaceTexture : IPersistEntity
 	{
-		bool @RepeatS { get; }
-		bool @RepeatT { get; }
-		IfcSurfaceTextureEnum @TextureType { get; }
-		IIfcCartesianTransformationOperator2D @TextureTransform { get; }
+		bool @RepeatS { get;  set; }
+		bool @RepeatT { get;  set; }
+		IfcSurfaceTextureEnum @TextureType { get;  set; }
+		IIfcCartesianTransformationOperator2D @TextureTransform { get;  set; }
 	
 	}
 }
@@ -43,10 +43,27 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	public abstract partial class @IfcSurfaceTexture : IPersistEntity, INotifyPropertyChanged, IIfcSurfaceTexture, IEquatable<@IfcSurfaceTexture>
 	{
 		#region IIfcSurfaceTexture explicit implementation
-		bool IIfcSurfaceTexture.RepeatS { get { return @RepeatS; } }	
-		bool IIfcSurfaceTexture.RepeatT { get { return @RepeatT; } }	
-		IfcSurfaceTextureEnum IIfcSurfaceTexture.TextureType { get { return @TextureType; } }	
-		IIfcCartesianTransformationOperator2D IIfcSurfaceTexture.TextureTransform { get { return @TextureTransform; } }	
+		bool IIfcSurfaceTexture.RepeatS { 
+			get { return @RepeatS; } 
+ 
+			set { RepeatS = value;}
+		}	
+		bool IIfcSurfaceTexture.RepeatT { 
+			get { return @RepeatT; } 
+ 
+			set { RepeatT = value;}
+		}	
+		IfcSurfaceTextureEnum IIfcSurfaceTexture.TextureType { 
+			get { return @TextureType; } 
+ 
+			set { TextureType = value;}
+		}	
+		IIfcCartesianTransformationOperator2D IIfcSurfaceTexture.TextureTransform { 
+			get { return @TextureTransform; } 
+ 
+ 
+			set { TextureTransform = value as IfcCartesianTransformationOperator2D;}
+		}	
 		 
 		#endregion
 

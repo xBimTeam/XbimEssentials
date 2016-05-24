@@ -29,6 +29,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 						return Ifc4.Interfaces.IfcCooledBeamTypeEnum.PASSIVE;
 					
 					case IfcCooledBeamTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcCooledBeamTypeEnum.USERDEFINED;
 					
 					case IfcCooledBeamTypeEnum.NOTDEFINED:
@@ -39,6 +41,32 @@ namespace Xbim.Ifc2x3.HVACDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcCooledBeamTypeEnum.ACTIVE:
+						PredefinedType = IfcCooledBeamTypeEnum.ACTIVE;
+						return;
+					
+					case Ifc4.Interfaces.IfcCooledBeamTypeEnum.PASSIVE:
+						PredefinedType = IfcCooledBeamTypeEnum.PASSIVE;
+						return;
+					
+					case Ifc4.Interfaces.IfcCooledBeamTypeEnum.USERDEFINED:
+						PredefinedType = IfcCooledBeamTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcCooledBeamTypeEnum.NOTDEFINED:
+						PredefinedType = IfcCooledBeamTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

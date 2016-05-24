@@ -25,20 +25,20 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieContact : ICobieReferencedObject
 	{
-		string @Email { get; }
-		ICobieRole @Category { get; }
-		string @Company { get; }
-		string @Phone { get; }
-		string @Department { get; }
-		string @OrganizationCode { get; }
-		string @GivenName { get; }
-		string @FamilyName { get; }
-		string @Street { get; }
-		string @PostalBox { get; }
-		string @Town { get; }
-		string @StateRegion { get; }
-		string @PostalCode { get; }
-		string @Country { get; }
+		string @Email { get;  set; }
+		ICobieRole @Category { get;  set; }
+		string @Company { get;  set; }
+		string @Phone { get;  set; }
+		string @Department { get;  set; }
+		string @OrganizationCode { get;  set; }
+		string @GivenName { get;  set; }
+		string @FamilyName { get;  set; }
+		string @Street { get;  set; }
+		string @PostalBox { get;  set; }
+		string @Town { get;  set; }
+		string @StateRegion { get;  set; }
+		string @PostalCode { get;  set; }
+		string @Country { get;  set; }
 	
 	}
 }
@@ -50,20 +50,77 @@ namespace Xbim.CobieExpress
 	public  partial class @CobieContact : CobieReferencedObject, IInstantiableEntity, ICobieContact, IContainsEntityReferences, IEquatable<@CobieContact>
 	{
 		#region ICobieContact explicit implementation
-		string ICobieContact.Email { get { return @Email; } }	
-		ICobieRole ICobieContact.Category { get { return @Category; } }	
-		string ICobieContact.Company { get { return @Company; } }	
-		string ICobieContact.Phone { get { return @Phone; } }	
-		string ICobieContact.Department { get { return @Department; } }	
-		string ICobieContact.OrganizationCode { get { return @OrganizationCode; } }	
-		string ICobieContact.GivenName { get { return @GivenName; } }	
-		string ICobieContact.FamilyName { get { return @FamilyName; } }	
-		string ICobieContact.Street { get { return @Street; } }	
-		string ICobieContact.PostalBox { get { return @PostalBox; } }	
-		string ICobieContact.Town { get { return @Town; } }	
-		string ICobieContact.StateRegion { get { return @StateRegion; } }	
-		string ICobieContact.PostalCode { get { return @PostalCode; } }	
-		string ICobieContact.Country { get { return @Country; } }	
+		string ICobieContact.Email { 
+			get { return @Email; } 
+ 
+			set { Email = value;}
+		}	
+		ICobieRole ICobieContact.Category { 
+			get { return @Category; } 
+ 
+ 
+			set { Category = value as CobieRole;}
+		}	
+		string ICobieContact.Company { 
+			get { return @Company; } 
+ 
+			set { Company = value;}
+		}	
+		string ICobieContact.Phone { 
+			get { return @Phone; } 
+ 
+			set { Phone = value;}
+		}	
+		string ICobieContact.Department { 
+			get { return @Department; } 
+ 
+			set { Department = value;}
+		}	
+		string ICobieContact.OrganizationCode { 
+			get { return @OrganizationCode; } 
+ 
+			set { OrganizationCode = value;}
+		}	
+		string ICobieContact.GivenName { 
+			get { return @GivenName; } 
+ 
+			set { GivenName = value;}
+		}	
+		string ICobieContact.FamilyName { 
+			get { return @FamilyName; } 
+ 
+			set { FamilyName = value;}
+		}	
+		string ICobieContact.Street { 
+			get { return @Street; } 
+ 
+			set { Street = value;}
+		}	
+		string ICobieContact.PostalBox { 
+			get { return @PostalBox; } 
+ 
+			set { PostalBox = value;}
+		}	
+		string ICobieContact.Town { 
+			get { return @Town; } 
+ 
+			set { Town = value;}
+		}	
+		string ICobieContact.StateRegion { 
+			get { return @StateRegion; } 
+ 
+			set { StateRegion = value;}
+		}	
+		string ICobieContact.PostalCode { 
+			get { return @PostalCode; } 
+ 
+			set { PostalCode = value;}
+		}	
+		string ICobieContact.Country { 
+			get { return @Country; } 
+ 
+			set { Country = value;}
+		}	
 		 
 		#endregion
 

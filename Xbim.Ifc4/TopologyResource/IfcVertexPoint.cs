@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcVertexPoint : IIfcVertex, IfcPointOrVertexPoint
 	{
-		IIfcPoint @VertexGeometry { get; }
+		IIfcPoint @VertexGeometry { get;  set; }
 	
 	}
 }
@@ -39,7 +39,12 @@ namespace Xbim.Ifc4.TopologyResource
 	public  partial class @IfcVertexPoint : IfcVertex, IInstantiableEntity, IIfcVertexPoint, IContainsEntityReferences, IEquatable<@IfcVertexPoint>
 	{
 		#region IIfcVertexPoint explicit implementation
-		IIfcPoint IIfcVertexPoint.VertexGeometry { get { return @VertexGeometry; } }	
+		IIfcPoint IIfcVertexPoint.VertexGeometry { 
+			get { return @VertexGeometry; } 
+ 
+ 
+			set { VertexGeometry = value as IfcPoint;}
+		}	
 		 
 		#endregion
 

@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDimensionCurveTerminator : IIfcTerminatorSymbol
 	{
-		IfcDimensionExtentUsage @Role { get; }
+		IfcDimensionExtentUsage @Role { get;  set; }
 	
 	}
 }
@@ -37,7 +37,11 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 	public  partial class @IfcDimensionCurveTerminator : IfcTerminatorSymbol, IInstantiableEntity, IIfcDimensionCurveTerminator, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDimensionCurveTerminator>
 	{
 		#region IIfcDimensionCurveTerminator explicit implementation
-		IfcDimensionExtentUsage IIfcDimensionCurveTerminator.Role { get { return @Role; } }	
+		IfcDimensionExtentUsage IIfcDimensionCurveTerminator.Role { 
+			get { return @Role; } 
+ 
+			set { Role = value;}
+		}	
 		 
 		#endregion
 

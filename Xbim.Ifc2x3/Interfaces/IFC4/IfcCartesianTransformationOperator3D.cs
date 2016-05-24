@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return Axis3;
 			} 
+			set
+			{
+				Axis3 = value as IfcDirection;
+				
+			}
 		}
 		List<Common.Geometry.XbimVector3D> IIfcCartesianTransformationOperator3D.U 
 		{

@@ -25,8 +25,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcElementAssembly : IIfcElement
 	{
-		IfcAssemblyPlaceEnum? @AssemblyPlace { get; }
-		IfcElementAssemblyTypeEnum @PredefinedType { get; }
+		IfcAssemblyPlaceEnum? @AssemblyPlace { get;  set; }
+		IfcElementAssemblyTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,8 +38,16 @@ namespace Xbim.Ifc2x3.ProductExtension
 	public  partial class @IfcElementAssembly : IfcElement, IInstantiableEntity, IIfcElementAssembly, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcElementAssembly>
 	{
 		#region IIfcElementAssembly explicit implementation
-		IfcAssemblyPlaceEnum? IIfcElementAssembly.AssemblyPlace { get { return @AssemblyPlace; } }	
-		IfcElementAssemblyTypeEnum IIfcElementAssembly.PredefinedType { get { return @PredefinedType; } }	
+		IfcAssemblyPlaceEnum? IIfcElementAssembly.AssemblyPlace { 
+			get { return @AssemblyPlace; } 
+ 
+			set { AssemblyPlace = value;}
+		}	
+		IfcElementAssemblyTypeEnum IIfcElementAssembly.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

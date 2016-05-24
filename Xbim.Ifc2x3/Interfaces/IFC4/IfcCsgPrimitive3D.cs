@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				return Position;
 			} 
+			set
+			{
+				Position = value as GeometryResource.IfcAxis2Placement3D;
+				
+			}
 		}
 		Ifc4.GeometryResource.IfcDimensionCount Ifc4.GeometricModelResource.IfcBooleanOperand.Dim 
 		{

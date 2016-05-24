@@ -20,38 +20,89 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-              switch(PredefinedType)
-              {
-                  case IfcStructuralCurveTypeEnum.CABLE:
-                      return IfcStructuralCurveMemberTypeEnum.CABLE;
-                  case IfcStructuralCurveTypeEnum.COMPRESSION_MEMBER:
-                      return IfcStructuralCurveMemberTypeEnum.COMPRESSION_MEMBER;
-                  case IfcStructuralCurveTypeEnum.NOTDEFINED:
-                      return IfcStructuralCurveMemberTypeEnum.NOTDEFINED;
-                  case IfcStructuralCurveTypeEnum.PIN_JOINED_MEMBER:
-                      return IfcStructuralCurveMemberTypeEnum.PIN_JOINED_MEMBER;
-                  case IfcStructuralCurveTypeEnum.RIGID_JOINED_MEMBER:
-                      return IfcStructuralCurveMemberTypeEnum.RIGID_JOINED_MEMBER;
-                  case IfcStructuralCurveTypeEnum.TENSION_MEMBER:
-                      return IfcStructuralCurveMemberTypeEnum.TENSION_MEMBER;
-                  case IfcStructuralCurveTypeEnum.USERDEFINED:
-                      return IfcStructuralCurveMemberTypeEnum.USERDEFINED;
-                  default:
-                      return IfcStructuralCurveMemberTypeEnum.NOTDEFINED;
-              }
-                
-				//##
+				switch (PredefinedType)
+				{
+					case IfcStructuralCurveTypeEnum.RIGID_JOINED_MEMBER:
+						return Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.RIGID_JOINED_MEMBER;
+					
+					case IfcStructuralCurveTypeEnum.PIN_JOINED_MEMBER:
+						return Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.PIN_JOINED_MEMBER;
+					
+					case IfcStructuralCurveTypeEnum.CABLE:
+						return Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.CABLE;
+					
+					case IfcStructuralCurveTypeEnum.TENSION_MEMBER:
+						return Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.TENSION_MEMBER;
+					
+					case IfcStructuralCurveTypeEnum.COMPRESSION_MEMBER:
+						return Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.COMPRESSION_MEMBER;
+					
+					case IfcStructuralCurveTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
+						return Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.USERDEFINED;
+					
+					case IfcStructuralCurveTypeEnum.NOTDEFINED:
+						return Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.RIGID_JOINED_MEMBER:
+						PredefinedType = IfcStructuralCurveTypeEnum.RIGID_JOINED_MEMBER;
+						return;
+					
+					case Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.PIN_JOINED_MEMBER:
+						PredefinedType = IfcStructuralCurveTypeEnum.PIN_JOINED_MEMBER;
+						return;
+					
+					case Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.CABLE:
+						PredefinedType = IfcStructuralCurveTypeEnum.CABLE;
+						return;
+					
+					case Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.TENSION_MEMBER:
+						PredefinedType = IfcStructuralCurveTypeEnum.TENSION_MEMBER;
+						return;
+					
+					case Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.COMPRESSION_MEMBER:
+						PredefinedType = IfcStructuralCurveTypeEnum.COMPRESSION_MEMBER;
+						return;
+					
+					case Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.USERDEFINED:
+						PredefinedType = IfcStructuralCurveTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.NOTDEFINED:
+						PredefinedType = IfcStructuralCurveTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
+
+		private  IIfcDirection _axis;
+
 		IIfcDirection IIfcStructuralCurveMember.Axis 
 		{ 
 			get
 			{
-				//## Handle return of Axis for which no match was found
-                return new Xbim.Ifc2x3.Interfaces.Conversions.IfcDirectionTransient();
-				//##
+				return _axis;
 			} 
+			set
+			{
+				SetValue(v => _axis = v, _axis, value, "Axis", byte.MaxValue);
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.PropertyResource
 			{
 				return new Ifc4.MeasureResource.IfcIdentifier(UsageName);
 			} 
+			set
+			{
+				UsageName = new MeasureResource.IfcIdentifier(value);
+				
+			}
 		}
 		IEnumerable<IIfcProperty> IIfcComplexProperty.HasProperties 
 		{ 

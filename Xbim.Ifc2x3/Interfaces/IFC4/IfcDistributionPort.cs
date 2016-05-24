@@ -39,24 +39,62 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcFlowDirectionEnum.SOURCE:
+						FlowDirection = IfcFlowDirectionEnum.SOURCE;
+						return;
+					
+					case Ifc4.Interfaces.IfcFlowDirectionEnum.SINK:
+						FlowDirection = IfcFlowDirectionEnum.SINK;
+						return;
+					
+					case Ifc4.Interfaces.IfcFlowDirectionEnum.SOURCEANDSINK:
+						FlowDirection = IfcFlowDirectionEnum.SOURCEANDSINK;
+						return;
+					
+					case Ifc4.Interfaces.IfcFlowDirectionEnum.NOTDEFINED:
+						FlowDirection = IfcFlowDirectionEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
+
+		private  Ifc4.Interfaces.IfcDistributionPortTypeEnum? _predefinedType;
+
 		Ifc4.Interfaces.IfcDistributionPortTypeEnum? IIfcDistributionPort.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-			    return null;
-			    //##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				
+			}
 		}
+
+		private  Ifc4.Interfaces.IfcDistributionSystemEnum? _systemType;
+
 		Ifc4.Interfaces.IfcDistributionSystemEnum? IIfcDistributionPort.SystemType 
 		{ 
 			get
 			{
-				//## Handle return of SystemType for which no match was found
-			    return null;
-			    //##
+				return _systemType;
 			} 
+			set
+			{
+				SetValue(v => _systemType = v, _systemType, value, "SystemType", byte.MaxValue);
+				
+			}
 		}
 	//## Custom code
 	//##

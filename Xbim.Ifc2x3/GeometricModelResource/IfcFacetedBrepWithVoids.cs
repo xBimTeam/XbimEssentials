@@ -38,7 +38,9 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 	public  partial class @IfcFacetedBrepWithVoids : IfcManifoldSolidBrep, IInstantiableEntity, IIfcFacetedBrepWithVoids, IContainsEntityReferences, IEquatable<@IfcFacetedBrepWithVoids>
 	{
 		#region IIfcFacetedBrepWithVoids explicit implementation
-		IEnumerable<IIfcClosedShell> IIfcFacetedBrepWithVoids.Voids { get { return @Voids; } }	
+		IEnumerable<IIfcClosedShell> IIfcFacetedBrepWithVoids.Voids { 
+			get { return @Voids; } 
+		}	
 		 
 		#endregion
 

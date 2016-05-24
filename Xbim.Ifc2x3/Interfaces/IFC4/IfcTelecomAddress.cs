@@ -43,6 +43,13 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!PagerNumber.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(PagerNumber.Value);
 			} 
+			set
+			{
+				PagerNumber = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcTelecomAddress.ElectronicMailAddresses 
 		{ 
@@ -61,6 +68,13 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!WWWHomePageURL.HasValue) return null;
 				return new Ifc4.ExternalReferenceResource.IfcURIReference(WWWHomePageURL.Value);
 			} 
+			set
+			{
+				WWWHomePageURL = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		IEnumerable<Xbim.Ifc4.ExternalReferenceResource.IfcURIReference> IIfcTelecomAddress.MessagingIDs 
 		{ 

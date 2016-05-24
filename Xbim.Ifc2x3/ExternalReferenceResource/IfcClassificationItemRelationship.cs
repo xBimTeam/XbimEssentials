@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcClassificationItemRelationship : IPersistEntity
 	{
-		IIfcClassificationItem @RelatingItem { get; }
+		IIfcClassificationItem @RelatingItem { get;  set; }
 		IEnumerable<IIfcClassificationItem> @RelatedItems { get; }
 	
 	}
@@ -40,8 +40,15 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 	public  partial class @IfcClassificationItemRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcClassificationItemRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcClassificationItemRelationship>
 	{
 		#region IIfcClassificationItemRelationship explicit implementation
-		IIfcClassificationItem IIfcClassificationItemRelationship.RelatingItem { get { return @RelatingItem; } }	
-		IEnumerable<IIfcClassificationItem> IIfcClassificationItemRelationship.RelatedItems { get { return @RelatedItems; } }	
+		IIfcClassificationItem IIfcClassificationItemRelationship.RelatingItem { 
+			get { return @RelatingItem; } 
+ 
+ 
+			set { RelatingItem = value as IfcClassificationItem;}
+		}	
+		IEnumerable<IIfcClassificationItem> IIfcClassificationItemRelationship.RelatedItems { 
+			get { return @RelatedItems; } 
+		}	
 		 
 		#endregion
 

@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcAirToAirHeatRecovery : IIfcEnergyConversionDevice
 	{
-		IfcAirToAirHeatRecoveryTypeEnum? @PredefinedType { get; }
+		IfcAirToAirHeatRecoveryTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.HvacDomain
 	public  partial class @IfcAirToAirHeatRecovery : IfcEnergyConversionDevice, IInstantiableEntity, IIfcAirToAirHeatRecovery, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAirToAirHeatRecovery>
 	{
 		#region IIfcAirToAirHeatRecovery explicit implementation
-		IfcAirToAirHeatRecoveryTypeEnum? IIfcAirToAirHeatRecovery.PredefinedType { get { return @PredefinedType; } }	
+		IfcAirToAirHeatRecoveryTypeEnum? IIfcAirToAirHeatRecovery.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

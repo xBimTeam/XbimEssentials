@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcQuantityArea : IIfcPhysicalSimpleQuantity
 	{
-		IfcAreaMeasure @AreaValue { get; }
-		IfcLabel? @Formula { get; }
+		IfcAreaMeasure @AreaValue { get;  set; }
+		IfcLabel? @Formula { get;  set; }
 	
 	}
 }
@@ -39,8 +39,16 @@ namespace Xbim.Ifc4.QuantityResource
 	public  partial class @IfcQuantityArea : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityArea, IContainsEntityReferences, IEquatable<@IfcQuantityArea>
 	{
 		#region IIfcQuantityArea explicit implementation
-		IfcAreaMeasure IIfcQuantityArea.AreaValue { get { return @AreaValue; } }	
-		IfcLabel? IIfcQuantityArea.Formula { get { return @Formula; } }	
+		IfcAreaMeasure IIfcQuantityArea.AreaValue { 
+			get { return @AreaValue; } 
+ 
+			set { AreaValue = value;}
+		}	
+		IfcLabel? IIfcQuantityArea.Formula { 
+			get { return @Formula; } 
+ 
+			set { Formula = value;}
+		}	
 		 
 		#endregion
 

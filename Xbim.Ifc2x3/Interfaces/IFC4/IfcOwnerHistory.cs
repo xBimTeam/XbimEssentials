@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.UtilityResource
 			{
 				return OwningUser;
 			} 
+			set
+			{
+				OwningUser = value as ActorResource.IfcPersonAndOrganization;
+				
+			}
 		}
 		IIfcApplication IIfcOwnerHistory.OwningApplication 
 		{ 
@@ -29,6 +34,11 @@ namespace Xbim.Ifc2x3.UtilityResource
 			{
 				return OwningApplication;
 			} 
+			set
+			{
+				OwningApplication = value as IfcApplication;
+				
+			}
 		}
 		Ifc4.Interfaces.IfcStateEnum? IIfcOwnerHistory.State 
 		{ 
@@ -56,6 +66,36 @@ namespace Xbim.Ifc2x3.UtilityResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcStateEnum.READWRITE:
+						State = IfcStateEnum.READWRITE;
+						return;
+					
+					case Ifc4.Interfaces.IfcStateEnum.READONLY:
+						State = IfcStateEnum.READONLY;
+						return;
+					
+					case Ifc4.Interfaces.IfcStateEnum.LOCKED:
+						State = IfcStateEnum.LOCKED;
+						return;
+					
+					case Ifc4.Interfaces.IfcStateEnum.READWRITELOCKED:
+						State = IfcStateEnum.READWRITELOCKED;
+						return;
+					
+					case Ifc4.Interfaces.IfcStateEnum.READONLYLOCKED:
+						State = IfcStateEnum.READONLYLOCKED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.Interfaces.IfcChangeActionEnum? IIfcOwnerHistory.ChangeAction 
 		{ 
@@ -90,6 +130,38 @@ namespace Xbim.Ifc2x3.UtilityResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcChangeActionEnum.NOCHANGE:
+						ChangeAction = IfcChangeActionEnum.NOCHANGE;
+						return;
+					
+					case Ifc4.Interfaces.IfcChangeActionEnum.MODIFIED:
+						ChangeAction = IfcChangeActionEnum.MODIFIED;
+						return;
+					
+					case Ifc4.Interfaces.IfcChangeActionEnum.ADDED:
+						ChangeAction = IfcChangeActionEnum.ADDED;
+						return;
+					
+					case Ifc4.Interfaces.IfcChangeActionEnum.DELETED:
+						ChangeAction = IfcChangeActionEnum.DELETED;
+						return;
+					
+					case Ifc4.Interfaces.IfcChangeActionEnum.NOTDEFINED:
+						//## Handle setting of NOTDEFINED member from IfcChangeActionEnum in property ChangeAction
+						//TODO: Handle setting of NOTDEFINED member from IfcChangeActionEnum in property ChangeAction
+						throw new System.NotImplementedException();
+						//##
+										
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcTimeStamp? IIfcOwnerHistory.LastModifiedDate 
 		{ 
@@ -98,6 +170,13 @@ namespace Xbim.Ifc2x3.UtilityResource
 				if (!LastModifiedDate.HasValue) return null;
 				return new Ifc4.DateTimeResource.IfcTimeStamp(LastModifiedDate.Value);
 			} 
+			set
+			{
+				LastModifiedDate = value.HasValue ? 
+					new MeasureResource.IfcTimeStamp(value.Value) :  
+					 new MeasureResource.IfcTimeStamp?() ;
+				
+			}
 		}
 		IIfcPersonAndOrganization IIfcOwnerHistory.LastModifyingUser 
 		{ 
@@ -105,6 +184,11 @@ namespace Xbim.Ifc2x3.UtilityResource
 			{
 				return LastModifyingUser;
 			} 
+			set
+			{
+				LastModifyingUser = value as ActorResource.IfcPersonAndOrganization;
+				
+			}
 		}
 		IIfcApplication IIfcOwnerHistory.LastModifyingApplication 
 		{ 
@@ -112,6 +196,11 @@ namespace Xbim.Ifc2x3.UtilityResource
 			{
 				return LastModifyingApplication;
 			} 
+			set
+			{
+				LastModifyingApplication = value as IfcApplication;
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcTimeStamp IIfcOwnerHistory.CreationDate 
 		{ 
@@ -119,6 +208,11 @@ namespace Xbim.Ifc2x3.UtilityResource
 			{
 				return new Ifc4.DateTimeResource.IfcTimeStamp(CreationDate);
 			} 
+			set
+			{
+				CreationDate = new MeasureResource.IfcTimeStamp(value);
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -1,9 +1,12 @@
-﻿using Xbim.Ifc4.MeasureResource;
+﻿using System;
+using Xbim.Ifc4.MeasureResource;
 
 namespace Xbim.Ifc2x3.Interfaces.Conversions
 {
     internal class IfcQuantityAreaTransient : IfcPhysicalSimpleQuantityTransient, Ifc4.Interfaces.IIfcQuantityArea
     {
+        private readonly IfcAreaMeasure _areaValue;
+
         internal IfcQuantityAreaTransient()
         {
         }
@@ -11,12 +14,21 @@ namespace Xbim.Ifc2x3.Interfaces.Conversions
         internal IfcQuantityAreaTransient(MeasureResource.IfcMeasureWithUnit measure)
         {
             var value = measure.ValueComponent;
-            Unit = measure.UnitComponent as Ifc4.Interfaces.IIfcNamedUnit;
+            _unit = measure.UnitComponent as Ifc4.Interfaces.IIfcNamedUnit;
             if (!(value is MeasureResource.IfcAreaMeasure)) return;
-            AreaValue = new IfcAreaMeasure((MeasureResource.IfcAreaMeasure)value);
+            _areaValue = new IfcAreaMeasure((MeasureResource.IfcAreaMeasure)value);
         }
 
-        public IfcAreaMeasure AreaValue { get; internal set; }
-        public IfcLabel? Formula { get; internal set; }
+        public IfcAreaMeasure AreaValue
+        {
+            get { return _areaValue; }
+            set { throw new NotSupportedException(); }
+        }
+
+        public IfcLabel? Formula
+        {
+            get { return null; }
+            set { throw new NotSupportedException(); }
+        }
     }
 }

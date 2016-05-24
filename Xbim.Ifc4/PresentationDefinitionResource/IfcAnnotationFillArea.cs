@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcAnnotationFillArea : IIfcGeometricRepresentationItem
 	{
-		IIfcCurve @OuterBoundary { get; }
+		IIfcCurve @OuterBoundary { get;  set; }
 		IEnumerable<IIfcCurve> @InnerBoundaries { get; }
 	
 	}
@@ -39,8 +39,15 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 	public  partial class @IfcAnnotationFillArea : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcAnnotationFillArea, IContainsEntityReferences, IEquatable<@IfcAnnotationFillArea>
 	{
 		#region IIfcAnnotationFillArea explicit implementation
-		IIfcCurve IIfcAnnotationFillArea.OuterBoundary { get { return @OuterBoundary; } }	
-		IEnumerable<IIfcCurve> IIfcAnnotationFillArea.InnerBoundaries { get { return @InnerBoundaries; } }	
+		IIfcCurve IIfcAnnotationFillArea.OuterBoundary { 
+			get { return @OuterBoundary; } 
+ 
+ 
+			set { OuterBoundary = value as IfcCurve;}
+		}	
+		IEnumerable<IIfcCurve> IIfcAnnotationFillArea.InnerBoundaries { 
+			get { return @InnerBoundaries; } 
+		}	
 		 
 		#endregion
 

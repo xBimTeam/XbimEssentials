@@ -33,6 +33,11 @@ namespace Xbim.Essentials.Tests
             var sTime = DateTime.Today.AddHours(10).AddMinutes(54).AddSeconds(2);
             Assert.AreEqual((DateTime)time, sTime);
 
+            var span = new TimeSpan(9, 5, 32, 45, 12);
+            IfcDuration duration = span;
+            Assert.AreEqual(duration.ToString(), "P9DT5H32M45.012S");
+            Assert.AreEqual(span, (TimeSpan)duration);
+
         }
     }
 }

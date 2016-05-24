@@ -27,13 +27,13 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDimensionalExponents : IPersistEntity
 	{
-		long @LengthExponent { get; }
-		long @MassExponent { get; }
-		long @TimeExponent { get; }
-		long @ElectricCurrentExponent { get; }
-		long @ThermodynamicTemperatureExponent { get; }
-		long @AmountOfSubstanceExponent { get; }
-		long @LuminousIntensityExponent { get; }
+		long @LengthExponent { get;  set; }
+		long @MassExponent { get;  set; }
+		long @TimeExponent { get;  set; }
+		long @ElectricCurrentExponent { get;  set; }
+		long @ThermodynamicTemperatureExponent { get;  set; }
+		long @AmountOfSubstanceExponent { get;  set; }
+		long @LuminousIntensityExponent { get;  set; }
 	
 	}
 }
@@ -45,13 +45,41 @@ namespace Xbim.Ifc4.MeasureResource
 	public  partial class @IfcDimensionalExponents : INotifyPropertyChanged, IInstantiableEntity, IIfcDimensionalExponents, IEquatable<@IfcDimensionalExponents>
 	{
 		#region IIfcDimensionalExponents explicit implementation
-		long IIfcDimensionalExponents.LengthExponent { get { return @LengthExponent; } }	
-		long IIfcDimensionalExponents.MassExponent { get { return @MassExponent; } }	
-		long IIfcDimensionalExponents.TimeExponent { get { return @TimeExponent; } }	
-		long IIfcDimensionalExponents.ElectricCurrentExponent { get { return @ElectricCurrentExponent; } }	
-		long IIfcDimensionalExponents.ThermodynamicTemperatureExponent { get { return @ThermodynamicTemperatureExponent; } }	
-		long IIfcDimensionalExponents.AmountOfSubstanceExponent { get { return @AmountOfSubstanceExponent; } }	
-		long IIfcDimensionalExponents.LuminousIntensityExponent { get { return @LuminousIntensityExponent; } }	
+		long IIfcDimensionalExponents.LengthExponent { 
+			get { return @LengthExponent; } 
+ 
+			set { LengthExponent = value;}
+		}	
+		long IIfcDimensionalExponents.MassExponent { 
+			get { return @MassExponent; } 
+ 
+			set { MassExponent = value;}
+		}	
+		long IIfcDimensionalExponents.TimeExponent { 
+			get { return @TimeExponent; } 
+ 
+			set { TimeExponent = value;}
+		}	
+		long IIfcDimensionalExponents.ElectricCurrentExponent { 
+			get { return @ElectricCurrentExponent; } 
+ 
+			set { ElectricCurrentExponent = value;}
+		}	
+		long IIfcDimensionalExponents.ThermodynamicTemperatureExponent { 
+			get { return @ThermodynamicTemperatureExponent; } 
+ 
+			set { ThermodynamicTemperatureExponent = value;}
+		}	
+		long IIfcDimensionalExponents.AmountOfSubstanceExponent { 
+			get { return @AmountOfSubstanceExponent; } 
+ 
+			set { AmountOfSubstanceExponent = value;}
+		}	
+		long IIfcDimensionalExponents.LuminousIntensityExponent { 
+			get { return @LuminousIntensityExponent; } 
+ 
+			set { LuminousIntensityExponent = value;}
+		}	
 		 
 		#endregion
 

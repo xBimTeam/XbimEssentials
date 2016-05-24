@@ -28,10 +28,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialLayerSetUsage : IPersistEntity, IfcMaterialSelect
 	{
-		IIfcMaterialLayerSet @ForLayerSet { get; }
-		IfcLayerSetDirectionEnum @LayerSetDirection { get; }
-		IfcDirectionSenseEnum @DirectionSense { get; }
-		IfcLengthMeasure @OffsetFromReferenceLine { get; }
+		IIfcMaterialLayerSet @ForLayerSet { get;  set; }
+		IfcLayerSetDirectionEnum @LayerSetDirection { get;  set; }
+		IfcDirectionSenseEnum @DirectionSense { get;  set; }
+		IfcLengthMeasure @OffsetFromReferenceLine { get;  set; }
 	
 	}
 }
@@ -43,10 +43,27 @@ namespace Xbim.Ifc2x3.MaterialResource
 	public  partial class @IfcMaterialLayerSetUsage : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterialLayerSetUsage, IContainsEntityReferences, IEquatable<@IfcMaterialLayerSetUsage>
 	{
 		#region IIfcMaterialLayerSetUsage explicit implementation
-		IIfcMaterialLayerSet IIfcMaterialLayerSetUsage.ForLayerSet { get { return @ForLayerSet; } }	
-		IfcLayerSetDirectionEnum IIfcMaterialLayerSetUsage.LayerSetDirection { get { return @LayerSetDirection; } }	
-		IfcDirectionSenseEnum IIfcMaterialLayerSetUsage.DirectionSense { get { return @DirectionSense; } }	
-		IfcLengthMeasure IIfcMaterialLayerSetUsage.OffsetFromReferenceLine { get { return @OffsetFromReferenceLine; } }	
+		IIfcMaterialLayerSet IIfcMaterialLayerSetUsage.ForLayerSet { 
+			get { return @ForLayerSet; } 
+ 
+ 
+			set { ForLayerSet = value as IfcMaterialLayerSet;}
+		}	
+		IfcLayerSetDirectionEnum IIfcMaterialLayerSetUsage.LayerSetDirection { 
+			get { return @LayerSetDirection; } 
+ 
+			set { LayerSetDirection = value;}
+		}	
+		IfcDirectionSenseEnum IIfcMaterialLayerSetUsage.DirectionSense { 
+			get { return @DirectionSense; } 
+ 
+			set { DirectionSense = value;}
+		}	
+		IfcLengthMeasure IIfcMaterialLayerSetUsage.OffsetFromReferenceLine { 
+			get { return @OffsetFromReferenceLine; } 
+ 
+			set { OffsetFromReferenceLine = value;}
+		}	
 		 
 		#endregion
 

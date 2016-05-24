@@ -29,10 +29,10 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcApplication : IPersistEntity
 	{
-		IIfcOrganization @ApplicationDeveloper { get; }
-		IfcLabel @Version { get; }
-		IfcLabel @ApplicationFullName { get; }
-		IfcIdentifier @ApplicationIdentifier { get; }
+		IIfcOrganization @ApplicationDeveloper { get;  set; }
+		IfcLabel @Version { get;  set; }
+		IfcLabel @ApplicationFullName { get;  set; }
+		IfcIdentifier @ApplicationIdentifier { get;  set; }
 	
 	}
 }
@@ -44,10 +44,27 @@ namespace Xbim.Ifc4.UtilityResource
 	public  partial class @IfcApplication : INotifyPropertyChanged, IInstantiableEntity, IIfcApplication, IContainsEntityReferences, IEquatable<@IfcApplication>
 	{
 		#region IIfcApplication explicit implementation
-		IIfcOrganization IIfcApplication.ApplicationDeveloper { get { return @ApplicationDeveloper; } }	
-		IfcLabel IIfcApplication.Version { get { return @Version; } }	
-		IfcLabel IIfcApplication.ApplicationFullName { get { return @ApplicationFullName; } }	
-		IfcIdentifier IIfcApplication.ApplicationIdentifier { get { return @ApplicationIdentifier; } }	
+		IIfcOrganization IIfcApplication.ApplicationDeveloper { 
+			get { return @ApplicationDeveloper; } 
+ 
+ 
+			set { ApplicationDeveloper = value as IfcOrganization;}
+		}	
+		IfcLabel IIfcApplication.Version { 
+			get { return @Version; } 
+ 
+			set { Version = value;}
+		}	
+		IfcLabel IIfcApplication.ApplicationFullName { 
+			get { return @ApplicationFullName; } 
+ 
+			set { ApplicationFullName = value;}
+		}	
+		IfcIdentifier IIfcApplication.ApplicationIdentifier { 
+			get { return @ApplicationIdentifier; } 
+ 
+			set { ApplicationIdentifier = value;}
+		}	
 		 
 		#endregion
 

@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				return Enclosure;
 			} 
+			set
+			{
+				Enclosure = value as IfcBoundingBox;
+				
+			}
 		}
 	//## Custom code
 	//##

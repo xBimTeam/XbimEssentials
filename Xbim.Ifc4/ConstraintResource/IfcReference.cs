@@ -29,11 +29,11 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcReference : IPersistEntity, IfcAppliedValueSelect, IfcMetricValueSelect
 	{
-		IfcIdentifier? @TypeIdentifier { get; }
-		IfcIdentifier? @AttributeIdentifier { get; }
-		IfcLabel? @InstanceName { get; }
+		IfcIdentifier? @TypeIdentifier { get;  set; }
+		IfcIdentifier? @AttributeIdentifier { get;  set; }
+		IfcLabel? @InstanceName { get;  set; }
 		IEnumerable<IfcInteger> @ListPositions { get; }
-		IIfcReference @InnerReference { get; }
+		IIfcReference @InnerReference { get;  set; }
 	
 	}
 }
@@ -45,11 +45,30 @@ namespace Xbim.Ifc4.ConstraintResource
 	public  partial class @IfcReference : INotifyPropertyChanged, IInstantiableEntity, IIfcReference, IContainsEntityReferences, IEquatable<@IfcReference>
 	{
 		#region IIfcReference explicit implementation
-		IfcIdentifier? IIfcReference.TypeIdentifier { get { return @TypeIdentifier; } }	
-		IfcIdentifier? IIfcReference.AttributeIdentifier { get { return @AttributeIdentifier; } }	
-		IfcLabel? IIfcReference.InstanceName { get { return @InstanceName; } }	
-		IEnumerable<IfcInteger> IIfcReference.ListPositions { get { return @ListPositions; } }	
-		IIfcReference IIfcReference.InnerReference { get { return @InnerReference; } }	
+		IfcIdentifier? IIfcReference.TypeIdentifier { 
+			get { return @TypeIdentifier; } 
+ 
+			set { TypeIdentifier = value;}
+		}	
+		IfcIdentifier? IIfcReference.AttributeIdentifier { 
+			get { return @AttributeIdentifier; } 
+ 
+			set { AttributeIdentifier = value;}
+		}	
+		IfcLabel? IIfcReference.InstanceName { 
+			get { return @InstanceName; } 
+ 
+			set { InstanceName = value;}
+		}	
+		IEnumerable<IfcInteger> IIfcReference.ListPositions { 
+			get { return @ListPositions; } 
+		}	
+		IIfcReference IIfcReference.InnerReference { 
+			get { return @InnerReference; } 
+ 
+ 
+			set { InnerReference = value as IfcReference;}
+		}	
 		 
 		#endregion
 

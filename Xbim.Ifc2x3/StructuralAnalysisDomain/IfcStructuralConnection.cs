@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralConnection : IIfcStructuralItem
 	{
-		IIfcBoundaryCondition @AppliedCondition { get; }
+		IIfcBoundaryCondition @AppliedCondition { get;  set; }
 		IEnumerable<IIfcRelConnectsStructuralMember> @ConnectsStructuralMembers {  get; }
 	
 	}
@@ -39,7 +39,12 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 	public abstract partial class @IfcStructuralConnection : IfcStructuralItem, IIfcStructuralConnection, IEquatable<@IfcStructuralConnection>
 	{
 		#region IIfcStructuralConnection explicit implementation
-		IIfcBoundaryCondition IIfcStructuralConnection.AppliedCondition { get { return @AppliedCondition; } }	
+		IIfcBoundaryCondition IIfcStructuralConnection.AppliedCondition { 
+			get { return @AppliedCondition; } 
+ 
+ 
+			set { AppliedCondition = value as IfcBoundaryCondition;}
+		}	
 		 
 		IEnumerable<IIfcRelConnectsStructuralMember> IIfcStructuralConnection.ConnectsStructuralMembers {  get { return @ConnectsStructuralMembers; } }
 		#endregion

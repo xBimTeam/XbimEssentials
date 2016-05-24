@@ -27,10 +27,10 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDoorType : IIfcBuildingElementType
 	{
-		IfcDoorTypeEnum @PredefinedType { get; }
-		IfcDoorTypeOperationEnum @OperationType { get; }
-		IfcBoolean? @ParameterTakesPrecedence { get; }
-		IfcLabel? @UserDefinedOperationType { get; }
+		IfcDoorTypeEnum @PredefinedType { get;  set; }
+		IfcDoorTypeOperationEnum @OperationType { get;  set; }
+		IfcBoolean? @ParameterTakesPrecedence { get;  set; }
+		IfcLabel? @UserDefinedOperationType { get;  set; }
 	
 	}
 }
@@ -42,10 +42,26 @@ namespace Xbim.Ifc4.SharedBldgElements
 	public  partial class @IfcDoorType : IfcBuildingElementType, IInstantiableEntity, IIfcDoorType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDoorType>
 	{
 		#region IIfcDoorType explicit implementation
-		IfcDoorTypeEnum IIfcDoorType.PredefinedType { get { return @PredefinedType; } }	
-		IfcDoorTypeOperationEnum IIfcDoorType.OperationType { get { return @OperationType; } }	
-		IfcBoolean? IIfcDoorType.ParameterTakesPrecedence { get { return @ParameterTakesPrecedence; } }	
-		IfcLabel? IIfcDoorType.UserDefinedOperationType { get { return @UserDefinedOperationType; } }	
+		IfcDoorTypeEnum IIfcDoorType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
+		IfcDoorTypeOperationEnum IIfcDoorType.OperationType { 
+			get { return @OperationType; } 
+ 
+			set { OperationType = value;}
+		}	
+		IfcBoolean? IIfcDoorType.ParameterTakesPrecedence { 
+			get { return @ParameterTakesPrecedence; } 
+ 
+			set { ParameterTakesPrecedence = value;}
+		}	
+		IfcLabel? IIfcDoorType.UserDefinedOperationType { 
+			get { return @UserDefinedOperationType; } 
+ 
+			set { UserDefinedOperationType = value;}
+		}	
 		 
 		#endregion
 

@@ -26,8 +26,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcProxy : IIfcProduct
 	{
-		IfcObjectTypeEnum @ProxyType { get; }
-		IfcLabel? @Tag { get; }
+		IfcObjectTypeEnum @ProxyType { get;  set; }
+		IfcLabel? @Tag { get;  set; }
 	
 	}
 }
@@ -39,8 +39,16 @@ namespace Xbim.Ifc2x3.Kernel
 	public  partial class @IfcProxy : IfcProduct, IInstantiableEntity, IIfcProxy, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcProxy>
 	{
 		#region IIfcProxy explicit implementation
-		IfcObjectTypeEnum IIfcProxy.ProxyType { get { return @ProxyType; } }	
-		IfcLabel? IIfcProxy.Tag { get { return @Tag; } }	
+		IfcObjectTypeEnum IIfcProxy.ProxyType { 
+			get { return @ProxyType; } 
+ 
+			set { ProxyType = value;}
+		}	
+		IfcLabel? IIfcProxy.Tag { 
+			get { return @Tag; } 
+ 
+			set { Tag = value;}
+		}	
 		 
 		#endregion
 

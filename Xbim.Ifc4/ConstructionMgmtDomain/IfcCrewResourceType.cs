@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCrewResourceType : IIfcConstructionResourceType
 	{
-		IfcCrewResourceTypeEnum @PredefinedType { get; }
+		IfcCrewResourceTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -37,7 +37,11 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 	public  partial class @IfcCrewResourceType : IfcConstructionResourceType, IInstantiableEntity, IIfcCrewResourceType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCrewResourceType>
 	{
 		#region IIfcCrewResourceType explicit implementation
-		IfcCrewResourceTypeEnum IIfcCrewResourceType.PredefinedType { get { return @PredefinedType; } }	
+		IfcCrewResourceTypeEnum IIfcCrewResourceType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

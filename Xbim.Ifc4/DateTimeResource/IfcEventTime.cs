@@ -25,10 +25,10 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcEventTime : IIfcSchedulingTime
 	{
-		IfcDateTime? @ActualDate { get; }
-		IfcDateTime? @EarlyDate { get; }
-		IfcDateTime? @LateDate { get; }
-		IfcDateTime? @ScheduleDate { get; }
+		IfcDateTime? @ActualDate { get;  set; }
+		IfcDateTime? @EarlyDate { get;  set; }
+		IfcDateTime? @LateDate { get;  set; }
+		IfcDateTime? @ScheduleDate { get;  set; }
 	
 	}
 }
@@ -40,10 +40,26 @@ namespace Xbim.Ifc4.DateTimeResource
 	public  partial class @IfcEventTime : IfcSchedulingTime, IInstantiableEntity, IIfcEventTime, IEquatable<@IfcEventTime>
 	{
 		#region IIfcEventTime explicit implementation
-		IfcDateTime? IIfcEventTime.ActualDate { get { return @ActualDate; } }	
-		IfcDateTime? IIfcEventTime.EarlyDate { get { return @EarlyDate; } }	
-		IfcDateTime? IIfcEventTime.LateDate { get { return @LateDate; } }	
-		IfcDateTime? IIfcEventTime.ScheduleDate { get { return @ScheduleDate; } }	
+		IfcDateTime? IIfcEventTime.ActualDate { 
+			get { return @ActualDate; } 
+ 
+			set { ActualDate = value;}
+		}	
+		IfcDateTime? IIfcEventTime.EarlyDate { 
+			get { return @EarlyDate; } 
+ 
+			set { EarlyDate = value;}
+		}	
+		IfcDateTime? IIfcEventTime.LateDate { 
+			get { return @LateDate; } 
+ 
+			set { LateDate = value;}
+		}	
+		IfcDateTime? IIfcEventTime.ScheduleDate { 
+			get { return @ScheduleDate; } 
+ 
+			set { ScheduleDate = value;}
+		}	
 		 
 		#endregion
 

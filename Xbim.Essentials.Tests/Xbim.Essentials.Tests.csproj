@@ -73,6 +73,7 @@
     <Compile Include="SearchTests.cs" />
     <Compile Include="TransactionalChanges.cs" />
     <Compile Include="InverseCacheTests.cs" />
+    <Compile Include="CrossAccessTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj">

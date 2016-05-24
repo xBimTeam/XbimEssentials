@@ -28,7 +28,6 @@ namespace Xbim.Ifc
     // was reverted as it did not provide the expected outcomes.
     // An example of a correct implementaion could be found in Kernel.IfcRoot implementation.
     
-    public class IfcStore : IModel, IDisposable, IFederatedModel
     {
         private readonly IModel _model;
         private readonly IfcSchemaVersion _schema;
@@ -1625,6 +1624,25 @@ namespace Xbim.Ifc
                 spatialStructureElements = decomposing;
             }
         }
+        #endregion
+
+        #region Equality
+
+        public bool Equals(IModel other)
+        {
+            return ReferenceEquals(this, other) || ReferenceEquals(other, _model);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return _model.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return _model.GetHashCode();
+        }
+
         #endregion
     }
 }

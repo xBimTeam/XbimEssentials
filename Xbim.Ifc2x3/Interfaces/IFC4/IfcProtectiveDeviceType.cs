@@ -43,6 +43,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 						return Ifc4.Interfaces.IfcProtectiveDeviceTypeEnum.VARISTOR;
 					
 					case IfcProtectiveDeviceTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcProtectiveDeviceTypeEnum.USERDEFINED;
 					
 					case IfcProtectiveDeviceTypeEnum.NOTDEFINED:
@@ -53,6 +55,56 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcProtectiveDeviceTypeEnum.CIRCUITBREAKER:
+						PredefinedType = IfcProtectiveDeviceTypeEnum.CIRCUITBREAKER;
+						return;
+					
+					case Ifc4.Interfaces.IfcProtectiveDeviceTypeEnum.EARTHLEAKAGECIRCUITBREAKER:
+						//## Handle setting of EARTHLEAKAGECIRCUITBREAKER member from IfcProtectiveDeviceTypeEnum in property PredefinedType
+						//TODO: Handle setting of EARTHLEAKAGECIRCUITBREAKER member from IfcProtectiveDeviceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcProtectiveDeviceTypeEnum.EARTHINGSWITCH:
+						//## Handle setting of EARTHINGSWITCH member from IfcProtectiveDeviceTypeEnum in property PredefinedType
+						//TODO: Handle setting of EARTHINGSWITCH member from IfcProtectiveDeviceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcProtectiveDeviceTypeEnum.FUSEDISCONNECTOR:
+						PredefinedType = IfcProtectiveDeviceTypeEnum.FUSEDISCONNECTOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcProtectiveDeviceTypeEnum.RESIDUALCURRENTCIRCUITBREAKER:
+						PredefinedType = IfcProtectiveDeviceTypeEnum.RESIDUALCURRENTCIRCUITBREAKER;
+						return;
+					
+					case Ifc4.Interfaces.IfcProtectiveDeviceTypeEnum.RESIDUALCURRENTSWITCH:
+						PredefinedType = IfcProtectiveDeviceTypeEnum.RESIDUALCURRENTSWITCH;
+						return;
+					
+					case Ifc4.Interfaces.IfcProtectiveDeviceTypeEnum.VARISTOR:
+						PredefinedType = IfcProtectiveDeviceTypeEnum.VARISTOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcProtectiveDeviceTypeEnum.USERDEFINED:
+						PredefinedType = IfcProtectiveDeviceTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcProtectiveDeviceTypeEnum.NOTDEFINED:
+						PredefinedType = IfcProtectiveDeviceTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

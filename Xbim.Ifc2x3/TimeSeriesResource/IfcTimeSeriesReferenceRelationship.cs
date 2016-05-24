@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTimeSeriesReferenceRelationship : IPersistEntity
 	{
-		IIfcTimeSeries @ReferencedTimeSeries { get; }
+		IIfcTimeSeries @ReferencedTimeSeries { get;  set; }
 		IEnumerable<IIfcDocumentSelect> @TimeSeriesReferences { get; }
 	
 	}
@@ -41,8 +41,15 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 	public  partial class @IfcTimeSeriesReferenceRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcTimeSeriesReferenceRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTimeSeriesReferenceRelationship>
 	{
 		#region IIfcTimeSeriesReferenceRelationship explicit implementation
-		IIfcTimeSeries IIfcTimeSeriesReferenceRelationship.ReferencedTimeSeries { get { return @ReferencedTimeSeries; } }	
-		IEnumerable<IIfcDocumentSelect> IIfcTimeSeriesReferenceRelationship.TimeSeriesReferences { get { return @TimeSeriesReferences; } }	
+		IIfcTimeSeries IIfcTimeSeriesReferenceRelationship.ReferencedTimeSeries { 
+			get { return @ReferencedTimeSeries; } 
+ 
+ 
+			set { ReferencedTimeSeries = value as IfcTimeSeries;}
+		}	
+		IEnumerable<IIfcDocumentSelect> IIfcTimeSeriesReferenceRelationship.TimeSeriesReferences { 
+			get { return @TimeSeriesReferences; } 
+		}	
 		 
 		#endregion
 

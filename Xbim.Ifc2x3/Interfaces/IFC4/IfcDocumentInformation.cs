@@ -24,6 +24,14 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			    return new Ifc4.MeasureResource.IfcIdentifier(DocumentId);
 			    //##
 			} 
+			set
+			{
+				//## Handle setting of Identification for which no match was found
+				DocumentId = new MeasureResource.IfcIdentifier(value);
+				//##
+				NotifyPropertyChanged("Identification");
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel IIfcDocumentInformation.Name 
 		{ 
@@ -31,6 +39,11 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				Name = new MeasureResource.IfcLabel(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.Description 
 		{ 
@@ -39,6 +52,13 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (!Description.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				Description = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
+				
+			}
 		}
 		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcDocumentInformation.Location 
 		{ 
@@ -51,6 +71,25 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			        : null;
 			    //##
 			} 
+			set
+			{
+				//## Handle setting of Location for which no match was found
+                var reference = DocumentReferences.FirstOrDefault(r => r.Location != null);
+			    if (!value.HasValue)
+			    {
+			        if (reference != null)
+			            reference.Location = null;
+			    }
+			    else
+			    {
+			        if (reference == null)
+			            reference = Model.Instances.New<IfcDocumentReference>();
+			        reference.Location = value.Value.ToString();
+			    }
+				//##
+				NotifyPropertyChanged("Location");
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.Purpose 
 		{ 
@@ -59,6 +98,13 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (!Purpose.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Purpose.Value);
 			} 
+			set
+			{
+				Purpose = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.IntendedUse 
 		{ 
@@ -67,6 +113,13 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (!IntendedUse.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(IntendedUse.Value);
 			} 
+			set
+			{
+				IntendedUse = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.Scope 
 		{ 
@@ -75,6 +128,13 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (!Scope.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Scope.Value);
 			} 
+			set
+			{
+				Scope = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcDocumentInformation.Revision 
 		{ 
@@ -83,6 +143,13 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (!Revision.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Revision.Value);
 			} 
+			set
+			{
+				Revision = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		IIfcActorSelect IIfcDocumentInformation.DocumentOwner 
 		{ 
@@ -100,6 +167,33 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 					return ifcpersonandorganization;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					DocumentOwner = null;
+					return;
+				}	
+				var ifcorganization = value as ActorResource.IfcOrganization;
+				if (ifcorganization != null) 
+				{
+					DocumentOwner = ifcorganization;
+					return;
+				}
+				var ifcperson = value as ActorResource.IfcPerson;
+				if (ifcperson != null) 
+				{
+					DocumentOwner = ifcperson;
+					return;
+				}
+				var ifcpersonandorganization = value as ActorResource.IfcPersonAndOrganization;
+				if (ifcpersonandorganization != null) 
+				{
+					DocumentOwner = ifcpersonandorganization;
+					return;
+				}
+				
+			}
 		}
 		IEnumerable<IIfcActorSelect> IIfcDocumentInformation.Editors 
 		{ 
@@ -129,6 +223,33 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			        : null;
 				//##
 			} 
+			set
+			{
+				//## Handle setting of CreationTime for which no match was found
+                if (!value.HasValue)
+                {
+                    CreationTime = null;
+                    return;
+                }
+                System.DateTime d = value.Value;
+                CreationTime = Model.Instances.New<DateTimeResource.IfcDateAndTime>(dt =>
+                {
+                    dt.DateComponent = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+                    {
+                        date.YearComponent = d.Year;
+                        date.MonthComponent = d.Month;
+                        date.DayComponent = d.Day;
+                    });
+                    dt.TimeComponent = Model.Instances.New<DateTimeResource.IfcLocalTime>(t =>
+                    {
+                        t.HourComponent = d.Hour;
+                        t.MinuteComponent = d.Minute;
+                        t.SecondComponent = d.Second;
+                    });
+                });
+				//##
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDateTime? IIfcDocumentInformation.LastRevisionTime 
 		{ 
@@ -140,6 +261,33 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
                     : null;
 				//##
 			} 
+			set
+			{
+				//## Handle setting of LastRevisionTime for which no match was found
+                if (!value.HasValue)
+                {
+                    LastRevisionTime = null;
+                    return;
+                }
+                System.DateTime d = value.Value;
+                LastRevisionTime = Model.Instances.New<DateTimeResource.IfcDateAndTime>(dt =>
+                {
+                    dt.DateComponent = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+                    {
+                        date.YearComponent = d.Year;
+                        date.MonthComponent = d.Month;
+                        date.DayComponent = d.Day;
+                    });
+                    dt.TimeComponent = Model.Instances.New<DateTimeResource.IfcLocalTime>(t =>
+                    {
+                        t.HourComponent = d.Hour;
+                        t.MinuteComponent = d.Minute;
+                        t.SecondComponent = d.Second;
+                    });
+                });
+				//##
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcIdentifier? IIfcDocumentInformation.ElectronicFormat 
 		{ 
@@ -154,9 +302,26 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			    string ext = ElectronicFormat.FileExtension.Value;
 			    ext = ext.Trim('.').ToLowerInvariant();
 			    string mime;
-			    return MimeTypeLoopUp.Types.TryGetValue(ext, out mime) ? mime : null;
+			    return MimeTypeLookUp.Types.TryGetValue(ext, out mime) ? mime : null;
 			    //##
 			} 
+			set
+			{
+				//## Handle setting of ElectronicFormat for which no match was found
+			    if (!value.HasValue)
+			    {
+			        if (ElectronicFormat == null)
+			            return;
+			        ElectronicFormat.MimeContentType = null;
+			        return;
+			    }
+			    if (ElectronicFormat == null)
+			        ElectronicFormat = Model.Instances.New<IfcDocumentElectronicFormat>();
+			    ElectronicFormat.MimeContentType = value.Value.ToString();
+
+			    //##
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDate? IIfcDocumentInformation.ValidFrom 
 		{ 
@@ -168,6 +333,24 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
                     : null;
 				//##
 			} 
+			set
+			{
+				//## Handle setting of ValidFrom for which no match was found
+                if (!value.HasValue)
+                {
+                    ValidFrom = null;
+                    return;
+                }
+                System.DateTime date = value.Value;
+                ValidFrom = Model.Instances.New<DateTimeResource.IfcCalendarDate>(d =>
+                {
+                    d.YearComponent = date.Year;
+                    d.MonthComponent = date.Month;
+                    d.DayComponent = date.Day;
+                });
+				//##
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDate? IIfcDocumentInformation.ValidUntil 
 		{ 
@@ -179,6 +362,24 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
                     : null;
 				//##
 			} 
+			set
+			{
+				//## Handle setting of ValidUntil for which no match was found
+                if (!value.HasValue)
+                {
+                    ValidUntil = null;
+                    return;
+                }
+                System.DateTime date = value.Value;
+                ValidUntil = Model.Instances.New<DateTimeResource.IfcCalendarDate>(d =>
+                {
+                    d.YearComponent = date.Year;
+                    d.MonthComponent = date.Month;
+                    d.DayComponent = date.Day;
+                });
+				//##
+				
+			}
 		}
 		Ifc4.Interfaces.IfcDocumentConfidentialityEnum? IIfcDocumentInformation.Confidentiality 
 		{ 
@@ -199,6 +400,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.PERSONAL;
 					
 					case IfcDocumentConfidentialityEnum.USERDEFINED:
+						//## Optional custom handling of Confidentiality == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.USERDEFINED;
 					
 					case IfcDocumentConfidentialityEnum.NOTDEFINED:
@@ -209,6 +412,40 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcDocumentConfidentialityEnum.PUBLIC:
+						Confidentiality = IfcDocumentConfidentialityEnum.PUBLIC;
+						return;
+					
+					case Ifc4.Interfaces.IfcDocumentConfidentialityEnum.RESTRICTED:
+						Confidentiality = IfcDocumentConfidentialityEnum.RESTRICTED;
+						return;
+					
+					case Ifc4.Interfaces.IfcDocumentConfidentialityEnum.CONFIDENTIAL:
+						Confidentiality = IfcDocumentConfidentialityEnum.CONFIDENTIAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcDocumentConfidentialityEnum.PERSONAL:
+						Confidentiality = IfcDocumentConfidentialityEnum.PERSONAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcDocumentConfidentialityEnum.USERDEFINED:
+						Confidentiality = IfcDocumentConfidentialityEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcDocumentConfidentialityEnum.NOTDEFINED:
+						Confidentiality = IfcDocumentConfidentialityEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.Interfaces.IfcDocumentStatusEnum? IIfcDocumentInformation.Status 
 		{ 
@@ -236,6 +473,36 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcDocumentStatusEnum.DRAFT:
+						Status = IfcDocumentStatusEnum.DRAFT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDocumentStatusEnum.FINALDRAFT:
+						Status = IfcDocumentStatusEnum.FINALDRAFT;
+						return;
+					
+					case Ifc4.Interfaces.IfcDocumentStatusEnum.FINAL:
+						Status = IfcDocumentStatusEnum.FINAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcDocumentStatusEnum.REVISION:
+						Status = IfcDocumentStatusEnum.REVISION;
+						return;
+					
+					case Ifc4.Interfaces.IfcDocumentStatusEnum.NOTDEFINED:
+						Status = IfcDocumentStatusEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		IEnumerable<IIfcRelAssociatesDocument> IIfcDocumentInformation.DocumentInfoForObjects 
 		{ 

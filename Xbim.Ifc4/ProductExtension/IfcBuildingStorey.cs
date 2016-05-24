@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBuildingStorey : IIfcSpatialStructureElement
 	{
-		IfcLengthMeasure? @Elevation { get; }
+		IfcLengthMeasure? @Elevation { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcBuildingStorey : IfcSpatialStructureElement, IInstantiableEntity, IIfcBuildingStorey, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBuildingStorey>
 	{
 		#region IIfcBuildingStorey explicit implementation
-		IfcLengthMeasure? IIfcBuildingStorey.Elevation { get { return @Elevation; } }	
+		IfcLengthMeasure? IIfcBuildingStorey.Elevation { 
+			get { return @Elevation; } 
+ 
+			set { Elevation = value;}
+		}	
 		 
 		#endregion
 

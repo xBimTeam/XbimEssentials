@@ -28,8 +28,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IEnumerable<long> @RelatingPriorities { get; }
 		IEnumerable<long> @RelatedPriorities { get; }
-		IfcConnectionTypeEnum @RelatedConnectionType { get; }
-		IfcConnectionTypeEnum @RelatingConnectionType { get; }
+		IfcConnectionTypeEnum @RelatedConnectionType { get;  set; }
+		IfcConnectionTypeEnum @RelatingConnectionType { get;  set; }
 	
 	}
 }
@@ -41,10 +41,22 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 	public  partial class @IfcRelConnectsPathElements : IfcRelConnectsElements, IInstantiableEntity, IIfcRelConnectsPathElements, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsPathElements>
 	{
 		#region IIfcRelConnectsPathElements explicit implementation
-		IEnumerable<long> IIfcRelConnectsPathElements.RelatingPriorities { get { return @RelatingPriorities; } }	
-		IEnumerable<long> IIfcRelConnectsPathElements.RelatedPriorities { get { return @RelatedPriorities; } }	
-		IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatedConnectionType { get { return @RelatedConnectionType; } }	
-		IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatingConnectionType { get { return @RelatingConnectionType; } }	
+		IEnumerable<long> IIfcRelConnectsPathElements.RelatingPriorities { 
+			get { return @RelatingPriorities; } 
+		}	
+		IEnumerable<long> IIfcRelConnectsPathElements.RelatedPriorities { 
+			get { return @RelatedPriorities; } 
+		}	
+		IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatedConnectionType { 
+			get { return @RelatedConnectionType; } 
+ 
+			set { RelatedConnectionType = value;}
+		}	
+		IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatingConnectionType { 
+			get { return @RelatingConnectionType; } 
+ 
+			set { RelatingConnectionType = value;}
+		}	
 		 
 		#endregion
 

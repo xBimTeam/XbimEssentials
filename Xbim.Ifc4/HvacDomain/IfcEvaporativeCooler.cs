@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcEvaporativeCooler : IIfcEnergyConversionDevice
 	{
-		IfcEvaporativeCoolerTypeEnum? @PredefinedType { get; }
+		IfcEvaporativeCoolerTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.HvacDomain
 	public  partial class @IfcEvaporativeCooler : IfcEnergyConversionDevice, IInstantiableEntity, IIfcEvaporativeCooler, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcEvaporativeCooler>
 	{
 		#region IIfcEvaporativeCooler explicit implementation
-		IfcEvaporativeCoolerTypeEnum? IIfcEvaporativeCooler.PredefinedType { get { return @PredefinedType; } }	
+		IfcEvaporativeCoolerTypeEnum? IIfcEvaporativeCooler.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

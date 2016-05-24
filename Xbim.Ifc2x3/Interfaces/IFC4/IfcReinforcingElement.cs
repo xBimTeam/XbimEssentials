@@ -23,6 +23,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				if (!SteelGrade.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(SteelGrade.Value);
 			} 
+			set
+			{
+				SteelGrade = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

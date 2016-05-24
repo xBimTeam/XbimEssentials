@@ -23,6 +23,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				if (!DefinitionType.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(DefinitionType.Value);
 			} 
+			set
+			{
+				DefinitionType = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		IEnumerable<IIfcSectionReinforcementProperties> IIfcReinforcementDefinitionProperties.ReinforcementSectionDefinitions 
 		{ 

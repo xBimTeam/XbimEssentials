@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			{
 				return PlacementRelTo;
 			} 
+			set
+			{
+				PlacementRelTo = value as IfcObjectPlacement;
+				
+			}
 		}
 		IIfcAxis2Placement IIfcLocalPlacement.RelativePlacement 
 		{ 
@@ -36,6 +41,27 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 					return ifcaxis2placement3d;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					RelativePlacement = null;
+					return;
+				}	
+				var ifcaxis2placement2d = value as GeometryResource.IfcAxis2Placement2D;
+				if (ifcaxis2placement2d != null) 
+				{
+					RelativePlacement = ifcaxis2placement2d;
+					return;
+				}
+				var ifcaxis2placement3d = value as GeometryResource.IfcAxis2Placement3D;
+				if (ifcaxis2placement3d != null) 
+				{
+					RelativePlacement = ifcaxis2placement3d;
+					return;
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

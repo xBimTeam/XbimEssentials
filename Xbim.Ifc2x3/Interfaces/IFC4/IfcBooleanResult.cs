@@ -36,6 +36,28 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcBooleanOperator.UNION:
+						Operator = IfcBooleanOperator.UNION;
+						return;
+					
+					case Ifc4.Interfaces.IfcBooleanOperator.INTERSECTION:
+						Operator = IfcBooleanOperator.INTERSECTION;
+						return;
+					
+					case Ifc4.Interfaces.IfcBooleanOperator.DIFFERENCE:
+						Operator = IfcBooleanOperator.DIFFERENCE;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		IIfcBooleanOperand IIfcBooleanResult.FirstOperand 
 		{ 
@@ -56,6 +78,39 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 					return ifccsgprimitive3d;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					FirstOperand = null;
+					return;
+				}	
+				var ifcbooleanresult = value as IfcBooleanResult;
+				if (ifcbooleanresult != null) 
+				{
+					FirstOperand = ifcbooleanresult;
+					return;
+				}
+				var ifccsgprimitive3d = value as IfcCsgPrimitive3D;
+				if (ifccsgprimitive3d != null) 
+				{
+					FirstOperand = ifccsgprimitive3d;
+					return;
+				}
+				var ifchalfspacesolid = value as IfcHalfSpaceSolid;
+				if (ifchalfspacesolid != null) 
+				{
+					FirstOperand = ifchalfspacesolid;
+					return;
+				}
+				var ifcsolidmodel = value as IfcSolidModel;
+				if (ifcsolidmodel != null) 
+				{
+					FirstOperand = ifcsolidmodel;
+					return;
+				}
+				
+			}
 		}
 		IIfcBooleanOperand IIfcBooleanResult.SecondOperand 
 		{ 
@@ -76,6 +131,39 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 					return ifccsgprimitive3d;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					SecondOperand = null;
+					return;
+				}	
+				var ifcbooleanresult = value as IfcBooleanResult;
+				if (ifcbooleanresult != null) 
+				{
+					SecondOperand = ifcbooleanresult;
+					return;
+				}
+				var ifccsgprimitive3d = value as IfcCsgPrimitive3D;
+				if (ifccsgprimitive3d != null) 
+				{
+					SecondOperand = ifccsgprimitive3d;
+					return;
+				}
+				var ifchalfspacesolid = value as IfcHalfSpaceSolid;
+				if (ifchalfspacesolid != null) 
+				{
+					SecondOperand = ifchalfspacesolid;
+					return;
+				}
+				var ifcsolidmodel = value as IfcSolidModel;
+				if (ifcsolidmodel != null) 
+				{
+					SecondOperand = ifcsolidmodel;
+					return;
+				}
+				
+			}
 		}
 		Ifc4.GeometryResource.IfcDimensionCount Ifc4.GeometricModelResource.IfcBooleanOperand.Dim 
 		{

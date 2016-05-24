@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				Name = new MeasureResource.IfcLabel(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcTimeSeries.Description 
 		{ 
@@ -30,6 +35,13 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 				if (!Description.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				Description = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDateTime IIfcTimeSeries.StartTime 
 		{ 
@@ -39,6 +51,28 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
                 return new Ifc4.DateTimeResource.IfcDateTime(StartTime.ToISODateTimeString());
 				//##
 			} 
+			set
+			{
+				//## Handle setting of StartTime for which no match was found
+                System.DateTime d = value;
+                StartTime = Model.Instances.New<DateTimeResource.IfcDateAndTime>(dt =>
+                {
+                    dt.DateComponent = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+                    {
+                        date.YearComponent = d.Year;
+                        date.MonthComponent = d.Month;
+                        date.DayComponent = d.Day;
+                    });
+                    dt.TimeComponent = Model.Instances.New<DateTimeResource.IfcLocalTime>(t =>
+                    {
+                        t.HourComponent = d.Hour;
+                        t.MinuteComponent = d.Minute;
+                        t.SecondComponent = d.Second;
+                    });
+                });
+				//##
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDateTime IIfcTimeSeries.EndTime 
 		{ 
@@ -48,6 +82,28 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
                 return new Ifc4.DateTimeResource.IfcDateTime(EndTime.ToISODateTimeString());
 				//##
 			} 
+			set
+			{
+				//## Handle setting of EndTime for which no match was found
+                System.DateTime d = value;
+                EndTime = Model.Instances.New<DateTimeResource.IfcDateAndTime>(dt =>
+                {
+                    dt.DateComponent = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+                    {
+                        date.YearComponent = d.Year;
+                        date.MonthComponent = d.Month;
+                        date.DayComponent = d.Day;
+                    });
+                    dt.TimeComponent = Model.Instances.New<DateTimeResource.IfcLocalTime>(t =>
+                    {
+                        t.HourComponent = d.Hour;
+                        t.MinuteComponent = d.Minute;
+                        t.SecondComponent = d.Second;
+                    });
+                });
+				//##
+				
+			}
 		}
 		Ifc4.Interfaces.IfcTimeSeriesDataTypeEnum IIfcTimeSeries.TimeSeriesDataType 
 		{ 
@@ -81,6 +137,44 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcTimeSeriesDataTypeEnum.CONTINUOUS:
+						TimeSeriesDataType = IfcTimeSeriesDataTypeEnum.CONTINUOUS;
+						return;
+					
+					case Ifc4.Interfaces.IfcTimeSeriesDataTypeEnum.DISCRETE:
+						TimeSeriesDataType = IfcTimeSeriesDataTypeEnum.DISCRETE;
+						return;
+					
+					case Ifc4.Interfaces.IfcTimeSeriesDataTypeEnum.DISCRETEBINARY:
+						TimeSeriesDataType = IfcTimeSeriesDataTypeEnum.DISCRETEBINARY;
+						return;
+					
+					case Ifc4.Interfaces.IfcTimeSeriesDataTypeEnum.PIECEWISEBINARY:
+						TimeSeriesDataType = IfcTimeSeriesDataTypeEnum.PIECEWISEBINARY;
+						return;
+					
+					case Ifc4.Interfaces.IfcTimeSeriesDataTypeEnum.PIECEWISECONSTANT:
+						TimeSeriesDataType = IfcTimeSeriesDataTypeEnum.PIECEWISECONSTANT;
+						return;
+					
+					case Ifc4.Interfaces.IfcTimeSeriesDataTypeEnum.PIECEWISECONTINUOUS:
+						TimeSeriesDataType = IfcTimeSeriesDataTypeEnum.PIECEWISECONTINUOUS;
+						return;
+					
+					case Ifc4.Interfaces.IfcTimeSeriesDataTypeEnum.NOTDEFINED:
+						TimeSeriesDataType = IfcTimeSeriesDataTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.Interfaces.IfcDataOriginEnum IIfcTimeSeries.DataOrigin 
 		{ 
@@ -98,6 +192,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 						return Ifc4.Interfaces.IfcDataOriginEnum.SIMULATED;
 					
 					case IfcDataOriginEnum.USERDEFINED:
+						//## Optional custom handling of DataOrigin == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcDataOriginEnum.USERDEFINED;
 					
 					case IfcDataOriginEnum.NOTDEFINED:
@@ -108,6 +204,36 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcDataOriginEnum.MEASURED:
+						DataOrigin = IfcDataOriginEnum.MEASURED;
+						return;
+					
+					case Ifc4.Interfaces.IfcDataOriginEnum.PREDICTED:
+						DataOrigin = IfcDataOriginEnum.PREDICTED;
+						return;
+					
+					case Ifc4.Interfaces.IfcDataOriginEnum.SIMULATED:
+						DataOrigin = IfcDataOriginEnum.SIMULATED;
+						return;
+					
+					case Ifc4.Interfaces.IfcDataOriginEnum.USERDEFINED:
+						DataOrigin = IfcDataOriginEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcDataOriginEnum.NOTDEFINED:
+						DataOrigin = IfcDataOriginEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcTimeSeries.UserDefinedDataOrigin 
 		{ 
@@ -116,6 +242,13 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 				if (!UserDefinedDataOrigin.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(UserDefinedDataOrigin.Value);
 			} 
+			set
+			{
+				UserDefinedDataOrigin = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		IIfcUnit IIfcTimeSeries.Unit 
 		{ 
@@ -133,6 +266,33 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 					return ifcmonetaryunit;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					Unit = null;
+					return;
+				}	
+				var ifcderivedunit = value as MeasureResource.IfcDerivedUnit;
+				if (ifcderivedunit != null) 
+				{
+					Unit = ifcderivedunit;
+					return;
+				}
+				var ifcmonetaryunit = value as MeasureResource.IfcMonetaryUnit;
+				if (ifcmonetaryunit != null) 
+				{
+					Unit = ifcmonetaryunit;
+					return;
+				}
+				var ifcnamedunit = value as MeasureResource.IfcNamedUnit;
+				if (ifcnamedunit != null) 
+				{
+					Unit = ifcnamedunit;
+					return;
+				}
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcTimeSeries.HasExternalReference 
 		{ 

@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				return new Ifc4.MeasureResource.IfcLengthMeasure(VisibleSegmentLength);
 			} 
+			set
+			{
+				VisibleSegmentLength = new MeasureResource.IfcLengthMeasure(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcCurveStyleFontPattern.InvisibleSegmentLength 
 		{ 
@@ -29,6 +34,11 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(InvisibleSegmentLength);
 			} 
+			set
+			{
+				InvisibleSegmentLength = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
 	//## Custom code
 	//##

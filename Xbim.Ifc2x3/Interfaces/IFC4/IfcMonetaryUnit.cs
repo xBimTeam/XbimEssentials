@@ -21,11 +21,27 @@ namespace Xbim.Ifc2x3.MeasureResource
 			get
 			{
 				//## Handle return of Currency for which no match was found
-			    return new Ifc4.MeasureResource.IfcLabel(System.Enum.GetName(typeof(IfcCurrencyEnum),Currency));
+			    //return value which was set before or string representation of the enumeration
+                return !string.IsNullOrWhiteSpace(_currencyLabel) ? 
+                    _currencyLabel : 
+                    new Ifc4.MeasureResource.IfcLabel(System.Enum.GetName(typeof(IfcCurrencyEnum),Currency));
 			    //##
 			} 
+			set
+			{
+				//## Handle setting of Currency for which no match was found
+                //try to parse the value. If it doesn't fit, set value in private field to persist the value.
+                IfcCurrencyEnum c;
+			    if (System.Enum.TryParse(value.ToString(), true, out c))
+			        Currency = c;
+			    else
+			        SetValue(v => _currencyLabel = v, _currencyLabel, value, "Currency", byte.MaxValue);
+			    //##
+				
+			}
 		}
 	//## Custom code
-	//##
+	    private Ifc4.MeasureResource.IfcLabel _currencyLabel;
+	    //##
 	}
 }

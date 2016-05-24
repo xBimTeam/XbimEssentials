@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				return new Ifc4.MeasureResource.IfcPlaneAngleMeasure(MainPlaneAngle);
 			} 
+			set
+			{
+				MainPlaneAngle = new MeasureResource.IfcPlaneAngleMeasure(value);
+				
+			}
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure> IIfcLightDistributionData.SecondaryPlaneAngle 
 		{ 

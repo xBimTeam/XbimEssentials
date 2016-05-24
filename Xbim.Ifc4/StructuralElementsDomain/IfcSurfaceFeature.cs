@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSurfaceFeature : IIfcFeatureElement
 	{
-		IfcSurfaceFeatureTypeEnum? @PredefinedType { get; }
+		IfcSurfaceFeatureTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 	public  partial class @IfcSurfaceFeature : IfcFeatureElement, IInstantiableEntity, IIfcSurfaceFeature, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSurfaceFeature>
 	{
 		#region IIfcSurfaceFeature explicit implementation
-		IfcSurfaceFeatureTypeEnum? IIfcSurfaceFeature.PredefinedType { get { return @PredefinedType; } }	
+		IfcSurfaceFeatureTypeEnum? IIfcSurfaceFeature.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

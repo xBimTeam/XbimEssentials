@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelAssignsToGroup : IIfcRelAssigns
 	{
-		IIfcGroup @RelatingGroup { get; }
+		IIfcGroup @RelatingGroup { get;  set; }
 	
 	}
 }
@@ -37,7 +37,12 @@ namespace Xbim.Ifc2x3.Kernel
 	public  partial class @IfcRelAssignsToGroup : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToGroup, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToGroup>
 	{
 		#region IIfcRelAssignsToGroup explicit implementation
-		IIfcGroup IIfcRelAssignsToGroup.RelatingGroup { get { return @RelatingGroup; } }	
+		IIfcGroup IIfcRelAssignsToGroup.RelatingGroup { 
+			get { return @RelatingGroup; } 
+ 
+ 
+			set { RelatingGroup = value as IfcGroup;}
+		}	
 		 
 		#endregion
 

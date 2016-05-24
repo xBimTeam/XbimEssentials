@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcTableRow : IPersistEntity
 	{
 		IEnumerable<IIfcValue> @RowCells { get; }
-		bool @IsHeading { get; }
+		bool @IsHeading { get;  set; }
 		IIfcTable @OfTable {  get; }
 	
 	}
@@ -42,8 +42,14 @@ namespace Xbim.Ifc2x3.UtilityResource
 	public  partial class @IfcTableRow : INotifyPropertyChanged, IInstantiableEntity, IIfcTableRow, IEquatable<@IfcTableRow>
 	{
 		#region IIfcTableRow explicit implementation
-		IEnumerable<IIfcValue> IIfcTableRow.RowCells { get { return @RowCells; } }	
-		bool IIfcTableRow.IsHeading { get { return @IsHeading; } }	
+		IEnumerable<IIfcValue> IIfcTableRow.RowCells { 
+			get { return @RowCells; } 
+		}	
+		bool IIfcTableRow.IsHeading { 
+			get { return @IsHeading; } 
+ 
+			set { IsHeading = value;}
+		}	
 		 
 		IIfcTable IIfcTableRow.OfTable {  get { return @OfTable; } }
 		#endregion

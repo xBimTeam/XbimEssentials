@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBeam : IIfcBuildingElement
 	{
-		IfcBeamTypeEnum? @PredefinedType { get; }
+		IfcBeamTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.SharedBldgElements
 	public  partial class @IfcBeam : IfcBuildingElement, IInstantiableEntity, IIfcBeam, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBeam>
 	{
 		#region IIfcBeam explicit implementation
-		IfcBeamTypeEnum? IIfcBeam.PredefinedType { get { return @PredefinedType; } }	
+		IfcBeamTypeEnum? IIfcBeam.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

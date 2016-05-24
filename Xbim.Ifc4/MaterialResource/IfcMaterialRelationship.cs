@@ -27,9 +27,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialRelationship : IIfcResourceLevelRelationship
 	{
-		IIfcMaterial @RelatingMaterial { get; }
+		IIfcMaterial @RelatingMaterial { get;  set; }
 		IEnumerable<IIfcMaterial> @RelatedMaterials { get; }
-		IfcLabel? @Expression { get; }
+		IfcLabel? @Expression { get;  set; }
 	
 	}
 }
@@ -41,9 +41,20 @@ namespace Xbim.Ifc4.MaterialResource
 	public  partial class @IfcMaterialRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcMaterialRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMaterialRelationship>
 	{
 		#region IIfcMaterialRelationship explicit implementation
-		IIfcMaterial IIfcMaterialRelationship.RelatingMaterial { get { return @RelatingMaterial; } }	
-		IEnumerable<IIfcMaterial> IIfcMaterialRelationship.RelatedMaterials { get { return @RelatedMaterials; } }	
-		IfcLabel? IIfcMaterialRelationship.Expression { get { return @Expression; } }	
+		IIfcMaterial IIfcMaterialRelationship.RelatingMaterial { 
+			get { return @RelatingMaterial; } 
+ 
+ 
+			set { RelatingMaterial = value as IfcMaterial;}
+		}	
+		IEnumerable<IIfcMaterial> IIfcMaterialRelationship.RelatedMaterials { 
+			get { return @RelatedMaterials; } 
+		}	
+		IfcLabel? IIfcMaterialRelationship.Expression { 
+			get { return @Expression; } 
+ 
+			set { Expression = value;}
+		}	
 		 
 		#endregion
 

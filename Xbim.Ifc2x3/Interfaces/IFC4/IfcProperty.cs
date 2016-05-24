@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.PropertyResource
 			{
 				return new Ifc4.MeasureResource.IfcIdentifier(Name);
 			} 
+			set
+			{
+				Name = new MeasureResource.IfcIdentifier(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcProperty.Description 
 		{ 
@@ -30,6 +35,13 @@ namespace Xbim.Ifc2x3.PropertyResource
 				if (!Description.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				Description = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
+				
+			}
 		}
 		IEnumerable<IIfcPropertySet> IIfcProperty.PartOfPset 
 		{ 

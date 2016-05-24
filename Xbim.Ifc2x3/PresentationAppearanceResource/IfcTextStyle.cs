@@ -26,9 +26,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTextStyle : IIfcPresentationStyle, IfcPresentationStyleSelect
 	{
-		IIfcCharacterStyleSelect @TextCharacterAppearance { get; }
-		IIfcTextStyleSelect @TextStyle { get; }
-		IIfcTextFontSelect @TextFontStyle { get; }
+		IIfcCharacterStyleSelect @TextCharacterAppearance { get;  set; }
+		IIfcTextStyleSelect @TextStyle { get;  set; }
+		IIfcTextFontSelect @TextFontStyle { get;  set; }
 	
 	}
 }
@@ -40,9 +40,24 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	public  partial class @IfcTextStyle : IfcPresentationStyle, IInstantiableEntity, IIfcTextStyle, IContainsEntityReferences, IEquatable<@IfcTextStyle>
 	{
 		#region IIfcTextStyle explicit implementation
-		IIfcCharacterStyleSelect IIfcTextStyle.TextCharacterAppearance { get { return @TextCharacterAppearance; } }	
-		IIfcTextStyleSelect IIfcTextStyle.TextStyle { get { return @TextStyle; } }	
-		IIfcTextFontSelect IIfcTextStyle.TextFontStyle { get { return @TextFontStyle; } }	
+		IIfcCharacterStyleSelect IIfcTextStyle.TextCharacterAppearance { 
+			get { return @TextCharacterAppearance; } 
+ 
+ 
+			set { TextCharacterAppearance = value as IfcCharacterStyleSelect;}
+		}	
+		IIfcTextStyleSelect IIfcTextStyle.TextStyle { 
+			get { return @TextStyle; } 
+ 
+ 
+			set { TextStyle = value as IfcTextStyleSelect;}
+		}	
+		IIfcTextFontSelect IIfcTextStyle.TextFontStyle { 
+			get { return @TextFontStyle; } 
+ 
+ 
+			set { TextFontStyle = value as IfcTextFontSelect;}
+		}	
 		 
 		#endregion
 

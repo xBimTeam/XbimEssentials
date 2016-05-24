@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				return new Ifc4.MeasureResource.IfcLengthMeasure(LongitudinalStartPosition);
 			} 
+			set
+			{
+				LongitudinalStartPosition = new MeasureResource.IfcLengthMeasure(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure IIfcSectionReinforcementProperties.LongitudinalEndPosition 
 		{ 
@@ -29,6 +34,11 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				return new Ifc4.MeasureResource.IfcLengthMeasure(LongitudinalEndPosition);
 			} 
+			set
+			{
+				LongitudinalEndPosition = new MeasureResource.IfcLengthMeasure(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcSectionReinforcementProperties.TransversePosition 
 		{ 
@@ -37,6 +47,13 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				if (!TransversePosition.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLengthMeasure(TransversePosition.Value);
 			} 
+			set
+			{
+				TransversePosition = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
+				
+			}
 		}
 		Ifc4.Interfaces.IfcReinforcingBarRoleEnum IIfcSectionReinforcementProperties.ReinforcementRole 
 		{ 
@@ -66,6 +83,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.RING;
 					
 					case IfcReinforcingBarRoleEnum.USERDEFINED:
+						//## Optional custom handling of ReinforcementRole == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.USERDEFINED;
 					
 					case IfcReinforcingBarRoleEnum.NOTDEFINED:
@@ -76,6 +95,58 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcReinforcingBarRoleEnum.MAIN:
+						ReinforcementRole = IfcReinforcingBarRoleEnum.MAIN;
+						return;
+					
+					case Ifc4.Interfaces.IfcReinforcingBarRoleEnum.SHEAR:
+						ReinforcementRole = IfcReinforcingBarRoleEnum.SHEAR;
+						return;
+					
+					case Ifc4.Interfaces.IfcReinforcingBarRoleEnum.LIGATURE:
+						ReinforcementRole = IfcReinforcingBarRoleEnum.LIGATURE;
+						return;
+					
+					case Ifc4.Interfaces.IfcReinforcingBarRoleEnum.STUD:
+						ReinforcementRole = IfcReinforcingBarRoleEnum.STUD;
+						return;
+					
+					case Ifc4.Interfaces.IfcReinforcingBarRoleEnum.PUNCHING:
+						ReinforcementRole = IfcReinforcingBarRoleEnum.PUNCHING;
+						return;
+					
+					case Ifc4.Interfaces.IfcReinforcingBarRoleEnum.EDGE:
+						ReinforcementRole = IfcReinforcingBarRoleEnum.EDGE;
+						return;
+					
+					case Ifc4.Interfaces.IfcReinforcingBarRoleEnum.RING:
+						ReinforcementRole = IfcReinforcingBarRoleEnum.RING;
+						return;
+					
+					case Ifc4.Interfaces.IfcReinforcingBarRoleEnum.ANCHORING:
+						//## Handle setting of ANCHORING member from IfcReinforcingBarRoleEnum in property ReinforcementRole
+						//TODO: Handle setting of ANCHORING member from IfcReinforcingBarRoleEnum in property ReinforcementRole
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcReinforcingBarRoleEnum.USERDEFINED:
+						ReinforcementRole = IfcReinforcingBarRoleEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcReinforcingBarRoleEnum.NOTDEFINED:
+						ReinforcementRole = IfcReinforcingBarRoleEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		IIfcSectionProperties IIfcSectionReinforcementProperties.SectionDefinition 
 		{ 
@@ -83,6 +154,11 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				return SectionDefinition;
 			} 
+			set
+			{
+				SectionDefinition = value as IfcSectionProperties;
+				
+			}
 		}
 		IEnumerable<IIfcReinforcementBarProperties> IIfcSectionReinforcementProperties.CrossSectionReinforcementDefinitions 
 		{ 

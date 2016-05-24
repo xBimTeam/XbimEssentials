@@ -22,15 +22,26 @@ namespace Xbim.Ifc2x3.QuantityResource
 			{
 				return new Ifc4.MeasureResource.IfcVolumeMeasure(VolumeValue);
 			} 
+			set
+			{
+				VolumeValue = new MeasureResource.IfcVolumeMeasure(value);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcLabel? _formula;
+
 		Ifc4.MeasureResource.IfcLabel? IIfcQuantityVolume.Formula 
 		{ 
 			get
 			{
-				//## Handle return of Formula for which no match was found
-                return null;
-				//##
+				return _formula;
 			} 
+			set
+			{
+				SetValue(v => _formula = v, _formula, value, "Formula", byte.MaxValue);
+				
+			}
 		}
 	//## Custom code
 	//##

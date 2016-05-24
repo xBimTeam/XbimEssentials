@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.QuantityResource
 			{
 				return Unit;
 			} 
+			set
+			{
+				Unit = value as MeasureResource.IfcNamedUnit;
+				
+			}
 		}
 	//## Custom code
 	//##

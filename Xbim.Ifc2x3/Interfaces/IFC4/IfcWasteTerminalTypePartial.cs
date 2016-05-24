@@ -1,10 +1,8 @@
 ﻿using Xbim.Ifc4.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Xbim.Ifc4.MeasureResource;
 
+// ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 {
     public partial class IfcWasteTerminalType
@@ -13,13 +11,27 @@ namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
         {
             get
             {
-                if (PredefinedType == IfcWasteTerminalTypeEnum.GREASEINTERCEPTOR)
-                    return new IfcLabel("GREASEINTERCEPTOR");
-                if (PredefinedType == IfcWasteTerminalTypeEnum.OILINTERCEPTOR)
-                    return new IfcLabel("OILINTERCEPTOR");
-                if (PredefinedType == IfcWasteTerminalTypeEnum.PETROLINTERCEPTOR)
-                    return new IfcLabel("PETROLINTERCEPTOR");
+                switch (PredefinedType)
+                {
+                    case IfcWasteTerminalTypeEnum.GREASEINTERCEPTOR:
+                    case IfcWasteTerminalTypeEnum.OILINTERCEPTOR:
+                    case IfcWasteTerminalTypeEnum.PETROLINTERCEPTOR:
+                        return new IfcLabel(Enum.GetName(typeof(IfcWasteTerminalTypeEnum), PredefinedType));
+                }
                 return ElementType.HasValue ? new IfcLabel(ElementType) : null;
+            }
+            set
+            {
+                ElementType = value.HasValue
+                    ? value.Value.ToString()
+                    : null;
+
+                if (!value.HasValue)
+                    return;
+
+                IfcWasteTerminalTypeEnum e;
+                if (Enum.TryParse(value.Value.ToString(), true, out e))
+                    PredefinedType = e;
             }
         }
     }

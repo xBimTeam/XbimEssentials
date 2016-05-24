@@ -26,11 +26,11 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialLayerSetUsage : IIfcMaterialUsageDefinition
 	{
-		IIfcMaterialLayerSet @ForLayerSet { get; }
-		IfcLayerSetDirectionEnum @LayerSetDirection { get; }
-		IfcDirectionSenseEnum @DirectionSense { get; }
-		IfcLengthMeasure @OffsetFromReferenceLine { get; }
-		IfcPositiveLengthMeasure? @ReferenceExtent { get; }
+		IIfcMaterialLayerSet @ForLayerSet { get;  set; }
+		IfcLayerSetDirectionEnum @LayerSetDirection { get;  set; }
+		IfcDirectionSenseEnum @DirectionSense { get;  set; }
+		IfcLengthMeasure @OffsetFromReferenceLine { get;  set; }
+		IfcPositiveLengthMeasure? @ReferenceExtent { get;  set; }
 	
 	}
 }
@@ -42,11 +42,32 @@ namespace Xbim.Ifc4.MaterialResource
 	public  partial class @IfcMaterialLayerSetUsage : IfcMaterialUsageDefinition, IInstantiableEntity, IIfcMaterialLayerSetUsage, IContainsEntityReferences, IEquatable<@IfcMaterialLayerSetUsage>
 	{
 		#region IIfcMaterialLayerSetUsage explicit implementation
-		IIfcMaterialLayerSet IIfcMaterialLayerSetUsage.ForLayerSet { get { return @ForLayerSet; } }	
-		IfcLayerSetDirectionEnum IIfcMaterialLayerSetUsage.LayerSetDirection { get { return @LayerSetDirection; } }	
-		IfcDirectionSenseEnum IIfcMaterialLayerSetUsage.DirectionSense { get { return @DirectionSense; } }	
-		IfcLengthMeasure IIfcMaterialLayerSetUsage.OffsetFromReferenceLine { get { return @OffsetFromReferenceLine; } }	
-		IfcPositiveLengthMeasure? IIfcMaterialLayerSetUsage.ReferenceExtent { get { return @ReferenceExtent; } }	
+		IIfcMaterialLayerSet IIfcMaterialLayerSetUsage.ForLayerSet { 
+			get { return @ForLayerSet; } 
+ 
+ 
+			set { ForLayerSet = value as IfcMaterialLayerSet;}
+		}	
+		IfcLayerSetDirectionEnum IIfcMaterialLayerSetUsage.LayerSetDirection { 
+			get { return @LayerSetDirection; } 
+ 
+			set { LayerSetDirection = value;}
+		}	
+		IfcDirectionSenseEnum IIfcMaterialLayerSetUsage.DirectionSense { 
+			get { return @DirectionSense; } 
+ 
+			set { DirectionSense = value;}
+		}	
+		IfcLengthMeasure IIfcMaterialLayerSetUsage.OffsetFromReferenceLine { 
+			get { return @OffsetFromReferenceLine; } 
+ 
+			set { OffsetFromReferenceLine = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcMaterialLayerSetUsage.ReferenceExtent { 
+			get { return @ReferenceExtent; } 
+ 
+			set { ReferenceExtent = value;}
+		}	
 		 
 		#endregion
 

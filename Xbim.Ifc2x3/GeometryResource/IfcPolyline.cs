@@ -37,7 +37,9 @@ namespace Xbim.Ifc2x3.GeometryResource
 	public  partial class @IfcPolyline : IfcBoundedCurve, IInstantiableEntity, IIfcPolyline, IContainsEntityReferences, IEquatable<@IfcPolyline>
 	{
 		#region IIfcPolyline explicit implementation
-		IEnumerable<IIfcCartesianPoint> IIfcPolyline.Points { get { return @Points; } }	
+		IEnumerable<IIfcCartesianPoint> IIfcPolyline.Points { 
+			get { return @Points; } 
+		}	
 		 
 		#endregion
 

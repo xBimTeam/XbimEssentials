@@ -24,6 +24,11 @@ namespace Xbim.Ifc2x3.GeometryResource
                 return new Ifc4.MeasureResource.IfcInteger(Degree);
 				//##
 			} 
+			set
+			{
+				Degree = value;
+				
+			}
 		}
 		IEnumerable<IIfcCartesianPoint> IIfcBSplineCurve.ControlPointsList 
 		{ 
@@ -64,6 +69,40 @@ namespace Xbim.Ifc2x3.GeometryResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcBSplineCurveForm.POLYLINE_FORM:
+						CurveForm = IfcBSplineCurveForm.POLYLINE_FORM;
+						return;
+					
+					case Ifc4.Interfaces.IfcBSplineCurveForm.CIRCULAR_ARC:
+						CurveForm = IfcBSplineCurveForm.CIRCULAR_ARC;
+						return;
+					
+					case Ifc4.Interfaces.IfcBSplineCurveForm.ELLIPTIC_ARC:
+						CurveForm = IfcBSplineCurveForm.ELLIPTIC_ARC;
+						return;
+					
+					case Ifc4.Interfaces.IfcBSplineCurveForm.PARABOLIC_ARC:
+						CurveForm = IfcBSplineCurveForm.PARABOLIC_ARC;
+						return;
+					
+					case Ifc4.Interfaces.IfcBSplineCurveForm.HYPERBOLIC_ARC:
+						CurveForm = IfcBSplineCurveForm.HYPERBOLIC_ARC;
+						return;
+					
+					case Ifc4.Interfaces.IfcBSplineCurveForm.UNSPECIFIED:
+						CurveForm = IfcBSplineCurveForm.UNSPECIFIED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLogical IIfcBSplineCurve.ClosedCurve 
 		{ 
@@ -73,6 +112,11 @@ namespace Xbim.Ifc2x3.GeometryResource
 			    return new Ifc4.MeasureResource.IfcLogical(ClosedCurve);
 			    //##
 			} 
+			set
+			{
+				ClosedCurve = value;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLogical IIfcBSplineCurve.SelfIntersect 
 		{ 
@@ -82,6 +126,11 @@ namespace Xbim.Ifc2x3.GeometryResource
                 return new Ifc4.MeasureResource.IfcLogical(SelfIntersect);
 				//##
 			} 
+			set
+			{
+				SelfIntersect = value;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcInteger IIfcBSplineCurve.UpperIndexOnControlPoints 
 		{

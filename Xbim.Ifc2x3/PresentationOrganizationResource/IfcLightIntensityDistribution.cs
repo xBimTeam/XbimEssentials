@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcLightIntensityDistribution : IPersistEntity, IfcLightDistributionDataSourceSelect
 	{
-		IfcLightDistributionCurveEnum @LightDistributionCurve { get; }
+		IfcLightDistributionCurveEnum @LightDistributionCurve { get;  set; }
 		IEnumerable<IIfcLightDistributionData> @DistributionData { get; }
 	
 	}
@@ -40,8 +40,14 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 	public  partial class @IfcLightIntensityDistribution : INotifyPropertyChanged, IInstantiableEntity, IIfcLightIntensityDistribution, IContainsEntityReferences, IEquatable<@IfcLightIntensityDistribution>
 	{
 		#region IIfcLightIntensityDistribution explicit implementation
-		IfcLightDistributionCurveEnum IIfcLightIntensityDistribution.LightDistributionCurve { get { return @LightDistributionCurve; } }	
-		IEnumerable<IIfcLightDistributionData> IIfcLightIntensityDistribution.DistributionData { get { return @DistributionData; } }	
+		IfcLightDistributionCurveEnum IIfcLightIntensityDistribution.LightDistributionCurve { 
+			get { return @LightDistributionCurve; } 
+ 
+			set { LightDistributionCurve = value;}
+		}	
+		IEnumerable<IIfcLightDistributionData> IIfcLightIntensityDistribution.DistributionData { 
+			get { return @DistributionData; } 
+		}	
 		 
 		#endregion
 

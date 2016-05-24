@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBoxedHalfSpace : IIfcHalfSpaceSolid
 	{
-		IIfcBoundingBox @Enclosure { get; }
+		IIfcBoundingBox @Enclosure { get;  set; }
 	
 	}
 }
@@ -37,7 +37,12 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public  partial class @IfcBoxedHalfSpace : IfcHalfSpaceSolid, IInstantiableEntity, IIfcBoxedHalfSpace, IContainsEntityReferences, IEquatable<@IfcBoxedHalfSpace>
 	{
 		#region IIfcBoxedHalfSpace explicit implementation
-		IIfcBoundingBox IIfcBoxedHalfSpace.Enclosure { get { return @Enclosure; } }	
+		IIfcBoundingBox IIfcBoxedHalfSpace.Enclosure { 
+			get { return @Enclosure; } 
+ 
+ 
+			set { Enclosure = value as IfcBoundingBox;}
+		}	
 		 
 		#endregion
 

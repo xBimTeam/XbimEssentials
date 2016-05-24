@@ -39,7 +39,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcTextureVertex : IfcPresentationItem, IInstantiableEntity, IIfcTextureVertex, IEquatable<@IfcTextureVertex>
 	{
 		#region IIfcTextureVertex explicit implementation
-		IEnumerable<IfcParameterValue> IIfcTextureVertex.Coordinates { get { return @Coordinates; } }	
+		IEnumerable<IfcParameterValue> IIfcTextureVertex.Coordinates { 
+			get { return @Coordinates; } 
+		}	
 		 
 		#endregion
 

@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPipeFittingType : IIfcFlowFittingType
 	{
-		IfcPipeFittingTypeEnum @PredefinedType { get; }
+		IfcPipeFittingTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.HVACDomain
 	public  partial class @IfcPipeFittingType : IfcFlowFittingType, IInstantiableEntity, IIfcPipeFittingType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPipeFittingType>
 	{
 		#region IIfcPipeFittingType explicit implementation
-		IfcPipeFittingTypeEnum IIfcPipeFittingType.PredefinedType { get { return @PredefinedType; } }	
+		IfcPipeFittingTypeEnum IIfcPipeFittingType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

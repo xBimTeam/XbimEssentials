@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return BasisCurve;
 			} 
+			set
+			{
+				BasisCurve = value as IfcCurve;
+				
+			}
 		}
 		IEnumerable<IIfcTrimmingSelect> IIfcTrimmedCurve.Trim1 
 		{ 
@@ -59,6 +64,11 @@ namespace Xbim.Ifc2x3.GeometryResource
 			    return new Ifc4.MeasureResource.IfcBoolean(SenseAgreement);
 			    //##
 			} 
+			set
+			{
+				SenseAgreement = value;
+				
+			}
 		}
 		Ifc4.Interfaces.IfcTrimmingPreference IIfcTrimmedCurve.MasterRepresentation 
 		{ 
@@ -80,6 +90,28 @@ namespace Xbim.Ifc2x3.GeometryResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcTrimmingPreference.CARTESIAN:
+						MasterRepresentation = IfcTrimmingPreference.CARTESIAN;
+						return;
+					
+					case Ifc4.Interfaces.IfcTrimmingPreference.PARAMETER:
+						MasterRepresentation = IfcTrimmingPreference.PARAMETER;
+						return;
+					
+					case Ifc4.Interfaces.IfcTrimmingPreference.UNSPECIFIED:
+						MasterRepresentation = IfcTrimmingPreference.UNSPECIFIED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

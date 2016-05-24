@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTransformer : IIfcEnergyConversionDevice
 	{
-		IfcTransformerTypeEnum? @PredefinedType { get; }
+		IfcTransformerTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.ElectricalDomain
 	public  partial class @IfcTransformer : IfcEnergyConversionDevice, IInstantiableEntity, IIfcTransformer, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTransformer>
 	{
 		#region IIfcTransformer explicit implementation
-		IfcTransformerTypeEnum? IIfcTransformer.PredefinedType { get { return @PredefinedType; } }	
+		IfcTransformerTypeEnum? IIfcTransformer.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

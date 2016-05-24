@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				return RelatingGroup;
 			} 
+			set
+			{
+				RelatingGroup = value as IfcGroup;
+				
+			}
 		}
 	//## Custom code
 	//##

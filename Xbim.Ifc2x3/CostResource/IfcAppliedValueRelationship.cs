@@ -28,11 +28,11 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcAppliedValueRelationship : IPersistEntity
 	{
-		IIfcAppliedValue @ComponentOfTotal { get; }
+		IIfcAppliedValue @ComponentOfTotal { get;  set; }
 		IEnumerable<IIfcAppliedValue> @Components { get; }
-		IfcArithmeticOperatorEnum @ArithmeticOperator { get; }
-		IfcLabel? @Name { get; }
-		IfcText? @Description { get; }
+		IfcArithmeticOperatorEnum @ArithmeticOperator { get;  set; }
+		IfcLabel? @Name { get;  set; }
+		IfcText? @Description { get;  set; }
 	
 	}
 }
@@ -44,11 +44,30 @@ namespace Xbim.Ifc2x3.CostResource
 	public  partial class @IfcAppliedValueRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcAppliedValueRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAppliedValueRelationship>
 	{
 		#region IIfcAppliedValueRelationship explicit implementation
-		IIfcAppliedValue IIfcAppliedValueRelationship.ComponentOfTotal { get { return @ComponentOfTotal; } }	
-		IEnumerable<IIfcAppliedValue> IIfcAppliedValueRelationship.Components { get { return @Components; } }	
-		IfcArithmeticOperatorEnum IIfcAppliedValueRelationship.ArithmeticOperator { get { return @ArithmeticOperator; } }	
-		IfcLabel? IIfcAppliedValueRelationship.Name { get { return @Name; } }	
-		IfcText? IIfcAppliedValueRelationship.Description { get { return @Description; } }	
+		IIfcAppliedValue IIfcAppliedValueRelationship.ComponentOfTotal { 
+			get { return @ComponentOfTotal; } 
+ 
+ 
+			set { ComponentOfTotal = value as IfcAppliedValue;}
+		}	
+		IEnumerable<IIfcAppliedValue> IIfcAppliedValueRelationship.Components { 
+			get { return @Components; } 
+		}	
+		IfcArithmeticOperatorEnum IIfcAppliedValueRelationship.ArithmeticOperator { 
+			get { return @ArithmeticOperator; } 
+ 
+			set { ArithmeticOperator = value;}
+		}	
+		IfcLabel? IIfcAppliedValueRelationship.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcAppliedValueRelationship.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
 		 
 		#endregion
 

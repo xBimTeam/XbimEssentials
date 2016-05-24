@@ -1,9 +1,12 @@
-﻿using Xbim.Ifc4.MeasureResource;
+﻿using System;
+using Xbim.Ifc4.MeasureResource;
 
 namespace Xbim.Ifc2x3.Interfaces.Conversions
 {
     internal class IfcQuantityTimeTransient : IfcPhysicalSimpleQuantityTransient, Ifc4.Interfaces.IIfcQuantityTime
     {
+        private readonly IfcTimeMeasure _timeValue;
+
         internal IfcQuantityTimeTransient()
         {
         }
@@ -11,12 +14,21 @@ namespace Xbim.Ifc2x3.Interfaces.Conversions
         internal IfcQuantityTimeTransient(MeasureResource.IfcMeasureWithUnit measure)
         {
             var value = measure.ValueComponent;
-            Unit = measure.UnitComponent as Ifc4.Interfaces.IIfcNamedUnit;
+            _unit = measure.UnitComponent as Ifc4.Interfaces.IIfcNamedUnit;
             if (!(value is MeasureResource.IfcTimeMeasure)) return;
-            TimeValue = new IfcTimeMeasure((MeasureResource.IfcTimeMeasure)value);
+            _timeValue = new IfcTimeMeasure((MeasureResource.IfcTimeMeasure)value);
         }
 
-        public IfcTimeMeasure TimeValue { get; internal set; }
-        public IfcLabel? Formula { get; internal set; }
+        public IfcTimeMeasure TimeValue
+        {
+            get { return _timeValue; }
+            set { throw new NotSupportedException(); }
+        }
+
+        public IfcLabel? Formula
+        {
+            get { return null; }
+            set { throw new NotSupportedException(); }
+        }
     }
 }

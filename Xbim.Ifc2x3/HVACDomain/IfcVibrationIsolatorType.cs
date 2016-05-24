@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcVibrationIsolatorType : IIfcDiscreteAccessoryType
 	{
-		IfcVibrationIsolatorTypeEnum @PredefinedType { get; }
+		IfcVibrationIsolatorTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.HVACDomain
 	public  partial class @IfcVibrationIsolatorType : IfcDiscreteAccessoryType, IInstantiableEntity, IIfcVibrationIsolatorType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcVibrationIsolatorType>
 	{
 		#region IIfcVibrationIsolatorType explicit implementation
-		IfcVibrationIsolatorTypeEnum IIfcVibrationIsolatorType.PredefinedType { get { return @PredefinedType; } }	
+		IfcVibrationIsolatorTypeEnum IIfcVibrationIsolatorType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

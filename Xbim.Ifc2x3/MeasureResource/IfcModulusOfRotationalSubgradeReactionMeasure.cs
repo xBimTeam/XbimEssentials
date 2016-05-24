@@ -15,7 +15,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 	[ExpressType("IfcModulusOfRotationalSubgradeReactionMeasure", 613)]
 	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcModulusOfRotationalSubgradeReactionMeasure : IfcDerivedMeasureValue, IExpressValueType, System.IEquatable<double>
+	public partial struct IfcModulusOfRotationalSubgradeReactionMeasure : IfcDerivedMeasureValue, IExpressValueType, IExpressRealType, System.IEquatable<double>
 	{ 
 		private double _value;
         
@@ -23,6 +23,9 @@ namespace Xbim.Ifc2x3.MeasureResource
         {
             get { return _value; }
         }
+
+ 
+		double IExpressRealType.Value { get { return _value; } }
 
 		public override string ToString()
         {

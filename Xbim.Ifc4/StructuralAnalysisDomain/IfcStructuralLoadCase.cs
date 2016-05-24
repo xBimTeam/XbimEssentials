@@ -38,7 +38,9 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	public  partial class @IfcStructuralLoadCase : IfcStructuralLoadGroup, IInstantiableEntity, IIfcStructuralLoadCase, IContainsEntityReferences, IEquatable<@IfcStructuralLoadCase>
 	{
 		#region IIfcStructuralLoadCase explicit implementation
-		IEnumerable<IfcRatioMeasure> IIfcStructuralLoadCase.SelfWeightCoefficients { get { return @SelfWeightCoefficients; } }	
+		IEnumerable<IfcRatioMeasure> IIfcStructuralLoadCase.SelfWeightCoefficients { 
+			get { return @SelfWeightCoefficients; } 
+		}	
 		 
 		#endregion
 

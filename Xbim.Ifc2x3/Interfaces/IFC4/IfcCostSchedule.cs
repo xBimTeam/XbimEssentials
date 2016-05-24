@@ -44,6 +44,8 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.SCHEDULEOFRATES;
 					
 					case IfcCostScheduleTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.USERDEFINED;
 					
 					case IfcCostScheduleTypeEnum.NOTDEFINED:
@@ -54,6 +56,52 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcCostScheduleTypeEnum.BUDGET:
+						PredefinedType = IfcCostScheduleTypeEnum.BUDGET;
+						return;
+					
+					case Ifc4.Interfaces.IfcCostScheduleTypeEnum.COSTPLAN:
+						PredefinedType = IfcCostScheduleTypeEnum.COSTPLAN;
+						return;
+					
+					case Ifc4.Interfaces.IfcCostScheduleTypeEnum.ESTIMATE:
+						PredefinedType = IfcCostScheduleTypeEnum.ESTIMATE;
+						return;
+					
+					case Ifc4.Interfaces.IfcCostScheduleTypeEnum.TENDER:
+						PredefinedType = IfcCostScheduleTypeEnum.TENDER;
+						return;
+					
+					case Ifc4.Interfaces.IfcCostScheduleTypeEnum.PRICEDBILLOFQUANTITIES:
+						PredefinedType = IfcCostScheduleTypeEnum.PRICEDBILLOFQUANTITIES;
+						return;
+					
+					case Ifc4.Interfaces.IfcCostScheduleTypeEnum.UNPRICEDBILLOFQUANTITIES:
+						PredefinedType = IfcCostScheduleTypeEnum.UNPRICEDBILLOFQUANTITIES;
+						return;
+					
+					case Ifc4.Interfaces.IfcCostScheduleTypeEnum.SCHEDULEOFRATES:
+						PredefinedType = IfcCostScheduleTypeEnum.SCHEDULEOFRATES;
+						return;
+					
+					case Ifc4.Interfaces.IfcCostScheduleTypeEnum.USERDEFINED:
+						PredefinedType = IfcCostScheduleTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcCostScheduleTypeEnum.NOTDEFINED:
+						PredefinedType = IfcCostScheduleTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcCostSchedule.Status 
 		{ 
@@ -62,6 +110,13 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				if (!Status.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Status.Value);
 			} 
+			set
+			{
+				Status = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDateTime? IIfcCostSchedule.SubmittedOn 
 		{ 
@@ -73,6 +128,33 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			        : null;
 			    //##
 			} 
+			set
+			{
+				//## Handle setting of SubmittedOn for which no match was found
+                if (!value.HasValue)
+                {
+                    SubmittedOn = null;
+                    return;
+                }
+                System.DateTime d = value.Value;
+                SubmittedOn = Model.Instances.New<DateTimeResource.IfcDateAndTime>(dt =>
+                {
+                    dt.DateComponent = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+                    {
+                        date.YearComponent = d.Year;
+                        date.MonthComponent = d.Month;
+                        date.DayComponent = d.Day;
+                    });
+                    dt.TimeComponent = Model.Instances.New<DateTimeResource.IfcLocalTime>(t =>
+                    {
+                        t.HourComponent = d.Hour;
+                        t.MinuteComponent = d.Minute;
+                        t.SecondComponent = d.Second;
+                    });
+                });
+				//##
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDateTime? IIfcCostSchedule.UpdateDate 
 		{ 
@@ -84,6 +166,33 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
                     : null;
 				//##
 			} 
+			set
+			{
+				//## Handle setting of UpdateDate for which no match was found
+                if (!value.HasValue)
+                {
+                    UpdateDate = null;
+                    return;
+                }
+                System.DateTime d = value.Value;
+                UpdateDate = Model.Instances.New<DateTimeResource.IfcDateAndTime>(dt =>
+                {
+                    dt.DateComponent = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+                    {
+                        date.YearComponent = d.Year;
+                        date.MonthComponent = d.Month;
+                        date.DayComponent = d.Day;
+                    });
+                    dt.TimeComponent = Model.Instances.New<DateTimeResource.IfcLocalTime>(t =>
+                    {
+                        t.HourComponent = d.Hour;
+                        t.MinuteComponent = d.Minute;
+                        t.SecondComponent = d.Second;
+                    });
+                });
+				//##
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -28,9 +28,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSoundValue : IIfcPropertySetDefinition
 	{
-		IIfcTimeSeries @SoundLevelTimeSeries { get; }
-		IfcFrequencyMeasure @Frequency { get; }
-		IIfcDerivedMeasureValue @SoundLevelSingleValue { get; }
+		IIfcTimeSeries @SoundLevelTimeSeries { get;  set; }
+		IfcFrequencyMeasure @Frequency { get;  set; }
+		IIfcDerivedMeasureValue @SoundLevelSingleValue { get;  set; }
 	
 	}
 }
@@ -42,9 +42,23 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 	public  partial class @IfcSoundValue : IfcPropertySetDefinition, IInstantiableEntity, IIfcSoundValue, IContainsEntityReferences, IEquatable<@IfcSoundValue>
 	{
 		#region IIfcSoundValue explicit implementation
-		IIfcTimeSeries IIfcSoundValue.SoundLevelTimeSeries { get { return @SoundLevelTimeSeries; } }	
-		IfcFrequencyMeasure IIfcSoundValue.Frequency { get { return @Frequency; } }	
-		IIfcDerivedMeasureValue IIfcSoundValue.SoundLevelSingleValue { get { return @SoundLevelSingleValue; } }	
+		IIfcTimeSeries IIfcSoundValue.SoundLevelTimeSeries { 
+			get { return @SoundLevelTimeSeries; } 
+ 
+ 
+			set { SoundLevelTimeSeries = value as IfcTimeSeries;}
+		}	
+		IfcFrequencyMeasure IIfcSoundValue.Frequency { 
+			get { return @Frequency; } 
+ 
+			set { Frequency = value;}
+		}	
+		IIfcDerivedMeasureValue IIfcSoundValue.SoundLevelSingleValue { 
+			get { return @SoundLevelSingleValue; } 
+ 
+ 
+			set { SoundLevelSingleValue = value as IfcDerivedMeasureValue;}
+		}	
 		 
 		#endregion
 

@@ -26,11 +26,11 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcHygroscopicMaterialProperties : IIfcMaterialProperties
 	{
-		IfcPositiveRatioMeasure? @UpperVaporResistanceFactor { get; }
-		IfcPositiveRatioMeasure? @LowerVaporResistanceFactor { get; }
-		IfcIsothermalMoistureCapacityMeasure? @IsothermalMoistureCapacity { get; }
-		IfcVaporPermeabilityMeasure? @VaporPermeability { get; }
-		IfcMoistureDiffusivityMeasure? @MoistureDiffusivity { get; }
+		IfcPositiveRatioMeasure? @UpperVaporResistanceFactor { get;  set; }
+		IfcPositiveRatioMeasure? @LowerVaporResistanceFactor { get;  set; }
+		IfcIsothermalMoistureCapacityMeasure? @IsothermalMoistureCapacity { get;  set; }
+		IfcVaporPermeabilityMeasure? @VaporPermeability { get;  set; }
+		IfcMoistureDiffusivityMeasure? @MoistureDiffusivity { get;  set; }
 	
 	}
 }
@@ -42,11 +42,31 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	public  partial class @IfcHygroscopicMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcHygroscopicMaterialProperties, IContainsEntityReferences, IEquatable<@IfcHygroscopicMaterialProperties>
 	{
 		#region IIfcHygroscopicMaterialProperties explicit implementation
-		IfcPositiveRatioMeasure? IIfcHygroscopicMaterialProperties.UpperVaporResistanceFactor { get { return @UpperVaporResistanceFactor; } }	
-		IfcPositiveRatioMeasure? IIfcHygroscopicMaterialProperties.LowerVaporResistanceFactor { get { return @LowerVaporResistanceFactor; } }	
-		IfcIsothermalMoistureCapacityMeasure? IIfcHygroscopicMaterialProperties.IsothermalMoistureCapacity { get { return @IsothermalMoistureCapacity; } }	
-		IfcVaporPermeabilityMeasure? IIfcHygroscopicMaterialProperties.VaporPermeability { get { return @VaporPermeability; } }	
-		IfcMoistureDiffusivityMeasure? IIfcHygroscopicMaterialProperties.MoistureDiffusivity { get { return @MoistureDiffusivity; } }	
+		IfcPositiveRatioMeasure? IIfcHygroscopicMaterialProperties.UpperVaporResistanceFactor { 
+			get { return @UpperVaporResistanceFactor; } 
+ 
+			set { UpperVaporResistanceFactor = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcHygroscopicMaterialProperties.LowerVaporResistanceFactor { 
+			get { return @LowerVaporResistanceFactor; } 
+ 
+			set { LowerVaporResistanceFactor = value;}
+		}	
+		IfcIsothermalMoistureCapacityMeasure? IIfcHygroscopicMaterialProperties.IsothermalMoistureCapacity { 
+			get { return @IsothermalMoistureCapacity; } 
+ 
+			set { IsothermalMoistureCapacity = value;}
+		}	
+		IfcVaporPermeabilityMeasure? IIfcHygroscopicMaterialProperties.VaporPermeability { 
+			get { return @VaporPermeability; } 
+ 
+			set { VaporPermeability = value;}
+		}	
+		IfcMoistureDiffusivityMeasure? IIfcHygroscopicMaterialProperties.MoistureDiffusivity { 
+			get { return @MoistureDiffusivity; } 
+ 
+			set { MoistureDiffusivity = value;}
+		}	
 		 
 		#endregion
 

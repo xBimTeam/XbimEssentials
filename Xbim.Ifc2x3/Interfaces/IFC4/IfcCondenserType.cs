@@ -41,6 +41,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 						return Ifc4.Interfaces.IfcCondenserTypeEnum.EVAPORATIVECOOLED;
 					
 					case IfcCondenserTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcCondenserTypeEnum.USERDEFINED;
 					
 					case IfcCondenserTypeEnum.NOTDEFINED:
@@ -51,6 +53,54 @@ namespace Xbim.Ifc2x3.HVACDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcCondenserTypeEnum.AIRCOOLED:
+						PredefinedType = IfcCondenserTypeEnum.AIRCOOLED;
+						return;
+					
+					case Ifc4.Interfaces.IfcCondenserTypeEnum.EVAPORATIVECOOLED:
+						PredefinedType = IfcCondenserTypeEnum.EVAPORATIVECOOLED;
+						return;
+					
+					case Ifc4.Interfaces.IfcCondenserTypeEnum.WATERCOOLED:
+						//## Handle setting of WATERCOOLED member from IfcCondenserTypeEnum in property PredefinedType
+						//TODO: Handle setting of WATERCOOLED member from IfcCondenserTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcCondenserTypeEnum.WATERCOOLEDBRAZEDPLATE:
+						PredefinedType = IfcCondenserTypeEnum.WATERCOOLEDBRAZEDPLATE;
+						return;
+					
+					case Ifc4.Interfaces.IfcCondenserTypeEnum.WATERCOOLEDSHELLCOIL:
+						PredefinedType = IfcCondenserTypeEnum.WATERCOOLEDSHELLCOIL;
+						return;
+					
+					case Ifc4.Interfaces.IfcCondenserTypeEnum.WATERCOOLEDSHELLTUBE:
+						PredefinedType = IfcCondenserTypeEnum.WATERCOOLEDSHELLTUBE;
+						return;
+					
+					case Ifc4.Interfaces.IfcCondenserTypeEnum.WATERCOOLEDTUBEINTUBE:
+						PredefinedType = IfcCondenserTypeEnum.WATERCOOLEDTUBEINTUBE;
+						return;
+					
+					case Ifc4.Interfaces.IfcCondenserTypeEnum.USERDEFINED:
+						PredefinedType = IfcCondenserTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcCondenserTypeEnum.NOTDEFINED:
+						PredefinedType = IfcCondenserTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

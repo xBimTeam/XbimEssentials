@@ -29,6 +29,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 						return Ifc4.Interfaces.IfcRampFlightTypeEnum.SPIRAL;
 					
 					case IfcRampFlightTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcRampFlightTypeEnum.USERDEFINED;
 					
 					case IfcRampFlightTypeEnum.NOTDEFINED:
@@ -39,6 +41,32 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcRampFlightTypeEnum.STRAIGHT:
+						PredefinedType = IfcRampFlightTypeEnum.STRAIGHT;
+						return;
+					
+					case Ifc4.Interfaces.IfcRampFlightTypeEnum.SPIRAL:
+						PredefinedType = IfcRampFlightTypeEnum.SPIRAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcRampFlightTypeEnum.USERDEFINED:
+						PredefinedType = IfcRampFlightTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcRampFlightTypeEnum.NOTDEFINED:
+						PredefinedType = IfcRampFlightTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

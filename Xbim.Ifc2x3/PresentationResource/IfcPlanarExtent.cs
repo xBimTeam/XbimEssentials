@@ -27,8 +27,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPlanarExtent : IIfcGeometricRepresentationItem
 	{
-		IfcLengthMeasure @SizeInX { get; }
-		IfcLengthMeasure @SizeInY { get; }
+		IfcLengthMeasure @SizeInX { get;  set; }
+		IfcLengthMeasure @SizeInY { get;  set; }
 	
 	}
 }
@@ -40,8 +40,16 @@ namespace Xbim.Ifc2x3.PresentationResource
 	public  partial class @IfcPlanarExtent : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcPlanarExtent, IEquatable<@IfcPlanarExtent>
 	{
 		#region IIfcPlanarExtent explicit implementation
-		IfcLengthMeasure IIfcPlanarExtent.SizeInX { get { return @SizeInX; } }	
-		IfcLengthMeasure IIfcPlanarExtent.SizeInY { get { return @SizeInY; } }	
+		IfcLengthMeasure IIfcPlanarExtent.SizeInX { 
+			get { return @SizeInX; } 
+ 
+			set { SizeInX = value;}
+		}	
+		IfcLengthMeasure IIfcPlanarExtent.SizeInY { 
+			get { return @SizeInY; } 
+ 
+			set { SizeInY = value;}
+		}	
 		 
 		#endregion
 

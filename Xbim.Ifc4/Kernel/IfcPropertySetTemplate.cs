@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPropertySetTemplate : IIfcPropertyTemplateDefinition
 	{
-		IfcPropertySetTemplateTypeEnum? @TemplateType { get; }
-		IfcIdentifier? @ApplicableEntity { get; }
+		IfcPropertySetTemplateTypeEnum? @TemplateType { get;  set; }
+		IfcIdentifier? @ApplicableEntity { get;  set; }
 		IEnumerable<IIfcPropertyTemplate> @HasPropertyTemplates { get; }
 		IEnumerable<IIfcRelDefinesByTemplate> @Defines {  get; }
 	
@@ -41,9 +41,19 @@ namespace Xbim.Ifc4.Kernel
 	public  partial class @IfcPropertySetTemplate : IfcPropertyTemplateDefinition, IInstantiableEntity, IIfcPropertySetTemplate, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPropertySetTemplate>
 	{
 		#region IIfcPropertySetTemplate explicit implementation
-		IfcPropertySetTemplateTypeEnum? IIfcPropertySetTemplate.TemplateType { get { return @TemplateType; } }	
-		IfcIdentifier? IIfcPropertySetTemplate.ApplicableEntity { get { return @ApplicableEntity; } }	
-		IEnumerable<IIfcPropertyTemplate> IIfcPropertySetTemplate.HasPropertyTemplates { get { return @HasPropertyTemplates; } }	
+		IfcPropertySetTemplateTypeEnum? IIfcPropertySetTemplate.TemplateType { 
+			get { return @TemplateType; } 
+ 
+			set { TemplateType = value;}
+		}	
+		IfcIdentifier? IIfcPropertySetTemplate.ApplicableEntity { 
+			get { return @ApplicableEntity; } 
+ 
+			set { ApplicableEntity = value;}
+		}	
+		IEnumerable<IIfcPropertyTemplate> IIfcPropertySetTemplate.HasPropertyTemplates { 
+			get { return @HasPropertyTemplates; } 
+		}	
 		 
 		IEnumerable<IIfcRelDefinesByTemplate> IIfcPropertySetTemplate.Defines {  get { return @Defines; } }
 		#endregion

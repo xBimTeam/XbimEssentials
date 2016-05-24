@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcProtectiveDeviceType : IIfcFlowControllerType
 	{
-		IfcProtectiveDeviceTypeEnum @PredefinedType { get; }
+		IfcProtectiveDeviceTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 	public  partial class @IfcProtectiveDeviceType : IfcFlowControllerType, IInstantiableEntity, IIfcProtectiveDeviceType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcProtectiveDeviceType>
 	{
 		#region IIfcProtectiveDeviceType explicit implementation
-		IfcProtectiveDeviceTypeEnum IIfcProtectiveDeviceType.PredefinedType { get { return @PredefinedType; } }	
+		IfcProtectiveDeviceTypeEnum IIfcProtectiveDeviceType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

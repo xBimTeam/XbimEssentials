@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCenterLineProfileDef : IIfcArbitraryOpenProfileDef
 	{
-		IfcPositiveLengthMeasure @Thickness { get; }
+		IfcPositiveLengthMeasure @Thickness { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.ProfileResource
 	public  partial class @IfcCenterLineProfileDef : IfcArbitraryOpenProfileDef, IInstantiableEntity, IIfcCenterLineProfileDef, IContainsEntityReferences, IEquatable<@IfcCenterLineProfileDef>
 	{
 		#region IIfcCenterLineProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcCenterLineProfileDef.Thickness { get { return @Thickness; } }	
+		IfcPositiveLengthMeasure IIfcCenterLineProfileDef.Thickness { 
+			get { return @Thickness; } 
+ 
+			set { Thickness = value;}
+		}	
 		 
 		#endregion
 

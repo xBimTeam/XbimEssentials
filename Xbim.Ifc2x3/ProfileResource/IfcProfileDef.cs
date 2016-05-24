@@ -28,8 +28,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcProfileDef : IPersistEntity
 	{
-		IfcProfileTypeEnum @ProfileType { get; }
-		IfcLabel? @ProfileName { get; }
+		IfcProfileTypeEnum @ProfileType { get;  set; }
+		IfcLabel? @ProfileName { get;  set; }
 	
 	}
 }
@@ -41,8 +41,16 @@ namespace Xbim.Ifc2x3.ProfileResource
 	public abstract partial class @IfcProfileDef : IPersistEntity, INotifyPropertyChanged, IIfcProfileDef, IEquatable<@IfcProfileDef>
 	{
 		#region IIfcProfileDef explicit implementation
-		IfcProfileTypeEnum IIfcProfileDef.ProfileType { get { return @ProfileType; } }	
-		IfcLabel? IIfcProfileDef.ProfileName { get { return @ProfileName; } }	
+		IfcProfileTypeEnum IIfcProfileDef.ProfileType { 
+			get { return @ProfileType; } 
+ 
+			set { ProfileType = value;}
+		}	
+		IfcLabel? IIfcProfileDef.ProfileName { 
+			get { return @ProfileName; } 
+ 
+			set { ProfileName = value;}
+		}	
 		 
 		#endregion
 

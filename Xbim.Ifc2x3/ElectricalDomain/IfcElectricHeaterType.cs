@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcElectricHeaterType : IIfcFlowTerminalType
 	{
-		IfcElectricHeaterTypeEnum @PredefinedType { get; }
+		IfcElectricHeaterTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 	public  partial class @IfcElectricHeaterType : IfcFlowTerminalType, IInstantiableEntity, IIfcElectricHeaterType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcElectricHeaterType>
 	{
 		#region IIfcElectricHeaterType explicit implementation
-		IfcElectricHeaterTypeEnum IIfcElectricHeaterType.PredefinedType { get { return @PredefinedType; } }	
+		IfcElectricHeaterTypeEnum IIfcElectricHeaterType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

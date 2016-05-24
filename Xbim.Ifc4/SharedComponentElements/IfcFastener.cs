@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcFastener : IIfcElementComponent
 	{
-		IfcFastenerTypeEnum? @PredefinedType { get; }
+		IfcFastenerTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -37,7 +37,11 @@ namespace Xbim.Ifc4.SharedComponentElements
 	public  partial class @IfcFastener : IfcElementComponent, IInstantiableEntity, IIfcFastener, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFastener>
 	{
 		#region IIfcFastener explicit implementation
-		IfcFastenerTypeEnum? IIfcFastener.PredefinedType { get { return @PredefinedType; } }	
+		IfcFastenerTypeEnum? IIfcFastener.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

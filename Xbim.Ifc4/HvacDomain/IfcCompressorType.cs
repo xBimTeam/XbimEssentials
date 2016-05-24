@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCompressorType : IIfcFlowMovingDeviceType
 	{
-		IfcCompressorTypeEnum @PredefinedType { get; }
+		IfcCompressorTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.HvacDomain
 	public  partial class @IfcCompressorType : IfcFlowMovingDeviceType, IInstantiableEntity, IIfcCompressorType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCompressorType>
 	{
 		#region IIfcCompressorType explicit implementation
-		IfcCompressorTypeEnum IIfcCompressorType.PredefinedType { get { return @PredefinedType; } }	
+		IfcCompressorTypeEnum IIfcCompressorType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

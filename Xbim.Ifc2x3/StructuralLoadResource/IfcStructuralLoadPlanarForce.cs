@@ -26,9 +26,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralLoadPlanarForce : IIfcStructuralLoadStatic
 	{
-		IfcPlanarForceMeasure? @PlanarForceX { get; }
-		IfcPlanarForceMeasure? @PlanarForceY { get; }
-		IfcPlanarForceMeasure? @PlanarForceZ { get; }
+		IfcPlanarForceMeasure? @PlanarForceX { get;  set; }
+		IfcPlanarForceMeasure? @PlanarForceY { get;  set; }
+		IfcPlanarForceMeasure? @PlanarForceZ { get;  set; }
 	
 	}
 }
@@ -40,9 +40,21 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 	public  partial class @IfcStructuralLoadPlanarForce : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadPlanarForce, IEquatable<@IfcStructuralLoadPlanarForce>
 	{
 		#region IIfcStructuralLoadPlanarForce explicit implementation
-		IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceX { get { return @PlanarForceX; } }	
-		IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceY { get { return @PlanarForceY; } }	
-		IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceZ { get { return @PlanarForceZ; } }	
+		IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceX { 
+			get { return @PlanarForceX; } 
+ 
+			set { PlanarForceX = value;}
+		}	
+		IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceY { 
+			get { return @PlanarForceY; } 
+ 
+			set { PlanarForceY = value;}
+		}	
+		IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceZ { 
+			get { return @PlanarForceZ; } 
+ 
+			set { PlanarForceZ = value;}
+		}	
 		 
 		#endregion
 

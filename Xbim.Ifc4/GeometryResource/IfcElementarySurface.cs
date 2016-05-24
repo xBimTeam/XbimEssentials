@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcElementarySurface : IIfcSurface
 	{
-		IIfcAxis2Placement3D @Position { get; }
+		IIfcAxis2Placement3D @Position { get;  set; }
 	
 	}
 }
@@ -37,7 +37,12 @@ namespace Xbim.Ifc4.GeometryResource
 	public abstract partial class @IfcElementarySurface : IfcSurface, IIfcElementarySurface, IEquatable<@IfcElementarySurface>
 	{
 		#region IIfcElementarySurface explicit implementation
-		IIfcAxis2Placement3D IIfcElementarySurface.Position { get { return @Position; } }	
+		IIfcAxis2Placement3D IIfcElementarySurface.Position { 
+			get { return @Position; } 
+ 
+ 
+			set { Position = value as IfcAxis2Placement3D;}
+		}	
 		 
 		#endregion
 

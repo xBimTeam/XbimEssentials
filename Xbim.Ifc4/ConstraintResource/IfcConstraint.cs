@@ -31,13 +31,13 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConstraint : IPersistEntity, IfcResourceObjectSelect
 	{
-		IfcLabel @Name { get; }
-		IfcText? @Description { get; }
-		IfcConstraintEnum @ConstraintGrade { get; }
-		IfcLabel? @ConstraintSource { get; }
-		IIfcActorSelect @CreatingActor { get; }
-		IfcDateTime? @CreationTime { get; }
-		IfcLabel? @UserDefinedGrade { get; }
+		IfcLabel @Name { get;  set; }
+		IfcText? @Description { get;  set; }
+		IfcConstraintEnum @ConstraintGrade { get;  set; }
+		IfcLabel? @ConstraintSource { get;  set; }
+		IIfcActorSelect @CreatingActor { get;  set; }
+		IfcDateTime? @CreationTime { get;  set; }
+		IfcLabel? @UserDefinedGrade { get;  set; }
 		IEnumerable<IIfcExternalReferenceRelationship> @HasExternalReferences {  get; }
 		IEnumerable<IIfcResourceConstraintRelationship> @PropertiesForConstraint {  get; }
 	
@@ -51,13 +51,42 @@ namespace Xbim.Ifc4.ConstraintResource
 	public abstract partial class @IfcConstraint : IPersistEntity, INotifyPropertyChanged, IIfcConstraint, IEquatable<@IfcConstraint>
 	{
 		#region IIfcConstraint explicit implementation
-		IfcLabel IIfcConstraint.Name { get { return @Name; } }	
-		IfcText? IIfcConstraint.Description { get { return @Description; } }	
-		IfcConstraintEnum IIfcConstraint.ConstraintGrade { get { return @ConstraintGrade; } }	
-		IfcLabel? IIfcConstraint.ConstraintSource { get { return @ConstraintSource; } }	
-		IIfcActorSelect IIfcConstraint.CreatingActor { get { return @CreatingActor; } }	
-		IfcDateTime? IIfcConstraint.CreationTime { get { return @CreationTime; } }	
-		IfcLabel? IIfcConstraint.UserDefinedGrade { get { return @UserDefinedGrade; } }	
+		IfcLabel IIfcConstraint.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcConstraint.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IfcConstraintEnum IIfcConstraint.ConstraintGrade { 
+			get { return @ConstraintGrade; } 
+ 
+			set { ConstraintGrade = value;}
+		}	
+		IfcLabel? IIfcConstraint.ConstraintSource { 
+			get { return @ConstraintSource; } 
+ 
+			set { ConstraintSource = value;}
+		}	
+		IIfcActorSelect IIfcConstraint.CreatingActor { 
+			get { return @CreatingActor; } 
+ 
+ 
+			set { CreatingActor = value as IfcActorSelect;}
+		}	
+		IfcDateTime? IIfcConstraint.CreationTime { 
+			get { return @CreationTime; } 
+ 
+			set { CreationTime = value;}
+		}	
+		IfcLabel? IIfcConstraint.UserDefinedGrade { 
+			get { return @UserDefinedGrade; } 
+ 
+			set { UserDefinedGrade = value;}
+		}	
 		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcConstraint.HasExternalReferences {  get { return @HasExternalReferences; } }
 		IEnumerable<IIfcResourceConstraintRelationship> IIfcConstraint.PropertiesForConstraint {  get { return @PropertiesForConstraint; } }

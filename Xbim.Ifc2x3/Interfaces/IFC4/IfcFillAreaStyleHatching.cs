@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				return HatchLineAppearance;
 			} 
+			set
+			{
+				HatchLineAppearance = value as IfcCurveStyle;
+				
+			}
 		}
 		IIfcHatchLineDistanceSelect IIfcFillAreaStyleHatching.StartOfNextHatchLine 
 		{ 
@@ -31,13 +36,34 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				var ifconedirectionrepeatfactor = StartOfNextHatchLine as IfcOneDirectionRepeatFactor;
 				if (ifconedirectionrepeatfactor != null) 
 					//## Handle entity IfcOneDirectionRepeatFactor which is not a part of the target select interface IIfcHatchLineDistanceSelect in property StartOfNextHatchLine
-					//TODO: Handle entity IfcOneDirectionRepeatFactor which is not a part of the target select interface IIfcHatchLineDistanceSelect in property StartOfNextHatchLine
-					throw new System.NotImplementedException();
+			        return ifconedirectionrepeatfactor.RepeatFactor;
 					//##
 				if (StartOfNextHatchLine is MeasureResource.IfcPositiveLengthMeasure) 
-					return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)(MeasureResource.IfcPositiveLengthMeasure)StartOfNextHatchLine);
+					return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((MeasureResource.IfcPositiveLengthMeasure)StartOfNextHatchLine);
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					StartOfNextHatchLine = null;
+					return;
+				}	
+				var ifcvector = value as GeometryResource.IfcVector;
+				if (ifcvector != null) 
+				{
+					//## Handle setting of entity IfcVector which is not a part of the target select interface IIfcHatchLineDistanceSelect in property StartOfNextHatchLine
+				    StartOfNextHatchLine = Model.Instances.New<IfcOneDirectionRepeatFactor>(f => f.RepeatFactor = ifcvector);
+				    return;
+				    //##
+				}
+				if (value is Ifc4.MeasureResource.IfcPositiveLengthMeasure) 
+				{
+					StartOfNextHatchLine = new MeasureResource.IfcPositiveLengthMeasure((Ifc4.MeasureResource.IfcPositiveLengthMeasure)value);
+					return;
+				}
+				
+			}
 		}
 		IIfcCartesianPoint IIfcFillAreaStyleHatching.PointOfReferenceHatchLine 
 		{ 
@@ -45,6 +71,11 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				return PointOfReferenceHatchLine;
 			} 
+			set
+			{
+				PointOfReferenceHatchLine = value as GeometryResource.IfcCartesianPoint;
+				
+			}
 		}
 		IIfcCartesianPoint IIfcFillAreaStyleHatching.PatternStart 
 		{ 
@@ -52,6 +83,11 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				return PatternStart;
 			} 
+			set
+			{
+				PatternStart = value as GeometryResource.IfcCartesianPoint;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure IIfcFillAreaStyleHatching.HatchLineAngle 
 		{ 
@@ -59,6 +95,11 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				return new Ifc4.MeasureResource.IfcPlaneAngleMeasure(HatchLineAngle);
 			} 
+			set
+			{
+				HatchLineAngle = new MeasureResource.IfcPlaneAngleMeasure(value);
+				
+			}
 		}
 	//## Custom code
 	//##

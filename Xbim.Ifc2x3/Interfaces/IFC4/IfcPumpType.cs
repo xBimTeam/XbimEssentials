@@ -38,6 +38,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 						return Ifc4.Interfaces.IfcPumpTypeEnum.VERTICALTURBINE;
 					
 					case IfcPumpTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcPumpTypeEnum.USERDEFINED;
 					
 					case IfcPumpTypeEnum.NOTDEFINED:
@@ -48,6 +50,56 @@ namespace Xbim.Ifc2x3.HVACDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcPumpTypeEnum.CIRCULATOR:
+						PredefinedType = IfcPumpTypeEnum.CIRCULATOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcPumpTypeEnum.ENDSUCTION:
+						PredefinedType = IfcPumpTypeEnum.ENDSUCTION;
+						return;
+					
+					case Ifc4.Interfaces.IfcPumpTypeEnum.SPLITCASE:
+						PredefinedType = IfcPumpTypeEnum.SPLITCASE;
+						return;
+					
+					case Ifc4.Interfaces.IfcPumpTypeEnum.SUBMERSIBLEPUMP:
+						//## Handle setting of SUBMERSIBLEPUMP member from IfcPumpTypeEnum in property PredefinedType
+						//TODO: Handle setting of SUBMERSIBLEPUMP member from IfcPumpTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcPumpTypeEnum.SUMPPUMP:
+						//## Handle setting of SUMPPUMP member from IfcPumpTypeEnum in property PredefinedType
+						//TODO: Handle setting of SUMPPUMP member from IfcPumpTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcPumpTypeEnum.VERTICALINLINE:
+						PredefinedType = IfcPumpTypeEnum.VERTICALINLINE;
+						return;
+					
+					case Ifc4.Interfaces.IfcPumpTypeEnum.VERTICALTURBINE:
+						PredefinedType = IfcPumpTypeEnum.VERTICALTURBINE;
+						return;
+					
+					case Ifc4.Interfaces.IfcPumpTypeEnum.USERDEFINED:
+						PredefinedType = IfcPumpTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcPumpTypeEnum.NOTDEFINED:
+						PredefinedType = IfcPumpTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

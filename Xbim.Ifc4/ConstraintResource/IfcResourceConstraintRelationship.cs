@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcResourceConstraintRelationship : IIfcResourceLevelRelationship
 	{
-		IIfcConstraint @RelatingConstraint { get; }
+		IIfcConstraint @RelatingConstraint { get;  set; }
 		IEnumerable<IIfcResourceObjectSelect> @RelatedResourceObjects { get; }
 	
 	}
@@ -39,8 +39,15 @@ namespace Xbim.Ifc4.ConstraintResource
 	public  partial class @IfcResourceConstraintRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcResourceConstraintRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcResourceConstraintRelationship>
 	{
 		#region IIfcResourceConstraintRelationship explicit implementation
-		IIfcConstraint IIfcResourceConstraintRelationship.RelatingConstraint { get { return @RelatingConstraint; } }	
-		IEnumerable<IIfcResourceObjectSelect> IIfcResourceConstraintRelationship.RelatedResourceObjects { get { return @RelatedResourceObjects; } }	
+		IIfcConstraint IIfcResourceConstraintRelationship.RelatingConstraint { 
+			get { return @RelatingConstraint; } 
+ 
+ 
+			set { RelatingConstraint = value as IfcConstraint;}
+		}	
+		IEnumerable<IIfcResourceObjectSelect> IIfcResourceConstraintRelationship.RelatedResourceObjects { 
+			get { return @RelatedResourceObjects; } 
+		}	
 		 
 		#endregion
 

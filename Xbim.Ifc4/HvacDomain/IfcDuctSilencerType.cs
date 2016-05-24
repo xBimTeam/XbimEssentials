@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDuctSilencerType : IIfcFlowTreatmentDeviceType
 	{
-		IfcDuctSilencerTypeEnum @PredefinedType { get; }
+		IfcDuctSilencerTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.HvacDomain
 	public  partial class @IfcDuctSilencerType : IfcFlowTreatmentDeviceType, IInstantiableEntity, IIfcDuctSilencerType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDuctSilencerType>
 	{
 		#region IIfcDuctSilencerType explicit implementation
-		IfcDuctSilencerTypeEnum IIfcDuctSilencerType.PredefinedType { get { return @PredefinedType; } }	
+		IfcDuctSilencerTypeEnum IIfcDuctSilencerType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

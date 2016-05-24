@@ -29,6 +29,27 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 					return ifcvertexpoint;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					PointOnRelatingElement = null;
+					return;
+				}	
+				var ifcpoint = value as GeometryResource.IfcPoint;
+				if (ifcpoint != null) 
+				{
+					PointOnRelatingElement = ifcpoint;
+					return;
+				}
+				var ifcvertexpoint = value as TopologyResource.IfcVertexPoint;
+				if (ifcvertexpoint != null) 
+				{
+					PointOnRelatingElement = ifcvertexpoint;
+					return;
+				}
+				
+			}
 		}
 		IIfcPointOrVertexPoint IIfcConnectionPointGeometry.PointOnRelatedElement 
 		{ 
@@ -43,6 +64,27 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 					return ifcvertexpoint;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					PointOnRelatedElement = null;
+					return;
+				}	
+				var ifcpoint = value as GeometryResource.IfcPoint;
+				if (ifcpoint != null) 
+				{
+					PointOnRelatedElement = ifcpoint;
+					return;
+				}
+				var ifcvertexpoint = value as TopologyResource.IfcVertexPoint;
+				if (ifcvertexpoint != null) 
+				{
+					PointOnRelatedElement = ifcvertexpoint;
+					return;
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

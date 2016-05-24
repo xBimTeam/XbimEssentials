@@ -29,13 +29,13 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcWorkControl : IIfcControl
 	{
-		IfcDateTime @CreationDate { get; }
+		IfcDateTime @CreationDate { get;  set; }
 		IEnumerable<IIfcPerson> @Creators { get; }
-		IfcLabel? @Purpose { get; }
-		IfcDuration? @Duration { get; }
-		IfcDuration? @TotalFloat { get; }
-		IfcDateTime @StartTime { get; }
-		IfcDateTime? @FinishTime { get; }
+		IfcLabel? @Purpose { get;  set; }
+		IfcDuration? @Duration { get;  set; }
+		IfcDuration? @TotalFloat { get;  set; }
+		IfcDateTime @StartTime { get;  set; }
+		IfcDateTime? @FinishTime { get;  set; }
 	
 	}
 }
@@ -47,13 +47,39 @@ namespace Xbim.Ifc4.ProcessExtension
 	public abstract partial class @IfcWorkControl : IfcControl, IIfcWorkControl, IEquatable<@IfcWorkControl>
 	{
 		#region IIfcWorkControl explicit implementation
-		IfcDateTime IIfcWorkControl.CreationDate { get { return @CreationDate; } }	
-		IEnumerable<IIfcPerson> IIfcWorkControl.Creators { get { return @Creators; } }	
-		IfcLabel? IIfcWorkControl.Purpose { get { return @Purpose; } }	
-		IfcDuration? IIfcWorkControl.Duration { get { return @Duration; } }	
-		IfcDuration? IIfcWorkControl.TotalFloat { get { return @TotalFloat; } }	
-		IfcDateTime IIfcWorkControl.StartTime { get { return @StartTime; } }	
-		IfcDateTime? IIfcWorkControl.FinishTime { get { return @FinishTime; } }	
+		IfcDateTime IIfcWorkControl.CreationDate { 
+			get { return @CreationDate; } 
+ 
+			set { CreationDate = value;}
+		}	
+		IEnumerable<IIfcPerson> IIfcWorkControl.Creators { 
+			get { return @Creators; } 
+		}	
+		IfcLabel? IIfcWorkControl.Purpose { 
+			get { return @Purpose; } 
+ 
+			set { Purpose = value;}
+		}	
+		IfcDuration? IIfcWorkControl.Duration { 
+			get { return @Duration; } 
+ 
+			set { Duration = value;}
+		}	
+		IfcDuration? IIfcWorkControl.TotalFloat { 
+			get { return @TotalFloat; } 
+ 
+			set { TotalFloat = value;}
+		}	
+		IfcDateTime IIfcWorkControl.StartTime { 
+			get { return @StartTime; } 
+ 
+			set { StartTime = value;}
+		}	
+		IfcDateTime? IIfcWorkControl.FinishTime { 
+			get { return @FinishTime; } 
+ 
+			set { FinishTime = value;}
+		}	
 		 
 		#endregion
 

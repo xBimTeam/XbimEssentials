@@ -24,6 +24,16 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			    return new Ifc4.MeasureResource.IfcBoolean(DestabilizingLoad);
 			    //##
 			} 
+			set
+			{
+				//## Handle setting of DestabilizingLoad for which no match was found
+			    if (!value.HasValue)
+			        DestabilizingLoad = false;
+			    else
+			        DestabilizingLoad = value.Value;
+			    //##
+				
+			}
 		}
 	//## Custom code
 	//##

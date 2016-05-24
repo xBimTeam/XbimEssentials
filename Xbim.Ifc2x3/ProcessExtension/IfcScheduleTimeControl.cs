@@ -28,24 +28,24 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcScheduleTimeControl : IIfcControl
 	{
-		IIfcDateTimeSelect @ActualStart { get; }
-		IIfcDateTimeSelect @EarlyStart { get; }
-		IIfcDateTimeSelect @LateStart { get; }
-		IIfcDateTimeSelect @ScheduleStart { get; }
-		IIfcDateTimeSelect @ActualFinish { get; }
-		IIfcDateTimeSelect @EarlyFinish { get; }
-		IIfcDateTimeSelect @LateFinish { get; }
-		IIfcDateTimeSelect @ScheduleFinish { get; }
-		IfcTimeMeasure? @ScheduleDuration { get; }
-		IfcTimeMeasure? @ActualDuration { get; }
-		IfcTimeMeasure? @RemainingTime { get; }
-		IfcTimeMeasure? @FreeFloat { get; }
-		IfcTimeMeasure? @TotalFloat { get; }
-		bool? @IsCritical { get; }
-		IIfcDateTimeSelect @StatusTime { get; }
-		IfcTimeMeasure? @StartFloat { get; }
-		IfcTimeMeasure? @FinishFloat { get; }
-		IfcPositiveRatioMeasure? @Completion { get; }
+		IIfcDateTimeSelect @ActualStart { get;  set; }
+		IIfcDateTimeSelect @EarlyStart { get;  set; }
+		IIfcDateTimeSelect @LateStart { get;  set; }
+		IIfcDateTimeSelect @ScheduleStart { get;  set; }
+		IIfcDateTimeSelect @ActualFinish { get;  set; }
+		IIfcDateTimeSelect @EarlyFinish { get;  set; }
+		IIfcDateTimeSelect @LateFinish { get;  set; }
+		IIfcDateTimeSelect @ScheduleFinish { get;  set; }
+		IfcTimeMeasure? @ScheduleDuration { get;  set; }
+		IfcTimeMeasure? @ActualDuration { get;  set; }
+		IfcTimeMeasure? @RemainingTime { get;  set; }
+		IfcTimeMeasure? @FreeFloat { get;  set; }
+		IfcTimeMeasure? @TotalFloat { get;  set; }
+		bool? @IsCritical { get;  set; }
+		IIfcDateTimeSelect @StatusTime { get;  set; }
+		IfcTimeMeasure? @StartFloat { get;  set; }
+		IfcTimeMeasure? @FinishFloat { get;  set; }
+		IfcPositiveRatioMeasure? @Completion { get;  set; }
 		IIfcRelAssignsTasks @ScheduleTimeControlAssigned {  get; }
 	
 	}
@@ -58,24 +58,105 @@ namespace Xbim.Ifc2x3.ProcessExtension
 	public  partial class @IfcScheduleTimeControl : IfcControl, IInstantiableEntity, IIfcScheduleTimeControl, IContainsEntityReferences, IEquatable<@IfcScheduleTimeControl>
 	{
 		#region IIfcScheduleTimeControl explicit implementation
-		IIfcDateTimeSelect IIfcScheduleTimeControl.ActualStart { get { return @ActualStart; } }	
-		IIfcDateTimeSelect IIfcScheduleTimeControl.EarlyStart { get { return @EarlyStart; } }	
-		IIfcDateTimeSelect IIfcScheduleTimeControl.LateStart { get { return @LateStart; } }	
-		IIfcDateTimeSelect IIfcScheduleTimeControl.ScheduleStart { get { return @ScheduleStart; } }	
-		IIfcDateTimeSelect IIfcScheduleTimeControl.ActualFinish { get { return @ActualFinish; } }	
-		IIfcDateTimeSelect IIfcScheduleTimeControl.EarlyFinish { get { return @EarlyFinish; } }	
-		IIfcDateTimeSelect IIfcScheduleTimeControl.LateFinish { get { return @LateFinish; } }	
-		IIfcDateTimeSelect IIfcScheduleTimeControl.ScheduleFinish { get { return @ScheduleFinish; } }	
-		IfcTimeMeasure? IIfcScheduleTimeControl.ScheduleDuration { get { return @ScheduleDuration; } }	
-		IfcTimeMeasure? IIfcScheduleTimeControl.ActualDuration { get { return @ActualDuration; } }	
-		IfcTimeMeasure? IIfcScheduleTimeControl.RemainingTime { get { return @RemainingTime; } }	
-		IfcTimeMeasure? IIfcScheduleTimeControl.FreeFloat { get { return @FreeFloat; } }	
-		IfcTimeMeasure? IIfcScheduleTimeControl.TotalFloat { get { return @TotalFloat; } }	
-		bool? IIfcScheduleTimeControl.IsCritical { get { return @IsCritical; } }	
-		IIfcDateTimeSelect IIfcScheduleTimeControl.StatusTime { get { return @StatusTime; } }	
-		IfcTimeMeasure? IIfcScheduleTimeControl.StartFloat { get { return @StartFloat; } }	
-		IfcTimeMeasure? IIfcScheduleTimeControl.FinishFloat { get { return @FinishFloat; } }	
-		IfcPositiveRatioMeasure? IIfcScheduleTimeControl.Completion { get { return @Completion; } }	
+		IIfcDateTimeSelect IIfcScheduleTimeControl.ActualStart { 
+			get { return @ActualStart; } 
+ 
+ 
+			set { ActualStart = value as IfcDateTimeSelect;}
+		}	
+		IIfcDateTimeSelect IIfcScheduleTimeControl.EarlyStart { 
+			get { return @EarlyStart; } 
+ 
+ 
+			set { EarlyStart = value as IfcDateTimeSelect;}
+		}	
+		IIfcDateTimeSelect IIfcScheduleTimeControl.LateStart { 
+			get { return @LateStart; } 
+ 
+ 
+			set { LateStart = value as IfcDateTimeSelect;}
+		}	
+		IIfcDateTimeSelect IIfcScheduleTimeControl.ScheduleStart { 
+			get { return @ScheduleStart; } 
+ 
+ 
+			set { ScheduleStart = value as IfcDateTimeSelect;}
+		}	
+		IIfcDateTimeSelect IIfcScheduleTimeControl.ActualFinish { 
+			get { return @ActualFinish; } 
+ 
+ 
+			set { ActualFinish = value as IfcDateTimeSelect;}
+		}	
+		IIfcDateTimeSelect IIfcScheduleTimeControl.EarlyFinish { 
+			get { return @EarlyFinish; } 
+ 
+ 
+			set { EarlyFinish = value as IfcDateTimeSelect;}
+		}	
+		IIfcDateTimeSelect IIfcScheduleTimeControl.LateFinish { 
+			get { return @LateFinish; } 
+ 
+ 
+			set { LateFinish = value as IfcDateTimeSelect;}
+		}	
+		IIfcDateTimeSelect IIfcScheduleTimeControl.ScheduleFinish { 
+			get { return @ScheduleFinish; } 
+ 
+ 
+			set { ScheduleFinish = value as IfcDateTimeSelect;}
+		}	
+		IfcTimeMeasure? IIfcScheduleTimeControl.ScheduleDuration { 
+			get { return @ScheduleDuration; } 
+ 
+			set { ScheduleDuration = value;}
+		}	
+		IfcTimeMeasure? IIfcScheduleTimeControl.ActualDuration { 
+			get { return @ActualDuration; } 
+ 
+			set { ActualDuration = value;}
+		}	
+		IfcTimeMeasure? IIfcScheduleTimeControl.RemainingTime { 
+			get { return @RemainingTime; } 
+ 
+			set { RemainingTime = value;}
+		}	
+		IfcTimeMeasure? IIfcScheduleTimeControl.FreeFloat { 
+			get { return @FreeFloat; } 
+ 
+			set { FreeFloat = value;}
+		}	
+		IfcTimeMeasure? IIfcScheduleTimeControl.TotalFloat { 
+			get { return @TotalFloat; } 
+ 
+			set { TotalFloat = value;}
+		}	
+		bool? IIfcScheduleTimeControl.IsCritical { 
+			get { return @IsCritical; } 
+ 
+			set { IsCritical = value;}
+		}	
+		IIfcDateTimeSelect IIfcScheduleTimeControl.StatusTime { 
+			get { return @StatusTime; } 
+ 
+ 
+			set { StatusTime = value as IfcDateTimeSelect;}
+		}	
+		IfcTimeMeasure? IIfcScheduleTimeControl.StartFloat { 
+			get { return @StartFloat; } 
+ 
+			set { StartFloat = value;}
+		}	
+		IfcTimeMeasure? IIfcScheduleTimeControl.FinishFloat { 
+			get { return @FinishFloat; } 
+ 
+			set { FinishFloat = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcScheduleTimeControl.Completion { 
+			get { return @Completion; } 
+ 
+			set { Completion = value;}
+		}	
 		 
 		IIfcRelAssignsTasks IIfcScheduleTimeControl.ScheduleTimeControlAssigned {  get { return @ScheduleTimeControlAssigned; } }
 		#endregion

@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			{
 				return new Ifc4.PresentationAppearanceResource.IfcPresentableText(Literal);
 			} 
+			set
+			{
+				Literal = new PresentationResource.IfcPresentableText(value);
+				
+			}
 		}
 		IIfcAxis2Placement IIfcTextLiteral.Placement 
 		{ 
@@ -36,6 +41,27 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 					return ifcaxis2placement3d;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					Placement = null;
+					return;
+				}	
+				var ifcaxis2placement2d = value as GeometryResource.IfcAxis2Placement2D;
+				if (ifcaxis2placement2d != null) 
+				{
+					Placement = ifcaxis2placement2d;
+					return;
+				}
+				var ifcaxis2placement3d = value as GeometryResource.IfcAxis2Placement3D;
+				if (ifcaxis2placement3d != null) 
+				{
+					Placement = ifcaxis2placement3d;
+					return;
+				}
+				
+			}
 		}
 		Ifc4.Interfaces.IfcTextPath IIfcTextLiteral.Path 
 		{ 
@@ -60,6 +86,32 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcTextPath.LEFT:
+						Path = IfcTextPath.LEFT;
+						return;
+					
+					case Ifc4.Interfaces.IfcTextPath.RIGHT:
+						Path = IfcTextPath.RIGHT;
+						return;
+					
+					case Ifc4.Interfaces.IfcTextPath.UP:
+						Path = IfcTextPath.UP;
+						return;
+					
+					case Ifc4.Interfaces.IfcTextPath.DOWN:
+						Path = IfcTextPath.DOWN;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

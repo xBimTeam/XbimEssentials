@@ -26,18 +26,18 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcAsymmetricIShapeProfileDef : IIfcParameterizedProfileDef
 	{
-		IfcPositiveLengthMeasure @BottomFlangeWidth { get; }
-		IfcPositiveLengthMeasure @OverallDepth { get; }
-		IfcPositiveLengthMeasure @WebThickness { get; }
-		IfcPositiveLengthMeasure @BottomFlangeThickness { get; }
-		IfcNonNegativeLengthMeasure? @BottomFlangeFilletRadius { get; }
-		IfcPositiveLengthMeasure @TopFlangeWidth { get; }
-		IfcPositiveLengthMeasure? @TopFlangeThickness { get; }
-		IfcNonNegativeLengthMeasure? @TopFlangeFilletRadius { get; }
-		IfcNonNegativeLengthMeasure? @BottomFlangeEdgeRadius { get; }
-		IfcPlaneAngleMeasure? @BottomFlangeSlope { get; }
-		IfcNonNegativeLengthMeasure? @TopFlangeEdgeRadius { get; }
-		IfcPlaneAngleMeasure? @TopFlangeSlope { get; }
+		IfcPositiveLengthMeasure @BottomFlangeWidth { get;  set; }
+		IfcPositiveLengthMeasure @OverallDepth { get;  set; }
+		IfcPositiveLengthMeasure @WebThickness { get;  set; }
+		IfcPositiveLengthMeasure @BottomFlangeThickness { get;  set; }
+		IfcNonNegativeLengthMeasure? @BottomFlangeFilletRadius { get;  set; }
+		IfcPositiveLengthMeasure @TopFlangeWidth { get;  set; }
+		IfcPositiveLengthMeasure? @TopFlangeThickness { get;  set; }
+		IfcNonNegativeLengthMeasure? @TopFlangeFilletRadius { get;  set; }
+		IfcNonNegativeLengthMeasure? @BottomFlangeEdgeRadius { get;  set; }
+		IfcPlaneAngleMeasure? @BottomFlangeSlope { get;  set; }
+		IfcNonNegativeLengthMeasure? @TopFlangeEdgeRadius { get;  set; }
+		IfcPlaneAngleMeasure? @TopFlangeSlope { get;  set; }
 	
 	}
 }
@@ -49,18 +49,66 @@ namespace Xbim.Ifc4.ProfileResource
 	public  partial class @IfcAsymmetricIShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcAsymmetricIShapeProfileDef, IContainsEntityReferences, IEquatable<@IfcAsymmetricIShapeProfileDef>
 	{
 		#region IIfcAsymmetricIShapeProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.BottomFlangeWidth { get { return @BottomFlangeWidth; } }	
-		IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.OverallDepth { get { return @OverallDepth; } }	
-		IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.WebThickness { get { return @WebThickness; } }	
-		IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.BottomFlangeThickness { get { return @BottomFlangeThickness; } }	
-		IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeFilletRadius { get { return @BottomFlangeFilletRadius; } }	
-		IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.TopFlangeWidth { get { return @TopFlangeWidth; } }	
-		IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeThickness { get { return @TopFlangeThickness; } }	
-		IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeFilletRadius { get { return @TopFlangeFilletRadius; } }	
-		IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeEdgeRadius { get { return @BottomFlangeEdgeRadius; } }	
-		IfcPlaneAngleMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeSlope { get { return @BottomFlangeSlope; } }	
-		IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeEdgeRadius { get { return @TopFlangeEdgeRadius; } }	
-		IfcPlaneAngleMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeSlope { get { return @TopFlangeSlope; } }	
+		IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.BottomFlangeWidth { 
+			get { return @BottomFlangeWidth; } 
+ 
+			set { BottomFlangeWidth = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.OverallDepth { 
+			get { return @OverallDepth; } 
+ 
+			set { OverallDepth = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.WebThickness { 
+			get { return @WebThickness; } 
+ 
+			set { WebThickness = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.BottomFlangeThickness { 
+			get { return @BottomFlangeThickness; } 
+ 
+			set { BottomFlangeThickness = value;}
+		}	
+		IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeFilletRadius { 
+			get { return @BottomFlangeFilletRadius; } 
+ 
+			set { BottomFlangeFilletRadius = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.TopFlangeWidth { 
+			get { return @TopFlangeWidth; } 
+ 
+			set { TopFlangeWidth = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeThickness { 
+			get { return @TopFlangeThickness; } 
+ 
+			set { TopFlangeThickness = value;}
+		}	
+		IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeFilletRadius { 
+			get { return @TopFlangeFilletRadius; } 
+ 
+			set { TopFlangeFilletRadius = value;}
+		}	
+		IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeEdgeRadius { 
+			get { return @BottomFlangeEdgeRadius; } 
+ 
+			set { BottomFlangeEdgeRadius = value;}
+		}	
+		IfcPlaneAngleMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeSlope { 
+			get { return @BottomFlangeSlope; } 
+ 
+			set { BottomFlangeSlope = value;}
+		}	
+		IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeEdgeRadius { 
+			get { return @TopFlangeEdgeRadius; } 
+ 
+			set { TopFlangeEdgeRadius = value;}
+		}	
+		IfcPlaneAngleMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeSlope { 
+			get { return @TopFlangeSlope; } 
+ 
+			set { TopFlangeSlope = value;}
+		}	
 		 
 		#endregion
 

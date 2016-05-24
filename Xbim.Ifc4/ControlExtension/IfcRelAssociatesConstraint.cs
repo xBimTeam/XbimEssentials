@@ -28,8 +28,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelAssociatesConstraint : IIfcRelAssociates
 	{
-		IfcLabel? @Intent { get; }
-		IIfcConstraint @RelatingConstraint { get; }
+		IfcLabel? @Intent { get;  set; }
+		IIfcConstraint @RelatingConstraint { get;  set; }
 	
 	}
 }
@@ -41,8 +41,17 @@ namespace Xbim.Ifc4.ControlExtension
 	public  partial class @IfcRelAssociatesConstraint : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesConstraint, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesConstraint>
 	{
 		#region IIfcRelAssociatesConstraint explicit implementation
-		IfcLabel? IIfcRelAssociatesConstraint.Intent { get { return @Intent; } }	
-		IIfcConstraint IIfcRelAssociatesConstraint.RelatingConstraint { get { return @RelatingConstraint; } }	
+		IfcLabel? IIfcRelAssociatesConstraint.Intent { 
+			get { return @Intent; } 
+ 
+			set { Intent = value;}
+		}	
+		IIfcConstraint IIfcRelAssociatesConstraint.RelatingConstraint { 
+			get { return @RelatingConstraint; } 
+ 
+ 
+			set { RelatingConstraint = value as IfcConstraint;}
+		}	
 		 
 		#endregion
 

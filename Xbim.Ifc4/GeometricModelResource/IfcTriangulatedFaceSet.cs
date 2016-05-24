@@ -40,8 +40,12 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public  partial class @IfcTriangulatedFaceSet : IfcTessellatedFaceSet, IInstantiableEntity, IIfcTriangulatedFaceSet, IContainsEntityReferences, IEquatable<@IfcTriangulatedFaceSet>
 	{
 		#region IIfcTriangulatedFaceSet explicit implementation
-		IEnumerable<IEnumerable<IfcPositiveInteger>> IIfcTriangulatedFaceSet.CoordIndex { get { return @CoordIndex; } }	
-		IEnumerable<IEnumerable<IfcPositiveInteger>> IIfcTriangulatedFaceSet.NormalIndex { get { return @NormalIndex; } }	
+		IEnumerable<IEnumerable<IfcPositiveInteger>> IIfcTriangulatedFaceSet.CoordIndex { 
+			get { return @CoordIndex; } 
+		}	
+		IEnumerable<IEnumerable<IfcPositiveInteger>> IIfcTriangulatedFaceSet.NormalIndex { 
+			get { return @NormalIndex; } 
+		}	
 		 
 		#endregion
 

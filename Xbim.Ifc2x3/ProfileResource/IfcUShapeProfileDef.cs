@@ -26,14 +26,14 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcUShapeProfileDef : IIfcParameterizedProfileDef
 	{
-		IfcPositiveLengthMeasure @Depth { get; }
-		IfcPositiveLengthMeasure @FlangeWidth { get; }
-		IfcPositiveLengthMeasure @WebThickness { get; }
-		IfcPositiveLengthMeasure @FlangeThickness { get; }
-		IfcPositiveLengthMeasure? @FilletRadius { get; }
-		IfcPositiveLengthMeasure? @EdgeRadius { get; }
-		IfcPlaneAngleMeasure? @FlangeSlope { get; }
-		IfcPositiveLengthMeasure? @CentreOfGravityInX { get; }
+		IfcPositiveLengthMeasure @Depth { get;  set; }
+		IfcPositiveLengthMeasure @FlangeWidth { get;  set; }
+		IfcPositiveLengthMeasure @WebThickness { get;  set; }
+		IfcPositiveLengthMeasure @FlangeThickness { get;  set; }
+		IfcPositiveLengthMeasure? @FilletRadius { get;  set; }
+		IfcPositiveLengthMeasure? @EdgeRadius { get;  set; }
+		IfcPlaneAngleMeasure? @FlangeSlope { get;  set; }
+		IfcPositiveLengthMeasure? @CentreOfGravityInX { get;  set; }
 	
 	}
 }
@@ -45,14 +45,46 @@ namespace Xbim.Ifc2x3.ProfileResource
 	public  partial class @IfcUShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcUShapeProfileDef, IContainsEntityReferences, IEquatable<@IfcUShapeProfileDef>
 	{
 		#region IIfcUShapeProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcUShapeProfileDef.Depth { get { return @Depth; } }	
-		IfcPositiveLengthMeasure IIfcUShapeProfileDef.FlangeWidth { get { return @FlangeWidth; } }	
-		IfcPositiveLengthMeasure IIfcUShapeProfileDef.WebThickness { get { return @WebThickness; } }	
-		IfcPositiveLengthMeasure IIfcUShapeProfileDef.FlangeThickness { get { return @FlangeThickness; } }	
-		IfcPositiveLengthMeasure? IIfcUShapeProfileDef.FilletRadius { get { return @FilletRadius; } }	
-		IfcPositiveLengthMeasure? IIfcUShapeProfileDef.EdgeRadius { get { return @EdgeRadius; } }	
-		IfcPlaneAngleMeasure? IIfcUShapeProfileDef.FlangeSlope { get { return @FlangeSlope; } }	
-		IfcPositiveLengthMeasure? IIfcUShapeProfileDef.CentreOfGravityInX { get { return @CentreOfGravityInX; } }	
+		IfcPositiveLengthMeasure IIfcUShapeProfileDef.Depth { 
+			get { return @Depth; } 
+ 
+			set { Depth = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcUShapeProfileDef.FlangeWidth { 
+			get { return @FlangeWidth; } 
+ 
+			set { FlangeWidth = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcUShapeProfileDef.WebThickness { 
+			get { return @WebThickness; } 
+ 
+			set { WebThickness = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcUShapeProfileDef.FlangeThickness { 
+			get { return @FlangeThickness; } 
+ 
+			set { FlangeThickness = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcUShapeProfileDef.FilletRadius { 
+			get { return @FilletRadius; } 
+ 
+			set { FilletRadius = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcUShapeProfileDef.EdgeRadius { 
+			get { return @EdgeRadius; } 
+ 
+			set { EdgeRadius = value;}
+		}	
+		IfcPlaneAngleMeasure? IIfcUShapeProfileDef.FlangeSlope { 
+			get { return @FlangeSlope; } 
+ 
+			set { FlangeSlope = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcUShapeProfileDef.CentreOfGravityInX { 
+			get { return @CentreOfGravityInX; } 
+ 
+			set { CentreOfGravityInX = value;}
+		}	
 		 
 		#endregion
 

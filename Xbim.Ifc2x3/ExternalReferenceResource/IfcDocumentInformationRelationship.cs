@@ -28,9 +28,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDocumentInformationRelationship : IPersistEntity
 	{
-		IIfcDocumentInformation @RelatingDocument { get; }
+		IIfcDocumentInformation @RelatingDocument { get;  set; }
 		IEnumerable<IIfcDocumentInformation> @RelatedDocuments { get; }
-		IfcLabel? @RelationshipType { get; }
+		IfcLabel? @RelationshipType { get;  set; }
 	
 	}
 }
@@ -42,9 +42,20 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 	public  partial class @IfcDocumentInformationRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcDocumentInformationRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDocumentInformationRelationship>
 	{
 		#region IIfcDocumentInformationRelationship explicit implementation
-		IIfcDocumentInformation IIfcDocumentInformationRelationship.RelatingDocument { get { return @RelatingDocument; } }	
-		IEnumerable<IIfcDocumentInformation> IIfcDocumentInformationRelationship.RelatedDocuments { get { return @RelatedDocuments; } }	
-		IfcLabel? IIfcDocumentInformationRelationship.RelationshipType { get { return @RelationshipType; } }	
+		IIfcDocumentInformation IIfcDocumentInformationRelationship.RelatingDocument { 
+			get { return @RelatingDocument; } 
+ 
+ 
+			set { RelatingDocument = value as IfcDocumentInformation;}
+		}	
+		IEnumerable<IIfcDocumentInformation> IIfcDocumentInformationRelationship.RelatedDocuments { 
+			get { return @RelatedDocuments; } 
+		}	
+		IfcLabel? IIfcDocumentInformationRelationship.RelationshipType { 
+			get { return @RelationshipType; } 
+ 
+			set { RelationshipType = value;}
+		}	
 		 
 		#endregion
 

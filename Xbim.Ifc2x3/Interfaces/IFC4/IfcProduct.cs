@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				return ObjectPlacement;
 			} 
+			set
+			{
+				ObjectPlacement = value as GeometricConstraintResource.IfcObjectPlacement;
+				
+			}
 		}
 		IIfcProductRepresentation IIfcProduct.Representation 
 		{ 
@@ -29,6 +34,11 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				return Representation;
 			} 
+			set
+			{
+				Representation = value as RepresentationResource.IfcProductRepresentation;
+				
+			}
 		}
 		IEnumerable<IIfcRelAssignsToProduct> IIfcProduct.ReferencedBy 
 		{ 

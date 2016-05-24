@@ -28,10 +28,10 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IEnumerable<IIfcValue> @DefiningValues { get; }
 		IEnumerable<IIfcValue> @DefinedValues { get; }
-		IfcText? @Expression { get; }
-		IIfcUnit @DefiningUnit { get; }
-		IIfcUnit @DefinedUnit { get; }
-		IfcCurveInterpolationEnum? @CurveInterpolation { get; }
+		IfcText? @Expression { get;  set; }
+		IIfcUnit @DefiningUnit { get;  set; }
+		IIfcUnit @DefinedUnit { get;  set; }
+		IfcCurveInterpolationEnum? @CurveInterpolation { get;  set; }
 	
 	}
 }
@@ -43,12 +43,34 @@ namespace Xbim.Ifc4.PropertyResource
 	public  partial class @IfcPropertyTableValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyTableValue, IContainsEntityReferences, IEquatable<@IfcPropertyTableValue>
 	{
 		#region IIfcPropertyTableValue explicit implementation
-		IEnumerable<IIfcValue> IIfcPropertyTableValue.DefiningValues { get { return @DefiningValues; } }	
-		IEnumerable<IIfcValue> IIfcPropertyTableValue.DefinedValues { get { return @DefinedValues; } }	
-		IfcText? IIfcPropertyTableValue.Expression { get { return @Expression; } }	
-		IIfcUnit IIfcPropertyTableValue.DefiningUnit { get { return @DefiningUnit; } }	
-		IIfcUnit IIfcPropertyTableValue.DefinedUnit { get { return @DefinedUnit; } }	
-		IfcCurveInterpolationEnum? IIfcPropertyTableValue.CurveInterpolation { get { return @CurveInterpolation; } }	
+		IEnumerable<IIfcValue> IIfcPropertyTableValue.DefiningValues { 
+			get { return @DefiningValues; } 
+		}	
+		IEnumerable<IIfcValue> IIfcPropertyTableValue.DefinedValues { 
+			get { return @DefinedValues; } 
+		}	
+		IfcText? IIfcPropertyTableValue.Expression { 
+			get { return @Expression; } 
+ 
+			set { Expression = value;}
+		}	
+		IIfcUnit IIfcPropertyTableValue.DefiningUnit { 
+			get { return @DefiningUnit; } 
+ 
+ 
+			set { DefiningUnit = value as IfcUnit;}
+		}	
+		IIfcUnit IIfcPropertyTableValue.DefinedUnit { 
+			get { return @DefinedUnit; } 
+ 
+ 
+			set { DefinedUnit = value as IfcUnit;}
+		}	
+		IfcCurveInterpolationEnum? IIfcPropertyTableValue.CurveInterpolation { 
+			get { return @CurveInterpolation; } 
+ 
+			set { CurveInterpolation = value;}
+		}	
 		 
 		#endregion
 

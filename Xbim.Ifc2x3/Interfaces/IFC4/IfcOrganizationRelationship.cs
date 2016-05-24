@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.ActorResource
 			{
 				return RelatingOrganization;
 			} 
+			set
+			{
+				RelatingOrganization = value as IfcOrganization;
+				
+			}
 		}
 		IEnumerable<IIfcOrganization> IIfcOrganizationRelationship.RelatedOrganizations 
 		{ 
@@ -37,21 +42,30 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				//## Handle return of Name for which no match was found
-			    return new Ifc4.MeasureResource.IfcLabel(Name);
-			    //##
+				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				Name = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 default(MeasureResource.IfcLabel) ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
 		{ 
 			get
 			{
-				//## Handle return of Description for which no match was found
-			    return Description.HasValue
-			        ? new Ifc4.MeasureResource.IfcText(Description.Value)
-			        : null;
-			    //##
+				if (!Description.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				Description = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

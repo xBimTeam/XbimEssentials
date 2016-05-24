@@ -26,8 +26,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcLocalPlacement : IIfcObjectPlacement
 	{
-		IIfcObjectPlacement @PlacementRelTo { get; }
-		IIfcAxis2Placement @RelativePlacement { get; }
+		IIfcObjectPlacement @PlacementRelTo { get;  set; }
+		IIfcAxis2Placement @RelativePlacement { get;  set; }
 	
 	}
 }
@@ -39,8 +39,18 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 	public  partial class @IfcLocalPlacement : IfcObjectPlacement, IInstantiableEntity, IIfcLocalPlacement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcLocalPlacement>
 	{
 		#region IIfcLocalPlacement explicit implementation
-		IIfcObjectPlacement IIfcLocalPlacement.PlacementRelTo { get { return @PlacementRelTo; } }	
-		IIfcAxis2Placement IIfcLocalPlacement.RelativePlacement { get { return @RelativePlacement; } }	
+		IIfcObjectPlacement IIfcLocalPlacement.PlacementRelTo { 
+			get { return @PlacementRelTo; } 
+ 
+ 
+			set { PlacementRelTo = value as IfcObjectPlacement;}
+		}	
+		IIfcAxis2Placement IIfcLocalPlacement.RelativePlacement { 
+			get { return @RelativePlacement; } 
+ 
+ 
+			set { RelativePlacement = value as IfcAxis2Placement;}
+		}	
 		 
 		#endregion
 

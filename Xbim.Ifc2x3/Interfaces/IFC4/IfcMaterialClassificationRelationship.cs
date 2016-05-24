@@ -31,11 +31,11 @@ namespace Xbim.Ifc2x3.MaterialResource
                         if (items.Any())
                         {
                             foreach (var item in items)
-                                yield return new Interfaces.Conversions.IfcClassificationReferenceTransient(item);
+                                yield return item;
                         }
                         else
                         {
-                            yield return new Interfaces.Conversions.IfcClassificationNotationTransient(notation);
+                            yield return notation;
                         }
 			            continue;
 			        }
@@ -52,6 +52,11 @@ namespace Xbim.Ifc2x3.MaterialResource
 			{
 				return ClassifiedMaterial;
 			} 
+			set
+			{
+				ClassifiedMaterial = value as IfcMaterial;
+				
+			}
 		}
 	//## Custom code
 	//##

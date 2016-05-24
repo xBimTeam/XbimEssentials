@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcAudioVisualAppliance : IIfcFlowTerminal
 	{
-		IfcAudioVisualApplianceTypeEnum? @PredefinedType { get; }
+		IfcAudioVisualApplianceTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.ElectricalDomain
 	public  partial class @IfcAudioVisualAppliance : IfcFlowTerminal, IInstantiableEntity, IIfcAudioVisualAppliance, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAudioVisualAppliance>
 	{
 		#region IIfcAudioVisualAppliance explicit implementation
-		IfcAudioVisualApplianceTypeEnum? IIfcAudioVisualAppliance.PredefinedType { get { return @PredefinedType; } }	
+		IfcAudioVisualApplianceTypeEnum? IIfcAudioVisualAppliance.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

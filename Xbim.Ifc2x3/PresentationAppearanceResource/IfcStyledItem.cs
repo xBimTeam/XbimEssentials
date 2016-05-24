@@ -27,9 +27,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStyledItem : IIfcRepresentationItem
 	{
-		IIfcRepresentationItem @Item { get; }
+		IIfcRepresentationItem @Item { get;  set; }
 		IEnumerable<IIfcPresentationStyleAssignment> @Styles { get; }
-		IfcLabel? @Name { get; }
+		IfcLabel? @Name { get;  set; }
 	
 	}
 }
@@ -41,9 +41,20 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	public  partial class @IfcStyledItem : IfcRepresentationItem, IInstantiableEntity, IIfcStyledItem, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStyledItem>
 	{
 		#region IIfcStyledItem explicit implementation
-		IIfcRepresentationItem IIfcStyledItem.Item { get { return @Item; } }	
-		IEnumerable<IIfcPresentationStyleAssignment> IIfcStyledItem.Styles { get { return @Styles; } }	
-		IfcLabel? IIfcStyledItem.Name { get { return @Name; } }	
+		IIfcRepresentationItem IIfcStyledItem.Item { 
+			get { return @Item; } 
+ 
+ 
+			set { Item = value as IfcRepresentationItem;}
+		}	
+		IEnumerable<IIfcPresentationStyleAssignment> IIfcStyledItem.Styles { 
+			get { return @Styles; } 
+		}	
+		IfcLabel? IIfcStyledItem.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
 		 
 		#endregion
 

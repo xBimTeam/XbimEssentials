@@ -16,32 +16,50 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	public partial class @IfcMechanicalFastenerType : IIfcMechanicalFastenerType
 	{
+
+		private  Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum _predefinedType;
+
 		Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum IIfcMechanicalFastenerType.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-                return IfcMechanicalFastenerTypeEnum.NOTDEFINED;
-			    //##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcPositiveLengthMeasure? _nominalDiameter;
+
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMechanicalFastenerType.NominalDiameter 
 		{ 
 			get
 			{
-				//## Handle return of NominalDiameter for which no match was found
-			    return null;
-			    //##
+				return _nominalDiameter;
 			} 
+			set
+			{
+				SetValue(v => _nominalDiameter = v, _nominalDiameter, value, "NominalDiameter", byte.MaxValue);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcPositiveLengthMeasure? _nominalLength;
+
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMechanicalFastenerType.NominalLength 
 		{ 
 			get
 			{
-				//## Handle return of NominalLength for which no match was found
-                return null;
-				//##
+				return _nominalLength;
 			} 
+			set
+			{
+				SetValue(v => _nominalLength = v, _nominalLength, value, "NominalLength", byte.MaxValue);
+				
+			}
 		}
 	//## Custom code
 	//##

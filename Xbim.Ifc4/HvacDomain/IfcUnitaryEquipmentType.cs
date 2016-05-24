@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcUnitaryEquipmentType : IIfcEnergyConversionDeviceType
 	{
-		IfcUnitaryEquipmentTypeEnum @PredefinedType { get; }
+		IfcUnitaryEquipmentTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.HvacDomain
 	public  partial class @IfcUnitaryEquipmentType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcUnitaryEquipmentType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcUnitaryEquipmentType>
 	{
 		#region IIfcUnitaryEquipmentType explicit implementation
-		IfcUnitaryEquipmentTypeEnum IIfcUnitaryEquipmentType.PredefinedType { get { return @PredefinedType; } }	
+		IfcUnitaryEquipmentTypeEnum IIfcUnitaryEquipmentType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

@@ -28,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcLightDistributionData : IPersistEntity
 	{
-		IfcPlaneAngleMeasure @MainPlaneAngle { get; }
+		IfcPlaneAngleMeasure @MainPlaneAngle { get;  set; }
 		IEnumerable<IfcPlaneAngleMeasure> @SecondaryPlaneAngle { get; }
 		IEnumerable<IfcLuminousIntensityDistributionMeasure> @LuminousIntensity { get; }
 	
@@ -42,9 +42,17 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 	public  partial class @IfcLightDistributionData : INotifyPropertyChanged, IInstantiableEntity, IIfcLightDistributionData, IEquatable<@IfcLightDistributionData>
 	{
 		#region IIfcLightDistributionData explicit implementation
-		IfcPlaneAngleMeasure IIfcLightDistributionData.MainPlaneAngle { get { return @MainPlaneAngle; } }	
-		IEnumerable<IfcPlaneAngleMeasure> IIfcLightDistributionData.SecondaryPlaneAngle { get { return @SecondaryPlaneAngle; } }	
-		IEnumerable<IfcLuminousIntensityDistributionMeasure> IIfcLightDistributionData.LuminousIntensity { get { return @LuminousIntensity; } }	
+		IfcPlaneAngleMeasure IIfcLightDistributionData.MainPlaneAngle { 
+			get { return @MainPlaneAngle; } 
+ 
+			set { MainPlaneAngle = value;}
+		}	
+		IEnumerable<IfcPlaneAngleMeasure> IIfcLightDistributionData.SecondaryPlaneAngle { 
+			get { return @SecondaryPlaneAngle; } 
+		}	
+		IEnumerable<IfcLuminousIntensityDistributionMeasure> IIfcLightDistributionData.LuminousIntensity { 
+			get { return @LuminousIntensity; } 
+		}	
 		 
 		#endregion
 

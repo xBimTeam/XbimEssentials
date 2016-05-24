@@ -28,19 +28,19 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDoorLiningProperties : IIfcPreDefinedPropertySet
 	{
-		IfcPositiveLengthMeasure? @LiningDepth { get; }
-		IfcNonNegativeLengthMeasure? @LiningThickness { get; }
-		IfcPositiveLengthMeasure? @ThresholdDepth { get; }
-		IfcNonNegativeLengthMeasure? @ThresholdThickness { get; }
-		IfcNonNegativeLengthMeasure? @TransomThickness { get; }
-		IfcLengthMeasure? @TransomOffset { get; }
-		IfcLengthMeasure? @LiningOffset { get; }
-		IfcLengthMeasure? @ThresholdOffset { get; }
-		IfcPositiveLengthMeasure? @CasingThickness { get; }
-		IfcPositiveLengthMeasure? @CasingDepth { get; }
-		IIfcShapeAspect @ShapeAspectStyle { get; }
-		IfcLengthMeasure? @LiningToPanelOffsetX { get; }
-		IfcLengthMeasure? @LiningToPanelOffsetY { get; }
+		IfcPositiveLengthMeasure? @LiningDepth { get;  set; }
+		IfcNonNegativeLengthMeasure? @LiningThickness { get;  set; }
+		IfcPositiveLengthMeasure? @ThresholdDepth { get;  set; }
+		IfcNonNegativeLengthMeasure? @ThresholdThickness { get;  set; }
+		IfcNonNegativeLengthMeasure? @TransomThickness { get;  set; }
+		IfcLengthMeasure? @TransomOffset { get;  set; }
+		IfcLengthMeasure? @LiningOffset { get;  set; }
+		IfcLengthMeasure? @ThresholdOffset { get;  set; }
+		IfcPositiveLengthMeasure? @CasingThickness { get;  set; }
+		IfcPositiveLengthMeasure? @CasingDepth { get;  set; }
+		IIfcShapeAspect @ShapeAspectStyle { get;  set; }
+		IfcLengthMeasure? @LiningToPanelOffsetX { get;  set; }
+		IfcLengthMeasure? @LiningToPanelOffsetY { get;  set; }
 	
 	}
 }
@@ -52,19 +52,72 @@ namespace Xbim.Ifc4.ArchitectureDomain
 	public  partial class @IfcDoorLiningProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcDoorLiningProperties, IContainsEntityReferences, IEquatable<@IfcDoorLiningProperties>
 	{
 		#region IIfcDoorLiningProperties explicit implementation
-		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.LiningDepth { get { return @LiningDepth; } }	
-		IfcNonNegativeLengthMeasure? IIfcDoorLiningProperties.LiningThickness { get { return @LiningThickness; } }	
-		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.ThresholdDepth { get { return @ThresholdDepth; } }	
-		IfcNonNegativeLengthMeasure? IIfcDoorLiningProperties.ThresholdThickness { get { return @ThresholdThickness; } }	
-		IfcNonNegativeLengthMeasure? IIfcDoorLiningProperties.TransomThickness { get { return @TransomThickness; } }	
-		IfcLengthMeasure? IIfcDoorLiningProperties.TransomOffset { get { return @TransomOffset; } }	
-		IfcLengthMeasure? IIfcDoorLiningProperties.LiningOffset { get { return @LiningOffset; } }	
-		IfcLengthMeasure? IIfcDoorLiningProperties.ThresholdOffset { get { return @ThresholdOffset; } }	
-		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.CasingThickness { get { return @CasingThickness; } }	
-		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.CasingDepth { get { return @CasingDepth; } }	
-		IIfcShapeAspect IIfcDoorLiningProperties.ShapeAspectStyle { get { return @ShapeAspectStyle; } }	
-		IfcLengthMeasure? IIfcDoorLiningProperties.LiningToPanelOffsetX { get { return @LiningToPanelOffsetX; } }	
-		IfcLengthMeasure? IIfcDoorLiningProperties.LiningToPanelOffsetY { get { return @LiningToPanelOffsetY; } }	
+		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.LiningDepth { 
+			get { return @LiningDepth; } 
+ 
+			set { LiningDepth = value;}
+		}	
+		IfcNonNegativeLengthMeasure? IIfcDoorLiningProperties.LiningThickness { 
+			get { return @LiningThickness; } 
+ 
+			set { LiningThickness = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.ThresholdDepth { 
+			get { return @ThresholdDepth; } 
+ 
+			set { ThresholdDepth = value;}
+		}	
+		IfcNonNegativeLengthMeasure? IIfcDoorLiningProperties.ThresholdThickness { 
+			get { return @ThresholdThickness; } 
+ 
+			set { ThresholdThickness = value;}
+		}	
+		IfcNonNegativeLengthMeasure? IIfcDoorLiningProperties.TransomThickness { 
+			get { return @TransomThickness; } 
+ 
+			set { TransomThickness = value;}
+		}	
+		IfcLengthMeasure? IIfcDoorLiningProperties.TransomOffset { 
+			get { return @TransomOffset; } 
+ 
+			set { TransomOffset = value;}
+		}	
+		IfcLengthMeasure? IIfcDoorLiningProperties.LiningOffset { 
+			get { return @LiningOffset; } 
+ 
+			set { LiningOffset = value;}
+		}	
+		IfcLengthMeasure? IIfcDoorLiningProperties.ThresholdOffset { 
+			get { return @ThresholdOffset; } 
+ 
+			set { ThresholdOffset = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.CasingThickness { 
+			get { return @CasingThickness; } 
+ 
+			set { CasingThickness = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.CasingDepth { 
+			get { return @CasingDepth; } 
+ 
+			set { CasingDepth = value;}
+		}	
+		IIfcShapeAspect IIfcDoorLiningProperties.ShapeAspectStyle { 
+			get { return @ShapeAspectStyle; } 
+ 
+ 
+			set { ShapeAspectStyle = value as IfcShapeAspect;}
+		}	
+		IfcLengthMeasure? IIfcDoorLiningProperties.LiningToPanelOffsetX { 
+			get { return @LiningToPanelOffsetX; } 
+ 
+			set { LiningToPanelOffsetX = value;}
+		}	
+		IfcLengthMeasure? IIfcDoorLiningProperties.LiningToPanelOffsetY { 
+			get { return @LiningToPanelOffsetY; } 
+ 
+			set { LiningToPanelOffsetY = value;}
+		}	
 		 
 		#endregion
 

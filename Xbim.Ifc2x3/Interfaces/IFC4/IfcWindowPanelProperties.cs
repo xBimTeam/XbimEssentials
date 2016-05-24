@@ -69,6 +69,72 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.SIDEHUNGRIGHTHAND:
+						OperationType = IfcWindowPanelOperationEnum.SIDEHUNGRIGHTHAND;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.SIDEHUNGLEFTHAND:
+						OperationType = IfcWindowPanelOperationEnum.SIDEHUNGLEFTHAND;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.TILTANDTURNRIGHTHAND:
+						OperationType = IfcWindowPanelOperationEnum.TILTANDTURNRIGHTHAND;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.TILTANDTURNLEFTHAND:
+						OperationType = IfcWindowPanelOperationEnum.TILTANDTURNLEFTHAND;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.TOPHUNG:
+						OperationType = IfcWindowPanelOperationEnum.TOPHUNG;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.BOTTOMHUNG:
+						OperationType = IfcWindowPanelOperationEnum.BOTTOMHUNG;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.PIVOTHORIZONTAL:
+						OperationType = IfcWindowPanelOperationEnum.PIVOTHORIZONTAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.PIVOTVERTICAL:
+						OperationType = IfcWindowPanelOperationEnum.PIVOTVERTICAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.SLIDINGHORIZONTAL:
+						OperationType = IfcWindowPanelOperationEnum.SLIDINGHORIZONTAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.SLIDINGVERTICAL:
+						OperationType = IfcWindowPanelOperationEnum.SLIDINGVERTICAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.REMOVABLECASEMENT:
+						OperationType = IfcWindowPanelOperationEnum.REMOVABLECASEMENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.FIXEDCASEMENT:
+						OperationType = IfcWindowPanelOperationEnum.FIXEDCASEMENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.OTHEROPERATION:
+						OperationType = IfcWindowPanelOperationEnum.OTHEROPERATION;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelOperationEnum.NOTDEFINED:
+						OperationType = IfcWindowPanelOperationEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.Interfaces.IfcWindowPanelPositionEnum IIfcWindowPanelProperties.PanelPosition 
 		{ 
@@ -99,6 +165,40 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcWindowPanelPositionEnum.LEFT:
+						PanelPosition = IfcWindowPanelPositionEnum.LEFT;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelPositionEnum.MIDDLE:
+						PanelPosition = IfcWindowPanelPositionEnum.MIDDLE;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelPositionEnum.RIGHT:
+						PanelPosition = IfcWindowPanelPositionEnum.RIGHT;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelPositionEnum.BOTTOM:
+						PanelPosition = IfcWindowPanelPositionEnum.BOTTOM;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelPositionEnum.TOP:
+						PanelPosition = IfcWindowPanelPositionEnum.TOP;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelPositionEnum.NOTDEFINED:
+						PanelPosition = IfcWindowPanelPositionEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcWindowPanelProperties.FrameDepth 
 		{ 
@@ -107,6 +207,13 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!FrameDepth.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(FrameDepth.Value);
 			} 
+			set
+			{
+				FrameDepth = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcWindowPanelProperties.FrameThickness 
 		{ 
@@ -115,6 +222,13 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!FrameThickness.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(FrameThickness.Value);
 			} 
+			set
+			{
+				FrameThickness = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
 		IIfcShapeAspect IIfcWindowPanelProperties.ShapeAspectStyle 
 		{ 
@@ -122,6 +236,11 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				return ShapeAspectStyle;
 			} 
+			set
+			{
+				ShapeAspectStyle = value as RepresentationResource.IfcShapeAspect;
+				
+			}
 		}
 	//## Custom code
 	//##

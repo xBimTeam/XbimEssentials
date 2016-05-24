@@ -35,6 +35,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 						return Ifc4.Interfaces.IfcFootingTypeEnum.STRIP_FOOTING;
 					
 					case IfcFootingTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcFootingTypeEnum.USERDEFINED;
 					
 					case IfcFootingTypeEnum.NOTDEFINED:
@@ -45,6 +47,46 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcFootingTypeEnum.CAISSON_FOUNDATION:
+						//## Handle setting of CAISSON_FOUNDATION member from IfcFootingTypeEnum in property PredefinedType
+						//TODO: Handle setting of CAISSON_FOUNDATION member from IfcFootingTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcFootingTypeEnum.FOOTING_BEAM:
+						PredefinedType = IfcFootingTypeEnum.FOOTING_BEAM;
+						return;
+					
+					case Ifc4.Interfaces.IfcFootingTypeEnum.PAD_FOOTING:
+						PredefinedType = IfcFootingTypeEnum.PAD_FOOTING;
+						return;
+					
+					case Ifc4.Interfaces.IfcFootingTypeEnum.PILE_CAP:
+						PredefinedType = IfcFootingTypeEnum.PILE_CAP;
+						return;
+					
+					case Ifc4.Interfaces.IfcFootingTypeEnum.STRIP_FOOTING:
+						PredefinedType = IfcFootingTypeEnum.STRIP_FOOTING;
+						return;
+					
+					case Ifc4.Interfaces.IfcFootingTypeEnum.USERDEFINED:
+						PredefinedType = IfcFootingTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcFootingTypeEnum.NOTDEFINED:
+						PredefinedType = IfcFootingTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

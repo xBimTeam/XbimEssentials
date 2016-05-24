@@ -15,7 +15,7 @@ namespace Xbim.Ifc4.MeasureResource
 	[ExpressType("IfcMagneticFluxDensityMeasure", 471)]
 	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcMagneticFluxDensityMeasure : IfcDerivedMeasureValue, IExpressValueType, System.IEquatable<double>
+	public partial struct IfcMagneticFluxDensityMeasure : IfcDerivedMeasureValue, IExpressValueType, IExpressRealType, System.IEquatable<double>
 	{ 
 		private double _value;
         
@@ -23,6 +23,9 @@ namespace Xbim.Ifc4.MeasureResource
         {
             get { return _value; }
         }
+
+ 
+		double IExpressRealType.Value { get { return _value; } }
 
 		public override string ToString()
         {

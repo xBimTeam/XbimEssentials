@@ -29,10 +29,10 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRoot : IPersistEntity
 	{
-		IfcGloballyUniqueId @GlobalId { get; }
-		IIfcOwnerHistory @OwnerHistory { get; }
-		IfcLabel? @Name { get; }
-		IfcText? @Description { get; }
+		IfcGloballyUniqueId @GlobalId { get;  set; }
+		IIfcOwnerHistory @OwnerHistory { get;  set; }
+		IfcLabel? @Name { get;  set; }
+		IfcText? @Description { get;  set; }
 	
 	}
 }
@@ -44,10 +44,27 @@ namespace Xbim.Ifc4.Kernel
 	public abstract partial class @IfcRoot : IPersistEntity, INotifyPropertyChanged, IIfcRoot, IEquatable<@IfcRoot>
 	{
 		#region IIfcRoot explicit implementation
-		IfcGloballyUniqueId IIfcRoot.GlobalId { get { return @GlobalId; } }	
-		IIfcOwnerHistory IIfcRoot.OwnerHistory { get { return @OwnerHistory; } }	
-		IfcLabel? IIfcRoot.Name { get { return @Name; } }	
-		IfcText? IIfcRoot.Description { get { return @Description; } }	
+		IfcGloballyUniqueId IIfcRoot.GlobalId { 
+			get { return @GlobalId; } 
+ 
+			set { GlobalId = value;}
+		}	
+		IIfcOwnerHistory IIfcRoot.OwnerHistory { 
+			get { return @OwnerHistory; } 
+ 
+ 
+			set { OwnerHistory = value as IfcOwnerHistory;}
+		}	
+		IfcLabel? IIfcRoot.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcRoot.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
 		 
 		#endregion
 

@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTank : IIfcFlowStorageDevice
 	{
-		IfcTankTypeEnum? @PredefinedType { get; }
+		IfcTankTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.HvacDomain
 	public  partial class @IfcTank : IfcFlowStorageDevice, IInstantiableEntity, IIfcTank, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTank>
 	{
 		#region IIfcTank explicit implementation
-		IfcTankTypeEnum? IIfcTank.PredefinedType { get { return @PredefinedType; } }	
+		IfcTankTypeEnum? IIfcTank.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

@@ -23,6 +23,13 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!OverallHeight.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallHeight.Value);
 			} 
+			set
+			{
+				OverallHeight = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcWindow.OverallWidth 
 		{ 
@@ -31,33 +38,58 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!OverallWidth.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallWidth.Value);
 			} 
+			set
+			{
+				OverallWidth = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
+
+		private  Ifc4.Interfaces.IfcWindowTypeEnum? _predefinedType;
+
 		Ifc4.Interfaces.IfcWindowTypeEnum? IIfcWindow.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-                return Ifc4.Interfaces.IfcWindowTypeEnum.NOTDEFINED;
-				//##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				
+			}
 		}
+
+		private  Ifc4.Interfaces.IfcWindowTypePartitioningEnum? _partitioningType;
+
 		Ifc4.Interfaces.IfcWindowTypePartitioningEnum? IIfcWindow.PartitioningType 
 		{ 
 			get
 			{
-				//## Handle return of PartitioningType for which no match was found
-                return Ifc4.Interfaces.IfcWindowTypePartitioningEnum.NOTDEFINED;
-				//##
+				return _partitioningType;
 			} 
+			set
+			{
+				SetValue(v => _partitioningType = v, _partitioningType, value, "PartitioningType", byte.MaxValue);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcLabel? _userDefinedPartitioningType;
+
 		Ifc4.MeasureResource.IfcLabel? IIfcWindow.UserDefinedPartitioningType 
 		{ 
 			get
 			{
-				//## Handle return of UserDefinedPartitioningType for which no match was found
-                return null;
-				//##
+				return _userDefinedPartitioningType;
 			} 
+			set
+			{
+				SetValue(v => _userDefinedPartitioningType = v, _userDefinedPartitioningType, value, "UserDefinedPartitioningType", byte.MaxValue);
+				
+			}
 		}
 	//## Custom code
 

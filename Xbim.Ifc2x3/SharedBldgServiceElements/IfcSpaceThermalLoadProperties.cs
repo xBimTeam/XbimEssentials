@@ -28,16 +28,16 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSpaceThermalLoadProperties : IIfcPropertySetDefinition
 	{
-		IfcPositiveRatioMeasure? @ApplicableValueRatio { get; }
-		IfcThermalLoadSourceEnum @ThermalLoadSource { get; }
-		IfcPropertySourceEnum @PropertySource { get; }
-		IfcText? @SourceDescription { get; }
-		IfcPowerMeasure @MaximumValue { get; }
-		IfcPowerMeasure? @MinimumValue { get; }
-		IIfcTimeSeries @ThermalLoadTimeSeriesValues { get; }
-		IfcLabel? @UserDefinedThermalLoadSource { get; }
-		IfcLabel? @UserDefinedPropertySource { get; }
-		IfcThermalLoadTypeEnum @ThermalLoadType { get; }
+		IfcPositiveRatioMeasure? @ApplicableValueRatio { get;  set; }
+		IfcThermalLoadSourceEnum @ThermalLoadSource { get;  set; }
+		IfcPropertySourceEnum @PropertySource { get;  set; }
+		IfcText? @SourceDescription { get;  set; }
+		IfcPowerMeasure @MaximumValue { get;  set; }
+		IfcPowerMeasure? @MinimumValue { get;  set; }
+		IIfcTimeSeries @ThermalLoadTimeSeriesValues { get;  set; }
+		IfcLabel? @UserDefinedThermalLoadSource { get;  set; }
+		IfcLabel? @UserDefinedPropertySource { get;  set; }
+		IfcThermalLoadTypeEnum @ThermalLoadType { get;  set; }
 	
 	}
 }
@@ -49,16 +49,57 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 	public  partial class @IfcSpaceThermalLoadProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcSpaceThermalLoadProperties, IContainsEntityReferences, IEquatable<@IfcSpaceThermalLoadProperties>
 	{
 		#region IIfcSpaceThermalLoadProperties explicit implementation
-		IfcPositiveRatioMeasure? IIfcSpaceThermalLoadProperties.ApplicableValueRatio { get { return @ApplicableValueRatio; } }	
-		IfcThermalLoadSourceEnum IIfcSpaceThermalLoadProperties.ThermalLoadSource { get { return @ThermalLoadSource; } }	
-		IfcPropertySourceEnum IIfcSpaceThermalLoadProperties.PropertySource { get { return @PropertySource; } }	
-		IfcText? IIfcSpaceThermalLoadProperties.SourceDescription { get { return @SourceDescription; } }	
-		IfcPowerMeasure IIfcSpaceThermalLoadProperties.MaximumValue { get { return @MaximumValue; } }	
-		IfcPowerMeasure? IIfcSpaceThermalLoadProperties.MinimumValue { get { return @MinimumValue; } }	
-		IIfcTimeSeries IIfcSpaceThermalLoadProperties.ThermalLoadTimeSeriesValues { get { return @ThermalLoadTimeSeriesValues; } }	
-		IfcLabel? IIfcSpaceThermalLoadProperties.UserDefinedThermalLoadSource { get { return @UserDefinedThermalLoadSource; } }	
-		IfcLabel? IIfcSpaceThermalLoadProperties.UserDefinedPropertySource { get { return @UserDefinedPropertySource; } }	
-		IfcThermalLoadTypeEnum IIfcSpaceThermalLoadProperties.ThermalLoadType { get { return @ThermalLoadType; } }	
+		IfcPositiveRatioMeasure? IIfcSpaceThermalLoadProperties.ApplicableValueRatio { 
+			get { return @ApplicableValueRatio; } 
+ 
+			set { ApplicableValueRatio = value;}
+		}	
+		IfcThermalLoadSourceEnum IIfcSpaceThermalLoadProperties.ThermalLoadSource { 
+			get { return @ThermalLoadSource; } 
+ 
+			set { ThermalLoadSource = value;}
+		}	
+		IfcPropertySourceEnum IIfcSpaceThermalLoadProperties.PropertySource { 
+			get { return @PropertySource; } 
+ 
+			set { PropertySource = value;}
+		}	
+		IfcText? IIfcSpaceThermalLoadProperties.SourceDescription { 
+			get { return @SourceDescription; } 
+ 
+			set { SourceDescription = value;}
+		}	
+		IfcPowerMeasure IIfcSpaceThermalLoadProperties.MaximumValue { 
+			get { return @MaximumValue; } 
+ 
+			set { MaximumValue = value;}
+		}	
+		IfcPowerMeasure? IIfcSpaceThermalLoadProperties.MinimumValue { 
+			get { return @MinimumValue; } 
+ 
+			set { MinimumValue = value;}
+		}	
+		IIfcTimeSeries IIfcSpaceThermalLoadProperties.ThermalLoadTimeSeriesValues { 
+			get { return @ThermalLoadTimeSeriesValues; } 
+ 
+ 
+			set { ThermalLoadTimeSeriesValues = value as IfcTimeSeries;}
+		}	
+		IfcLabel? IIfcSpaceThermalLoadProperties.UserDefinedThermalLoadSource { 
+			get { return @UserDefinedThermalLoadSource; } 
+ 
+			set { UserDefinedThermalLoadSource = value;}
+		}	
+		IfcLabel? IIfcSpaceThermalLoadProperties.UserDefinedPropertySource { 
+			get { return @UserDefinedPropertySource; } 
+ 
+			set { UserDefinedPropertySource = value;}
+		}	
+		IfcThermalLoadTypeEnum IIfcSpaceThermalLoadProperties.ThermalLoadType { 
+			get { return @ThermalLoadType; } 
+ 
+			set { ThermalLoadType = value;}
+		}	
 		 
 		#endregion
 

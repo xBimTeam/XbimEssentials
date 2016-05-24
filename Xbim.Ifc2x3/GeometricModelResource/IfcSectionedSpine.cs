@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSectionedSpine : IIfcGeometricRepresentationItem
 	{
-		IIfcCompositeCurve @SpineCurve { get; }
+		IIfcCompositeCurve @SpineCurve { get;  set; }
 		IEnumerable<IIfcProfileDef> @CrossSections { get; }
 		IEnumerable<IIfcAxis2Placement3D> @CrossSectionPositions { get; }
 		IfcDimensionCount @Dim  { get ; }
@@ -42,9 +42,18 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 	public  partial class @IfcSectionedSpine : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcSectionedSpine, IContainsEntityReferences, IEquatable<@IfcSectionedSpine>
 	{
 		#region IIfcSectionedSpine explicit implementation
-		IIfcCompositeCurve IIfcSectionedSpine.SpineCurve { get { return @SpineCurve; } }	
-		IEnumerable<IIfcProfileDef> IIfcSectionedSpine.CrossSections { get { return @CrossSections; } }	
-		IEnumerable<IIfcAxis2Placement3D> IIfcSectionedSpine.CrossSectionPositions { get { return @CrossSectionPositions; } }	
+		IIfcCompositeCurve IIfcSectionedSpine.SpineCurve { 
+			get { return @SpineCurve; } 
+ 
+ 
+			set { SpineCurve = value as IfcCompositeCurve;}
+		}	
+		IEnumerable<IIfcProfileDef> IIfcSectionedSpine.CrossSections { 
+			get { return @CrossSections; } 
+		}	
+		IEnumerable<IIfcAxis2Placement3D> IIfcSectionedSpine.CrossSectionPositions { 
+			get { return @CrossSectionPositions; } 
+		}	
 		 
 		#endregion
 

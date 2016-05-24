@@ -25,8 +25,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPcurve : IIfcCurve, IfcCurveOnSurface
 	{
-		IIfcSurface @BasisSurface { get; }
-		IIfcCurve @ReferenceCurve { get; }
+		IIfcSurface @BasisSurface { get;  set; }
+		IIfcCurve @ReferenceCurve { get;  set; }
 	
 	}
 }
@@ -38,8 +38,18 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcPcurve : IfcCurve, IInstantiableEntity, IIfcPcurve, IContainsEntityReferences, IEquatable<@IfcPcurve>
 	{
 		#region IIfcPcurve explicit implementation
-		IIfcSurface IIfcPcurve.BasisSurface { get { return @BasisSurface; } }	
-		IIfcCurve IIfcPcurve.ReferenceCurve { get { return @ReferenceCurve; } }	
+		IIfcSurface IIfcPcurve.BasisSurface { 
+			get { return @BasisSurface; } 
+ 
+ 
+			set { BasisSurface = value as IfcSurface;}
+		}	
+		IIfcCurve IIfcPcurve.ReferenceCurve { 
+			get { return @ReferenceCurve; } 
+ 
+ 
+			set { ReferenceCurve = value as IfcCurve;}
+		}	
 		 
 		#endregion
 

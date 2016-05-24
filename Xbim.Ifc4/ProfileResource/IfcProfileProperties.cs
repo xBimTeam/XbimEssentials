@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcProfileProperties : IIfcExtendedProperties
 	{
-		IIfcProfileDef @ProfileDefinition { get; }
+		IIfcProfileDef @ProfileDefinition { get;  set; }
 	
 	}
 }
@@ -38,7 +38,12 @@ namespace Xbim.Ifc4.ProfileResource
 	public  partial class @IfcProfileProperties : IfcExtendedProperties, IInstantiableEntity, IIfcProfileProperties, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcProfileProperties>
 	{
 		#region IIfcProfileProperties explicit implementation
-		IIfcProfileDef IIfcProfileProperties.ProfileDefinition { get { return @ProfileDefinition; } }	
+		IIfcProfileDef IIfcProfileProperties.ProfileDefinition { 
+			get { return @ProfileDefinition; } 
+ 
+ 
+			set { ProfileDefinition = value as IfcProfileDef;}
+		}	
 		 
 		#endregion
 

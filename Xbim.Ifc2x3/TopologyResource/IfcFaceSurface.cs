@@ -27,8 +27,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcFaceSurface : IIfcFace, IfcSurfaceOrFaceSurface
 	{
-		IIfcSurface @FaceSurface { get; }
-		bool @SameSense { get; }
+		IIfcSurface @FaceSurface { get;  set; }
+		bool @SameSense { get;  set; }
 	
 	}
 }
@@ -40,8 +40,17 @@ namespace Xbim.Ifc2x3.TopologyResource
 	public  partial class @IfcFaceSurface : IfcFace, IInstantiableEntity, IIfcFaceSurface, IContainsEntityReferences, IEquatable<@IfcFaceSurface>
 	{
 		#region IIfcFaceSurface explicit implementation
-		IIfcSurface IIfcFaceSurface.FaceSurface { get { return @FaceSurface; } }	
-		bool IIfcFaceSurface.SameSense { get { return @SameSense; } }	
+		IIfcSurface IIfcFaceSurface.FaceSurface { 
+			get { return @FaceSurface; } 
+ 
+ 
+			set { FaceSurface = value as IfcSurface;}
+		}	
+		bool IIfcFaceSurface.SameSense { 
+			get { return @SameSense; } 
+ 
+			set { SameSense = value;}
+		}	
 		 
 		#endregion
 

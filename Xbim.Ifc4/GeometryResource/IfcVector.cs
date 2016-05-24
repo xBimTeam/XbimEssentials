@@ -27,8 +27,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcVector : IIfcGeometricRepresentationItem, IfcHatchLineDistanceSelect, IfcVectorOrDirection
 	{
-		IIfcDirection @Orientation { get; }
-		IfcLengthMeasure @Magnitude { get; }
+		IIfcDirection @Orientation { get;  set; }
+		IfcLengthMeasure @Magnitude { get;  set; }
 		IfcDimensionCount @Dim  { get ; }
 	
 	}
@@ -41,8 +41,17 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcVector : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcVector, IContainsEntityReferences, IEquatable<@IfcVector>
 	{
 		#region IIfcVector explicit implementation
-		IIfcDirection IIfcVector.Orientation { get { return @Orientation; } }	
-		IfcLengthMeasure IIfcVector.Magnitude { get { return @Magnitude; } }	
+		IIfcDirection IIfcVector.Orientation { 
+			get { return @Orientation; } 
+ 
+ 
+			set { Orientation = value as IfcDirection;}
+		}	
+		IfcLengthMeasure IIfcVector.Magnitude { 
+			get { return @Magnitude; } 
+ 
+			set { Magnitude = value;}
+		}	
 		 
 		#endregion
 

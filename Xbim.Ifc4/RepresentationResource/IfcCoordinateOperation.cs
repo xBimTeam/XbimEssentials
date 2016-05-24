@@ -27,8 +27,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCoordinateOperation : IPersistEntity
 	{
-		IIfcCoordinateReferenceSystemSelect @SourceCRS { get; }
-		IIfcCoordinateReferenceSystem @TargetCRS { get; }
+		IIfcCoordinateReferenceSystemSelect @SourceCRS { get;  set; }
+		IIfcCoordinateReferenceSystem @TargetCRS { get;  set; }
 	
 	}
 }
@@ -40,8 +40,18 @@ namespace Xbim.Ifc4.RepresentationResource
 	public abstract partial class @IfcCoordinateOperation : IPersistEntity, INotifyPropertyChanged, IIfcCoordinateOperation, IEquatable<@IfcCoordinateOperation>
 	{
 		#region IIfcCoordinateOperation explicit implementation
-		IIfcCoordinateReferenceSystemSelect IIfcCoordinateOperation.SourceCRS { get { return @SourceCRS; } }	
-		IIfcCoordinateReferenceSystem IIfcCoordinateOperation.TargetCRS { get { return @TargetCRS; } }	
+		IIfcCoordinateReferenceSystemSelect IIfcCoordinateOperation.SourceCRS { 
+			get { return @SourceCRS; } 
+ 
+ 
+			set { SourceCRS = value as IfcCoordinateReferenceSystemSelect;}
+		}	
+		IIfcCoordinateReferenceSystem IIfcCoordinateOperation.TargetCRS { 
+			get { return @TargetCRS; } 
+ 
+ 
+			set { TargetCRS = value as IfcCoordinateReferenceSystem;}
+		}	
 		 
 		#endregion
 

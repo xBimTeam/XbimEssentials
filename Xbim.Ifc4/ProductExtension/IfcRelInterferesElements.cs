@@ -28,11 +28,11 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelInterferesElements : IIfcRelConnects
 	{
-		IIfcElement @RelatingElement { get; }
-		IIfcElement @RelatedElement { get; }
-		IIfcConnectionGeometry @InterferenceGeometry { get; }
-		IfcIdentifier? @InterferenceType { get; }
-		bool? @ImpliedOrder { get; }
+		IIfcElement @RelatingElement { get;  set; }
+		IIfcElement @RelatedElement { get;  set; }
+		IIfcConnectionGeometry @InterferenceGeometry { get;  set; }
+		IfcIdentifier? @InterferenceType { get;  set; }
+		bool? @ImpliedOrder { get;  set; }
 	
 	}
 }
@@ -44,11 +44,34 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcRelInterferesElements : IfcRelConnects, IInstantiableEntity, IIfcRelInterferesElements, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelInterferesElements>
 	{
 		#region IIfcRelInterferesElements explicit implementation
-		IIfcElement IIfcRelInterferesElements.RelatingElement { get { return @RelatingElement; } }	
-		IIfcElement IIfcRelInterferesElements.RelatedElement { get { return @RelatedElement; } }	
-		IIfcConnectionGeometry IIfcRelInterferesElements.InterferenceGeometry { get { return @InterferenceGeometry; } }	
-		IfcIdentifier? IIfcRelInterferesElements.InterferenceType { get { return @InterferenceType; } }	
-		bool? IIfcRelInterferesElements.ImpliedOrder { get { return @ImpliedOrder; } }	
+		IIfcElement IIfcRelInterferesElements.RelatingElement { 
+			get { return @RelatingElement; } 
+ 
+ 
+			set { RelatingElement = value as IfcElement;}
+		}	
+		IIfcElement IIfcRelInterferesElements.RelatedElement { 
+			get { return @RelatedElement; } 
+ 
+ 
+			set { RelatedElement = value as IfcElement;}
+		}	
+		IIfcConnectionGeometry IIfcRelInterferesElements.InterferenceGeometry { 
+			get { return @InterferenceGeometry; } 
+ 
+ 
+			set { InterferenceGeometry = value as IfcConnectionGeometry;}
+		}	
+		IfcIdentifier? IIfcRelInterferesElements.InterferenceType { 
+			get { return @InterferenceType; } 
+ 
+			set { InterferenceType = value;}
+		}	
+		bool? IIfcRelInterferesElements.ImpliedOrder { 
+			get { return @ImpliedOrder; } 
+ 
+			set { ImpliedOrder = value;}
+		}	
 		 
 		#endregion
 

@@ -38,7 +38,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public  partial class @IfcCartesianPointList3D : IfcCartesianPointList, IInstantiableEntity, IIfcCartesianPointList3D, IEquatable<@IfcCartesianPointList3D>
 	{
 		#region IIfcCartesianPointList3D explicit implementation
-		IEnumerable<IEnumerable<IfcLengthMeasure>> IIfcCartesianPointList3D.CoordList { get { return @CoordList; } }	
+		IEnumerable<IEnumerable<IfcLengthMeasure>> IIfcCartesianPointList3D.CoordList { 
+			get { return @CoordList; } 
+		}	
 		 
 		#endregion
 

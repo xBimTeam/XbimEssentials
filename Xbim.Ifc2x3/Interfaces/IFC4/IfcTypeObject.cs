@@ -23,6 +23,13 @@ namespace Xbim.Ifc2x3.Kernel
 				if (!ApplicableOccurrence.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcIdentifier(ApplicableOccurrence.Value);
 			} 
+			set
+			{
+				ApplicableOccurrence = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		IEnumerable<IIfcPropertySetDefinition> IIfcTypeObject.HasPropertySets 
 		{ 

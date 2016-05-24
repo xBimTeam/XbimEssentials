@@ -24,6 +24,11 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			    return new Ifc4.MeasureResource.IfcBoolean(RepeatS);
 			    //##
 			} 
+			set
+			{
+				RepeatS = value;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcBoolean IIfcSurfaceTexture.RepeatT 
 		{ 
@@ -33,15 +38,26 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
                 return new Ifc4.MeasureResource.IfcBoolean(RepeatT);
 				//##
 			} 
+			set
+			{
+				RepeatT = value;
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcIdentifier? _mode;
+
 		Ifc4.MeasureResource.IfcIdentifier? IIfcSurfaceTexture.Mode 
 		{ 
 			get
 			{
-				//## Handle return of Mode for which no match was found
-                return null;
-				//##
+				return _mode;
 			} 
+			set
+			{
+				SetValue(v => _mode = v, _mode, value, "Mode", byte.MaxValue);
+				
+			}
 		}
 		IIfcCartesianTransformationOperator2D IIfcSurfaceTexture.TextureTransform 
 		{ 
@@ -49,6 +65,11 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				return TextureTransform;
 			} 
+			set
+			{
+				TextureTransform = value as GeometryResource.IfcCartesianTransformationOperator2D;
+				
+			}
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcIdentifier> IIfcSurfaceTexture.Parameter 
 		{ 

@@ -25,15 +25,15 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieDocument : ICobieReferencedObject
 	{
-		string @Name { get; }
-		string @Description { get; }
-		ICobieDocumentType @DocumentType { get; }
-		ICobieApprovalType @ApprovalType { get; }
-		ICobieStageType @Stage { get; }
-		string @URL { get; }
-		string @Reference { get; }
-		string @Directory { get; }
-		string @File { get; }
+		string @Name { get;  set; }
+		string @Description { get;  set; }
+		ICobieDocumentType @DocumentType { get;  set; }
+		ICobieApprovalType @ApprovalType { get;  set; }
+		ICobieStageType @Stage { get;  set; }
+		string @URL { get;  set; }
+		string @Reference { get;  set; }
+		string @Directory { get;  set; }
+		string @File { get;  set; }
 	
 	}
 }
@@ -45,15 +45,54 @@ namespace Xbim.CobieExpress
 	public  partial class @CobieDocument : CobieReferencedObject, IInstantiableEntity, ICobieDocument, IContainsEntityReferences, IEquatable<@CobieDocument>
 	{
 		#region ICobieDocument explicit implementation
-		string ICobieDocument.Name { get { return @Name; } }	
-		string ICobieDocument.Description { get { return @Description; } }	
-		ICobieDocumentType ICobieDocument.DocumentType { get { return @DocumentType; } }	
-		ICobieApprovalType ICobieDocument.ApprovalType { get { return @ApprovalType; } }	
-		ICobieStageType ICobieDocument.Stage { get { return @Stage; } }	
-		string ICobieDocument.URL { get { return @URL; } }	
-		string ICobieDocument.Reference { get { return @Reference; } }	
-		string ICobieDocument.Directory { get { return @Directory; } }	
-		string ICobieDocument.File { get { return @File; } }	
+		string ICobieDocument.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		string ICobieDocument.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		ICobieDocumentType ICobieDocument.DocumentType { 
+			get { return @DocumentType; } 
+ 
+ 
+			set { DocumentType = value as CobieDocumentType;}
+		}	
+		ICobieApprovalType ICobieDocument.ApprovalType { 
+			get { return @ApprovalType; } 
+ 
+ 
+			set { ApprovalType = value as CobieApprovalType;}
+		}	
+		ICobieStageType ICobieDocument.Stage { 
+			get { return @Stage; } 
+ 
+ 
+			set { Stage = value as CobieStageType;}
+		}	
+		string ICobieDocument.URL { 
+			get { return @URL; } 
+ 
+			set { URL = value;}
+		}	
+		string ICobieDocument.Reference { 
+			get { return @Reference; } 
+ 
+			set { Reference = value;}
+		}	
+		string ICobieDocument.Directory { 
+			get { return @Directory; } 
+ 
+			set { Directory = value;}
+		}	
+		string ICobieDocument.File { 
+			get { return @File; } 
+ 
+			set { File = value;}
+		}	
 		 
 		#endregion
 

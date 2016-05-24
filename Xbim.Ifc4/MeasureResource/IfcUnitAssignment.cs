@@ -39,7 +39,9 @@ namespace Xbim.Ifc4.MeasureResource
 	public  partial class @IfcUnitAssignment : INotifyPropertyChanged, IInstantiableEntity, IIfcUnitAssignment, IEquatable<@IfcUnitAssignment>
 	{
 		#region IIfcUnitAssignment explicit implementation
-		IEnumerable<IIfcUnit> IIfcUnitAssignment.Units { get { return @Units; } }	
+		IEnumerable<IIfcUnit> IIfcUnitAssignment.Units { 
+			get { return @Units; } 
+		}	
 		 
 		#endregion
 

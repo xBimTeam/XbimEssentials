@@ -16,7 +16,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 	[ExpressType("IfcLanguageId", 992)]
 	[DefinedType(typeof(string))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcLanguageId : IExpressValueType, System.IEquatable<string>
+	public partial struct IfcLanguageId : IExpressValueType, IExpressStringType, System.IEquatable<string>
 	{ 
 		private string _value;
         
@@ -24,6 +24,9 @@ namespace Xbim.Ifc4.ExternalReferenceResource
         {
             get { return _value; }
         }
+
+ 
+		string IExpressStringType.Value { get { return _value; } }
 
 		public override string ToString()
         {

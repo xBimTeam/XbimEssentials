@@ -38,6 +38,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 						return Ifc4.Interfaces.IfcFilterTypeEnum.WATERFILTER;
 					
 					case IfcFilterTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcFilterTypeEnum.USERDEFINED;
 					
 					case IfcFilterTypeEnum.NOTDEFINED:
@@ -48,6 +50,50 @@ namespace Xbim.Ifc2x3.HVACDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcFilterTypeEnum.AIRPARTICLEFILTER:
+						PredefinedType = IfcFilterTypeEnum.AIRPARTICLEFILTER;
+						return;
+					
+					case Ifc4.Interfaces.IfcFilterTypeEnum.COMPRESSEDAIRFILTER:
+						//## Handle setting of COMPRESSEDAIRFILTER member from IfcFilterTypeEnum in property PredefinedType
+						//TODO: Handle setting of COMPRESSEDAIRFILTER member from IfcFilterTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcFilterTypeEnum.ODORFILTER:
+						PredefinedType = IfcFilterTypeEnum.ODORFILTER;
+						return;
+					
+					case Ifc4.Interfaces.IfcFilterTypeEnum.OILFILTER:
+						PredefinedType = IfcFilterTypeEnum.OILFILTER;
+						return;
+					
+					case Ifc4.Interfaces.IfcFilterTypeEnum.STRAINER:
+						PredefinedType = IfcFilterTypeEnum.STRAINER;
+						return;
+					
+					case Ifc4.Interfaces.IfcFilterTypeEnum.WATERFILTER:
+						PredefinedType = IfcFilterTypeEnum.WATERFILTER;
+						return;
+					
+					case Ifc4.Interfaces.IfcFilterTypeEnum.USERDEFINED:
+						PredefinedType = IfcFilterTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcFilterTypeEnum.NOTDEFINED:
+						PredefinedType = IfcFilterTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

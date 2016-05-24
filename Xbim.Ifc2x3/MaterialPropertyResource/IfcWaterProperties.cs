@@ -26,13 +26,13 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcWaterProperties : IIfcMaterialProperties
 	{
-		bool? @IsPotable { get; }
-		IfcIonConcentrationMeasure? @Hardness { get; }
-		IfcIonConcentrationMeasure? @AlkalinityConcentration { get; }
-		IfcIonConcentrationMeasure? @AcidityConcentration { get; }
-		IfcNormalisedRatioMeasure? @ImpuritiesContent { get; }
-		IfcPHMeasure? @PHLevel { get; }
-		IfcNormalisedRatioMeasure? @DissolvedSolidsContent { get; }
+		bool? @IsPotable { get;  set; }
+		IfcIonConcentrationMeasure? @Hardness { get;  set; }
+		IfcIonConcentrationMeasure? @AlkalinityConcentration { get;  set; }
+		IfcIonConcentrationMeasure? @AcidityConcentration { get;  set; }
+		IfcNormalisedRatioMeasure? @ImpuritiesContent { get;  set; }
+		IfcPHMeasure? @PHLevel { get;  set; }
+		IfcNormalisedRatioMeasure? @DissolvedSolidsContent { get;  set; }
 	
 	}
 }
@@ -44,13 +44,41 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	public  partial class @IfcWaterProperties : IfcMaterialProperties, IInstantiableEntity, IIfcWaterProperties, IContainsEntityReferences, IEquatable<@IfcWaterProperties>
 	{
 		#region IIfcWaterProperties explicit implementation
-		bool? IIfcWaterProperties.IsPotable { get { return @IsPotable; } }	
-		IfcIonConcentrationMeasure? IIfcWaterProperties.Hardness { get { return @Hardness; } }	
-		IfcIonConcentrationMeasure? IIfcWaterProperties.AlkalinityConcentration { get { return @AlkalinityConcentration; } }	
-		IfcIonConcentrationMeasure? IIfcWaterProperties.AcidityConcentration { get { return @AcidityConcentration; } }	
-		IfcNormalisedRatioMeasure? IIfcWaterProperties.ImpuritiesContent { get { return @ImpuritiesContent; } }	
-		IfcPHMeasure? IIfcWaterProperties.PHLevel { get { return @PHLevel; } }	
-		IfcNormalisedRatioMeasure? IIfcWaterProperties.DissolvedSolidsContent { get { return @DissolvedSolidsContent; } }	
+		bool? IIfcWaterProperties.IsPotable { 
+			get { return @IsPotable; } 
+ 
+			set { IsPotable = value;}
+		}	
+		IfcIonConcentrationMeasure? IIfcWaterProperties.Hardness { 
+			get { return @Hardness; } 
+ 
+			set { Hardness = value;}
+		}	
+		IfcIonConcentrationMeasure? IIfcWaterProperties.AlkalinityConcentration { 
+			get { return @AlkalinityConcentration; } 
+ 
+			set { AlkalinityConcentration = value;}
+		}	
+		IfcIonConcentrationMeasure? IIfcWaterProperties.AcidityConcentration { 
+			get { return @AcidityConcentration; } 
+ 
+			set { AcidityConcentration = value;}
+		}	
+		IfcNormalisedRatioMeasure? IIfcWaterProperties.ImpuritiesContent { 
+			get { return @ImpuritiesContent; } 
+ 
+			set { ImpuritiesContent = value;}
+		}	
+		IfcPHMeasure? IIfcWaterProperties.PHLevel { 
+			get { return @PHLevel; } 
+ 
+			set { PHLevel = value;}
+		}	
+		IfcNormalisedRatioMeasure? IIfcWaterProperties.DissolvedSolidsContent { 
+			get { return @DissolvedSolidsContent; } 
+ 
+			set { DissolvedSolidsContent = value;}
+		}	
 		 
 		#endregion
 

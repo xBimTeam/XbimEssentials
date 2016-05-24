@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				return RelatingStructuralMember;
 			} 
+			set
+			{
+				RelatingStructuralMember = value as IfcStructuralMember;
+				
+			}
 		}
 		IIfcStructuralConnection IIfcRelConnectsStructuralMember.RelatedStructuralConnection 
 		{ 
@@ -29,6 +34,11 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				return RelatedStructuralConnection;
 			} 
+			set
+			{
+				RelatedStructuralConnection = value as IfcStructuralConnection;
+				
+			}
 		}
 		IIfcBoundaryCondition IIfcRelConnectsStructuralMember.AppliedCondition 
 		{ 
@@ -36,6 +46,11 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				return AppliedCondition;
 			} 
+			set
+			{
+				AppliedCondition = value as StructuralLoadResource.IfcBoundaryCondition;
+				
+			}
 		}
 		IIfcStructuralConnectionCondition IIfcRelConnectsStructuralMember.AdditionalConditions 
 		{ 
@@ -43,6 +58,11 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				return AdditionalConditions;
 			} 
+			set
+			{
+				AdditionalConditions = value as StructuralLoadResource.IfcStructuralConnectionCondition;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcRelConnectsStructuralMember.SupportedLength 
 		{ 
@@ -51,6 +71,13 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				if (!SupportedLength.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLengthMeasure(SupportedLength.Value);
 			} 
+			set
+			{
+				SupportedLength = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
+				
+			}
 		}
 		IIfcAxis2Placement3D IIfcRelConnectsStructuralMember.ConditionCoordinateSystem 
 		{ 
@@ -58,6 +85,11 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				return ConditionCoordinateSystem;
 			} 
+			set
+			{
+				ConditionCoordinateSystem = value as GeometryResource.IfcAxis2Placement3D;
+				
+			}
 		}
 	//## Custom code
 	//##

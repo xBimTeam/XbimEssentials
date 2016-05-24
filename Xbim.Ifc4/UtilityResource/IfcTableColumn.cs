@@ -29,11 +29,11 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTableColumn : IPersistEntity
 	{
-		IfcIdentifier? @Identifier { get; }
-		IfcLabel? @Name { get; }
-		IfcText? @Description { get; }
-		IIfcUnit @Unit { get; }
-		IIfcReference @ReferencePath { get; }
+		IfcIdentifier? @Identifier { get;  set; }
+		IfcLabel? @Name { get;  set; }
+		IfcText? @Description { get;  set; }
+		IIfcUnit @Unit { get;  set; }
+		IIfcReference @ReferencePath { get;  set; }
 	
 	}
 }
@@ -45,11 +45,33 @@ namespace Xbim.Ifc4.UtilityResource
 	public  partial class @IfcTableColumn : INotifyPropertyChanged, IInstantiableEntity, IIfcTableColumn, IContainsEntityReferences, IEquatable<@IfcTableColumn>
 	{
 		#region IIfcTableColumn explicit implementation
-		IfcIdentifier? IIfcTableColumn.Identifier { get { return @Identifier; } }	
-		IfcLabel? IIfcTableColumn.Name { get { return @Name; } }	
-		IfcText? IIfcTableColumn.Description { get { return @Description; } }	
-		IIfcUnit IIfcTableColumn.Unit { get { return @Unit; } }	
-		IIfcReference IIfcTableColumn.ReferencePath { get { return @ReferencePath; } }	
+		IfcIdentifier? IIfcTableColumn.Identifier { 
+			get { return @Identifier; } 
+ 
+			set { Identifier = value;}
+		}	
+		IfcLabel? IIfcTableColumn.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcTableColumn.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IIfcUnit IIfcTableColumn.Unit { 
+			get { return @Unit; } 
+ 
+ 
+			set { Unit = value as IfcUnit;}
+		}	
+		IIfcReference IIfcTableColumn.ReferencePath { 
+			get { return @ReferencePath; } 
+ 
+ 
+			set { ReferencePath = value as IfcReference;}
+		}	
 		 
 		#endregion
 

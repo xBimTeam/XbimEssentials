@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(XDim);
 			} 
+			set
+			{
+				XDim = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRectangleProfileDef.YDim 
 		{ 
@@ -29,6 +34,11 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(YDim);
 			} 
+			set
+			{
+				YDim = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
 	//## Custom code
 	//##
