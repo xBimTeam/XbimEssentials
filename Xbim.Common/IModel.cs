@@ -376,10 +376,10 @@ namespace Xbim.Common
             DeflectionAngle = 0.5;
             VertexPointDiameter = OneMilliMetre * 10; //1 cm           
             Precision = defaultPrecision ;
-            PrecisionMax = OneMilliMetre / 10;
+            PrecisionMax = Math.Max(OneMilliMetre / 10, Precision*100);
             MaxBRepSewFaceCount = 0;
             PrecisionBoolean = Math.Max(Precision, OneMilliMetre / 10); //might need to make it courser than point precision if precision is very fine
-            PrecisionBooleanMax = OneMilliMetre * 100;
+            PrecisionBooleanMax = Math.Max(OneMilliMetre * 100,Precision*100);
             Rounding = Math.Abs((int)Math.Log10(Precision * 100)); //default round all points to 100 times  precision, this is used in the hash functions
 
             var exp = Math.Floor(Math.Log10(Math.Abs(OneMilliMetre / 10d))); //get exponent of first significant digit
