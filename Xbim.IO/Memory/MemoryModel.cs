@@ -545,7 +545,7 @@ namespace Xbim.IO.Memory
                                 return;
                             }
                         }
-                        catch (Exception e)
+                        catch (Exception)
                         {
                             //if it crashed try next entry if available
                             entry = zipStream.GetNextEntry();

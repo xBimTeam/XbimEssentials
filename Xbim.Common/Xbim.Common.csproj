@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections\ItemSetProxy.cs" />
     <Compile Include="Federation\ReferencedModelCollection.cs" />
     <Compile Include="Federation\FederatedModelInstances.cs" />
     <Compile Include="Geometry\IXbimSurface.cs" />
