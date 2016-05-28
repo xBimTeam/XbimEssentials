@@ -40,7 +40,9 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 	public  partial class @IfcShellBasedSurfaceModel : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcShellBasedSurfaceModel, IEquatable<@IfcShellBasedSurfaceModel>
 	{
 		#region IIfcShellBasedSurfaceModel explicit implementation
-		IEnumerable<IIfcShell> IIfcShellBasedSurfaceModel.SbsmBoundary { get { return @SbsmBoundary; } }	
+		IEnumerable<IIfcShell> IIfcShellBasedSurfaceModel.SbsmBoundary { 
+			get { return @SbsmBoundary; } 
+		}	
 		 
 		#endregion
 

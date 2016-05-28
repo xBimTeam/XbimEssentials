@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcOpeningElement : IIfcFeatureElementSubtraction
 	{
-		IfcOpeningElementTypeEnum? @PredefinedType { get; }
+		IfcOpeningElementTypeEnum? @PredefinedType { get;  set; }
 		IEnumerable<IIfcRelFillsElement> @HasFillings {  get; }
 	
 	}
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcOpeningElement : IfcFeatureElementSubtraction, IInstantiableEntity, IIfcOpeningElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcOpeningElement>
 	{
 		#region IIfcOpeningElement explicit implementation
-		IfcOpeningElementTypeEnum? IIfcOpeningElement.PredefinedType { get { return @PredefinedType; } }	
+		IfcOpeningElementTypeEnum? IIfcOpeningElement.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		IEnumerable<IIfcRelFillsElement> IIfcOpeningElement.HasFillings {  get { return @HasFillings; } }
 		#endregion

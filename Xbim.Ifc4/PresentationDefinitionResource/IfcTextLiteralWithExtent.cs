@@ -25,8 +25,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTextLiteralWithExtent : IIfcTextLiteral
 	{
-		IIfcPlanarExtent @Extent { get; }
-		IfcBoxAlignment @BoxAlignment { get; }
+		IIfcPlanarExtent @Extent { get;  set; }
+		IfcBoxAlignment @BoxAlignment { get;  set; }
 	
 	}
 }
@@ -38,8 +38,17 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 	public  partial class @IfcTextLiteralWithExtent : IfcTextLiteral, IInstantiableEntity, IIfcTextLiteralWithExtent, IContainsEntityReferences, IEquatable<@IfcTextLiteralWithExtent>
 	{
 		#region IIfcTextLiteralWithExtent explicit implementation
-		IIfcPlanarExtent IIfcTextLiteralWithExtent.Extent { get { return @Extent; } }	
-		IfcBoxAlignment IIfcTextLiteralWithExtent.BoxAlignment { get { return @BoxAlignment; } }	
+		IIfcPlanarExtent IIfcTextLiteralWithExtent.Extent { 
+			get { return @Extent; } 
+ 
+ 
+			set { Extent = value as IfcPlanarExtent;}
+		}	
+		IfcBoxAlignment IIfcTextLiteralWithExtent.BoxAlignment { 
+			get { return @BoxAlignment; } 
+ 
+			set { BoxAlignment = value;}
+		}	
 		 
 		#endregion
 

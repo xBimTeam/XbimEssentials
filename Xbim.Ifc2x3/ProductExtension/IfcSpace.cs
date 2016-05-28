@@ -26,8 +26,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSpace : IIfcSpatialStructureElement
 	{
-		IfcInternalOrExternalEnum @InteriorOrExteriorSpace { get; }
-		IfcLengthMeasure? @ElevationWithFlooring { get; }
+		IfcInternalOrExternalEnum @InteriorOrExteriorSpace { get;  set; }
+		IfcLengthMeasure? @ElevationWithFlooring { get;  set; }
 		IEnumerable<IIfcRelCoversSpaces> @HasCoverings {  get; }
 		IEnumerable<IIfcRelSpaceBoundary> @BoundedBy {  get; }
 	
@@ -41,8 +41,16 @@ namespace Xbim.Ifc2x3.ProductExtension
 	public  partial class @IfcSpace : IfcSpatialStructureElement, IInstantiableEntity, IIfcSpace, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSpace>
 	{
 		#region IIfcSpace explicit implementation
-		IfcInternalOrExternalEnum IIfcSpace.InteriorOrExteriorSpace { get { return @InteriorOrExteriorSpace; } }	
-		IfcLengthMeasure? IIfcSpace.ElevationWithFlooring { get { return @ElevationWithFlooring; } }	
+		IfcInternalOrExternalEnum IIfcSpace.InteriorOrExteriorSpace { 
+			get { return @InteriorOrExteriorSpace; } 
+ 
+			set { InteriorOrExteriorSpace = value;}
+		}	
+		IfcLengthMeasure? IIfcSpace.ElevationWithFlooring { 
+			get { return @ElevationWithFlooring; } 
+ 
+			set { ElevationWithFlooring = value;}
+		}	
 		 
 		IEnumerable<IIfcRelCoversSpaces> IIfcSpace.HasCoverings {  get { return @HasCoverings; } }
 		IEnumerable<IIfcRelSpaceBoundary> IIfcSpace.BoundedBy {  get { return @BoundedBy; } }

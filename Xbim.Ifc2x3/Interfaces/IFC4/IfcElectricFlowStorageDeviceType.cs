@@ -38,6 +38,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 						return Ifc4.Interfaces.IfcElectricFlowStorageDeviceTypeEnum.UPS;
 					
 					case IfcElectricFlowStorageDeviceTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcElectricFlowStorageDeviceTypeEnum.USERDEFINED;
 					
 					case IfcElectricFlowStorageDeviceTypeEnum.NOTDEFINED:
@@ -48,6 +50,44 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcElectricFlowStorageDeviceTypeEnum.BATTERY:
+						PredefinedType = IfcElectricFlowStorageDeviceTypeEnum.BATTERY;
+						return;
+					
+					case Ifc4.Interfaces.IfcElectricFlowStorageDeviceTypeEnum.CAPACITORBANK:
+						PredefinedType = IfcElectricFlowStorageDeviceTypeEnum.CAPACITORBANK;
+						return;
+					
+					case Ifc4.Interfaces.IfcElectricFlowStorageDeviceTypeEnum.HARMONICFILTER:
+						PredefinedType = IfcElectricFlowStorageDeviceTypeEnum.HARMONICFILTER;
+						return;
+					
+					case Ifc4.Interfaces.IfcElectricFlowStorageDeviceTypeEnum.INDUCTORBANK:
+						PredefinedType = IfcElectricFlowStorageDeviceTypeEnum.INDUCTORBANK;
+						return;
+					
+					case Ifc4.Interfaces.IfcElectricFlowStorageDeviceTypeEnum.UPS:
+						PredefinedType = IfcElectricFlowStorageDeviceTypeEnum.UPS;
+						return;
+					
+					case Ifc4.Interfaces.IfcElectricFlowStorageDeviceTypeEnum.USERDEFINED:
+						PredefinedType = IfcElectricFlowStorageDeviceTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcElectricFlowStorageDeviceTypeEnum.NOTDEFINED:
+						PredefinedType = IfcElectricFlowStorageDeviceTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcOccupant : IIfcActor
 	{
-		IfcOccupantTypeEnum? @PredefinedType { get; }
+		IfcOccupantTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 	public  partial class @IfcOccupant : IfcActor, IInstantiableEntity, IIfcOccupant, IContainsEntityReferences, IEquatable<@IfcOccupant>
 	{
 		#region IIfcOccupant explicit implementation
-		IfcOccupantTypeEnum? IIfcOccupant.PredefinedType { get { return @PredefinedType; } }	
+		IfcOccupantTypeEnum? IIfcOccupant.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

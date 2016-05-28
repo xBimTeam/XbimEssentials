@@ -27,10 +27,10 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialProfileSet : IIfcMaterialDefinition
 	{
-		IfcLabel? @Name { get; }
-		IfcText? @Description { get; }
+		IfcLabel? @Name { get;  set; }
+		IfcText? @Description { get;  set; }
 		IEnumerable<IIfcMaterialProfile> @MaterialProfiles { get; }
-		IIfcCompositeProfileDef @CompositeProfile { get; }
+		IIfcCompositeProfileDef @CompositeProfile { get;  set; }
 	
 	}
 }
@@ -42,10 +42,25 @@ namespace Xbim.Ifc4.MaterialResource
 	public  partial class @IfcMaterialProfileSet : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialProfileSet, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMaterialProfileSet>
 	{
 		#region IIfcMaterialProfileSet explicit implementation
-		IfcLabel? IIfcMaterialProfileSet.Name { get { return @Name; } }	
-		IfcText? IIfcMaterialProfileSet.Description { get { return @Description; } }	
-		IEnumerable<IIfcMaterialProfile> IIfcMaterialProfileSet.MaterialProfiles { get { return @MaterialProfiles; } }	
-		IIfcCompositeProfileDef IIfcMaterialProfileSet.CompositeProfile { get { return @CompositeProfile; } }	
+		IfcLabel? IIfcMaterialProfileSet.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcMaterialProfileSet.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IEnumerable<IIfcMaterialProfile> IIfcMaterialProfileSet.MaterialProfiles { 
+			get { return @MaterialProfiles; } 
+		}	
+		IIfcCompositeProfileDef IIfcMaterialProfileSet.CompositeProfile { 
+			get { return @CompositeProfile; } 
+ 
+ 
+			set { CompositeProfile = value as IfcCompositeProfileDef;}
+		}	
 		 
 		#endregion
 

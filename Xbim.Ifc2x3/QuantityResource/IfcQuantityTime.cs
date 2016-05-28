@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcQuantityTime : IIfcPhysicalSimpleQuantity
 	{
-		IfcTimeMeasure @TimeValue { get; }
+		IfcTimeMeasure @TimeValue { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.QuantityResource
 	public  partial class @IfcQuantityTime : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityTime, IContainsEntityReferences, IEquatable<@IfcQuantityTime>
 	{
 		#region IIfcQuantityTime explicit implementation
-		IfcTimeMeasure IIfcQuantityTime.TimeValue { get { return @TimeValue; } }	
+		IfcTimeMeasure IIfcQuantityTime.TimeValue { 
+			get { return @TimeValue; } 
+ 
+			set { TimeValue = value;}
+		}	
 		 
 		#endregion
 

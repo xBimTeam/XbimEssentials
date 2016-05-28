@@ -28,11 +28,11 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPermeableCoveringProperties : IIfcPreDefinedPropertySet
 	{
-		IfcPermeableCoveringOperationEnum @OperationType { get; }
-		IfcWindowPanelPositionEnum @PanelPosition { get; }
-		IfcPositiveLengthMeasure? @FrameDepth { get; }
-		IfcPositiveLengthMeasure? @FrameThickness { get; }
-		IIfcShapeAspect @ShapeAspectStyle { get; }
+		IfcPermeableCoveringOperationEnum @OperationType { get;  set; }
+		IfcWindowPanelPositionEnum @PanelPosition { get;  set; }
+		IfcPositiveLengthMeasure? @FrameDepth { get;  set; }
+		IfcPositiveLengthMeasure? @FrameThickness { get;  set; }
+		IIfcShapeAspect @ShapeAspectStyle { get;  set; }
 	
 	}
 }
@@ -44,11 +44,32 @@ namespace Xbim.Ifc4.ArchitectureDomain
 	public  partial class @IfcPermeableCoveringProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcPermeableCoveringProperties, IContainsEntityReferences, IEquatable<@IfcPermeableCoveringProperties>
 	{
 		#region IIfcPermeableCoveringProperties explicit implementation
-		IfcPermeableCoveringOperationEnum IIfcPermeableCoveringProperties.OperationType { get { return @OperationType; } }	
-		IfcWindowPanelPositionEnum IIfcPermeableCoveringProperties.PanelPosition { get { return @PanelPosition; } }	
-		IfcPositiveLengthMeasure? IIfcPermeableCoveringProperties.FrameDepth { get { return @FrameDepth; } }	
-		IfcPositiveLengthMeasure? IIfcPermeableCoveringProperties.FrameThickness { get { return @FrameThickness; } }	
-		IIfcShapeAspect IIfcPermeableCoveringProperties.ShapeAspectStyle { get { return @ShapeAspectStyle; } }	
+		IfcPermeableCoveringOperationEnum IIfcPermeableCoveringProperties.OperationType { 
+			get { return @OperationType; } 
+ 
+			set { OperationType = value;}
+		}	
+		IfcWindowPanelPositionEnum IIfcPermeableCoveringProperties.PanelPosition { 
+			get { return @PanelPosition; } 
+ 
+			set { PanelPosition = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcPermeableCoveringProperties.FrameDepth { 
+			get { return @FrameDepth; } 
+ 
+			set { FrameDepth = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcPermeableCoveringProperties.FrameThickness { 
+			get { return @FrameThickness; } 
+ 
+			set { FrameThickness = value;}
+		}	
+		IIfcShapeAspect IIfcPermeableCoveringProperties.ShapeAspectStyle { 
+			get { return @ShapeAspectStyle; } 
+ 
+ 
+			set { ShapeAspectStyle = value as IfcShapeAspect;}
+		}	
 		 
 		#endregion
 

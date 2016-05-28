@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelConnectsPortToElement : IIfcRelConnects
 	{
-		IIfcPort @RelatingPort { get; }
-		IIfcDistributionElement @RelatedElement { get; }
+		IIfcPort @RelatingPort { get;  set; }
+		IIfcDistributionElement @RelatedElement { get;  set; }
 	
 	}
 }
@@ -39,8 +39,18 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcRelConnectsPortToElement : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsPortToElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsPortToElement>
 	{
 		#region IIfcRelConnectsPortToElement explicit implementation
-		IIfcPort IIfcRelConnectsPortToElement.RelatingPort { get { return @RelatingPort; } }	
-		IIfcDistributionElement IIfcRelConnectsPortToElement.RelatedElement { get { return @RelatedElement; } }	
+		IIfcPort IIfcRelConnectsPortToElement.RelatingPort { 
+			get { return @RelatingPort; } 
+ 
+ 
+			set { RelatingPort = value as IfcPort;}
+		}	
+		IIfcDistributionElement IIfcRelConnectsPortToElement.RelatedElement { 
+			get { return @RelatedElement; } 
+ 
+ 
+			set { RelatedElement = value as IfcDistributionElement;}
+		}	
 		 
 		#endregion
 

@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSpatialElementType : IIfcTypeProduct
 	{
-		IfcLabel? @ElementType { get; }
+		IfcLabel? @ElementType { get;  set; }
 	
 	}
 }
@@ -39,7 +39,11 @@ namespace Xbim.Ifc4.ProductExtension
 	public abstract partial class @IfcSpatialElementType : IfcTypeProduct, IIfcSpatialElementType, IEquatable<@IfcSpatialElementType>
 	{
 		#region IIfcSpatialElementType explicit implementation
-		IfcLabel? IIfcSpatialElementType.ElementType { get { return @ElementType; } }	
+		IfcLabel? IIfcSpatialElementType.ElementType { 
+			get { return @ElementType; } 
+ 
+			set { ElementType = value;}
+		}	
 		 
 		#endregion
 

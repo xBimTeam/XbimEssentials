@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcCompositeProfileDef : IIfcProfileDef
 	{
 		IEnumerable<IIfcProfileDef> @Profiles { get; }
-		IfcLabel? @Label { get; }
+		IfcLabel? @Label { get;  set; }
 	
 	}
 }
@@ -39,8 +39,14 @@ namespace Xbim.Ifc4.ProfileResource
 	public  partial class @IfcCompositeProfileDef : IfcProfileDef, IInstantiableEntity, IIfcCompositeProfileDef, IContainsEntityReferences, IEquatable<@IfcCompositeProfileDef>
 	{
 		#region IIfcCompositeProfileDef explicit implementation
-		IEnumerable<IIfcProfileDef> IIfcCompositeProfileDef.Profiles { get { return @Profiles; } }	
-		IfcLabel? IIfcCompositeProfileDef.Label { get { return @Label; } }	
+		IEnumerable<IIfcProfileDef> IIfcCompositeProfileDef.Profiles { 
+			get { return @Profiles; } 
+		}	
+		IfcLabel? IIfcCompositeProfileDef.Label { 
+			get { return @Label; } 
+ 
+			set { Label = value;}
+		}	
 		 
 		#endregion
 

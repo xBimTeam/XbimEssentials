@@ -25,8 +25,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcEdge : IIfcTopologicalRepresentationItem
 	{
-		IIfcVertex @EdgeStart { get; }
-		IIfcVertex @EdgeEnd { get; }
+		IIfcVertex @EdgeStart { get;  set; }
+		IIfcVertex @EdgeEnd { get;  set; }
 	
 	}
 }
@@ -38,8 +38,18 @@ namespace Xbim.Ifc2x3.TopologyResource
 	public  partial class @IfcEdge : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcEdge, IContainsEntityReferences, IEquatable<@IfcEdge>
 	{
 		#region IIfcEdge explicit implementation
-		IIfcVertex IIfcEdge.EdgeStart { get { return @EdgeStart; } }	
-		IIfcVertex IIfcEdge.EdgeEnd { get { return @EdgeEnd; } }	
+		IIfcVertex IIfcEdge.EdgeStart { 
+			get { return @EdgeStart; } 
+ 
+ 
+			set { EdgeStart = value as IfcVertex;}
+		}	
+		IIfcVertex IIfcEdge.EdgeEnd { 
+			get { return @EdgeEnd; } 
+ 
+ 
+			set { EdgeEnd = value as IfcVertex;}
+		}	
 		 
 		#endregion
 

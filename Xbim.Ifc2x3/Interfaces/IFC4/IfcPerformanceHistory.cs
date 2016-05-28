@@ -22,15 +22,26 @@ namespace Xbim.Ifc2x3.ControlExtension
 			{
 				return new Ifc4.MeasureResource.IfcLabel(LifeCyclePhase);
 			} 
+			set
+			{
+				LifeCyclePhase = new MeasureResource.IfcLabel(value);
+				
+			}
 		}
+
+		private  Ifc4.Interfaces.IfcPerformanceHistoryTypeEnum? _predefinedType;
+
 		Ifc4.Interfaces.IfcPerformanceHistoryTypeEnum? IIfcPerformanceHistory.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-			    return null;
-			    //##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				
+			}
 		}
 	//## Custom code
 	//##

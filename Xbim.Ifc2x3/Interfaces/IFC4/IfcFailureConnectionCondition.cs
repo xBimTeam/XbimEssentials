@@ -23,6 +23,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!TensionFailureX.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcForceMeasure(TensionFailureX.Value);
 			} 
+			set
+			{
+				TensionFailureX = value.HasValue ? 
+					new MeasureResource.IfcForceMeasure(value.Value) :  
+					 new MeasureResource.IfcForceMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureY 
 		{ 
@@ -31,6 +38,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!TensionFailureY.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcForceMeasure(TensionFailureY.Value);
 			} 
+			set
+			{
+				TensionFailureY = value.HasValue ? 
+					new MeasureResource.IfcForceMeasure(value.Value) :  
+					 new MeasureResource.IfcForceMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureZ 
 		{ 
@@ -39,6 +53,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!TensionFailureZ.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcForceMeasure(TensionFailureZ.Value);
 			} 
+			set
+			{
+				TensionFailureZ = value.HasValue ? 
+					new MeasureResource.IfcForceMeasure(value.Value) :  
+					 new MeasureResource.IfcForceMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureX 
 		{ 
@@ -47,6 +68,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!CompressionFailureX.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcForceMeasure(CompressionFailureX.Value);
 			} 
+			set
+			{
+				CompressionFailureX = value.HasValue ? 
+					new MeasureResource.IfcForceMeasure(value.Value) :  
+					 new MeasureResource.IfcForceMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureY 
 		{ 
@@ -55,6 +83,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!CompressionFailureY.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcForceMeasure(CompressionFailureY.Value);
 			} 
+			set
+			{
+				CompressionFailureY = value.HasValue ? 
+					new MeasureResource.IfcForceMeasure(value.Value) :  
+					 new MeasureResource.IfcForceMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureZ 
 		{ 
@@ -63,6 +98,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!CompressionFailureZ.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcForceMeasure(CompressionFailureZ.Value);
 			} 
+			set
+			{
+				CompressionFailureZ = value.HasValue ? 
+					new MeasureResource.IfcForceMeasure(value.Value) :  
+					 new MeasureResource.IfcForceMeasure?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

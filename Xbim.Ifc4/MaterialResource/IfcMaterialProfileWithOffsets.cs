@@ -38,7 +38,9 @@ namespace Xbim.Ifc4.MaterialResource
 	public  partial class @IfcMaterialProfileWithOffsets : IfcMaterialProfile, IInstantiableEntity, IIfcMaterialProfileWithOffsets, IContainsEntityReferences, IEquatable<@IfcMaterialProfileWithOffsets>
 	{
 		#region IIfcMaterialProfileWithOffsets explicit implementation
-		IEnumerable<IfcLengthMeasure> IIfcMaterialProfileWithOffsets.OffsetValues { get { return @OffsetValues; } }	
+		IEnumerable<IfcLengthMeasure> IIfcMaterialProfileWithOffsets.OffsetValues { 
+			get { return @OffsetValues; } 
+		}	
 		 
 		#endregion
 

@@ -28,11 +28,11 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSectionReinforcementProperties : IPersistEntity
 	{
-		IfcLengthMeasure @LongitudinalStartPosition { get; }
-		IfcLengthMeasure @LongitudinalEndPosition { get; }
-		IfcLengthMeasure? @TransversePosition { get; }
-		IfcReinforcingBarRoleEnum @ReinforcementRole { get; }
-		IIfcSectionProperties @SectionDefinition { get; }
+		IfcLengthMeasure @LongitudinalStartPosition { get;  set; }
+		IfcLengthMeasure @LongitudinalEndPosition { get;  set; }
+		IfcLengthMeasure? @TransversePosition { get;  set; }
+		IfcReinforcingBarRoleEnum @ReinforcementRole { get;  set; }
+		IIfcSectionProperties @SectionDefinition { get;  set; }
 		IEnumerable<IIfcReinforcementBarProperties> @CrossSectionReinforcementDefinitions { get; }
 	
 	}
@@ -45,12 +45,35 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 	public  partial class @IfcSectionReinforcementProperties : INotifyPropertyChanged, IInstantiableEntity, IIfcSectionReinforcementProperties, IContainsEntityReferences, IEquatable<@IfcSectionReinforcementProperties>
 	{
 		#region IIfcSectionReinforcementProperties explicit implementation
-		IfcLengthMeasure IIfcSectionReinforcementProperties.LongitudinalStartPosition { get { return @LongitudinalStartPosition; } }	
-		IfcLengthMeasure IIfcSectionReinforcementProperties.LongitudinalEndPosition { get { return @LongitudinalEndPosition; } }	
-		IfcLengthMeasure? IIfcSectionReinforcementProperties.TransversePosition { get { return @TransversePosition; } }	
-		IfcReinforcingBarRoleEnum IIfcSectionReinforcementProperties.ReinforcementRole { get { return @ReinforcementRole; } }	
-		IIfcSectionProperties IIfcSectionReinforcementProperties.SectionDefinition { get { return @SectionDefinition; } }	
-		IEnumerable<IIfcReinforcementBarProperties> IIfcSectionReinforcementProperties.CrossSectionReinforcementDefinitions { get { return @CrossSectionReinforcementDefinitions; } }	
+		IfcLengthMeasure IIfcSectionReinforcementProperties.LongitudinalStartPosition { 
+			get { return @LongitudinalStartPosition; } 
+ 
+			set { LongitudinalStartPosition = value;}
+		}	
+		IfcLengthMeasure IIfcSectionReinforcementProperties.LongitudinalEndPosition { 
+			get { return @LongitudinalEndPosition; } 
+ 
+			set { LongitudinalEndPosition = value;}
+		}	
+		IfcLengthMeasure? IIfcSectionReinforcementProperties.TransversePosition { 
+			get { return @TransversePosition; } 
+ 
+			set { TransversePosition = value;}
+		}	
+		IfcReinforcingBarRoleEnum IIfcSectionReinforcementProperties.ReinforcementRole { 
+			get { return @ReinforcementRole; } 
+ 
+			set { ReinforcementRole = value;}
+		}	
+		IIfcSectionProperties IIfcSectionReinforcementProperties.SectionDefinition { 
+			get { return @SectionDefinition; } 
+ 
+ 
+			set { SectionDefinition = value as IfcSectionProperties;}
+		}	
+		IEnumerable<IIfcReinforcementBarProperties> IIfcSectionReinforcementProperties.CrossSectionReinforcementDefinitions { 
+			get { return @CrossSectionReinforcementDefinitions; } 
+		}	
 		 
 		#endregion
 

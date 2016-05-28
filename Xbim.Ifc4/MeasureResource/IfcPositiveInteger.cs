@@ -15,7 +15,7 @@ namespace Xbim.Ifc4.MeasureResource
 	[ExpressType("IfcPositiveInteger", 995)]
 	[DefinedType(typeof(long))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcPositiveInteger : IfcSimpleValue, IExpressValueType, System.IEquatable<long>
+	public partial struct IfcPositiveInteger : IfcSimpleValue, IExpressValueType, IExpressIntegerType, System.IEquatable<long>
 	{ 
 		private long _value;
         
@@ -23,6 +23,9 @@ namespace Xbim.Ifc4.MeasureResource
         {
             get { return _value; }
         }
+
+ 
+		long IExpressIntegerType.Value { get { return _value; } }
 
 		public override string ToString()
         {

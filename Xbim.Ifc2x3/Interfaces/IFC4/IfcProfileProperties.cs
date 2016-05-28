@@ -22,24 +22,41 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				return ProfileDefinition;
 			} 
+			set
+			{
+				ProfileDefinition = value as ProfileResource.IfcProfileDef;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcIdentifier? IIfcExtendedProperties.Name 
 		{ 
 			get
 			{
-				//## Handle return of Name for which no match was found
-			    return new Ifc4.MeasureResource.IfcIdentifier(ProfileName);
-			    //##
+				if (!ProfileName.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcIdentifier(ProfileName.Value);
 			} 
+			set
+			{
+				ProfileName = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcText? _description;
+
 		Ifc4.MeasureResource.IfcText? IIfcExtendedProperties.Description 
 		{ 
 			get
 			{
-				//## Handle return of Description for which no match was found
-			    return null;
-			    //##
+				return _description;
 			} 
+			set
+			{
+				SetValue(v => _description = v, _description, value, "Description", byte.MaxValue);
+				
+			}
 		}
 		IEnumerable<IIfcProperty> IIfcExtendedProperties.Properties 
 		{ 

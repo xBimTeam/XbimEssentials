@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				return RelatedSpace;
 			} 
+			set
+			{
+				RelatedSpace = value as IfcSpace;
+				
+			}
 		}
 		IEnumerable<IIfcCovering> IIfcRelCoversSpaces.RelatedCoverings 
 		{ 

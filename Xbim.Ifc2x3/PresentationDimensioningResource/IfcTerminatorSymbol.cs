@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTerminatorSymbol : IIfcAnnotationSymbolOccurrence
 	{
-		IIfcAnnotationCurveOccurrence @AnnotatedCurve { get; }
+		IIfcAnnotationCurveOccurrence @AnnotatedCurve { get;  set; }
 	
 	}
 }
@@ -38,7 +38,12 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 	public  partial class @IfcTerminatorSymbol : IfcAnnotationSymbolOccurrence, IInstantiableEntity, IIfcTerminatorSymbol, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTerminatorSymbol>
 	{
 		#region IIfcTerminatorSymbol explicit implementation
-		IIfcAnnotationCurveOccurrence IIfcTerminatorSymbol.AnnotatedCurve { get { return @AnnotatedCurve; } }	
+		IIfcAnnotationCurveOccurrence IIfcTerminatorSymbol.AnnotatedCurve { 
+			get { return @AnnotatedCurve; } 
+ 
+ 
+			set { AnnotatedCurve = value as IfcAnnotationCurveOccurrence;}
+		}	
 		 
 		#endregion
 

@@ -26,10 +26,10 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSurfaceStyleLighting : IIfcPresentationItem, IfcSurfaceStyleElementSelect
 	{
-		IIfcColourRgb @DiffuseTransmissionColour { get; }
-		IIfcColourRgb @DiffuseReflectionColour { get; }
-		IIfcColourRgb @TransmissionColour { get; }
-		IIfcColourRgb @ReflectanceColour { get; }
+		IIfcColourRgb @DiffuseTransmissionColour { get;  set; }
+		IIfcColourRgb @DiffuseReflectionColour { get;  set; }
+		IIfcColourRgb @TransmissionColour { get;  set; }
+		IIfcColourRgb @ReflectanceColour { get;  set; }
 	
 	}
 }
@@ -41,10 +41,30 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcSurfaceStyleLighting : IfcPresentationItem, IInstantiableEntity, IIfcSurfaceStyleLighting, IContainsEntityReferences, IEquatable<@IfcSurfaceStyleLighting>
 	{
 		#region IIfcSurfaceStyleLighting explicit implementation
-		IIfcColourRgb IIfcSurfaceStyleLighting.DiffuseTransmissionColour { get { return @DiffuseTransmissionColour; } }	
-		IIfcColourRgb IIfcSurfaceStyleLighting.DiffuseReflectionColour { get { return @DiffuseReflectionColour; } }	
-		IIfcColourRgb IIfcSurfaceStyleLighting.TransmissionColour { get { return @TransmissionColour; } }	
-		IIfcColourRgb IIfcSurfaceStyleLighting.ReflectanceColour { get { return @ReflectanceColour; } }	
+		IIfcColourRgb IIfcSurfaceStyleLighting.DiffuseTransmissionColour { 
+			get { return @DiffuseTransmissionColour; } 
+ 
+ 
+			set { DiffuseTransmissionColour = value as IfcColourRgb;}
+		}	
+		IIfcColourRgb IIfcSurfaceStyleLighting.DiffuseReflectionColour { 
+			get { return @DiffuseReflectionColour; } 
+ 
+ 
+			set { DiffuseReflectionColour = value as IfcColourRgb;}
+		}	
+		IIfcColourRgb IIfcSurfaceStyleLighting.TransmissionColour { 
+			get { return @TransmissionColour; } 
+ 
+ 
+			set { TransmissionColour = value as IfcColourRgb;}
+		}	
+		IIfcColourRgb IIfcSurfaceStyleLighting.ReflectanceColour { 
+			get { return @ReflectanceColour; } 
+ 
+ 
+			set { ReflectanceColour = value as IfcColourRgb;}
+		}	
 		 
 		#endregion
 

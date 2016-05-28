@@ -36,15 +36,43 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcAssemblyPlaceEnum.SITE:
+						AssemblyPlace = ProductExtension.IfcAssemblyPlaceEnum.SITE;
+						return;
+					
+					case Ifc4.Interfaces.IfcAssemblyPlaceEnum.FACTORY:
+						AssemblyPlace = ProductExtension.IfcAssemblyPlaceEnum.FACTORY;
+						return;
+					
+					case Ifc4.Interfaces.IfcAssemblyPlaceEnum.NOTDEFINED:
+						AssemblyPlace = ProductExtension.IfcAssemblyPlaceEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
+
+		private  Ifc4.Interfaces.IfcFurnitureTypeEnum? _predefinedType;
+
 		Ifc4.Interfaces.IfcFurnitureTypeEnum? IIfcFurnitureType.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-			    return null;
-			    //##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				
+			}
 		}
 	//## Custom code
 	//##

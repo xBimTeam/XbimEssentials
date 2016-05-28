@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return Axis1;
 			} 
+			set
+			{
+				Axis1 = value as IfcDirection;
+				
+			}
 		}
 		IIfcDirection IIfcCartesianTransformationOperator.Axis2 
 		{ 
@@ -29,6 +34,11 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return Axis2;
 			} 
+			set
+			{
+				Axis2 = value as IfcDirection;
+				
+			}
 		}
 		IIfcCartesianPoint IIfcCartesianTransformationOperator.LocalOrigin 
 		{ 
@@ -36,6 +46,11 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return LocalOrigin;
 			} 
+			set
+			{
+				LocalOrigin = value as IfcCartesianPoint;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcReal? IIfcCartesianTransformationOperator.Scale 
 		{ 
@@ -45,6 +60,11 @@ namespace Xbim.Ifc2x3.GeometryResource
                 return Scale.HasValue ? new Ifc4.MeasureResource.IfcReal(Scale.Value) : (Ifc4.MeasureResource.IfcReal?)null;
                 //##
 			} 
+			set
+			{
+				Scale = value;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcReal IIfcCartesianTransformationOperator.Scl 
 		{

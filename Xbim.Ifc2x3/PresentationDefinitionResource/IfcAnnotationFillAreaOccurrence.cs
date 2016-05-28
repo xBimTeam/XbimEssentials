@@ -27,8 +27,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcAnnotationFillAreaOccurrence : IIfcAnnotationOccurrence
 	{
-		IIfcPoint @FillStyleTarget { get; }
-		IfcGlobalOrLocalEnum? @GlobalOrLocal { get; }
+		IIfcPoint @FillStyleTarget { get;  set; }
+		IfcGlobalOrLocalEnum? @GlobalOrLocal { get;  set; }
 	
 	}
 }
@@ -40,8 +40,17 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 	public  partial class @IfcAnnotationFillAreaOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IIfcAnnotationFillAreaOccurrence, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAnnotationFillAreaOccurrence>
 	{
 		#region IIfcAnnotationFillAreaOccurrence explicit implementation
-		IIfcPoint IIfcAnnotationFillAreaOccurrence.FillStyleTarget { get { return @FillStyleTarget; } }	
-		IfcGlobalOrLocalEnum? IIfcAnnotationFillAreaOccurrence.GlobalOrLocal { get { return @GlobalOrLocal; } }	
+		IIfcPoint IIfcAnnotationFillAreaOccurrence.FillStyleTarget { 
+			get { return @FillStyleTarget; } 
+ 
+ 
+			set { FillStyleTarget = value as IfcPoint;}
+		}	
+		IfcGlobalOrLocalEnum? IIfcAnnotationFillAreaOccurrence.GlobalOrLocal { 
+			get { return @GlobalOrLocal; } 
+ 
+			set { GlobalOrLocal = value;}
+		}	
 		 
 		#endregion
 

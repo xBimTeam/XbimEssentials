@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcResource : IIfcObject, IfcResourceSelect
 	{
-		IfcIdentifier? @Identification { get; }
-		IfcText? @LongDescription { get; }
+		IfcIdentifier? @Identification { get;  set; }
+		IfcText? @LongDescription { get;  set; }
 		IEnumerable<IIfcRelAssignsToResource> @ResourceOf {  get; }
 	
 	}
@@ -40,8 +40,16 @@ namespace Xbim.Ifc4.Kernel
 	public abstract partial class @IfcResource : IfcObject, IIfcResource, IEquatable<@IfcResource>
 	{
 		#region IIfcResource explicit implementation
-		IfcIdentifier? IIfcResource.Identification { get { return @Identification; } }	
-		IfcText? IIfcResource.LongDescription { get { return @LongDescription; } }	
+		IfcIdentifier? IIfcResource.Identification { 
+			get { return @Identification; } 
+ 
+			set { Identification = value;}
+		}	
+		IfcText? IIfcResource.LongDescription { 
+			get { return @LongDescription; } 
+ 
+			set { LongDescription = value;}
+		}	
 		 
 		IEnumerable<IIfcRelAssignsToResource> IIfcResource.ResourceOf {  get { return @ResourceOf; } }
 		#endregion

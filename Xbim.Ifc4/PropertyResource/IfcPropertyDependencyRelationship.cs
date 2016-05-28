@@ -27,9 +27,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPropertyDependencyRelationship : IIfcResourceLevelRelationship
 	{
-		IIfcProperty @DependingProperty { get; }
-		IIfcProperty @DependantProperty { get; }
-		IfcText? @Expression { get; }
+		IIfcProperty @DependingProperty { get;  set; }
+		IIfcProperty @DependantProperty { get;  set; }
+		IfcText? @Expression { get;  set; }
 	
 	}
 }
@@ -41,9 +41,23 @@ namespace Xbim.Ifc4.PropertyResource
 	public  partial class @IfcPropertyDependencyRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcPropertyDependencyRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPropertyDependencyRelationship>
 	{
 		#region IIfcPropertyDependencyRelationship explicit implementation
-		IIfcProperty IIfcPropertyDependencyRelationship.DependingProperty { get { return @DependingProperty; } }	
-		IIfcProperty IIfcPropertyDependencyRelationship.DependantProperty { get { return @DependantProperty; } }	
-		IfcText? IIfcPropertyDependencyRelationship.Expression { get { return @Expression; } }	
+		IIfcProperty IIfcPropertyDependencyRelationship.DependingProperty { 
+			get { return @DependingProperty; } 
+ 
+ 
+			set { DependingProperty = value as IfcProperty;}
+		}	
+		IIfcProperty IIfcPropertyDependencyRelationship.DependantProperty { 
+			get { return @DependantProperty; } 
+ 
+ 
+			set { DependantProperty = value as IfcProperty;}
+		}	
+		IfcText? IIfcPropertyDependencyRelationship.Expression { 
+			get { return @Expression; } 
+ 
+			set { Expression = value;}
+		}	
 		 
 		#endregion
 

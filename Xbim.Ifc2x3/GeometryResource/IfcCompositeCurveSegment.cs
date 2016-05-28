@@ -25,9 +25,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCompositeCurveSegment : IIfcGeometricRepresentationItem
 	{
-		IfcTransitionCode @Transition { get; }
-		bool @SameSense { get; }
-		IIfcCurve @ParentCurve { get; }
+		IfcTransitionCode @Transition { get;  set; }
+		bool @SameSense { get;  set; }
+		IIfcCurve @ParentCurve { get;  set; }
 		IEnumerable<IIfcCompositeCurve> @UsingCurves {  get; }
 		IfcDimensionCount @Dim  { get ; }
 	
@@ -41,9 +41,22 @@ namespace Xbim.Ifc2x3.GeometryResource
 	public  partial class @IfcCompositeCurveSegment : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcCompositeCurveSegment, IContainsEntityReferences, IEquatable<@IfcCompositeCurveSegment>
 	{
 		#region IIfcCompositeCurveSegment explicit implementation
-		IfcTransitionCode IIfcCompositeCurveSegment.Transition { get { return @Transition; } }	
-		bool IIfcCompositeCurveSegment.SameSense { get { return @SameSense; } }	
-		IIfcCurve IIfcCompositeCurveSegment.ParentCurve { get { return @ParentCurve; } }	
+		IfcTransitionCode IIfcCompositeCurveSegment.Transition { 
+			get { return @Transition; } 
+ 
+			set { Transition = value;}
+		}	
+		bool IIfcCompositeCurveSegment.SameSense { 
+			get { return @SameSense; } 
+ 
+			set { SameSense = value;}
+		}	
+		IIfcCurve IIfcCompositeCurveSegment.ParentCurve { 
+			get { return @ParentCurve; } 
+ 
+ 
+			set { ParentCurve = value as IfcCurve;}
+		}	
 		 
 		IEnumerable<IIfcCompositeCurve> IIfcCompositeCurveSegment.UsingCurves {  get { return @UsingCurves; } }
 		#endregion

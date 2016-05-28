@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcProjectionElement : IIfcFeatureElementAddition
 	{
-		IfcProjectionElementTypeEnum? @PredefinedType { get; }
+		IfcProjectionElementTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -37,7 +37,11 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcProjectionElement : IfcFeatureElementAddition, IInstantiableEntity, IIfcProjectionElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcProjectionElement>
 	{
 		#region IIfcProjectionElement explicit implementation
-		IfcProjectionElementTypeEnum? IIfcProjectionElement.PredefinedType { get { return @PredefinedType; } }	
+		IfcProjectionElementTypeEnum? IIfcProjectionElement.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

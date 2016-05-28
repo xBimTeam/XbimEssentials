@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterial : IPersistEntity, IfcMaterialSelect, IfcObjectReferenceSelect
 	{
-		IfcLabel @Name { get; }
+		IfcLabel @Name { get;  set; }
 		IEnumerable<IIfcMaterialDefinitionRepresentation> @HasRepresentation {  get; }
 		IEnumerable<IIfcMaterialClassificationRelationship> @ClassifiedAs {  get; }
 	
@@ -44,7 +44,11 @@ namespace Xbim.Ifc2x3.MaterialResource
 	public  partial class @IfcMaterial : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterial, IEquatable<@IfcMaterial>
 	{
 		#region IIfcMaterial explicit implementation
-		IfcLabel IIfcMaterial.Name { get { return @Name; } }	
+		IfcLabel IIfcMaterial.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
 		 
 		IEnumerable<IIfcMaterialDefinitionRepresentation> IIfcMaterial.HasRepresentation {  get { return @HasRepresentation; } }
 		IEnumerable<IIfcMaterialClassificationRelationship> IIfcMaterial.ClassifiedAs {  get { return @ClassifiedAs; } }

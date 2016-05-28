@@ -32,6 +32,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 						return Ifc4.Interfaces.IfcPermeableCoveringOperationEnum.SCREEN;
 					
 					case IfcPermeableCoveringOperationEnum.USERDEFINED:
+						//## Optional custom handling of OperationType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcPermeableCoveringOperationEnum.USERDEFINED;
 					
 					case IfcPermeableCoveringOperationEnum.NOTDEFINED:
@@ -42,6 +44,36 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcPermeableCoveringOperationEnum.GRILL:
+						OperationType = IfcPermeableCoveringOperationEnum.GRILL;
+						return;
+					
+					case Ifc4.Interfaces.IfcPermeableCoveringOperationEnum.LOUVER:
+						OperationType = IfcPermeableCoveringOperationEnum.LOUVER;
+						return;
+					
+					case Ifc4.Interfaces.IfcPermeableCoveringOperationEnum.SCREEN:
+						OperationType = IfcPermeableCoveringOperationEnum.SCREEN;
+						return;
+					
+					case Ifc4.Interfaces.IfcPermeableCoveringOperationEnum.USERDEFINED:
+						OperationType = IfcPermeableCoveringOperationEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcPermeableCoveringOperationEnum.NOTDEFINED:
+						OperationType = IfcPermeableCoveringOperationEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.Interfaces.IfcWindowPanelPositionEnum IIfcPermeableCoveringProperties.PanelPosition 
 		{ 
@@ -72,6 +104,40 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcWindowPanelPositionEnum.LEFT:
+						PanelPosition = SharedBldgElements.IfcWindowPanelPositionEnum.LEFT;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelPositionEnum.MIDDLE:
+						PanelPosition = SharedBldgElements.IfcWindowPanelPositionEnum.MIDDLE;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelPositionEnum.RIGHT:
+						PanelPosition = SharedBldgElements.IfcWindowPanelPositionEnum.RIGHT;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelPositionEnum.BOTTOM:
+						PanelPosition = SharedBldgElements.IfcWindowPanelPositionEnum.BOTTOM;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelPositionEnum.TOP:
+						PanelPosition = SharedBldgElements.IfcWindowPanelPositionEnum.TOP;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowPanelPositionEnum.NOTDEFINED:
+						PanelPosition = SharedBldgElements.IfcWindowPanelPositionEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcPermeableCoveringProperties.FrameDepth 
 		{ 
@@ -80,6 +146,13 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 				if (!FrameDepth.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(FrameDepth.Value);
 			} 
+			set
+			{
+				FrameDepth = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcPermeableCoveringProperties.FrameThickness 
 		{ 
@@ -88,6 +161,13 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 				if (!FrameThickness.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(FrameThickness.Value);
 			} 
+			set
+			{
+				FrameThickness = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
 		IIfcShapeAspect IIfcPermeableCoveringProperties.ShapeAspectStyle 
 		{ 
@@ -95,6 +175,11 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			{
 				return ShapeAspectStyle;
 			} 
+			set
+			{
+				ShapeAspectStyle = value as RepresentationResource.IfcShapeAspect;
+				
+			}
 		}
 	//## Custom code
 	//##

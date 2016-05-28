@@ -51,6 +51,48 @@ namespace Xbim.Ifc2x3.Kernel
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcObjectTypeEnum.PRODUCT:
+						ProxyType = IfcObjectTypeEnum.PRODUCT;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectTypeEnum.PROCESS:
+						ProxyType = IfcObjectTypeEnum.PROCESS;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectTypeEnum.CONTROL:
+						ProxyType = IfcObjectTypeEnum.CONTROL;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectTypeEnum.RESOURCE:
+						ProxyType = IfcObjectTypeEnum.RESOURCE;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectTypeEnum.ACTOR:
+						ProxyType = IfcObjectTypeEnum.ACTOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectTypeEnum.GROUP:
+						ProxyType = IfcObjectTypeEnum.GROUP;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectTypeEnum.PROJECT:
+						ProxyType = IfcObjectTypeEnum.PROJECT;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectTypeEnum.NOTDEFINED:
+						ProxyType = IfcObjectTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcProxy.Tag 
 		{ 
@@ -59,6 +101,13 @@ namespace Xbim.Ifc2x3.Kernel
 				if (!Tag.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Tag.Value);
 			} 
+			set
+			{
+				Tag = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

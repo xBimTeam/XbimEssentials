@@ -25,9 +25,9 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieFloor : ICobieAsset, SpatialDivision
 	{
-		double? @Elevation { get; }
-		double? @Height { get; }
-		ICobieFacility @Facility { get; }
+		double? @Elevation { get;  set; }
+		double? @Height { get;  set; }
+		ICobieFacility @Facility { get;  set; }
 		IEnumerable<ICobieSpace> @Spaces {  get; }
 	
 	}
@@ -40,9 +40,22 @@ namespace Xbim.CobieExpress
 	public  partial class @CobieFloor : CobieAsset, IInstantiableEntity, ICobieFloor, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieFloor>
 	{
 		#region ICobieFloor explicit implementation
-		double? ICobieFloor.Elevation { get { return @Elevation; } }	
-		double? ICobieFloor.Height { get { return @Height; } }	
-		ICobieFacility ICobieFloor.Facility { get { return @Facility; } }	
+		double? ICobieFloor.Elevation { 
+			get { return @Elevation; } 
+ 
+			set { Elevation = value;}
+		}	
+		double? ICobieFloor.Height { 
+			get { return @Height; } 
+ 
+			set { Height = value;}
+		}	
+		ICobieFacility ICobieFloor.Facility { 
+			get { return @Facility; } 
+ 
+ 
+			set { Facility = value as CobieFacility;}
+		}	
 		 
 		IEnumerable<ICobieSpace> ICobieFloor.Spaces {  get { return @Spaces; } }
 		#endregion

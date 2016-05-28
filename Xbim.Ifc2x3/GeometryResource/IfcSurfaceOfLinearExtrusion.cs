@@ -26,8 +26,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSurfaceOfLinearExtrusion : IIfcSweptSurface
 	{
-		IIfcDirection @ExtrudedDirection { get; }
-		IfcLengthMeasure @Depth { get; }
+		IIfcDirection @ExtrudedDirection { get;  set; }
+		IfcLengthMeasure @Depth { get;  set; }
 		Common.Geometry.XbimVector3D @ExtrusionAxis  { get ; }
 	
 	}
@@ -40,8 +40,17 @@ namespace Xbim.Ifc2x3.GeometryResource
 	public  partial class @IfcSurfaceOfLinearExtrusion : IfcSweptSurface, IInstantiableEntity, IIfcSurfaceOfLinearExtrusion, IContainsEntityReferences, IEquatable<@IfcSurfaceOfLinearExtrusion>
 	{
 		#region IIfcSurfaceOfLinearExtrusion explicit implementation
-		IIfcDirection IIfcSurfaceOfLinearExtrusion.ExtrudedDirection { get { return @ExtrudedDirection; } }	
-		IfcLengthMeasure IIfcSurfaceOfLinearExtrusion.Depth { get { return @Depth; } }	
+		IIfcDirection IIfcSurfaceOfLinearExtrusion.ExtrudedDirection { 
+			get { return @ExtrudedDirection; } 
+ 
+ 
+			set { ExtrudedDirection = value as IfcDirection;}
+		}	
+		IfcLengthMeasure IIfcSurfaceOfLinearExtrusion.Depth { 
+			get { return @Depth; } 
+ 
+			set { Depth = value;}
+		}	
 		 
 		#endregion
 

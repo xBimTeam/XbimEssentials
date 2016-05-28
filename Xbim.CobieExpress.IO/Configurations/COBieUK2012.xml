@@ -250,7 +250,7 @@
         <PropertyMapping Header="Duration" Column="H" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Duration" />
         <PropertyMapping Header="DurationUnit" Column="I" Status="PickValue" MultiRow="None" DefaultValue="unknown" Paths="DurationUnit.Value" />
         <PropertyMapping Header="Start" Column="J" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Start" />
-        <PropertyMapping Header="TaskStartUnit" Column="K" Status="PickValue" MultiRow="None" DefaultValue="unknown" Paths="TaskStartUnit.Value" />
+        <PropertyMapping Header="TaskStartUnit" Column="K" Status="PickValue" MultiRow="None" DefaultValue="unknown" Paths="StartUnit.Value" />
         <PropertyMapping Header="Frequency" Column="L" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Frequency" />
         <PropertyMapping Header="FrequencyUnit" Column="M" Status="PickValue" MultiRow="None" DefaultValue="unknown" Paths="FrequencyUnit.Value" />
         <PropertyMapping Header="ExtSystem" Column="N" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalSystem.Name"  Hidden="true"/>

@@ -27,10 +27,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStairFlight : IIfcBuildingElement
 	{
-		long? @NumberOfRiser { get; }
-		long? @NumberOfTreads { get; }
-		IfcPositiveLengthMeasure? @RiserHeight { get; }
-		IfcPositiveLengthMeasure? @TreadLength { get; }
+		long? @NumberOfRiser { get;  set; }
+		long? @NumberOfTreads { get;  set; }
+		IfcPositiveLengthMeasure? @RiserHeight { get;  set; }
+		IfcPositiveLengthMeasure? @TreadLength { get;  set; }
 	
 	}
 }
@@ -42,10 +42,26 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 	public  partial class @IfcStairFlight : IfcBuildingElement, IInstantiableEntity, IIfcStairFlight, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStairFlight>
 	{
 		#region IIfcStairFlight explicit implementation
-		long? IIfcStairFlight.NumberOfRiser { get { return @NumberOfRiser; } }	
-		long? IIfcStairFlight.NumberOfTreads { get { return @NumberOfTreads; } }	
-		IfcPositiveLengthMeasure? IIfcStairFlight.RiserHeight { get { return @RiserHeight; } }	
-		IfcPositiveLengthMeasure? IIfcStairFlight.TreadLength { get { return @TreadLength; } }	
+		long? IIfcStairFlight.NumberOfRiser { 
+			get { return @NumberOfRiser; } 
+ 
+			set { NumberOfRiser = value;}
+		}	
+		long? IIfcStairFlight.NumberOfTreads { 
+			get { return @NumberOfTreads; } 
+ 
+			set { NumberOfTreads = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcStairFlight.RiserHeight { 
+			get { return @RiserHeight; } 
+ 
+			set { RiserHeight = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcStairFlight.TreadLength { 
+			get { return @TreadLength; } 
+ 
+			set { TreadLength = value;}
+		}	
 		 
 		#endregion
 

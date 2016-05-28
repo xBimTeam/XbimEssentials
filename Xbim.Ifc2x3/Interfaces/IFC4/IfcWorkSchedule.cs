@@ -16,14 +16,20 @@ namespace Xbim.Ifc2x3.ProcessExtension
 {
 	public partial class @IfcWorkSchedule : IIfcWorkSchedule
 	{
+
+		private  Ifc4.Interfaces.IfcWorkScheduleTypeEnum? _predefinedType;
+
 		Ifc4.Interfaces.IfcWorkScheduleTypeEnum? IIfcWorkSchedule.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-                return IfcWorkScheduleTypeEnum.NOTDEFINED;
-				//##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				
+			}
 		}
 	//## Custom code
 	//##

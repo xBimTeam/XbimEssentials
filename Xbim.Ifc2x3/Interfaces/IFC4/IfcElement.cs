@@ -23,6 +23,13 @@ namespace Xbim.Ifc2x3.ProductExtension
 				if (!Tag.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcIdentifier(Tag.Value);
 			} 
+			set
+			{
+				Tag = value.HasValue ? 
+					new MeasureResource.IfcIdentifier(value.Value) :  
+					 new MeasureResource.IfcIdentifier?() ;
+				
+			}
 		}
 		IEnumerable<IIfcRelFillsElement> IIfcElement.FillsVoids 
 		{ 

@@ -37,7 +37,9 @@ namespace Xbim.Ifc4.TopologyResource
 	public  partial class @IfcPath : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcPath, IContainsEntityReferences, IEquatable<@IfcPath>
 	{
 		#region IIfcPath explicit implementation
-		IEnumerable<IIfcOrientedEdge> IIfcPath.EdgeList { get { return @EdgeList; } }	
+		IEnumerable<IIfcOrientedEdge> IIfcPath.EdgeList { 
+			get { return @EdgeList; } 
+		}	
 		 
 		#endregion
 

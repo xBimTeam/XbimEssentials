@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				return RelatingDocument;
 			} 
+			set
+			{
+				RelatingDocument = value as IfcDocumentInformation;
+				
+			}
 		}
 		IEnumerable<IIfcDocumentInformation> IIfcDocumentInformationRelationship.RelatedDocuments 
 		{ 
@@ -40,24 +45,43 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (!RelationshipType.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(RelationshipType.Value);
 			} 
+			set
+			{
+				RelationshipType = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcLabel? _name;
+
 		Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
 		{ 
 			get
 			{
-				//## Handle return of Name for which no match was found
-			    return null;
-			    //##
+				return _name;
 			} 
+			set
+			{
+				SetValue(v => _name = v, _name, value, "Name", byte.MaxValue);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcText? _description;
+
 		Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
 		{ 
 			get
 			{
-				//## Handle return of Description for which no match was found
-			    return null;
-			    //##
+				return _description;
 			} 
+			set
+			{
+				SetValue(v => _description = v, _description, value, "Description", byte.MaxValue);
+				
+			}
 		}
 	//## Custom code
 	//##

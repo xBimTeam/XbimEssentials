@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSensorType : IIfcDistributionControlElementType
 	{
-		IfcSensorTypeEnum @PredefinedType { get; }
+		IfcSensorTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 	public  partial class @IfcSensorType : IfcDistributionControlElementType, IInstantiableEntity, IIfcSensorType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSensorType>
 	{
 		#region IIfcSensorType explicit implementation
-		IfcSensorTypeEnum IIfcSensorType.PredefinedType { get { return @PredefinedType; } }	
+		IfcSensorTypeEnum IIfcSensorType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

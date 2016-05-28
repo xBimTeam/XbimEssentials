@@ -28,8 +28,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRepresentationMap : IPersistEntity
 	{
-		IIfcAxis2Placement @MappingOrigin { get; }
-		IIfcRepresentation @MappedRepresentation { get; }
+		IIfcAxis2Placement @MappingOrigin { get;  set; }
+		IIfcRepresentation @MappedRepresentation { get;  set; }
 		IEnumerable<IIfcMappedItem> @MapUsage {  get; }
 	
 	}
@@ -42,8 +42,18 @@ namespace Xbim.Ifc2x3.GeometryResource
 	public  partial class @IfcRepresentationMap : INotifyPropertyChanged, IInstantiableEntity, IIfcRepresentationMap, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRepresentationMap>
 	{
 		#region IIfcRepresentationMap explicit implementation
-		IIfcAxis2Placement IIfcRepresentationMap.MappingOrigin { get { return @MappingOrigin; } }	
-		IIfcRepresentation IIfcRepresentationMap.MappedRepresentation { get { return @MappedRepresentation; } }	
+		IIfcAxis2Placement IIfcRepresentationMap.MappingOrigin { 
+			get { return @MappingOrigin; } 
+ 
+ 
+			set { MappingOrigin = value as IfcAxis2Placement;}
+		}	
+		IIfcRepresentation IIfcRepresentationMap.MappedRepresentation { 
+			get { return @MappedRepresentation; } 
+ 
+ 
+			set { MappedRepresentation = value as IfcRepresentation;}
+		}	
 		 
 		IEnumerable<IIfcMappedItem> IIfcRepresentationMap.MapUsage {  get { return @MapUsage; } }
 		#endregion

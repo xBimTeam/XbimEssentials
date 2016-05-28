@@ -26,10 +26,10 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTextStyle : IIfcPresentationStyle, IfcPresentationStyleSelect
 	{
-		IIfcTextStyleForDefinedFont @TextCharacterAppearance { get; }
-		IIfcTextStyleTextModel @TextStyle { get; }
-		IIfcTextFontSelect @TextFontStyle { get; }
-		IfcBoolean? @ModelOrDraughting { get; }
+		IIfcTextStyleForDefinedFont @TextCharacterAppearance { get;  set; }
+		IIfcTextStyleTextModel @TextStyle { get;  set; }
+		IIfcTextFontSelect @TextFontStyle { get;  set; }
+		IfcBoolean? @ModelOrDraughting { get;  set; }
 	
 	}
 }
@@ -41,10 +41,29 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcTextStyle : IfcPresentationStyle, IInstantiableEntity, IIfcTextStyle, IContainsEntityReferences, IEquatable<@IfcTextStyle>
 	{
 		#region IIfcTextStyle explicit implementation
-		IIfcTextStyleForDefinedFont IIfcTextStyle.TextCharacterAppearance { get { return @TextCharacterAppearance; } }	
-		IIfcTextStyleTextModel IIfcTextStyle.TextStyle { get { return @TextStyle; } }	
-		IIfcTextFontSelect IIfcTextStyle.TextFontStyle { get { return @TextFontStyle; } }	
-		IfcBoolean? IIfcTextStyle.ModelOrDraughting { get { return @ModelOrDraughting; } }	
+		IIfcTextStyleForDefinedFont IIfcTextStyle.TextCharacterAppearance { 
+			get { return @TextCharacterAppearance; } 
+ 
+ 
+			set { TextCharacterAppearance = value as IfcTextStyleForDefinedFont;}
+		}	
+		IIfcTextStyleTextModel IIfcTextStyle.TextStyle { 
+			get { return @TextStyle; } 
+ 
+ 
+			set { TextStyle = value as IfcTextStyleTextModel;}
+		}	
+		IIfcTextFontSelect IIfcTextStyle.TextFontStyle { 
+			get { return @TextFontStyle; } 
+ 
+ 
+			set { TextFontStyle = value as IfcTextFontSelect;}
+		}	
+		IfcBoolean? IIfcTextStyle.ModelOrDraughting { 
+			get { return @ModelOrDraughting; } 
+ 
+			set { ModelOrDraughting = value;}
+		}	
 		 
 		#endregion
 

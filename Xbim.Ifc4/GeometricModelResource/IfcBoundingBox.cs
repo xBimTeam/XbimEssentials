@@ -27,10 +27,10 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBoundingBox : IIfcGeometricRepresentationItem
 	{
-		IIfcCartesianPoint @Corner { get; }
-		IfcPositiveLengthMeasure @XDim { get; }
-		IfcPositiveLengthMeasure @YDim { get; }
-		IfcPositiveLengthMeasure @ZDim { get; }
+		IIfcCartesianPoint @Corner { get;  set; }
+		IfcPositiveLengthMeasure @XDim { get;  set; }
+		IfcPositiveLengthMeasure @YDim { get;  set; }
+		IfcPositiveLengthMeasure @ZDim { get;  set; }
 		IfcDimensionCount @Dim  { get ; }
 	
 	}
@@ -43,10 +43,27 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public  partial class @IfcBoundingBox : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcBoundingBox, IContainsEntityReferences, IEquatable<@IfcBoundingBox>
 	{
 		#region IIfcBoundingBox explicit implementation
-		IIfcCartesianPoint IIfcBoundingBox.Corner { get { return @Corner; } }	
-		IfcPositiveLengthMeasure IIfcBoundingBox.XDim { get { return @XDim; } }	
-		IfcPositiveLengthMeasure IIfcBoundingBox.YDim { get { return @YDim; } }	
-		IfcPositiveLengthMeasure IIfcBoundingBox.ZDim { get { return @ZDim; } }	
+		IIfcCartesianPoint IIfcBoundingBox.Corner { 
+			get { return @Corner; } 
+ 
+ 
+			set { Corner = value as IfcCartesianPoint;}
+		}	
+		IfcPositiveLengthMeasure IIfcBoundingBox.XDim { 
+			get { return @XDim; } 
+ 
+			set { XDim = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcBoundingBox.YDim { 
+			get { return @YDim; } 
+ 
+			set { YDim = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcBoundingBox.ZDim { 
+			get { return @ZDim; } 
+ 
+			set { ZDim = value;}
+		}	
 		 
 		#endregion
 

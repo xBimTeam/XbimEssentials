@@ -30,10 +30,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcLibraryInformation : IPersistEntity, IfcLibrarySelect
 	{
-		IfcLabel @Name { get; }
-		IfcLabel? @Version { get; }
-		IIfcOrganization @Publisher { get; }
-		IIfcCalendarDate @VersionDate { get; }
+		IfcLabel @Name { get;  set; }
+		IfcLabel? @Version { get;  set; }
+		IIfcOrganization @Publisher { get;  set; }
+		IIfcCalendarDate @VersionDate { get;  set; }
 		IEnumerable<IIfcLibraryReference> @LibraryReference { get; }
 	
 	}
@@ -46,11 +46,31 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 	public  partial class @IfcLibraryInformation : INotifyPropertyChanged, IInstantiableEntity, IIfcLibraryInformation, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcLibraryInformation>
 	{
 		#region IIfcLibraryInformation explicit implementation
-		IfcLabel IIfcLibraryInformation.Name { get { return @Name; } }	
-		IfcLabel? IIfcLibraryInformation.Version { get { return @Version; } }	
-		IIfcOrganization IIfcLibraryInformation.Publisher { get { return @Publisher; } }	
-		IIfcCalendarDate IIfcLibraryInformation.VersionDate { get { return @VersionDate; } }	
-		IEnumerable<IIfcLibraryReference> IIfcLibraryInformation.LibraryReference { get { return @LibraryReference; } }	
+		IfcLabel IIfcLibraryInformation.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcLabel? IIfcLibraryInformation.Version { 
+			get { return @Version; } 
+ 
+			set { Version = value;}
+		}	
+		IIfcOrganization IIfcLibraryInformation.Publisher { 
+			get { return @Publisher; } 
+ 
+ 
+			set { Publisher = value as IfcOrganization;}
+		}	
+		IIfcCalendarDate IIfcLibraryInformation.VersionDate { 
+			get { return @VersionDate; } 
+ 
+ 
+			set { VersionDate = value as IfcCalendarDate;}
+		}	
+		IEnumerable<IIfcLibraryReference> IIfcLibraryInformation.LibraryReference { 
+			get { return @LibraryReference; } 
+		}	
 		 
 		#endregion
 

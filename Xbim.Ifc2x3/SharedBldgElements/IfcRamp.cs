@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRamp : IIfcBuildingElement
 	{
-		IfcRampTypeEnum @ShapeType { get; }
+		IfcRampTypeEnum @ShapeType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 	public  partial class @IfcRamp : IfcBuildingElement, IInstantiableEntity, IIfcRamp, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRamp>
 	{
 		#region IIfcRamp explicit implementation
-		IfcRampTypeEnum IIfcRamp.ShapeType { get { return @ShapeType; } }	
+		IfcRampTypeEnum IIfcRamp.ShapeType { 
+			get { return @ShapeType; } 
+ 
+			set { ShapeType = value;}
+		}	
 		 
 		#endregion
 

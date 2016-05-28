@@ -26,9 +26,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcColourRgb : IIfcColourSpecification, IfcColourOrFactor
 	{
-		IfcNormalisedRatioMeasure @Red { get; }
-		IfcNormalisedRatioMeasure @Green { get; }
-		IfcNormalisedRatioMeasure @Blue { get; }
+		IfcNormalisedRatioMeasure @Red { get;  set; }
+		IfcNormalisedRatioMeasure @Green { get;  set; }
+		IfcNormalisedRatioMeasure @Blue { get;  set; }
 	
 	}
 }
@@ -40,9 +40,21 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcColourRgb : IfcColourSpecification, IInstantiableEntity, IIfcColourRgb, IEquatable<@IfcColourRgb>
 	{
 		#region IIfcColourRgb explicit implementation
-		IfcNormalisedRatioMeasure IIfcColourRgb.Red { get { return @Red; } }	
-		IfcNormalisedRatioMeasure IIfcColourRgb.Green { get { return @Green; } }	
-		IfcNormalisedRatioMeasure IIfcColourRgb.Blue { get { return @Blue; } }	
+		IfcNormalisedRatioMeasure IIfcColourRgb.Red { 
+			get { return @Red; } 
+ 
+			set { Red = value;}
+		}	
+		IfcNormalisedRatioMeasure IIfcColourRgb.Green { 
+			get { return @Green; } 
+ 
+			set { Green = value;}
+		}	
+		IfcNormalisedRatioMeasure IIfcColourRgb.Blue { 
+			get { return @Blue; } 
+ 
+			set { Blue = value;}
+		}	
 		 
 		#endregion
 

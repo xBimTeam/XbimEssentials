@@ -27,8 +27,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcElectricDistributionPoint : IIfcFlowController
 	{
-		IfcElectricDistributionPointFunctionEnum @DistributionPointFunction { get; }
-		IfcLabel? @UserDefinedFunction { get; }
+		IfcElectricDistributionPointFunctionEnum @DistributionPointFunction { get;  set; }
+		IfcLabel? @UserDefinedFunction { get;  set; }
 	
 	}
 }
@@ -40,8 +40,16 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 	public  partial class @IfcElectricDistributionPoint : IfcFlowController, IInstantiableEntity, IIfcElectricDistributionPoint, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcElectricDistributionPoint>
 	{
 		#region IIfcElectricDistributionPoint explicit implementation
-		IfcElectricDistributionPointFunctionEnum IIfcElectricDistributionPoint.DistributionPointFunction { get { return @DistributionPointFunction; } }	
-		IfcLabel? IIfcElectricDistributionPoint.UserDefinedFunction { get { return @UserDefinedFunction; } }	
+		IfcElectricDistributionPointFunctionEnum IIfcElectricDistributionPoint.DistributionPointFunction { 
+			get { return @DistributionPointFunction; } 
+ 
+			set { DistributionPointFunction = value;}
+		}	
+		IfcLabel? IIfcElectricDistributionPoint.UserDefinedFunction { 
+			get { return @UserDefinedFunction; } 
+ 
+			set { UserDefinedFunction = value;}
+		}	
 		 
 		#endregion
 

@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcRelConnectsWithRealizingElements : IIfcRelConnectsElements
 	{
 		IEnumerable<IIfcElement> @RealizingElements { get; }
-		IfcLabel? @ConnectionType { get; }
+		IfcLabel? @ConnectionType { get;  set; }
 	
 	}
 }
@@ -39,8 +39,14 @@ namespace Xbim.Ifc2x3.ProductExtension
 	public  partial class @IfcRelConnectsWithRealizingElements : IfcRelConnectsElements, IInstantiableEntity, IIfcRelConnectsWithRealizingElements, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsWithRealizingElements>
 	{
 		#region IIfcRelConnectsWithRealizingElements explicit implementation
-		IEnumerable<IIfcElement> IIfcRelConnectsWithRealizingElements.RealizingElements { get { return @RealizingElements; } }	
-		IfcLabel? IIfcRelConnectsWithRealizingElements.ConnectionType { get { return @ConnectionType; } }	
+		IEnumerable<IIfcElement> IIfcRelConnectsWithRealizingElements.RealizingElements { 
+			get { return @RealizingElements; } 
+		}	
+		IfcLabel? IIfcRelConnectsWithRealizingElements.ConnectionType { 
+			get { return @ConnectionType; } 
+ 
+			set { ConnectionType = value;}
+		}	
 		 
 		#endregion
 

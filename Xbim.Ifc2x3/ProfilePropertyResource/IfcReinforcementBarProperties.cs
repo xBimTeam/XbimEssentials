@@ -28,12 +28,12 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcReinforcementBarProperties : IPersistEntity
 	{
-		IfcAreaMeasure @TotalCrossSectionArea { get; }
-		IfcLabel @SteelGrade { get; }
-		IfcReinforcingBarSurfaceEnum? @BarSurface { get; }
-		IfcLengthMeasure? @EffectiveDepth { get; }
-		IfcPositiveLengthMeasure? @NominalBarDiameter { get; }
-		IfcCountMeasure? @BarCount { get; }
+		IfcAreaMeasure @TotalCrossSectionArea { get;  set; }
+		IfcLabel @SteelGrade { get;  set; }
+		IfcReinforcingBarSurfaceEnum? @BarSurface { get;  set; }
+		IfcLengthMeasure? @EffectiveDepth { get;  set; }
+		IfcPositiveLengthMeasure? @NominalBarDiameter { get;  set; }
+		IfcCountMeasure? @BarCount { get;  set; }
 	
 	}
 }
@@ -45,12 +45,36 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 	public  partial class @IfcReinforcementBarProperties : INotifyPropertyChanged, IInstantiableEntity, IIfcReinforcementBarProperties, IEquatable<@IfcReinforcementBarProperties>
 	{
 		#region IIfcReinforcementBarProperties explicit implementation
-		IfcAreaMeasure IIfcReinforcementBarProperties.TotalCrossSectionArea { get { return @TotalCrossSectionArea; } }	
-		IfcLabel IIfcReinforcementBarProperties.SteelGrade { get { return @SteelGrade; } }	
-		IfcReinforcingBarSurfaceEnum? IIfcReinforcementBarProperties.BarSurface { get { return @BarSurface; } }	
-		IfcLengthMeasure? IIfcReinforcementBarProperties.EffectiveDepth { get { return @EffectiveDepth; } }	
-		IfcPositiveLengthMeasure? IIfcReinforcementBarProperties.NominalBarDiameter { get { return @NominalBarDiameter; } }	
-		IfcCountMeasure? IIfcReinforcementBarProperties.BarCount { get { return @BarCount; } }	
+		IfcAreaMeasure IIfcReinforcementBarProperties.TotalCrossSectionArea { 
+			get { return @TotalCrossSectionArea; } 
+ 
+			set { TotalCrossSectionArea = value;}
+		}	
+		IfcLabel IIfcReinforcementBarProperties.SteelGrade { 
+			get { return @SteelGrade; } 
+ 
+			set { SteelGrade = value;}
+		}	
+		IfcReinforcingBarSurfaceEnum? IIfcReinforcementBarProperties.BarSurface { 
+			get { return @BarSurface; } 
+ 
+			set { BarSurface = value;}
+		}	
+		IfcLengthMeasure? IIfcReinforcementBarProperties.EffectiveDepth { 
+			get { return @EffectiveDepth; } 
+ 
+			set { EffectiveDepth = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcReinforcementBarProperties.NominalBarDiameter { 
+			get { return @NominalBarDiameter; } 
+ 
+			set { NominalBarDiameter = value;}
+		}	
+		IfcCountMeasure? IIfcReinforcementBarProperties.BarCount { 
+			get { return @BarCount; } 
+ 
+			set { BarCount = value;}
+		}	
 		 
 		#endregion
 

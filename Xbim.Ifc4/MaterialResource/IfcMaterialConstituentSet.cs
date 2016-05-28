@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialConstituentSet : IIfcMaterialDefinition
 	{
-		IfcLabel? @Name { get; }
-		IfcText? @Description { get; }
+		IfcLabel? @Name { get;  set; }
+		IfcText? @Description { get;  set; }
 		IEnumerable<IIfcMaterialConstituent> @MaterialConstituents { get; }
 	
 	}
@@ -40,9 +40,19 @@ namespace Xbim.Ifc4.MaterialResource
 	public  partial class @IfcMaterialConstituentSet : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialConstituentSet, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMaterialConstituentSet>
 	{
 		#region IIfcMaterialConstituentSet explicit implementation
-		IfcLabel? IIfcMaterialConstituentSet.Name { get { return @Name; } }	
-		IfcText? IIfcMaterialConstituentSet.Description { get { return @Description; } }	
-		IEnumerable<IIfcMaterialConstituent> IIfcMaterialConstituentSet.MaterialConstituents { get { return @MaterialConstituents; } }	
+		IfcLabel? IIfcMaterialConstituentSet.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcMaterialConstituentSet.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IEnumerable<IIfcMaterialConstituent> IIfcMaterialConstituentSet.MaterialConstituents { 
+			get { return @MaterialConstituents; } 
+		}	
 		 
 		#endregion
 

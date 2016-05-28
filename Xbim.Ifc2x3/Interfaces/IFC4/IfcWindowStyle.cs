@@ -51,6 +51,48 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcWindowStyleConstructionEnum.ALUMINIUM:
+						ConstructionType = IfcWindowStyleConstructionEnum.ALUMINIUM;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowStyleConstructionEnum.HIGH_GRADE_STEEL:
+						ConstructionType = IfcWindowStyleConstructionEnum.HIGH_GRADE_STEEL;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowStyleConstructionEnum.STEEL:
+						ConstructionType = IfcWindowStyleConstructionEnum.STEEL;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowStyleConstructionEnum.WOOD:
+						ConstructionType = IfcWindowStyleConstructionEnum.WOOD;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowStyleConstructionEnum.ALUMINIUM_WOOD:
+						ConstructionType = IfcWindowStyleConstructionEnum.ALUMINIUM_WOOD;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowStyleConstructionEnum.PLASTIC:
+						ConstructionType = IfcWindowStyleConstructionEnum.PLASTIC;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowStyleConstructionEnum.OTHER_CONSTRUCTION:
+						ConstructionType = IfcWindowStyleConstructionEnum.OTHER_CONSTRUCTION;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowStyleConstructionEnum.NOTDEFINED:
+						ConstructionType = IfcWindowStyleConstructionEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.Interfaces.IfcWindowStyleOperationEnum IIfcWindowStyle.OperationType 
 		{ 
@@ -86,6 +128,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 						return Ifc4.Interfaces.IfcWindowStyleOperationEnum.TRIPLE_PANEL_HORIZONTAL;
 					
 					case IfcWindowStyleOperationEnum.USERDEFINED:
+						//## Optional custom handling of OperationType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcWindowStyleOperationEnum.USERDEFINED;
 					
 					case IfcWindowStyleOperationEnum.NOTDEFINED:
@@ -96,6 +140,60 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcWindowStyleOperationEnum.SINGLE_PANEL:
+						OperationType = IfcWindowStyleOperationEnum.SINGLE_PANEL;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowStyleOperationEnum.DOUBLE_PANEL_VERTICAL:
+						OperationType = IfcWindowStyleOperationEnum.DOUBLE_PANEL_VERTICAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowStyleOperationEnum.DOUBLE_PANEL_HORIZONTAL:
+						OperationType = IfcWindowStyleOperationEnum.DOUBLE_PANEL_HORIZONTAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowStyleOperationEnum.TRIPLE_PANEL_VERTICAL:
+						OperationType = IfcWindowStyleOperationEnum.TRIPLE_PANEL_VERTICAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowStyleOperationEnum.TRIPLE_PANEL_BOTTOM:
+						OperationType = IfcWindowStyleOperationEnum.TRIPLE_PANEL_BOTTOM;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowStyleOperationEnum.TRIPLE_PANEL_TOP:
+						OperationType = IfcWindowStyleOperationEnum.TRIPLE_PANEL_TOP;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowStyleOperationEnum.TRIPLE_PANEL_LEFT:
+						OperationType = IfcWindowStyleOperationEnum.TRIPLE_PANEL_LEFT;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowStyleOperationEnum.TRIPLE_PANEL_RIGHT:
+						OperationType = IfcWindowStyleOperationEnum.TRIPLE_PANEL_RIGHT;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowStyleOperationEnum.TRIPLE_PANEL_HORIZONTAL:
+						OperationType = IfcWindowStyleOperationEnum.TRIPLE_PANEL_HORIZONTAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowStyleOperationEnum.USERDEFINED:
+						OperationType = IfcWindowStyleOperationEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcWindowStyleOperationEnum.NOTDEFINED:
+						OperationType = IfcWindowStyleOperationEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcBoolean IIfcWindowStyle.ParameterTakesPrecedence 
 		{ 
@@ -105,6 +203,11 @@ namespace Xbim.Ifc2x3.SharedBldgElements
                 return new Ifc4.MeasureResource.IfcBoolean(ParameterTakesPrecedence);
 				//##
 			} 
+			set
+			{
+				ParameterTakesPrecedence = value;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcBoolean IIfcWindowStyle.Sizeable 
 		{ 
@@ -114,6 +217,11 @@ namespace Xbim.Ifc2x3.SharedBldgElements
                 return new Ifc4.MeasureResource.IfcBoolean(Sizeable);
 				//##
 			} 
+			set
+			{
+				Sizeable = value;
+				
+			}
 		}
 	//## Custom code
 	//##

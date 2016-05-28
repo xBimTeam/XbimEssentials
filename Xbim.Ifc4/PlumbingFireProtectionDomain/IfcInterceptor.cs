@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcInterceptor : IIfcFlowTreatmentDevice
 	{
-		IfcInterceptorTypeEnum? @PredefinedType { get; }
+		IfcInterceptorTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 	public  partial class @IfcInterceptor : IfcFlowTreatmentDevice, IInstantiableEntity, IIfcInterceptor, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcInterceptor>
 	{
 		#region IIfcInterceptor explicit implementation
-		IfcInterceptorTypeEnum? IIfcInterceptor.PredefinedType { get { return @PredefinedType; } }	
+		IfcInterceptorTypeEnum? IIfcInterceptor.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

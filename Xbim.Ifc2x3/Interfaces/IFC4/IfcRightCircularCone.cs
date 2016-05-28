@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Height);
 			} 
+			set
+			{
+				Height = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRightCircularCone.BottomRadius 
 		{ 
@@ -29,6 +34,11 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(BottomRadius);
 			} 
+			set
+			{
+				BottomRadius = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
 	//## Custom code
 	//##

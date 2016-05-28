@@ -25,8 +25,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMappedItem : IIfcRepresentationItem
 	{
-		IIfcRepresentationMap @MappingSource { get; }
-		IIfcCartesianTransformationOperator @MappingTarget { get; }
+		IIfcRepresentationMap @MappingSource { get;  set; }
+		IIfcCartesianTransformationOperator @MappingTarget { get;  set; }
 	
 	}
 }
@@ -38,8 +38,18 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcMappedItem : IfcRepresentationItem, IInstantiableEntity, IIfcMappedItem, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMappedItem>
 	{
 		#region IIfcMappedItem explicit implementation
-		IIfcRepresentationMap IIfcMappedItem.MappingSource { get { return @MappingSource; } }	
-		IIfcCartesianTransformationOperator IIfcMappedItem.MappingTarget { get { return @MappingTarget; } }	
+		IIfcRepresentationMap IIfcMappedItem.MappingSource { 
+			get { return @MappingSource; } 
+ 
+ 
+			set { MappingSource = value as IfcRepresentationMap;}
+		}	
+		IIfcCartesianTransformationOperator IIfcMappedItem.MappingTarget { 
+			get { return @MappingTarget; } 
+ 
+ 
+			set { MappingTarget = value as IfcCartesianTransformationOperator;}
+		}	
 		 
 		#endregion
 

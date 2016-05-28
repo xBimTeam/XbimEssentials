@@ -28,12 +28,12 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcLightSourceGoniometric : IIfcLightSource
 	{
-		IIfcAxis2Placement3D @Position { get; }
-		IIfcColourRgb @ColourAppearance { get; }
-		IfcThermodynamicTemperatureMeasure @ColourTemperature { get; }
-		IfcLuminousFluxMeasure @LuminousFlux { get; }
-		IfcLightEmissionSourceEnum @LightEmissionSource { get; }
-		IIfcLightDistributionDataSourceSelect @LightDistributionDataSource { get; }
+		IIfcAxis2Placement3D @Position { get;  set; }
+		IIfcColourRgb @ColourAppearance { get;  set; }
+		IfcThermodynamicTemperatureMeasure @ColourTemperature { get;  set; }
+		IfcLuminousFluxMeasure @LuminousFlux { get;  set; }
+		IfcLightEmissionSourceEnum @LightEmissionSource { get;  set; }
+		IIfcLightDistributionDataSourceSelect @LightDistributionDataSource { get;  set; }
 	
 	}
 }
@@ -45,12 +45,39 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 	public  partial class @IfcLightSourceGoniometric : IfcLightSource, IInstantiableEntity, IIfcLightSourceGoniometric, IContainsEntityReferences, IEquatable<@IfcLightSourceGoniometric>
 	{
 		#region IIfcLightSourceGoniometric explicit implementation
-		IIfcAxis2Placement3D IIfcLightSourceGoniometric.Position { get { return @Position; } }	
-		IIfcColourRgb IIfcLightSourceGoniometric.ColourAppearance { get { return @ColourAppearance; } }	
-		IfcThermodynamicTemperatureMeasure IIfcLightSourceGoniometric.ColourTemperature { get { return @ColourTemperature; } }	
-		IfcLuminousFluxMeasure IIfcLightSourceGoniometric.LuminousFlux { get { return @LuminousFlux; } }	
-		IfcLightEmissionSourceEnum IIfcLightSourceGoniometric.LightEmissionSource { get { return @LightEmissionSource; } }	
-		IIfcLightDistributionDataSourceSelect IIfcLightSourceGoniometric.LightDistributionDataSource { get { return @LightDistributionDataSource; } }	
+		IIfcAxis2Placement3D IIfcLightSourceGoniometric.Position { 
+			get { return @Position; } 
+ 
+ 
+			set { Position = value as IfcAxis2Placement3D;}
+		}	
+		IIfcColourRgb IIfcLightSourceGoniometric.ColourAppearance { 
+			get { return @ColourAppearance; } 
+ 
+ 
+			set { ColourAppearance = value as IfcColourRgb;}
+		}	
+		IfcThermodynamicTemperatureMeasure IIfcLightSourceGoniometric.ColourTemperature { 
+			get { return @ColourTemperature; } 
+ 
+			set { ColourTemperature = value;}
+		}	
+		IfcLuminousFluxMeasure IIfcLightSourceGoniometric.LuminousFlux { 
+			get { return @LuminousFlux; } 
+ 
+			set { LuminousFlux = value;}
+		}	
+		IfcLightEmissionSourceEnum IIfcLightSourceGoniometric.LightEmissionSource { 
+			get { return @LightEmissionSource; } 
+ 
+			set { LightEmissionSource = value;}
+		}	
+		IIfcLightDistributionDataSourceSelect IIfcLightSourceGoniometric.LightDistributionDataSource { 
+			get { return @LightDistributionDataSource; } 
+ 
+ 
+			set { LightDistributionDataSource = value as IfcLightDistributionDataSourceSelect;}
+		}	
 		 
 		#endregion
 

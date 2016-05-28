@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcLaborResource : IIfcConstructionResource
 	{
-		IfcText? @SkillSet { get; }
+		IfcText? @SkillSet { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 	public  partial class @IfcLaborResource : IfcConstructionResource, IInstantiableEntity, IIfcLaborResource, IContainsEntityReferences, IEquatable<@IfcLaborResource>
 	{
 		#region IIfcLaborResource explicit implementation
-		IfcText? IIfcLaborResource.SkillSet { get { return @SkillSet; } }	
+		IfcText? IIfcLaborResource.SkillSet { 
+			get { return @SkillSet; } 
+ 
+			set { SkillSet = value;}
+		}	
 		 
 		#endregion
 

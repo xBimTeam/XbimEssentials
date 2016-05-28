@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.TopologyResource
 			{
 				return EdgeGeometry;
 			} 
+			set
+			{
+				EdgeGeometry = value as GeometryResource.IfcCurve;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcBoolean IIfcEdgeCurve.SameSense 
 		{ 
@@ -31,6 +36,11 @@ namespace Xbim.Ifc2x3.TopologyResource
 			    return new Ifc4.MeasureResource.IfcBoolean(SameSense);
 			    //##
 			} 
+			set
+			{
+				SameSense = value;
+				
+			}
 		}
 	//## Custom code
 	//##

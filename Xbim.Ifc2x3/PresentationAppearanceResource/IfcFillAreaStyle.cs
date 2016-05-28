@@ -37,7 +37,9 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	public  partial class @IfcFillAreaStyle : IfcPresentationStyle, IInstantiableEntity, IIfcFillAreaStyle, IEquatable<@IfcFillAreaStyle>
 	{
 		#region IIfcFillAreaStyle explicit implementation
-		IEnumerable<IIfcFillStyleSelect> IIfcFillAreaStyle.FillStyles { get { return @FillStyles; } }	
+		IEnumerable<IIfcFillStyleSelect> IIfcFillAreaStyle.FillStyles { 
+			get { return @FillStyles; } 
+		}	
 		 
 		#endregion
 

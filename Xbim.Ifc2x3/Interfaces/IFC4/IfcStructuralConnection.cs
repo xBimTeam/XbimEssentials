@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				return AppliedCondition;
 			} 
+			set
+			{
+				AppliedCondition = value as StructuralLoadResource.IfcBoundaryCondition;
+				
+			}
 		}
 		IEnumerable<IIfcRelConnectsStructuralMember> IIfcStructuralConnection.ConnectsStructuralMembers 
 		{ 

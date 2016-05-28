@@ -23,6 +23,13 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				if (!AxisTag.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(AxisTag.Value);
 			} 
+			set
+			{
+				AxisTag = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		IIfcCurve IIfcGridAxis.AxisCurve 
 		{ 
@@ -30,6 +37,11 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			{
 				return AxisCurve;
 			} 
+			set
+			{
+				AxisCurve = value as GeometryResource.IfcCurve;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcBoolean IIfcGridAxis.SameSense 
 		{ 
@@ -37,6 +49,11 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			{
 				return new Ifc4.MeasureResource.IfcBoolean(SameSense);
 			} 
+			set
+			{
+				SameSense = new MeasureResource.IfcBoolean(value);
+				
+			}
 		}
 		IEnumerable<IIfcGrid> IIfcGridAxis.PartOfW 
 		{ 

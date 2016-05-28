@@ -32,6 +32,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 						return Ifc4.Interfaces.IfcChillerTypeEnum.HEATRECOVERY;
 					
 					case IfcChillerTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcChillerTypeEnum.USERDEFINED;
 					
 					case IfcChillerTypeEnum.NOTDEFINED:
@@ -42,6 +44,36 @@ namespace Xbim.Ifc2x3.HVACDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcChillerTypeEnum.AIRCOOLED:
+						PredefinedType = IfcChillerTypeEnum.AIRCOOLED;
+						return;
+					
+					case Ifc4.Interfaces.IfcChillerTypeEnum.WATERCOOLED:
+						PredefinedType = IfcChillerTypeEnum.WATERCOOLED;
+						return;
+					
+					case Ifc4.Interfaces.IfcChillerTypeEnum.HEATRECOVERY:
+						PredefinedType = IfcChillerTypeEnum.HEATRECOVERY;
+						return;
+					
+					case Ifc4.Interfaces.IfcChillerTypeEnum.USERDEFINED:
+						PredefinedType = IfcChillerTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcChillerTypeEnum.NOTDEFINED:
+						PredefinedType = IfcChillerTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

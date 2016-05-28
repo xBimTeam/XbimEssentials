@@ -26,11 +26,11 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcIShapeProfileDef : IIfcParameterizedProfileDef
 	{
-		IfcPositiveLengthMeasure @OverallWidth { get; }
-		IfcPositiveLengthMeasure @OverallDepth { get; }
-		IfcPositiveLengthMeasure @WebThickness { get; }
-		IfcPositiveLengthMeasure @FlangeThickness { get; }
-		IfcPositiveLengthMeasure? @FilletRadius { get; }
+		IfcPositiveLengthMeasure @OverallWidth { get;  set; }
+		IfcPositiveLengthMeasure @OverallDepth { get;  set; }
+		IfcPositiveLengthMeasure @WebThickness { get;  set; }
+		IfcPositiveLengthMeasure @FlangeThickness { get;  set; }
+		IfcPositiveLengthMeasure? @FilletRadius { get;  set; }
 	
 	}
 }
@@ -42,11 +42,31 @@ namespace Xbim.Ifc2x3.ProfileResource
 	public  partial class @IfcIShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcIShapeProfileDef, IContainsEntityReferences, IEquatable<@IfcIShapeProfileDef>
 	{
 		#region IIfcIShapeProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcIShapeProfileDef.OverallWidth { get { return @OverallWidth; } }	
-		IfcPositiveLengthMeasure IIfcIShapeProfileDef.OverallDepth { get { return @OverallDepth; } }	
-		IfcPositiveLengthMeasure IIfcIShapeProfileDef.WebThickness { get { return @WebThickness; } }	
-		IfcPositiveLengthMeasure IIfcIShapeProfileDef.FlangeThickness { get { return @FlangeThickness; } }	
-		IfcPositiveLengthMeasure? IIfcIShapeProfileDef.FilletRadius { get { return @FilletRadius; } }	
+		IfcPositiveLengthMeasure IIfcIShapeProfileDef.OverallWidth { 
+			get { return @OverallWidth; } 
+ 
+			set { OverallWidth = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcIShapeProfileDef.OverallDepth { 
+			get { return @OverallDepth; } 
+ 
+			set { OverallDepth = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcIShapeProfileDef.WebThickness { 
+			get { return @WebThickness; } 
+ 
+			set { WebThickness = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcIShapeProfileDef.FlangeThickness { 
+			get { return @FlangeThickness; } 
+ 
+			set { FlangeThickness = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcIShapeProfileDef.FilletRadius { 
+			get { return @FilletRadius; } 
+ 
+			set { FilletRadius = value;}
+		}	
 		 
 		#endregion
 

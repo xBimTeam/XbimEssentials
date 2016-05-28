@@ -40,7 +40,9 @@ namespace Xbim.CobieExpress
 	public abstract partial class @CobieTypeOrComponent : CobieAsset, ICobieTypeOrComponent, IEquatable<@CobieTypeOrComponent>
 	{
 		#region ICobieTypeOrComponent explicit implementation
-		IEnumerable<ICobieTypeOrComponent> ICobieTypeOrComponent.AssemblyOf { get { return @AssemblyOf; } }	
+		IEnumerable<ICobieTypeOrComponent> ICobieTypeOrComponent.AssemblyOf { 
+			get { return @AssemblyOf; } 
+		}	
 		 
 		IEnumerable<ICobieConnection> ICobieTypeOrComponent.Connecting {  get { return @Connecting; } }
 		IEnumerable<ICobieConnection> ICobieTypeOrComponent.ConnectedBefore {  get { return @ConnectedBefore; } }

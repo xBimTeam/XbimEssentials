@@ -28,11 +28,11 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConstraintAggregationRelationship : IPersistEntity
 	{
-		IfcLabel? @Name { get; }
-		IfcText? @Description { get; }
-		IIfcConstraint @RelatingConstraint { get; }
+		IfcLabel? @Name { get;  set; }
+		IfcText? @Description { get;  set; }
+		IIfcConstraint @RelatingConstraint { get;  set; }
 		IEnumerable<IIfcConstraint> @RelatedConstraints { get; }
-		IfcLogicalOperatorEnum @LogicalAggregator { get; }
+		IfcLogicalOperatorEnum @LogicalAggregator { get;  set; }
 	
 	}
 }
@@ -44,11 +44,30 @@ namespace Xbim.Ifc2x3.ConstraintResource
 	public  partial class @IfcConstraintAggregationRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcConstraintAggregationRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcConstraintAggregationRelationship>
 	{
 		#region IIfcConstraintAggregationRelationship explicit implementation
-		IfcLabel? IIfcConstraintAggregationRelationship.Name { get { return @Name; } }	
-		IfcText? IIfcConstraintAggregationRelationship.Description { get { return @Description; } }	
-		IIfcConstraint IIfcConstraintAggregationRelationship.RelatingConstraint { get { return @RelatingConstraint; } }	
-		IEnumerable<IIfcConstraint> IIfcConstraintAggregationRelationship.RelatedConstraints { get { return @RelatedConstraints; } }	
-		IfcLogicalOperatorEnum IIfcConstraintAggregationRelationship.LogicalAggregator { get { return @LogicalAggregator; } }	
+		IfcLabel? IIfcConstraintAggregationRelationship.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcConstraintAggregationRelationship.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IIfcConstraint IIfcConstraintAggregationRelationship.RelatingConstraint { 
+			get { return @RelatingConstraint; } 
+ 
+ 
+			set { RelatingConstraint = value as IfcConstraint;}
+		}	
+		IEnumerable<IIfcConstraint> IIfcConstraintAggregationRelationship.RelatedConstraints { 
+			get { return @RelatedConstraints; } 
+		}	
+		IfcLogicalOperatorEnum IIfcConstraintAggregationRelationship.LogicalAggregator { 
+			get { return @LogicalAggregator; } 
+ 
+			set { LogicalAggregator = value;}
+		}	
 		 
 		#endregion
 

@@ -32,6 +32,11 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				return RelatingType;
 			} 
+			set
+			{
+				RelatingType = value as IfcTypeObject;
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -26,8 +26,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMechanicalFastener : IIfcFastener
 	{
-		IfcPositiveLengthMeasure? @NominalDiameter { get; }
-		IfcPositiveLengthMeasure? @NominalLength { get; }
+		IfcPositiveLengthMeasure? @NominalDiameter { get;  set; }
+		IfcPositiveLengthMeasure? @NominalLength { get;  set; }
 	
 	}
 }
@@ -39,8 +39,16 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 	public  partial class @IfcMechanicalFastener : IfcFastener, IInstantiableEntity, IIfcMechanicalFastener, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMechanicalFastener>
 	{
 		#region IIfcMechanicalFastener explicit implementation
-		IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalDiameter { get { return @NominalDiameter; } }	
-		IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalLength { get { return @NominalLength; } }	
+		IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalDiameter { 
+			get { return @NominalDiameter; } 
+ 
+			set { NominalDiameter = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalLength { 
+			get { return @NominalLength; } 
+ 
+			set { NominalLength = value;}
+		}	
 		 
 		#endregion
 

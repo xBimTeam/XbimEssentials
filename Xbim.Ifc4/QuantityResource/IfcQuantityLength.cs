@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcQuantityLength : IIfcPhysicalSimpleQuantity
 	{
-		IfcLengthMeasure @LengthValue { get; }
-		IfcLabel? @Formula { get; }
+		IfcLengthMeasure @LengthValue { get;  set; }
+		IfcLabel? @Formula { get;  set; }
 	
 	}
 }
@@ -39,8 +39,16 @@ namespace Xbim.Ifc4.QuantityResource
 	public  partial class @IfcQuantityLength : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityLength, IContainsEntityReferences, IEquatable<@IfcQuantityLength>
 	{
 		#region IIfcQuantityLength explicit implementation
-		IfcLengthMeasure IIfcQuantityLength.LengthValue { get { return @LengthValue; } }	
-		IfcLabel? IIfcQuantityLength.Formula { get { return @Formula; } }	
+		IfcLengthMeasure IIfcQuantityLength.LengthValue { 
+			get { return @LengthValue; } 
+ 
+			set { LengthValue = value;}
+		}	
+		IfcLabel? IIfcQuantityLength.Formula { 
+			get { return @Formula; } 
+ 
+			set { Formula = value;}
+		}	
 		 
 		#endregion
 

@@ -40,7 +40,9 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 	public  partial class @IfcTextureVertex : INotifyPropertyChanged, IInstantiableEntity, IIfcTextureVertex, IEquatable<@IfcTextureVertex>
 	{
 		#region IIfcTextureVertex explicit implementation
-		IEnumerable<IfcParameterValue> IIfcTextureVertex.Coordinates { get { return @Coordinates; } }	
+		IEnumerable<IfcParameterValue> IIfcTextureVertex.Coordinates { 
+			get { return @Coordinates; } 
+		}	
 		 
 		#endregion
 

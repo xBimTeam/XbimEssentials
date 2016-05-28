@@ -25,9 +25,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcWorkTime : IIfcSchedulingTime
 	{
-		IIfcRecurrencePattern @RecurrencePattern { get; }
-		IfcDate? @Start { get; }
-		IfcDate? @Finish { get; }
+		IIfcRecurrencePattern @RecurrencePattern { get;  set; }
+		IfcDate? @Start { get;  set; }
+		IfcDate? @Finish { get;  set; }
 	
 	}
 }
@@ -39,9 +39,22 @@ namespace Xbim.Ifc4.DateTimeResource
 	public  partial class @IfcWorkTime : IfcSchedulingTime, IInstantiableEntity, IIfcWorkTime, IContainsEntityReferences, IEquatable<@IfcWorkTime>
 	{
 		#region IIfcWorkTime explicit implementation
-		IIfcRecurrencePattern IIfcWorkTime.RecurrencePattern { get { return @RecurrencePattern; } }	
-		IfcDate? IIfcWorkTime.Start { get { return @Start; } }	
-		IfcDate? IIfcWorkTime.Finish { get { return @Finish; } }	
+		IIfcRecurrencePattern IIfcWorkTime.RecurrencePattern { 
+			get { return @RecurrencePattern; } 
+ 
+ 
+			set { RecurrencePattern = value as IfcRecurrencePattern;}
+		}	
+		IfcDate? IIfcWorkTime.Start { 
+			get { return @Start; } 
+ 
+			set { Start = value;}
+		}	
+		IfcDate? IIfcWorkTime.Finish { 
+			get { return @Finish; } 
+ 
+			set { Finish = value;}
+		}	
 		 
 		#endregion
 

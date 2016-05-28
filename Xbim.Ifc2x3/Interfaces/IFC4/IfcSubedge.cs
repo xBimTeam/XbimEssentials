@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.TopologyResource
 			{
 				return ParentEdge;
 			} 
+			set
+			{
+				ParentEdge = value as IfcEdge;
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -28,11 +28,11 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcWindowPanelProperties : IIfcPreDefinedPropertySet
 	{
-		IfcWindowPanelOperationEnum @OperationType { get; }
-		IfcWindowPanelPositionEnum @PanelPosition { get; }
-		IfcPositiveLengthMeasure? @FrameDepth { get; }
-		IfcPositiveLengthMeasure? @FrameThickness { get; }
-		IIfcShapeAspect @ShapeAspectStyle { get; }
+		IfcWindowPanelOperationEnum @OperationType { get;  set; }
+		IfcWindowPanelPositionEnum @PanelPosition { get;  set; }
+		IfcPositiveLengthMeasure? @FrameDepth { get;  set; }
+		IfcPositiveLengthMeasure? @FrameThickness { get;  set; }
+		IIfcShapeAspect @ShapeAspectStyle { get;  set; }
 	
 	}
 }
@@ -44,11 +44,32 @@ namespace Xbim.Ifc4.ArchitectureDomain
 	public  partial class @IfcWindowPanelProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcWindowPanelProperties, IContainsEntityReferences, IEquatable<@IfcWindowPanelProperties>
 	{
 		#region IIfcWindowPanelProperties explicit implementation
-		IfcWindowPanelOperationEnum IIfcWindowPanelProperties.OperationType { get { return @OperationType; } }	
-		IfcWindowPanelPositionEnum IIfcWindowPanelProperties.PanelPosition { get { return @PanelPosition; } }	
-		IfcPositiveLengthMeasure? IIfcWindowPanelProperties.FrameDepth { get { return @FrameDepth; } }	
-		IfcPositiveLengthMeasure? IIfcWindowPanelProperties.FrameThickness { get { return @FrameThickness; } }	
-		IIfcShapeAspect IIfcWindowPanelProperties.ShapeAspectStyle { get { return @ShapeAspectStyle; } }	
+		IfcWindowPanelOperationEnum IIfcWindowPanelProperties.OperationType { 
+			get { return @OperationType; } 
+ 
+			set { OperationType = value;}
+		}	
+		IfcWindowPanelPositionEnum IIfcWindowPanelProperties.PanelPosition { 
+			get { return @PanelPosition; } 
+ 
+			set { PanelPosition = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcWindowPanelProperties.FrameDepth { 
+			get { return @FrameDepth; } 
+ 
+			set { FrameDepth = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcWindowPanelProperties.FrameThickness { 
+			get { return @FrameThickness; } 
+ 
+			set { FrameThickness = value;}
+		}	
+		IIfcShapeAspect IIfcWindowPanelProperties.ShapeAspectStyle { 
+			get { return @ShapeAspectStyle; } 
+ 
+ 
+			set { ShapeAspectStyle = value as IfcShapeAspect;}
+		}	
 		 
 		#endregion
 

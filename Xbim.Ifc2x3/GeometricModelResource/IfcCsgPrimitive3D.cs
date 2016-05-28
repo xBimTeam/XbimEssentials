@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCsgPrimitive3D : IIfcGeometricRepresentationItem, IfcBooleanOperand, IfcCsgSelect
 	{
-		IIfcAxis2Placement3D @Position { get; }
+		IIfcAxis2Placement3D @Position { get;  set; }
 	
 	}
 }
@@ -38,7 +38,12 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 	public abstract partial class @IfcCsgPrimitive3D : IfcGeometricRepresentationItem, IIfcCsgPrimitive3D, IEquatable<@IfcCsgPrimitive3D>
 	{
 		#region IIfcCsgPrimitive3D explicit implementation
-		IIfcAxis2Placement3D IIfcCsgPrimitive3D.Position { get { return @Position; } }	
+		IIfcAxis2Placement3D IIfcCsgPrimitive3D.Position { 
+			get { return @Position; } 
+ 
+ 
+			set { Position = value as IfcAxis2Placement3D;}
+		}	
 		 
 		#endregion
 

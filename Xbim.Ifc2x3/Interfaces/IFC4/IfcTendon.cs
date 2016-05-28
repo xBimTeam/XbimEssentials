@@ -35,6 +35,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 						return Ifc4.Interfaces.IfcTendonTypeEnum.COATED;
 					
 					case IfcTendonTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcTendonTypeEnum.USERDEFINED;
 					
 					case IfcTendonTypeEnum.NOTDEFINED:
@@ -45,6 +47,40 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcTendonTypeEnum.BAR:
+						PredefinedType = IfcTendonTypeEnum.BAR;
+						return;
+					
+					case Ifc4.Interfaces.IfcTendonTypeEnum.COATED:
+						PredefinedType = IfcTendonTypeEnum.COATED;
+						return;
+					
+					case Ifc4.Interfaces.IfcTendonTypeEnum.STRAND:
+						PredefinedType = IfcTendonTypeEnum.STRAND;
+						return;
+					
+					case Ifc4.Interfaces.IfcTendonTypeEnum.WIRE:
+						PredefinedType = IfcTendonTypeEnum.WIRE;
+						return;
+					
+					case Ifc4.Interfaces.IfcTendonTypeEnum.USERDEFINED:
+						PredefinedType = IfcTendonTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcTendonTypeEnum.NOTDEFINED:
+						PredefinedType = IfcTendonTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcTendon.NominalDiameter 
 		{ 
@@ -52,6 +88,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(NominalDiameter);
 			} 
+			set
+			{
+				NominalDiameter = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 default(MeasureResource.IfcPositiveLengthMeasure) ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcAreaMeasure? IIfcTendon.CrossSectionArea 
 		{ 
@@ -59,6 +102,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			{
 				return new Ifc4.MeasureResource.IfcAreaMeasure(CrossSectionArea);
 			} 
+			set
+			{
+				CrossSectionArea = value.HasValue ? 
+					new MeasureResource.IfcAreaMeasure(value.Value) :  
+					 default(MeasureResource.IfcAreaMeasure) ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcForceMeasure? IIfcTendon.TensionForce 
 		{ 
@@ -67,6 +117,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				if (!TensionForce.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcForceMeasure(TensionForce.Value);
 			} 
+			set
+			{
+				TensionForce = value.HasValue ? 
+					new MeasureResource.IfcForceMeasure(value.Value) :  
+					 new MeasureResource.IfcForceMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPressureMeasure? IIfcTendon.PreStress 
 		{ 
@@ -75,6 +132,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				if (!PreStress.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPressureMeasure(PreStress.Value);
 			} 
+			set
+			{
+				PreStress = value.HasValue ? 
+					new MeasureResource.IfcPressureMeasure(value.Value) :  
+					 new MeasureResource.IfcPressureMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcTendon.FrictionCoefficient 
 		{ 
@@ -83,6 +147,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				if (!FrictionCoefficient.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(FrictionCoefficient.Value);
 			} 
+			set
+			{
+				FrictionCoefficient = value.HasValue ? 
+					new MeasureResource.IfcNormalisedRatioMeasure(value.Value) :  
+					 new MeasureResource.IfcNormalisedRatioMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcTendon.AnchorageSlip 
 		{ 
@@ -91,6 +162,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				if (!AnchorageSlip.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(AnchorageSlip.Value);
 			} 
+			set
+			{
+				AnchorageSlip = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcTendon.MinCurvatureRadius 
 		{ 
@@ -99,6 +177,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				if (!MinCurvatureRadius.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(MinCurvatureRadius.Value);
 			} 
+			set
+			{
+				MinCurvatureRadius = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

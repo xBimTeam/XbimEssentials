@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTransportElement : IIfcElement
 	{
-		IfcTransportElementTypeEnum? @PredefinedType { get; }
+		IfcTransportElementTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -37,7 +37,11 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcTransportElement : IfcElement, IInstantiableEntity, IIfcTransportElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTransportElement>
 	{
 		#region IIfcTransportElement explicit implementation
-		IfcTransportElementTypeEnum? IIfcTransportElement.PredefinedType { get { return @PredefinedType; } }	
+		IfcTransportElementTypeEnum? IIfcTransportElement.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

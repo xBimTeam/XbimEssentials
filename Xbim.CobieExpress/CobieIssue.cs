@@ -25,16 +25,16 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieIssue : ICobieReferencedObject
 	{
-		string @Name { get; }
-		string @Description { get; }
-		ICobieIssueType @IssueType { get; }
-		ICobieIssueRisk @Risk { get; }
-		ICobieIssueChance @Chance { get; }
-		ICobieIssueImpact @Impact { get; }
-		ICobieContact @Owner { get; }
-		string @Mitigation { get; }
-		ICobieAsset @Causing { get; }
-		ICobieAsset @Affected { get; }
+		string @Name { get;  set; }
+		string @Description { get;  set; }
+		ICobieIssueType @IssueType { get;  set; }
+		ICobieIssueRisk @Risk { get;  set; }
+		ICobieIssueChance @Chance { get;  set; }
+		ICobieIssueImpact @Impact { get;  set; }
+		ICobieContact @Owner { get;  set; }
+		string @Mitigation { get;  set; }
+		ICobieAsset @Causing { get;  set; }
+		ICobieAsset @Affected { get;  set; }
 	
 	}
 }
@@ -46,16 +46,63 @@ namespace Xbim.CobieExpress
 	public  partial class @CobieIssue : CobieReferencedObject, IInstantiableEntity, ICobieIssue, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieIssue>
 	{
 		#region ICobieIssue explicit implementation
-		string ICobieIssue.Name { get { return @Name; } }	
-		string ICobieIssue.Description { get { return @Description; } }	
-		ICobieIssueType ICobieIssue.IssueType { get { return @IssueType; } }	
-		ICobieIssueRisk ICobieIssue.Risk { get { return @Risk; } }	
-		ICobieIssueChance ICobieIssue.Chance { get { return @Chance; } }	
-		ICobieIssueImpact ICobieIssue.Impact { get { return @Impact; } }	
-		ICobieContact ICobieIssue.Owner { get { return @Owner; } }	
-		string ICobieIssue.Mitigation { get { return @Mitigation; } }	
-		ICobieAsset ICobieIssue.Causing { get { return @Causing; } }	
-		ICobieAsset ICobieIssue.Affected { get { return @Affected; } }	
+		string ICobieIssue.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		string ICobieIssue.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		ICobieIssueType ICobieIssue.IssueType { 
+			get { return @IssueType; } 
+ 
+ 
+			set { IssueType = value as CobieIssueType;}
+		}	
+		ICobieIssueRisk ICobieIssue.Risk { 
+			get { return @Risk; } 
+ 
+ 
+			set { Risk = value as CobieIssueRisk;}
+		}	
+		ICobieIssueChance ICobieIssue.Chance { 
+			get { return @Chance; } 
+ 
+ 
+			set { Chance = value as CobieIssueChance;}
+		}	
+		ICobieIssueImpact ICobieIssue.Impact { 
+			get { return @Impact; } 
+ 
+ 
+			set { Impact = value as CobieIssueImpact;}
+		}	
+		ICobieContact ICobieIssue.Owner { 
+			get { return @Owner; } 
+ 
+ 
+			set { Owner = value as CobieContact;}
+		}	
+		string ICobieIssue.Mitigation { 
+			get { return @Mitigation; } 
+ 
+			set { Mitigation = value;}
+		}	
+		ICobieAsset ICobieIssue.Causing { 
+			get { return @Causing; } 
+ 
+ 
+			set { Causing = value as CobieAsset;}
+		}	
+		ICobieAsset ICobieIssue.Affected { 
+			get { return @Affected; } 
+ 
+ 
+			set { Affected = value as CobieAsset;}
+		}	
 		 
 		#endregion
 

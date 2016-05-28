@@ -38,7 +38,9 @@ namespace Xbim.Ifc2x3.Kernel
 	public  partial class @IfcRelOverridesProperties : IfcRelDefinesByProperties, IInstantiableEntity, IIfcRelOverridesProperties, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelOverridesProperties>
 	{
 		#region IIfcRelOverridesProperties explicit implementation
-		IEnumerable<IIfcProperty> IIfcRelOverridesProperties.OverridingProperties { get { return @OverridingProperties; } }	
+		IEnumerable<IIfcProperty> IIfcRelOverridesProperties.OverridingProperties { 
+			get { return @OverridingProperties; } 
+		}	
 		 
 		#endregion
 

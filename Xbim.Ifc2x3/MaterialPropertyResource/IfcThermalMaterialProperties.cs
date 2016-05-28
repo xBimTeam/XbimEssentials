@@ -26,10 +26,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcThermalMaterialProperties : IIfcMaterialProperties
 	{
-		IfcSpecificHeatCapacityMeasure? @SpecificHeatCapacity { get; }
-		IfcThermodynamicTemperatureMeasure? @BoilingPoint { get; }
-		IfcThermodynamicTemperatureMeasure? @FreezingPoint { get; }
-		IfcThermalConductivityMeasure? @ThermalConductivity { get; }
+		IfcSpecificHeatCapacityMeasure? @SpecificHeatCapacity { get;  set; }
+		IfcThermodynamicTemperatureMeasure? @BoilingPoint { get;  set; }
+		IfcThermodynamicTemperatureMeasure? @FreezingPoint { get;  set; }
+		IfcThermalConductivityMeasure? @ThermalConductivity { get;  set; }
 	
 	}
 }
@@ -41,10 +41,26 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	public  partial class @IfcThermalMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcThermalMaterialProperties, IContainsEntityReferences, IEquatable<@IfcThermalMaterialProperties>
 	{
 		#region IIfcThermalMaterialProperties explicit implementation
-		IfcSpecificHeatCapacityMeasure? IIfcThermalMaterialProperties.SpecificHeatCapacity { get { return @SpecificHeatCapacity; } }	
-		IfcThermodynamicTemperatureMeasure? IIfcThermalMaterialProperties.BoilingPoint { get { return @BoilingPoint; } }	
-		IfcThermodynamicTemperatureMeasure? IIfcThermalMaterialProperties.FreezingPoint { get { return @FreezingPoint; } }	
-		IfcThermalConductivityMeasure? IIfcThermalMaterialProperties.ThermalConductivity { get { return @ThermalConductivity; } }	
+		IfcSpecificHeatCapacityMeasure? IIfcThermalMaterialProperties.SpecificHeatCapacity { 
+			get { return @SpecificHeatCapacity; } 
+ 
+			set { SpecificHeatCapacity = value;}
+		}	
+		IfcThermodynamicTemperatureMeasure? IIfcThermalMaterialProperties.BoilingPoint { 
+			get { return @BoilingPoint; } 
+ 
+			set { BoilingPoint = value;}
+		}	
+		IfcThermodynamicTemperatureMeasure? IIfcThermalMaterialProperties.FreezingPoint { 
+			get { return @FreezingPoint; } 
+ 
+			set { FreezingPoint = value;}
+		}	
+		IfcThermalConductivityMeasure? IIfcThermalMaterialProperties.ThermalConductivity { 
+			get { return @ThermalConductivity; } 
+ 
+			set { ThermalConductivity = value;}
+		}	
 		 
 		#endregion
 

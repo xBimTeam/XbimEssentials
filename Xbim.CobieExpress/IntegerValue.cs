@@ -15,7 +15,7 @@ namespace Xbim.CobieExpress
 	[ExpressType("IntegerValue", 3)]
 	[DefinedType(typeof(long))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IntegerValue : AttributeValue, IExpressValueType, System.IEquatable<long>
+	public partial struct IntegerValue : AttributeValue, IExpressValueType, IExpressIntegerType, System.IEquatable<long>
 	{ 
 		private long _value;
         
@@ -23,6 +23,9 @@ namespace Xbim.CobieExpress
         {
             get { return _value; }
         }
+
+ 
+		long IExpressIntegerType.Value { get { return _value; } }
 
 		public override string ToString()
         {

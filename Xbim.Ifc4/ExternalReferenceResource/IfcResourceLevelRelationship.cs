@@ -28,8 +28,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcResourceLevelRelationship : IPersistEntity
 	{
-		IfcLabel? @Name { get; }
-		IfcText? @Description { get; }
+		IfcLabel? @Name { get;  set; }
+		IfcText? @Description { get;  set; }
 	
 	}
 }
@@ -41,8 +41,16 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 	public abstract partial class @IfcResourceLevelRelationship : IPersistEntity, INotifyPropertyChanged, IIfcResourceLevelRelationship, IEquatable<@IfcResourceLevelRelationship>
 	{
 		#region IIfcResourceLevelRelationship explicit implementation
-		IfcLabel? IIfcResourceLevelRelationship.Name { get { return @Name; } }	
-		IfcText? IIfcResourceLevelRelationship.Description { get { return @Description; } }	
+		IfcLabel? IIfcResourceLevelRelationship.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcResourceLevelRelationship.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
 		 
 		#endregion
 

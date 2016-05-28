@@ -30,12 +30,12 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcAppliedValue : IPersistEntity, IfcObjectReferenceSelect
 	{
-		IfcLabel? @Name { get; }
-		IfcText? @Description { get; }
-		IIfcAppliedValueSelect @AppliedValue { get; }
-		IIfcMeasureWithUnit @UnitBasis { get; }
-		IIfcDateTimeSelect @ApplicableDate { get; }
-		IIfcDateTimeSelect @FixedUntilDate { get; }
+		IfcLabel? @Name { get;  set; }
+		IfcText? @Description { get;  set; }
+		IIfcAppliedValueSelect @AppliedValue { get;  set; }
+		IIfcMeasureWithUnit @UnitBasis { get;  set; }
+		IIfcDateTimeSelect @ApplicableDate { get;  set; }
+		IIfcDateTimeSelect @FixedUntilDate { get;  set; }
 		IEnumerable<IIfcReferencesValueDocument> @ValuesReferenced {  get; }
 		IEnumerable<IIfcAppliedValueRelationship> @ValueOfComponents {  get; }
 		IEnumerable<IIfcAppliedValueRelationship> @IsComponentIn {  get; }
@@ -50,12 +50,40 @@ namespace Xbim.Ifc2x3.CostResource
 	public abstract partial class @IfcAppliedValue : IPersistEntity, INotifyPropertyChanged, IIfcAppliedValue, IEquatable<@IfcAppliedValue>
 	{
 		#region IIfcAppliedValue explicit implementation
-		IfcLabel? IIfcAppliedValue.Name { get { return @Name; } }	
-		IfcText? IIfcAppliedValue.Description { get { return @Description; } }	
-		IIfcAppliedValueSelect IIfcAppliedValue.AppliedValue { get { return @AppliedValue; } }	
-		IIfcMeasureWithUnit IIfcAppliedValue.UnitBasis { get { return @UnitBasis; } }	
-		IIfcDateTimeSelect IIfcAppliedValue.ApplicableDate { get { return @ApplicableDate; } }	
-		IIfcDateTimeSelect IIfcAppliedValue.FixedUntilDate { get { return @FixedUntilDate; } }	
+		IfcLabel? IIfcAppliedValue.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcAppliedValue.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IIfcAppliedValueSelect IIfcAppliedValue.AppliedValue { 
+			get { return @AppliedValue; } 
+ 
+ 
+			set { AppliedValue = value as IfcAppliedValueSelect;}
+		}	
+		IIfcMeasureWithUnit IIfcAppliedValue.UnitBasis { 
+			get { return @UnitBasis; } 
+ 
+ 
+			set { UnitBasis = value as IfcMeasureWithUnit;}
+		}	
+		IIfcDateTimeSelect IIfcAppliedValue.ApplicableDate { 
+			get { return @ApplicableDate; } 
+ 
+ 
+			set { ApplicableDate = value as IfcDateTimeSelect;}
+		}	
+		IIfcDateTimeSelect IIfcAppliedValue.FixedUntilDate { 
+			get { return @FixedUntilDate; } 
+ 
+ 
+			set { FixedUntilDate = value as IfcDateTimeSelect;}
+		}	
 		 
 		IEnumerable<IIfcReferencesValueDocument> IIfcAppliedValue.ValuesReferenced {  get { return @ValuesReferenced; } }
 		IEnumerable<IIfcAppliedValueRelationship> IIfcAppliedValue.ValueOfComponents {  get { return @ValueOfComponents; } }

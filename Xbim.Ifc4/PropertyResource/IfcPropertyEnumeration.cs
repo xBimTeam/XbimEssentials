@@ -26,9 +26,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPropertyEnumeration : IIfcPropertyAbstraction
 	{
-		IfcLabel @Name { get; }
+		IfcLabel @Name { get;  set; }
 		IEnumerable<IIfcValue> @EnumerationValues { get; }
-		IIfcUnit @Unit { get; }
+		IIfcUnit @Unit { get;  set; }
 	
 	}
 }
@@ -40,9 +40,20 @@ namespace Xbim.Ifc4.PropertyResource
 	public  partial class @IfcPropertyEnumeration : IfcPropertyAbstraction, IInstantiableEntity, IIfcPropertyEnumeration, IContainsEntityReferences, IEquatable<@IfcPropertyEnumeration>
 	{
 		#region IIfcPropertyEnumeration explicit implementation
-		IfcLabel IIfcPropertyEnumeration.Name { get { return @Name; } }	
-		IEnumerable<IIfcValue> IIfcPropertyEnumeration.EnumerationValues { get { return @EnumerationValues; } }	
-		IIfcUnit IIfcPropertyEnumeration.Unit { get { return @Unit; } }	
+		IfcLabel IIfcPropertyEnumeration.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IEnumerable<IIfcValue> IIfcPropertyEnumeration.EnumerationValues { 
+			get { return @EnumerationValues; } 
+		}	
+		IIfcUnit IIfcPropertyEnumeration.Unit { 
+			get { return @Unit; } 
+ 
+ 
+			set { Unit = value as IfcUnit;}
+		}	
 		 
 		#endregion
 

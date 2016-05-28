@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSpatialZoneType : IIfcSpatialElementType
 	{
-		IfcSpatialZoneTypeEnum @PredefinedType { get; }
-		IfcLabel? @LongName { get; }
+		IfcSpatialZoneTypeEnum @PredefinedType { get;  set; }
+		IfcLabel? @LongName { get;  set; }
 	
 	}
 }
@@ -39,8 +39,16 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcSpatialZoneType : IfcSpatialElementType, IInstantiableEntity, IIfcSpatialZoneType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSpatialZoneType>
 	{
 		#region IIfcSpatialZoneType explicit implementation
-		IfcSpatialZoneTypeEnum IIfcSpatialZoneType.PredefinedType { get { return @PredefinedType; } }	
-		IfcLabel? IIfcSpatialZoneType.LongName { get { return @LongName; } }	
+		IfcSpatialZoneTypeEnum IIfcSpatialZoneType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
+		IfcLabel? IIfcSpatialZoneType.LongName { 
+			get { return @LongName; } 
+ 
+			set { LongName = value;}
+		}	
 		 
 		#endregion
 

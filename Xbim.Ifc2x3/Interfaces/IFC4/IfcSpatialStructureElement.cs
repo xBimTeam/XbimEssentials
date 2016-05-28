@@ -36,15 +36,43 @@ namespace Xbim.Ifc2x3.ProductExtension
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcElementCompositionEnum.COMPLEX:
+						CompositionType = IfcElementCompositionEnum.COMPLEX;
+						return;
+					
+					case Ifc4.Interfaces.IfcElementCompositionEnum.ELEMENT:
+						CompositionType = IfcElementCompositionEnum.ELEMENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcElementCompositionEnum.PARTIAL:
+						CompositionType = IfcElementCompositionEnum.PARTIAL;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
 		{ 
 			get
 			{
-				//## Handle return of LongName for which no match was found
-                if (!this.LongName.HasValue) return null; else return new Xbim.Ifc4.MeasureResource.IfcLabel(this.LongName.Value);
-				//##
+				if (!LongName.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(LongName.Value);
 			} 
+			set
+			{
+				LongName = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcSpatialElement.ContainsElements 
 		{ 

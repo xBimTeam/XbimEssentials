@@ -28,10 +28,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcApprovalRelationship : IPersistEntity
 	{
-		IIfcApproval @RelatedApproval { get; }
-		IIfcApproval @RelatingApproval { get; }
-		IfcText? @Description { get; }
-		IfcLabel @Name { get; }
+		IIfcApproval @RelatedApproval { get;  set; }
+		IIfcApproval @RelatingApproval { get;  set; }
+		IfcText? @Description { get;  set; }
+		IfcLabel @Name { get;  set; }
 	
 	}
 }
@@ -43,10 +43,28 @@ namespace Xbim.Ifc2x3.ApprovalResource
 	public  partial class @IfcApprovalRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcApprovalRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcApprovalRelationship>
 	{
 		#region IIfcApprovalRelationship explicit implementation
-		IIfcApproval IIfcApprovalRelationship.RelatedApproval { get { return @RelatedApproval; } }	
-		IIfcApproval IIfcApprovalRelationship.RelatingApproval { get { return @RelatingApproval; } }	
-		IfcText? IIfcApprovalRelationship.Description { get { return @Description; } }	
-		IfcLabel IIfcApprovalRelationship.Name { get { return @Name; } }	
+		IIfcApproval IIfcApprovalRelationship.RelatedApproval { 
+			get { return @RelatedApproval; } 
+ 
+ 
+			set { RelatedApproval = value as IfcApproval;}
+		}	
+		IIfcApproval IIfcApprovalRelationship.RelatingApproval { 
+			get { return @RelatingApproval; } 
+ 
+ 
+			set { RelatingApproval = value as IfcApproval;}
+		}	
+		IfcText? IIfcApprovalRelationship.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IfcLabel IIfcApprovalRelationship.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
 		 
 		#endregion
 

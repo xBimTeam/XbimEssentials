@@ -25,8 +25,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialProfileSetUsageTapering : IIfcMaterialProfileSetUsage
 	{
-		IIfcMaterialProfileSet @ForProfileEndSet { get; }
-		IfcCardinalPointReference? @CardinalEndPoint { get; }
+		IIfcMaterialProfileSet @ForProfileEndSet { get;  set; }
+		IfcCardinalPointReference? @CardinalEndPoint { get;  set; }
 	
 	}
 }
@@ -38,8 +38,17 @@ namespace Xbim.Ifc4.MaterialResource
 	public  partial class @IfcMaterialProfileSetUsageTapering : IfcMaterialProfileSetUsage, IInstantiableEntity, IIfcMaterialProfileSetUsageTapering, IContainsEntityReferences, IEquatable<@IfcMaterialProfileSetUsageTapering>
 	{
 		#region IIfcMaterialProfileSetUsageTapering explicit implementation
-		IIfcMaterialProfileSet IIfcMaterialProfileSetUsageTapering.ForProfileEndSet { get { return @ForProfileEndSet; } }	
-		IfcCardinalPointReference? IIfcMaterialProfileSetUsageTapering.CardinalEndPoint { get { return @CardinalEndPoint; } }	
+		IIfcMaterialProfileSet IIfcMaterialProfileSetUsageTapering.ForProfileEndSet { 
+			get { return @ForProfileEndSet; } 
+ 
+ 
+			set { ForProfileEndSet = value as IfcMaterialProfileSet;}
+		}	
+		IfcCardinalPointReference? IIfcMaterialProfileSetUsageTapering.CardinalEndPoint { 
+			get { return @CardinalEndPoint; } 
+ 
+			set { CardinalEndPoint = value;}
+		}	
 		 
 		#endregion
 

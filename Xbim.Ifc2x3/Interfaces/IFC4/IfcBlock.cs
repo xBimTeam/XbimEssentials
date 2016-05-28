@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(XLength);
 			} 
+			set
+			{
+				XLength = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcBlock.YLength 
 		{ 
@@ -29,6 +34,11 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(YLength);
 			} 
+			set
+			{
+				YLength = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcBlock.ZLength 
 		{ 
@@ -36,6 +46,11 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(ZLength);
 			} 
+			set
+			{
+				ZLength = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
 	//## Custom code
 	//##

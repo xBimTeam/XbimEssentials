@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcClassificationNotationFacet : IPersistEntity
 	{
-		IfcLabel @NotationValue { get; }
+		IfcLabel @NotationValue { get;  set; }
 	
 	}
 }
@@ -40,7 +40,11 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 	public  partial class @IfcClassificationNotationFacet : INotifyPropertyChanged, IInstantiableEntity, IIfcClassificationNotationFacet, IEquatable<@IfcClassificationNotationFacet>
 	{
 		#region IIfcClassificationNotationFacet explicit implementation
-		IfcLabel IIfcClassificationNotationFacet.NotationValue { get { return @NotationValue; } }	
+		IfcLabel IIfcClassificationNotationFacet.NotationValue { 
+			get { return @NotationValue; } 
+ 
+			set { NotationValue = value;}
+		}	
 		 
 		#endregion
 

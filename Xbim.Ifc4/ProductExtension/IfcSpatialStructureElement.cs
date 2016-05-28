@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSpatialStructureElement : IIfcSpatialElement
 	{
-		IfcElementCompositionEnum? @CompositionType { get; }
+		IfcElementCompositionEnum? @CompositionType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.ProductExtension
 	public abstract partial class @IfcSpatialStructureElement : IfcSpatialElement, IIfcSpatialStructureElement, IEquatable<@IfcSpatialStructureElement>
 	{
 		#region IIfcSpatialStructureElement explicit implementation
-		IfcElementCompositionEnum? IIfcSpatialStructureElement.CompositionType { get { return @CompositionType; } }	
+		IfcElementCompositionEnum? IIfcSpatialStructureElement.CompositionType { 
+			get { return @CompositionType; } 
+ 
+			set { CompositionType = value;}
+		}	
 		 
 		#endregion
 

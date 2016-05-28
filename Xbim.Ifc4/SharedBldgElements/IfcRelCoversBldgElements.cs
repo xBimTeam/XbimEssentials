@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelCoversBldgElements : IIfcRelConnects
 	{
-		IIfcElement @RelatingBuildingElement { get; }
+		IIfcElement @RelatingBuildingElement { get;  set; }
 		IEnumerable<IIfcCovering> @RelatedCoverings { get; }
 	
 	}
@@ -40,8 +40,15 @@ namespace Xbim.Ifc4.SharedBldgElements
 	public  partial class @IfcRelCoversBldgElements : IfcRelConnects, IInstantiableEntity, IIfcRelCoversBldgElements, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelCoversBldgElements>
 	{
 		#region IIfcRelCoversBldgElements explicit implementation
-		IIfcElement IIfcRelCoversBldgElements.RelatingBuildingElement { get { return @RelatingBuildingElement; } }	
-		IEnumerable<IIfcCovering> IIfcRelCoversBldgElements.RelatedCoverings { get { return @RelatedCoverings; } }	
+		IIfcElement IIfcRelCoversBldgElements.RelatingBuildingElement { 
+			get { return @RelatingBuildingElement; } 
+ 
+ 
+			set { RelatingBuildingElement = value as IfcElement;}
+		}	
+		IEnumerable<IIfcCovering> IIfcRelCoversBldgElements.RelatedCoverings { 
+			get { return @RelatedCoverings; } 
+		}	
 		 
 		#endregion
 

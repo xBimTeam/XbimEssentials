@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				return ParentProfile;
 			} 
+			set
+			{
+				ParentProfile = value as IfcProfileDef;
+				
+			}
 		}
 		IIfcCartesianTransformationOperator2D IIfcDerivedProfileDef.Operator 
 		{ 
@@ -29,6 +34,11 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				return Operator;
 			} 
+			set
+			{
+				Operator = value as GeometryResource.IfcCartesianTransformationOperator2D;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcDerivedProfileDef.Label 
 		{ 
@@ -37,6 +47,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 				if (!Label.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Label.Value);
 			} 
+			set
+			{
+				Label = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

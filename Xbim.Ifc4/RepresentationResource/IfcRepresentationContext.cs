@@ -28,8 +28,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRepresentationContext : IPersistEntity
 	{
-		IfcLabel? @ContextIdentifier { get; }
-		IfcLabel? @ContextType { get; }
+		IfcLabel? @ContextIdentifier { get;  set; }
+		IfcLabel? @ContextType { get;  set; }
 		IEnumerable<IIfcRepresentation> @RepresentationsInContext {  get; }
 	
 	}
@@ -42,8 +42,16 @@ namespace Xbim.Ifc4.RepresentationResource
 	public abstract partial class @IfcRepresentationContext : IPersistEntity, INotifyPropertyChanged, IIfcRepresentationContext, IEquatable<@IfcRepresentationContext>
 	{
 		#region IIfcRepresentationContext explicit implementation
-		IfcLabel? IIfcRepresentationContext.ContextIdentifier { get { return @ContextIdentifier; } }	
-		IfcLabel? IIfcRepresentationContext.ContextType { get { return @ContextType; } }	
+		IfcLabel? IIfcRepresentationContext.ContextIdentifier { 
+			get { return @ContextIdentifier; } 
+ 
+			set { ContextIdentifier = value;}
+		}	
+		IfcLabel? IIfcRepresentationContext.ContextType { 
+			get { return @ContextType; } 
+ 
+			set { ContextType = value;}
+		}	
 		 
 		IEnumerable<IIfcRepresentation> IIfcRepresentationContext.RepresentationsInContext {  get { return @RepresentationsInContext; } }
 		#endregion

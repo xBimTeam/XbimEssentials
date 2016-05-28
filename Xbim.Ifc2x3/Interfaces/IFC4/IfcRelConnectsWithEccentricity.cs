@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				return ConnectionConstraint;
 			} 
+			set
+			{
+				ConnectionConstraint = value as GeometricConstraintResource.IfcConnectionGeometry;
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcGeographicElement : IIfcElement
 	{
-		IfcGeographicElementTypeEnum? @PredefinedType { get; }
+		IfcGeographicElementTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -37,7 +37,11 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcGeographicElement : IfcElement, IInstantiableEntity, IIfcGeographicElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcGeographicElement>
 	{
 		#region IIfcGeographicElement explicit implementation
-		IfcGeographicElementTypeEnum? IIfcGeographicElement.PredefinedType { get { return @PredefinedType; } }	
+		IfcGeographicElementTypeEnum? IIfcGeographicElement.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

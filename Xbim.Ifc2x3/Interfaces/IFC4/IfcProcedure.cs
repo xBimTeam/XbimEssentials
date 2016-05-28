@@ -20,32 +20,88 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-			    switch (ProcedureType)
-			    {
-			        case IfcProcedureTypeEnum.ADVICE_CAUTION:
-                        return Ifc4.Interfaces.IfcProcedureTypeEnum.ADVICE_CAUTION;
-			        case IfcProcedureTypeEnum.ADVICE_NOTE:
-                        return Ifc4.Interfaces.IfcProcedureTypeEnum.ADVICE_NOTE;
-			        case IfcProcedureTypeEnum.ADVICE_WARNING:
-                        return Ifc4.Interfaces.IfcProcedureTypeEnum.ADVICE_WARNING;
-			        case IfcProcedureTypeEnum.CALIBRATION:
-                        return Ifc4.Interfaces.IfcProcedureTypeEnum.CALIBRATION;
-			        case IfcProcedureTypeEnum.DIAGNOSTIC:
-                        return Ifc4.Interfaces.IfcProcedureTypeEnum.DIAGNOSTIC;
-			        case IfcProcedureTypeEnum.SHUTDOWN:
-                        return Ifc4.Interfaces.IfcProcedureTypeEnum.SHUTDOWN;
-			        case IfcProcedureTypeEnum.STARTUP:
-                        return Ifc4.Interfaces.IfcProcedureTypeEnum.STARTUP;
-			        case IfcProcedureTypeEnum.USERDEFINED:
-                        return Ifc4.Interfaces.IfcProcedureTypeEnum.USERDEFINED;
-			        case IfcProcedureTypeEnum.NOTDEFINED:
-                        return Ifc4.Interfaces.IfcProcedureTypeEnum.NOTDEFINED;
-			        default:
-			            throw new System.ArgumentOutOfRangeException();
-			    }
-			    //##
+				switch (ProcedureType)
+				{
+					case IfcProcedureTypeEnum.ADVICE_CAUTION:
+						return Ifc4.Interfaces.IfcProcedureTypeEnum.ADVICE_CAUTION;
+					
+					case IfcProcedureTypeEnum.ADVICE_NOTE:
+						return Ifc4.Interfaces.IfcProcedureTypeEnum.ADVICE_NOTE;
+					
+					case IfcProcedureTypeEnum.ADVICE_WARNING:
+						return Ifc4.Interfaces.IfcProcedureTypeEnum.ADVICE_WARNING;
+					
+					case IfcProcedureTypeEnum.CALIBRATION:
+						return Ifc4.Interfaces.IfcProcedureTypeEnum.CALIBRATION;
+					
+					case IfcProcedureTypeEnum.DIAGNOSTIC:
+						return Ifc4.Interfaces.IfcProcedureTypeEnum.DIAGNOSTIC;
+					
+					case IfcProcedureTypeEnum.SHUTDOWN:
+						return Ifc4.Interfaces.IfcProcedureTypeEnum.SHUTDOWN;
+					
+					case IfcProcedureTypeEnum.STARTUP:
+						return Ifc4.Interfaces.IfcProcedureTypeEnum.STARTUP;
+					
+					case IfcProcedureTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
+						return Ifc4.Interfaces.IfcProcedureTypeEnum.USERDEFINED;
+					
+					case IfcProcedureTypeEnum.NOTDEFINED:
+						return Ifc4.Interfaces.IfcProcedureTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcProcedureTypeEnum.ADVICE_CAUTION:
+						ProcedureType = IfcProcedureTypeEnum.ADVICE_CAUTION;
+						return;
+					
+					case Ifc4.Interfaces.IfcProcedureTypeEnum.ADVICE_NOTE:
+						ProcedureType = IfcProcedureTypeEnum.ADVICE_NOTE;
+						return;
+					
+					case Ifc4.Interfaces.IfcProcedureTypeEnum.ADVICE_WARNING:
+						ProcedureType = IfcProcedureTypeEnum.ADVICE_WARNING;
+						return;
+					
+					case Ifc4.Interfaces.IfcProcedureTypeEnum.CALIBRATION:
+						ProcedureType = IfcProcedureTypeEnum.CALIBRATION;
+						return;
+					
+					case Ifc4.Interfaces.IfcProcedureTypeEnum.DIAGNOSTIC:
+						ProcedureType = IfcProcedureTypeEnum.DIAGNOSTIC;
+						return;
+					
+					case Ifc4.Interfaces.IfcProcedureTypeEnum.SHUTDOWN:
+						ProcedureType = IfcProcedureTypeEnum.SHUTDOWN;
+						return;
+					
+					case Ifc4.Interfaces.IfcProcedureTypeEnum.STARTUP:
+						ProcedureType = IfcProcedureTypeEnum.STARTUP;
+						return;
+					
+					case Ifc4.Interfaces.IfcProcedureTypeEnum.USERDEFINED:
+						ProcedureType = IfcProcedureTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcProcedureTypeEnum.NOTDEFINED:
+						ProcedureType = IfcProcedureTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	    //##

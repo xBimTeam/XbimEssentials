@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcManifoldSolidBrep : IIfcSolidModel
 	{
-		IIfcClosedShell @Outer { get; }
+		IIfcClosedShell @Outer { get;  set; }
 	
 	}
 }
@@ -38,7 +38,12 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public abstract partial class @IfcManifoldSolidBrep : IfcSolidModel, IIfcManifoldSolidBrep, IEquatable<@IfcManifoldSolidBrep>
 	{
 		#region IIfcManifoldSolidBrep explicit implementation
-		IIfcClosedShell IIfcManifoldSolidBrep.Outer { get { return @Outer; } }	
+		IIfcClosedShell IIfcManifoldSolidBrep.Outer { 
+			get { return @Outer; } 
+ 
+ 
+			set { Outer = value as IfcClosedShell;}
+		}	
 		 
 		#endregion
 

@@ -25,8 +25,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralAction : IIfcStructuralActivity
 	{
-		bool @DestabilizingLoad { get; }
-		IIfcStructuralReaction @CausedBy { get; }
+		bool @DestabilizingLoad { get;  set; }
+		IIfcStructuralReaction @CausedBy { get;  set; }
 	
 	}
 }
@@ -38,8 +38,17 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 	public abstract partial class @IfcStructuralAction : IfcStructuralActivity, IIfcStructuralAction, IEquatable<@IfcStructuralAction>
 	{
 		#region IIfcStructuralAction explicit implementation
-		bool IIfcStructuralAction.DestabilizingLoad { get { return @DestabilizingLoad; } }	
-		IIfcStructuralReaction IIfcStructuralAction.CausedBy { get { return @CausedBy; } }	
+		bool IIfcStructuralAction.DestabilizingLoad { 
+			get { return @DestabilizingLoad; } 
+ 
+			set { DestabilizingLoad = value;}
+		}	
+		IIfcStructuralReaction IIfcStructuralAction.CausedBy { 
+			get { return @CausedBy; } 
+ 
+ 
+			set { CausedBy = value as IfcStructuralReaction;}
+		}	
 		 
 		#endregion
 

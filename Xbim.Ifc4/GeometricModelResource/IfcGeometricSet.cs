@@ -39,7 +39,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public  partial class @IfcGeometricSet : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcGeometricSet, IEquatable<@IfcGeometricSet>
 	{
 		#region IIfcGeometricSet explicit implementation
-		IEnumerable<IIfcGeometricSetSelect> IIfcGeometricSet.Elements { get { return @Elements; } }	
+		IEnumerable<IIfcGeometricSetSelect> IIfcGeometricSet.Elements { 
+			get { return @Elements; } 
+		}	
 		 
 		#endregion
 

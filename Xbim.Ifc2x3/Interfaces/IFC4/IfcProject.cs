@@ -20,50 +20,68 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				//## Handle return of ObjectType for which no match was found
-			    return ObjectType.HasValue
-			        ? new Ifc4.MeasureResource.IfcLabel(ObjectType.Value)
-			        : null;
-			    //##
+				if (!ObjectType.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(ObjectType.Value);
 			} 
+			set
+			{
+				ObjectType = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcContext.LongName 
 		{ 
 			get
 			{
-				//## Handle return of LongName for which no match was found
-			    return null;
-			    //##
+				if (!LongName.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(LongName.Value);
 			} 
+			set
+			{
+				LongName = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcContext.Phase 
 		{ 
 			get
 			{
-				//## Handle return of Phase for which no match was found
-			    return Phase.HasValue
-			        ? new Ifc4.MeasureResource.IfcLabel(Phase.Value)
-			        : null;
-			    //##
+				if (!Phase.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Phase.Value);
 			} 
+			set
+			{
+				Phase = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		IEnumerable<IIfcRepresentationContext> IIfcContext.RepresentationContexts 
 		{ 
 			get
 			{
-				//## Handle return of RepresentationContexts for which no match was found
-			    return RepresentationContexts;
-			    //##
+				foreach (var member in RepresentationContexts)
+				{
+					yield return member as IIfcRepresentationContext;
+				}
 			} 
 		}
 		IIfcUnitAssignment IIfcContext.UnitsInContext 
 		{ 
 			get
 			{
-				//## Handle return of UnitsInContext for which no match was found
-			    return UnitsInContext;
-			    //##
+				return UnitsInContext;
 			} 
+			set
+			{
+				UnitsInContext = value as MeasureResource.IfcUnitAssignment;
+				
+			}
 		}
 		IEnumerable<IIfcRelDefinesByProperties> IIfcContext.IsDefinedBy 
 		{ 

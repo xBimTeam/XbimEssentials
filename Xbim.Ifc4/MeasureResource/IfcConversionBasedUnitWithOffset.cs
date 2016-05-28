@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConversionBasedUnitWithOffset : IIfcConversionBasedUnit
 	{
-		IfcReal @ConversionOffset { get; }
+		IfcReal @ConversionOffset { get;  set; }
 	
 	}
 }
@@ -37,7 +37,11 @@ namespace Xbim.Ifc4.MeasureResource
 	public  partial class @IfcConversionBasedUnitWithOffset : IfcConversionBasedUnit, IInstantiableEntity, IIfcConversionBasedUnitWithOffset, IContainsEntityReferences, IEquatable<@IfcConversionBasedUnitWithOffset>
 	{
 		#region IIfcConversionBasedUnitWithOffset explicit implementation
-		IfcReal IIfcConversionBasedUnitWithOffset.ConversionOffset { get { return @ConversionOffset; } }	
+		IfcReal IIfcConversionBasedUnitWithOffset.ConversionOffset { 
+			get { return @ConversionOffset; } 
+ 
+			set { ConversionOffset = value;}
+		}	
 		 
 		#endregion
 

@@ -16,14 +16,20 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	public partial class @IfcLaborResource : IIfcLaborResource
 	{
+
+		private  Ifc4.Interfaces.IfcLaborResourceTypeEnum? _predefinedType;
+
 		Ifc4.Interfaces.IfcLaborResourceTypeEnum? IIfcLaborResource.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-			    return null;
-			    //##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				
+			}
 		}
 	//## Custom code
 	//##

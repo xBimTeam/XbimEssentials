@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCoveringType : IIfcBuildingElementType
 	{
-		IfcCoveringTypeEnum @PredefinedType { get; }
+		IfcCoveringTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -37,7 +37,11 @@ namespace Xbim.Ifc2x3.ProductExtension
 	public  partial class @IfcCoveringType : IfcBuildingElementType, IInstantiableEntity, IIfcCoveringType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCoveringType>
 	{
 		#region IIfcCoveringType explicit implementation
-		IfcCoveringTypeEnum IIfcCoveringType.PredefinedType { get { return @PredefinedType; } }	
+		IfcCoveringTypeEnum IIfcCoveringType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

@@ -37,7 +37,9 @@ namespace Xbim.Ifc4.DateTimeResource
 	public  partial class @IfcIrregularTimeSeries : IfcTimeSeries, IInstantiableEntity, IIfcIrregularTimeSeries, IContainsEntityReferences, IEquatable<@IfcIrregularTimeSeries>
 	{
 		#region IIfcIrregularTimeSeries explicit implementation
-		IEnumerable<IIfcIrregularTimeSeriesValue> IIfcIrregularTimeSeries.Values { get { return @Values; } }	
+		IEnumerable<IIfcIrregularTimeSeriesValue> IIfcIrregularTimeSeries.Values { 
+			get { return @Values; } 
+		}	
 		 
 		#endregion
 

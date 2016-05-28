@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				return Curve;
 			} 
+			set
+			{
+				Curve = value as GeometryResource.IfcBoundedCurve;
+				
+			}
 		}
 	//## Custom code
 	//##

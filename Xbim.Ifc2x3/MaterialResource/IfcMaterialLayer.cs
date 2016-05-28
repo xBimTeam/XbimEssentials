@@ -29,9 +29,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialLayer : IPersistEntity, IfcMaterialSelect, IfcObjectReferenceSelect
 	{
-		IIfcMaterial @Material { get; }
-		IfcPositiveLengthMeasure @LayerThickness { get; }
-		IfcLogical? @IsVentilated { get; }
+		IIfcMaterial @Material { get;  set; }
+		IfcPositiveLengthMeasure @LayerThickness { get;  set; }
+		IfcLogical? @IsVentilated { get;  set; }
 		IIfcMaterialLayerSet @ToMaterialLayerSet {  get; }
 	
 	}
@@ -44,9 +44,22 @@ namespace Xbim.Ifc2x3.MaterialResource
 	public  partial class @IfcMaterialLayer : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterialLayer, IContainsEntityReferences, IEquatable<@IfcMaterialLayer>
 	{
 		#region IIfcMaterialLayer explicit implementation
-		IIfcMaterial IIfcMaterialLayer.Material { get { return @Material; } }	
-		IfcPositiveLengthMeasure IIfcMaterialLayer.LayerThickness { get { return @LayerThickness; } }	
-		IfcLogical? IIfcMaterialLayer.IsVentilated { get { return @IsVentilated; } }	
+		IIfcMaterial IIfcMaterialLayer.Material { 
+			get { return @Material; } 
+ 
+ 
+			set { Material = value as IfcMaterial;}
+		}	
+		IfcPositiveLengthMeasure IIfcMaterialLayer.LayerThickness { 
+			get { return @LayerThickness; } 
+ 
+			set { LayerThickness = value;}
+		}	
+		IfcLogical? IIfcMaterialLayer.IsVentilated { 
+			get { return @IsVentilated; } 
+ 
+			set { IsVentilated = value;}
+		}	
 		 
 		IIfcMaterialLayerSet IIfcMaterialLayer.ToMaterialLayerSet {  get { return @ToMaterialLayerSet; } }
 		#endregion

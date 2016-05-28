@@ -16,32 +16,50 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	public partial class @IfcActionRequest : IIfcActionRequest
 	{
+
+		private  Ifc4.Interfaces.IfcActionRequestTypeEnum? _predefinedType;
+
 		Ifc4.Interfaces.IfcActionRequestTypeEnum? IIfcActionRequest.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-                return IfcActionRequestTypeEnum.NOTDEFINED;
-				//##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcLabel? _status;
+
 		Ifc4.MeasureResource.IfcLabel? IIfcActionRequest.Status 
 		{ 
 			get
 			{
-				//## Handle return of Status for which no match was found
-			    return null;
-			    //##
+				return _status;
 			} 
+			set
+			{
+				SetValue(v => _status = v, _status, value, "Status", byte.MaxValue);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcText? _longDescription;
+
 		Ifc4.MeasureResource.IfcText? IIfcActionRequest.LongDescription 
 		{ 
 			get
 			{
-				//## Handle return of LongDescription for which no match was found
-			    return Name != null ? new Ifc4.MeasureResource.IfcText(Name) : null;
-			    //##
+				return _longDescription;
 			} 
+			set
+			{
+				SetValue(v => _longDescription = v, _longDescription, value, "LongDescription", byte.MaxValue);
+				
+			}
 		}
 	//## Custom code
 	//##

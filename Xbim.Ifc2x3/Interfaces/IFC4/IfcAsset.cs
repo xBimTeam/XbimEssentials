@@ -22,6 +22,13 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				return new Ifc4.MeasureResource.IfcIdentifier(AssetID);
 			} 
+			set
+			{
+				AssetID = value.HasValue ? 
+					new MeasureResource.IfcIdentifier(value.Value) :  
+					 default(MeasureResource.IfcIdentifier) ;
+				
+			}
 		}
 		IIfcCostValue IIfcAsset.OriginalValue 
 		{ 
@@ -29,6 +36,11 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				return OriginalValue;
 			} 
+			set
+			{
+				OriginalValue = value as CostResource.IfcCostValue;
+				
+			}
 		}
 		IIfcCostValue IIfcAsset.CurrentValue 
 		{ 
@@ -36,6 +48,11 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				return CurrentValue;
 			} 
+			set
+			{
+				CurrentValue = value as CostResource.IfcCostValue;
+				
+			}
 		}
 		IIfcCostValue IIfcAsset.TotalReplacementCost 
 		{ 
@@ -43,6 +60,11 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				return TotalReplacementCost;
 			} 
+			set
+			{
+				TotalReplacementCost = value as CostResource.IfcCostValue;
+				
+			}
 		}
 		IIfcActorSelect IIfcAsset.Owner 
 		{ 
@@ -60,6 +82,33 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 					return ifcpersonandorganization;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					Owner = null;
+					return;
+				}	
+				var ifcorganization = value as ActorResource.IfcOrganization;
+				if (ifcorganization != null) 
+				{
+					Owner = ifcorganization;
+					return;
+				}
+				var ifcperson = value as ActorResource.IfcPerson;
+				if (ifcperson != null) 
+				{
+					Owner = ifcperson;
+					return;
+				}
+				var ifcpersonandorganization = value as ActorResource.IfcPersonAndOrganization;
+				if (ifcpersonandorganization != null) 
+				{
+					Owner = ifcpersonandorganization;
+					return;
+				}
+				
+			}
 		}
 		IIfcActorSelect IIfcAsset.User 
 		{ 
@@ -77,6 +126,33 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 					return ifcpersonandorganization;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					User = null;
+					return;
+				}	
+				var ifcorganization = value as ActorResource.IfcOrganization;
+				if (ifcorganization != null) 
+				{
+					User = ifcorganization;
+					return;
+				}
+				var ifcperson = value as ActorResource.IfcPerson;
+				if (ifcperson != null) 
+				{
+					User = ifcperson;
+					return;
+				}
+				var ifcpersonandorganization = value as ActorResource.IfcPersonAndOrganization;
+				if (ifcpersonandorganization != null) 
+				{
+					User = ifcpersonandorganization;
+					return;
+				}
+				
+			}
 		}
 		IIfcPerson IIfcAsset.ResponsiblePerson 
 		{ 
@@ -84,6 +160,11 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				return ResponsiblePerson;
 			} 
+			set
+			{
+				ResponsiblePerson = value as ActorResource.IfcPerson;
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDate? IIfcAsset.IncorporationDate 
 		{ 
@@ -95,6 +176,24 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			        : null;
 			    //##
 			} 
+			set
+			{
+				//## Handle setting of IncorporationDate for which no match was found
+                if (!value.HasValue)
+                {
+                    IncorporationDate = null;
+                    return;
+                }
+                System.DateTime d = value.Value;
+                IncorporationDate = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+                {
+                    date.YearComponent = d.Year;
+                    date.MonthComponent = d.Month;
+                    date.DayComponent = d.Day;
+                });
+				//##
+				
+			}
 		}
 		IIfcCostValue IIfcAsset.DepreciatedValue 
 		{ 
@@ -102,6 +201,11 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				return DepreciatedValue;
 			} 
+			set
+			{
+				DepreciatedValue = value as CostResource.IfcCostValue;
+				
+			}
 		}
 	//## Custom code
 	//##

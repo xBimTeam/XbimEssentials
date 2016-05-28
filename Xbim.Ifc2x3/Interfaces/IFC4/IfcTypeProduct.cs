@@ -33,6 +33,13 @@ namespace Xbim.Ifc2x3.Kernel
 				if (!Tag.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Tag.Value);
 			} 
+			set
+			{
+				Tag = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		IEnumerable<IIfcRelAssignsToProduct> IIfcTypeProduct.ReferencedBy 
 		{ 

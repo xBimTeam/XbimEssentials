@@ -38,7 +38,9 @@ namespace Xbim.Ifc2x3.ProfileResource
 	public  partial class @IfcArbitraryProfileDefWithVoids : IfcArbitraryClosedProfileDef, IInstantiableEntity, IIfcArbitraryProfileDefWithVoids, IContainsEntityReferences, IEquatable<@IfcArbitraryProfileDefWithVoids>
 	{
 		#region IIfcArbitraryProfileDefWithVoids explicit implementation
-		IEnumerable<IIfcCurve> IIfcArbitraryProfileDefWithVoids.InnerCurves { get { return @InnerCurves; } }	
+		IEnumerable<IIfcCurve> IIfcArbitraryProfileDefWithVoids.InnerCurves { 
+			get { return @InnerCurves; } 
+		}	
 		 
 		#endregion
 

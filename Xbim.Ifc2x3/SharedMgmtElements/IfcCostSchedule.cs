@@ -29,14 +29,14 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCostSchedule : IIfcControl
 	{
-		IIfcActorSelect @SubmittedBy { get; }
-		IIfcActorSelect @PreparedBy { get; }
-		IIfcDateTimeSelect @SubmittedOn { get; }
-		IfcLabel? @Status { get; }
+		IIfcActorSelect @SubmittedBy { get;  set; }
+		IIfcActorSelect @PreparedBy { get;  set; }
+		IIfcDateTimeSelect @SubmittedOn { get;  set; }
+		IfcLabel? @Status { get;  set; }
 		IEnumerable<IIfcActorSelect> @TargetUsers { get; }
-		IIfcDateTimeSelect @UpdateDate { get; }
-		IfcIdentifier @ID { get; }
-		IfcCostScheduleTypeEnum @PredefinedType { get; }
+		IIfcDateTimeSelect @UpdateDate { get;  set; }
+		IfcIdentifier @ID { get;  set; }
+		IfcCostScheduleTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -48,14 +48,48 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 	public  partial class @IfcCostSchedule : IfcControl, IInstantiableEntity, IIfcCostSchedule, IContainsEntityReferences, IEquatable<@IfcCostSchedule>
 	{
 		#region IIfcCostSchedule explicit implementation
-		IIfcActorSelect IIfcCostSchedule.SubmittedBy { get { return @SubmittedBy; } }	
-		IIfcActorSelect IIfcCostSchedule.PreparedBy { get { return @PreparedBy; } }	
-		IIfcDateTimeSelect IIfcCostSchedule.SubmittedOn { get { return @SubmittedOn; } }	
-		IfcLabel? IIfcCostSchedule.Status { get { return @Status; } }	
-		IEnumerable<IIfcActorSelect> IIfcCostSchedule.TargetUsers { get { return @TargetUsers; } }	
-		IIfcDateTimeSelect IIfcCostSchedule.UpdateDate { get { return @UpdateDate; } }	
-		IfcIdentifier IIfcCostSchedule.ID { get { return @ID; } }	
-		IfcCostScheduleTypeEnum IIfcCostSchedule.PredefinedType { get { return @PredefinedType; } }	
+		IIfcActorSelect IIfcCostSchedule.SubmittedBy { 
+			get { return @SubmittedBy; } 
+ 
+ 
+			set { SubmittedBy = value as IfcActorSelect;}
+		}	
+		IIfcActorSelect IIfcCostSchedule.PreparedBy { 
+			get { return @PreparedBy; } 
+ 
+ 
+			set { PreparedBy = value as IfcActorSelect;}
+		}	
+		IIfcDateTimeSelect IIfcCostSchedule.SubmittedOn { 
+			get { return @SubmittedOn; } 
+ 
+ 
+			set { SubmittedOn = value as IfcDateTimeSelect;}
+		}	
+		IfcLabel? IIfcCostSchedule.Status { 
+			get { return @Status; } 
+ 
+			set { Status = value;}
+		}	
+		IEnumerable<IIfcActorSelect> IIfcCostSchedule.TargetUsers { 
+			get { return @TargetUsers; } 
+		}	
+		IIfcDateTimeSelect IIfcCostSchedule.UpdateDate { 
+			get { return @UpdateDate; } 
+ 
+ 
+			set { UpdateDate = value as IfcDateTimeSelect;}
+		}	
+		IfcIdentifier IIfcCostSchedule.ID { 
+			get { return @ID; } 
+ 
+			set { ID = value;}
+		}	
+		IfcCostScheduleTypeEnum IIfcCostSchedule.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

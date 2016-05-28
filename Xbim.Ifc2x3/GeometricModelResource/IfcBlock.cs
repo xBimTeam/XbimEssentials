@@ -26,9 +26,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBlock : IIfcCsgPrimitive3D
 	{
-		IfcPositiveLengthMeasure @XLength { get; }
-		IfcPositiveLengthMeasure @YLength { get; }
-		IfcPositiveLengthMeasure @ZLength { get; }
+		IfcPositiveLengthMeasure @XLength { get;  set; }
+		IfcPositiveLengthMeasure @YLength { get;  set; }
+		IfcPositiveLengthMeasure @ZLength { get;  set; }
 	
 	}
 }
@@ -40,9 +40,21 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 	public  partial class @IfcBlock : IfcCsgPrimitive3D, IInstantiableEntity, IIfcBlock, IContainsEntityReferences, IEquatable<@IfcBlock>
 	{
 		#region IIfcBlock explicit implementation
-		IfcPositiveLengthMeasure IIfcBlock.XLength { get { return @XLength; } }	
-		IfcPositiveLengthMeasure IIfcBlock.YLength { get { return @YLength; } }	
-		IfcPositiveLengthMeasure IIfcBlock.ZLength { get { return @ZLength; } }	
+		IfcPositiveLengthMeasure IIfcBlock.XLength { 
+			get { return @XLength; } 
+ 
+			set { XLength = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcBlock.YLength { 
+			get { return @YLength; } 
+ 
+			set { YLength = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcBlock.ZLength { 
+			get { return @ZLength; } 
+ 
+			set { ZLength = value;}
+		}	
 		 
 		#endregion
 

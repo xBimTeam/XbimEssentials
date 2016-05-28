@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialProperties : IPersistEntity
 	{
-		IIfcMaterial @Material { get; }
+		IIfcMaterial @Material { get;  set; }
 	
 	}
 }
@@ -40,7 +40,12 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	public abstract partial class @IfcMaterialProperties : IPersistEntity, INotifyPropertyChanged, IIfcMaterialProperties, IEquatable<@IfcMaterialProperties>
 	{
 		#region IIfcMaterialProperties explicit implementation
-		IIfcMaterial IIfcMaterialProperties.Material { get { return @Material; } }	
+		IIfcMaterial IIfcMaterialProperties.Material { 
+			get { return @Material; } 
+ 
+ 
+			set { Material = value as IfcMaterial;}
+		}	
 		 
 		#endregion
 

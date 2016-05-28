@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSwitchingDevice : IIfcFlowController
 	{
-		IfcSwitchingDeviceTypeEnum? @PredefinedType { get; }
+		IfcSwitchingDeviceTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.ElectricalDomain
 	public  partial class @IfcSwitchingDevice : IfcFlowController, IInstantiableEntity, IIfcSwitchingDevice, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSwitchingDevice>
 	{
 		#region IIfcSwitchingDevice explicit implementation
-		IfcSwitchingDeviceTypeEnum? IIfcSwitchingDevice.PredefinedType { get { return @PredefinedType; } }	
+		IfcSwitchingDeviceTypeEnum? IIfcSwitchingDevice.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

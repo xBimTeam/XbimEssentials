@@ -25,8 +25,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConversionBasedUnit : IIfcNamedUnit
 	{
-		IfcLabel @Name { get; }
-		IIfcMeasureWithUnit @ConversionFactor { get; }
+		IfcLabel @Name { get;  set; }
+		IIfcMeasureWithUnit @ConversionFactor { get;  set; }
 	
 	}
 }
@@ -38,8 +38,17 @@ namespace Xbim.Ifc2x3.MeasureResource
 	public  partial class @IfcConversionBasedUnit : IfcNamedUnit, IInstantiableEntity, IIfcConversionBasedUnit, IContainsEntityReferences, IEquatable<@IfcConversionBasedUnit>
 	{
 		#region IIfcConversionBasedUnit explicit implementation
-		IfcLabel IIfcConversionBasedUnit.Name { get { return @Name; } }	
-		IIfcMeasureWithUnit IIfcConversionBasedUnit.ConversionFactor { get { return @ConversionFactor; } }	
+		IfcLabel IIfcConversionBasedUnit.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IIfcMeasureWithUnit IIfcConversionBasedUnit.ConversionFactor { 
+			get { return @ConversionFactor; } 
+ 
+ 
+			set { ConversionFactor = value as IfcMeasureWithUnit;}
+		}	
 		 
 		#endregion
 

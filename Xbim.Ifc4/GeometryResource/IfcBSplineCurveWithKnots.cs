@@ -28,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IEnumerable<IfcInteger> @KnotMultiplicities { get; }
 		IEnumerable<IfcParameterValue> @Knots { get; }
-		IfcKnotType @KnotSpec { get; }
+		IfcKnotType @KnotSpec { get;  set; }
 		IfcInteger @UpperIndexOnKnots  { get ; }
 	
 	}
@@ -41,9 +41,17 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcBSplineCurveWithKnots : IfcBSplineCurve, IInstantiableEntity, IIfcBSplineCurveWithKnots, IContainsEntityReferences, IEquatable<@IfcBSplineCurveWithKnots>
 	{
 		#region IIfcBSplineCurveWithKnots explicit implementation
-		IEnumerable<IfcInteger> IIfcBSplineCurveWithKnots.KnotMultiplicities { get { return @KnotMultiplicities; } }	
-		IEnumerable<IfcParameterValue> IIfcBSplineCurveWithKnots.Knots { get { return @Knots; } }	
-		IfcKnotType IIfcBSplineCurveWithKnots.KnotSpec { get { return @KnotSpec; } }	
+		IEnumerable<IfcInteger> IIfcBSplineCurveWithKnots.KnotMultiplicities { 
+			get { return @KnotMultiplicities; } 
+		}	
+		IEnumerable<IfcParameterValue> IIfcBSplineCurveWithKnots.Knots { 
+			get { return @Knots; } 
+		}	
+		IfcKnotType IIfcBSplineCurveWithKnots.KnotSpec { 
+			get { return @KnotSpec; } 
+ 
+			set { KnotSpec = value;}
+		}	
 		 
 		#endregion
 

@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSpaceHeaterType : IIfcFlowTerminalType
 	{
-		IfcSpaceHeaterTypeEnum @PredefinedType { get; }
+		IfcSpaceHeaterTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.HvacDomain
 	public  partial class @IfcSpaceHeaterType : IfcFlowTerminalType, IInstantiableEntity, IIfcSpaceHeaterType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSpaceHeaterType>
 	{
 		#region IIfcSpaceHeaterType explicit implementation
-		IfcSpaceHeaterTypeEnum IIfcSpaceHeaterType.PredefinedType { get { return @PredefinedType; } }	
+		IfcSpaceHeaterTypeEnum IIfcSpaceHeaterType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

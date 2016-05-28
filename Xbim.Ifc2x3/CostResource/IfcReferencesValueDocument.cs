@@ -29,10 +29,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcReferencesValueDocument : IPersistEntity
 	{
-		IIfcDocumentSelect @ReferencedDocument { get; }
+		IIfcDocumentSelect @ReferencedDocument { get;  set; }
 		IEnumerable<IIfcAppliedValue> @ReferencingValues { get; }
-		IfcLabel? @Name { get; }
-		IfcText? @Description { get; }
+		IfcLabel? @Name { get;  set; }
+		IfcText? @Description { get;  set; }
 	
 	}
 }
@@ -44,10 +44,25 @@ namespace Xbim.Ifc2x3.CostResource
 	public  partial class @IfcReferencesValueDocument : INotifyPropertyChanged, IInstantiableEntity, IIfcReferencesValueDocument, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcReferencesValueDocument>
 	{
 		#region IIfcReferencesValueDocument explicit implementation
-		IIfcDocumentSelect IIfcReferencesValueDocument.ReferencedDocument { get { return @ReferencedDocument; } }	
-		IEnumerable<IIfcAppliedValue> IIfcReferencesValueDocument.ReferencingValues { get { return @ReferencingValues; } }	
-		IfcLabel? IIfcReferencesValueDocument.Name { get { return @Name; } }	
-		IfcText? IIfcReferencesValueDocument.Description { get { return @Description; } }	
+		IIfcDocumentSelect IIfcReferencesValueDocument.ReferencedDocument { 
+			get { return @ReferencedDocument; } 
+ 
+ 
+			set { ReferencedDocument = value as IfcDocumentSelect;}
+		}	
+		IEnumerable<IIfcAppliedValue> IIfcReferencesValueDocument.ReferencingValues { 
+			get { return @ReferencingValues; } 
+		}	
+		IfcLabel? IIfcReferencesValueDocument.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcReferencesValueDocument.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
 		 
 		#endregion
 

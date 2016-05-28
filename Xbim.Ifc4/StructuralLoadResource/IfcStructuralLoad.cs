@@ -28,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralLoad : IPersistEntity
 	{
-		IfcLabel? @Name { get; }
+		IfcLabel? @Name { get;  set; }
 	
 	}
 }
@@ -40,7 +40,11 @@ namespace Xbim.Ifc4.StructuralLoadResource
 	public abstract partial class @IfcStructuralLoad : IPersistEntity, INotifyPropertyChanged, IIfcStructuralLoad, IEquatable<@IfcStructuralLoad>
 	{
 		#region IIfcStructuralLoad explicit implementation
-		IfcLabel? IIfcStructuralLoad.Name { get { return @Name; } }	
+		IfcLabel? IIfcStructuralLoad.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
 		 
 		#endregion
 

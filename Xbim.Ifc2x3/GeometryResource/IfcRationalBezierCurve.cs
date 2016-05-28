@@ -38,7 +38,9 @@ namespace Xbim.Ifc2x3.GeometryResource
 	public  partial class @IfcRationalBezierCurve : IfcBezierCurve, IInstantiableEntity, IIfcRationalBezierCurve, IContainsEntityReferences, IEquatable<@IfcRationalBezierCurve>
 	{
 		#region IIfcRationalBezierCurve explicit implementation
-		IEnumerable<double> IIfcRationalBezierCurve.WeightsData { get { return @WeightsData; } }	
+		IEnumerable<double> IIfcRationalBezierCurve.WeightsData { 
+			get { return @WeightsData; } 
+		}	
 		 
 		#endregion
 

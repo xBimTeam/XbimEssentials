@@ -25,8 +25,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcLine : IIfcCurve
 	{
-		IIfcCartesianPoint @Pnt { get; }
-		IIfcVector @Dir { get; }
+		IIfcCartesianPoint @Pnt { get;  set; }
+		IIfcVector @Dir { get;  set; }
 	
 	}
 }
@@ -38,8 +38,18 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcLine : IfcCurve, IInstantiableEntity, IIfcLine, IContainsEntityReferences, IEquatable<@IfcLine>
 	{
 		#region IIfcLine explicit implementation
-		IIfcCartesianPoint IIfcLine.Pnt { get { return @Pnt; } }	
-		IIfcVector IIfcLine.Dir { get { return @Dir; } }	
+		IIfcCartesianPoint IIfcLine.Pnt { 
+			get { return @Pnt; } 
+ 
+ 
+			set { Pnt = value as IfcCartesianPoint;}
+		}	
+		IIfcVector IIfcLine.Dir { 
+			get { return @Dir; } 
+ 
+ 
+			set { Dir = value as IfcVector;}
+		}	
 		 
 		#endregion
 

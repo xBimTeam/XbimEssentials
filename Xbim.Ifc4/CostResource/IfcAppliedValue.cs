@@ -32,15 +32,15 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcAppliedValue : IPersistEntity, IfcMetricValueSelect, IfcObjectReferenceSelect, IfcResourceObjectSelect
 	{
-		IfcLabel? @Name { get; }
-		IfcText? @Description { get; }
-		IIfcAppliedValueSelect @AppliedValue { get; }
-		IIfcMeasureWithUnit @UnitBasis { get; }
-		IfcDate? @ApplicableDate { get; }
-		IfcDate? @FixedUntilDate { get; }
-		IfcLabel? @Category { get; }
-		IfcLabel? @Condition { get; }
-		IfcArithmeticOperatorEnum? @ArithmeticOperator { get; }
+		IfcLabel? @Name { get;  set; }
+		IfcText? @Description { get;  set; }
+		IIfcAppliedValueSelect @AppliedValue { get;  set; }
+		IIfcMeasureWithUnit @UnitBasis { get;  set; }
+		IfcDate? @ApplicableDate { get;  set; }
+		IfcDate? @FixedUntilDate { get;  set; }
+		IfcLabel? @Category { get;  set; }
+		IfcLabel? @Condition { get;  set; }
+		IfcArithmeticOperatorEnum? @ArithmeticOperator { get;  set; }
 		IEnumerable<IIfcAppliedValue> @Components { get; }
 		IEnumerable<IIfcExternalReferenceRelationship> @HasExternalReference {  get; }
 	
@@ -54,16 +54,56 @@ namespace Xbim.Ifc4.CostResource
 	public  partial class @IfcAppliedValue : INotifyPropertyChanged, IInstantiableEntity, IIfcAppliedValue, IContainsEntityReferences, IEquatable<@IfcAppliedValue>
 	{
 		#region IIfcAppliedValue explicit implementation
-		IfcLabel? IIfcAppliedValue.Name { get { return @Name; } }	
-		IfcText? IIfcAppliedValue.Description { get { return @Description; } }	
-		IIfcAppliedValueSelect IIfcAppliedValue.AppliedValue { get { return @AppliedValue; } }	
-		IIfcMeasureWithUnit IIfcAppliedValue.UnitBasis { get { return @UnitBasis; } }	
-		IfcDate? IIfcAppliedValue.ApplicableDate { get { return @ApplicableDate; } }	
-		IfcDate? IIfcAppliedValue.FixedUntilDate { get { return @FixedUntilDate; } }	
-		IfcLabel? IIfcAppliedValue.Category { get { return @Category; } }	
-		IfcLabel? IIfcAppliedValue.Condition { get { return @Condition; } }	
-		IfcArithmeticOperatorEnum? IIfcAppliedValue.ArithmeticOperator { get { return @ArithmeticOperator; } }	
-		IEnumerable<IIfcAppliedValue> IIfcAppliedValue.Components { get { return @Components; } }	
+		IfcLabel? IIfcAppliedValue.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcAppliedValue.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IIfcAppliedValueSelect IIfcAppliedValue.AppliedValue { 
+			get { return @AppliedValue; } 
+ 
+ 
+			set { AppliedValue = value as IfcAppliedValueSelect;}
+		}	
+		IIfcMeasureWithUnit IIfcAppliedValue.UnitBasis { 
+			get { return @UnitBasis; } 
+ 
+ 
+			set { UnitBasis = value as IfcMeasureWithUnit;}
+		}	
+		IfcDate? IIfcAppliedValue.ApplicableDate { 
+			get { return @ApplicableDate; } 
+ 
+			set { ApplicableDate = value;}
+		}	
+		IfcDate? IIfcAppliedValue.FixedUntilDate { 
+			get { return @FixedUntilDate; } 
+ 
+			set { FixedUntilDate = value;}
+		}	
+		IfcLabel? IIfcAppliedValue.Category { 
+			get { return @Category; } 
+ 
+			set { Category = value;}
+		}	
+		IfcLabel? IIfcAppliedValue.Condition { 
+			get { return @Condition; } 
+ 
+			set { Condition = value;}
+		}	
+		IfcArithmeticOperatorEnum? IIfcAppliedValue.ArithmeticOperator { 
+			get { return @ArithmeticOperator; } 
+ 
+			set { ArithmeticOperator = value;}
+		}	
+		IEnumerable<IIfcAppliedValue> IIfcAppliedValue.Components { 
+			get { return @Components; } 
+		}	
 		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcAppliedValue.HasExternalReference {  get { return @HasExternalReference; } }
 		#endregion

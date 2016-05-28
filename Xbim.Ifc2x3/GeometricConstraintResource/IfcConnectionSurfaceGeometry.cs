@@ -25,8 +25,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConnectionSurfaceGeometry : IIfcConnectionGeometry
 	{
-		IIfcSurfaceOrFaceSurface @SurfaceOnRelatingElement { get; }
-		IIfcSurfaceOrFaceSurface @SurfaceOnRelatedElement { get; }
+		IIfcSurfaceOrFaceSurface @SurfaceOnRelatingElement { get;  set; }
+		IIfcSurfaceOrFaceSurface @SurfaceOnRelatedElement { get;  set; }
 	
 	}
 }
@@ -38,8 +38,18 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 	public  partial class @IfcConnectionSurfaceGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionSurfaceGeometry, IContainsEntityReferences, IEquatable<@IfcConnectionSurfaceGeometry>
 	{
 		#region IIfcConnectionSurfaceGeometry explicit implementation
-		IIfcSurfaceOrFaceSurface IIfcConnectionSurfaceGeometry.SurfaceOnRelatingElement { get { return @SurfaceOnRelatingElement; } }	
-		IIfcSurfaceOrFaceSurface IIfcConnectionSurfaceGeometry.SurfaceOnRelatedElement { get { return @SurfaceOnRelatedElement; } }	
+		IIfcSurfaceOrFaceSurface IIfcConnectionSurfaceGeometry.SurfaceOnRelatingElement { 
+			get { return @SurfaceOnRelatingElement; } 
+ 
+ 
+			set { SurfaceOnRelatingElement = value as IfcSurfaceOrFaceSurface;}
+		}	
+		IIfcSurfaceOrFaceSurface IIfcConnectionSurfaceGeometry.SurfaceOnRelatedElement { 
+			get { return @SurfaceOnRelatedElement; } 
+ 
+ 
+			set { SurfaceOnRelatedElement = value as IfcSurfaceOrFaceSurface;}
+		}	
 		 
 		#endregion
 

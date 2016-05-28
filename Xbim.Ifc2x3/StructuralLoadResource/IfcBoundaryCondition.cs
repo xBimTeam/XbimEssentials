@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBoundaryCondition : IPersistEntity
 	{
-		IfcLabel? @Name { get; }
+		IfcLabel? @Name { get;  set; }
 	
 	}
 }
@@ -40,7 +40,11 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 	public abstract partial class @IfcBoundaryCondition : IPersistEntity, INotifyPropertyChanged, IIfcBoundaryCondition, IEquatable<@IfcBoundaryCondition>
 	{
 		#region IIfcBoundaryCondition explicit implementation
-		IfcLabel? IIfcBoundaryCondition.Name { get { return @Name; } }	
+		IfcLabel? IIfcBoundaryCondition.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
 		 
 		#endregion
 

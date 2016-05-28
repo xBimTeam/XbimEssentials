@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralLoadSingleForceWarping : IIfcStructuralLoadSingleForce
 	{
-		IfcWarpingMomentMeasure? @WarpingMoment { get; }
+		IfcWarpingMomentMeasure? @WarpingMoment { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.StructuralLoadResource
 	public  partial class @IfcStructuralLoadSingleForceWarping : IfcStructuralLoadSingleForce, IInstantiableEntity, IIfcStructuralLoadSingleForceWarping, IEquatable<@IfcStructuralLoadSingleForceWarping>
 	{
 		#region IIfcStructuralLoadSingleForceWarping explicit implementation
-		IfcWarpingMomentMeasure? IIfcStructuralLoadSingleForceWarping.WarpingMoment { get { return @WarpingMoment; } }	
+		IfcWarpingMomentMeasure? IIfcStructuralLoadSingleForceWarping.WarpingMoment { 
+			get { return @WarpingMoment; } 
+ 
+			set { WarpingMoment = value;}
+		}	
 		 
 		#endregion
 

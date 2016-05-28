@@ -69,6 +69,78 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcRoofTypeEnum.FLAT_ROOF:
+						ShapeType = IfcRoofTypeEnum.FLAT_ROOF;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoofTypeEnum.SHED_ROOF:
+						ShapeType = IfcRoofTypeEnum.SHED_ROOF;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoofTypeEnum.GABLE_ROOF:
+						ShapeType = IfcRoofTypeEnum.GABLE_ROOF;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoofTypeEnum.HIP_ROOF:
+						ShapeType = IfcRoofTypeEnum.HIP_ROOF;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoofTypeEnum.HIPPED_GABLE_ROOF:
+						ShapeType = IfcRoofTypeEnum.HIPPED_GABLE_ROOF;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoofTypeEnum.GAMBREL_ROOF:
+						ShapeType = IfcRoofTypeEnum.GAMBREL_ROOF;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoofTypeEnum.MANSARD_ROOF:
+						ShapeType = IfcRoofTypeEnum.MANSARD_ROOF;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoofTypeEnum.BARREL_ROOF:
+						ShapeType = IfcRoofTypeEnum.BARREL_ROOF;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoofTypeEnum.RAINBOW_ROOF:
+						ShapeType = IfcRoofTypeEnum.RAINBOW_ROOF;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoofTypeEnum.BUTTERFLY_ROOF:
+						ShapeType = IfcRoofTypeEnum.BUTTERFLY_ROOF;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoofTypeEnum.PAVILION_ROOF:
+						ShapeType = IfcRoofTypeEnum.PAVILION_ROOF;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoofTypeEnum.DOME_ROOF:
+						ShapeType = IfcRoofTypeEnum.DOME_ROOF;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoofTypeEnum.FREEFORM:
+						ShapeType = IfcRoofTypeEnum.FREEFORM;
+						return;
+					
+					case Ifc4.Interfaces.IfcRoofTypeEnum.USERDEFINED:
+						//## Handle setting of USERDEFINED member from IfcRoofTypeEnum in property PredefinedType
+						//TODO: Handle setting of USERDEFINED member from IfcRoofTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcRoofTypeEnum.NOTDEFINED:
+						ShapeType = IfcRoofTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

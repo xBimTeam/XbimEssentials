@@ -15,7 +15,7 @@ namespace Xbim.Ifc4
 	[ExpressType("IfcStrippedOptional", 983)]
 	[DefinedType(typeof(bool))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcStrippedOptional : IExpressValueType, System.IEquatable<bool>
+	public partial struct IfcStrippedOptional : IExpressValueType, IExpressBooleanType, System.IEquatable<bool>
 	{ 
 		private bool _value;
         
@@ -23,6 +23,9 @@ namespace Xbim.Ifc4
         {
             get { return _value; }
         }
+
+ 
+		bool IExpressBooleanType.Value { get { return _value; } }
 
 		public override string ToString()
         {

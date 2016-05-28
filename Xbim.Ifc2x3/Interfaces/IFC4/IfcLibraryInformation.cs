@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				Name = new MeasureResource.IfcLabel(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcLibraryInformation.Version 
 		{ 
@@ -30,13 +35,47 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (!Version.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Version.Value);
 			} 
+			set
+			{
+				Version = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
+
+		private  IIfcActorSelect _publisher4;
+
 		IIfcActorSelect IIfcLibraryInformation.Publisher 
 		{ 
 			get
 			{
-				return Publisher;
+				return  _publisher4 ?? Publisher;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					Publisher = null;
+					if (_publisher4 != null)
+						SetValue(v => _publisher4 = v, _publisher4, null, "Publisher", byte.MaxValue);
+					return;
+				}
+				
+				var val = value as ActorResource.IfcOrganization;
+				if (val != null)
+				{
+					Publisher = val;
+					if (_publisher4 != null)
+						SetValue(v => _publisher4 = v, _publisher4, null, "Publisher", byte.MaxValue);
+					return;
+				} 
+
+				if(Publisher != null)
+					Publisher = null;
+				SetValue(v => _publisher4 = v, _publisher4, value, "Publisher", byte.MaxValue);
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDateTime? IIfcLibraryInformation.VersionDate 
 		{ 
@@ -48,6 +87,24 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			        : null;
 			    //##
 			} 
+			set
+			{
+				//## Handle setting of VersionDate for which no match was found
+                if (!value.HasValue)
+                {
+                    VersionDate = null;
+                    return;
+                }
+                System.DateTime d = value.Value;
+                VersionDate = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+                {
+                    date.YearComponent = d.Year;
+                    date.MonthComponent = d.Month;
+                    date.DayComponent = d.Day;
+                });
+				//##
+				
+			}
 		}
 		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcLibraryInformation.Location 
 		{ 
@@ -61,15 +118,40 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			        : null;
 			    //##
 			} 
+			set
+			{
+				//## Handle setting of Location for which no match was found
+                var reference = LibraryReference.FirstOrDefault(r => r.Location != null);
+                if (!value.HasValue)
+                {
+                    if (reference != null)
+                        reference.Location = null;
+                }
+                else
+                {
+                    if (reference == null)
+                        reference = Model.Instances.New<IfcLibraryReference>();
+                    reference.Location = value.Value.ToString();
+                }
+				//##
+				NotifyPropertyChanged("Location");
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcText? _description;
+
 		Ifc4.MeasureResource.IfcText? IIfcLibraryInformation.Description 
 		{ 
 			get
 			{
-				//## Handle return of Description for which no match was found
-			    return null;
-			    //##
+				return _description;
 			} 
+			set
+			{
+				SetValue(v => _description = v, _description, value, "Description", byte.MaxValue);
+				
+			}
 		}
 		IEnumerable<IIfcRelAssociatesLibrary> IIfcLibraryInformation.LibraryInfoForObjects 
 		{ 

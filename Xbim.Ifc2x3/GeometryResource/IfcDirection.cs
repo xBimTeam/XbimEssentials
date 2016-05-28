@@ -39,7 +39,9 @@ namespace Xbim.Ifc2x3.GeometryResource
 	public  partial class @IfcDirection : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDirection, IEquatable<@IfcDirection>
 	{
 		#region IIfcDirection explicit implementation
-		IEnumerable<double> IIfcDirection.DirectionRatios { get { return @DirectionRatios; } }	
+		IEnumerable<double> IIfcDirection.DirectionRatios { 
+			get { return @DirectionRatios; } 
+		}	
 		 
 		#endregion
 

@@ -27,8 +27,8 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieClassification : IPersistEntity
 	{
-		string @Name { get; }
-		string @Description { get; }
+		string @Name { get;  set; }
+		string @Description { get;  set; }
 		IEnumerable<ICobieCategory> @Categories {  get; }
 	
 	}
@@ -41,8 +41,16 @@ namespace Xbim.CobieExpress
 	public  partial class @CobieClassification : INotifyPropertyChanged, IInstantiableEntity, ICobieClassification, IEquatable<@CobieClassification>
 	{
 		#region ICobieClassification explicit implementation
-		string ICobieClassification.Name { get { return @Name; } }	
-		string ICobieClassification.Description { get { return @Description; } }	
+		string ICobieClassification.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		string ICobieClassification.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
 		 
 		IEnumerable<ICobieCategory> ICobieClassification.Categories {  get { return @Categories; } }
 		#endregion

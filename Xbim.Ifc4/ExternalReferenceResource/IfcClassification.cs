@@ -28,12 +28,12 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcClassification : IIfcExternalInformation, IfcClassificationReferenceSelect, IfcClassificationSelect
 	{
-		IfcLabel? @Source { get; }
-		IfcLabel? @Edition { get; }
-		IfcDate? @EditionDate { get; }
-		IfcLabel @Name { get; }
-		IfcText? @Description { get; }
-		IfcURIReference? @Location { get; }
+		IfcLabel? @Source { get;  set; }
+		IfcLabel? @Edition { get;  set; }
+		IfcDate? @EditionDate { get;  set; }
+		IfcLabel @Name { get;  set; }
+		IfcText? @Description { get;  set; }
+		IfcURIReference? @Location { get;  set; }
 		IEnumerable<IfcIdentifier> @ReferenceTokens { get; }
 		IEnumerable<IIfcRelAssociatesClassification> @ClassificationForObjects {  get; }
 		IEnumerable<IIfcClassificationReference> @HasReferences {  get; }
@@ -48,13 +48,39 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 	public  partial class @IfcClassification : IfcExternalInformation, IInstantiableEntity, IIfcClassification, IEquatable<@IfcClassification>
 	{
 		#region IIfcClassification explicit implementation
-		IfcLabel? IIfcClassification.Source { get { return @Source; } }	
-		IfcLabel? IIfcClassification.Edition { get { return @Edition; } }	
-		IfcDate? IIfcClassification.EditionDate { get { return @EditionDate; } }	
-		IfcLabel IIfcClassification.Name { get { return @Name; } }	
-		IfcText? IIfcClassification.Description { get { return @Description; } }	
-		IfcURIReference? IIfcClassification.Location { get { return @Location; } }	
-		IEnumerable<IfcIdentifier> IIfcClassification.ReferenceTokens { get { return @ReferenceTokens; } }	
+		IfcLabel? IIfcClassification.Source { 
+			get { return @Source; } 
+ 
+			set { Source = value;}
+		}	
+		IfcLabel? IIfcClassification.Edition { 
+			get { return @Edition; } 
+ 
+			set { Edition = value;}
+		}	
+		IfcDate? IIfcClassification.EditionDate { 
+			get { return @EditionDate; } 
+ 
+			set { EditionDate = value;}
+		}	
+		IfcLabel IIfcClassification.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcClassification.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IfcURIReference? IIfcClassification.Location { 
+			get { return @Location; } 
+ 
+			set { Location = value;}
+		}	
+		IEnumerable<IfcIdentifier> IIfcClassification.ReferenceTokens { 
+			get { return @ReferenceTokens; } 
+		}	
 		 
 		IEnumerable<IIfcRelAssociatesClassification> IIfcClassification.ClassificationForObjects {  get { return @ClassificationForObjects; } }
 		IEnumerable<IIfcClassificationReference> IIfcClassification.HasReferences {  get { return @HasReferences; } }

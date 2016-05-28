@@ -25,9 +25,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBoundaryFaceCondition : IIfcBoundaryCondition
 	{
-		IIfcModulusOfSubgradeReactionSelect @TranslationalStiffnessByAreaX { get; }
-		IIfcModulusOfSubgradeReactionSelect @TranslationalStiffnessByAreaY { get; }
-		IIfcModulusOfSubgradeReactionSelect @TranslationalStiffnessByAreaZ { get; }
+		IIfcModulusOfSubgradeReactionSelect @TranslationalStiffnessByAreaX { get;  set; }
+		IIfcModulusOfSubgradeReactionSelect @TranslationalStiffnessByAreaY { get;  set; }
+		IIfcModulusOfSubgradeReactionSelect @TranslationalStiffnessByAreaZ { get;  set; }
 	
 	}
 }
@@ -39,9 +39,24 @@ namespace Xbim.Ifc4.StructuralLoadResource
 	public  partial class @IfcBoundaryFaceCondition : IfcBoundaryCondition, IInstantiableEntity, IIfcBoundaryFaceCondition, IEquatable<@IfcBoundaryFaceCondition>
 	{
 		#region IIfcBoundaryFaceCondition explicit implementation
-		IIfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaX { get { return @TranslationalStiffnessByAreaX; } }	
-		IIfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaY { get { return @TranslationalStiffnessByAreaY; } }	
-		IIfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaZ { get { return @TranslationalStiffnessByAreaZ; } }	
+		IIfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaX { 
+			get { return @TranslationalStiffnessByAreaX; } 
+ 
+ 
+			set { TranslationalStiffnessByAreaX = value as IfcModulusOfSubgradeReactionSelect;}
+		}	
+		IIfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaY { 
+			get { return @TranslationalStiffnessByAreaY; } 
+ 
+ 
+			set { TranslationalStiffnessByAreaY = value as IfcModulusOfSubgradeReactionSelect;}
+		}	
+		IIfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaZ { 
+			get { return @TranslationalStiffnessByAreaZ; } 
+ 
+ 
+			set { TranslationalStiffnessByAreaZ = value as IfcModulusOfSubgradeReactionSelect;}
+		}	
 		 
 		#endregion
 

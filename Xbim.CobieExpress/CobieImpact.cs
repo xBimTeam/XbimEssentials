@@ -25,16 +25,16 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieImpact : ICobieReferencedObject
 	{
-		string @Name { get; }
-		string @Description { get; }
-		ICobieImpactType @ImpactType { get; }
-		ICobieImpactStage @ImpactStage { get; }
-		double? @Value { get; }
-		ICobieImpactUnit @ImpactUnit { get; }
-		double? @LeadInTime { get; }
-		double? @Duration { get; }
-		double? @LeadOutTime { get; }
-		ICobieDurationUnit @DurationUnit { get; }
+		string @Name { get;  set; }
+		string @Description { get;  set; }
+		ICobieImpactType @ImpactType { get;  set; }
+		ICobieImpactStage @ImpactStage { get;  set; }
+		double? @Value { get;  set; }
+		ICobieImpactUnit @ImpactUnit { get;  set; }
+		double? @LeadInTime { get;  set; }
+		double? @Duration { get;  set; }
+		double? @LeadOutTime { get;  set; }
+		ICobieDurationUnit @DurationUnit { get;  set; }
 	
 	}
 }
@@ -46,16 +46,60 @@ namespace Xbim.CobieExpress
 	public  partial class @CobieImpact : CobieReferencedObject, IInstantiableEntity, ICobieImpact, IContainsEntityReferences, IEquatable<@CobieImpact>
 	{
 		#region ICobieImpact explicit implementation
-		string ICobieImpact.Name { get { return @Name; } }	
-		string ICobieImpact.Description { get { return @Description; } }	
-		ICobieImpactType ICobieImpact.ImpactType { get { return @ImpactType; } }	
-		ICobieImpactStage ICobieImpact.ImpactStage { get { return @ImpactStage; } }	
-		double? ICobieImpact.Value { get { return @Value; } }	
-		ICobieImpactUnit ICobieImpact.ImpactUnit { get { return @ImpactUnit; } }	
-		double? ICobieImpact.LeadInTime { get { return @LeadInTime; } }	
-		double? ICobieImpact.Duration { get { return @Duration; } }	
-		double? ICobieImpact.LeadOutTime { get { return @LeadOutTime; } }	
-		ICobieDurationUnit ICobieImpact.DurationUnit { get { return @DurationUnit; } }	
+		string ICobieImpact.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		string ICobieImpact.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		ICobieImpactType ICobieImpact.ImpactType { 
+			get { return @ImpactType; } 
+ 
+ 
+			set { ImpactType = value as CobieImpactType;}
+		}	
+		ICobieImpactStage ICobieImpact.ImpactStage { 
+			get { return @ImpactStage; } 
+ 
+ 
+			set { ImpactStage = value as CobieImpactStage;}
+		}	
+		double? ICobieImpact.Value { 
+			get { return @Value; } 
+ 
+			set { Value = value;}
+		}	
+		ICobieImpactUnit ICobieImpact.ImpactUnit { 
+			get { return @ImpactUnit; } 
+ 
+ 
+			set { ImpactUnit = value as CobieImpactUnit;}
+		}	
+		double? ICobieImpact.LeadInTime { 
+			get { return @LeadInTime; } 
+ 
+			set { LeadInTime = value;}
+		}	
+		double? ICobieImpact.Duration { 
+			get { return @Duration; } 
+ 
+			set { Duration = value;}
+		}	
+		double? ICobieImpact.LeadOutTime { 
+			get { return @LeadOutTime; } 
+ 
+			set { LeadOutTime = value;}
+		}	
+		ICobieDurationUnit ICobieImpact.DurationUnit { 
+			get { return @DurationUnit; } 
+ 
+ 
+			set { DurationUnit = value as CobieDurationUnit;}
+		}	
 		 
 		#endregion
 

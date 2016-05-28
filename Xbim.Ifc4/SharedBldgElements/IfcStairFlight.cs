@@ -27,11 +27,11 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStairFlight : IIfcBuildingElement
 	{
-		IfcInteger? @NumberOfRisers { get; }
-		IfcInteger? @NumberOfTreads { get; }
-		IfcPositiveLengthMeasure? @RiserHeight { get; }
-		IfcPositiveLengthMeasure? @TreadLength { get; }
-		IfcStairFlightTypeEnum? @PredefinedType { get; }
+		IfcInteger? @NumberOfRisers { get;  set; }
+		IfcInteger? @NumberOfTreads { get;  set; }
+		IfcPositiveLengthMeasure? @RiserHeight { get;  set; }
+		IfcPositiveLengthMeasure? @TreadLength { get;  set; }
+		IfcStairFlightTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -43,11 +43,31 @@ namespace Xbim.Ifc4.SharedBldgElements
 	public  partial class @IfcStairFlight : IfcBuildingElement, IInstantiableEntity, IIfcStairFlight, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStairFlight>
 	{
 		#region IIfcStairFlight explicit implementation
-		IfcInteger? IIfcStairFlight.NumberOfRisers { get { return @NumberOfRisers; } }	
-		IfcInteger? IIfcStairFlight.NumberOfTreads { get { return @NumberOfTreads; } }	
-		IfcPositiveLengthMeasure? IIfcStairFlight.RiserHeight { get { return @RiserHeight; } }	
-		IfcPositiveLengthMeasure? IIfcStairFlight.TreadLength { get { return @TreadLength; } }	
-		IfcStairFlightTypeEnum? IIfcStairFlight.PredefinedType { get { return @PredefinedType; } }	
+		IfcInteger? IIfcStairFlight.NumberOfRisers { 
+			get { return @NumberOfRisers; } 
+ 
+			set { NumberOfRisers = value;}
+		}	
+		IfcInteger? IIfcStairFlight.NumberOfTreads { 
+			get { return @NumberOfTreads; } 
+ 
+			set { NumberOfTreads = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcStairFlight.RiserHeight { 
+			get { return @RiserHeight; } 
+ 
+			set { RiserHeight = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcStairFlight.TreadLength { 
+			get { return @TreadLength; } 
+ 
+			set { TreadLength = value;}
+		}	
+		IfcStairFlightTypeEnum? IIfcStairFlight.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

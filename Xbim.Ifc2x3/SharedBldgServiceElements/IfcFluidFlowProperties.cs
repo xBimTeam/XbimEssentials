@@ -29,21 +29,21 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcFluidFlowProperties : IIfcPropertySetDefinition
 	{
-		IfcPropertySourceEnum @PropertySource { get; }
-		IIfcTimeSeries @FlowConditionTimeSeries { get; }
-		IIfcTimeSeries @VelocityTimeSeries { get; }
-		IIfcTimeSeries @FlowrateTimeSeries { get; }
-		IIfcMaterial @Fluid { get; }
-		IIfcTimeSeries @PressureTimeSeries { get; }
-		IfcLabel? @UserDefinedPropertySource { get; }
-		IfcThermodynamicTemperatureMeasure? @TemperatureSingleValue { get; }
-		IfcThermodynamicTemperatureMeasure? @WetBulbTemperatureSingleValue { get; }
-		IIfcTimeSeries @WetBulbTemperatureTimeSeries { get; }
-		IIfcTimeSeries @TemperatureTimeSeries { get; }
-		IIfcDerivedMeasureValue @FlowrateSingleValue { get; }
-		IfcPositiveRatioMeasure? @FlowConditionSingleValue { get; }
-		IfcLinearVelocityMeasure? @VelocitySingleValue { get; }
-		IfcPressureMeasure? @PressureSingleValue { get; }
+		IfcPropertySourceEnum @PropertySource { get;  set; }
+		IIfcTimeSeries @FlowConditionTimeSeries { get;  set; }
+		IIfcTimeSeries @VelocityTimeSeries { get;  set; }
+		IIfcTimeSeries @FlowrateTimeSeries { get;  set; }
+		IIfcMaterial @Fluid { get;  set; }
+		IIfcTimeSeries @PressureTimeSeries { get;  set; }
+		IfcLabel? @UserDefinedPropertySource { get;  set; }
+		IfcThermodynamicTemperatureMeasure? @TemperatureSingleValue { get;  set; }
+		IfcThermodynamicTemperatureMeasure? @WetBulbTemperatureSingleValue { get;  set; }
+		IIfcTimeSeries @WetBulbTemperatureTimeSeries { get;  set; }
+		IIfcTimeSeries @TemperatureTimeSeries { get;  set; }
+		IIfcDerivedMeasureValue @FlowrateSingleValue { get;  set; }
+		IfcPositiveRatioMeasure? @FlowConditionSingleValue { get;  set; }
+		IfcLinearVelocityMeasure? @VelocitySingleValue { get;  set; }
+		IfcPressureMeasure? @PressureSingleValue { get;  set; }
 	
 	}
 }
@@ -55,21 +55,89 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 	public  partial class @IfcFluidFlowProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcFluidFlowProperties, IContainsEntityReferences, IEquatable<@IfcFluidFlowProperties>
 	{
 		#region IIfcFluidFlowProperties explicit implementation
-		IfcPropertySourceEnum IIfcFluidFlowProperties.PropertySource { get { return @PropertySource; } }	
-		IIfcTimeSeries IIfcFluidFlowProperties.FlowConditionTimeSeries { get { return @FlowConditionTimeSeries; } }	
-		IIfcTimeSeries IIfcFluidFlowProperties.VelocityTimeSeries { get { return @VelocityTimeSeries; } }	
-		IIfcTimeSeries IIfcFluidFlowProperties.FlowrateTimeSeries { get { return @FlowrateTimeSeries; } }	
-		IIfcMaterial IIfcFluidFlowProperties.Fluid { get { return @Fluid; } }	
-		IIfcTimeSeries IIfcFluidFlowProperties.PressureTimeSeries { get { return @PressureTimeSeries; } }	
-		IfcLabel? IIfcFluidFlowProperties.UserDefinedPropertySource { get { return @UserDefinedPropertySource; } }	
-		IfcThermodynamicTemperatureMeasure? IIfcFluidFlowProperties.TemperatureSingleValue { get { return @TemperatureSingleValue; } }	
-		IfcThermodynamicTemperatureMeasure? IIfcFluidFlowProperties.WetBulbTemperatureSingleValue { get { return @WetBulbTemperatureSingleValue; } }	
-		IIfcTimeSeries IIfcFluidFlowProperties.WetBulbTemperatureTimeSeries { get { return @WetBulbTemperatureTimeSeries; } }	
-		IIfcTimeSeries IIfcFluidFlowProperties.TemperatureTimeSeries { get { return @TemperatureTimeSeries; } }	
-		IIfcDerivedMeasureValue IIfcFluidFlowProperties.FlowrateSingleValue { get { return @FlowrateSingleValue; } }	
-		IfcPositiveRatioMeasure? IIfcFluidFlowProperties.FlowConditionSingleValue { get { return @FlowConditionSingleValue; } }	
-		IfcLinearVelocityMeasure? IIfcFluidFlowProperties.VelocitySingleValue { get { return @VelocitySingleValue; } }	
-		IfcPressureMeasure? IIfcFluidFlowProperties.PressureSingleValue { get { return @PressureSingleValue; } }	
+		IfcPropertySourceEnum IIfcFluidFlowProperties.PropertySource { 
+			get { return @PropertySource; } 
+ 
+			set { PropertySource = value;}
+		}	
+		IIfcTimeSeries IIfcFluidFlowProperties.FlowConditionTimeSeries { 
+			get { return @FlowConditionTimeSeries; } 
+ 
+ 
+			set { FlowConditionTimeSeries = value as IfcTimeSeries;}
+		}	
+		IIfcTimeSeries IIfcFluidFlowProperties.VelocityTimeSeries { 
+			get { return @VelocityTimeSeries; } 
+ 
+ 
+			set { VelocityTimeSeries = value as IfcTimeSeries;}
+		}	
+		IIfcTimeSeries IIfcFluidFlowProperties.FlowrateTimeSeries { 
+			get { return @FlowrateTimeSeries; } 
+ 
+ 
+			set { FlowrateTimeSeries = value as IfcTimeSeries;}
+		}	
+		IIfcMaterial IIfcFluidFlowProperties.Fluid { 
+			get { return @Fluid; } 
+ 
+ 
+			set { Fluid = value as IfcMaterial;}
+		}	
+		IIfcTimeSeries IIfcFluidFlowProperties.PressureTimeSeries { 
+			get { return @PressureTimeSeries; } 
+ 
+ 
+			set { PressureTimeSeries = value as IfcTimeSeries;}
+		}	
+		IfcLabel? IIfcFluidFlowProperties.UserDefinedPropertySource { 
+			get { return @UserDefinedPropertySource; } 
+ 
+			set { UserDefinedPropertySource = value;}
+		}	
+		IfcThermodynamicTemperatureMeasure? IIfcFluidFlowProperties.TemperatureSingleValue { 
+			get { return @TemperatureSingleValue; } 
+ 
+			set { TemperatureSingleValue = value;}
+		}	
+		IfcThermodynamicTemperatureMeasure? IIfcFluidFlowProperties.WetBulbTemperatureSingleValue { 
+			get { return @WetBulbTemperatureSingleValue; } 
+ 
+			set { WetBulbTemperatureSingleValue = value;}
+		}	
+		IIfcTimeSeries IIfcFluidFlowProperties.WetBulbTemperatureTimeSeries { 
+			get { return @WetBulbTemperatureTimeSeries; } 
+ 
+ 
+			set { WetBulbTemperatureTimeSeries = value as IfcTimeSeries;}
+		}	
+		IIfcTimeSeries IIfcFluidFlowProperties.TemperatureTimeSeries { 
+			get { return @TemperatureTimeSeries; } 
+ 
+ 
+			set { TemperatureTimeSeries = value as IfcTimeSeries;}
+		}	
+		IIfcDerivedMeasureValue IIfcFluidFlowProperties.FlowrateSingleValue { 
+			get { return @FlowrateSingleValue; } 
+ 
+ 
+			set { FlowrateSingleValue = value as IfcDerivedMeasureValue;}
+		}	
+		IfcPositiveRatioMeasure? IIfcFluidFlowProperties.FlowConditionSingleValue { 
+			get { return @FlowConditionSingleValue; } 
+ 
+			set { FlowConditionSingleValue = value;}
+		}	
+		IfcLinearVelocityMeasure? IIfcFluidFlowProperties.VelocitySingleValue { 
+			get { return @VelocitySingleValue; } 
+ 
+			set { VelocitySingleValue = value;}
+		}	
+		IfcPressureMeasure? IIfcFluidFlowProperties.PressureSingleValue { 
+			get { return @PressureSingleValue; } 
+ 
+			set { PressureSingleValue = value;}
+		}	
 		 
 		#endregion
 

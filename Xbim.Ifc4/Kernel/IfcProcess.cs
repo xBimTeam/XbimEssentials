@@ -27,8 +27,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcProcess : IIfcObject, IfcProcessSelect
 	{
-		IfcIdentifier? @Identification { get; }
-		IfcText? @LongDescription { get; }
+		IfcIdentifier? @Identification { get;  set; }
+		IfcText? @LongDescription { get;  set; }
 		IEnumerable<IIfcRelSequence> @IsPredecessorTo {  get; }
 		IEnumerable<IIfcRelSequence> @IsSuccessorFrom {  get; }
 		IEnumerable<IIfcRelAssignsToProcess> @OperatesOn {  get; }
@@ -43,8 +43,16 @@ namespace Xbim.Ifc4.Kernel
 	public abstract partial class @IfcProcess : IfcObject, IIfcProcess, IEquatable<@IfcProcess>
 	{
 		#region IIfcProcess explicit implementation
-		IfcIdentifier? IIfcProcess.Identification { get { return @Identification; } }	
-		IfcText? IIfcProcess.LongDescription { get { return @LongDescription; } }	
+		IfcIdentifier? IIfcProcess.Identification { 
+			get { return @Identification; } 
+ 
+			set { Identification = value;}
+		}	
+		IfcText? IIfcProcess.LongDescription { 
+			get { return @LongDescription; } 
+ 
+			set { LongDescription = value;}
+		}	
 		 
 		IEnumerable<IIfcRelSequence> IIfcProcess.IsPredecessorTo {  get { return @IsPredecessorTo; } }
 		IEnumerable<IIfcRelSequence> IIfcProcess.IsSuccessorFrom {  get { return @IsSuccessorFrom; } }

@@ -26,9 +26,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConnectionPointEccentricity : IIfcConnectionPointGeometry
 	{
-		IfcLengthMeasure? @EccentricityInX { get; }
-		IfcLengthMeasure? @EccentricityInY { get; }
-		IfcLengthMeasure? @EccentricityInZ { get; }
+		IfcLengthMeasure? @EccentricityInX { get;  set; }
+		IfcLengthMeasure? @EccentricityInY { get;  set; }
+		IfcLengthMeasure? @EccentricityInZ { get;  set; }
 	
 	}
 }
@@ -40,9 +40,21 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 	public  partial class @IfcConnectionPointEccentricity : IfcConnectionPointGeometry, IInstantiableEntity, IIfcConnectionPointEccentricity, IContainsEntityReferences, IEquatable<@IfcConnectionPointEccentricity>
 	{
 		#region IIfcConnectionPointEccentricity explicit implementation
-		IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInX { get { return @EccentricityInX; } }	
-		IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInY { get { return @EccentricityInY; } }	
-		IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInZ { get { return @EccentricityInZ; } }	
+		IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInX { 
+			get { return @EccentricityInX; } 
+ 
+			set { EccentricityInX = value;}
+		}	
+		IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInY { 
+			get { return @EccentricityInY; } 
+ 
+			set { EccentricityInY = value;}
+		}	
+		IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInZ { 
+			get { return @EccentricityInZ; } 
+ 
+			set { EccentricityInZ = value;}
+		}	
 		 
 		#endregion
 

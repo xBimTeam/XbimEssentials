@@ -122,7 +122,7 @@ namespace Xbim.IO.TableStore
                 var context = GetReferenceContext(mapping);
 
                 var enumerator = sheet.GetRowEnumerator();
-                var emptyCells = 0;
+                var emptyRows = 0;
                 while (enumerator.MoveNext())
                 {
                     var row = enumerator.Current as IRow;
@@ -130,16 +130,16 @@ namespace Xbim.IO.TableStore
                     if (row == null || row.RowNum == 0)
                         continue;
 
-                    if (!row.Cells.Any())
+                    if (!row.Cells.Any() || row.Cells.All(c => c.CellType == CellType.Blank))
                     {
-                        emptyCells++;
-                        if (emptyCells == 3)
+                        emptyRows++;
+                        if (emptyRows == 3)
                             //break processing if this is third empty row
                             break;
                         //skip empty row
                         continue;
                     }
-                    emptyCells = 0;
+                    emptyRows = 0;
 
                     context.LoadData(row, false);
                     var entities = GetReferencedEntities(context);
@@ -185,7 +185,9 @@ namespace Xbim.IO.TableStore
                 if (row == null || row.RowNum == 0)
                     continue;
 
-                if (!row.Cells.Any())
+                if (!row.Cells.Any()  || 
+                    row.Cells.All(c => c.CellType == CellType.Blank) ||
+                    row.Cells.All(c => c.CellType == CellType.String &&  string.IsNullOrWhiteSpace(c.StringCellValue)))
                 {
                     emptyCells++;
                     if (emptyCells == 3)

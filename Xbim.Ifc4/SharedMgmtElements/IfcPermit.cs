@@ -27,9 +27,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPermit : IIfcControl
 	{
-		IfcPermitTypeEnum? @PredefinedType { get; }
-		IfcLabel? @Status { get; }
-		IfcText? @LongDescription { get; }
+		IfcPermitTypeEnum? @PredefinedType { get;  set; }
+		IfcLabel? @Status { get;  set; }
+		IfcText? @LongDescription { get;  set; }
 	
 	}
 }
@@ -41,9 +41,21 @@ namespace Xbim.Ifc4.SharedMgmtElements
 	public  partial class @IfcPermit : IfcControl, IInstantiableEntity, IIfcPermit, IContainsEntityReferences, IEquatable<@IfcPermit>
 	{
 		#region IIfcPermit explicit implementation
-		IfcPermitTypeEnum? IIfcPermit.PredefinedType { get { return @PredefinedType; } }	
-		IfcLabel? IIfcPermit.Status { get { return @Status; } }	
-		IfcText? IIfcPermit.LongDescription { get { return @LongDescription; } }	
+		IfcPermitTypeEnum? IIfcPermit.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
+		IfcLabel? IIfcPermit.Status { 
+			get { return @Status; } 
+ 
+			set { Status = value;}
+		}	
+		IfcText? IIfcPermit.LongDescription { 
+			get { return @LongDescription; } 
+ 
+			set { LongDescription = value;}
+		}	
 		 
 		#endregion
 

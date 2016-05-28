@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralLoadSingleDisplacementDistortion : IIfcStructuralLoadSingleDisplacement
 	{
-		IfcCurvatureMeasure? @Distortion { get; }
+		IfcCurvatureMeasure? @Distortion { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.StructuralLoadResource
 	public  partial class @IfcStructuralLoadSingleDisplacementDistortion : IfcStructuralLoadSingleDisplacement, IInstantiableEntity, IIfcStructuralLoadSingleDisplacementDistortion, IEquatable<@IfcStructuralLoadSingleDisplacementDistortion>
 	{
 		#region IIfcStructuralLoadSingleDisplacementDistortion explicit implementation
-		IfcCurvatureMeasure? IIfcStructuralLoadSingleDisplacementDistortion.Distortion { get { return @Distortion; } }	
+		IfcCurvatureMeasure? IIfcStructuralLoadSingleDisplacementDistortion.Distortion { 
+			get { return @Distortion; } 
+ 
+			set { Distortion = value;}
+		}	
 		 
 		#endregion
 

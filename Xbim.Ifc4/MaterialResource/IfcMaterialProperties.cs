@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialProperties : IIfcExtendedProperties
 	{
-		IIfcMaterialDefinition @Material { get; }
+		IIfcMaterialDefinition @Material { get;  set; }
 	
 	}
 }
@@ -38,7 +38,12 @@ namespace Xbim.Ifc4.MaterialResource
 	public  partial class @IfcMaterialProperties : IfcExtendedProperties, IInstantiableEntity, IIfcMaterialProperties, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMaterialProperties>
 	{
 		#region IIfcMaterialProperties explicit implementation
-		IIfcMaterialDefinition IIfcMaterialProperties.Material { get { return @Material; } }	
+		IIfcMaterialDefinition IIfcMaterialProperties.Material { 
+			get { return @Material; } 
+ 
+ 
+			set { Material = value as IfcMaterialDefinition;}
+		}	
 		 
 		#endregion
 

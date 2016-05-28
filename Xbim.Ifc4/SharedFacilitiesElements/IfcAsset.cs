@@ -30,15 +30,15 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcAsset : IIfcGroup
 	{
-		IfcIdentifier? @Identification { get; }
-		IIfcCostValue @OriginalValue { get; }
-		IIfcCostValue @CurrentValue { get; }
-		IIfcCostValue @TotalReplacementCost { get; }
-		IIfcActorSelect @Owner { get; }
-		IIfcActorSelect @User { get; }
-		IIfcPerson @ResponsiblePerson { get; }
-		IfcDate? @IncorporationDate { get; }
-		IIfcCostValue @DepreciatedValue { get; }
+		IfcIdentifier? @Identification { get;  set; }
+		IIfcCostValue @OriginalValue { get;  set; }
+		IIfcCostValue @CurrentValue { get;  set; }
+		IIfcCostValue @TotalReplacementCost { get;  set; }
+		IIfcActorSelect @Owner { get;  set; }
+		IIfcActorSelect @User { get;  set; }
+		IIfcPerson @ResponsiblePerson { get;  set; }
+		IfcDate? @IncorporationDate { get;  set; }
+		IIfcCostValue @DepreciatedValue { get;  set; }
 	
 	}
 }
@@ -50,15 +50,58 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 	public  partial class @IfcAsset : IfcGroup, IInstantiableEntity, IIfcAsset, IContainsEntityReferences, IEquatable<@IfcAsset>
 	{
 		#region IIfcAsset explicit implementation
-		IfcIdentifier? IIfcAsset.Identification { get { return @Identification; } }	
-		IIfcCostValue IIfcAsset.OriginalValue { get { return @OriginalValue; } }	
-		IIfcCostValue IIfcAsset.CurrentValue { get { return @CurrentValue; } }	
-		IIfcCostValue IIfcAsset.TotalReplacementCost { get { return @TotalReplacementCost; } }	
-		IIfcActorSelect IIfcAsset.Owner { get { return @Owner; } }	
-		IIfcActorSelect IIfcAsset.User { get { return @User; } }	
-		IIfcPerson IIfcAsset.ResponsiblePerson { get { return @ResponsiblePerson; } }	
-		IfcDate? IIfcAsset.IncorporationDate { get { return @IncorporationDate; } }	
-		IIfcCostValue IIfcAsset.DepreciatedValue { get { return @DepreciatedValue; } }	
+		IfcIdentifier? IIfcAsset.Identification { 
+			get { return @Identification; } 
+ 
+			set { Identification = value;}
+		}	
+		IIfcCostValue IIfcAsset.OriginalValue { 
+			get { return @OriginalValue; } 
+ 
+ 
+			set { OriginalValue = value as IfcCostValue;}
+		}	
+		IIfcCostValue IIfcAsset.CurrentValue { 
+			get { return @CurrentValue; } 
+ 
+ 
+			set { CurrentValue = value as IfcCostValue;}
+		}	
+		IIfcCostValue IIfcAsset.TotalReplacementCost { 
+			get { return @TotalReplacementCost; } 
+ 
+ 
+			set { TotalReplacementCost = value as IfcCostValue;}
+		}	
+		IIfcActorSelect IIfcAsset.Owner { 
+			get { return @Owner; } 
+ 
+ 
+			set { Owner = value as IfcActorSelect;}
+		}	
+		IIfcActorSelect IIfcAsset.User { 
+			get { return @User; } 
+ 
+ 
+			set { User = value as IfcActorSelect;}
+		}	
+		IIfcPerson IIfcAsset.ResponsiblePerson { 
+			get { return @ResponsiblePerson; } 
+ 
+ 
+			set { ResponsiblePerson = value as IfcPerson;}
+		}	
+		IfcDate? IIfcAsset.IncorporationDate { 
+			get { return @IncorporationDate; } 
+ 
+			set { IncorporationDate = value;}
+		}	
+		IIfcCostValue IIfcAsset.DepreciatedValue { 
+			get { return @DepreciatedValue; } 
+ 
+ 
+			set { DepreciatedValue = value as IfcCostValue;}
+		}	
 		 
 		#endregion
 

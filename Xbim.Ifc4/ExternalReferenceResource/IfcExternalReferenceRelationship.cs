@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcExternalReferenceRelationship : IIfcResourceLevelRelationship
 	{
-		IIfcExternalReference @RelatingReference { get; }
+		IIfcExternalReference @RelatingReference { get;  set; }
 		IEnumerable<IIfcResourceObjectSelect> @RelatedResourceObjects { get; }
 	
 	}
@@ -38,8 +38,15 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 	public  partial class @IfcExternalReferenceRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcExternalReferenceRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcExternalReferenceRelationship>
 	{
 		#region IIfcExternalReferenceRelationship explicit implementation
-		IIfcExternalReference IIfcExternalReferenceRelationship.RelatingReference { get { return @RelatingReference; } }	
-		IEnumerable<IIfcResourceObjectSelect> IIfcExternalReferenceRelationship.RelatedResourceObjects { get { return @RelatedResourceObjects; } }	
+		IIfcExternalReference IIfcExternalReferenceRelationship.RelatingReference { 
+			get { return @RelatingReference; } 
+ 
+ 
+			set { RelatingReference = value as IfcExternalReference;}
+		}	
+		IEnumerable<IIfcResourceObjectSelect> IIfcExternalReferenceRelationship.RelatedResourceObjects { 
+			get { return @RelatedResourceObjects; } 
+		}	
 		 
 		#endregion
 

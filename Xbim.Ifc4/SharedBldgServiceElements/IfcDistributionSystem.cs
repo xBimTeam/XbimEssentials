@@ -27,8 +27,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDistributionSystem : IIfcSystem
 	{
-		IfcLabel? @LongName { get; }
-		IfcDistributionSystemEnum? @PredefinedType { get; }
+		IfcLabel? @LongName { get;  set; }
+		IfcDistributionSystemEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -40,8 +40,16 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 	public  partial class @IfcDistributionSystem : IfcSystem, IInstantiableEntity, IIfcDistributionSystem, IContainsEntityReferences, IEquatable<@IfcDistributionSystem>
 	{
 		#region IIfcDistributionSystem explicit implementation
-		IfcLabel? IIfcDistributionSystem.LongName { get { return @LongName; } }	
-		IfcDistributionSystemEnum? IIfcDistributionSystem.PredefinedType { get { return @PredefinedType; } }	
+		IfcLabel? IIfcDistributionSystem.LongName { 
+			get { return @LongName; } 
+ 
+			set { LongName = value;}
+		}	
+		IfcDistributionSystemEnum? IIfcDistributionSystem.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

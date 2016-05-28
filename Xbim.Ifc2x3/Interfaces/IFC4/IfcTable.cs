@@ -26,6 +26,13 @@ namespace Xbim.Ifc2x3.UtilityResource
 			    return new Ifc4.MeasureResource.IfcLabel(Name);
 			    //##
 			} 
+			set
+			{
+				//## Handle setting of Name for which no match was found
+			    Name = value;
+			    //##
+				
+			}
 		}
 		IEnumerable<IIfcTableRow> IIfcTable.Rows 
 		{ 

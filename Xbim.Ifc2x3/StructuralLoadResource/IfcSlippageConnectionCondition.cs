@@ -26,9 +26,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSlippageConnectionCondition : IIfcStructuralConnectionCondition
 	{
-		IfcLengthMeasure? @SlippageX { get; }
-		IfcLengthMeasure? @SlippageY { get; }
-		IfcLengthMeasure? @SlippageZ { get; }
+		IfcLengthMeasure? @SlippageX { get;  set; }
+		IfcLengthMeasure? @SlippageY { get;  set; }
+		IfcLengthMeasure? @SlippageZ { get;  set; }
 	
 	}
 }
@@ -40,9 +40,21 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 	public  partial class @IfcSlippageConnectionCondition : IfcStructuralConnectionCondition, IInstantiableEntity, IIfcSlippageConnectionCondition, IEquatable<@IfcSlippageConnectionCondition>
 	{
 		#region IIfcSlippageConnectionCondition explicit implementation
-		IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageX { get { return @SlippageX; } }	
-		IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageY { get { return @SlippageY; } }	
-		IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageZ { get { return @SlippageZ; } }	
+		IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageX { 
+			get { return @SlippageX; } 
+ 
+			set { SlippageX = value;}
+		}	
+		IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageY { 
+			get { return @SlippageY; } 
+ 
+			set { SlippageY = value;}
+		}	
+		IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageZ { 
+			get { return @SlippageZ; } 
+ 
+			set { SlippageZ = value;}
+		}	
 		 
 		#endregion
 

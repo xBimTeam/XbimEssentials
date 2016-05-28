@@ -22,17 +22,30 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				return new Ifc4.MeasureResource.IfcIdentifier(RasterFormat);
 			} 
+			set
+			{
+				RasterFormat = new MeasureResource.IfcIdentifier(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcBinary IIfcBlobTexture.RasterCode 
 		{ 
 			get
 			{
 				//## Handle return of RasterCode for which no match was found
-			    return 0;
+			    return _rasterCode4;
 			    //##
 			} 
+			set
+			{
+				//## Handle setting of RasterCode for which no match was found
+                SetValue(v => _rasterCode4 = v, _rasterCode4, value, "RasterCode", byte.MaxValue);
+				//##
+				
+			}
 		}
 	//## Custom code
-	//##
+	    private Ifc4.MeasureResource.IfcBinary _rasterCode4;
+	    //##
 	}
 }

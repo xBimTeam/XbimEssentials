@@ -22,6 +22,13 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Source);
 			} 
+			set
+			{
+				Source = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 default(MeasureResource.IfcLabel) ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcClassification.Edition 
 		{ 
@@ -29,6 +36,13 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Edition);
 			} 
+			set
+			{
+				Edition = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 default(MeasureResource.IfcLabel) ;
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDate? IIfcClassification.EditionDate 
 		{ 
@@ -38,6 +52,24 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
                 return EditionDate == null ? null : new Ifc4.DateTimeResource.IfcDate(EditionDate.ToISODateTimeString());
 			    //##
 			} 
+			set
+			{
+				//## Handle setting of EditionDate for which no match was found
+                if (!value.HasValue)
+                {
+                    EditionDate = null;
+                    return;
+                }
+                System.DateTime date = value.Value;
+                EditionDate = Model.Instances.New<DateTimeResource.IfcCalendarDate>(d =>
+                {
+                    d.YearComponent = date.Year;
+                    d.MonthComponent = date.Month;
+                    d.DayComponent = date.Day;
+                });
+				//##
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel IIfcClassification.Name 
 		{ 
@@ -45,24 +77,41 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				Name = new MeasureResource.IfcLabel(value);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcText? _description;
+
 		Ifc4.MeasureResource.IfcText? IIfcClassification.Description 
 		{ 
 			get
 			{
-				//## Handle return of Description for which no match was found
-			    return null;
-			    //##
+				return _description;
 			} 
+			set
+			{
+				SetValue(v => _description = v, _description, value, "Description", byte.MaxValue);
+				
+			}
 		}
+
+		private  Ifc4.ExternalReferenceResource.IfcURIReference? _location;
+
 		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcClassification.Location 
 		{ 
 			get
 			{
-				//## Handle return of Location for which no match was found
-			    return null;
-			    //##
+				return _location;
 			} 
+			set
+			{
+				SetValue(v => _location = v, _location, value, "Location", byte.MaxValue);
+				
+			}
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcIdentifier> IIfcClassification.ReferenceTokens 
 		{ 

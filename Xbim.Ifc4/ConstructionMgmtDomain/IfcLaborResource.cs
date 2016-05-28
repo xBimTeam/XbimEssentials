@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcLaborResource : IIfcConstructionResource
 	{
-		IfcLaborResourceTypeEnum? @PredefinedType { get; }
+		IfcLaborResourceTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -37,7 +37,11 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 	public  partial class @IfcLaborResource : IfcConstructionResource, IInstantiableEntity, IIfcLaborResource, IContainsEntityReferences, IEquatable<@IfcLaborResource>
 	{
 		#region IIfcLaborResource explicit implementation
-		IfcLaborResourceTypeEnum? IIfcLaborResource.PredefinedType { get { return @PredefinedType; } }	
+		IfcLaborResourceTypeEnum? IIfcLaborResource.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

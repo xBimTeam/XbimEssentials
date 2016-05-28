@@ -23,6 +23,13 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				if (!Name.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
+			set
+			{
+				Name = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		IIfcCurveStyleFontSelect IIfcCurveStyleFontAndScaling.CurveFont 
 		{ 
@@ -37,6 +44,27 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					return ifccurvestylefont;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					CurveFont = null;
+					return;
+				}	
+				var ifccurvestylefont = value as IfcCurveStyleFont;
+				if (ifccurvestylefont != null) 
+				{
+					CurveFont = ifccurvestylefont;
+					return;
+				}
+				var ifcpredefinedcurvefont = value as IfcPreDefinedCurveFont;
+				if (ifcpredefinedcurvefont != null) 
+				{
+					CurveFont = ifcpredefinedcurvefont;
+					return;
+				}
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveRatioMeasure IIfcCurveStyleFontAndScaling.CurveFontScaling 
 		{ 
@@ -44,6 +72,11 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveRatioMeasure(CurveFontScaling);
 			} 
+			set
+			{
+				CurveFontScaling = new MeasureResource.IfcPositiveRatioMeasure(value);
+				
+			}
 		}
 	//## Custom code
 	//##

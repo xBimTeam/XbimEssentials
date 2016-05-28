@@ -26,10 +26,10 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTrapeziumProfileDef : IIfcParameterizedProfileDef
 	{
-		IfcPositiveLengthMeasure @BottomXDim { get; }
-		IfcPositiveLengthMeasure @TopXDim { get; }
-		IfcPositiveLengthMeasure @YDim { get; }
-		IfcLengthMeasure @TopXOffset { get; }
+		IfcPositiveLengthMeasure @BottomXDim { get;  set; }
+		IfcPositiveLengthMeasure @TopXDim { get;  set; }
+		IfcPositiveLengthMeasure @YDim { get;  set; }
+		IfcLengthMeasure @TopXOffset { get;  set; }
 	
 	}
 }
@@ -41,10 +41,26 @@ namespace Xbim.Ifc4.ProfileResource
 	public  partial class @IfcTrapeziumProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcTrapeziumProfileDef, IContainsEntityReferences, IEquatable<@IfcTrapeziumProfileDef>
 	{
 		#region IIfcTrapeziumProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.BottomXDim { get { return @BottomXDim; } }	
-		IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.TopXDim { get { return @TopXDim; } }	
-		IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.YDim { get { return @YDim; } }	
-		IfcLengthMeasure IIfcTrapeziumProfileDef.TopXOffset { get { return @TopXOffset; } }	
+		IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.BottomXDim { 
+			get { return @BottomXDim; } 
+ 
+			set { BottomXDim = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.TopXDim { 
+			get { return @TopXDim; } 
+ 
+			set { TopXDim = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.YDim { 
+			get { return @YDim; } 
+ 
+			set { YDim = value;}
+		}	
+		IfcLengthMeasure IIfcTrapeziumProfileDef.TopXOffset { 
+			get { return @TopXOffset; } 
+ 
+			set { TopXOffset = value;}
+		}	
 		 
 		#endregion
 

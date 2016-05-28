@@ -26,9 +26,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcProjectedCRS : IIfcCoordinateReferenceSystem
 	{
-		IfcIdentifier? @MapProjection { get; }
-		IfcIdentifier? @MapZone { get; }
-		IIfcNamedUnit @MapUnit { get; }
+		IfcIdentifier? @MapProjection { get;  set; }
+		IfcIdentifier? @MapZone { get;  set; }
+		IIfcNamedUnit @MapUnit { get;  set; }
 	
 	}
 }
@@ -40,9 +40,22 @@ namespace Xbim.Ifc4.RepresentationResource
 	public  partial class @IfcProjectedCRS : IfcCoordinateReferenceSystem, IInstantiableEntity, IIfcProjectedCRS, IContainsEntityReferences, IEquatable<@IfcProjectedCRS>
 	{
 		#region IIfcProjectedCRS explicit implementation
-		IfcIdentifier? IIfcProjectedCRS.MapProjection { get { return @MapProjection; } }	
-		IfcIdentifier? IIfcProjectedCRS.MapZone { get { return @MapZone; } }	
-		IIfcNamedUnit IIfcProjectedCRS.MapUnit { get { return @MapUnit; } }	
+		IfcIdentifier? IIfcProjectedCRS.MapProjection { 
+			get { return @MapProjection; } 
+ 
+			set { MapProjection = value;}
+		}	
+		IfcIdentifier? IIfcProjectedCRS.MapZone { 
+			get { return @MapZone; } 
+ 
+			set { MapZone = value;}
+		}	
+		IIfcNamedUnit IIfcProjectedCRS.MapUnit { 
+			get { return @MapUnit; } 
+ 
+ 
+			set { MapUnit = value as IfcNamedUnit;}
+		}	
 		 
 		#endregion
 

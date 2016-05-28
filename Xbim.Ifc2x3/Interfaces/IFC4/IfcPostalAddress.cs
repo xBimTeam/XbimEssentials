@@ -23,6 +23,13 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!InternalLocation.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(InternalLocation.Value);
 			} 
+			set
+			{
+				InternalLocation = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPostalAddress.AddressLines 
 		{ 
@@ -41,6 +48,13 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!PostalBox.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(PostalBox.Value);
 			} 
+			set
+			{
+				PostalBox = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcPostalAddress.Town 
 		{ 
@@ -49,6 +63,13 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!Town.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Town.Value);
 			} 
+			set
+			{
+				Town = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcPostalAddress.Region 
 		{ 
@@ -57,6 +78,13 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!Region.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Region.Value);
 			} 
+			set
+			{
+				Region = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcPostalAddress.PostalCode 
 		{ 
@@ -65,6 +93,13 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!PostalCode.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(PostalCode.Value);
 			} 
+			set
+			{
+				PostalCode = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcPostalAddress.Country 
 		{ 
@@ -73,6 +108,13 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!Country.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Country.Value);
 			} 
+			set
+			{
+				Country = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

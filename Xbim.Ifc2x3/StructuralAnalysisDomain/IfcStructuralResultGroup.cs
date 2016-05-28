@@ -26,9 +26,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralResultGroup : IIfcGroup
 	{
-		IfcAnalysisTheoryTypeEnum @TheoryType { get; }
-		IIfcStructuralLoadGroup @ResultForLoadGroup { get; }
-		bool @IsLinear { get; }
+		IfcAnalysisTheoryTypeEnum @TheoryType { get;  set; }
+		IIfcStructuralLoadGroup @ResultForLoadGroup { get;  set; }
+		bool @IsLinear { get;  set; }
 		IEnumerable<IIfcStructuralAnalysisModel> @ResultGroupFor {  get; }
 	
 	}
@@ -41,9 +41,22 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 	public  partial class @IfcStructuralResultGroup : IfcGroup, IInstantiableEntity, IIfcStructuralResultGroup, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralResultGroup>
 	{
 		#region IIfcStructuralResultGroup explicit implementation
-		IfcAnalysisTheoryTypeEnum IIfcStructuralResultGroup.TheoryType { get { return @TheoryType; } }	
-		IIfcStructuralLoadGroup IIfcStructuralResultGroup.ResultForLoadGroup { get { return @ResultForLoadGroup; } }	
-		bool IIfcStructuralResultGroup.IsLinear { get { return @IsLinear; } }	
+		IfcAnalysisTheoryTypeEnum IIfcStructuralResultGroup.TheoryType { 
+			get { return @TheoryType; } 
+ 
+			set { TheoryType = value;}
+		}	
+		IIfcStructuralLoadGroup IIfcStructuralResultGroup.ResultForLoadGroup { 
+			get { return @ResultForLoadGroup; } 
+ 
+ 
+			set { ResultForLoadGroup = value as IfcStructuralLoadGroup;}
+		}	
+		bool IIfcStructuralResultGroup.IsLinear { 
+			get { return @IsLinear; } 
+ 
+			set { IsLinear = value;}
+		}	
 		 
 		IEnumerable<IIfcStructuralAnalysisModel> IIfcStructuralResultGroup.ResultGroupFor {  get { return @ResultGroupFor; } }
 		#endregion

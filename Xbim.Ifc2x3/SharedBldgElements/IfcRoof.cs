@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRoof : IIfcBuildingElement
 	{
-		IfcRoofTypeEnum @ShapeType { get; }
+		IfcRoofTypeEnum @ShapeType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 	public  partial class @IfcRoof : IfcBuildingElement, IInstantiableEntity, IIfcRoof, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRoof>
 	{
 		#region IIfcRoof explicit implementation
-		IfcRoofTypeEnum IIfcRoof.ShapeType { get { return @ShapeType; } }	
+		IfcRoofTypeEnum IIfcRoof.ShapeType { 
+			get { return @ShapeType; } 
+ 
+			set { ShapeType = value;}
+		}	
 		 
 		#endregion
 

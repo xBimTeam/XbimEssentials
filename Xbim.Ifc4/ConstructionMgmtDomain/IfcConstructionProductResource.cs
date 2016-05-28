@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConstructionProductResource : IIfcConstructionResource
 	{
-		IfcConstructionProductResourceTypeEnum? @PredefinedType { get; }
+		IfcConstructionProductResourceTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -37,7 +37,11 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 	public  partial class @IfcConstructionProductResource : IfcConstructionResource, IInstantiableEntity, IIfcConstructionProductResource, IContainsEntityReferences, IEquatable<@IfcConstructionProductResource>
 	{
 		#region IIfcConstructionProductResource explicit implementation
-		IfcConstructionProductResourceTypeEnum? IIfcConstructionProductResource.PredefinedType { get { return @PredefinedType; } }	
+		IfcConstructionProductResourceTypeEnum? IIfcConstructionProductResource.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

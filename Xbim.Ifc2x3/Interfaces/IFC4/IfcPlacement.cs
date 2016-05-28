@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return Location;
 			} 
+			set
+			{
+				Location = value as IfcCartesianPoint;
+				
+			}
 		}
 		Ifc4.GeometryResource.IfcDimensionCount IIfcPlacement.Dim 
 		{

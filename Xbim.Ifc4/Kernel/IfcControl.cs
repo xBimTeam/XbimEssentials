@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcControl : IIfcObject
 	{
-		IfcIdentifier? @Identification { get; }
+		IfcIdentifier? @Identification { get;  set; }
 		IEnumerable<IIfcRelAssignsToControl> @Controls {  get; }
 	
 	}
@@ -39,7 +39,11 @@ namespace Xbim.Ifc4.Kernel
 	public abstract partial class @IfcControl : IfcObject, IIfcControl, IEquatable<@IfcControl>
 	{
 		#region IIfcControl explicit implementation
-		IfcIdentifier? IIfcControl.Identification { get { return @Identification; } }	
+		IfcIdentifier? IIfcControl.Identification { 
+			get { return @Identification; } 
+ 
+			set { Identification = value;}
+		}	
 		 
 		IEnumerable<IIfcRelAssignsToControl> IIfcControl.Controls {  get { return @Controls; } }
 		#endregion

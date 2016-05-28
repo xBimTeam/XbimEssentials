@@ -28,10 +28,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcLightSource : IIfcGeometricRepresentationItem
 	{
-		IfcLabel? @Name { get; }
-		IIfcColourRgb @LightColour { get; }
-		IfcNormalisedRatioMeasure? @AmbientIntensity { get; }
-		IfcNormalisedRatioMeasure? @Intensity { get; }
+		IfcLabel? @Name { get;  set; }
+		IIfcColourRgb @LightColour { get;  set; }
+		IfcNormalisedRatioMeasure? @AmbientIntensity { get;  set; }
+		IfcNormalisedRatioMeasure? @Intensity { get;  set; }
 	
 	}
 }
@@ -43,10 +43,27 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 	public abstract partial class @IfcLightSource : IfcGeometricRepresentationItem, IIfcLightSource, IEquatable<@IfcLightSource>
 	{
 		#region IIfcLightSource explicit implementation
-		IfcLabel? IIfcLightSource.Name { get { return @Name; } }	
-		IIfcColourRgb IIfcLightSource.LightColour { get { return @LightColour; } }	
-		IfcNormalisedRatioMeasure? IIfcLightSource.AmbientIntensity { get { return @AmbientIntensity; } }	
-		IfcNormalisedRatioMeasure? IIfcLightSource.Intensity { get { return @Intensity; } }	
+		IfcLabel? IIfcLightSource.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IIfcColourRgb IIfcLightSource.LightColour { 
+			get { return @LightColour; } 
+ 
+ 
+			set { LightColour = value as IfcColourRgb;}
+		}	
+		IfcNormalisedRatioMeasure? IIfcLightSource.AmbientIntensity { 
+			get { return @AmbientIntensity; } 
+ 
+			set { AmbientIntensity = value;}
+		}	
+		IfcNormalisedRatioMeasure? IIfcLightSource.Intensity { 
+			get { return @Intensity; } 
+ 
+			set { Intensity = value;}
+		}	
 		 
 		#endregion
 

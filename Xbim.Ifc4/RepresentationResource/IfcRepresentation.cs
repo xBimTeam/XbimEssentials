@@ -30,9 +30,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRepresentation : IPersistEntity, IfcLayeredItem
 	{
-		IIfcRepresentationContext @ContextOfItems { get; }
-		IfcLabel? @RepresentationIdentifier { get; }
-		IfcLabel? @RepresentationType { get; }
+		IIfcRepresentationContext @ContextOfItems { get;  set; }
+		IfcLabel? @RepresentationIdentifier { get;  set; }
+		IfcLabel? @RepresentationType { get;  set; }
 		IEnumerable<IIfcRepresentationItem> @Items { get; }
 		IEnumerable<IIfcRepresentationMap> @RepresentationMap {  get; }
 		IEnumerable<IIfcPresentationLayerAssignment> @LayerAssignments {  get; }
@@ -48,10 +48,25 @@ namespace Xbim.Ifc4.RepresentationResource
 	public abstract partial class @IfcRepresentation : IPersistEntity, INotifyPropertyChanged, IIfcRepresentation, IEquatable<@IfcRepresentation>
 	{
 		#region IIfcRepresentation explicit implementation
-		IIfcRepresentationContext IIfcRepresentation.ContextOfItems { get { return @ContextOfItems; } }	
-		IfcLabel? IIfcRepresentation.RepresentationIdentifier { get { return @RepresentationIdentifier; } }	
-		IfcLabel? IIfcRepresentation.RepresentationType { get { return @RepresentationType; } }	
-		IEnumerable<IIfcRepresentationItem> IIfcRepresentation.Items { get { return @Items; } }	
+		IIfcRepresentationContext IIfcRepresentation.ContextOfItems { 
+			get { return @ContextOfItems; } 
+ 
+ 
+			set { ContextOfItems = value as IfcRepresentationContext;}
+		}	
+		IfcLabel? IIfcRepresentation.RepresentationIdentifier { 
+			get { return @RepresentationIdentifier; } 
+ 
+			set { RepresentationIdentifier = value;}
+		}	
+		IfcLabel? IIfcRepresentation.RepresentationType { 
+			get { return @RepresentationType; } 
+ 
+			set { RepresentationType = value;}
+		}	
+		IEnumerable<IIfcRepresentationItem> IIfcRepresentation.Items { 
+			get { return @Items; } 
+		}	
 		 
 		IEnumerable<IIfcRepresentationMap> IIfcRepresentation.RepresentationMap {  get { return @RepresentationMap; } }
 		IEnumerable<IIfcPresentationLayerAssignment> IIfcRepresentation.LayerAssignments {  get { return @LayerAssignments; } }

@@ -26,10 +26,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDoorStyle : IIfcTypeProduct
 	{
-		IfcDoorStyleOperationEnum @OperationType { get; }
-		IfcDoorStyleConstructionEnum @ConstructionType { get; }
-		bool @ParameterTakesPrecedence { get; }
-		bool @Sizeable { get; }
+		IfcDoorStyleOperationEnum @OperationType { get;  set; }
+		IfcDoorStyleConstructionEnum @ConstructionType { get;  set; }
+		bool @ParameterTakesPrecedence { get;  set; }
+		bool @Sizeable { get;  set; }
 	
 	}
 }
@@ -41,10 +41,26 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 	public  partial class @IfcDoorStyle : IfcTypeProduct, IInstantiableEntity, IIfcDoorStyle, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDoorStyle>
 	{
 		#region IIfcDoorStyle explicit implementation
-		IfcDoorStyleOperationEnum IIfcDoorStyle.OperationType { get { return @OperationType; } }	
-		IfcDoorStyleConstructionEnum IIfcDoorStyle.ConstructionType { get { return @ConstructionType; } }	
-		bool IIfcDoorStyle.ParameterTakesPrecedence { get { return @ParameterTakesPrecedence; } }	
-		bool IIfcDoorStyle.Sizeable { get { return @Sizeable; } }	
+		IfcDoorStyleOperationEnum IIfcDoorStyle.OperationType { 
+			get { return @OperationType; } 
+ 
+			set { OperationType = value;}
+		}	
+		IfcDoorStyleConstructionEnum IIfcDoorStyle.ConstructionType { 
+			get { return @ConstructionType; } 
+ 
+			set { ConstructionType = value;}
+		}	
+		bool IIfcDoorStyle.ParameterTakesPrecedence { 
+			get { return @ParameterTakesPrecedence; } 
+ 
+			set { ParameterTakesPrecedence = value;}
+		}	
+		bool IIfcDoorStyle.Sizeable { 
+			get { return @Sizeable; } 
+ 
+			set { Sizeable = value;}
+		}	
 		 
 		#endregion
 

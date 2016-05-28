@@ -52,6 +52,10 @@ namespace Xbim.Ifc2x3.HVACDomain
 						//##
 										
 					case IfcAirTerminalTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType == "LOUVRE")
+                            return Ifc4.Interfaces.IfcAirTerminalTypeEnum.LOUVRE;
+						//##
 						return Ifc4.Interfaces.IfcAirTerminalTypeEnum.USERDEFINED;
 					
 					case IfcAirTerminalTypeEnum.NOTDEFINED:
@@ -62,6 +66,43 @@ namespace Xbim.Ifc2x3.HVACDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcAirTerminalTypeEnum.DIFFUSER:
+						PredefinedType = IfcAirTerminalTypeEnum.DIFFUSER;
+						return;
+					
+					case Ifc4.Interfaces.IfcAirTerminalTypeEnum.GRILLE:
+						PredefinedType = IfcAirTerminalTypeEnum.GRILLE;
+						return;
+					
+					case Ifc4.Interfaces.IfcAirTerminalTypeEnum.LOUVRE:
+						//## Handle setting of LOUVRE member from IfcAirTerminalTypeEnum in property PredefinedType
+						PredefinedType = IfcAirTerminalTypeEnum.USERDEFINED;
+				        ElementType = "LOUVRE";
+				        return;
+						//##
+										
+					case Ifc4.Interfaces.IfcAirTerminalTypeEnum.REGISTER:
+						PredefinedType = IfcAirTerminalTypeEnum.REGISTER;
+						return;
+					
+					case Ifc4.Interfaces.IfcAirTerminalTypeEnum.USERDEFINED:
+						PredefinedType = IfcAirTerminalTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcAirTerminalTypeEnum.NOTDEFINED:
+						PredefinedType = IfcAirTerminalTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
         Ifc4.MeasureResource.IfcLabel? IIfcElementType.ElementType
@@ -77,6 +118,19 @@ namespace Xbim.Ifc2x3.HVACDomain
                         return new Ifc4.MeasureResource.IfcLabel(System.Enum.GetName(typeof(IfcAirTerminalTypeEnum), PredefinedType));
                 }
                 return !ElementType.HasValue ? null : new Ifc4.MeasureResource.IfcLabel(ElementType.Value);
+            }
+            set
+            {
+                ElementType = value.HasValue
+                    ? value.Value.ToString()
+                    : null;
+
+                if (!value.HasValue)
+                    return;
+
+                IfcAirTerminalTypeEnum e;
+                if (System.Enum.TryParse(value.Value.ToString(), true, out e))
+                    PredefinedType = e;
             }
         }
 	//##

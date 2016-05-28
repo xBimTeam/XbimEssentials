@@ -27,10 +27,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConstructionResource : IIfcResource
 	{
-		IfcIdentifier? @ResourceIdentifier { get; }
-		IfcLabel? @ResourceGroup { get; }
-		IfcResourceConsumptionEnum? @ResourceConsumption { get; }
-		IIfcMeasureWithUnit @BaseQuantity { get; }
+		IfcIdentifier? @ResourceIdentifier { get;  set; }
+		IfcLabel? @ResourceGroup { get;  set; }
+		IfcResourceConsumptionEnum? @ResourceConsumption { get;  set; }
+		IIfcMeasureWithUnit @BaseQuantity { get;  set; }
 	
 	}
 }
@@ -42,10 +42,27 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 	public abstract partial class @IfcConstructionResource : IfcResource, IIfcConstructionResource, IEquatable<@IfcConstructionResource>
 	{
 		#region IIfcConstructionResource explicit implementation
-		IfcIdentifier? IIfcConstructionResource.ResourceIdentifier { get { return @ResourceIdentifier; } }	
-		IfcLabel? IIfcConstructionResource.ResourceGroup { get { return @ResourceGroup; } }	
-		IfcResourceConsumptionEnum? IIfcConstructionResource.ResourceConsumption { get { return @ResourceConsumption; } }	
-		IIfcMeasureWithUnit IIfcConstructionResource.BaseQuantity { get { return @BaseQuantity; } }	
+		IfcIdentifier? IIfcConstructionResource.ResourceIdentifier { 
+			get { return @ResourceIdentifier; } 
+ 
+			set { ResourceIdentifier = value;}
+		}	
+		IfcLabel? IIfcConstructionResource.ResourceGroup { 
+			get { return @ResourceGroup; } 
+ 
+			set { ResourceGroup = value;}
+		}	
+		IfcResourceConsumptionEnum? IIfcConstructionResource.ResourceConsumption { 
+			get { return @ResourceConsumption; } 
+ 
+			set { ResourceConsumption = value;}
+		}	
+		IIfcMeasureWithUnit IIfcConstructionResource.BaseQuantity { 
+			get { return @BaseQuantity; } 
+ 
+ 
+			set { BaseQuantity = value as IfcMeasureWithUnit;}
+		}	
 		 
 		#endregion
 

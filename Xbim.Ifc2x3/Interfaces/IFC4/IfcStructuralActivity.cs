@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				return AppliedLoad;
 			} 
+			set
+			{
+				AppliedLoad = value as StructuralLoadResource.IfcStructuralLoad;
+				
+			}
 		}
 		Ifc4.Interfaces.IfcGlobalOrLocalEnum IIfcStructuralActivity.GlobalOrLocal 
 		{ 
@@ -40,6 +45,24 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcGlobalOrLocalEnum.GLOBAL_COORDS:
+						GlobalOrLocal = RepresentationResource.IfcGlobalOrLocalEnum.GLOBAL_COORDS;
+						return;
+					
+					case Ifc4.Interfaces.IfcGlobalOrLocalEnum.LOCAL_COORDS:
+						GlobalOrLocal = RepresentationResource.IfcGlobalOrLocalEnum.LOCAL_COORDS;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		IEnumerable<IIfcRelConnectsStructuralActivity> IIfcStructuralActivity.AssignedToStructuralItem 
 		{ 

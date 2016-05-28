@@ -26,23 +26,23 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTaskTime : IIfcSchedulingTime
 	{
-		IfcTaskDurationEnum? @DurationType { get; }
-		IfcDuration? @ScheduleDuration { get; }
-		IfcDateTime? @ScheduleStart { get; }
-		IfcDateTime? @ScheduleFinish { get; }
-		IfcDateTime? @EarlyStart { get; }
-		IfcDateTime? @EarlyFinish { get; }
-		IfcDateTime? @LateStart { get; }
-		IfcDateTime? @LateFinish { get; }
-		IfcDuration? @FreeFloat { get; }
-		IfcDuration? @TotalFloat { get; }
-		IfcBoolean? @IsCritical { get; }
-		IfcDateTime? @StatusTime { get; }
-		IfcDuration? @ActualDuration { get; }
-		IfcDateTime? @ActualStart { get; }
-		IfcDateTime? @ActualFinish { get; }
-		IfcDuration? @RemainingTime { get; }
-		IfcPositiveRatioMeasure? @Completion { get; }
+		IfcTaskDurationEnum? @DurationType { get;  set; }
+		IfcDuration? @ScheduleDuration { get;  set; }
+		IfcDateTime? @ScheduleStart { get;  set; }
+		IfcDateTime? @ScheduleFinish { get;  set; }
+		IfcDateTime? @EarlyStart { get;  set; }
+		IfcDateTime? @EarlyFinish { get;  set; }
+		IfcDateTime? @LateStart { get;  set; }
+		IfcDateTime? @LateFinish { get;  set; }
+		IfcDuration? @FreeFloat { get;  set; }
+		IfcDuration? @TotalFloat { get;  set; }
+		IfcBoolean? @IsCritical { get;  set; }
+		IfcDateTime? @StatusTime { get;  set; }
+		IfcDuration? @ActualDuration { get;  set; }
+		IfcDateTime? @ActualStart { get;  set; }
+		IfcDateTime? @ActualFinish { get;  set; }
+		IfcDuration? @RemainingTime { get;  set; }
+		IfcPositiveRatioMeasure? @Completion { get;  set; }
 	
 	}
 }
@@ -54,23 +54,91 @@ namespace Xbim.Ifc4.DateTimeResource
 	public  partial class @IfcTaskTime : IfcSchedulingTime, IInstantiableEntity, IIfcTaskTime, IEquatable<@IfcTaskTime>
 	{
 		#region IIfcTaskTime explicit implementation
-		IfcTaskDurationEnum? IIfcTaskTime.DurationType { get { return @DurationType; } }	
-		IfcDuration? IIfcTaskTime.ScheduleDuration { get { return @ScheduleDuration; } }	
-		IfcDateTime? IIfcTaskTime.ScheduleStart { get { return @ScheduleStart; } }	
-		IfcDateTime? IIfcTaskTime.ScheduleFinish { get { return @ScheduleFinish; } }	
-		IfcDateTime? IIfcTaskTime.EarlyStart { get { return @EarlyStart; } }	
-		IfcDateTime? IIfcTaskTime.EarlyFinish { get { return @EarlyFinish; } }	
-		IfcDateTime? IIfcTaskTime.LateStart { get { return @LateStart; } }	
-		IfcDateTime? IIfcTaskTime.LateFinish { get { return @LateFinish; } }	
-		IfcDuration? IIfcTaskTime.FreeFloat { get { return @FreeFloat; } }	
-		IfcDuration? IIfcTaskTime.TotalFloat { get { return @TotalFloat; } }	
-		IfcBoolean? IIfcTaskTime.IsCritical { get { return @IsCritical; } }	
-		IfcDateTime? IIfcTaskTime.StatusTime { get { return @StatusTime; } }	
-		IfcDuration? IIfcTaskTime.ActualDuration { get { return @ActualDuration; } }	
-		IfcDateTime? IIfcTaskTime.ActualStart { get { return @ActualStart; } }	
-		IfcDateTime? IIfcTaskTime.ActualFinish { get { return @ActualFinish; } }	
-		IfcDuration? IIfcTaskTime.RemainingTime { get { return @RemainingTime; } }	
-		IfcPositiveRatioMeasure? IIfcTaskTime.Completion { get { return @Completion; } }	
+		IfcTaskDurationEnum? IIfcTaskTime.DurationType { 
+			get { return @DurationType; } 
+ 
+			set { DurationType = value;}
+		}	
+		IfcDuration? IIfcTaskTime.ScheduleDuration { 
+			get { return @ScheduleDuration; } 
+ 
+			set { ScheduleDuration = value;}
+		}	
+		IfcDateTime? IIfcTaskTime.ScheduleStart { 
+			get { return @ScheduleStart; } 
+ 
+			set { ScheduleStart = value;}
+		}	
+		IfcDateTime? IIfcTaskTime.ScheduleFinish { 
+			get { return @ScheduleFinish; } 
+ 
+			set { ScheduleFinish = value;}
+		}	
+		IfcDateTime? IIfcTaskTime.EarlyStart { 
+			get { return @EarlyStart; } 
+ 
+			set { EarlyStart = value;}
+		}	
+		IfcDateTime? IIfcTaskTime.EarlyFinish { 
+			get { return @EarlyFinish; } 
+ 
+			set { EarlyFinish = value;}
+		}	
+		IfcDateTime? IIfcTaskTime.LateStart { 
+			get { return @LateStart; } 
+ 
+			set { LateStart = value;}
+		}	
+		IfcDateTime? IIfcTaskTime.LateFinish { 
+			get { return @LateFinish; } 
+ 
+			set { LateFinish = value;}
+		}	
+		IfcDuration? IIfcTaskTime.FreeFloat { 
+			get { return @FreeFloat; } 
+ 
+			set { FreeFloat = value;}
+		}	
+		IfcDuration? IIfcTaskTime.TotalFloat { 
+			get { return @TotalFloat; } 
+ 
+			set { TotalFloat = value;}
+		}	
+		IfcBoolean? IIfcTaskTime.IsCritical { 
+			get { return @IsCritical; } 
+ 
+			set { IsCritical = value;}
+		}	
+		IfcDateTime? IIfcTaskTime.StatusTime { 
+			get { return @StatusTime; } 
+ 
+			set { StatusTime = value;}
+		}	
+		IfcDuration? IIfcTaskTime.ActualDuration { 
+			get { return @ActualDuration; } 
+ 
+			set { ActualDuration = value;}
+		}	
+		IfcDateTime? IIfcTaskTime.ActualStart { 
+			get { return @ActualStart; } 
+ 
+			set { ActualStart = value;}
+		}	
+		IfcDateTime? IIfcTaskTime.ActualFinish { 
+			get { return @ActualFinish; } 
+ 
+			set { ActualFinish = value;}
+		}	
+		IfcDuration? IIfcTaskTime.RemainingTime { 
+			get { return @RemainingTime; } 
+ 
+			set { RemainingTime = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcTaskTime.Completion { 
+			get { return @Completion; } 
+ 
+			set { Completion = value;}
+		}	
 		 
 		#endregion
 

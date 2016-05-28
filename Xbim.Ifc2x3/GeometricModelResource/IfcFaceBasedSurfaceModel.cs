@@ -41,7 +41,9 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 	public  partial class @IfcFaceBasedSurfaceModel : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFaceBasedSurfaceModel, IContainsEntityReferences, IEquatable<@IfcFaceBasedSurfaceModel>
 	{
 		#region IIfcFaceBasedSurfaceModel explicit implementation
-		IEnumerable<IIfcConnectedFaceSet> IIfcFaceBasedSurfaceModel.FbsmFaces { get { return @FbsmFaces; } }	
+		IEnumerable<IIfcConnectedFaceSet> IIfcFaceBasedSurfaceModel.FbsmFaces { 
+			get { return @FbsmFaces; } 
+		}	
 		 
 		#endregion
 

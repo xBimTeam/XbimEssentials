@@ -227,6 +227,16 @@ namespace Xbim.Ifc2x3.UtilityResource
                 return new Ifc4.MeasureResource.IfcBoolean(IsHeading);
 				//##
 			} 
+			set
+			{
+				//## Handle setting of IsHeading for which no match was found
+                if (!value.HasValue)
+                    IsHeading = false;
+                else
+                    IsHeading = value.Value;
+				//##
+				
+			}
 		}
 	//## Custom code
 	//##

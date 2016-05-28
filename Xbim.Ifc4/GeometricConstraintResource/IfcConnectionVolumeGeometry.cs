@@ -25,8 +25,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConnectionVolumeGeometry : IIfcConnectionGeometry
 	{
-		IIfcSolidOrShell @VolumeOnRelatingElement { get; }
-		IIfcSolidOrShell @VolumeOnRelatedElement { get; }
+		IIfcSolidOrShell @VolumeOnRelatingElement { get;  set; }
+		IIfcSolidOrShell @VolumeOnRelatedElement { get;  set; }
 	
 	}
 }
@@ -38,8 +38,18 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 	public  partial class @IfcConnectionVolumeGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionVolumeGeometry, IContainsEntityReferences, IEquatable<@IfcConnectionVolumeGeometry>
 	{
 		#region IIfcConnectionVolumeGeometry explicit implementation
-		IIfcSolidOrShell IIfcConnectionVolumeGeometry.VolumeOnRelatingElement { get { return @VolumeOnRelatingElement; } }	
-		IIfcSolidOrShell IIfcConnectionVolumeGeometry.VolumeOnRelatedElement { get { return @VolumeOnRelatedElement; } }	
+		IIfcSolidOrShell IIfcConnectionVolumeGeometry.VolumeOnRelatingElement { 
+			get { return @VolumeOnRelatingElement; } 
+ 
+ 
+			set { VolumeOnRelatingElement = value as IfcSolidOrShell;}
+		}	
+		IIfcSolidOrShell IIfcConnectionVolumeGeometry.VolumeOnRelatedElement { 
+			get { return @VolumeOnRelatedElement; } 
+ 
+ 
+			set { VolumeOnRelatedElement = value as IfcSolidOrShell;}
+		}	
 		 
 		#endregion
 

@@ -26,7 +26,7 @@ namespace Xbim.CobieExpress.Interfaces
 	public partial interface @ICobieSystem : ICobieAsset
 	{
 		IEnumerable<ICobieComponent> @Components { get; }
-		ICobieFacility @Facility { get; }
+		ICobieFacility @Facility { get;  set; }
 	
 	}
 }
@@ -38,8 +38,15 @@ namespace Xbim.CobieExpress
 	public  partial class @CobieSystem : CobieAsset, IInstantiableEntity, ICobieSystem, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieSystem>
 	{
 		#region ICobieSystem explicit implementation
-		IEnumerable<ICobieComponent> ICobieSystem.Components { get { return @Components; } }	
-		ICobieFacility ICobieSystem.Facility { get { return @Facility; } }	
+		IEnumerable<ICobieComponent> ICobieSystem.Components { 
+			get { return @Components; } 
+		}	
+		ICobieFacility ICobieSystem.Facility { 
+			get { return @Facility; } 
+ 
+ 
+			set { Facility = value as CobieFacility;}
+		}	
 		 
 		#endregion
 

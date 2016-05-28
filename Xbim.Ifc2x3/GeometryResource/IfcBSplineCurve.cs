@@ -25,11 +25,11 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBSplineCurve : IIfcBoundedCurve
 	{
-		long @Degree { get; }
+		long @Degree { get;  set; }
 		IEnumerable<IIfcCartesianPoint> @ControlPointsList { get; }
-		IfcBSplineCurveForm @CurveForm { get; }
-		bool? @ClosedCurve { get; }
-		bool? @SelfIntersect { get; }
+		IfcBSplineCurveForm @CurveForm { get;  set; }
+		bool? @ClosedCurve { get;  set; }
+		bool? @SelfIntersect { get;  set; }
 		List<Common.Geometry.XbimPoint3D> @ControlPoints  { get ; }
 		long @UpperIndexOnControlPoints  { get ; }
 	
@@ -43,11 +43,29 @@ namespace Xbim.Ifc2x3.GeometryResource
 	public abstract partial class @IfcBSplineCurve : IfcBoundedCurve, IIfcBSplineCurve, IEquatable<@IfcBSplineCurve>
 	{
 		#region IIfcBSplineCurve explicit implementation
-		long IIfcBSplineCurve.Degree { get { return @Degree; } }	
-		IEnumerable<IIfcCartesianPoint> IIfcBSplineCurve.ControlPointsList { get { return @ControlPointsList; } }	
-		IfcBSplineCurveForm IIfcBSplineCurve.CurveForm { get { return @CurveForm; } }	
-		bool? IIfcBSplineCurve.ClosedCurve { get { return @ClosedCurve; } }	
-		bool? IIfcBSplineCurve.SelfIntersect { get { return @SelfIntersect; } }	
+		long IIfcBSplineCurve.Degree { 
+			get { return @Degree; } 
+ 
+			set { Degree = value;}
+		}	
+		IEnumerable<IIfcCartesianPoint> IIfcBSplineCurve.ControlPointsList { 
+			get { return @ControlPointsList; } 
+		}	
+		IfcBSplineCurveForm IIfcBSplineCurve.CurveForm { 
+			get { return @CurveForm; } 
+ 
+			set { CurveForm = value;}
+		}	
+		bool? IIfcBSplineCurve.ClosedCurve { 
+			get { return @ClosedCurve; } 
+ 
+			set { ClosedCurve = value;}
+		}	
+		bool? IIfcBSplineCurve.SelfIntersect { 
+			get { return @SelfIntersect; } 
+ 
+			set { SelfIntersect = value;}
+		}	
 		 
 		#endregion
 

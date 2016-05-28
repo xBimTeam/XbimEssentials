@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcIndexedTextureMap : IIfcTextureCoordinate
 	{
-		IIfcTessellatedFaceSet @MappedTo { get; }
-		IIfcTextureVertexList @TexCoords { get; }
+		IIfcTessellatedFaceSet @MappedTo { get;  set; }
+		IIfcTextureVertexList @TexCoords { get;  set; }
 	
 	}
 }
@@ -39,8 +39,18 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public abstract partial class @IfcIndexedTextureMap : IfcTextureCoordinate, IIfcIndexedTextureMap, IEquatable<@IfcIndexedTextureMap>
 	{
 		#region IIfcIndexedTextureMap explicit implementation
-		IIfcTessellatedFaceSet IIfcIndexedTextureMap.MappedTo { get { return @MappedTo; } }	
-		IIfcTextureVertexList IIfcIndexedTextureMap.TexCoords { get { return @TexCoords; } }	
+		IIfcTessellatedFaceSet IIfcIndexedTextureMap.MappedTo { 
+			get { return @MappedTo; } 
+ 
+ 
+			set { MappedTo = value as IfcTessellatedFaceSet;}
+		}	
+		IIfcTextureVertexList IIfcIndexedTextureMap.TexCoords { 
+			get { return @TexCoords; } 
+ 
+ 
+			set { TexCoords = value as IfcTextureVertexList;}
+		}	
 		 
 		#endregion
 

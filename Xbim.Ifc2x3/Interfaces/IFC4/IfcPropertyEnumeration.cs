@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.PropertyResource
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				Name = new MeasureResource.IfcLabel(value);
+				
+			}
 		}
 		IEnumerable<IIfcValue> IIfcPropertyEnumeration.EnumerationValues 
 		{ 
@@ -242,6 +247,33 @@ namespace Xbim.Ifc2x3.PropertyResource
 					return ifcmonetaryunit;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					Unit = null;
+					return;
+				}	
+				var ifcderivedunit = value as MeasureResource.IfcDerivedUnit;
+				if (ifcderivedunit != null) 
+				{
+					Unit = ifcderivedunit;
+					return;
+				}
+				var ifcmonetaryunit = value as MeasureResource.IfcMonetaryUnit;
+				if (ifcmonetaryunit != null) 
+				{
+					Unit = ifcmonetaryunit;
+					return;
+				}
+				var ifcnamedunit = value as MeasureResource.IfcNamedUnit;
+				if (ifcnamedunit != null) 
+				{
+					Unit = ifcnamedunit;
+					return;
+				}
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 
 		{ 

@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelServicesBuildings : IIfcRelConnects
 	{
-		IIfcSystem @RelatingSystem { get; }
+		IIfcSystem @RelatingSystem { get;  set; }
 		IEnumerable<IIfcSpatialStructureElement> @RelatedBuildings { get; }
 	
 	}
@@ -39,8 +39,15 @@ namespace Xbim.Ifc2x3.ProductExtension
 	public  partial class @IfcRelServicesBuildings : IfcRelConnects, IInstantiableEntity, IIfcRelServicesBuildings, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelServicesBuildings>
 	{
 		#region IIfcRelServicesBuildings explicit implementation
-		IIfcSystem IIfcRelServicesBuildings.RelatingSystem { get { return @RelatingSystem; } }	
-		IEnumerable<IIfcSpatialStructureElement> IIfcRelServicesBuildings.RelatedBuildings { get { return @RelatedBuildings; } }	
+		IIfcSystem IIfcRelServicesBuildings.RelatingSystem { 
+			get { return @RelatingSystem; } 
+ 
+ 
+			set { RelatingSystem = value as IfcSystem;}
+		}	
+		IEnumerable<IIfcSpatialStructureElement> IIfcRelServicesBuildings.RelatedBuildings { 
+			get { return @RelatedBuildings; } 
+		}	
 		 
 		#endregion
 

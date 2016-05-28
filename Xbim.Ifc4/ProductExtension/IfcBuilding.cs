@@ -27,9 +27,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBuilding : IIfcSpatialStructureElement
 	{
-		IfcLengthMeasure? @ElevationOfRefHeight { get; }
-		IfcLengthMeasure? @ElevationOfTerrain { get; }
-		IIfcPostalAddress @BuildingAddress { get; }
+		IfcLengthMeasure? @ElevationOfRefHeight { get;  set; }
+		IfcLengthMeasure? @ElevationOfTerrain { get;  set; }
+		IIfcPostalAddress @BuildingAddress { get;  set; }
 	
 	}
 }
@@ -41,9 +41,22 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcBuilding : IfcSpatialStructureElement, IInstantiableEntity, IIfcBuilding, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBuilding>
 	{
 		#region IIfcBuilding explicit implementation
-		IfcLengthMeasure? IIfcBuilding.ElevationOfRefHeight { get { return @ElevationOfRefHeight; } }	
-		IfcLengthMeasure? IIfcBuilding.ElevationOfTerrain { get { return @ElevationOfTerrain; } }	
-		IIfcPostalAddress IIfcBuilding.BuildingAddress { get { return @BuildingAddress; } }	
+		IfcLengthMeasure? IIfcBuilding.ElevationOfRefHeight { 
+			get { return @ElevationOfRefHeight; } 
+ 
+			set { ElevationOfRefHeight = value;}
+		}	
+		IfcLengthMeasure? IIfcBuilding.ElevationOfTerrain { 
+			get { return @ElevationOfTerrain; } 
+ 
+			set { ElevationOfTerrain = value;}
+		}	
+		IIfcPostalAddress IIfcBuilding.BuildingAddress { 
+			get { return @BuildingAddress; } 
+ 
+ 
+			set { BuildingAddress = value as IfcPostalAddress;}
+		}	
 		 
 		#endregion
 

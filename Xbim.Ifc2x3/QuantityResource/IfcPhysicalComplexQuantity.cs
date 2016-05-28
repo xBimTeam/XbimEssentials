@@ -27,9 +27,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcPhysicalComplexQuantity : IIfcPhysicalQuantity
 	{
 		IEnumerable<IIfcPhysicalQuantity> @HasQuantities { get; }
-		IfcLabel @Discrimination { get; }
-		IfcLabel? @Quality { get; }
-		IfcLabel? @Usage { get; }
+		IfcLabel @Discrimination { get;  set; }
+		IfcLabel? @Quality { get;  set; }
+		IfcLabel? @Usage { get;  set; }
 	
 	}
 }
@@ -41,10 +41,24 @@ namespace Xbim.Ifc2x3.QuantityResource
 	public  partial class @IfcPhysicalComplexQuantity : IfcPhysicalQuantity, IInstantiableEntity, IIfcPhysicalComplexQuantity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPhysicalComplexQuantity>
 	{
 		#region IIfcPhysicalComplexQuantity explicit implementation
-		IEnumerable<IIfcPhysicalQuantity> IIfcPhysicalComplexQuantity.HasQuantities { get { return @HasQuantities; } }	
-		IfcLabel IIfcPhysicalComplexQuantity.Discrimination { get { return @Discrimination; } }	
-		IfcLabel? IIfcPhysicalComplexQuantity.Quality { get { return @Quality; } }	
-		IfcLabel? IIfcPhysicalComplexQuantity.Usage { get { return @Usage; } }	
+		IEnumerable<IIfcPhysicalQuantity> IIfcPhysicalComplexQuantity.HasQuantities { 
+			get { return @HasQuantities; } 
+		}	
+		IfcLabel IIfcPhysicalComplexQuantity.Discrimination { 
+			get { return @Discrimination; } 
+ 
+			set { Discrimination = value;}
+		}	
+		IfcLabel? IIfcPhysicalComplexQuantity.Quality { 
+			get { return @Quality; } 
+ 
+			set { Quality = value;}
+		}	
+		IfcLabel? IIfcPhysicalComplexQuantity.Usage { 
+			get { return @Usage; } 
+ 
+			set { Usage = value;}
+		}	
 		 
 		#endregion
 

@@ -28,10 +28,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDraughtingCalloutRelationship : IPersistEntity
 	{
-		IfcLabel? @Name { get; }
-		IfcText? @Description { get; }
-		IIfcDraughtingCallout @RelatingDraughtingCallout { get; }
-		IIfcDraughtingCallout @RelatedDraughtingCallout { get; }
+		IfcLabel? @Name { get;  set; }
+		IfcText? @Description { get;  set; }
+		IIfcDraughtingCallout @RelatingDraughtingCallout { get;  set; }
+		IIfcDraughtingCallout @RelatedDraughtingCallout { get;  set; }
 	
 	}
 }
@@ -43,10 +43,28 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 	public  partial class @IfcDraughtingCalloutRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcDraughtingCalloutRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDraughtingCalloutRelationship>
 	{
 		#region IIfcDraughtingCalloutRelationship explicit implementation
-		IfcLabel? IIfcDraughtingCalloutRelationship.Name { get { return @Name; } }	
-		IfcText? IIfcDraughtingCalloutRelationship.Description { get { return @Description; } }	
-		IIfcDraughtingCallout IIfcDraughtingCalloutRelationship.RelatingDraughtingCallout { get { return @RelatingDraughtingCallout; } }	
-		IIfcDraughtingCallout IIfcDraughtingCalloutRelationship.RelatedDraughtingCallout { get { return @RelatedDraughtingCallout; } }	
+		IfcLabel? IIfcDraughtingCalloutRelationship.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcDraughtingCalloutRelationship.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IIfcDraughtingCallout IIfcDraughtingCalloutRelationship.RelatingDraughtingCallout { 
+			get { return @RelatingDraughtingCallout; } 
+ 
+ 
+			set { RelatingDraughtingCallout = value as IfcDraughtingCallout;}
+		}	
+		IIfcDraughtingCallout IIfcDraughtingCalloutRelationship.RelatedDraughtingCallout { 
+			get { return @RelatedDraughtingCallout; } 
+ 
+ 
+			set { RelatedDraughtingCallout = value as IfcDraughtingCallout;}
+		}	
 		 
 		#endregion
 

@@ -16,14 +16,20 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcOpeningElement : IIfcOpeningElement
 	{
+
+		private  Ifc4.Interfaces.IfcOpeningElementTypeEnum? _predefinedType;
+
 		Ifc4.Interfaces.IfcOpeningElementTypeEnum? IIfcOpeningElement.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-			    return null;
-			    //##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				
+			}
 		}
 		IEnumerable<IIfcRelFillsElement> IIfcOpeningElement.HasFillings 
 		{ 

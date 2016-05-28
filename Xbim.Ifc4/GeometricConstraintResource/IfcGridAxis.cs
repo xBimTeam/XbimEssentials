@@ -30,9 +30,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcGridAxis : IPersistEntity
 	{
-		IfcLabel? @AxisTag { get; }
-		IIfcCurve @AxisCurve { get; }
-		IfcBoolean @SameSense { get; }
+		IfcLabel? @AxisTag { get;  set; }
+		IIfcCurve @AxisCurve { get;  set; }
+		IfcBoolean @SameSense { get;  set; }
 		IEnumerable<IIfcGrid> @PartOfW {  get; }
 		IEnumerable<IIfcGrid> @PartOfV {  get; }
 		IEnumerable<IIfcGrid> @PartOfU {  get; }
@@ -48,9 +48,22 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 	public  partial class @IfcGridAxis : INotifyPropertyChanged, IInstantiableEntity, IIfcGridAxis, IContainsEntityReferences, IEquatable<@IfcGridAxis>
 	{
 		#region IIfcGridAxis explicit implementation
-		IfcLabel? IIfcGridAxis.AxisTag { get { return @AxisTag; } }	
-		IIfcCurve IIfcGridAxis.AxisCurve { get { return @AxisCurve; } }	
-		IfcBoolean IIfcGridAxis.SameSense { get { return @SameSense; } }	
+		IfcLabel? IIfcGridAxis.AxisTag { 
+			get { return @AxisTag; } 
+ 
+			set { AxisTag = value;}
+		}	
+		IIfcCurve IIfcGridAxis.AxisCurve { 
+			get { return @AxisCurve; } 
+ 
+ 
+			set { AxisCurve = value as IfcCurve;}
+		}	
+		IfcBoolean IIfcGridAxis.SameSense { 
+			get { return @SameSense; } 
+ 
+			set { SameSense = value;}
+		}	
 		 
 		IEnumerable<IIfcGrid> IIfcGridAxis.PartOfW {  get { return @PartOfW; } }
 		IEnumerable<IIfcGrid> IIfcGridAxis.PartOfV {  get { return @PartOfV; } }

@@ -35,6 +35,8 @@ namespace Xbim.Ifc2x3.ActorResource
 						return Ifc4.Interfaces.IfcAddressTypeEnum.DISTRIBUTIONPOINT;
 					
 					case IfcAddressTypeEnum.USERDEFINED:
+						//## Optional custom handling of Purpose == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcAddressTypeEnum.USERDEFINED;
 					
 					
@@ -42,6 +44,36 @@ namespace Xbim.Ifc2x3.ActorResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcAddressTypeEnum.OFFICE:
+						Purpose = IfcAddressTypeEnum.OFFICE;
+						return;
+					
+					case Ifc4.Interfaces.IfcAddressTypeEnum.SITE:
+						Purpose = IfcAddressTypeEnum.SITE;
+						return;
+					
+					case Ifc4.Interfaces.IfcAddressTypeEnum.HOME:
+						Purpose = IfcAddressTypeEnum.HOME;
+						return;
+					
+					case Ifc4.Interfaces.IfcAddressTypeEnum.DISTRIBUTIONPOINT:
+						Purpose = IfcAddressTypeEnum.DISTRIBUTIONPOINT;
+						return;
+					
+					case Ifc4.Interfaces.IfcAddressTypeEnum.USERDEFINED:
+						Purpose = IfcAddressTypeEnum.USERDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcAddress.Description 
 		{ 
@@ -50,6 +82,13 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!Description.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				Description = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcAddress.UserDefinedPurpose 
 		{ 
@@ -58,6 +97,13 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!UserDefinedPurpose.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(UserDefinedPurpose.Value);
 			} 
+			set
+			{
+				UserDefinedPurpose = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		IEnumerable<IIfcPerson> IIfcAddress.OfPerson 
 		{ 

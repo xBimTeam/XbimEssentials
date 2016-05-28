@@ -26,9 +26,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCurveBoundedSurface : IIfcBoundedSurface
 	{
-		IIfcSurface @BasisSurface { get; }
+		IIfcSurface @BasisSurface { get;  set; }
 		IEnumerable<IIfcBoundaryCurve> @Boundaries { get; }
-		IfcBoolean @ImplicitOuter { get; }
+		IfcBoolean @ImplicitOuter { get;  set; }
 	
 	}
 }
@@ -40,9 +40,20 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcCurveBoundedSurface : IfcBoundedSurface, IInstantiableEntity, IIfcCurveBoundedSurface, IContainsEntityReferences, IEquatable<@IfcCurveBoundedSurface>
 	{
 		#region IIfcCurveBoundedSurface explicit implementation
-		IIfcSurface IIfcCurveBoundedSurface.BasisSurface { get { return @BasisSurface; } }	
-		IEnumerable<IIfcBoundaryCurve> IIfcCurveBoundedSurface.Boundaries { get { return @Boundaries; } }	
-		IfcBoolean IIfcCurveBoundedSurface.ImplicitOuter { get { return @ImplicitOuter; } }	
+		IIfcSurface IIfcCurveBoundedSurface.BasisSurface { 
+			get { return @BasisSurface; } 
+ 
+ 
+			set { BasisSurface = value as IfcSurface;}
+		}	
+		IEnumerable<IIfcBoundaryCurve> IIfcCurveBoundedSurface.Boundaries { 
+			get { return @Boundaries; } 
+		}	
+		IfcBoolean IIfcCurveBoundedSurface.ImplicitOuter { 
+			get { return @ImplicitOuter; } 
+ 
+			set { ImplicitOuter = value;}
+		}	
 		 
 		#endregion
 

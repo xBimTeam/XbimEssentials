@@ -26,11 +26,11 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcReinforcingBar : IIfcReinforcingElement
 	{
-		IfcPositiveLengthMeasure? @NominalDiameter { get; }
-		IfcAreaMeasure? @CrossSectionArea { get; }
-		IfcPositiveLengthMeasure? @BarLength { get; }
-		IfcReinforcingBarTypeEnum? @PredefinedType { get; }
-		IfcReinforcingBarSurfaceEnum? @BarSurface { get; }
+		IfcPositiveLengthMeasure? @NominalDiameter { get;  set; }
+		IfcAreaMeasure? @CrossSectionArea { get;  set; }
+		IfcPositiveLengthMeasure? @BarLength { get;  set; }
+		IfcReinforcingBarTypeEnum? @PredefinedType { get;  set; }
+		IfcReinforcingBarSurfaceEnum? @BarSurface { get;  set; }
 	
 	}
 }
@@ -42,11 +42,31 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 	public  partial class @IfcReinforcingBar : IfcReinforcingElement, IInstantiableEntity, IIfcReinforcingBar, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcReinforcingBar>
 	{
 		#region IIfcReinforcingBar explicit implementation
-		IfcPositiveLengthMeasure? IIfcReinforcingBar.NominalDiameter { get { return @NominalDiameter; } }	
-		IfcAreaMeasure? IIfcReinforcingBar.CrossSectionArea { get { return @CrossSectionArea; } }	
-		IfcPositiveLengthMeasure? IIfcReinforcingBar.BarLength { get { return @BarLength; } }	
-		IfcReinforcingBarTypeEnum? IIfcReinforcingBar.PredefinedType { get { return @PredefinedType; } }	
-		IfcReinforcingBarSurfaceEnum? IIfcReinforcingBar.BarSurface { get { return @BarSurface; } }	
+		IfcPositiveLengthMeasure? IIfcReinforcingBar.NominalDiameter { 
+			get { return @NominalDiameter; } 
+ 
+			set { NominalDiameter = value;}
+		}	
+		IfcAreaMeasure? IIfcReinforcingBar.CrossSectionArea { 
+			get { return @CrossSectionArea; } 
+ 
+			set { CrossSectionArea = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcReinforcingBar.BarLength { 
+			get { return @BarLength; } 
+ 
+			set { BarLength = value;}
+		}	
+		IfcReinforcingBarTypeEnum? IIfcReinforcingBar.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
+		IfcReinforcingBarSurfaceEnum? IIfcReinforcingBar.BarSurface { 
+			get { return @BarSurface; } 
+ 
+			set { BarSurface = value;}
+		}	
 		 
 		#endregion
 

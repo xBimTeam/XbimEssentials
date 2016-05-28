@@ -15,7 +15,7 @@ namespace Xbim.Ifc4.MaterialResource
 	[ExpressType("IfcCardinalPointReference", 987)]
 	[DefinedType(typeof(long))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcCardinalPointReference : IExpressValueType, System.IEquatable<long>
+	public partial struct IfcCardinalPointReference : IExpressValueType, IExpressIntegerType, System.IEquatable<long>
 	{ 
 		private long _value;
         
@@ -23,6 +23,9 @@ namespace Xbim.Ifc4.MaterialResource
         {
             get { return _value; }
         }
+
+ 
+		long IExpressIntegerType.Value { get { return _value; } }
 
 		public override string ToString()
         {

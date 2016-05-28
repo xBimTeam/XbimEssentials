@@ -27,8 +27,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTimePeriod : IPersistEntity
 	{
-		IfcTime @StartTime { get; }
-		IfcTime @EndTime { get; }
+		IfcTime @StartTime { get;  set; }
+		IfcTime @EndTime { get;  set; }
 	
 	}
 }
@@ -40,8 +40,16 @@ namespace Xbim.Ifc4.DateTimeResource
 	public  partial class @IfcTimePeriod : INotifyPropertyChanged, IInstantiableEntity, IIfcTimePeriod, IEquatable<@IfcTimePeriod>
 	{
 		#region IIfcTimePeriod explicit implementation
-		IfcTime IIfcTimePeriod.StartTime { get { return @StartTime; } }	
-		IfcTime IIfcTimePeriod.EndTime { get { return @EndTime; } }	
+		IfcTime IIfcTimePeriod.StartTime { 
+			get { return @StartTime; } 
+ 
+			set { StartTime = value;}
+		}	
+		IfcTime IIfcTimePeriod.EndTime { 
+			get { return @EndTime; } 
+ 
+			set { EndTime = value;}
+		}	
 		 
 		#endregion
 

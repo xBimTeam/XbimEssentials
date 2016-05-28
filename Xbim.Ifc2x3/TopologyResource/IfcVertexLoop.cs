@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcVertexLoop : IIfcLoop
 	{
-		IIfcVertex @LoopVertex { get; }
+		IIfcVertex @LoopVertex { get;  set; }
 	
 	}
 }
@@ -37,7 +37,12 @@ namespace Xbim.Ifc2x3.TopologyResource
 	public  partial class @IfcVertexLoop : IfcLoop, IInstantiableEntity, IIfcVertexLoop, IContainsEntityReferences, IEquatable<@IfcVertexLoop>
 	{
 		#region IIfcVertexLoop explicit implementation
-		IIfcVertex IIfcVertexLoop.LoopVertex { get { return @LoopVertex; } }	
+		IIfcVertex IIfcVertexLoop.LoopVertex { 
+			get { return @LoopVertex; } 
+ 
+ 
+			set { LoopVertex = value as IfcVertex;}
+		}	
 		 
 		#endregion
 

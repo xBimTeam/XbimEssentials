@@ -26,13 +26,13 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBSplineSurface : IIfcBoundedSurface
 	{
-		IfcInteger @UDegree { get; }
-		IfcInteger @VDegree { get; }
+		IfcInteger @UDegree { get;  set; }
+		IfcInteger @VDegree { get;  set; }
 		IEnumerable<IEnumerable<IIfcCartesianPoint>> @ControlPointsList { get; }
-		IfcBSplineSurfaceForm @SurfaceForm { get; }
-		IfcLogical @UClosed { get; }
-		IfcLogical @VClosed { get; }
-		IfcLogical @SelfIntersect { get; }
+		IfcBSplineSurfaceForm @SurfaceForm { get;  set; }
+		IfcLogical @UClosed { get;  set; }
+		IfcLogical @VClosed { get;  set; }
+		IfcLogical @SelfIntersect { get;  set; }
 		IfcInteger @UUpper  { get ; }
 		IfcInteger @VUpper  { get ; }
 		List<List<Common.Geometry.XbimPoint3D>> @ControlPoints  { get ; }
@@ -47,13 +47,39 @@ namespace Xbim.Ifc4.GeometryResource
 	public abstract partial class @IfcBSplineSurface : IfcBoundedSurface, IIfcBSplineSurface, IEquatable<@IfcBSplineSurface>
 	{
 		#region IIfcBSplineSurface explicit implementation
-		IfcInteger IIfcBSplineSurface.UDegree { get { return @UDegree; } }	
-		IfcInteger IIfcBSplineSurface.VDegree { get { return @VDegree; } }	
-		IEnumerable<IEnumerable<IIfcCartesianPoint>> IIfcBSplineSurface.ControlPointsList { get { return @ControlPointsList; } }	
-		IfcBSplineSurfaceForm IIfcBSplineSurface.SurfaceForm { get { return @SurfaceForm; } }	
-		IfcLogical IIfcBSplineSurface.UClosed { get { return @UClosed; } }	
-		IfcLogical IIfcBSplineSurface.VClosed { get { return @VClosed; } }	
-		IfcLogical IIfcBSplineSurface.SelfIntersect { get { return @SelfIntersect; } }	
+		IfcInteger IIfcBSplineSurface.UDegree { 
+			get { return @UDegree; } 
+ 
+			set { UDegree = value;}
+		}	
+		IfcInteger IIfcBSplineSurface.VDegree { 
+			get { return @VDegree; } 
+ 
+			set { VDegree = value;}
+		}	
+		IEnumerable<IEnumerable<IIfcCartesianPoint>> IIfcBSplineSurface.ControlPointsList { 
+			get { return @ControlPointsList; } 
+		}	
+		IfcBSplineSurfaceForm IIfcBSplineSurface.SurfaceForm { 
+			get { return @SurfaceForm; } 
+ 
+			set { SurfaceForm = value;}
+		}	
+		IfcLogical IIfcBSplineSurface.UClosed { 
+			get { return @UClosed; } 
+ 
+			set { UClosed = value;}
+		}	
+		IfcLogical IIfcBSplineSurface.VClosed { 
+			get { return @VClosed; } 
+ 
+			set { VClosed = value;}
+		}	
+		IfcLogical IIfcBSplineSurface.SelfIntersect { 
+			get { return @SelfIntersect; } 
+ 
+			set { SelfIntersect = value;}
+		}	
 		 
 		#endregion
 

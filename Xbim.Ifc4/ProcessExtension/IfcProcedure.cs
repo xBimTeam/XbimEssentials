@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcProcedure : IIfcProcess
 	{
-		IfcProcedureTypeEnum? @PredefinedType { get; }
+		IfcProcedureTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.ProcessExtension
 	public  partial class @IfcProcedure : IfcProcess, IInstantiableEntity, IIfcProcedure, IContainsEntityReferences, IEquatable<@IfcProcedure>
 	{
 		#region IIfcProcedure explicit implementation
-		IfcProcedureTypeEnum? IIfcProcedure.PredefinedType { get { return @PredefinedType; } }	
+		IfcProcedureTypeEnum? IIfcProcedure.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

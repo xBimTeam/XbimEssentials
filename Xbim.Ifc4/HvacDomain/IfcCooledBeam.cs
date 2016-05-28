@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCooledBeam : IIfcEnergyConversionDevice
 	{
-		IfcCooledBeamTypeEnum? @PredefinedType { get; }
+		IfcCooledBeamTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.HvacDomain
 	public  partial class @IfcCooledBeam : IfcEnergyConversionDevice, IInstantiableEntity, IIfcCooledBeam, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCooledBeam>
 	{
 		#region IIfcCooledBeam explicit implementation
-		IfcCooledBeamTypeEnum? IIfcCooledBeam.PredefinedType { get { return @PredefinedType; } }	
+		IfcCooledBeamTypeEnum? IIfcCooledBeam.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

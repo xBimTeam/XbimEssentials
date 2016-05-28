@@ -27,10 +27,10 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcGeometricRepresentationContext : IIfcRepresentationContext, IfcCoordinateReferenceSystemSelect
 	{
-		IfcDimensionCount @CoordinateSpaceDimension { get; }
-		IfcReal? @Precision { get; }
-		IIfcAxis2Placement @WorldCoordinateSystem { get; }
-		IIfcDirection @TrueNorth { get; }
+		IfcDimensionCount @CoordinateSpaceDimension { get;  set; }
+		IfcReal? @Precision { get;  set; }
+		IIfcAxis2Placement @WorldCoordinateSystem { get;  set; }
+		IIfcDirection @TrueNorth { get;  set; }
 		IEnumerable<IIfcGeometricRepresentationSubContext> @HasSubContexts {  get; }
 		IEnumerable<IIfcCoordinateOperation> @HasCoordinateOperation {  get; }
 	
@@ -44,10 +44,28 @@ namespace Xbim.Ifc4.RepresentationResource
 	public  partial class @IfcGeometricRepresentationContext : IfcRepresentationContext, IInstantiableEntity, IIfcGeometricRepresentationContext, IContainsEntityReferences, IEquatable<@IfcGeometricRepresentationContext>
 	{
 		#region IIfcGeometricRepresentationContext explicit implementation
-		IfcDimensionCount IIfcGeometricRepresentationContext.CoordinateSpaceDimension { get { return @CoordinateSpaceDimension; } }	
-		IfcReal? IIfcGeometricRepresentationContext.Precision { get { return @Precision; } }	
-		IIfcAxis2Placement IIfcGeometricRepresentationContext.WorldCoordinateSystem { get { return @WorldCoordinateSystem; } }	
-		IIfcDirection IIfcGeometricRepresentationContext.TrueNorth { get { return @TrueNorth; } }	
+		IfcDimensionCount IIfcGeometricRepresentationContext.CoordinateSpaceDimension { 
+			get { return @CoordinateSpaceDimension; } 
+ 
+			set { CoordinateSpaceDimension = value;}
+		}	
+		IfcReal? IIfcGeometricRepresentationContext.Precision { 
+			get { return @Precision; } 
+ 
+			set { Precision = value;}
+		}	
+		IIfcAxis2Placement IIfcGeometricRepresentationContext.WorldCoordinateSystem { 
+			get { return @WorldCoordinateSystem; } 
+ 
+ 
+			set { WorldCoordinateSystem = value as IfcAxis2Placement;}
+		}	
+		IIfcDirection IIfcGeometricRepresentationContext.TrueNorth { 
+			get { return @TrueNorth; } 
+ 
+ 
+			set { TrueNorth = value as IfcDirection;}
+		}	
 		 
 		IEnumerable<IIfcGeometricRepresentationSubContext> IIfcGeometricRepresentationContext.HasSubContexts {  get { return @HasSubContexts; } }
 		IEnumerable<IIfcCoordinateOperation> IIfcGeometricRepresentationContext.HasCoordinateOperation {  get { return @HasCoordinateOperation; } }

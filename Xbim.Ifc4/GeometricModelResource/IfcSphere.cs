@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSphere : IIfcCsgPrimitive3D
 	{
-		IfcPositiveLengthMeasure @Radius { get; }
+		IfcPositiveLengthMeasure @Radius { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public  partial class @IfcSphere : IfcCsgPrimitive3D, IInstantiableEntity, IIfcSphere, IContainsEntityReferences, IEquatable<@IfcSphere>
 	{
 		#region IIfcSphere explicit implementation
-		IfcPositiveLengthMeasure IIfcSphere.Radius { get { return @Radius; } }	
+		IfcPositiveLengthMeasure IIfcSphere.Radius { 
+			get { return @Radius; } 
+ 
+			set { Radius = value;}
+		}	
 		 
 		#endregion
 

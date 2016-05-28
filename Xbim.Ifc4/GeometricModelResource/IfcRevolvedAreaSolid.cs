@@ -27,8 +27,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRevolvedAreaSolid : IIfcSweptAreaSolid
 	{
-		IIfcAxis1Placement @Axis { get; }
-		IfcPlaneAngleMeasure @Angle { get; }
+		IIfcAxis1Placement @Axis { get;  set; }
+		IfcPlaneAngleMeasure @Angle { get;  set; }
 		Common.Geometry.XbimLine @AxisLine  { get ; }
 	
 	}
@@ -41,8 +41,17 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public  partial class @IfcRevolvedAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcRevolvedAreaSolid, IContainsEntityReferences, IEquatable<@IfcRevolvedAreaSolid>
 	{
 		#region IIfcRevolvedAreaSolid explicit implementation
-		IIfcAxis1Placement IIfcRevolvedAreaSolid.Axis { get { return @Axis; } }	
-		IfcPlaneAngleMeasure IIfcRevolvedAreaSolid.Angle { get { return @Angle; } }	
+		IIfcAxis1Placement IIfcRevolvedAreaSolid.Axis { 
+			get { return @Axis; } 
+ 
+ 
+			set { Axis = value as IfcAxis1Placement;}
+		}	
+		IfcPlaneAngleMeasure IIfcRevolvedAreaSolid.Angle { 
+			get { return @Angle; } 
+ 
+			set { Angle = value;}
+		}	
 		 
 		#endregion
 

@@ -27,11 +27,11 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieReferencedObject : IPersistEntity
 	{
-		ICobieCreatedInfo @Created { get; }
-		string @ExternalId { get; }
-		string @AltExternalId { get; }
-		ICobieExternalSystem @ExternalSystem { get; }
-		ICobieExternalObject @ExternalObject { get; }
+		ICobieCreatedInfo @Created { get;  set; }
+		string @ExternalId { get;  set; }
+		string @AltExternalId { get;  set; }
+		ICobieExternalSystem @ExternalSystem { get;  set; }
+		ICobieExternalObject @ExternalObject { get;  set; }
 	
 	}
 }
@@ -43,11 +43,34 @@ namespace Xbim.CobieExpress
 	public abstract partial class @CobieReferencedObject : IPersistEntity, INotifyPropertyChanged, ICobieReferencedObject, IEquatable<@CobieReferencedObject>
 	{
 		#region ICobieReferencedObject explicit implementation
-		ICobieCreatedInfo ICobieReferencedObject.Created { get { return @Created; } }	
-		string ICobieReferencedObject.ExternalId { get { return @ExternalId; } }	
-		string ICobieReferencedObject.AltExternalId { get { return @AltExternalId; } }	
-		ICobieExternalSystem ICobieReferencedObject.ExternalSystem { get { return @ExternalSystem; } }	
-		ICobieExternalObject ICobieReferencedObject.ExternalObject { get { return @ExternalObject; } }	
+		ICobieCreatedInfo ICobieReferencedObject.Created { 
+			get { return @Created; } 
+ 
+ 
+			set { Created = value as CobieCreatedInfo;}
+		}	
+		string ICobieReferencedObject.ExternalId { 
+			get { return @ExternalId; } 
+ 
+			set { ExternalId = value;}
+		}	
+		string ICobieReferencedObject.AltExternalId { 
+			get { return @AltExternalId; } 
+ 
+			set { AltExternalId = value;}
+		}	
+		ICobieExternalSystem ICobieReferencedObject.ExternalSystem { 
+			get { return @ExternalSystem; } 
+ 
+ 
+			set { ExternalSystem = value as CobieExternalSystem;}
+		}	
+		ICobieExternalObject ICobieReferencedObject.ExternalObject { 
+			get { return @ExternalObject; } 
+ 
+ 
+			set { ExternalObject = value as CobieExternalObject;}
+		}	
 		 
 		#endregion
 

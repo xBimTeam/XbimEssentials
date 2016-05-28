@@ -26,12 +26,12 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcLShapeProfileDef : IIfcParameterizedProfileDef
 	{
-		IfcPositiveLengthMeasure @Depth { get; }
-		IfcPositiveLengthMeasure? @Width { get; }
-		IfcPositiveLengthMeasure @Thickness { get; }
-		IfcNonNegativeLengthMeasure? @FilletRadius { get; }
-		IfcNonNegativeLengthMeasure? @EdgeRadius { get; }
-		IfcPlaneAngleMeasure? @LegSlope { get; }
+		IfcPositiveLengthMeasure @Depth { get;  set; }
+		IfcPositiveLengthMeasure? @Width { get;  set; }
+		IfcPositiveLengthMeasure @Thickness { get;  set; }
+		IfcNonNegativeLengthMeasure? @FilletRadius { get;  set; }
+		IfcNonNegativeLengthMeasure? @EdgeRadius { get;  set; }
+		IfcPlaneAngleMeasure? @LegSlope { get;  set; }
 	
 	}
 }
@@ -43,12 +43,36 @@ namespace Xbim.Ifc4.ProfileResource
 	public  partial class @IfcLShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcLShapeProfileDef, IContainsEntityReferences, IEquatable<@IfcLShapeProfileDef>
 	{
 		#region IIfcLShapeProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcLShapeProfileDef.Depth { get { return @Depth; } }	
-		IfcPositiveLengthMeasure? IIfcLShapeProfileDef.Width { get { return @Width; } }	
-		IfcPositiveLengthMeasure IIfcLShapeProfileDef.Thickness { get { return @Thickness; } }	
-		IfcNonNegativeLengthMeasure? IIfcLShapeProfileDef.FilletRadius { get { return @FilletRadius; } }	
-		IfcNonNegativeLengthMeasure? IIfcLShapeProfileDef.EdgeRadius { get { return @EdgeRadius; } }	
-		IfcPlaneAngleMeasure? IIfcLShapeProfileDef.LegSlope { get { return @LegSlope; } }	
+		IfcPositiveLengthMeasure IIfcLShapeProfileDef.Depth { 
+			get { return @Depth; } 
+ 
+			set { Depth = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcLShapeProfileDef.Width { 
+			get { return @Width; } 
+ 
+			set { Width = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcLShapeProfileDef.Thickness { 
+			get { return @Thickness; } 
+ 
+			set { Thickness = value;}
+		}	
+		IfcNonNegativeLengthMeasure? IIfcLShapeProfileDef.FilletRadius { 
+			get { return @FilletRadius; } 
+ 
+			set { FilletRadius = value;}
+		}	
+		IfcNonNegativeLengthMeasure? IIfcLShapeProfileDef.EdgeRadius { 
+			get { return @EdgeRadius; } 
+ 
+			set { EdgeRadius = value;}
+		}	
+		IfcPlaneAngleMeasure? IIfcLShapeProfileDef.LegSlope { 
+			get { return @LegSlope; } 
+ 
+			set { LegSlope = value;}
+		}	
 		 
 		#endregion
 

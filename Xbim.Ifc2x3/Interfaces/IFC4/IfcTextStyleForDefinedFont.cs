@@ -29,6 +29,27 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					return ifcpredefinedcolour;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					Colour = null;
+					return;
+				}	
+				var ifccolourspecification = value as PresentationResource.IfcColourSpecification;
+				if (ifccolourspecification != null) 
+				{
+					Colour = ifccolourspecification;
+					return;
+				}
+				var ifcpredefinedcolour = value as PresentationResource.IfcPreDefinedColour;
+				if (ifcpredefinedcolour != null) 
+				{
+					Colour = ifcpredefinedcolour;
+					return;
+				}
+				
+			}
 		}
 		IIfcColour IIfcTextStyleForDefinedFont.BackgroundColour 
 		{ 
@@ -43,6 +64,27 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					return ifcpredefinedcolour;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					BackgroundColour = null;
+					return;
+				}	
+				var ifccolourspecification = value as PresentationResource.IfcColourSpecification;
+				if (ifccolourspecification != null) 
+				{
+					BackgroundColour = ifccolourspecification;
+					return;
+				}
+				var ifcpredefinedcolour = value as PresentationResource.IfcPreDefinedColour;
+				if (ifcpredefinedcolour != null) 
+				{
+					BackgroundColour = ifcpredefinedcolour;
+					return;
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

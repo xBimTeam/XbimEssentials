@@ -27,9 +27,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcProjectOrder : IIfcControl
 	{
-		IfcIdentifier @ID { get; }
-		IfcProjectOrderTypeEnum @PredefinedType { get; }
-		IfcLabel? @Status { get; }
+		IfcIdentifier @ID { get;  set; }
+		IfcProjectOrderTypeEnum @PredefinedType { get;  set; }
+		IfcLabel? @Status { get;  set; }
 	
 	}
 }
@@ -41,9 +41,21 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 	public  partial class @IfcProjectOrder : IfcControl, IInstantiableEntity, IIfcProjectOrder, IContainsEntityReferences, IEquatable<@IfcProjectOrder>
 	{
 		#region IIfcProjectOrder explicit implementation
-		IfcIdentifier IIfcProjectOrder.ID { get { return @ID; } }	
-		IfcProjectOrderTypeEnum IIfcProjectOrder.PredefinedType { get { return @PredefinedType; } }	
-		IfcLabel? IIfcProjectOrder.Status { get { return @Status; } }	
+		IfcIdentifier IIfcProjectOrder.ID { 
+			get { return @ID; } 
+ 
+			set { ID = value;}
+		}	
+		IfcProjectOrderTypeEnum IIfcProjectOrder.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
+		IfcLabel? IIfcProjectOrder.Status { 
+			get { return @Status; } 
+ 
+			set { Status = value;}
+		}	
 		 
 		#endregion
 

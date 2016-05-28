@@ -26,12 +26,12 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcZShapeProfileDef : IIfcParameterizedProfileDef
 	{
-		IfcPositiveLengthMeasure @Depth { get; }
-		IfcPositiveLengthMeasure @FlangeWidth { get; }
-		IfcPositiveLengthMeasure @WebThickness { get; }
-		IfcPositiveLengthMeasure @FlangeThickness { get; }
-		IfcNonNegativeLengthMeasure? @FilletRadius { get; }
-		IfcNonNegativeLengthMeasure? @EdgeRadius { get; }
+		IfcPositiveLengthMeasure @Depth { get;  set; }
+		IfcPositiveLengthMeasure @FlangeWidth { get;  set; }
+		IfcPositiveLengthMeasure @WebThickness { get;  set; }
+		IfcPositiveLengthMeasure @FlangeThickness { get;  set; }
+		IfcNonNegativeLengthMeasure? @FilletRadius { get;  set; }
+		IfcNonNegativeLengthMeasure? @EdgeRadius { get;  set; }
 	
 	}
 }
@@ -43,12 +43,36 @@ namespace Xbim.Ifc4.ProfileResource
 	public  partial class @IfcZShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcZShapeProfileDef, IContainsEntityReferences, IEquatable<@IfcZShapeProfileDef>
 	{
 		#region IIfcZShapeProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcZShapeProfileDef.Depth { get { return @Depth; } }	
-		IfcPositiveLengthMeasure IIfcZShapeProfileDef.FlangeWidth { get { return @FlangeWidth; } }	
-		IfcPositiveLengthMeasure IIfcZShapeProfileDef.WebThickness { get { return @WebThickness; } }	
-		IfcPositiveLengthMeasure IIfcZShapeProfileDef.FlangeThickness { get { return @FlangeThickness; } }	
-		IfcNonNegativeLengthMeasure? IIfcZShapeProfileDef.FilletRadius { get { return @FilletRadius; } }	
-		IfcNonNegativeLengthMeasure? IIfcZShapeProfileDef.EdgeRadius { get { return @EdgeRadius; } }	
+		IfcPositiveLengthMeasure IIfcZShapeProfileDef.Depth { 
+			get { return @Depth; } 
+ 
+			set { Depth = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcZShapeProfileDef.FlangeWidth { 
+			get { return @FlangeWidth; } 
+ 
+			set { FlangeWidth = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcZShapeProfileDef.WebThickness { 
+			get { return @WebThickness; } 
+ 
+			set { WebThickness = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcZShapeProfileDef.FlangeThickness { 
+			get { return @FlangeThickness; } 
+ 
+			set { FlangeThickness = value;}
+		}	
+		IfcNonNegativeLengthMeasure? IIfcZShapeProfileDef.FilletRadius { 
+			get { return @FilletRadius; } 
+ 
+			set { FilletRadius = value;}
+		}	
+		IfcNonNegativeLengthMeasure? IIfcZShapeProfileDef.EdgeRadius { 
+			get { return @EdgeRadius; } 
+ 
+			set { EdgeRadius = value;}
+		}	
 		 
 		#endregion
 

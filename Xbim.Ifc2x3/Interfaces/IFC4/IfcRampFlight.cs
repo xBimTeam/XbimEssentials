@@ -16,14 +16,20 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcRampFlight : IIfcRampFlight
 	{
+
+		private  Ifc4.Interfaces.IfcRampFlightTypeEnum? _predefinedType;
+
 		Ifc4.Interfaces.IfcRampFlightTypeEnum? IIfcRampFlight.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-                return null;
-				//##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -28,8 +28,8 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcDerivedUnit : IPersistEntity, IfcUnit
 	{
 		IEnumerable<IIfcDerivedUnitElement> @Elements { get; }
-		IfcDerivedUnitEnum @UnitType { get; }
-		IfcLabel? @UserDefinedType { get; }
+		IfcDerivedUnitEnum @UnitType { get;  set; }
+		IfcLabel? @UserDefinedType { get;  set; }
 		Common.Geometry.XbimDimensionalExponents @Dimensions  { get ; }
 	
 	}
@@ -42,9 +42,19 @@ namespace Xbim.Ifc4.MeasureResource
 	public  partial class @IfcDerivedUnit : INotifyPropertyChanged, IInstantiableEntity, IIfcDerivedUnit, IContainsEntityReferences, IEquatable<@IfcDerivedUnit>
 	{
 		#region IIfcDerivedUnit explicit implementation
-		IEnumerable<IIfcDerivedUnitElement> IIfcDerivedUnit.Elements { get { return @Elements; } }	
-		IfcDerivedUnitEnum IIfcDerivedUnit.UnitType { get { return @UnitType; } }	
-		IfcLabel? IIfcDerivedUnit.UserDefinedType { get { return @UserDefinedType; } }	
+		IEnumerable<IIfcDerivedUnitElement> IIfcDerivedUnit.Elements { 
+			get { return @Elements; } 
+		}	
+		IfcDerivedUnitEnum IIfcDerivedUnit.UnitType { 
+			get { return @UnitType; } 
+ 
+			set { UnitType = value;}
+		}	
+		IfcLabel? IIfcDerivedUnit.UserDefinedType { 
+			get { return @UserDefinedType; } 
+ 
+			set { UserDefinedType = value;}
+		}	
 		 
 		#endregion
 

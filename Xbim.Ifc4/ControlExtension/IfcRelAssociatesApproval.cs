@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelAssociatesApproval : IIfcRelAssociates
 	{
-		IIfcApproval @RelatingApproval { get; }
+		IIfcApproval @RelatingApproval { get;  set; }
 	
 	}
 }
@@ -39,7 +39,12 @@ namespace Xbim.Ifc4.ControlExtension
 	public  partial class @IfcRelAssociatesApproval : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesApproval, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesApproval>
 	{
 		#region IIfcRelAssociatesApproval explicit implementation
-		IIfcApproval IIfcRelAssociatesApproval.RelatingApproval { get { return @RelatingApproval; } }	
+		IIfcApproval IIfcRelAssociatesApproval.RelatingApproval { 
+			get { return @RelatingApproval; } 
+ 
+ 
+			set { RelatingApproval = value as IfcApproval;}
+		}	
 		 
 		#endregion
 

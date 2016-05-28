@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				Name = new MeasureResource.IfcLabel(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcText? IIfcConstraint.Description 
 		{ 
@@ -30,6 +35,13 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				if (!Description.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				Description = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
+				
+			}
 		}
 		Ifc4.Interfaces.IfcConstraintEnum IIfcConstraint.ConstraintGrade 
 		{ 
@@ -47,6 +59,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 						return Ifc4.Interfaces.IfcConstraintEnum.ADVISORY;
 					
 					case IfcConstraintEnum.USERDEFINED:
+						//## Optional custom handling of ConstraintGrade == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcConstraintEnum.USERDEFINED;
 					
 					case IfcConstraintEnum.NOTDEFINED:
@@ -57,6 +71,36 @@ namespace Xbim.Ifc2x3.ConstraintResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcConstraintEnum.HARD:
+						ConstraintGrade = IfcConstraintEnum.HARD;
+						return;
+					
+					case Ifc4.Interfaces.IfcConstraintEnum.SOFT:
+						ConstraintGrade = IfcConstraintEnum.SOFT;
+						return;
+					
+					case Ifc4.Interfaces.IfcConstraintEnum.ADVISORY:
+						ConstraintGrade = IfcConstraintEnum.ADVISORY;
+						return;
+					
+					case Ifc4.Interfaces.IfcConstraintEnum.USERDEFINED:
+						ConstraintGrade = IfcConstraintEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcConstraintEnum.NOTDEFINED:
+						ConstraintGrade = IfcConstraintEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcConstraint.ConstraintSource 
 		{ 
@@ -65,6 +109,13 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				if (!ConstraintSource.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(ConstraintSource.Value);
 			} 
+			set
+			{
+				ConstraintSource = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		IIfcActorSelect IIfcConstraint.CreatingActor 
 		{ 
@@ -82,6 +133,33 @@ namespace Xbim.Ifc2x3.ConstraintResource
 					return ifcpersonandorganization;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					CreatingActor = null;
+					return;
+				}	
+				var ifcorganization = value as ActorResource.IfcOrganization;
+				if (ifcorganization != null) 
+				{
+					CreatingActor = ifcorganization;
+					return;
+				}
+				var ifcperson = value as ActorResource.IfcPerson;
+				if (ifcperson != null) 
+				{
+					CreatingActor = ifcperson;
+					return;
+				}
+				var ifcpersonandorganization = value as ActorResource.IfcPersonAndOrganization;
+				if (ifcpersonandorganization != null) 
+				{
+					CreatingActor = ifcpersonandorganization;
+					return;
+				}
+				
+			}
 		}
 		Ifc4.DateTimeResource.IfcDateTime? IIfcConstraint.CreationTime 
 		{ 
@@ -93,6 +171,33 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			        : new Ifc4.DateTimeResource.IfcDateTime(CreationTime.ToISODateTimeString());
 			    //##
 			} 
+			set
+			{
+				//## Handle setting of CreationTime for which no match was found
+			    if (!value.HasValue)
+			    {
+			        CreationTime = null;
+			        return;
+			    }
+                System.DateTime d = value.Value;
+                CreationTime = Model.Instances.New<DateTimeResource.IfcDateAndTime>(dt =>
+                {
+                    dt.DateComponent = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+                    {
+                        date.YearComponent = d.Year;
+                        date.MonthComponent = d.Month;
+                        date.DayComponent = d.Day;
+                    });
+                    dt.TimeComponent = Model.Instances.New<DateTimeResource.IfcLocalTime>(t =>
+                    {
+                        t.HourComponent = d.Hour;
+                        t.MinuteComponent = d.Minute;
+                        t.SecondComponent = d.Second;
+                    });
+                });
+				//##
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcConstraint.UserDefinedGrade 
 		{ 
@@ -101,6 +206,13 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				if (!UserDefinedGrade.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(UserDefinedGrade.Value);
 			} 
+			set
+			{
+				UserDefinedGrade = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcConstraint.HasExternalReferences 
 		{ 

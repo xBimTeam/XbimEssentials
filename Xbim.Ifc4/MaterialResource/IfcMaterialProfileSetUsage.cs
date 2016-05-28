@@ -26,9 +26,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialProfileSetUsage : IIfcMaterialUsageDefinition
 	{
-		IIfcMaterialProfileSet @ForProfileSet { get; }
-		IfcCardinalPointReference? @CardinalPoint { get; }
-		IfcPositiveLengthMeasure? @ReferenceExtent { get; }
+		IIfcMaterialProfileSet @ForProfileSet { get;  set; }
+		IfcCardinalPointReference? @CardinalPoint { get;  set; }
+		IfcPositiveLengthMeasure? @ReferenceExtent { get;  set; }
 	
 	}
 }
@@ -40,9 +40,22 @@ namespace Xbim.Ifc4.MaterialResource
 	public  partial class @IfcMaterialProfileSetUsage : IfcMaterialUsageDefinition, IInstantiableEntity, IIfcMaterialProfileSetUsage, IContainsEntityReferences, IEquatable<@IfcMaterialProfileSetUsage>
 	{
 		#region IIfcMaterialProfileSetUsage explicit implementation
-		IIfcMaterialProfileSet IIfcMaterialProfileSetUsage.ForProfileSet { get { return @ForProfileSet; } }	
-		IfcCardinalPointReference? IIfcMaterialProfileSetUsage.CardinalPoint { get { return @CardinalPoint; } }	
-		IfcPositiveLengthMeasure? IIfcMaterialProfileSetUsage.ReferenceExtent { get { return @ReferenceExtent; } }	
+		IIfcMaterialProfileSet IIfcMaterialProfileSetUsage.ForProfileSet { 
+			get { return @ForProfileSet; } 
+ 
+ 
+			set { ForProfileSet = value as IfcMaterialProfileSet;}
+		}	
+		IfcCardinalPointReference? IIfcMaterialProfileSetUsage.CardinalPoint { 
+			get { return @CardinalPoint; } 
+ 
+			set { CardinalPoint = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcMaterialProfileSetUsage.ReferenceExtent { 
+			get { return @ReferenceExtent; } 
+ 
+			set { ReferenceExtent = value;}
+		}	
 		 
 		#endregion
 

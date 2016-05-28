@@ -41,6 +41,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 						return Ifc4.Interfaces.IfcLampTypeEnum.TUNGSTENFILAMENT;
 					
 					case IfcLampTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcLampTypeEnum.USERDEFINED;
 					
 					case IfcLampTypeEnum.NOTDEFINED:
@@ -51,6 +53,66 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcLampTypeEnum.COMPACTFLUORESCENT:
+						PredefinedType = IfcLampTypeEnum.COMPACTFLUORESCENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcLampTypeEnum.FLUORESCENT:
+						PredefinedType = IfcLampTypeEnum.FLUORESCENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcLampTypeEnum.HALOGEN:
+						//## Handle setting of HALOGEN member from IfcLampTypeEnum in property PredefinedType
+						//TODO: Handle setting of HALOGEN member from IfcLampTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcLampTypeEnum.HIGHPRESSUREMERCURY:
+						PredefinedType = IfcLampTypeEnum.HIGHPRESSUREMERCURY;
+						return;
+					
+					case Ifc4.Interfaces.IfcLampTypeEnum.HIGHPRESSURESODIUM:
+						PredefinedType = IfcLampTypeEnum.HIGHPRESSURESODIUM;
+						return;
+					
+					case Ifc4.Interfaces.IfcLampTypeEnum.LED:
+						//## Handle setting of LED member from IfcLampTypeEnum in property PredefinedType
+						//TODO: Handle setting of LED member from IfcLampTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcLampTypeEnum.METALHALIDE:
+						PredefinedType = IfcLampTypeEnum.METALHALIDE;
+						return;
+					
+					case Ifc4.Interfaces.IfcLampTypeEnum.OLED:
+						//## Handle setting of OLED member from IfcLampTypeEnum in property PredefinedType
+						//TODO: Handle setting of OLED member from IfcLampTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcLampTypeEnum.TUNGSTENFILAMENT:
+						PredefinedType = IfcLampTypeEnum.TUNGSTENFILAMENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcLampTypeEnum.USERDEFINED:
+						PredefinedType = IfcLampTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcLampTypeEnum.NOTDEFINED:
+						PredefinedType = IfcLampTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

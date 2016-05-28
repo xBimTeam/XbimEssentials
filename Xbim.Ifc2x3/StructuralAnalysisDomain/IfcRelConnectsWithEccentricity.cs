@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelConnectsWithEccentricity : IIfcRelConnectsStructuralMember
 	{
-		IIfcConnectionGeometry @ConnectionConstraint { get; }
+		IIfcConnectionGeometry @ConnectionConstraint { get;  set; }
 	
 	}
 }
@@ -38,7 +38,12 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 	public  partial class @IfcRelConnectsWithEccentricity : IfcRelConnectsStructuralMember, IInstantiableEntity, IIfcRelConnectsWithEccentricity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsWithEccentricity>
 	{
 		#region IIfcRelConnectsWithEccentricity explicit implementation
-		IIfcConnectionGeometry IIfcRelConnectsWithEccentricity.ConnectionConstraint { get { return @ConnectionConstraint; } }	
+		IIfcConnectionGeometry IIfcRelConnectsWithEccentricity.ConnectionConstraint { 
+			get { return @ConnectionConstraint; } 
+ 
+ 
+			set { ConnectionConstraint = value as IfcConnectionGeometry;}
+		}	
 		 
 		#endregion
 

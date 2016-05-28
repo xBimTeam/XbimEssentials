@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcWorkSchedule : IIfcWorkControl
 	{
-		IfcWorkScheduleTypeEnum? @PredefinedType { get; }
+		IfcWorkScheduleTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -37,7 +37,11 @@ namespace Xbim.Ifc4.ProcessExtension
 	public  partial class @IfcWorkSchedule : IfcWorkControl, IInstantiableEntity, IIfcWorkSchedule, IContainsEntityReferences, IEquatable<@IfcWorkSchedule>
 	{
 		#region IIfcWorkSchedule explicit implementation
-		IfcWorkScheduleTypeEnum? IIfcWorkSchedule.PredefinedType { get { return @PredefinedType; } }	
+		IfcWorkScheduleTypeEnum? IIfcWorkSchedule.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

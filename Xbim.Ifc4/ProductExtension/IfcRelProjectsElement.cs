@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelProjectsElement : IIfcRelDecomposes
 	{
-		IIfcElement @RelatingElement { get; }
-		IIfcFeatureElementAddition @RelatedFeatureElement { get; }
+		IIfcElement @RelatingElement { get;  set; }
+		IIfcFeatureElementAddition @RelatedFeatureElement { get;  set; }
 	
 	}
 }
@@ -39,8 +39,18 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcRelProjectsElement : IfcRelDecomposes, IInstantiableEntity, IIfcRelProjectsElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelProjectsElement>
 	{
 		#region IIfcRelProjectsElement explicit implementation
-		IIfcElement IIfcRelProjectsElement.RelatingElement { get { return @RelatingElement; } }	
-		IIfcFeatureElementAddition IIfcRelProjectsElement.RelatedFeatureElement { get { return @RelatedFeatureElement; } }	
+		IIfcElement IIfcRelProjectsElement.RelatingElement { 
+			get { return @RelatingElement; } 
+ 
+ 
+			set { RelatingElement = value as IfcElement;}
+		}	
+		IIfcFeatureElementAddition IIfcRelProjectsElement.RelatedFeatureElement { 
+			get { return @RelatedFeatureElement; } 
+ 
+ 
+			set { RelatedFeatureElement = value as IfcFeatureElementAddition;}
+		}	
 		 
 		#endregion
 

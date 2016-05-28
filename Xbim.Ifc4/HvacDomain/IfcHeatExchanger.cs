@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcHeatExchanger : IIfcEnergyConversionDevice
 	{
-		IfcHeatExchangerTypeEnum? @PredefinedType { get; }
+		IfcHeatExchangerTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.HvacDomain
 	public  partial class @IfcHeatExchanger : IfcEnergyConversionDevice, IInstantiableEntity, IIfcHeatExchanger, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcHeatExchanger>
 	{
 		#region IIfcHeatExchanger explicit implementation
-		IfcHeatExchangerTypeEnum? IIfcHeatExchanger.PredefinedType { get { return @PredefinedType; } }	
+		IfcHeatExchangerTypeEnum? IIfcHeatExchanger.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

@@ -25,13 +25,13 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieComponent : ICobieTypeOrComponent
 	{
-		string @SerialNumber { get; }
-		DateTimeValue? @InstallationDate { get; }
-		DateTimeValue? @WarrantyStartDate { get; }
-		string @TagNumber { get; }
-		string @BarCode { get; }
-		string @AssetIdentifier { get; }
-		ICobieType @Type { get; }
+		string @SerialNumber { get;  set; }
+		DateTimeValue? @InstallationDate { get;  set; }
+		DateTimeValue? @WarrantyStartDate { get;  set; }
+		string @TagNumber { get;  set; }
+		string @BarCode { get;  set; }
+		string @AssetIdentifier { get;  set; }
+		ICobieType @Type { get;  set; }
 		IEnumerable<ICobieSpace> @Spaces { get; }
 		IEnumerable<ICobieSystem> @InSystems {  get; }
 	
@@ -45,14 +45,45 @@ namespace Xbim.CobieExpress
 	public  partial class @CobieComponent : CobieTypeOrComponent, IInstantiableEntity, ICobieComponent, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieComponent>
 	{
 		#region ICobieComponent explicit implementation
-		string ICobieComponent.SerialNumber { get { return @SerialNumber; } }	
-		DateTimeValue? ICobieComponent.InstallationDate { get { return @InstallationDate; } }	
-		DateTimeValue? ICobieComponent.WarrantyStartDate { get { return @WarrantyStartDate; } }	
-		string ICobieComponent.TagNumber { get { return @TagNumber; } }	
-		string ICobieComponent.BarCode { get { return @BarCode; } }	
-		string ICobieComponent.AssetIdentifier { get { return @AssetIdentifier; } }	
-		ICobieType ICobieComponent.Type { get { return @Type; } }	
-		IEnumerable<ICobieSpace> ICobieComponent.Spaces { get { return @Spaces; } }	
+		string ICobieComponent.SerialNumber { 
+			get { return @SerialNumber; } 
+ 
+			set { SerialNumber = value;}
+		}	
+		DateTimeValue? ICobieComponent.InstallationDate { 
+			get { return @InstallationDate; } 
+ 
+			set { InstallationDate = value;}
+		}	
+		DateTimeValue? ICobieComponent.WarrantyStartDate { 
+			get { return @WarrantyStartDate; } 
+ 
+			set { WarrantyStartDate = value;}
+		}	
+		string ICobieComponent.TagNumber { 
+			get { return @TagNumber; } 
+ 
+			set { TagNumber = value;}
+		}	
+		string ICobieComponent.BarCode { 
+			get { return @BarCode; } 
+ 
+			set { BarCode = value;}
+		}	
+		string ICobieComponent.AssetIdentifier { 
+			get { return @AssetIdentifier; } 
+ 
+			set { AssetIdentifier = value;}
+		}	
+		ICobieType ICobieComponent.Type { 
+			get { return @Type; } 
+ 
+ 
+			set { Type = value as CobieType;}
+		}	
+		IEnumerable<ICobieSpace> ICobieComponent.Spaces { 
+			get { return @Spaces; } 
+		}	
 		 
 		IEnumerable<ICobieSystem> ICobieComponent.InSystems {  get { return @InSystems; } }
 		#endregion

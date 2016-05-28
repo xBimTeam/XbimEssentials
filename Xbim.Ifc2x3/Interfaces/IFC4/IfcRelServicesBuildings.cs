@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				return RelatingSystem;
 			} 
+			set
+			{
+				RelatingSystem = value as IfcSystem;
+				
+			}
 		}
 		IEnumerable<IIfcSpatialElement> IIfcRelServicesBuildings.RelatedBuildings 
 		{ 

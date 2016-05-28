@@ -29,12 +29,12 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcInventory : IIfcGroup
 	{
-		IfcInventoryTypeEnum? @PredefinedType { get; }
-		IIfcActorSelect @Jurisdiction { get; }
+		IfcInventoryTypeEnum? @PredefinedType { get;  set; }
+		IIfcActorSelect @Jurisdiction { get;  set; }
 		IEnumerable<IIfcPerson> @ResponsiblePersons { get; }
-		IfcDate? @LastUpdateDate { get; }
-		IIfcCostValue @CurrentValue { get; }
-		IIfcCostValue @OriginalValue { get; }
+		IfcDate? @LastUpdateDate { get;  set; }
+		IIfcCostValue @CurrentValue { get;  set; }
+		IIfcCostValue @OriginalValue { get;  set; }
 	
 	}
 }
@@ -46,12 +46,37 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 	public  partial class @IfcInventory : IfcGroup, IInstantiableEntity, IIfcInventory, IContainsEntityReferences, IEquatable<@IfcInventory>
 	{
 		#region IIfcInventory explicit implementation
-		IfcInventoryTypeEnum? IIfcInventory.PredefinedType { get { return @PredefinedType; } }	
-		IIfcActorSelect IIfcInventory.Jurisdiction { get { return @Jurisdiction; } }	
-		IEnumerable<IIfcPerson> IIfcInventory.ResponsiblePersons { get { return @ResponsiblePersons; } }	
-		IfcDate? IIfcInventory.LastUpdateDate { get { return @LastUpdateDate; } }	
-		IIfcCostValue IIfcInventory.CurrentValue { get { return @CurrentValue; } }	
-		IIfcCostValue IIfcInventory.OriginalValue { get { return @OriginalValue; } }	
+		IfcInventoryTypeEnum? IIfcInventory.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
+		IIfcActorSelect IIfcInventory.Jurisdiction { 
+			get { return @Jurisdiction; } 
+ 
+ 
+			set { Jurisdiction = value as IfcActorSelect;}
+		}	
+		IEnumerable<IIfcPerson> IIfcInventory.ResponsiblePersons { 
+			get { return @ResponsiblePersons; } 
+		}	
+		IfcDate? IIfcInventory.LastUpdateDate { 
+			get { return @LastUpdateDate; } 
+ 
+			set { LastUpdateDate = value;}
+		}	
+		IIfcCostValue IIfcInventory.CurrentValue { 
+			get { return @CurrentValue; } 
+ 
+ 
+			set { CurrentValue = value as IfcCostValue;}
+		}	
+		IIfcCostValue IIfcInventory.OriginalValue { 
+			get { return @OriginalValue; } 
+ 
+ 
+			set { OriginalValue = value as IfcCostValue;}
+		}	
 		 
 		#endregion
 

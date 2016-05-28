@@ -26,12 +26,12 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBoundaryNodeCondition : IIfcBoundaryCondition
 	{
-		IfcLinearStiffnessMeasure? @LinearStiffnessX { get; }
-		IfcLinearStiffnessMeasure? @LinearStiffnessY { get; }
-		IfcLinearStiffnessMeasure? @LinearStiffnessZ { get; }
-		IfcRotationalStiffnessMeasure? @RotationalStiffnessX { get; }
-		IfcRotationalStiffnessMeasure? @RotationalStiffnessY { get; }
-		IfcRotationalStiffnessMeasure? @RotationalStiffnessZ { get; }
+		IfcLinearStiffnessMeasure? @LinearStiffnessX { get;  set; }
+		IfcLinearStiffnessMeasure? @LinearStiffnessY { get;  set; }
+		IfcLinearStiffnessMeasure? @LinearStiffnessZ { get;  set; }
+		IfcRotationalStiffnessMeasure? @RotationalStiffnessX { get;  set; }
+		IfcRotationalStiffnessMeasure? @RotationalStiffnessY { get;  set; }
+		IfcRotationalStiffnessMeasure? @RotationalStiffnessZ { get;  set; }
 	
 	}
 }
@@ -43,12 +43,36 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 	public  partial class @IfcBoundaryNodeCondition : IfcBoundaryCondition, IInstantiableEntity, IIfcBoundaryNodeCondition, IEquatable<@IfcBoundaryNodeCondition>
 	{
 		#region IIfcBoundaryNodeCondition explicit implementation
-		IfcLinearStiffnessMeasure? IIfcBoundaryNodeCondition.LinearStiffnessX { get { return @LinearStiffnessX; } }	
-		IfcLinearStiffnessMeasure? IIfcBoundaryNodeCondition.LinearStiffnessY { get { return @LinearStiffnessY; } }	
-		IfcLinearStiffnessMeasure? IIfcBoundaryNodeCondition.LinearStiffnessZ { get { return @LinearStiffnessZ; } }	
-		IfcRotationalStiffnessMeasure? IIfcBoundaryNodeCondition.RotationalStiffnessX { get { return @RotationalStiffnessX; } }	
-		IfcRotationalStiffnessMeasure? IIfcBoundaryNodeCondition.RotationalStiffnessY { get { return @RotationalStiffnessY; } }	
-		IfcRotationalStiffnessMeasure? IIfcBoundaryNodeCondition.RotationalStiffnessZ { get { return @RotationalStiffnessZ; } }	
+		IfcLinearStiffnessMeasure? IIfcBoundaryNodeCondition.LinearStiffnessX { 
+			get { return @LinearStiffnessX; } 
+ 
+			set { LinearStiffnessX = value;}
+		}	
+		IfcLinearStiffnessMeasure? IIfcBoundaryNodeCondition.LinearStiffnessY { 
+			get { return @LinearStiffnessY; } 
+ 
+			set { LinearStiffnessY = value;}
+		}	
+		IfcLinearStiffnessMeasure? IIfcBoundaryNodeCondition.LinearStiffnessZ { 
+			get { return @LinearStiffnessZ; } 
+ 
+			set { LinearStiffnessZ = value;}
+		}	
+		IfcRotationalStiffnessMeasure? IIfcBoundaryNodeCondition.RotationalStiffnessX { 
+			get { return @RotationalStiffnessX; } 
+ 
+			set { RotationalStiffnessX = value;}
+		}	
+		IfcRotationalStiffnessMeasure? IIfcBoundaryNodeCondition.RotationalStiffnessY { 
+			get { return @RotationalStiffnessY; } 
+ 
+			set { RotationalStiffnessY = value;}
+		}	
+		IfcRotationalStiffnessMeasure? IIfcBoundaryNodeCondition.RotationalStiffnessZ { 
+			get { return @RotationalStiffnessZ; } 
+ 
+			set { RotationalStiffnessZ = value;}
+		}	
 		 
 		#endregion
 

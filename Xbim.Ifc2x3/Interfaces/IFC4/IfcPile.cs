@@ -32,6 +32,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 						return Ifc4.Interfaces.IfcPileTypeEnum.SUPPORT;
 					
 					case IfcPileTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcPileTypeEnum.USERDEFINED;
 					
 					case IfcPileTypeEnum.NOTDEFINED:
@@ -42,6 +44,54 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcPileTypeEnum.BORED:
+						//## Handle setting of BORED member from IfcPileTypeEnum in property PredefinedType
+						//TODO: Handle setting of BORED member from IfcPileTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcPileTypeEnum.DRIVEN:
+						//## Handle setting of DRIVEN member from IfcPileTypeEnum in property PredefinedType
+						//TODO: Handle setting of DRIVEN member from IfcPileTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcPileTypeEnum.JETGROUTING:
+						//## Handle setting of JETGROUTING member from IfcPileTypeEnum in property PredefinedType
+						//TODO: Handle setting of JETGROUTING member from IfcPileTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcPileTypeEnum.COHESION:
+						PredefinedType = IfcPileTypeEnum.COHESION;
+						return;
+					
+					case Ifc4.Interfaces.IfcPileTypeEnum.FRICTION:
+						PredefinedType = IfcPileTypeEnum.FRICTION;
+						return;
+					
+					case Ifc4.Interfaces.IfcPileTypeEnum.SUPPORT:
+						PredefinedType = IfcPileTypeEnum.SUPPORT;
+						return;
+					
+					case Ifc4.Interfaces.IfcPileTypeEnum.USERDEFINED:
+						PredefinedType = IfcPileTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcPileTypeEnum.NOTDEFINED:
+						PredefinedType = IfcPileTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.Interfaces.IfcPileConstructionEnum? IIfcPile.ConstructionType 
 		{ 
@@ -62,6 +112,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 						return Ifc4.Interfaces.IfcPileConstructionEnum.PREFAB_STEEL;
 					
 					case IfcPileConstructionEnum.USERDEFINED:
+						//## Optional custom handling of ConstructionType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcPileConstructionEnum.USERDEFINED;
 					
 					case IfcPileConstructionEnum.NOTDEFINED:
@@ -72,6 +124,40 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcPileConstructionEnum.CAST_IN_PLACE:
+						ConstructionType = IfcPileConstructionEnum.CAST_IN_PLACE;
+						return;
+					
+					case Ifc4.Interfaces.IfcPileConstructionEnum.COMPOSITE:
+						ConstructionType = IfcPileConstructionEnum.COMPOSITE;
+						return;
+					
+					case Ifc4.Interfaces.IfcPileConstructionEnum.PRECAST_CONCRETE:
+						ConstructionType = IfcPileConstructionEnum.PRECAST_CONCRETE;
+						return;
+					
+					case Ifc4.Interfaces.IfcPileConstructionEnum.PREFAB_STEEL:
+						ConstructionType = IfcPileConstructionEnum.PREFAB_STEEL;
+						return;
+					
+					case Ifc4.Interfaces.IfcPileConstructionEnum.USERDEFINED:
+						ConstructionType = IfcPileConstructionEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcPileConstructionEnum.NOTDEFINED:
+						ConstructionType = IfcPileConstructionEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

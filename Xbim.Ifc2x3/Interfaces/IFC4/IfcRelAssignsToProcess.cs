@@ -16,12 +16,39 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelAssignsToProcess : IIfcRelAssignsToProcess
 	{
+
+		private  IIfcProcessSelect _relatingProcess4;
+
 		IIfcProcessSelect IIfcRelAssignsToProcess.RelatingProcess 
 		{ 
 			get
 			{
-				return RelatingProcess;
+				return  _relatingProcess4 ?? RelatingProcess;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					RelatingProcess = null;
+					if (_relatingProcess4 != null)
+						SetValue(v => _relatingProcess4 = v, _relatingProcess4, null, "RelatingProcess", byte.MaxValue);
+					return;
+				}
+				
+				var val = value as IfcProcess;
+				if (val != null)
+				{
+					RelatingProcess = val;
+					if (_relatingProcess4 != null)
+						SetValue(v => _relatingProcess4 = v, _relatingProcess4, null, "RelatingProcess", byte.MaxValue);
+					return;
+				} 
+
+				if(RelatingProcess != null)
+					RelatingProcess = null;
+				SetValue(v => _relatingProcess4 = v, _relatingProcess4, value, "RelatingProcess", byte.MaxValue);
+				
+			}
 		}
 		IIfcMeasureWithUnit IIfcRelAssignsToProcess.QuantityInProcess 
 		{ 
@@ -29,6 +56,11 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				return QuantityInProcess;
 			} 
+			set
+			{
+				QuantityInProcess = value as MeasureResource.IfcMeasureWithUnit;
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -39,6 +39,32 @@ namespace Xbim.Ifc2x3.GeometryResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcTransitionCode.DISCONTINUOUS:
+						Transition = IfcTransitionCode.DISCONTINUOUS;
+						return;
+					
+					case Ifc4.Interfaces.IfcTransitionCode.CONTINUOUS:
+						Transition = IfcTransitionCode.CONTINUOUS;
+						return;
+					
+					case Ifc4.Interfaces.IfcTransitionCode.CONTSAMEGRADIENT:
+						Transition = IfcTransitionCode.CONTSAMEGRADIENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcTransitionCode.CONTSAMEGRADIENTSAMECURVATURE:
+						Transition = IfcTransitionCode.CONTSAMEGRADIENTSAMECURVATURE;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcBoolean IIfcCompositeCurveSegment.SameSense 
 		{ 
@@ -48,6 +74,11 @@ namespace Xbim.Ifc2x3.GeometryResource
                 return new Ifc4.MeasureResource.IfcBoolean(SameSense);
 				//##
 			} 
+			set
+			{
+				SameSense = value;
+				
+			}
 		}
 		IIfcCurve IIfcCompositeCurveSegment.ParentCurve 
 		{ 
@@ -55,6 +86,11 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return ParentCurve;
 			} 
+			set
+			{
+				ParentCurve = value as IfcCurve;
+				
+			}
 		}
 		IEnumerable<IIfcCompositeCurve> IIfcCompositeCurveSegment.UsingCurves 
 		{ 

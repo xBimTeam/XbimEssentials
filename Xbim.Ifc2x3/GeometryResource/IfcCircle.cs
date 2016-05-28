@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCircle : IIfcConic
 	{
-		IfcPositiveLengthMeasure @Radius { get; }
+		IfcPositiveLengthMeasure @Radius { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.GeometryResource
 	public  partial class @IfcCircle : IfcConic, IInstantiableEntity, IIfcCircle, IContainsEntityReferences, IEquatable<@IfcCircle>
 	{
 		#region IIfcCircle explicit implementation
-		IfcPositiveLengthMeasure IIfcCircle.Radius { get { return @Radius; } }	
+		IfcPositiveLengthMeasure IIfcCircle.Radius { 
+			get { return @Radius; } 
+ 
+			set { Radius = value;}
+		}	
 		 
 		#endregion
 

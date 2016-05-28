@@ -27,9 +27,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcClassificationReference : IIfcExternalReference, IfcClassificationReferenceSelect, IfcClassificationSelect
 	{
-		IIfcClassificationReferenceSelect @ReferencedSource { get; }
-		IfcText? @Description { get; }
-		IfcIdentifier? @Sort { get; }
+		IIfcClassificationReferenceSelect @ReferencedSource { get;  set; }
+		IfcText? @Description { get;  set; }
+		IfcIdentifier? @Sort { get;  set; }
 		IEnumerable<IIfcRelAssociatesClassification> @ClassificationRefForObjects {  get; }
 		IEnumerable<IIfcClassificationReference> @HasReferences {  get; }
 	
@@ -43,9 +43,22 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 	public  partial class @IfcClassificationReference : IfcExternalReference, IInstantiableEntity, IIfcClassificationReference, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcClassificationReference>
 	{
 		#region IIfcClassificationReference explicit implementation
-		IIfcClassificationReferenceSelect IIfcClassificationReference.ReferencedSource { get { return @ReferencedSource; } }	
-		IfcText? IIfcClassificationReference.Description { get { return @Description; } }	
-		IfcIdentifier? IIfcClassificationReference.Sort { get { return @Sort; } }	
+		IIfcClassificationReferenceSelect IIfcClassificationReference.ReferencedSource { 
+			get { return @ReferencedSource; } 
+ 
+ 
+			set { ReferencedSource = value as IfcClassificationReferenceSelect;}
+		}	
+		IfcText? IIfcClassificationReference.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IfcIdentifier? IIfcClassificationReference.Sort { 
+			get { return @Sort; } 
+ 
+			set { Sort = value;}
+		}	
 		 
 		IEnumerable<IIfcRelAssociatesClassification> IIfcClassificationReference.ClassificationRefForObjects {  get { return @ClassificationRefForObjects; } }
 		IEnumerable<IIfcClassificationReference> IIfcClassificationReference.HasReferences {  get { return @HasReferences; } }

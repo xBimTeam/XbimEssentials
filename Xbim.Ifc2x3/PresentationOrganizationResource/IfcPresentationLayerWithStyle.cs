@@ -26,9 +26,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPresentationLayerWithStyle : IIfcPresentationLayerAssignment
 	{
-		bool? @LayerOn { get; }
-		bool? @LayerFrozen { get; }
-		bool? @LayerBlocked { get; }
+		bool? @LayerOn { get;  set; }
+		bool? @LayerFrozen { get;  set; }
+		bool? @LayerBlocked { get;  set; }
 		IEnumerable<IIfcPresentationStyleSelect> @LayerStyles { get; }
 	
 	}
@@ -41,10 +41,24 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 	public  partial class @IfcPresentationLayerWithStyle : IfcPresentationLayerAssignment, IInstantiableEntity, IIfcPresentationLayerWithStyle, IEquatable<@IfcPresentationLayerWithStyle>
 	{
 		#region IIfcPresentationLayerWithStyle explicit implementation
-		bool? IIfcPresentationLayerWithStyle.LayerOn { get { return @LayerOn; } }	
-		bool? IIfcPresentationLayerWithStyle.LayerFrozen { get { return @LayerFrozen; } }	
-		bool? IIfcPresentationLayerWithStyle.LayerBlocked { get { return @LayerBlocked; } }	
-		IEnumerable<IIfcPresentationStyleSelect> IIfcPresentationLayerWithStyle.LayerStyles { get { return @LayerStyles; } }	
+		bool? IIfcPresentationLayerWithStyle.LayerOn { 
+			get { return @LayerOn; } 
+ 
+			set { LayerOn = value;}
+		}	
+		bool? IIfcPresentationLayerWithStyle.LayerFrozen { 
+			get { return @LayerFrozen; } 
+ 
+			set { LayerFrozen = value;}
+		}	
+		bool? IIfcPresentationLayerWithStyle.LayerBlocked { 
+			get { return @LayerBlocked; } 
+ 
+			set { LayerBlocked = value;}
+		}	
+		IEnumerable<IIfcPresentationStyleSelect> IIfcPresentationLayerWithStyle.LayerStyles { 
+			get { return @LayerStyles; } 
+		}	
 		 
 		#endregion
 

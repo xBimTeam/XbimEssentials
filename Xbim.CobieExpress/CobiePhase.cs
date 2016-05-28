@@ -27,8 +27,8 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobiePhase : IPersistEntity
 	{
-		string @Name { get; }
-		ICobieProject @Project { get; }
+		string @Name { get;  set; }
+		ICobieProject @Project { get;  set; }
 	
 	}
 }
@@ -40,8 +40,17 @@ namespace Xbim.CobieExpress
 	public  partial class @CobiePhase : INotifyPropertyChanged, IInstantiableEntity, ICobiePhase, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobiePhase>
 	{
 		#region ICobiePhase explicit implementation
-		string ICobiePhase.Name { get { return @Name; } }	
-		ICobieProject ICobiePhase.Project { get { return @Project; } }	
+		string ICobiePhase.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		ICobieProject ICobiePhase.Project { 
+			get { return @Project; } 
+ 
+ 
+			set { Project = value as CobieProject;}
+		}	
 		 
 		#endregion
 

@@ -33,6 +33,24 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcSectionTypeEnum.UNIFORM:
+						SectionType = IfcSectionTypeEnum.UNIFORM;
+						return;
+					
+					case Ifc4.Interfaces.IfcSectionTypeEnum.TAPERED:
+						SectionType = IfcSectionTypeEnum.TAPERED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		IIfcProfileDef IIfcSectionProperties.StartProfile 
 		{ 
@@ -40,6 +58,11 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				return StartProfile;
 			} 
+			set
+			{
+				StartProfile = value as ProfileResource.IfcProfileDef;
+				
+			}
 		}
 		IIfcProfileDef IIfcSectionProperties.EndProfile 
 		{ 
@@ -47,6 +70,11 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				return EndProfile;
 			} 
+			set
+			{
+				EndProfile = value as ProfileResource.IfcProfileDef;
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 
 		{ 

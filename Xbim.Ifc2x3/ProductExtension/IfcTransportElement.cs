@@ -26,9 +26,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTransportElement : IIfcElement
 	{
-		IfcTransportElementTypeEnum? @OperationType { get; }
-		IfcMassMeasure? @CapacityByWeight { get; }
-		IfcCountMeasure? @CapacityByNumber { get; }
+		IfcTransportElementTypeEnum? @OperationType { get;  set; }
+		IfcMassMeasure? @CapacityByWeight { get;  set; }
+		IfcCountMeasure? @CapacityByNumber { get;  set; }
 	
 	}
 }
@@ -40,9 +40,21 @@ namespace Xbim.Ifc2x3.ProductExtension
 	public  partial class @IfcTransportElement : IfcElement, IInstantiableEntity, IIfcTransportElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTransportElement>
 	{
 		#region IIfcTransportElement explicit implementation
-		IfcTransportElementTypeEnum? IIfcTransportElement.OperationType { get { return @OperationType; } }	
-		IfcMassMeasure? IIfcTransportElement.CapacityByWeight { get { return @CapacityByWeight; } }	
-		IfcCountMeasure? IIfcTransportElement.CapacityByNumber { get { return @CapacityByNumber; } }	
+		IfcTransportElementTypeEnum? IIfcTransportElement.OperationType { 
+			get { return @OperationType; } 
+ 
+			set { OperationType = value;}
+		}	
+		IfcMassMeasure? IIfcTransportElement.CapacityByWeight { 
+			get { return @CapacityByWeight; } 
+ 
+			set { CapacityByWeight = value;}
+		}	
+		IfcCountMeasure? IIfcTransportElement.CapacityByNumber { 
+			get { return @CapacityByNumber; } 
+ 
+			set { CapacityByNumber = value;}
+		}	
 		 
 		#endregion
 

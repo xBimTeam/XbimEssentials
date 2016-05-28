@@ -26,12 +26,12 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralLoadSingleForce : IIfcStructuralLoadStatic
 	{
-		IfcForceMeasure? @ForceX { get; }
-		IfcForceMeasure? @ForceY { get; }
-		IfcForceMeasure? @ForceZ { get; }
-		IfcTorqueMeasure? @MomentX { get; }
-		IfcTorqueMeasure? @MomentY { get; }
-		IfcTorqueMeasure? @MomentZ { get; }
+		IfcForceMeasure? @ForceX { get;  set; }
+		IfcForceMeasure? @ForceY { get;  set; }
+		IfcForceMeasure? @ForceZ { get;  set; }
+		IfcTorqueMeasure? @MomentX { get;  set; }
+		IfcTorqueMeasure? @MomentY { get;  set; }
+		IfcTorqueMeasure? @MomentZ { get;  set; }
 	
 	}
 }
@@ -43,12 +43,36 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 	public  partial class @IfcStructuralLoadSingleForce : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadSingleForce, IEquatable<@IfcStructuralLoadSingleForce>
 	{
 		#region IIfcStructuralLoadSingleForce explicit implementation
-		IfcForceMeasure? IIfcStructuralLoadSingleForce.ForceX { get { return @ForceX; } }	
-		IfcForceMeasure? IIfcStructuralLoadSingleForce.ForceY { get { return @ForceY; } }	
-		IfcForceMeasure? IIfcStructuralLoadSingleForce.ForceZ { get { return @ForceZ; } }	
-		IfcTorqueMeasure? IIfcStructuralLoadSingleForce.MomentX { get { return @MomentX; } }	
-		IfcTorqueMeasure? IIfcStructuralLoadSingleForce.MomentY { get { return @MomentY; } }	
-		IfcTorqueMeasure? IIfcStructuralLoadSingleForce.MomentZ { get { return @MomentZ; } }	
+		IfcForceMeasure? IIfcStructuralLoadSingleForce.ForceX { 
+			get { return @ForceX; } 
+ 
+			set { ForceX = value;}
+		}	
+		IfcForceMeasure? IIfcStructuralLoadSingleForce.ForceY { 
+			get { return @ForceY; } 
+ 
+			set { ForceY = value;}
+		}	
+		IfcForceMeasure? IIfcStructuralLoadSingleForce.ForceZ { 
+			get { return @ForceZ; } 
+ 
+			set { ForceZ = value;}
+		}	
+		IfcTorqueMeasure? IIfcStructuralLoadSingleForce.MomentX { 
+			get { return @MomentX; } 
+ 
+			set { MomentX = value;}
+		}	
+		IfcTorqueMeasure? IIfcStructuralLoadSingleForce.MomentY { 
+			get { return @MomentY; } 
+ 
+			set { MomentY = value;}
+		}	
+		IfcTorqueMeasure? IIfcStructuralLoadSingleForce.MomentZ { 
+			get { return @MomentZ; } 
+ 
+			set { MomentZ = value;}
+		}	
 		 
 		#endregion
 

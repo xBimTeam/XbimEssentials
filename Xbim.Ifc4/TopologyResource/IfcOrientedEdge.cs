@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcOrientedEdge : IIfcEdge
 	{
-		IIfcEdge @EdgeElement { get; }
-		IfcBoolean @Orientation { get; }
+		IIfcEdge @EdgeElement { get;  set; }
+		IfcBoolean @Orientation { get;  set; }
 	
 	}
 }
@@ -39,8 +39,17 @@ namespace Xbim.Ifc4.TopologyResource
 	public  partial class @IfcOrientedEdge : IfcEdge, IInstantiableEntity, IIfcOrientedEdge, IContainsEntityReferences, IEquatable<@IfcOrientedEdge>
 	{
 		#region IIfcOrientedEdge explicit implementation
-		IIfcEdge IIfcOrientedEdge.EdgeElement { get { return @EdgeElement; } }	
-		IfcBoolean IIfcOrientedEdge.Orientation { get { return @Orientation; } }	
+		IIfcEdge IIfcOrientedEdge.EdgeElement { 
+			get { return @EdgeElement; } 
+ 
+ 
+			set { EdgeElement = value as IfcEdge;}
+		}	
+		IfcBoolean IIfcOrientedEdge.Orientation { 
+			get { return @Orientation; } 
+ 
+			set { Orientation = value;}
+		}	
 		 
 		#endregion
 

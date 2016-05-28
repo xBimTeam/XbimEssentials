@@ -15,7 +15,7 @@ namespace Xbim.CobieExpress
 	[ExpressType("BooleanValue", 5)]
 	[DefinedType(typeof(bool))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct BooleanValue : AttributeValue, IExpressValueType, System.IEquatable<bool>
+	public partial struct BooleanValue : AttributeValue, IExpressValueType, IExpressBooleanType, System.IEquatable<bool>
 	{ 
 		private bool _value;
         
@@ -23,6 +23,9 @@ namespace Xbim.CobieExpress
         {
             get { return _value; }
         }
+
+ 
+		bool IExpressBooleanType.Value { get { return _value; } }
 
 		public override string ToString()
         {

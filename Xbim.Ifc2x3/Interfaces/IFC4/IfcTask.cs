@@ -23,6 +23,13 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				if (!Status.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Status.Value);
 			} 
+			set
+			{
+				Status = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcTask.WorkMethod 
 		{ 
@@ -31,6 +38,13 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				if (!WorkMethod.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(WorkMethod.Value);
 			} 
+			set
+			{
+				WorkMethod = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcBoolean IIfcTask.IsMilestone 
 		{ 
@@ -40,6 +54,11 @@ namespace Xbim.Ifc2x3.ProcessExtension
                 return new Ifc4.MeasureResource.IfcBoolean(IsMilestone);
 				//##
 			} 
+			set
+			{
+				IsMilestone = value;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcInteger? IIfcTask.Priority 
 		{ 
@@ -49,24 +68,41 @@ namespace Xbim.Ifc2x3.ProcessExtension
                 return Priority.HasValue ? new Ifc4.MeasureResource.IfcInteger(Priority.Value) : (Ifc4.MeasureResource.IfcInteger?)null;
 				//##
 			} 
+			set
+			{
+				Priority = value;
+				
+			}
 		}
+
+		private  IIfcTaskTime _taskTime;
+
 		IIfcTaskTime IIfcTask.TaskTime 
 		{ 
 			get
 			{
-				//## Handle return of TaskTime for which no match was found
-                return null;
-				//##
+				return _taskTime;
 			} 
+			set
+			{
+				SetValue(v => _taskTime = v, _taskTime, value, "TaskTime", byte.MaxValue);
+				
+			}
 		}
+
+		private  Ifc4.Interfaces.IfcTaskTypeEnum? _predefinedType;
+
 		Ifc4.Interfaces.IfcTaskTypeEnum? IIfcTask.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-				return null;
-				//##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -44,6 +44,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 						return Ifc4.Interfaces.IfcFanTypeEnum.PROPELLORAXIAL;
 					
 					case IfcFanTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcFanTypeEnum.USERDEFINED;
 					
 					case IfcFanTypeEnum.NOTDEFINED:
@@ -54,6 +56,52 @@ namespace Xbim.Ifc2x3.HVACDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcFanTypeEnum.CENTRIFUGALFORWARDCURVED:
+						PredefinedType = IfcFanTypeEnum.CENTRIFUGALFORWARDCURVED;
+						return;
+					
+					case Ifc4.Interfaces.IfcFanTypeEnum.CENTRIFUGALRADIAL:
+						PredefinedType = IfcFanTypeEnum.CENTRIFUGALRADIAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcFanTypeEnum.CENTRIFUGALBACKWARDINCLINEDCURVED:
+						PredefinedType = IfcFanTypeEnum.CENTRIFUGALBACKWARDINCLINEDCURVED;
+						return;
+					
+					case Ifc4.Interfaces.IfcFanTypeEnum.CENTRIFUGALAIRFOIL:
+						PredefinedType = IfcFanTypeEnum.CENTRIFUGALAIRFOIL;
+						return;
+					
+					case Ifc4.Interfaces.IfcFanTypeEnum.TUBEAXIAL:
+						PredefinedType = IfcFanTypeEnum.TUBEAXIAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcFanTypeEnum.VANEAXIAL:
+						PredefinedType = IfcFanTypeEnum.VANEAXIAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcFanTypeEnum.PROPELLORAXIAL:
+						PredefinedType = IfcFanTypeEnum.PROPELLORAXIAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcFanTypeEnum.USERDEFINED:
+						PredefinedType = IfcFanTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcFanTypeEnum.NOTDEFINED:
+						PredefinedType = IfcFanTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

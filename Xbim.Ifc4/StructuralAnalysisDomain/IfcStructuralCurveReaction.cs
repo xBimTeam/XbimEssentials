@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralCurveReaction : IIfcStructuralReaction
 	{
-		IfcStructuralCurveActivityTypeEnum @PredefinedType { get; }
+		IfcStructuralCurveActivityTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -37,7 +37,11 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	public  partial class @IfcStructuralCurveReaction : IfcStructuralReaction, IInstantiableEntity, IIfcStructuralCurveReaction, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralCurveReaction>
 	{
 		#region IIfcStructuralCurveReaction explicit implementation
-		IfcStructuralCurveActivityTypeEnum IIfcStructuralCurveReaction.PredefinedType { get { return @PredefinedType; } }	
+		IfcStructuralCurveActivityTypeEnum IIfcStructuralCurveReaction.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

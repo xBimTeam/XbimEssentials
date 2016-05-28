@@ -38,7 +38,9 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcCartesianPoint : IfcPoint, IInstantiableEntity, IIfcCartesianPoint, IEquatable<@IfcCartesianPoint>
 	{
 		#region IIfcCartesianPoint explicit implementation
-		IEnumerable<IfcLengthMeasure> IIfcCartesianPoint.Coordinates { get { return @Coordinates; } }	
+		IEnumerable<IfcLengthMeasure> IIfcCartesianPoint.Coordinates { 
+			get { return @Coordinates; } 
+		}	
 		 
 		#endregion
 

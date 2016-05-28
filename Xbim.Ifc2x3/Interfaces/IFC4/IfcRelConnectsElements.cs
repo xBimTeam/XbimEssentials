@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				return ConnectionGeometry;
 			} 
+			set
+			{
+				ConnectionGeometry = value as GeometricConstraintResource.IfcConnectionGeometry;
+				
+			}
 		}
 		IIfcElement IIfcRelConnectsElements.RelatingElement 
 		{ 
@@ -29,6 +34,11 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				return RelatingElement;
 			} 
+			set
+			{
+				RelatingElement = value as IfcElement;
+				
+			}
 		}
 		IIfcElement IIfcRelConnectsElements.RelatedElement 
 		{ 
@@ -36,6 +46,11 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				return RelatedElement;
 			} 
+			set
+			{
+				RelatedElement = value as IfcElement;
+				
+			}
 		}
 	//## Custom code
 	//##

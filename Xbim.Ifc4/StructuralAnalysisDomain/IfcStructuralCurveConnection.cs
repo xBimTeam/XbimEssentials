@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralCurveConnection : IIfcStructuralConnection
 	{
-		IIfcDirection @Axis { get; }
+		IIfcDirection @Axis { get;  set; }
 	
 	}
 }
@@ -38,7 +38,12 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	public  partial class @IfcStructuralCurveConnection : IfcStructuralConnection, IInstantiableEntity, IIfcStructuralCurveConnection, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralCurveConnection>
 	{
 		#region IIfcStructuralCurveConnection explicit implementation
-		IIfcDirection IIfcStructuralCurveConnection.Axis { get { return @Axis; } }	
+		IIfcDirection IIfcStructuralCurveConnection.Axis { 
+			get { return @Axis; } 
+ 
+ 
+			set { Axis = value as IfcDirection;}
+		}	
 		 
 		#endregion
 

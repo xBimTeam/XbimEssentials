@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRegularTimeSeries : IIfcTimeSeries
 	{
-		IfcTimeMeasure @TimeStep { get; }
+		IfcTimeMeasure @TimeStep { get;  set; }
 		IEnumerable<IIfcTimeSeriesValue> @Values { get; }
 	
 	}
@@ -39,8 +39,14 @@ namespace Xbim.Ifc4.DateTimeResource
 	public  partial class @IfcRegularTimeSeries : IfcTimeSeries, IInstantiableEntity, IIfcRegularTimeSeries, IContainsEntityReferences, IEquatable<@IfcRegularTimeSeries>
 	{
 		#region IIfcRegularTimeSeries explicit implementation
-		IfcTimeMeasure IIfcRegularTimeSeries.TimeStep { get { return @TimeStep; } }	
-		IEnumerable<IIfcTimeSeriesValue> IIfcRegularTimeSeries.Values { get { return @Values; } }	
+		IfcTimeMeasure IIfcRegularTimeSeries.TimeStep { 
+			get { return @TimeStep; } 
+ 
+			set { TimeStep = value;}
+		}	
+		IEnumerable<IIfcTimeSeriesValue> IIfcRegularTimeSeries.Values { 
+			get { return @Values; } 
+		}	
 		 
 		#endregion
 

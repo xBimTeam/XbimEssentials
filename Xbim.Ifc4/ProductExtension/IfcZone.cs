@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcZone : IIfcSystem
 	{
-		IfcLabel? @LongName { get; }
+		IfcLabel? @LongName { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcZone : IfcSystem, IInstantiableEntity, IIfcZone, IContainsEntityReferences, IEquatable<@IfcZone>
 	{
 		#region IIfcZone explicit implementation
-		IfcLabel? IIfcZone.LongName { get { return @LongName; } }	
+		IfcLabel? IIfcZone.LongName { 
+			get { return @LongName; } 
+ 
+			set { LongName = value;}
+		}	
 		 
 		#endregion
 

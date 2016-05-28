@@ -44,6 +44,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 						return Ifc4.Interfaces.IfcPipeFittingTypeEnum.TRANSITION;
 					
 					case IfcPipeFittingTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcPipeFittingTypeEnum.USERDEFINED;
 					
 					case IfcPipeFittingTypeEnum.NOTDEFINED:
@@ -54,6 +56,52 @@ namespace Xbim.Ifc2x3.HVACDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcPipeFittingTypeEnum.BEND:
+						PredefinedType = IfcPipeFittingTypeEnum.BEND;
+						return;
+					
+					case Ifc4.Interfaces.IfcPipeFittingTypeEnum.CONNECTOR:
+						PredefinedType = IfcPipeFittingTypeEnum.CONNECTOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcPipeFittingTypeEnum.ENTRY:
+						PredefinedType = IfcPipeFittingTypeEnum.ENTRY;
+						return;
+					
+					case Ifc4.Interfaces.IfcPipeFittingTypeEnum.EXIT:
+						PredefinedType = IfcPipeFittingTypeEnum.EXIT;
+						return;
+					
+					case Ifc4.Interfaces.IfcPipeFittingTypeEnum.JUNCTION:
+						PredefinedType = IfcPipeFittingTypeEnum.JUNCTION;
+						return;
+					
+					case Ifc4.Interfaces.IfcPipeFittingTypeEnum.OBSTRUCTION:
+						PredefinedType = IfcPipeFittingTypeEnum.OBSTRUCTION;
+						return;
+					
+					case Ifc4.Interfaces.IfcPipeFittingTypeEnum.TRANSITION:
+						PredefinedType = IfcPipeFittingTypeEnum.TRANSITION;
+						return;
+					
+					case Ifc4.Interfaces.IfcPipeFittingTypeEnum.USERDEFINED:
+						PredefinedType = IfcPipeFittingTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcPipeFittingTypeEnum.NOTDEFINED:
+						PredefinedType = IfcPipeFittingTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

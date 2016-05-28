@@ -37,7 +37,9 @@ namespace Xbim.CobieExpress
 	public  partial class @CobieZone : CobieAsset, IInstantiableEntity, ICobieZone, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieZone>
 	{
 		#region ICobieZone explicit implementation
-		IEnumerable<ICobieSpace> ICobieZone.Spaces { get { return @Spaces; } }	
+		IEnumerable<ICobieSpace> ICobieZone.Spaces { 
+			get { return @Spaces; } 
+		}	
 		 
 		#endregion
 

@@ -26,18 +26,18 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCraneRailAShapeProfileDef : IIfcParameterizedProfileDef
 	{
-		IfcPositiveLengthMeasure @OverallHeight { get; }
-		IfcPositiveLengthMeasure @BaseWidth2 { get; }
-		IfcPositiveLengthMeasure? @Radius { get; }
-		IfcPositiveLengthMeasure @HeadWidth { get; }
-		IfcPositiveLengthMeasure @HeadDepth2 { get; }
-		IfcPositiveLengthMeasure @HeadDepth3 { get; }
-		IfcPositiveLengthMeasure @WebThickness { get; }
-		IfcPositiveLengthMeasure @BaseWidth4 { get; }
-		IfcPositiveLengthMeasure @BaseDepth1 { get; }
-		IfcPositiveLengthMeasure @BaseDepth2 { get; }
-		IfcPositiveLengthMeasure @BaseDepth3 { get; }
-		IfcPositiveLengthMeasure? @CentreOfGravityInY { get; }
+		IfcPositiveLengthMeasure @OverallHeight { get;  set; }
+		IfcPositiveLengthMeasure @BaseWidth2 { get;  set; }
+		IfcPositiveLengthMeasure? @Radius { get;  set; }
+		IfcPositiveLengthMeasure @HeadWidth { get;  set; }
+		IfcPositiveLengthMeasure @HeadDepth2 { get;  set; }
+		IfcPositiveLengthMeasure @HeadDepth3 { get;  set; }
+		IfcPositiveLengthMeasure @WebThickness { get;  set; }
+		IfcPositiveLengthMeasure @BaseWidth4 { get;  set; }
+		IfcPositiveLengthMeasure @BaseDepth1 { get;  set; }
+		IfcPositiveLengthMeasure @BaseDepth2 { get;  set; }
+		IfcPositiveLengthMeasure @BaseDepth3 { get;  set; }
+		IfcPositiveLengthMeasure? @CentreOfGravityInY { get;  set; }
 	
 	}
 }
@@ -49,18 +49,66 @@ namespace Xbim.Ifc2x3.ProfileResource
 	public  partial class @IfcCraneRailAShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCraneRailAShapeProfileDef, IContainsEntityReferences, IEquatable<@IfcCraneRailAShapeProfileDef>
 	{
 		#region IIfcCraneRailAShapeProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.OverallHeight { get { return @OverallHeight; } }	
-		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.BaseWidth2 { get { return @BaseWidth2; } }	
-		IfcPositiveLengthMeasure? IIfcCraneRailAShapeProfileDef.Radius { get { return @Radius; } }	
-		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.HeadWidth { get { return @HeadWidth; } }	
-		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.HeadDepth2 { get { return @HeadDepth2; } }	
-		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.HeadDepth3 { get { return @HeadDepth3; } }	
-		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.WebThickness { get { return @WebThickness; } }	
-		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.BaseWidth4 { get { return @BaseWidth4; } }	
-		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.BaseDepth1 { get { return @BaseDepth1; } }	
-		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.BaseDepth2 { get { return @BaseDepth2; } }	
-		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.BaseDepth3 { get { return @BaseDepth3; } }	
-		IfcPositiveLengthMeasure? IIfcCraneRailAShapeProfileDef.CentreOfGravityInY { get { return @CentreOfGravityInY; } }	
+		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.OverallHeight { 
+			get { return @OverallHeight; } 
+ 
+			set { OverallHeight = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.BaseWidth2 { 
+			get { return @BaseWidth2; } 
+ 
+			set { BaseWidth2 = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcCraneRailAShapeProfileDef.Radius { 
+			get { return @Radius; } 
+ 
+			set { Radius = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.HeadWidth { 
+			get { return @HeadWidth; } 
+ 
+			set { HeadWidth = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.HeadDepth2 { 
+			get { return @HeadDepth2; } 
+ 
+			set { HeadDepth2 = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.HeadDepth3 { 
+			get { return @HeadDepth3; } 
+ 
+			set { HeadDepth3 = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.WebThickness { 
+			get { return @WebThickness; } 
+ 
+			set { WebThickness = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.BaseWidth4 { 
+			get { return @BaseWidth4; } 
+ 
+			set { BaseWidth4 = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.BaseDepth1 { 
+			get { return @BaseDepth1; } 
+ 
+			set { BaseDepth1 = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.BaseDepth2 { 
+			get { return @BaseDepth2; } 
+ 
+			set { BaseDepth2 = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.BaseDepth3 { 
+			get { return @BaseDepth3; } 
+ 
+			set { BaseDepth3 = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcCraneRailAShapeProfileDef.CentreOfGravityInY { 
+			get { return @CentreOfGravityInY; } 
+ 
+			set { CentreOfGravityInY = value;}
+		}	
 		 
 		#endregion
 

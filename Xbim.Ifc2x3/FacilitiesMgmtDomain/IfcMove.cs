@@ -28,8 +28,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMove : IIfcTask
 	{
-		IIfcSpatialStructureElement @MoveFrom { get; }
-		IIfcSpatialStructureElement @MoveTo { get; }
+		IIfcSpatialStructureElement @MoveFrom { get;  set; }
+		IIfcSpatialStructureElement @MoveTo { get;  set; }
 		IEnumerable<IfcText> @PunchList { get; }
 	
 	}
@@ -42,9 +42,21 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 	public  partial class @IfcMove : IfcTask, IInstantiableEntity, IIfcMove, IContainsEntityReferences, IEquatable<@IfcMove>
 	{
 		#region IIfcMove explicit implementation
-		IIfcSpatialStructureElement IIfcMove.MoveFrom { get { return @MoveFrom; } }	
-		IIfcSpatialStructureElement IIfcMove.MoveTo { get { return @MoveTo; } }	
-		IEnumerable<IfcText> IIfcMove.PunchList { get { return @PunchList; } }	
+		IIfcSpatialStructureElement IIfcMove.MoveFrom { 
+			get { return @MoveFrom; } 
+ 
+ 
+			set { MoveFrom = value as IfcSpatialStructureElement;}
+		}	
+		IIfcSpatialStructureElement IIfcMove.MoveTo { 
+			get { return @MoveTo; } 
+ 
+ 
+			set { MoveTo = value as IfcSpatialStructureElement;}
+		}	
+		IEnumerable<IfcText> IIfcMove.PunchList { 
+			get { return @PunchList; } 
+		}	
 		 
 		#endregion
 

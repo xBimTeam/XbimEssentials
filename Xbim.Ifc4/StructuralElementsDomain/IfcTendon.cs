@@ -26,14 +26,14 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTendon : IIfcReinforcingElement
 	{
-		IfcTendonTypeEnum? @PredefinedType { get; }
-		IfcPositiveLengthMeasure? @NominalDiameter { get; }
-		IfcAreaMeasure? @CrossSectionArea { get; }
-		IfcForceMeasure? @TensionForce { get; }
-		IfcPressureMeasure? @PreStress { get; }
-		IfcNormalisedRatioMeasure? @FrictionCoefficient { get; }
-		IfcPositiveLengthMeasure? @AnchorageSlip { get; }
-		IfcPositiveLengthMeasure? @MinCurvatureRadius { get; }
+		IfcTendonTypeEnum? @PredefinedType { get;  set; }
+		IfcPositiveLengthMeasure? @NominalDiameter { get;  set; }
+		IfcAreaMeasure? @CrossSectionArea { get;  set; }
+		IfcForceMeasure? @TensionForce { get;  set; }
+		IfcPressureMeasure? @PreStress { get;  set; }
+		IfcNormalisedRatioMeasure? @FrictionCoefficient { get;  set; }
+		IfcPositiveLengthMeasure? @AnchorageSlip { get;  set; }
+		IfcPositiveLengthMeasure? @MinCurvatureRadius { get;  set; }
 	
 	}
 }
@@ -45,14 +45,46 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 	public  partial class @IfcTendon : IfcReinforcingElement, IInstantiableEntity, IIfcTendon, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTendon>
 	{
 		#region IIfcTendon explicit implementation
-		IfcTendonTypeEnum? IIfcTendon.PredefinedType { get { return @PredefinedType; } }	
-		IfcPositiveLengthMeasure? IIfcTendon.NominalDiameter { get { return @NominalDiameter; } }	
-		IfcAreaMeasure? IIfcTendon.CrossSectionArea { get { return @CrossSectionArea; } }	
-		IfcForceMeasure? IIfcTendon.TensionForce { get { return @TensionForce; } }	
-		IfcPressureMeasure? IIfcTendon.PreStress { get { return @PreStress; } }	
-		IfcNormalisedRatioMeasure? IIfcTendon.FrictionCoefficient { get { return @FrictionCoefficient; } }	
-		IfcPositiveLengthMeasure? IIfcTendon.AnchorageSlip { get { return @AnchorageSlip; } }	
-		IfcPositiveLengthMeasure? IIfcTendon.MinCurvatureRadius { get { return @MinCurvatureRadius; } }	
+		IfcTendonTypeEnum? IIfcTendon.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcTendon.NominalDiameter { 
+			get { return @NominalDiameter; } 
+ 
+			set { NominalDiameter = value;}
+		}	
+		IfcAreaMeasure? IIfcTendon.CrossSectionArea { 
+			get { return @CrossSectionArea; } 
+ 
+			set { CrossSectionArea = value;}
+		}	
+		IfcForceMeasure? IIfcTendon.TensionForce { 
+			get { return @TensionForce; } 
+ 
+			set { TensionForce = value;}
+		}	
+		IfcPressureMeasure? IIfcTendon.PreStress { 
+			get { return @PreStress; } 
+ 
+			set { PreStress = value;}
+		}	
+		IfcNormalisedRatioMeasure? IIfcTendon.FrictionCoefficient { 
+			get { return @FrictionCoefficient; } 
+ 
+			set { FrictionCoefficient = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcTendon.AnchorageSlip { 
+			get { return @AnchorageSlip; } 
+ 
+			set { AnchorageSlip = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcTendon.MinCurvatureRadius { 
+			get { return @MinCurvatureRadius; } 
+ 
+			set { MinCurvatureRadius = value;}
+		}	
 		 
 		#endregion
 
