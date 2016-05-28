@@ -250,11 +250,26 @@ namespace Xbim.Common
         int GetGeometryDoubleHash(double number);
 
         void Initialise(double angleToRadiansConversionFactor, double lengthToMetresConversionFactor, double defaultPrecision);
+
+        bool ApplyWorkAround(string name);
     }
 
     public class XbimModelFactors : IModelFactors
     {
-
+        private HashSet<string> _workArounds = new HashSet<string>();
+        /// <summary>
+        /// returns true if a model specific work around needs to be applied
+        /// </summary>
+        /// <param name="workAroundName"></param>
+        /// <returns></returns>
+        public bool ApplyWorkAround(string workAroundName)
+        {
+            return _workArounds.Contains(workAroundName);
+        }
+        internal void AddWorkAround(string workAroundName)
+        {
+            _workArounds.Add(workAroundName);
+        }
         /// <summary>
         /// Indicates level of detail for IfcProfileDefinitions, if 0 no fillet radii are applied, no leg slopes area applied, if 1 all details are applied
         /// </summary>
