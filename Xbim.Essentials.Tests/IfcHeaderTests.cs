@@ -63,7 +63,7 @@ namespace Xbim.Essentials.Tests
                         Assert.IsTrue(!shouldHaveWorkAround || shouldHaveWorkAround &&
                                       store.ModelFactors.ApplyWorkAround("#SurfaceOfLinearExtrusion"),
                             "Work aroud not detected");
-
+                        Assert.IsTrue(!shouldHaveWorkAround && !store.ModelFactors.ApplyWorkAround("#SurfaceOfLinearExtrusion"), "Work around should not be implemented");
                     }
                 }
             }
