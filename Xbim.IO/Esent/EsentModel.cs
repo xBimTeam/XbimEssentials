@@ -95,7 +95,7 @@ namespace Xbim.IO.Esent
             var r = new Random();
             UserDefinedId = (short)r.Next(short.MaxValue); // initialise value at random to reduce chance of duplicates
             Metadata = ExpressMetaData.GetMetadata(factory.GetType().Module);
-            ModelFactors = new XbimModelFactors(1,1e-3,1e-5);
+            ModelFactors = new XbimModelFactors(Math.PI / 180, 1e-3,1e-5);
         }
 
         public string DatabaseName
@@ -724,7 +724,7 @@ namespace Xbim.IO.Esent
         public virtual void Close()
         {
             var dbName = DatabaseName;
-            ModelFactors = new XbimModelFactors(1,1e-3,1e-5);          
+            ModelFactors = new XbimModelFactors(Math.PI / 180, 1e-3,1e-5);          
             Header = null;
             
             if (_editTransactionEntityCursor != null)

@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml;
 using ICSharpCode.SharpZipLib.Zip;
 using Xbim.Common;
@@ -1169,9 +1171,41 @@ namespace Xbim.Ifc
                     break;
                 }
             }
+            
             ModelFactors.Initialise(angleToRadiansConversionFactor, lengthToMetresConversionFactor,
                 defaultPrecision);
+            
+            SetWorkArounds();
         }
+
+        /// <summary>
+        /// Code to determine model specific work arounds (BIM tool ifc exporter quirks)
+        /// </summary>
+        private void SetWorkArounds()
+        {
+            //try Revit first
+            string revitPattern = @"- Exporter\s(\d*.\d*.\d*.\d*)";
+            if (Header.FileName == null || string.IsNullOrWhiteSpace(Header.FileName.OriginatingSystem))
+                return; //nothing to do
+            var matches = Regex.Matches(Header.FileName.OriginatingSystem, revitPattern, RegexOptions.IgnoreCase);
+            if (matches.Count > 0) //looks like Revit
+            {
+                if (matches[0].Groups.Count == 2) //we have the build versions
+                {
+                    Version modelVersion;
+                    if (Version.TryParse(matches[0].Groups[1].Value, out modelVersion))
+                    {
+                        //SurfaceOfLinearExtrusion bug found in version 17.0.416
+                        var surfaceOfLinearExtrusionVersion = new Version(17, 0, 416);
+                        if (modelVersion <= surfaceOfLinearExtrusionVersion)
+                            ((XbimModelFactors)ModelFactors).AddWorkAround("#SurfaceOfLinearExtrusion");
+                    }
+
+                }
+            }
+        }
+
+       
 
         #region Reference Model functions
 

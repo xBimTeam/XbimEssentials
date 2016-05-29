@@ -266,7 +266,7 @@ namespace Xbim.Common
         {
             return _workArounds.Contains(workAroundName);
         }
-        internal void AddWorkAround(string workAroundName)
+        public void AddWorkAround(string workAroundName)
         {
             _workArounds.Add(workAroundName);
         }
