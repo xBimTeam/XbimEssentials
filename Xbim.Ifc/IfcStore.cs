@@ -259,25 +259,28 @@ namespace Xbim.Ifc
                     var model = ifcVersion == IfcSchemaVersion.Ifc4 ? new MemoryModel(new Ifc4.EntityFactory()) : new MemoryModel(new Ifc2x3.EntityFactory());
                     if (storageType.HasFlag(IfcStorageType.IfcZip) || storageType.HasFlag(IfcStorageType.Zip))
                     {
-                        using (var zipFile = new ZipFile(path))
+                        using (var zipFileStream = File.OpenRead(path))
                         {
-                            foreach (ZipEntry zipEntry in zipFile)
+                            using (var zipFile = new ZipFile(zipFileStream))
                             {
-                                if (!zipEntry.IsFile) continue; // 
-                                var streamSize = zipEntry.Size;
-                                using (var reader = zipFile.GetInputStream(zipEntry))
+                                foreach (ZipEntry zipEntry in zipFile)
                                 {
-                                    var zipStorageType = zipEntry.Name.StorageType();
-                                    if (zipStorageType == IfcStorageType.Ifc)
+                                    if (!zipEntry.IsFile) continue; // 
+                                    var streamSize = zipEntry.Size;
+                                    using (var reader = zipFile.GetInputStream(zipEntry))
                                     {
-                                        model.LoadStep21(reader, streamSize, progDelegate);
+                                        var zipStorageType = zipEntry.Name.StorageType();
+                                        if (zipStorageType == IfcStorageType.Ifc)
+                                        {
+                                            model.LoadStep21(reader, streamSize, progDelegate);
+                                        }
+                                        else if (zipStorageType == IfcStorageType.IfcXml)
+                                        {
+                                            model.LoadXml(reader, streamSize, progDelegate);
+                                        }
                                     }
-                                    else if (zipStorageType == IfcStorageType.IfcXml)
-                                    {
-                                        model.LoadXml(reader, streamSize, progDelegate);
-                                    }
+                                    break; //now we have one
                                 }
-                                break; //now we have one
                             }
                         }
                     }

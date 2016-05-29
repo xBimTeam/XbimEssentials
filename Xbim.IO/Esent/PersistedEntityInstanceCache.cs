@@ -764,7 +764,10 @@ namespace Xbim.IO.Esent
         public void ImportStepZip(string xbimDbName, string toImportFilename, ReportProgressDelegate progressHandler = null, bool keepOpen = false, bool cacheEntities = false, int codePageOverride = -1)
         {
             using (var fileStream = File.OpenRead(toImportFilename))
+            {
                 ImportStepZip(xbimDbName, fileStream, progressHandler, keepOpen, cacheEntities, codePageOverride);
+                fileStream.Close();
+            }
         }
 
         /// <summary>
