@@ -159,8 +159,9 @@ namespace Xbim.IO.Memory
 
         public IPersistEntity New(Type t)
         {
-            var entity = Factory.New(_model, t, NextLabel, true);
             Interlocked.Increment(ref NextLabel);
+            var entity = Factory.New(_model, t, NextLabel-1, true);
+            
             AddReversible(entity);
             return entity;
         }
@@ -177,16 +178,18 @@ namespace Xbim.IO.Memory
 
         public T New<T>(Action<T> initPropertiesFunc) where T : IInstantiableEntity
         {
-            var entity = Factory.New(_model, initPropertiesFunc, NextLabel, true);
             Interlocked.Increment(ref NextLabel);
+            var entity = Factory.New(_model, initPropertiesFunc, NextLabel-1, true);
+            
             AddReversible(entity);
             return entity;
         }
 
         public T New<T>() where T : IInstantiableEntity
         {
-            var entity = Factory.New<T>(_model, NextLabel, true);
             Interlocked.Increment(ref NextLabel);
+            var entity = Factory.New<T>(_model, NextLabel-1, true);
+            
             AddReversible(entity);
             return entity;
         }

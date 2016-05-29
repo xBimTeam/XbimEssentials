@@ -45,8 +45,8 @@ namespace Xbim.Essentials.Tests
         public void ReadPreProcessorTest()
         {
             string revitPattern = @"- Exporter\s(\d*.\d*.\d*.\d*)";
-            string[] files = new[] { "4walls1floorSite.ifc", "SampleHouse4.ifc" };
-            var surfaceOfLinearExtrusionVersion = new Version(17, 0, 416);
+            string[] files = new[] { @"C:\Users\Steve\Source\Repos\XbimGeometry\Xbim.Geometry.Engine.Tests\Ifc4TestFiles\Axis2PlacementError.ifc", "4walls1floorSite.ifc", "SampleHouse4.ifc" };
+            var surfaceOfLinearExtrusionVersion = new Version(17, 0, 416, 0);
           
             foreach (var file in files)
             {
@@ -60,10 +60,11 @@ namespace Xbim.Essentials.Tests
                     if (Version.TryParse(matches[0].Groups[1].Value, out modelVersion))
                     {
                         var shouldHaveWorkAround = (modelVersion <= surfaceOfLinearExtrusionVersion);
-                        Assert.IsTrue(!shouldHaveWorkAround || shouldHaveWorkAround &&
-                                      store.ModelFactors.ApplyWorkAround("#SurfaceOfLinearExtrusion"),
-                            "Work aroud not detected");
-                        Assert.IsTrue(!shouldHaveWorkAround && !store.ModelFactors.ApplyWorkAround("#SurfaceOfLinearExtrusion"), "Work around should not be implemented");
+                        
+                        if(shouldHaveWorkAround)
+                            Assert.IsTrue(store.ModelFactors.ApplyWorkAround("#SurfaceOfLinearExtrusion"), "Work around should be implemented");
+                        else
+                            Assert.IsFalse(store.ModelFactors.ApplyWorkAround("#SurfaceOfLinearExtrusion"), "Work around should not be implemented");
                     }
                 }
             }
