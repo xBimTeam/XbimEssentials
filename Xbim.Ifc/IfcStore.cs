@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml;
 using ICSharpCode.SharpZipLib.Zip;
 using Xbim.Common;
@@ -257,25 +259,28 @@ namespace Xbim.Ifc
                     var model = ifcVersion == IfcSchemaVersion.Ifc4 ? new MemoryModel(new Ifc4.EntityFactory()) : new MemoryModel(new Ifc2x3.EntityFactory());
                     if (storageType.HasFlag(IfcStorageType.IfcZip) || storageType.HasFlag(IfcStorageType.Zip))
                     {
-                        using (var zipFile = new ZipFile(path))
+                        using (var zipFileStream = File.OpenRead(path))
                         {
-                            foreach (ZipEntry zipEntry in zipFile)
+                            using (var zipFile = new ZipFile(zipFileStream))
                             {
-                                if (!zipEntry.IsFile) continue; // 
-                                var streamSize = zipEntry.Size;
-                                using (var reader = zipFile.GetInputStream(zipEntry))
+                                foreach (ZipEntry zipEntry in zipFile)
                                 {
-                                    var zipStorageType = zipEntry.Name.StorageType();
-                                    if (zipStorageType == IfcStorageType.Ifc)
+                                    if (!zipEntry.IsFile) continue; // 
+                                    var streamSize = zipEntry.Size;
+                                    using (var reader = zipFile.GetInputStream(zipEntry))
                                     {
-                                        model.LoadStep21(reader, streamSize, progDelegate);
+                                        var zipStorageType = zipEntry.Name.StorageType();
+                                        if (zipStorageType == IfcStorageType.Ifc)
+                                        {
+                                            model.LoadStep21(reader, streamSize, progDelegate);
+                                        }
+                                        else if (zipStorageType == IfcStorageType.IfcXml)
+                                        {
+                                            model.LoadXml(reader, streamSize, progDelegate);
+                                        }
                                     }
-                                    else if (zipStorageType == IfcStorageType.IfcXml)
-                                    {
-                                        model.LoadXml(reader, streamSize, progDelegate);
-                                    }
+                                    break; //now we have one
                                 }
-                                break; //now we have one
                             }
                         }
                     }
@@ -1169,9 +1174,41 @@ namespace Xbim.Ifc
                     break;
                 }
             }
+            
             ModelFactors.Initialise(angleToRadiansConversionFactor, lengthToMetresConversionFactor,
                 defaultPrecision);
+            
+            SetWorkArounds();
         }
+
+        /// <summary>
+        /// Code to determine model specific work arounds (BIM tool ifc exporter quirks)
+        /// </summary>
+        private void SetWorkArounds()
+        {
+            //try Revit first
+            string revitPattern = @"- Exporter\s(\d*.\d*.\d*.\d*)";
+            if (Header.FileName == null || string.IsNullOrWhiteSpace(Header.FileName.OriginatingSystem))
+                return; //nothing to do
+            var matches = Regex.Matches(Header.FileName.OriginatingSystem, revitPattern, RegexOptions.IgnoreCase);
+            if (matches.Count > 0) //looks like Revit
+            {
+                if (matches[0].Groups.Count == 2) //we have the build versions
+                {
+                    Version modelVersion;
+                    if (Version.TryParse(matches[0].Groups[1].Value, out modelVersion))
+                    {
+                        //SurfaceOfLinearExtrusion bug found in version 17.0.416
+                        var surfaceOfLinearExtrusionVersion = new Version(17, 0, 416, 0);
+                        if (modelVersion <= surfaceOfLinearExtrusionVersion)
+                            ((XbimModelFactors)ModelFactors).AddWorkAround("#SurfaceOfLinearExtrusion");
+                    }
+
+                }
+            }
+        }
+
+       
 
         #region Reference Model functions
 

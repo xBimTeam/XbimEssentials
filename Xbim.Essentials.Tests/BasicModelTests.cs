@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common;
 using Xbim.IO;
@@ -7,7 +8,7 @@ using XbimModel = Xbim.Ifc2x3.IO.XbimModel;
 namespace Xbim.Essentials.Tests
 {
     [TestClass]
-    [DeploymentItem(@"TestSourceFiles\")]
+    [DeploymentItem(@"TestSourceFiles")]
     public class BasicModelTests
     {
         [TestMethod]
@@ -32,8 +33,11 @@ namespace Xbim.Essentials.Tests
             };
             using (var model = new XbimModel())
             {
-                model.CreateFrom("4walls1floorSite.ifczip", null, progDelegate);
+                var fileName = Guid.NewGuid() + ".xbim";
+
+                model.CreateFrom("TestZip.ifczip", fileName, progDelegate);
                 model.Close();
+                Console.WriteLine(percent);
                 Assert.IsTrue(percent == 100);
             }
         }

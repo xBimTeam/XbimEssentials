@@ -250,11 +250,26 @@ namespace Xbim.Common
         int GetGeometryDoubleHash(double number);
 
         void Initialise(double angleToRadiansConversionFactor, double lengthToMetresConversionFactor, double defaultPrecision);
+
+        bool ApplyWorkAround(string name);
     }
 
     public class XbimModelFactors : IModelFactors
     {
-
+        private HashSet<string> _workArounds = new HashSet<string>();
+        /// <summary>
+        /// returns true if a model specific work around needs to be applied
+        /// </summary>
+        /// <param name="workAroundName"></param>
+        /// <returns></returns>
+        public bool ApplyWorkAround(string workAroundName)
+        {
+            return _workArounds.Contains(workAroundName);
+        }
+        public void AddWorkAround(string workAroundName)
+        {
+            _workArounds.Add(workAroundName);
+        }
         /// <summary>
         /// Indicates level of detail for IfcProfileDefinitions, if 0 no fillet radii are applied, no leg slopes area applied, if 1 all details are applied
         /// </summary>
@@ -376,10 +391,10 @@ namespace Xbim.Common
             DeflectionAngle = 0.5;
             VertexPointDiameter = OneMilliMetre * 10; //1 cm           
             Precision = defaultPrecision ;
-            PrecisionMax = OneMilliMetre / 10;
+            PrecisionMax = Math.Max(OneMilliMetre / 10, Precision*100);
             MaxBRepSewFaceCount = 0;
             PrecisionBoolean = Math.Max(Precision, OneMilliMetre / 10); //might need to make it courser than point precision if precision is very fine
-            PrecisionBooleanMax = OneMilliMetre * 100;
+            PrecisionBooleanMax = Math.Max(OneMilliMetre * 100,Precision*100);
             Rounding = Math.Abs((int)Math.Log10(Precision * 100)); //default round all points to 100 times  precision, this is used in the hash functions
 
             var exp = Math.Floor(Math.Log10(Math.Abs(OneMilliMetre / 10d))); //get exponent of first significant digit
