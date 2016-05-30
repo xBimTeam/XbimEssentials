@@ -31,7 +31,7 @@ namespace Xbim.IO.Memory
             get { return _model.EntityFactory; }
         }
 
-        internal int NextLabel = 1;
+        internal int CurrentLabel = 0;
 
         public EntityCollection(MemoryModel model)
         {
@@ -158,10 +158,8 @@ namespace Xbim.IO.Memory
         }
 
         public IPersistEntity New(Type t)
-        {
-            Interlocked.Increment(ref NextLabel);
-            var entity = Factory.New(_model, t, NextLabel-1, true);
-            
+        {            
+            var entity = Factory.New(_model, t, Interlocked.Increment(ref CurrentLabel), true);           
             AddReversible(entity);
             return entity;
         }
@@ -169,26 +167,24 @@ namespace Xbim.IO.Memory
         internal IPersistEntity New(Type t, int label)
         {
             var entity = Factory.New(_model, t, label, true);
-            if (label >= NextLabel)
-                NextLabel = label + 1;
-
+            Interlocked.Exchange(ref CurrentLabel, (label >= CurrentLabel) ? label : CurrentLabel);
+            
             AddReversible(entity);
             return entity;
         }
 
         public T New<T>(Action<T> initPropertiesFunc) where T : IInstantiableEntity
         {
-            Interlocked.Increment(ref NextLabel);
-            var entity = Factory.New(_model, initPropertiesFunc, NextLabel-1, true);
-            
+
+            var entity = Factory.New(_model, initPropertiesFunc, Interlocked.Increment(ref CurrentLabel), true);           
             AddReversible(entity);
             return entity;
         }
 
         public T New<T>() where T : IInstantiableEntity
         {
-            Interlocked.Increment(ref NextLabel);
-            var entity = Factory.New<T>(_model, NextLabel-1, true);
+            
+            var entity = Factory.New<T>(_model, Interlocked.Increment(ref CurrentLabel) , true);
             
             AddReversible(entity);
             return entity;

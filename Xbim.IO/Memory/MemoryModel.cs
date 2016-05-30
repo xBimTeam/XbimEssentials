@@ -607,8 +607,8 @@ namespace Xbim.IO.Memory
                 _instances.InternalAdd(ent);
 
                 //make sure that new added entities will have higher labels to avoid any clashes
-                if (label >= _instances.NextLabel)
-                    _instances.NextLabel = (int)label + 1;
+                if (label >= _instances.CurrentLabel)
+                    _instances.CurrentLabel = (int)label;
                 return ent;
             };
             parser.Parse();
