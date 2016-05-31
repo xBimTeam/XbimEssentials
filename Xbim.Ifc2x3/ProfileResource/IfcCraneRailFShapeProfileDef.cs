@@ -47,48 +47,48 @@ namespace Xbim.Ifc2x3.ProfileResource
 	{
 		#region IIfcCraneRailFShapeProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.OverallHeight { 
-			get { return @OverallHeight; } 
  
+			get { return @OverallHeight; } 
 			set { OverallHeight = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.HeadWidth { 
-			get { return @HeadWidth; } 
  
+			get { return @HeadWidth; } 
 			set { HeadWidth = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcCraneRailFShapeProfileDef.Radius { 
-			get { return @Radius; } 
  
+			get { return @Radius; } 
 			set { Radius = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.HeadDepth2 { 
-			get { return @HeadDepth2; } 
  
+			get { return @HeadDepth2; } 
 			set { HeadDepth2 = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.HeadDepth3 { 
-			get { return @HeadDepth3; } 
  
+			get { return @HeadDepth3; } 
 			set { HeadDepth3 = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.WebThickness { 
-			get { return @WebThickness; } 
  
+			get { return @WebThickness; } 
 			set { WebThickness = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.BaseDepth1 { 
-			get { return @BaseDepth1; } 
  
+			get { return @BaseDepth1; } 
 			set { BaseDepth1 = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.BaseDepth2 { 
-			get { return @BaseDepth2; } 
  
+			get { return @BaseDepth2; } 
 			set { BaseDepth2 = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcCraneRailFShapeProfileDef.CentreOfGravityInY { 
-			get { return @CentreOfGravityInY; } 
  
+			get { return @CentreOfGravityInY; } 
 			set { CentreOfGravityInY = value;}
 		}	
 		 
@@ -96,7 +96,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCraneRailFShapeProfileDef(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -321,7 +320,7 @@ namespace Xbim.Ifc2x3.ProfileResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

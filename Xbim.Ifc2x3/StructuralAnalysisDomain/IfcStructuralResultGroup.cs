@@ -42,19 +42,19 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 	{
 		#region IIfcStructuralResultGroup explicit implementation
 		IfcAnalysisTheoryTypeEnum IIfcStructuralResultGroup.TheoryType { 
-			get { return @TheoryType; } 
  
+			get { return @TheoryType; } 
 			set { TheoryType = value;}
 		}	
 		IIfcStructuralLoadGroup IIfcStructuralResultGroup.ResultForLoadGroup { 
+ 
+ 
 			get { return @ResultForLoadGroup; } 
- 
- 
 			set { ResultForLoadGroup = value as IfcStructuralLoadGroup;}
 		}	
 		bool IIfcStructuralResultGroup.IsLinear { 
-			get { return @IsLinear; } 
  
+			get { return @IsLinear; } 
 			set { IsLinear = value;}
 		}	
 		 
@@ -63,7 +63,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralResultGroup(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -194,7 +193,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

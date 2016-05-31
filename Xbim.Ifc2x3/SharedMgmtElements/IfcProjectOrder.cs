@@ -42,18 +42,18 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 	{
 		#region IIfcProjectOrder explicit implementation
 		IfcIdentifier IIfcProjectOrder.ID { 
-			get { return @ID; } 
  
+			get { return @ID; } 
 			set { ID = value;}
 		}	
 		IfcProjectOrderTypeEnum IIfcProjectOrder.PredefinedType { 
-			get { return @PredefinedType; } 
  
+			get { return @PredefinedType; } 
 			set { PredefinedType = value;}
 		}	
 		IfcLabel? IIfcProjectOrder.Status { 
-			get { return @Status; } 
  
+			get { return @Status; } 
 			set { Status = value;}
 		}	
 		 
@@ -61,7 +61,6 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProjectOrder(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -180,7 +179,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

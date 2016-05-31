@@ -50,54 +50,54 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 	{
 		#region IIfcSpaceThermalLoadProperties explicit implementation
 		IfcPositiveRatioMeasure? IIfcSpaceThermalLoadProperties.ApplicableValueRatio { 
-			get { return @ApplicableValueRatio; } 
  
+			get { return @ApplicableValueRatio; } 
 			set { ApplicableValueRatio = value;}
 		}	
 		IfcThermalLoadSourceEnum IIfcSpaceThermalLoadProperties.ThermalLoadSource { 
-			get { return @ThermalLoadSource; } 
  
+			get { return @ThermalLoadSource; } 
 			set { ThermalLoadSource = value;}
 		}	
 		IfcPropertySourceEnum IIfcSpaceThermalLoadProperties.PropertySource { 
-			get { return @PropertySource; } 
  
+			get { return @PropertySource; } 
 			set { PropertySource = value;}
 		}	
 		IfcText? IIfcSpaceThermalLoadProperties.SourceDescription { 
-			get { return @SourceDescription; } 
  
+			get { return @SourceDescription; } 
 			set { SourceDescription = value;}
 		}	
 		IfcPowerMeasure IIfcSpaceThermalLoadProperties.MaximumValue { 
-			get { return @MaximumValue; } 
  
+			get { return @MaximumValue; } 
 			set { MaximumValue = value;}
 		}	
 		IfcPowerMeasure? IIfcSpaceThermalLoadProperties.MinimumValue { 
-			get { return @MinimumValue; } 
  
+			get { return @MinimumValue; } 
 			set { MinimumValue = value;}
 		}	
 		IIfcTimeSeries IIfcSpaceThermalLoadProperties.ThermalLoadTimeSeriesValues { 
+ 
+ 
 			get { return @ThermalLoadTimeSeriesValues; } 
- 
- 
 			set { ThermalLoadTimeSeriesValues = value as IfcTimeSeries;}
 		}	
 		IfcLabel? IIfcSpaceThermalLoadProperties.UserDefinedThermalLoadSource { 
-			get { return @UserDefinedThermalLoadSource; } 
  
+			get { return @UserDefinedThermalLoadSource; } 
 			set { UserDefinedThermalLoadSource = value;}
 		}	
 		IfcLabel? IIfcSpaceThermalLoadProperties.UserDefinedPropertySource { 
-			get { return @UserDefinedPropertySource; } 
  
+			get { return @UserDefinedPropertySource; } 
 			set { UserDefinedPropertySource = value;}
 		}	
 		IfcThermalLoadTypeEnum IIfcSpaceThermalLoadProperties.ThermalLoadType { 
-			get { return @ThermalLoadType; } 
  
+			get { return @ThermalLoadType; } 
 			set { ThermalLoadType = value;}
 		}	
 		 
@@ -105,7 +105,6 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSpaceThermalLoadProperties(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -349,7 +348,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

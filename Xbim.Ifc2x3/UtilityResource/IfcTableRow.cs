@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTableRow : IPersistEntity
 	{
-		IEnumerable<IIfcValue> @RowCells { get; }
+		IItemSet<IIfcValue> @RowCells { get; }
 		bool @IsHeading { get;  set; }
 		IIfcTable @OfTable {  get; }
 	
@@ -42,12 +42,12 @@ namespace Xbim.Ifc2x3.UtilityResource
 	public  partial class @IfcTableRow : INotifyPropertyChanged, IInstantiableEntity, IIfcTableRow, IEquatable<@IfcTableRow>
 	{
 		#region IIfcTableRow explicit implementation
-		IEnumerable<IIfcValue> IIfcTableRow.RowCells { 
-			get { return @RowCells; } 
+		IItemSet<IIfcValue> IIfcTableRow.RowCells { 
+			get { return new Common.Collections.ProxyItemSet<IfcValue, IIfcValue>( @RowCells); } 
 		}	
 		bool IIfcTableRow.IsHeading { 
-			get { return @IsHeading; } 
  
+			get { return @IsHeading; } 
 			set { IsHeading = value;}
 		}	
 		 
@@ -119,13 +119,13 @@ namespace Xbim.Ifc2x3.UtilityResource
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcValue> _rowCells;
+		private readonly ItemSet<IfcValue> _rowCells;
 		private bool _isHeading;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 1)]
-		public ItemSet<IfcValue> @RowCells 
+		public IItemSet<IfcValue> @RowCells 
 		{ 
 			get 
 			{
@@ -265,7 +265,7 @@ namespace Xbim.Ifc2x3.UtilityResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

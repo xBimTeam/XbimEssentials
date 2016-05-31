@@ -26,8 +26,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcTrimmedCurve : IIfcBoundedCurve
 	{
 		IIfcCurve @BasisCurve { get;  set; }
-		IEnumerable<IIfcTrimmingSelect> @Trim1 { get; }
-		IEnumerable<IIfcTrimmingSelect> @Trim2 { get; }
+		IItemSet<IIfcTrimmingSelect> @Trim1 { get; }
+		IItemSet<IIfcTrimmingSelect> @Trim2 { get; }
 		bool @SenseAgreement { get;  set; }
 		IfcTrimmingPreference @MasterRepresentation { get;  set; }
 	
@@ -42,25 +42,25 @@ namespace Xbim.Ifc2x3.GeometryResource
 	{
 		#region IIfcTrimmedCurve explicit implementation
 		IIfcCurve IIfcTrimmedCurve.BasisCurve { 
+ 
+ 
 			get { return @BasisCurve; } 
- 
- 
 			set { BasisCurve = value as IfcCurve;}
 		}	
-		IEnumerable<IIfcTrimmingSelect> IIfcTrimmedCurve.Trim1 { 
-			get { return @Trim1; } 
+		IItemSet<IIfcTrimmingSelect> IIfcTrimmedCurve.Trim1 { 
+			get { return new Common.Collections.ProxyItemSet<IfcTrimmingSelect, IIfcTrimmingSelect>( @Trim1); } 
 		}	
-		IEnumerable<IIfcTrimmingSelect> IIfcTrimmedCurve.Trim2 { 
-			get { return @Trim2; } 
+		IItemSet<IIfcTrimmingSelect> IIfcTrimmedCurve.Trim2 { 
+			get { return new Common.Collections.ProxyItemSet<IfcTrimmingSelect, IIfcTrimmingSelect>( @Trim2); } 
 		}	
 		bool IIfcTrimmedCurve.SenseAgreement { 
-			get { return @SenseAgreement; } 
  
+			get { return @SenseAgreement; } 
 			set { SenseAgreement = value;}
 		}	
 		IfcTrimmingPreference IIfcTrimmedCurve.MasterRepresentation { 
-			get { return @MasterRepresentation; } 
  
+			get { return @MasterRepresentation; } 
 			set { MasterRepresentation = value;}
 		}	
 		 
@@ -68,15 +68,14 @@ namespace Xbim.Ifc2x3.GeometryResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTrimmedCurve(IModel model) : base(model) 		{ 
-			Model = model; 
 			_trim1 = new ItemSet<IfcTrimmingSelect>( this, 2,  2);
 			_trim2 = new ItemSet<IfcTrimmingSelect>( this, 2,  3);
 		}
 
 		#region Explicit attribute fields
 		private IfcCurve _basisCurve;
-		private ItemSet<IfcTrimmingSelect> _trim1;
-		private ItemSet<IfcTrimmingSelect> _trim2;
+		private readonly ItemSet<IfcTrimmingSelect> _trim1;
+		private readonly ItemSet<IfcTrimmingSelect> _trim2;
 		private bool _senseAgreement;
 		private IfcTrimmingPreference _masterRepresentation;
 		#endregion
@@ -97,7 +96,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, 2, 4)]
-		public ItemSet<IfcTrimmingSelect> @Trim1 
+		public IItemSet<IfcTrimmingSelect> @Trim1 
 		{ 
 			get 
 			{
@@ -107,7 +106,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, 2, 5)]
-		public ItemSet<IfcTrimmingSelect> @Trim2 
+		public IItemSet<IfcTrimmingSelect> @Trim2 
 		{ 
 			get 
 			{
@@ -210,7 +209,7 @@ namespace Xbim.Ifc2x3.GeometryResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

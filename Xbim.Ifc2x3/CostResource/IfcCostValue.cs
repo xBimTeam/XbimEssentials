@@ -41,13 +41,13 @@ namespace Xbim.Ifc2x3.CostResource
 	{
 		#region IIfcCostValue explicit implementation
 		IfcLabel IIfcCostValue.CostType { 
-			get { return @CostType; } 
  
+			get { return @CostType; } 
 			set { CostType = value;}
 		}	
 		IfcText? IIfcCostValue.Condition { 
-			get { return @Condition; } 
  
+			get { return @Condition; } 
 			set { Condition = value;}
 		}	
 		 
@@ -55,7 +55,6 @@ namespace Xbim.Ifc2x3.CostResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCostValue(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -157,7 +156,7 @@ namespace Xbim.Ifc2x3.CostResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

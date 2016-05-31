@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcIrregularTimeSeriesValue : IPersistEntity
 	{
 		IIfcDateTimeSelect @TimeStamp { get;  set; }
-		IEnumerable<IIfcValue> @ListValues { get; }
+		IItemSet<IIfcValue> @ListValues { get; }
 	
 	}
 }
@@ -43,13 +43,13 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 	{
 		#region IIfcIrregularTimeSeriesValue explicit implementation
 		IIfcDateTimeSelect IIfcIrregularTimeSeriesValue.TimeStamp { 
+ 
+ 
 			get { return @TimeStamp; } 
- 
- 
 			set { TimeStamp = value as IfcDateTimeSelect;}
 		}	
-		IEnumerable<IIfcValue> IIfcIrregularTimeSeriesValue.ListValues { 
-			get { return @ListValues; } 
+		IItemSet<IIfcValue> IIfcIrregularTimeSeriesValue.ListValues { 
+			get { return new Common.Collections.ProxyItemSet<IfcValue, IIfcValue>( @ListValues); } 
 		}	
 		 
 		#endregion
@@ -120,7 +120,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 
 		#region Explicit attribute fields
 		private IfcDateTimeSelect _timeStamp;
-		private ItemSet<IfcValue> _listValues;
+		private readonly ItemSet<IfcValue> _listValues;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -139,7 +139,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 2)]
-		public ItemSet<IfcValue> @ListValues 
+		public IItemSet<IfcValue> @ListValues 
 		{ 
 			get 
 			{
@@ -254,7 +254,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -45,43 +45,43 @@ namespace Xbim.CobieExpress
 	{
 		#region ICobieCoordinate explicit implementation
 		string ICobieCoordinate.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		CoordinateTypeEnum? ICobieCoordinate.CoordinateType { 
-			get { return @CoordinateType; } 
  
+			get { return @CoordinateType; } 
 			set { CoordinateType = value;}
 		}	
 		double ICobieCoordinate.X { 
-			get { return @X; } 
  
+			get { return @X; } 
 			set { X = value;}
 		}	
 		double ICobieCoordinate.Y { 
-			get { return @Y; } 
  
+			get { return @Y; } 
 			set { Y = value;}
 		}	
 		double ICobieCoordinate.Z { 
-			get { return @Z; } 
  
+			get { return @Z; } 
 			set { Z = value;}
 		}	
 		double? ICobieCoordinate.RotationX { 
-			get { return @RotationX; } 
  
+			get { return @RotationX; } 
 			set { RotationX = value;}
 		}	
 		double? ICobieCoordinate.RotationY { 
-			get { return @RotationY; } 
  
+			get { return @RotationY; } 
 			set { RotationY = value;}
 		}	
 		double? ICobieCoordinate.RotationZ { 
-			get { return @RotationZ; } 
  
+			get { return @RotationZ; } 
 			set { RotationZ = value;}
 		}	
 		 
@@ -89,7 +89,6 @@ namespace Xbim.CobieExpress
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieCoordinate(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -298,7 +297,7 @@ namespace Xbim.CobieExpress
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

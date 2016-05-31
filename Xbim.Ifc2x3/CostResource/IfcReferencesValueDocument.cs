@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcReferencesValueDocument : IPersistEntity
 	{
 		IIfcDocumentSelect @ReferencedDocument { get;  set; }
-		IEnumerable<IIfcAppliedValue> @ReferencingValues { get; }
+		IItemSet<IIfcAppliedValue> @ReferencingValues { get; }
 		IfcLabel? @Name { get;  set; }
 		IfcText? @Description { get;  set; }
 	
@@ -45,22 +45,22 @@ namespace Xbim.Ifc2x3.CostResource
 	{
 		#region IIfcReferencesValueDocument explicit implementation
 		IIfcDocumentSelect IIfcReferencesValueDocument.ReferencedDocument { 
+ 
+ 
 			get { return @ReferencedDocument; } 
- 
- 
 			set { ReferencedDocument = value as IfcDocumentSelect;}
 		}	
-		IEnumerable<IIfcAppliedValue> IIfcReferencesValueDocument.ReferencingValues { 
-			get { return @ReferencingValues; } 
+		IItemSet<IIfcAppliedValue> IIfcReferencesValueDocument.ReferencingValues { 
+			get { return new Common.Collections.ProxyItemSet<IfcAppliedValue, IIfcAppliedValue>( @ReferencingValues); } 
 		}	
 		IfcLabel? IIfcReferencesValueDocument.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IfcText? IIfcReferencesValueDocument.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		 
@@ -132,7 +132,7 @@ namespace Xbim.Ifc2x3.CostResource
 
 		#region Explicit attribute fields
 		private IfcDocumentSelect _referencedDocument;
-		private ItemSet<IfcAppliedValue> _referencingValues;
+		private readonly ItemSet<IfcAppliedValue> _referencingValues;
 		private IfcLabel? _name;
 		private IfcText? _description;
 		#endregion
@@ -154,7 +154,7 @@ namespace Xbim.Ifc2x3.CostResource
 		}	
 		[IndexedProperty]
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 2)]
-		public ItemSet<IfcAppliedValue> @ReferencingValues 
+		public IItemSet<IfcAppliedValue> @ReferencingValues 
 		{ 
 			get 
 			{
@@ -303,7 +303,7 @@ namespace Xbim.Ifc2x3.CostResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

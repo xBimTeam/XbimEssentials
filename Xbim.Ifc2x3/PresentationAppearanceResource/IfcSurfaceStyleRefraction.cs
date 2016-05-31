@@ -42,13 +42,13 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	{
 		#region IIfcSurfaceStyleRefraction explicit implementation
 		IfcReal? IIfcSurfaceStyleRefraction.RefractionIndex { 
-			get { return @RefractionIndex; } 
  
+			get { return @RefractionIndex; } 
 			set { RefractionIndex = value;}
 		}	
 		IfcReal? IIfcSurfaceStyleRefraction.DispersionFactor { 
-			get { return @DispersionFactor; } 
  
+			get { return @DispersionFactor; } 
 			set { DispersionFactor = value;}
 		}	
 		 
@@ -257,7 +257,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

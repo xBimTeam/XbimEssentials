@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcPropertyEnumeration : IPersistEntity
 	{
 		IfcLabel @Name { get;  set; }
-		IEnumerable<IIfcValue> @EnumerationValues { get; }
+		IItemSet<IIfcValue> @EnumerationValues { get; }
 		IIfcUnit @Unit { get;  set; }
 	
 	}
@@ -43,17 +43,17 @@ namespace Xbim.Ifc2x3.PropertyResource
 	{
 		#region IIfcPropertyEnumeration explicit implementation
 		IfcLabel IIfcPropertyEnumeration.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
-		IEnumerable<IIfcValue> IIfcPropertyEnumeration.EnumerationValues { 
-			get { return @EnumerationValues; } 
+		IItemSet<IIfcValue> IIfcPropertyEnumeration.EnumerationValues { 
+			get { return new Common.Collections.ProxyItemSet<IfcValue, IIfcValue>( @EnumerationValues); } 
 		}	
 		IIfcUnit IIfcPropertyEnumeration.Unit { 
+ 
+ 
 			get { return @Unit; } 
- 
- 
 			set { Unit = value as IfcUnit;}
 		}	
 		 
@@ -125,7 +125,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 
 		#region Explicit attribute fields
 		private IfcLabel _name;
-		private ItemSet<IfcValue> _enumerationValues;
+		private readonly ItemSet<IfcValue> _enumerationValues;
 		private IfcUnit _unit;
 		#endregion
 	
@@ -145,7 +145,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1, 2)]
-		public ItemSet<IfcValue> @EnumerationValues 
+		public IItemSet<IfcValue> @EnumerationValues 
 		{ 
 			get 
 			{
@@ -277,7 +277,7 @@ namespace Xbim.Ifc2x3.PropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

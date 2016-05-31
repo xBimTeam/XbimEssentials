@@ -25,7 +25,7 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieSystem : ICobieAsset
 	{
-		IEnumerable<ICobieComponent> @Components { get; }
+		IItemSet<ICobieComponent> @Components { get; }
 		ICobieFacility @Facility { get;  set; }
 	
 	}
@@ -38,13 +38,13 @@ namespace Xbim.CobieExpress
 	public  partial class @CobieSystem : CobieAsset, IInstantiableEntity, ICobieSystem, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieSystem>
 	{
 		#region ICobieSystem explicit implementation
-		IEnumerable<ICobieComponent> ICobieSystem.Components { 
-			get { return @Components; } 
+		IItemSet<ICobieComponent> ICobieSystem.Components { 
+			get { return new Common.Collections.ProxyItemSet<CobieComponent, ICobieComponent>( @Components); } 
 		}	
 		ICobieFacility ICobieSystem.Facility { 
+ 
+ 
 			get { return @Facility; } 
- 
- 
 			set { Facility = value as CobieFacility;}
 		}	
 		 
@@ -52,19 +52,18 @@ namespace Xbim.CobieExpress
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieSystem(IModel model) : base(model) 		{ 
-			Model = model; 
 			_components = new OptionalItemSet<CobieComponent>( this, 0,  13);
 		}
 
 		#region Explicit attribute fields
-		private OptionalItemSet<CobieComponent> _components;
+		private readonly OptionalItemSet<CobieComponent> _components;
 		private CobieFacility _facility;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 15)]
-		public OptionalItemSet<CobieComponent> @Components 
+		public IOptionalItemSet<CobieComponent> @Components 
 		{ 
 			get 
 			{
@@ -159,7 +158,7 @@ namespace Xbim.CobieExpress
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

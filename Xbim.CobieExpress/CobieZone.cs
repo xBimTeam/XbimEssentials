@@ -25,7 +25,7 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieZone : ICobieAsset
 	{
-		IEnumerable<ICobieSpace> @Spaces { get; }
+		IItemSet<ICobieSpace> @Spaces { get; }
 	
 	}
 }
@@ -37,26 +37,25 @@ namespace Xbim.CobieExpress
 	public  partial class @CobieZone : CobieAsset, IInstantiableEntity, ICobieZone, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieZone>
 	{
 		#region ICobieZone explicit implementation
-		IEnumerable<ICobieSpace> ICobieZone.Spaces { 
-			get { return @Spaces; } 
+		IItemSet<ICobieSpace> ICobieZone.Spaces { 
+			get { return new Common.Collections.ProxyItemSet<CobieSpace, ICobieSpace>( @Spaces); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieZone(IModel model) : base(model) 		{ 
-			Model = model; 
 			_spaces = new OptionalItemSet<CobieSpace>( this, 0,  13);
 		}
 
 		#region Explicit attribute fields
-		private OptionalItemSet<CobieSpace> _spaces;
+		private readonly OptionalItemSet<CobieSpace> _spaces;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 15)]
-		public OptionalItemSet<CobieSpace> @Spaces 
+		public IOptionalItemSet<CobieSpace> @Spaces 
 		{ 
 			get 
 			{
@@ -133,7 +132,7 @@ namespace Xbim.CobieExpress
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

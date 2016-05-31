@@ -39,14 +39,14 @@ namespace Xbim.Ifc2x3.TopologyResource
 	{
 		#region IIfcOrientedEdge explicit implementation
 		IIfcEdge IIfcOrientedEdge.EdgeElement { 
+ 
+ 
 			get { return @EdgeElement; } 
- 
- 
 			set { EdgeElement = value as IfcEdge;}
 		}	
 		bool IIfcOrientedEdge.Orientation { 
-			get { return @Orientation; } 
  
+			get { return @Orientation; } 
 			set { Orientation = value;}
 		}	
 		 
@@ -54,7 +54,6 @@ namespace Xbim.Ifc2x3.TopologyResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcOrientedEdge(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -186,7 +185,7 @@ namespace Xbim.Ifc2x3.TopologyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

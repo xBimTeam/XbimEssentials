@@ -43,18 +43,18 @@ namespace Xbim.Ifc2x3.DateTimeResource
 	{
 		#region IIfcCalendarDate explicit implementation
 		IfcDayInMonthNumber IIfcCalendarDate.DayComponent { 
-			get { return @DayComponent; } 
  
+			get { return @DayComponent; } 
 			set { DayComponent = value;}
 		}	
 		IfcMonthInYearNumber IIfcCalendarDate.MonthComponent { 
-			get { return @MonthComponent; } 
  
+			get { return @MonthComponent; } 
 			set { MonthComponent = value;}
 		}	
 		IfcYearNumber IIfcCalendarDate.YearComponent { 
-			get { return @YearComponent; } 
  
+			get { return @YearComponent; } 
 			set { YearComponent = value;}
 		}	
 		 
@@ -281,7 +281,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

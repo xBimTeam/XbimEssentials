@@ -42,25 +42,25 @@ namespace Xbim.Ifc2x3.Kernel
 	{
 		#region IIfcRelSequence explicit implementation
 		IIfcProcess IIfcRelSequence.RelatingProcess { 
+ 
+ 
 			get { return @RelatingProcess; } 
- 
- 
 			set { RelatingProcess = value as IfcProcess;}
 		}	
 		IIfcProcess IIfcRelSequence.RelatedProcess { 
+ 
+ 
 			get { return @RelatedProcess; } 
- 
- 
 			set { RelatedProcess = value as IfcProcess;}
 		}	
 		IfcTimeMeasure IIfcRelSequence.TimeLag { 
-			get { return @TimeLag; } 
  
+			get { return @TimeLag; } 
 			set { TimeLag = value;}
 		}	
 		IfcSequenceEnum IIfcRelSequence.SequenceType { 
-			get { return @SequenceType; } 
  
+			get { return @SequenceType; } 
 			set { SequenceType = value;}
 		}	
 		 
@@ -68,7 +68,6 @@ namespace Xbim.Ifc2x3.Kernel
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelSequence(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -206,7 +205,7 @@ namespace Xbim.Ifc2x3.Kernel
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

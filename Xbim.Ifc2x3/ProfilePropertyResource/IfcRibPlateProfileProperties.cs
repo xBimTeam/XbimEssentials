@@ -43,28 +43,28 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 	{
 		#region IIfcRibPlateProfileProperties explicit implementation
 		IfcPositiveLengthMeasure? IIfcRibPlateProfileProperties.Thickness { 
-			get { return @Thickness; } 
  
+			get { return @Thickness; } 
 			set { Thickness = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcRibPlateProfileProperties.RibHeight { 
-			get { return @RibHeight; } 
  
+			get { return @RibHeight; } 
 			set { RibHeight = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcRibPlateProfileProperties.RibWidth { 
-			get { return @RibWidth; } 
  
+			get { return @RibWidth; } 
 			set { RibWidth = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcRibPlateProfileProperties.RibSpacing { 
-			get { return @RibSpacing; } 
  
+			get { return @RibSpacing; } 
 			set { RibSpacing = value;}
 		}	
 		IfcRibPlateDirectionEnum IIfcRibPlateProfileProperties.Direction { 
-			get { return @Direction; } 
  
+			get { return @Direction; } 
 			set { Direction = value;}
 		}	
 		 
@@ -72,7 +72,6 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRibPlateProfileProperties(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -224,7 +223,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

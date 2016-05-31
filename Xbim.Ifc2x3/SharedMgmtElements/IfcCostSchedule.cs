@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcActorSelect @PreparedBy { get;  set; }
 		IIfcDateTimeSelect @SubmittedOn { get;  set; }
 		IfcLabel? @Status { get;  set; }
-		IEnumerable<IIfcActorSelect> @TargetUsers { get; }
+		IItemSet<IIfcActorSelect> @TargetUsers { get; }
 		IIfcDateTimeSelect @UpdateDate { get;  set; }
 		IfcIdentifier @ID { get;  set; }
 		IfcCostScheduleTypeEnum @PredefinedType { get;  set; }
@@ -49,45 +49,45 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 	{
 		#region IIfcCostSchedule explicit implementation
 		IIfcActorSelect IIfcCostSchedule.SubmittedBy { 
+ 
+ 
 			get { return @SubmittedBy; } 
- 
- 
 			set { SubmittedBy = value as IfcActorSelect;}
 		}	
 		IIfcActorSelect IIfcCostSchedule.PreparedBy { 
+ 
+ 
 			get { return @PreparedBy; } 
- 
- 
 			set { PreparedBy = value as IfcActorSelect;}
 		}	
 		IIfcDateTimeSelect IIfcCostSchedule.SubmittedOn { 
+ 
+ 
 			get { return @SubmittedOn; } 
- 
- 
 			set { SubmittedOn = value as IfcDateTimeSelect;}
 		}	
 		IfcLabel? IIfcCostSchedule.Status { 
-			get { return @Status; } 
  
+			get { return @Status; } 
 			set { Status = value;}
 		}	
-		IEnumerable<IIfcActorSelect> IIfcCostSchedule.TargetUsers { 
-			get { return @TargetUsers; } 
+		IItemSet<IIfcActorSelect> IIfcCostSchedule.TargetUsers { 
+			get { return new Common.Collections.ProxyItemSet<IfcActorSelect, IIfcActorSelect>( @TargetUsers); } 
 		}	
 		IIfcDateTimeSelect IIfcCostSchedule.UpdateDate { 
+ 
+ 
 			get { return @UpdateDate; } 
- 
- 
 			set { UpdateDate = value as IfcDateTimeSelect;}
 		}	
 		IfcIdentifier IIfcCostSchedule.ID { 
-			get { return @ID; } 
  
+			get { return @ID; } 
 			set { ID = value;}
 		}	
 		IfcCostScheduleTypeEnum IIfcCostSchedule.PredefinedType { 
-			get { return @PredefinedType; } 
  
+			get { return @PredefinedType; } 
 			set { PredefinedType = value;}
 		}	
 		 
@@ -95,7 +95,6 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCostSchedule(IModel model) : base(model) 		{ 
-			Model = model; 
 			_targetUsers = new OptionalItemSet<IfcActorSelect>( this, 0,  10);
 		}
 
@@ -104,7 +103,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		private IfcActorSelect _preparedBy;
 		private IfcDateTimeSelect _submittedOn;
 		private IfcLabel? _status;
-		private OptionalItemSet<IfcActorSelect> _targetUsers;
+		private readonly OptionalItemSet<IfcActorSelect> _targetUsers;
 		private IfcDateTimeSelect _updateDate;
 		private IfcIdentifier _iD;
 		private IfcCostScheduleTypeEnum _predefinedType;
@@ -168,7 +167,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 16)]
-		public OptionalItemSet<IfcActorSelect> @TargetUsers 
+		public IOptionalItemSet<IfcActorSelect> @TargetUsers 
 		{ 
 			get 
 			{
@@ -301,7 +300,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

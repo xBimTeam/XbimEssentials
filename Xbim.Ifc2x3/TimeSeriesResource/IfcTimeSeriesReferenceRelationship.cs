@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcTimeSeriesReferenceRelationship : IPersistEntity
 	{
 		IIfcTimeSeries @ReferencedTimeSeries { get;  set; }
-		IEnumerable<IIfcDocumentSelect> @TimeSeriesReferences { get; }
+		IItemSet<IIfcDocumentSelect> @TimeSeriesReferences { get; }
 	
 	}
 }
@@ -42,13 +42,13 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 	{
 		#region IIfcTimeSeriesReferenceRelationship explicit implementation
 		IIfcTimeSeries IIfcTimeSeriesReferenceRelationship.ReferencedTimeSeries { 
+ 
+ 
 			get { return @ReferencedTimeSeries; } 
- 
- 
 			set { ReferencedTimeSeries = value as IfcTimeSeries;}
 		}	
-		IEnumerable<IIfcDocumentSelect> IIfcTimeSeriesReferenceRelationship.TimeSeriesReferences { 
-			get { return @TimeSeriesReferences; } 
+		IItemSet<IIfcDocumentSelect> IIfcTimeSeriesReferenceRelationship.TimeSeriesReferences { 
+			get { return new Common.Collections.ProxyItemSet<IfcDocumentSelect, IIfcDocumentSelect>( @TimeSeriesReferences); } 
 		}	
 		 
 		#endregion
@@ -119,7 +119,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 
 		#region Explicit attribute fields
 		private IfcTimeSeries _referencedTimeSeries;
-		private ItemSet<IfcDocumentSelect> _timeSeriesReferences;
+		private readonly ItemSet<IfcDocumentSelect> _timeSeriesReferences;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -139,7 +139,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 2)]
-		public ItemSet<IfcDocumentSelect> @TimeSeriesReferences 
+		public IItemSet<IfcDocumentSelect> @TimeSeriesReferences 
 		{ 
 			get 
 			{
@@ -254,7 +254,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

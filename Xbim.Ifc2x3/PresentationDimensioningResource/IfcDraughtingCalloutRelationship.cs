@@ -44,25 +44,25 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 	{
 		#region IIfcDraughtingCalloutRelationship explicit implementation
 		IfcLabel? IIfcDraughtingCalloutRelationship.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IfcText? IIfcDraughtingCalloutRelationship.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		IIfcDraughtingCallout IIfcDraughtingCalloutRelationship.RelatingDraughtingCallout { 
+ 
+ 
 			get { return @RelatingDraughtingCallout; } 
- 
- 
 			set { RelatingDraughtingCallout = value as IfcDraughtingCallout;}
 		}	
 		IIfcDraughtingCallout IIfcDraughtingCalloutRelationship.RelatedDraughtingCallout { 
+ 
+ 
 			get { return @RelatedDraughtingCallout; } 
- 
- 
 			set { RelatedDraughtingCallout = value as IfcDraughtingCallout;}
 		}	
 		 
@@ -309,7 +309,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

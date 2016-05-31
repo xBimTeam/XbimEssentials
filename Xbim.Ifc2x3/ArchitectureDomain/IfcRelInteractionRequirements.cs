@@ -45,31 +45,31 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 	{
 		#region IIfcRelInteractionRequirements explicit implementation
 		IfcCountMeasure? IIfcRelInteractionRequirements.DailyInteraction { 
-			get { return @DailyInteraction; } 
  
+			get { return @DailyInteraction; } 
 			set { DailyInteraction = value;}
 		}	
 		IfcNormalisedRatioMeasure? IIfcRelInteractionRequirements.ImportanceRating { 
-			get { return @ImportanceRating; } 
  
+			get { return @ImportanceRating; } 
 			set { ImportanceRating = value;}
 		}	
 		IIfcSpatialStructureElement IIfcRelInteractionRequirements.LocationOfInteraction { 
+ 
+ 
 			get { return @LocationOfInteraction; } 
- 
- 
 			set { LocationOfInteraction = value as IfcSpatialStructureElement;}
 		}	
 		IIfcSpaceProgram IIfcRelInteractionRequirements.RelatedSpaceProgram { 
+ 
+ 
 			get { return @RelatedSpaceProgram; } 
- 
- 
 			set { RelatedSpaceProgram = value as IfcSpaceProgram;}
 		}	
 		IIfcSpaceProgram IIfcRelInteractionRequirements.RelatingSpaceProgram { 
+ 
+ 
 			get { return @RelatingSpaceProgram; } 
- 
- 
 			set { RelatingSpaceProgram = value as IfcSpaceProgram;}
 		}	
 		 
@@ -77,7 +77,6 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelInteractionRequirements(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -233,7 +232,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

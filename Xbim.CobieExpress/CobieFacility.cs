@@ -47,50 +47,50 @@ namespace Xbim.CobieExpress
 	{
 		#region ICobieFacility explicit implementation
 		ICobieLinearUnit ICobieFacility.LinearUnits { 
+ 
+ 
 			get { return @LinearUnits; } 
- 
- 
 			set { LinearUnits = value as CobieLinearUnit;}
 		}	
 		ICobieAreaUnit ICobieFacility.AreaUnits { 
+ 
+ 
 			get { return @AreaUnits; } 
- 
- 
 			set { AreaUnits = value as CobieAreaUnit;}
 		}	
 		ICobieVolumeUnit ICobieFacility.VolumeUnits { 
+ 
+ 
 			get { return @VolumeUnits; } 
- 
- 
 			set { VolumeUnits = value as CobieVolumeUnit;}
 		}	
 		ICobieCurrencyUnit ICobieFacility.CurrencyUnit { 
+ 
+ 
 			get { return @CurrencyUnit; } 
- 
- 
 			set { CurrencyUnit = value as CobieCurrencyUnit;}
 		}	
 		string ICobieFacility.AreaMeasurement { 
-			get { return @AreaMeasurement; } 
  
+			get { return @AreaMeasurement; } 
 			set { AreaMeasurement = value;}
 		}	
 		ICobieProject ICobieFacility.Project { 
+ 
+ 
 			get { return @Project; } 
- 
- 
 			set { Project = value as CobieProject;}
 		}	
 		ICobieSite ICobieFacility.Site { 
+ 
+ 
 			get { return @Site; } 
- 
- 
 			set { Site = value as CobieSite;}
 		}	
 		ICobiePhase ICobieFacility.Phase { 
+ 
+ 
 			get { return @Phase; } 
- 
- 
 			set { Phase = value as CobiePhase;}
 		}	
 		 
@@ -100,7 +100,6 @@ namespace Xbim.CobieExpress
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieFacility(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -338,7 +337,7 @@ namespace Xbim.CobieExpress
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

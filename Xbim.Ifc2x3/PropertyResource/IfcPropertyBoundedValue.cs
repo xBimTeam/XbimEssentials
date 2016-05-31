@@ -41,21 +41,21 @@ namespace Xbim.Ifc2x3.PropertyResource
 	{
 		#region IIfcPropertyBoundedValue explicit implementation
 		IIfcValue IIfcPropertyBoundedValue.UpperBoundValue { 
+ 
+ 
 			get { return @UpperBoundValue; } 
- 
- 
 			set { UpperBoundValue = value as IfcValue;}
 		}	
 		IIfcValue IIfcPropertyBoundedValue.LowerBoundValue { 
+ 
+ 
 			get { return @LowerBoundValue; } 
- 
- 
 			set { LowerBoundValue = value as IfcValue;}
 		}	
 		IIfcUnit IIfcPropertyBoundedValue.Unit { 
+ 
+ 
 			get { return @Unit; } 
- 
- 
 			set { Unit = value as IfcUnit;}
 		}	
 		 
@@ -63,7 +63,6 @@ namespace Xbim.Ifc2x3.PropertyResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyBoundedValue(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -179,7 +178,7 @@ namespace Xbim.Ifc2x3.PropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -45,29 +45,29 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	{
 		#region IIfcTextStyleWithBoxCharacteristics explicit implementation
 		IfcPositiveLengthMeasure? IIfcTextStyleWithBoxCharacteristics.BoxHeight { 
-			get { return @BoxHeight; } 
  
+			get { return @BoxHeight; } 
 			set { BoxHeight = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcTextStyleWithBoxCharacteristics.BoxWidth { 
-			get { return @BoxWidth; } 
  
+			get { return @BoxWidth; } 
 			set { BoxWidth = value;}
 		}	
 		IfcPlaneAngleMeasure? IIfcTextStyleWithBoxCharacteristics.BoxSlantAngle { 
-			get { return @BoxSlantAngle; } 
  
+			get { return @BoxSlantAngle; } 
 			set { BoxSlantAngle = value;}
 		}	
 		IfcPlaneAngleMeasure? IIfcTextStyleWithBoxCharacteristics.BoxRotateAngle { 
-			get { return @BoxRotateAngle; } 
  
+			get { return @BoxRotateAngle; } 
 			set { BoxRotateAngle = value;}
 		}	
 		IIfcSizeSelect IIfcTextStyleWithBoxCharacteristics.CharacterSpacing { 
+ 
+ 
 			get { return @CharacterSpacing; } 
- 
- 
 			set { CharacterSpacing = value as IfcSizeSelect;}
 		}	
 		 
@@ -330,7 +330,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

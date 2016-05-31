@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		bool? @LayerOn { get;  set; }
 		bool? @LayerFrozen { get;  set; }
 		bool? @LayerBlocked { get;  set; }
-		IEnumerable<IIfcPresentationStyleSelect> @LayerStyles { get; }
+		IItemSet<IIfcPresentationStyleSelect> @LayerStyles { get; }
 	
 	}
 }
@@ -42,29 +42,28 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 	{
 		#region IIfcPresentationLayerWithStyle explicit implementation
 		bool? IIfcPresentationLayerWithStyle.LayerOn { 
-			get { return @LayerOn; } 
  
+			get { return @LayerOn; } 
 			set { LayerOn = value;}
 		}	
 		bool? IIfcPresentationLayerWithStyle.LayerFrozen { 
-			get { return @LayerFrozen; } 
  
+			get { return @LayerFrozen; } 
 			set { LayerFrozen = value;}
 		}	
 		bool? IIfcPresentationLayerWithStyle.LayerBlocked { 
-			get { return @LayerBlocked; } 
  
+			get { return @LayerBlocked; } 
 			set { LayerBlocked = value;}
 		}	
-		IEnumerable<IIfcPresentationStyleSelect> IIfcPresentationLayerWithStyle.LayerStyles { 
-			get { return @LayerStyles; } 
+		IItemSet<IIfcPresentationStyleSelect> IIfcPresentationLayerWithStyle.LayerStyles { 
+			get { return new Common.Collections.ProxyItemSet<IfcPresentationStyleSelect, IIfcPresentationStyleSelect>( @LayerStyles); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPresentationLayerWithStyle(IModel model) : base(model) 		{ 
-			Model = model; 
 			_layerStyles = new ItemSet<IfcPresentationStyleSelect>( this, 0,  8);
 		}
 
@@ -72,7 +71,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		private bool? _layerOn;
 		private bool? _layerFrozen;
 		private bool? _layerBlocked;
-		private ItemSet<IfcPresentationStyleSelect> _layerStyles;
+		private readonly ItemSet<IfcPresentationStyleSelect> _layerStyles;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -119,7 +118,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 8)]
-		public ItemSet<IfcPresentationStyleSelect> @LayerStyles 
+		public IItemSet<IfcPresentationStyleSelect> @LayerStyles 
 		{ 
 			get 
 			{
@@ -197,7 +196,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

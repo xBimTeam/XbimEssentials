@@ -42,23 +42,23 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 	{
 		#region IIfcDoorStyle explicit implementation
 		IfcDoorStyleOperationEnum IIfcDoorStyle.OperationType { 
-			get { return @OperationType; } 
  
+			get { return @OperationType; } 
 			set { OperationType = value;}
 		}	
 		IfcDoorStyleConstructionEnum IIfcDoorStyle.ConstructionType { 
-			get { return @ConstructionType; } 
  
+			get { return @ConstructionType; } 
 			set { ConstructionType = value;}
 		}	
 		bool IIfcDoorStyle.ParameterTakesPrecedence { 
-			get { return @ParameterTakesPrecedence; } 
  
+			get { return @ParameterTakesPrecedence; } 
 			set { ParameterTakesPrecedence = value;}
 		}	
 		bool IIfcDoorStyle.Sizeable { 
-			get { return @Sizeable; } 
  
+			get { return @Sizeable; } 
 			set { Sizeable = value;}
 		}	
 		 
@@ -66,7 +66,6 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDoorStyle(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -206,7 +205,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

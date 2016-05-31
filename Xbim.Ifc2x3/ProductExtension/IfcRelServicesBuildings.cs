@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcRelServicesBuildings : IIfcRelConnects
 	{
 		IIfcSystem @RelatingSystem { get;  set; }
-		IEnumerable<IIfcSpatialStructureElement> @RelatedBuildings { get; }
+		IItemSet<IIfcSpatialStructureElement> @RelatedBuildings { get; }
 	
 	}
 }
@@ -40,26 +40,25 @@ namespace Xbim.Ifc2x3.ProductExtension
 	{
 		#region IIfcRelServicesBuildings explicit implementation
 		IIfcSystem IIfcRelServicesBuildings.RelatingSystem { 
+ 
+ 
 			get { return @RelatingSystem; } 
- 
- 
 			set { RelatingSystem = value as IfcSystem;}
 		}	
-		IEnumerable<IIfcSpatialStructureElement> IIfcRelServicesBuildings.RelatedBuildings { 
-			get { return @RelatedBuildings; } 
+		IItemSet<IIfcSpatialStructureElement> IIfcRelServicesBuildings.RelatedBuildings { 
+			get { return new Common.Collections.ProxyItemSet<IfcSpatialStructureElement, IIfcSpatialStructureElement>( @RelatedBuildings); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelServicesBuildings(IModel model) : base(model) 		{ 
-			Model = model; 
 			_relatedBuildings = new ItemSet<IfcSpatialStructureElement>( this, 0,  6);
 		}
 
 		#region Explicit attribute fields
 		private IfcSystem _relatingSystem;
-		private ItemSet<IfcSpatialStructureElement> _relatedBuildings;
+		private readonly ItemSet<IfcSpatialStructureElement> _relatedBuildings;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -80,7 +79,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 6)]
-		public ItemSet<IfcSpatialStructureElement> @RelatedBuildings 
+		public IItemSet<IfcSpatialStructureElement> @RelatedBuildings 
 		{ 
 			get 
 			{
@@ -152,7 +151,7 @@ namespace Xbim.Ifc2x3.ProductExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

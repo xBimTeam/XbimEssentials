@@ -41,18 +41,18 @@ namespace Xbim.Ifc2x3.CostResource
 	{
 		#region IIfcEnvironmentalImpactValue explicit implementation
 		IfcLabel IIfcEnvironmentalImpactValue.ImpactType { 
-			get { return @ImpactType; } 
  
+			get { return @ImpactType; } 
 			set { ImpactType = value;}
 		}	
 		IfcEnvironmentalImpactCategoryEnum IIfcEnvironmentalImpactValue.Category { 
-			get { return @Category; } 
  
+			get { return @Category; } 
 			set { Category = value;}
 		}	
 		IfcLabel? IIfcEnvironmentalImpactValue.UserDefinedCategory { 
-			get { return @UserDefinedCategory; } 
  
+			get { return @UserDefinedCategory; } 
 			set { UserDefinedCategory = value;}
 		}	
 		 
@@ -60,7 +60,6 @@ namespace Xbim.Ifc2x3.CostResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcEnvironmentalImpactValue(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -180,7 +179,7 @@ namespace Xbim.Ifc2x3.CostResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

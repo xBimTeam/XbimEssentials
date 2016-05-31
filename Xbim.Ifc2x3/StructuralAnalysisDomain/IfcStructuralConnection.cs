@@ -40,9 +40,9 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 	{
 		#region IIfcStructuralConnection explicit implementation
 		IIfcBoundaryCondition IIfcStructuralConnection.AppliedCondition { 
+ 
+ 
 			get { return @AppliedCondition; } 
- 
- 
 			set { AppliedCondition = value as IfcBoundaryCondition;}
 		}	
 		 
@@ -51,7 +51,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralConnection(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -147,7 +146,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

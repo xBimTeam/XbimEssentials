@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcUnitAssignment : IPersistEntity
 	{
-		IEnumerable<IIfcUnit> @Units { get; }
+		IItemSet<IIfcUnit> @Units { get; }
 	
 	}
 }
@@ -39,8 +39,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 	public  partial class @IfcUnitAssignment : INotifyPropertyChanged, IInstantiableEntity, IIfcUnitAssignment, IEquatable<@IfcUnitAssignment>
 	{
 		#region IIfcUnitAssignment explicit implementation
-		IEnumerable<IIfcUnit> IIfcUnitAssignment.Units { 
-			get { return @Units; } 
+		IItemSet<IIfcUnit> IIfcUnitAssignment.Units { 
+			get { return new Common.Collections.ProxyItemSet<IfcUnit, IIfcUnit>( @Units); } 
 		}	
 		 
 		#endregion
@@ -110,12 +110,12 @@ namespace Xbim.Ifc2x3.MeasureResource
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcUnit> _units;
+		private readonly ItemSet<IfcUnit> _units;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 1)]
-		public ItemSet<IfcUnit> @Units 
+		public IItemSet<IfcUnit> @Units 
 		{ 
 			get 
 			{
@@ -227,7 +227,7 @@ namespace Xbim.Ifc2x3.MeasureResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

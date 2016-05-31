@@ -45,29 +45,29 @@ namespace Xbim.Ifc2x3.DateTimeResource
 	{
 		#region IIfcLocalTime explicit implementation
 		IfcHourInDay IIfcLocalTime.HourComponent { 
-			get { return @HourComponent; } 
  
+			get { return @HourComponent; } 
 			set { HourComponent = value;}
 		}	
 		IfcMinuteInHour? IIfcLocalTime.MinuteComponent { 
-			get { return @MinuteComponent; } 
  
+			get { return @MinuteComponent; } 
 			set { MinuteComponent = value;}
 		}	
 		IfcSecondInMinute? IIfcLocalTime.SecondComponent { 
-			get { return @SecondComponent; } 
  
+			get { return @SecondComponent; } 
 			set { SecondComponent = value;}
 		}	
 		IIfcCoordinatedUniversalTimeOffset IIfcLocalTime.Zone { 
+ 
+ 
 			get { return @Zone; } 
- 
- 
 			set { Zone = value as IfcCoordinatedUniversalTimeOffset;}
 		}	
 		IfcDaylightSavingHour? IIfcLocalTime.DaylightSavingOffset { 
-			get { return @DaylightSavingOffset; } 
  
+			get { return @DaylightSavingOffset; } 
 			set { DaylightSavingOffset = value;}
 		}	
 		 
@@ -330,7 +330,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

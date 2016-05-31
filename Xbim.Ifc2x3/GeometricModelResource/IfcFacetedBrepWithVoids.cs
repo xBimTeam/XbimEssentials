@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcFacetedBrepWithVoids : IIfcManifoldSolidBrep
 	{
-		IEnumerable<IIfcClosedShell> @Voids { get; }
+		IItemSet<IIfcClosedShell> @Voids { get; }
 	
 	}
 }
@@ -38,25 +38,24 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 	public  partial class @IfcFacetedBrepWithVoids : IfcManifoldSolidBrep, IInstantiableEntity, IIfcFacetedBrepWithVoids, IContainsEntityReferences, IEquatable<@IfcFacetedBrepWithVoids>
 	{
 		#region IIfcFacetedBrepWithVoids explicit implementation
-		IEnumerable<IIfcClosedShell> IIfcFacetedBrepWithVoids.Voids { 
-			get { return @Voids; } 
+		IItemSet<IIfcClosedShell> IIfcFacetedBrepWithVoids.Voids { 
+			get { return new Common.Collections.ProxyItemSet<IfcClosedShell, IIfcClosedShell>( @Voids); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFacetedBrepWithVoids(IModel model) : base(model) 		{ 
-			Model = model; 
 			_voids = new ItemSet<IfcClosedShell>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcClosedShell> _voids;
+		private readonly ItemSet<IfcClosedShell> _voids;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
-		public ItemSet<IfcClosedShell> @Voids 
+		public IItemSet<IfcClosedShell> @Voids 
 		{ 
 			get 
 			{
@@ -122,7 +121,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

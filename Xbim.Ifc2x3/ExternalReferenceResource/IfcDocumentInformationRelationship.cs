@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcDocumentInformationRelationship : IPersistEntity
 	{
 		IIfcDocumentInformation @RelatingDocument { get;  set; }
-		IEnumerable<IIfcDocumentInformation> @RelatedDocuments { get; }
+		IItemSet<IIfcDocumentInformation> @RelatedDocuments { get; }
 		IfcLabel? @RelationshipType { get;  set; }
 	
 	}
@@ -43,17 +43,17 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 	{
 		#region IIfcDocumentInformationRelationship explicit implementation
 		IIfcDocumentInformation IIfcDocumentInformationRelationship.RelatingDocument { 
+ 
+ 
 			get { return @RelatingDocument; } 
- 
- 
 			set { RelatingDocument = value as IfcDocumentInformation;}
 		}	
-		IEnumerable<IIfcDocumentInformation> IIfcDocumentInformationRelationship.RelatedDocuments { 
-			get { return @RelatedDocuments; } 
+		IItemSet<IIfcDocumentInformation> IIfcDocumentInformationRelationship.RelatedDocuments { 
+			get { return new Common.Collections.ProxyItemSet<IfcDocumentInformation, IIfcDocumentInformation>( @RelatedDocuments); } 
 		}	
 		IfcLabel? IIfcDocumentInformationRelationship.RelationshipType { 
-			get { return @RelationshipType; } 
  
+			get { return @RelationshipType; } 
 			set { RelationshipType = value;}
 		}	
 		 
@@ -125,7 +125,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 
 		#region Explicit attribute fields
 		private IfcDocumentInformation _relatingDocument;
-		private ItemSet<IfcDocumentInformation> _relatedDocuments;
+		private readonly ItemSet<IfcDocumentInformation> _relatedDocuments;
 		private IfcLabel? _relationshipType;
 		#endregion
 	
@@ -147,7 +147,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		}	
 		[IndexedProperty]
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 2)]
-		public ItemSet<IfcDocumentInformation> @RelatedDocuments 
+		public IItemSet<IfcDocumentInformation> @RelatedDocuments 
 		{ 
 			get 
 			{
@@ -279,7 +279,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

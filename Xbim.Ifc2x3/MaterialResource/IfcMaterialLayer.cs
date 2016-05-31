@@ -45,19 +45,19 @@ namespace Xbim.Ifc2x3.MaterialResource
 	{
 		#region IIfcMaterialLayer explicit implementation
 		IIfcMaterial IIfcMaterialLayer.Material { 
+ 
+ 
 			get { return @Material; } 
- 
- 
 			set { Material = value as IfcMaterial;}
 		}	
 		IfcPositiveLengthMeasure IIfcMaterialLayer.LayerThickness { 
-			get { return @LayerThickness; } 
  
+			get { return @LayerThickness; } 
 			set { LayerThickness = value;}
 		}	
 		IfcLogical? IIfcMaterialLayer.IsVentilated { 
-			get { return @IsVentilated; } 
  
+			get { return @IsVentilated; } 
 			set { IsVentilated = value;}
 		}	
 		 
@@ -296,7 +296,7 @@ namespace Xbim.Ifc2x3.MaterialResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

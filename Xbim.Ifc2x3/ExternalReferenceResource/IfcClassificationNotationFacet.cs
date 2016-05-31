@@ -41,8 +41,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 	{
 		#region IIfcClassificationNotationFacet explicit implementation
 		IfcLabel IIfcClassificationNotationFacet.NotationValue { 
-			get { return @NotationValue; } 
  
+			get { return @NotationValue; } 
 			set { NotationValue = value;}
 		}	
 		 
@@ -233,7 +233,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

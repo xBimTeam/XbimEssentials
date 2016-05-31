@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcBoolean @IsAttenuating { get;  set; }
 		IfcSoundScaleEnum? @SoundScale { get;  set; }
-		IEnumerable<IIfcSoundValue> @SoundValues { get; }
+		IItemSet<IIfcSoundValue> @SoundValues { get; }
 	
 	}
 }
@@ -42,31 +42,30 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 	{
 		#region IIfcSoundProperties explicit implementation
 		IfcBoolean IIfcSoundProperties.IsAttenuating { 
-			get { return @IsAttenuating; } 
  
+			get { return @IsAttenuating; } 
 			set { IsAttenuating = value;}
 		}	
 		IfcSoundScaleEnum? IIfcSoundProperties.SoundScale { 
-			get { return @SoundScale; } 
  
+			get { return @SoundScale; } 
 			set { SoundScale = value;}
 		}	
-		IEnumerable<IIfcSoundValue> IIfcSoundProperties.SoundValues { 
-			get { return @SoundValues; } 
+		IItemSet<IIfcSoundValue> IIfcSoundProperties.SoundValues { 
+			get { return new Common.Collections.ProxyItemSet<IfcSoundValue, IIfcSoundValue>( @SoundValues); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSoundProperties(IModel model) : base(model) 		{ 
-			Model = model; 
 			_soundValues = new ItemSet<IfcSoundValue>( this, 8,  7);
 		}
 
 		#region Explicit attribute fields
 		private IfcBoolean _isAttenuating;
 		private IfcSoundScaleEnum? _soundScale;
-		private ItemSet<IfcSoundValue> _soundValues;
+		private readonly ItemSet<IfcSoundValue> _soundValues;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -99,7 +98,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, 8, 10)]
-		public ItemSet<IfcSoundValue> @SoundValues 
+		public IItemSet<IfcSoundValue> @SoundValues 
 		{ 
 			get 
 			{
@@ -174,7 +173,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

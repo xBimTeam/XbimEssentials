@@ -41,19 +41,19 @@ namespace Xbim.Ifc2x3.ConstraintResource
 	{
 		#region IIfcMetric explicit implementation
 		IfcBenchmarkEnum IIfcMetric.Benchmark { 
-			get { return @Benchmark; } 
  
+			get { return @Benchmark; } 
 			set { Benchmark = value;}
 		}	
 		IfcLabel? IIfcMetric.ValueSource { 
-			get { return @ValueSource; } 
  
+			get { return @ValueSource; } 
 			set { ValueSource = value;}
 		}	
 		IIfcMetricValueSelect IIfcMetric.DataValue { 
+ 
+ 
 			get { return @DataValue; } 
- 
- 
 			set { DataValue = value as IfcMetricValueSelect;}
 		}	
 		 
@@ -61,7 +61,6 @@ namespace Xbim.Ifc2x3.ConstraintResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMetric(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -182,7 +181,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

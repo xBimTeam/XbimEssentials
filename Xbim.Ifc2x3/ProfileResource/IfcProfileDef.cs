@@ -42,13 +42,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 	{
 		#region IIfcProfileDef explicit implementation
 		IfcProfileTypeEnum IIfcProfileDef.ProfileType { 
-			get { return @ProfileType; } 
  
+			get { return @ProfileType; } 
 			set { ProfileType = value;}
 		}	
 		IfcLabel? IIfcProfileDef.ProfileName { 
-			get { return @ProfileName; } 
  
+			get { return @ProfileName; } 
 			set { ProfileName = value;}
 		}	
 		 
@@ -257,7 +257,7 @@ namespace Xbim.Ifc2x3.ProfileResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

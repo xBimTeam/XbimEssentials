@@ -39,14 +39,14 @@ namespace Xbim.CobieExpress
 	{
 		#region ICobieCategory explicit implementation
 		string ICobieCategory.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		ICobieClassification ICobieCategory.Classification { 
+ 
+ 
 			get { return @Classification; } 
- 
- 
 			set { Classification = value as CobieClassification;}
 		}	
 		 
@@ -54,7 +54,6 @@ namespace Xbim.CobieExpress
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieCategory(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -152,7 +151,7 @@ namespace Xbim.CobieExpress
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

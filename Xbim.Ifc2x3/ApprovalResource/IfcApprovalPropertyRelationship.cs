@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcApprovalPropertyRelationship : IPersistEntity
 	{
-		IEnumerable<IIfcProperty> @ApprovedProperties { get; }
+		IItemSet<IIfcProperty> @ApprovedProperties { get; }
 		IIfcApproval @Approval { get;  set; }
 	
 	}
@@ -41,13 +41,13 @@ namespace Xbim.Ifc2x3.ApprovalResource
 	public  partial class @IfcApprovalPropertyRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcApprovalPropertyRelationship, IContainsEntityReferences, IEquatable<@IfcApprovalPropertyRelationship>
 	{
 		#region IIfcApprovalPropertyRelationship explicit implementation
-		IEnumerable<IIfcProperty> IIfcApprovalPropertyRelationship.ApprovedProperties { 
-			get { return @ApprovedProperties; } 
+		IItemSet<IIfcProperty> IIfcApprovalPropertyRelationship.ApprovedProperties { 
+			get { return new Common.Collections.ProxyItemSet<IfcProperty, IIfcProperty>( @ApprovedProperties); } 
 		}	
 		IIfcApproval IIfcApprovalPropertyRelationship.Approval { 
+ 
+ 
 			get { return @Approval; } 
- 
- 
 			set { Approval = value as IfcApproval;}
 		}	
 		 
@@ -118,13 +118,13 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcProperty> _approvedProperties;
+		private readonly ItemSet<IfcProperty> _approvedProperties;
 		private IfcApproval _approval;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 1)]
-		public ItemSet<IfcProperty> @ApprovedProperties 
+		public IItemSet<IfcProperty> @ApprovedProperties 
 		{ 
 			get 
 			{
@@ -253,7 +253,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

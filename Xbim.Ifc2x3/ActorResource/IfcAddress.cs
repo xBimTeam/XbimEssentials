@@ -46,18 +46,18 @@ namespace Xbim.Ifc2x3.ActorResource
 	{
 		#region IIfcAddress explicit implementation
 		IfcAddressTypeEnum? IIfcAddress.Purpose { 
-			get { return @Purpose; } 
  
+			get { return @Purpose; } 
 			set { Purpose = value;}
 		}	
 		IfcText? IIfcAddress.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		IfcLabel? IIfcAddress.UserDefinedPurpose { 
-			get { return @UserDefinedPurpose; } 
  
+			get { return @UserDefinedPurpose; } 
 			set { UserDefinedPurpose = value;}
 		}	
 		 
@@ -306,7 +306,7 @@ namespace Xbim.Ifc2x3.ActorResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

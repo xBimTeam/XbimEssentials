@@ -44,13 +44,13 @@ namespace Xbim.Ifc2x3.ProductExtension
 	{
 		#region IIfcSpatialStructureElement explicit implementation
 		IfcLabel? IIfcSpatialStructureElement.LongName { 
-			get { return @LongName; } 
  
+			get { return @LongName; } 
 			set { LongName = value;}
 		}	
 		IfcElementCompositionEnum IIfcSpatialStructureElement.CompositionType { 
-			get { return @CompositionType; } 
  
+			get { return @CompositionType; } 
 			set { CompositionType = value;}
 		}	
 		 
@@ -61,7 +61,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSpatialStructureElement(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -193,7 +192,7 @@ namespace Xbim.Ifc2x3.ProductExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

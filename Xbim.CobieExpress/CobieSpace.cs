@@ -44,29 +44,29 @@ namespace Xbim.CobieExpress
 	{
 		#region ICobieSpace explicit implementation
 		string ICobieSpace.RoomTag { 
-			get { return @RoomTag; } 
  
+			get { return @RoomTag; } 
 			set { RoomTag = value;}
 		}	
 		double? ICobieSpace.UsableHeight { 
-			get { return @UsableHeight; } 
  
+			get { return @UsableHeight; } 
 			set { UsableHeight = value;}
 		}	
 		double? ICobieSpace.GrossArea { 
-			get { return @GrossArea; } 
  
+			get { return @GrossArea; } 
 			set { GrossArea = value;}
 		}	
 		double? ICobieSpace.NetArea { 
-			get { return @NetArea; } 
  
+			get { return @NetArea; } 
 			set { NetArea = value;}
 		}	
 		ICobieFloor ICobieSpace.Floor { 
+ 
+ 
 			get { return @Floor; } 
- 
- 
 			set { Floor = value as CobieFloor;}
 		}	
 		 
@@ -76,7 +76,6 @@ namespace Xbim.CobieExpress
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieSpace(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -259,7 +258,7 @@ namespace Xbim.CobieExpress
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 using Xbim.Ifc2x3.PresentationDefinitionResource;
 
 namespace Xbim.Ifc2x3.Interfaces.Conversions
@@ -11,7 +12,7 @@ namespace Xbim.Ifc2x3.Interfaces.Conversions
         {
             _faceBounds = new List<IfcFaceBoundTransient>(1) {new IfcFaceBoundTransient(textureMap.TexturePoints)};
         }
-        public IEnumerable<Ifc4.Interfaces.IIfcFaceBound> Bounds
+        public IItemSet<Ifc4.Interfaces.IIfcFaceBound> Bounds
         {
             get { return _faceBounds; }
         }

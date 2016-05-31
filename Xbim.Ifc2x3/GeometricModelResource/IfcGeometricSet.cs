@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcGeometricSet : IIfcGeometricRepresentationItem
 	{
-		IEnumerable<IIfcGeometricSetSelect> @Elements { get; }
+		IItemSet<IIfcGeometricSetSelect> @Elements { get; }
 		IfcDimensionCount @Dim  { get ; }
 	
 	}
@@ -39,25 +39,24 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 	public  partial class @IfcGeometricSet : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcGeometricSet, IEquatable<@IfcGeometricSet>
 	{
 		#region IIfcGeometricSet explicit implementation
-		IEnumerable<IIfcGeometricSetSelect> IIfcGeometricSet.Elements { 
-			get { return @Elements; } 
+		IItemSet<IIfcGeometricSetSelect> IIfcGeometricSet.Elements { 
+			get { return new Common.Collections.ProxyItemSet<IfcGeometricSetSelect, IIfcGeometricSetSelect>( @Elements); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGeometricSet(IModel model) : base(model) 		{ 
-			Model = model; 
 			_elements = new ItemSet<IfcGeometricSetSelect>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcGeometricSetSelect> _elements;
+		private readonly ItemSet<IfcGeometricSetSelect> _elements;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 3)]
-		public ItemSet<IfcGeometricSetSelect> @Elements 
+		public IItemSet<IfcGeometricSetSelect> @Elements 
 		{ 
 			get 
 			{
@@ -135,7 +134,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -43,24 +43,24 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 	{
 		#region IIfcConstructionResource explicit implementation
 		IfcIdentifier? IIfcConstructionResource.ResourceIdentifier { 
-			get { return @ResourceIdentifier; } 
  
+			get { return @ResourceIdentifier; } 
 			set { ResourceIdentifier = value;}
 		}	
 		IfcLabel? IIfcConstructionResource.ResourceGroup { 
-			get { return @ResourceGroup; } 
  
+			get { return @ResourceGroup; } 
 			set { ResourceGroup = value;}
 		}	
 		IfcResourceConsumptionEnum? IIfcConstructionResource.ResourceConsumption { 
-			get { return @ResourceConsumption; } 
  
+			get { return @ResourceConsumption; } 
 			set { ResourceConsumption = value;}
 		}	
 		IIfcMeasureWithUnit IIfcConstructionResource.BaseQuantity { 
+ 
+ 
 			get { return @BaseQuantity; } 
- 
- 
 			set { BaseQuantity = value as IfcMeasureWithUnit;}
 		}	
 		 
@@ -68,7 +68,6 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConstructionResource(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -205,7 +204,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

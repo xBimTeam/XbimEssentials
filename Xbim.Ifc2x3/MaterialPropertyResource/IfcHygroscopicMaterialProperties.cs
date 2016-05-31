@@ -43,28 +43,28 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	{
 		#region IIfcHygroscopicMaterialProperties explicit implementation
 		IfcPositiveRatioMeasure? IIfcHygroscopicMaterialProperties.UpperVaporResistanceFactor { 
-			get { return @UpperVaporResistanceFactor; } 
  
+			get { return @UpperVaporResistanceFactor; } 
 			set { UpperVaporResistanceFactor = value;}
 		}	
 		IfcPositiveRatioMeasure? IIfcHygroscopicMaterialProperties.LowerVaporResistanceFactor { 
-			get { return @LowerVaporResistanceFactor; } 
  
+			get { return @LowerVaporResistanceFactor; } 
 			set { LowerVaporResistanceFactor = value;}
 		}	
 		IfcIsothermalMoistureCapacityMeasure? IIfcHygroscopicMaterialProperties.IsothermalMoistureCapacity { 
-			get { return @IsothermalMoistureCapacity; } 
  
+			get { return @IsothermalMoistureCapacity; } 
 			set { IsothermalMoistureCapacity = value;}
 		}	
 		IfcVaporPermeabilityMeasure? IIfcHygroscopicMaterialProperties.VaporPermeability { 
-			get { return @VaporPermeability; } 
  
+			get { return @VaporPermeability; } 
 			set { VaporPermeability = value;}
 		}	
 		IfcMoistureDiffusivityMeasure? IIfcHygroscopicMaterialProperties.MoistureDiffusivity { 
-			get { return @MoistureDiffusivity; } 
  
+			get { return @MoistureDiffusivity; } 
 			set { MoistureDiffusivity = value;}
 		}	
 		 
@@ -72,7 +72,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcHygroscopicMaterialProperties(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -223,7 +222,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -39,9 +39,9 @@ namespace Xbim.Ifc2x3.ProfileResource
 	{
 		#region IIfcArbitraryOpenProfileDef explicit implementation
 		IIfcBoundedCurve IIfcArbitraryOpenProfileDef.Curve { 
+ 
+ 
 			get { return @Curve; } 
- 
- 
 			set { Curve = value as IfcBoundedCurve;}
 		}	
 		 
@@ -49,7 +49,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcArbitraryOpenProfileDef(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -129,7 +128,7 @@ namespace Xbim.Ifc2x3.ProfileResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

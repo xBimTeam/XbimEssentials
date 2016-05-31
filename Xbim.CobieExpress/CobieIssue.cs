@@ -47,60 +47,60 @@ namespace Xbim.CobieExpress
 	{
 		#region ICobieIssue explicit implementation
 		string ICobieIssue.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		string ICobieIssue.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		ICobieIssueType ICobieIssue.IssueType { 
+ 
+ 
 			get { return @IssueType; } 
- 
- 
 			set { IssueType = value as CobieIssueType;}
 		}	
 		ICobieIssueRisk ICobieIssue.Risk { 
+ 
+ 
 			get { return @Risk; } 
- 
- 
 			set { Risk = value as CobieIssueRisk;}
 		}	
 		ICobieIssueChance ICobieIssue.Chance { 
+ 
+ 
 			get { return @Chance; } 
- 
- 
 			set { Chance = value as CobieIssueChance;}
 		}	
 		ICobieIssueImpact ICobieIssue.Impact { 
+ 
+ 
 			get { return @Impact; } 
- 
- 
 			set { Impact = value as CobieIssueImpact;}
 		}	
 		ICobieContact ICobieIssue.Owner { 
+ 
+ 
 			get { return @Owner; } 
- 
- 
 			set { Owner = value as CobieContact;}
 		}	
 		string ICobieIssue.Mitigation { 
-			get { return @Mitigation; } 
  
+			get { return @Mitigation; } 
 			set { Mitigation = value;}
 		}	
 		ICobieAsset ICobieIssue.Causing { 
+ 
+ 
 			get { return @Causing; } 
- 
- 
 			set { Causing = value as CobieAsset;}
 		}	
 		ICobieAsset ICobieIssue.Affected { 
+ 
+ 
 			get { return @Affected; } 
- 
- 
 			set { Affected = value as CobieAsset;}
 		}	
 		 
@@ -108,7 +108,6 @@ namespace Xbim.CobieExpress
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieIssue(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -355,7 +354,7 @@ namespace Xbim.CobieExpress
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

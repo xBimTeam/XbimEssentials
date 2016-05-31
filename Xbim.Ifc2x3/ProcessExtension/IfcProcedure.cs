@@ -42,18 +42,18 @@ namespace Xbim.Ifc2x3.ProcessExtension
 	{
 		#region IIfcProcedure explicit implementation
 		IfcIdentifier IIfcProcedure.ProcedureID { 
-			get { return @ProcedureID; } 
  
+			get { return @ProcedureID; } 
 			set { ProcedureID = value;}
 		}	
 		IfcProcedureTypeEnum IIfcProcedure.ProcedureType { 
-			get { return @ProcedureType; } 
  
+			get { return @ProcedureType; } 
 			set { ProcedureType = value;}
 		}	
 		IfcLabel? IIfcProcedure.UserDefinedProcedureType { 
-			get { return @UserDefinedProcedureType; } 
  
+			get { return @UserDefinedProcedureType; } 
 			set { UserDefinedProcedureType = value;}
 		}	
 		 
@@ -61,7 +61,6 @@ namespace Xbim.Ifc2x3.ProcessExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProcedure(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -180,7 +179,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

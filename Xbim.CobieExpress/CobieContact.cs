@@ -51,74 +51,74 @@ namespace Xbim.CobieExpress
 	{
 		#region ICobieContact explicit implementation
 		string ICobieContact.Email { 
-			get { return @Email; } 
  
+			get { return @Email; } 
 			set { Email = value;}
 		}	
 		ICobieRole ICobieContact.Category { 
+ 
+ 
 			get { return @Category; } 
- 
- 
 			set { Category = value as CobieRole;}
 		}	
 		string ICobieContact.Company { 
-			get { return @Company; } 
  
+			get { return @Company; } 
 			set { Company = value;}
 		}	
 		string ICobieContact.Phone { 
-			get { return @Phone; } 
  
+			get { return @Phone; } 
 			set { Phone = value;}
 		}	
 		string ICobieContact.Department { 
-			get { return @Department; } 
  
+			get { return @Department; } 
 			set { Department = value;}
 		}	
 		string ICobieContact.OrganizationCode { 
-			get { return @OrganizationCode; } 
  
+			get { return @OrganizationCode; } 
 			set { OrganizationCode = value;}
 		}	
 		string ICobieContact.GivenName { 
-			get { return @GivenName; } 
  
+			get { return @GivenName; } 
 			set { GivenName = value;}
 		}	
 		string ICobieContact.FamilyName { 
-			get { return @FamilyName; } 
  
+			get { return @FamilyName; } 
 			set { FamilyName = value;}
 		}	
 		string ICobieContact.Street { 
-			get { return @Street; } 
  
+			get { return @Street; } 
 			set { Street = value;}
 		}	
 		string ICobieContact.PostalBox { 
-			get { return @PostalBox; } 
  
+			get { return @PostalBox; } 
 			set { PostalBox = value;}
 		}	
 		string ICobieContact.Town { 
-			get { return @Town; } 
  
+			get { return @Town; } 
 			set { Town = value;}
 		}	
 		string ICobieContact.StateRegion { 
-			get { return @StateRegion; } 
  
+			get { return @StateRegion; } 
 			set { StateRegion = value;}
 		}	
 		string ICobieContact.PostalCode { 
-			get { return @PostalCode; } 
  
+			get { return @PostalCode; } 
 			set { PostalCode = value;}
 		}	
 		string ICobieContact.Country { 
-			get { return @Country; } 
  
+			get { return @Country; } 
 			set { Country = value;}
 		}	
 		 
@@ -126,7 +126,6 @@ namespace Xbim.CobieExpress
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieContact(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -443,7 +442,7 @@ namespace Xbim.CobieExpress
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

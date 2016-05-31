@@ -40,15 +40,15 @@ namespace Xbim.Ifc2x3.ProductExtension
 	{
 		#region IIfcRelProjectsElement explicit implementation
 		IIfcElement IIfcRelProjectsElement.RelatingElement { 
+ 
+ 
 			get { return @RelatingElement; } 
- 
- 
 			set { RelatingElement = value as IfcElement;}
 		}	
 		IIfcFeatureElementAddition IIfcRelProjectsElement.RelatedFeatureElement { 
+ 
+ 
 			get { return @RelatedFeatureElement; } 
- 
- 
 			set { RelatedFeatureElement = value as IfcFeatureElementAddition;}
 		}	
 		 
@@ -56,7 +56,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelProjectsElement(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -158,7 +157,7 @@ namespace Xbim.Ifc2x3.ProductExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

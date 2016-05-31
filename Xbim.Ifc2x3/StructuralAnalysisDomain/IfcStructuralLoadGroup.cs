@@ -46,28 +46,28 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 	{
 		#region IIfcStructuralLoadGroup explicit implementation
 		IfcLoadGroupTypeEnum IIfcStructuralLoadGroup.PredefinedType { 
-			get { return @PredefinedType; } 
  
+			get { return @PredefinedType; } 
 			set { PredefinedType = value;}
 		}	
 		IfcActionTypeEnum IIfcStructuralLoadGroup.ActionType { 
-			get { return @ActionType; } 
  
+			get { return @ActionType; } 
 			set { ActionType = value;}
 		}	
 		IfcActionSourceTypeEnum IIfcStructuralLoadGroup.ActionSource { 
-			get { return @ActionSource; } 
  
+			get { return @ActionSource; } 
 			set { ActionSource = value;}
 		}	
 		IfcRatioMeasure? IIfcStructuralLoadGroup.Coefficient { 
-			get { return @Coefficient; } 
  
+			get { return @Coefficient; } 
 			set { Coefficient = value;}
 		}	
 		IfcLabel? IIfcStructuralLoadGroup.Purpose { 
-			get { return @Purpose; } 
  
+			get { return @Purpose; } 
 			set { Purpose = value;}
 		}	
 		 
@@ -77,7 +77,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadGroup(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -252,7 +251,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

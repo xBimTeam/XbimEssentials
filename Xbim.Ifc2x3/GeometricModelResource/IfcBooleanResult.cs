@@ -41,20 +41,20 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 	{
 		#region IIfcBooleanResult explicit implementation
 		IfcBooleanOperator IIfcBooleanResult.Operator { 
-			get { return @Operator; } 
  
+			get { return @Operator; } 
 			set { Operator = value;}
 		}	
 		IIfcBooleanOperand IIfcBooleanResult.FirstOperand { 
+ 
+ 
 			get { return @FirstOperand; } 
- 
- 
 			set { FirstOperand = value as IfcBooleanOperand;}
 		}	
 		IIfcBooleanOperand IIfcBooleanResult.SecondOperand { 
+ 
+ 
 			get { return @SecondOperand; } 
- 
- 
 			set { SecondOperand = value as IfcBooleanOperand;}
 		}	
 		 
@@ -62,7 +62,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBooleanResult(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -187,7 +186,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

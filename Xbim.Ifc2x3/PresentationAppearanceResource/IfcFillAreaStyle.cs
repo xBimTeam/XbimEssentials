@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcFillAreaStyle : IIfcPresentationStyle, IfcPresentationStyleSelect
 	{
-		IEnumerable<IIfcFillStyleSelect> @FillStyles { get; }
+		IItemSet<IIfcFillStyleSelect> @FillStyles { get; }
 	
 	}
 }
@@ -37,25 +37,24 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	public  partial class @IfcFillAreaStyle : IfcPresentationStyle, IInstantiableEntity, IIfcFillAreaStyle, IEquatable<@IfcFillAreaStyle>
 	{
 		#region IIfcFillAreaStyle explicit implementation
-		IEnumerable<IIfcFillStyleSelect> IIfcFillAreaStyle.FillStyles { 
-			get { return @FillStyles; } 
+		IItemSet<IIfcFillStyleSelect> IIfcFillAreaStyle.FillStyles { 
+			get { return new Common.Collections.ProxyItemSet<IfcFillStyleSelect, IIfcFillStyleSelect>( @FillStyles); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFillAreaStyle(IModel model) : base(model) 		{ 
-			Model = model; 
 			_fillStyles = new ItemSet<IfcFillStyleSelect>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcFillStyleSelect> _fillStyles;
+		private readonly ItemSet<IfcFillStyleSelect> _fillStyles;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 2)]
-		public ItemSet<IfcFillStyleSelect> @FillStyles 
+		public IItemSet<IfcFillStyleSelect> @FillStyles 
 		{ 
 			get 
 			{
@@ -121,7 +120,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

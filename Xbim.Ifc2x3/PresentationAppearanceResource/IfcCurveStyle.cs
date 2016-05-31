@@ -41,21 +41,21 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	{
 		#region IIfcCurveStyle explicit implementation
 		IIfcCurveFontOrScaledCurveFontSelect IIfcCurveStyle.CurveFont { 
+ 
+ 
 			get { return @CurveFont; } 
- 
- 
 			set { CurveFont = value as IfcCurveFontOrScaledCurveFontSelect;}
 		}	
 		IIfcSizeSelect IIfcCurveStyle.CurveWidth { 
+ 
+ 
 			get { return @CurveWidth; } 
- 
- 
 			set { CurveWidth = value as IfcSizeSelect;}
 		}	
 		IIfcColour IIfcCurveStyle.CurveColour { 
+ 
+ 
 			get { return @CurveColour; } 
- 
- 
 			set { CurveColour = value as IfcColour;}
 		}	
 		 
@@ -63,7 +63,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCurveStyle(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -178,7 +177,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

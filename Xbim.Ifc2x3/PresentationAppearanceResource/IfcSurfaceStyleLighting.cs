@@ -44,27 +44,27 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	{
 		#region IIfcSurfaceStyleLighting explicit implementation
 		IIfcColourRgb IIfcSurfaceStyleLighting.DiffuseTransmissionColour { 
+ 
+ 
 			get { return @DiffuseTransmissionColour; } 
- 
- 
 			set { DiffuseTransmissionColour = value as IfcColourRgb;}
 		}	
 		IIfcColourRgb IIfcSurfaceStyleLighting.DiffuseReflectionColour { 
+ 
+ 
 			get { return @DiffuseReflectionColour; } 
- 
- 
 			set { DiffuseReflectionColour = value as IfcColourRgb;}
 		}	
 		IIfcColourRgb IIfcSurfaceStyleLighting.TransmissionColour { 
+ 
+ 
 			get { return @TransmissionColour; } 
- 
- 
 			set { TransmissionColour = value as IfcColourRgb;}
 		}	
 		IIfcColourRgb IIfcSurfaceStyleLighting.ReflectanceColour { 
+ 
+ 
 			get { return @ReflectanceColour; } 
- 
- 
 			set { ReflectanceColour = value as IfcColourRgb;}
 		}	
 		 
@@ -309,7 +309,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

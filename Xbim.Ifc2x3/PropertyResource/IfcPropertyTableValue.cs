@@ -26,8 +26,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPropertyTableValue : IIfcSimpleProperty
 	{
-		IEnumerable<IIfcValue> @DefiningValues { get; }
-		IEnumerable<IIfcValue> @DefinedValues { get; }
+		IItemSet<IIfcValue> @DefiningValues { get; }
+		IItemSet<IIfcValue> @DefinedValues { get; }
 		IfcText? @Expression { get;  set; }
 		IIfcUnit @DefiningUnit { get;  set; }
 		IIfcUnit @DefinedUnit { get;  set; }
@@ -42,27 +42,27 @@ namespace Xbim.Ifc2x3.PropertyResource
 	public  partial class @IfcPropertyTableValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyTableValue, IContainsEntityReferences, IEquatable<@IfcPropertyTableValue>
 	{
 		#region IIfcPropertyTableValue explicit implementation
-		IEnumerable<IIfcValue> IIfcPropertyTableValue.DefiningValues { 
-			get { return @DefiningValues; } 
+		IItemSet<IIfcValue> IIfcPropertyTableValue.DefiningValues { 
+			get { return new Common.Collections.ProxyItemSet<IfcValue, IIfcValue>( @DefiningValues); } 
 		}	
-		IEnumerable<IIfcValue> IIfcPropertyTableValue.DefinedValues { 
-			get { return @DefinedValues; } 
+		IItemSet<IIfcValue> IIfcPropertyTableValue.DefinedValues { 
+			get { return new Common.Collections.ProxyItemSet<IfcValue, IIfcValue>( @DefinedValues); } 
 		}	
 		IfcText? IIfcPropertyTableValue.Expression { 
-			get { return @Expression; } 
  
+			get { return @Expression; } 
 			set { Expression = value;}
 		}	
 		IIfcUnit IIfcPropertyTableValue.DefiningUnit { 
+ 
+ 
 			get { return @DefiningUnit; } 
- 
- 
 			set { DefiningUnit = value as IfcUnit;}
 		}	
 		IIfcUnit IIfcPropertyTableValue.DefinedUnit { 
+ 
+ 
 			get { return @DefinedUnit; } 
- 
- 
 			set { DefinedUnit = value as IfcUnit;}
 		}	
 		 
@@ -70,14 +70,13 @@ namespace Xbim.Ifc2x3.PropertyResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyTableValue(IModel model) : base(model) 		{ 
-			Model = model; 
 			_definingValues = new ItemSet<IfcValue>( this, 0,  3);
 			_definedValues = new ItemSet<IfcValue>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcValue> _definingValues;
-		private ItemSet<IfcValue> _definedValues;
+		private readonly ItemSet<IfcValue> _definingValues;
+		private readonly ItemSet<IfcValue> _definedValues;
 		private IfcText? _expression;
 		private IfcUnit _definingUnit;
 		private IfcUnit _definedUnit;
@@ -85,7 +84,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 	
 		#region Explicit attribute properties
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1, 6)]
-		public ItemSet<IfcValue> @DefiningValues 
+		public IItemSet<IfcValue> @DefiningValues 
 		{ 
 			get 
 			{
@@ -95,7 +94,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 7)]
-		public ItemSet<IfcValue> @DefinedValues 
+		public IItemSet<IfcValue> @DefinedValues 
 		{ 
 			get 
 			{
@@ -216,7 +215,7 @@ namespace Xbim.Ifc2x3.PropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

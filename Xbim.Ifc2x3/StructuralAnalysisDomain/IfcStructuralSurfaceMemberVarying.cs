@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralSurfaceMemberVarying : IIfcStructuralSurfaceMember
 	{
-		IEnumerable<IfcPositiveLengthMeasure> @SubsequentThickness { get; }
+		IItemSet<IfcPositiveLengthMeasure> @SubsequentThickness { get; }
 		IIfcShapeAspect @VaryingThicknessLocation { get;  set; }
 		List<IfcPositiveLengthMeasure> @VaryingThickness  { get ; }
 	
@@ -41,13 +41,13 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 	public  partial class @IfcStructuralSurfaceMemberVarying : IfcStructuralSurfaceMember, IInstantiableEntity, IIfcStructuralSurfaceMemberVarying, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralSurfaceMemberVarying>
 	{
 		#region IIfcStructuralSurfaceMemberVarying explicit implementation
-		IEnumerable<IfcPositiveLengthMeasure> IIfcStructuralSurfaceMemberVarying.SubsequentThickness { 
+		IItemSet<IfcPositiveLengthMeasure> IIfcStructuralSurfaceMemberVarying.SubsequentThickness { 
 			get { return @SubsequentThickness; } 
 		}	
 		IIfcShapeAspect IIfcStructuralSurfaceMemberVarying.VaryingThicknessLocation { 
+ 
+ 
 			get { return @VaryingThicknessLocation; } 
- 
- 
 			set { VaryingThicknessLocation = value as IfcShapeAspect;}
 		}	
 		 
@@ -55,18 +55,17 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralSurfaceMemberVarying(IModel model) : base(model) 		{ 
-			Model = model; 
 			_subsequentThickness = new ItemSet<IfcPositiveLengthMeasure>( this, 0,  10);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcPositiveLengthMeasure> _subsequentThickness;
+		private readonly ItemSet<IfcPositiveLengthMeasure> _subsequentThickness;
 		private IfcShapeAspect _varyingThicknessLocation;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1, 19)]
-		public ItemSet<IfcPositiveLengthMeasure> @SubsequentThickness 
+		public IItemSet<IfcPositiveLengthMeasure> @SubsequentThickness 
 		{ 
 			get 
 			{
@@ -172,7 +171,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

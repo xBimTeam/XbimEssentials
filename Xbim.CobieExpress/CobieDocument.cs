@@ -46,51 +46,51 @@ namespace Xbim.CobieExpress
 	{
 		#region ICobieDocument explicit implementation
 		string ICobieDocument.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		string ICobieDocument.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		ICobieDocumentType ICobieDocument.DocumentType { 
+ 
+ 
 			get { return @DocumentType; } 
- 
- 
 			set { DocumentType = value as CobieDocumentType;}
 		}	
 		ICobieApprovalType ICobieDocument.ApprovalType { 
+ 
+ 
 			get { return @ApprovalType; } 
- 
- 
 			set { ApprovalType = value as CobieApprovalType;}
 		}	
 		ICobieStageType ICobieDocument.Stage { 
+ 
+ 
 			get { return @Stage; } 
- 
- 
 			set { Stage = value as CobieStageType;}
 		}	
 		string ICobieDocument.URL { 
-			get { return @URL; } 
  
+			get { return @URL; } 
 			set { URL = value;}
 		}	
 		string ICobieDocument.Reference { 
-			get { return @Reference; } 
  
+			get { return @Reference; } 
 			set { Reference = value;}
 		}	
 		string ICobieDocument.Directory { 
-			get { return @Directory; } 
  
+			get { return @Directory; } 
 			set { Directory = value;}
 		}	
 		string ICobieDocument.File { 
-			get { return @File; } 
  
+			get { return @File; } 
 			set { File = value;}
 		}	
 		 
@@ -98,7 +98,6 @@ namespace Xbim.CobieExpress
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieDocument(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -325,7 +324,7 @@ namespace Xbim.CobieExpress
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

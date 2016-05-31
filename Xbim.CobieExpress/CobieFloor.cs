@@ -41,19 +41,19 @@ namespace Xbim.CobieExpress
 	{
 		#region ICobieFloor explicit implementation
 		double? ICobieFloor.Elevation { 
-			get { return @Elevation; } 
  
+			get { return @Elevation; } 
 			set { Elevation = value;}
 		}	
 		double? ICobieFloor.Height { 
-			get { return @Height; } 
  
+			get { return @Height; } 
 			set { Height = value;}
 		}	
 		ICobieFacility ICobieFloor.Facility { 
+ 
+ 
 			get { return @Facility; } 
- 
- 
 			set { Facility = value as CobieFacility;}
 		}	
 		 
@@ -62,7 +62,6 @@ namespace Xbim.CobieExpress
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieFloor(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -200,7 +199,7 @@ namespace Xbim.CobieExpress
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

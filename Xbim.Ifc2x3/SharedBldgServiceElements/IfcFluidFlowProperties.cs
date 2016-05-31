@@ -56,86 +56,86 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 	{
 		#region IIfcFluidFlowProperties explicit implementation
 		IfcPropertySourceEnum IIfcFluidFlowProperties.PropertySource { 
-			get { return @PropertySource; } 
  
+			get { return @PropertySource; } 
 			set { PropertySource = value;}
 		}	
 		IIfcTimeSeries IIfcFluidFlowProperties.FlowConditionTimeSeries { 
+ 
+ 
 			get { return @FlowConditionTimeSeries; } 
- 
- 
 			set { FlowConditionTimeSeries = value as IfcTimeSeries;}
 		}	
 		IIfcTimeSeries IIfcFluidFlowProperties.VelocityTimeSeries { 
+ 
+ 
 			get { return @VelocityTimeSeries; } 
- 
- 
 			set { VelocityTimeSeries = value as IfcTimeSeries;}
 		}	
 		IIfcTimeSeries IIfcFluidFlowProperties.FlowrateTimeSeries { 
+ 
+ 
 			get { return @FlowrateTimeSeries; } 
- 
- 
 			set { FlowrateTimeSeries = value as IfcTimeSeries;}
 		}	
 		IIfcMaterial IIfcFluidFlowProperties.Fluid { 
+ 
+ 
 			get { return @Fluid; } 
- 
- 
 			set { Fluid = value as IfcMaterial;}
 		}	
 		IIfcTimeSeries IIfcFluidFlowProperties.PressureTimeSeries { 
+ 
+ 
 			get { return @PressureTimeSeries; } 
- 
- 
 			set { PressureTimeSeries = value as IfcTimeSeries;}
 		}	
 		IfcLabel? IIfcFluidFlowProperties.UserDefinedPropertySource { 
-			get { return @UserDefinedPropertySource; } 
  
+			get { return @UserDefinedPropertySource; } 
 			set { UserDefinedPropertySource = value;}
 		}	
 		IfcThermodynamicTemperatureMeasure? IIfcFluidFlowProperties.TemperatureSingleValue { 
-			get { return @TemperatureSingleValue; } 
  
+			get { return @TemperatureSingleValue; } 
 			set { TemperatureSingleValue = value;}
 		}	
 		IfcThermodynamicTemperatureMeasure? IIfcFluidFlowProperties.WetBulbTemperatureSingleValue { 
-			get { return @WetBulbTemperatureSingleValue; } 
  
+			get { return @WetBulbTemperatureSingleValue; } 
 			set { WetBulbTemperatureSingleValue = value;}
 		}	
 		IIfcTimeSeries IIfcFluidFlowProperties.WetBulbTemperatureTimeSeries { 
+ 
+ 
 			get { return @WetBulbTemperatureTimeSeries; } 
- 
- 
 			set { WetBulbTemperatureTimeSeries = value as IfcTimeSeries;}
 		}	
 		IIfcTimeSeries IIfcFluidFlowProperties.TemperatureTimeSeries { 
+ 
+ 
 			get { return @TemperatureTimeSeries; } 
- 
- 
 			set { TemperatureTimeSeries = value as IfcTimeSeries;}
 		}	
 		IIfcDerivedMeasureValue IIfcFluidFlowProperties.FlowrateSingleValue { 
+ 
+ 
 			get { return @FlowrateSingleValue; } 
- 
- 
 			set { FlowrateSingleValue = value as IfcDerivedMeasureValue;}
 		}	
 		IfcPositiveRatioMeasure? IIfcFluidFlowProperties.FlowConditionSingleValue { 
-			get { return @FlowConditionSingleValue; } 
  
+			get { return @FlowConditionSingleValue; } 
 			set { FlowConditionSingleValue = value;}
 		}	
 		IfcLinearVelocityMeasure? IIfcFluidFlowProperties.VelocitySingleValue { 
-			get { return @VelocitySingleValue; } 
  
+			get { return @VelocitySingleValue; } 
 			set { VelocitySingleValue = value;}
 		}	
 		IfcPressureMeasure? IIfcFluidFlowProperties.PressureSingleValue { 
-			get { return @PressureSingleValue; } 
  
+			get { return @PressureSingleValue; } 
 			set { PressureSingleValue = value;}
 		}	
 		 
@@ -143,7 +143,6 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFluidFlowProperties(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -477,7 +476,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -47,57 +47,57 @@ namespace Xbim.CobieExpress
 	{
 		#region ICobieImpact explicit implementation
 		string ICobieImpact.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		string ICobieImpact.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		ICobieImpactType ICobieImpact.ImpactType { 
+ 
+ 
 			get { return @ImpactType; } 
- 
- 
 			set { ImpactType = value as CobieImpactType;}
 		}	
 		ICobieImpactStage ICobieImpact.ImpactStage { 
+ 
+ 
 			get { return @ImpactStage; } 
- 
- 
 			set { ImpactStage = value as CobieImpactStage;}
 		}	
 		double? ICobieImpact.Value { 
-			get { return @Value; } 
  
+			get { return @Value; } 
 			set { Value = value;}
 		}	
 		ICobieImpactUnit ICobieImpact.ImpactUnit { 
+ 
+ 
 			get { return @ImpactUnit; } 
- 
- 
 			set { ImpactUnit = value as CobieImpactUnit;}
 		}	
 		double? ICobieImpact.LeadInTime { 
-			get { return @LeadInTime; } 
  
+			get { return @LeadInTime; } 
 			set { LeadInTime = value;}
 		}	
 		double? ICobieImpact.Duration { 
-			get { return @Duration; } 
  
+			get { return @Duration; } 
 			set { Duration = value;}
 		}	
 		double? ICobieImpact.LeadOutTime { 
-			get { return @LeadOutTime; } 
  
+			get { return @LeadOutTime; } 
 			set { LeadOutTime = value;}
 		}	
 		ICobieDurationUnit ICobieImpact.DurationUnit { 
+ 
+ 
 			get { return @DurationUnit; } 
- 
- 
 			set { DurationUnit = value as CobieDurationUnit;}
 		}	
 		 
@@ -105,7 +105,6 @@ namespace Xbim.CobieExpress
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieImpact(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -350,7 +349,7 @@ namespace Xbim.CobieExpress
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -39,14 +39,14 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 	{
 		#region IIfcStructuralAction explicit implementation
 		bool IIfcStructuralAction.DestabilizingLoad { 
-			get { return @DestabilizingLoad; } 
  
+			get { return @DestabilizingLoad; } 
 			set { DestabilizingLoad = value;}
 		}	
 		IIfcStructuralReaction IIfcStructuralAction.CausedBy { 
+ 
+ 
 			get { return @CausedBy; } 
- 
- 
 			set { CausedBy = value as IfcStructuralReaction;}
 		}	
 		 
@@ -54,7 +54,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralAction(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -160,7 +159,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

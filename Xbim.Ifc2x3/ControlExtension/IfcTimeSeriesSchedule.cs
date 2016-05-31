@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTimeSeriesSchedule : IIfcControl
 	{
-		IEnumerable<IIfcDateTimeSelect> @ApplicableDates { get; }
+		IItemSet<IIfcDateTimeSelect> @ApplicableDates { get; }
 		IfcTimeSeriesScheduleTypeEnum @TimeSeriesScheduleType { get;  set; }
 		IIfcTimeSeries @TimeSeries { get;  set; }
 	
@@ -42,18 +42,18 @@ namespace Xbim.Ifc2x3.ControlExtension
 	public  partial class @IfcTimeSeriesSchedule : IfcControl, IInstantiableEntity, IIfcTimeSeriesSchedule, IContainsEntityReferences, IEquatable<@IfcTimeSeriesSchedule>
 	{
 		#region IIfcTimeSeriesSchedule explicit implementation
-		IEnumerable<IIfcDateTimeSelect> IIfcTimeSeriesSchedule.ApplicableDates { 
-			get { return @ApplicableDates; } 
+		IItemSet<IIfcDateTimeSelect> IIfcTimeSeriesSchedule.ApplicableDates { 
+			get { return new Common.Collections.ProxyItemSet<IfcDateTimeSelect, IIfcDateTimeSelect>( @ApplicableDates); } 
 		}	
 		IfcTimeSeriesScheduleTypeEnum IIfcTimeSeriesSchedule.TimeSeriesScheduleType { 
-			get { return @TimeSeriesScheduleType; } 
  
+			get { return @TimeSeriesScheduleType; } 
 			set { TimeSeriesScheduleType = value;}
 		}	
 		IIfcTimeSeries IIfcTimeSeriesSchedule.TimeSeries { 
+ 
+ 
 			get { return @TimeSeries; } 
- 
- 
 			set { TimeSeries = value as IfcTimeSeries;}
 		}	
 		 
@@ -61,19 +61,18 @@ namespace Xbim.Ifc2x3.ControlExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTimeSeriesSchedule(IModel model) : base(model) 		{ 
-			Model = model; 
 			_applicableDates = new OptionalItemSet<IfcDateTimeSelect>( this, 0,  6);
 		}
 
 		#region Explicit attribute fields
-		private OptionalItemSet<IfcDateTimeSelect> _applicableDates;
+		private readonly OptionalItemSet<IfcDateTimeSelect> _applicableDates;
 		private IfcTimeSeriesScheduleTypeEnum _timeSeriesScheduleType;
 		private IfcTimeSeries _timeSeries;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 12)]
-		public OptionalItemSet<IfcDateTimeSelect> @ApplicableDates 
+		public IOptionalItemSet<IfcDateTimeSelect> @ApplicableDates 
 		{ 
 			get 
 			{
@@ -177,7 +176,7 @@ namespace Xbim.Ifc2x3.ControlExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

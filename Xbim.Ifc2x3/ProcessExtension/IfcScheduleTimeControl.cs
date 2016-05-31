@@ -59,102 +59,102 @@ namespace Xbim.Ifc2x3.ProcessExtension
 	{
 		#region IIfcScheduleTimeControl explicit implementation
 		IIfcDateTimeSelect IIfcScheduleTimeControl.ActualStart { 
+ 
+ 
 			get { return @ActualStart; } 
- 
- 
 			set { ActualStart = value as IfcDateTimeSelect;}
 		}	
 		IIfcDateTimeSelect IIfcScheduleTimeControl.EarlyStart { 
+ 
+ 
 			get { return @EarlyStart; } 
- 
- 
 			set { EarlyStart = value as IfcDateTimeSelect;}
 		}	
 		IIfcDateTimeSelect IIfcScheduleTimeControl.LateStart { 
+ 
+ 
 			get { return @LateStart; } 
- 
- 
 			set { LateStart = value as IfcDateTimeSelect;}
 		}	
 		IIfcDateTimeSelect IIfcScheduleTimeControl.ScheduleStart { 
+ 
+ 
 			get { return @ScheduleStart; } 
- 
- 
 			set { ScheduleStart = value as IfcDateTimeSelect;}
 		}	
 		IIfcDateTimeSelect IIfcScheduleTimeControl.ActualFinish { 
+ 
+ 
 			get { return @ActualFinish; } 
- 
- 
 			set { ActualFinish = value as IfcDateTimeSelect;}
 		}	
 		IIfcDateTimeSelect IIfcScheduleTimeControl.EarlyFinish { 
+ 
+ 
 			get { return @EarlyFinish; } 
- 
- 
 			set { EarlyFinish = value as IfcDateTimeSelect;}
 		}	
 		IIfcDateTimeSelect IIfcScheduleTimeControl.LateFinish { 
+ 
+ 
 			get { return @LateFinish; } 
- 
- 
 			set { LateFinish = value as IfcDateTimeSelect;}
 		}	
 		IIfcDateTimeSelect IIfcScheduleTimeControl.ScheduleFinish { 
+ 
+ 
 			get { return @ScheduleFinish; } 
- 
- 
 			set { ScheduleFinish = value as IfcDateTimeSelect;}
 		}	
 		IfcTimeMeasure? IIfcScheduleTimeControl.ScheduleDuration { 
-			get { return @ScheduleDuration; } 
  
+			get { return @ScheduleDuration; } 
 			set { ScheduleDuration = value;}
 		}	
 		IfcTimeMeasure? IIfcScheduleTimeControl.ActualDuration { 
-			get { return @ActualDuration; } 
  
+			get { return @ActualDuration; } 
 			set { ActualDuration = value;}
 		}	
 		IfcTimeMeasure? IIfcScheduleTimeControl.RemainingTime { 
-			get { return @RemainingTime; } 
  
+			get { return @RemainingTime; } 
 			set { RemainingTime = value;}
 		}	
 		IfcTimeMeasure? IIfcScheduleTimeControl.FreeFloat { 
-			get { return @FreeFloat; } 
  
+			get { return @FreeFloat; } 
 			set { FreeFloat = value;}
 		}	
 		IfcTimeMeasure? IIfcScheduleTimeControl.TotalFloat { 
-			get { return @TotalFloat; } 
  
+			get { return @TotalFloat; } 
 			set { TotalFloat = value;}
 		}	
 		bool? IIfcScheduleTimeControl.IsCritical { 
-			get { return @IsCritical; } 
  
+			get { return @IsCritical; } 
 			set { IsCritical = value;}
 		}	
 		IIfcDateTimeSelect IIfcScheduleTimeControl.StatusTime { 
+ 
+ 
 			get { return @StatusTime; } 
- 
- 
 			set { StatusTime = value as IfcDateTimeSelect;}
 		}	
 		IfcTimeMeasure? IIfcScheduleTimeControl.StartFloat { 
-			get { return @StartFloat; } 
  
+			get { return @StartFloat; } 
 			set { StartFloat = value;}
 		}	
 		IfcTimeMeasure? IIfcScheduleTimeControl.FinishFloat { 
-			get { return @FinishFloat; } 
  
+			get { return @FinishFloat; } 
 			set { FinishFloat = value;}
 		}	
 		IfcPositiveRatioMeasure? IIfcScheduleTimeControl.Completion { 
-			get { return @Completion; } 
  
+			get { return @Completion; } 
 			set { Completion = value;}
 		}	
 		 
@@ -163,7 +163,6 @@ namespace Xbim.Ifc2x3.ProcessExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcScheduleTimeControl(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -563,7 +562,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcInteger @Width { get;  set; }
 		IfcInteger @Height { get;  set; }
 		IfcInteger @ColourComponents { get;  set; }
-		IEnumerable<long> @Pixel { get; }
+		IItemSet<long> @Pixel { get; }
 	
 	}
 }
@@ -42,21 +42,21 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	{
 		#region IIfcPixelTexture explicit implementation
 		IfcInteger IIfcPixelTexture.Width { 
-			get { return @Width; } 
  
+			get { return @Width; } 
 			set { Width = value;}
 		}	
 		IfcInteger IIfcPixelTexture.Height { 
-			get { return @Height; } 
  
+			get { return @Height; } 
 			set { Height = value;}
 		}	
 		IfcInteger IIfcPixelTexture.ColourComponents { 
-			get { return @ColourComponents; } 
  
+			get { return @ColourComponents; } 
 			set { ColourComponents = value;}
 		}	
-		IEnumerable<long> IIfcPixelTexture.Pixel { 
+		IItemSet<long> IIfcPixelTexture.Pixel { 
 			get { return @Pixel; } 
 		}	
 		 
@@ -64,7 +64,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPixelTexture(IModel model) : base(model) 		{ 
-			Model = model; 
 			_pixel = new ItemSet<long>( this, 0,  8);
 		}
 
@@ -72,7 +71,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		private IfcInteger _width;
 		private IfcInteger _height;
 		private IfcInteger _colourComponents;
-		private ItemSet<long> _pixel;
+		private readonly ItemSet<long> _pixel;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -119,7 +118,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 8)]
-		public ItemSet<long> @Pixel 
+		public IItemSet<long> @Pixel 
 		{ 
 			get 
 			{
@@ -197,7 +196,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -40,19 +40,19 @@ namespace Xbim.CobieExpress
 	{
 		#region ICobieResource explicit implementation
 		string ICobieResource.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		string ICobieResource.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		ICobieResourceType ICobieResource.ResourceType { 
+ 
+ 
 			get { return @ResourceType; } 
- 
- 
 			set { ResourceType = value as CobieResourceType;}
 		}	
 		 
@@ -60,7 +60,6 @@ namespace Xbim.CobieExpress
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieResource(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -179,7 +178,7 @@ namespace Xbim.CobieExpress
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

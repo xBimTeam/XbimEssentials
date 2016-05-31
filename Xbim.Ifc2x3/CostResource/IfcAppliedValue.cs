@@ -51,37 +51,37 @@ namespace Xbim.Ifc2x3.CostResource
 	{
 		#region IIfcAppliedValue explicit implementation
 		IfcLabel? IIfcAppliedValue.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IfcText? IIfcAppliedValue.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		IIfcAppliedValueSelect IIfcAppliedValue.AppliedValue { 
+ 
+ 
 			get { return @AppliedValue; } 
- 
- 
 			set { AppliedValue = value as IfcAppliedValueSelect;}
 		}	
 		IIfcMeasureWithUnit IIfcAppliedValue.UnitBasis { 
+ 
+ 
 			get { return @UnitBasis; } 
- 
- 
 			set { UnitBasis = value as IfcMeasureWithUnit;}
 		}	
 		IIfcDateTimeSelect IIfcAppliedValue.ApplicableDate { 
+ 
+ 
 			get { return @ApplicableDate; } 
- 
- 
 			set { ApplicableDate = value as IfcDateTimeSelect;}
 		}	
 		IIfcDateTimeSelect IIfcAppliedValue.FixedUntilDate { 
+ 
+ 
 			get { return @FixedUntilDate; } 
- 
- 
 			set { FixedUntilDate = value as IfcDateTimeSelect;}
 		}	
 		 
@@ -394,7 +394,7 @@ namespace Xbim.Ifc2x3.CostResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

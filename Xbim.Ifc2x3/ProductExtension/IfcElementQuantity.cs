@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcElementQuantity : IIfcPropertySetDefinition
 	{
 		IfcLabel? @MethodOfMeasurement { get;  set; }
-		IEnumerable<IIfcPhysicalQuantity> @Quantities { get; }
+		IItemSet<IIfcPhysicalQuantity> @Quantities { get; }
 	
 	}
 }
@@ -42,25 +42,24 @@ namespace Xbim.Ifc2x3.ProductExtension
 	{
 		#region IIfcElementQuantity explicit implementation
 		IfcLabel? IIfcElementQuantity.MethodOfMeasurement { 
-			get { return @MethodOfMeasurement; } 
  
+			get { return @MethodOfMeasurement; } 
 			set { MethodOfMeasurement = value;}
 		}	
-		IEnumerable<IIfcPhysicalQuantity> IIfcElementQuantity.Quantities { 
-			get { return @Quantities; } 
+		IItemSet<IIfcPhysicalQuantity> IIfcElementQuantity.Quantities { 
+			get { return new Common.Collections.ProxyItemSet<IfcPhysicalQuantity, IIfcPhysicalQuantity>( @Quantities); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcElementQuantity(IModel model) : base(model) 		{ 
-			Model = model; 
 			_quantities = new ItemSet<IfcPhysicalQuantity>( this, 0,  6);
 		}
 
 		#region Explicit attribute fields
 		private IfcLabel? _methodOfMeasurement;
-		private ItemSet<IfcPhysicalQuantity> _quantities;
+		private readonly ItemSet<IfcPhysicalQuantity> _quantities;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -79,7 +78,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 9)]
-		public ItemSet<IfcPhysicalQuantity> @Quantities 
+		public IItemSet<IfcPhysicalQuantity> @Quantities 
 		{ 
 			get 
 			{
@@ -151,7 +150,7 @@ namespace Xbim.Ifc2x3.ProductExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

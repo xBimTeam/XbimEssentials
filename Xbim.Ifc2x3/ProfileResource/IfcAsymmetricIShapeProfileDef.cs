@@ -42,23 +42,23 @@ namespace Xbim.Ifc2x3.ProfileResource
 	{
 		#region IIfcAsymmetricIShapeProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.TopFlangeWidth { 
-			get { return @TopFlangeWidth; } 
  
+			get { return @TopFlangeWidth; } 
 			set { TopFlangeWidth = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeThickness { 
-			get { return @TopFlangeThickness; } 
  
+			get { return @TopFlangeThickness; } 
 			set { TopFlangeThickness = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeFilletRadius { 
-			get { return @TopFlangeFilletRadius; } 
  
+			get { return @TopFlangeFilletRadius; } 
 			set { TopFlangeFilletRadius = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.CentreOfGravityInY { 
-			get { return @CentreOfGravityInY; } 
  
+			get { return @CentreOfGravityInY; } 
 			set { CentreOfGravityInY = value;}
 		}	
 		 
@@ -66,7 +66,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAsymmetricIShapeProfileDef(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -206,7 +205,7 @@ namespace Xbim.Ifc2x3.ProfileResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

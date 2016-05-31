@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRationalBezierCurve : IIfcBezierCurve
 	{
-		IEnumerable<double> @WeightsData { get; }
+		IItemSet<double> @WeightsData { get; }
 		List<double> @Weights  { get ; }
 	
 	}
@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 	public  partial class @IfcRationalBezierCurve : IfcBezierCurve, IInstantiableEntity, IIfcRationalBezierCurve, IContainsEntityReferences, IEquatable<@IfcRationalBezierCurve>
 	{
 		#region IIfcRationalBezierCurve explicit implementation
-		IEnumerable<double> IIfcRationalBezierCurve.WeightsData { 
+		IItemSet<double> IIfcRationalBezierCurve.WeightsData { 
 			get { return @WeightsData; } 
 		}	
 		 
@@ -46,17 +46,16 @@ namespace Xbim.Ifc2x3.GeometryResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRationalBezierCurve(IModel model) : base(model) 		{ 
-			Model = model; 
 			_weightsData = new ItemSet<double>( this, 0,  6);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<double> _weightsData;
+		private readonly ItemSet<double> _weightsData;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1, 8)]
-		public ItemSet<double> @WeightsData 
+		public IItemSet<double> @WeightsData 
 		{ 
 			get 
 			{
@@ -139,7 +138,7 @@ namespace Xbim.Ifc2x3.GeometryResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

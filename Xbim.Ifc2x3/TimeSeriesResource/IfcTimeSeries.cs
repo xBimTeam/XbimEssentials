@@ -52,46 +52,46 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 	{
 		#region IIfcTimeSeries explicit implementation
 		IfcLabel IIfcTimeSeries.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IfcText? IIfcTimeSeries.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		IIfcDateTimeSelect IIfcTimeSeries.StartTime { 
+ 
+ 
 			get { return @StartTime; } 
- 
- 
 			set { StartTime = value as IfcDateTimeSelect;}
 		}	
 		IIfcDateTimeSelect IIfcTimeSeries.EndTime { 
+ 
+ 
 			get { return @EndTime; } 
- 
- 
 			set { EndTime = value as IfcDateTimeSelect;}
 		}	
 		IfcTimeSeriesDataTypeEnum IIfcTimeSeries.TimeSeriesDataType { 
-			get { return @TimeSeriesDataType; } 
  
+			get { return @TimeSeriesDataType; } 
 			set { TimeSeriesDataType = value;}
 		}	
 		IfcDataOriginEnum IIfcTimeSeries.DataOrigin { 
-			get { return @DataOrigin; } 
  
+			get { return @DataOrigin; } 
 			set { DataOrigin = value;}
 		}	
 		IfcLabel? IIfcTimeSeries.UserDefinedDataOrigin { 
-			get { return @UserDefinedDataOrigin; } 
  
+			get { return @UserDefinedDataOrigin; } 
 			set { UserDefinedDataOrigin = value;}
 		}	
 		IIfcUnit IIfcTimeSeries.Unit { 
+ 
+ 
 			get { return @Unit; } 
- 
- 
 			set { Unit = value as IfcUnit;}
 		}	
 		 
@@ -420,7 +420,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

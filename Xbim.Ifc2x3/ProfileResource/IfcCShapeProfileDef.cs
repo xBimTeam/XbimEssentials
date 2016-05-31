@@ -44,33 +44,33 @@ namespace Xbim.Ifc2x3.ProfileResource
 	{
 		#region IIfcCShapeProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcCShapeProfileDef.Depth { 
-			get { return @Depth; } 
  
+			get { return @Depth; } 
 			set { Depth = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcCShapeProfileDef.Width { 
-			get { return @Width; } 
  
+			get { return @Width; } 
 			set { Width = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcCShapeProfileDef.WallThickness { 
-			get { return @WallThickness; } 
  
+			get { return @WallThickness; } 
 			set { WallThickness = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcCShapeProfileDef.Girth { 
-			get { return @Girth; } 
  
+			get { return @Girth; } 
 			set { Girth = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcCShapeProfileDef.InternalFilletRadius { 
-			get { return @InternalFilletRadius; } 
  
+			get { return @InternalFilletRadius; } 
 			set { InternalFilletRadius = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcCShapeProfileDef.CentreOfGravityInX { 
-			get { return @CentreOfGravityInX; } 
  
+			get { return @CentreOfGravityInX; } 
 			set { CentreOfGravityInX = value;}
 		}	
 		 
@@ -78,7 +78,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCShapeProfileDef(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -249,7 +248,7 @@ namespace Xbim.Ifc2x3.ProfileResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

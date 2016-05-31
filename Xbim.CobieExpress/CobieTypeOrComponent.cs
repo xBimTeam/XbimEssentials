@@ -25,7 +25,7 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieTypeOrComponent : ICobieAsset
 	{
-		IEnumerable<ICobieTypeOrComponent> @AssemblyOf { get; }
+		IItemSet<ICobieTypeOrComponent> @AssemblyOf { get; }
 		IEnumerable<ICobieConnection> @Connecting {  get; }
 		IEnumerable<ICobieConnection> @ConnectedBefore {  get; }
 		IEnumerable<ICobieConnection> @ConnectedAfter {  get; }
@@ -40,8 +40,8 @@ namespace Xbim.CobieExpress
 	public abstract partial class @CobieTypeOrComponent : CobieAsset, ICobieTypeOrComponent, IEquatable<@CobieTypeOrComponent>
 	{
 		#region ICobieTypeOrComponent explicit implementation
-		IEnumerable<ICobieTypeOrComponent> ICobieTypeOrComponent.AssemblyOf { 
-			get { return @AssemblyOf; } 
+		IItemSet<ICobieTypeOrComponent> ICobieTypeOrComponent.AssemblyOf { 
+			get { return new Common.Collections.ProxyItemSet<CobieTypeOrComponent, ICobieTypeOrComponent>( @AssemblyOf); } 
 		}	
 		 
 		IEnumerable<ICobieConnection> ICobieTypeOrComponent.Connecting {  get { return @Connecting; } }
@@ -51,17 +51,16 @@ namespace Xbim.CobieExpress
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieTypeOrComponent(IModel model) : base(model) 		{ 
-			Model = model; 
 			_assemblyOf = new OptionalItemSet<CobieTypeOrComponent>( this, 0,  13);
 		}
 
 		#region Explicit attribute fields
-		private OptionalItemSet<CobieTypeOrComponent> _assemblyOf;
+		private readonly OptionalItemSet<CobieTypeOrComponent> _assemblyOf;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 15)]
-		public OptionalItemSet<CobieTypeOrComponent> @AssemblyOf 
+		public IOptionalItemSet<CobieTypeOrComponent> @AssemblyOf 
 		{ 
 			get 
 			{
@@ -167,7 +166,7 @@ namespace Xbim.CobieExpress
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

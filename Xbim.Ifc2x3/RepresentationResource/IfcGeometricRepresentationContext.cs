@@ -43,25 +43,25 @@ namespace Xbim.Ifc2x3.RepresentationResource
 	{
 		#region IIfcGeometricRepresentationContext explicit implementation
 		IfcDimensionCount IIfcGeometricRepresentationContext.CoordinateSpaceDimension { 
-			get { return @CoordinateSpaceDimension; } 
  
+			get { return @CoordinateSpaceDimension; } 
 			set { CoordinateSpaceDimension = value;}
 		}	
 		double? IIfcGeometricRepresentationContext.Precision { 
-			get { return @Precision; } 
  
+			get { return @Precision; } 
 			set { Precision = value;}
 		}	
 		IIfcAxis2Placement IIfcGeometricRepresentationContext.WorldCoordinateSystem { 
+ 
+ 
 			get { return @WorldCoordinateSystem; } 
- 
- 
 			set { WorldCoordinateSystem = value as IfcAxis2Placement;}
 		}	
 		IIfcDirection IIfcGeometricRepresentationContext.TrueNorth { 
+ 
+ 
 			get { return @TrueNorth; } 
- 
- 
 			set { TrueNorth = value as IfcDirection;}
 		}	
 		 
@@ -70,7 +70,6 @@ namespace Xbim.Ifc2x3.RepresentationResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGeometricRepresentationContext(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -215,7 +214,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

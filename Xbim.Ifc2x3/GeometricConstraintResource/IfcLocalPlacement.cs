@@ -40,15 +40,15 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 	{
 		#region IIfcLocalPlacement explicit implementation
 		IIfcObjectPlacement IIfcLocalPlacement.PlacementRelTo { 
+ 
+ 
 			get { return @PlacementRelTo; } 
- 
- 
 			set { PlacementRelTo = value as IfcObjectPlacement;}
 		}	
 		IIfcAxis2Placement IIfcLocalPlacement.RelativePlacement { 
+ 
+ 
 			get { return @RelativePlacement; } 
- 
- 
 			set { RelativePlacement = value as IfcAxis2Placement;}
 		}	
 		 
@@ -56,7 +56,6 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLocalPlacement(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -151,7 +150,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

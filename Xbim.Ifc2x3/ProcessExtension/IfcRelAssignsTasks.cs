@@ -39,9 +39,9 @@ namespace Xbim.Ifc2x3.ProcessExtension
 	{
 		#region IIfcRelAssignsTasks explicit implementation
 		IIfcScheduleTimeControl IIfcRelAssignsTasks.TimeForTask { 
+ 
+ 
 			get { return @TimeForTask; } 
- 
- 
 			set { TimeForTask = value as IfcScheduleTimeControl;}
 		}	
 		 
@@ -49,7 +49,6 @@ namespace Xbim.Ifc2x3.ProcessExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssignsTasks(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -135,7 +134,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

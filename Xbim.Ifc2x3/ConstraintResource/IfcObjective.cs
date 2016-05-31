@@ -42,25 +42,25 @@ namespace Xbim.Ifc2x3.ConstraintResource
 	{
 		#region IIfcObjective explicit implementation
 		IIfcMetric IIfcObjective.BenchmarkValues { 
+ 
+ 
 			get { return @BenchmarkValues; } 
- 
- 
 			set { BenchmarkValues = value as IfcMetric;}
 		}	
 		IIfcMetric IIfcObjective.ResultValues { 
+ 
+ 
 			get { return @ResultValues; } 
- 
- 
 			set { ResultValues = value as IfcMetric;}
 		}	
 		IfcObjectiveEnum IIfcObjective.ObjectiveQualifier { 
-			get { return @ObjectiveQualifier; } 
  
+			get { return @ObjectiveQualifier; } 
 			set { ObjectiveQualifier = value;}
 		}	
 		IfcLabel? IIfcObjective.UserDefinedQualifier { 
-			get { return @UserDefinedQualifier; } 
  
+			get { return @UserDefinedQualifier; } 
 			set { UserDefinedQualifier = value;}
 		}	
 		 
@@ -68,7 +68,6 @@ namespace Xbim.Ifc2x3.ConstraintResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcObjective(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -207,7 +206,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

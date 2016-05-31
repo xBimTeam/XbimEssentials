@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcFace : IIfcTopologicalRepresentationItem
 	{
-		IEnumerable<IIfcFaceBound> @Bounds { get; }
+		IItemSet<IIfcFaceBound> @Bounds { get; }
 	
 	}
 }
@@ -37,25 +37,24 @@ namespace Xbim.Ifc2x3.TopologyResource
 	public  partial class @IfcFace : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcFace, IContainsEntityReferences, IEquatable<@IfcFace>
 	{
 		#region IIfcFace explicit implementation
-		IEnumerable<IIfcFaceBound> IIfcFace.Bounds { 
-			get { return @Bounds; } 
+		IItemSet<IIfcFaceBound> IIfcFace.Bounds { 
+			get { return new Common.Collections.ProxyItemSet<IfcFaceBound, IIfcFaceBound>( @Bounds); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFace(IModel model) : base(model) 		{ 
-			Model = model; 
 			_bounds = new ItemSet<IfcFaceBound>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcFaceBound> _bounds;
+		private readonly ItemSet<IfcFaceBound> _bounds;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 3)]
-		public ItemSet<IfcFaceBound> @Bounds 
+		public IItemSet<IfcFaceBound> @Bounds 
 		{ 
 			get 
 			{
@@ -118,7 +117,7 @@ namespace Xbim.Ifc2x3.TopologyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

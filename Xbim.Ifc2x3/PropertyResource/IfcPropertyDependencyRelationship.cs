@@ -45,30 +45,30 @@ namespace Xbim.Ifc2x3.PropertyResource
 	{
 		#region IIfcPropertyDependencyRelationship explicit implementation
 		IIfcProperty IIfcPropertyDependencyRelationship.DependingProperty { 
+ 
+ 
 			get { return @DependingProperty; } 
- 
- 
 			set { DependingProperty = value as IfcProperty;}
 		}	
 		IIfcProperty IIfcPropertyDependencyRelationship.DependantProperty { 
+ 
+ 
 			get { return @DependantProperty; } 
- 
- 
 			set { DependantProperty = value as IfcProperty;}
 		}	
 		IfcLabel? IIfcPropertyDependencyRelationship.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IfcText? IIfcPropertyDependencyRelationship.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		IfcText? IIfcPropertyDependencyRelationship.Expression { 
-			get { return @Expression; } 
  
+			get { return @Expression; } 
 			set { Expression = value;}
 		}	
 		 
@@ -333,7 +333,7 @@ namespace Xbim.Ifc2x3.PropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

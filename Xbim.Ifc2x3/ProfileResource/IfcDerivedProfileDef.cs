@@ -42,20 +42,20 @@ namespace Xbim.Ifc2x3.ProfileResource
 	{
 		#region IIfcDerivedProfileDef explicit implementation
 		IIfcProfileDef IIfcDerivedProfileDef.ParentProfile { 
+ 
+ 
 			get { return @ParentProfile; } 
- 
- 
 			set { ParentProfile = value as IfcProfileDef;}
 		}	
 		IIfcCartesianTransformationOperator2D IIfcDerivedProfileDef.Operator { 
+ 
+ 
 			get { return @Operator; } 
- 
- 
 			set { Operator = value as IfcCartesianTransformationOperator2D;}
 		}	
 		IfcLabel? IIfcDerivedProfileDef.Label { 
-			get { return @Label; } 
  
+			get { return @Label; } 
 			set { Label = value;}
 		}	
 		 
@@ -63,7 +63,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDerivedProfileDef(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -179,7 +178,7 @@ namespace Xbim.Ifc2x3.ProfileResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

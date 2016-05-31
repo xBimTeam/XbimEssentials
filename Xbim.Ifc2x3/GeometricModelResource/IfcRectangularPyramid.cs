@@ -41,18 +41,18 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 	{
 		#region IIfcRectangularPyramid explicit implementation
 		IfcPositiveLengthMeasure IIfcRectangularPyramid.XLength { 
-			get { return @XLength; } 
  
+			get { return @XLength; } 
 			set { XLength = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcRectangularPyramid.YLength { 
-			get { return @YLength; } 
  
+			get { return @YLength; } 
 			set { YLength = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcRectangularPyramid.Height { 
-			get { return @Height; } 
  
+			get { return @Height; } 
 			set { Height = value;}
 		}	
 		 
@@ -60,7 +60,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRectangularPyramid(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -175,7 +174,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

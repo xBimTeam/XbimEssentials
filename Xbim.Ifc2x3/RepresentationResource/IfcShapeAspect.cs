@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcShapeAspect : IPersistEntity
 	{
-		IEnumerable<IIfcShapeModel> @ShapeRepresentations { get; }
+		IItemSet<IIfcShapeModel> @ShapeRepresentations { get; }
 		IfcLabel? @Name { get;  set; }
 		IfcText? @Description { get;  set; }
 		bool? @ProductDefinitional { get;  set; }
@@ -44,28 +44,28 @@ namespace Xbim.Ifc2x3.RepresentationResource
 	public  partial class @IfcShapeAspect : INotifyPropertyChanged, IInstantiableEntity, IIfcShapeAspect, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcShapeAspect>
 	{
 		#region IIfcShapeAspect explicit implementation
-		IEnumerable<IIfcShapeModel> IIfcShapeAspect.ShapeRepresentations { 
-			get { return @ShapeRepresentations; } 
+		IItemSet<IIfcShapeModel> IIfcShapeAspect.ShapeRepresentations { 
+			get { return new Common.Collections.ProxyItemSet<IfcShapeModel, IIfcShapeModel>( @ShapeRepresentations); } 
 		}	
 		IfcLabel? IIfcShapeAspect.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IfcText? IIfcShapeAspect.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		bool? IIfcShapeAspect.ProductDefinitional { 
-			get { return @ProductDefinitional; } 
  
+			get { return @ProductDefinitional; } 
 			set { ProductDefinitional = value;}
 		}	
 		IIfcProductDefinitionShape IIfcShapeAspect.PartOfProductDefinitionShape { 
+ 
+ 
 			get { return @PartOfProductDefinitionShape; } 
- 
- 
 			set { PartOfProductDefinitionShape = value as IfcProductDefinitionShape;}
 		}	
 		 
@@ -136,7 +136,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcShapeModel> _shapeRepresentations;
+		private readonly ItemSet<IfcShapeModel> _shapeRepresentations;
 		private IfcLabel? _name;
 		private IfcText? _description;
 		private bool? _productDefinitional;
@@ -146,7 +146,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 1)]
-		public ItemSet<IfcShapeModel> @ShapeRepresentations 
+		public IItemSet<IfcShapeModel> @ShapeRepresentations 
 		{ 
 			get 
 			{
@@ -327,7 +327,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

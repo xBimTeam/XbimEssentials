@@ -46,43 +46,43 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 	{
 		#region IIfcElectricalBaseProperties explicit implementation
 		IfcElectricCurrentEnum? IIfcElectricalBaseProperties.ElectricCurrentType { 
-			get { return @ElectricCurrentType; } 
  
+			get { return @ElectricCurrentType; } 
 			set { ElectricCurrentType = value;}
 		}	
 		IfcElectricVoltageMeasure IIfcElectricalBaseProperties.InputVoltage { 
-			get { return @InputVoltage; } 
  
+			get { return @InputVoltage; } 
 			set { InputVoltage = value;}
 		}	
 		IfcFrequencyMeasure IIfcElectricalBaseProperties.InputFrequency { 
-			get { return @InputFrequency; } 
  
+			get { return @InputFrequency; } 
 			set { InputFrequency = value;}
 		}	
 		IfcElectricCurrentMeasure? IIfcElectricalBaseProperties.FullLoadCurrent { 
-			get { return @FullLoadCurrent; } 
  
+			get { return @FullLoadCurrent; } 
 			set { FullLoadCurrent = value;}
 		}	
 		IfcElectricCurrentMeasure? IIfcElectricalBaseProperties.MinimumCircuitCurrent { 
-			get { return @MinimumCircuitCurrent; } 
  
+			get { return @MinimumCircuitCurrent; } 
 			set { MinimumCircuitCurrent = value;}
 		}	
 		IfcPowerMeasure? IIfcElectricalBaseProperties.MaximumPowerInput { 
-			get { return @MaximumPowerInput; } 
  
+			get { return @MaximumPowerInput; } 
 			set { MaximumPowerInput = value;}
 		}	
 		IfcPowerMeasure? IIfcElectricalBaseProperties.RatedPowerInput { 
-			get { return @RatedPowerInput; } 
  
+			get { return @RatedPowerInput; } 
 			set { RatedPowerInput = value;}
 		}	
 		long IIfcElectricalBaseProperties.InputPhase { 
-			get { return @InputPhase; } 
  
+			get { return @InputPhase; } 
 			set { InputPhase = value;}
 		}	
 		 
@@ -90,7 +90,6 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcElectricalBaseProperties(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -300,7 +299,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

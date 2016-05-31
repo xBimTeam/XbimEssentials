@@ -51,39 +51,39 @@ namespace Xbim.Ifc2x3.ApprovalResource
 	{
 		#region IIfcApproval explicit implementation
 		IfcText? IIfcApproval.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		IIfcDateTimeSelect IIfcApproval.ApprovalDateTime { 
+ 
+ 
 			get { return @ApprovalDateTime; } 
- 
- 
 			set { ApprovalDateTime = value as IfcDateTimeSelect;}
 		}	
 		IfcLabel? IIfcApproval.ApprovalStatus { 
-			get { return @ApprovalStatus; } 
  
+			get { return @ApprovalStatus; } 
 			set { ApprovalStatus = value;}
 		}	
 		IfcLabel? IIfcApproval.ApprovalLevel { 
-			get { return @ApprovalLevel; } 
  
+			get { return @ApprovalLevel; } 
 			set { ApprovalLevel = value;}
 		}	
 		IfcText? IIfcApproval.ApprovalQualifier { 
-			get { return @ApprovalQualifier; } 
  
+			get { return @ApprovalQualifier; } 
 			set { ApprovalQualifier = value;}
 		}	
 		IfcLabel IIfcApproval.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IfcIdentifier IIfcApproval.Identifier { 
-			get { return @Identifier; } 
  
+			get { return @Identifier; } 
 			set { Identifier = value;}
 		}	
 		 
@@ -414,7 +414,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

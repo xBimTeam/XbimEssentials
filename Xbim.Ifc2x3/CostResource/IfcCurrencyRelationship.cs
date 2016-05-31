@@ -47,32 +47,32 @@ namespace Xbim.Ifc2x3.CostResource
 	{
 		#region IIfcCurrencyRelationship explicit implementation
 		IIfcMonetaryUnit IIfcCurrencyRelationship.RelatingMonetaryUnit { 
+ 
+ 
 			get { return @RelatingMonetaryUnit; } 
- 
- 
 			set { RelatingMonetaryUnit = value as IfcMonetaryUnit;}
 		}	
 		IIfcMonetaryUnit IIfcCurrencyRelationship.RelatedMonetaryUnit { 
+ 
+ 
 			get { return @RelatedMonetaryUnit; } 
- 
- 
 			set { RelatedMonetaryUnit = value as IfcMonetaryUnit;}
 		}	
 		IfcPositiveRatioMeasure IIfcCurrencyRelationship.ExchangeRate { 
-			get { return @ExchangeRate; } 
  
+			get { return @ExchangeRate; } 
 			set { ExchangeRate = value;}
 		}	
 		IIfcDateAndTime IIfcCurrencyRelationship.RateDateTime { 
+ 
+ 
 			get { return @RateDateTime; } 
- 
- 
 			set { RateDateTime = value as IfcDateAndTime;}
 		}	
 		IIfcLibraryInformation IIfcCurrencyRelationship.RateSource { 
+ 
+ 
 			get { return @RateSource; } 
- 
- 
 			set { RateSource = value as IfcLibraryInformation;}
 		}	
 		 
@@ -335,7 +335,7 @@ namespace Xbim.Ifc2x3.CostResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

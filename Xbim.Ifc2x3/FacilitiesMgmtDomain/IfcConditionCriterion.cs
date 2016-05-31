@@ -41,15 +41,15 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 	{
 		#region IIfcConditionCriterion explicit implementation
 		IIfcConditionCriterionSelect IIfcConditionCriterion.Criterion { 
+ 
+ 
 			get { return @Criterion; } 
- 
- 
 			set { Criterion = value as IfcConditionCriterionSelect;}
 		}	
 		IIfcDateTimeSelect IIfcConditionCriterion.CriterionDateTime { 
+ 
+ 
 			get { return @CriterionDateTime; } 
- 
- 
 			set { CriterionDateTime = value as IfcDateTimeSelect;}
 		}	
 		 
@@ -57,7 +57,6 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConditionCriterion(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -158,7 +157,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

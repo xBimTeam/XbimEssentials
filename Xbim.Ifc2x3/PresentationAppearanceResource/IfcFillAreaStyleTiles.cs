@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcFillAreaStyleTiles : IIfcGeometricRepresentationItem, IfcFillStyleSelect
 	{
 		IIfcOneDirectionRepeatFactor @TilingPattern { get;  set; }
-		IEnumerable<IIfcFillAreaStyleTileShapeSelect> @Tiles { get; }
+		IItemSet<IIfcFillAreaStyleTileShapeSelect> @Tiles { get; }
 		IfcPositiveRatioMeasure @TilingScale { get;  set; }
 	
 	}
@@ -42,17 +42,17 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	{
 		#region IIfcFillAreaStyleTiles explicit implementation
 		IIfcOneDirectionRepeatFactor IIfcFillAreaStyleTiles.TilingPattern { 
+ 
+ 
 			get { return @TilingPattern; } 
- 
- 
 			set { TilingPattern = value as IfcOneDirectionRepeatFactor;}
 		}	
-		IEnumerable<IIfcFillAreaStyleTileShapeSelect> IIfcFillAreaStyleTiles.Tiles { 
-			get { return @Tiles; } 
+		IItemSet<IIfcFillAreaStyleTileShapeSelect> IIfcFillAreaStyleTiles.Tiles { 
+			get { return new Common.Collections.ProxyItemSet<IfcFillAreaStyleTileShapeSelect, IIfcFillAreaStyleTileShapeSelect>( @Tiles); } 
 		}	
 		IfcPositiveRatioMeasure IIfcFillAreaStyleTiles.TilingScale { 
-			get { return @TilingScale; } 
  
+			get { return @TilingScale; } 
 			set { TilingScale = value;}
 		}	
 		 
@@ -60,13 +60,12 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFillAreaStyleTiles(IModel model) : base(model) 		{ 
-			Model = model; 
 			_tiles = new ItemSet<IfcFillAreaStyleTileShapeSelect>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
 		private IfcOneDirectionRepeatFactor _tilingPattern;
-		private ItemSet<IfcFillAreaStyleTileShapeSelect> _tiles;
+		private readonly ItemSet<IfcFillAreaStyleTileShapeSelect> _tiles;
 		private IfcPositiveRatioMeasure _tilingScale;
 		#endregion
 	
@@ -86,7 +85,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
-		public ItemSet<IfcFillAreaStyleTileShapeSelect> @Tiles 
+		public IItemSet<IfcFillAreaStyleTileShapeSelect> @Tiles 
 		{ 
 			get 
 			{
@@ -169,7 +168,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

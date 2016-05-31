@@ -41,13 +41,13 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 	{
 		#region IIfcElectricDistributionPoint explicit implementation
 		IfcElectricDistributionPointFunctionEnum IIfcElectricDistributionPoint.DistributionPointFunction { 
-			get { return @DistributionPointFunction; } 
  
+			get { return @DistributionPointFunction; } 
 			set { DistributionPointFunction = value;}
 		}	
 		IfcLabel? IIfcElectricDistributionPoint.UserDefinedFunction { 
-			get { return @UserDefinedFunction; } 
  
+			get { return @UserDefinedFunction; } 
 			set { UserDefinedFunction = value;}
 		}	
 		 
@@ -55,7 +55,6 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcElectricDistributionPoint(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -159,7 +158,7 @@ namespace Xbim.Ifc2x3.ElectricalDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

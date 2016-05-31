@@ -44,25 +44,25 @@ namespace Xbim.Ifc2x3.ApprovalResource
 	{
 		#region IIfcApprovalRelationship explicit implementation
 		IIfcApproval IIfcApprovalRelationship.RelatedApproval { 
+ 
+ 
 			get { return @RelatedApproval; } 
- 
- 
 			set { RelatedApproval = value as IfcApproval;}
 		}	
 		IIfcApproval IIfcApprovalRelationship.RelatingApproval { 
+ 
+ 
 			get { return @RelatingApproval; } 
- 
- 
 			set { RelatingApproval = value as IfcApproval;}
 		}	
 		IfcText? IIfcApprovalRelationship.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		IfcLabel IIfcApprovalRelationship.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		 
@@ -309,7 +309,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

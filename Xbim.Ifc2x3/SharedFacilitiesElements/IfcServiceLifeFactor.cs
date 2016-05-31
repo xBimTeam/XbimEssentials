@@ -43,26 +43,26 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 	{
 		#region IIfcServiceLifeFactor explicit implementation
 		IfcServiceLifeFactorTypeEnum IIfcServiceLifeFactor.PredefinedType { 
-			get { return @PredefinedType; } 
  
+			get { return @PredefinedType; } 
 			set { PredefinedType = value;}
 		}	
 		IIfcMeasureValue IIfcServiceLifeFactor.UpperValue { 
+ 
+ 
 			get { return @UpperValue; } 
- 
- 
 			set { UpperValue = value as IfcMeasureValue;}
 		}	
 		IIfcMeasureValue IIfcServiceLifeFactor.MostUsedValue { 
+ 
+ 
 			get { return @MostUsedValue; } 
- 
- 
 			set { MostUsedValue = value as IfcMeasureValue;}
 		}	
 		IIfcMeasureValue IIfcServiceLifeFactor.LowerValue { 
+ 
+ 
 			get { return @LowerValue; } 
- 
- 
 			set { LowerValue = value as IfcMeasureValue;}
 		}	
 		 
@@ -70,7 +70,6 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcServiceLifeFactor(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -206,7 +205,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConstructionMaterialResource : IIfcConstructionResource
 	{
-		IEnumerable<IIfcActorSelect> @Suppliers { get; }
+		IItemSet<IIfcActorSelect> @Suppliers { get; }
 		IfcRatioMeasure? @UsageRatio { get;  set; }
 	
 	}
@@ -40,12 +40,12 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 	public  partial class @IfcConstructionMaterialResource : IfcConstructionResource, IInstantiableEntity, IIfcConstructionMaterialResource, IContainsEntityReferences, IEquatable<@IfcConstructionMaterialResource>
 	{
 		#region IIfcConstructionMaterialResource explicit implementation
-		IEnumerable<IIfcActorSelect> IIfcConstructionMaterialResource.Suppliers { 
-			get { return @Suppliers; } 
+		IItemSet<IIfcActorSelect> IIfcConstructionMaterialResource.Suppliers { 
+			get { return new Common.Collections.ProxyItemSet<IfcActorSelect, IIfcActorSelect>( @Suppliers); } 
 		}	
 		IfcRatioMeasure? IIfcConstructionMaterialResource.UsageRatio { 
-			get { return @UsageRatio; } 
  
+			get { return @UsageRatio; } 
 			set { UsageRatio = value;}
 		}	
 		 
@@ -53,18 +53,17 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConstructionMaterialResource(IModel model) : base(model) 		{ 
-			Model = model; 
 			_suppliers = new OptionalItemSet<IfcActorSelect>( this, 0,  10);
 		}
 
 		#region Explicit attribute fields
-		private OptionalItemSet<IfcActorSelect> _suppliers;
+		private readonly OptionalItemSet<IfcActorSelect> _suppliers;
 		private IfcRatioMeasure? _usageRatio;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 16)]
-		public OptionalItemSet<IfcActorSelect> @Suppliers 
+		public IOptionalItemSet<IfcActorSelect> @Suppliers 
 		{ 
 			get 
 			{
@@ -155,7 +154,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -44,32 +44,32 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	{
 		#region IIfcFillAreaStyleHatching explicit implementation
 		IIfcCurveStyle IIfcFillAreaStyleHatching.HatchLineAppearance { 
+ 
+ 
 			get { return @HatchLineAppearance; } 
- 
- 
 			set { HatchLineAppearance = value as IfcCurveStyle;}
 		}	
 		IIfcHatchLineDistanceSelect IIfcFillAreaStyleHatching.StartOfNextHatchLine { 
+ 
+ 
 			get { return @StartOfNextHatchLine; } 
- 
- 
 			set { StartOfNextHatchLine = value as IfcHatchLineDistanceSelect;}
 		}	
 		IIfcCartesianPoint IIfcFillAreaStyleHatching.PointOfReferenceHatchLine { 
+ 
+ 
 			get { return @PointOfReferenceHatchLine; } 
- 
- 
 			set { PointOfReferenceHatchLine = value as IfcCartesianPoint;}
 		}	
 		IIfcCartesianPoint IIfcFillAreaStyleHatching.PatternStart { 
+ 
+ 
 			get { return @PatternStart; } 
- 
- 
 			set { PatternStart = value as IfcCartesianPoint;}
 		}	
 		IfcPlaneAngleMeasure IIfcFillAreaStyleHatching.HatchLineAngle { 
-			get { return @HatchLineAngle; } 
  
+			get { return @HatchLineAngle; } 
 			set { HatchLineAngle = value;}
 		}	
 		 
@@ -77,7 +77,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFillAreaStyleHatching(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -225,7 +224,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 
