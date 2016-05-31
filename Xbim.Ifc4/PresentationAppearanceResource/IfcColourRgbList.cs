@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcColourRgbList : IIfcPresentationItem
 	{
-		IEnumerable<IEnumerable<IfcNormalisedRatioMeasure>> @ColourList { get; }
+		IItemSet<IItemSet<IfcNormalisedRatioMeasure>> @ColourList { get; }
 	
 	}
 }
@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcColourRgbList : IfcPresentationItem, IInstantiableEntity, IIfcColourRgbList, IEquatable<@IfcColourRgbList>
 	{
 		#region IIfcColourRgbList explicit implementation
-		IEnumerable<IEnumerable<IfcNormalisedRatioMeasure>> IIfcColourRgbList.ColourList { 
+		IItemSet<IItemSet<IfcNormalisedRatioMeasure>> IIfcColourRgbList.ColourList { 
 			get { return @ColourList; } 
 		}	
 		 
@@ -47,17 +47,16 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcColourRgbList(IModel model) : base(model) 		{ 
-			Model = model; 
-			_colourList = new ItemSet<ItemSet<IfcNormalisedRatioMeasure>>( this, 0,  1);
+			_colourList = new ItemSet<IItemSet<IfcNormalisedRatioMeasure>>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<ItemSet<IfcNormalisedRatioMeasure>> _colourList;
+		private readonly ItemSet<IItemSet<IfcNormalisedRatioMeasure>> _colourList;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, 3, 3, 1)]
-		public ItemSet<ItemSet<IfcNormalisedRatioMeasure>> @ColourList 
+		public IItemSet<IItemSet<IfcNormalisedRatioMeasure>> @ColourList 
 		{ 
 			get 
 			{
@@ -78,8 +77,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			switch (propIndex)
 			{
 				case 0: 
-					_colourList
-						.InternalGetAt(nestedIndex[0])
+					((ItemSet<IfcNormalisedRatioMeasure>)_colourList
+						.InternalGetAt(nestedIndex[0]) )
 						.InternalAdd((IfcNormalisedRatioMeasure)(value.RealVal));
 					return;
 				default:
@@ -122,7 +121,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

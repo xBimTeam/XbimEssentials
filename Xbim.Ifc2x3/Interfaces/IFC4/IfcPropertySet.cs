@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcPropertySet : IIfcPropertySet
 	{
-		IEnumerable<IIfcProperty> IIfcPropertySet.HasProperties 
+		IItemSet<IIfcProperty> IIfcPropertySet.HasProperties 
 		{ 
 			get
 			{

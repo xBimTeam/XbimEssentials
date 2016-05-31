@@ -40,13 +40,13 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 	{
 		#region IIfcPile explicit implementation
 		IfcPileTypeEnum? IIfcPile.PredefinedType { 
-			get { return @PredefinedType; } 
  
+			get { return @PredefinedType; } 
 			set { PredefinedType = value;}
 		}	
 		IfcPileConstructionEnum? IIfcPile.ConstructionType { 
-			get { return @ConstructionType; } 
  
+			get { return @ConstructionType; } 
 			set { ConstructionType = value;}
 		}	
 		 
@@ -54,7 +54,6 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPile(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -158,7 +157,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

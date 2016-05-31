@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcResourceApprovalRelationship : IIfcResourceLevelRelationship
 	{
-		IEnumerable<IIfcResourceObjectSelect> @RelatedResourceObjects { get; }
+		IItemSet<IIfcResourceObjectSelect> @RelatedResourceObjects { get; }
 		IIfcApproval @RelatingApproval { get;  set; }
 	
 	}
@@ -39,13 +39,13 @@ namespace Xbim.Ifc4.ApprovalResource
 	public  partial class @IfcResourceApprovalRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcResourceApprovalRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcResourceApprovalRelationship>
 	{
 		#region IIfcResourceApprovalRelationship explicit implementation
-		IEnumerable<IIfcResourceObjectSelect> IIfcResourceApprovalRelationship.RelatedResourceObjects { 
-			get { return @RelatedResourceObjects; } 
+		IItemSet<IIfcResourceObjectSelect> IIfcResourceApprovalRelationship.RelatedResourceObjects { 
+			get { return new Common.Collections.ProxyItemSet<IfcResourceObjectSelect, IIfcResourceObjectSelect>( @RelatedResourceObjects); } 
 		}	
 		IIfcApproval IIfcResourceApprovalRelationship.RelatingApproval { 
+ 
+ 
 			get { return @RelatingApproval; } 
- 
- 
 			set { RelatingApproval = value as IfcApproval;}
 		}	
 		 
@@ -53,19 +53,18 @@ namespace Xbim.Ifc4.ApprovalResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcResourceApprovalRelationship(IModel model) : base(model) 		{ 
-			Model = model; 
 			_relatedResourceObjects = new ItemSet<IfcResourceObjectSelect>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcResourceObjectSelect> _relatedResourceObjects;
+		private readonly ItemSet<IfcResourceObjectSelect> _relatedResourceObjects;
 		private IfcApproval _relatingApproval;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 3)]
-		public ItemSet<IfcResourceObjectSelect> @RelatedResourceObjects 
+		public IItemSet<IfcResourceObjectSelect> @RelatedResourceObjects 
 		{ 
 			get 
 			{
@@ -150,7 +149,7 @@ namespace Xbim.Ifc4.ApprovalResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

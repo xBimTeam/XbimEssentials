@@ -47,46 +47,46 @@ namespace Xbim.Ifc4.Kernel
 	{
 		#region IIfcSimplePropertyTemplate explicit implementation
 		IfcSimplePropertyTemplateTypeEnum? IIfcSimplePropertyTemplate.TemplateType { 
-			get { return @TemplateType; } 
  
+			get { return @TemplateType; } 
 			set { TemplateType = value;}
 		}	
 		IfcLabel? IIfcSimplePropertyTemplate.PrimaryMeasureType { 
-			get { return @PrimaryMeasureType; } 
  
+			get { return @PrimaryMeasureType; } 
 			set { PrimaryMeasureType = value;}
 		}	
 		IfcLabel? IIfcSimplePropertyTemplate.SecondaryMeasureType { 
-			get { return @SecondaryMeasureType; } 
  
+			get { return @SecondaryMeasureType; } 
 			set { SecondaryMeasureType = value;}
 		}	
 		IIfcPropertyEnumeration IIfcSimplePropertyTemplate.Enumerators { 
+ 
+ 
 			get { return @Enumerators; } 
- 
- 
 			set { Enumerators = value as IfcPropertyEnumeration;}
 		}	
 		IIfcUnit IIfcSimplePropertyTemplate.PrimaryUnit { 
+ 
+ 
 			get { return @PrimaryUnit; } 
- 
- 
 			set { PrimaryUnit = value as IfcUnit;}
 		}	
 		IIfcUnit IIfcSimplePropertyTemplate.SecondaryUnit { 
+ 
+ 
 			get { return @SecondaryUnit; } 
- 
- 
 			set { SecondaryUnit = value as IfcUnit;}
 		}	
 		IfcLabel? IIfcSimplePropertyTemplate.Expression { 
-			get { return @Expression; } 
  
+			get { return @Expression; } 
 			set { Expression = value;}
 		}	
 		IfcStateEnum? IIfcSimplePropertyTemplate.AccessState { 
-			get { return @AccessState; } 
  
+			get { return @AccessState; } 
 			set { AccessState = value;}
 		}	
 		 
@@ -94,7 +94,6 @@ namespace Xbim.Ifc4.Kernel
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSimplePropertyTemplate(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -302,7 +301,7 @@ namespace Xbim.Ifc4.Kernel
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

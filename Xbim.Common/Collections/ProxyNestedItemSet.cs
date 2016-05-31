@@ -1,0 +1,311 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Linq;
+using Xbim.Common.Exceptions;
+
+namespace Xbim.Common.Collections
+{
+    public class ProxyNestedItemSet<TInner, TOuter> : IItemSet<IItemSet<TOuter>>, IList where TInner:TOuter
+    {
+        private readonly IItemSet<IItemSet<TInner>> _inner;
+        private IList List { get { return _inner as IList;} }
+
+        public ProxyNestedItemSet(IItemSet<IItemSet<TInner>> inner)
+        {
+            _inner = inner;
+            if(List == null)
+                throw  new XbimException("Inner list must implement IList");
+
+            _inner.PropertyChanged += InnerOnPropertyChanged;
+            _inner.CollectionChanged += InnerOnCollectionChanged;
+        }
+
+        private void InnerOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
+        {
+            OnCollectionChanged(notifyCollectionChangedEventArgs);
+        }
+
+        private void InnerOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+        {
+            OnPropertyChanged(propertyChangedEventArgs.PropertyName);
+        }
+
+        public IEnumerator<IItemSet<TOuter>> GetEnumerator()
+        {
+            return new ProxyNestedEnumerator<TInner, TOuter>(_inner.GetEnumerator());
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public void Add(IItemSet<TOuter> item)
+        {
+            _inner.Add(GetIn(item));
+        }
+
+        public int Add(object value)
+        {
+            var item = value as IItemSet<TOuter>;
+            return List.Add(item);
+        }
+
+        public bool Contains(object value)
+        {
+            return _inner.Contains(value);
+        }
+
+        void IList.Clear()
+        {
+            ((IList)_inner).Clear();
+        }
+
+        public int IndexOf(object value)
+        {
+            return List.IndexOf(value);
+        }
+
+        public void Insert(int index, object value)
+        {
+            List.Insert(index, value);
+        }
+
+        public void Remove(object value)
+        {
+            List.Remove(value);
+        }
+
+        void IList.RemoveAt(int index)
+        {
+            ((IList)_inner).RemoveAt(index);
+        }
+
+        object IList.this[int index]
+        {
+            get { return ((IList)_inner)[index]; }
+            set { ((IList)_inner)[index] = value; }
+        }
+
+        bool IList.IsReadOnly
+        {
+            get { return ((IList)_inner).IsReadOnly; }
+        }
+
+        public bool IsFixedSize
+        {
+            get { return ((IList)_inner).IsFixedSize; }
+        }
+
+        void ICollection<IItemSet<TOuter>>.Clear()
+        {
+            _inner.Clear();
+        }
+
+        public bool Contains(IItemSet<TOuter> item)
+        {
+            return _inner.Contains(GetIn(item));
+        }
+
+        public void CopyTo(IItemSet<TOuter>[] array, int arrayIndex)
+        {
+            var result = new IItemSet<TInner>[array.Length];
+            _inner.CopyTo(result, arrayIndex);
+            for (var i = 0; i < array.Length; i++)
+                array[i] = new ProxyItemSet<TInner, TOuter>(result[i]);
+        }
+
+        public bool Remove(IItemSet<TOuter> item)
+        {
+            Check(item);
+            return _inner.Remove(GetIn(item));
+        }
+
+        public void CopyTo(Array array, int index)
+        {
+            ((ICollection)_inner).CopyTo(array, index);
+        }
+
+        int ICollection.Count
+        {
+            get { return ((ICollection)_inner).Count; }
+        }
+
+        public object SyncRoot
+        {
+            get { return ((ICollection)_inner).SyncRoot; }
+        }
+
+        public bool IsSynchronized
+        {
+            get { return ((ICollection)_inner).IsSynchronized; }
+        }
+
+        int ICollection<IItemSet<TOuter>>.Count
+        {
+            get { return ((ICollection)_inner).Count; }
+        }
+
+        bool ICollection<IItemSet<TOuter>>.IsReadOnly
+        {
+            get { return ((IList)_inner).IsReadOnly; }
+        }
+
+        public int IndexOf(IItemSet<TOuter> item)
+        {
+            return _inner.IndexOf(GetIn(item));
+        }
+
+        public void Insert(int index, IItemSet<TOuter> item)
+        {
+            _inner.Insert(index, GetIn(item));
+        }
+
+        void IList<IItemSet<TOuter>>.RemoveAt(int index)
+        {
+            _inner.RemoveAt(index);
+        }
+
+        public IItemSet<TOuter> this[int index]
+        {
+            get { return new ProxyItemSet<TInner, TOuter>(_inner[index]); }
+            set
+            {
+                _inner[index] = GetIn(value);
+            }
+        }
+
+        public event NotifyCollectionChangedEventHandler CollectionChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public IPersistEntity OwningEntity
+        {
+            get { return _inner.OwningEntity; }
+        }
+
+
+
+        public void AddRange(IEnumerable<IItemSet<TOuter>> values)
+        {
+            _inner.AddRange(values.Cast<IItemSet<TInner>>());
+        }
+
+        public IItemSet<TOuter> First
+        {
+            get { return GetOut(_inner.First); }
+        }
+
+        public IItemSet<TOuter> FirstOrDefault()
+        {
+            return GetOut(_inner.FirstOrDefault());
+        }
+
+        public IItemSet<TOuter> FirstOrDefault(Func<IItemSet<TOuter>, bool> predicate)
+        {
+            var result =_inner.FirstOrDefault(i =>
+            {
+                var o = GetOut(i);
+                return predicate(o);
+            });
+
+            return result != null ? GetOut(result) : null;
+        }
+
+        public TF FirstOrDefault<TF>(Func<TF, bool> predicate)
+        {
+            return _inner.FirstOrDefault(predicate);
+        }
+
+        public IEnumerable<TW> Where<TW>(Func<TW, bool> predicate)
+        {
+            return _inner.Where(predicate);
+        }
+
+        public IEnumerable<TO> OfType<TO>()
+        {
+            return _inner.OfType<TO>();
+        }
+
+        private bool _disposed;
+
+        public void Dispose()
+        {
+            if (_disposed)
+                return;
+
+            _inner.PropertyChanged -= InnerOnPropertyChanged;
+            _inner.CollectionChanged -= InnerOnCollectionChanged;
+            _disposed = true;
+        }
+
+        // ReSharper disable once UnusedParameter.Local
+        private static void Check(IItemSet<TOuter> items)
+        {
+            if (!(items.All(i => i is TInner)))
+                throw new XbimException("Invalid type for underlying collection");
+        }
+
+        private static IItemSet<TInner> GetIn(IItemSet<TOuter> outer)
+        {
+            if (outer == null)
+                throw new XbimException("Invalid underlying collection");
+            Check(outer);
+            return (IItemSet<TInner>)outer;
+        }
+
+        private static IItemSet<TOuter> GetOut(IItemSet<TInner> inner)
+        {
+            return new ProxyItemSet<TInner,TOuter>(inner);
+        }
+
+        protected virtual void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
+        {
+            var handler = CollectionChanged;
+            if (handler != null) handler(this, e);
+        }
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            var handler = PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+
+    internal class ProxyNestedEnumerator<TInner, TOuter> : IEnumerator<IItemSet<TOuter>> where TInner : TOuter
+    {
+        private readonly IEnumerator<IItemSet<TInner>> _inner;
+
+        public ProxyNestedEnumerator(IEnumerator<IItemSet<TInner>> inner)
+        {
+            _inner = inner;
+        }
+
+        public void Dispose()
+        {
+            _inner.Dispose();
+        }
+
+        public bool MoveNext()
+        {
+            return _inner.MoveNext();
+        }
+
+        public void Reset()
+        {
+            _inner.Reset();
+        }
+
+        public IItemSet<TOuter> Current
+        {
+            get { return new ProxyItemSet<TInner, TOuter>(_inner.Current); }
+        }
+
+        object IEnumerator.Current
+        {
+            get { return Current; }
+        }
+    }
+}

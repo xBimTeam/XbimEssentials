@@ -43,15 +43,15 @@ namespace Xbim.Ifc4.MeasureResource
 	{
 		#region IIfcMeasureWithUnit explicit implementation
 		IIfcValue IIfcMeasureWithUnit.ValueComponent { 
+ 
+ 
 			get { return @ValueComponent; } 
- 
- 
 			set { ValueComponent = value as IfcValue;}
 		}	
 		IIfcUnit IIfcMeasureWithUnit.UnitComponent { 
+ 
+ 
 			get { return @UnitComponent; } 
- 
- 
 			set { UnitComponent = value as IfcUnit;}
 		}	
 		 
@@ -260,7 +260,7 @@ namespace Xbim.Ifc4.MeasureResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

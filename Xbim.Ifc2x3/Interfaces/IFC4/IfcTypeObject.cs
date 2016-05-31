@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Kernel
 				
 			}
 		}
-		IEnumerable<IIfcPropertySetDefinition> IIfcTypeObject.HasPropertySets 
+		IItemSet<IIfcPropertySetDefinition> IIfcTypeObject.HasPropertySets 
 		{ 
 			get
 			{

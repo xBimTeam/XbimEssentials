@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcEdgeLoop : IIfcLoop
 	{
-		IEnumerable<IIfcOrientedEdge> @EdgeList { get; }
+		IItemSet<IIfcOrientedEdge> @EdgeList { get; }
 		IfcInteger @Ne  { get ; }
 	
 	}
@@ -39,25 +39,24 @@ namespace Xbim.Ifc4.TopologyResource
 	public  partial class @IfcEdgeLoop : IfcLoop, IInstantiableEntity, IIfcEdgeLoop, IContainsEntityReferences, IEquatable<@IfcEdgeLoop>
 	{
 		#region IIfcEdgeLoop explicit implementation
-		IEnumerable<IIfcOrientedEdge> IIfcEdgeLoop.EdgeList { 
-			get { return @EdgeList; } 
+		IItemSet<IIfcOrientedEdge> IIfcEdgeLoop.EdgeList { 
+			get { return new Common.Collections.ProxyItemSet<IfcOrientedEdge, IIfcOrientedEdge>( @EdgeList); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcEdgeLoop(IModel model) : base(model) 		{ 
-			Model = model; 
 			_edgeList = new ItemSet<IfcOrientedEdge>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcOrientedEdge> _edgeList;
+		private readonly ItemSet<IfcOrientedEdge> _edgeList;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 3)]
-		public ItemSet<IfcOrientedEdge> @EdgeList 
+		public IItemSet<IfcOrientedEdge> @EdgeList 
 		{ 
 			get 
 			{
@@ -133,7 +132,7 @@ namespace Xbim.Ifc4.TopologyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

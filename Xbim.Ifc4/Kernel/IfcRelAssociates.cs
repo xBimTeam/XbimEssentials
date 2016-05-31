@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelAssociates : IIfcRelationship
 	{
-		IEnumerable<IIfcDefinitionSelect> @RelatedObjects { get; }
+		IItemSet<IIfcDefinitionSelect> @RelatedObjects { get; }
 	
 	}
 }
@@ -37,26 +37,25 @@ namespace Xbim.Ifc4.Kernel
 	public abstract partial class @IfcRelAssociates : IfcRelationship, IIfcRelAssociates, IEquatable<@IfcRelAssociates>
 	{
 		#region IIfcRelAssociates explicit implementation
-		IEnumerable<IIfcDefinitionSelect> IIfcRelAssociates.RelatedObjects { 
-			get { return @RelatedObjects; } 
+		IItemSet<IIfcDefinitionSelect> IIfcRelAssociates.RelatedObjects { 
+			get { return new Common.Collections.ProxyItemSet<IfcDefinitionSelect, IIfcDefinitionSelect>( @RelatedObjects); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssociates(IModel model) : base(model) 		{ 
-			Model = model; 
 			_relatedObjects = new ItemSet<IfcDefinitionSelect>( this, 0,  5);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcDefinitionSelect> _relatedObjects;
+		private readonly ItemSet<IfcDefinitionSelect> _relatedObjects;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 5)]
-		public ItemSet<IfcDefinitionSelect> @RelatedObjects 
+		public IItemSet<IfcDefinitionSelect> @RelatedObjects 
 		{ 
 			get 
 			{
@@ -125,7 +124,7 @@ namespace Xbim.Ifc4.Kernel
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

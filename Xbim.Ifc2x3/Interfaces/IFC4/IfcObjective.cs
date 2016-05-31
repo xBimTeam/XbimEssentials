@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 {
 	public partial class @IfcObjective : IIfcObjective
 	{
-		IEnumerable<IIfcConstraint> IIfcObjective.BenchmarkValues 
+		IItemSet<IIfcConstraint> IIfcObjective.BenchmarkValues 
 		{ 
 			get
 			{

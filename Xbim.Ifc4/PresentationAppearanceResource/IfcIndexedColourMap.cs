@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 		IIfcTessellatedFaceSet @MappedTo { get;  set; }
 		IfcNormalisedRatioMeasure? @Opacity { get;  set; }
 		IIfcColourRgbList @Colours { get;  set; }
-		IEnumerable<IfcPositiveInteger> @ColourIndex { get; }
+		IItemSet<IfcPositiveInteger> @ColourIndex { get; }
 	
 	}
 }
@@ -44,23 +44,23 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	{
 		#region IIfcIndexedColourMap explicit implementation
 		IIfcTessellatedFaceSet IIfcIndexedColourMap.MappedTo { 
+ 
+ 
 			get { return @MappedTo; } 
- 
- 
 			set { MappedTo = value as IfcTessellatedFaceSet;}
 		}	
 		IfcNormalisedRatioMeasure? IIfcIndexedColourMap.Opacity { 
-			get { return @Opacity; } 
  
+			get { return @Opacity; } 
 			set { Opacity = value;}
 		}	
 		IIfcColourRgbList IIfcIndexedColourMap.Colours { 
+ 
+ 
 			get { return @Colours; } 
- 
- 
 			set { Colours = value as IfcColourRgbList;}
 		}	
-		IEnumerable<IfcPositiveInteger> IIfcIndexedColourMap.ColourIndex { 
+		IItemSet<IfcPositiveInteger> IIfcIndexedColourMap.ColourIndex { 
 			get { return @ColourIndex; } 
 		}	
 		 
@@ -68,7 +68,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcIndexedColourMap(IModel model) : base(model) 		{ 
-			Model = model; 
 			_colourIndex = new ItemSet<IfcPositiveInteger>( this, 0,  4);
 		}
 
@@ -76,7 +75,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		private IfcTessellatedFaceSet _mappedTo;
 		private IfcNormalisedRatioMeasure? _opacity;
 		private IfcColourRgbList _colours;
-		private ItemSet<IfcPositiveInteger> _colourIndex;
+		private readonly ItemSet<IfcPositiveInteger> _colourIndex;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -124,7 +123,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 4)]
-		public ItemSet<IfcPositiveInteger> @ColourIndex 
+		public IItemSet<IfcPositiveInteger> @ColourIndex 
 		{ 
 			get 
 			{
@@ -196,7 +195,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

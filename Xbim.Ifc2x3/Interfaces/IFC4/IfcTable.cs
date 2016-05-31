@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 				
 			}
 		}
-		IEnumerable<IIfcTableRow> IIfcTable.Rows 
+		IItemSet<IIfcTableRow> IIfcTable.Rows 
 		{ 
 			get
 			{
@@ -44,7 +44,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 				}
 			} 
 		}
-		IEnumerable<IIfcTableColumn> IIfcTable.Columns 
+		IItemSet<IIfcTableColumn> IIfcTable.Columns 
 		{ 
 			get
 			{

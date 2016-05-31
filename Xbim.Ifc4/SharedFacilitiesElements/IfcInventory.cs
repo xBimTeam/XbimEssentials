@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IfcInventoryTypeEnum? @PredefinedType { get;  set; }
 		IIfcActorSelect @Jurisdiction { get;  set; }
-		IEnumerable<IIfcPerson> @ResponsiblePersons { get; }
+		IItemSet<IIfcPerson> @ResponsiblePersons { get; }
 		IfcDate? @LastUpdateDate { get;  set; }
 		IIfcCostValue @CurrentValue { get;  set; }
 		IIfcCostValue @OriginalValue { get;  set; }
@@ -47,34 +47,34 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 	{
 		#region IIfcInventory explicit implementation
 		IfcInventoryTypeEnum? IIfcInventory.PredefinedType { 
-			get { return @PredefinedType; } 
  
+			get { return @PredefinedType; } 
 			set { PredefinedType = value;}
 		}	
 		IIfcActorSelect IIfcInventory.Jurisdiction { 
+ 
+ 
 			get { return @Jurisdiction; } 
- 
- 
 			set { Jurisdiction = value as IfcActorSelect;}
 		}	
-		IEnumerable<IIfcPerson> IIfcInventory.ResponsiblePersons { 
-			get { return @ResponsiblePersons; } 
+		IItemSet<IIfcPerson> IIfcInventory.ResponsiblePersons { 
+			get { return new Common.Collections.ProxyItemSet<IfcPerson, IIfcPerson>( @ResponsiblePersons); } 
 		}	
 		IfcDate? IIfcInventory.LastUpdateDate { 
-			get { return @LastUpdateDate; } 
  
+			get { return @LastUpdateDate; } 
 			set { LastUpdateDate = value;}
 		}	
 		IIfcCostValue IIfcInventory.CurrentValue { 
+ 
+ 
 			get { return @CurrentValue; } 
- 
- 
 			set { CurrentValue = value as IfcCostValue;}
 		}	
 		IIfcCostValue IIfcInventory.OriginalValue { 
+ 
+ 
 			get { return @OriginalValue; } 
- 
- 
 			set { OriginalValue = value as IfcCostValue;}
 		}	
 		 
@@ -82,14 +82,13 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcInventory(IModel model) : base(model) 		{ 
-			Model = model; 
 			_responsiblePersons = new OptionalItemSet<IfcPerson>( this, 0,  8);
 		}
 
 		#region Explicit attribute fields
 		private IfcInventoryTypeEnum? _predefinedType;
 		private IfcActorSelect _jurisdiction;
-		private OptionalItemSet<IfcPerson> _responsiblePersons;
+		private readonly OptionalItemSet<IfcPerson> _responsiblePersons;
 		private IfcDate? _lastUpdateDate;
 		private IfcCostValue _currentValue;
 		private IfcCostValue _originalValue;
@@ -125,7 +124,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 20)]
-		public OptionalItemSet<IfcPerson> @ResponsiblePersons 
+		public IOptionalItemSet<IfcPerson> @ResponsiblePersons 
 		{ 
 			get 
 			{
@@ -252,7 +251,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

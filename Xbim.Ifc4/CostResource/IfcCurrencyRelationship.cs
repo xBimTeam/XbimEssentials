@@ -45,31 +45,31 @@ namespace Xbim.Ifc4.CostResource
 	{
 		#region IIfcCurrencyRelationship explicit implementation
 		IIfcMonetaryUnit IIfcCurrencyRelationship.RelatingMonetaryUnit { 
+ 
+ 
 			get { return @RelatingMonetaryUnit; } 
- 
- 
 			set { RelatingMonetaryUnit = value as IfcMonetaryUnit;}
 		}	
 		IIfcMonetaryUnit IIfcCurrencyRelationship.RelatedMonetaryUnit { 
+ 
+ 
 			get { return @RelatedMonetaryUnit; } 
- 
- 
 			set { RelatedMonetaryUnit = value as IfcMonetaryUnit;}
 		}	
 		IfcPositiveRatioMeasure IIfcCurrencyRelationship.ExchangeRate { 
-			get { return @ExchangeRate; } 
  
+			get { return @ExchangeRate; } 
 			set { ExchangeRate = value;}
 		}	
 		IfcDateTime? IIfcCurrencyRelationship.RateDateTime { 
-			get { return @RateDateTime; } 
  
+			get { return @RateDateTime; } 
 			set { RateDateTime = value;}
 		}	
 		IIfcLibraryInformation IIfcCurrencyRelationship.RateSource { 
+ 
+ 
 			get { return @RateSource; } 
- 
- 
 			set { RateSource = value as IfcLibraryInformation;}
 		}	
 		 
@@ -77,7 +77,6 @@ namespace Xbim.Ifc4.CostResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCurrencyRelationship(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -229,7 +228,7 @@ namespace Xbim.Ifc4.CostResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

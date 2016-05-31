@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcCompositeProfileDef : IIfcCompositeProfileDef
 	{
-		IEnumerable<IIfcProfileDef> IIfcCompositeProfileDef.Profiles 
+		IItemSet<IIfcProfileDef> IIfcCompositeProfileDef.Profiles 
 		{ 
 			get
 			{

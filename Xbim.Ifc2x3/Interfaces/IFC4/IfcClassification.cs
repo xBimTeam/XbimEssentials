@@ -113,7 +113,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcIdentifier> IIfcClassification.ReferenceTokens 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcIdentifier> IIfcClassification.ReferenceTokens 
 		{ 
 			get
 			{

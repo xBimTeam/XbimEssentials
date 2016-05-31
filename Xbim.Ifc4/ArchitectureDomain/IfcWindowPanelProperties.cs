@@ -45,29 +45,29 @@ namespace Xbim.Ifc4.ArchitectureDomain
 	{
 		#region IIfcWindowPanelProperties explicit implementation
 		IfcWindowPanelOperationEnum IIfcWindowPanelProperties.OperationType { 
-			get { return @OperationType; } 
  
+			get { return @OperationType; } 
 			set { OperationType = value;}
 		}	
 		IfcWindowPanelPositionEnum IIfcWindowPanelProperties.PanelPosition { 
-			get { return @PanelPosition; } 
  
+			get { return @PanelPosition; } 
 			set { PanelPosition = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcWindowPanelProperties.FrameDepth { 
-			get { return @FrameDepth; } 
  
+			get { return @FrameDepth; } 
 			set { FrameDepth = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcWindowPanelProperties.FrameThickness { 
-			get { return @FrameThickness; } 
  
+			get { return @FrameThickness; } 
 			set { FrameThickness = value;}
 		}	
 		IIfcShapeAspect IIfcWindowPanelProperties.ShapeAspectStyle { 
+ 
+ 
 			get { return @ShapeAspectStyle; } 
- 
- 
 			set { ShapeAspectStyle = value as IfcShapeAspect;}
 		}	
 		 
@@ -75,7 +75,6 @@ namespace Xbim.Ifc4.ArchitectureDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWindowPanelProperties(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -229,7 +228,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

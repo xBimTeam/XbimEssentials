@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				
 			}
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure> IIfcLightDistributionData.SecondaryPlaneAngle 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure> IIfcLightDistributionData.SecondaryPlaneAngle 
 		{ 
 			get
 			{
@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				}
 			} 
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLuminousIntensityDistributionMeasure> IIfcLightDistributionData.LuminousIntensity 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcLuminousIntensityDistributionMeasure> IIfcLightDistributionData.LuminousIntensity 
 		{ 
 			get
 			{

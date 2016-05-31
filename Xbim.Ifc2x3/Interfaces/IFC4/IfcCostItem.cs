@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				
 			}
 		}
-		IEnumerable<IIfcCostValue> IIfcCostItem.CostValues 
+		IItemSet<IIfcCostValue> IIfcCostItem.CostValues 
 		{ 
 			get
 			{
@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				//##
 			} 
 		}
-		IEnumerable<IIfcPhysicalQuantity> IIfcCostItem.CostQuantities 
+		IItemSet<IIfcPhysicalQuantity> IIfcCostItem.CostQuantities 
 		{ 
 			get
 			{

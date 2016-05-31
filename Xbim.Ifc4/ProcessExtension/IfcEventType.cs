@@ -42,18 +42,18 @@ namespace Xbim.Ifc4.ProcessExtension
 	{
 		#region IIfcEventType explicit implementation
 		IfcEventTypeEnum IIfcEventType.PredefinedType { 
-			get { return @PredefinedType; } 
  
+			get { return @PredefinedType; } 
 			set { PredefinedType = value;}
 		}	
 		IfcEventTriggerTypeEnum IIfcEventType.EventTriggerType { 
-			get { return @EventTriggerType; } 
  
+			get { return @EventTriggerType; } 
 			set { EventTriggerType = value;}
 		}	
 		IfcLabel? IIfcEventType.UserDefinedEventTriggerType { 
-			get { return @UserDefinedEventTriggerType; } 
  
+			get { return @UserDefinedEventTriggerType; } 
 			set { UserDefinedEventTriggerType = value;}
 		}	
 		 
@@ -61,7 +61,6 @@ namespace Xbim.Ifc4.ProcessExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcEventType(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -184,7 +183,7 @@ namespace Xbim.Ifc4.ProcessExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

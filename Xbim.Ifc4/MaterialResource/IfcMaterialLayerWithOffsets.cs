@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcMaterialLayerWithOffsets : IIfcMaterialLayer
 	{
 		IfcLayerSetDirectionEnum @OffsetDirection { get;  set; }
-		IEnumerable<IfcLengthMeasure> @OffsetValues { get; }
+		IItemSet<IfcLengthMeasure> @OffsetValues { get; }
 	
 	}
 }
@@ -40,11 +40,11 @@ namespace Xbim.Ifc4.MaterialResource
 	{
 		#region IIfcMaterialLayerWithOffsets explicit implementation
 		IfcLayerSetDirectionEnum IIfcMaterialLayerWithOffsets.OffsetDirection { 
-			get { return @OffsetDirection; } 
  
+			get { return @OffsetDirection; } 
 			set { OffsetDirection = value;}
 		}	
-		IEnumerable<IfcLengthMeasure> IIfcMaterialLayerWithOffsets.OffsetValues { 
+		IItemSet<IfcLengthMeasure> IIfcMaterialLayerWithOffsets.OffsetValues { 
 			get { return @OffsetValues; } 
 		}	
 		 
@@ -52,13 +52,12 @@ namespace Xbim.Ifc4.MaterialResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialLayerWithOffsets(IModel model) : base(model) 		{ 
-			Model = model; 
 			_offsetValues = new ItemSet<IfcLengthMeasure>( this, 2,  9);
 		}
 
 		#region Explicit attribute fields
 		private IfcLayerSetDirectionEnum _offsetDirection;
-		private ItemSet<IfcLengthMeasure> _offsetValues;
+		private readonly ItemSet<IfcLengthMeasure> _offsetValues;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -77,7 +76,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Array, EntityAttributeType.None, 1, 2, 13)]
-		public ItemSet<IfcLengthMeasure> @OffsetValues 
+		public IItemSet<IfcLengthMeasure> @OffsetValues 
 		{ 
 			get 
 			{
@@ -152,7 +151,7 @@ namespace Xbim.Ifc4.MaterialResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

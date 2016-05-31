@@ -41,19 +41,19 @@ namespace Xbim.Ifc4.RepresentationResource
 	{
 		#region IIfcProjectedCRS explicit implementation
 		IfcIdentifier? IIfcProjectedCRS.MapProjection { 
-			get { return @MapProjection; } 
  
+			get { return @MapProjection; } 
 			set { MapProjection = value;}
 		}	
 		IfcIdentifier? IIfcProjectedCRS.MapZone { 
-			get { return @MapZone; } 
  
+			get { return @MapZone; } 
 			set { MapZone = value;}
 		}	
 		IIfcNamedUnit IIfcProjectedCRS.MapUnit { 
+ 
+ 
 			get { return @MapUnit; } 
- 
- 
 			set { MapUnit = value as IfcNamedUnit;}
 		}	
 		 
@@ -61,7 +61,6 @@ namespace Xbim.Ifc4.RepresentationResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProjectedCRS(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -179,7 +178,7 @@ namespace Xbim.Ifc4.RepresentationResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

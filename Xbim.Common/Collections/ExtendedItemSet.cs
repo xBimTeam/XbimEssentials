@@ -4,17 +4,21 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
+using Xbim.Common.Exceptions;
 
 namespace Xbim.Common.Collections
 {
-    public class ItemSetProxy<TInner, TOuter> : IItemSet<TOuter>, IDisposable
+    public class ExtendedItemSet<TInner, TOuter> : IItemSet<TOuter>, IDisposable, IList
     {
         private readonly IItemSet<TOuter> _extendedSet;
         private readonly Func<TInner, TOuter> _transformOut;
         private readonly Func<TOuter, TInner> _transformIn;
         private readonly IItemSet<TInner> _innerSet;
 
-        public ItemSetProxy(
+        private IList InnerList { get { return _innerSet as IList; } }
+        private IList ExtendedList { get { return _extendedSet as IList; } }
+
+        public ExtendedItemSet(
             IItemSet<TInner> innerSet, 
             IItemSet<TOuter> extendedSet, 
             Func<TInner, TOuter> transformOut, 
@@ -22,6 +26,10 @@ namespace Xbim.Common.Collections
         {
             _innerSet = innerSet;
             _extendedSet = extendedSet;
+
+            if(InnerList == null || ExtendedList == null)
+                throw new XbimException("Both inner and extended lists must implement IList");
+
             _transformOut = transformOut;
             _transformIn = transformIn;
 
@@ -131,10 +139,10 @@ namespace Xbim.Common.Collections
 
             var inner = _transformIn(item);
             if (inner != null)
-                return _innerSet.Add((object) inner);
+                return InnerList.Add(inner);
 
-            var index = _extendedSet.Add((object) item);
-            return ((ICollection) _innerSet).Count + index;
+            var index = ExtendedList.Add(item);
+            return _innerSet.Count + index;
         }
 
         public bool Contains(object value)
@@ -142,7 +150,7 @@ namespace Xbim.Common.Collections
             if (!(value is TOuter))
                 return false;
 
-            return _innerSet.Contains(_transformIn((TOuter) value)) || _extendedSet.Contains(value);
+            return _innerSet.Contains(_transformIn((TOuter) value)) || ExtendedList.Contains(value);
         }
 
         void IList.Clear()
@@ -180,7 +188,7 @@ namespace Xbim.Common.Collections
         void IList.RemoveAt(int index)
         {
             var innerCount = ((ICollection) _innerSet).Count;
-            var list = index < innerCount ? _innerSet : (IList) _extendedSet;
+            var list = index < innerCount ? InnerList : ExtendedList;
             var i = index < innerCount ? index : index - innerCount;
             list.RemoveAt(i);
         }
@@ -255,12 +263,12 @@ namespace Xbim.Common.Collections
 
         public object SyncRoot
         {
-            get { return _innerSet.SyncRoot; }
+            get { return InnerList.SyncRoot; }
         }
 
         public bool IsSynchronized
         {
-            get { return _innerSet.IsSynchronized && _extendedSet.IsSynchronized; }
+            get { return InnerList.IsSynchronized && ExtendedList.IsSynchronized; }
         }
 
         int ICollection<TOuter>.Count
@@ -308,22 +316,22 @@ namespace Xbim.Common.Collections
                 var innerCount = ((ICollection) _innerSet).Count;
                 if (index < innerCount)
                 {
-                    var item = ((IList<TInner>) _innerSet)[index];
+                    var item = _innerSet[index];
                     return _transformOut(item);
                 }
 
-                return ((IList<TOuter>) _extendedSet)[index - innerCount];
+                return _extendedSet[index - innerCount];
             }
             set
             {
                 var innerCount = ((ICollection) _innerSet).Count;
                 if (index < innerCount)
                 {
-                    ((IList<TInner>) _innerSet)[index] = _transformIn(value);
+                    _innerSet[index] = _transformIn(value);
                     return;
                 }
 
-                ((IList<TOuter>) _extendedSet)[index - innerCount] = value;
+                _extendedSet[index - innerCount] = value;
             }
         }
 
@@ -341,7 +349,7 @@ namespace Xbim.Common.Collections
             {
                 if (value == null)
                 {
-                    _innerSet.Add(null);
+                    InnerList.Add(null);
                     continue;
                 }
                 var inner = _transformIn(value);

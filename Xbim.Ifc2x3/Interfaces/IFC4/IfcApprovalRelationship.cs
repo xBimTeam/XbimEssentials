@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 				
 			}
 		}
-		IEnumerable<IIfcApproval> IIfcApprovalRelationship.RelatedApprovals 
+		IItemSet<IIfcApproval> IIfcApprovalRelationship.RelatedApprovals 
 		{ 
 			get
 			{

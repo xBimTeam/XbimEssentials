@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
-		IEnumerable<IIfcPhysicalQuantity> IIfcElementQuantity.Quantities 
+		IItemSet<IIfcPhysicalQuantity> IIfcElementQuantity.Quantities 
 		{ 
 			get
 			{

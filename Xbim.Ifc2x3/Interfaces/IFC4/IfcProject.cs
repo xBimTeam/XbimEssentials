@@ -61,7 +61,7 @@ namespace Xbim.Ifc2x3.Kernel
 				
 			}
 		}
-		IEnumerable<IIfcRepresentationContext> IIfcContext.RepresentationContexts 
+		IItemSet<IIfcRepresentationContext> IIfcContext.RepresentationContexts 
 		{ 
 			get
 			{

@@ -40,14 +40,14 @@ namespace Xbim.Ifc4.PropertyResource
 	{
 		#region IIfcPropertyReferenceValue explicit implementation
 		IfcText? IIfcPropertyReferenceValue.UsageName { 
-			get { return @UsageName; } 
  
+			get { return @UsageName; } 
 			set { UsageName = value;}
 		}	
 		IIfcObjectReferenceSelect IIfcPropertyReferenceValue.PropertyReference { 
+ 
+ 
 			get { return @PropertyReference; } 
- 
- 
 			set { PropertyReference = value as IfcObjectReferenceSelect;}
 		}	
 		 
@@ -55,7 +55,6 @@ namespace Xbim.Ifc4.PropertyResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyReferenceValue(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -153,7 +152,7 @@ namespace Xbim.Ifc4.PropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

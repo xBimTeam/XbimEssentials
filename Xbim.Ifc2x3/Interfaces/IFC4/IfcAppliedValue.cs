@@ -984,7 +984,7 @@ namespace Xbim.Ifc2x3.CostResource
 				
 			}
 		}
-		IEnumerable<IIfcAppliedValue> IIfcAppliedValue.Components 
+		IItemSet<IIfcAppliedValue> IIfcAppliedValue.Components 
 		{ 
 			get
 			{

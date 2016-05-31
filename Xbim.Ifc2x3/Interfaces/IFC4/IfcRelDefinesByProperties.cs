@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelDefinesByProperties : IIfcRelDefinesByProperties
 	{
-		IEnumerable<IIfcObjectDefinition> IIfcRelDefinesByProperties.RelatedObjects 
+		IItemSet<IIfcObjectDefinition> IIfcRelDefinesByProperties.RelatedObjects 
 		{ 
 			get
 			{

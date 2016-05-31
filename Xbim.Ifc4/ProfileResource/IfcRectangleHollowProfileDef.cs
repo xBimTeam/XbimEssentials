@@ -41,18 +41,18 @@ namespace Xbim.Ifc4.ProfileResource
 	{
 		#region IIfcRectangleHollowProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcRectangleHollowProfileDef.WallThickness { 
-			get { return @WallThickness; } 
  
+			get { return @WallThickness; } 
 			set { WallThickness = value;}
 		}	
 		IfcNonNegativeLengthMeasure? IIfcRectangleHollowProfileDef.InnerFilletRadius { 
-			get { return @InnerFilletRadius; } 
  
+			get { return @InnerFilletRadius; } 
 			set { InnerFilletRadius = value;}
 		}	
 		IfcNonNegativeLengthMeasure? IIfcRectangleHollowProfileDef.OuterFilletRadius { 
-			get { return @OuterFilletRadius; } 
  
+			get { return @OuterFilletRadius; } 
 			set { OuterFilletRadius = value;}
 		}	
 		 
@@ -60,7 +60,6 @@ namespace Xbim.Ifc4.ProfileResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRectangleHollowProfileDef(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -179,7 +178,7 @@ namespace Xbim.Ifc4.ProfileResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

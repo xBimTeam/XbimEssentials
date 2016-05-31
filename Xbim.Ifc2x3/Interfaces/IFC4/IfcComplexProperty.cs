@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 				
 			}
 		}
-		IEnumerable<IIfcProperty> IIfcComplexProperty.HasProperties 
+		IItemSet<IIfcProperty> IIfcComplexProperty.HasProperties 
 		{ 
 			get
 			{

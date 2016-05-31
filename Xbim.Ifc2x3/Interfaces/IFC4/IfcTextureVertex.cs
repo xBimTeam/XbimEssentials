@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	public partial class @IfcTextureVertex : IIfcTextureVertex
 	{
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcParameterValue> IIfcTextureVertex.Coordinates 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcParameterValue> IIfcTextureVertex.Coordinates 
 		{ 
 			get
 			{

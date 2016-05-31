@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 {
 	public partial class @IfcTextStyleFontModel : IIfcTextStyleFontModel
 	{
-		IEnumerable<Xbim.Ifc4.PresentationAppearanceResource.IfcTextFontName> IIfcTextStyleFontModel.FontFamily 
+		IItemSet<Xbim.Ifc4.PresentationAppearanceResource.IfcTextFontName> IIfcTextStyleFontModel.FontFamily 
 		{ 
 			get
 			{

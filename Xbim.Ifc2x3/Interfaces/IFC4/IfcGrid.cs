@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcGrid : IIfcGrid
 	{
-		IEnumerable<IIfcGridAxis> IIfcGrid.UAxes 
+		IItemSet<IIfcGridAxis> IIfcGrid.UAxes 
 		{ 
 			get
 			{
@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 				}
 			} 
 		}
-		IEnumerable<IIfcGridAxis> IIfcGrid.VAxes 
+		IItemSet<IIfcGridAxis> IIfcGrid.VAxes 
 		{ 
 			get
 			{
@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 				}
 			} 
 		}
-		IEnumerable<IIfcGridAxis> IIfcGrid.WAxes 
+		IItemSet<IIfcGridAxis> IIfcGrid.WAxes 
 		{ 
 			get
 			{

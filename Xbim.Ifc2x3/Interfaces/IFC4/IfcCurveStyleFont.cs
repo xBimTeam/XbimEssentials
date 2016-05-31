@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
-		IEnumerable<IIfcCurveStyleFontPattern> IIfcCurveStyleFont.PatternList 
+		IItemSet<IIfcCurveStyleFontPattern> IIfcCurveStyleFont.PatternList 
 		{ 
 			get
 			{

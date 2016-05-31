@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTextureVertex : IIfcPresentationItem
 	{
-		IEnumerable<IfcParameterValue> @Coordinates { get; }
+		IItemSet<IfcParameterValue> @Coordinates { get; }
 	
 	}
 }
@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcTextureVertex : IfcPresentationItem, IInstantiableEntity, IIfcTextureVertex, IEquatable<@IfcTextureVertex>
 	{
 		#region IIfcTextureVertex explicit implementation
-		IEnumerable<IfcParameterValue> IIfcTextureVertex.Coordinates { 
+		IItemSet<IfcParameterValue> IIfcTextureVertex.Coordinates { 
 			get { return @Coordinates; } 
 		}	
 		 
@@ -47,17 +47,16 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextureVertex(IModel model) : base(model) 		{ 
-			Model = model; 
 			_coordinates = new ItemSet<IfcParameterValue>( this, 2,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcParameterValue> _coordinates;
+		private readonly ItemSet<IfcParameterValue> _coordinates;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, 2, 1)]
-		public ItemSet<IfcParameterValue> @Coordinates 
+		public IItemSet<IfcParameterValue> @Coordinates 
 		{ 
 			get 
 			{
@@ -120,7 +119,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

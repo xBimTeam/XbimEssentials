@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTypeProduct : IIfcTypeObject, IfcProductSelect
 	{
-		IEnumerable<IIfcRepresentationMap> @RepresentationMaps { get; }
+		IItemSet<IIfcRepresentationMap> @RepresentationMaps { get; }
 		IfcLabel? @Tag { get;  set; }
 		IEnumerable<IIfcRelAssignsToProduct> @ReferencedBy {  get; }
 	
@@ -41,12 +41,12 @@ namespace Xbim.Ifc4.Kernel
 	public  partial class @IfcTypeProduct : IfcTypeObject, IInstantiableEntity, IIfcTypeProduct, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTypeProduct>
 	{
 		#region IIfcTypeProduct explicit implementation
-		IEnumerable<IIfcRepresentationMap> IIfcTypeProduct.RepresentationMaps { 
-			get { return @RepresentationMaps; } 
+		IItemSet<IIfcRepresentationMap> IIfcTypeProduct.RepresentationMaps { 
+			get { return new Common.Collections.ProxyItemSet<IfcRepresentationMap, IIfcRepresentationMap>( @RepresentationMaps); } 
 		}	
 		IfcLabel? IIfcTypeProduct.Tag { 
-			get { return @Tag; } 
  
+			get { return @Tag; } 
 			set { Tag = value;}
 		}	
 		 
@@ -55,18 +55,17 @@ namespace Xbim.Ifc4.Kernel
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTypeProduct(IModel model) : base(model) 		{ 
-			Model = model; 
 			_representationMaps = new OptionalItemSet<IfcRepresentationMap>( this, 0,  7);
 		}
 
 		#region Explicit attribute fields
-		private OptionalItemSet<IfcRepresentationMap> _representationMaps;
+		private readonly OptionalItemSet<IfcRepresentationMap> _representationMaps;
 		private IfcLabel? _tag;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1, 15)]
-		public OptionalItemSet<IfcRepresentationMap> @RepresentationMaps 
+		public IOptionalItemSet<IfcRepresentationMap> @RepresentationMaps 
 		{ 
 			get 
 			{
@@ -165,7 +164,7 @@ namespace Xbim.Ifc4.Kernel
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

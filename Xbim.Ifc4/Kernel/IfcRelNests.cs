@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcRelNests : IIfcRelDecomposes
 	{
 		IIfcObjectDefinition @RelatingObject { get;  set; }
-		IEnumerable<IIfcObjectDefinition> @RelatedObjects { get; }
+		IItemSet<IIfcObjectDefinition> @RelatedObjects { get; }
 	
 	}
 }
@@ -39,26 +39,25 @@ namespace Xbim.Ifc4.Kernel
 	{
 		#region IIfcRelNests explicit implementation
 		IIfcObjectDefinition IIfcRelNests.RelatingObject { 
+ 
+ 
 			get { return @RelatingObject; } 
- 
- 
 			set { RelatingObject = value as IfcObjectDefinition;}
 		}	
-		IEnumerable<IIfcObjectDefinition> IIfcRelNests.RelatedObjects { 
-			get { return @RelatedObjects; } 
+		IItemSet<IIfcObjectDefinition> IIfcRelNests.RelatedObjects { 
+			get { return new Common.Collections.ProxyItemSet<IfcObjectDefinition, IIfcObjectDefinition>( @RelatedObjects); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelNests(IModel model) : base(model) 		{ 
-			Model = model; 
 			_relatedObjects = new ItemSet<IfcObjectDefinition>( this, 0,  6);
 		}
 
 		#region Explicit attribute fields
 		private IfcObjectDefinition _relatingObject;
-		private ItemSet<IfcObjectDefinition> _relatedObjects;
+		private readonly ItemSet<IfcObjectDefinition> _relatedObjects;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -79,7 +78,7 @@ namespace Xbim.Ifc4.Kernel
 		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 6)]
-		public ItemSet<IfcObjectDefinition> @RelatedObjects 
+		public IItemSet<IfcObjectDefinition> @RelatedObjects 
 		{ 
 			get 
 			{
@@ -151,7 +150,7 @@ namespace Xbim.Ifc4.Kernel
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

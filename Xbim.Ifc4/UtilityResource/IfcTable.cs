@@ -31,8 +31,8 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcTable : IPersistEntity, IfcMetricValueSelect, IfcObjectReferenceSelect
 	{
 		IfcLabel? @Name { get;  set; }
-		IEnumerable<IIfcTableRow> @Rows { get; }
-		IEnumerable<IIfcTableColumn> @Columns { get; }
+		IItemSet<IIfcTableRow> @Rows { get; }
+		IItemSet<IIfcTableColumn> @Columns { get; }
 		IfcInteger @NumberOfCellsInRow  { get ; }
 		IfcInteger @NumberOfHeadings  { get ; }
 		IfcInteger @NumberOfDataRows  { get ; }
@@ -48,15 +48,15 @@ namespace Xbim.Ifc4.UtilityResource
 	{
 		#region IIfcTable explicit implementation
 		IfcLabel? IIfcTable.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
-		IEnumerable<IIfcTableRow> IIfcTable.Rows { 
-			get { return @Rows; } 
+		IItemSet<IIfcTableRow> IIfcTable.Rows { 
+			get { return new Common.Collections.ProxyItemSet<IfcTableRow, IIfcTableRow>( @Rows); } 
 		}	
-		IEnumerable<IIfcTableColumn> IIfcTable.Columns { 
-			get { return @Columns; } 
+		IItemSet<IIfcTableColumn> IIfcTable.Columns { 
+			get { return new Common.Collections.ProxyItemSet<IfcTableColumn, IIfcTableColumn>( @Columns); } 
 		}	
 		 
 		#endregion
@@ -128,8 +128,8 @@ namespace Xbim.Ifc4.UtilityResource
 
 		#region Explicit attribute fields
 		private IfcLabel? _name;
-		private OptionalItemSet<IfcTableRow> _rows;
-		private OptionalItemSet<IfcTableColumn> _columns;
+		private readonly OptionalItemSet<IfcTableRow> _rows;
+		private readonly OptionalItemSet<IfcTableColumn> _columns;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -148,7 +148,7 @@ namespace Xbim.Ifc4.UtilityResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 2)]
-		public OptionalItemSet<IfcTableRow> @Rows 
+		public IOptionalItemSet<IfcTableRow> @Rows 
 		{ 
 			get 
 			{
@@ -158,7 +158,7 @@ namespace Xbim.Ifc4.UtilityResource
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 3)]
-		public OptionalItemSet<IfcTableColumn> @Columns 
+		public IOptionalItemSet<IfcTableColumn> @Columns 
 		{ 
 			get 
 			{
@@ -313,7 +313,7 @@ namespace Xbim.Ifc4.UtilityResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

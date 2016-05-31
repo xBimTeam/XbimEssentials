@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
-		IEnumerable<IIfcCurve> IIfcCurveBoundedPlane.InnerBoundaries 
+		IItemSet<IIfcCurve> IIfcCurveBoundedPlane.InnerBoundaries 
 		{ 
 			get
 			{

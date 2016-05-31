@@ -39,9 +39,9 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 	{
 		#region IIfcPlanarBox explicit implementation
 		IIfcAxis2Placement IIfcPlanarBox.Placement { 
+ 
+ 
 			get { return @Placement; } 
- 
- 
 			set { Placement = value as IfcAxis2Placement;}
 		}	
 		 
@@ -49,7 +49,6 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPlanarBox(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -129,7 +128,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

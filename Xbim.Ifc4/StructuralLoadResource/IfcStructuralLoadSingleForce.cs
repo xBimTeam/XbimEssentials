@@ -44,33 +44,33 @@ namespace Xbim.Ifc4.StructuralLoadResource
 	{
 		#region IIfcStructuralLoadSingleForce explicit implementation
 		IfcForceMeasure? IIfcStructuralLoadSingleForce.ForceX { 
-			get { return @ForceX; } 
  
+			get { return @ForceX; } 
 			set { ForceX = value;}
 		}	
 		IfcForceMeasure? IIfcStructuralLoadSingleForce.ForceY { 
-			get { return @ForceY; } 
  
+			get { return @ForceY; } 
 			set { ForceY = value;}
 		}	
 		IfcForceMeasure? IIfcStructuralLoadSingleForce.ForceZ { 
-			get { return @ForceZ; } 
  
+			get { return @ForceZ; } 
 			set { ForceZ = value;}
 		}	
 		IfcTorqueMeasure? IIfcStructuralLoadSingleForce.MomentX { 
-			get { return @MomentX; } 
  
+			get { return @MomentX; } 
 			set { MomentX = value;}
 		}	
 		IfcTorqueMeasure? IIfcStructuralLoadSingleForce.MomentY { 
-			get { return @MomentY; } 
  
+			get { return @MomentY; } 
 			set { MomentY = value;}
 		}	
 		IfcTorqueMeasure? IIfcStructuralLoadSingleForce.MomentZ { 
-			get { return @MomentZ; } 
  
+			get { return @MomentZ; } 
 			set { MomentZ = value;}
 		}	
 		 
@@ -78,7 +78,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadSingleForce(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -247,7 +246,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

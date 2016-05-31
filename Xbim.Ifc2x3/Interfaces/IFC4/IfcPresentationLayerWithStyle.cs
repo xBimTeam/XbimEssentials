@@ -58,7 +58,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				
 			}
 		}
-		IEnumerable<IIfcPresentationStyle> IIfcPresentationLayerWithStyle.LayerStyles 
+		IItemSet<IIfcPresentationStyle> IIfcPresentationLayerWithStyle.LayerStyles 
 		{ 
 			get
 			{

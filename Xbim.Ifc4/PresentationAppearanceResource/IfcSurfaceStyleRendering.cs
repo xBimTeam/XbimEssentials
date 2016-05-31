@@ -44,44 +44,44 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	{
 		#region IIfcSurfaceStyleRendering explicit implementation
 		IIfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseColour { 
+ 
+ 
 			get { return @DiffuseColour; } 
- 
- 
 			set { DiffuseColour = value as IfcColourOrFactor;}
 		}	
 		IIfcColourOrFactor IIfcSurfaceStyleRendering.TransmissionColour { 
+ 
+ 
 			get { return @TransmissionColour; } 
- 
- 
 			set { TransmissionColour = value as IfcColourOrFactor;}
 		}	
 		IIfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseTransmissionColour { 
+ 
+ 
 			get { return @DiffuseTransmissionColour; } 
- 
- 
 			set { DiffuseTransmissionColour = value as IfcColourOrFactor;}
 		}	
 		IIfcColourOrFactor IIfcSurfaceStyleRendering.ReflectionColour { 
+ 
+ 
 			get { return @ReflectionColour; } 
- 
- 
 			set { ReflectionColour = value as IfcColourOrFactor;}
 		}	
 		IIfcColourOrFactor IIfcSurfaceStyleRendering.SpecularColour { 
+ 
+ 
 			get { return @SpecularColour; } 
- 
- 
 			set { SpecularColour = value as IfcColourOrFactor;}
 		}	
 		IIfcSpecularHighlightSelect IIfcSurfaceStyleRendering.SpecularHighlight { 
+ 
+ 
 			get { return @SpecularHighlight; } 
- 
- 
 			set { SpecularHighlight = value as IfcSpecularHighlightSelect;}
 		}	
 		IfcReflectanceMethodEnum IIfcSurfaceStyleRendering.ReflectanceMethod { 
-			get { return @ReflectanceMethod; } 
  
+			get { return @ReflectanceMethod; } 
 			set { ReflectanceMethod = value;}
 		}	
 		 
@@ -89,7 +89,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceStyleRendering(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -277,7 +276,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

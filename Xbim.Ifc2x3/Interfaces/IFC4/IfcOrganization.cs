@@ -58,7 +58,7 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
-		IEnumerable<IIfcActorRole> IIfcOrganization.Roles 
+		IItemSet<IIfcActorRole> IIfcOrganization.Roles 
 		{ 
 			get
 			{
@@ -68,7 +68,7 @@ namespace Xbim.Ifc2x3.ActorResource
 				}
 			} 
 		}
-		IEnumerable<IIfcAddress> IIfcOrganization.Addresses 
+		IItemSet<IIfcAddress> IIfcOrganization.Addresses 
 		{ 
 			get
 			{

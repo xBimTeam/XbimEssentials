@@ -28,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcIndexedPolyCurve : IIfcBoundedCurve
 	{
 		IIfcCartesianPointList @Points { get;  set; }
-		IEnumerable<IIfcSegmentIndexSelect> @Segments { get; }
+		IItemSet<IIfcSegmentIndexSelect> @Segments { get; }
 		IfcBoolean? @SelfIntersect { get;  set; }
 	
 	}
@@ -42,17 +42,17 @@ namespace Xbim.Ifc4.GeometryResource
 	{
 		#region IIfcIndexedPolyCurve explicit implementation
 		IIfcCartesianPointList IIfcIndexedPolyCurve.Points { 
+ 
+ 
 			get { return @Points; } 
- 
- 
 			set { Points = value as IfcCartesianPointList;}
 		}	
-		IEnumerable<IIfcSegmentIndexSelect> IIfcIndexedPolyCurve.Segments { 
-			get { return @Segments; } 
+		IItemSet<IIfcSegmentIndexSelect> IIfcIndexedPolyCurve.Segments { 
+			get { return new Common.Collections.ProxyItemSet<IfcSegmentIndexSelect, IIfcSegmentIndexSelect>( @Segments); } 
 		}	
 		IfcBoolean? IIfcIndexedPolyCurve.SelfIntersect { 
-			get { return @SelfIntersect; } 
  
+			get { return @SelfIntersect; } 
 			set { SelfIntersect = value;}
 		}	
 		 
@@ -60,13 +60,12 @@ namespace Xbim.Ifc4.GeometryResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcIndexedPolyCurve(IModel model) : base(model) 		{ 
-			Model = model; 
 			_segments = new OptionalItemSet<IfcSegmentIndexSelect>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
 		private IfcCartesianPointList _points;
-		private OptionalItemSet<IfcSegmentIndexSelect> _segments;
+		private readonly OptionalItemSet<IfcSegmentIndexSelect> _segments;
 		private IfcBoolean? _selfIntersect;
 		#endregion
 	
@@ -86,7 +85,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 4)]
-		public OptionalItemSet<IfcSegmentIndexSelect> @Segments 
+		public IOptionalItemSet<IfcSegmentIndexSelect> @Segments 
 		{ 
 			get 
 			{
@@ -169,7 +168,7 @@ namespace Xbim.Ifc4.GeometryResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

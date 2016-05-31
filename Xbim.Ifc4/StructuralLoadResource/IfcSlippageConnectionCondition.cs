@@ -41,18 +41,18 @@ namespace Xbim.Ifc4.StructuralLoadResource
 	{
 		#region IIfcSlippageConnectionCondition explicit implementation
 		IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageX { 
-			get { return @SlippageX; } 
  
+			get { return @SlippageX; } 
 			set { SlippageX = value;}
 		}	
 		IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageY { 
-			get { return @SlippageY; } 
  
+			get { return @SlippageY; } 
 			set { SlippageY = value;}
 		}	
 		IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageZ { 
-			get { return @SlippageZ; } 
  
+			get { return @SlippageZ; } 
 			set { SlippageZ = value;}
 		}	
 		 
@@ -60,7 +60,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSlippageConnectionCondition(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -175,7 +174,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

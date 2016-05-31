@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcRelConnectsWithRealizingElements : IIfcRelConnectsWithRealizingElements
 	{
-		IEnumerable<IIfcElement> IIfcRelConnectsWithRealizingElements.RealizingElements 
+		IItemSet<IIfcElement> IIfcRelConnectsWithRealizingElements.RealizingElements 
 		{ 
 			get
 			{

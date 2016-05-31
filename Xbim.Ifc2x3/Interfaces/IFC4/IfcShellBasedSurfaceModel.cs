@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcShellBasedSurfaceModel : IIfcShellBasedSurfaceModel
 	{
-		IEnumerable<IIfcShell> IIfcShellBasedSurfaceModel.SbsmBoundary 
+		IItemSet<IIfcShell> IIfcShellBasedSurfaceModel.SbsmBoundary 
 		{ 
 			get
 			{

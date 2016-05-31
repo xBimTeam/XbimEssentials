@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcFacetedBrepWithVoids : IIfcFacetedBrepWithVoids
 	{
-		IEnumerable<IIfcClosedShell> IIfcFacetedBrepWithVoids.Voids 
+		IItemSet<IIfcClosedShell> IIfcFacetedBrepWithVoids.Voids 
 		{ 
 			get
 			{

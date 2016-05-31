@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				
 			}
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcReal> IIfcTextureCoordinateGenerator.Parameter 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcReal> IIfcTextureCoordinateGenerator.Parameter 
 		{ 
 			get
 			{

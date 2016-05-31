@@ -43,25 +43,25 @@ namespace Xbim.Ifc4.GeometricModelResource
 	{
 		#region IIfcSurfaceCurveSweptAreaSolid explicit implementation
 		IIfcCurve IIfcSurfaceCurveSweptAreaSolid.Directrix { 
+ 
+ 
 			get { return @Directrix; } 
- 
- 
 			set { Directrix = value as IfcCurve;}
 		}	
 		IfcParameterValue? IIfcSurfaceCurveSweptAreaSolid.StartParam { 
-			get { return @StartParam; } 
  
+			get { return @StartParam; } 
 			set { StartParam = value;}
 		}	
 		IfcParameterValue? IIfcSurfaceCurveSweptAreaSolid.EndParam { 
-			get { return @EndParam; } 
  
+			get { return @EndParam; } 
 			set { EndParam = value;}
 		}	
 		IIfcSurface IIfcSurfaceCurveSweptAreaSolid.ReferenceSurface { 
+ 
+ 
 			get { return @ReferenceSurface; } 
- 
- 
 			set { ReferenceSurface = value as IfcSurface;}
 		}	
 		 
@@ -69,7 +69,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceCurveSweptAreaSolid(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -203,7 +202,7 @@ namespace Xbim.Ifc4.GeometricModelResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

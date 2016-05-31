@@ -160,7 +160,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				
 			}
 		}
-		IEnumerable<IIfcReinforcementBarProperties> IIfcSectionReinforcementProperties.CrossSectionReinforcementDefinitions 
+		IItemSet<IIfcReinforcementBarProperties> IIfcSectionReinforcementProperties.CrossSectionReinforcementDefinitions 
 		{ 
 			get
 			{

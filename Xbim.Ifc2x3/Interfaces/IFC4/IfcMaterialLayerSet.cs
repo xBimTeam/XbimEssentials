@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 {
 	public partial class @IfcMaterialLayerSet : IIfcMaterialLayerSet
 	{
-		IEnumerable<IIfcMaterialLayer> IIfcMaterialLayerSet.MaterialLayers 
+		IItemSet<IIfcMaterialLayer> IIfcMaterialLayerSet.MaterialLayers 
 		{ 
 			get
 			{

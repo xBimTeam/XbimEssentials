@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.ActorResource
 {
 	public partial class @IfcTelecomAddress : IIfcTelecomAddress
 	{
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcTelecomAddress.TelephoneNumbers 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcTelecomAddress.TelephoneNumbers 
 		{ 
 			get
 			{
@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.ActorResource
 				}
 			} 
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcTelecomAddress.FacsimileNumbers 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcTelecomAddress.FacsimileNumbers 
 		{ 
 			get
 			{
@@ -51,7 +51,7 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcTelecomAddress.ElectronicMailAddresses 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcTelecomAddress.ElectronicMailAddresses 
 		{ 
 			get
 			{
@@ -76,7 +76,7 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
-		IEnumerable<Xbim.Ifc4.ExternalReferenceResource.IfcURIReference> IIfcTelecomAddress.MessagingIDs 
+		IItemSet<Xbim.Ifc4.ExternalReferenceResource.IfcURIReference> IIfcTelecomAddress.MessagingIDs 
 		{ 
 			get
 			{

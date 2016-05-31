@@ -11,8 +11,9 @@ namespace Xbim.Common
         IPersistEntity OwningEntity { get; }
         
     }
-    public interface IItemSet<T> : IList<T>, IList, INotifyCollectionChanged, INotifyPropertyChanged, IExpressEnumerable, IItemSet
+    public interface IItemSet<T> : IList<T>, INotifyCollectionChanged, INotifyPropertyChanged, IExpressEnumerable, IItemSet
     {
+        //T GetAt(int index);
         void AddRange(IEnumerable<T> values);
         T First { get; }
         T FirstOrDefault();

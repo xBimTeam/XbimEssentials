@@ -44,29 +44,29 @@ namespace Xbim.Ifc4.GeometricModelResource
 	{
 		#region IIfcSweptDiskSolid explicit implementation
 		IIfcCurve IIfcSweptDiskSolid.Directrix { 
+ 
+ 
 			get { return @Directrix; } 
- 
- 
 			set { Directrix = value as IfcCurve;}
 		}	
 		IfcPositiveLengthMeasure IIfcSweptDiskSolid.Radius { 
-			get { return @Radius; } 
  
+			get { return @Radius; } 
 			set { Radius = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcSweptDiskSolid.InnerRadius { 
-			get { return @InnerRadius; } 
  
+			get { return @InnerRadius; } 
 			set { InnerRadius = value;}
 		}	
 		IfcParameterValue? IIfcSweptDiskSolid.StartParam { 
-			get { return @StartParam; } 
  
+			get { return @StartParam; } 
 			set { StartParam = value;}
 		}	
 		IfcParameterValue? IIfcSweptDiskSolid.EndParam { 
-			get { return @EndParam; } 
  
+			get { return @EndParam; } 
 			set { EndParam = value;}
 		}	
 		 
@@ -74,7 +74,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSweptDiskSolid(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -222,7 +221,7 @@ namespace Xbim.Ifc4.GeometricModelResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

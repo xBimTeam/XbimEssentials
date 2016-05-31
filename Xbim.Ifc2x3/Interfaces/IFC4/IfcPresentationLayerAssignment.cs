@@ -43,7 +43,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				
 			}
 		}
-		IEnumerable<IIfcLayeredItem> IIfcPresentationLayerAssignment.AssignedItems 
+		IItemSet<IIfcLayeredItem> IIfcPresentationLayerAssignment.AssignedItems 
 		{ 
 			get
 			{

@@ -41,14 +41,14 @@ namespace Xbim.Ifc4.MeasureResource
 	{
 		#region IIfcDerivedUnitElement explicit implementation
 		IIfcNamedUnit IIfcDerivedUnitElement.Unit { 
+ 
+ 
 			get { return @Unit; } 
- 
- 
 			set { Unit = value as IfcNamedUnit;}
 		}	
 		long IIfcDerivedUnitElement.Exponent { 
-			get { return @Exponent; } 
  
+			get { return @Exponent; } 
 			set { Exponent = value;}
 		}	
 		 
@@ -257,7 +257,7 @@ namespace Xbim.Ifc4.MeasureResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

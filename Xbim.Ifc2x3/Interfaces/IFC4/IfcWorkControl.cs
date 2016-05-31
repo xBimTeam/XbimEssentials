@@ -47,7 +47,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				
 			}
 		}
-		IEnumerable<IIfcPerson> IIfcWorkControl.Creators 
+		IItemSet<IIfcPerson> IIfcWorkControl.Creators 
 		{ 
 			get
 			{

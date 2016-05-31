@@ -42,14 +42,14 @@ namespace Xbim.Ifc4.GeometryResource
 	{
 		#region IIfcVector explicit implementation
 		IIfcDirection IIfcVector.Orientation { 
+ 
+ 
 			get { return @Orientation; } 
- 
- 
 			set { Orientation = value as IfcDirection;}
 		}	
 		IfcLengthMeasure IIfcVector.Magnitude { 
-			get { return @Magnitude; } 
  
+			get { return @Magnitude; } 
 			set { Magnitude = value;}
 		}	
 		 
@@ -57,7 +57,6 @@ namespace Xbim.Ifc4.GeometryResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcVector(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -164,7 +163,7 @@ namespace Xbim.Ifc4.GeometryResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

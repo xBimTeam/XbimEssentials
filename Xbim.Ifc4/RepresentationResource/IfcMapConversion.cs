@@ -44,33 +44,33 @@ namespace Xbim.Ifc4.RepresentationResource
 	{
 		#region IIfcMapConversion explicit implementation
 		IfcLengthMeasure IIfcMapConversion.Eastings { 
-			get { return @Eastings; } 
  
+			get { return @Eastings; } 
 			set { Eastings = value;}
 		}	
 		IfcLengthMeasure IIfcMapConversion.Northings { 
-			get { return @Northings; } 
  
+			get { return @Northings; } 
 			set { Northings = value;}
 		}	
 		IfcLengthMeasure IIfcMapConversion.OrthogonalHeight { 
-			get { return @OrthogonalHeight; } 
  
+			get { return @OrthogonalHeight; } 
 			set { OrthogonalHeight = value;}
 		}	
 		IfcReal? IIfcMapConversion.XAxisAbscissa { 
-			get { return @XAxisAbscissa; } 
  
+			get { return @XAxisAbscissa; } 
 			set { XAxisAbscissa = value;}
 		}	
 		IfcReal? IIfcMapConversion.XAxisOrdinate { 
-			get { return @XAxisOrdinate; } 
  
+			get { return @XAxisOrdinate; } 
 			set { XAxisOrdinate = value;}
 		}	
 		IfcReal? IIfcMapConversion.Scale { 
-			get { return @Scale; } 
  
+			get { return @Scale; } 
 			set { Scale = value;}
 		}	
 		 
@@ -78,7 +78,6 @@ namespace Xbim.Ifc4.RepresentationResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMapConversion(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -248,7 +247,7 @@ namespace Xbim.Ifc4.RepresentationResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

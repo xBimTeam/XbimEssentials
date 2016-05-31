@@ -27,9 +27,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcGrid : IIfcProduct
 	{
-		IEnumerable<IIfcGridAxis> @UAxes { get; }
-		IEnumerable<IIfcGridAxis> @VAxes { get; }
-		IEnumerable<IIfcGridAxis> @WAxes { get; }
+		IItemSet<IIfcGridAxis> @UAxes { get; }
+		IItemSet<IIfcGridAxis> @VAxes { get; }
+		IItemSet<IIfcGridAxis> @WAxes { get; }
 		IfcGridTypeEnum? @PredefinedType { get;  set; }
 		IEnumerable<IIfcRelContainedInSpatialStructure> @ContainedInStructure {  get; }
 	
@@ -43,18 +43,18 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcGrid : IfcProduct, IInstantiableEntity, IIfcGrid, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcGrid>
 	{
 		#region IIfcGrid explicit implementation
-		IEnumerable<IIfcGridAxis> IIfcGrid.UAxes { 
-			get { return @UAxes; } 
+		IItemSet<IIfcGridAxis> IIfcGrid.UAxes { 
+			get { return new Common.Collections.ProxyItemSet<IfcGridAxis, IIfcGridAxis>( @UAxes); } 
 		}	
-		IEnumerable<IIfcGridAxis> IIfcGrid.VAxes { 
-			get { return @VAxes; } 
+		IItemSet<IIfcGridAxis> IIfcGrid.VAxes { 
+			get { return new Common.Collections.ProxyItemSet<IfcGridAxis, IIfcGridAxis>( @VAxes); } 
 		}	
-		IEnumerable<IIfcGridAxis> IIfcGrid.WAxes { 
-			get { return @WAxes; } 
+		IItemSet<IIfcGridAxis> IIfcGrid.WAxes { 
+			get { return new Common.Collections.ProxyItemSet<IfcGridAxis, IIfcGridAxis>( @WAxes); } 
 		}	
 		IfcGridTypeEnum? IIfcGrid.PredefinedType { 
-			get { return @PredefinedType; } 
  
+			get { return @PredefinedType; } 
 			set { PredefinedType = value;}
 		}	
 		 
@@ -63,23 +63,22 @@ namespace Xbim.Ifc4.ProductExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGrid(IModel model) : base(model) 		{ 
-			Model = model; 
 			_uAxes = new ItemSet<IfcGridAxis>( this, 0,  8);
 			_vAxes = new ItemSet<IfcGridAxis>( this, 0,  9);
 			_wAxes = new OptionalItemSet<IfcGridAxis>( this, 0,  10);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcGridAxis> _uAxes;
-		private ItemSet<IfcGridAxis> _vAxes;
-		private OptionalItemSet<IfcGridAxis> _wAxes;
+		private readonly ItemSet<IfcGridAxis> _uAxes;
+		private readonly ItemSet<IfcGridAxis> _vAxes;
+		private readonly OptionalItemSet<IfcGridAxis> _wAxes;
 		private IfcGridTypeEnum? _predefinedType;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1, 20)]
-		public ItemSet<IfcGridAxis> @UAxes 
+		public IItemSet<IfcGridAxis> @UAxes 
 		{ 
 			get 
 			{
@@ -90,7 +89,7 @@ namespace Xbim.Ifc4.ProductExtension
 		}	
 		[IndexedProperty]
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1, 21)]
-		public ItemSet<IfcGridAxis> @VAxes 
+		public IItemSet<IfcGridAxis> @VAxes 
 		{ 
 			get 
 			{
@@ -101,7 +100,7 @@ namespace Xbim.Ifc4.ProductExtension
 		}	
 		[IndexedProperty]
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1, 22)]
-		public OptionalItemSet<IfcGridAxis> @WAxes 
+		public IOptionalItemSet<IfcGridAxis> @WAxes 
 		{ 
 			get 
 			{
@@ -207,7 +206,7 @@ namespace Xbim.Ifc4.ProductExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

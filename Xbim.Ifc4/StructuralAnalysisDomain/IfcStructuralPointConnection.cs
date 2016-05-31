@@ -39,9 +39,9 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	{
 		#region IIfcStructuralPointConnection explicit implementation
 		IIfcAxis2Placement3D IIfcStructuralPointConnection.ConditionCoordinateSystem { 
+ 
+ 
 			get { return @ConditionCoordinateSystem; } 
- 
- 
 			set { ConditionCoordinateSystem = value as IfcAxis2Placement3D;}
 		}	
 		 
@@ -49,7 +49,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralPointConnection(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -135,7 +134,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

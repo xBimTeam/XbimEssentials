@@ -41,14 +41,14 @@ namespace Xbim.Ifc4.GeometryResource
 	{
 		#region IIfcSurfaceOfLinearExtrusion explicit implementation
 		IIfcDirection IIfcSurfaceOfLinearExtrusion.ExtrudedDirection { 
+ 
+ 
 			get { return @ExtrudedDirection; } 
- 
- 
 			set { ExtrudedDirection = value as IfcDirection;}
 		}	
 		IfcLengthMeasure IIfcSurfaceOfLinearExtrusion.Depth { 
-			get { return @Depth; } 
  
+			get { return @Depth; } 
 			set { Depth = value;}
 		}	
 		 
@@ -56,7 +56,6 @@ namespace Xbim.Ifc4.GeometryResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceOfLinearExtrusion(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -170,7 +169,7 @@ namespace Xbim.Ifc4.GeometryResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

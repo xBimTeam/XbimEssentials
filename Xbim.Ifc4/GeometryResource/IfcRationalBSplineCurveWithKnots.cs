@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRationalBSplineCurveWithKnots : IIfcBSplineCurveWithKnots
 	{
-		IEnumerable<IfcReal> @WeightsData { get; }
+		IItemSet<IfcReal> @WeightsData { get; }
 		List<IfcReal> @Weights  { get ; }
 	
 	}
@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcRationalBSplineCurveWithKnots : IfcBSplineCurveWithKnots, IInstantiableEntity, IIfcRationalBSplineCurveWithKnots, IContainsEntityReferences, IEquatable<@IfcRationalBSplineCurveWithKnots>
 	{
 		#region IIfcRationalBSplineCurveWithKnots explicit implementation
-		IEnumerable<IfcReal> IIfcRationalBSplineCurveWithKnots.WeightsData { 
+		IItemSet<IfcReal> IIfcRationalBSplineCurveWithKnots.WeightsData { 
 			get { return @WeightsData; } 
 		}	
 		 
@@ -47,17 +47,16 @@ namespace Xbim.Ifc4.GeometryResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRationalBSplineCurveWithKnots(IModel model) : base(model) 		{ 
-			Model = model; 
 			_weightsData = new ItemSet<IfcReal>( this, 0,  9);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcReal> _weightsData;
+		private readonly ItemSet<IfcReal> _weightsData;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1, 11)]
-		public ItemSet<IfcReal> @WeightsData 
+		public IItemSet<IfcReal> @WeightsData 
 		{ 
 			get 
 			{
@@ -143,7 +142,7 @@ namespace Xbim.Ifc4.GeometryResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -40,8 +40,8 @@ namespace Xbim.Ifc4.Kernel
 	{
 		#region IIfcControl explicit implementation
 		IfcIdentifier? IIfcControl.Identification { 
-			get { return @Identification; } 
  
+			get { return @Identification; } 
 			set { Identification = value;}
 		}	
 		 
@@ -50,7 +50,6 @@ namespace Xbim.Ifc4.Kernel
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcControl(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -144,7 +143,7 @@ namespace Xbim.Ifc4.Kernel
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

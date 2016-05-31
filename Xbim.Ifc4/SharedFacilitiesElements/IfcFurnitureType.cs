@@ -40,13 +40,13 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 	{
 		#region IIfcFurnitureType explicit implementation
 		IfcAssemblyPlaceEnum IIfcFurnitureType.AssemblyPlace { 
-			get { return @AssemblyPlace; } 
  
+			get { return @AssemblyPlace; } 
 			set { AssemblyPlace = value;}
 		}	
 		IfcFurnitureTypeEnum? IIfcFurnitureType.PredefinedType { 
-			get { return @PredefinedType; } 
  
+			get { return @PredefinedType; } 
 			set { PredefinedType = value;}
 		}	
 		 
@@ -54,7 +54,6 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFurnitureType(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -159,7 +158,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

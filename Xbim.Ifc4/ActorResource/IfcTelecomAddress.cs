@@ -27,12 +27,12 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTelecomAddress : IIfcAddress
 	{
-		IEnumerable<IfcLabel> @TelephoneNumbers { get; }
-		IEnumerable<IfcLabel> @FacsimileNumbers { get; }
+		IItemSet<IfcLabel> @TelephoneNumbers { get; }
+		IItemSet<IfcLabel> @FacsimileNumbers { get; }
 		IfcLabel? @PagerNumber { get;  set; }
-		IEnumerable<IfcLabel> @ElectronicMailAddresses { get; }
+		IItemSet<IfcLabel> @ElectronicMailAddresses { get; }
 		IfcURIReference? @WWWHomePageURL { get;  set; }
-		IEnumerable<IfcURIReference> @MessagingIDs { get; }
+		IItemSet<IfcURIReference> @MessagingIDs { get; }
 	
 	}
 }
@@ -44,26 +44,26 @@ namespace Xbim.Ifc4.ActorResource
 	public  partial class @IfcTelecomAddress : IfcAddress, IInstantiableEntity, IIfcTelecomAddress, IEquatable<@IfcTelecomAddress>
 	{
 		#region IIfcTelecomAddress explicit implementation
-		IEnumerable<IfcLabel> IIfcTelecomAddress.TelephoneNumbers { 
+		IItemSet<IfcLabel> IIfcTelecomAddress.TelephoneNumbers { 
 			get { return @TelephoneNumbers; } 
 		}	
-		IEnumerable<IfcLabel> IIfcTelecomAddress.FacsimileNumbers { 
+		IItemSet<IfcLabel> IIfcTelecomAddress.FacsimileNumbers { 
 			get { return @FacsimileNumbers; } 
 		}	
 		IfcLabel? IIfcTelecomAddress.PagerNumber { 
-			get { return @PagerNumber; } 
  
+			get { return @PagerNumber; } 
 			set { PagerNumber = value;}
 		}	
-		IEnumerable<IfcLabel> IIfcTelecomAddress.ElectronicMailAddresses { 
+		IItemSet<IfcLabel> IIfcTelecomAddress.ElectronicMailAddresses { 
 			get { return @ElectronicMailAddresses; } 
 		}	
 		IfcURIReference? IIfcTelecomAddress.WWWHomePageURL { 
-			get { return @WWWHomePageURL; } 
  
+			get { return @WWWHomePageURL; } 
 			set { WWWHomePageURL = value;}
 		}	
-		IEnumerable<IfcURIReference> IIfcTelecomAddress.MessagingIDs { 
+		IItemSet<IfcURIReference> IIfcTelecomAddress.MessagingIDs { 
 			get { return @MessagingIDs; } 
 		}	
 		 
@@ -71,7 +71,6 @@ namespace Xbim.Ifc4.ActorResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTelecomAddress(IModel model) : base(model) 		{ 
-			Model = model; 
 			_telephoneNumbers = new OptionalItemSet<IfcLabel>( this, 0,  4);
 			_facsimileNumbers = new OptionalItemSet<IfcLabel>( this, 0,  5);
 			_electronicMailAddresses = new OptionalItemSet<IfcLabel>( this, 0,  7);
@@ -79,17 +78,17 @@ namespace Xbim.Ifc4.ActorResource
 		}
 
 		#region Explicit attribute fields
-		private OptionalItemSet<IfcLabel> _telephoneNumbers;
-		private OptionalItemSet<IfcLabel> _facsimileNumbers;
+		private readonly OptionalItemSet<IfcLabel> _telephoneNumbers;
+		private readonly OptionalItemSet<IfcLabel> _facsimileNumbers;
 		private IfcLabel? _pagerNumber;
-		private OptionalItemSet<IfcLabel> _electronicMailAddresses;
+		private readonly OptionalItemSet<IfcLabel> _electronicMailAddresses;
 		private IfcURIReference? _wWWHomePageURL;
-		private OptionalItemSet<IfcURIReference> _messagingIDs;
+		private readonly OptionalItemSet<IfcURIReference> _messagingIDs;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 6)]
-		public OptionalItemSet<IfcLabel> @TelephoneNumbers 
+		public IOptionalItemSet<IfcLabel> @TelephoneNumbers 
 		{ 
 			get 
 			{
@@ -99,7 +98,7 @@ namespace Xbim.Ifc4.ActorResource
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 7)]
-		public OptionalItemSet<IfcLabel> @FacsimileNumbers 
+		public IOptionalItemSet<IfcLabel> @FacsimileNumbers 
 		{ 
 			get 
 			{
@@ -123,7 +122,7 @@ namespace Xbim.Ifc4.ActorResource
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 9)]
-		public OptionalItemSet<IfcLabel> @ElectronicMailAddresses 
+		public IOptionalItemSet<IfcLabel> @ElectronicMailAddresses 
 		{ 
 			get 
 			{
@@ -147,7 +146,7 @@ namespace Xbim.Ifc4.ActorResource
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 11)]
-		public OptionalItemSet<IfcURIReference> @MessagingIDs 
+		public IOptionalItemSet<IfcURIReference> @MessagingIDs 
 		{ 
 			get 
 			{
@@ -230,7 +229,7 @@ namespace Xbim.Ifc4.ActorResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

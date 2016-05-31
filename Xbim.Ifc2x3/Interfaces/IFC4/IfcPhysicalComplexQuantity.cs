@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 {
 	public partial class @IfcPhysicalComplexQuantity : IIfcPhysicalComplexQuantity
 	{
-		IEnumerable<IIfcPhysicalQuantity> IIfcPhysicalComplexQuantity.HasQuantities 
+		IItemSet<IIfcPhysicalQuantity> IIfcPhysicalComplexQuantity.HasQuantities 
 		{ 
 			get
 			{

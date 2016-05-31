@@ -42,19 +42,19 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 	{
 		#region IIfcTextLiteral explicit implementation
 		IfcPresentableText IIfcTextLiteral.Literal { 
-			get { return @Literal; } 
  
+			get { return @Literal; } 
 			set { Literal = value;}
 		}	
 		IIfcAxis2Placement IIfcTextLiteral.Placement { 
+ 
+ 
 			get { return @Placement; } 
- 
- 
 			set { Placement = value as IfcAxis2Placement;}
 		}	
 		IfcTextPath IIfcTextLiteral.Path { 
-			get { return @Path; } 
  
+			get { return @Path; } 
 			set { Path = value;}
 		}	
 		 
@@ -62,7 +62,6 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextLiteral(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -174,7 +173,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -59,7 +59,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
-		IEnumerable<IIfcSurfaceStyleElementSelect> IIfcSurfaceStyle.Styles 
+		IItemSet<IIfcSurfaceStyleElementSelect> IIfcSurfaceStyle.Styles 
 		{ 
 			get
 			{

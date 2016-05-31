@@ -43,23 +43,23 @@ namespace Xbim.Ifc4.ArchitectureDomain
 	{
 		#region IIfcWindowStyle explicit implementation
 		IfcWindowStyleConstructionEnum IIfcWindowStyle.ConstructionType { 
-			get { return @ConstructionType; } 
  
+			get { return @ConstructionType; } 
 			set { ConstructionType = value;}
 		}	
 		IfcWindowStyleOperationEnum IIfcWindowStyle.OperationType { 
-			get { return @OperationType; } 
  
+			get { return @OperationType; } 
 			set { OperationType = value;}
 		}	
 		IfcBoolean IIfcWindowStyle.ParameterTakesPrecedence { 
-			get { return @ParameterTakesPrecedence; } 
  
+			get { return @ParameterTakesPrecedence; } 
 			set { ParameterTakesPrecedence = value;}
 		}	
 		IfcBoolean IIfcWindowStyle.Sizeable { 
-			get { return @Sizeable; } 
  
+			get { return @Sizeable; } 
 			set { Sizeable = value;}
 		}	
 		 
@@ -67,7 +67,6 @@ namespace Xbim.Ifc4.ArchitectureDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWindowStyle(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -207,7 +206,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

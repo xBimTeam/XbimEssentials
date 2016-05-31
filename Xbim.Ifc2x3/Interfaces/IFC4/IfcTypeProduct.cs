@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcTypeProduct : IIfcTypeProduct
 	{
-		IEnumerable<IIfcRepresentationMap> IIfcTypeProduct.RepresentationMaps 
+		IItemSet<IIfcRepresentationMap> IIfcTypeProduct.RepresentationMaps 
 		{ 
 			get
 			{

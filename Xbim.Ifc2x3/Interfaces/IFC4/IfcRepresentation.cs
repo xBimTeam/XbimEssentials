@@ -58,7 +58,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				
 			}
 		}
-		IEnumerable<IIfcRepresentationItem> IIfcRepresentation.Items 
+		IItemSet<IIfcRepresentationItem> IIfcRepresentation.Items 
 		{ 
 			get
 			{

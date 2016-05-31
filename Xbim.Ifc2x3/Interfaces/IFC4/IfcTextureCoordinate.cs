@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	public partial class @IfcTextureCoordinate : IIfcTextureCoordinate
 	{
-		IEnumerable<IIfcSurfaceTexture> IIfcTextureCoordinate.Maps 
+		IItemSet<IIfcSurfaceTexture> IIfcTextureCoordinate.Maps 
 		{ 
 			get
 			{

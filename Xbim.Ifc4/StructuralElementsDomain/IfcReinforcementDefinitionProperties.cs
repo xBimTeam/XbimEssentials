@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcReinforcementDefinitionProperties : IIfcPreDefinedPropertySet
 	{
 		IfcLabel? @DefinitionType { get;  set; }
-		IEnumerable<IIfcSectionReinforcementProperties> @ReinforcementSectionDefinitions { get; }
+		IItemSet<IIfcSectionReinforcementProperties> @ReinforcementSectionDefinitions { get; }
 	
 	}
 }
@@ -42,25 +42,24 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 	{
 		#region IIfcReinforcementDefinitionProperties explicit implementation
 		IfcLabel? IIfcReinforcementDefinitionProperties.DefinitionType { 
-			get { return @DefinitionType; } 
  
+			get { return @DefinitionType; } 
 			set { DefinitionType = value;}
 		}	
-		IEnumerable<IIfcSectionReinforcementProperties> IIfcReinforcementDefinitionProperties.ReinforcementSectionDefinitions { 
-			get { return @ReinforcementSectionDefinitions; } 
+		IItemSet<IIfcSectionReinforcementProperties> IIfcReinforcementDefinitionProperties.ReinforcementSectionDefinitions { 
+			get { return new Common.Collections.ProxyItemSet<IfcSectionReinforcementProperties, IIfcSectionReinforcementProperties>( @ReinforcementSectionDefinitions); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcReinforcementDefinitionProperties(IModel model) : base(model) 		{ 
-			Model = model; 
 			_reinforcementSectionDefinitions = new ItemSet<IfcSectionReinforcementProperties>( this, 0,  6);
 		}
 
 		#region Explicit attribute fields
 		private IfcLabel? _definitionType;
-		private ItemSet<IfcSectionReinforcementProperties> _reinforcementSectionDefinitions;
+		private readonly ItemSet<IfcSectionReinforcementProperties> _reinforcementSectionDefinitions;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -79,7 +78,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 11)]
-		public ItemSet<IfcSectionReinforcementProperties> @ReinforcementSectionDefinitions 
+		public IItemSet<IfcSectionReinforcementProperties> @ReinforcementSectionDefinitions 
 		{ 
 			get 
 			{
@@ -151,7 +150,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

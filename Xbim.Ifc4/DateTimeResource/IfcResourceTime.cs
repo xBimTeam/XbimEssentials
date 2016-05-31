@@ -53,78 +53,78 @@ namespace Xbim.Ifc4.DateTimeResource
 	{
 		#region IIfcResourceTime explicit implementation
 		IfcDuration? IIfcResourceTime.ScheduleWork { 
-			get { return @ScheduleWork; } 
  
+			get { return @ScheduleWork; } 
 			set { ScheduleWork = value;}
 		}	
 		IfcPositiveRatioMeasure? IIfcResourceTime.ScheduleUsage { 
-			get { return @ScheduleUsage; } 
  
+			get { return @ScheduleUsage; } 
 			set { ScheduleUsage = value;}
 		}	
 		IfcDateTime? IIfcResourceTime.ScheduleStart { 
-			get { return @ScheduleStart; } 
  
+			get { return @ScheduleStart; } 
 			set { ScheduleStart = value;}
 		}	
 		IfcDateTime? IIfcResourceTime.ScheduleFinish { 
-			get { return @ScheduleFinish; } 
  
+			get { return @ScheduleFinish; } 
 			set { ScheduleFinish = value;}
 		}	
 		IfcLabel? IIfcResourceTime.ScheduleContour { 
-			get { return @ScheduleContour; } 
  
+			get { return @ScheduleContour; } 
 			set { ScheduleContour = value;}
 		}	
 		IfcDuration? IIfcResourceTime.LevelingDelay { 
-			get { return @LevelingDelay; } 
  
+			get { return @LevelingDelay; } 
 			set { LevelingDelay = value;}
 		}	
 		IfcBoolean? IIfcResourceTime.IsOverAllocated { 
-			get { return @IsOverAllocated; } 
  
+			get { return @IsOverAllocated; } 
 			set { IsOverAllocated = value;}
 		}	
 		IfcDateTime? IIfcResourceTime.StatusTime { 
-			get { return @StatusTime; } 
  
+			get { return @StatusTime; } 
 			set { StatusTime = value;}
 		}	
 		IfcDuration? IIfcResourceTime.ActualWork { 
-			get { return @ActualWork; } 
  
+			get { return @ActualWork; } 
 			set { ActualWork = value;}
 		}	
 		IfcPositiveRatioMeasure? IIfcResourceTime.ActualUsage { 
-			get { return @ActualUsage; } 
  
+			get { return @ActualUsage; } 
 			set { ActualUsage = value;}
 		}	
 		IfcDateTime? IIfcResourceTime.ActualStart { 
-			get { return @ActualStart; } 
  
+			get { return @ActualStart; } 
 			set { ActualStart = value;}
 		}	
 		IfcDateTime? IIfcResourceTime.ActualFinish { 
-			get { return @ActualFinish; } 
  
+			get { return @ActualFinish; } 
 			set { ActualFinish = value;}
 		}	
 		IfcDuration? IIfcResourceTime.RemainingWork { 
-			get { return @RemainingWork; } 
  
+			get { return @RemainingWork; } 
 			set { RemainingWork = value;}
 		}	
 		IfcPositiveRatioMeasure? IIfcResourceTime.RemainingUsage { 
-			get { return @RemainingUsage; } 
  
+			get { return @RemainingUsage; } 
 			set { RemainingUsage = value;}
 		}	
 		IfcPositiveRatioMeasure? IIfcResourceTime.Completion { 
-			get { return @Completion; } 
  
+			get { return @Completion; } 
 			set { Completion = value;}
 		}	
 		 
@@ -132,7 +132,6 @@ namespace Xbim.Ifc4.DateTimeResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcResourceTime(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -465,7 +464,7 @@ namespace Xbim.Ifc4.DateTimeResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

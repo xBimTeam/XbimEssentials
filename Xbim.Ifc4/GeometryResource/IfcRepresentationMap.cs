@@ -44,15 +44,15 @@ namespace Xbim.Ifc4.GeometryResource
 	{
 		#region IIfcRepresentationMap explicit implementation
 		IIfcAxis2Placement IIfcRepresentationMap.MappingOrigin { 
+ 
+ 
 			get { return @MappingOrigin; } 
- 
- 
 			set { MappingOrigin = value as IfcAxis2Placement;}
 		}	
 		IIfcRepresentation IIfcRepresentationMap.MappedRepresentation { 
+ 
+ 
 			get { return @MappedRepresentation; } 
- 
- 
 			set { MappedRepresentation = value as IfcRepresentation;}
 		}	
 		 
@@ -284,7 +284,7 @@ namespace Xbim.Ifc4.GeometryResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

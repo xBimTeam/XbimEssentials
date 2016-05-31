@@ -29,13 +29,13 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcRecurrencePattern : IPersistEntity
 	{
 		IfcRecurrenceTypeEnum @RecurrenceType { get;  set; }
-		IEnumerable<IfcDayInMonthNumber> @DayComponent { get; }
-		IEnumerable<IfcDayInWeekNumber> @WeekdayComponent { get; }
-		IEnumerable<IfcMonthInYearNumber> @MonthComponent { get; }
+		IItemSet<IfcDayInMonthNumber> @DayComponent { get; }
+		IItemSet<IfcDayInWeekNumber> @WeekdayComponent { get; }
+		IItemSet<IfcMonthInYearNumber> @MonthComponent { get; }
 		IfcInteger? @Position { get;  set; }
 		IfcInteger? @Interval { get;  set; }
 		IfcInteger? @Occurrences { get;  set; }
-		IEnumerable<IIfcTimePeriod> @TimePeriods { get; }
+		IItemSet<IIfcTimePeriod> @TimePeriods { get; }
 	
 	}
 }
@@ -48,36 +48,36 @@ namespace Xbim.Ifc4.DateTimeResource
 	{
 		#region IIfcRecurrencePattern explicit implementation
 		IfcRecurrenceTypeEnum IIfcRecurrencePattern.RecurrenceType { 
-			get { return @RecurrenceType; } 
  
+			get { return @RecurrenceType; } 
 			set { RecurrenceType = value;}
 		}	
-		IEnumerable<IfcDayInMonthNumber> IIfcRecurrencePattern.DayComponent { 
+		IItemSet<IfcDayInMonthNumber> IIfcRecurrencePattern.DayComponent { 
 			get { return @DayComponent; } 
 		}	
-		IEnumerable<IfcDayInWeekNumber> IIfcRecurrencePattern.WeekdayComponent { 
+		IItemSet<IfcDayInWeekNumber> IIfcRecurrencePattern.WeekdayComponent { 
 			get { return @WeekdayComponent; } 
 		}	
-		IEnumerable<IfcMonthInYearNumber> IIfcRecurrencePattern.MonthComponent { 
+		IItemSet<IfcMonthInYearNumber> IIfcRecurrencePattern.MonthComponent { 
 			get { return @MonthComponent; } 
 		}	
 		IfcInteger? IIfcRecurrencePattern.Position { 
-			get { return @Position; } 
  
+			get { return @Position; } 
 			set { Position = value;}
 		}	
 		IfcInteger? IIfcRecurrencePattern.Interval { 
-			get { return @Interval; } 
  
+			get { return @Interval; } 
 			set { Interval = value;}
 		}	
 		IfcInteger? IIfcRecurrencePattern.Occurrences { 
-			get { return @Occurrences; } 
  
+			get { return @Occurrences; } 
 			set { Occurrences = value;}
 		}	
-		IEnumerable<IIfcTimePeriod> IIfcRecurrencePattern.TimePeriods { 
-			get { return @TimePeriods; } 
+		IItemSet<IIfcTimePeriod> IIfcRecurrencePattern.TimePeriods { 
+			get { return new Common.Collections.ProxyItemSet<IfcTimePeriod, IIfcTimePeriod>( @TimePeriods); } 
 		}	
 		 
 		#endregion
@@ -151,13 +151,13 @@ namespace Xbim.Ifc4.DateTimeResource
 
 		#region Explicit attribute fields
 		private IfcRecurrenceTypeEnum _recurrenceType;
-		private OptionalItemSet<IfcDayInMonthNumber> _dayComponent;
-		private OptionalItemSet<IfcDayInWeekNumber> _weekdayComponent;
-		private OptionalItemSet<IfcMonthInYearNumber> _monthComponent;
+		private readonly OptionalItemSet<IfcDayInMonthNumber> _dayComponent;
+		private readonly OptionalItemSet<IfcDayInWeekNumber> _weekdayComponent;
+		private readonly OptionalItemSet<IfcMonthInYearNumber> _monthComponent;
 		private IfcInteger? _position;
 		private IfcInteger? _interval;
 		private IfcInteger? _occurrences;
-		private OptionalItemSet<IfcTimePeriod> _timePeriods;
+		private readonly OptionalItemSet<IfcTimePeriod> _timePeriods;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -176,7 +176,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.None, 1, -1, 2)]
-		public OptionalItemSet<IfcDayInMonthNumber> @DayComponent 
+		public IOptionalItemSet<IfcDayInMonthNumber> @DayComponent 
 		{ 
 			get 
 			{
@@ -186,7 +186,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.None, 1, -1, 3)]
-		public OptionalItemSet<IfcDayInWeekNumber> @WeekdayComponent 
+		public IOptionalItemSet<IfcDayInWeekNumber> @WeekdayComponent 
 		{ 
 			get 
 			{
@@ -196,7 +196,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.None, 1, -1, 4)]
-		public OptionalItemSet<IfcMonthInYearNumber> @MonthComponent 
+		public IOptionalItemSet<IfcMonthInYearNumber> @MonthComponent 
 		{ 
 			get 
 			{
@@ -248,7 +248,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 8)]
-		public OptionalItemSet<IfcTimePeriod> @TimePeriods 
+		public IOptionalItemSet<IfcTimePeriod> @TimePeriods 
 		{ 
 			get 
 			{
@@ -381,7 +381,7 @@ namespace Xbim.Ifc4.DateTimeResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcGeometricSet : IIfcGeometricSet
 	{
-		IEnumerable<IIfcGeometricSetSelect> IIfcGeometricSet.Elements 
+		IItemSet<IIfcGeometricSetSelect> IIfcGeometricSet.Elements 
 		{ 
 			get
 			{

@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBSplineCurveWithKnots : IIfcBSplineCurve
 	{
-		IEnumerable<IfcInteger> @KnotMultiplicities { get; }
-		IEnumerable<IfcParameterValue> @Knots { get; }
+		IItemSet<IfcInteger> @KnotMultiplicities { get; }
+		IItemSet<IfcParameterValue> @Knots { get; }
 		IfcKnotType @KnotSpec { get;  set; }
 		IfcInteger @UpperIndexOnKnots  { get ; }
 	
@@ -41,15 +41,15 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcBSplineCurveWithKnots : IfcBSplineCurve, IInstantiableEntity, IIfcBSplineCurveWithKnots, IContainsEntityReferences, IEquatable<@IfcBSplineCurveWithKnots>
 	{
 		#region IIfcBSplineCurveWithKnots explicit implementation
-		IEnumerable<IfcInteger> IIfcBSplineCurveWithKnots.KnotMultiplicities { 
+		IItemSet<IfcInteger> IIfcBSplineCurveWithKnots.KnotMultiplicities { 
 			get { return @KnotMultiplicities; } 
 		}	
-		IEnumerable<IfcParameterValue> IIfcBSplineCurveWithKnots.Knots { 
+		IItemSet<IfcParameterValue> IIfcBSplineCurveWithKnots.Knots { 
 			get { return @Knots; } 
 		}	
 		IfcKnotType IIfcBSplineCurveWithKnots.KnotSpec { 
-			get { return @KnotSpec; } 
  
+			get { return @KnotSpec; } 
 			set { KnotSpec = value;}
 		}	
 		 
@@ -57,20 +57,19 @@ namespace Xbim.Ifc4.GeometryResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBSplineCurveWithKnots(IModel model) : base(model) 		{ 
-			Model = model; 
 			_knotMultiplicities = new ItemSet<IfcInteger>( this, 0,  6);
 			_knots = new ItemSet<IfcParameterValue>( this, 0,  7);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcInteger> _knotMultiplicities;
-		private ItemSet<IfcParameterValue> _knots;
+		private readonly ItemSet<IfcInteger> _knotMultiplicities;
+		private readonly ItemSet<IfcParameterValue> _knots;
 		private IfcKnotType _knotSpec;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1, 8)]
-		public ItemSet<IfcInteger> @KnotMultiplicities 
+		public IItemSet<IfcInteger> @KnotMultiplicities 
 		{ 
 			get 
 			{
@@ -80,7 +79,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1, 9)]
-		public ItemSet<IfcParameterValue> @Knots 
+		public IItemSet<IfcParameterValue> @Knots 
 		{ 
 			get 
 			{
@@ -183,7 +182,7 @@ namespace Xbim.Ifc4.GeometryResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCompositeCurve : IIfcBoundedCurve
 	{
-		IEnumerable<IIfcCompositeCurveSegment> @Segments { get; }
+		IItemSet<IIfcCompositeCurveSegment> @Segments { get; }
 		IfcLogical @SelfIntersect { get;  set; }
 		IfcInteger @NSegments  { get ; }
 		IfcLogical @ClosedCurve  { get ; }
@@ -41,12 +41,12 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcCompositeCurve : IfcBoundedCurve, IInstantiableEntity, IIfcCompositeCurve, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCompositeCurve>
 	{
 		#region IIfcCompositeCurve explicit implementation
-		IEnumerable<IIfcCompositeCurveSegment> IIfcCompositeCurve.Segments { 
-			get { return @Segments; } 
+		IItemSet<IIfcCompositeCurveSegment> IIfcCompositeCurve.Segments { 
+			get { return new Common.Collections.ProxyItemSet<IfcCompositeCurveSegment, IIfcCompositeCurveSegment>( @Segments); } 
 		}	
 		IfcLogical IIfcCompositeCurve.SelfIntersect { 
-			get { return @SelfIntersect; } 
  
+			get { return @SelfIntersect; } 
 			set { SelfIntersect = value;}
 		}	
 		 
@@ -54,19 +54,18 @@ namespace Xbim.Ifc4.GeometryResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCompositeCurve(IModel model) : base(model) 		{ 
-			Model = model; 
 			_segments = new ItemSet<IfcCompositeCurveSegment>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcCompositeCurveSegment> _segments;
+		private readonly ItemSet<IfcCompositeCurveSegment> _segments;
 		private IfcLogical _selfIntersect;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 3)]
-		public ItemSet<IfcCompositeCurveSegment> @Segments 
+		public IItemSet<IfcCompositeCurveSegment> @Segments 
 		{ 
 			get 
 			{
@@ -171,7 +170,7 @@ namespace Xbim.Ifc4.GeometryResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	public partial class @IfcPath : IIfcPath
 	{
-		IEnumerable<IIfcOrientedEdge> IIfcPath.EdgeList 
+		IItemSet<IIfcOrientedEdge> IIfcPath.EdgeList 
 		{ 
 			get
 			{

@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
-		IEnumerable<IIfcActorRole> IIfcPersonAndOrganization.Roles 
+		IItemSet<IIfcActorRole> IIfcPersonAndOrganization.Roles 
 		{ 
 			get
 			{

@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
-		IEnumerable<IIfcTrimmingSelect> IIfcTrimmedCurve.Trim1 
+		IItemSet<IIfcTrimmingSelect> IIfcTrimmedCurve.Trim1 
 		{ 
 			get
 			{
@@ -42,7 +42,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 				}
 			} 
 		}
-		IEnumerable<IIfcTrimmingSelect> IIfcTrimmedCurve.Trim2 
+		IItemSet<IIfcTrimmingSelect> IIfcTrimmedCurve.Trim2 
 		{ 
 			get
 			{

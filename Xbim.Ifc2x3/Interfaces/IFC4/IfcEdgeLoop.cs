@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	public partial class @IfcEdgeLoop : IIfcEdgeLoop
 	{
-		IEnumerable<IIfcOrientedEdge> IIfcEdgeLoop.EdgeList 
+		IItemSet<IIfcOrientedEdge> IIfcEdgeLoop.EdgeList 
 		{ 
 			get
 			{

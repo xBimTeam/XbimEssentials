@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcLabel @Name { get;  set; }
 		IfcText? @Description { get;  set; }
 		IfcURIReference? @Location { get;  set; }
-		IEnumerable<IfcIdentifier> @ReferenceTokens { get; }
+		IItemSet<IfcIdentifier> @ReferenceTokens { get; }
 		IEnumerable<IIfcRelAssociatesClassification> @ClassificationForObjects {  get; }
 		IEnumerable<IIfcClassificationReference> @HasReferences {  get; }
 	
@@ -49,36 +49,36 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 	{
 		#region IIfcClassification explicit implementation
 		IfcLabel? IIfcClassification.Source { 
-			get { return @Source; } 
  
+			get { return @Source; } 
 			set { Source = value;}
 		}	
 		IfcLabel? IIfcClassification.Edition { 
-			get { return @Edition; } 
  
+			get { return @Edition; } 
 			set { Edition = value;}
 		}	
 		IfcDate? IIfcClassification.EditionDate { 
-			get { return @EditionDate; } 
  
+			get { return @EditionDate; } 
 			set { EditionDate = value;}
 		}	
 		IfcLabel IIfcClassification.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IfcText? IIfcClassification.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		IfcURIReference? IIfcClassification.Location { 
-			get { return @Location; } 
  
+			get { return @Location; } 
 			set { Location = value;}
 		}	
-		IEnumerable<IfcIdentifier> IIfcClassification.ReferenceTokens { 
+		IItemSet<IfcIdentifier> IIfcClassification.ReferenceTokens { 
 			get { return @ReferenceTokens; } 
 		}	
 		 
@@ -88,7 +88,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcClassification(IModel model) : base(model) 		{ 
-			Model = model; 
 			_referenceTokens = new OptionalItemSet<IfcIdentifier>( this, 0,  7);
 		}
 
@@ -99,7 +98,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		private IfcLabel _name;
 		private IfcText? _description;
 		private IfcURIReference? _location;
-		private OptionalItemSet<IfcIdentifier> _referenceTokens;
+		private readonly OptionalItemSet<IfcIdentifier> _referenceTokens;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -188,7 +187,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 7)]
-		public OptionalItemSet<IfcIdentifier> @ReferenceTokens 
+		public IOptionalItemSet<IfcIdentifier> @ReferenceTokens 
 		{ 
 			get 
 			{
@@ -289,7 +288,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

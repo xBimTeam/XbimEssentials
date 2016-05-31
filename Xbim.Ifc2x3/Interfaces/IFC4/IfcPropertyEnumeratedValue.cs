@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 {
 	public partial class @IfcPropertyEnumeratedValue : IIfcPropertyEnumeratedValue
 	{
-		IEnumerable<IIfcValue> IIfcPropertyEnumeratedValue.EnumerationValues 
+		IItemSet<IIfcValue> IIfcPropertyEnumeratedValue.EnumerationValues 
 		{ 
 			get
 			{

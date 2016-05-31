@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcIndexedTriangleTextureMap : IIfcIndexedTextureMap
 	{
-		IEnumerable<IEnumerable<IfcPositiveInteger>> @TexCoordIndex { get; }
+		IItemSet<IItemSet<IfcPositiveInteger>> @TexCoordIndex { get; }
 	
 	}
 }
@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcIndexedTriangleTextureMap : IfcIndexedTextureMap, IInstantiableEntity, IIfcIndexedTriangleTextureMap, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcIndexedTriangleTextureMap>
 	{
 		#region IIfcIndexedTriangleTextureMap explicit implementation
-		IEnumerable<IEnumerable<IfcPositiveInteger>> IIfcIndexedTriangleTextureMap.TexCoordIndex { 
+		IItemSet<IItemSet<IfcPositiveInteger>> IIfcIndexedTriangleTextureMap.TexCoordIndex { 
 			get { return @TexCoordIndex; } 
 		}	
 		 
@@ -46,17 +46,16 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcIndexedTriangleTextureMap(IModel model) : base(model) 		{ 
-			Model = model; 
-			_texCoordIndex = new OptionalItemSet<ItemSet<IfcPositiveInteger>>( this, 0,  4);
+			_texCoordIndex = new OptionalItemSet<IItemSet<IfcPositiveInteger>>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
-		private OptionalItemSet<ItemSet<IfcPositiveInteger>> _texCoordIndex;
+		private readonly OptionalItemSet<IItemSet<IfcPositiveInteger>> _texCoordIndex;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.List, 3, 3, 4)]
-		public OptionalItemSet<ItemSet<IfcPositiveInteger>> @TexCoordIndex 
+		public IOptionalItemSet<IItemSet<IfcPositiveInteger>> @TexCoordIndex 
 		{ 
 			get 
 			{
@@ -82,8 +81,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 3: 
-					_texCoordIndex
-						.InternalGetAt(nestedIndex[0])
+					((ItemSet<IfcPositiveInteger>)_texCoordIndex
+						.InternalGetAt(nestedIndex[0]) )
 						.InternalAdd((IfcPositiveInteger)(value.IntegerVal));
 					return;
 				default:
@@ -126,7 +125,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

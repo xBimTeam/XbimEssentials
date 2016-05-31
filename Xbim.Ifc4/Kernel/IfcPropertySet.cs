@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPropertySet : IIfcPropertySetDefinition
 	{
-		IEnumerable<IIfcProperty> @HasProperties { get; }
+		IItemSet<IIfcProperty> @HasProperties { get; }
 	
 	}
 }
@@ -38,26 +38,25 @@ namespace Xbim.Ifc4.Kernel
 	public  partial class @IfcPropertySet : IfcPropertySetDefinition, IInstantiableEntity, IIfcPropertySet, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPropertySet>
 	{
 		#region IIfcPropertySet explicit implementation
-		IEnumerable<IIfcProperty> IIfcPropertySet.HasProperties { 
-			get { return @HasProperties; } 
+		IItemSet<IIfcProperty> IIfcPropertySet.HasProperties { 
+			get { return new Common.Collections.ProxyItemSet<IfcProperty, IIfcProperty>( @HasProperties); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertySet(IModel model) : base(model) 		{ 
-			Model = model; 
 			_hasProperties = new ItemSet<IfcProperty>( this, 0,  5);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcProperty> _hasProperties;
+		private readonly ItemSet<IfcProperty> _hasProperties;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 10)]
-		public ItemSet<IfcProperty> @HasProperties 
+		public IItemSet<IfcProperty> @HasProperties 
 		{ 
 			get 
 			{
@@ -126,7 +125,7 @@ namespace Xbim.Ifc4.Kernel
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcFillAreaStyleTiles : IIfcFillAreaStyleTiles
 	{
-		IEnumerable<IIfcVector> IIfcFillAreaStyleTiles.TilingPattern 
+		IItemSet<IIfcVector> IIfcFillAreaStyleTiles.TilingPattern 
 		{ 
 			get
 			{
@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			    //##
 			} 
 		}
-		IEnumerable<IIfcStyledItem> IIfcFillAreaStyleTiles.Tiles 
+		IItemSet<IIfcStyledItem> IIfcFillAreaStyleTiles.Tiles 
 		{ 
 			get
 			{

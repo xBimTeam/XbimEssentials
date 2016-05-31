@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
-		IEnumerable<IIfcDocumentInformation> IIfcDocumentInformationRelationship.RelatedDocuments 
+		IItemSet<IIfcDocumentInformation> IIfcDocumentInformationRelationship.RelatedDocuments 
 		{ 
 			get
 			{

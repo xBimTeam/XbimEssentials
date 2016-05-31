@@ -44,28 +44,28 @@ namespace Xbim.Ifc4.SharedBldgElements
 	{
 		#region IIfcWindow explicit implementation
 		IfcPositiveLengthMeasure? IIfcWindow.OverallHeight { 
-			get { return @OverallHeight; } 
  
+			get { return @OverallHeight; } 
 			set { OverallHeight = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcWindow.OverallWidth { 
-			get { return @OverallWidth; } 
  
+			get { return @OverallWidth; } 
 			set { OverallWidth = value;}
 		}	
 		IfcWindowTypeEnum? IIfcWindow.PredefinedType { 
-			get { return @PredefinedType; } 
  
+			get { return @PredefinedType; } 
 			set { PredefinedType = value;}
 		}	
 		IfcWindowTypePartitioningEnum? IIfcWindow.PartitioningType { 
-			get { return @PartitioningType; } 
  
+			get { return @PartitioningType; } 
 			set { PartitioningType = value;}
 		}	
 		IfcLabel? IIfcWindow.UserDefinedPartitioningType { 
-			get { return @UserDefinedPartitioningType; } 
  
+			get { return @UserDefinedPartitioningType; } 
 			set { UserDefinedPartitioningType = value;}
 		}	
 		 
@@ -73,7 +73,6 @@ namespace Xbim.Ifc4.SharedBldgElements
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWindow(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -231,7 +230,7 @@ namespace Xbim.Ifc4.SharedBldgElements
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

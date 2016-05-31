@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	public partial class @IfcDerivedUnit : IIfcDerivedUnit
 	{
-		IEnumerable<IIfcDerivedUnitElement> IIfcDerivedUnit.Elements 
+		IItemSet<IIfcDerivedUnitElement> IIfcDerivedUnit.Elements 
 		{ 
 			get
 			{

@@ -29,8 +29,8 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcLightDistributionData : IPersistEntity
 	{
 		IfcPlaneAngleMeasure @MainPlaneAngle { get;  set; }
-		IEnumerable<IfcPlaneAngleMeasure> @SecondaryPlaneAngle { get; }
-		IEnumerable<IfcLuminousIntensityDistributionMeasure> @LuminousIntensity { get; }
+		IItemSet<IfcPlaneAngleMeasure> @SecondaryPlaneAngle { get; }
+		IItemSet<IfcLuminousIntensityDistributionMeasure> @LuminousIntensity { get; }
 	
 	}
 }
@@ -43,14 +43,14 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 	{
 		#region IIfcLightDistributionData explicit implementation
 		IfcPlaneAngleMeasure IIfcLightDistributionData.MainPlaneAngle { 
-			get { return @MainPlaneAngle; } 
  
+			get { return @MainPlaneAngle; } 
 			set { MainPlaneAngle = value;}
 		}	
-		IEnumerable<IfcPlaneAngleMeasure> IIfcLightDistributionData.SecondaryPlaneAngle { 
+		IItemSet<IfcPlaneAngleMeasure> IIfcLightDistributionData.SecondaryPlaneAngle { 
 			get { return @SecondaryPlaneAngle; } 
 		}	
-		IEnumerable<IfcLuminousIntensityDistributionMeasure> IIfcLightDistributionData.LuminousIntensity { 
+		IItemSet<IfcLuminousIntensityDistributionMeasure> IIfcLightDistributionData.LuminousIntensity { 
 			get { return @LuminousIntensity; } 
 		}	
 		 
@@ -123,8 +123,8 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 
 		#region Explicit attribute fields
 		private IfcPlaneAngleMeasure _mainPlaneAngle;
-		private ItemSet<IfcPlaneAngleMeasure> _secondaryPlaneAngle;
-		private ItemSet<IfcLuminousIntensityDistributionMeasure> _luminousIntensity;
+		private readonly ItemSet<IfcPlaneAngleMeasure> _secondaryPlaneAngle;
+		private readonly ItemSet<IfcLuminousIntensityDistributionMeasure> _luminousIntensity;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -143,7 +143,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 2)]
-		public ItemSet<IfcPlaneAngleMeasure> @SecondaryPlaneAngle 
+		public IItemSet<IfcPlaneAngleMeasure> @SecondaryPlaneAngle 
 		{ 
 			get 
 			{
@@ -153,7 +153,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 3)]
-		public ItemSet<IfcLuminousIntensityDistributionMeasure> @LuminousIntensity 
+		public IItemSet<IfcLuminousIntensityDistributionMeasure> @LuminousIntensity 
 		{ 
 			get 
 			{
@@ -271,7 +271,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

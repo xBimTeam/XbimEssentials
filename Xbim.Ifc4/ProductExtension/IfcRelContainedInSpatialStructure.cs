@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelContainedInSpatialStructure : IIfcRelConnects
 	{
-		IEnumerable<IIfcProduct> @RelatedElements { get; }
+		IItemSet<IIfcProduct> @RelatedElements { get; }
 		IIfcSpatialElement @RelatingStructure { get;  set; }
 	
 	}
@@ -39,13 +39,13 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcRelContainedInSpatialStructure : IfcRelConnects, IInstantiableEntity, IIfcRelContainedInSpatialStructure, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelContainedInSpatialStructure>
 	{
 		#region IIfcRelContainedInSpatialStructure explicit implementation
-		IEnumerable<IIfcProduct> IIfcRelContainedInSpatialStructure.RelatedElements { 
-			get { return @RelatedElements; } 
+		IItemSet<IIfcProduct> IIfcRelContainedInSpatialStructure.RelatedElements { 
+			get { return new Common.Collections.ProxyItemSet<IfcProduct, IIfcProduct>( @RelatedElements); } 
 		}	
 		IIfcSpatialElement IIfcRelContainedInSpatialStructure.RelatingStructure { 
+ 
+ 
 			get { return @RelatingStructure; } 
- 
- 
 			set { RelatingStructure = value as IfcSpatialElement;}
 		}	
 		 
@@ -53,19 +53,18 @@ namespace Xbim.Ifc4.ProductExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelContainedInSpatialStructure(IModel model) : base(model) 		{ 
-			Model = model; 
 			_relatedElements = new ItemSet<IfcProduct>( this, 0,  5);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcProduct> _relatedElements;
+		private readonly ItemSet<IfcProduct> _relatedElements;
 		private IfcSpatialElement _relatingStructure;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 5)]
-		public ItemSet<IfcProduct> @RelatedElements 
+		public IItemSet<IfcProduct> @RelatedElements 
 		{ 
 			get 
 			{
@@ -152,7 +151,7 @@ namespace Xbim.Ifc4.ProductExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

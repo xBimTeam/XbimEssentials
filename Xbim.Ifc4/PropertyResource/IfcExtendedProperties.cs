@@ -28,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IfcIdentifier? @Name { get;  set; }
 		IfcText? @Description { get;  set; }
-		IEnumerable<IIfcProperty> @Properties { get; }
+		IItemSet<IIfcProperty> @Properties { get; }
 	
 	}
 }
@@ -41,31 +41,30 @@ namespace Xbim.Ifc4.PropertyResource
 	{
 		#region IIfcExtendedProperties explicit implementation
 		IfcIdentifier? IIfcExtendedProperties.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IfcText? IIfcExtendedProperties.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
-		IEnumerable<IIfcProperty> IIfcExtendedProperties.Properties { 
-			get { return @Properties; } 
+		IItemSet<IIfcProperty> IIfcExtendedProperties.Properties { 
+			get { return new Common.Collections.ProxyItemSet<IfcProperty, IIfcProperty>( @Properties); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcExtendedProperties(IModel model) : base(model) 		{ 
-			Model = model; 
 			_properties = new ItemSet<IfcProperty>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
 		private IfcIdentifier? _name;
 		private IfcText? _description;
-		private ItemSet<IfcProperty> _properties;
+		private readonly ItemSet<IfcProperty> _properties;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -98,7 +97,7 @@ namespace Xbim.Ifc4.PropertyResource
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
-		public ItemSet<IfcProperty> @Properties 
+		public IItemSet<IfcProperty> @Properties 
 		{ 
 			get 
 			{
@@ -167,7 +166,7 @@ namespace Xbim.Ifc4.PropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

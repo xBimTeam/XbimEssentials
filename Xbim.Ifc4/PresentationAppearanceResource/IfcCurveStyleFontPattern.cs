@@ -41,13 +41,13 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	{
 		#region IIfcCurveStyleFontPattern explicit implementation
 		IfcLengthMeasure IIfcCurveStyleFontPattern.VisibleSegmentLength { 
-			get { return @VisibleSegmentLength; } 
  
+			get { return @VisibleSegmentLength; } 
 			set { VisibleSegmentLength = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcCurveStyleFontPattern.InvisibleSegmentLength { 
-			get { return @InvisibleSegmentLength; } 
  
+			get { return @InvisibleSegmentLength; } 
 			set { InvisibleSegmentLength = value;}
 		}	
 		 
@@ -55,7 +55,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCurveStyleFontPattern(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -149,7 +148,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

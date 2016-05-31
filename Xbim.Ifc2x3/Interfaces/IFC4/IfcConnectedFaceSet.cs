@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	public partial class @IfcConnectedFaceSet : IIfcConnectedFaceSet
 	{
-		IEnumerable<IIfcFace> IIfcConnectedFaceSet.CfsFaces 
+		IItemSet<IIfcFace> IIfcConnectedFaceSet.CfsFaces 
 		{ 
 			get
 			{

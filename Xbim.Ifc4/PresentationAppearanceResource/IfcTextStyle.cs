@@ -42,26 +42,26 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	{
 		#region IIfcTextStyle explicit implementation
 		IIfcTextStyleForDefinedFont IIfcTextStyle.TextCharacterAppearance { 
+ 
+ 
 			get { return @TextCharacterAppearance; } 
- 
- 
 			set { TextCharacterAppearance = value as IfcTextStyleForDefinedFont;}
 		}	
 		IIfcTextStyleTextModel IIfcTextStyle.TextStyle { 
+ 
+ 
 			get { return @TextStyle; } 
- 
- 
 			set { TextStyle = value as IfcTextStyleTextModel;}
 		}	
 		IIfcTextFontSelect IIfcTextStyle.TextFontStyle { 
+ 
+ 
 			get { return @TextFontStyle; } 
- 
- 
 			set { TextFontStyle = value as IfcTextFontSelect;}
 		}	
 		IfcBoolean? IIfcTextStyle.ModelOrDraughting { 
-			get { return @ModelOrDraughting; } 
  
+			get { return @ModelOrDraughting; } 
 			set { ModelOrDraughting = value;}
 		}	
 		 
@@ -69,7 +69,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextStyle(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -202,7 +201,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

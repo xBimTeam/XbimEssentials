@@ -28,8 +28,8 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcSectionedSpine : IIfcGeometricRepresentationItem
 	{
 		IIfcCompositeCurve @SpineCurve { get;  set; }
-		IEnumerable<IIfcProfileDef> @CrossSections { get; }
-		IEnumerable<IIfcAxis2Placement3D> @CrossSectionPositions { get; }
+		IItemSet<IIfcProfileDef> @CrossSections { get; }
+		IItemSet<IIfcAxis2Placement3D> @CrossSectionPositions { get; }
 		IfcDimensionCount @Dim  { get ; }
 	
 	}
@@ -43,31 +43,30 @@ namespace Xbim.Ifc4.GeometricModelResource
 	{
 		#region IIfcSectionedSpine explicit implementation
 		IIfcCompositeCurve IIfcSectionedSpine.SpineCurve { 
+ 
+ 
 			get { return @SpineCurve; } 
- 
- 
 			set { SpineCurve = value as IfcCompositeCurve;}
 		}	
-		IEnumerable<IIfcProfileDef> IIfcSectionedSpine.CrossSections { 
-			get { return @CrossSections; } 
+		IItemSet<IIfcProfileDef> IIfcSectionedSpine.CrossSections { 
+			get { return new Common.Collections.ProxyItemSet<IfcProfileDef, IIfcProfileDef>( @CrossSections); } 
 		}	
-		IEnumerable<IIfcAxis2Placement3D> IIfcSectionedSpine.CrossSectionPositions { 
-			get { return @CrossSectionPositions; } 
+		IItemSet<IIfcAxis2Placement3D> IIfcSectionedSpine.CrossSectionPositions { 
+			get { return new Common.Collections.ProxyItemSet<IfcAxis2Placement3D, IIfcAxis2Placement3D>( @CrossSectionPositions); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSectionedSpine(IModel model) : base(model) 		{ 
-			Model = model; 
 			_crossSections = new ItemSet<IfcProfileDef>( this, 0,  2);
 			_crossSectionPositions = new ItemSet<IfcAxis2Placement3D>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
 		private IfcCompositeCurve _spineCurve;
-		private ItemSet<IfcProfileDef> _crossSections;
-		private ItemSet<IfcAxis2Placement3D> _crossSectionPositions;
+		private readonly ItemSet<IfcProfileDef> _crossSections;
+		private readonly ItemSet<IfcAxis2Placement3D> _crossSectionPositions;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -86,7 +85,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 2, -1, 4)]
-		public ItemSet<IfcProfileDef> @CrossSections 
+		public IItemSet<IfcProfileDef> @CrossSections 
 		{ 
 			get 
 			{
@@ -96,7 +95,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 2, -1, 5)]
-		public ItemSet<IfcAxis2Placement3D> @CrossSectionPositions 
+		public IItemSet<IfcAxis2Placement3D> @CrossSectionPositions 
 		{ 
 			get 
 			{
@@ -178,7 +177,7 @@ namespace Xbim.Ifc4.GeometricModelResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

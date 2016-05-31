@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
-		IEnumerable<IIfcSpatialElement> IIfcRelServicesBuildings.RelatedBuildings 
+		IItemSet<IIfcSpatialElement> IIfcRelServicesBuildings.RelatedBuildings 
 		{ 
 			get
 			{

@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialProfileWithOffsets : IIfcMaterialProfile
 	{
-		IEnumerable<IfcLengthMeasure> @OffsetValues { get; }
+		IItemSet<IfcLengthMeasure> @OffsetValues { get; }
 	
 	}
 }
@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.MaterialResource
 	public  partial class @IfcMaterialProfileWithOffsets : IfcMaterialProfile, IInstantiableEntity, IIfcMaterialProfileWithOffsets, IContainsEntityReferences, IEquatable<@IfcMaterialProfileWithOffsets>
 	{
 		#region IIfcMaterialProfileWithOffsets explicit implementation
-		IEnumerable<IfcLengthMeasure> IIfcMaterialProfileWithOffsets.OffsetValues { 
+		IItemSet<IfcLengthMeasure> IIfcMaterialProfileWithOffsets.OffsetValues { 
 			get { return @OffsetValues; } 
 		}	
 		 
@@ -46,17 +46,16 @@ namespace Xbim.Ifc4.MaterialResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialProfileWithOffsets(IModel model) : base(model) 		{ 
-			Model = model; 
 			_offsetValues = new ItemSet<IfcLengthMeasure>( this, 2,  7);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcLengthMeasure> _offsetValues;
+		private readonly ItemSet<IfcLengthMeasure> _offsetValues;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Array, EntityAttributeType.None, 1, 2, 11)]
-		public ItemSet<IfcLengthMeasure> @OffsetValues 
+		public IItemSet<IfcLengthMeasure> @OffsetValues 
 		{ 
 			get 
 			{
@@ -127,7 +126,7 @@ namespace Xbim.Ifc4.MaterialResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

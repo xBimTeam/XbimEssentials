@@ -66,7 +66,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				
 			}
 		}
-		IEnumerable<IIfcLightDistributionData> IIfcLightIntensityDistribution.DistributionData 
+		IItemSet<IIfcLightDistributionData> IIfcLightIntensityDistribution.DistributionData 
 		{ 
 			get
 			{

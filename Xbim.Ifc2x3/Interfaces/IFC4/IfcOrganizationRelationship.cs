@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
-		IEnumerable<IIfcOrganization> IIfcOrganizationRelationship.RelatedOrganizations 
+		IItemSet<IIfcOrganization> IIfcOrganizationRelationship.RelatedOrganizations 
 		{ 
 			get
 			{

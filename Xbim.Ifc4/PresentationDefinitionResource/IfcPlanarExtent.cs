@@ -41,13 +41,13 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 	{
 		#region IIfcPlanarExtent explicit implementation
 		IfcLengthMeasure IIfcPlanarExtent.SizeInX { 
-			get { return @SizeInX; } 
  
+			get { return @SizeInX; } 
 			set { SizeInX = value;}
 		}	
 		IfcLengthMeasure IIfcPlanarExtent.SizeInY { 
-			get { return @SizeInY; } 
  
+			get { return @SizeInY; } 
 			set { SizeInY = value;}
 		}	
 		 
@@ -55,7 +55,6 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPlanarExtent(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -149,7 +148,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

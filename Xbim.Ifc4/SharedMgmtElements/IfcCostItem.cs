@@ -29,8 +29,8 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcCostItem : IIfcControl
 	{
 		IfcCostItemTypeEnum? @PredefinedType { get;  set; }
-		IEnumerable<IIfcCostValue> @CostValues { get; }
-		IEnumerable<IIfcPhysicalQuantity> @CostQuantities { get; }
+		IItemSet<IIfcCostValue> @CostValues { get; }
+		IItemSet<IIfcPhysicalQuantity> @CostQuantities { get; }
 	
 	}
 }
@@ -43,30 +43,29 @@ namespace Xbim.Ifc4.SharedMgmtElements
 	{
 		#region IIfcCostItem explicit implementation
 		IfcCostItemTypeEnum? IIfcCostItem.PredefinedType { 
-			get { return @PredefinedType; } 
  
+			get { return @PredefinedType; } 
 			set { PredefinedType = value;}
 		}	
-		IEnumerable<IIfcCostValue> IIfcCostItem.CostValues { 
-			get { return @CostValues; } 
+		IItemSet<IIfcCostValue> IIfcCostItem.CostValues { 
+			get { return new Common.Collections.ProxyItemSet<IfcCostValue, IIfcCostValue>( @CostValues); } 
 		}	
-		IEnumerable<IIfcPhysicalQuantity> IIfcCostItem.CostQuantities { 
-			get { return @CostQuantities; } 
+		IItemSet<IIfcPhysicalQuantity> IIfcCostItem.CostQuantities { 
+			get { return new Common.Collections.ProxyItemSet<IfcPhysicalQuantity, IIfcPhysicalQuantity>( @CostQuantities); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCostItem(IModel model) : base(model) 		{ 
-			Model = model; 
 			_costValues = new OptionalItemSet<IfcCostValue>( this, 0,  8);
 			_costQuantities = new OptionalItemSet<IfcPhysicalQuantity>( this, 0,  9);
 		}
 
 		#region Explicit attribute fields
 		private IfcCostItemTypeEnum? _predefinedType;
-		private OptionalItemSet<IfcCostValue> _costValues;
-		private OptionalItemSet<IfcPhysicalQuantity> _costQuantities;
+		private readonly OptionalItemSet<IfcCostValue> _costValues;
+		private readonly OptionalItemSet<IfcPhysicalQuantity> _costQuantities;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -85,7 +84,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 20)]
-		public OptionalItemSet<IfcCostValue> @CostValues 
+		public IOptionalItemSet<IfcCostValue> @CostValues 
 		{ 
 			get 
 			{
@@ -95,7 +94,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 21)]
-		public OptionalItemSet<IfcPhysicalQuantity> @CostQuantities 
+		public IOptionalItemSet<IfcPhysicalQuantity> @CostQuantities 
 		{ 
 			get 
 			{
@@ -172,7 +171,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

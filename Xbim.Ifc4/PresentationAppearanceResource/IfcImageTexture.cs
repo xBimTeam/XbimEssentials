@@ -39,8 +39,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	{
 		#region IIfcImageTexture explicit implementation
 		IfcURIReference IIfcImageTexture.URLReference { 
-			get { return @URLReference; } 
  
+			get { return @URLReference; } 
 			set { URLReference = value;}
 		}	
 		 
@@ -48,7 +48,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcImageTexture(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -131,7 +130,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

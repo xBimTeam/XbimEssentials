@@ -58,7 +58,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				
 			}
 		}
-		IEnumerable<IIfcProperty> IIfcExtendedProperties.Properties 
+		IItemSet<IIfcProperty> IIfcExtendedProperties.Properties 
 		{ 
 			get
 			{

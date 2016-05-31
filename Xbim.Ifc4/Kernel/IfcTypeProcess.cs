@@ -42,18 +42,18 @@ namespace Xbim.Ifc4.Kernel
 	{
 		#region IIfcTypeProcess explicit implementation
 		IfcIdentifier? IIfcTypeProcess.Identification { 
-			get { return @Identification; } 
  
+			get { return @Identification; } 
 			set { Identification = value;}
 		}	
 		IfcText? IIfcTypeProcess.LongDescription { 
-			get { return @LongDescription; } 
  
+			get { return @LongDescription; } 
 			set { LongDescription = value;}
 		}	
 		IfcLabel? IIfcTypeProcess.ProcessType { 
-			get { return @ProcessType; } 
  
+			get { return @ProcessType; } 
 			set { ProcessType = value;}
 		}	
 		 
@@ -62,7 +62,6 @@ namespace Xbim.Ifc4.Kernel
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTypeProcess(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -193,7 +192,7 @@ namespace Xbim.Ifc4.Kernel
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

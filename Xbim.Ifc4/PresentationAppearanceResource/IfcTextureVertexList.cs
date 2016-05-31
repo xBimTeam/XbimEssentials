@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTextureVertexList : IIfcPresentationItem
 	{
-		IEnumerable<IEnumerable<IfcParameterValue>> @TexCoordsList { get; }
+		IItemSet<IItemSet<IfcParameterValue>> @TexCoordsList { get; }
 	
 	}
 }
@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcTextureVertexList : IfcPresentationItem, IInstantiableEntity, IIfcTextureVertexList, IEquatable<@IfcTextureVertexList>
 	{
 		#region IIfcTextureVertexList explicit implementation
-		IEnumerable<IEnumerable<IfcParameterValue>> IIfcTextureVertexList.TexCoordsList { 
+		IItemSet<IItemSet<IfcParameterValue>> IIfcTextureVertexList.TexCoordsList { 
 			get { return @TexCoordsList; } 
 		}	
 		 
@@ -47,17 +47,16 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextureVertexList(IModel model) : base(model) 		{ 
-			Model = model; 
-			_texCoordsList = new ItemSet<ItemSet<IfcParameterValue>>( this, 0,  1);
+			_texCoordsList = new ItemSet<IItemSet<IfcParameterValue>>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<ItemSet<IfcParameterValue>> _texCoordsList;
+		private readonly ItemSet<IItemSet<IfcParameterValue>> _texCoordsList;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, 2, 2, 1)]
-		public ItemSet<ItemSet<IfcParameterValue>> @TexCoordsList 
+		public IItemSet<IItemSet<IfcParameterValue>> @TexCoordsList 
 		{ 
 			get 
 			{
@@ -78,8 +77,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			switch (propIndex)
 			{
 				case 0: 
-					_texCoordsList
-						.InternalGetAt(nestedIndex[0])
+					((ItemSet<IfcParameterValue>)_texCoordsList
+						.InternalGetAt(nestedIndex[0]) )
 						.InternalAdd((IfcParameterValue)(value.RealVal));
 					return;
 				default:
@@ -122,7 +121,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

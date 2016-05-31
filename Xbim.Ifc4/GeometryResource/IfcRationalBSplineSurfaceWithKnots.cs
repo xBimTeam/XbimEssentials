@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRationalBSplineSurfaceWithKnots : IIfcBSplineSurfaceWithKnots
 	{
-		IEnumerable<IEnumerable<IfcReal>> @WeightsData { get; }
+		IItemSet<IItemSet<IfcReal>> @WeightsData { get; }
 		List<List<IfcReal>> @Weights  { get ; }
 	
 	}
@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcRationalBSplineSurfaceWithKnots : IfcBSplineSurfaceWithKnots, IInstantiableEntity, IIfcRationalBSplineSurfaceWithKnots, IContainsEntityReferences, IEquatable<@IfcRationalBSplineSurfaceWithKnots>
 	{
 		#region IIfcRationalBSplineSurfaceWithKnots explicit implementation
-		IEnumerable<IEnumerable<IfcReal>> IIfcRationalBSplineSurfaceWithKnots.WeightsData { 
+		IItemSet<IItemSet<IfcReal>> IIfcRationalBSplineSurfaceWithKnots.WeightsData { 
 			get { return @WeightsData; } 
 		}	
 		 
@@ -47,17 +47,16 @@ namespace Xbim.Ifc4.GeometryResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRationalBSplineSurfaceWithKnots(IModel model) : base(model) 		{ 
-			Model = model; 
-			_weightsData = new ItemSet<ItemSet<IfcReal>>( this, 0,  13);
+			_weightsData = new ItemSet<IItemSet<IfcReal>>( this, 0,  13);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<ItemSet<IfcReal>> _weightsData;
+		private readonly ItemSet<IItemSet<IfcReal>> _weightsData;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, 2, -1, 15)]
-		public ItemSet<ItemSet<IfcReal>> @WeightsData 
+		public IItemSet<IItemSet<IfcReal>> @WeightsData 
 		{ 
 			get 
 			{
@@ -105,8 +104,8 @@ namespace Xbim.Ifc4.GeometryResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 12: 
-					_weightsData
-						.InternalGetAt(nestedIndex[0])
+					((ItemSet<IfcReal>)_weightsData
+						.InternalGetAt(nestedIndex[0]) )
 						.InternalAdd((IfcReal)(value.RealVal));
 					return;
 				default:
@@ -149,7 +148,7 @@ namespace Xbim.Ifc4.GeometryResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

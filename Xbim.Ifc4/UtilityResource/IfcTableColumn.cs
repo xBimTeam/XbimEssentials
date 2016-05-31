@@ -46,30 +46,30 @@ namespace Xbim.Ifc4.UtilityResource
 	{
 		#region IIfcTableColumn explicit implementation
 		IfcIdentifier? IIfcTableColumn.Identifier { 
-			get { return @Identifier; } 
  
+			get { return @Identifier; } 
 			set { Identifier = value;}
 		}	
 		IfcLabel? IIfcTableColumn.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IfcText? IIfcTableColumn.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		IIfcUnit IIfcTableColumn.Unit { 
+ 
+ 
 			get { return @Unit; } 
- 
- 
 			set { Unit = value as IfcUnit;}
 		}	
 		IIfcReference IIfcTableColumn.ReferencePath { 
+ 
+ 
 			get { return @ReferencePath; } 
- 
- 
 			set { ReferencePath = value as IfcReference;}
 		}	
 		 
@@ -332,7 +332,7 @@ namespace Xbim.Ifc4.UtilityResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

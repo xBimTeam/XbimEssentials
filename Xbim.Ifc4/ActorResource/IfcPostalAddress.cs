@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcPostalAddress : IIfcAddress
 	{
 		IfcLabel? @InternalLocation { get;  set; }
-		IEnumerable<IfcLabel> @AddressLines { get; }
+		IItemSet<IfcLabel> @AddressLines { get; }
 		IfcLabel? @PostalBox { get;  set; }
 		IfcLabel? @Town { get;  set; }
 		IfcLabel? @Region { get;  set; }
@@ -45,36 +45,36 @@ namespace Xbim.Ifc4.ActorResource
 	{
 		#region IIfcPostalAddress explicit implementation
 		IfcLabel? IIfcPostalAddress.InternalLocation { 
-			get { return @InternalLocation; } 
  
+			get { return @InternalLocation; } 
 			set { InternalLocation = value;}
 		}	
-		IEnumerable<IfcLabel> IIfcPostalAddress.AddressLines { 
+		IItemSet<IfcLabel> IIfcPostalAddress.AddressLines { 
 			get { return @AddressLines; } 
 		}	
 		IfcLabel? IIfcPostalAddress.PostalBox { 
-			get { return @PostalBox; } 
  
+			get { return @PostalBox; } 
 			set { PostalBox = value;}
 		}	
 		IfcLabel? IIfcPostalAddress.Town { 
-			get { return @Town; } 
  
+			get { return @Town; } 
 			set { Town = value;}
 		}	
 		IfcLabel? IIfcPostalAddress.Region { 
-			get { return @Region; } 
  
+			get { return @Region; } 
 			set { Region = value;}
 		}	
 		IfcLabel? IIfcPostalAddress.PostalCode { 
-			get { return @PostalCode; } 
  
+			get { return @PostalCode; } 
 			set { PostalCode = value;}
 		}	
 		IfcLabel? IIfcPostalAddress.Country { 
-			get { return @Country; } 
  
+			get { return @Country; } 
 			set { Country = value;}
 		}	
 		 
@@ -82,13 +82,12 @@ namespace Xbim.Ifc4.ActorResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPostalAddress(IModel model) : base(model) 		{ 
-			Model = model; 
 			_addressLines = new OptionalItemSet<IfcLabel>( this, 0,  5);
 		}
 
 		#region Explicit attribute fields
 		private IfcLabel? _internalLocation;
-		private OptionalItemSet<IfcLabel> _addressLines;
+		private readonly OptionalItemSet<IfcLabel> _addressLines;
 		private IfcLabel? _postalBox;
 		private IfcLabel? _town;
 		private IfcLabel? _region;
@@ -112,7 +111,7 @@ namespace Xbim.Ifc4.ActorResource
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 7)]
-		public OptionalItemSet<IfcLabel> @AddressLines 
+		public IOptionalItemSet<IfcLabel> @AddressLines 
 		{ 
 			get 
 			{
@@ -268,7 +267,7 @@ namespace Xbim.Ifc4.ActorResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

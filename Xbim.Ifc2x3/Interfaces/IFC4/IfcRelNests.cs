@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Kernel
 				
 			}
 		}
-		IEnumerable<IIfcObjectDefinition> IIfcRelNests.RelatedObjects 
+		IItemSet<IIfcObjectDefinition> IIfcRelNests.RelatedObjects 
 		{ 
 			get
 			{

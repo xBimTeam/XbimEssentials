@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcApprovalRelationship : IIfcResourceLevelRelationship
 	{
 		IIfcApproval @RelatingApproval { get;  set; }
-		IEnumerable<IIfcApproval> @RelatedApprovals { get; }
+		IItemSet<IIfcApproval> @RelatedApprovals { get; }
 	
 	}
 }
@@ -40,26 +40,25 @@ namespace Xbim.Ifc4.ApprovalResource
 	{
 		#region IIfcApprovalRelationship explicit implementation
 		IIfcApproval IIfcApprovalRelationship.RelatingApproval { 
+ 
+ 
 			get { return @RelatingApproval; } 
- 
- 
 			set { RelatingApproval = value as IfcApproval;}
 		}	
-		IEnumerable<IIfcApproval> IIfcApprovalRelationship.RelatedApprovals { 
-			get { return @RelatedApprovals; } 
+		IItemSet<IIfcApproval> IIfcApprovalRelationship.RelatedApprovals { 
+			get { return new Common.Collections.ProxyItemSet<IfcApproval, IIfcApproval>( @RelatedApprovals); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcApprovalRelationship(IModel model) : base(model) 		{ 
-			Model = model; 
 			_relatedApprovals = new ItemSet<IfcApproval>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
 		private IfcApproval _relatingApproval;
-		private ItemSet<IfcApproval> _relatedApprovals;
+		private readonly ItemSet<IfcApproval> _relatedApprovals;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -80,7 +79,7 @@ namespace Xbim.Ifc4.ApprovalResource
 		}	
 		[IndexedProperty]
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
-		public ItemSet<IfcApproval> @RelatedApprovals 
+		public IItemSet<IfcApproval> @RelatedApprovals 
 		{ 
 			get 
 			{
@@ -150,7 +149,7 @@ namespace Xbim.Ifc4.ApprovalResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

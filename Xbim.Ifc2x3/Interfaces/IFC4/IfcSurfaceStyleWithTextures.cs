@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcSurfaceStyleWithTextures : IIfcSurfaceStyleWithTextures
 	{
-		IEnumerable<IIfcSurfaceTexture> IIfcSurfaceStyleWithTextures.Textures 
+		IItemSet<IIfcSurfaceTexture> IIfcSurfaceStyleWithTextures.Textures 
 		{ 
 			get
 			{

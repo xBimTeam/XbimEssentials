@@ -43,18 +43,18 @@ namespace Xbim.Ifc4.DateTimeResource
 	{
 		#region IIfcSchedulingTime explicit implementation
 		IfcLabel? IIfcSchedulingTime.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IfcDataOriginEnum? IIfcSchedulingTime.DataOrigin { 
-			get { return @DataOrigin; } 
  
+			get { return @DataOrigin; } 
 			set { DataOrigin = value;}
 		}	
 		IfcLabel? IIfcSchedulingTime.UserDefinedDataOrigin { 
-			get { return @UserDefinedDataOrigin; } 
  
+			get { return @UserDefinedDataOrigin; } 
 			set { UserDefinedDataOrigin = value;}
 		}	
 		 
@@ -281,7 +281,7 @@ namespace Xbim.Ifc4.DateTimeResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

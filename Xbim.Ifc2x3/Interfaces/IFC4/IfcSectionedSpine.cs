@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				
 			}
 		}
-		IEnumerable<IIfcProfileDef> IIfcSectionedSpine.CrossSections 
+		IItemSet<IIfcProfileDef> IIfcSectionedSpine.CrossSections 
 		{ 
 			get
 			{
@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				}
 			} 
 		}
-		IEnumerable<IIfcAxis2Placement3D> IIfcSectionedSpine.CrossSectionPositions 
+		IItemSet<IIfcAxis2Placement3D> IIfcSectionedSpine.CrossSectionPositions 
 		{ 
 			get
 			{

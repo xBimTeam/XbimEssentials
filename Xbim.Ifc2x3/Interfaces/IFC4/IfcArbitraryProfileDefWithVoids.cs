@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcArbitraryProfileDefWithVoids : IIfcArbitraryProfileDefWithVoids
 	{
-		IEnumerable<IIfcCurve> IIfcArbitraryProfileDefWithVoids.InnerCurves 
+		IItemSet<IIfcCurve> IIfcArbitraryProfileDefWithVoids.InnerCurves 
 		{ 
 			get
 			{

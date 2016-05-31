@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 				
 			}
 		}
-		IEnumerable<IIfcTimeSeriesValue> IIfcRegularTimeSeries.Values 
+		IItemSet<IIfcTimeSeriesValue> IIfcRegularTimeSeries.Values 
 		{ 
 			get
 			{

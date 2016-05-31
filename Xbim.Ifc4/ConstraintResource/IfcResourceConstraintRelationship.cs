@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcResourceConstraintRelationship : IIfcResourceLevelRelationship
 	{
 		IIfcConstraint @RelatingConstraint { get;  set; }
-		IEnumerable<IIfcResourceObjectSelect> @RelatedResourceObjects { get; }
+		IItemSet<IIfcResourceObjectSelect> @RelatedResourceObjects { get; }
 	
 	}
 }
@@ -40,26 +40,25 @@ namespace Xbim.Ifc4.ConstraintResource
 	{
 		#region IIfcResourceConstraintRelationship explicit implementation
 		IIfcConstraint IIfcResourceConstraintRelationship.RelatingConstraint { 
+ 
+ 
 			get { return @RelatingConstraint; } 
- 
- 
 			set { RelatingConstraint = value as IfcConstraint;}
 		}	
-		IEnumerable<IIfcResourceObjectSelect> IIfcResourceConstraintRelationship.RelatedResourceObjects { 
-			get { return @RelatedResourceObjects; } 
+		IItemSet<IIfcResourceObjectSelect> IIfcResourceConstraintRelationship.RelatedResourceObjects { 
+			get { return new Common.Collections.ProxyItemSet<IfcResourceObjectSelect, IIfcResourceObjectSelect>( @RelatedResourceObjects); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcResourceConstraintRelationship(IModel model) : base(model) 		{ 
-			Model = model; 
 			_relatedResourceObjects = new ItemSet<IfcResourceObjectSelect>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
 		private IfcConstraint _relatingConstraint;
-		private ItemSet<IfcResourceObjectSelect> _relatedResourceObjects;
+		private readonly ItemSet<IfcResourceObjectSelect> _relatedResourceObjects;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -80,7 +79,7 @@ namespace Xbim.Ifc4.ConstraintResource
 		}	
 		[IndexedProperty]
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
-		public ItemSet<IfcResourceObjectSelect> @RelatedResourceObjects 
+		public IItemSet<IfcResourceObjectSelect> @RelatedResourceObjects 
 		{ 
 			get 
 			{
@@ -150,7 +149,7 @@ namespace Xbim.Ifc4.ConstraintResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

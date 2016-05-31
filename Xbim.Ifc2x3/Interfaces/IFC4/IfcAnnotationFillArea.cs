@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				
 			}
 		}
-		IEnumerable<IIfcCurve> IIfcAnnotationFillArea.InnerBoundaries 
+		IItemSet<IIfcCurve> IIfcAnnotationFillArea.InnerBoundaries 
 		{ 
 			get
 			{

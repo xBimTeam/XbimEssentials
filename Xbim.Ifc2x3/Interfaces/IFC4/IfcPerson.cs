@@ -61,7 +61,7 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.MiddleNames 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.MiddleNames 
 		{ 
 			get
 			{
@@ -71,7 +71,7 @@ namespace Xbim.Ifc2x3.ActorResource
 				}
 			} 
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.PrefixTitles 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.PrefixTitles 
 		{ 
 			get
 			{
@@ -81,7 +81,7 @@ namespace Xbim.Ifc2x3.ActorResource
 				}
 			} 
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.SuffixTitles 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.SuffixTitles 
 		{ 
 			get
 			{
@@ -91,7 +91,7 @@ namespace Xbim.Ifc2x3.ActorResource
 				}
 			} 
 		}
-		IEnumerable<IIfcActorRole> IIfcPerson.Roles 
+		IItemSet<IIfcActorRole> IIfcPerson.Roles 
 		{ 
 			get
 			{
@@ -101,7 +101,7 @@ namespace Xbim.Ifc2x3.ActorResource
 				}
 			} 
 		}
-		IEnumerable<IIfcAddress> IIfcPerson.Addresses 
+		IItemSet<IIfcAddress> IIfcPerson.Addresses 
 		{ 
 			get
 			{

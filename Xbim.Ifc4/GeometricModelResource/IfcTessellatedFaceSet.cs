@@ -28,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcTessellatedFaceSet : IIfcTessellatedItem
 	{
 		IIfcCartesianPointList3D @Coordinates { get;  set; }
-		IEnumerable<IEnumerable<IfcParameterValue>> @Normals { get; }
+		IItemSet<IItemSet<IfcParameterValue>> @Normals { get; }
 		IfcBoolean? @Closed { get;  set; }
 		IEnumerable<IIfcIndexedColourMap> @HasColours {  get; }
 		IEnumerable<IIfcIndexedTextureMap> @HasTextures {  get; }
@@ -44,17 +44,17 @@ namespace Xbim.Ifc4.GeometricModelResource
 	{
 		#region IIfcTessellatedFaceSet explicit implementation
 		IIfcCartesianPointList3D IIfcTessellatedFaceSet.Coordinates { 
+ 
+ 
 			get { return @Coordinates; } 
- 
- 
 			set { Coordinates = value as IfcCartesianPointList3D;}
 		}	
-		IEnumerable<IEnumerable<IfcParameterValue>> IIfcTessellatedFaceSet.Normals { 
+		IItemSet<IItemSet<IfcParameterValue>> IIfcTessellatedFaceSet.Normals { 
 			get { return @Normals; } 
 		}	
 		IfcBoolean? IIfcTessellatedFaceSet.Closed { 
-			get { return @Closed; } 
  
+			get { return @Closed; } 
 			set { Closed = value;}
 		}	
 		 
@@ -64,13 +64,12 @@ namespace Xbim.Ifc4.GeometricModelResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTessellatedFaceSet(IModel model) : base(model) 		{ 
-			Model = model; 
-			_normals = new OptionalItemSet<ItemSet<IfcParameterValue>>( this, 0,  2);
+			_normals = new OptionalItemSet<IItemSet<IfcParameterValue>>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
 		private IfcCartesianPointList3D _coordinates;
-		private OptionalItemSet<ItemSet<IfcParameterValue>> _normals;
+		private readonly OptionalItemSet<IItemSet<IfcParameterValue>> _normals;
 		private IfcBoolean? _closed;
 		#endregion
 	
@@ -90,7 +89,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.List, 3, 3, 4)]
-		public OptionalItemSet<ItemSet<IfcParameterValue>> @Normals 
+		public IOptionalItemSet<IItemSet<IfcParameterValue>> @Normals 
 		{ 
 			get 
 			{
@@ -148,8 +147,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 					_coordinates = (IfcCartesianPointList3D)(value.EntityVal);
 					return;
 				case 1: 
-					_normals
-						.InternalGetAt(nestedIndex[0])
+					((ItemSet<IfcParameterValue>)_normals
+						.InternalGetAt(nestedIndex[0]) )
 						.InternalAdd((IfcParameterValue)(value.RealVal));
 					return;
 				case 2: 
@@ -195,7 +194,7 @@ namespace Xbim.Ifc4.GeometricModelResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

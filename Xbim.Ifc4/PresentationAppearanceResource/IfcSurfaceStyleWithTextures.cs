@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSurfaceStyleWithTextures : IIfcPresentationItem, IfcSurfaceStyleElementSelect
 	{
-		IEnumerable<IIfcSurfaceTexture> @Textures { get; }
+		IItemSet<IIfcSurfaceTexture> @Textures { get; }
 	
 	}
 }
@@ -38,26 +38,25 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcSurfaceStyleWithTextures : IfcPresentationItem, IInstantiableEntity, IIfcSurfaceStyleWithTextures, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSurfaceStyleWithTextures>
 	{
 		#region IIfcSurfaceStyleWithTextures explicit implementation
-		IEnumerable<IIfcSurfaceTexture> IIfcSurfaceStyleWithTextures.Textures { 
-			get { return @Textures; } 
+		IItemSet<IIfcSurfaceTexture> IIfcSurfaceStyleWithTextures.Textures { 
+			get { return new Common.Collections.ProxyItemSet<IfcSurfaceTexture, IIfcSurfaceTexture>( @Textures); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceStyleWithTextures(IModel model) : base(model) 		{ 
-			Model = model; 
 			_textures = new ItemSet<IfcSurfaceTexture>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcSurfaceTexture> _textures;
+		private readonly ItemSet<IfcSurfaceTexture> _textures;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 1)]
-		public ItemSet<IfcSurfaceTexture> @Textures 
+		public IItemSet<IfcSurfaceTexture> @Textures 
 		{ 
 			get 
 			{
@@ -120,7 +119,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcTypeObject : IIfcObjectDefinition
 	{
 		IfcIdentifier? @ApplicableOccurrence { get;  set; }
-		IEnumerable<IIfcPropertySetDefinition> @HasPropertySets { get; }
+		IItemSet<IIfcPropertySetDefinition> @HasPropertySets { get; }
 		IEnumerable<IIfcRelDefinesByType> @Types {  get; }
 	
 	}
@@ -41,12 +41,12 @@ namespace Xbim.Ifc4.Kernel
 	{
 		#region IIfcTypeObject explicit implementation
 		IfcIdentifier? IIfcTypeObject.ApplicableOccurrence { 
-			get { return @ApplicableOccurrence; } 
  
+			get { return @ApplicableOccurrence; } 
 			set { ApplicableOccurrence = value;}
 		}	
-		IEnumerable<IIfcPropertySetDefinition> IIfcTypeObject.HasPropertySets { 
-			get { return @HasPropertySets; } 
+		IItemSet<IIfcPropertySetDefinition> IIfcTypeObject.HasPropertySets { 
+			get { return new Common.Collections.ProxyItemSet<IfcPropertySetDefinition, IIfcPropertySetDefinition>( @HasPropertySets); } 
 		}	
 		 
 		IEnumerable<IIfcRelDefinesByType> IIfcTypeObject.Types {  get { return @Types; } }
@@ -54,13 +54,12 @@ namespace Xbim.Ifc4.Kernel
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTypeObject(IModel model) : base(model) 		{ 
-			Model = model; 
 			_hasPropertySets = new OptionalItemSet<IfcPropertySetDefinition>( this, 0,  6);
 		}
 
 		#region Explicit attribute fields
 		private IfcIdentifier? _applicableOccurrence;
-		private OptionalItemSet<IfcPropertySetDefinition> _hasPropertySets;
+		private readonly OptionalItemSet<IfcPropertySetDefinition> _hasPropertySets;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -80,7 +79,7 @@ namespace Xbim.Ifc4.Kernel
 		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 13)]
-		public OptionalItemSet<IfcPropertySetDefinition> @HasPropertySets 
+		public IOptionalItemSet<IfcPropertySetDefinition> @HasPropertySets 
 		{ 
 			get 
 			{
@@ -163,7 +162,7 @@ namespace Xbim.Ifc4.Kernel
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

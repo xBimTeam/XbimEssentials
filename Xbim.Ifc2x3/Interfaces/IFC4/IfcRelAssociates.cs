@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelAssociates : IIfcRelAssociates
 	{
-		IEnumerable<IIfcDefinitionSelect> IIfcRelAssociates.RelatedObjects 
+		IItemSet<IIfcDefinitionSelect> IIfcRelAssociates.RelatedObjects 
 		{ 
 			get
 			{

@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcDocumentInformationRelationship : IIfcResourceLevelRelationship
 	{
 		IIfcDocumentInformation @RelatingDocument { get;  set; }
-		IEnumerable<IIfcDocumentInformation> @RelatedDocuments { get; }
+		IItemSet<IIfcDocumentInformation> @RelatedDocuments { get; }
 		IfcLabel? @RelationshipType { get;  set; }
 	
 	}
@@ -41,17 +41,17 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 	{
 		#region IIfcDocumentInformationRelationship explicit implementation
 		IIfcDocumentInformation IIfcDocumentInformationRelationship.RelatingDocument { 
+ 
+ 
 			get { return @RelatingDocument; } 
- 
- 
 			set { RelatingDocument = value as IfcDocumentInformation;}
 		}	
-		IEnumerable<IIfcDocumentInformation> IIfcDocumentInformationRelationship.RelatedDocuments { 
-			get { return @RelatedDocuments; } 
+		IItemSet<IIfcDocumentInformation> IIfcDocumentInformationRelationship.RelatedDocuments { 
+			get { return new Common.Collections.ProxyItemSet<IfcDocumentInformation, IIfcDocumentInformation>( @RelatedDocuments); } 
 		}	
 		IfcLabel? IIfcDocumentInformationRelationship.RelationshipType { 
-			get { return @RelationshipType; } 
  
+			get { return @RelationshipType; } 
 			set { RelationshipType = value;}
 		}	
 		 
@@ -59,13 +59,12 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDocumentInformationRelationship(IModel model) : base(model) 		{ 
-			Model = model; 
 			_relatedDocuments = new ItemSet<IfcDocumentInformation>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
 		private IfcDocumentInformation _relatingDocument;
-		private ItemSet<IfcDocumentInformation> _relatedDocuments;
+		private readonly ItemSet<IfcDocumentInformation> _relatedDocuments;
 		private IfcLabel? _relationshipType;
 		#endregion
 	
@@ -87,7 +86,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		}	
 		[IndexedProperty]
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
-		public ItemSet<IfcDocumentInformation> @RelatedDocuments 
+		public IItemSet<IfcDocumentInformation> @RelatedDocuments 
 		{ 
 			get 
 			{
@@ -174,7 +173,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

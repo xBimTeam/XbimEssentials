@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 {
 	public partial class @IfcPropertyTableValue : IIfcPropertyTableValue
 	{
-		IEnumerable<IIfcValue> IIfcPropertyTableValue.DefiningValues 
+		IItemSet<IIfcValue> IIfcPropertyTableValue.DefiningValues 
 		{ 
 			get
 			{
@@ -219,7 +219,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 				}
 			} 
 		}
-		IEnumerable<IIfcValue> IIfcPropertyTableValue.DefinedValues 
+		IItemSet<IIfcValue> IIfcPropertyTableValue.DefinedValues 
 		{ 
 			get
 			{

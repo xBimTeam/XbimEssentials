@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				
 			}
 		}
-		IEnumerable<IIfcSectionReinforcementProperties> IIfcReinforcementDefinitionProperties.ReinforcementSectionDefinitions 
+		IItemSet<IIfcSectionReinforcementProperties> IIfcReinforcementDefinitionProperties.ReinforcementSectionDefinitions 
 		{ 
 			get
 			{

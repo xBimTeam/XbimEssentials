@@ -28,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTimeSeriesValue : IPersistEntity
 	{
-		IEnumerable<IIfcValue> @ListValues { get; }
+		IItemSet<IIfcValue> @ListValues { get; }
 	
 	}
 }
@@ -40,8 +40,8 @@ namespace Xbim.Ifc4.DateTimeResource
 	public  partial class @IfcTimeSeriesValue : INotifyPropertyChanged, IInstantiableEntity, IIfcTimeSeriesValue, IEquatable<@IfcTimeSeriesValue>
 	{
 		#region IIfcTimeSeriesValue explicit implementation
-		IEnumerable<IIfcValue> IIfcTimeSeriesValue.ListValues { 
-			get { return @ListValues; } 
+		IItemSet<IIfcValue> IIfcTimeSeriesValue.ListValues { 
+			get { return new Common.Collections.ProxyItemSet<IfcValue, IIfcValue>( @ListValues); } 
 		}	
 		 
 		#endregion
@@ -111,12 +111,12 @@ namespace Xbim.Ifc4.DateTimeResource
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcValue> _listValues;
+		private readonly ItemSet<IfcValue> _listValues;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 1)]
-		public ItemSet<IfcValue> @ListValues 
+		public IItemSet<IfcValue> @ListValues 
 		{ 
 			get 
 			{
@@ -228,7 +228,7 @@ namespace Xbim.Ifc4.DateTimeResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

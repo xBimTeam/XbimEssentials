@@ -42,19 +42,19 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	{
 		#region IIfcCurveStyleFontAndScaling explicit implementation
 		IfcLabel? IIfcCurveStyleFontAndScaling.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IIfcCurveStyleFontSelect IIfcCurveStyleFontAndScaling.CurveFont { 
+ 
+ 
 			get { return @CurveFont; } 
- 
- 
 			set { CurveFont = value as IfcCurveStyleFontSelect;}
 		}	
 		IfcPositiveRatioMeasure IIfcCurveStyleFontAndScaling.CurveFontScaling { 
-			get { return @CurveFontScaling; } 
  
+			get { return @CurveFontScaling; } 
 			set { CurveFontScaling = value;}
 		}	
 		 
@@ -62,7 +62,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCurveStyleFontAndScaling(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -174,7 +173,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

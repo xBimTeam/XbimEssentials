@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPostalAddress.AddressLines 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPostalAddress.AddressLines 
 		{ 
 			get
 			{

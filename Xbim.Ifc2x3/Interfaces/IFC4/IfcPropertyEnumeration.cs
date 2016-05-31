@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 				
 			}
 		}
-		IEnumerable<IIfcValue> IIfcPropertyEnumeration.EnumerationValues 
+		IItemSet<IIfcValue> IIfcPropertyEnumeration.EnumerationValues 
 		{ 
 			get
 			{

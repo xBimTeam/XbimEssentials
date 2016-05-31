@@ -28,8 +28,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcVirtualGridIntersection : IPersistEntity, IfcGridPlacementDirectionSelect
 	{
-		IEnumerable<IIfcGridAxis> @IntersectingAxes { get; }
-		IEnumerable<IfcLengthMeasure> @OffsetDistances { get; }
+		IItemSet<IIfcGridAxis> @IntersectingAxes { get; }
+		IItemSet<IfcLengthMeasure> @OffsetDistances { get; }
 	
 	}
 }
@@ -41,10 +41,10 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 	public  partial class @IfcVirtualGridIntersection : INotifyPropertyChanged, IInstantiableEntity, IIfcVirtualGridIntersection, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcVirtualGridIntersection>
 	{
 		#region IIfcVirtualGridIntersection explicit implementation
-		IEnumerable<IIfcGridAxis> IIfcVirtualGridIntersection.IntersectingAxes { 
-			get { return @IntersectingAxes; } 
+		IItemSet<IIfcGridAxis> IIfcVirtualGridIntersection.IntersectingAxes { 
+			get { return new Common.Collections.ProxyItemSet<IfcGridAxis, IIfcGridAxis>( @IntersectingAxes); } 
 		}	
-		IEnumerable<IfcLengthMeasure> IIfcVirtualGridIntersection.OffsetDistances { 
+		IItemSet<IfcLengthMeasure> IIfcVirtualGridIntersection.OffsetDistances { 
 			get { return @OffsetDistances; } 
 		}	
 		 
@@ -116,14 +116,14 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcGridAxis> _intersectingAxes;
-		private ItemSet<IfcLengthMeasure> _offsetDistances;
+		private readonly ItemSet<IfcGridAxis> _intersectingAxes;
+		private readonly ItemSet<IfcLengthMeasure> _offsetDistances;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 2, 2, 1)]
-		public ItemSet<IfcGridAxis> @IntersectingAxes 
+		public IItemSet<IfcGridAxis> @IntersectingAxes 
 		{ 
 			get 
 			{
@@ -133,7 +133,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, 3, 2)]
-		public ItemSet<IfcLengthMeasure> @OffsetDistances 
+		public IItemSet<IfcLengthMeasure> @OffsetDistances 
 		{ 
 			get 
 			{
@@ -248,7 +248,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	public partial class @IfcRelFlowControlElements : IIfcRelFlowControlElements
 	{
-		IEnumerable<IIfcDistributionControlElement> IIfcRelFlowControlElements.RelatedControlElements 
+		IItemSet<IIfcDistributionControlElement> IIfcRelFlowControlElements.RelatedControlElements 
 		{ 
 			get
 			{

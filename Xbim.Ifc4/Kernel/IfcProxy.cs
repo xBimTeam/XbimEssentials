@@ -40,13 +40,13 @@ namespace Xbim.Ifc4.Kernel
 	{
 		#region IIfcProxy explicit implementation
 		IfcObjectTypeEnum IIfcProxy.ProxyType { 
-			get { return @ProxyType; } 
  
+			get { return @ProxyType; } 
 			set { ProxyType = value;}
 		}	
 		IfcLabel? IIfcProxy.Tag { 
-			get { return @Tag; } 
  
+			get { return @Tag; } 
 			set { Tag = value;}
 		}	
 		 
@@ -54,7 +54,6 @@ namespace Xbim.Ifc4.Kernel
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProxy(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -157,7 +156,7 @@ namespace Xbim.Ifc4.Kernel
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

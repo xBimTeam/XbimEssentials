@@ -45,38 +45,38 @@ namespace Xbim.Ifc4.ProfileResource
 	{
 		#region IIfcUShapeProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcUShapeProfileDef.Depth { 
-			get { return @Depth; } 
  
+			get { return @Depth; } 
 			set { Depth = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcUShapeProfileDef.FlangeWidth { 
-			get { return @FlangeWidth; } 
  
+			get { return @FlangeWidth; } 
 			set { FlangeWidth = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcUShapeProfileDef.WebThickness { 
-			get { return @WebThickness; } 
  
+			get { return @WebThickness; } 
 			set { WebThickness = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcUShapeProfileDef.FlangeThickness { 
-			get { return @FlangeThickness; } 
  
+			get { return @FlangeThickness; } 
 			set { FlangeThickness = value;}
 		}	
 		IfcNonNegativeLengthMeasure? IIfcUShapeProfileDef.FilletRadius { 
-			get { return @FilletRadius; } 
  
+			get { return @FilletRadius; } 
 			set { FilletRadius = value;}
 		}	
 		IfcNonNegativeLengthMeasure? IIfcUShapeProfileDef.EdgeRadius { 
-			get { return @EdgeRadius; } 
  
+			get { return @EdgeRadius; } 
 			set { EdgeRadius = value;}
 		}	
 		IfcPlaneAngleMeasure? IIfcUShapeProfileDef.FlangeSlope { 
-			get { return @FlangeSlope; } 
  
+			get { return @FlangeSlope; } 
 			set { FlangeSlope = value;}
 		}	
 		 
@@ -84,7 +84,6 @@ namespace Xbim.Ifc4.ProfileResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcUShapeProfileDef(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -273,7 +272,7 @@ namespace Xbim.Ifc4.ProfileResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

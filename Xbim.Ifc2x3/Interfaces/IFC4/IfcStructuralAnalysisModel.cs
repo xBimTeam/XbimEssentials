@@ -87,7 +87,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				
 			}
 		}
-		IEnumerable<IIfcStructuralLoadGroup> IIfcStructuralAnalysisModel.LoadedBy 
+		IItemSet<IIfcStructuralLoadGroup> IIfcStructuralAnalysisModel.LoadedBy 
 		{ 
 			get
 			{
@@ -97,7 +97,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				}
 			} 
 		}
-		IEnumerable<IIfcStructuralResultGroup> IIfcStructuralAnalysisModel.HasResults 
+		IItemSet<IIfcStructuralResultGroup> IIfcStructuralAnalysisModel.HasResults 
 		{ 
 			get
 			{

@@ -52,7 +52,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcBinary> IIfcPixelTexture.Pixel 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcBinary> IIfcPixelTexture.Pixel 
 		{ 
 			get
 			{

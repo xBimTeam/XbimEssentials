@@ -42,25 +42,25 @@ namespace Xbim.Ifc4.GeometryResource
 	{
 		#region IIfcOffsetCurve3D explicit implementation
 		IIfcCurve IIfcOffsetCurve3D.BasisCurve { 
+ 
+ 
 			get { return @BasisCurve; } 
- 
- 
 			set { BasisCurve = value as IfcCurve;}
 		}	
 		IfcLengthMeasure IIfcOffsetCurve3D.Distance { 
-			get { return @Distance; } 
  
+			get { return @Distance; } 
 			set { Distance = value;}
 		}	
 		IfcLogical IIfcOffsetCurve3D.SelfIntersect { 
-			get { return @SelfIntersect; } 
  
+			get { return @SelfIntersect; } 
 			set { SelfIntersect = value;}
 		}	
 		IIfcDirection IIfcOffsetCurve3D.RefDirection { 
+ 
+ 
 			get { return @RefDirection; } 
- 
- 
 			set { RefDirection = value as IfcDirection;}
 		}	
 		 
@@ -68,7 +68,6 @@ namespace Xbim.Ifc4.GeometryResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcOffsetCurve3D(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -198,7 +197,7 @@ namespace Xbim.Ifc4.GeometryResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

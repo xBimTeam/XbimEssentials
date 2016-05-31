@@ -71,7 +71,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcIdentifier> IIfcSurfaceTexture.Parameter 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcIdentifier> IIfcSurfaceTexture.Parameter 
 		{ 
 			get
 			{

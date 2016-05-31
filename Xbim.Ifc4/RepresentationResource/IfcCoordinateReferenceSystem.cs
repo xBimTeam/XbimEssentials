@@ -45,23 +45,23 @@ namespace Xbim.Ifc4.RepresentationResource
 	{
 		#region IIfcCoordinateReferenceSystem explicit implementation
 		IfcLabel IIfcCoordinateReferenceSystem.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IfcText? IIfcCoordinateReferenceSystem.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		IfcIdentifier? IIfcCoordinateReferenceSystem.GeodeticDatum { 
-			get { return @GeodeticDatum; } 
  
+			get { return @GeodeticDatum; } 
 			set { GeodeticDatum = value;}
 		}	
 		IfcIdentifier? IIfcCoordinateReferenceSystem.VerticalDatum { 
-			get { return @VerticalDatum; } 
  
+			get { return @VerticalDatum; } 
 			set { VerticalDatum = value;}
 		}	
 		 
@@ -318,7 +318,7 @@ namespace Xbim.Ifc4.RepresentationResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -43,13 +43,13 @@ namespace Xbim.Ifc4.RepresentationResource
 	{
 		#region IIfcRepresentationContext explicit implementation
 		IfcLabel? IIfcRepresentationContext.ContextIdentifier { 
-			get { return @ContextIdentifier; } 
  
+			get { return @ContextIdentifier; } 
 			set { ContextIdentifier = value;}
 		}	
 		IfcLabel? IIfcRepresentationContext.ContextType { 
-			get { return @ContextType; } 
  
+			get { return @ContextType; } 
 			set { ContextType = value;}
 		}	
 		 
@@ -270,7 +270,7 @@ namespace Xbim.Ifc4.RepresentationResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

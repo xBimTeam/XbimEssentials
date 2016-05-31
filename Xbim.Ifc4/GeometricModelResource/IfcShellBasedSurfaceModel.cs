@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcShellBasedSurfaceModel : IIfcGeometricRepresentationItem
 	{
-		IEnumerable<IIfcShell> @SbsmBoundary { get; }
+		IItemSet<IIfcShell> @SbsmBoundary { get; }
 		IfcDimensionCount @Dim  { get ; }
 	
 	}
@@ -40,25 +40,24 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public  partial class @IfcShellBasedSurfaceModel : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcShellBasedSurfaceModel, IEquatable<@IfcShellBasedSurfaceModel>
 	{
 		#region IIfcShellBasedSurfaceModel explicit implementation
-		IEnumerable<IIfcShell> IIfcShellBasedSurfaceModel.SbsmBoundary { 
-			get { return @SbsmBoundary; } 
+		IItemSet<IIfcShell> IIfcShellBasedSurfaceModel.SbsmBoundary { 
+			get { return new Common.Collections.ProxyItemSet<IfcShell, IIfcShell>( @SbsmBoundary); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcShellBasedSurfaceModel(IModel model) : base(model) 		{ 
-			Model = model; 
 			_sbsmBoundary = new ItemSet<IfcShell>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcShell> _sbsmBoundary;
+		private readonly ItemSet<IfcShell> _sbsmBoundary;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 3)]
-		public ItemSet<IfcShell> @SbsmBoundary 
+		public IItemSet<IfcShell> @SbsmBoundary 
 		{ 
 			get 
 			{
@@ -134,7 +133,7 @@ namespace Xbim.Ifc4.GeometricModelResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
-		IEnumerable<IIfcCovering> IIfcRelCoversBldgElements.RelatedCoverings 
+		IItemSet<IIfcCovering> IIfcRelCoversBldgElements.RelatedCoverings 
 		{ 
 			get
 			{

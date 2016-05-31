@@ -119,7 +119,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				
 			}
 		}
-		IEnumerable<IIfcPerson> IIfcInventory.ResponsiblePersons 
+		IItemSet<IIfcPerson> IIfcInventory.ResponsiblePersons 
 		{ 
 			get
 			{

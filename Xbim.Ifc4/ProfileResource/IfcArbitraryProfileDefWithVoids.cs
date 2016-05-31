@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcArbitraryProfileDefWithVoids : IIfcArbitraryClosedProfileDef
 	{
-		IEnumerable<IIfcCurve> @InnerCurves { get; }
+		IItemSet<IIfcCurve> @InnerCurves { get; }
 	
 	}
 }
@@ -38,25 +38,24 @@ namespace Xbim.Ifc4.ProfileResource
 	public  partial class @IfcArbitraryProfileDefWithVoids : IfcArbitraryClosedProfileDef, IInstantiableEntity, IIfcArbitraryProfileDefWithVoids, IContainsEntityReferences, IEquatable<@IfcArbitraryProfileDefWithVoids>
 	{
 		#region IIfcArbitraryProfileDefWithVoids explicit implementation
-		IEnumerable<IIfcCurve> IIfcArbitraryProfileDefWithVoids.InnerCurves { 
-			get { return @InnerCurves; } 
+		IItemSet<IIfcCurve> IIfcArbitraryProfileDefWithVoids.InnerCurves { 
+			get { return new Common.Collections.ProxyItemSet<IfcCurve, IIfcCurve>( @InnerCurves); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcArbitraryProfileDefWithVoids(IModel model) : base(model) 		{ 
-			Model = model; 
 			_innerCurves = new ItemSet<IfcCurve>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcCurve> _innerCurves;
+		private readonly ItemSet<IfcCurve> _innerCurves;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 6)]
-		public ItemSet<IfcCurve> @InnerCurves 
+		public IItemSet<IfcCurve> @InnerCurves 
 		{ 
 			get 
 			{
@@ -124,7 +123,7 @@ namespace Xbim.Ifc4.ProfileResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCartesianPointList2D : IIfcCartesianPointList
 	{
-		IEnumerable<IEnumerable<IfcLengthMeasure>> @CoordList { get; }
+		IItemSet<IItemSet<IfcLengthMeasure>> @CoordList { get; }
 	
 	}
 }
@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public  partial class @IfcCartesianPointList2D : IfcCartesianPointList, IInstantiableEntity, IIfcCartesianPointList2D, IEquatable<@IfcCartesianPointList2D>
 	{
 		#region IIfcCartesianPointList2D explicit implementation
-		IEnumerable<IEnumerable<IfcLengthMeasure>> IIfcCartesianPointList2D.CoordList { 
+		IItemSet<IItemSet<IfcLengthMeasure>> IIfcCartesianPointList2D.CoordList { 
 			get { return @CoordList; } 
 		}	
 		 
@@ -46,17 +46,16 @@ namespace Xbim.Ifc4.GeometricModelResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCartesianPointList2D(IModel model) : base(model) 		{ 
-			Model = model; 
-			_coordList = new ItemSet<ItemSet<IfcLengthMeasure>>( this, 0,  1);
+			_coordList = new ItemSet<IItemSet<IfcLengthMeasure>>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<ItemSet<IfcLengthMeasure>> _coordList;
+		private readonly ItemSet<IItemSet<IfcLengthMeasure>> _coordList;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, 2, 2, 3)]
-		public ItemSet<ItemSet<IfcLengthMeasure>> @CoordList 
+		public IItemSet<IItemSet<IfcLengthMeasure>> @CoordList 
 		{ 
 			get 
 			{
@@ -77,8 +76,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 			switch (propIndex)
 			{
 				case 0: 
-					_coordList
-						.InternalGetAt(nestedIndex[0])
+					((ItemSet<IfcLengthMeasure>)_coordList
+						.InternalGetAt(nestedIndex[0]) )
 						.InternalAdd((IfcLengthMeasure)(value.RealVal));
 					return;
 				default:
@@ -121,7 +120,7 @@ namespace Xbim.Ifc4.GeometricModelResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

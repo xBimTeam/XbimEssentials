@@ -41,20 +41,20 @@ namespace Xbim.Ifc4.ProfileResource
 	{
 		#region IIfcSectionProperties explicit implementation
 		IfcSectionTypeEnum IIfcSectionProperties.SectionType { 
-			get { return @SectionType; } 
  
+			get { return @SectionType; } 
 			set { SectionType = value;}
 		}	
 		IIfcProfileDef IIfcSectionProperties.StartProfile { 
+ 
+ 
 			get { return @StartProfile; } 
- 
- 
 			set { StartProfile = value as IfcProfileDef;}
 		}	
 		IIfcProfileDef IIfcSectionProperties.EndProfile { 
+ 
+ 
 			get { return @EndProfile; } 
- 
- 
 			set { EndProfile = value as IfcProfileDef;}
 		}	
 		 
@@ -62,7 +62,6 @@ namespace Xbim.Ifc4.ProfileResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSectionProperties(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -174,7 +173,7 @@ namespace Xbim.Ifc4.ProfileResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

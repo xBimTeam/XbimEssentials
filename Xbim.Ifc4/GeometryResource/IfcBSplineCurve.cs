@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcBSplineCurve : IIfcBoundedCurve
 	{
 		IfcInteger @Degree { get;  set; }
-		IEnumerable<IIfcCartesianPoint> @ControlPointsList { get; }
+		IItemSet<IIfcCartesianPoint> @ControlPointsList { get; }
 		IfcBSplineCurveForm @CurveForm { get;  set; }
 		IfcLogical @ClosedCurve { get;  set; }
 		IfcLogical @SelfIntersect { get;  set; }
@@ -45,26 +45,26 @@ namespace Xbim.Ifc4.GeometryResource
 	{
 		#region IIfcBSplineCurve explicit implementation
 		IfcInteger IIfcBSplineCurve.Degree { 
-			get { return @Degree; } 
  
+			get { return @Degree; } 
 			set { Degree = value;}
 		}	
-		IEnumerable<IIfcCartesianPoint> IIfcBSplineCurve.ControlPointsList { 
-			get { return @ControlPointsList; } 
+		IItemSet<IIfcCartesianPoint> IIfcBSplineCurve.ControlPointsList { 
+			get { return new Common.Collections.ProxyItemSet<IfcCartesianPoint, IIfcCartesianPoint>( @ControlPointsList); } 
 		}	
 		IfcBSplineCurveForm IIfcBSplineCurve.CurveForm { 
-			get { return @CurveForm; } 
  
+			get { return @CurveForm; } 
 			set { CurveForm = value;}
 		}	
 		IfcLogical IIfcBSplineCurve.ClosedCurve { 
-			get { return @ClosedCurve; } 
  
+			get { return @ClosedCurve; } 
 			set { ClosedCurve = value;}
 		}	
 		IfcLogical IIfcBSplineCurve.SelfIntersect { 
-			get { return @SelfIntersect; } 
  
+			get { return @SelfIntersect; } 
 			set { SelfIntersect = value;}
 		}	
 		 
@@ -72,13 +72,12 @@ namespace Xbim.Ifc4.GeometryResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBSplineCurve(IModel model) : base(model) 		{ 
-			Model = model; 
 			_controlPointsList = new ItemSet<IfcCartesianPoint>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
 		private IfcInteger _degree;
-		private ItemSet<IfcCartesianPoint> _controlPointsList;
+		private readonly ItemSet<IfcCartesianPoint> _controlPointsList;
 		private IfcBSplineCurveForm _curveForm;
 		private IfcLogical _closedCurve;
 		private IfcLogical _selfIntersect;
@@ -100,7 +99,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 2, -1, 4)]
-		public ItemSet<IfcCartesianPoint> @ControlPointsList 
+		public IItemSet<IfcCartesianPoint> @ControlPointsList 
 		{ 
 			get 
 			{
@@ -241,7 +240,7 @@ namespace Xbim.Ifc4.GeometryResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

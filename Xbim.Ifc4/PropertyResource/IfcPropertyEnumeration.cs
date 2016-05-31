@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcPropertyEnumeration : IIfcPropertyAbstraction
 	{
 		IfcLabel @Name { get;  set; }
-		IEnumerable<IIfcValue> @EnumerationValues { get; }
+		IItemSet<IIfcValue> @EnumerationValues { get; }
 		IIfcUnit @Unit { get;  set; }
 	
 	}
@@ -41,17 +41,17 @@ namespace Xbim.Ifc4.PropertyResource
 	{
 		#region IIfcPropertyEnumeration explicit implementation
 		IfcLabel IIfcPropertyEnumeration.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
-		IEnumerable<IIfcValue> IIfcPropertyEnumeration.EnumerationValues { 
-			get { return @EnumerationValues; } 
+		IItemSet<IIfcValue> IIfcPropertyEnumeration.EnumerationValues { 
+			get { return new Common.Collections.ProxyItemSet<IfcValue, IIfcValue>( @EnumerationValues); } 
 		}	
 		IIfcUnit IIfcPropertyEnumeration.Unit { 
+ 
+ 
 			get { return @Unit; } 
- 
- 
 			set { Unit = value as IfcUnit;}
 		}	
 		 
@@ -59,13 +59,12 @@ namespace Xbim.Ifc4.PropertyResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyEnumeration(IModel model) : base(model) 		{ 
-			Model = model; 
 			_enumerationValues = new ItemSet<IfcValue>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
 		private IfcLabel _name;
-		private ItemSet<IfcValue> _enumerationValues;
+		private readonly ItemSet<IfcValue> _enumerationValues;
 		private IfcUnit _unit;
 		#endregion
 	
@@ -85,7 +84,7 @@ namespace Xbim.Ifc4.PropertyResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1, 3)]
-		public ItemSet<IfcValue> @EnumerationValues 
+		public IItemSet<IfcValue> @EnumerationValues 
 		{ 
 			get 
 			{
@@ -168,7 +167,7 @@ namespace Xbim.Ifc4.PropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

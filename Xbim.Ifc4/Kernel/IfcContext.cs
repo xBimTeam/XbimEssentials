@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcLabel? @ObjectType { get;  set; }
 		IfcLabel? @LongName { get;  set; }
 		IfcLabel? @Phase { get;  set; }
-		IEnumerable<IIfcRepresentationContext> @RepresentationContexts { get; }
+		IItemSet<IIfcRepresentationContext> @RepresentationContexts { get; }
 		IIfcUnitAssignment @UnitsInContext { get;  set; }
 		IEnumerable<IIfcRelDefinesByProperties> @IsDefinedBy {  get; }
 		IEnumerable<IIfcRelDeclares> @Declares {  get; }
@@ -46,27 +46,27 @@ namespace Xbim.Ifc4.Kernel
 	{
 		#region IIfcContext explicit implementation
 		IfcLabel? IIfcContext.ObjectType { 
-			get { return @ObjectType; } 
  
+			get { return @ObjectType; } 
 			set { ObjectType = value;}
 		}	
 		IfcLabel? IIfcContext.LongName { 
-			get { return @LongName; } 
  
+			get { return @LongName; } 
 			set { LongName = value;}
 		}	
 		IfcLabel? IIfcContext.Phase { 
-			get { return @Phase; } 
  
+			get { return @Phase; } 
 			set { Phase = value;}
 		}	
-		IEnumerable<IIfcRepresentationContext> IIfcContext.RepresentationContexts { 
-			get { return @RepresentationContexts; } 
+		IItemSet<IIfcRepresentationContext> IIfcContext.RepresentationContexts { 
+			get { return new Common.Collections.ProxyItemSet<IfcRepresentationContext, IIfcRepresentationContext>( @RepresentationContexts); } 
 		}	
 		IIfcUnitAssignment IIfcContext.UnitsInContext { 
+ 
+ 
 			get { return @UnitsInContext; } 
- 
- 
 			set { UnitsInContext = value as IfcUnitAssignment;}
 		}	
 		 
@@ -76,7 +76,6 @@ namespace Xbim.Ifc4.Kernel
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcContext(IModel model) : base(model) 		{ 
-			Model = model; 
 			_representationContexts = new OptionalItemSet<IfcRepresentationContext>( this, 0,  8);
 		}
 
@@ -84,7 +83,7 @@ namespace Xbim.Ifc4.Kernel
 		private IfcLabel? _objectType;
 		private IfcLabel? _longName;
 		private IfcLabel? _phase;
-		private OptionalItemSet<IfcRepresentationContext> _representationContexts;
+		private readonly OptionalItemSet<IfcRepresentationContext> _representationContexts;
 		private IfcUnitAssignment _unitsInContext;
 		#endregion
 	
@@ -132,7 +131,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 15)]
-		public OptionalItemSet<IfcRepresentationContext> @RepresentationContexts 
+		public IOptionalItemSet<IfcRepresentationContext> @RepresentationContexts 
 		{ 
 			get 
 			{
@@ -247,7 +246,7 @@ namespace Xbim.Ifc4.Kernel
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

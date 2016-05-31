@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
-		IEnumerable<IIfcCartesianPoint> IIfcBSplineCurve.ControlPointsList 
+		IItemSet<IIfcCartesianPoint> IIfcBSplineCurve.ControlPointsList 
 		{ 
 			get
 			{

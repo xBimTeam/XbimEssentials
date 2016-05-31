@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcCartesianPoint : IIfcCartesianPoint
 	{
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLengthMeasure> IIfcCartesianPoint.Coordinates 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcLengthMeasure> IIfcCartesianPoint.Coordinates 
 		{ 
 			get
 			{

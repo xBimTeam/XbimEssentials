@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
-		IEnumerable<IIfcStyleAssignmentSelect> IIfcStyledItem.Styles 
+		IItemSet<IIfcStyleAssignmentSelect> IIfcStyledItem.Styles 
 		{ 
 			get
 			{

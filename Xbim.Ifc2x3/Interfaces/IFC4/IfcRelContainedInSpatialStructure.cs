@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcRelContainedInSpatialStructure : IIfcRelContainedInSpatialStructure
 	{
-		IEnumerable<IIfcProduct> IIfcRelContainedInSpatialStructure.RelatedElements 
+		IItemSet<IIfcProduct> IIfcRelContainedInSpatialStructure.RelatedElements 
 		{ 
 			get
 			{

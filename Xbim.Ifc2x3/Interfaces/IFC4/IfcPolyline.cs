@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcPolyline : IIfcPolyline
 	{
-		IEnumerable<IIfcCartesianPoint> IIfcPolyline.Points 
+		IItemSet<IIfcCartesianPoint> IIfcPolyline.Points 
 		{ 
 			get
 			{

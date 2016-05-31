@@ -41,19 +41,19 @@ namespace Xbim.Ifc4.MaterialResource
 	{
 		#region IIfcMaterialProfileSetUsage explicit implementation
 		IIfcMaterialProfileSet IIfcMaterialProfileSetUsage.ForProfileSet { 
+ 
+ 
 			get { return @ForProfileSet; } 
- 
- 
 			set { ForProfileSet = value as IfcMaterialProfileSet;}
 		}	
 		IfcCardinalPointReference? IIfcMaterialProfileSetUsage.CardinalPoint { 
-			get { return @CardinalPoint; } 
  
+			get { return @CardinalPoint; } 
 			set { CardinalPoint = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcMaterialProfileSetUsage.ReferenceExtent { 
-			get { return @ReferenceExtent; } 
  
+			get { return @ReferenceExtent; } 
 			set { ReferenceExtent = value;}
 		}	
 		 
@@ -61,7 +61,6 @@ namespace Xbim.Ifc4.MaterialResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialProfileSetUsage(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -173,7 +172,7 @@ namespace Xbim.Ifc4.MaterialResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

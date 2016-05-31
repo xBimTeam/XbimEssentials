@@ -28,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IfcPropertySetTemplateTypeEnum? @TemplateType { get;  set; }
 		IfcIdentifier? @ApplicableEntity { get;  set; }
-		IEnumerable<IIfcPropertyTemplate> @HasPropertyTemplates { get; }
+		IItemSet<IIfcPropertyTemplate> @HasPropertyTemplates { get; }
 		IEnumerable<IIfcRelDefinesByTemplate> @Defines {  get; }
 	
 	}
@@ -42,17 +42,17 @@ namespace Xbim.Ifc4.Kernel
 	{
 		#region IIfcPropertySetTemplate explicit implementation
 		IfcPropertySetTemplateTypeEnum? IIfcPropertySetTemplate.TemplateType { 
-			get { return @TemplateType; } 
  
+			get { return @TemplateType; } 
 			set { TemplateType = value;}
 		}	
 		IfcIdentifier? IIfcPropertySetTemplate.ApplicableEntity { 
-			get { return @ApplicableEntity; } 
  
+			get { return @ApplicableEntity; } 
 			set { ApplicableEntity = value;}
 		}	
-		IEnumerable<IIfcPropertyTemplate> IIfcPropertySetTemplate.HasPropertyTemplates { 
-			get { return @HasPropertyTemplates; } 
+		IItemSet<IIfcPropertyTemplate> IIfcPropertySetTemplate.HasPropertyTemplates { 
+			get { return new Common.Collections.ProxyItemSet<IfcPropertyTemplate, IIfcPropertyTemplate>( @HasPropertyTemplates); } 
 		}	
 		 
 		IEnumerable<IIfcRelDefinesByTemplate> IIfcPropertySetTemplate.Defines {  get { return @Defines; } }
@@ -60,14 +60,13 @@ namespace Xbim.Ifc4.Kernel
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertySetTemplate(IModel model) : base(model) 		{ 
-			Model = model; 
 			_hasPropertyTemplates = new ItemSet<IfcPropertyTemplate>( this, 0,  7);
 		}
 
 		#region Explicit attribute fields
 		private IfcPropertySetTemplateTypeEnum? _templateType;
 		private IfcIdentifier? _applicableEntity;
-		private ItemSet<IfcPropertyTemplate> _hasPropertyTemplates;
+		private readonly ItemSet<IfcPropertyTemplate> _hasPropertyTemplates;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -101,7 +100,7 @@ namespace Xbim.Ifc4.Kernel
 		}	
 		[IndexedProperty]
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 9)]
-		public ItemSet<IfcPropertyTemplate> @HasPropertyTemplates 
+		public IItemSet<IfcPropertyTemplate> @HasPropertyTemplates 
 		{ 
 			get 
 			{
@@ -187,7 +186,7 @@ namespace Xbim.Ifc4.Kernel
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

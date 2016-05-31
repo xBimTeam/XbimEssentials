@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IfcLabel? @Name { get;  set; }
 		IfcText? @Description { get;  set; }
-		IEnumerable<IIfcMaterialProfile> @MaterialProfiles { get; }
+		IItemSet<IIfcMaterialProfile> @MaterialProfiles { get; }
 		IIfcCompositeProfileDef @CompositeProfile { get;  set; }
 	
 	}
@@ -43,22 +43,22 @@ namespace Xbim.Ifc4.MaterialResource
 	{
 		#region IIfcMaterialProfileSet explicit implementation
 		IfcLabel? IIfcMaterialProfileSet.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IfcText? IIfcMaterialProfileSet.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
-		IEnumerable<IIfcMaterialProfile> IIfcMaterialProfileSet.MaterialProfiles { 
-			get { return @MaterialProfiles; } 
+		IItemSet<IIfcMaterialProfile> IIfcMaterialProfileSet.MaterialProfiles { 
+			get { return new Common.Collections.ProxyItemSet<IfcMaterialProfile, IIfcMaterialProfile>( @MaterialProfiles); } 
 		}	
 		IIfcCompositeProfileDef IIfcMaterialProfileSet.CompositeProfile { 
+ 
+ 
 			get { return @CompositeProfile; } 
- 
- 
 			set { CompositeProfile = value as IfcCompositeProfileDef;}
 		}	
 		 
@@ -66,14 +66,13 @@ namespace Xbim.Ifc4.MaterialResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialProfileSet(IModel model) : base(model) 		{ 
-			Model = model; 
 			_materialProfiles = new ItemSet<IfcMaterialProfile>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
 		private IfcLabel? _name;
 		private IfcText? _description;
-		private ItemSet<IfcMaterialProfile> _materialProfiles;
+		private readonly ItemSet<IfcMaterialProfile> _materialProfiles;
 		private IfcCompositeProfileDef _compositeProfile;
 		#endregion
 	
@@ -108,7 +107,7 @@ namespace Xbim.Ifc4.MaterialResource
 		}	
 		[IndexedProperty]
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 6)]
-		public ItemSet<IfcMaterialProfile> @MaterialProfiles 
+		public IItemSet<IfcMaterialProfile> @MaterialProfiles 
 		{ 
 			get 
 			{
@@ -194,7 +193,7 @@ namespace Xbim.Ifc4.MaterialResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

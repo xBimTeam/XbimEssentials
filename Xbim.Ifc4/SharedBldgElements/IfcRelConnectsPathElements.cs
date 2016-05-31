@@ -27,8 +27,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelConnectsPathElements : IIfcRelConnectsElements
 	{
-		IEnumerable<IfcInteger> @RelatingPriorities { get; }
-		IEnumerable<IfcInteger> @RelatedPriorities { get; }
+		IItemSet<IfcInteger> @RelatingPriorities { get; }
+		IItemSet<IfcInteger> @RelatedPriorities { get; }
 		IfcConnectionTypeEnum @RelatedConnectionType { get;  set; }
 		IfcConnectionTypeEnum @RelatingConnectionType { get;  set; }
 	
@@ -42,20 +42,20 @@ namespace Xbim.Ifc4.SharedBldgElements
 	public  partial class @IfcRelConnectsPathElements : IfcRelConnectsElements, IInstantiableEntity, IIfcRelConnectsPathElements, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsPathElements>
 	{
 		#region IIfcRelConnectsPathElements explicit implementation
-		IEnumerable<IfcInteger> IIfcRelConnectsPathElements.RelatingPriorities { 
+		IItemSet<IfcInteger> IIfcRelConnectsPathElements.RelatingPriorities { 
 			get { return @RelatingPriorities; } 
 		}	
-		IEnumerable<IfcInteger> IIfcRelConnectsPathElements.RelatedPriorities { 
+		IItemSet<IfcInteger> IIfcRelConnectsPathElements.RelatedPriorities { 
 			get { return @RelatedPriorities; } 
 		}	
 		IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatedConnectionType { 
-			get { return @RelatedConnectionType; } 
  
+			get { return @RelatedConnectionType; } 
 			set { RelatedConnectionType = value;}
 		}	
 		IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatingConnectionType { 
-			get { return @RelatingConnectionType; } 
  
+			get { return @RelatingConnectionType; } 
 			set { RelatingConnectionType = value;}
 		}	
 		 
@@ -63,21 +63,20 @@ namespace Xbim.Ifc4.SharedBldgElements
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelConnectsPathElements(IModel model) : base(model) 		{ 
-			Model = model; 
 			_relatingPriorities = new ItemSet<IfcInteger>( this, 0,  8);
 			_relatedPriorities = new ItemSet<IfcInteger>( this, 0,  9);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcInteger> _relatingPriorities;
-		private ItemSet<IfcInteger> _relatedPriorities;
+		private readonly ItemSet<IfcInteger> _relatingPriorities;
+		private readonly ItemSet<IfcInteger> _relatedPriorities;
 		private IfcConnectionTypeEnum _relatedConnectionType;
 		private IfcConnectionTypeEnum _relatingConnectionType;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 0, -1, 8)]
-		public ItemSet<IfcInteger> @RelatingPriorities 
+		public IItemSet<IfcInteger> @RelatingPriorities 
 		{ 
 			get 
 			{
@@ -87,7 +86,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 0, -1, 9)]
-		public ItemSet<IfcInteger> @RelatedPriorities 
+		public IItemSet<IfcInteger> @RelatedPriorities 
 		{ 
 			get 
 			{
@@ -196,7 +195,7 @@ namespace Xbim.Ifc4.SharedBldgElements
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

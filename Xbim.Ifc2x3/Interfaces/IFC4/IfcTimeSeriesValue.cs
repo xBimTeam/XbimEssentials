@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 {
 	public partial class @IfcTimeSeriesValue : IIfcTimeSeriesValue
 	{
-		IEnumerable<IIfcValue> IIfcTimeSeriesValue.ListValues 
+		IItemSet<IIfcValue> IIfcTimeSeriesValue.ListValues 
 		{ 
 			get
 			{

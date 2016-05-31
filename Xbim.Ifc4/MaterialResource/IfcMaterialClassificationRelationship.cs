@@ -28,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialClassificationRelationship : IPersistEntity
 	{
-		IEnumerable<IIfcClassificationSelect> @MaterialClassifications { get; }
+		IItemSet<IIfcClassificationSelect> @MaterialClassifications { get; }
 		IIfcMaterial @ClassifiedMaterial { get;  set; }
 	
 	}
@@ -41,13 +41,13 @@ namespace Xbim.Ifc4.MaterialResource
 	public  partial class @IfcMaterialClassificationRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterialClassificationRelationship, IContainsEntityReferences, IEquatable<@IfcMaterialClassificationRelationship>
 	{
 		#region IIfcMaterialClassificationRelationship explicit implementation
-		IEnumerable<IIfcClassificationSelect> IIfcMaterialClassificationRelationship.MaterialClassifications { 
-			get { return @MaterialClassifications; } 
+		IItemSet<IIfcClassificationSelect> IIfcMaterialClassificationRelationship.MaterialClassifications { 
+			get { return new Common.Collections.ProxyItemSet<IfcClassificationSelect, IIfcClassificationSelect>( @MaterialClassifications); } 
 		}	
 		IIfcMaterial IIfcMaterialClassificationRelationship.ClassifiedMaterial { 
+ 
+ 
 			get { return @ClassifiedMaterial; } 
- 
- 
 			set { ClassifiedMaterial = value as IfcMaterial;}
 		}	
 		 
@@ -118,13 +118,13 @@ namespace Xbim.Ifc4.MaterialResource
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcClassificationSelect> _materialClassifications;
+		private readonly ItemSet<IfcClassificationSelect> _materialClassifications;
 		private IfcMaterial _classifiedMaterial;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 1)]
-		public ItemSet<IfcClassificationSelect> @MaterialClassifications 
+		public IItemSet<IfcClassificationSelect> @MaterialClassifications 
 		{ 
 			get 
 			{
@@ -253,7 +253,7 @@ namespace Xbim.Ifc4.MaterialResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcRelConnectsPathElements : IIfcRelConnectsPathElements
 	{
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcInteger> IIfcRelConnectsPathElements.RelatingPriorities 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcInteger> IIfcRelConnectsPathElements.RelatingPriorities 
 		{ 
 			get
 			{
@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			    //##
 			} 
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcInteger> IIfcRelConnectsPathElements.RelatedPriorities 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcInteger> IIfcRelConnectsPathElements.RelatedPriorities 
 		{ 
 			get
 			{

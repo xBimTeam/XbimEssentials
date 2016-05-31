@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 {
 	public partial class @IfcShapeAspect : IIfcShapeAspect
 	{
-		IEnumerable<IIfcShapeModel> IIfcShapeAspect.ShapeRepresentations 
+		IItemSet<IIfcShapeModel> IIfcShapeAspect.ShapeRepresentations 
 		{ 
 			get
 			{

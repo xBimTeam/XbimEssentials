@@ -195,7 +195,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
-		IEnumerable<IIfcActorSelect> IIfcDocumentInformation.Editors 
+		IItemSet<IIfcActorSelect> IIfcDocumentInformation.Editors 
 		{ 
 			get
 			{

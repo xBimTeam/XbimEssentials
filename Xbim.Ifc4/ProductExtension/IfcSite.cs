@@ -44,29 +44,29 @@ namespace Xbim.Ifc4.ProductExtension
 	{
 		#region IIfcSite explicit implementation
 		IfcCompoundPlaneAngleMeasure? IIfcSite.RefLatitude { 
-			get { return @RefLatitude; } 
  
+			get { return @RefLatitude; } 
 			set { RefLatitude = value;}
 		}	
 		IfcCompoundPlaneAngleMeasure? IIfcSite.RefLongitude { 
-			get { return @RefLongitude; } 
  
+			get { return @RefLongitude; } 
 			set { RefLongitude = value;}
 		}	
 		IfcLengthMeasure? IIfcSite.RefElevation { 
-			get { return @RefElevation; } 
  
+			get { return @RefElevation; } 
 			set { RefElevation = value;}
 		}	
 		IfcLabel? IIfcSite.LandTitleNumber { 
-			get { return @LandTitleNumber; } 
  
+			get { return @LandTitleNumber; } 
 			set { LandTitleNumber = value;}
 		}	
 		IIfcPostalAddress IIfcSite.SiteAddress { 
+ 
+ 
 			get { return @SiteAddress; } 
- 
- 
 			set { SiteAddress = value as IfcPostalAddress;}
 		}	
 		 
@@ -74,7 +74,6 @@ namespace Xbim.Ifc4.ProductExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSite(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -239,7 +238,7 @@ namespace Xbim.Ifc4.ProductExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -41,7 +41,6 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFlowTreatmentDevice(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 
@@ -104,7 +103,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

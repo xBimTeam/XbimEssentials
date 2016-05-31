@@ -33,8 +33,8 @@ namespace Xbim.Ifc4.Interfaces
 		IfcIdentifier? @Identification { get;  set; }
 		IfcLabel @Name { get;  set; }
 		IfcText? @Description { get;  set; }
-		IEnumerable<IIfcActorRole> @Roles { get; }
-		IEnumerable<IIfcAddress> @Addresses { get; }
+		IItemSet<IIfcActorRole> @Roles { get; }
+		IItemSet<IIfcAddress> @Addresses { get; }
 		IEnumerable<IIfcOrganizationRelationship> @IsRelatedBy {  get; }
 		IEnumerable<IIfcOrganizationRelationship> @Relates {  get; }
 		IEnumerable<IIfcPersonAndOrganization> @Engages {  get; }
@@ -50,25 +50,25 @@ namespace Xbim.Ifc4.ActorResource
 	{
 		#region IIfcOrganization explicit implementation
 		IfcIdentifier? IIfcOrganization.Identification { 
-			get { return @Identification; } 
  
+			get { return @Identification; } 
 			set { Identification = value;}
 		}	
 		IfcLabel IIfcOrganization.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IfcText? IIfcOrganization.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
-		IEnumerable<IIfcActorRole> IIfcOrganization.Roles { 
-			get { return @Roles; } 
+		IItemSet<IIfcActorRole> IIfcOrganization.Roles { 
+			get { return new Common.Collections.ProxyItemSet<IfcActorRole, IIfcActorRole>( @Roles); } 
 		}	
-		IEnumerable<IIfcAddress> IIfcOrganization.Addresses { 
-			get { return @Addresses; } 
+		IItemSet<IIfcAddress> IIfcOrganization.Addresses { 
+			get { return new Common.Collections.ProxyItemSet<IfcAddress, IIfcAddress>( @Addresses); } 
 		}	
 		 
 		IEnumerable<IIfcOrganizationRelationship> IIfcOrganization.IsRelatedBy {  get { return @IsRelatedBy; } }
@@ -145,8 +145,8 @@ namespace Xbim.Ifc4.ActorResource
 		private IfcIdentifier? _identification;
 		private IfcLabel _name;
 		private IfcText? _description;
-		private OptionalItemSet<IfcActorRole> _roles;
-		private OptionalItemSet<IfcAddress> _addresses;
+		private readonly OptionalItemSet<IfcActorRole> _roles;
+		private readonly OptionalItemSet<IfcAddress> _addresses;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -193,7 +193,7 @@ namespace Xbim.Ifc4.ActorResource
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 4)]
-		public OptionalItemSet<IfcActorRole> @Roles 
+		public IOptionalItemSet<IfcActorRole> @Roles 
 		{ 
 			get 
 			{
@@ -204,7 +204,7 @@ namespace Xbim.Ifc4.ActorResource
 		}	
 		[IndexedProperty]
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 5)]
-		public OptionalItemSet<IfcAddress> @Addresses 
+		public IOptionalItemSet<IfcAddress> @Addresses 
 		{ 
 			get 
 			{
@@ -357,7 +357,7 @@ namespace Xbim.Ifc4.ActorResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

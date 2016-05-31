@@ -45,24 +45,24 @@ namespace Xbim.Ifc4.Kernel
 	{
 		#region IIfcRoot explicit implementation
 		IfcGloballyUniqueId IIfcRoot.GlobalId { 
-			get { return @GlobalId; } 
  
+			get { return @GlobalId; } 
 			set { GlobalId = value;}
 		}	
 		IIfcOwnerHistory IIfcRoot.OwnerHistory { 
+ 
+ 
 			get { return @OwnerHistory; } 
- 
- 
 			set { OwnerHistory = value as IfcOwnerHistory;}
 		}	
 		IfcLabel? IIfcRoot.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IfcText? IIfcRoot.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		 
@@ -307,7 +307,7 @@ namespace Xbim.Ifc4.Kernel
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

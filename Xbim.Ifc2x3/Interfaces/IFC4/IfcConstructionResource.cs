@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 				
 			}
 		}
-		IEnumerable<IIfcAppliedValue> IIfcConstructionResource.BaseCosts 
+		IItemSet<IIfcAppliedValue> IIfcConstructionResource.BaseCosts 
 		{ 
 			get
 			{

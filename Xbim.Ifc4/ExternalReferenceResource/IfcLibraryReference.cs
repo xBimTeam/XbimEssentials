@@ -43,19 +43,19 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 	{
 		#region IIfcLibraryReference explicit implementation
 		IfcText? IIfcLibraryReference.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		IfcLanguageId? IIfcLibraryReference.Language { 
-			get { return @Language; } 
  
+			get { return @Language; } 
 			set { Language = value;}
 		}	
 		IIfcLibraryInformation IIfcLibraryReference.ReferencedLibrary { 
+ 
+ 
 			get { return @ReferencedLibrary; } 
- 
- 
 			set { ReferencedLibrary = value as IfcLibraryInformation;}
 		}	
 		 
@@ -64,7 +64,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLibraryReference(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -193,7 +192,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

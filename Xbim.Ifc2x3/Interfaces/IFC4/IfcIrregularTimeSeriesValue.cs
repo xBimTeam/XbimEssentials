@@ -49,7 +49,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 				
 			}
 		}
-		IEnumerable<IIfcValue> IIfcIrregularTimeSeriesValue.ListValues 
+		IItemSet<IIfcValue> IIfcIrregularTimeSeriesValue.ListValues 
 		{ 
 			get
 			{

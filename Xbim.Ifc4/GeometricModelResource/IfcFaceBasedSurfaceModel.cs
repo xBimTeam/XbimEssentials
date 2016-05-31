@@ -28,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcFaceBasedSurfaceModel : IIfcGeometricRepresentationItem, IfcSurfaceOrFaceSurface
 	{
-		IEnumerable<IIfcConnectedFaceSet> @FbsmFaces { get; }
+		IItemSet<IIfcConnectedFaceSet> @FbsmFaces { get; }
 		IfcDimensionCount @Dim  { get ; }
 	
 	}
@@ -41,25 +41,24 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public  partial class @IfcFaceBasedSurfaceModel : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFaceBasedSurfaceModel, IContainsEntityReferences, IEquatable<@IfcFaceBasedSurfaceModel>
 	{
 		#region IIfcFaceBasedSurfaceModel explicit implementation
-		IEnumerable<IIfcConnectedFaceSet> IIfcFaceBasedSurfaceModel.FbsmFaces { 
-			get { return @FbsmFaces; } 
+		IItemSet<IIfcConnectedFaceSet> IIfcFaceBasedSurfaceModel.FbsmFaces { 
+			get { return new Common.Collections.ProxyItemSet<IfcConnectedFaceSet, IIfcConnectedFaceSet>( @FbsmFaces); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFaceBasedSurfaceModel(IModel model) : base(model) 		{ 
-			Model = model; 
 			_fbsmFaces = new ItemSet<IfcConnectedFaceSet>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcConnectedFaceSet> _fbsmFaces;
+		private readonly ItemSet<IfcConnectedFaceSet> _fbsmFaces;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 3)]
-		public ItemSet<IfcConnectedFaceSet> @FbsmFaces 
+		public IItemSet<IfcConnectedFaceSet> @FbsmFaces 
 		{ 
 			get 
 			{
@@ -135,7 +134,7 @@ namespace Xbim.Ifc4.GeometricModelResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

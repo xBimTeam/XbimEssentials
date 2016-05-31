@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialLayerSet : IIfcMaterialDefinition
 	{
-		IEnumerable<IIfcMaterialLayer> @MaterialLayers { get; }
+		IItemSet<IIfcMaterialLayer> @MaterialLayers { get; }
 		IfcLabel? @LayerSetName { get;  set; }
 		IfcText? @Description { get;  set; }
 		IfcLengthMeasure @TotalThickness  { get ; }
@@ -41,17 +41,17 @@ namespace Xbim.Ifc4.MaterialResource
 	public  partial class @IfcMaterialLayerSet : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialLayerSet, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMaterialLayerSet>
 	{
 		#region IIfcMaterialLayerSet explicit implementation
-		IEnumerable<IIfcMaterialLayer> IIfcMaterialLayerSet.MaterialLayers { 
-			get { return @MaterialLayers; } 
+		IItemSet<IIfcMaterialLayer> IIfcMaterialLayerSet.MaterialLayers { 
+			get { return new Common.Collections.ProxyItemSet<IfcMaterialLayer, IIfcMaterialLayer>( @MaterialLayers); } 
 		}	
 		IfcLabel? IIfcMaterialLayerSet.LayerSetName { 
-			get { return @LayerSetName; } 
  
+			get { return @LayerSetName; } 
 			set { LayerSetName = value;}
 		}	
 		IfcText? IIfcMaterialLayerSet.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		 
@@ -59,12 +59,11 @@ namespace Xbim.Ifc4.MaterialResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialLayerSet(IModel model) : base(model) 		{ 
-			Model = model; 
 			_materialLayers = new ItemSet<IfcMaterialLayer>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcMaterialLayer> _materialLayers;
+		private readonly ItemSet<IfcMaterialLayer> _materialLayers;
 		private IfcLabel? _layerSetName;
 		private IfcText? _description;
 		#endregion
@@ -72,7 +71,7 @@ namespace Xbim.Ifc4.MaterialResource
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 4)]
-		public ItemSet<IfcMaterialLayer> @MaterialLayers 
+		public IItemSet<IfcMaterialLayer> @MaterialLayers 
 		{ 
 			get 
 			{
@@ -182,7 +181,7 @@ namespace Xbim.Ifc4.MaterialResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

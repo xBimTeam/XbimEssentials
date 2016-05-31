@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcDirection : IIfcDirection
 	{
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcReal> IIfcDirection.DirectionRatios 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcReal> IIfcDirection.DirectionRatios 
 		{ 
 			get
 			{

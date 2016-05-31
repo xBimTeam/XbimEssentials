@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	public partial class @IfcPolyLoop : IIfcPolyLoop
 	{
-		IEnumerable<IIfcCartesianPoint> IIfcPolyLoop.Polygon 
+		IItemSet<IIfcCartesianPoint> IIfcPolyLoop.Polygon 
 		{ 
 			get
 			{

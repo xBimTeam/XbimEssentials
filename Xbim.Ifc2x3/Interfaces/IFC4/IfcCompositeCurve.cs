@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcCompositeCurve : IIfcCompositeCurve
 	{
-		IEnumerable<IIfcCompositeCurveSegment> IIfcCompositeCurve.Segments 
+		IItemSet<IIfcCompositeCurveSegment> IIfcCompositeCurve.Segments 
 		{ 
 			get
 			{
