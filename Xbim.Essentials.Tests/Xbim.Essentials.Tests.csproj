@@ -119,6 +119,9 @@
     <None Include="TestSourceFiles\4walls1floorSite.ifcxml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="TestSourceFiles\AlmostEmptyIFC4.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TestSourceFiles\TestZip.ifczip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

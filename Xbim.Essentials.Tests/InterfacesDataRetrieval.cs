@@ -1,8 +1,9 @@
-﻿using System.Linq;
+﻿using System.Diagnostics;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common;
+using Xbim.Ifc;
 using Xbim.Ifc2x3;
-using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc4.Interfaces;
 using Xbim.IO.Esent;
 using Xbim.IO.Memory;
@@ -33,11 +34,31 @@ namespace Xbim.Essentials.Tests
                 var totalCount = model.Instances.Count;
                 Assert.AreEqual(totalCount, entities.Count);
                 Assert.AreEqual(totalCount, entities2.Count);
-
-               
-
             }
         }
+
+        [TestMethod]
+        [DeploymentItem("TestSourceFiles\\4walls1floorSite.ifc")]
+        [DeploymentItem("TestSourceFiles\\AlmostEmptyIFC4.ifc")]
+        public void ShouldBeAbleToReadUnitDimensions()
+        {
+            // this can throw an exception if the model is not inside a transaction
+            using (var model = IfcStore.Open(@"AlmostEmptyIFC4.ifc"))
+            {
+                var instance = model.Instances[53] as Ifc4.MeasureResource.IfcSIUnit;
+                var dimensions = instance.Dimensions;
+                Debug.WriteLine(dimensions.ToString());
+            }
+
+            // this can throw an exception if the model is not inside a transaction
+            using (var model = IfcStore.Open(@"4walls1floorSite.ifc"))
+            {
+                var instance = model.Instances[51] as Ifc2x3.MeasureResource.IfcSIUnit;
+                var dimensions = instance.Dimensions;
+                Debug.WriteLine(dimensions.ToString());
+            }
+        }
+
 
         [TestMethod]
         public void Ifc4InterfacesToIfc2X3()
