@@ -44,6 +44,8 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void ReadPreProcessorTest()
         {
+            // todo: test fails unless on Steve's computer.
+            // Is it worth putting the Axis2PlacementError.ifc in the test folder of this package?
             string revitPattern = @"- Exporter\s(\d*.\d*.\d*.\d*)";
             string[] files = new[] { @"C:\Users\Steve\Source\Repos\XbimGeometry\Xbim.Geometry.Engine.Tests\Ifc4TestFiles\Axis2PlacementError.ifc", "4walls1floorSite.ifc", "SampleHouse4.ifc" };
             var surfaceOfLinearExtrusionVersion = new Version(17, 0, 416, 0);
