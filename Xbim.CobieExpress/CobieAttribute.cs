@@ -25,11 +25,11 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieAttribute : ICobieReferencedObject
 	{
-		string @Name { get; }
-		string @Description { get; }
-		ICobieStageType @Stage { get; }
-		IAttributeValue @Value { get; }
-		string @Unit { get; }
+		string @Name { get;  set; }
+		string @Description { get;  set; }
+		ICobieStageType @Stage { get;  set; }
+		IAttributeValue @Value { get;  set; }
+		string @Unit { get;  set; }
 		IEnumerable<string> @AllowedValues { get; }
 		CobieExternalObject @PropertySet  { get ; }
 	
@@ -43,12 +43,36 @@ namespace Xbim.CobieExpress
 	public  partial class @CobieAttribute : CobieReferencedObject, IInstantiableEntity, ICobieAttribute, IContainsEntityReferences, IEquatable<@CobieAttribute>
 	{
 		#region ICobieAttribute explicit implementation
-		string ICobieAttribute.Name { get { return @Name; } }	
-		string ICobieAttribute.Description { get { return @Description; } }	
-		ICobieStageType ICobieAttribute.Stage { get { return @Stage; } }	
-		IAttributeValue ICobieAttribute.Value { get { return @Value; } }	
-		string ICobieAttribute.Unit { get { return @Unit; } }	
-		IEnumerable<string> ICobieAttribute.AllowedValues { get { return @AllowedValues; } }	
+		string ICobieAttribute.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		string ICobieAttribute.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		ICobieStageType ICobieAttribute.Stage { 
+			get { return @Stage; } 
+ 
+ 
+			set { Stage = value as CobieStageType;}
+		}	
+		IAttributeValue ICobieAttribute.Value { 
+			get { return @Value; } 
+ 
+ 
+			set { Value = value as AttributeValue;}
+		}	
+		string ICobieAttribute.Unit { 
+			get { return @Unit; } 
+ 
+			set { Unit = value;}
+		}	
+		IEnumerable<string> ICobieAttribute.AllowedValues { 
+			get { return @AllowedValues; } 
+		}	
 		 
 		#endregion
 

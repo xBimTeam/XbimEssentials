@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDamper : IIfcFlowController
 	{
-		IfcDamperTypeEnum? @PredefinedType { get; }
+		IfcDamperTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.HvacDomain
 	public  partial class @IfcDamper : IfcFlowController, IInstantiableEntity, IIfcDamper, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDamper>
 	{
 		#region IIfcDamper explicit implementation
-		IfcDamperTypeEnum? IIfcDamper.PredefinedType { get { return @PredefinedType; } }	
+		IfcDamperTypeEnum? IIfcDamper.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

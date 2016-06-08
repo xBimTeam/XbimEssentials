@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelFillsElement : IIfcRelConnects
 	{
-		IIfcOpeningElement @RelatingOpeningElement { get; }
-		IIfcElement @RelatedBuildingElement { get; }
+		IIfcOpeningElement @RelatingOpeningElement { get;  set; }
+		IIfcElement @RelatedBuildingElement { get;  set; }
 	
 	}
 }
@@ -39,8 +39,18 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcRelFillsElement : IfcRelConnects, IInstantiableEntity, IIfcRelFillsElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelFillsElement>
 	{
 		#region IIfcRelFillsElement explicit implementation
-		IIfcOpeningElement IIfcRelFillsElement.RelatingOpeningElement { get { return @RelatingOpeningElement; } }	
-		IIfcElement IIfcRelFillsElement.RelatedBuildingElement { get { return @RelatedBuildingElement; } }	
+		IIfcOpeningElement IIfcRelFillsElement.RelatingOpeningElement { 
+			get { return @RelatingOpeningElement; } 
+ 
+ 
+			set { RelatingOpeningElement = value as IfcOpeningElement;}
+		}	
+		IIfcElement IIfcRelFillsElement.RelatedBuildingElement { 
+			get { return @RelatedBuildingElement; } 
+ 
+ 
+			set { RelatedBuildingElement = value as IfcElement;}
+		}	
 		 
 		#endregion
 

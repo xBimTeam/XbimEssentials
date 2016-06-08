@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcShadingDevice : IIfcBuildingElement
 	{
-		IfcShadingDeviceTypeEnum? @PredefinedType { get; }
+		IfcShadingDeviceTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.SharedBldgElements
 	public  partial class @IfcShadingDevice : IfcBuildingElement, IInstantiableEntity, IIfcShadingDevice, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcShadingDevice>
 	{
 		#region IIfcShadingDevice explicit implementation
-		IfcShadingDeviceTypeEnum? IIfcShadingDevice.PredefinedType { get { return @PredefinedType; } }	
+		IfcShadingDeviceTypeEnum? IIfcShadingDevice.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

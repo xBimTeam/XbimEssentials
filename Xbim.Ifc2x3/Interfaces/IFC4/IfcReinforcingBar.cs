@@ -22,6 +22,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(NominalDiameter);
 			} 
+			set
+			{
+				NominalDiameter = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 default(MeasureResource.IfcPositiveLengthMeasure) ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcAreaMeasure? IIfcReinforcingBar.CrossSectionArea 
 		{ 
@@ -29,6 +36,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			{
 				return new Ifc4.MeasureResource.IfcAreaMeasure(CrossSectionArea);
 			} 
+			set
+			{
+				CrossSectionArea = value.HasValue ? 
+					new MeasureResource.IfcAreaMeasure(value.Value) :  
+					 default(MeasureResource.IfcAreaMeasure) ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcReinforcingBar.BarLength 
 		{ 
@@ -37,15 +51,28 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				if (!BarLength.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(BarLength.Value);
 			} 
+			set
+			{
+				BarLength = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
+
+		private  Ifc4.Interfaces.IfcReinforcingBarTypeEnum? _predefinedType;
+
 		Ifc4.Interfaces.IfcReinforcingBarTypeEnum? IIfcReinforcingBar.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-                return null;
-				//##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				
+			}
 		}
 		Ifc4.Interfaces.IfcReinforcingBarSurfaceEnum? IIfcReinforcingBar.BarSurface 
 		{ 
@@ -64,6 +91,24 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcReinforcingBarSurfaceEnum.PLAIN:
+						BarSurface = ProfilePropertyResource.IfcReinforcingBarSurfaceEnum.PLAIN;
+						return;
+					
+					case Ifc4.Interfaces.IfcReinforcingBarSurfaceEnum.TEXTURED:
+						BarSurface = ProfilePropertyResource.IfcReinforcingBarSurfaceEnum.TEXTURED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

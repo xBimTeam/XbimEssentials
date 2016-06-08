@@ -25,33 +25,33 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieType : ICobieTypeOrComponent
 	{
-		ICobieAssetType @AssetType { get; }
-		ICobieContact @Manufacturer { get; }
-		string @ModelNumber { get; }
-		string @WarrantyDescription { get; }
-		ICobieContact @WarrantyGuarantorParts { get; }
-		double? @WarrantyDurationParts { get; }
-		ICobieContact @WarrantyGuarantorLabor { get; }
-		double? @WarrantyDurationLabor { get; }
-		ICobieDurationUnit @WarrantyDurationUnit { get; }
-		double? @ReplacementCost { get; }
-		double? @ExpectedLife { get; }
-		ICobieDurationUnit @DurationUnit { get; }
-		double? @NominalLength { get; }
-		double? @NominalWidth { get; }
-		double? @NominalHeight { get; }
-		string @ModelReference { get; }
-		string @Shape { get; }
-		string @Size { get; }
-		string @Color { get; }
-		string @Finish { get; }
-		string @Grade { get; }
-		string @Material { get; }
-		string @Constituents { get; }
-		string @Features { get; }
-		string @AccessibilityPerformance { get; }
-		string @CodePerformance { get; }
-		string @SustainabilityPerformance { get; }
+		ICobieAssetType @AssetType { get;  set; }
+		ICobieContact @Manufacturer { get;  set; }
+		string @ModelNumber { get;  set; }
+		string @WarrantyDescription { get;  set; }
+		ICobieContact @WarrantyGuarantorParts { get;  set; }
+		double? @WarrantyDurationParts { get;  set; }
+		ICobieContact @WarrantyGuarantorLabor { get;  set; }
+		double? @WarrantyDurationLabor { get;  set; }
+		ICobieDurationUnit @WarrantyDurationUnit { get;  set; }
+		double? @ReplacementCost { get;  set; }
+		double? @ExpectedLife { get;  set; }
+		ICobieDurationUnit @DurationUnit { get;  set; }
+		double? @NominalLength { get;  set; }
+		double? @NominalWidth { get;  set; }
+		double? @NominalHeight { get;  set; }
+		string @ModelReference { get;  set; }
+		string @Shape { get;  set; }
+		string @Size { get;  set; }
+		string @Color { get;  set; }
+		string @Finish { get;  set; }
+		string @Grade { get;  set; }
+		string @Material { get;  set; }
+		string @Constituents { get;  set; }
+		string @Features { get;  set; }
+		string @AccessibilityPerformance { get;  set; }
+		string @CodePerformance { get;  set; }
+		string @SustainabilityPerformance { get;  set; }
 		IEnumerable<ICobieComponent> @Components {  get; }
 		IEnumerable<ICobieSpare> @Spares {  get; }
 		IEnumerable<ICobieJob> @Jobs {  get; }
@@ -66,33 +66,147 @@ namespace Xbim.CobieExpress
 	public  partial class @CobieType : CobieTypeOrComponent, IInstantiableEntity, ICobieType, IContainsEntityReferences, IEquatable<@CobieType>
 	{
 		#region ICobieType explicit implementation
-		ICobieAssetType ICobieType.AssetType { get { return @AssetType; } }	
-		ICobieContact ICobieType.Manufacturer { get { return @Manufacturer; } }	
-		string ICobieType.ModelNumber { get { return @ModelNumber; } }	
-		string ICobieType.WarrantyDescription { get { return @WarrantyDescription; } }	
-		ICobieContact ICobieType.WarrantyGuarantorParts { get { return @WarrantyGuarantorParts; } }	
-		double? ICobieType.WarrantyDurationParts { get { return @WarrantyDurationParts; } }	
-		ICobieContact ICobieType.WarrantyGuarantorLabor { get { return @WarrantyGuarantorLabor; } }	
-		double? ICobieType.WarrantyDurationLabor { get { return @WarrantyDurationLabor; } }	
-		ICobieDurationUnit ICobieType.WarrantyDurationUnit { get { return @WarrantyDurationUnit; } }	
-		double? ICobieType.ReplacementCost { get { return @ReplacementCost; } }	
-		double? ICobieType.ExpectedLife { get { return @ExpectedLife; } }	
-		ICobieDurationUnit ICobieType.DurationUnit { get { return @DurationUnit; } }	
-		double? ICobieType.NominalLength { get { return @NominalLength; } }	
-		double? ICobieType.NominalWidth { get { return @NominalWidth; } }	
-		double? ICobieType.NominalHeight { get { return @NominalHeight; } }	
-		string ICobieType.ModelReference { get { return @ModelReference; } }	
-		string ICobieType.Shape { get { return @Shape; } }	
-		string ICobieType.Size { get { return @Size; } }	
-		string ICobieType.Color { get { return @Color; } }	
-		string ICobieType.Finish { get { return @Finish; } }	
-		string ICobieType.Grade { get { return @Grade; } }	
-		string ICobieType.Material { get { return @Material; } }	
-		string ICobieType.Constituents { get { return @Constituents; } }	
-		string ICobieType.Features { get { return @Features; } }	
-		string ICobieType.AccessibilityPerformance { get { return @AccessibilityPerformance; } }	
-		string ICobieType.CodePerformance { get { return @CodePerformance; } }	
-		string ICobieType.SustainabilityPerformance { get { return @SustainabilityPerformance; } }	
+		ICobieAssetType ICobieType.AssetType { 
+			get { return @AssetType; } 
+ 
+ 
+			set { AssetType = value as CobieAssetType;}
+		}	
+		ICobieContact ICobieType.Manufacturer { 
+			get { return @Manufacturer; } 
+ 
+ 
+			set { Manufacturer = value as CobieContact;}
+		}	
+		string ICobieType.ModelNumber { 
+			get { return @ModelNumber; } 
+ 
+			set { ModelNumber = value;}
+		}	
+		string ICobieType.WarrantyDescription { 
+			get { return @WarrantyDescription; } 
+ 
+			set { WarrantyDescription = value;}
+		}	
+		ICobieContact ICobieType.WarrantyGuarantorParts { 
+			get { return @WarrantyGuarantorParts; } 
+ 
+ 
+			set { WarrantyGuarantorParts = value as CobieContact;}
+		}	
+		double? ICobieType.WarrantyDurationParts { 
+			get { return @WarrantyDurationParts; } 
+ 
+			set { WarrantyDurationParts = value;}
+		}	
+		ICobieContact ICobieType.WarrantyGuarantorLabor { 
+			get { return @WarrantyGuarantorLabor; } 
+ 
+ 
+			set { WarrantyGuarantorLabor = value as CobieContact;}
+		}	
+		double? ICobieType.WarrantyDurationLabor { 
+			get { return @WarrantyDurationLabor; } 
+ 
+			set { WarrantyDurationLabor = value;}
+		}	
+		ICobieDurationUnit ICobieType.WarrantyDurationUnit { 
+			get { return @WarrantyDurationUnit; } 
+ 
+ 
+			set { WarrantyDurationUnit = value as CobieDurationUnit;}
+		}	
+		double? ICobieType.ReplacementCost { 
+			get { return @ReplacementCost; } 
+ 
+			set { ReplacementCost = value;}
+		}	
+		double? ICobieType.ExpectedLife { 
+			get { return @ExpectedLife; } 
+ 
+			set { ExpectedLife = value;}
+		}	
+		ICobieDurationUnit ICobieType.DurationUnit { 
+			get { return @DurationUnit; } 
+ 
+ 
+			set { DurationUnit = value as CobieDurationUnit;}
+		}	
+		double? ICobieType.NominalLength { 
+			get { return @NominalLength; } 
+ 
+			set { NominalLength = value;}
+		}	
+		double? ICobieType.NominalWidth { 
+			get { return @NominalWidth; } 
+ 
+			set { NominalWidth = value;}
+		}	
+		double? ICobieType.NominalHeight { 
+			get { return @NominalHeight; } 
+ 
+			set { NominalHeight = value;}
+		}	
+		string ICobieType.ModelReference { 
+			get { return @ModelReference; } 
+ 
+			set { ModelReference = value;}
+		}	
+		string ICobieType.Shape { 
+			get { return @Shape; } 
+ 
+			set { Shape = value;}
+		}	
+		string ICobieType.Size { 
+			get { return @Size; } 
+ 
+			set { Size = value;}
+		}	
+		string ICobieType.Color { 
+			get { return @Color; } 
+ 
+			set { Color = value;}
+		}	
+		string ICobieType.Finish { 
+			get { return @Finish; } 
+ 
+			set { Finish = value;}
+		}	
+		string ICobieType.Grade { 
+			get { return @Grade; } 
+ 
+			set { Grade = value;}
+		}	
+		string ICobieType.Material { 
+			get { return @Material; } 
+ 
+			set { Material = value;}
+		}	
+		string ICobieType.Constituents { 
+			get { return @Constituents; } 
+ 
+			set { Constituents = value;}
+		}	
+		string ICobieType.Features { 
+			get { return @Features; } 
+ 
+			set { Features = value;}
+		}	
+		string ICobieType.AccessibilityPerformance { 
+			get { return @AccessibilityPerformance; } 
+ 
+			set { AccessibilityPerformance = value;}
+		}	
+		string ICobieType.CodePerformance { 
+			get { return @CodePerformance; } 
+ 
+			set { CodePerformance = value;}
+		}	
+		string ICobieType.SustainabilityPerformance { 
+			get { return @SustainabilityPerformance; } 
+ 
+			set { SustainabilityPerformance = value;}
+		}	
 		 
 		IEnumerable<ICobieComponent> ICobieType.Components {  get { return @Components; } }
 		IEnumerable<ICobieSpare> ICobieType.Spares {  get { return @Spares; } }

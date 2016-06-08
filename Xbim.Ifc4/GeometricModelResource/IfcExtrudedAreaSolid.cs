@@ -27,8 +27,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcExtrudedAreaSolid : IIfcSweptAreaSolid
 	{
-		IIfcDirection @ExtrudedDirection { get; }
-		IfcPositiveLengthMeasure @Depth { get; }
+		IIfcDirection @ExtrudedDirection { get;  set; }
+		IfcPositiveLengthMeasure @Depth { get;  set; }
 	
 	}
 }
@@ -40,8 +40,17 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public  partial class @IfcExtrudedAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcExtrudedAreaSolid, IContainsEntityReferences, IEquatable<@IfcExtrudedAreaSolid>
 	{
 		#region IIfcExtrudedAreaSolid explicit implementation
-		IIfcDirection IIfcExtrudedAreaSolid.ExtrudedDirection { get { return @ExtrudedDirection; } }	
-		IfcPositiveLengthMeasure IIfcExtrudedAreaSolid.Depth { get { return @Depth; } }	
+		IIfcDirection IIfcExtrudedAreaSolid.ExtrudedDirection { 
+			get { return @ExtrudedDirection; } 
+ 
+ 
+			set { ExtrudedDirection = value as IfcDirection;}
+		}	
+		IfcPositiveLengthMeasure IIfcExtrudedAreaSolid.Depth { 
+			get { return @Depth; } 
+ 
+			set { Depth = value;}
+		}	
 		 
 		#endregion
 

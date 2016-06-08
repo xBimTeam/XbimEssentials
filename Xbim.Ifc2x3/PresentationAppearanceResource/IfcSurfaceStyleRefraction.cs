@@ -28,8 +28,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSurfaceStyleRefraction : IPersistEntity, IfcSurfaceStyleElementSelect
 	{
-		IfcReal? @RefractionIndex { get; }
-		IfcReal? @DispersionFactor { get; }
+		IfcReal? @RefractionIndex { get;  set; }
+		IfcReal? @DispersionFactor { get;  set; }
 	
 	}
 }
@@ -41,8 +41,16 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	public  partial class @IfcSurfaceStyleRefraction : INotifyPropertyChanged, IInstantiableEntity, IIfcSurfaceStyleRefraction, IEquatable<@IfcSurfaceStyleRefraction>
 	{
 		#region IIfcSurfaceStyleRefraction explicit implementation
-		IfcReal? IIfcSurfaceStyleRefraction.RefractionIndex { get { return @RefractionIndex; } }	
-		IfcReal? IIfcSurfaceStyleRefraction.DispersionFactor { get { return @DispersionFactor; } }	
+		IfcReal? IIfcSurfaceStyleRefraction.RefractionIndex { 
+			get { return @RefractionIndex; } 
+ 
+			set { RefractionIndex = value;}
+		}	
+		IfcReal? IIfcSurfaceStyleRefraction.DispersionFactor { 
+			get { return @DispersionFactor; } 
+ 
+			set { DispersionFactor = value;}
+		}	
 		 
 		#endregion
 

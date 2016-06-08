@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return Axis;
 			} 
+			set
+			{
+				Axis = value as IfcDirection;
+				
+			}
 		}
 		Common.Geometry.XbimVector3D IIfcAxis1Placement.Z 
 		{

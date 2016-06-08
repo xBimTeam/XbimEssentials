@@ -44,6 +44,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 						return Ifc4.Interfaces.IfcOccupantTypeEnum.TENANT;
 					
 					case IfcOccupantTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcOccupantTypeEnum.USERDEFINED;
 					
 					case IfcOccupantTypeEnum.NOTDEFINED:
@@ -54,6 +56,52 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcOccupantTypeEnum.ASSIGNEE:
+						PredefinedType = IfcOccupantTypeEnum.ASSIGNEE;
+						return;
+					
+					case Ifc4.Interfaces.IfcOccupantTypeEnum.ASSIGNOR:
+						PredefinedType = IfcOccupantTypeEnum.ASSIGNOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcOccupantTypeEnum.LESSEE:
+						PredefinedType = IfcOccupantTypeEnum.LESSEE;
+						return;
+					
+					case Ifc4.Interfaces.IfcOccupantTypeEnum.LESSOR:
+						PredefinedType = IfcOccupantTypeEnum.LESSOR;
+						return;
+					
+					case Ifc4.Interfaces.IfcOccupantTypeEnum.LETTINGAGENT:
+						PredefinedType = IfcOccupantTypeEnum.LETTINGAGENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcOccupantTypeEnum.OWNER:
+						PredefinedType = IfcOccupantTypeEnum.OWNER;
+						return;
+					
+					case Ifc4.Interfaces.IfcOccupantTypeEnum.TENANT:
+						PredefinedType = IfcOccupantTypeEnum.TENANT;
+						return;
+					
+					case Ifc4.Interfaces.IfcOccupantTypeEnum.USERDEFINED:
+						PredefinedType = IfcOccupantTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcOccupantTypeEnum.NOTDEFINED:
+						PredefinedType = IfcOccupantTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

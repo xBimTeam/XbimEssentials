@@ -42,9 +42,15 @@ namespace Xbim.Ifc2x3.ProductExtension
 	public  partial class @IfcGrid : IfcProduct, IInstantiableEntity, IIfcGrid, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcGrid>
 	{
 		#region IIfcGrid explicit implementation
-		IEnumerable<IIfcGridAxis> IIfcGrid.UAxes { get { return @UAxes; } }	
-		IEnumerable<IIfcGridAxis> IIfcGrid.VAxes { get { return @VAxes; } }	
-		IEnumerable<IIfcGridAxis> IIfcGrid.WAxes { get { return @WAxes; } }	
+		IEnumerable<IIfcGridAxis> IIfcGrid.UAxes { 
+			get { return @UAxes; } 
+		}	
+		IEnumerable<IIfcGridAxis> IIfcGrid.VAxes { 
+			get { return @VAxes; } 
+		}	
+		IEnumerable<IIfcGridAxis> IIfcGrid.WAxes { 
+			get { return @WAxes; } 
+		}	
 		 
 		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcGrid.ContainedInStructure {  get { return @ContainedInStructure; } }
 		#endregion

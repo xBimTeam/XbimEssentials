@@ -26,9 +26,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTypeProcess : IIfcTypeObject, IfcProcessSelect
 	{
-		IfcIdentifier? @Identification { get; }
-		IfcText? @LongDescription { get; }
-		IfcLabel? @ProcessType { get; }
+		IfcIdentifier? @Identification { get;  set; }
+		IfcText? @LongDescription { get;  set; }
+		IfcLabel? @ProcessType { get;  set; }
 		IEnumerable<IIfcRelAssignsToProcess> @OperatesOn {  get; }
 	
 	}
@@ -41,9 +41,21 @@ namespace Xbim.Ifc4.Kernel
 	public abstract partial class @IfcTypeProcess : IfcTypeObject, IIfcTypeProcess, IEquatable<@IfcTypeProcess>
 	{
 		#region IIfcTypeProcess explicit implementation
-		IfcIdentifier? IIfcTypeProcess.Identification { get { return @Identification; } }	
-		IfcText? IIfcTypeProcess.LongDescription { get { return @LongDescription; } }	
-		IfcLabel? IIfcTypeProcess.ProcessType { get { return @ProcessType; } }	
+		IfcIdentifier? IIfcTypeProcess.Identification { 
+			get { return @Identification; } 
+ 
+			set { Identification = value;}
+		}	
+		IfcText? IIfcTypeProcess.LongDescription { 
+			get { return @LongDescription; } 
+ 
+			set { LongDescription = value;}
+		}	
+		IfcLabel? IIfcTypeProcess.ProcessType { 
+			get { return @ProcessType; } 
+ 
+			set { ProcessType = value;}
+		}	
 		 
 		IEnumerable<IIfcRelAssignsToProcess> IIfcTypeProcess.OperatesOn {  get { return @OperatesOn; } }
 		#endregion

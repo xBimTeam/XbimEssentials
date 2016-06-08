@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralPointConnection : IIfcStructuralConnection
 	{
-		IIfcAxis2Placement3D @ConditionCoordinateSystem { get; }
+		IIfcAxis2Placement3D @ConditionCoordinateSystem { get;  set; }
 	
 	}
 }
@@ -38,7 +38,12 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	public  partial class @IfcStructuralPointConnection : IfcStructuralConnection, IInstantiableEntity, IIfcStructuralPointConnection, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralPointConnection>
 	{
 		#region IIfcStructuralPointConnection explicit implementation
-		IIfcAxis2Placement3D IIfcStructuralPointConnection.ConditionCoordinateSystem { get { return @ConditionCoordinateSystem; } }	
+		IIfcAxis2Placement3D IIfcStructuralPointConnection.ConditionCoordinateSystem { 
+			get { return @ConditionCoordinateSystem; } 
+ 
+ 
+			set { ConditionCoordinateSystem = value as IfcAxis2Placement3D;}
+		}	
 		 
 		#endregion
 

@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.MaterialResource
 			{
 				return Material;
 			} 
+			set
+			{
+				Material = value as IfcMaterial;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure IIfcMaterialLayer.LayerThickness 
 		{ 
@@ -29,6 +34,11 @@ namespace Xbim.Ifc2x3.MaterialResource
 			{
 				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(LayerThickness);
 			} 
+			set
+			{
+				LayerThickness = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLogical? IIfcMaterialLayer.IsVentilated 
 		{ 
@@ -37,42 +47,73 @@ namespace Xbim.Ifc2x3.MaterialResource
 				if (!IsVentilated.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLogical(IsVentilated.Value);
 			} 
+			set
+			{
+				IsVentilated = value.HasValue ? 
+					new MeasureResource.IfcLogical(value.Value) :  
+					 new MeasureResource.IfcLogical?() ;
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcLabel? _name;
+
 		Ifc4.MeasureResource.IfcLabel? IIfcMaterialLayer.Name 
 		{ 
 			get
 			{
-				//## Handle return of Name for which no match was found
-			    return null;
-			    //##
+				return _name;
 			} 
+			set
+			{
+				SetValue(v => _name = v, _name, value, "Name", byte.MaxValue);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcText? _description;
+
 		Ifc4.MeasureResource.IfcText? IIfcMaterialLayer.Description 
 		{ 
 			get
 			{
-				//## Handle return of Description for which no match was found
-			    return null;
-			    //##
+				return _description;
 			} 
+			set
+			{
+				SetValue(v => _description = v, _description, value, "Description", byte.MaxValue);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcLabel? _category;
+
 		Ifc4.MeasureResource.IfcLabel? IIfcMaterialLayer.Category 
 		{ 
 			get
 			{
-				//## Handle return of Category for which no match was found
-			    return null;
-			    //##
+				return _category;
 			} 
+			set
+			{
+				SetValue(v => _category = v, _category, value, "Category", byte.MaxValue);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcInteger? _priority;
+
 		Ifc4.MeasureResource.IfcInteger? IIfcMaterialLayer.Priority 
 		{ 
 			get
 			{
-				//## Handle return of Priority for which no match was found
-			    return null;
-			    //##
+				return _priority;
 			} 
+			set
+			{
+				SetValue(v => _priority = v, _priority, value, "Priority", byte.MaxValue);
+				
+			}
 		}
 		IIfcMaterialLayerSet IIfcMaterialLayer.ToMaterialLayerSet 
 		{ 

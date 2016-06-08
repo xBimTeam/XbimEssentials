@@ -23,6 +23,13 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				if (!EccentricityInX.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLengthMeasure(EccentricityInX.Value);
 			} 
+			set
+			{
+				EccentricityInX = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInY 
 		{ 
@@ -31,6 +38,13 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				if (!EccentricityInY.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLengthMeasure(EccentricityInY.Value);
 			} 
+			set
+			{
+				EccentricityInY = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInZ 
 		{ 
@@ -39,6 +53,13 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				if (!EccentricityInZ.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLengthMeasure(EccentricityInZ.Value);
 			} 
+			set
+			{
+				EccentricityInZ = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

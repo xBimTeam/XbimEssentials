@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcFlowMeter : IIfcFlowController
 	{
-		IfcFlowMeterTypeEnum? @PredefinedType { get; }
+		IfcFlowMeterTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.HvacDomain
 	public  partial class @IfcFlowMeter : IfcFlowController, IInstantiableEntity, IIfcFlowMeter, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFlowMeter>
 	{
 		#region IIfcFlowMeter explicit implementation
-		IfcFlowMeterTypeEnum? IIfcFlowMeter.PredefinedType { get { return @PredefinedType; } }	
+		IfcFlowMeterTypeEnum? IIfcFlowMeter.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

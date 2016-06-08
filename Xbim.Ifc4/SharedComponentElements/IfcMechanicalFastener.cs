@@ -26,9 +26,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMechanicalFastener : IIfcElementComponent
 	{
-		IfcPositiveLengthMeasure? @NominalDiameter { get; }
-		IfcPositiveLengthMeasure? @NominalLength { get; }
-		IfcMechanicalFastenerTypeEnum? @PredefinedType { get; }
+		IfcPositiveLengthMeasure? @NominalDiameter { get;  set; }
+		IfcPositiveLengthMeasure? @NominalLength { get;  set; }
+		IfcMechanicalFastenerTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -40,9 +40,21 @@ namespace Xbim.Ifc4.SharedComponentElements
 	public  partial class @IfcMechanicalFastener : IfcElementComponent, IInstantiableEntity, IIfcMechanicalFastener, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMechanicalFastener>
 	{
 		#region IIfcMechanicalFastener explicit implementation
-		IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalDiameter { get { return @NominalDiameter; } }	
-		IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalLength { get { return @NominalLength; } }	
-		IfcMechanicalFastenerTypeEnum? IIfcMechanicalFastener.PredefinedType { get { return @PredefinedType; } }	
+		IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalDiameter { 
+			get { return @NominalDiameter; } 
+ 
+			set { NominalDiameter = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalLength { 
+			get { return @NominalLength; } 
+ 
+			set { NominalLength = value;}
+		}	
+		IfcMechanicalFastenerTypeEnum? IIfcMechanicalFastener.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

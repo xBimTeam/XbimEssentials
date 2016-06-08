@@ -26,9 +26,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRectangleHollowProfileDef : IIfcRectangleProfileDef
 	{
-		IfcPositiveLengthMeasure @WallThickness { get; }
-		IfcPositiveLengthMeasure? @InnerFilletRadius { get; }
-		IfcPositiveLengthMeasure? @OuterFilletRadius { get; }
+		IfcPositiveLengthMeasure @WallThickness { get;  set; }
+		IfcPositiveLengthMeasure? @InnerFilletRadius { get;  set; }
+		IfcPositiveLengthMeasure? @OuterFilletRadius { get;  set; }
 	
 	}
 }
@@ -40,9 +40,21 @@ namespace Xbim.Ifc2x3.ProfileResource
 	public  partial class @IfcRectangleHollowProfileDef : IfcRectangleProfileDef, IInstantiableEntity, IIfcRectangleHollowProfileDef, IContainsEntityReferences, IEquatable<@IfcRectangleHollowProfileDef>
 	{
 		#region IIfcRectangleHollowProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcRectangleHollowProfileDef.WallThickness { get { return @WallThickness; } }	
-		IfcPositiveLengthMeasure? IIfcRectangleHollowProfileDef.InnerFilletRadius { get { return @InnerFilletRadius; } }	
-		IfcPositiveLengthMeasure? IIfcRectangleHollowProfileDef.OuterFilletRadius { get { return @OuterFilletRadius; } }	
+		IfcPositiveLengthMeasure IIfcRectangleHollowProfileDef.WallThickness { 
+			get { return @WallThickness; } 
+ 
+			set { WallThickness = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcRectangleHollowProfileDef.InnerFilletRadius { 
+			get { return @InnerFilletRadius; } 
+ 
+			set { InnerFilletRadius = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcRectangleHollowProfileDef.OuterFilletRadius { 
+			get { return @OuterFilletRadius; } 
+ 
+			set { OuterFilletRadius = value;}
+		}	
 		 
 		#endregion
 

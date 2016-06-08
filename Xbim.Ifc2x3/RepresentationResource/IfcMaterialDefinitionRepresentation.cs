@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialDefinitionRepresentation : IIfcProductRepresentation
 	{
-		IIfcMaterial @RepresentedMaterial { get; }
+		IIfcMaterial @RepresentedMaterial { get;  set; }
 	
 	}
 }
@@ -38,7 +38,12 @@ namespace Xbim.Ifc2x3.RepresentationResource
 	public  partial class @IfcMaterialDefinitionRepresentation : IfcProductRepresentation, IInstantiableEntity, IIfcMaterialDefinitionRepresentation, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMaterialDefinitionRepresentation>
 	{
 		#region IIfcMaterialDefinitionRepresentation explicit implementation
-		IIfcMaterial IIfcMaterialDefinitionRepresentation.RepresentedMaterial { get { return @RepresentedMaterial; } }	
+		IIfcMaterial IIfcMaterialDefinitionRepresentation.RepresentedMaterial { 
+			get { return @RepresentedMaterial; } 
+ 
+ 
+			set { RepresentedMaterial = value as IfcMaterial;}
+		}	
 		 
 		#endregion
 

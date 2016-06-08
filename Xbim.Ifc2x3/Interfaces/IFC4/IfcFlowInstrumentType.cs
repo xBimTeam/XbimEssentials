@@ -47,6 +47,8 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.VOLTMETER_RMS;
 					
 					case IfcFlowInstrumentTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.USERDEFINED;
 					
 					case IfcFlowInstrumentTypeEnum.NOTDEFINED:
@@ -57,6 +59,56 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.PRESSUREGAUGE:
+						PredefinedType = IfcFlowInstrumentTypeEnum.PRESSUREGAUGE;
+						return;
+					
+					case Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.THERMOMETER:
+						PredefinedType = IfcFlowInstrumentTypeEnum.THERMOMETER;
+						return;
+					
+					case Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.AMMETER:
+						PredefinedType = IfcFlowInstrumentTypeEnum.AMMETER;
+						return;
+					
+					case Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.FREQUENCYMETER:
+						PredefinedType = IfcFlowInstrumentTypeEnum.FREQUENCYMETER;
+						return;
+					
+					case Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.POWERFACTORMETER:
+						PredefinedType = IfcFlowInstrumentTypeEnum.POWERFACTORMETER;
+						return;
+					
+					case Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.PHASEANGLEMETER:
+						PredefinedType = IfcFlowInstrumentTypeEnum.PHASEANGLEMETER;
+						return;
+					
+					case Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.VOLTMETER_PEAK:
+						PredefinedType = IfcFlowInstrumentTypeEnum.VOLTMETER_PEAK;
+						return;
+					
+					case Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.VOLTMETER_RMS:
+						PredefinedType = IfcFlowInstrumentTypeEnum.VOLTMETER_RMS;
+						return;
+					
+					case Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.USERDEFINED:
+						PredefinedType = IfcFlowInstrumentTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.NOTDEFINED:
+						PredefinedType = IfcFlowInstrumentTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

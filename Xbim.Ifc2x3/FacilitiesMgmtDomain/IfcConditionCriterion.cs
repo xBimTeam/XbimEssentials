@@ -27,8 +27,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConditionCriterion : IIfcControl
 	{
-		IIfcConditionCriterionSelect @Criterion { get; }
-		IIfcDateTimeSelect @CriterionDateTime { get; }
+		IIfcConditionCriterionSelect @Criterion { get;  set; }
+		IIfcDateTimeSelect @CriterionDateTime { get;  set; }
 	
 	}
 }
@@ -40,8 +40,18 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 	public  partial class @IfcConditionCriterion : IfcControl, IInstantiableEntity, IIfcConditionCriterion, IContainsEntityReferences, IEquatable<@IfcConditionCriterion>
 	{
 		#region IIfcConditionCriterion explicit implementation
-		IIfcConditionCriterionSelect IIfcConditionCriterion.Criterion { get { return @Criterion; } }	
-		IIfcDateTimeSelect IIfcConditionCriterion.CriterionDateTime { get { return @CriterionDateTime; } }	
+		IIfcConditionCriterionSelect IIfcConditionCriterion.Criterion { 
+			get { return @Criterion; } 
+ 
+ 
+			set { Criterion = value as IfcConditionCriterionSelect;}
+		}	
+		IIfcDateTimeSelect IIfcConditionCriterion.CriterionDateTime { 
+			get { return @CriterionDateTime; } 
+ 
+ 
+			set { CriterionDateTime = value as IfcDateTimeSelect;}
+		}	
 		 
 		#endregion
 

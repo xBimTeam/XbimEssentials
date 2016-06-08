@@ -27,9 +27,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCurveStyleFontAndScaling : IIfcPresentationItem, IfcCurveFontOrScaledCurveFontSelect
 	{
-		IfcLabel? @Name { get; }
-		IIfcCurveStyleFontSelect @CurveFont { get; }
-		IfcPositiveRatioMeasure @CurveFontScaling { get; }
+		IfcLabel? @Name { get;  set; }
+		IIfcCurveStyleFontSelect @CurveFont { get;  set; }
+		IfcPositiveRatioMeasure @CurveFontScaling { get;  set; }
 	
 	}
 }
@@ -41,9 +41,22 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcCurveStyleFontAndScaling : IfcPresentationItem, IInstantiableEntity, IIfcCurveStyleFontAndScaling, IContainsEntityReferences, IEquatable<@IfcCurveStyleFontAndScaling>
 	{
 		#region IIfcCurveStyleFontAndScaling explicit implementation
-		IfcLabel? IIfcCurveStyleFontAndScaling.Name { get { return @Name; } }	
-		IIfcCurveStyleFontSelect IIfcCurveStyleFontAndScaling.CurveFont { get { return @CurveFont; } }	
-		IfcPositiveRatioMeasure IIfcCurveStyleFontAndScaling.CurveFontScaling { get { return @CurveFontScaling; } }	
+		IfcLabel? IIfcCurveStyleFontAndScaling.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IIfcCurveStyleFontSelect IIfcCurveStyleFontAndScaling.CurveFont { 
+			get { return @CurveFont; } 
+ 
+ 
+			set { CurveFont = value as IfcCurveStyleFontSelect;}
+		}	
+		IfcPositiveRatioMeasure IIfcCurveStyleFontAndScaling.CurveFontScaling { 
+			get { return @CurveFontScaling; } 
+ 
+			set { CurveFontScaling = value;}
+		}	
 		 
 		#endregion
 

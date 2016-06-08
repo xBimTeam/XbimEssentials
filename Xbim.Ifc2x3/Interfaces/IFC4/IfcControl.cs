@@ -16,14 +16,20 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcControl : IIfcControl
 	{
+
+		private  Ifc4.MeasureResource.IfcIdentifier? _identification;
+
 		Ifc4.MeasureResource.IfcIdentifier? IIfcControl.Identification 
 		{ 
 			get
 			{
-				//## Handle return of Identification for which no match was found
-			    return null;
-			    //##
+				return _identification;
 			} 
+			set
+			{
+				SetValue(v => _identification = v, _identification, value, "Identification", byte.MaxValue);
+				
+			}
 		}
 		IEnumerable<IIfcRelAssignsToControl> IIfcControl.Controls 
 		{ 

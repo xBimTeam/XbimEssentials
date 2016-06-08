@@ -24,6 +24,14 @@ namespace Xbim.Ifc2x3.SharedBldgElements
                 return NumberOfRiser.HasValue ? new Ifc4.MeasureResource.IfcInteger(NumberOfRiser.Value) : (Ifc4.MeasureResource.IfcInteger?)null;
 			    //##
 			} 
+			set
+			{
+				//## Handle setting of NumberOfRisers for which no match was found
+			    NumberOfRiser = value;
+			    //##
+				NotifyPropertyChanged("NumberOfRisers");
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcInteger? IIfcStairFlight.NumberOfTreads 
 		{ 
@@ -33,6 +41,11 @@ namespace Xbim.Ifc2x3.SharedBldgElements
                 return NumberOfTreads.HasValue ? new Ifc4.MeasureResource.IfcInteger(NumberOfTreads.Value) : (Ifc4.MeasureResource.IfcInteger?)null;
 				//##
 			} 
+			set
+			{
+				NumberOfTreads = value;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcStairFlight.RiserHeight 
 		{ 
@@ -41,6 +54,13 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!RiserHeight.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(RiserHeight.Value);
 			} 
+			set
+			{
+				RiserHeight = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcStairFlight.TreadLength 
 		{ 
@@ -49,15 +69,28 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!TreadLength.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(TreadLength.Value);
 			} 
+			set
+			{
+				TreadLength = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
+
+		private  Ifc4.Interfaces.IfcStairFlightTypeEnum? _predefinedType;
+
 		Ifc4.Interfaces.IfcStairFlightTypeEnum? IIfcStairFlight.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-                return null;
-				//##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				
+			}
 		}
 	//## Custom code
 	//##

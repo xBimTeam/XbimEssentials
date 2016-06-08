@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				return Outer;
 			} 
+			set
+			{
+				Outer = value as TopologyResource.IfcClosedShell;
+				
+			}
 		}
 	//## Custom code
 	//##

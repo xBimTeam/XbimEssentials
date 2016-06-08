@@ -16,12 +16,39 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelAssignsToResource : IIfcRelAssignsToResource
 	{
+
+		private  IIfcResourceSelect _relatingResource4;
+
 		IIfcResourceSelect IIfcRelAssignsToResource.RelatingResource 
 		{ 
 			get
 			{
-				return RelatingResource;
+				return  _relatingResource4 ?? RelatingResource;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					RelatingResource = null;
+					if (_relatingResource4 != null)
+						SetValue(v => _relatingResource4 = v, _relatingResource4, null, "RelatingResource", byte.MaxValue);
+					return;
+				}
+				
+				var val = value as IfcResource;
+				if (val != null)
+				{
+					RelatingResource = val;
+					if (_relatingResource4 != null)
+						SetValue(v => _relatingResource4 = v, _relatingResource4, null, "RelatingResource", byte.MaxValue);
+					return;
+				} 
+
+				if(RelatingResource != null)
+					RelatingResource = null;
+				SetValue(v => _relatingResource4 = v, _relatingResource4, value, "RelatingResource", byte.MaxValue);
+				
+			}
 		}
 	//## Custom code
 	//##

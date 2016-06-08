@@ -29,10 +29,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcShapeAspect : IPersistEntity
 	{
 		IEnumerable<IIfcShapeModel> @ShapeRepresentations { get; }
-		IfcLabel? @Name { get; }
-		IfcText? @Description { get; }
-		bool? @ProductDefinitional { get; }
-		IIfcProductDefinitionShape @PartOfProductDefinitionShape { get; }
+		IfcLabel? @Name { get;  set; }
+		IfcText? @Description { get;  set; }
+		bool? @ProductDefinitional { get;  set; }
+		IIfcProductDefinitionShape @PartOfProductDefinitionShape { get;  set; }
 	
 	}
 }
@@ -44,11 +44,30 @@ namespace Xbim.Ifc2x3.RepresentationResource
 	public  partial class @IfcShapeAspect : INotifyPropertyChanged, IInstantiableEntity, IIfcShapeAspect, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcShapeAspect>
 	{
 		#region IIfcShapeAspect explicit implementation
-		IEnumerable<IIfcShapeModel> IIfcShapeAspect.ShapeRepresentations { get { return @ShapeRepresentations; } }	
-		IfcLabel? IIfcShapeAspect.Name { get { return @Name; } }	
-		IfcText? IIfcShapeAspect.Description { get { return @Description; } }	
-		bool? IIfcShapeAspect.ProductDefinitional { get { return @ProductDefinitional; } }	
-		IIfcProductDefinitionShape IIfcShapeAspect.PartOfProductDefinitionShape { get { return @PartOfProductDefinitionShape; } }	
+		IEnumerable<IIfcShapeModel> IIfcShapeAspect.ShapeRepresentations { 
+			get { return @ShapeRepresentations; } 
+		}	
+		IfcLabel? IIfcShapeAspect.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcShapeAspect.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		bool? IIfcShapeAspect.ProductDefinitional { 
+			get { return @ProductDefinitional; } 
+ 
+			set { ProductDefinitional = value;}
+		}	
+		IIfcProductDefinitionShape IIfcShapeAspect.PartOfProductDefinitionShape { 
+			get { return @PartOfProductDefinitionShape; } 
+ 
+ 
+			set { PartOfProductDefinitionShape = value as IfcProductDefinitionShape;}
+		}	
 		 
 		#endregion
 

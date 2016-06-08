@@ -25,8 +25,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSIUnit : IIfcNamedUnit
 	{
-		IfcSIPrefix? @Prefix { get; }
-		IfcSIUnitName @Name { get; }
+		IfcSIPrefix? @Prefix { get;  set; }
+		IfcSIUnitName @Name { get;  set; }
 	
 	}
 }
@@ -38,8 +38,16 @@ namespace Xbim.Ifc4.MeasureResource
 	public  partial class @IfcSIUnit : IfcNamedUnit, IInstantiableEntity, IIfcSIUnit, IContainsEntityReferences, IEquatable<@IfcSIUnit>
 	{
 		#region IIfcSIUnit explicit implementation
-		IfcSIPrefix? IIfcSIUnit.Prefix { get { return @Prefix; } }	
-		IfcSIUnitName IIfcSIUnit.Name { get { return @Name; } }	
+		IfcSIPrefix? IIfcSIUnit.Prefix { 
+			get { return @Prefix; } 
+ 
+			set { Prefix = value;}
+		}	
+		IfcSIUnitName IIfcSIUnit.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
 		 
 		#endregion
 

@@ -38,7 +38,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public abstract partial class @IfcTextureCoordinate : IfcPresentationItem, IIfcTextureCoordinate, IEquatable<@IfcTextureCoordinate>
 	{
 		#region IIfcTextureCoordinate explicit implementation
-		IEnumerable<IIfcSurfaceTexture> IIfcTextureCoordinate.Maps { get { return @Maps; } }	
+		IEnumerable<IIfcSurfaceTexture> IIfcTextureCoordinate.Maps { 
+			get { return @Maps; } 
+		}	
 		 
 		#endregion
 

@@ -27,8 +27,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcNamedUnit : IPersistEntity, IfcUnit
 	{
-		IIfcDimensionalExponents @Dimensions { get; }
-		IfcUnitEnum @UnitType { get; }
+		IIfcDimensionalExponents @Dimensions { get;  set; }
+		IfcUnitEnum @UnitType { get;  set; }
 	
 	}
 }
@@ -40,8 +40,17 @@ namespace Xbim.Ifc2x3.MeasureResource
 	public abstract partial class @IfcNamedUnit : IPersistEntity, INotifyPropertyChanged, IIfcNamedUnit, IEquatable<@IfcNamedUnit>
 	{
 		#region IIfcNamedUnit explicit implementation
-		IIfcDimensionalExponents IIfcNamedUnit.Dimensions { get { return @Dimensions; } }	
-		IfcUnitEnum IIfcNamedUnit.UnitType { get { return @UnitType; } }	
+		IIfcDimensionalExponents IIfcNamedUnit.Dimensions { 
+			get { return @Dimensions; } 
+ 
+ 
+			set { Dimensions = value as IfcDimensionalExponents;}
+		}	
+		IfcUnitEnum IIfcNamedUnit.UnitType { 
+			get { return @UnitType; } 
+ 
+			set { UnitType = value;}
+		}	
 		 
 		#endregion
 

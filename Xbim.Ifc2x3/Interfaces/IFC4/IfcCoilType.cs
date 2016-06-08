@@ -41,6 +41,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 						return Ifc4.Interfaces.IfcCoilTypeEnum.GASHEATINGCOIL;
 					
 					case IfcCoilTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcCoilTypeEnum.USERDEFINED;
 					
 					case IfcCoilTypeEnum.NOTDEFINED:
@@ -51,6 +53,54 @@ namespace Xbim.Ifc2x3.HVACDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcCoilTypeEnum.DXCOOLINGCOIL:
+						PredefinedType = IfcCoilTypeEnum.DXCOOLINGCOIL;
+						return;
+					
+					case Ifc4.Interfaces.IfcCoilTypeEnum.ELECTRICHEATINGCOIL:
+						PredefinedType = IfcCoilTypeEnum.ELECTRICHEATINGCOIL;
+						return;
+					
+					case Ifc4.Interfaces.IfcCoilTypeEnum.GASHEATINGCOIL:
+						PredefinedType = IfcCoilTypeEnum.GASHEATINGCOIL;
+						return;
+					
+					case Ifc4.Interfaces.IfcCoilTypeEnum.HYDRONICCOIL:
+						//## Handle setting of HYDRONICCOIL member from IfcCoilTypeEnum in property PredefinedType
+						//TODO: Handle setting of HYDRONICCOIL member from IfcCoilTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcCoilTypeEnum.STEAMHEATINGCOIL:
+						PredefinedType = IfcCoilTypeEnum.STEAMHEATINGCOIL;
+						return;
+					
+					case Ifc4.Interfaces.IfcCoilTypeEnum.WATERCOOLINGCOIL:
+						PredefinedType = IfcCoilTypeEnum.WATERCOOLINGCOIL;
+						return;
+					
+					case Ifc4.Interfaces.IfcCoilTypeEnum.WATERHEATINGCOIL:
+						PredefinedType = IfcCoilTypeEnum.WATERHEATINGCOIL;
+						return;
+					
+					case Ifc4.Interfaces.IfcCoilTypeEnum.USERDEFINED:
+						PredefinedType = IfcCoilTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcCoilTypeEnum.NOTDEFINED:
+						PredefinedType = IfcCoilTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

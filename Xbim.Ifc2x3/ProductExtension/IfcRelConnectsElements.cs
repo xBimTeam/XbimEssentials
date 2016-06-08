@@ -27,9 +27,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelConnectsElements : IIfcRelConnects
 	{
-		IIfcConnectionGeometry @ConnectionGeometry { get; }
-		IIfcElement @RelatingElement { get; }
-		IIfcElement @RelatedElement { get; }
+		IIfcConnectionGeometry @ConnectionGeometry { get;  set; }
+		IIfcElement @RelatingElement { get;  set; }
+		IIfcElement @RelatedElement { get;  set; }
 	
 	}
 }
@@ -41,9 +41,24 @@ namespace Xbim.Ifc2x3.ProductExtension
 	public  partial class @IfcRelConnectsElements : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsElements, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsElements>
 	{
 		#region IIfcRelConnectsElements explicit implementation
-		IIfcConnectionGeometry IIfcRelConnectsElements.ConnectionGeometry { get { return @ConnectionGeometry; } }	
-		IIfcElement IIfcRelConnectsElements.RelatingElement { get { return @RelatingElement; } }	
-		IIfcElement IIfcRelConnectsElements.RelatedElement { get { return @RelatedElement; } }	
+		IIfcConnectionGeometry IIfcRelConnectsElements.ConnectionGeometry { 
+			get { return @ConnectionGeometry; } 
+ 
+ 
+			set { ConnectionGeometry = value as IfcConnectionGeometry;}
+		}	
+		IIfcElement IIfcRelConnectsElements.RelatingElement { 
+			get { return @RelatingElement; } 
+ 
+ 
+			set { RelatingElement = value as IfcElement;}
+		}	
+		IIfcElement IIfcRelConnectsElements.RelatedElement { 
+			get { return @RelatedElement; } 
+ 
+ 
+			set { RelatedElement = value as IfcElement;}
+		}	
 		 
 		#endregion
 

@@ -33,15 +33,28 @@ namespace Xbim.Ifc2x3.MaterialResource
 				if (!LayerSetName.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(LayerSetName.Value);
 			} 
+			set
+			{
+				LayerSetName = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcText? _description;
+
 		Ifc4.MeasureResource.IfcText? IIfcMaterialLayerSet.Description 
 		{ 
 			get
 			{
-				//## Handle return of Description for which no match was found
-			    return null;
-			    //##
+				return _description;
 			} 
+			set
+			{
+				SetValue(v => _description = v, _description, value, "Description", byte.MaxValue);
+				
+			}
 		}
 		IEnumerable<IIfcRelAssociatesMaterial> IIfcMaterialDefinition.AssociatedTo 
 		{ 

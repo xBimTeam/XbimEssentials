@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.TopologyResource
 			{
 				return EdgeStart;
 			} 
+			set
+			{
+				EdgeStart = value as IfcVertex;
+				
+			}
 		}
 		IIfcVertex IIfcEdge.EdgeEnd 
 		{ 
@@ -29,6 +34,11 @@ namespace Xbim.Ifc2x3.TopologyResource
 			{
 				return EdgeEnd;
 			} 
+			set
+			{
+				EdgeEnd = value as IfcVertex;
+				
+			}
 		}
 	//## Custom code
 	//##

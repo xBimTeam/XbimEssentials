@@ -29,6 +29,27 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					return ifcelement;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					RelatingElement = null;
+					return;
+				}	
+				var ifcelement = value as ProductExtension.IfcElement;
+				if (ifcelement != null) 
+				{
+					RelatingElement = ifcelement;
+					return;
+				}
+				var ifcstructuralitem = value as IfcStructuralItem;
+				if (ifcstructuralitem != null) 
+				{
+					RelatingElement = ifcstructuralitem;
+					return;
+				}
+				
+			}
 		}
 		IIfcStructuralActivity IIfcRelConnectsStructuralActivity.RelatedStructuralActivity 
 		{ 
@@ -36,6 +57,11 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				return RelatedStructuralActivity;
 			} 
+			set
+			{
+				RelatedStructuralActivity = value as IfcStructuralActivity;
+				
+			}
 		}
 	//## Custom code
 	//##

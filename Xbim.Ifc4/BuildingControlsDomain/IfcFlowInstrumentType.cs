@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcFlowInstrumentType : IIfcDistributionControlElementType
 	{
-		IfcFlowInstrumentTypeEnum @PredefinedType { get; }
+		IfcFlowInstrumentTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 	public  partial class @IfcFlowInstrumentType : IfcDistributionControlElementType, IInstantiableEntity, IIfcFlowInstrumentType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFlowInstrumentType>
 	{
 		#region IIfcFlowInstrumentType explicit implementation
-		IfcFlowInstrumentTypeEnum IIfcFlowInstrumentType.PredefinedType { get { return @PredefinedType; } }	
+		IfcFlowInstrumentTypeEnum IIfcFlowInstrumentType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

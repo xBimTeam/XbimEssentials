@@ -27,8 +27,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcProduct : IIfcObject, IfcProductSelect
 	{
-		IIfcObjectPlacement @ObjectPlacement { get; }
-		IIfcProductRepresentation @Representation { get; }
+		IIfcObjectPlacement @ObjectPlacement { get;  set; }
+		IIfcProductRepresentation @Representation { get;  set; }
 		IEnumerable<IIfcRelAssignsToProduct> @ReferencedBy {  get; }
 	
 	}
@@ -41,8 +41,18 @@ namespace Xbim.Ifc4.Kernel
 	public abstract partial class @IfcProduct : IfcObject, IIfcProduct, IEquatable<@IfcProduct>
 	{
 		#region IIfcProduct explicit implementation
-		IIfcObjectPlacement IIfcProduct.ObjectPlacement { get { return @ObjectPlacement; } }	
-		IIfcProductRepresentation IIfcProduct.Representation { get { return @Representation; } }	
+		IIfcObjectPlacement IIfcProduct.ObjectPlacement { 
+			get { return @ObjectPlacement; } 
+ 
+ 
+			set { ObjectPlacement = value as IfcObjectPlacement;}
+		}	
+		IIfcProductRepresentation IIfcProduct.Representation { 
+			get { return @Representation; } 
+ 
+ 
+			set { Representation = value as IfcProductRepresentation;}
+		}	
 		 
 		IEnumerable<IIfcRelAssignsToProduct> IIfcProduct.ReferencedBy {  get { return @ReferencedBy; } }
 		#endregion

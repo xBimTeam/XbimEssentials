@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCoil : IIfcEnergyConversionDevice
 	{
-		IfcCoilTypeEnum? @PredefinedType { get; }
+		IfcCoilTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.HvacDomain
 	public  partial class @IfcCoil : IfcEnergyConversionDevice, IInstantiableEntity, IIfcCoil, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCoil>
 	{
 		#region IIfcCoil explicit implementation
-		IfcCoilTypeEnum? IIfcCoil.PredefinedType { get { return @PredefinedType; } }	
+		IfcCoilTypeEnum? IIfcCoil.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

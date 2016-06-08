@@ -30,11 +30,11 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCurrencyRelationship : IPersistEntity
 	{
-		IIfcMonetaryUnit @RelatingMonetaryUnit { get; }
-		IIfcMonetaryUnit @RelatedMonetaryUnit { get; }
-		IfcPositiveRatioMeasure @ExchangeRate { get; }
-		IIfcDateAndTime @RateDateTime { get; }
-		IIfcLibraryInformation @RateSource { get; }
+		IIfcMonetaryUnit @RelatingMonetaryUnit { get;  set; }
+		IIfcMonetaryUnit @RelatedMonetaryUnit { get;  set; }
+		IfcPositiveRatioMeasure @ExchangeRate { get;  set; }
+		IIfcDateAndTime @RateDateTime { get;  set; }
+		IIfcLibraryInformation @RateSource { get;  set; }
 	
 	}
 }
@@ -46,11 +46,35 @@ namespace Xbim.Ifc2x3.CostResource
 	public  partial class @IfcCurrencyRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcCurrencyRelationship, IContainsEntityReferences, IEquatable<@IfcCurrencyRelationship>
 	{
 		#region IIfcCurrencyRelationship explicit implementation
-		IIfcMonetaryUnit IIfcCurrencyRelationship.RelatingMonetaryUnit { get { return @RelatingMonetaryUnit; } }	
-		IIfcMonetaryUnit IIfcCurrencyRelationship.RelatedMonetaryUnit { get { return @RelatedMonetaryUnit; } }	
-		IfcPositiveRatioMeasure IIfcCurrencyRelationship.ExchangeRate { get { return @ExchangeRate; } }	
-		IIfcDateAndTime IIfcCurrencyRelationship.RateDateTime { get { return @RateDateTime; } }	
-		IIfcLibraryInformation IIfcCurrencyRelationship.RateSource { get { return @RateSource; } }	
+		IIfcMonetaryUnit IIfcCurrencyRelationship.RelatingMonetaryUnit { 
+			get { return @RelatingMonetaryUnit; } 
+ 
+ 
+			set { RelatingMonetaryUnit = value as IfcMonetaryUnit;}
+		}	
+		IIfcMonetaryUnit IIfcCurrencyRelationship.RelatedMonetaryUnit { 
+			get { return @RelatedMonetaryUnit; } 
+ 
+ 
+			set { RelatedMonetaryUnit = value as IfcMonetaryUnit;}
+		}	
+		IfcPositiveRatioMeasure IIfcCurrencyRelationship.ExchangeRate { 
+			get { return @ExchangeRate; } 
+ 
+			set { ExchangeRate = value;}
+		}	
+		IIfcDateAndTime IIfcCurrencyRelationship.RateDateTime { 
+			get { return @RateDateTime; } 
+ 
+ 
+			set { RateDateTime = value as IfcDateAndTime;}
+		}	
+		IIfcLibraryInformation IIfcCurrencyRelationship.RateSource { 
+			get { return @RateSource; } 
+ 
+ 
+			set { RateSource = value as IfcLibraryInformation;}
+		}	
 		 
 		#endregion
 

@@ -27,10 +27,10 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSurfaceCurveSweptAreaSolid : IIfcSweptAreaSolid
 	{
-		IIfcCurve @Directrix { get; }
-		IfcParameterValue? @StartParam { get; }
-		IfcParameterValue? @EndParam { get; }
-		IIfcSurface @ReferenceSurface { get; }
+		IIfcCurve @Directrix { get;  set; }
+		IfcParameterValue? @StartParam { get;  set; }
+		IfcParameterValue? @EndParam { get;  set; }
+		IIfcSurface @ReferenceSurface { get;  set; }
 	
 	}
 }
@@ -42,10 +42,28 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public  partial class @IfcSurfaceCurveSweptAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcSurfaceCurveSweptAreaSolid, IContainsEntityReferences, IEquatable<@IfcSurfaceCurveSweptAreaSolid>
 	{
 		#region IIfcSurfaceCurveSweptAreaSolid explicit implementation
-		IIfcCurve IIfcSurfaceCurveSweptAreaSolid.Directrix { get { return @Directrix; } }	
-		IfcParameterValue? IIfcSurfaceCurveSweptAreaSolid.StartParam { get { return @StartParam; } }	
-		IfcParameterValue? IIfcSurfaceCurveSweptAreaSolid.EndParam { get { return @EndParam; } }	
-		IIfcSurface IIfcSurfaceCurveSweptAreaSolid.ReferenceSurface { get { return @ReferenceSurface; } }	
+		IIfcCurve IIfcSurfaceCurveSweptAreaSolid.Directrix { 
+			get { return @Directrix; } 
+ 
+ 
+			set { Directrix = value as IfcCurve;}
+		}	
+		IfcParameterValue? IIfcSurfaceCurveSweptAreaSolid.StartParam { 
+			get { return @StartParam; } 
+ 
+			set { StartParam = value;}
+		}	
+		IfcParameterValue? IIfcSurfaceCurveSweptAreaSolid.EndParam { 
+			get { return @EndParam; } 
+ 
+			set { EndParam = value;}
+		}	
+		IIfcSurface IIfcSurfaceCurveSweptAreaSolid.ReferenceSurface { 
+			get { return @ReferenceSurface; } 
+ 
+ 
+			set { ReferenceSurface = value as IfcSurface;}
+		}	
 		 
 		#endregion
 

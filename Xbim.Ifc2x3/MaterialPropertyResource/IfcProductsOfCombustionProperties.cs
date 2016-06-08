@@ -26,10 +26,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcProductsOfCombustionProperties : IIfcMaterialProperties
 	{
-		IfcSpecificHeatCapacityMeasure? @SpecificHeatCapacity { get; }
-		IfcPositiveRatioMeasure? @N20Content { get; }
-		IfcPositiveRatioMeasure? @COContent { get; }
-		IfcPositiveRatioMeasure? @CO2Content { get; }
+		IfcSpecificHeatCapacityMeasure? @SpecificHeatCapacity { get;  set; }
+		IfcPositiveRatioMeasure? @N20Content { get;  set; }
+		IfcPositiveRatioMeasure? @COContent { get;  set; }
+		IfcPositiveRatioMeasure? @CO2Content { get;  set; }
 	
 	}
 }
@@ -41,10 +41,26 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	public  partial class @IfcProductsOfCombustionProperties : IfcMaterialProperties, IInstantiableEntity, IIfcProductsOfCombustionProperties, IContainsEntityReferences, IEquatable<@IfcProductsOfCombustionProperties>
 	{
 		#region IIfcProductsOfCombustionProperties explicit implementation
-		IfcSpecificHeatCapacityMeasure? IIfcProductsOfCombustionProperties.SpecificHeatCapacity { get { return @SpecificHeatCapacity; } }	
-		IfcPositiveRatioMeasure? IIfcProductsOfCombustionProperties.N20Content { get { return @N20Content; } }	
-		IfcPositiveRatioMeasure? IIfcProductsOfCombustionProperties.COContent { get { return @COContent; } }	
-		IfcPositiveRatioMeasure? IIfcProductsOfCombustionProperties.CO2Content { get { return @CO2Content; } }	
+		IfcSpecificHeatCapacityMeasure? IIfcProductsOfCombustionProperties.SpecificHeatCapacity { 
+			get { return @SpecificHeatCapacity; } 
+ 
+			set { SpecificHeatCapacity = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcProductsOfCombustionProperties.N20Content { 
+			get { return @N20Content; } 
+ 
+			set { N20Content = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcProductsOfCombustionProperties.COContent { 
+			get { return @COContent; } 
+ 
+			set { COContent = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcProductsOfCombustionProperties.CO2Content { 
+			get { return @CO2Content; } 
+ 
+			set { CO2Content = value;}
+		}	
 		 
 		#endregion
 

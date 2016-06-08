@@ -39,8 +39,12 @@ namespace Xbim.Ifc4.StructuralLoadResource
 	public  partial class @IfcStructuralLoadConfiguration : IfcStructuralLoad, IInstantiableEntity, IIfcStructuralLoadConfiguration, IContainsEntityReferences, IEquatable<@IfcStructuralLoadConfiguration>
 	{
 		#region IIfcStructuralLoadConfiguration explicit implementation
-		IEnumerable<IIfcStructuralLoadOrResult> IIfcStructuralLoadConfiguration.Values { get { return @Values; } }	
-		IEnumerable<IEnumerable<IfcLengthMeasure>> IIfcStructuralLoadConfiguration.Locations { get { return @Locations; } }	
+		IEnumerable<IIfcStructuralLoadOrResult> IIfcStructuralLoadConfiguration.Values { 
+			get { return @Values; } 
+		}	
+		IEnumerable<IEnumerable<IfcLengthMeasure>> IIfcStructuralLoadConfiguration.Locations { 
+			get { return @Locations; } 
+		}	
 		 
 		#endregion
 

@@ -234,24 +234,15 @@ namespace Xbim.MemoryModel.Tests
         //    Trace.WriteLine(string.Format( @"{0}ms to store the data as a table.", w.ElapsedMilliseconds));
         //}
 
-        //[TestMethod]
-        //[DeploymentItem("TestFiles/LakesideRestaurant.cobieZip")]
-        //public void LoadFromXLSX()
-        //{
-        //    //load back
-        //    var loaded = new CobieModel();
-        //    var mapping = GetCobieMapping();
-        //    var storage = new TableStore(loaded, mapping);
-        //    storage.Resolvers.Add(new AttributeTypeResolver());
+        [TestMethod]
+        [DeploymentItem("TestFiles/2016-02-29-Dormitory-COBie.xlsx")]
+        public void LoadFromXLSX()
+        {
+            string report;
+            var cobieModel = CobieModel.ImportFromTable(@"2016-02-29-Dormitory-COBie.xlsx", out report);
+            Assert.IsTrue(string.IsNullOrWhiteSpace(report), "Errors loading cobie xlsx file" );
 
-        //    using (var txn = loaded.BeginTransaction("Loading XLSX"))
-        //    {
-        //        storage.LoadFrom("..\\..\\Lakeside.xlsx");
-        //        txn.Commit();
-        //    }
-
-        //    storage.Store("..\\..\\Lakeside2.xlsx");
-        //}
+        }
 
         [TestMethod]
         public void AssemblyRoundTrip()

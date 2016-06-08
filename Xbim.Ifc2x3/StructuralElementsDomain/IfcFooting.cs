@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcFooting : IIfcBuildingElement
 	{
-		IfcFootingTypeEnum @PredefinedType { get; }
+		IfcFootingTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 	public  partial class @IfcFooting : IfcBuildingElement, IInstantiableEntity, IIfcFooting, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFooting>
 	{
 		#region IIfcFooting explicit implementation
-		IfcFootingTypeEnum IIfcFooting.PredefinedType { get { return @PredefinedType; } }	
+		IfcFootingTypeEnum IIfcFooting.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

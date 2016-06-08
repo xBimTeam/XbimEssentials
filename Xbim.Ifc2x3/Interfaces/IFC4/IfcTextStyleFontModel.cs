@@ -33,6 +33,13 @@ namespace Xbim.Ifc2x3.PresentationResource
 				if (!FontStyle.HasValue) return null;
 				return new Ifc4.PresentationAppearanceResource.IfcFontStyle(FontStyle.Value);
 			} 
+			set
+			{
+				FontStyle = value.HasValue ? 
+					new IfcFontStyle(value.Value) :  
+					 new IfcFontStyle?() ;
+				
+			}
 		}
 		Ifc4.PresentationAppearanceResource.IfcFontVariant? IIfcTextStyleFontModel.FontVariant 
 		{ 
@@ -41,6 +48,13 @@ namespace Xbim.Ifc2x3.PresentationResource
 				if (!FontVariant.HasValue) return null;
 				return new Ifc4.PresentationAppearanceResource.IfcFontVariant(FontVariant.Value);
 			} 
+			set
+			{
+				FontVariant = value.HasValue ? 
+					new IfcFontVariant(value.Value) :  
+					 new IfcFontVariant?() ;
+				
+			}
 		}
 		Ifc4.PresentationAppearanceResource.IfcFontWeight? IIfcTextStyleFontModel.FontWeight 
 		{ 
@@ -49,6 +63,13 @@ namespace Xbim.Ifc2x3.PresentationResource
 				if (!FontWeight.HasValue) return null;
 				return new Ifc4.PresentationAppearanceResource.IfcFontWeight(FontWeight.Value);
 			} 
+			set
+			{
+				FontWeight = value.HasValue ? 
+					new IfcFontWeight(value.Value) :  
+					 new IfcFontWeight?() ;
+				
+			}
 		}
 		IIfcSizeSelect IIfcTextStyleFontModel.FontSize 
 		{ 
@@ -56,19 +77,58 @@ namespace Xbim.Ifc2x3.PresentationResource
 			{
 				if (FontSize == null) return null;
 				if (FontSize is MeasureResource.IfcRatioMeasure) 
-					return new Ifc4.MeasureResource.IfcRatioMeasure((double)(MeasureResource.IfcRatioMeasure)FontSize);
+					return new Ifc4.MeasureResource.IfcRatioMeasure((MeasureResource.IfcRatioMeasure)FontSize);
 				if (FontSize is MeasureResource.IfcLengthMeasure) 
-					return new Ifc4.MeasureResource.IfcLengthMeasure((double)(MeasureResource.IfcLengthMeasure)FontSize);
+					return new Ifc4.MeasureResource.IfcLengthMeasure((MeasureResource.IfcLengthMeasure)FontSize);
 				if (FontSize is MeasureResource.IfcDescriptiveMeasure) 
-					return new Ifc4.MeasureResource.IfcDescriptiveMeasure((string)(MeasureResource.IfcDescriptiveMeasure)FontSize);
+					return new Ifc4.MeasureResource.IfcDescriptiveMeasure((MeasureResource.IfcDescriptiveMeasure)FontSize);
 				if (FontSize is MeasureResource.IfcPositiveLengthMeasure) 
-					return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)(MeasureResource.IfcPositiveLengthMeasure)FontSize);
+					return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((MeasureResource.IfcPositiveLengthMeasure)FontSize);
 				if (FontSize is MeasureResource.IfcNormalisedRatioMeasure) 
-					return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(MeasureResource.IfcNormalisedRatioMeasure)FontSize);
+					return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((MeasureResource.IfcNormalisedRatioMeasure)FontSize);
 				if (FontSize is MeasureResource.IfcPositiveRatioMeasure) 
-					return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)(MeasureResource.IfcPositiveRatioMeasure)FontSize);
+					return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((MeasureResource.IfcPositiveRatioMeasure)FontSize);
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					FontSize = null;
+					return;
+				}	
+				if (value is Ifc4.MeasureResource.IfcDescriptiveMeasure) 
+				{
+					FontSize = new MeasureResource.IfcDescriptiveMeasure((Ifc4.MeasureResource.IfcDescriptiveMeasure)value);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcLengthMeasure) 
+				{
+					FontSize = new MeasureResource.IfcLengthMeasure((Ifc4.MeasureResource.IfcLengthMeasure)value);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcNormalisedRatioMeasure) 
+				{
+					FontSize = new MeasureResource.IfcNormalisedRatioMeasure((Ifc4.MeasureResource.IfcNormalisedRatioMeasure)value);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcPositiveLengthMeasure) 
+				{
+					FontSize = new MeasureResource.IfcPositiveLengthMeasure((Ifc4.MeasureResource.IfcPositiveLengthMeasure)value);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcPositiveRatioMeasure) 
+				{
+					FontSize = new MeasureResource.IfcPositiveRatioMeasure((Ifc4.MeasureResource.IfcPositiveRatioMeasure)value);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcRatioMeasure) 
+				{
+					FontSize = new MeasureResource.IfcRatioMeasure((Ifc4.MeasureResource.IfcRatioMeasure)value);
+					return;
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

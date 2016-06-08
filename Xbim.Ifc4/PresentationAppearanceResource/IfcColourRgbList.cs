@@ -39,7 +39,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcColourRgbList : IfcPresentationItem, IInstantiableEntity, IIfcColourRgbList, IEquatable<@IfcColourRgbList>
 	{
 		#region IIfcColourRgbList explicit implementation
-		IEnumerable<IEnumerable<IfcNormalisedRatioMeasure>> IIfcColourRgbList.ColourList { get { return @ColourList; } }	
+		IEnumerable<IEnumerable<IfcNormalisedRatioMeasure>> IIfcColourRgbList.ColourList { 
+			get { return @ColourList; } 
+		}	
 		 
 		#endregion
 

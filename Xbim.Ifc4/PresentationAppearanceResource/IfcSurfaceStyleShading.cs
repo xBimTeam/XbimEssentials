@@ -27,8 +27,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSurfaceStyleShading : IIfcPresentationItem, IfcSurfaceStyleElementSelect
 	{
-		IIfcColourRgb @SurfaceColour { get; }
-		IfcNormalisedRatioMeasure? @Transparency { get; }
+		IIfcColourRgb @SurfaceColour { get;  set; }
+		IfcNormalisedRatioMeasure? @Transparency { get;  set; }
 	
 	}
 }
@@ -40,8 +40,17 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcSurfaceStyleShading : IfcPresentationItem, IInstantiableEntity, IIfcSurfaceStyleShading, IContainsEntityReferences, IEquatable<@IfcSurfaceStyleShading>
 	{
 		#region IIfcSurfaceStyleShading explicit implementation
-		IIfcColourRgb IIfcSurfaceStyleShading.SurfaceColour { get { return @SurfaceColour; } }	
-		IfcNormalisedRatioMeasure? IIfcSurfaceStyleShading.Transparency { get { return @Transparency; } }	
+		IIfcColourRgb IIfcSurfaceStyleShading.SurfaceColour { 
+			get { return @SurfaceColour; } 
+ 
+ 
+			set { SurfaceColour = value as IfcColourRgb;}
+		}	
+		IfcNormalisedRatioMeasure? IIfcSurfaceStyleShading.Transparency { 
+			get { return @Transparency; } 
+ 
+			set { Transparency = value;}
+		}	
 		 
 		#endregion
 

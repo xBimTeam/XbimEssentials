@@ -38,7 +38,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcSurfaceStyleWithTextures : IfcPresentationItem, IInstantiableEntity, IIfcSurfaceStyleWithTextures, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSurfaceStyleWithTextures>
 	{
 		#region IIfcSurfaceStyleWithTextures explicit implementation
-		IEnumerable<IIfcSurfaceTexture> IIfcSurfaceStyleWithTextures.Textures { get { return @Textures; } }	
+		IEnumerable<IIfcSurfaceTexture> IIfcSurfaceStyleWithTextures.Textures { 
+			get { return @Textures; } 
+		}	
 		 
 		#endregion
 

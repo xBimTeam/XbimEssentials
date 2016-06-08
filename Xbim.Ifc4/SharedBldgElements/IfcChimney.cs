@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcChimney : IIfcBuildingElement
 	{
-		IfcChimneyTypeEnum? @PredefinedType { get; }
+		IfcChimneyTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.SharedBldgElements
 	public  partial class @IfcChimney : IfcBuildingElement, IInstantiableEntity, IIfcChimney, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcChimney>
 	{
 		#region IIfcChimney explicit implementation
-		IfcChimneyTypeEnum? IIfcChimney.PredefinedType { get { return @PredefinedType; } }	
+		IfcChimneyTypeEnum? IIfcChimney.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

@@ -25,8 +25,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcLagTime : IIfcSchedulingTime
 	{
-		IIfcTimeOrRatioSelect @LagValue { get; }
-		IfcTaskDurationEnum @DurationType { get; }
+		IIfcTimeOrRatioSelect @LagValue { get;  set; }
+		IfcTaskDurationEnum @DurationType { get;  set; }
 	
 	}
 }
@@ -38,8 +38,17 @@ namespace Xbim.Ifc4.DateTimeResource
 	public  partial class @IfcLagTime : IfcSchedulingTime, IInstantiableEntity, IIfcLagTime, IEquatable<@IfcLagTime>
 	{
 		#region IIfcLagTime explicit implementation
-		IIfcTimeOrRatioSelect IIfcLagTime.LagValue { get { return @LagValue; } }	
-		IfcTaskDurationEnum IIfcLagTime.DurationType { get { return @DurationType; } }	
+		IIfcTimeOrRatioSelect IIfcLagTime.LagValue { 
+			get { return @LagValue; } 
+ 
+ 
+			set { LagValue = value as IfcTimeOrRatioSelect;}
+		}	
+		IfcTaskDurationEnum IIfcLagTime.DurationType { 
+			get { return @DurationType; } 
+ 
+			set { DurationType = value;}
+		}	
 		 
 		#endregion
 

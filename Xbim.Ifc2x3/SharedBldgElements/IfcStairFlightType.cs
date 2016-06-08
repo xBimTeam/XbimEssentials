@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStairFlightType : IIfcBuildingElementType
 	{
-		IfcStairFlightTypeEnum @PredefinedType { get; }
+		IfcStairFlightTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 	public  partial class @IfcStairFlightType : IfcBuildingElementType, IInstantiableEntity, IIfcStairFlightType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStairFlightType>
 	{
 		#region IIfcStairFlightType explicit implementation
-		IfcStairFlightTypeEnum IIfcStairFlightType.PredefinedType { get { return @PredefinedType; } }	
+		IfcStairFlightTypeEnum IIfcStairFlightType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

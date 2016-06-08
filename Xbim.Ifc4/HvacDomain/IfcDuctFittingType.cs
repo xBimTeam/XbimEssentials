@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDuctFittingType : IIfcFlowFittingType
 	{
-		IfcDuctFittingTypeEnum @PredefinedType { get; }
+		IfcDuctFittingTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.HvacDomain
 	public  partial class @IfcDuctFittingType : IfcFlowFittingType, IInstantiableEntity, IIfcDuctFittingType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDuctFittingType>
 	{
 		#region IIfcDuctFittingType explicit implementation
-		IfcDuctFittingTypeEnum IIfcDuctFittingType.PredefinedType { get { return @PredefinedType; } }	
+		IfcDuctFittingTypeEnum IIfcDuctFittingType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

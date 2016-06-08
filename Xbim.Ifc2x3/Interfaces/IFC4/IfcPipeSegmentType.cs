@@ -35,6 +35,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 						return Ifc4.Interfaces.IfcPipeSegmentTypeEnum.SPOOL;
 					
 					case IfcPipeSegmentTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcPipeSegmentTypeEnum.USERDEFINED;
 					
 					case IfcPipeSegmentTypeEnum.NOTDEFINED:
@@ -45,6 +47,46 @@ namespace Xbim.Ifc2x3.HVACDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcPipeSegmentTypeEnum.CULVERT:
+						//## Handle setting of CULVERT member from IfcPipeSegmentTypeEnum in property PredefinedType
+						//TODO: Handle setting of CULVERT member from IfcPipeSegmentTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcPipeSegmentTypeEnum.FLEXIBLESEGMENT:
+						PredefinedType = IfcPipeSegmentTypeEnum.FLEXIBLESEGMENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcPipeSegmentTypeEnum.RIGIDSEGMENT:
+						PredefinedType = IfcPipeSegmentTypeEnum.RIGIDSEGMENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcPipeSegmentTypeEnum.GUTTER:
+						PredefinedType = IfcPipeSegmentTypeEnum.GUTTER;
+						return;
+					
+					case Ifc4.Interfaces.IfcPipeSegmentTypeEnum.SPOOL:
+						PredefinedType = IfcPipeSegmentTypeEnum.SPOOL;
+						return;
+					
+					case Ifc4.Interfaces.IfcPipeSegmentTypeEnum.USERDEFINED:
+						PredefinedType = IfcPipeSegmentTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcPipeSegmentTypeEnum.NOTDEFINED:
+						PredefinedType = IfcPipeSegmentTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

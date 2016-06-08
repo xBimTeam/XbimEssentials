@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSurfaceOfRevolution : IIfcSweptSurface
 	{
-		IIfcAxis1Placement @AxisPosition { get; }
+		IIfcAxis1Placement @AxisPosition { get;  set; }
 		Common.Geometry.XbimLine @AxisLine  { get ; }
 	
 	}
@@ -38,7 +38,12 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcSurfaceOfRevolution : IfcSweptSurface, IInstantiableEntity, IIfcSurfaceOfRevolution, IContainsEntityReferences, IEquatable<@IfcSurfaceOfRevolution>
 	{
 		#region IIfcSurfaceOfRevolution explicit implementation
-		IIfcAxis1Placement IIfcSurfaceOfRevolution.AxisPosition { get { return @AxisPosition; } }	
+		IIfcAxis1Placement IIfcSurfaceOfRevolution.AxisPosition { 
+			get { return @AxisPosition; } 
+ 
+ 
+			set { AxisPosition = value as IfcAxis1Placement;}
+		}	
 		 
 		#endregion
 

@@ -23,6 +23,13 @@ namespace Xbim.Ifc2x3.ProductExtension
 				if (!MethodOfMeasurement.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(MethodOfMeasurement.Value);
 			} 
+			set
+			{
+				MethodOfMeasurement = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		IEnumerable<IIfcPhysicalQuantity> IIfcElementQuantity.Quantities 
 		{ 

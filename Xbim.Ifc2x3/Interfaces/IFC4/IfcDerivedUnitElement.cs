@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.MeasureResource
 			{
 				return Unit;
 			} 
+			set
+			{
+				Unit = value as IfcNamedUnit;
+				
+			}
 		}
 		long IIfcDerivedUnitElement.Exponent 
 		{ 
@@ -29,6 +34,11 @@ namespace Xbim.Ifc2x3.MeasureResource
 			{
 				return Exponent;
 			} 
+			set
+			{
+				Exponent = value;
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -28,11 +28,11 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralAnalysisModel : IIfcSystem
 	{
-		IfcAnalysisModelTypeEnum @PredefinedType { get; }
-		IIfcAxis2Placement3D @OrientationOf2DPlane { get; }
+		IfcAnalysisModelTypeEnum @PredefinedType { get;  set; }
+		IIfcAxis2Placement3D @OrientationOf2DPlane { get;  set; }
 		IEnumerable<IIfcStructuralLoadGroup> @LoadedBy { get; }
 		IEnumerable<IIfcStructuralResultGroup> @HasResults { get; }
-		IIfcObjectPlacement @SharedPlacement { get; }
+		IIfcObjectPlacement @SharedPlacement { get;  set; }
 	
 	}
 }
@@ -44,11 +44,29 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	public  partial class @IfcStructuralAnalysisModel : IfcSystem, IInstantiableEntity, IIfcStructuralAnalysisModel, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralAnalysisModel>
 	{
 		#region IIfcStructuralAnalysisModel explicit implementation
-		IfcAnalysisModelTypeEnum IIfcStructuralAnalysisModel.PredefinedType { get { return @PredefinedType; } }	
-		IIfcAxis2Placement3D IIfcStructuralAnalysisModel.OrientationOf2DPlane { get { return @OrientationOf2DPlane; } }	
-		IEnumerable<IIfcStructuralLoadGroup> IIfcStructuralAnalysisModel.LoadedBy { get { return @LoadedBy; } }	
-		IEnumerable<IIfcStructuralResultGroup> IIfcStructuralAnalysisModel.HasResults { get { return @HasResults; } }	
-		IIfcObjectPlacement IIfcStructuralAnalysisModel.SharedPlacement { get { return @SharedPlacement; } }	
+		IfcAnalysisModelTypeEnum IIfcStructuralAnalysisModel.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
+		IIfcAxis2Placement3D IIfcStructuralAnalysisModel.OrientationOf2DPlane { 
+			get { return @OrientationOf2DPlane; } 
+ 
+ 
+			set { OrientationOf2DPlane = value as IfcAxis2Placement3D;}
+		}	
+		IEnumerable<IIfcStructuralLoadGroup> IIfcStructuralAnalysisModel.LoadedBy { 
+			get { return @LoadedBy; } 
+		}	
+		IEnumerable<IIfcStructuralResultGroup> IIfcStructuralAnalysisModel.HasResults { 
+			get { return @HasResults; } 
+		}	
+		IIfcObjectPlacement IIfcStructuralAnalysisModel.SharedPlacement { 
+			get { return @SharedPlacement; } 
+ 
+ 
+			set { SharedPlacement = value as IfcObjectPlacement;}
+		}	
 		 
 		#endregion
 

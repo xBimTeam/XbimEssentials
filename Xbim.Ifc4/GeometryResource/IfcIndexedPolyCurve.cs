@@ -27,9 +27,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcIndexedPolyCurve : IIfcBoundedCurve
 	{
-		IIfcCartesianPointList @Points { get; }
+		IIfcCartesianPointList @Points { get;  set; }
 		IEnumerable<IIfcSegmentIndexSelect> @Segments { get; }
-		IfcBoolean? @SelfIntersect { get; }
+		IfcBoolean? @SelfIntersect { get;  set; }
 	
 	}
 }
@@ -41,9 +41,20 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcIndexedPolyCurve : IfcBoundedCurve, IInstantiableEntity, IIfcIndexedPolyCurve, IContainsEntityReferences, IEquatable<@IfcIndexedPolyCurve>
 	{
 		#region IIfcIndexedPolyCurve explicit implementation
-		IIfcCartesianPointList IIfcIndexedPolyCurve.Points { get { return @Points; } }	
-		IEnumerable<IIfcSegmentIndexSelect> IIfcIndexedPolyCurve.Segments { get { return @Segments; } }	
-		IfcBoolean? IIfcIndexedPolyCurve.SelfIntersect { get { return @SelfIntersect; } }	
+		IIfcCartesianPointList IIfcIndexedPolyCurve.Points { 
+			get { return @Points; } 
+ 
+ 
+			set { Points = value as IfcCartesianPointList;}
+		}	
+		IEnumerable<IIfcSegmentIndexSelect> IIfcIndexedPolyCurve.Segments { 
+			get { return @Segments; } 
+		}	
+		IfcBoolean? IIfcIndexedPolyCurve.SelfIntersect { 
+			get { return @SelfIntersect; } 
+ 
+			set { SelfIntersect = value;}
+		}	
 		 
 		#endregion
 

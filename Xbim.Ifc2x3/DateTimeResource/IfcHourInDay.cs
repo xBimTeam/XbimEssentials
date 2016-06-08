@@ -15,7 +15,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 	[ExpressType("IfcHourInDay", 341)]
 	[DefinedType(typeof(long))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcHourInDay : IExpressValueType, System.IEquatable<long>
+	public partial struct IfcHourInDay : IExpressValueType, IExpressIntegerType, System.IEquatable<long>
 	{ 
 		private long _value;
         
@@ -23,6 +23,9 @@ namespace Xbim.Ifc2x3.DateTimeResource
         {
             get { return _value; }
         }
+
+ 
+		long IExpressIntegerType.Value { get { return _value; } }
 
 		public override string ToString()
         {

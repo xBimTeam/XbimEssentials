@@ -29,8 +29,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcProfileDef : IPersistEntity, IfcResourceObjectSelect
 	{
-		IfcProfileTypeEnum @ProfileType { get; }
-		IfcLabel? @ProfileName { get; }
+		IfcProfileTypeEnum @ProfileType { get;  set; }
+		IfcLabel? @ProfileName { get;  set; }
 		IEnumerable<IIfcExternalReferenceRelationship> @HasExternalReference {  get; }
 		IEnumerable<IIfcProfileProperties> @HasProperties {  get; }
 	
@@ -44,8 +44,16 @@ namespace Xbim.Ifc4.ProfileResource
 	public  partial class @IfcProfileDef : INotifyPropertyChanged, IInstantiableEntity, IIfcProfileDef, IEquatable<@IfcProfileDef>
 	{
 		#region IIfcProfileDef explicit implementation
-		IfcProfileTypeEnum IIfcProfileDef.ProfileType { get { return @ProfileType; } }	
-		IfcLabel? IIfcProfileDef.ProfileName { get { return @ProfileName; } }	
+		IfcProfileTypeEnum IIfcProfileDef.ProfileType { 
+			get { return @ProfileType; } 
+ 
+			set { ProfileType = value;}
+		}	
+		IfcLabel? IIfcProfileDef.ProfileName { 
+			get { return @ProfileName; } 
+ 
+			set { ProfileName = value;}
+		}	
 		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcProfileDef.HasExternalReference {  get { return @HasExternalReference; } }
 		IEnumerable<IIfcProfileProperties> IIfcProfileDef.HasProperties {  get { return @HasProperties; } }

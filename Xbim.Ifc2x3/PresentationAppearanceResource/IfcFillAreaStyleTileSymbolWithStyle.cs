@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcFillAreaStyleTileSymbolWithStyle : IIfcGeometricRepresentationItem, IfcFillAreaStyleTileShapeSelect
 	{
-		IIfcAnnotationSymbolOccurrence @Symbol { get; }
+		IIfcAnnotationSymbolOccurrence @Symbol { get;  set; }
 	
 	}
 }
@@ -39,7 +39,12 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	public  partial class @IfcFillAreaStyleTileSymbolWithStyle : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleTileSymbolWithStyle, IContainsEntityReferences, IEquatable<@IfcFillAreaStyleTileSymbolWithStyle>
 	{
 		#region IIfcFillAreaStyleTileSymbolWithStyle explicit implementation
-		IIfcAnnotationSymbolOccurrence IIfcFillAreaStyleTileSymbolWithStyle.Symbol { get { return @Symbol; } }	
+		IIfcAnnotationSymbolOccurrence IIfcFillAreaStyleTileSymbolWithStyle.Symbol { 
+			get { return @Symbol; } 
+ 
+ 
+			set { Symbol = value as IfcAnnotationSymbolOccurrence;}
+		}	
 		 
 		#endregion
 

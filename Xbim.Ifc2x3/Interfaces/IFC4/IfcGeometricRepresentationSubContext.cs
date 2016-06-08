@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			{
 				return ParentContext;
 			} 
+			set
+			{
+				ParentContext = value as IfcGeometricRepresentationContext;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveRatioMeasure? IIfcGeometricRepresentationSubContext.TargetScale 
 		{ 
@@ -30,6 +35,13 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				if (!TargetScale.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveRatioMeasure(TargetScale.Value);
 			} 
+			set
+			{
+				TargetScale = value.HasValue ? 
+					new MeasureResource.IfcPositiveRatioMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveRatioMeasure?() ;
+				
+			}
 		}
 		Ifc4.Interfaces.IfcGeometricProjectionEnum IIfcGeometricRepresentationSubContext.TargetView 
 		{ 
@@ -59,6 +71,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 						return Ifc4.Interfaces.IfcGeometricProjectionEnum.ELEVATION_VIEW;
 					
 					case IfcGeometricProjectionEnum.USERDEFINED:
+						//## Optional custom handling of TargetView == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcGeometricProjectionEnum.USERDEFINED;
 					
 					case IfcGeometricProjectionEnum.NOTDEFINED:
@@ -69,6 +83,52 @@ namespace Xbim.Ifc2x3.RepresentationResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcGeometricProjectionEnum.GRAPH_VIEW:
+						TargetView = IfcGeometricProjectionEnum.GRAPH_VIEW;
+						return;
+					
+					case Ifc4.Interfaces.IfcGeometricProjectionEnum.SKETCH_VIEW:
+						TargetView = IfcGeometricProjectionEnum.SKETCH_VIEW;
+						return;
+					
+					case Ifc4.Interfaces.IfcGeometricProjectionEnum.MODEL_VIEW:
+						TargetView = IfcGeometricProjectionEnum.MODEL_VIEW;
+						return;
+					
+					case Ifc4.Interfaces.IfcGeometricProjectionEnum.PLAN_VIEW:
+						TargetView = IfcGeometricProjectionEnum.PLAN_VIEW;
+						return;
+					
+					case Ifc4.Interfaces.IfcGeometricProjectionEnum.REFLECTED_PLAN_VIEW:
+						TargetView = IfcGeometricProjectionEnum.REFLECTED_PLAN_VIEW;
+						return;
+					
+					case Ifc4.Interfaces.IfcGeometricProjectionEnum.SECTION_VIEW:
+						TargetView = IfcGeometricProjectionEnum.SECTION_VIEW;
+						return;
+					
+					case Ifc4.Interfaces.IfcGeometricProjectionEnum.ELEVATION_VIEW:
+						TargetView = IfcGeometricProjectionEnum.ELEVATION_VIEW;
+						return;
+					
+					case Ifc4.Interfaces.IfcGeometricProjectionEnum.USERDEFINED:
+						TargetView = IfcGeometricProjectionEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcGeometricProjectionEnum.NOTDEFINED:
+						TargetView = IfcGeometricProjectionEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcGeometricRepresentationSubContext.UserDefinedTargetView 
 		{ 
@@ -77,6 +137,13 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				if (!UserDefinedTargetView.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(UserDefinedTargetView.Value);
 			} 
+			set
+			{
+				UserDefinedTargetView = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

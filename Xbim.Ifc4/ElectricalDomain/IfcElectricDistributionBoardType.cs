@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcElectricDistributionBoardType : IIfcFlowControllerType
 	{
-		IfcElectricDistributionBoardTypeEnum @PredefinedType { get; }
+		IfcElectricDistributionBoardTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.ElectricalDomain
 	public  partial class @IfcElectricDistributionBoardType : IfcFlowControllerType, IInstantiableEntity, IIfcElectricDistributionBoardType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcElectricDistributionBoardType>
 	{
 		#region IIfcElectricDistributionBoardType explicit implementation
-		IfcElectricDistributionBoardTypeEnum IIfcElectricDistributionBoardType.PredefinedType { get { return @PredefinedType; } }	
+		IfcElectricDistributionBoardTypeEnum IIfcElectricDistributionBoardType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

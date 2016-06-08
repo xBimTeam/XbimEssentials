@@ -26,12 +26,12 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMapConversion : IIfcCoordinateOperation
 	{
-		IfcLengthMeasure @Eastings { get; }
-		IfcLengthMeasure @Northings { get; }
-		IfcLengthMeasure @OrthogonalHeight { get; }
-		IfcReal? @XAxisAbscissa { get; }
-		IfcReal? @XAxisOrdinate { get; }
-		IfcReal? @Scale { get; }
+		IfcLengthMeasure @Eastings { get;  set; }
+		IfcLengthMeasure @Northings { get;  set; }
+		IfcLengthMeasure @OrthogonalHeight { get;  set; }
+		IfcReal? @XAxisAbscissa { get;  set; }
+		IfcReal? @XAxisOrdinate { get;  set; }
+		IfcReal? @Scale { get;  set; }
 	
 	}
 }
@@ -43,12 +43,36 @@ namespace Xbim.Ifc4.RepresentationResource
 	public  partial class @IfcMapConversion : IfcCoordinateOperation, IInstantiableEntity, IIfcMapConversion, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMapConversion>
 	{
 		#region IIfcMapConversion explicit implementation
-		IfcLengthMeasure IIfcMapConversion.Eastings { get { return @Eastings; } }	
-		IfcLengthMeasure IIfcMapConversion.Northings { get { return @Northings; } }	
-		IfcLengthMeasure IIfcMapConversion.OrthogonalHeight { get { return @OrthogonalHeight; } }	
-		IfcReal? IIfcMapConversion.XAxisAbscissa { get { return @XAxisAbscissa; } }	
-		IfcReal? IIfcMapConversion.XAxisOrdinate { get { return @XAxisOrdinate; } }	
-		IfcReal? IIfcMapConversion.Scale { get { return @Scale; } }	
+		IfcLengthMeasure IIfcMapConversion.Eastings { 
+			get { return @Eastings; } 
+ 
+			set { Eastings = value;}
+		}	
+		IfcLengthMeasure IIfcMapConversion.Northings { 
+			get { return @Northings; } 
+ 
+			set { Northings = value;}
+		}	
+		IfcLengthMeasure IIfcMapConversion.OrthogonalHeight { 
+			get { return @OrthogonalHeight; } 
+ 
+			set { OrthogonalHeight = value;}
+		}	
+		IfcReal? IIfcMapConversion.XAxisAbscissa { 
+			get { return @XAxisAbscissa; } 
+ 
+			set { XAxisAbscissa = value;}
+		}	
+		IfcReal? IIfcMapConversion.XAxisOrdinate { 
+			get { return @XAxisOrdinate; } 
+ 
+			set { XAxisOrdinate = value;}
+		}	
+		IfcReal? IIfcMapConversion.Scale { 
+			get { return @Scale; } 
+ 
+			set { Scale = value;}
+		}	
 		 
 		#endregion
 

@@ -32,15 +32,15 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcApproval : IPersistEntity, IfcResourceObjectSelect
 	{
-		IfcIdentifier? @Identifier { get; }
-		IfcLabel? @Name { get; }
-		IfcText? @Description { get; }
-		IfcDateTime? @TimeOfApproval { get; }
-		IfcLabel? @Status { get; }
-		IfcLabel? @Level { get; }
-		IfcText? @Qualifier { get; }
-		IIfcActorSelect @RequestingApproval { get; }
-		IIfcActorSelect @GivingApproval { get; }
+		IfcIdentifier? @Identifier { get;  set; }
+		IfcLabel? @Name { get;  set; }
+		IfcText? @Description { get;  set; }
+		IfcDateTime? @TimeOfApproval { get;  set; }
+		IfcLabel? @Status { get;  set; }
+		IfcLabel? @Level { get;  set; }
+		IfcText? @Qualifier { get;  set; }
+		IIfcActorSelect @RequestingApproval { get;  set; }
+		IIfcActorSelect @GivingApproval { get;  set; }
 		IEnumerable<IIfcExternalReferenceRelationship> @HasExternalReferences {  get; }
 		IEnumerable<IIfcRelAssociatesApproval> @ApprovedObjects {  get; }
 		IEnumerable<IIfcResourceApprovalRelationship> @ApprovedResources {  get; }
@@ -57,15 +57,53 @@ namespace Xbim.Ifc4.ApprovalResource
 	public  partial class @IfcApproval : INotifyPropertyChanged, IInstantiableEntity, IIfcApproval, IContainsEntityReferences, IEquatable<@IfcApproval>
 	{
 		#region IIfcApproval explicit implementation
-		IfcIdentifier? IIfcApproval.Identifier { get { return @Identifier; } }	
-		IfcLabel? IIfcApproval.Name { get { return @Name; } }	
-		IfcText? IIfcApproval.Description { get { return @Description; } }	
-		IfcDateTime? IIfcApproval.TimeOfApproval { get { return @TimeOfApproval; } }	
-		IfcLabel? IIfcApproval.Status { get { return @Status; } }	
-		IfcLabel? IIfcApproval.Level { get { return @Level; } }	
-		IfcText? IIfcApproval.Qualifier { get { return @Qualifier; } }	
-		IIfcActorSelect IIfcApproval.RequestingApproval { get { return @RequestingApproval; } }	
-		IIfcActorSelect IIfcApproval.GivingApproval { get { return @GivingApproval; } }	
+		IfcIdentifier? IIfcApproval.Identifier { 
+			get { return @Identifier; } 
+ 
+			set { Identifier = value;}
+		}	
+		IfcLabel? IIfcApproval.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcApproval.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IfcDateTime? IIfcApproval.TimeOfApproval { 
+			get { return @TimeOfApproval; } 
+ 
+			set { TimeOfApproval = value;}
+		}	
+		IfcLabel? IIfcApproval.Status { 
+			get { return @Status; } 
+ 
+			set { Status = value;}
+		}	
+		IfcLabel? IIfcApproval.Level { 
+			get { return @Level; } 
+ 
+			set { Level = value;}
+		}	
+		IfcText? IIfcApproval.Qualifier { 
+			get { return @Qualifier; } 
+ 
+			set { Qualifier = value;}
+		}	
+		IIfcActorSelect IIfcApproval.RequestingApproval { 
+			get { return @RequestingApproval; } 
+ 
+ 
+			set { RequestingApproval = value as IfcActorSelect;}
+		}	
+		IIfcActorSelect IIfcApproval.GivingApproval { 
+			get { return @GivingApproval; } 
+ 
+ 
+			set { GivingApproval = value as IfcActorSelect;}
+		}	
 		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcApproval.HasExternalReferences {  get { return @HasExternalReferences; } }
 		IEnumerable<IIfcRelAssociatesApproval> IIfcApproval.ApprovedObjects {  get { return @ApprovedObjects; } }

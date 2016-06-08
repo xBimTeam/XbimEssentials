@@ -23,6 +23,13 @@ namespace Xbim.Ifc2x3.ProductExtension
 				if (!ElevationOfRefHeight.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLengthMeasure(ElevationOfRefHeight.Value);
 			} 
+			set
+			{
+				ElevationOfRefHeight = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcBuilding.ElevationOfTerrain 
 		{ 
@@ -31,6 +38,13 @@ namespace Xbim.Ifc2x3.ProductExtension
 				if (!ElevationOfTerrain.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLengthMeasure(ElevationOfTerrain.Value);
 			} 
+			set
+			{
+				ElevationOfTerrain = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
+				
+			}
 		}
 		IIfcPostalAddress IIfcBuilding.BuildingAddress 
 		{ 
@@ -38,15 +52,26 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				return BuildingAddress;
 			} 
+			set
+			{
+				BuildingAddress = value as ActorResource.IfcPostalAddress;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
 		{ 
 			get
 			{
-				//## Handle return of LongName for which no match was found
-			    return !Name.HasValue ? null : new Ifc4.MeasureResource.IfcLabel(Name.Value);
-			    //##
+				if (!LongName.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(LongName.Value);
 			} 
+			set
+			{
+				LongName = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcSpatialElement.ContainsElements 
 		{ 

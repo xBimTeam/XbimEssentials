@@ -32,6 +32,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 						return Ifc4.Interfaces.IfcInventoryTypeEnum.FURNITUREINVENTORY;
 					
 					case IfcInventoryTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcInventoryTypeEnum.USERDEFINED;
 					
 					case IfcInventoryTypeEnum.NOTDEFINED:
@@ -42,6 +44,36 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcInventoryTypeEnum.ASSETINVENTORY:
+						InventoryType = IfcInventoryTypeEnum.ASSETINVENTORY;
+						return;
+					
+					case Ifc4.Interfaces.IfcInventoryTypeEnum.SPACEINVENTORY:
+						InventoryType = IfcInventoryTypeEnum.SPACEINVENTORY;
+						return;
+					
+					case Ifc4.Interfaces.IfcInventoryTypeEnum.FURNITUREINVENTORY:
+						InventoryType = IfcInventoryTypeEnum.FURNITUREINVENTORY;
+						return;
+					
+					case Ifc4.Interfaces.IfcInventoryTypeEnum.USERDEFINED:
+						InventoryType = IfcInventoryTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcInventoryTypeEnum.NOTDEFINED:
+						InventoryType = IfcInventoryTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		IIfcActorSelect IIfcInventory.Jurisdiction 
 		{ 
@@ -59,6 +91,33 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 					return ifcpersonandorganization;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					Jurisdiction = null;
+					return;
+				}	
+				var ifcorganization = value as ActorResource.IfcOrganization;
+				if (ifcorganization != null) 
+				{
+					Jurisdiction = ifcorganization;
+					return;
+				}
+				var ifcperson = value as ActorResource.IfcPerson;
+				if (ifcperson != null) 
+				{
+					Jurisdiction = ifcperson;
+					return;
+				}
+				var ifcpersonandorganization = value as ActorResource.IfcPersonAndOrganization;
+				if (ifcpersonandorganization != null) 
+				{
+					Jurisdiction = ifcpersonandorganization;
+					return;
+				}
+				
+			}
 		}
 		IEnumerable<IIfcPerson> IIfcInventory.ResponsiblePersons 
 		{ 
@@ -80,6 +139,24 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			        : null;
 				//##
 			} 
+			set
+			{
+				//## Handle setting of LastUpdateDate for which no match was found
+                if (!value.HasValue)
+                {
+                    LastUpdateDate = null;
+                    return;
+                }
+                System.DateTime date = value.Value;
+                LastUpdateDate = Model.Instances.New<DateTimeResource.IfcCalendarDate>(d =>
+                {
+                    d.YearComponent = date.Year;
+                    d.MonthComponent = date.Month;
+                    d.DayComponent = date.Day;
+                });
+				//##
+				
+			}
 		}
 		IIfcCostValue IIfcInventory.CurrentValue 
 		{ 
@@ -87,6 +164,11 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				return CurrentValue;
 			} 
+			set
+			{
+				CurrentValue = value as CostResource.IfcCostValue;
+				
+			}
 		}
 		IIfcCostValue IIfcInventory.OriginalValue 
 		{ 
@@ -94,6 +176,11 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				return OriginalValue;
 			} 
+			set
+			{
+				OriginalValue = value as CostResource.IfcCostValue;
+				
+			}
 		}
 	//## Custom code
 	//##

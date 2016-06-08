@@ -16,23 +16,35 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcProcess : IIfcProcess
 	{
+
+		private  Ifc4.MeasureResource.IfcIdentifier? _identification;
+
 		Ifc4.MeasureResource.IfcIdentifier? IIfcProcess.Identification 
 		{ 
 			get
 			{
-				//## Handle return of Identification for which no match was found
-			    return null;
-			    //##
+				return _identification;
 			} 
+			set
+			{
+				SetValue(v => _identification = v, _identification, value, "Identification", byte.MaxValue);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcText? _longDescription;
+
 		Ifc4.MeasureResource.IfcText? IIfcProcess.LongDescription 
 		{ 
 			get
 			{
-				//## Handle return of LongDescription for which no match was found
-                return null;
-				//##
+				return _longDescription;
 			} 
+			set
+			{
+				SetValue(v => _longDescription = v, _longDescription, value, "LongDescription", byte.MaxValue);
+				
+			}
 		}
 		IEnumerable<IIfcRelSequence> IIfcProcess.IsPredecessorTo 
 		{ 

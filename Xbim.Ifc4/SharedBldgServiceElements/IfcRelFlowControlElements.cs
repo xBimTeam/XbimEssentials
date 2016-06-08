@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcRelFlowControlElements : IIfcRelConnects
 	{
 		IEnumerable<IIfcDistributionControlElement> @RelatedControlElements { get; }
-		IIfcDistributionFlowElement @RelatingFlowElement { get; }
+		IIfcDistributionFlowElement @RelatingFlowElement { get;  set; }
 	
 	}
 }
@@ -39,8 +39,15 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 	public  partial class @IfcRelFlowControlElements : IfcRelConnects, IInstantiableEntity, IIfcRelFlowControlElements, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelFlowControlElements>
 	{
 		#region IIfcRelFlowControlElements explicit implementation
-		IEnumerable<IIfcDistributionControlElement> IIfcRelFlowControlElements.RelatedControlElements { get { return @RelatedControlElements; } }	
-		IIfcDistributionFlowElement IIfcRelFlowControlElements.RelatingFlowElement { get { return @RelatingFlowElement; } }	
+		IEnumerable<IIfcDistributionControlElement> IIfcRelFlowControlElements.RelatedControlElements { 
+			get { return @RelatedControlElements; } 
+		}	
+		IIfcDistributionFlowElement IIfcRelFlowControlElements.RelatingFlowElement { 
+			get { return @RelatingFlowElement; } 
+ 
+ 
+			set { RelatingFlowElement = value as IfcDistributionFlowElement;}
+		}	
 		 
 		#endregion
 

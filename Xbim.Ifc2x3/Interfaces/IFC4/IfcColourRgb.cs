@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.PresentationResource
 			{
 				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(Red);
 			} 
+			set
+			{
+				Red = new MeasureResource.IfcNormalisedRatioMeasure(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure IIfcColourRgb.Green 
 		{ 
@@ -29,6 +34,11 @@ namespace Xbim.Ifc2x3.PresentationResource
 			{
 				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(Green);
 			} 
+			set
+			{
+				Green = new MeasureResource.IfcNormalisedRatioMeasure(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure IIfcColourRgb.Blue 
 		{ 
@@ -36,6 +46,11 @@ namespace Xbim.Ifc2x3.PresentationResource
 			{
 				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(Blue);
 			} 
+			set
+			{
+				Blue = new MeasureResource.IfcNormalisedRatioMeasure(value);
+				
+			}
 		}
 	//## Custom code
 	//##

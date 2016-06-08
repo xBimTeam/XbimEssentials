@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPhysicalSimpleQuantity : IIfcPhysicalQuantity
 	{
-		IIfcNamedUnit @Unit { get; }
+		IIfcNamedUnit @Unit { get;  set; }
 	
 	}
 }
@@ -38,7 +38,12 @@ namespace Xbim.Ifc4.QuantityResource
 	public abstract partial class @IfcPhysicalSimpleQuantity : IfcPhysicalQuantity, IIfcPhysicalSimpleQuantity, IEquatable<@IfcPhysicalSimpleQuantity>
 	{
 		#region IIfcPhysicalSimpleQuantity explicit implementation
-		IIfcNamedUnit IIfcPhysicalSimpleQuantity.Unit { get { return @Unit; } }	
+		IIfcNamedUnit IIfcPhysicalSimpleQuantity.Unit { 
+			get { return @Unit; } 
+ 
+ 
+			set { Unit = value as IfcNamedUnit;}
+		}	
 		 
 		#endregion
 

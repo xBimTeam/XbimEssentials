@@ -27,10 +27,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcServiceLifeFactor : IIfcPropertySetDefinition
 	{
-		IfcServiceLifeFactorTypeEnum @PredefinedType { get; }
-		IIfcMeasureValue @UpperValue { get; }
-		IIfcMeasureValue @MostUsedValue { get; }
-		IIfcMeasureValue @LowerValue { get; }
+		IfcServiceLifeFactorTypeEnum @PredefinedType { get;  set; }
+		IIfcMeasureValue @UpperValue { get;  set; }
+		IIfcMeasureValue @MostUsedValue { get;  set; }
+		IIfcMeasureValue @LowerValue { get;  set; }
 	
 	}
 }
@@ -42,10 +42,29 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 	public  partial class @IfcServiceLifeFactor : IfcPropertySetDefinition, IInstantiableEntity, IIfcServiceLifeFactor, IContainsEntityReferences, IEquatable<@IfcServiceLifeFactor>
 	{
 		#region IIfcServiceLifeFactor explicit implementation
-		IfcServiceLifeFactorTypeEnum IIfcServiceLifeFactor.PredefinedType { get { return @PredefinedType; } }	
-		IIfcMeasureValue IIfcServiceLifeFactor.UpperValue { get { return @UpperValue; } }	
-		IIfcMeasureValue IIfcServiceLifeFactor.MostUsedValue { get { return @MostUsedValue; } }	
-		IIfcMeasureValue IIfcServiceLifeFactor.LowerValue { get { return @LowerValue; } }	
+		IfcServiceLifeFactorTypeEnum IIfcServiceLifeFactor.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
+		IIfcMeasureValue IIfcServiceLifeFactor.UpperValue { 
+			get { return @UpperValue; } 
+ 
+ 
+			set { UpperValue = value as IfcMeasureValue;}
+		}	
+		IIfcMeasureValue IIfcServiceLifeFactor.MostUsedValue { 
+			get { return @MostUsedValue; } 
+ 
+ 
+			set { MostUsedValue = value as IfcMeasureValue;}
+		}	
+		IIfcMeasureValue IIfcServiceLifeFactor.LowerValue { 
+			get { return @LowerValue; } 
+ 
+ 
+			set { LowerValue = value as IfcMeasureValue;}
+		}	
 		 
 		#endregion
 

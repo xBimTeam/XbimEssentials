@@ -27,11 +27,11 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcWindow : IIfcBuildingElement
 	{
-		IfcPositiveLengthMeasure? @OverallHeight { get; }
-		IfcPositiveLengthMeasure? @OverallWidth { get; }
-		IfcWindowTypeEnum? @PredefinedType { get; }
-		IfcWindowTypePartitioningEnum? @PartitioningType { get; }
-		IfcLabel? @UserDefinedPartitioningType { get; }
+		IfcPositiveLengthMeasure? @OverallHeight { get;  set; }
+		IfcPositiveLengthMeasure? @OverallWidth { get;  set; }
+		IfcWindowTypeEnum? @PredefinedType { get;  set; }
+		IfcWindowTypePartitioningEnum? @PartitioningType { get;  set; }
+		IfcLabel? @UserDefinedPartitioningType { get;  set; }
 	
 	}
 }
@@ -43,11 +43,31 @@ namespace Xbim.Ifc4.SharedBldgElements
 	public  partial class @IfcWindow : IfcBuildingElement, IInstantiableEntity, IIfcWindow, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcWindow>
 	{
 		#region IIfcWindow explicit implementation
-		IfcPositiveLengthMeasure? IIfcWindow.OverallHeight { get { return @OverallHeight; } }	
-		IfcPositiveLengthMeasure? IIfcWindow.OverallWidth { get { return @OverallWidth; } }	
-		IfcWindowTypeEnum? IIfcWindow.PredefinedType { get { return @PredefinedType; } }	
-		IfcWindowTypePartitioningEnum? IIfcWindow.PartitioningType { get { return @PartitioningType; } }	
-		IfcLabel? IIfcWindow.UserDefinedPartitioningType { get { return @UserDefinedPartitioningType; } }	
+		IfcPositiveLengthMeasure? IIfcWindow.OverallHeight { 
+			get { return @OverallHeight; } 
+ 
+			set { OverallHeight = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcWindow.OverallWidth { 
+			get { return @OverallWidth; } 
+ 
+			set { OverallWidth = value;}
+		}	
+		IfcWindowTypeEnum? IIfcWindow.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
+		IfcWindowTypePartitioningEnum? IIfcWindow.PartitioningType { 
+			get { return @PartitioningType; } 
+ 
+			set { PartitioningType = value;}
+		}	
+		IfcLabel? IIfcWindow.UserDefinedPartitioningType { 
+			get { return @UserDefinedPartitioningType; } 
+ 
+			set { UserDefinedPartitioningType = value;}
+		}	
 		 
 		#endregion
 

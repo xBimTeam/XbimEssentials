@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcOrganizationRelationship : IIfcResourceLevelRelationship
 	{
-		IIfcOrganization @RelatingOrganization { get; }
+		IIfcOrganization @RelatingOrganization { get;  set; }
 		IEnumerable<IIfcOrganization> @RelatedOrganizations { get; }
 	
 	}
@@ -39,8 +39,15 @@ namespace Xbim.Ifc4.ActorResource
 	public  partial class @IfcOrganizationRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcOrganizationRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcOrganizationRelationship>
 	{
 		#region IIfcOrganizationRelationship explicit implementation
-		IIfcOrganization IIfcOrganizationRelationship.RelatingOrganization { get { return @RelatingOrganization; } }	
-		IEnumerable<IIfcOrganization> IIfcOrganizationRelationship.RelatedOrganizations { get { return @RelatedOrganizations; } }	
+		IIfcOrganization IIfcOrganizationRelationship.RelatingOrganization { 
+			get { return @RelatingOrganization; } 
+ 
+ 
+			set { RelatingOrganization = value as IfcOrganization;}
+		}	
+		IEnumerable<IIfcOrganization> IIfcOrganizationRelationship.RelatedOrganizations { 
+			get { return @RelatedOrganizations; } 
+		}	
 		 
 		#endregion
 

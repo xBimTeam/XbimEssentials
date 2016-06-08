@@ -28,9 +28,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcOrganizationRelationship : IPersistEntity
 	{
-		IfcLabel @Name { get; }
-		IfcText? @Description { get; }
-		IIfcOrganization @RelatingOrganization { get; }
+		IfcLabel @Name { get;  set; }
+		IfcText? @Description { get;  set; }
+		IIfcOrganization @RelatingOrganization { get;  set; }
 		IEnumerable<IIfcOrganization> @RelatedOrganizations { get; }
 	
 	}
@@ -43,10 +43,25 @@ namespace Xbim.Ifc2x3.ActorResource
 	public  partial class @IfcOrganizationRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcOrganizationRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcOrganizationRelationship>
 	{
 		#region IIfcOrganizationRelationship explicit implementation
-		IfcLabel IIfcOrganizationRelationship.Name { get { return @Name; } }	
-		IfcText? IIfcOrganizationRelationship.Description { get { return @Description; } }	
-		IIfcOrganization IIfcOrganizationRelationship.RelatingOrganization { get { return @RelatingOrganization; } }	
-		IEnumerable<IIfcOrganization> IIfcOrganizationRelationship.RelatedOrganizations { get { return @RelatedOrganizations; } }	
+		IfcLabel IIfcOrganizationRelationship.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcOrganizationRelationship.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IIfcOrganization IIfcOrganizationRelationship.RelatingOrganization { 
+			get { return @RelatingOrganization; } 
+ 
+ 
+			set { RelatingOrganization = value as IfcOrganization;}
+		}	
+		IEnumerable<IIfcOrganization> IIfcOrganizationRelationship.RelatedOrganizations { 
+			get { return @RelatedOrganizations; } 
+		}	
 		 
 		#endregion
 

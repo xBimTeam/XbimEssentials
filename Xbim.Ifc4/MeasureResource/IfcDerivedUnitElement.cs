@@ -27,8 +27,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDerivedUnitElement : IPersistEntity
 	{
-		IIfcNamedUnit @Unit { get; }
-		long @Exponent { get; }
+		IIfcNamedUnit @Unit { get;  set; }
+		long @Exponent { get;  set; }
 	
 	}
 }
@@ -40,8 +40,17 @@ namespace Xbim.Ifc4.MeasureResource
 	public  partial class @IfcDerivedUnitElement : INotifyPropertyChanged, IInstantiableEntity, IIfcDerivedUnitElement, IContainsEntityReferences, IEquatable<@IfcDerivedUnitElement>
 	{
 		#region IIfcDerivedUnitElement explicit implementation
-		IIfcNamedUnit IIfcDerivedUnitElement.Unit { get { return @Unit; } }	
-		long IIfcDerivedUnitElement.Exponent { get { return @Exponent; } }	
+		IIfcNamedUnit IIfcDerivedUnitElement.Unit { 
+			get { return @Unit; } 
+ 
+ 
+			set { Unit = value as IfcNamedUnit;}
+		}	
+		long IIfcDerivedUnitElement.Exponent { 
+			get { return @Exponent; } 
+ 
+			set { Exponent = value;}
+		}	
 		 
 		#endregion
 

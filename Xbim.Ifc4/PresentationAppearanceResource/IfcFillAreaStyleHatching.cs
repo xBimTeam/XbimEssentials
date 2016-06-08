@@ -27,11 +27,11 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcFillAreaStyleHatching : IIfcGeometricRepresentationItem, IfcFillStyleSelect
 	{
-		IIfcCurveStyle @HatchLineAppearance { get; }
-		IIfcHatchLineDistanceSelect @StartOfNextHatchLine { get; }
-		IIfcCartesianPoint @PointOfReferenceHatchLine { get; }
-		IIfcCartesianPoint @PatternStart { get; }
-		IfcPlaneAngleMeasure @HatchLineAngle { get; }
+		IIfcCurveStyle @HatchLineAppearance { get;  set; }
+		IIfcHatchLineDistanceSelect @StartOfNextHatchLine { get;  set; }
+		IIfcCartesianPoint @PointOfReferenceHatchLine { get;  set; }
+		IIfcCartesianPoint @PatternStart { get;  set; }
+		IfcPlaneAngleMeasure @HatchLineAngle { get;  set; }
 	
 	}
 }
@@ -43,11 +43,35 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcFillAreaStyleHatching : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleHatching, IContainsEntityReferences, IEquatable<@IfcFillAreaStyleHatching>
 	{
 		#region IIfcFillAreaStyleHatching explicit implementation
-		IIfcCurveStyle IIfcFillAreaStyleHatching.HatchLineAppearance { get { return @HatchLineAppearance; } }	
-		IIfcHatchLineDistanceSelect IIfcFillAreaStyleHatching.StartOfNextHatchLine { get { return @StartOfNextHatchLine; } }	
-		IIfcCartesianPoint IIfcFillAreaStyleHatching.PointOfReferenceHatchLine { get { return @PointOfReferenceHatchLine; } }	
-		IIfcCartesianPoint IIfcFillAreaStyleHatching.PatternStart { get { return @PatternStart; } }	
-		IfcPlaneAngleMeasure IIfcFillAreaStyleHatching.HatchLineAngle { get { return @HatchLineAngle; } }	
+		IIfcCurveStyle IIfcFillAreaStyleHatching.HatchLineAppearance { 
+			get { return @HatchLineAppearance; } 
+ 
+ 
+			set { HatchLineAppearance = value as IfcCurveStyle;}
+		}	
+		IIfcHatchLineDistanceSelect IIfcFillAreaStyleHatching.StartOfNextHatchLine { 
+			get { return @StartOfNextHatchLine; } 
+ 
+ 
+			set { StartOfNextHatchLine = value as IfcHatchLineDistanceSelect;}
+		}	
+		IIfcCartesianPoint IIfcFillAreaStyleHatching.PointOfReferenceHatchLine { 
+			get { return @PointOfReferenceHatchLine; } 
+ 
+ 
+			set { PointOfReferenceHatchLine = value as IfcCartesianPoint;}
+		}	
+		IIfcCartesianPoint IIfcFillAreaStyleHatching.PatternStart { 
+			get { return @PatternStart; } 
+ 
+ 
+			set { PatternStart = value as IfcCartesianPoint;}
+		}	
+		IfcPlaneAngleMeasure IIfcFillAreaStyleHatching.HatchLineAngle { 
+			get { return @HatchLineAngle; } 
+ 
+			set { HatchLineAngle = value;}
+		}	
 		 
 		#endregion
 

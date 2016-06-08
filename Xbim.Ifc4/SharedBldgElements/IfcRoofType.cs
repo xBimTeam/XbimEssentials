@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRoofType : IIfcBuildingElementType
 	{
-		IfcRoofTypeEnum @PredefinedType { get; }
+		IfcRoofTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.SharedBldgElements
 	public  partial class @IfcRoofType : IfcBuildingElementType, IInstantiableEntity, IIfcRoofType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRoofType>
 	{
 		#region IIfcRoofType explicit implementation
-		IfcRoofTypeEnum IIfcRoofType.PredefinedType { get { return @PredefinedType; } }	
+		IfcRoofTypeEnum IIfcRoofType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

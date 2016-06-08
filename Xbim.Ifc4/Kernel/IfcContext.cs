@@ -27,11 +27,11 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcContext : IIfcObjectDefinition
 	{
-		IfcLabel? @ObjectType { get; }
-		IfcLabel? @LongName { get; }
-		IfcLabel? @Phase { get; }
+		IfcLabel? @ObjectType { get;  set; }
+		IfcLabel? @LongName { get;  set; }
+		IfcLabel? @Phase { get;  set; }
 		IEnumerable<IIfcRepresentationContext> @RepresentationContexts { get; }
-		IIfcUnitAssignment @UnitsInContext { get; }
+		IIfcUnitAssignment @UnitsInContext { get;  set; }
 		IEnumerable<IIfcRelDefinesByProperties> @IsDefinedBy {  get; }
 		IEnumerable<IIfcRelDeclares> @Declares {  get; }
 	
@@ -45,11 +45,30 @@ namespace Xbim.Ifc4.Kernel
 	public abstract partial class @IfcContext : IfcObjectDefinition, IIfcContext, IEquatable<@IfcContext>
 	{
 		#region IIfcContext explicit implementation
-		IfcLabel? IIfcContext.ObjectType { get { return @ObjectType; } }	
-		IfcLabel? IIfcContext.LongName { get { return @LongName; } }	
-		IfcLabel? IIfcContext.Phase { get { return @Phase; } }	
-		IEnumerable<IIfcRepresentationContext> IIfcContext.RepresentationContexts { get { return @RepresentationContexts; } }	
-		IIfcUnitAssignment IIfcContext.UnitsInContext { get { return @UnitsInContext; } }	
+		IfcLabel? IIfcContext.ObjectType { 
+			get { return @ObjectType; } 
+ 
+			set { ObjectType = value;}
+		}	
+		IfcLabel? IIfcContext.LongName { 
+			get { return @LongName; } 
+ 
+			set { LongName = value;}
+		}	
+		IfcLabel? IIfcContext.Phase { 
+			get { return @Phase; } 
+ 
+			set { Phase = value;}
+		}	
+		IEnumerable<IIfcRepresentationContext> IIfcContext.RepresentationContexts { 
+			get { return @RepresentationContexts; } 
+		}	
+		IIfcUnitAssignment IIfcContext.UnitsInContext { 
+			get { return @UnitsInContext; } 
+ 
+ 
+			set { UnitsInContext = value as IfcUnitAssignment;}
+		}	
 		 
 		IEnumerable<IIfcRelDefinesByProperties> IIfcContext.IsDefinedBy {  get { return @IsDefinedBy; } }
 		IEnumerable<IIfcRelDeclares> IIfcContext.Declares {  get { return @Declares; } }

@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return Pnt;
 			} 
+			set
+			{
+				Pnt = value as IfcCartesianPoint;
+				
+			}
 		}
 		IIfcVector IIfcLine.Dir 
 		{ 
@@ -29,6 +34,11 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return Dir;
 			} 
+			set
+			{
+				Dir = value as IfcVector;
+				
+			}
 		}
 	//## Custom code
 	//##

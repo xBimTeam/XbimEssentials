@@ -50,6 +50,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 						return Ifc4.Interfaces.IfcEvaporativeCoolerTypeEnum.INDIRECTDIRECTCOMBINATION;
 					
 					case IfcEvaporativeCoolerTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcEvaporativeCoolerTypeEnum.USERDEFINED;
 					
 					case IfcEvaporativeCoolerTypeEnum.NOTDEFINED:
@@ -60,6 +62,60 @@ namespace Xbim.Ifc2x3.HVACDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER:
+						PredefinedType = IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER;
+						return;
+					
+					case Ifc4.Interfaces.IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER:
+						PredefinedType = IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER;
+						return;
+					
+					case Ifc4.Interfaces.IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER:
+						PredefinedType = IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER;
+						return;
+					
+					case Ifc4.Interfaces.IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER:
+						PredefinedType = IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER;
+						return;
+					
+					case Ifc4.Interfaces.IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVEAIRWASHER:
+						PredefinedType = IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVEAIRWASHER;
+						return;
+					
+					case Ifc4.Interfaces.IfcEvaporativeCoolerTypeEnum.INDIRECTEVAPORATIVEPACKAGEAIRCOOLER:
+						PredefinedType = IfcEvaporativeCoolerTypeEnum.INDIRECTEVAPORATIVEPACKAGEAIRCOOLER;
+						return;
+					
+					case Ifc4.Interfaces.IfcEvaporativeCoolerTypeEnum.INDIRECTEVAPORATIVEWETCOIL:
+						PredefinedType = IfcEvaporativeCoolerTypeEnum.INDIRECTEVAPORATIVEWETCOIL;
+						return;
+					
+					case Ifc4.Interfaces.IfcEvaporativeCoolerTypeEnum.INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER:
+						PredefinedType = IfcEvaporativeCoolerTypeEnum.INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER;
+						return;
+					
+					case Ifc4.Interfaces.IfcEvaporativeCoolerTypeEnum.INDIRECTDIRECTCOMBINATION:
+						PredefinedType = IfcEvaporativeCoolerTypeEnum.INDIRECTDIRECTCOMBINATION;
+						return;
+					
+					case Ifc4.Interfaces.IfcEvaporativeCoolerTypeEnum.USERDEFINED:
+						PredefinedType = IfcEvaporativeCoolerTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcEvaporativeCoolerTypeEnum.NOTDEFINED:
+						PredefinedType = IfcEvaporativeCoolerTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -95,7 +95,7 @@ namespace Xbim.IO.Esent
             var r = new Random();
             UserDefinedId = (short)r.Next(short.MaxValue); // initialise value at random to reduce chance of duplicates
             Metadata = ExpressMetaData.GetMetadata(factory.GetType().Module);
-            ModelFactors = new XbimModelFactors(1,1e-3,1e-5);
+            ModelFactors = new XbimModelFactors(Math.PI / 180, 1e-3,1e-5);
         }
 
         public string DatabaseName
@@ -724,7 +724,7 @@ namespace Xbim.IO.Esent
         public virtual void Close()
         {
             var dbName = DatabaseName;
-            ModelFactors = new XbimModelFactors(1,1e-3,1e-5);          
+            ModelFactors = new XbimModelFactors(Math.PI / 180, 1e-3,1e-5);          
             Header = null;
             
             if (_editTransactionEntityCursor != null)
@@ -818,7 +818,6 @@ namespace Xbim.IO.Esent
 
         public bool SaveAs(string outputFileName, IfcStorageType? storageType = null, ReportProgressDelegate progress = null, IDictionary<int, int> map = null)
         {
-
             try
             {
                 if (!storageType.HasValue)
@@ -828,7 +827,7 @@ namespace Xbim.IO.Esent
                     var ext = Path.GetExtension(outputFileName);
                     if(string.IsNullOrWhiteSpace(ext))
                         throw new XbimException("Invalid file type, no extension specified in file " + outputFileName);
-                    throw new XbimException("Invalid file type ." + ext.ToUpper() + " in file " + outputFileName);
+                    throw new XbimException("Invalid file extension " + ext.ToUpper() + " in file " + outputFileName);
                 }
                 if (storageType.Value == IfcStorageType.Xbim && DatabaseName != null) //make a copy
                 {
@@ -839,7 +838,6 @@ namespace Xbim.IO.Esent
                     var accessMode = InstanceCache.AccessMode;
                     try
                     {
-                       
                         _deleteOnClose = false; //regardless we need to keep it to copy it
                         Close(); 
                         File.Copy(srcFile, outputFileName);

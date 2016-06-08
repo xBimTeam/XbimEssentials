@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBoilerType : IIfcEnergyConversionDeviceType
 	{
-		IfcBoilerTypeEnum @PredefinedType { get; }
+		IfcBoilerTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.HVACDomain
 	public  partial class @IfcBoilerType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcBoilerType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBoilerType>
 	{
 		#region IIfcBoilerType explicit implementation
-		IfcBoilerTypeEnum IIfcBoilerType.PredefinedType { get { return @PredefinedType; } }	
+		IfcBoilerTypeEnum IIfcBoilerType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

@@ -25,11 +25,11 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieSpace : ICobieAsset, SpatialDivision
 	{
-		string @RoomTag { get; }
-		double? @UsableHeight { get; }
-		double? @GrossArea { get; }
-		double? @NetArea { get; }
-		ICobieFloor @Floor { get; }
+		string @RoomTag { get;  set; }
+		double? @UsableHeight { get;  set; }
+		double? @GrossArea { get;  set; }
+		double? @NetArea { get;  set; }
+		ICobieFloor @Floor { get;  set; }
 		IEnumerable<ICobieComponent> @Components {  get; }
 		IEnumerable<ICobieZone> @InZones {  get; }
 	
@@ -43,11 +43,32 @@ namespace Xbim.CobieExpress
 	public  partial class @CobieSpace : CobieAsset, IInstantiableEntity, ICobieSpace, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieSpace>
 	{
 		#region ICobieSpace explicit implementation
-		string ICobieSpace.RoomTag { get { return @RoomTag; } }	
-		double? ICobieSpace.UsableHeight { get { return @UsableHeight; } }	
-		double? ICobieSpace.GrossArea { get { return @GrossArea; } }	
-		double? ICobieSpace.NetArea { get { return @NetArea; } }	
-		ICobieFloor ICobieSpace.Floor { get { return @Floor; } }	
+		string ICobieSpace.RoomTag { 
+			get { return @RoomTag; } 
+ 
+			set { RoomTag = value;}
+		}	
+		double? ICobieSpace.UsableHeight { 
+			get { return @UsableHeight; } 
+ 
+			set { UsableHeight = value;}
+		}	
+		double? ICobieSpace.GrossArea { 
+			get { return @GrossArea; } 
+ 
+			set { GrossArea = value;}
+		}	
+		double? ICobieSpace.NetArea { 
+			get { return @NetArea; } 
+ 
+			set { NetArea = value;}
+		}	
+		ICobieFloor ICobieSpace.Floor { 
+			get { return @Floor; } 
+ 
+ 
+			set { Floor = value as CobieFloor;}
+		}	
 		 
 		IEnumerable<ICobieComponent> ICobieSpace.Components {  get { return @Components; } }
 		IEnumerable<ICobieZone> ICobieSpace.InZones {  get { return @InZones; } }

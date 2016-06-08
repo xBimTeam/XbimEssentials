@@ -26,8 +26,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelAssignsToProcess : IIfcRelAssigns
 	{
-		IIfcProcess @RelatingProcess { get; }
-		IIfcMeasureWithUnit @QuantityInProcess { get; }
+		IIfcProcess @RelatingProcess { get;  set; }
+		IIfcMeasureWithUnit @QuantityInProcess { get;  set; }
 	
 	}
 }
@@ -39,8 +39,18 @@ namespace Xbim.Ifc2x3.Kernel
 	public  partial class @IfcRelAssignsToProcess : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToProcess, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToProcess>
 	{
 		#region IIfcRelAssignsToProcess explicit implementation
-		IIfcProcess IIfcRelAssignsToProcess.RelatingProcess { get { return @RelatingProcess; } }	
-		IIfcMeasureWithUnit IIfcRelAssignsToProcess.QuantityInProcess { get { return @QuantityInProcess; } }	
+		IIfcProcess IIfcRelAssignsToProcess.RelatingProcess { 
+			get { return @RelatingProcess; } 
+ 
+ 
+			set { RelatingProcess = value as IfcProcess;}
+		}	
+		IIfcMeasureWithUnit IIfcRelAssignsToProcess.QuantityInProcess { 
+			get { return @QuantityInProcess; } 
+ 
+ 
+			set { QuantityInProcess = value as IfcMeasureWithUnit;}
+		}	
 		 
 		#endregion
 

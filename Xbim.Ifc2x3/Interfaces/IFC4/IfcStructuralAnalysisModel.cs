@@ -32,6 +32,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 						return Ifc4.Interfaces.IfcAnalysisModelTypeEnum.LOADING_3D;
 					
 					case IfcAnalysisModelTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcAnalysisModelTypeEnum.USERDEFINED;
 					
 					case IfcAnalysisModelTypeEnum.NOTDEFINED:
@@ -42,6 +44,36 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcAnalysisModelTypeEnum.IN_PLANE_LOADING_2D:
+						PredefinedType = IfcAnalysisModelTypeEnum.IN_PLANE_LOADING_2D;
+						return;
+					
+					case Ifc4.Interfaces.IfcAnalysisModelTypeEnum.OUT_PLANE_LOADING_2D:
+						PredefinedType = IfcAnalysisModelTypeEnum.OUT_PLANE_LOADING_2D;
+						return;
+					
+					case Ifc4.Interfaces.IfcAnalysisModelTypeEnum.LOADING_3D:
+						PredefinedType = IfcAnalysisModelTypeEnum.LOADING_3D;
+						return;
+					
+					case Ifc4.Interfaces.IfcAnalysisModelTypeEnum.USERDEFINED:
+						PredefinedType = IfcAnalysisModelTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcAnalysisModelTypeEnum.NOTDEFINED:
+						PredefinedType = IfcAnalysisModelTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		IIfcAxis2Placement3D IIfcStructuralAnalysisModel.OrientationOf2DPlane 
 		{ 
@@ -49,6 +81,11 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				return OrientationOf2DPlane;
 			} 
+			set
+			{
+				OrientationOf2DPlane = value as GeometryResource.IfcAxis2Placement3D;
+				
+			}
 		}
 		IEnumerable<IIfcStructuralLoadGroup> IIfcStructuralAnalysisModel.LoadedBy 
 		{ 
@@ -70,14 +107,20 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				}
 			} 
 		}
+
+		private  IIfcObjectPlacement _sharedPlacement;
+
 		IIfcObjectPlacement IIfcStructuralAnalysisModel.SharedPlacement 
 		{ 
 			get
 			{
-				//## Handle return of SharedPlacement for which no match was found
-                return null;
-				//##
+				return _sharedPlacement;
 			} 
+			set
+			{
+				SetValue(v => _sharedPlacement = v, _sharedPlacement, value, "SharedPlacement", byte.MaxValue);
+				
+			}
 		}
 	//## Custom code
 	//##

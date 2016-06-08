@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPlacement : IIfcGeometricRepresentationItem
 	{
-		IIfcCartesianPoint @Location { get; }
+		IIfcCartesianPoint @Location { get;  set; }
 		IfcDimensionCount @Dim  { get ; }
 	
 	}
@@ -38,7 +38,12 @@ namespace Xbim.Ifc4.GeometryResource
 	public abstract partial class @IfcPlacement : IfcGeometricRepresentationItem, IIfcPlacement, IEquatable<@IfcPlacement>
 	{
 		#region IIfcPlacement explicit implementation
-		IIfcCartesianPoint IIfcPlacement.Location { get { return @Location; } }	
+		IIfcCartesianPoint IIfcPlacement.Location { 
+			get { return @Location; } 
+ 
+ 
+			set { Location = value as IfcCartesianPoint;}
+		}	
 		 
 		#endregion
 

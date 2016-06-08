@@ -26,11 +26,11 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcGeneralProfileProperties : IIfcProfileProperties
 	{
-		IfcMassPerLengthMeasure? @PhysicalWeight { get; }
-		IfcPositiveLengthMeasure? @Perimeter { get; }
-		IfcPositiveLengthMeasure? @MinimumPlateThickness { get; }
-		IfcPositiveLengthMeasure? @MaximumPlateThickness { get; }
-		IfcAreaMeasure? @CrossSectionArea { get; }
+		IfcMassPerLengthMeasure? @PhysicalWeight { get;  set; }
+		IfcPositiveLengthMeasure? @Perimeter { get;  set; }
+		IfcPositiveLengthMeasure? @MinimumPlateThickness { get;  set; }
+		IfcPositiveLengthMeasure? @MaximumPlateThickness { get;  set; }
+		IfcAreaMeasure? @CrossSectionArea { get;  set; }
 	
 	}
 }
@@ -42,11 +42,31 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 	public  partial class @IfcGeneralProfileProperties : IfcProfileProperties, IInstantiableEntity, IIfcGeneralProfileProperties, IContainsEntityReferences, IEquatable<@IfcGeneralProfileProperties>
 	{
 		#region IIfcGeneralProfileProperties explicit implementation
-		IfcMassPerLengthMeasure? IIfcGeneralProfileProperties.PhysicalWeight { get { return @PhysicalWeight; } }	
-		IfcPositiveLengthMeasure? IIfcGeneralProfileProperties.Perimeter { get { return @Perimeter; } }	
-		IfcPositiveLengthMeasure? IIfcGeneralProfileProperties.MinimumPlateThickness { get { return @MinimumPlateThickness; } }	
-		IfcPositiveLengthMeasure? IIfcGeneralProfileProperties.MaximumPlateThickness { get { return @MaximumPlateThickness; } }	
-		IfcAreaMeasure? IIfcGeneralProfileProperties.CrossSectionArea { get { return @CrossSectionArea; } }	
+		IfcMassPerLengthMeasure? IIfcGeneralProfileProperties.PhysicalWeight { 
+			get { return @PhysicalWeight; } 
+ 
+			set { PhysicalWeight = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcGeneralProfileProperties.Perimeter { 
+			get { return @Perimeter; } 
+ 
+			set { Perimeter = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcGeneralProfileProperties.MinimumPlateThickness { 
+			get { return @MinimumPlateThickness; } 
+ 
+			set { MinimumPlateThickness = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcGeneralProfileProperties.MaximumPlateThickness { 
+			get { return @MaximumPlateThickness; } 
+ 
+			set { MaximumPlateThickness = value;}
+		}	
+		IfcAreaMeasure? IIfcGeneralProfileProperties.CrossSectionArea { 
+			get { return @CrossSectionArea; } 
+ 
+			set { CrossSectionArea = value;}
+		}	
 		 
 		#endregion
 

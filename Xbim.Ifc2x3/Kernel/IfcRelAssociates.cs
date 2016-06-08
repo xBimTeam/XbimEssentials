@@ -37,7 +37,9 @@ namespace Xbim.Ifc2x3.Kernel
 	public  partial class @IfcRelAssociates : IfcRelationship, IInstantiableEntity, IIfcRelAssociates, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociates>
 	{
 		#region IIfcRelAssociates explicit implementation
-		IEnumerable<IIfcRoot> IIfcRelAssociates.RelatedObjects { get { return @RelatedObjects; } }	
+		IEnumerable<IIfcRoot> IIfcRelAssociates.RelatedObjects { 
+			get { return @RelatedObjects; } 
+		}	
 		 
 		#endregion
 

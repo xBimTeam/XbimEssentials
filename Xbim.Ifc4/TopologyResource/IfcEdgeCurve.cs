@@ -28,8 +28,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcEdgeCurve : IIfcEdge, IfcCurveOrEdgeCurve
 	{
-		IIfcCurve @EdgeGeometry { get; }
-		IfcBoolean @SameSense { get; }
+		IIfcCurve @EdgeGeometry { get;  set; }
+		IfcBoolean @SameSense { get;  set; }
 	
 	}
 }
@@ -41,8 +41,17 @@ namespace Xbim.Ifc4.TopologyResource
 	public  partial class @IfcEdgeCurve : IfcEdge, IInstantiableEntity, IIfcEdgeCurve, IContainsEntityReferences, IEquatable<@IfcEdgeCurve>
 	{
 		#region IIfcEdgeCurve explicit implementation
-		IIfcCurve IIfcEdgeCurve.EdgeGeometry { get { return @EdgeGeometry; } }	
-		IfcBoolean IIfcEdgeCurve.SameSense { get { return @SameSense; } }	
+		IIfcCurve IIfcEdgeCurve.EdgeGeometry { 
+			get { return @EdgeGeometry; } 
+ 
+ 
+			set { EdgeGeometry = value as IfcCurve;}
+		}	
+		IfcBoolean IIfcEdgeCurve.SameSense { 
+			get { return @SameSense; } 
+ 
+			set { SameSense = value;}
+		}	
 		 
 		#endregion
 

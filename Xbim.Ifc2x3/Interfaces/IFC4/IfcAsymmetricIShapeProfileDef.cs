@@ -20,10 +20,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
-				//## Handle return of BottomFlangeWidth for which no match was found
-			    return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallWidth);
-			    //##
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallWidth);
 			} 
+			set
+			{
+				OverallWidth = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.OverallDepth 
 		{ 
@@ -31,6 +34,11 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallDepth);
 			} 
+			set
+			{
+				OverallDepth = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.WebThickness 
 		{ 
@@ -38,26 +46,38 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(WebThickness);
 			} 
+			set
+			{
+				WebThickness = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.BottomFlangeThickness 
 		{ 
 			get
 			{
-				//## Handle return of BottomFlangeThickness for which no match was found
-                return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(FlangeThickness);
-				//##
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(FlangeThickness);
 			} 
+			set
+			{
+				FlangeThickness = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeFilletRadius 
 		{ 
 			get
 			{
-				//## Handle return of BottomFlangeFilletRadius for which no match was found
-			    if (FilletRadius.HasValue)
-			        return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(FilletRadius.Value);
-			    return null;
-			    //##
+				if (!FilletRadius.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(FilletRadius.Value);
 			} 
+			set
+			{
+				FilletRadius = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.TopFlangeWidth 
 		{ 
@@ -65,6 +85,11 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(TopFlangeWidth);
 			} 
+			set
+			{
+				TopFlangeWidth = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeThickness 
 		{ 
@@ -73,6 +98,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 				if (!TopFlangeThickness.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(TopFlangeThickness.Value);
 			} 
+			set
+			{
+				TopFlangeThickness = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeFilletRadius 
 		{ 
@@ -81,43 +113,73 @@ namespace Xbim.Ifc2x3.ProfileResource
 				if (!TopFlangeFilletRadius.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(TopFlangeFilletRadius.Value);
 			} 
+			set
+			{
+				TopFlangeFilletRadius = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? _bottomFlangeEdgeRadius;
+
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeEdgeRadius 
 		{ 
 			get
 			{
-				//## Handle return of BottomFlangeEdgeRadius for which no match was found
-                if (!CentreOfGravityInY.HasValue) return null;
-                return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(CentreOfGravityInY.Value);
-				//##
+				return _bottomFlangeEdgeRadius;
 			} 
+			set
+			{
+				SetValue(v => _bottomFlangeEdgeRadius = v, _bottomFlangeEdgeRadius, value, "BottomFlangeEdgeRadius", byte.MaxValue);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcPlaneAngleMeasure? _bottomFlangeSlope;
+
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeSlope 
 		{ 
 			get
 			{
-				//## Handle return of BottomFlangeSlope for which no match was found
-			    return null;
-			    //##
+				return _bottomFlangeSlope;
 			} 
+			set
+			{
+				SetValue(v => _bottomFlangeSlope = v, _bottomFlangeSlope, value, "BottomFlangeSlope", byte.MaxValue);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? _topFlangeEdgeRadius;
+
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeEdgeRadius 
 		{ 
 			get
 			{
-				//## Handle return of TopFlangeEdgeRadius for which no match was found
-			    return null;
-			    //##
+				return _topFlangeEdgeRadius;
 			} 
+			set
+			{
+				SetValue(v => _topFlangeEdgeRadius = v, _topFlangeEdgeRadius, value, "TopFlangeEdgeRadius", byte.MaxValue);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcPlaneAngleMeasure? _topFlangeSlope;
+
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeSlope 
 		{ 
 			get
 			{
-				//## Handle return of TopFlangeSlope for which no match was found
-			    return null;
-			    //##
+				return _topFlangeSlope;
 			} 
+			set
+			{
+				SetValue(v => _topFlangeSlope = v, _topFlangeSlope, value, "TopFlangeSlope", byte.MaxValue);
+				
+			}
 		}
 	//## Custom code
 	//##

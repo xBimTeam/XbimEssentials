@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcLightSourceDirectional : IIfcLightSource
 	{
-		IIfcDirection @Orientation { get; }
+		IIfcDirection @Orientation { get;  set; }
 	
 	}
 }
@@ -38,7 +38,12 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 	public  partial class @IfcLightSourceDirectional : IfcLightSource, IInstantiableEntity, IIfcLightSourceDirectional, IContainsEntityReferences, IEquatable<@IfcLightSourceDirectional>
 	{
 		#region IIfcLightSourceDirectional explicit implementation
-		IIfcDirection IIfcLightSourceDirectional.Orientation { get { return @Orientation; } }	
+		IIfcDirection IIfcLightSourceDirectional.Orientation { 
+			get { return @Orientation; } 
+ 
+ 
+			set { Orientation = value as IfcDirection;}
+		}	
 		 
 		#endregion
 

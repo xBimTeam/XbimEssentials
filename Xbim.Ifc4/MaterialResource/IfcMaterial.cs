@@ -27,9 +27,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterial : IIfcMaterialDefinition
 	{
-		IfcLabel @Name { get; }
-		IfcText? @Description { get; }
-		IfcLabel? @Category { get; }
+		IfcLabel @Name { get;  set; }
+		IfcText? @Description { get;  set; }
+		IfcLabel? @Category { get;  set; }
 		IEnumerable<IIfcMaterialDefinitionRepresentation> @HasRepresentation {  get; }
 		IEnumerable<IIfcMaterialRelationship> @IsRelatedWith {  get; }
 		IEnumerable<IIfcMaterialRelationship> @RelatesTo {  get; }
@@ -44,9 +44,21 @@ namespace Xbim.Ifc4.MaterialResource
 	public  partial class @IfcMaterial : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterial, IEquatable<@IfcMaterial>
 	{
 		#region IIfcMaterial explicit implementation
-		IfcLabel IIfcMaterial.Name { get { return @Name; } }	
-		IfcText? IIfcMaterial.Description { get { return @Description; } }	
-		IfcLabel? IIfcMaterial.Category { get { return @Category; } }	
+		IfcLabel IIfcMaterial.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcMaterial.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IfcLabel? IIfcMaterial.Category { 
+			get { return @Category; } 
+ 
+			set { Category = value;}
+		}	
 		 
 		IEnumerable<IIfcMaterialDefinitionRepresentation> IIfcMaterial.HasRepresentation {  get { return @HasRepresentation; } }
 		IEnumerable<IIfcMaterialRelationship> IIfcMaterial.IsRelatedWith {  get { return @IsRelatedWith; } }

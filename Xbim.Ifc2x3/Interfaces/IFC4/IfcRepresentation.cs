@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			{
 				return ContextOfItems;
 			} 
+			set
+			{
+				ContextOfItems = value as IfcRepresentationContext;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcRepresentation.RepresentationIdentifier 
 		{ 
@@ -30,6 +35,13 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				if (!RepresentationIdentifier.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(RepresentationIdentifier.Value);
 			} 
+			set
+			{
+				RepresentationIdentifier = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcRepresentation.RepresentationType 
 		{ 
@@ -38,6 +50,13 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				if (!RepresentationType.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(RepresentationType.Value);
 			} 
+			set
+			{
+				RepresentationType = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		IEnumerable<IIfcRepresentationItem> IIfcRepresentation.Items 
 		{ 

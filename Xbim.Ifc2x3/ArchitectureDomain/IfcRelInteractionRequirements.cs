@@ -28,11 +28,11 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelInteractionRequirements : IIfcRelConnects
 	{
-		IfcCountMeasure? @DailyInteraction { get; }
-		IfcNormalisedRatioMeasure? @ImportanceRating { get; }
-		IIfcSpatialStructureElement @LocationOfInteraction { get; }
-		IIfcSpaceProgram @RelatedSpaceProgram { get; }
-		IIfcSpaceProgram @RelatingSpaceProgram { get; }
+		IfcCountMeasure? @DailyInteraction { get;  set; }
+		IfcNormalisedRatioMeasure? @ImportanceRating { get;  set; }
+		IIfcSpatialStructureElement @LocationOfInteraction { get;  set; }
+		IIfcSpaceProgram @RelatedSpaceProgram { get;  set; }
+		IIfcSpaceProgram @RelatingSpaceProgram { get;  set; }
 	
 	}
 }
@@ -44,11 +44,34 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 	public  partial class @IfcRelInteractionRequirements : IfcRelConnects, IInstantiableEntity, IIfcRelInteractionRequirements, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelInteractionRequirements>
 	{
 		#region IIfcRelInteractionRequirements explicit implementation
-		IfcCountMeasure? IIfcRelInteractionRequirements.DailyInteraction { get { return @DailyInteraction; } }	
-		IfcNormalisedRatioMeasure? IIfcRelInteractionRequirements.ImportanceRating { get { return @ImportanceRating; } }	
-		IIfcSpatialStructureElement IIfcRelInteractionRequirements.LocationOfInteraction { get { return @LocationOfInteraction; } }	
-		IIfcSpaceProgram IIfcRelInteractionRequirements.RelatedSpaceProgram { get { return @RelatedSpaceProgram; } }	
-		IIfcSpaceProgram IIfcRelInteractionRequirements.RelatingSpaceProgram { get { return @RelatingSpaceProgram; } }	
+		IfcCountMeasure? IIfcRelInteractionRequirements.DailyInteraction { 
+			get { return @DailyInteraction; } 
+ 
+			set { DailyInteraction = value;}
+		}	
+		IfcNormalisedRatioMeasure? IIfcRelInteractionRequirements.ImportanceRating { 
+			get { return @ImportanceRating; } 
+ 
+			set { ImportanceRating = value;}
+		}	
+		IIfcSpatialStructureElement IIfcRelInteractionRequirements.LocationOfInteraction { 
+			get { return @LocationOfInteraction; } 
+ 
+ 
+			set { LocationOfInteraction = value as IfcSpatialStructureElement;}
+		}	
+		IIfcSpaceProgram IIfcRelInteractionRequirements.RelatedSpaceProgram { 
+			get { return @RelatedSpaceProgram; } 
+ 
+ 
+			set { RelatedSpaceProgram = value as IfcSpaceProgram;}
+		}	
+		IIfcSpaceProgram IIfcRelInteractionRequirements.RelatingSpaceProgram { 
+			get { return @RelatingSpaceProgram; } 
+ 
+ 
+			set { RelatingSpaceProgram = value as IfcSpaceProgram;}
+		}	
 		 
 		#endregion
 

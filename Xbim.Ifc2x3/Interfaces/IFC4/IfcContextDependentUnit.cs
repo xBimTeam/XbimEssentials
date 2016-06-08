@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.MeasureResource
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				Name = new IfcLabel(value);
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcContextDependentUnit.HasExternalReference 
 		{ 

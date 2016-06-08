@@ -545,7 +545,7 @@ namespace Xbim.IO.Memory
                                 return;
                             }
                         }
-                        catch (Exception)
+                        catch (Exception )
                         {
                             //if it crashed try next entry if available
                             entry = zipStream.GetNextEntry();
@@ -607,8 +607,8 @@ namespace Xbim.IO.Memory
                 _instances.InternalAdd(ent);
 
                 //make sure that new added entities will have higher labels to avoid any clashes
-                if (label >= _instances.NextLabel)
-                    _instances.NextLabel = (int)label + 1;
+                if (label >= _instances.CurrentLabel)
+                    _instances.CurrentLabel = (int)label;
                 return ent;
             };
             parser.Parse();
@@ -821,17 +821,18 @@ namespace Xbim.IO.Memory
                     var isInverse = (prop.EntityAttribute.Order == -1); //don't try and set the values for inverses
                     var theType = value.GetType();
                     //if it is an express type or a value type, set the value
-                    if (theType.IsValueType || typeof (ExpressType).IsAssignableFrom(theType) || theType == typeof(string))
+                    if (theType.IsValueType || typeof(ExpressType).IsAssignableFrom(theType) ||
+                        theType == typeof(string))
                     {
                         prop.PropertyInfo.SetValue(copy, value, null);
                     }
-                    else if (!isInverse && typeof (IPersistEntity).IsAssignableFrom(theType))
+                    else if (!isInverse && typeof(IPersistEntity).IsAssignableFrom(theType))
                     {
                         prop.PropertyInfo.SetValue(copy,
                             InsertCopy((IPersistEntity) value, mappings, propTransform, includeInverses, keepLabels,
                                 noTransaction), null);
                     }
-                    else if (!isInverse && typeof (IList).IsAssignableFrom(theType))
+                    else if (!isInverse && typeof(IList).IsAssignableFrom(theType))
                     {
                         var itemType = theType.GetItemTypeFromGenericType();
 
@@ -842,13 +843,37 @@ namespace Xbim.IO.Memory
                         foreach (var item in (IList) value)
                         {
                             var actualItemType = item.GetType();
-                            if (actualItemType.IsValueType || typeof (ExpressType).IsAssignableFrom(actualItemType))
+                            if (actualItemType.IsValueType || typeof(ExpressType).IsAssignableFrom(actualItemType))
                                 copyColl.Add(item);
-                            else if (typeof (IPersistEntity).IsAssignableFrom(actualItemType))
+                            else if (typeof(IPersistEntity).IsAssignableFrom(actualItemType))
                             {
                                 var cpy = InsertCopy((IPersistEntity) item, mappings, propTransform, includeInverses,
                                     keepLabels, noTransaction);
                                 copyColl.Add(cpy);
+                            }
+                            else if (typeof(IList).IsAssignableFrom(actualItemType)) //list of lists
+                            {
+                                var listColl = (IList) item;
+                                var getAt = copyColl.GetType().GetMethod("GetAt");
+                                if (getAt == null) throw new Exception(string.Format("GetAt Method not found on ({0}) found", copyColl.GetType().Name));
+                                var copyListColl = getAt.Invoke(copyColl, new object[] { copyColl.Count }) as IList;
+                                foreach (var listItem in listColl)
+                                {
+                                    var actualListItemType = listItem.GetType();
+                                    if (actualListItemType.IsValueType ||
+                                        typeof(ExpressType).IsAssignableFrom(actualListItemType))
+                                        copyListColl.Add(listItem);
+                                    else if (typeof(IPersistEntity).IsAssignableFrom(actualListItemType))
+                                    {
+                                        var cpy = InsertCopy((IPersistEntity) listItem, mappings, propTransform,
+                                            includeInverses,
+                                            keepLabels, noTransaction);
+                                        copyListColl.Add(cpy);
+                                    }
+                                    else
+                                        throw new Exception(string.Format("Unexpected collection item type ({0}) found",
+                                            itemType.Name));
+                                }
                             }
                             else
                                 throw new Exception(string.Format("Unexpected collection item type ({0}) found",
@@ -871,7 +896,11 @@ namespace Xbim.IO.Memory
                         throw new Exception(string.Format("Unexpected item type ({0})  found", theType.Name));
                 }
                 return (T) copy;
-            }          
+            }
+            catch (Exception e)
+            {
+                throw new Exception(string.Format("General failure in InsertCopy ({0})", e.Message));
+            }     
             finally
             {
                 //make sure model is transactional at the end again

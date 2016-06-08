@@ -28,10 +28,10 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcEvent : IIfcProcess
 	{
-		IfcEventTypeEnum? @PredefinedType { get; }
-		IfcEventTriggerTypeEnum? @EventTriggerType { get; }
-		IfcLabel? @UserDefinedEventTriggerType { get; }
-		IIfcEventTime @EventOccurenceTime { get; }
+		IfcEventTypeEnum? @PredefinedType { get;  set; }
+		IfcEventTriggerTypeEnum? @EventTriggerType { get;  set; }
+		IfcLabel? @UserDefinedEventTriggerType { get;  set; }
+		IIfcEventTime @EventOccurenceTime { get;  set; }
 	
 	}
 }
@@ -43,10 +43,27 @@ namespace Xbim.Ifc4.ProcessExtension
 	public  partial class @IfcEvent : IfcProcess, IInstantiableEntity, IIfcEvent, IContainsEntityReferences, IEquatable<@IfcEvent>
 	{
 		#region IIfcEvent explicit implementation
-		IfcEventTypeEnum? IIfcEvent.PredefinedType { get { return @PredefinedType; } }	
-		IfcEventTriggerTypeEnum? IIfcEvent.EventTriggerType { get { return @EventTriggerType; } }	
-		IfcLabel? IIfcEvent.UserDefinedEventTriggerType { get { return @UserDefinedEventTriggerType; } }	
-		IIfcEventTime IIfcEvent.EventOccurenceTime { get { return @EventOccurenceTime; } }	
+		IfcEventTypeEnum? IIfcEvent.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
+		IfcEventTriggerTypeEnum? IIfcEvent.EventTriggerType { 
+			get { return @EventTriggerType; } 
+ 
+			set { EventTriggerType = value;}
+		}	
+		IfcLabel? IIfcEvent.UserDefinedEventTriggerType { 
+			get { return @UserDefinedEventTriggerType; } 
+ 
+			set { UserDefinedEventTriggerType = value;}
+		}	
+		IIfcEventTime IIfcEvent.EventOccurenceTime { 
+			get { return @EventOccurenceTime; } 
+ 
+ 
+			set { EventOccurenceTime = value as IfcEventTime;}
+		}	
 		 
 		#endregion
 

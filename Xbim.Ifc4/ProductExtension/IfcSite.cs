@@ -27,11 +27,11 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSite : IIfcSpatialStructureElement
 	{
-		IfcCompoundPlaneAngleMeasure? @RefLatitude { get; }
-		IfcCompoundPlaneAngleMeasure? @RefLongitude { get; }
-		IfcLengthMeasure? @RefElevation { get; }
-		IfcLabel? @LandTitleNumber { get; }
-		IIfcPostalAddress @SiteAddress { get; }
+		IfcCompoundPlaneAngleMeasure? @RefLatitude { get;  set; }
+		IfcCompoundPlaneAngleMeasure? @RefLongitude { get;  set; }
+		IfcLengthMeasure? @RefElevation { get;  set; }
+		IfcLabel? @LandTitleNumber { get;  set; }
+		IIfcPostalAddress @SiteAddress { get;  set; }
 	
 	}
 }
@@ -43,11 +43,32 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcSite : IfcSpatialStructureElement, IInstantiableEntity, IIfcSite, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSite>
 	{
 		#region IIfcSite explicit implementation
-		IfcCompoundPlaneAngleMeasure? IIfcSite.RefLatitude { get { return @RefLatitude; } }	
-		IfcCompoundPlaneAngleMeasure? IIfcSite.RefLongitude { get { return @RefLongitude; } }	
-		IfcLengthMeasure? IIfcSite.RefElevation { get { return @RefElevation; } }	
-		IfcLabel? IIfcSite.LandTitleNumber { get { return @LandTitleNumber; } }	
-		IIfcPostalAddress IIfcSite.SiteAddress { get { return @SiteAddress; } }	
+		IfcCompoundPlaneAngleMeasure? IIfcSite.RefLatitude { 
+			get { return @RefLatitude; } 
+ 
+			set { RefLatitude = value;}
+		}	
+		IfcCompoundPlaneAngleMeasure? IIfcSite.RefLongitude { 
+			get { return @RefLongitude; } 
+ 
+			set { RefLongitude = value;}
+		}	
+		IfcLengthMeasure? IIfcSite.RefElevation { 
+			get { return @RefElevation; } 
+ 
+			set { RefElevation = value;}
+		}	
+		IfcLabel? IIfcSite.LandTitleNumber { 
+			get { return @LandTitleNumber; } 
+ 
+			set { LandTitleNumber = value;}
+		}	
+		IIfcPostalAddress IIfcSite.SiteAddress { 
+			get { return @SiteAddress; } 
+ 
+ 
+			set { SiteAddress = value as IfcPostalAddress;}
+		}	
 		 
 		#endregion
 

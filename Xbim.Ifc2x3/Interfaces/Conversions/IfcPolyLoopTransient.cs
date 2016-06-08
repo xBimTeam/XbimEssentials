@@ -1,25 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using Xbim.Ifc2x3.GeometryResource;
 
 namespace Xbim.Ifc2x3.Interfaces.Conversions
 {
-    internal class IfcPolyLoopTransient : PersistEntityTransient, Xbim.Ifc4.Interfaces.IIfcPolyLoop
+    internal class IfcPolyLoopTransient : PersistEntityTransient, Ifc4.Interfaces.IIfcPolyLoop
     {
-        IEnumerable<Xbim.Ifc2x3.GeometryResource.IfcCartesianPoint> _points;
-        public IfcPolyLoopTransient(IEnumerable<Xbim.Ifc2x3.GeometryResource.IfcCartesianPoint> points)
+        readonly IEnumerable<IfcCartesianPoint> _points;
+        public IfcPolyLoopTransient(IEnumerable<IfcCartesianPoint> points)
         {
             _points = points;
         }
         public IEnumerable<Ifc4.Interfaces.IIfcCartesianPoint> Polygon
         {
-            get
-            {
-                foreach (var point in _points)
-                {
-                    yield return point;
-                }
+            get {
+                return _points;
             }
         }
 

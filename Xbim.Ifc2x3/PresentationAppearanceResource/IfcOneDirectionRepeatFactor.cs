@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcOneDirectionRepeatFactor : IIfcGeometricRepresentationItem, IfcHatchLineDistanceSelect
 	{
-		IIfcVector @RepeatFactor { get; }
+		IIfcVector @RepeatFactor { get;  set; }
 	
 	}
 }
@@ -38,7 +38,12 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	public  partial class @IfcOneDirectionRepeatFactor : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcOneDirectionRepeatFactor, IContainsEntityReferences, IEquatable<@IfcOneDirectionRepeatFactor>
 	{
 		#region IIfcOneDirectionRepeatFactor explicit implementation
-		IIfcVector IIfcOneDirectionRepeatFactor.RepeatFactor { get { return @RepeatFactor; } }	
+		IIfcVector IIfcOneDirectionRepeatFactor.RepeatFactor { 
+			get { return @RepeatFactor; } 
+ 
+ 
+			set { RepeatFactor = value as IfcVector;}
+		}	
 		 
 		#endregion
 

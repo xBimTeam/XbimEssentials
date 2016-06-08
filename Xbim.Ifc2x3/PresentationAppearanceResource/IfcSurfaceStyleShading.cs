@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSurfaceStyleShading : IPersistEntity, IfcSurfaceStyleElementSelect
 	{
-		IIfcColourRgb @SurfaceColour { get; }
+		IIfcColourRgb @SurfaceColour { get;  set; }
 	
 	}
 }
@@ -40,7 +40,12 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	public  partial class @IfcSurfaceStyleShading : INotifyPropertyChanged, IInstantiableEntity, IIfcSurfaceStyleShading, IContainsEntityReferences, IEquatable<@IfcSurfaceStyleShading>
 	{
 		#region IIfcSurfaceStyleShading explicit implementation
-		IIfcColourRgb IIfcSurfaceStyleShading.SurfaceColour { get { return @SurfaceColour; } }	
+		IIfcColourRgb IIfcSurfaceStyleShading.SurfaceColour { 
+			get { return @SurfaceColour; } 
+ 
+ 
+			set { SurfaceColour = value as IfcColourRgb;}
+		}	
 		 
 		#endregion
 

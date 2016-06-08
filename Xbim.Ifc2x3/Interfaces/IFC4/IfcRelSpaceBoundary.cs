@@ -16,12 +16,39 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcRelSpaceBoundary : IIfcRelSpaceBoundary
 	{
+
+		private  IIfcSpaceBoundarySelect _relatingSpace4;
+
 		IIfcSpaceBoundarySelect IIfcRelSpaceBoundary.RelatingSpace 
 		{ 
 			get
 			{
-				return RelatingSpace;
+				return  _relatingSpace4 ?? RelatingSpace;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					RelatingSpace = null;
+					if (_relatingSpace4 != null)
+						SetValue(v => _relatingSpace4 = v, _relatingSpace4, null, "RelatingSpace", byte.MaxValue);
+					return;
+				}
+				
+				var val = value as IfcSpace;
+				if (val != null)
+				{
+					RelatingSpace = val;
+					if (_relatingSpace4 != null)
+						SetValue(v => _relatingSpace4 = v, _relatingSpace4, null, "RelatingSpace", byte.MaxValue);
+					return;
+				} 
+
+				if(RelatingSpace != null)
+					RelatingSpace = null;
+				SetValue(v => _relatingSpace4 = v, _relatingSpace4, value, "RelatingSpace", byte.MaxValue);
+				
+			}
 		}
 		IIfcElement IIfcRelSpaceBoundary.RelatedBuildingElement 
 		{ 
@@ -29,6 +56,11 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				return RelatedBuildingElement;
 			} 
+			set
+			{
+				RelatedBuildingElement = value as IfcElement;
+				
+			}
 		}
 		IIfcConnectionGeometry IIfcRelSpaceBoundary.ConnectionGeometry 
 		{ 
@@ -36,6 +68,11 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				return ConnectionGeometry;
 			} 
+			set
+			{
+				ConnectionGeometry = value as GeometricConstraintResource.IfcConnectionGeometry;
+				
+			}
 		}
 		Ifc4.Interfaces.IfcPhysicalOrVirtualEnum IIfcRelSpaceBoundary.PhysicalOrVirtualBoundary 
 		{ 
@@ -57,6 +94,28 @@ namespace Xbim.Ifc2x3.ProductExtension
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcPhysicalOrVirtualEnum.PHYSICAL:
+						PhysicalOrVirtualBoundary = IfcPhysicalOrVirtualEnum.PHYSICAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcPhysicalOrVirtualEnum.VIRTUAL:
+						PhysicalOrVirtualBoundary = IfcPhysicalOrVirtualEnum.VIRTUAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcPhysicalOrVirtualEnum.NOTDEFINED:
+						PhysicalOrVirtualBoundary = IfcPhysicalOrVirtualEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.Interfaces.IfcInternalOrExternalEnum IIfcRelSpaceBoundary.InternalOrExternalBoundary 
 		{ 
@@ -78,6 +137,46 @@ namespace Xbim.Ifc2x3.ProductExtension
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcInternalOrExternalEnum.INTERNAL:
+						InternalOrExternalBoundary = IfcInternalOrExternalEnum.INTERNAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcInternalOrExternalEnum.EXTERNAL:
+						InternalOrExternalBoundary = IfcInternalOrExternalEnum.EXTERNAL;
+						return;
+					
+					case Ifc4.Interfaces.IfcInternalOrExternalEnum.EXTERNAL_EARTH:
+						//## Handle setting of EXTERNAL_EARTH member from IfcInternalOrExternalEnum in property InternalOrExternalBoundary
+						//TODO: Handle setting of EXTERNAL_EARTH member from IfcInternalOrExternalEnum in property InternalOrExternalBoundary
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcInternalOrExternalEnum.EXTERNAL_WATER:
+						//## Handle setting of EXTERNAL_WATER member from IfcInternalOrExternalEnum in property InternalOrExternalBoundary
+						//TODO: Handle setting of EXTERNAL_WATER member from IfcInternalOrExternalEnum in property InternalOrExternalBoundary
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcInternalOrExternalEnum.EXTERNAL_FIRE:
+						//## Handle setting of EXTERNAL_FIRE member from IfcInternalOrExternalEnum in property InternalOrExternalBoundary
+						//TODO: Handle setting of EXTERNAL_FIRE member from IfcInternalOrExternalEnum in property InternalOrExternalBoundary
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcInternalOrExternalEnum.NOTDEFINED:
+						InternalOrExternalBoundary = IfcInternalOrExternalEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

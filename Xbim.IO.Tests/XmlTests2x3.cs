@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Xml;
 using System.Xml.Schema;
@@ -20,17 +21,21 @@ namespace Xbim.MemoryModel.Tests
             const string output = "..\\..\\4walls1floorSite.ifcxml";
             using (var esent = new IO.Esent.EsentModel(new EntityFactory()))
             {
-                esent.CreateFrom("4walls1floorSite.ifc", null, null, true, true);
+                string fileName =  Guid.NewGuid() + ".xbim";
+                esent.CreateFrom("4walls1floorSite.ifc", fileName, null, true, true);
                 esent.SaveAs(output, IfcStorageType.IfcXml);
                 var errs = ValidateIfc2X3("..\\..\\4walls1floorSite.ifcxml");
                 Assert.AreEqual(0, errs);
+                esent.Close();
             }
 
             using (var esent = new IO.Esent.EsentModel(new EntityFactory()))
             {
-                var success = esent.CreateFrom(output, null, null, true, true);
+                string fileName =  Guid.NewGuid() + ".xbim";
+                var success = esent.CreateFrom(output, fileName, null, true, true);
                 Assert.IsTrue(success);
                 Assert.AreEqual(4, esent.Instances.CountOf<IfcWall>());
+                esent.Close();
             }
 
             //check version info

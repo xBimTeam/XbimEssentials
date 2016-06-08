@@ -41,8 +41,12 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 	public  partial class @IfcVertexBasedTextureMap : INotifyPropertyChanged, IInstantiableEntity, IIfcVertexBasedTextureMap, IContainsEntityReferences, IEquatable<@IfcVertexBasedTextureMap>
 	{
 		#region IIfcVertexBasedTextureMap explicit implementation
-		IEnumerable<IIfcTextureVertex> IIfcVertexBasedTextureMap.TextureVertices { get { return @TextureVertices; } }	
-		IEnumerable<IIfcCartesianPoint> IIfcVertexBasedTextureMap.TexturePoints { get { return @TexturePoints; } }	
+		IEnumerable<IIfcTextureVertex> IIfcVertexBasedTextureMap.TextureVertices { 
+			get { return @TextureVertices; } 
+		}	
+		IEnumerable<IIfcCartesianPoint> IIfcVertexBasedTextureMap.TexturePoints { 
+			get { return @TexturePoints; } 
+		}	
 		 
 		#endregion
 

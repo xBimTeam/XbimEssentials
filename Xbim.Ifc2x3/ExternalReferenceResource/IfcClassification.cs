@@ -29,10 +29,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcClassification : IPersistEntity
 	{
-		IfcLabel @Source { get; }
-		IfcLabel @Edition { get; }
-		IIfcCalendarDate @EditionDate { get; }
-		IfcLabel @Name { get; }
+		IfcLabel @Source { get;  set; }
+		IfcLabel @Edition { get;  set; }
+		IIfcCalendarDate @EditionDate { get;  set; }
+		IfcLabel @Name { get;  set; }
 		IEnumerable<IIfcClassificationItem> @Contains {  get; }
 	
 	}
@@ -45,10 +45,27 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 	public  partial class @IfcClassification : INotifyPropertyChanged, IInstantiableEntity, IIfcClassification, IContainsEntityReferences, IEquatable<@IfcClassification>
 	{
 		#region IIfcClassification explicit implementation
-		IfcLabel IIfcClassification.Source { get { return @Source; } }	
-		IfcLabel IIfcClassification.Edition { get { return @Edition; } }	
-		IIfcCalendarDate IIfcClassification.EditionDate { get { return @EditionDate; } }	
-		IfcLabel IIfcClassification.Name { get { return @Name; } }	
+		IfcLabel IIfcClassification.Source { 
+			get { return @Source; } 
+ 
+			set { Source = value;}
+		}	
+		IfcLabel IIfcClassification.Edition { 
+			get { return @Edition; } 
+ 
+			set { Edition = value;}
+		}	
+		IIfcCalendarDate IIfcClassification.EditionDate { 
+			get { return @EditionDate; } 
+ 
+ 
+			set { EditionDate = value as IfcCalendarDate;}
+		}	
+		IfcLabel IIfcClassification.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
 		 
 		IEnumerable<IIfcClassificationItem> IIfcClassification.Contains {  get { return @Contains; } }
 		#endregion

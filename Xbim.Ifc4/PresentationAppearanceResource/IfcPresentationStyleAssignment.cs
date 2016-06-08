@@ -39,7 +39,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcPresentationStyleAssignment : INotifyPropertyChanged, IInstantiableEntity, IIfcPresentationStyleAssignment, IEquatable<@IfcPresentationStyleAssignment>
 	{
 		#region IIfcPresentationStyleAssignment explicit implementation
-		IEnumerable<IIfcPresentationStyleSelect> IIfcPresentationStyleAssignment.Styles { get { return @Styles; } }	
+		IEnumerable<IIfcPresentationStyleSelect> IIfcPresentationStyleAssignment.Styles { 
+			get { return @Styles; } 
+		}	
 		 
 		#endregion
 

@@ -22,15 +22,27 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				return RelatingPort;
 			} 
+			set
+			{
+				RelatingPort = value as IfcPort;
+				
+			}
 		}
 		IIfcDistributionElement IIfcRelConnectsPortToElement.RelatedElement 
 		{ 
 			get
 			{
 				//## Handle return of RelatedElement for which no match was found
-                return new Xbim.Ifc2x3.Interfaces.Conversions.IfcDistributionElementTransient(RelatedElement);
+                return RelatedElement;
 				//##
 			} 
+			set
+			{
+				//## Handle setting of RelatedElement for which no match was found
+				RelatedElement = value as IfcElement;
+				//##
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSurfaceStyle : IIfcPresentationStyle, IfcPresentationStyleSelect
 	{
-		IfcSurfaceSide @Side { get; }
+		IfcSurfaceSide @Side { get;  set; }
 		IEnumerable<IIfcSurfaceStyleElementSelect> @Styles { get; }
 	
 	}
@@ -38,8 +38,14 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcSurfaceStyle : IfcPresentationStyle, IInstantiableEntity, IIfcSurfaceStyle, IEquatable<@IfcSurfaceStyle>
 	{
 		#region IIfcSurfaceStyle explicit implementation
-		IfcSurfaceSide IIfcSurfaceStyle.Side { get { return @Side; } }	
-		IEnumerable<IIfcSurfaceStyleElementSelect> IIfcSurfaceStyle.Styles { get { return @Styles; } }	
+		IfcSurfaceSide IIfcSurfaceStyle.Side { 
+			get { return @Side; } 
+ 
+			set { Side = value;}
+		}	
+		IEnumerable<IIfcSurfaceStyleElementSelect> IIfcSurfaceStyle.Styles { 
+			get { return @Styles; } 
+		}	
 		 
 		#endregion
 

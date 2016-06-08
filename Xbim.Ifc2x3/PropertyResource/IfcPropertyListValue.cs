@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcPropertyListValue : IIfcSimpleProperty
 	{
 		IEnumerable<IIfcValue> @ListValues { get; }
-		IIfcUnit @Unit { get; }
+		IIfcUnit @Unit { get;  set; }
 	
 	}
 }
@@ -39,8 +39,15 @@ namespace Xbim.Ifc2x3.PropertyResource
 	public  partial class @IfcPropertyListValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyListValue, IContainsEntityReferences, IEquatable<@IfcPropertyListValue>
 	{
 		#region IIfcPropertyListValue explicit implementation
-		IEnumerable<IIfcValue> IIfcPropertyListValue.ListValues { get { return @ListValues; } }	
-		IIfcUnit IIfcPropertyListValue.Unit { get { return @Unit; } }	
+		IEnumerable<IIfcValue> IIfcPropertyListValue.ListValues { 
+			get { return @ListValues; } 
+		}	
+		IIfcUnit IIfcPropertyListValue.Unit { 
+			get { return @Unit; } 
+ 
+ 
+			set { Unit = value as IfcUnit;}
+		}	
 		 
 		#endregion
 

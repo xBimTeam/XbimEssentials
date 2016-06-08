@@ -26,14 +26,14 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcElectricalBaseProperties : IIfcEnergyProperties
 	{
-		IfcElectricCurrentEnum? @ElectricCurrentType { get; }
-		IfcElectricVoltageMeasure @InputVoltage { get; }
-		IfcFrequencyMeasure @InputFrequency { get; }
-		IfcElectricCurrentMeasure? @FullLoadCurrent { get; }
-		IfcElectricCurrentMeasure? @MinimumCircuitCurrent { get; }
-		IfcPowerMeasure? @MaximumPowerInput { get; }
-		IfcPowerMeasure? @RatedPowerInput { get; }
-		long @InputPhase { get; }
+		IfcElectricCurrentEnum? @ElectricCurrentType { get;  set; }
+		IfcElectricVoltageMeasure @InputVoltage { get;  set; }
+		IfcFrequencyMeasure @InputFrequency { get;  set; }
+		IfcElectricCurrentMeasure? @FullLoadCurrent { get;  set; }
+		IfcElectricCurrentMeasure? @MinimumCircuitCurrent { get;  set; }
+		IfcPowerMeasure? @MaximumPowerInput { get;  set; }
+		IfcPowerMeasure? @RatedPowerInput { get;  set; }
+		long @InputPhase { get;  set; }
 	
 	}
 }
@@ -45,14 +45,46 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 	public  partial class @IfcElectricalBaseProperties : IfcEnergyProperties, IInstantiableEntity, IIfcElectricalBaseProperties, IContainsEntityReferences, IEquatable<@IfcElectricalBaseProperties>
 	{
 		#region IIfcElectricalBaseProperties explicit implementation
-		IfcElectricCurrentEnum? IIfcElectricalBaseProperties.ElectricCurrentType { get { return @ElectricCurrentType; } }	
-		IfcElectricVoltageMeasure IIfcElectricalBaseProperties.InputVoltage { get { return @InputVoltage; } }	
-		IfcFrequencyMeasure IIfcElectricalBaseProperties.InputFrequency { get { return @InputFrequency; } }	
-		IfcElectricCurrentMeasure? IIfcElectricalBaseProperties.FullLoadCurrent { get { return @FullLoadCurrent; } }	
-		IfcElectricCurrentMeasure? IIfcElectricalBaseProperties.MinimumCircuitCurrent { get { return @MinimumCircuitCurrent; } }	
-		IfcPowerMeasure? IIfcElectricalBaseProperties.MaximumPowerInput { get { return @MaximumPowerInput; } }	
-		IfcPowerMeasure? IIfcElectricalBaseProperties.RatedPowerInput { get { return @RatedPowerInput; } }	
-		long IIfcElectricalBaseProperties.InputPhase { get { return @InputPhase; } }	
+		IfcElectricCurrentEnum? IIfcElectricalBaseProperties.ElectricCurrentType { 
+			get { return @ElectricCurrentType; } 
+ 
+			set { ElectricCurrentType = value;}
+		}	
+		IfcElectricVoltageMeasure IIfcElectricalBaseProperties.InputVoltage { 
+			get { return @InputVoltage; } 
+ 
+			set { InputVoltage = value;}
+		}	
+		IfcFrequencyMeasure IIfcElectricalBaseProperties.InputFrequency { 
+			get { return @InputFrequency; } 
+ 
+			set { InputFrequency = value;}
+		}	
+		IfcElectricCurrentMeasure? IIfcElectricalBaseProperties.FullLoadCurrent { 
+			get { return @FullLoadCurrent; } 
+ 
+			set { FullLoadCurrent = value;}
+		}	
+		IfcElectricCurrentMeasure? IIfcElectricalBaseProperties.MinimumCircuitCurrent { 
+			get { return @MinimumCircuitCurrent; } 
+ 
+			set { MinimumCircuitCurrent = value;}
+		}	
+		IfcPowerMeasure? IIfcElectricalBaseProperties.MaximumPowerInput { 
+			get { return @MaximumPowerInput; } 
+ 
+			set { MaximumPowerInput = value;}
+		}	
+		IfcPowerMeasure? IIfcElectricalBaseProperties.RatedPowerInput { 
+			get { return @RatedPowerInput; } 
+ 
+			set { RatedPowerInput = value;}
+		}	
+		long IIfcElectricalBaseProperties.InputPhase { 
+			get { return @InputPhase; } 
+ 
+			set { InputPhase = value;}
+		}	
 		 
 		#endregion
 

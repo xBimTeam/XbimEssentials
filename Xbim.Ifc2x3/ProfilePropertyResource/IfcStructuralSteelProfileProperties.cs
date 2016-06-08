@@ -26,10 +26,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralSteelProfileProperties : IIfcStructuralProfileProperties
 	{
-		IfcAreaMeasure? @ShearAreaZ { get; }
-		IfcAreaMeasure? @ShearAreaY { get; }
-		IfcPositiveRatioMeasure? @PlasticShapeFactorY { get; }
-		IfcPositiveRatioMeasure? @PlasticShapeFactorZ { get; }
+		IfcAreaMeasure? @ShearAreaZ { get;  set; }
+		IfcAreaMeasure? @ShearAreaY { get;  set; }
+		IfcPositiveRatioMeasure? @PlasticShapeFactorY { get;  set; }
+		IfcPositiveRatioMeasure? @PlasticShapeFactorZ { get;  set; }
 	
 	}
 }
@@ -41,10 +41,26 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 	public  partial class @IfcStructuralSteelProfileProperties : IfcStructuralProfileProperties, IInstantiableEntity, IIfcStructuralSteelProfileProperties, IContainsEntityReferences, IEquatable<@IfcStructuralSteelProfileProperties>
 	{
 		#region IIfcStructuralSteelProfileProperties explicit implementation
-		IfcAreaMeasure? IIfcStructuralSteelProfileProperties.ShearAreaZ { get { return @ShearAreaZ; } }	
-		IfcAreaMeasure? IIfcStructuralSteelProfileProperties.ShearAreaY { get { return @ShearAreaY; } }	
-		IfcPositiveRatioMeasure? IIfcStructuralSteelProfileProperties.PlasticShapeFactorY { get { return @PlasticShapeFactorY; } }	
-		IfcPositiveRatioMeasure? IIfcStructuralSteelProfileProperties.PlasticShapeFactorZ { get { return @PlasticShapeFactorZ; } }	
+		IfcAreaMeasure? IIfcStructuralSteelProfileProperties.ShearAreaZ { 
+			get { return @ShearAreaZ; } 
+ 
+			set { ShearAreaZ = value;}
+		}	
+		IfcAreaMeasure? IIfcStructuralSteelProfileProperties.ShearAreaY { 
+			get { return @ShearAreaY; } 
+ 
+			set { ShearAreaY = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcStructuralSteelProfileProperties.PlasticShapeFactorY { 
+			get { return @PlasticShapeFactorY; } 
+ 
+			set { PlasticShapeFactorY = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcStructuralSteelProfileProperties.PlasticShapeFactorZ { 
+			get { return @PlasticShapeFactorZ; } 
+ 
+			set { PlasticShapeFactorZ = value;}
+		}	
 		 
 		#endregion
 

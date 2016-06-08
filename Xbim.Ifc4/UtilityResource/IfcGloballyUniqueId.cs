@@ -15,7 +15,7 @@ namespace Xbim.Ifc4.UtilityResource
 	[ExpressType("IfcGloballyUniqueId", 443)]
 	[DefinedType(typeof(string))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcGloballyUniqueId : IExpressValueType, System.IEquatable<string>
+	public partial struct IfcGloballyUniqueId : IExpressValueType, IExpressStringType, System.IEquatable<string>
 	{ 
 		private string _value;
         
@@ -23,6 +23,9 @@ namespace Xbim.Ifc4.UtilityResource
         {
             get { return _value; }
         }
+
+ 
+		string IExpressStringType.Value { get { return _value; } }
 
 		public override string ToString()
         {

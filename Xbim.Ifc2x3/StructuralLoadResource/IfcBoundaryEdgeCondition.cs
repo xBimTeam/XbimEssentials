@@ -26,12 +26,12 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBoundaryEdgeCondition : IIfcBoundaryCondition
 	{
-		IfcModulusOfLinearSubgradeReactionMeasure? @LinearStiffnessByLengthX { get; }
-		IfcModulusOfLinearSubgradeReactionMeasure? @LinearStiffnessByLengthY { get; }
-		IfcModulusOfLinearSubgradeReactionMeasure? @LinearStiffnessByLengthZ { get; }
-		IfcModulusOfRotationalSubgradeReactionMeasure? @RotationalStiffnessByLengthX { get; }
-		IfcModulusOfRotationalSubgradeReactionMeasure? @RotationalStiffnessByLengthY { get; }
-		IfcModulusOfRotationalSubgradeReactionMeasure? @RotationalStiffnessByLengthZ { get; }
+		IfcModulusOfLinearSubgradeReactionMeasure? @LinearStiffnessByLengthX { get;  set; }
+		IfcModulusOfLinearSubgradeReactionMeasure? @LinearStiffnessByLengthY { get;  set; }
+		IfcModulusOfLinearSubgradeReactionMeasure? @LinearStiffnessByLengthZ { get;  set; }
+		IfcModulusOfRotationalSubgradeReactionMeasure? @RotationalStiffnessByLengthX { get;  set; }
+		IfcModulusOfRotationalSubgradeReactionMeasure? @RotationalStiffnessByLengthY { get;  set; }
+		IfcModulusOfRotationalSubgradeReactionMeasure? @RotationalStiffnessByLengthZ { get;  set; }
 	
 	}
 }
@@ -43,12 +43,36 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 	public  partial class @IfcBoundaryEdgeCondition : IfcBoundaryCondition, IInstantiableEntity, IIfcBoundaryEdgeCondition, IEquatable<@IfcBoundaryEdgeCondition>
 	{
 		#region IIfcBoundaryEdgeCondition explicit implementation
-		IfcModulusOfLinearSubgradeReactionMeasure? IIfcBoundaryEdgeCondition.LinearStiffnessByLengthX { get { return @LinearStiffnessByLengthX; } }	
-		IfcModulusOfLinearSubgradeReactionMeasure? IIfcBoundaryEdgeCondition.LinearStiffnessByLengthY { get { return @LinearStiffnessByLengthY; } }	
-		IfcModulusOfLinearSubgradeReactionMeasure? IIfcBoundaryEdgeCondition.LinearStiffnessByLengthZ { get { return @LinearStiffnessByLengthZ; } }	
-		IfcModulusOfRotationalSubgradeReactionMeasure? IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthX { get { return @RotationalStiffnessByLengthX; } }	
-		IfcModulusOfRotationalSubgradeReactionMeasure? IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthY { get { return @RotationalStiffnessByLengthY; } }	
-		IfcModulusOfRotationalSubgradeReactionMeasure? IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthZ { get { return @RotationalStiffnessByLengthZ; } }	
+		IfcModulusOfLinearSubgradeReactionMeasure? IIfcBoundaryEdgeCondition.LinearStiffnessByLengthX { 
+			get { return @LinearStiffnessByLengthX; } 
+ 
+			set { LinearStiffnessByLengthX = value;}
+		}	
+		IfcModulusOfLinearSubgradeReactionMeasure? IIfcBoundaryEdgeCondition.LinearStiffnessByLengthY { 
+			get { return @LinearStiffnessByLengthY; } 
+ 
+			set { LinearStiffnessByLengthY = value;}
+		}	
+		IfcModulusOfLinearSubgradeReactionMeasure? IIfcBoundaryEdgeCondition.LinearStiffnessByLengthZ { 
+			get { return @LinearStiffnessByLengthZ; } 
+ 
+			set { LinearStiffnessByLengthZ = value;}
+		}	
+		IfcModulusOfRotationalSubgradeReactionMeasure? IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthX { 
+			get { return @RotationalStiffnessByLengthX; } 
+ 
+			set { RotationalStiffnessByLengthX = value;}
+		}	
+		IfcModulusOfRotationalSubgradeReactionMeasure? IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthY { 
+			get { return @RotationalStiffnessByLengthY; } 
+ 
+			set { RotationalStiffnessByLengthY = value;}
+		}	
+		IfcModulusOfRotationalSubgradeReactionMeasure? IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthZ { 
+			get { return @RotationalStiffnessByLengthZ; } 
+ 
+			set { RotationalStiffnessByLengthZ = value;}
+		}	
 		 
 		#endregion
 

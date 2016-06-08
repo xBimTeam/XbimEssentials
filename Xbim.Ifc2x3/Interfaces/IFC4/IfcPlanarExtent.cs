@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.PresentationResource
 			{
 				return new Ifc4.MeasureResource.IfcLengthMeasure(SizeInX);
 			} 
+			set
+			{
+				SizeInX = new MeasureResource.IfcLengthMeasure(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure IIfcPlanarExtent.SizeInY 
 		{ 
@@ -29,6 +34,11 @@ namespace Xbim.Ifc2x3.PresentationResource
 			{
 				return new Ifc4.MeasureResource.IfcLengthMeasure(SizeInY);
 			} 
+			set
+			{
+				SizeInY = new MeasureResource.IfcLengthMeasure(value);
+				
+			}
 		}
 	//## Custom code
 	//##

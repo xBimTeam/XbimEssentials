@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCsgSolid : IIfcSolidModel
 	{
-		IIfcCsgSelect @TreeRootExpression { get; }
+		IIfcCsgSelect @TreeRootExpression { get;  set; }
 	
 	}
 }
@@ -37,7 +37,12 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 	public  partial class @IfcCsgSolid : IfcSolidModel, IInstantiableEntity, IIfcCsgSolid, IContainsEntityReferences, IEquatable<@IfcCsgSolid>
 	{
 		#region IIfcCsgSolid explicit implementation
-		IIfcCsgSelect IIfcCsgSolid.TreeRootExpression { get { return @TreeRootExpression; } }	
+		IIfcCsgSelect IIfcCsgSolid.TreeRootExpression { 
+			get { return @TreeRootExpression; } 
+ 
+ 
+			set { TreeRootExpression = value as IfcCsgSelect;}
+		}	
 		 
 		#endregion
 

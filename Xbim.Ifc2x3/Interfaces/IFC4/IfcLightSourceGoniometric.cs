@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				return Position;
 			} 
+			set
+			{
+				Position = value as GeometryResource.IfcAxis2Placement3D;
+				
+			}
 		}
 		IIfcColourRgb IIfcLightSourceGoniometric.ColourAppearance 
 		{ 
@@ -29,6 +34,11 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				return ColourAppearance;
 			} 
+			set
+			{
+				ColourAppearance = value as PresentationResource.IfcColourRgb;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure IIfcLightSourceGoniometric.ColourTemperature 
 		{ 
@@ -36,6 +46,11 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				return new Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure(ColourTemperature);
 			} 
+			set
+			{
+				ColourTemperature = new MeasureResource.IfcThermodynamicTemperatureMeasure(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLuminousFluxMeasure IIfcLightSourceGoniometric.LuminousFlux 
 		{ 
@@ -43,6 +58,11 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				return new Ifc4.MeasureResource.IfcLuminousFluxMeasure(LuminousFlux);
 			} 
+			set
+			{
+				LuminousFlux = new MeasureResource.IfcLuminousFluxMeasure(value);
+				
+			}
 		}
 		Ifc4.Interfaces.IfcLightEmissionSourceEnum IIfcLightSourceGoniometric.LightEmissionSource 
 		{ 
@@ -88,6 +108,60 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcLightEmissionSourceEnum.COMPACTFLUORESCENT:
+						LightEmissionSource = IfcLightEmissionSourceEnum.COMPACTFLUORESCENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcLightEmissionSourceEnum.FLUORESCENT:
+						LightEmissionSource = IfcLightEmissionSourceEnum.FLUORESCENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcLightEmissionSourceEnum.HIGHPRESSUREMERCURY:
+						LightEmissionSource = IfcLightEmissionSourceEnum.HIGHPRESSUREMERCURY;
+						return;
+					
+					case Ifc4.Interfaces.IfcLightEmissionSourceEnum.HIGHPRESSURESODIUM:
+						LightEmissionSource = IfcLightEmissionSourceEnum.HIGHPRESSURESODIUM;
+						return;
+					
+					case Ifc4.Interfaces.IfcLightEmissionSourceEnum.LIGHTEMITTINGDIODE:
+						LightEmissionSource = IfcLightEmissionSourceEnum.LIGHTEMITTINGDIODE;
+						return;
+					
+					case Ifc4.Interfaces.IfcLightEmissionSourceEnum.LOWPRESSURESODIUM:
+						LightEmissionSource = IfcLightEmissionSourceEnum.LOWPRESSURESODIUM;
+						return;
+					
+					case Ifc4.Interfaces.IfcLightEmissionSourceEnum.LOWVOLTAGEHALOGEN:
+						LightEmissionSource = IfcLightEmissionSourceEnum.LOWVOLTAGEHALOGEN;
+						return;
+					
+					case Ifc4.Interfaces.IfcLightEmissionSourceEnum.MAINVOLTAGEHALOGEN:
+						LightEmissionSource = IfcLightEmissionSourceEnum.MAINVOLTAGEHALOGEN;
+						return;
+					
+					case Ifc4.Interfaces.IfcLightEmissionSourceEnum.METALHALIDE:
+						LightEmissionSource = IfcLightEmissionSourceEnum.METALHALIDE;
+						return;
+					
+					case Ifc4.Interfaces.IfcLightEmissionSourceEnum.TUNGSTENFILAMENT:
+						LightEmissionSource = IfcLightEmissionSourceEnum.TUNGSTENFILAMENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcLightEmissionSourceEnum.NOTDEFINED:
+						LightEmissionSource = IfcLightEmissionSourceEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		IIfcLightDistributionDataSourceSelect IIfcLightSourceGoniometric.LightDistributionDataSource 
 		{ 
@@ -102,6 +176,27 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 					return ifclightintensitydistribution;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					LightDistributionDataSource = null;
+					return;
+				}	
+				var ifcexternalreference = value as ExternalReferenceResource.IfcExternalReference;
+				if (ifcexternalreference != null) 
+				{
+					LightDistributionDataSource = ifcexternalreference;
+					return;
+				}
+				var ifclightintensitydistribution = value as IfcLightIntensityDistribution;
+				if (ifclightintensitydistribution != null) 
+				{
+					LightDistributionDataSource = ifclightintensitydistribution;
+					return;
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

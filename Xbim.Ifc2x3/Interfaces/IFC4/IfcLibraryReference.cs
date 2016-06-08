@@ -16,32 +16,50 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	public partial class @IfcLibraryReference : IIfcLibraryReference
 	{
+
+		private  Ifc4.MeasureResource.IfcText? _description;
+
 		Ifc4.MeasureResource.IfcText? IIfcLibraryReference.Description 
 		{ 
 			get
 			{
-				//## Handle return of Description for which no match was found
-			    return null;
-			    //##
+				return _description;
 			} 
+			set
+			{
+				SetValue(v => _description = v, _description, value, "Description", byte.MaxValue);
+				
+			}
 		}
+
+		private  Ifc4.ExternalReferenceResource.IfcLanguageId? _language;
+
 		Ifc4.ExternalReferenceResource.IfcLanguageId? IIfcLibraryReference.Language 
 		{ 
 			get
 			{
-				//## Handle return of Language for which no match was found
-			    return null;
-			    //##
+				return _language;
 			} 
+			set
+			{
+				SetValue(v => _language = v, _language, value, "Language", byte.MaxValue);
+				
+			}
 		}
+
+		private  IIfcLibraryInformation _referencedLibrary;
+
 		IIfcLibraryInformation IIfcLibraryReference.ReferencedLibrary 
 		{ 
 			get
 			{
-				//## Handle return of ReferencedLibrary for which no match was found
-			    return null;
-			    //##
+				return _referencedLibrary;
 			} 
+			set
+			{
+				SetValue(v => _referencedLibrary = v, _referencedLibrary, value, "ReferencedLibrary", byte.MaxValue);
+				
+			}
 		}
 		IEnumerable<IIfcRelAssociatesLibrary> IIfcLibraryReference.LibraryRefForObjects 
 		{ 

@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSanitaryTerminal : IIfcFlowTerminal
 	{
-		IfcSanitaryTerminalTypeEnum? @PredefinedType { get; }
+		IfcSanitaryTerminalTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 	public  partial class @IfcSanitaryTerminal : IfcFlowTerminal, IInstantiableEntity, IIfcSanitaryTerminal, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSanitaryTerminal>
 	{
 		#region IIfcSanitaryTerminal explicit implementation
-		IfcSanitaryTerminalTypeEnum? IIfcSanitaryTerminal.PredefinedType { get { return @PredefinedType; } }	
+		IfcSanitaryTerminalTypeEnum? IIfcSanitaryTerminal.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

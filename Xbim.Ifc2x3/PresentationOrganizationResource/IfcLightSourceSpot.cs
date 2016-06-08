@@ -27,10 +27,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcLightSourceSpot : IIfcLightSourcePositional
 	{
-		IIfcDirection @Orientation { get; }
-		IfcReal? @ConcentrationExponent { get; }
-		IfcPositivePlaneAngleMeasure @SpreadAngle { get; }
-		IfcPositivePlaneAngleMeasure @BeamWidthAngle { get; }
+		IIfcDirection @Orientation { get;  set; }
+		IfcReal? @ConcentrationExponent { get;  set; }
+		IfcPositivePlaneAngleMeasure @SpreadAngle { get;  set; }
+		IfcPositivePlaneAngleMeasure @BeamWidthAngle { get;  set; }
 	
 	}
 }
@@ -42,10 +42,27 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 	public  partial class @IfcLightSourceSpot : IfcLightSourcePositional, IInstantiableEntity, IIfcLightSourceSpot, IContainsEntityReferences, IEquatable<@IfcLightSourceSpot>
 	{
 		#region IIfcLightSourceSpot explicit implementation
-		IIfcDirection IIfcLightSourceSpot.Orientation { get { return @Orientation; } }	
-		IfcReal? IIfcLightSourceSpot.ConcentrationExponent { get { return @ConcentrationExponent; } }	
-		IfcPositivePlaneAngleMeasure IIfcLightSourceSpot.SpreadAngle { get { return @SpreadAngle; } }	
-		IfcPositivePlaneAngleMeasure IIfcLightSourceSpot.BeamWidthAngle { get { return @BeamWidthAngle; } }	
+		IIfcDirection IIfcLightSourceSpot.Orientation { 
+			get { return @Orientation; } 
+ 
+ 
+			set { Orientation = value as IfcDirection;}
+		}	
+		IfcReal? IIfcLightSourceSpot.ConcentrationExponent { 
+			get { return @ConcentrationExponent; } 
+ 
+			set { ConcentrationExponent = value;}
+		}	
+		IfcPositivePlaneAngleMeasure IIfcLightSourceSpot.SpreadAngle { 
+			get { return @SpreadAngle; } 
+ 
+			set { SpreadAngle = value;}
+		}	
+		IfcPositivePlaneAngleMeasure IIfcLightSourceSpot.BeamWidthAngle { 
+			get { return @BeamWidthAngle; } 
+ 
+			set { BeamWidthAngle = value;}
+		}	
 		 
 		#endregion
 

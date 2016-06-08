@@ -26,8 +26,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcHalfSpaceSolid : IIfcGeometricRepresentationItem, IfcBooleanOperand
 	{
-		IIfcSurface @BaseSurface { get; }
-		bool @AgreementFlag { get; }
+		IIfcSurface @BaseSurface { get;  set; }
+		bool @AgreementFlag { get;  set; }
 	
 	}
 }
@@ -39,8 +39,17 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 	public  partial class @IfcHalfSpaceSolid : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcHalfSpaceSolid, IContainsEntityReferences, IEquatable<@IfcHalfSpaceSolid>
 	{
 		#region IIfcHalfSpaceSolid explicit implementation
-		IIfcSurface IIfcHalfSpaceSolid.BaseSurface { get { return @BaseSurface; } }	
-		bool IIfcHalfSpaceSolid.AgreementFlag { get { return @AgreementFlag; } }	
+		IIfcSurface IIfcHalfSpaceSolid.BaseSurface { 
+			get { return @BaseSurface; } 
+ 
+ 
+			set { BaseSurface = value as IfcSurface;}
+		}	
+		bool IIfcHalfSpaceSolid.AgreementFlag { 
+			get { return @AgreementFlag; } 
+ 
+			set { AgreementFlag = value;}
+		}	
 		 
 		#endregion
 

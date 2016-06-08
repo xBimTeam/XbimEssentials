@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcAirTerminalBox : IIfcFlowController
 	{
-		IfcAirTerminalBoxTypeEnum? @PredefinedType { get; }
+		IfcAirTerminalBoxTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.HvacDomain
 	public  partial class @IfcAirTerminalBox : IfcFlowController, IInstantiableEntity, IIfcAirTerminalBox, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAirTerminalBox>
 	{
 		#region IIfcAirTerminalBox explicit implementation
-		IfcAirTerminalBoxTypeEnum? IIfcAirTerminalBox.PredefinedType { get { return @PredefinedType; } }	
+		IfcAirTerminalBoxTypeEnum? IIfcAirTerminalBox.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

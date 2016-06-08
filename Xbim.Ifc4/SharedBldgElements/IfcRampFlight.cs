@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRampFlight : IIfcBuildingElement
 	{
-		IfcRampFlightTypeEnum? @PredefinedType { get; }
+		IfcRampFlightTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.SharedBldgElements
 	public  partial class @IfcRampFlight : IfcBuildingElement, IInstantiableEntity, IIfcRampFlight, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRampFlight>
 	{
 		#region IIfcRampFlight explicit implementation
-		IfcRampFlightTypeEnum? IIfcRampFlight.PredefinedType { get { return @PredefinedType; } }	
+		IfcRampFlightTypeEnum? IIfcRampFlight.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

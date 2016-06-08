@@ -27,9 +27,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcEventType : IIfcTypeProcess
 	{
-		IfcEventTypeEnum @PredefinedType { get; }
-		IfcEventTriggerTypeEnum @EventTriggerType { get; }
-		IfcLabel? @UserDefinedEventTriggerType { get; }
+		IfcEventTypeEnum @PredefinedType { get;  set; }
+		IfcEventTriggerTypeEnum @EventTriggerType { get;  set; }
+		IfcLabel? @UserDefinedEventTriggerType { get;  set; }
 	
 	}
 }
@@ -41,9 +41,21 @@ namespace Xbim.Ifc4.ProcessExtension
 	public  partial class @IfcEventType : IfcTypeProcess, IInstantiableEntity, IIfcEventType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcEventType>
 	{
 		#region IIfcEventType explicit implementation
-		IfcEventTypeEnum IIfcEventType.PredefinedType { get { return @PredefinedType; } }	
-		IfcEventTriggerTypeEnum IIfcEventType.EventTriggerType { get { return @EventTriggerType; } }	
-		IfcLabel? IIfcEventType.UserDefinedEventTriggerType { get { return @UserDefinedEventTriggerType; } }	
+		IfcEventTypeEnum IIfcEventType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
+		IfcEventTriggerTypeEnum IIfcEventType.EventTriggerType { 
+			get { return @EventTriggerType; } 
+ 
+			set { EventTriggerType = value;}
+		}	
+		IfcLabel? IIfcEventType.UserDefinedEventTriggerType { 
+			get { return @UserDefinedEventTriggerType; } 
+ 
+			set { UserDefinedEventTriggerType = value;}
+		}	
 		 
 		#endregion
 

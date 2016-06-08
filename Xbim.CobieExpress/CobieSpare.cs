@@ -25,13 +25,13 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieSpare : ICobieReferencedObject
 	{
-		string @Name { get; }
-		string @Description { get; }
-		ICobieSpareType @SpareType { get; }
-		ICobieType @Type { get; }
+		string @Name { get;  set; }
+		string @Description { get;  set; }
+		ICobieSpareType @SpareType { get;  set; }
+		ICobieType @Type { get;  set; }
 		IEnumerable<ICobieContact> @Suppliers { get; }
-		string @SetNumber { get; }
-		string @PartNumber { get; }
+		string @SetNumber { get;  set; }
+		string @PartNumber { get;  set; }
 	
 	}
 }
@@ -43,13 +43,41 @@ namespace Xbim.CobieExpress
 	public  partial class @CobieSpare : CobieReferencedObject, IInstantiableEntity, ICobieSpare, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieSpare>
 	{
 		#region ICobieSpare explicit implementation
-		string ICobieSpare.Name { get { return @Name; } }	
-		string ICobieSpare.Description { get { return @Description; } }	
-		ICobieSpareType ICobieSpare.SpareType { get { return @SpareType; } }	
-		ICobieType ICobieSpare.Type { get { return @Type; } }	
-		IEnumerable<ICobieContact> ICobieSpare.Suppliers { get { return @Suppliers; } }	
-		string ICobieSpare.SetNumber { get { return @SetNumber; } }	
-		string ICobieSpare.PartNumber { get { return @PartNumber; } }	
+		string ICobieSpare.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		string ICobieSpare.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		ICobieSpareType ICobieSpare.SpareType { 
+			get { return @SpareType; } 
+ 
+ 
+			set { SpareType = value as CobieSpareType;}
+		}	
+		ICobieType ICobieSpare.Type { 
+			get { return @Type; } 
+ 
+ 
+			set { Type = value as CobieType;}
+		}	
+		IEnumerable<ICobieContact> ICobieSpare.Suppliers { 
+			get { return @Suppliers; } 
+		}	
+		string ICobieSpare.SetNumber { 
+			get { return @SetNumber; } 
+ 
+			set { SetNumber = value;}
+		}	
+		string ICobieSpare.PartNumber { 
+			get { return @PartNumber; } 
+ 
+			set { PartNumber = value;}
+		}	
 		 
 		#endregion
 

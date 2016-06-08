@@ -29,12 +29,12 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelConnectsStructuralMember : IIfcRelConnects
 	{
-		IIfcStructuralMember @RelatingStructuralMember { get; }
-		IIfcStructuralConnection @RelatedStructuralConnection { get; }
-		IIfcBoundaryCondition @AppliedCondition { get; }
-		IIfcStructuralConnectionCondition @AdditionalConditions { get; }
-		IfcLengthMeasure? @SupportedLength { get; }
-		IIfcAxis2Placement3D @ConditionCoordinateSystem { get; }
+		IIfcStructuralMember @RelatingStructuralMember { get;  set; }
+		IIfcStructuralConnection @RelatedStructuralConnection { get;  set; }
+		IIfcBoundaryCondition @AppliedCondition { get;  set; }
+		IIfcStructuralConnectionCondition @AdditionalConditions { get;  set; }
+		IfcLengthMeasure? @SupportedLength { get;  set; }
+		IIfcAxis2Placement3D @ConditionCoordinateSystem { get;  set; }
 	
 	}
 }
@@ -46,12 +46,41 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	public  partial class @IfcRelConnectsStructuralMember : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsStructuralMember, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsStructuralMember>
 	{
 		#region IIfcRelConnectsStructuralMember explicit implementation
-		IIfcStructuralMember IIfcRelConnectsStructuralMember.RelatingStructuralMember { get { return @RelatingStructuralMember; } }	
-		IIfcStructuralConnection IIfcRelConnectsStructuralMember.RelatedStructuralConnection { get { return @RelatedStructuralConnection; } }	
-		IIfcBoundaryCondition IIfcRelConnectsStructuralMember.AppliedCondition { get { return @AppliedCondition; } }	
-		IIfcStructuralConnectionCondition IIfcRelConnectsStructuralMember.AdditionalConditions { get { return @AdditionalConditions; } }	
-		IfcLengthMeasure? IIfcRelConnectsStructuralMember.SupportedLength { get { return @SupportedLength; } }	
-		IIfcAxis2Placement3D IIfcRelConnectsStructuralMember.ConditionCoordinateSystem { get { return @ConditionCoordinateSystem; } }	
+		IIfcStructuralMember IIfcRelConnectsStructuralMember.RelatingStructuralMember { 
+			get { return @RelatingStructuralMember; } 
+ 
+ 
+			set { RelatingStructuralMember = value as IfcStructuralMember;}
+		}	
+		IIfcStructuralConnection IIfcRelConnectsStructuralMember.RelatedStructuralConnection { 
+			get { return @RelatedStructuralConnection; } 
+ 
+ 
+			set { RelatedStructuralConnection = value as IfcStructuralConnection;}
+		}	
+		IIfcBoundaryCondition IIfcRelConnectsStructuralMember.AppliedCondition { 
+			get { return @AppliedCondition; } 
+ 
+ 
+			set { AppliedCondition = value as IfcBoundaryCondition;}
+		}	
+		IIfcStructuralConnectionCondition IIfcRelConnectsStructuralMember.AdditionalConditions { 
+			get { return @AdditionalConditions; } 
+ 
+ 
+			set { AdditionalConditions = value as IfcStructuralConnectionCondition;}
+		}	
+		IfcLengthMeasure? IIfcRelConnectsStructuralMember.SupportedLength { 
+			get { return @SupportedLength; } 
+ 
+			set { SupportedLength = value;}
+		}	
+		IIfcAxis2Placement3D IIfcRelConnectsStructuralMember.ConditionCoordinateSystem { 
+			get { return @ConditionCoordinateSystem; } 
+ 
+ 
+			set { ConditionCoordinateSystem = value as IfcAxis2Placement3D;}
+		}	
 		 
 		#endregion
 

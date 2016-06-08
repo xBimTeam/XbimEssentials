@@ -20,37 +20,46 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get
 			{
-				//## Handle return of DeltaTConstant for which no match was found
-                if (!DeltaT_Constant.HasValue)
-                    return null;
-                else
-                    return new Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure(DeltaT_Constant.Value);
-				//##
+				if (!DeltaT_Constant.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure(DeltaT_Constant.Value);
 			} 
+			set
+			{
+				DeltaT_Constant = value.HasValue ? 
+					new MeasureResource.IfcThermodynamicTemperatureMeasure(value.Value) :  
+					 new MeasureResource.IfcThermodynamicTemperatureMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaTY 
 		{ 
 			get
 			{
-				//## Handle return of DeltaTY for which no match was found
-                if (!DeltaT_Y.HasValue)
-                    return null;
-                else
-                    return new Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure(DeltaT_Y.Value);
-				//##
+				if (!DeltaT_Y.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure(DeltaT_Y.Value);
 			} 
+			set
+			{
+				DeltaT_Y = value.HasValue ? 
+					new MeasureResource.IfcThermodynamicTemperatureMeasure(value.Value) :  
+					 new MeasureResource.IfcThermodynamicTemperatureMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaTZ 
 		{ 
 			get
 			{
-				//## Handle return of DeltaTZ for which no match was found
-                if (!DeltaT_Z.HasValue) 
-                    return null;
-                else
-                    return new Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure(DeltaT_Z.Value);
-				//##
+				if (!DeltaT_Z.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure(DeltaT_Z.Value);
 			} 
+			set
+			{
+				DeltaT_Z = value.HasValue ? 
+					new MeasureResource.IfcThermodynamicTemperatureMeasure(value.Value) :  
+					 new MeasureResource.IfcThermodynamicTemperatureMeasure?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

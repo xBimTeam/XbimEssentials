@@ -28,9 +28,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelAssociatesProfileProperties : IIfcRelAssociates
 	{
-		IIfcProfileProperties @RelatingProfileProperties { get; }
-		IIfcShapeAspect @ProfileSectionLocation { get; }
-		IIfcOrientationSelect @ProfileOrientation { get; }
+		IIfcProfileProperties @RelatingProfileProperties { get;  set; }
+		IIfcShapeAspect @ProfileSectionLocation { get;  set; }
+		IIfcOrientationSelect @ProfileOrientation { get;  set; }
 	
 	}
 }
@@ -42,9 +42,24 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 	public  partial class @IfcRelAssociatesProfileProperties : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesProfileProperties, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesProfileProperties>
 	{
 		#region IIfcRelAssociatesProfileProperties explicit implementation
-		IIfcProfileProperties IIfcRelAssociatesProfileProperties.RelatingProfileProperties { get { return @RelatingProfileProperties; } }	
-		IIfcShapeAspect IIfcRelAssociatesProfileProperties.ProfileSectionLocation { get { return @ProfileSectionLocation; } }	
-		IIfcOrientationSelect IIfcRelAssociatesProfileProperties.ProfileOrientation { get { return @ProfileOrientation; } }	
+		IIfcProfileProperties IIfcRelAssociatesProfileProperties.RelatingProfileProperties { 
+			get { return @RelatingProfileProperties; } 
+ 
+ 
+			set { RelatingProfileProperties = value as IfcProfileProperties;}
+		}	
+		IIfcShapeAspect IIfcRelAssociatesProfileProperties.ProfileSectionLocation { 
+			get { return @ProfileSectionLocation; } 
+ 
+ 
+			set { ProfileSectionLocation = value as IfcShapeAspect;}
+		}	
+		IIfcOrientationSelect IIfcRelAssociatesProfileProperties.ProfileOrientation { 
+			get { return @ProfileOrientation; } 
+ 
+ 
+			set { ProfileOrientation = value as IfcOrientationSelect;}
+		}	
 		 
 		#endregion
 

@@ -217,7 +217,7 @@
         <PropertyMapping Header="CreatedOn" Column="C" Status="Required" MultiRow="None" DefaultValue="1900-12-31T23:59:59" Paths="Created.CreatedOn" />
         <PropertyMapping Header="Category" Column="D" Status="PickValue" MultiRow="None" DefaultValue="unknown" Paths="SpareType.Value" />
         <PropertyMapping Header="TypeName" Column="E" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Type.Name" />
-        <PropertyMapping Header="Suppliers" Column="F" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Suppliers.Name" />
+        <PropertyMapping Header="Suppliers" Column="F" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Suppliers.Email" />
         <PropertyMapping Header="ExtSystem" Column="G" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalSystem.Name"  Hidden="true"/>
         <PropertyMapping Header="ExtObject" Column="H" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalObject.Name"  Hidden="true"/>
         <PropertyMapping Header="ExtIdentifier" Column="I" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalId"  Hidden="true"/>
@@ -250,7 +250,7 @@
         <PropertyMapping Header="Duration" Column="H" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Duration" />
         <PropertyMapping Header="DurationUnit" Column="I" Status="PickValue" MultiRow="None" DefaultValue="unknown" Paths="DurationUnit.Value" />
         <PropertyMapping Header="Start" Column="J" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Start" />
-        <PropertyMapping Header="TaskStartUnit" Column="K" Status="PickValue" MultiRow="None" DefaultValue="unknown" Paths="TaskStartUnit.Value" />
+        <PropertyMapping Header="TaskStartUnit" Column="K" Status="PickValue" MultiRow="None" DefaultValue="unknown" Paths="StartUnit.Value" />
         <PropertyMapping Header="Frequency" Column="L" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Frequency" />
         <PropertyMapping Header="FrequencyUnit" Column="M" Status="PickValue" MultiRow="None" DefaultValue="unknown" Paths="FrequencyUnit.Value" />
         <PropertyMapping Header="ExtSystem" Column="N" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalSystem.Name"  Hidden="true"/>

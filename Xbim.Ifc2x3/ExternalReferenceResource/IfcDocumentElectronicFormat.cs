@@ -28,9 +28,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDocumentElectronicFormat : IPersistEntity
 	{
-		IfcLabel? @FileExtension { get; }
-		IfcLabel? @MimeContentType { get; }
-		IfcLabel? @MimeSubtype { get; }
+		IfcLabel? @FileExtension { get;  set; }
+		IfcLabel? @MimeContentType { get;  set; }
+		IfcLabel? @MimeSubtype { get;  set; }
 	
 	}
 }
@@ -42,9 +42,21 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 	public  partial class @IfcDocumentElectronicFormat : INotifyPropertyChanged, IInstantiableEntity, IIfcDocumentElectronicFormat, IEquatable<@IfcDocumentElectronicFormat>
 	{
 		#region IIfcDocumentElectronicFormat explicit implementation
-		IfcLabel? IIfcDocumentElectronicFormat.FileExtension { get { return @FileExtension; } }	
-		IfcLabel? IIfcDocumentElectronicFormat.MimeContentType { get { return @MimeContentType; } }	
-		IfcLabel? IIfcDocumentElectronicFormat.MimeSubtype { get { return @MimeSubtype; } }	
+		IfcLabel? IIfcDocumentElectronicFormat.FileExtension { 
+			get { return @FileExtension; } 
+ 
+			set { FileExtension = value;}
+		}	
+		IfcLabel? IIfcDocumentElectronicFormat.MimeContentType { 
+			get { return @MimeContentType; } 
+ 
+			set { MimeContentType = value;}
+		}	
+		IfcLabel? IIfcDocumentElectronicFormat.MimeSubtype { 
+			get { return @MimeSubtype; } 
+ 
+			set { MimeSubtype = value;}
+		}	
 		 
 		#endregion
 

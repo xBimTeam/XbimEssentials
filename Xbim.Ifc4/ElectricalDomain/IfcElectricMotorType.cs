@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcElectricMotorType : IIfcEnergyConversionDeviceType
 	{
-		IfcElectricMotorTypeEnum @PredefinedType { get; }
+		IfcElectricMotorTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.ElectricalDomain
 	public  partial class @IfcElectricMotorType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcElectricMotorType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcElectricMotorType>
 	{
 		#region IIfcElectricMotorType explicit implementation
-		IfcElectricMotorTypeEnum IIfcElectricMotorType.PredefinedType { get { return @PredefinedType; } }	
+		IfcElectricMotorTypeEnum IIfcElectricMotorType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

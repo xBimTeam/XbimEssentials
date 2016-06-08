@@ -26,10 +26,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcObjective : IIfcConstraint
 	{
-		IIfcMetric @BenchmarkValues { get; }
-		IIfcMetric @ResultValues { get; }
-		IfcObjectiveEnum @ObjectiveQualifier { get; }
-		IfcLabel? @UserDefinedQualifier { get; }
+		IIfcMetric @BenchmarkValues { get;  set; }
+		IIfcMetric @ResultValues { get;  set; }
+		IfcObjectiveEnum @ObjectiveQualifier { get;  set; }
+		IfcLabel? @UserDefinedQualifier { get;  set; }
 	
 	}
 }
@@ -41,10 +41,28 @@ namespace Xbim.Ifc2x3.ConstraintResource
 	public  partial class @IfcObjective : IfcConstraint, IInstantiableEntity, IIfcObjective, IContainsEntityReferences, IEquatable<@IfcObjective>
 	{
 		#region IIfcObjective explicit implementation
-		IIfcMetric IIfcObjective.BenchmarkValues { get { return @BenchmarkValues; } }	
-		IIfcMetric IIfcObjective.ResultValues { get { return @ResultValues; } }	
-		IfcObjectiveEnum IIfcObjective.ObjectiveQualifier { get { return @ObjectiveQualifier; } }	
-		IfcLabel? IIfcObjective.UserDefinedQualifier { get { return @UserDefinedQualifier; } }	
+		IIfcMetric IIfcObjective.BenchmarkValues { 
+			get { return @BenchmarkValues; } 
+ 
+ 
+			set { BenchmarkValues = value as IfcMetric;}
+		}	
+		IIfcMetric IIfcObjective.ResultValues { 
+			get { return @ResultValues; } 
+ 
+ 
+			set { ResultValues = value as IfcMetric;}
+		}	
+		IfcObjectiveEnum IIfcObjective.ObjectiveQualifier { 
+			get { return @ObjectiveQualifier; } 
+ 
+			set { ObjectiveQualifier = value;}
+		}	
+		IfcLabel? IIfcObjective.UserDefinedQualifier { 
+			get { return @UserDefinedQualifier; } 
+ 
+			set { UserDefinedQualifier = value;}
+		}	
 		 
 		#endregion
 

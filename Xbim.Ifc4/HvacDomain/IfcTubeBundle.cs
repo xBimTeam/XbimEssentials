@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTubeBundle : IIfcEnergyConversionDevice
 	{
-		IfcTubeBundleTypeEnum? @PredefinedType { get; }
+		IfcTubeBundleTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.HvacDomain
 	public  partial class @IfcTubeBundle : IfcEnergyConversionDevice, IInstantiableEntity, IIfcTubeBundle, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTubeBundle>
 	{
 		#region IIfcTubeBundle explicit implementation
-		IfcTubeBundleTypeEnum? IIfcTubeBundle.PredefinedType { get { return @PredefinedType; } }	
+		IfcTubeBundleTypeEnum? IIfcTubeBundle.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

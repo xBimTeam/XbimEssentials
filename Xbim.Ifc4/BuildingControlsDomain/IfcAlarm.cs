@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcAlarm : IIfcDistributionControlElement
 	{
-		IfcAlarmTypeEnum? @PredefinedType { get; }
+		IfcAlarmTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 	public  partial class @IfcAlarm : IfcDistributionControlElement, IInstantiableEntity, IIfcAlarm, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAlarm>
 	{
 		#region IIfcAlarm explicit implementation
-		IfcAlarmTypeEnum? IIfcAlarm.PredefinedType { get { return @PredefinedType; } }	
+		IfcAlarmTypeEnum? IIfcAlarm.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

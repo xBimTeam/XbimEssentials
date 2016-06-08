@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.MaterialResource
 			{
 				return ForLayerSet;
 			} 
+			set
+			{
+				ForLayerSet = value as IfcMaterialLayerSet;
+				
+			}
 		}
 		Ifc4.Interfaces.IfcLayerSetDirectionEnum IIfcMaterialLayerSetUsage.LayerSetDirection 
 		{ 
@@ -43,6 +48,28 @@ namespace Xbim.Ifc2x3.MaterialResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcLayerSetDirectionEnum.AXIS1:
+						LayerSetDirection = IfcLayerSetDirectionEnum.AXIS1;
+						return;
+					
+					case Ifc4.Interfaces.IfcLayerSetDirectionEnum.AXIS2:
+						LayerSetDirection = IfcLayerSetDirectionEnum.AXIS2;
+						return;
+					
+					case Ifc4.Interfaces.IfcLayerSetDirectionEnum.AXIS3:
+						LayerSetDirection = IfcLayerSetDirectionEnum.AXIS3;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.Interfaces.IfcDirectionSenseEnum IIfcMaterialLayerSetUsage.DirectionSense 
 		{ 
@@ -61,6 +88,24 @@ namespace Xbim.Ifc2x3.MaterialResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcDirectionSenseEnum.POSITIVE:
+						DirectionSense = IfcDirectionSenseEnum.POSITIVE;
+						return;
+					
+					case Ifc4.Interfaces.IfcDirectionSenseEnum.NEGATIVE:
+						DirectionSense = IfcDirectionSenseEnum.NEGATIVE;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure IIfcMaterialLayerSetUsage.OffsetFromReferenceLine 
 		{ 
@@ -68,15 +113,26 @@ namespace Xbim.Ifc2x3.MaterialResource
 			{
 				return new Ifc4.MeasureResource.IfcLengthMeasure(OffsetFromReferenceLine);
 			} 
+			set
+			{
+				OffsetFromReferenceLine = new MeasureResource.IfcLengthMeasure(value);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcPositiveLengthMeasure? _referenceExtent;
+
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMaterialLayerSetUsage.ReferenceExtent 
 		{ 
 			get
 			{
-				//## Handle return of ReferenceExtent for which no match was found
-			    return null;
-			    //##
+				return _referenceExtent;
 			} 
+			set
+			{
+				SetValue(v => _referenceExtent = v, _referenceExtent, value, "ReferenceExtent", byte.MaxValue);
+				
+			}
 		}
 		IEnumerable<IIfcRelAssociatesMaterial> IIfcMaterialUsageDefinition.AssociatedTo 
 		{ 

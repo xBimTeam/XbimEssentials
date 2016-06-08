@@ -16,14 +16,20 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralCurveConnection : IIfcStructuralCurveConnection
 	{
+
+		private  IIfcDirection _axis;
+
 		IIfcDirection IIfcStructuralCurveConnection.Axis 
 		{ 
 			get
 			{
-				//## Handle return of Axis for which no match was found
-				return new Xbim.Ifc2x3.Interfaces.Conversions.IfcDirectionTransient();
-				//##
+				return _axis;
 			} 
+			set
+			{
+				SetValue(v => _axis = v, _axis, value, "Axis", byte.MaxValue);
+				
+			}
 		}
 	//## Custom code
 	//##

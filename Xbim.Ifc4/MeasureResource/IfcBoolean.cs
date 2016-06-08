@@ -16,7 +16,7 @@ namespace Xbim.Ifc4.MeasureResource
 	[ExpressType("IfcBoolean", 616)]
 	[DefinedType(typeof(bool))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcBoolean : IfcModulusOfRotationalSubgradeReactionSelect, IfcModulusOfSubgradeReactionSelect, IfcModulusOfTranslationalSubgradeReactionSelect, IfcRotationalStiffnessSelect, IfcSimpleValue, IfcTranslationalStiffnessSelect, IfcWarpingStiffnessSelect, IExpressValueType, System.IEquatable<bool>
+	public partial struct IfcBoolean : IfcModulusOfRotationalSubgradeReactionSelect, IfcModulusOfSubgradeReactionSelect, IfcModulusOfTranslationalSubgradeReactionSelect, IfcRotationalStiffnessSelect, IfcSimpleValue, IfcTranslationalStiffnessSelect, IfcWarpingStiffnessSelect, IExpressValueType, IExpressBooleanType, System.IEquatable<bool>
 	{ 
 		private bool _value;
         
@@ -24,6 +24,9 @@ namespace Xbim.Ifc4.MeasureResource
         {
             get { return _value; }
         }
+
+ 
+		bool IExpressBooleanType.Value { get { return _value; } }
 
 		public override string ToString()
         {

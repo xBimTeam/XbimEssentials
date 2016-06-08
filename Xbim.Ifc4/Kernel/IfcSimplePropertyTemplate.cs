@@ -27,14 +27,14 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSimplePropertyTemplate : IIfcPropertyTemplate
 	{
-		IfcSimplePropertyTemplateTypeEnum? @TemplateType { get; }
-		IfcLabel? @PrimaryMeasureType { get; }
-		IfcLabel? @SecondaryMeasureType { get; }
-		IIfcPropertyEnumeration @Enumerators { get; }
-		IIfcUnit @PrimaryUnit { get; }
-		IIfcUnit @SecondaryUnit { get; }
-		IfcLabel? @Expression { get; }
-		IfcStateEnum? @AccessState { get; }
+		IfcSimplePropertyTemplateTypeEnum? @TemplateType { get;  set; }
+		IfcLabel? @PrimaryMeasureType { get;  set; }
+		IfcLabel? @SecondaryMeasureType { get;  set; }
+		IIfcPropertyEnumeration @Enumerators { get;  set; }
+		IIfcUnit @PrimaryUnit { get;  set; }
+		IIfcUnit @SecondaryUnit { get;  set; }
+		IfcLabel? @Expression { get;  set; }
+		IfcStateEnum? @AccessState { get;  set; }
 	
 	}
 }
@@ -46,14 +46,49 @@ namespace Xbim.Ifc4.Kernel
 	public  partial class @IfcSimplePropertyTemplate : IfcPropertyTemplate, IInstantiableEntity, IIfcSimplePropertyTemplate, IContainsEntityReferences, IEquatable<@IfcSimplePropertyTemplate>
 	{
 		#region IIfcSimplePropertyTemplate explicit implementation
-		IfcSimplePropertyTemplateTypeEnum? IIfcSimplePropertyTemplate.TemplateType { get { return @TemplateType; } }	
-		IfcLabel? IIfcSimplePropertyTemplate.PrimaryMeasureType { get { return @PrimaryMeasureType; } }	
-		IfcLabel? IIfcSimplePropertyTemplate.SecondaryMeasureType { get { return @SecondaryMeasureType; } }	
-		IIfcPropertyEnumeration IIfcSimplePropertyTemplate.Enumerators { get { return @Enumerators; } }	
-		IIfcUnit IIfcSimplePropertyTemplate.PrimaryUnit { get { return @PrimaryUnit; } }	
-		IIfcUnit IIfcSimplePropertyTemplate.SecondaryUnit { get { return @SecondaryUnit; } }	
-		IfcLabel? IIfcSimplePropertyTemplate.Expression { get { return @Expression; } }	
-		IfcStateEnum? IIfcSimplePropertyTemplate.AccessState { get { return @AccessState; } }	
+		IfcSimplePropertyTemplateTypeEnum? IIfcSimplePropertyTemplate.TemplateType { 
+			get { return @TemplateType; } 
+ 
+			set { TemplateType = value;}
+		}	
+		IfcLabel? IIfcSimplePropertyTemplate.PrimaryMeasureType { 
+			get { return @PrimaryMeasureType; } 
+ 
+			set { PrimaryMeasureType = value;}
+		}	
+		IfcLabel? IIfcSimplePropertyTemplate.SecondaryMeasureType { 
+			get { return @SecondaryMeasureType; } 
+ 
+			set { SecondaryMeasureType = value;}
+		}	
+		IIfcPropertyEnumeration IIfcSimplePropertyTemplate.Enumerators { 
+			get { return @Enumerators; } 
+ 
+ 
+			set { Enumerators = value as IfcPropertyEnumeration;}
+		}	
+		IIfcUnit IIfcSimplePropertyTemplate.PrimaryUnit { 
+			get { return @PrimaryUnit; } 
+ 
+ 
+			set { PrimaryUnit = value as IfcUnit;}
+		}	
+		IIfcUnit IIfcSimplePropertyTemplate.SecondaryUnit { 
+			get { return @SecondaryUnit; } 
+ 
+ 
+			set { SecondaryUnit = value as IfcUnit;}
+		}	
+		IfcLabel? IIfcSimplePropertyTemplate.Expression { 
+			get { return @Expression; } 
+ 
+			set { Expression = value;}
+		}	
+		IfcStateEnum? IIfcSimplePropertyTemplate.AccessState { 
+			get { return @AccessState; } 
+ 
+			set { AccessState = value;}
+		}	
 		 
 		#endregion
 

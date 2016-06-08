@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcReinforcingElement : IIfcElementComponent
 	{
-		IfcLabel? @SteelGrade { get; }
+		IfcLabel? @SteelGrade { get;  set; }
 	
 	}
 }
@@ -39,7 +39,11 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 	public abstract partial class @IfcReinforcingElement : IfcElementComponent, IIfcReinforcingElement, IEquatable<@IfcReinforcingElement>
 	{
 		#region IIfcReinforcingElement explicit implementation
-		IfcLabel? IIfcReinforcingElement.SteelGrade { get { return @SteelGrade; } }	
+		IfcLabel? IIfcReinforcingElement.SteelGrade { 
+			get { return @SteelGrade; } 
+ 
+			set { SteelGrade = value;}
+		}	
 		 
 		#endregion
 

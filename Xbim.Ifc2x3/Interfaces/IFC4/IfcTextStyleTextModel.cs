@@ -22,19 +22,58 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				if (TextIndent == null) return null;
 				if (TextIndent is MeasureResource.IfcRatioMeasure) 
-					return new Ifc4.MeasureResource.IfcRatioMeasure((double)(MeasureResource.IfcRatioMeasure)TextIndent);
+					return new Ifc4.MeasureResource.IfcRatioMeasure((MeasureResource.IfcRatioMeasure)TextIndent);
 				if (TextIndent is MeasureResource.IfcLengthMeasure) 
-					return new Ifc4.MeasureResource.IfcLengthMeasure((double)(MeasureResource.IfcLengthMeasure)TextIndent);
+					return new Ifc4.MeasureResource.IfcLengthMeasure((MeasureResource.IfcLengthMeasure)TextIndent);
 				if (TextIndent is MeasureResource.IfcDescriptiveMeasure) 
-					return new Ifc4.MeasureResource.IfcDescriptiveMeasure((string)(MeasureResource.IfcDescriptiveMeasure)TextIndent);
+					return new Ifc4.MeasureResource.IfcDescriptiveMeasure((MeasureResource.IfcDescriptiveMeasure)TextIndent);
 				if (TextIndent is MeasureResource.IfcPositiveLengthMeasure) 
-					return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)(MeasureResource.IfcPositiveLengthMeasure)TextIndent);
+					return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((MeasureResource.IfcPositiveLengthMeasure)TextIndent);
 				if (TextIndent is MeasureResource.IfcNormalisedRatioMeasure) 
-					return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(MeasureResource.IfcNormalisedRatioMeasure)TextIndent);
+					return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((MeasureResource.IfcNormalisedRatioMeasure)TextIndent);
 				if (TextIndent is MeasureResource.IfcPositiveRatioMeasure) 
-					return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)(MeasureResource.IfcPositiveRatioMeasure)TextIndent);
+					return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((MeasureResource.IfcPositiveRatioMeasure)TextIndent);
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					TextIndent = null;
+					return;
+				}	
+				if (value is Ifc4.MeasureResource.IfcDescriptiveMeasure) 
+				{
+					TextIndent = new MeasureResource.IfcDescriptiveMeasure((Ifc4.MeasureResource.IfcDescriptiveMeasure)value);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcLengthMeasure) 
+				{
+					TextIndent = new MeasureResource.IfcLengthMeasure((Ifc4.MeasureResource.IfcLengthMeasure)value);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcNormalisedRatioMeasure) 
+				{
+					TextIndent = new MeasureResource.IfcNormalisedRatioMeasure((Ifc4.MeasureResource.IfcNormalisedRatioMeasure)value);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcPositiveLengthMeasure) 
+				{
+					TextIndent = new MeasureResource.IfcPositiveLengthMeasure((Ifc4.MeasureResource.IfcPositiveLengthMeasure)value);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcPositiveRatioMeasure) 
+				{
+					TextIndent = new MeasureResource.IfcPositiveRatioMeasure((Ifc4.MeasureResource.IfcPositiveRatioMeasure)value);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcRatioMeasure) 
+				{
+					TextIndent = new MeasureResource.IfcRatioMeasure((Ifc4.MeasureResource.IfcRatioMeasure)value);
+					return;
+				}
+				
+			}
 		}
 		Ifc4.PresentationAppearanceResource.IfcTextAlignment? IIfcTextStyleTextModel.TextAlign 
 		{ 
@@ -43,6 +82,13 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				if (!TextAlign.HasValue) return null;
 				return new Ifc4.PresentationAppearanceResource.IfcTextAlignment(TextAlign.Value);
 			} 
+			set
+			{
+				TextAlign = value.HasValue ? 
+					new IfcTextAlignment(value.Value) :  
+					 new IfcTextAlignment?() ;
+				
+			}
 		}
 		Ifc4.PresentationAppearanceResource.IfcTextDecoration? IIfcTextStyleTextModel.TextDecoration 
 		{ 
@@ -51,6 +97,13 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				if (!TextDecoration.HasValue) return null;
 				return new Ifc4.PresentationAppearanceResource.IfcTextDecoration(TextDecoration.Value);
 			} 
+			set
+			{
+				TextDecoration = value.HasValue ? 
+					new IfcTextDecoration(value.Value) :  
+					 new IfcTextDecoration?() ;
+				
+			}
 		}
 		IIfcSizeSelect IIfcTextStyleTextModel.LetterSpacing 
 		{ 
@@ -58,19 +111,58 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				if (LetterSpacing == null) return null;
 				if (LetterSpacing is MeasureResource.IfcRatioMeasure) 
-					return new Ifc4.MeasureResource.IfcRatioMeasure((double)(MeasureResource.IfcRatioMeasure)LetterSpacing);
+					return new Ifc4.MeasureResource.IfcRatioMeasure((MeasureResource.IfcRatioMeasure)LetterSpacing);
 				if (LetterSpacing is MeasureResource.IfcLengthMeasure) 
-					return new Ifc4.MeasureResource.IfcLengthMeasure((double)(MeasureResource.IfcLengthMeasure)LetterSpacing);
+					return new Ifc4.MeasureResource.IfcLengthMeasure((MeasureResource.IfcLengthMeasure)LetterSpacing);
 				if (LetterSpacing is MeasureResource.IfcDescriptiveMeasure) 
-					return new Ifc4.MeasureResource.IfcDescriptiveMeasure((string)(MeasureResource.IfcDescriptiveMeasure)LetterSpacing);
+					return new Ifc4.MeasureResource.IfcDescriptiveMeasure((MeasureResource.IfcDescriptiveMeasure)LetterSpacing);
 				if (LetterSpacing is MeasureResource.IfcPositiveLengthMeasure) 
-					return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)(MeasureResource.IfcPositiveLengthMeasure)LetterSpacing);
+					return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((MeasureResource.IfcPositiveLengthMeasure)LetterSpacing);
 				if (LetterSpacing is MeasureResource.IfcNormalisedRatioMeasure) 
-					return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(MeasureResource.IfcNormalisedRatioMeasure)LetterSpacing);
+					return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((MeasureResource.IfcNormalisedRatioMeasure)LetterSpacing);
 				if (LetterSpacing is MeasureResource.IfcPositiveRatioMeasure) 
-					return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)(MeasureResource.IfcPositiveRatioMeasure)LetterSpacing);
+					return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((MeasureResource.IfcPositiveRatioMeasure)LetterSpacing);
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					LetterSpacing = null;
+					return;
+				}	
+				if (value is Ifc4.MeasureResource.IfcDescriptiveMeasure) 
+				{
+					LetterSpacing = new MeasureResource.IfcDescriptiveMeasure((Ifc4.MeasureResource.IfcDescriptiveMeasure)value);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcLengthMeasure) 
+				{
+					LetterSpacing = new MeasureResource.IfcLengthMeasure((Ifc4.MeasureResource.IfcLengthMeasure)value);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcNormalisedRatioMeasure) 
+				{
+					LetterSpacing = new MeasureResource.IfcNormalisedRatioMeasure((Ifc4.MeasureResource.IfcNormalisedRatioMeasure)value);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcPositiveLengthMeasure) 
+				{
+					LetterSpacing = new MeasureResource.IfcPositiveLengthMeasure((Ifc4.MeasureResource.IfcPositiveLengthMeasure)value);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcPositiveRatioMeasure) 
+				{
+					LetterSpacing = new MeasureResource.IfcPositiveRatioMeasure((Ifc4.MeasureResource.IfcPositiveRatioMeasure)value);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcRatioMeasure) 
+				{
+					LetterSpacing = new MeasureResource.IfcRatioMeasure((Ifc4.MeasureResource.IfcRatioMeasure)value);
+					return;
+				}
+				
+			}
 		}
 		IIfcSizeSelect IIfcTextStyleTextModel.WordSpacing 
 		{ 
@@ -78,19 +170,58 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				if (WordSpacing == null) return null;
 				if (WordSpacing is MeasureResource.IfcRatioMeasure) 
-					return new Ifc4.MeasureResource.IfcRatioMeasure((double)(MeasureResource.IfcRatioMeasure)WordSpacing);
+					return new Ifc4.MeasureResource.IfcRatioMeasure((MeasureResource.IfcRatioMeasure)WordSpacing);
 				if (WordSpacing is MeasureResource.IfcLengthMeasure) 
-					return new Ifc4.MeasureResource.IfcLengthMeasure((double)(MeasureResource.IfcLengthMeasure)WordSpacing);
+					return new Ifc4.MeasureResource.IfcLengthMeasure((MeasureResource.IfcLengthMeasure)WordSpacing);
 				if (WordSpacing is MeasureResource.IfcDescriptiveMeasure) 
-					return new Ifc4.MeasureResource.IfcDescriptiveMeasure((string)(MeasureResource.IfcDescriptiveMeasure)WordSpacing);
+					return new Ifc4.MeasureResource.IfcDescriptiveMeasure((MeasureResource.IfcDescriptiveMeasure)WordSpacing);
 				if (WordSpacing is MeasureResource.IfcPositiveLengthMeasure) 
-					return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)(MeasureResource.IfcPositiveLengthMeasure)WordSpacing);
+					return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((MeasureResource.IfcPositiveLengthMeasure)WordSpacing);
 				if (WordSpacing is MeasureResource.IfcNormalisedRatioMeasure) 
-					return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(MeasureResource.IfcNormalisedRatioMeasure)WordSpacing);
+					return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((MeasureResource.IfcNormalisedRatioMeasure)WordSpacing);
 				if (WordSpacing is MeasureResource.IfcPositiveRatioMeasure) 
-					return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)(MeasureResource.IfcPositiveRatioMeasure)WordSpacing);
+					return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((MeasureResource.IfcPositiveRatioMeasure)WordSpacing);
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					WordSpacing = null;
+					return;
+				}	
+				if (value is Ifc4.MeasureResource.IfcDescriptiveMeasure) 
+				{
+					WordSpacing = new MeasureResource.IfcDescriptiveMeasure((Ifc4.MeasureResource.IfcDescriptiveMeasure)value);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcLengthMeasure) 
+				{
+					WordSpacing = new MeasureResource.IfcLengthMeasure((Ifc4.MeasureResource.IfcLengthMeasure)value);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcNormalisedRatioMeasure) 
+				{
+					WordSpacing = new MeasureResource.IfcNormalisedRatioMeasure((Ifc4.MeasureResource.IfcNormalisedRatioMeasure)value);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcPositiveLengthMeasure) 
+				{
+					WordSpacing = new MeasureResource.IfcPositiveLengthMeasure((Ifc4.MeasureResource.IfcPositiveLengthMeasure)value);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcPositiveRatioMeasure) 
+				{
+					WordSpacing = new MeasureResource.IfcPositiveRatioMeasure((Ifc4.MeasureResource.IfcPositiveRatioMeasure)value);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcRatioMeasure) 
+				{
+					WordSpacing = new MeasureResource.IfcRatioMeasure((Ifc4.MeasureResource.IfcRatioMeasure)value);
+					return;
+				}
+				
+			}
 		}
 		Ifc4.PresentationAppearanceResource.IfcTextTransformation? IIfcTextStyleTextModel.TextTransform 
 		{ 
@@ -99,6 +230,13 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				if (!TextTransform.HasValue) return null;
 				return new Ifc4.PresentationAppearanceResource.IfcTextTransformation(TextTransform.Value);
 			} 
+			set
+			{
+				TextTransform = value.HasValue ? 
+					new IfcTextTransformation(value.Value) :  
+					 new IfcTextTransformation?() ;
+				
+			}
 		}
 		IIfcSizeSelect IIfcTextStyleTextModel.LineHeight 
 		{ 
@@ -106,19 +244,58 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				if (LineHeight == null) return null;
 				if (LineHeight is MeasureResource.IfcRatioMeasure) 
-					return new Ifc4.MeasureResource.IfcRatioMeasure((double)(MeasureResource.IfcRatioMeasure)LineHeight);
+					return new Ifc4.MeasureResource.IfcRatioMeasure((MeasureResource.IfcRatioMeasure)LineHeight);
 				if (LineHeight is MeasureResource.IfcLengthMeasure) 
-					return new Ifc4.MeasureResource.IfcLengthMeasure((double)(MeasureResource.IfcLengthMeasure)LineHeight);
+					return new Ifc4.MeasureResource.IfcLengthMeasure((MeasureResource.IfcLengthMeasure)LineHeight);
 				if (LineHeight is MeasureResource.IfcDescriptiveMeasure) 
-					return new Ifc4.MeasureResource.IfcDescriptiveMeasure((string)(MeasureResource.IfcDescriptiveMeasure)LineHeight);
+					return new Ifc4.MeasureResource.IfcDescriptiveMeasure((MeasureResource.IfcDescriptiveMeasure)LineHeight);
 				if (LineHeight is MeasureResource.IfcPositiveLengthMeasure) 
-					return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)(MeasureResource.IfcPositiveLengthMeasure)LineHeight);
+					return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((MeasureResource.IfcPositiveLengthMeasure)LineHeight);
 				if (LineHeight is MeasureResource.IfcNormalisedRatioMeasure) 
-					return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(MeasureResource.IfcNormalisedRatioMeasure)LineHeight);
+					return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((MeasureResource.IfcNormalisedRatioMeasure)LineHeight);
 				if (LineHeight is MeasureResource.IfcPositiveRatioMeasure) 
-					return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)(MeasureResource.IfcPositiveRatioMeasure)LineHeight);
+					return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((MeasureResource.IfcPositiveRatioMeasure)LineHeight);
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					LineHeight = null;
+					return;
+				}	
+				if (value is Ifc4.MeasureResource.IfcDescriptiveMeasure) 
+				{
+					LineHeight = new MeasureResource.IfcDescriptiveMeasure((Ifc4.MeasureResource.IfcDescriptiveMeasure)value);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcLengthMeasure) 
+				{
+					LineHeight = new MeasureResource.IfcLengthMeasure((Ifc4.MeasureResource.IfcLengthMeasure)value);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcNormalisedRatioMeasure) 
+				{
+					LineHeight = new MeasureResource.IfcNormalisedRatioMeasure((Ifc4.MeasureResource.IfcNormalisedRatioMeasure)value);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcPositiveLengthMeasure) 
+				{
+					LineHeight = new MeasureResource.IfcPositiveLengthMeasure((Ifc4.MeasureResource.IfcPositiveLengthMeasure)value);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcPositiveRatioMeasure) 
+				{
+					LineHeight = new MeasureResource.IfcPositiveRatioMeasure((Ifc4.MeasureResource.IfcPositiveRatioMeasure)value);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcRatioMeasure) 
+				{
+					LineHeight = new MeasureResource.IfcRatioMeasure((Ifc4.MeasureResource.IfcRatioMeasure)value);
+					return;
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

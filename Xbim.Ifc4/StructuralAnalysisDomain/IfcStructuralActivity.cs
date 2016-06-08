@@ -27,8 +27,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralActivity : IIfcProduct
 	{
-		IIfcStructuralLoad @AppliedLoad { get; }
-		IfcGlobalOrLocalEnum @GlobalOrLocal { get; }
+		IIfcStructuralLoad @AppliedLoad { get;  set; }
+		IfcGlobalOrLocalEnum @GlobalOrLocal { get;  set; }
 		IEnumerable<IIfcRelConnectsStructuralActivity> @AssignedToStructuralItem {  get; }
 	
 	}
@@ -41,8 +41,17 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	public abstract partial class @IfcStructuralActivity : IfcProduct, IIfcStructuralActivity, IEquatable<@IfcStructuralActivity>
 	{
 		#region IIfcStructuralActivity explicit implementation
-		IIfcStructuralLoad IIfcStructuralActivity.AppliedLoad { get { return @AppliedLoad; } }	
-		IfcGlobalOrLocalEnum IIfcStructuralActivity.GlobalOrLocal { get { return @GlobalOrLocal; } }	
+		IIfcStructuralLoad IIfcStructuralActivity.AppliedLoad { 
+			get { return @AppliedLoad; } 
+ 
+ 
+			set { AppliedLoad = value as IfcStructuralLoad;}
+		}	
+		IfcGlobalOrLocalEnum IIfcStructuralActivity.GlobalOrLocal { 
+			get { return @GlobalOrLocal; } 
+ 
+			set { GlobalOrLocal = value;}
+		}	
 		 
 		IEnumerable<IIfcRelConnectsStructuralActivity> IIfcStructuralActivity.AssignedToStructuralItem {  get { return @AssignedToStructuralItem; } }
 		#endregion

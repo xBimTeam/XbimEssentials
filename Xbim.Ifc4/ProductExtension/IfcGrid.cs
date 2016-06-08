@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 		IEnumerable<IIfcGridAxis> @UAxes { get; }
 		IEnumerable<IIfcGridAxis> @VAxes { get; }
 		IEnumerable<IIfcGridAxis> @WAxes { get; }
-		IfcGridTypeEnum? @PredefinedType { get; }
+		IfcGridTypeEnum? @PredefinedType { get;  set; }
 		IEnumerable<IIfcRelContainedInSpatialStructure> @ContainedInStructure {  get; }
 	
 	}
@@ -43,10 +43,20 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcGrid : IfcProduct, IInstantiableEntity, IIfcGrid, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcGrid>
 	{
 		#region IIfcGrid explicit implementation
-		IEnumerable<IIfcGridAxis> IIfcGrid.UAxes { get { return @UAxes; } }	
-		IEnumerable<IIfcGridAxis> IIfcGrid.VAxes { get { return @VAxes; } }	
-		IEnumerable<IIfcGridAxis> IIfcGrid.WAxes { get { return @WAxes; } }	
-		IfcGridTypeEnum? IIfcGrid.PredefinedType { get { return @PredefinedType; } }	
+		IEnumerable<IIfcGridAxis> IIfcGrid.UAxes { 
+			get { return @UAxes; } 
+		}	
+		IEnumerable<IIfcGridAxis> IIfcGrid.VAxes { 
+			get { return @VAxes; } 
+		}	
+		IEnumerable<IIfcGridAxis> IIfcGrid.WAxes { 
+			get { return @WAxes; } 
+		}	
+		IfcGridTypeEnum? IIfcGrid.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcGrid.ContainedInStructure {  get { return @ContainedInStructure; } }
 		#endregion

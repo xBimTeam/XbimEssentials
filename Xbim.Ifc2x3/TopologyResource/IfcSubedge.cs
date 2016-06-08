@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSubedge : IIfcEdge
 	{
-		IIfcEdge @ParentEdge { get; }
+		IIfcEdge @ParentEdge { get;  set; }
 	
 	}
 }
@@ -37,7 +37,12 @@ namespace Xbim.Ifc2x3.TopologyResource
 	public  partial class @IfcSubedge : IfcEdge, IInstantiableEntity, IIfcSubedge, IContainsEntityReferences, IEquatable<@IfcSubedge>
 	{
 		#region IIfcSubedge explicit implementation
-		IIfcEdge IIfcSubedge.ParentEdge { get { return @ParentEdge; } }	
+		IIfcEdge IIfcSubedge.ParentEdge { 
+			get { return @ParentEdge; } 
+ 
+ 
+			set { ParentEdge = value as IfcEdge;}
+		}	
 		 
 		#endregion
 

@@ -26,12 +26,12 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMechanicalConcreteMaterialProperties : IIfcMechanicalMaterialProperties
 	{
-		IfcPressureMeasure? @CompressiveStrength { get; }
-		IfcPositiveLengthMeasure? @MaxAggregateSize { get; }
-		IfcText? @AdmixturesDescription { get; }
-		IfcText? @Workability { get; }
-		IfcNormalisedRatioMeasure? @ProtectivePoreRatio { get; }
-		IfcText? @WaterImpermeability { get; }
+		IfcPressureMeasure? @CompressiveStrength { get;  set; }
+		IfcPositiveLengthMeasure? @MaxAggregateSize { get;  set; }
+		IfcText? @AdmixturesDescription { get;  set; }
+		IfcText? @Workability { get;  set; }
+		IfcNormalisedRatioMeasure? @ProtectivePoreRatio { get;  set; }
+		IfcText? @WaterImpermeability { get;  set; }
 	
 	}
 }
@@ -43,12 +43,36 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	public  partial class @IfcMechanicalConcreteMaterialProperties : IfcMechanicalMaterialProperties, IInstantiableEntity, IIfcMechanicalConcreteMaterialProperties, IContainsEntityReferences, IEquatable<@IfcMechanicalConcreteMaterialProperties>
 	{
 		#region IIfcMechanicalConcreteMaterialProperties explicit implementation
-		IfcPressureMeasure? IIfcMechanicalConcreteMaterialProperties.CompressiveStrength { get { return @CompressiveStrength; } }	
-		IfcPositiveLengthMeasure? IIfcMechanicalConcreteMaterialProperties.MaxAggregateSize { get { return @MaxAggregateSize; } }	
-		IfcText? IIfcMechanicalConcreteMaterialProperties.AdmixturesDescription { get { return @AdmixturesDescription; } }	
-		IfcText? IIfcMechanicalConcreteMaterialProperties.Workability { get { return @Workability; } }	
-		IfcNormalisedRatioMeasure? IIfcMechanicalConcreteMaterialProperties.ProtectivePoreRatio { get { return @ProtectivePoreRatio; } }	
-		IfcText? IIfcMechanicalConcreteMaterialProperties.WaterImpermeability { get { return @WaterImpermeability; } }	
+		IfcPressureMeasure? IIfcMechanicalConcreteMaterialProperties.CompressiveStrength { 
+			get { return @CompressiveStrength; } 
+ 
+			set { CompressiveStrength = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcMechanicalConcreteMaterialProperties.MaxAggregateSize { 
+			get { return @MaxAggregateSize; } 
+ 
+			set { MaxAggregateSize = value;}
+		}	
+		IfcText? IIfcMechanicalConcreteMaterialProperties.AdmixturesDescription { 
+			get { return @AdmixturesDescription; } 
+ 
+			set { AdmixturesDescription = value;}
+		}	
+		IfcText? IIfcMechanicalConcreteMaterialProperties.Workability { 
+			get { return @Workability; } 
+ 
+			set { Workability = value;}
+		}	
+		IfcNormalisedRatioMeasure? IIfcMechanicalConcreteMaterialProperties.ProtectivePoreRatio { 
+			get { return @ProtectivePoreRatio; } 
+ 
+			set { ProtectivePoreRatio = value;}
+		}	
+		IfcText? IIfcMechanicalConcreteMaterialProperties.WaterImpermeability { 
+			get { return @WaterImpermeability; } 
+ 
+			set { WaterImpermeability = value;}
+		}	
 		 
 		#endregion
 

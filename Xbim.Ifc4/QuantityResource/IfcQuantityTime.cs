@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcQuantityTime : IIfcPhysicalSimpleQuantity
 	{
-		IfcTimeMeasure @TimeValue { get; }
-		IfcLabel? @Formula { get; }
+		IfcTimeMeasure @TimeValue { get;  set; }
+		IfcLabel? @Formula { get;  set; }
 	
 	}
 }
@@ -39,8 +39,16 @@ namespace Xbim.Ifc4.QuantityResource
 	public  partial class @IfcQuantityTime : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityTime, IContainsEntityReferences, IEquatable<@IfcQuantityTime>
 	{
 		#region IIfcQuantityTime explicit implementation
-		IfcTimeMeasure IIfcQuantityTime.TimeValue { get { return @TimeValue; } }	
-		IfcLabel? IIfcQuantityTime.Formula { get { return @Formula; } }	
+		IfcTimeMeasure IIfcQuantityTime.TimeValue { 
+			get { return @TimeValue; } 
+ 
+			set { TimeValue = value;}
+		}	
+		IfcLabel? IIfcQuantityTime.Formula { 
+			get { return @Formula; } 
+ 
+			set { Formula = value;}
+		}	
 		 
 		#endregion
 

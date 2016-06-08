@@ -27,8 +27,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDoor : IIfcBuildingElement
 	{
-		IfcPositiveLengthMeasure? @OverallHeight { get; }
-		IfcPositiveLengthMeasure? @OverallWidth { get; }
+		IfcPositiveLengthMeasure? @OverallHeight { get;  set; }
+		IfcPositiveLengthMeasure? @OverallWidth { get;  set; }
 	
 	}
 }
@@ -40,8 +40,16 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 	public  partial class @IfcDoor : IfcBuildingElement, IInstantiableEntity, IIfcDoor, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDoor>
 	{
 		#region IIfcDoor explicit implementation
-		IfcPositiveLengthMeasure? IIfcDoor.OverallHeight { get { return @OverallHeight; } }	
-		IfcPositiveLengthMeasure? IIfcDoor.OverallWidth { get { return @OverallWidth; } }	
+		IfcPositiveLengthMeasure? IIfcDoor.OverallHeight { 
+			get { return @OverallHeight; } 
+ 
+			set { OverallHeight = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcDoor.OverallWidth { 
+			get { return @OverallWidth; } 
+ 
+			set { OverallWidth = value;}
+		}	
 		 
 		#endregion
 

@@ -39,7 +39,9 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 	public  partial class @IfcClassificationNotation : INotifyPropertyChanged, IInstantiableEntity, IIfcClassificationNotation, IContainsEntityReferences, IEquatable<@IfcClassificationNotation>
 	{
 		#region IIfcClassificationNotation explicit implementation
-		IEnumerable<IIfcClassificationNotationFacet> IIfcClassificationNotation.NotationFacets { get { return @NotationFacets; } }	
+		IEnumerable<IIfcClassificationNotationFacet> IIfcClassificationNotation.NotationFacets { 
+			get { return @NotationFacets; } 
+		}	
 		 
 		#endregion
 

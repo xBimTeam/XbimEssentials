@@ -22,15 +22,26 @@ namespace Xbim.Ifc2x3.QuantityResource
 			{
 				return new Ifc4.MeasureResource.IfcTimeMeasure(TimeValue);
 			} 
+			set
+			{
+				TimeValue = new MeasureResource.IfcTimeMeasure(value);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcLabel? _formula;
+
 		Ifc4.MeasureResource.IfcLabel? IIfcQuantityTime.Formula 
 		{ 
 			get
 			{
-				//## Handle return of Formula for which no match was found
-                return null;
-				//##
+				return _formula;
 			} 
+			set
+			{
+				SetValue(v => _formula = v, _formula, value, "Formula", byte.MaxValue);
+				
+			}
 		}
 	//## Custom code
 	//##

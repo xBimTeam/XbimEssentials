@@ -28,13 +28,13 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRecurrencePattern : IPersistEntity
 	{
-		IfcRecurrenceTypeEnum @RecurrenceType { get; }
+		IfcRecurrenceTypeEnum @RecurrenceType { get;  set; }
 		IEnumerable<IfcDayInMonthNumber> @DayComponent { get; }
 		IEnumerable<IfcDayInWeekNumber> @WeekdayComponent { get; }
 		IEnumerable<IfcMonthInYearNumber> @MonthComponent { get; }
-		IfcInteger? @Position { get; }
-		IfcInteger? @Interval { get; }
-		IfcInteger? @Occurrences { get; }
+		IfcInteger? @Position { get;  set; }
+		IfcInteger? @Interval { get;  set; }
+		IfcInteger? @Occurrences { get;  set; }
 		IEnumerable<IIfcTimePeriod> @TimePeriods { get; }
 	
 	}
@@ -47,14 +47,38 @@ namespace Xbim.Ifc4.DateTimeResource
 	public  partial class @IfcRecurrencePattern : INotifyPropertyChanged, IInstantiableEntity, IIfcRecurrencePattern, IContainsEntityReferences, IEquatable<@IfcRecurrencePattern>
 	{
 		#region IIfcRecurrencePattern explicit implementation
-		IfcRecurrenceTypeEnum IIfcRecurrencePattern.RecurrenceType { get { return @RecurrenceType; } }	
-		IEnumerable<IfcDayInMonthNumber> IIfcRecurrencePattern.DayComponent { get { return @DayComponent; } }	
-		IEnumerable<IfcDayInWeekNumber> IIfcRecurrencePattern.WeekdayComponent { get { return @WeekdayComponent; } }	
-		IEnumerable<IfcMonthInYearNumber> IIfcRecurrencePattern.MonthComponent { get { return @MonthComponent; } }	
-		IfcInteger? IIfcRecurrencePattern.Position { get { return @Position; } }	
-		IfcInteger? IIfcRecurrencePattern.Interval { get { return @Interval; } }	
-		IfcInteger? IIfcRecurrencePattern.Occurrences { get { return @Occurrences; } }	
-		IEnumerable<IIfcTimePeriod> IIfcRecurrencePattern.TimePeriods { get { return @TimePeriods; } }	
+		IfcRecurrenceTypeEnum IIfcRecurrencePattern.RecurrenceType { 
+			get { return @RecurrenceType; } 
+ 
+			set { RecurrenceType = value;}
+		}	
+		IEnumerable<IfcDayInMonthNumber> IIfcRecurrencePattern.DayComponent { 
+			get { return @DayComponent; } 
+		}	
+		IEnumerable<IfcDayInWeekNumber> IIfcRecurrencePattern.WeekdayComponent { 
+			get { return @WeekdayComponent; } 
+		}	
+		IEnumerable<IfcMonthInYearNumber> IIfcRecurrencePattern.MonthComponent { 
+			get { return @MonthComponent; } 
+		}	
+		IfcInteger? IIfcRecurrencePattern.Position { 
+			get { return @Position; } 
+ 
+			set { Position = value;}
+		}	
+		IfcInteger? IIfcRecurrencePattern.Interval { 
+			get { return @Interval; } 
+ 
+			set { Interval = value;}
+		}	
+		IfcInteger? IIfcRecurrencePattern.Occurrences { 
+			get { return @Occurrences; } 
+ 
+			set { Occurrences = value;}
+		}	
+		IEnumerable<IIfcTimePeriod> IIfcRecurrencePattern.TimePeriods { 
+			get { return @TimePeriods; } 
+		}	
 		 
 		#endregion
 

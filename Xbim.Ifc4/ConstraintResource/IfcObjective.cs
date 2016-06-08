@@ -27,9 +27,9 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcObjective : IIfcConstraint
 	{
 		IEnumerable<IIfcConstraint> @BenchmarkValues { get; }
-		IfcLogicalOperatorEnum? @LogicalAggregator { get; }
-		IfcObjectiveEnum @ObjectiveQualifier { get; }
-		IfcLabel? @UserDefinedQualifier { get; }
+		IfcLogicalOperatorEnum? @LogicalAggregator { get;  set; }
+		IfcObjectiveEnum @ObjectiveQualifier { get;  set; }
+		IfcLabel? @UserDefinedQualifier { get;  set; }
 	
 	}
 }
@@ -41,10 +41,24 @@ namespace Xbim.Ifc4.ConstraintResource
 	public  partial class @IfcObjective : IfcConstraint, IInstantiableEntity, IIfcObjective, IContainsEntityReferences, IEquatable<@IfcObjective>
 	{
 		#region IIfcObjective explicit implementation
-		IEnumerable<IIfcConstraint> IIfcObjective.BenchmarkValues { get { return @BenchmarkValues; } }	
-		IfcLogicalOperatorEnum? IIfcObjective.LogicalAggregator { get { return @LogicalAggregator; } }	
-		IfcObjectiveEnum IIfcObjective.ObjectiveQualifier { get { return @ObjectiveQualifier; } }	
-		IfcLabel? IIfcObjective.UserDefinedQualifier { get { return @UserDefinedQualifier; } }	
+		IEnumerable<IIfcConstraint> IIfcObjective.BenchmarkValues { 
+			get { return @BenchmarkValues; } 
+		}	
+		IfcLogicalOperatorEnum? IIfcObjective.LogicalAggregator { 
+			get { return @LogicalAggregator; } 
+ 
+			set { LogicalAggregator = value;}
+		}	
+		IfcObjectiveEnum IIfcObjective.ObjectiveQualifier { 
+			get { return @ObjectiveQualifier; } 
+ 
+			set { ObjectiveQualifier = value;}
+		}	
+		IfcLabel? IIfcObjective.UserDefinedQualifier { 
+			get { return @UserDefinedQualifier; } 
+ 
+			set { UserDefinedQualifier = value;}
+		}	
 		 
 		#endregion
 

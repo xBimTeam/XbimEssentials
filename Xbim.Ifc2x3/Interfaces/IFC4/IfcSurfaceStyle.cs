@@ -36,6 +36,28 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcSurfaceSide.POSITIVE:
+						Side = IfcSurfaceSide.POSITIVE;
+						return;
+					
+					case Ifc4.Interfaces.IfcSurfaceSide.NEGATIVE:
+						Side = IfcSurfaceSide.NEGATIVE;
+						return;
+					
+					case Ifc4.Interfaces.IfcSurfaceSide.BOTH:
+						Side = IfcSurfaceSide.BOTH;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		IEnumerable<IIfcSurfaceStyleElementSelect> IIfcSurfaceStyle.Styles 
 		{ 

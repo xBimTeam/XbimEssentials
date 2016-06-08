@@ -28,9 +28,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcActorRole : IPersistEntity
 	{
-		IfcRoleEnum @Role { get; }
-		IfcLabel? @UserDefinedRole { get; }
-		IfcText? @Description { get; }
+		IfcRoleEnum @Role { get;  set; }
+		IfcLabel? @UserDefinedRole { get;  set; }
+		IfcText? @Description { get;  set; }
 	
 	}
 }
@@ -42,9 +42,21 @@ namespace Xbim.Ifc2x3.ActorResource
 	public  partial class @IfcActorRole : INotifyPropertyChanged, IInstantiableEntity, IIfcActorRole, IEquatable<@IfcActorRole>
 	{
 		#region IIfcActorRole explicit implementation
-		IfcRoleEnum IIfcActorRole.Role { get { return @Role; } }	
-		IfcLabel? IIfcActorRole.UserDefinedRole { get { return @UserDefinedRole; } }	
-		IfcText? IIfcActorRole.Description { get { return @Description; } }	
+		IfcRoleEnum IIfcActorRole.Role { 
+			get { return @Role; } 
+ 
+			set { Role = value;}
+		}	
+		IfcLabel? IIfcActorRole.UserDefinedRole { 
+			get { return @UserDefinedRole; } 
+ 
+			set { UserDefinedRole = value;}
+		}	
+		IfcText? IIfcActorRole.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
 		 
 		#endregion
 

@@ -27,11 +27,11 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcLightSourcePositional : IIfcLightSource
 	{
-		IIfcCartesianPoint @Position { get; }
-		IfcPositiveLengthMeasure @Radius { get; }
-		IfcReal @ConstantAttenuation { get; }
-		IfcReal @DistanceAttenuation { get; }
-		IfcReal @QuadricAttenuation { get; }
+		IIfcCartesianPoint @Position { get;  set; }
+		IfcPositiveLengthMeasure @Radius { get;  set; }
+		IfcReal @ConstantAttenuation { get;  set; }
+		IfcReal @DistanceAttenuation { get;  set; }
+		IfcReal @QuadricAttenuation { get;  set; }
 	
 	}
 }
@@ -43,11 +43,32 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 	public  partial class @IfcLightSourcePositional : IfcLightSource, IInstantiableEntity, IIfcLightSourcePositional, IContainsEntityReferences, IEquatable<@IfcLightSourcePositional>
 	{
 		#region IIfcLightSourcePositional explicit implementation
-		IIfcCartesianPoint IIfcLightSourcePositional.Position { get { return @Position; } }	
-		IfcPositiveLengthMeasure IIfcLightSourcePositional.Radius { get { return @Radius; } }	
-		IfcReal IIfcLightSourcePositional.ConstantAttenuation { get { return @ConstantAttenuation; } }	
-		IfcReal IIfcLightSourcePositional.DistanceAttenuation { get { return @DistanceAttenuation; } }	
-		IfcReal IIfcLightSourcePositional.QuadricAttenuation { get { return @QuadricAttenuation; } }	
+		IIfcCartesianPoint IIfcLightSourcePositional.Position { 
+			get { return @Position; } 
+ 
+ 
+			set { Position = value as IfcCartesianPoint;}
+		}	
+		IfcPositiveLengthMeasure IIfcLightSourcePositional.Radius { 
+			get { return @Radius; } 
+ 
+			set { Radius = value;}
+		}	
+		IfcReal IIfcLightSourcePositional.ConstantAttenuation { 
+			get { return @ConstantAttenuation; } 
+ 
+			set { ConstantAttenuation = value;}
+		}	
+		IfcReal IIfcLightSourcePositional.DistanceAttenuation { 
+			get { return @DistanceAttenuation; } 
+ 
+			set { DistanceAttenuation = value;}
+		}	
+		IfcReal IIfcLightSourcePositional.QuadricAttenuation { 
+			get { return @QuadricAttenuation; } 
+ 
+			set { QuadricAttenuation = value;}
+		}	
 		 
 		#endregion
 

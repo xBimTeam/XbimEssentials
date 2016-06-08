@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcActionRequest : IIfcControl
 	{
-		IfcIdentifier @RequestID { get; }
+		IfcIdentifier @RequestID { get;  set; }
 	
 	}
 }
@@ -39,7 +39,11 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 	public  partial class @IfcActionRequest : IfcControl, IInstantiableEntity, IIfcActionRequest, IContainsEntityReferences, IEquatable<@IfcActionRequest>
 	{
 		#region IIfcActionRequest explicit implementation
-		IfcIdentifier IIfcActionRequest.RequestID { get { return @RequestID; } }	
+		IfcIdentifier IIfcActionRequest.RequestID { 
+			get { return @RequestID; } 
+ 
+			set { RequestID = value;}
+		}	
 		 
 		#endregion
 

@@ -38,7 +38,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcIndexedTriangleTextureMap : IfcIndexedTextureMap, IInstantiableEntity, IIfcIndexedTriangleTextureMap, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcIndexedTriangleTextureMap>
 	{
 		#region IIfcIndexedTriangleTextureMap explicit implementation
-		IEnumerable<IEnumerable<IfcPositiveInteger>> IIfcIndexedTriangleTextureMap.TexCoordIndex { get { return @TexCoordIndex; } }	
+		IEnumerable<IEnumerable<IfcPositiveInteger>> IIfcIndexedTriangleTextureMap.TexCoordIndex { 
+			get { return @TexCoordIndex; } 
+		}	
 		 
 		#endregion
 

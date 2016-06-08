@@ -25,20 +25,20 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieJob : ICobieReferencedObject
 	{
-		string @TaskNumber { get; }
-		string @Name { get; }
-		string @Description { get; }
-		ICobieJobType @JobType { get; }
-		ICobieJobStatusType @JobStatusType { get; }
-		double? @Duration { get; }
-		ICobieDurationUnit @DurationUnit { get; }
-		double? @Start { get; }
-		ICobieDurationUnit @StartUnit { get; }
-		double? @Frequency { get; }
-		ICobieDurationUnit @FrequencyUnit { get; }
-		ICobieJob @Priors { get; }
+		string @TaskNumber { get;  set; }
+		string @Name { get;  set; }
+		string @Description { get;  set; }
+		ICobieJobType @JobType { get;  set; }
+		ICobieJobStatusType @JobStatusType { get;  set; }
+		double? @Duration { get;  set; }
+		ICobieDurationUnit @DurationUnit { get;  set; }
+		double? @Start { get;  set; }
+		ICobieDurationUnit @StartUnit { get;  set; }
+		double? @Frequency { get;  set; }
+		ICobieDurationUnit @FrequencyUnit { get;  set; }
+		ICobieJob @Priors { get;  set; }
 		IEnumerable<ICobieResource> @Resources { get; }
-		ICobieType @Type { get; }
+		ICobieType @Type { get;  set; }
 	
 	}
 }
@@ -50,20 +50,81 @@ namespace Xbim.CobieExpress
 	public  partial class @CobieJob : CobieReferencedObject, IInstantiableEntity, ICobieJob, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieJob>
 	{
 		#region ICobieJob explicit implementation
-		string ICobieJob.TaskNumber { get { return @TaskNumber; } }	
-		string ICobieJob.Name { get { return @Name; } }	
-		string ICobieJob.Description { get { return @Description; } }	
-		ICobieJobType ICobieJob.JobType { get { return @JobType; } }	
-		ICobieJobStatusType ICobieJob.JobStatusType { get { return @JobStatusType; } }	
-		double? ICobieJob.Duration { get { return @Duration; } }	
-		ICobieDurationUnit ICobieJob.DurationUnit { get { return @DurationUnit; } }	
-		double? ICobieJob.Start { get { return @Start; } }	
-		ICobieDurationUnit ICobieJob.StartUnit { get { return @StartUnit; } }	
-		double? ICobieJob.Frequency { get { return @Frequency; } }	
-		ICobieDurationUnit ICobieJob.FrequencyUnit { get { return @FrequencyUnit; } }	
-		ICobieJob ICobieJob.Priors { get { return @Priors; } }	
-		IEnumerable<ICobieResource> ICobieJob.Resources { get { return @Resources; } }	
-		ICobieType ICobieJob.Type { get { return @Type; } }	
+		string ICobieJob.TaskNumber { 
+			get { return @TaskNumber; } 
+ 
+			set { TaskNumber = value;}
+		}	
+		string ICobieJob.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		string ICobieJob.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		ICobieJobType ICobieJob.JobType { 
+			get { return @JobType; } 
+ 
+ 
+			set { JobType = value as CobieJobType;}
+		}	
+		ICobieJobStatusType ICobieJob.JobStatusType { 
+			get { return @JobStatusType; } 
+ 
+ 
+			set { JobStatusType = value as CobieJobStatusType;}
+		}	
+		double? ICobieJob.Duration { 
+			get { return @Duration; } 
+ 
+			set { Duration = value;}
+		}	
+		ICobieDurationUnit ICobieJob.DurationUnit { 
+			get { return @DurationUnit; } 
+ 
+ 
+			set { DurationUnit = value as CobieDurationUnit;}
+		}	
+		double? ICobieJob.Start { 
+			get { return @Start; } 
+ 
+			set { Start = value;}
+		}	
+		ICobieDurationUnit ICobieJob.StartUnit { 
+			get { return @StartUnit; } 
+ 
+ 
+			set { StartUnit = value as CobieDurationUnit;}
+		}	
+		double? ICobieJob.Frequency { 
+			get { return @Frequency; } 
+ 
+			set { Frequency = value;}
+		}	
+		ICobieDurationUnit ICobieJob.FrequencyUnit { 
+			get { return @FrequencyUnit; } 
+ 
+ 
+			set { FrequencyUnit = value as CobieDurationUnit;}
+		}	
+		ICobieJob ICobieJob.Priors { 
+			get { return @Priors; } 
+ 
+ 
+			set { Priors = value as CobieJob;}
+		}	
+		IEnumerable<ICobieResource> ICobieJob.Resources { 
+			get { return @Resources; } 
+		}	
+		ICobieType ICobieJob.Type { 
+			get { return @Type; } 
+ 
+ 
+			set { Type = value as CobieType;}
+		}	
 		 
 		#endregion
 

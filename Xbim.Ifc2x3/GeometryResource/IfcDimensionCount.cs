@@ -15,7 +15,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 	[ExpressType("IfcDimensionCount", 523)]
 	[DefinedType(typeof(long))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcDimensionCount : IExpressValueType, System.IEquatable<long>
+	public partial struct IfcDimensionCount : IExpressValueType, IExpressIntegerType, System.IEquatable<long>
 	{ 
 		private long _value;
         
@@ -23,6 +23,9 @@ namespace Xbim.Ifc2x3.GeometryResource
         {
             get { return _value; }
         }
+
+ 
+		long IExpressIntegerType.Value { get { return _value; } }
 
 		public override string ToString()
         {

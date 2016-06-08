@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcRelAssigns : IIfcRelationship
 	{
 		IEnumerable<IIfcObjectDefinition> @RelatedObjects { get; }
-		IfcObjectTypeEnum? @RelatedObjectsType { get; }
+		IfcObjectTypeEnum? @RelatedObjectsType { get;  set; }
 	
 	}
 }
@@ -38,8 +38,14 @@ namespace Xbim.Ifc2x3.Kernel
 	public abstract partial class @IfcRelAssigns : IfcRelationship, IIfcRelAssigns, IEquatable<@IfcRelAssigns>
 	{
 		#region IIfcRelAssigns explicit implementation
-		IEnumerable<IIfcObjectDefinition> IIfcRelAssigns.RelatedObjects { get { return @RelatedObjects; } }	
-		IfcObjectTypeEnum? IIfcRelAssigns.RelatedObjectsType { get { return @RelatedObjectsType; } }	
+		IEnumerable<IIfcObjectDefinition> IIfcRelAssigns.RelatedObjects { 
+			get { return @RelatedObjects; } 
+		}	
+		IfcObjectTypeEnum? IIfcRelAssigns.RelatedObjectsType { 
+			get { return @RelatedObjectsType; } 
+ 
+			set { RelatedObjectsType = value;}
+		}	
 		 
 		#endregion
 

@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcComplexProperty : IIfcProperty
 	{
-		IfcIdentifier @UsageName { get; }
+		IfcIdentifier @UsageName { get;  set; }
 		IEnumerable<IIfcProperty> @HasProperties { get; }
 	
 	}
@@ -39,8 +39,14 @@ namespace Xbim.Ifc4.PropertyResource
 	public  partial class @IfcComplexProperty : IfcProperty, IInstantiableEntity, IIfcComplexProperty, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcComplexProperty>
 	{
 		#region IIfcComplexProperty explicit implementation
-		IfcIdentifier IIfcComplexProperty.UsageName { get { return @UsageName; } }	
-		IEnumerable<IIfcProperty> IIfcComplexProperty.HasProperties { get { return @HasProperties; } }	
+		IfcIdentifier IIfcComplexProperty.UsageName { 
+			get { return @UsageName; } 
+ 
+			set { UsageName = value;}
+		}	
+		IEnumerable<IIfcProperty> IIfcComplexProperty.HasProperties { 
+			get { return @HasProperties; } 
+		}	
 		 
 		#endregion
 

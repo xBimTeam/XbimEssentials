@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcEdgeFeature : IIfcFeatureElementSubtraction
 	{
-		IfcPositiveLengthMeasure? @FeatureLength { get; }
+		IfcPositiveLengthMeasure? @FeatureLength { get;  set; }
 	
 	}
 }
@@ -39,7 +39,11 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 	public abstract partial class @IfcEdgeFeature : IfcFeatureElementSubtraction, IIfcEdgeFeature, IEquatable<@IfcEdgeFeature>
 	{
 		#region IIfcEdgeFeature explicit implementation
-		IfcPositiveLengthMeasure? IIfcEdgeFeature.FeatureLength { get { return @FeatureLength; } }	
+		IfcPositiveLengthMeasure? IIfcEdgeFeature.FeatureLength { 
+			get { return @FeatureLength; } 
+ 
+			set { FeatureLength = value;}
+		}	
 		 
 		#endregion
 

@@ -27,11 +27,11 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSweptDiskSolid : IIfcSolidModel
 	{
-		IIfcCurve @Directrix { get; }
-		IfcPositiveLengthMeasure @Radius { get; }
-		IfcPositiveLengthMeasure? @InnerRadius { get; }
-		IfcParameterValue? @StartParam { get; }
-		IfcParameterValue? @EndParam { get; }
+		IIfcCurve @Directrix { get;  set; }
+		IfcPositiveLengthMeasure @Radius { get;  set; }
+		IfcPositiveLengthMeasure? @InnerRadius { get;  set; }
+		IfcParameterValue? @StartParam { get;  set; }
+		IfcParameterValue? @EndParam { get;  set; }
 	
 	}
 }
@@ -43,11 +43,32 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public  partial class @IfcSweptDiskSolid : IfcSolidModel, IInstantiableEntity, IIfcSweptDiskSolid, IContainsEntityReferences, IEquatable<@IfcSweptDiskSolid>
 	{
 		#region IIfcSweptDiskSolid explicit implementation
-		IIfcCurve IIfcSweptDiskSolid.Directrix { get { return @Directrix; } }	
-		IfcPositiveLengthMeasure IIfcSweptDiskSolid.Radius { get { return @Radius; } }	
-		IfcPositiveLengthMeasure? IIfcSweptDiskSolid.InnerRadius { get { return @InnerRadius; } }	
-		IfcParameterValue? IIfcSweptDiskSolid.StartParam { get { return @StartParam; } }	
-		IfcParameterValue? IIfcSweptDiskSolid.EndParam { get { return @EndParam; } }	
+		IIfcCurve IIfcSweptDiskSolid.Directrix { 
+			get { return @Directrix; } 
+ 
+ 
+			set { Directrix = value as IfcCurve;}
+		}	
+		IfcPositiveLengthMeasure IIfcSweptDiskSolid.Radius { 
+			get { return @Radius; } 
+ 
+			set { Radius = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcSweptDiskSolid.InnerRadius { 
+			get { return @InnerRadius; } 
+ 
+			set { InnerRadius = value;}
+		}	
+		IfcParameterValue? IIfcSweptDiskSolid.StartParam { 
+			get { return @StartParam; } 
+ 
+			set { StartParam = value;}
+		}	
+		IfcParameterValue? IIfcSweptDiskSolid.EndParam { 
+			get { return @EndParam; } 
+ 
+			set { EndParam = value;}
+		}	
 		 
 		#endregion
 

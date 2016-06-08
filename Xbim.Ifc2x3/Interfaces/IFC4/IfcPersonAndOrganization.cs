@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.ActorResource
 			{
 				return ThePerson;
 			} 
+			set
+			{
+				ThePerson = value as IfcPerson;
+				
+			}
 		}
 		IIfcOrganization IIfcPersonAndOrganization.TheOrganization 
 		{ 
@@ -29,6 +34,11 @@ namespace Xbim.Ifc2x3.ActorResource
 			{
 				return TheOrganization;
 			} 
+			set
+			{
+				TheOrganization = value as IfcOrganization;
+				
+			}
 		}
 		IEnumerable<IIfcActorRole> IIfcPersonAndOrganization.Roles 
 		{ 

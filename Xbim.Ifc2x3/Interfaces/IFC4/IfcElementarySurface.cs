@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return Position;
 			} 
+			set
+			{
+				Position = value as IfcAxis2Placement3D;
+				
+			}
 		}
 	//## Custom code
 	//##

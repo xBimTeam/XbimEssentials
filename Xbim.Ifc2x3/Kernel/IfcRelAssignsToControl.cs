@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelAssignsToControl : IIfcRelAssigns
 	{
-		IIfcControl @RelatingControl { get; }
+		IIfcControl @RelatingControl { get;  set; }
 	
 	}
 }
@@ -37,7 +37,12 @@ namespace Xbim.Ifc2x3.Kernel
 	public  partial class @IfcRelAssignsToControl : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToControl, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToControl>
 	{
 		#region IIfcRelAssignsToControl explicit implementation
-		IIfcControl IIfcRelAssignsToControl.RelatingControl { get { return @RelatingControl; } }	
+		IIfcControl IIfcRelAssignsToControl.RelatingControl { 
+			get { return @RelatingControl; } 
+ 
+ 
+			set { RelatingControl = value as IfcControl;}
+		}	
 		 
 		#endregion
 

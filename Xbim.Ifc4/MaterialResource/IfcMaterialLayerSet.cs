@@ -27,8 +27,8 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcMaterialLayerSet : IIfcMaterialDefinition
 	{
 		IEnumerable<IIfcMaterialLayer> @MaterialLayers { get; }
-		IfcLabel? @LayerSetName { get; }
-		IfcText? @Description { get; }
+		IfcLabel? @LayerSetName { get;  set; }
+		IfcText? @Description { get;  set; }
 		IfcLengthMeasure @TotalThickness  { get ; }
 	
 	}
@@ -41,9 +41,19 @@ namespace Xbim.Ifc4.MaterialResource
 	public  partial class @IfcMaterialLayerSet : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialLayerSet, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMaterialLayerSet>
 	{
 		#region IIfcMaterialLayerSet explicit implementation
-		IEnumerable<IIfcMaterialLayer> IIfcMaterialLayerSet.MaterialLayers { get { return @MaterialLayers; } }	
-		IfcLabel? IIfcMaterialLayerSet.LayerSetName { get { return @LayerSetName; } }	
-		IfcText? IIfcMaterialLayerSet.Description { get { return @Description; } }	
+		IEnumerable<IIfcMaterialLayer> IIfcMaterialLayerSet.MaterialLayers { 
+			get { return @MaterialLayers; } 
+		}	
+		IfcLabel? IIfcMaterialLayerSet.LayerSetName { 
+			get { return @LayerSetName; } 
+ 
+			set { LayerSetName = value;}
+		}	
+		IfcText? IIfcMaterialLayerSet.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
 		 
 		#endregion
 

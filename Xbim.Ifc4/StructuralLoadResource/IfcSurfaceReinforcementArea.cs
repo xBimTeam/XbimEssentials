@@ -28,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IEnumerable<IfcLengthMeasure> @SurfaceReinforcement1 { get; }
 		IEnumerable<IfcLengthMeasure> @SurfaceReinforcement2 { get; }
-		IfcRatioMeasure? @ShearReinforcement { get; }
+		IfcRatioMeasure? @ShearReinforcement { get;  set; }
 	
 	}
 }
@@ -40,9 +40,17 @@ namespace Xbim.Ifc4.StructuralLoadResource
 	public  partial class @IfcSurfaceReinforcementArea : IfcStructuralLoadOrResult, IInstantiableEntity, IIfcSurfaceReinforcementArea, IEquatable<@IfcSurfaceReinforcementArea>
 	{
 		#region IIfcSurfaceReinforcementArea explicit implementation
-		IEnumerable<IfcLengthMeasure> IIfcSurfaceReinforcementArea.SurfaceReinforcement1 { get { return @SurfaceReinforcement1; } }	
-		IEnumerable<IfcLengthMeasure> IIfcSurfaceReinforcementArea.SurfaceReinforcement2 { get { return @SurfaceReinforcement2; } }	
-		IfcRatioMeasure? IIfcSurfaceReinforcementArea.ShearReinforcement { get { return @ShearReinforcement; } }	
+		IEnumerable<IfcLengthMeasure> IIfcSurfaceReinforcementArea.SurfaceReinforcement1 { 
+			get { return @SurfaceReinforcement1; } 
+		}	
+		IEnumerable<IfcLengthMeasure> IIfcSurfaceReinforcementArea.SurfaceReinforcement2 { 
+			get { return @SurfaceReinforcement2; } 
+		}	
+		IfcRatioMeasure? IIfcSurfaceReinforcementArea.ShearReinforcement { 
+			get { return @ShearReinforcement; } 
+ 
+			set { ShearReinforcement = value;}
+		}	
 		 
 		#endregion
 

@@ -16,14 +16,20 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	public partial class @IfcCostItem : IIfcCostItem
 	{
+
+		private  Ifc4.Interfaces.IfcCostItemTypeEnum? _predefinedType;
+
 		Ifc4.Interfaces.IfcCostItemTypeEnum? IIfcCostItem.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-			    return null;
-			    //##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				
+			}
 		}
 		IEnumerable<IIfcCostValue> IIfcCostItem.CostValues 
 		{ 

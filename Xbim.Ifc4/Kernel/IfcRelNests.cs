@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelNests : IIfcRelDecomposes
 	{
-		IIfcObjectDefinition @RelatingObject { get; }
+		IIfcObjectDefinition @RelatingObject { get;  set; }
 		IEnumerable<IIfcObjectDefinition> @RelatedObjects { get; }
 	
 	}
@@ -38,8 +38,15 @@ namespace Xbim.Ifc4.Kernel
 	public  partial class @IfcRelNests : IfcRelDecomposes, IInstantiableEntity, IIfcRelNests, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelNests>
 	{
 		#region IIfcRelNests explicit implementation
-		IIfcObjectDefinition IIfcRelNests.RelatingObject { get { return @RelatingObject; } }	
-		IEnumerable<IIfcObjectDefinition> IIfcRelNests.RelatedObjects { get { return @RelatedObjects; } }	
+		IIfcObjectDefinition IIfcRelNests.RelatingObject { 
+			get { return @RelatingObject; } 
+ 
+ 
+			set { RelatingObject = value as IfcObjectDefinition;}
+		}	
+		IEnumerable<IIfcObjectDefinition> IIfcRelNests.RelatedObjects { 
+			get { return @RelatedObjects; } 
+		}	
 		 
 		#endregion
 

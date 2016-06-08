@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralLinearActionVarying : IIfcStructuralLinearAction
 	{
-		IIfcShapeAspect @VaryingAppliedLoadLocation { get; }
+		IIfcShapeAspect @VaryingAppliedLoadLocation { get;  set; }
 		IEnumerable<IIfcStructuralLoad> @SubsequentAppliedLoads { get; }
 		List<IfcStructuralLoad> @VaryingAppliedLoads  { get ; }
 	
@@ -41,8 +41,15 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 	public  partial class @IfcStructuralLinearActionVarying : IfcStructuralLinearAction, IInstantiableEntity, IIfcStructuralLinearActionVarying, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralLinearActionVarying>
 	{
 		#region IIfcStructuralLinearActionVarying explicit implementation
-		IIfcShapeAspect IIfcStructuralLinearActionVarying.VaryingAppliedLoadLocation { get { return @VaryingAppliedLoadLocation; } }	
-		IEnumerable<IIfcStructuralLoad> IIfcStructuralLinearActionVarying.SubsequentAppliedLoads { get { return @SubsequentAppliedLoads; } }	
+		IIfcShapeAspect IIfcStructuralLinearActionVarying.VaryingAppliedLoadLocation { 
+			get { return @VaryingAppliedLoadLocation; } 
+ 
+ 
+			set { VaryingAppliedLoadLocation = value as IfcShapeAspect;}
+		}	
+		IEnumerable<IIfcStructuralLoad> IIfcStructuralLinearActionVarying.SubsequentAppliedLoads { 
+			get { return @SubsequentAppliedLoads; } 
+		}	
 		 
 		#endregion
 

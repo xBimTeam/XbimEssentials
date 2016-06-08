@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcWallType : IIfcBuildingElementType
 	{
-		IfcWallTypeEnum @PredefinedType { get; }
+		IfcWallTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.SharedBldgElements
 	public  partial class @IfcWallType : IfcBuildingElementType, IInstantiableEntity, IIfcWallType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcWallType>
 	{
 		#region IIfcWallType explicit implementation
-		IfcWallTypeEnum IIfcWallType.PredefinedType { get { return @PredefinedType; } }	
+		IfcWallTypeEnum IIfcWallType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

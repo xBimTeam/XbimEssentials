@@ -23,6 +23,13 @@ namespace Xbim.Ifc2x3.ProductExtension
 				if (!RefLatitude.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure(RefLatitude.Value);
 			} 
+			set
+			{
+				RefLatitude = value.HasValue ? 
+					new MeasureResource.IfcCompoundPlaneAngleMeasure(value.Value) :  
+					 new MeasureResource.IfcCompoundPlaneAngleMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure? IIfcSite.RefLongitude 
 		{ 
@@ -31,6 +38,13 @@ namespace Xbim.Ifc2x3.ProductExtension
 				if (!RefLongitude.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure(RefLongitude.Value);
 			} 
+			set
+			{
+				RefLongitude = value.HasValue ? 
+					new MeasureResource.IfcCompoundPlaneAngleMeasure(value.Value) :  
+					 new MeasureResource.IfcCompoundPlaneAngleMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcSite.RefElevation 
 		{ 
@@ -39,6 +53,13 @@ namespace Xbim.Ifc2x3.ProductExtension
 				if (!RefElevation.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLengthMeasure(RefElevation.Value);
 			} 
+			set
+			{
+				RefElevation = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcSite.LandTitleNumber 
 		{ 
@@ -47,6 +68,13 @@ namespace Xbim.Ifc2x3.ProductExtension
 				if (!LandTitleNumber.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(LandTitleNumber.Value);
 			} 
+			set
+			{
+				LandTitleNumber = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		IIfcPostalAddress IIfcSite.SiteAddress 
 		{ 
@@ -54,15 +82,26 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				return SiteAddress;
 			} 
+			set
+			{
+				SiteAddress = value as ActorResource.IfcPostalAddress;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
 		{ 
 			get
 			{
-				//## Handle return of LongName for which no match was found
-                return !Name.HasValue ? null : new Ifc4.MeasureResource.IfcLabel(Name.Value);
-				//##
+				if (!LongName.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(LongName.Value);
 			} 
+			set
+			{
+				LongName = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcSpatialElement.ContainsElements 
 		{ 

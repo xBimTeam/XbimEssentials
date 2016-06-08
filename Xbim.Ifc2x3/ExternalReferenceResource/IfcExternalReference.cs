@@ -30,9 +30,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcExternalReference : IPersistEntity, IfcLightDistributionDataSourceSelect, IfcObjectReferenceSelect
 	{
-		IfcLabel? @Location { get; }
-		IfcIdentifier? @ItemReference { get; }
-		IfcLabel? @Name { get; }
+		IfcLabel? @Location { get;  set; }
+		IfcIdentifier? @ItemReference { get;  set; }
+		IfcLabel? @Name { get;  set; }
 	
 	}
 }
@@ -44,9 +44,21 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 	public abstract partial class @IfcExternalReference : IPersistEntity, INotifyPropertyChanged, IIfcExternalReference, IEquatable<@IfcExternalReference>
 	{
 		#region IIfcExternalReference explicit implementation
-		IfcLabel? IIfcExternalReference.Location { get { return @Location; } }	
-		IfcIdentifier? IIfcExternalReference.ItemReference { get { return @ItemReference; } }	
-		IfcLabel? IIfcExternalReference.Name { get { return @Name; } }	
+		IfcLabel? IIfcExternalReference.Location { 
+			get { return @Location; } 
+ 
+			set { Location = value;}
+		}	
+		IfcIdentifier? IIfcExternalReference.ItemReference { 
+			get { return @ItemReference; } 
+ 
+			set { ItemReference = value;}
+		}	
+		IfcLabel? IIfcExternalReference.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
 		 
 		#endregion
 

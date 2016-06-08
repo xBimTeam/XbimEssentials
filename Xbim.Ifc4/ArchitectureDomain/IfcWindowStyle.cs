@@ -27,10 +27,10 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcWindowStyle : IIfcTypeProduct
 	{
-		IfcWindowStyleConstructionEnum @ConstructionType { get; }
-		IfcWindowStyleOperationEnum @OperationType { get; }
-		IfcBoolean @ParameterTakesPrecedence { get; }
-		IfcBoolean @Sizeable { get; }
+		IfcWindowStyleConstructionEnum @ConstructionType { get;  set; }
+		IfcWindowStyleOperationEnum @OperationType { get;  set; }
+		IfcBoolean @ParameterTakesPrecedence { get;  set; }
+		IfcBoolean @Sizeable { get;  set; }
 	
 	}
 }
@@ -42,10 +42,26 @@ namespace Xbim.Ifc4.ArchitectureDomain
 	public  partial class @IfcWindowStyle : IfcTypeProduct, IInstantiableEntity, IIfcWindowStyle, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcWindowStyle>
 	{
 		#region IIfcWindowStyle explicit implementation
-		IfcWindowStyleConstructionEnum IIfcWindowStyle.ConstructionType { get { return @ConstructionType; } }	
-		IfcWindowStyleOperationEnum IIfcWindowStyle.OperationType { get { return @OperationType; } }	
-		IfcBoolean IIfcWindowStyle.ParameterTakesPrecedence { get { return @ParameterTakesPrecedence; } }	
-		IfcBoolean IIfcWindowStyle.Sizeable { get { return @Sizeable; } }	
+		IfcWindowStyleConstructionEnum IIfcWindowStyle.ConstructionType { 
+			get { return @ConstructionType; } 
+ 
+			set { ConstructionType = value;}
+		}	
+		IfcWindowStyleOperationEnum IIfcWindowStyle.OperationType { 
+			get { return @OperationType; } 
+ 
+			set { OperationType = value;}
+		}	
+		IfcBoolean IIfcWindowStyle.ParameterTakesPrecedence { 
+			get { return @ParameterTakesPrecedence; } 
+ 
+			set { ParameterTakesPrecedence = value;}
+		}	
+		IfcBoolean IIfcWindowStyle.Sizeable { 
+			get { return @Sizeable; } 
+ 
+			set { Sizeable = value;}
+		}	
 		 
 		#endregion
 

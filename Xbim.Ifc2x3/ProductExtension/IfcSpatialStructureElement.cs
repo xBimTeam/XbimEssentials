@@ -27,8 +27,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSpatialStructureElement : IIfcProduct
 	{
-		IfcLabel? @LongName { get; }
-		IfcElementCompositionEnum @CompositionType { get; }
+		IfcLabel? @LongName { get;  set; }
+		IfcElementCompositionEnum @CompositionType { get;  set; }
 		IEnumerable<IIfcRelReferencedInSpatialStructure> @ReferencesElements {  get; }
 		IEnumerable<IIfcRelServicesBuildings> @ServicedBySystems {  get; }
 		IEnumerable<IIfcRelContainedInSpatialStructure> @ContainsElements {  get; }
@@ -43,8 +43,16 @@ namespace Xbim.Ifc2x3.ProductExtension
 	public abstract partial class @IfcSpatialStructureElement : IfcProduct, IIfcSpatialStructureElement, IEquatable<@IfcSpatialStructureElement>
 	{
 		#region IIfcSpatialStructureElement explicit implementation
-		IfcLabel? IIfcSpatialStructureElement.LongName { get { return @LongName; } }	
-		IfcElementCompositionEnum IIfcSpatialStructureElement.CompositionType { get { return @CompositionType; } }	
+		IfcLabel? IIfcSpatialStructureElement.LongName { 
+			get { return @LongName; } 
+ 
+			set { LongName = value;}
+		}	
+		IfcElementCompositionEnum IIfcSpatialStructureElement.CompositionType { 
+			get { return @CompositionType; } 
+ 
+			set { CompositionType = value;}
+		}	
 		 
 		IEnumerable<IIfcRelReferencedInSpatialStructure> IIfcSpatialStructureElement.ReferencesElements {  get { return @ReferencesElements; } }
 		IEnumerable<IIfcRelServicesBuildings> IIfcSpatialStructureElement.ServicedBySystems {  get { return @ServicedBySystems; } }

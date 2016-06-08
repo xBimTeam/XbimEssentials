@@ -38,6 +38,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 						return Ifc4.Interfaces.IfcElectricMotorTypeEnum.SYNCHRONOUS;
 					
 					case IfcElectricMotorTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcElectricMotorTypeEnum.USERDEFINED;
 					
 					case IfcElectricMotorTypeEnum.NOTDEFINED:
@@ -48,6 +50,44 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcElectricMotorTypeEnum.DC:
+						PredefinedType = IfcElectricMotorTypeEnum.DC;
+						return;
+					
+					case Ifc4.Interfaces.IfcElectricMotorTypeEnum.INDUCTION:
+						PredefinedType = IfcElectricMotorTypeEnum.INDUCTION;
+						return;
+					
+					case Ifc4.Interfaces.IfcElectricMotorTypeEnum.POLYPHASE:
+						PredefinedType = IfcElectricMotorTypeEnum.POLYPHASE;
+						return;
+					
+					case Ifc4.Interfaces.IfcElectricMotorTypeEnum.RELUCTANCESYNCHRONOUS:
+						PredefinedType = IfcElectricMotorTypeEnum.RELUCTANCESYNCHRONOUS;
+						return;
+					
+					case Ifc4.Interfaces.IfcElectricMotorTypeEnum.SYNCHRONOUS:
+						PredefinedType = IfcElectricMotorTypeEnum.SYNCHRONOUS;
+						return;
+					
+					case Ifc4.Interfaces.IfcElectricMotorTypeEnum.USERDEFINED:
+						PredefinedType = IfcElectricMotorTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcElectricMotorTypeEnum.NOTDEFINED:
+						PredefinedType = IfcElectricMotorTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

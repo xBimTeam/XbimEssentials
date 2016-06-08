@@ -26,13 +26,13 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcIShapeProfileDef : IIfcParameterizedProfileDef
 	{
-		IfcPositiveLengthMeasure @OverallWidth { get; }
-		IfcPositiveLengthMeasure @OverallDepth { get; }
-		IfcPositiveLengthMeasure @WebThickness { get; }
-		IfcPositiveLengthMeasure @FlangeThickness { get; }
-		IfcNonNegativeLengthMeasure? @FilletRadius { get; }
-		IfcNonNegativeLengthMeasure? @FlangeEdgeRadius { get; }
-		IfcPlaneAngleMeasure? @FlangeSlope { get; }
+		IfcPositiveLengthMeasure @OverallWidth { get;  set; }
+		IfcPositiveLengthMeasure @OverallDepth { get;  set; }
+		IfcPositiveLengthMeasure @WebThickness { get;  set; }
+		IfcPositiveLengthMeasure @FlangeThickness { get;  set; }
+		IfcNonNegativeLengthMeasure? @FilletRadius { get;  set; }
+		IfcNonNegativeLengthMeasure? @FlangeEdgeRadius { get;  set; }
+		IfcPlaneAngleMeasure? @FlangeSlope { get;  set; }
 	
 	}
 }
@@ -44,13 +44,41 @@ namespace Xbim.Ifc4.ProfileResource
 	public  partial class @IfcIShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcIShapeProfileDef, IContainsEntityReferences, IEquatable<@IfcIShapeProfileDef>
 	{
 		#region IIfcIShapeProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcIShapeProfileDef.OverallWidth { get { return @OverallWidth; } }	
-		IfcPositiveLengthMeasure IIfcIShapeProfileDef.OverallDepth { get { return @OverallDepth; } }	
-		IfcPositiveLengthMeasure IIfcIShapeProfileDef.WebThickness { get { return @WebThickness; } }	
-		IfcPositiveLengthMeasure IIfcIShapeProfileDef.FlangeThickness { get { return @FlangeThickness; } }	
-		IfcNonNegativeLengthMeasure? IIfcIShapeProfileDef.FilletRadius { get { return @FilletRadius; } }	
-		IfcNonNegativeLengthMeasure? IIfcIShapeProfileDef.FlangeEdgeRadius { get { return @FlangeEdgeRadius; } }	
-		IfcPlaneAngleMeasure? IIfcIShapeProfileDef.FlangeSlope { get { return @FlangeSlope; } }	
+		IfcPositiveLengthMeasure IIfcIShapeProfileDef.OverallWidth { 
+			get { return @OverallWidth; } 
+ 
+			set { OverallWidth = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcIShapeProfileDef.OverallDepth { 
+			get { return @OverallDepth; } 
+ 
+			set { OverallDepth = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcIShapeProfileDef.WebThickness { 
+			get { return @WebThickness; } 
+ 
+			set { WebThickness = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcIShapeProfileDef.FlangeThickness { 
+			get { return @FlangeThickness; } 
+ 
+			set { FlangeThickness = value;}
+		}	
+		IfcNonNegativeLengthMeasure? IIfcIShapeProfileDef.FilletRadius { 
+			get { return @FilletRadius; } 
+ 
+			set { FilletRadius = value;}
+		}	
+		IfcNonNegativeLengthMeasure? IIfcIShapeProfileDef.FlangeEdgeRadius { 
+			get { return @FlangeEdgeRadius; } 
+ 
+			set { FlangeEdgeRadius = value;}
+		}	
+		IfcPlaneAngleMeasure? IIfcIShapeProfileDef.FlangeSlope { 
+			get { return @FlangeSlope; } 
+ 
+			set { FlangeSlope = value;}
+		}	
 		 
 		#endregion
 

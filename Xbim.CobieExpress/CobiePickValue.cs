@@ -27,7 +27,7 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobiePickValue : IPersistEntity
 	{
-		string @Value { get; }
+		string @Value { get;  set; }
 	
 	}
 }
@@ -39,7 +39,11 @@ namespace Xbim.CobieExpress
 	public abstract partial class @CobiePickValue : IPersistEntity, INotifyPropertyChanged, ICobiePickValue, IEquatable<@CobiePickValue>
 	{
 		#region ICobiePickValue explicit implementation
-		string ICobiePickValue.Value { get { return @Value; } }	
+		string ICobiePickValue.Value { 
+			get { return @Value; } 
+ 
+			set { Value = value;}
+		}	
 		 
 		#endregion
 

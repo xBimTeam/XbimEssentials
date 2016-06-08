@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralSurfaceMember : IIfcStructuralMember
 	{
-		IfcStructuralSurfaceMemberTypeEnum @PredefinedType { get; }
-		IfcPositiveLengthMeasure? @Thickness { get; }
+		IfcStructuralSurfaceMemberTypeEnum @PredefinedType { get;  set; }
+		IfcPositiveLengthMeasure? @Thickness { get;  set; }
 	
 	}
 }
@@ -39,8 +39,16 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	public  partial class @IfcStructuralSurfaceMember : IfcStructuralMember, IInstantiableEntity, IIfcStructuralSurfaceMember, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralSurfaceMember>
 	{
 		#region IIfcStructuralSurfaceMember explicit implementation
-		IfcStructuralSurfaceMemberTypeEnum IIfcStructuralSurfaceMember.PredefinedType { get { return @PredefinedType; } }	
-		IfcPositiveLengthMeasure? IIfcStructuralSurfaceMember.Thickness { get { return @Thickness; } }	
+		IfcStructuralSurfaceMemberTypeEnum IIfcStructuralSurfaceMember.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcStructuralSurfaceMember.Thickness { 
+			get { return @Thickness; } 
+ 
+			set { Thickness = value;}
+		}	
 		 
 		#endregion
 

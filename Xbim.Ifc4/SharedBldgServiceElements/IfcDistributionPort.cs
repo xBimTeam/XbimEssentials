@@ -26,9 +26,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDistributionPort : IIfcPort
 	{
-		IfcFlowDirectionEnum? @FlowDirection { get; }
-		IfcDistributionPortTypeEnum? @PredefinedType { get; }
-		IfcDistributionSystemEnum? @SystemType { get; }
+		IfcFlowDirectionEnum? @FlowDirection { get;  set; }
+		IfcDistributionPortTypeEnum? @PredefinedType { get;  set; }
+		IfcDistributionSystemEnum? @SystemType { get;  set; }
 	
 	}
 }
@@ -40,9 +40,21 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 	public  partial class @IfcDistributionPort : IfcPort, IInstantiableEntity, IIfcDistributionPort, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDistributionPort>
 	{
 		#region IIfcDistributionPort explicit implementation
-		IfcFlowDirectionEnum? IIfcDistributionPort.FlowDirection { get { return @FlowDirection; } }	
-		IfcDistributionPortTypeEnum? IIfcDistributionPort.PredefinedType { get { return @PredefinedType; } }	
-		IfcDistributionSystemEnum? IIfcDistributionPort.SystemType { get { return @SystemType; } }	
+		IfcFlowDirectionEnum? IIfcDistributionPort.FlowDirection { 
+			get { return @FlowDirection; } 
+ 
+			set { FlowDirection = value;}
+		}	
+		IfcDistributionPortTypeEnum? IIfcDistributionPort.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
+		IfcDistributionSystemEnum? IIfcDistributionPort.SystemType { 
+			get { return @SystemType; } 
+ 
+			set { SystemType = value;}
+		}	
 		 
 		#endregion
 

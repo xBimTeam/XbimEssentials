@@ -26,14 +26,14 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcReinforcingMesh : IIfcReinforcingElement
 	{
-		IfcPositiveLengthMeasure? @MeshLength { get; }
-		IfcPositiveLengthMeasure? @MeshWidth { get; }
-		IfcPositiveLengthMeasure @LongitudinalBarNominalDiameter { get; }
-		IfcPositiveLengthMeasure @TransverseBarNominalDiameter { get; }
-		IfcAreaMeasure @LongitudinalBarCrossSectionArea { get; }
-		IfcAreaMeasure @TransverseBarCrossSectionArea { get; }
-		IfcPositiveLengthMeasure @LongitudinalBarSpacing { get; }
-		IfcPositiveLengthMeasure @TransverseBarSpacing { get; }
+		IfcPositiveLengthMeasure? @MeshLength { get;  set; }
+		IfcPositiveLengthMeasure? @MeshWidth { get;  set; }
+		IfcPositiveLengthMeasure @LongitudinalBarNominalDiameter { get;  set; }
+		IfcPositiveLengthMeasure @TransverseBarNominalDiameter { get;  set; }
+		IfcAreaMeasure @LongitudinalBarCrossSectionArea { get;  set; }
+		IfcAreaMeasure @TransverseBarCrossSectionArea { get;  set; }
+		IfcPositiveLengthMeasure @LongitudinalBarSpacing { get;  set; }
+		IfcPositiveLengthMeasure @TransverseBarSpacing { get;  set; }
 	
 	}
 }
@@ -45,14 +45,46 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 	public  partial class @IfcReinforcingMesh : IfcReinforcingElement, IInstantiableEntity, IIfcReinforcingMesh, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcReinforcingMesh>
 	{
 		#region IIfcReinforcingMesh explicit implementation
-		IfcPositiveLengthMeasure? IIfcReinforcingMesh.MeshLength { get { return @MeshLength; } }	
-		IfcPositiveLengthMeasure? IIfcReinforcingMesh.MeshWidth { get { return @MeshWidth; } }	
-		IfcPositiveLengthMeasure IIfcReinforcingMesh.LongitudinalBarNominalDiameter { get { return @LongitudinalBarNominalDiameter; } }	
-		IfcPositiveLengthMeasure IIfcReinforcingMesh.TransverseBarNominalDiameter { get { return @TransverseBarNominalDiameter; } }	
-		IfcAreaMeasure IIfcReinforcingMesh.LongitudinalBarCrossSectionArea { get { return @LongitudinalBarCrossSectionArea; } }	
-		IfcAreaMeasure IIfcReinforcingMesh.TransverseBarCrossSectionArea { get { return @TransverseBarCrossSectionArea; } }	
-		IfcPositiveLengthMeasure IIfcReinforcingMesh.LongitudinalBarSpacing { get { return @LongitudinalBarSpacing; } }	
-		IfcPositiveLengthMeasure IIfcReinforcingMesh.TransverseBarSpacing { get { return @TransverseBarSpacing; } }	
+		IfcPositiveLengthMeasure? IIfcReinforcingMesh.MeshLength { 
+			get { return @MeshLength; } 
+ 
+			set { MeshLength = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcReinforcingMesh.MeshWidth { 
+			get { return @MeshWidth; } 
+ 
+			set { MeshWidth = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcReinforcingMesh.LongitudinalBarNominalDiameter { 
+			get { return @LongitudinalBarNominalDiameter; } 
+ 
+			set { LongitudinalBarNominalDiameter = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcReinforcingMesh.TransverseBarNominalDiameter { 
+			get { return @TransverseBarNominalDiameter; } 
+ 
+			set { TransverseBarNominalDiameter = value;}
+		}	
+		IfcAreaMeasure IIfcReinforcingMesh.LongitudinalBarCrossSectionArea { 
+			get { return @LongitudinalBarCrossSectionArea; } 
+ 
+			set { LongitudinalBarCrossSectionArea = value;}
+		}	
+		IfcAreaMeasure IIfcReinforcingMesh.TransverseBarCrossSectionArea { 
+			get { return @TransverseBarCrossSectionArea; } 
+ 
+			set { TransverseBarCrossSectionArea = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcReinforcingMesh.LongitudinalBarSpacing { 
+			get { return @LongitudinalBarSpacing; } 
+ 
+			set { LongitudinalBarSpacing = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcReinforcingMesh.TransverseBarSpacing { 
+			get { return @TransverseBarSpacing; } 
+ 
+			set { TransverseBarSpacing = value;}
+		}	
 		 
 		#endregion
 

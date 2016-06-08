@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBurnerType : IIfcEnergyConversionDeviceType
 	{
-		IfcBurnerTypeEnum @PredefinedType { get; }
+		IfcBurnerTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.HvacDomain
 	public  partial class @IfcBurnerType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcBurnerType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBurnerType>
 	{
 		#region IIfcBurnerType explicit implementation
-		IfcBurnerTypeEnum IIfcBurnerType.PredefinedType { get { return @PredefinedType; } }	
+		IfcBurnerTypeEnum IIfcBurnerType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

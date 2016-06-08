@@ -27,7 +27,7 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieExternalSystem : IPersistEntity
 	{
-		string @Name { get; }
+		string @Name { get;  set; }
 	
 	}
 }
@@ -39,7 +39,11 @@ namespace Xbim.CobieExpress
 	public  partial class @CobieExternalSystem : INotifyPropertyChanged, IInstantiableEntity, ICobieExternalSystem, IEquatable<@CobieExternalSystem>
 	{
 		#region ICobieExternalSystem explicit implementation
-		string ICobieExternalSystem.Name { get { return @Name; } }	
+		string ICobieExternalSystem.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
 		 
 		#endregion
 

@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcFilterType : IIfcFlowTreatmentDeviceType
 	{
-		IfcFilterTypeEnum @PredefinedType { get; }
+		IfcFilterTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.HvacDomain
 	public  partial class @IfcFilterType : IfcFlowTreatmentDeviceType, IInstantiableEntity, IIfcFilterType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFilterType>
 	{
 		#region IIfcFilterType explicit implementation
-		IfcFilterTypeEnum IIfcFilterType.PredefinedType { get { return @PredefinedType; } }	
+		IfcFilterTypeEnum IIfcFilterType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

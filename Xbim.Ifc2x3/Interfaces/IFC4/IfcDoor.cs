@@ -23,6 +23,13 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!OverallHeight.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallHeight.Value);
 			} 
+			set
+			{
+				OverallHeight = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcDoor.OverallWidth 
 		{ 
@@ -31,33 +38,58 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!OverallWidth.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallWidth.Value);
 			} 
+			set
+			{
+				OverallWidth = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
+
+		private  Ifc4.Interfaces.IfcDoorTypeEnum? _predefinedType;
+
 		Ifc4.Interfaces.IfcDoorTypeEnum? IIfcDoor.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-			    return null;
-			    //##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				
+			}
 		}
+
+		private  Ifc4.Interfaces.IfcDoorTypeOperationEnum? _operationType;
+
 		Ifc4.Interfaces.IfcDoorTypeOperationEnum? IIfcDoor.OperationType 
 		{ 
 			get
 			{
-				//## Handle return of OperationType for which no match was found
-			    return null;
-			    //##
+				return _operationType;
 			} 
+			set
+			{
+				SetValue(v => _operationType = v, _operationType, value, "OperationType", byte.MaxValue);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcLabel? _userDefinedOperationType;
+
 		Ifc4.MeasureResource.IfcLabel? IIfcDoor.UserDefinedOperationType 
 		{ 
 			get
 			{
-				//## Handle return of UserDefinedOperationType for which no match was found
-			    return null;
-			    //##
+				return _userDefinedOperationType;
 			} 
+			set
+			{
+				SetValue(v => _userDefinedOperationType = v, _userDefinedOperationType, value, "UserDefinedOperationType", byte.MaxValue);
+				
+			}
 		}
 	//## Custom code
         /// <summary>

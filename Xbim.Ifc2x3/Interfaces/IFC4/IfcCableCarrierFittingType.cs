@@ -35,6 +35,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 						return Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.TEE;
 					
 					case IfcCableCarrierFittingTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.USERDEFINED;
 					
 					case IfcCableCarrierFittingTypeEnum.NOTDEFINED:
@@ -45,6 +47,40 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.BEND:
+						PredefinedType = IfcCableCarrierFittingTypeEnum.BEND;
+						return;
+					
+					case Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.CROSS:
+						PredefinedType = IfcCableCarrierFittingTypeEnum.CROSS;
+						return;
+					
+					case Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.REDUCER:
+						PredefinedType = IfcCableCarrierFittingTypeEnum.REDUCER;
+						return;
+					
+					case Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.TEE:
+						PredefinedType = IfcCableCarrierFittingTypeEnum.TEE;
+						return;
+					
+					case Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.USERDEFINED:
+						PredefinedType = IfcCableCarrierFittingTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.NOTDEFINED:
+						PredefinedType = IfcCableCarrierFittingTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

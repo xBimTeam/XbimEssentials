@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcMaterialClassificationRelationship : IPersistEntity
 	{
 		IEnumerable<IIfcClassificationSelect> @MaterialClassifications { get; }
-		IIfcMaterial @ClassifiedMaterial { get; }
+		IIfcMaterial @ClassifiedMaterial { get;  set; }
 	
 	}
 }
@@ -41,8 +41,15 @@ namespace Xbim.Ifc4.MaterialResource
 	public  partial class @IfcMaterialClassificationRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterialClassificationRelationship, IContainsEntityReferences, IEquatable<@IfcMaterialClassificationRelationship>
 	{
 		#region IIfcMaterialClassificationRelationship explicit implementation
-		IEnumerable<IIfcClassificationSelect> IIfcMaterialClassificationRelationship.MaterialClassifications { get { return @MaterialClassifications; } }	
-		IIfcMaterial IIfcMaterialClassificationRelationship.ClassifiedMaterial { get { return @ClassifiedMaterial; } }	
+		IEnumerable<IIfcClassificationSelect> IIfcMaterialClassificationRelationship.MaterialClassifications { 
+			get { return @MaterialClassifications; } 
+		}	
+		IIfcMaterial IIfcMaterialClassificationRelationship.ClassifiedMaterial { 
+			get { return @ClassifiedMaterial; } 
+ 
+ 
+			set { ClassifiedMaterial = value as IfcMaterial;}
+		}	
 		 
 		#endregion
 

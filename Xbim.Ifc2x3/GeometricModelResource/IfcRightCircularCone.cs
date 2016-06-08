@@ -26,8 +26,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRightCircularCone : IIfcCsgPrimitive3D
 	{
-		IfcPositiveLengthMeasure @Height { get; }
-		IfcPositiveLengthMeasure @BottomRadius { get; }
+		IfcPositiveLengthMeasure @Height { get;  set; }
+		IfcPositiveLengthMeasure @BottomRadius { get;  set; }
 	
 	}
 }
@@ -39,8 +39,16 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 	public  partial class @IfcRightCircularCone : IfcCsgPrimitive3D, IInstantiableEntity, IIfcRightCircularCone, IContainsEntityReferences, IEquatable<@IfcRightCircularCone>
 	{
 		#region IIfcRightCircularCone explicit implementation
-		IfcPositiveLengthMeasure IIfcRightCircularCone.Height { get { return @Height; } }	
-		IfcPositiveLengthMeasure IIfcRightCircularCone.BottomRadius { get { return @BottomRadius; } }	
+		IfcPositiveLengthMeasure IIfcRightCircularCone.Height { 
+			get { return @Height; } 
+ 
+			set { Height = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcRightCircularCone.BottomRadius { 
+			get { return @BottomRadius; } 
+ 
+			set { BottomRadius = value;}
+		}	
 		 
 		#endregion
 

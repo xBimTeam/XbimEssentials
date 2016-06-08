@@ -26,13 +26,13 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTextStyleTextModel : IIfcPresentationItem
 	{
-		IIfcSizeSelect @TextIndent { get; }
-		IfcTextAlignment? @TextAlign { get; }
-		IfcTextDecoration? @TextDecoration { get; }
-		IIfcSizeSelect @LetterSpacing { get; }
-		IIfcSizeSelect @WordSpacing { get; }
-		IfcTextTransformation? @TextTransform { get; }
-		IIfcSizeSelect @LineHeight { get; }
+		IIfcSizeSelect @TextIndent { get;  set; }
+		IfcTextAlignment? @TextAlign { get;  set; }
+		IfcTextDecoration? @TextDecoration { get;  set; }
+		IIfcSizeSelect @LetterSpacing { get;  set; }
+		IIfcSizeSelect @WordSpacing { get;  set; }
+		IfcTextTransformation? @TextTransform { get;  set; }
+		IIfcSizeSelect @LineHeight { get;  set; }
 	
 	}
 }
@@ -44,13 +44,45 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcTextStyleTextModel : IfcPresentationItem, IInstantiableEntity, IIfcTextStyleTextModel, IEquatable<@IfcTextStyleTextModel>
 	{
 		#region IIfcTextStyleTextModel explicit implementation
-		IIfcSizeSelect IIfcTextStyleTextModel.TextIndent { get { return @TextIndent; } }	
-		IfcTextAlignment? IIfcTextStyleTextModel.TextAlign { get { return @TextAlign; } }	
-		IfcTextDecoration? IIfcTextStyleTextModel.TextDecoration { get { return @TextDecoration; } }	
-		IIfcSizeSelect IIfcTextStyleTextModel.LetterSpacing { get { return @LetterSpacing; } }	
-		IIfcSizeSelect IIfcTextStyleTextModel.WordSpacing { get { return @WordSpacing; } }	
-		IfcTextTransformation? IIfcTextStyleTextModel.TextTransform { get { return @TextTransform; } }	
-		IIfcSizeSelect IIfcTextStyleTextModel.LineHeight { get { return @LineHeight; } }	
+		IIfcSizeSelect IIfcTextStyleTextModel.TextIndent { 
+			get { return @TextIndent; } 
+ 
+ 
+			set { TextIndent = value as IfcSizeSelect;}
+		}	
+		IfcTextAlignment? IIfcTextStyleTextModel.TextAlign { 
+			get { return @TextAlign; } 
+ 
+			set { TextAlign = value;}
+		}	
+		IfcTextDecoration? IIfcTextStyleTextModel.TextDecoration { 
+			get { return @TextDecoration; } 
+ 
+			set { TextDecoration = value;}
+		}	
+		IIfcSizeSelect IIfcTextStyleTextModel.LetterSpacing { 
+			get { return @LetterSpacing; } 
+ 
+ 
+			set { LetterSpacing = value as IfcSizeSelect;}
+		}	
+		IIfcSizeSelect IIfcTextStyleTextModel.WordSpacing { 
+			get { return @WordSpacing; } 
+ 
+ 
+			set { WordSpacing = value as IfcSizeSelect;}
+		}	
+		IfcTextTransformation? IIfcTextStyleTextModel.TextTransform { 
+			get { return @TextTransform; } 
+ 
+			set { TextTransform = value;}
+		}	
+		IIfcSizeSelect IIfcTextStyleTextModel.LineHeight { 
+			get { return @LineHeight; } 
+ 
+ 
+			set { LineHeight = value as IfcSizeSelect;}
+		}	
 		 
 		#endregion
 

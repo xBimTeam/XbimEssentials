@@ -16,14 +16,20 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcTransportElement : IIfcTransportElement
 	{
+
+		private  Ifc4.Interfaces.IfcTransportElementTypeEnum? _predefinedType;
+
 		Ifc4.Interfaces.IfcTransportElementTypeEnum? IIfcTransportElement.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-                return null;
-				//##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				
+			}
 		}
 	//## Custom code
 	//##

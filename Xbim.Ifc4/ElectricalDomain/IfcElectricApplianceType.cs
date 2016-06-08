@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcElectricApplianceType : IIfcFlowTerminalType
 	{
-		IfcElectricApplianceTypeEnum @PredefinedType { get; }
+		IfcElectricApplianceTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.ElectricalDomain
 	public  partial class @IfcElectricApplianceType : IfcFlowTerminalType, IInstantiableEntity, IIfcElectricApplianceType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcElectricApplianceType>
 	{
 		#region IIfcElectricApplianceType explicit implementation
-		IfcElectricApplianceTypeEnum IIfcElectricApplianceType.PredefinedType { get { return @PredefinedType; } }	
+		IfcElectricApplianceTypeEnum IIfcElectricApplianceType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

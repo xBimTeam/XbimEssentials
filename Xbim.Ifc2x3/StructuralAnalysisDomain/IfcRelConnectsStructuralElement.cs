@@ -27,8 +27,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelConnectsStructuralElement : IIfcRelConnects
 	{
-		IIfcElement @RelatingElement { get; }
-		IIfcStructuralMember @RelatedStructuralMember { get; }
+		IIfcElement @RelatingElement { get;  set; }
+		IIfcStructuralMember @RelatedStructuralMember { get;  set; }
 	
 	}
 }
@@ -40,8 +40,18 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 	public  partial class @IfcRelConnectsStructuralElement : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsStructuralElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsStructuralElement>
 	{
 		#region IIfcRelConnectsStructuralElement explicit implementation
-		IIfcElement IIfcRelConnectsStructuralElement.RelatingElement { get { return @RelatingElement; } }	
-		IIfcStructuralMember IIfcRelConnectsStructuralElement.RelatedStructuralMember { get { return @RelatedStructuralMember; } }	
+		IIfcElement IIfcRelConnectsStructuralElement.RelatingElement { 
+			get { return @RelatingElement; } 
+ 
+ 
+			set { RelatingElement = value as IfcElement;}
+		}	
+		IIfcStructuralMember IIfcRelConnectsStructuralElement.RelatedStructuralMember { 
+			get { return @RelatedStructuralMember; } 
+ 
+ 
+			set { RelatedStructuralMember = value as IfcStructuralMember;}
+		}	
 		 
 		#endregion
 

@@ -25,12 +25,12 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBoundaryEdgeCondition : IIfcBoundaryCondition
 	{
-		IIfcModulusOfTranslationalSubgradeReactionSelect @TranslationalStiffnessByLengthX { get; }
-		IIfcModulusOfTranslationalSubgradeReactionSelect @TranslationalStiffnessByLengthY { get; }
-		IIfcModulusOfTranslationalSubgradeReactionSelect @TranslationalStiffnessByLengthZ { get; }
-		IIfcModulusOfRotationalSubgradeReactionSelect @RotationalStiffnessByLengthX { get; }
-		IIfcModulusOfRotationalSubgradeReactionSelect @RotationalStiffnessByLengthY { get; }
-		IIfcModulusOfRotationalSubgradeReactionSelect @RotationalStiffnessByLengthZ { get; }
+		IIfcModulusOfTranslationalSubgradeReactionSelect @TranslationalStiffnessByLengthX { get;  set; }
+		IIfcModulusOfTranslationalSubgradeReactionSelect @TranslationalStiffnessByLengthY { get;  set; }
+		IIfcModulusOfTranslationalSubgradeReactionSelect @TranslationalStiffnessByLengthZ { get;  set; }
+		IIfcModulusOfRotationalSubgradeReactionSelect @RotationalStiffnessByLengthX { get;  set; }
+		IIfcModulusOfRotationalSubgradeReactionSelect @RotationalStiffnessByLengthY { get;  set; }
+		IIfcModulusOfRotationalSubgradeReactionSelect @RotationalStiffnessByLengthZ { get;  set; }
 	
 	}
 }
@@ -42,12 +42,42 @@ namespace Xbim.Ifc4.StructuralLoadResource
 	public  partial class @IfcBoundaryEdgeCondition : IfcBoundaryCondition, IInstantiableEntity, IIfcBoundaryEdgeCondition, IEquatable<@IfcBoundaryEdgeCondition>
 	{
 		#region IIfcBoundaryEdgeCondition explicit implementation
-		IIfcModulusOfTranslationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.TranslationalStiffnessByLengthX { get { return @TranslationalStiffnessByLengthX; } }	
-		IIfcModulusOfTranslationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.TranslationalStiffnessByLengthY { get { return @TranslationalStiffnessByLengthY; } }	
-		IIfcModulusOfTranslationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.TranslationalStiffnessByLengthZ { get { return @TranslationalStiffnessByLengthZ; } }	
-		IIfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthX { get { return @RotationalStiffnessByLengthX; } }	
-		IIfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthY { get { return @RotationalStiffnessByLengthY; } }	
-		IIfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthZ { get { return @RotationalStiffnessByLengthZ; } }	
+		IIfcModulusOfTranslationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.TranslationalStiffnessByLengthX { 
+			get { return @TranslationalStiffnessByLengthX; } 
+ 
+ 
+			set { TranslationalStiffnessByLengthX = value as IfcModulusOfTranslationalSubgradeReactionSelect;}
+		}	
+		IIfcModulusOfTranslationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.TranslationalStiffnessByLengthY { 
+			get { return @TranslationalStiffnessByLengthY; } 
+ 
+ 
+			set { TranslationalStiffnessByLengthY = value as IfcModulusOfTranslationalSubgradeReactionSelect;}
+		}	
+		IIfcModulusOfTranslationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.TranslationalStiffnessByLengthZ { 
+			get { return @TranslationalStiffnessByLengthZ; } 
+ 
+ 
+			set { TranslationalStiffnessByLengthZ = value as IfcModulusOfTranslationalSubgradeReactionSelect;}
+		}	
+		IIfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthX { 
+			get { return @RotationalStiffnessByLengthX; } 
+ 
+ 
+			set { RotationalStiffnessByLengthX = value as IfcModulusOfRotationalSubgradeReactionSelect;}
+		}	
+		IIfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthY { 
+			get { return @RotationalStiffnessByLengthY; } 
+ 
+ 
+			set { RotationalStiffnessByLengthY = value as IfcModulusOfRotationalSubgradeReactionSelect;}
+		}	
+		IIfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthZ { 
+			get { return @RotationalStiffnessByLengthZ; } 
+ 
+ 
+			set { RotationalStiffnessByLengthZ = value as IfcModulusOfRotationalSubgradeReactionSelect;}
+		}	
 		 
 		#endregion
 

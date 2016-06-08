@@ -28,9 +28,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCalendarDate : IPersistEntity, IfcDateTimeSelect, IfcObjectReferenceSelect
 	{
-		IfcDayInMonthNumber @DayComponent { get; }
-		IfcMonthInYearNumber @MonthComponent { get; }
-		IfcYearNumber @YearComponent { get; }
+		IfcDayInMonthNumber @DayComponent { get;  set; }
+		IfcMonthInYearNumber @MonthComponent { get;  set; }
+		IfcYearNumber @YearComponent { get;  set; }
 	
 	}
 }
@@ -42,9 +42,21 @@ namespace Xbim.Ifc2x3.DateTimeResource
 	public  partial class @IfcCalendarDate : INotifyPropertyChanged, IInstantiableEntity, IIfcCalendarDate, IEquatable<@IfcCalendarDate>
 	{
 		#region IIfcCalendarDate explicit implementation
-		IfcDayInMonthNumber IIfcCalendarDate.DayComponent { get { return @DayComponent; } }	
-		IfcMonthInYearNumber IIfcCalendarDate.MonthComponent { get { return @MonthComponent; } }	
-		IfcYearNumber IIfcCalendarDate.YearComponent { get { return @YearComponent; } }	
+		IfcDayInMonthNumber IIfcCalendarDate.DayComponent { 
+			get { return @DayComponent; } 
+ 
+			set { DayComponent = value;}
+		}	
+		IfcMonthInYearNumber IIfcCalendarDate.MonthComponent { 
+			get { return @MonthComponent; } 
+ 
+			set { MonthComponent = value;}
+		}	
+		IfcYearNumber IIfcCalendarDate.YearComponent { 
+			get { return @YearComponent; } 
+ 
+			set { YearComponent = value;}
+		}	
 		 
 		#endregion
 

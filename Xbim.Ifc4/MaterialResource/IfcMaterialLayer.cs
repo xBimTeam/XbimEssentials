@@ -26,13 +26,13 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialLayer : IIfcMaterialDefinition
 	{
-		IIfcMaterial @Material { get; }
-		IfcNonNegativeLengthMeasure @LayerThickness { get; }
-		IfcLogical? @IsVentilated { get; }
-		IfcLabel? @Name { get; }
-		IfcText? @Description { get; }
-		IfcLabel? @Category { get; }
-		IfcInteger? @Priority { get; }
+		IIfcMaterial @Material { get;  set; }
+		IfcNonNegativeLengthMeasure @LayerThickness { get;  set; }
+		IfcLogical? @IsVentilated { get;  set; }
+		IfcLabel? @Name { get;  set; }
+		IfcText? @Description { get;  set; }
+		IfcLabel? @Category { get;  set; }
+		IfcInteger? @Priority { get;  set; }
 		IIfcMaterialLayerSet @ToMaterialLayerSet {  get; }
 	
 	}
@@ -45,13 +45,42 @@ namespace Xbim.Ifc4.MaterialResource
 	public  partial class @IfcMaterialLayer : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialLayer, IContainsEntityReferences, IEquatable<@IfcMaterialLayer>
 	{
 		#region IIfcMaterialLayer explicit implementation
-		IIfcMaterial IIfcMaterialLayer.Material { get { return @Material; } }	
-		IfcNonNegativeLengthMeasure IIfcMaterialLayer.LayerThickness { get { return @LayerThickness; } }	
-		IfcLogical? IIfcMaterialLayer.IsVentilated { get { return @IsVentilated; } }	
-		IfcLabel? IIfcMaterialLayer.Name { get { return @Name; } }	
-		IfcText? IIfcMaterialLayer.Description { get { return @Description; } }	
-		IfcLabel? IIfcMaterialLayer.Category { get { return @Category; } }	
-		IfcInteger? IIfcMaterialLayer.Priority { get { return @Priority; } }	
+		IIfcMaterial IIfcMaterialLayer.Material { 
+			get { return @Material; } 
+ 
+ 
+			set { Material = value as IfcMaterial;}
+		}	
+		IfcNonNegativeLengthMeasure IIfcMaterialLayer.LayerThickness { 
+			get { return @LayerThickness; } 
+ 
+			set { LayerThickness = value;}
+		}	
+		IfcLogical? IIfcMaterialLayer.IsVentilated { 
+			get { return @IsVentilated; } 
+ 
+			set { IsVentilated = value;}
+		}	
+		IfcLabel? IIfcMaterialLayer.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcMaterialLayer.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IfcLabel? IIfcMaterialLayer.Category { 
+			get { return @Category; } 
+ 
+			set { Category = value;}
+		}	
+		IfcInteger? IIfcMaterialLayer.Priority { 
+			get { return @Priority; } 
+ 
+			set { Priority = value;}
+		}	
 		 
 		IIfcMaterialLayerSet IIfcMaterialLayer.ToMaterialLayerSet {  get { return @ToMaterialLayerSet; } }
 		#endregion

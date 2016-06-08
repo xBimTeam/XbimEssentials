@@ -29,9 +29,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPerson : IPersistEntity, IfcActorSelect, IfcObjectReferenceSelect
 	{
-		IfcIdentifier? @Id { get; }
-		IfcLabel? @FamilyName { get; }
-		IfcLabel? @GivenName { get; }
+		IfcIdentifier? @Id { get;  set; }
+		IfcLabel? @FamilyName { get;  set; }
+		IfcLabel? @GivenName { get;  set; }
 		IEnumerable<IfcLabel> @MiddleNames { get; }
 		IEnumerable<IfcLabel> @PrefixTitles { get; }
 		IEnumerable<IfcLabel> @SuffixTitles { get; }
@@ -49,14 +49,36 @@ namespace Xbim.Ifc2x3.ActorResource
 	public  partial class @IfcPerson : INotifyPropertyChanged, IInstantiableEntity, IIfcPerson, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPerson>
 	{
 		#region IIfcPerson explicit implementation
-		IfcIdentifier? IIfcPerson.Id { get { return @Id; } }	
-		IfcLabel? IIfcPerson.FamilyName { get { return @FamilyName; } }	
-		IfcLabel? IIfcPerson.GivenName { get { return @GivenName; } }	
-		IEnumerable<IfcLabel> IIfcPerson.MiddleNames { get { return @MiddleNames; } }	
-		IEnumerable<IfcLabel> IIfcPerson.PrefixTitles { get { return @PrefixTitles; } }	
-		IEnumerable<IfcLabel> IIfcPerson.SuffixTitles { get { return @SuffixTitles; } }	
-		IEnumerable<IIfcActorRole> IIfcPerson.Roles { get { return @Roles; } }	
-		IEnumerable<IIfcAddress> IIfcPerson.Addresses { get { return @Addresses; } }	
+		IfcIdentifier? IIfcPerson.Id { 
+			get { return @Id; } 
+ 
+			set { Id = value;}
+		}	
+		IfcLabel? IIfcPerson.FamilyName { 
+			get { return @FamilyName; } 
+ 
+			set { FamilyName = value;}
+		}	
+		IfcLabel? IIfcPerson.GivenName { 
+			get { return @GivenName; } 
+ 
+			set { GivenName = value;}
+		}	
+		IEnumerable<IfcLabel> IIfcPerson.MiddleNames { 
+			get { return @MiddleNames; } 
+		}	
+		IEnumerable<IfcLabel> IIfcPerson.PrefixTitles { 
+			get { return @PrefixTitles; } 
+		}	
+		IEnumerable<IfcLabel> IIfcPerson.SuffixTitles { 
+			get { return @SuffixTitles; } 
+		}	
+		IEnumerable<IIfcActorRole> IIfcPerson.Roles { 
+			get { return @Roles; } 
+		}	
+		IEnumerable<IIfcAddress> IIfcPerson.Addresses { 
+			get { return @Addresses; } 
+		}	
 		 
 		IEnumerable<IIfcPersonAndOrganization> IIfcPerson.EngagedIn {  get { return @EngagedIn; } }
 		#endregion

@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				return RelatingElement;
 			} 
+			set
+			{
+				RelatingElement = value as IfcElement;
+				
+			}
 		}
 		IIfcFeatureElementAddition IIfcRelProjectsElement.RelatedFeatureElement 
 		{ 
@@ -29,6 +34,11 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				return RelatedFeatureElement;
 			} 
+			set
+			{
+				RelatedFeatureElement = value as IfcFeatureElementAddition;
+				
+			}
 		}
 	//## Custom code
 	//##

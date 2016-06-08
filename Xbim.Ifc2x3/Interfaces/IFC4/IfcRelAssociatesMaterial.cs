@@ -46,6 +46,21 @@ namespace Xbim.Ifc2x3.ProductExtension
 					//##
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					RelatingMaterial = null;
+					return;
+				}	
+				var ifcmateriallist = value as MaterialResource.IfcMaterialList;
+				if (ifcmateriallist != null) 
+				{
+					RelatingMaterial = ifcmateriallist;
+					return;
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

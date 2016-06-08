@@ -25,14 +25,20 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				//##
 			} 
 		}
+
+		private  Ifc4.Interfaces.IfcLogicalOperatorEnum? _logicalAggregator;
+
 		Ifc4.Interfaces.IfcLogicalOperatorEnum? IIfcObjective.LogicalAggregator 
 		{ 
 			get
 			{
-				//## Handle return of LogicalAggregator for which no match was found
-			    return null;
-			    //##
+				return _logicalAggregator;
 			} 
+			set
+			{
+				SetValue(v => _logicalAggregator = v, _logicalAggregator, value, "LogicalAggregator", byte.MaxValue);
+				
+			}
 		}
 		Ifc4.Interfaces.IfcObjectiveEnum IIfcObjective.ObjectiveQualifier 
 		{ 
@@ -59,6 +65,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 						return Ifc4.Interfaces.IfcObjectiveEnum.TRIGGERCONDITION;
 					
 					case IfcObjectiveEnum.USERDEFINED:
+						//## Optional custom handling of ObjectiveQualifier == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcObjectiveEnum.USERDEFINED;
 					
 					case IfcObjectiveEnum.NOTDEFINED:
@@ -69,6 +77,78 @@ namespace Xbim.Ifc2x3.ConstraintResource
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcObjectiveEnum.CODECOMPLIANCE:
+						ObjectiveQualifier = IfcObjectiveEnum.CODECOMPLIANCE;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectiveEnum.CODEWAIVER:
+						//## Handle setting of CODEWAIVER member from IfcObjectiveEnum in property ObjectiveQualifier
+						//TODO: Handle setting of CODEWAIVER member from IfcObjectiveEnum in property ObjectiveQualifier
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcObjectiveEnum.DESIGNINTENT:
+						ObjectiveQualifier = IfcObjectiveEnum.DESIGNINTENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectiveEnum.EXTERNAL:
+						//## Handle setting of EXTERNAL member from IfcObjectiveEnum in property ObjectiveQualifier
+						//TODO: Handle setting of EXTERNAL member from IfcObjectiveEnum in property ObjectiveQualifier
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcObjectiveEnum.HEALTHANDSAFETY:
+						ObjectiveQualifier = IfcObjectiveEnum.HEALTHANDSAFETY;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectiveEnum.MERGECONFLICT:
+						//## Handle setting of MERGECONFLICT member from IfcObjectiveEnum in property ObjectiveQualifier
+						//TODO: Handle setting of MERGECONFLICT member from IfcObjectiveEnum in property ObjectiveQualifier
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcObjectiveEnum.MODELVIEW:
+						//## Handle setting of MODELVIEW member from IfcObjectiveEnum in property ObjectiveQualifier
+						//TODO: Handle setting of MODELVIEW member from IfcObjectiveEnum in property ObjectiveQualifier
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcObjectiveEnum.PARAMETER:
+						//## Handle setting of PARAMETER member from IfcObjectiveEnum in property ObjectiveQualifier
+						//TODO: Handle setting of PARAMETER member from IfcObjectiveEnum in property ObjectiveQualifier
+						throw new System.NotImplementedException();
+						//##
+										
+					case Ifc4.Interfaces.IfcObjectiveEnum.REQUIREMENT:
+						ObjectiveQualifier = IfcObjectiveEnum.REQUIREMENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectiveEnum.SPECIFICATION:
+						ObjectiveQualifier = IfcObjectiveEnum.SPECIFICATION;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectiveEnum.TRIGGERCONDITION:
+						ObjectiveQualifier = IfcObjectiveEnum.TRIGGERCONDITION;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectiveEnum.USERDEFINED:
+						ObjectiveQualifier = IfcObjectiveEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcObjectiveEnum.NOTDEFINED:
+						ObjectiveQualifier = IfcObjectiveEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcObjective.UserDefinedQualifier 
 		{ 
@@ -77,6 +157,13 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				if (!UserDefinedQualifier.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(UserDefinedQualifier.Value);
 			} 
+			set
+			{
+				UserDefinedQualifier = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

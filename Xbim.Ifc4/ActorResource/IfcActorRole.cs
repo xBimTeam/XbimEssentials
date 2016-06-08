@@ -29,9 +29,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcActorRole : IPersistEntity, IfcResourceObjectSelect
 	{
-		IfcRoleEnum @Role { get; }
-		IfcLabel? @UserDefinedRole { get; }
-		IfcText? @Description { get; }
+		IfcRoleEnum @Role { get;  set; }
+		IfcLabel? @UserDefinedRole { get;  set; }
+		IfcText? @Description { get;  set; }
 		IEnumerable<IIfcExternalReferenceRelationship> @HasExternalReference {  get; }
 	
 	}
@@ -44,9 +44,21 @@ namespace Xbim.Ifc4.ActorResource
 	public  partial class @IfcActorRole : INotifyPropertyChanged, IInstantiableEntity, IIfcActorRole, IEquatable<@IfcActorRole>
 	{
 		#region IIfcActorRole explicit implementation
-		IfcRoleEnum IIfcActorRole.Role { get { return @Role; } }	
-		IfcLabel? IIfcActorRole.UserDefinedRole { get { return @UserDefinedRole; } }	
-		IfcText? IIfcActorRole.Description { get { return @Description; } }	
+		IfcRoleEnum IIfcActorRole.Role { 
+			get { return @Role; } 
+ 
+			set { Role = value;}
+		}	
+		IfcLabel? IIfcActorRole.UserDefinedRole { 
+			get { return @UserDefinedRole; } 
+ 
+			set { UserDefinedRole = value;}
+		}	
+		IfcText? IIfcActorRole.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
 		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcActorRole.HasExternalReference {  get { return @HasExternalReference; } }
 		#endregion

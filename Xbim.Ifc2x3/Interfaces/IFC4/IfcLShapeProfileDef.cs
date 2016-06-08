@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Depth);
 			} 
+			set
+			{
+				Depth = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcLShapeProfileDef.Width 
 		{ 
@@ -30,6 +35,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 				if (!Width.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Width.Value);
 			} 
+			set
+			{
+				Width = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcLShapeProfileDef.Thickness 
 		{ 
@@ -37,6 +49,11 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Thickness);
 			} 
+			set
+			{
+				Thickness = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcLShapeProfileDef.FilletRadius 
 		{ 
@@ -45,6 +62,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 				if (!FilletRadius.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(FilletRadius.Value);
 			} 
+			set
+			{
+				FilletRadius = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcLShapeProfileDef.EdgeRadius 
 		{ 
@@ -53,6 +77,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 				if (!EdgeRadius.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(EdgeRadius.Value);
 			} 
+			set
+			{
+				EdgeRadius = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcLShapeProfileDef.LegSlope 
 		{ 
@@ -61,6 +92,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 				if (!LegSlope.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPlaneAngleMeasure(LegSlope.Value);
 			} 
+			set
+			{
+				LegSlope = value.HasValue ? 
+					new MeasureResource.IfcPlaneAngleMeasure(value.Value) :  
+					 new MeasureResource.IfcPlaneAngleMeasure?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

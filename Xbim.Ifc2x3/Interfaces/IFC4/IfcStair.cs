@@ -65,6 +65,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 						return Ifc4.Interfaces.IfcStairTypeEnum.TWO_CURVED_RUN_STAIR;
 					
 					case IfcStairTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcStairTypeEnum.USERDEFINED;
 					
 					case IfcStairTypeEnum.NOTDEFINED:
@@ -75,6 +77,80 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcStairTypeEnum.STRAIGHT_RUN_STAIR:
+						ShapeType = IfcStairTypeEnum.STRAIGHT_RUN_STAIR;
+						return;
+					
+					case Ifc4.Interfaces.IfcStairTypeEnum.TWO_STRAIGHT_RUN_STAIR:
+						ShapeType = IfcStairTypeEnum.TWO_STRAIGHT_RUN_STAIR;
+						return;
+					
+					case Ifc4.Interfaces.IfcStairTypeEnum.QUARTER_WINDING_STAIR:
+						ShapeType = IfcStairTypeEnum.QUARTER_WINDING_STAIR;
+						return;
+					
+					case Ifc4.Interfaces.IfcStairTypeEnum.QUARTER_TURN_STAIR:
+						ShapeType = IfcStairTypeEnum.QUARTER_TURN_STAIR;
+						return;
+					
+					case Ifc4.Interfaces.IfcStairTypeEnum.HALF_WINDING_STAIR:
+						ShapeType = IfcStairTypeEnum.HALF_WINDING_STAIR;
+						return;
+					
+					case Ifc4.Interfaces.IfcStairTypeEnum.HALF_TURN_STAIR:
+						ShapeType = IfcStairTypeEnum.HALF_TURN_STAIR;
+						return;
+					
+					case Ifc4.Interfaces.IfcStairTypeEnum.TWO_QUARTER_WINDING_STAIR:
+						ShapeType = IfcStairTypeEnum.TWO_QUARTER_WINDING_STAIR;
+						return;
+					
+					case Ifc4.Interfaces.IfcStairTypeEnum.TWO_QUARTER_TURN_STAIR:
+						ShapeType = IfcStairTypeEnum.TWO_QUARTER_TURN_STAIR;
+						return;
+					
+					case Ifc4.Interfaces.IfcStairTypeEnum.THREE_QUARTER_WINDING_STAIR:
+						ShapeType = IfcStairTypeEnum.THREE_QUARTER_WINDING_STAIR;
+						return;
+					
+					case Ifc4.Interfaces.IfcStairTypeEnum.THREE_QUARTER_TURN_STAIR:
+						ShapeType = IfcStairTypeEnum.THREE_QUARTER_TURN_STAIR;
+						return;
+					
+					case Ifc4.Interfaces.IfcStairTypeEnum.SPIRAL_STAIR:
+						ShapeType = IfcStairTypeEnum.SPIRAL_STAIR;
+						return;
+					
+					case Ifc4.Interfaces.IfcStairTypeEnum.DOUBLE_RETURN_STAIR:
+						ShapeType = IfcStairTypeEnum.DOUBLE_RETURN_STAIR;
+						return;
+					
+					case Ifc4.Interfaces.IfcStairTypeEnum.CURVED_RUN_STAIR:
+						ShapeType = IfcStairTypeEnum.CURVED_RUN_STAIR;
+						return;
+					
+					case Ifc4.Interfaces.IfcStairTypeEnum.TWO_CURVED_RUN_STAIR:
+						ShapeType = IfcStairTypeEnum.TWO_CURVED_RUN_STAIR;
+						return;
+					
+					case Ifc4.Interfaces.IfcStairTypeEnum.USERDEFINED:
+						ShapeType = IfcStairTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcStairTypeEnum.NOTDEFINED:
+						ShapeType = IfcStairTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

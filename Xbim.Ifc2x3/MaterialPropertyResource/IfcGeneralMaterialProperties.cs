@@ -26,9 +26,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcGeneralMaterialProperties : IIfcMaterialProperties
 	{
-		IfcMolecularWeightMeasure? @MolecularWeight { get; }
-		IfcNormalisedRatioMeasure? @Porosity { get; }
-		IfcMassDensityMeasure? @MassDensity { get; }
+		IfcMolecularWeightMeasure? @MolecularWeight { get;  set; }
+		IfcNormalisedRatioMeasure? @Porosity { get;  set; }
+		IfcMassDensityMeasure? @MassDensity { get;  set; }
 	
 	}
 }
@@ -40,9 +40,21 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	public  partial class @IfcGeneralMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcGeneralMaterialProperties, IContainsEntityReferences, IEquatable<@IfcGeneralMaterialProperties>
 	{
 		#region IIfcGeneralMaterialProperties explicit implementation
-		IfcMolecularWeightMeasure? IIfcGeneralMaterialProperties.MolecularWeight { get { return @MolecularWeight; } }	
-		IfcNormalisedRatioMeasure? IIfcGeneralMaterialProperties.Porosity { get { return @Porosity; } }	
-		IfcMassDensityMeasure? IIfcGeneralMaterialProperties.MassDensity { get { return @MassDensity; } }	
+		IfcMolecularWeightMeasure? IIfcGeneralMaterialProperties.MolecularWeight { 
+			get { return @MolecularWeight; } 
+ 
+			set { MolecularWeight = value;}
+		}	
+		IfcNormalisedRatioMeasure? IIfcGeneralMaterialProperties.Porosity { 
+			get { return @Porosity; } 
+ 
+			set { Porosity = value;}
+		}	
+		IfcMassDensityMeasure? IIfcGeneralMaterialProperties.MassDensity { 
+			get { return @MassDensity; } 
+ 
+			set { MassDensity = value;}
+		}	
 		 
 		#endregion
 

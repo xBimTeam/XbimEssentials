@@ -26,12 +26,12 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcFailureConnectionCondition : IIfcStructuralConnectionCondition
 	{
-		IfcForceMeasure? @TensionFailureX { get; }
-		IfcForceMeasure? @TensionFailureY { get; }
-		IfcForceMeasure? @TensionFailureZ { get; }
-		IfcForceMeasure? @CompressionFailureX { get; }
-		IfcForceMeasure? @CompressionFailureY { get; }
-		IfcForceMeasure? @CompressionFailureZ { get; }
+		IfcForceMeasure? @TensionFailureX { get;  set; }
+		IfcForceMeasure? @TensionFailureY { get;  set; }
+		IfcForceMeasure? @TensionFailureZ { get;  set; }
+		IfcForceMeasure? @CompressionFailureX { get;  set; }
+		IfcForceMeasure? @CompressionFailureY { get;  set; }
+		IfcForceMeasure? @CompressionFailureZ { get;  set; }
 	
 	}
 }
@@ -43,12 +43,36 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 	public  partial class @IfcFailureConnectionCondition : IfcStructuralConnectionCondition, IInstantiableEntity, IIfcFailureConnectionCondition, IEquatable<@IfcFailureConnectionCondition>
 	{
 		#region IIfcFailureConnectionCondition explicit implementation
-		IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureX { get { return @TensionFailureX; } }	
-		IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureY { get { return @TensionFailureY; } }	
-		IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureZ { get { return @TensionFailureZ; } }	
-		IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureX { get { return @CompressionFailureX; } }	
-		IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureY { get { return @CompressionFailureY; } }	
-		IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureZ { get { return @CompressionFailureZ; } }	
+		IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureX { 
+			get { return @TensionFailureX; } 
+ 
+			set { TensionFailureX = value;}
+		}	
+		IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureY { 
+			get { return @TensionFailureY; } 
+ 
+			set { TensionFailureY = value;}
+		}	
+		IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureZ { 
+			get { return @TensionFailureZ; } 
+ 
+			set { TensionFailureZ = value;}
+		}	
+		IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureX { 
+			get { return @CompressionFailureX; } 
+ 
+			set { CompressionFailureX = value;}
+		}	
+		IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureY { 
+			get { return @CompressionFailureY; } 
+ 
+			set { CompressionFailureY = value;}
+		}	
+		IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureZ { 
+			get { return @CompressionFailureZ; } 
+ 
+			set { CompressionFailureZ = value;}
+		}	
 		 
 		#endregion
 

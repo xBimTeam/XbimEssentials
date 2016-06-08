@@ -27,8 +27,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTaskType : IIfcTypeProcess
 	{
-		IfcTaskTypeEnum @PredefinedType { get; }
-		IfcLabel? @WorkMethod { get; }
+		IfcTaskTypeEnum @PredefinedType { get;  set; }
+		IfcLabel? @WorkMethod { get;  set; }
 	
 	}
 }
@@ -40,8 +40,16 @@ namespace Xbim.Ifc4.ProcessExtension
 	public  partial class @IfcTaskType : IfcTypeProcess, IInstantiableEntity, IIfcTaskType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTaskType>
 	{
 		#region IIfcTaskType explicit implementation
-		IfcTaskTypeEnum IIfcTaskType.PredefinedType { get { return @PredefinedType; } }	
-		IfcLabel? IIfcTaskType.WorkMethod { get { return @WorkMethod; } }	
+		IfcTaskTypeEnum IIfcTaskType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
+		IfcLabel? IIfcTaskType.WorkMethod { 
+			get { return @WorkMethod; } 
+ 
+			set { WorkMethod = value;}
+		}	
 		 
 		#endregion
 

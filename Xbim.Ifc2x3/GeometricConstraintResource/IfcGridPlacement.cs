@@ -25,8 +25,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcGridPlacement : IIfcObjectPlacement
 	{
-		IIfcVirtualGridIntersection @PlacementLocation { get; }
-		IIfcVirtualGridIntersection @PlacementRefDirection { get; }
+		IIfcVirtualGridIntersection @PlacementLocation { get;  set; }
+		IIfcVirtualGridIntersection @PlacementRefDirection { get;  set; }
 	
 	}
 }
@@ -38,8 +38,18 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 	public  partial class @IfcGridPlacement : IfcObjectPlacement, IInstantiableEntity, IIfcGridPlacement, IContainsEntityReferences, IEquatable<@IfcGridPlacement>
 	{
 		#region IIfcGridPlacement explicit implementation
-		IIfcVirtualGridIntersection IIfcGridPlacement.PlacementLocation { get { return @PlacementLocation; } }	
-		IIfcVirtualGridIntersection IIfcGridPlacement.PlacementRefDirection { get { return @PlacementRefDirection; } }	
+		IIfcVirtualGridIntersection IIfcGridPlacement.PlacementLocation { 
+			get { return @PlacementLocation; } 
+ 
+ 
+			set { PlacementLocation = value as IfcVirtualGridIntersection;}
+		}	
+		IIfcVirtualGridIntersection IIfcGridPlacement.PlacementRefDirection { 
+			get { return @PlacementRefDirection; } 
+ 
+ 
+			set { PlacementRefDirection = value as IfcVirtualGridIntersection;}
+		}	
 		 
 		#endregion
 

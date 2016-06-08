@@ -26,10 +26,10 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcOffsetCurve3D : IIfcCurve
 	{
-		IIfcCurve @BasisCurve { get; }
-		IfcLengthMeasure @Distance { get; }
-		IfcLogical @SelfIntersect { get; }
-		IIfcDirection @RefDirection { get; }
+		IIfcCurve @BasisCurve { get;  set; }
+		IfcLengthMeasure @Distance { get;  set; }
+		IfcLogical @SelfIntersect { get;  set; }
+		IIfcDirection @RefDirection { get;  set; }
 	
 	}
 }
@@ -41,10 +41,28 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcOffsetCurve3D : IfcCurve, IInstantiableEntity, IIfcOffsetCurve3D, IContainsEntityReferences, IEquatable<@IfcOffsetCurve3D>
 	{
 		#region IIfcOffsetCurve3D explicit implementation
-		IIfcCurve IIfcOffsetCurve3D.BasisCurve { get { return @BasisCurve; } }	
-		IfcLengthMeasure IIfcOffsetCurve3D.Distance { get { return @Distance; } }	
-		IfcLogical IIfcOffsetCurve3D.SelfIntersect { get { return @SelfIntersect; } }	
-		IIfcDirection IIfcOffsetCurve3D.RefDirection { get { return @RefDirection; } }	
+		IIfcCurve IIfcOffsetCurve3D.BasisCurve { 
+			get { return @BasisCurve; } 
+ 
+ 
+			set { BasisCurve = value as IfcCurve;}
+		}	
+		IfcLengthMeasure IIfcOffsetCurve3D.Distance { 
+			get { return @Distance; } 
+ 
+			set { Distance = value;}
+		}	
+		IfcLogical IIfcOffsetCurve3D.SelfIntersect { 
+			get { return @SelfIntersect; } 
+ 
+			set { SelfIntersect = value;}
+		}	
+		IIfcDirection IIfcOffsetCurve3D.RefDirection { 
+			get { return @RefDirection; } 
+ 
+ 
+			set { RefDirection = value as IfcDirection;}
+		}	
 		 
 		#endregion
 

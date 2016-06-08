@@ -28,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcReinforcementDefinitionProperties : IIfcPreDefinedPropertySet
 	{
-		IfcLabel? @DefinitionType { get; }
+		IfcLabel? @DefinitionType { get;  set; }
 		IEnumerable<IIfcSectionReinforcementProperties> @ReinforcementSectionDefinitions { get; }
 	
 	}
@@ -41,8 +41,14 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 	public  partial class @IfcReinforcementDefinitionProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcReinforcementDefinitionProperties, IContainsEntityReferences, IEquatable<@IfcReinforcementDefinitionProperties>
 	{
 		#region IIfcReinforcementDefinitionProperties explicit implementation
-		IfcLabel? IIfcReinforcementDefinitionProperties.DefinitionType { get { return @DefinitionType; } }	
-		IEnumerable<IIfcSectionReinforcementProperties> IIfcReinforcementDefinitionProperties.ReinforcementSectionDefinitions { get { return @ReinforcementSectionDefinitions; } }	
+		IfcLabel? IIfcReinforcementDefinitionProperties.DefinitionType { 
+			get { return @DefinitionType; } 
+ 
+			set { DefinitionType = value;}
+		}	
+		IEnumerable<IIfcSectionReinforcementProperties> IIfcReinforcementDefinitionProperties.ReinforcementSectionDefinitions { 
+			get { return @ReinforcementSectionDefinitions; } 
+		}	
 		 
 		#endregion
 

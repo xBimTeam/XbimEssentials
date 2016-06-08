@@ -22,6 +22,11 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallWidth);
 			} 
+			set
+			{
+				OverallWidth = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcIShapeProfileDef.OverallDepth 
 		{ 
@@ -29,6 +34,11 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallDepth);
 			} 
+			set
+			{
+				OverallDepth = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcIShapeProfileDef.WebThickness 
 		{ 
@@ -36,6 +46,11 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(WebThickness);
 			} 
+			set
+			{
+				WebThickness = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcIShapeProfileDef.FlangeThickness 
 		{ 
@@ -43,6 +58,11 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(FlangeThickness);
 			} 
+			set
+			{
+				FlangeThickness = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcIShapeProfileDef.FilletRadius 
 		{ 
@@ -51,24 +71,43 @@ namespace Xbim.Ifc2x3.ProfileResource
 				if (!FilletRadius.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(FilletRadius.Value);
 			} 
+			set
+			{
+				FilletRadius = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? _flangeEdgeRadius;
+
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcIShapeProfileDef.FlangeEdgeRadius 
 		{ 
 			get
 			{
-				//## Handle return of FlangeEdgeRadius for which no match was found
-			    return null;
-			    //##
+				return _flangeEdgeRadius;
 			} 
+			set
+			{
+				SetValue(v => _flangeEdgeRadius = v, _flangeEdgeRadius, value, "FlangeEdgeRadius", byte.MaxValue);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcPlaneAngleMeasure? _flangeSlope;
+
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcIShapeProfileDef.FlangeSlope 
 		{ 
 			get
 			{
-				//## Handle return of FlangeSlope for which no match was found
-			    return null;
-			    //##
+				return _flangeSlope;
 			} 
+			set
+			{
+				SetValue(v => _flangeSlope = v, _flangeSlope, value, "FlangeSlope", byte.MaxValue);
+				
+			}
 		}
 	//## Custom code
 	//##

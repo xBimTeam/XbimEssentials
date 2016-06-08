@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelSpaceBoundary1stLevel : IIfcRelSpaceBoundary
 	{
-		IIfcRelSpaceBoundary1stLevel @ParentBoundary { get; }
+		IIfcRelSpaceBoundary1stLevel @ParentBoundary { get;  set; }
 		IEnumerable<IIfcRelSpaceBoundary1stLevel> @InnerBoundaries {  get; }
 	
 	}
@@ -38,7 +38,12 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcRelSpaceBoundary1stLevel : IfcRelSpaceBoundary, IInstantiableEntity, IIfcRelSpaceBoundary1stLevel, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelSpaceBoundary1stLevel>
 	{
 		#region IIfcRelSpaceBoundary1stLevel explicit implementation
-		IIfcRelSpaceBoundary1stLevel IIfcRelSpaceBoundary1stLevel.ParentBoundary { get { return @ParentBoundary; } }	
+		IIfcRelSpaceBoundary1stLevel IIfcRelSpaceBoundary1stLevel.ParentBoundary { 
+			get { return @ParentBoundary; } 
+ 
+ 
+			set { ParentBoundary = value as IfcRelSpaceBoundary1stLevel;}
+		}	
 		 
 		IEnumerable<IIfcRelSpaceBoundary1stLevel> IIfcRelSpaceBoundary1stLevel.InnerBoundaries {  get { return @InnerBoundaries; } }
 		#endregion

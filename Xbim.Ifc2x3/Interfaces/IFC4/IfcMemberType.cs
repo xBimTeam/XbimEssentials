@@ -59,6 +59,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 						return Ifc4.Interfaces.IfcMemberTypeEnum.STUD;
 					
 					case IfcMemberTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcMemberTypeEnum.USERDEFINED;
 					
 					case IfcMemberTypeEnum.NOTDEFINED:
@@ -69,6 +71,72 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcMemberTypeEnum.BRACE:
+						PredefinedType = IfcMemberTypeEnum.BRACE;
+						return;
+					
+					case Ifc4.Interfaces.IfcMemberTypeEnum.CHORD:
+						PredefinedType = IfcMemberTypeEnum.CHORD;
+						return;
+					
+					case Ifc4.Interfaces.IfcMemberTypeEnum.COLLAR:
+						PredefinedType = IfcMemberTypeEnum.COLLAR;
+						return;
+					
+					case Ifc4.Interfaces.IfcMemberTypeEnum.MEMBER:
+						PredefinedType = IfcMemberTypeEnum.MEMBER;
+						return;
+					
+					case Ifc4.Interfaces.IfcMemberTypeEnum.MULLION:
+						PredefinedType = IfcMemberTypeEnum.MULLION;
+						return;
+					
+					case Ifc4.Interfaces.IfcMemberTypeEnum.PLATE:
+						PredefinedType = IfcMemberTypeEnum.PLATE;
+						return;
+					
+					case Ifc4.Interfaces.IfcMemberTypeEnum.POST:
+						PredefinedType = IfcMemberTypeEnum.POST;
+						return;
+					
+					case Ifc4.Interfaces.IfcMemberTypeEnum.PURLIN:
+						PredefinedType = IfcMemberTypeEnum.PURLIN;
+						return;
+					
+					case Ifc4.Interfaces.IfcMemberTypeEnum.RAFTER:
+						PredefinedType = IfcMemberTypeEnum.RAFTER;
+						return;
+					
+					case Ifc4.Interfaces.IfcMemberTypeEnum.STRINGER:
+						PredefinedType = IfcMemberTypeEnum.STRINGER;
+						return;
+					
+					case Ifc4.Interfaces.IfcMemberTypeEnum.STRUT:
+						PredefinedType = IfcMemberTypeEnum.STRUT;
+						return;
+					
+					case Ifc4.Interfaces.IfcMemberTypeEnum.STUD:
+						PredefinedType = IfcMemberTypeEnum.STUD;
+						return;
+					
+					case Ifc4.Interfaces.IfcMemberTypeEnum.USERDEFINED:
+						PredefinedType = IfcMemberTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcMemberTypeEnum.NOTDEFINED:
+						PredefinedType = IfcMemberTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

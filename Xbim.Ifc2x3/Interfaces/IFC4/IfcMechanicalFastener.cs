@@ -23,6 +23,13 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 				if (!NominalDiameter.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(NominalDiameter.Value);
 			} 
+			set
+			{
+				NominalDiameter = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalLength 
 		{ 
@@ -31,15 +38,28 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 				if (!NominalLength.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(NominalLength.Value);
 			} 
+			set
+			{
+				NominalLength = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
+
+		private  Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum? _predefinedType;
+
 		Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum? IIfcMechanicalFastener.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-			    return null;
-			    //##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				
+			}
 		}
 	//## Custom code
 	//##

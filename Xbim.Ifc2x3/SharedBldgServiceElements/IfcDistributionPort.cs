@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDistributionPort : IIfcPort
 	{
-		IfcFlowDirectionEnum? @FlowDirection { get; }
+		IfcFlowDirectionEnum? @FlowDirection { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 	public  partial class @IfcDistributionPort : IfcPort, IInstantiableEntity, IIfcDistributionPort, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDistributionPort>
 	{
 		#region IIfcDistributionPort explicit implementation
-		IfcFlowDirectionEnum? IIfcDistributionPort.FlowDirection { get { return @FlowDirection; } }	
+		IfcFlowDirectionEnum? IIfcDistributionPort.FlowDirection { 
+			get { return @FlowDirection; } 
+ 
+			set { FlowDirection = value;}
+		}	
 		 
 		#endregion
 

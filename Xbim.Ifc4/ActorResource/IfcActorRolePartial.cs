@@ -55,7 +55,12 @@ namespace Xbim.Ifc4.ActorResource
         /// </summary>
         public string RoleString
         {
-            get { return ToString(); }
+            get
+            {
+                if (Role == IfcRoleEnum.USERDEFINED)
+                    return UserDefinedRole;
+                return Role.ToString();
+            }
             set
             {
                 IfcLabel? userDefinedRole = "";

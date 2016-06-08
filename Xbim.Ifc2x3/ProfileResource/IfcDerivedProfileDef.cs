@@ -27,9 +27,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDerivedProfileDef : IIfcProfileDef
 	{
-		IIfcProfileDef @ParentProfile { get; }
-		IIfcCartesianTransformationOperator2D @Operator { get; }
-		IfcLabel? @Label { get; }
+		IIfcProfileDef @ParentProfile { get;  set; }
+		IIfcCartesianTransformationOperator2D @Operator { get;  set; }
+		IfcLabel? @Label { get;  set; }
 	
 	}
 }
@@ -41,9 +41,23 @@ namespace Xbim.Ifc2x3.ProfileResource
 	public  partial class @IfcDerivedProfileDef : IfcProfileDef, IInstantiableEntity, IIfcDerivedProfileDef, IContainsEntityReferences, IEquatable<@IfcDerivedProfileDef>
 	{
 		#region IIfcDerivedProfileDef explicit implementation
-		IIfcProfileDef IIfcDerivedProfileDef.ParentProfile { get { return @ParentProfile; } }	
-		IIfcCartesianTransformationOperator2D IIfcDerivedProfileDef.Operator { get { return @Operator; } }	
-		IfcLabel? IIfcDerivedProfileDef.Label { get { return @Label; } }	
+		IIfcProfileDef IIfcDerivedProfileDef.ParentProfile { 
+			get { return @ParentProfile; } 
+ 
+ 
+			set { ParentProfile = value as IfcProfileDef;}
+		}	
+		IIfcCartesianTransformationOperator2D IIfcDerivedProfileDef.Operator { 
+			get { return @Operator; } 
+ 
+ 
+			set { Operator = value as IfcCartesianTransformationOperator2D;}
+		}	
+		IfcLabel? IIfcDerivedProfileDef.Label { 
+			get { return @Label; } 
+ 
+			set { Label = value;}
+		}	
 		 
 		#endregion
 

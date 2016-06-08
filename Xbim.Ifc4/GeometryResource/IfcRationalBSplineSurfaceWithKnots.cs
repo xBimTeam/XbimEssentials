@@ -39,7 +39,9 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcRationalBSplineSurfaceWithKnots : IfcBSplineSurfaceWithKnots, IInstantiableEntity, IIfcRationalBSplineSurfaceWithKnots, IContainsEntityReferences, IEquatable<@IfcRationalBSplineSurfaceWithKnots>
 	{
 		#region IIfcRationalBSplineSurfaceWithKnots explicit implementation
-		IEnumerable<IEnumerable<IfcReal>> IIfcRationalBSplineSurfaceWithKnots.WeightsData { get { return @WeightsData; } }	
+		IEnumerable<IEnumerable<IfcReal>> IIfcRationalBSplineSurfaceWithKnots.WeightsData { 
+			get { return @WeightsData; } 
+		}	
 		 
 		#endregion
 

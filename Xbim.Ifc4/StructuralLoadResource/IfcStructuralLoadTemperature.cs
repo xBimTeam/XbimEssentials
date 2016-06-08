@@ -26,9 +26,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralLoadTemperature : IIfcStructuralLoadStatic
 	{
-		IfcThermodynamicTemperatureMeasure? @DeltaTConstant { get; }
-		IfcThermodynamicTemperatureMeasure? @DeltaTY { get; }
-		IfcThermodynamicTemperatureMeasure? @DeltaTZ { get; }
+		IfcThermodynamicTemperatureMeasure? @DeltaTConstant { get;  set; }
+		IfcThermodynamicTemperatureMeasure? @DeltaTY { get;  set; }
+		IfcThermodynamicTemperatureMeasure? @DeltaTZ { get;  set; }
 	
 	}
 }
@@ -40,9 +40,21 @@ namespace Xbim.Ifc4.StructuralLoadResource
 	public  partial class @IfcStructuralLoadTemperature : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadTemperature, IEquatable<@IfcStructuralLoadTemperature>
 	{
 		#region IIfcStructuralLoadTemperature explicit implementation
-		IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaTConstant { get { return @DeltaTConstant; } }	
-		IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaTY { get { return @DeltaTY; } }	
-		IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaTZ { get { return @DeltaTZ; } }	
+		IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaTConstant { 
+			get { return @DeltaTConstant; } 
+ 
+			set { DeltaTConstant = value;}
+		}	
+		IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaTY { 
+			get { return @DeltaTY; } 
+ 
+			set { DeltaTY = value;}
+		}	
+		IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaTZ { 
+			get { return @DeltaTZ; } 
+ 
+			set { DeltaTZ = value;}
+		}	
 		 
 		#endregion
 

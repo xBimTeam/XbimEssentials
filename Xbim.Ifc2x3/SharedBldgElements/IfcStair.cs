@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStair : IIfcBuildingElement
 	{
-		IfcStairTypeEnum @ShapeType { get; }
+		IfcStairTypeEnum @ShapeType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 	public  partial class @IfcStair : IfcBuildingElement, IInstantiableEntity, IIfcStair, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStair>
 	{
 		#region IIfcStair explicit implementation
-		IfcStairTypeEnum IIfcStair.ShapeType { get { return @ShapeType; } }	
+		IfcStairTypeEnum IIfcStair.ShapeType { 
+			get { return @ShapeType; } 
+ 
+			set { ShapeType = value;}
+		}	
 		 
 		#endregion
 

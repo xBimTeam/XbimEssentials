@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 		IEnumerable<IfcInteger> @VMultiplicities { get; }
 		IEnumerable<IfcParameterValue> @UKnots { get; }
 		IEnumerable<IfcParameterValue> @VKnots { get; }
-		IfcKnotType @KnotSpec { get; }
+		IfcKnotType @KnotSpec { get;  set; }
 		IfcInteger @KnotVUpper  { get ; }
 		IfcInteger @KnotUUpper  { get ; }
 	
@@ -44,11 +44,23 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcBSplineSurfaceWithKnots : IfcBSplineSurface, IInstantiableEntity, IIfcBSplineSurfaceWithKnots, IContainsEntityReferences, IEquatable<@IfcBSplineSurfaceWithKnots>
 	{
 		#region IIfcBSplineSurfaceWithKnots explicit implementation
-		IEnumerable<IfcInteger> IIfcBSplineSurfaceWithKnots.UMultiplicities { get { return @UMultiplicities; } }	
-		IEnumerable<IfcInteger> IIfcBSplineSurfaceWithKnots.VMultiplicities { get { return @VMultiplicities; } }	
-		IEnumerable<IfcParameterValue> IIfcBSplineSurfaceWithKnots.UKnots { get { return @UKnots; } }	
-		IEnumerable<IfcParameterValue> IIfcBSplineSurfaceWithKnots.VKnots { get { return @VKnots; } }	
-		IfcKnotType IIfcBSplineSurfaceWithKnots.KnotSpec { get { return @KnotSpec; } }	
+		IEnumerable<IfcInteger> IIfcBSplineSurfaceWithKnots.UMultiplicities { 
+			get { return @UMultiplicities; } 
+		}	
+		IEnumerable<IfcInteger> IIfcBSplineSurfaceWithKnots.VMultiplicities { 
+			get { return @VMultiplicities; } 
+		}	
+		IEnumerable<IfcParameterValue> IIfcBSplineSurfaceWithKnots.UKnots { 
+			get { return @UKnots; } 
+		}	
+		IEnumerable<IfcParameterValue> IIfcBSplineSurfaceWithKnots.VKnots { 
+			get { return @VKnots; } 
+		}	
+		IfcKnotType IIfcBSplineSurfaceWithKnots.KnotSpec { 
+			get { return @KnotSpec; } 
+ 
+			set { KnotSpec = value;}
+		}	
 		 
 		#endregion
 

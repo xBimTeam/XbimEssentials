@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMedicalDeviceType : IIfcFlowTerminalType
 	{
-		IfcMedicalDeviceTypeEnum @PredefinedType { get; }
+		IfcMedicalDeviceTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.HvacDomain
 	public  partial class @IfcMedicalDeviceType : IfcFlowTerminalType, IInstantiableEntity, IIfcMedicalDeviceType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMedicalDeviceType>
 	{
 		#region IIfcMedicalDeviceType explicit implementation
-		IfcMedicalDeviceTypeEnum IIfcMedicalDeviceType.PredefinedType { get { return @PredefinedType; } }	
+		IfcMedicalDeviceTypeEnum IIfcMedicalDeviceType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

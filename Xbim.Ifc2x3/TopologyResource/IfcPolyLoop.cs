@@ -38,7 +38,9 @@ namespace Xbim.Ifc2x3.TopologyResource
 	public  partial class @IfcPolyLoop : IfcLoop, IInstantiableEntity, IIfcPolyLoop, IContainsEntityReferences, IEquatable<@IfcPolyLoop>
 	{
 		#region IIfcPolyLoop explicit implementation
-		IEnumerable<IIfcCartesianPoint> IIfcPolyLoop.Polygon { get { return @Polygon; } }	
+		IEnumerable<IIfcCartesianPoint> IIfcPolyLoop.Polygon { 
+			get { return @Polygon; } 
+		}	
 		 
 		#endregion
 

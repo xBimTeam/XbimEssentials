@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcFan : IIfcFlowMovingDevice
 	{
-		IfcFanTypeEnum? @PredefinedType { get; }
+		IfcFanTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.HvacDomain
 	public  partial class @IfcFan : IfcFlowMovingDevice, IInstantiableEntity, IIfcFan, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFan>
 	{
 		#region IIfcFan explicit implementation
-		IfcFanTypeEnum? IIfcFan.PredefinedType { get { return @PredefinedType; } }	
+		IfcFanTypeEnum? IIfcFan.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

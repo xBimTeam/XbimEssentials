@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCylindricalSurface : IIfcElementarySurface
 	{
-		IfcPositiveLengthMeasure @Radius { get; }
+		IfcPositiveLengthMeasure @Radius { get;  set; }
 	
 	}
 }
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcCylindricalSurface : IfcElementarySurface, IInstantiableEntity, IIfcCylindricalSurface, IContainsEntityReferences, IEquatable<@IfcCylindricalSurface>
 	{
 		#region IIfcCylindricalSurface explicit implementation
-		IfcPositiveLengthMeasure IIfcCylindricalSurface.Radius { get { return @Radius; } }	
+		IfcPositiveLengthMeasure IIfcCylindricalSurface.Radius { 
+			get { return @Radius; } 
+ 
+			set { Radius = value;}
+		}	
 		 
 		#endregion
 

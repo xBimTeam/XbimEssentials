@@ -20,10 +20,60 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-                return Ifc4.Interfaces.IfcStructuralSurfaceMemberTypeEnum.NOTDEFINED;
-				//##
+				switch (PredefinedType)
+				{
+					case IfcStructuralSurfaceTypeEnum.BENDING_ELEMENT:
+						return Ifc4.Interfaces.IfcStructuralSurfaceMemberTypeEnum.BENDING_ELEMENT;
+					
+					case IfcStructuralSurfaceTypeEnum.MEMBRANE_ELEMENT:
+						return Ifc4.Interfaces.IfcStructuralSurfaceMemberTypeEnum.MEMBRANE_ELEMENT;
+					
+					case IfcStructuralSurfaceTypeEnum.SHELL:
+						return Ifc4.Interfaces.IfcStructuralSurfaceMemberTypeEnum.SHELL;
+					
+					case IfcStructuralSurfaceTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
+						return Ifc4.Interfaces.IfcStructuralSurfaceMemberTypeEnum.USERDEFINED;
+					
+					case IfcStructuralSurfaceTypeEnum.NOTDEFINED:
+						return Ifc4.Interfaces.IfcStructuralSurfaceMemberTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
+			set
+			{
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcStructuralSurfaceMemberTypeEnum.BENDING_ELEMENT:
+						PredefinedType = IfcStructuralSurfaceTypeEnum.BENDING_ELEMENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcStructuralSurfaceMemberTypeEnum.MEMBRANE_ELEMENT:
+						PredefinedType = IfcStructuralSurfaceTypeEnum.MEMBRANE_ELEMENT;
+						return;
+					
+					case Ifc4.Interfaces.IfcStructuralSurfaceMemberTypeEnum.SHELL:
+						PredefinedType = IfcStructuralSurfaceTypeEnum.SHELL;
+						return;
+					
+					case Ifc4.Interfaces.IfcStructuralSurfaceMemberTypeEnum.USERDEFINED:
+						PredefinedType = IfcStructuralSurfaceTypeEnum.USERDEFINED;
+						return;
+					
+					case Ifc4.Interfaces.IfcStructuralSurfaceMemberTypeEnum.NOTDEFINED:
+						PredefinedType = IfcStructuralSurfaceTypeEnum.NOTDEFINED;
+						return;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcStructuralSurfaceMember.Thickness 
 		{ 
@@ -32,6 +82,13 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				if (!Thickness.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Thickness.Value);
 			} 
+			set
+			{
+				Thickness = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

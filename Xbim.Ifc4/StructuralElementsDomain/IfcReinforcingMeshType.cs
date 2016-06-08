@@ -26,16 +26,16 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcReinforcingMeshType : IIfcReinforcingElementType
 	{
-		IfcReinforcingMeshTypeEnum @PredefinedType { get; }
-		IfcPositiveLengthMeasure? @MeshLength { get; }
-		IfcPositiveLengthMeasure? @MeshWidth { get; }
-		IfcPositiveLengthMeasure? @LongitudinalBarNominalDiameter { get; }
-		IfcPositiveLengthMeasure? @TransverseBarNominalDiameter { get; }
-		IfcAreaMeasure? @LongitudinalBarCrossSectionArea { get; }
-		IfcAreaMeasure? @TransverseBarCrossSectionArea { get; }
-		IfcPositiveLengthMeasure? @LongitudinalBarSpacing { get; }
-		IfcPositiveLengthMeasure? @TransverseBarSpacing { get; }
-		IfcLabel? @BendingShapeCode { get; }
+		IfcReinforcingMeshTypeEnum @PredefinedType { get;  set; }
+		IfcPositiveLengthMeasure? @MeshLength { get;  set; }
+		IfcPositiveLengthMeasure? @MeshWidth { get;  set; }
+		IfcPositiveLengthMeasure? @LongitudinalBarNominalDiameter { get;  set; }
+		IfcPositiveLengthMeasure? @TransverseBarNominalDiameter { get;  set; }
+		IfcAreaMeasure? @LongitudinalBarCrossSectionArea { get;  set; }
+		IfcAreaMeasure? @TransverseBarCrossSectionArea { get;  set; }
+		IfcPositiveLengthMeasure? @LongitudinalBarSpacing { get;  set; }
+		IfcPositiveLengthMeasure? @TransverseBarSpacing { get;  set; }
+		IfcLabel? @BendingShapeCode { get;  set; }
 		IEnumerable<IIfcBendingParameterSelect> @BendingParameters { get; }
 	
 	}
@@ -48,17 +48,59 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 	public  partial class @IfcReinforcingMeshType : IfcReinforcingElementType, IInstantiableEntity, IIfcReinforcingMeshType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcReinforcingMeshType>
 	{
 		#region IIfcReinforcingMeshType explicit implementation
-		IfcReinforcingMeshTypeEnum IIfcReinforcingMeshType.PredefinedType { get { return @PredefinedType; } }	
-		IfcPositiveLengthMeasure? IIfcReinforcingMeshType.MeshLength { get { return @MeshLength; } }	
-		IfcPositiveLengthMeasure? IIfcReinforcingMeshType.MeshWidth { get { return @MeshWidth; } }	
-		IfcPositiveLengthMeasure? IIfcReinforcingMeshType.LongitudinalBarNominalDiameter { get { return @LongitudinalBarNominalDiameter; } }	
-		IfcPositiveLengthMeasure? IIfcReinforcingMeshType.TransverseBarNominalDiameter { get { return @TransverseBarNominalDiameter; } }	
-		IfcAreaMeasure? IIfcReinforcingMeshType.LongitudinalBarCrossSectionArea { get { return @LongitudinalBarCrossSectionArea; } }	
-		IfcAreaMeasure? IIfcReinforcingMeshType.TransverseBarCrossSectionArea { get { return @TransverseBarCrossSectionArea; } }	
-		IfcPositiveLengthMeasure? IIfcReinforcingMeshType.LongitudinalBarSpacing { get { return @LongitudinalBarSpacing; } }	
-		IfcPositiveLengthMeasure? IIfcReinforcingMeshType.TransverseBarSpacing { get { return @TransverseBarSpacing; } }	
-		IfcLabel? IIfcReinforcingMeshType.BendingShapeCode { get { return @BendingShapeCode; } }	
-		IEnumerable<IIfcBendingParameterSelect> IIfcReinforcingMeshType.BendingParameters { get { return @BendingParameters; } }	
+		IfcReinforcingMeshTypeEnum IIfcReinforcingMeshType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcReinforcingMeshType.MeshLength { 
+			get { return @MeshLength; } 
+ 
+			set { MeshLength = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcReinforcingMeshType.MeshWidth { 
+			get { return @MeshWidth; } 
+ 
+			set { MeshWidth = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcReinforcingMeshType.LongitudinalBarNominalDiameter { 
+			get { return @LongitudinalBarNominalDiameter; } 
+ 
+			set { LongitudinalBarNominalDiameter = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcReinforcingMeshType.TransverseBarNominalDiameter { 
+			get { return @TransverseBarNominalDiameter; } 
+ 
+			set { TransverseBarNominalDiameter = value;}
+		}	
+		IfcAreaMeasure? IIfcReinforcingMeshType.LongitudinalBarCrossSectionArea { 
+			get { return @LongitudinalBarCrossSectionArea; } 
+ 
+			set { LongitudinalBarCrossSectionArea = value;}
+		}	
+		IfcAreaMeasure? IIfcReinforcingMeshType.TransverseBarCrossSectionArea { 
+			get { return @TransverseBarCrossSectionArea; } 
+ 
+			set { TransverseBarCrossSectionArea = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcReinforcingMeshType.LongitudinalBarSpacing { 
+			get { return @LongitudinalBarSpacing; } 
+ 
+			set { LongitudinalBarSpacing = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcReinforcingMeshType.TransverseBarSpacing { 
+			get { return @TransverseBarSpacing; } 
+ 
+			set { TransverseBarSpacing = value;}
+		}	
+		IfcLabel? IIfcReinforcingMeshType.BendingShapeCode { 
+			get { return @BendingShapeCode; } 
+ 
+			set { BendingShapeCode = value;}
+		}	
+		IEnumerable<IIfcBendingParameterSelect> IIfcReinforcingMeshType.BendingParameters { 
+			get { return @BendingParameters; } 
+		}	
 		 
 		#endregion
 

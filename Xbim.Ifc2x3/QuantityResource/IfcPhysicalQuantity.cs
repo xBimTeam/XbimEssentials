@@ -28,8 +28,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPhysicalQuantity : IPersistEntity
 	{
-		IfcLabel @Name { get; }
-		IfcText? @Description { get; }
+		IfcLabel @Name { get;  set; }
+		IfcText? @Description { get;  set; }
 		IEnumerable<IIfcPhysicalComplexQuantity> @PartOfComplex {  get; }
 	
 	}
@@ -42,8 +42,16 @@ namespace Xbim.Ifc2x3.QuantityResource
 	public abstract partial class @IfcPhysicalQuantity : IPersistEntity, INotifyPropertyChanged, IIfcPhysicalQuantity, IEquatable<@IfcPhysicalQuantity>
 	{
 		#region IIfcPhysicalQuantity explicit implementation
-		IfcLabel IIfcPhysicalQuantity.Name { get { return @Name; } }	
-		IfcText? IIfcPhysicalQuantity.Description { get { return @Description; } }	
+		IfcLabel IIfcPhysicalQuantity.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
+		IfcText? IIfcPhysicalQuantity.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
 		 
 		IEnumerable<IIfcPhysicalComplexQuantity> IIfcPhysicalQuantity.PartOfComplex {  get { return @PartOfComplex; } }
 		#endregion

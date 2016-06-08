@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcApprovalPropertyRelationship : IPersistEntity
 	{
 		IEnumerable<IIfcProperty> @ApprovedProperties { get; }
-		IIfcApproval @Approval { get; }
+		IIfcApproval @Approval { get;  set; }
 	
 	}
 }
@@ -41,8 +41,15 @@ namespace Xbim.Ifc2x3.ApprovalResource
 	public  partial class @IfcApprovalPropertyRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcApprovalPropertyRelationship, IContainsEntityReferences, IEquatable<@IfcApprovalPropertyRelationship>
 	{
 		#region IIfcApprovalPropertyRelationship explicit implementation
-		IEnumerable<IIfcProperty> IIfcApprovalPropertyRelationship.ApprovedProperties { get { return @ApprovedProperties; } }	
-		IIfcApproval IIfcApprovalPropertyRelationship.Approval { get { return @Approval; } }	
+		IEnumerable<IIfcProperty> IIfcApprovalPropertyRelationship.ApprovedProperties { 
+			get { return @ApprovedProperties; } 
+		}	
+		IIfcApproval IIfcApprovalPropertyRelationship.Approval { 
+			get { return @Approval; } 
+ 
+ 
+			set { Approval = value as IfcApproval;}
+		}	
 		 
 		#endregion
 

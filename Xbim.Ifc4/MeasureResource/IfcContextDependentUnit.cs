@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcContextDependentUnit : IIfcNamedUnit, IfcResourceObjectSelect
 	{
-		IfcLabel @Name { get; }
+		IfcLabel @Name { get;  set; }
 		IEnumerable<IIfcExternalReferenceRelationship> @HasExternalReference {  get; }
 	
 	}
@@ -39,7 +39,11 @@ namespace Xbim.Ifc4.MeasureResource
 	public  partial class @IfcContextDependentUnit : IfcNamedUnit, IInstantiableEntity, IIfcContextDependentUnit, IContainsEntityReferences, IEquatable<@IfcContextDependentUnit>
 	{
 		#region IIfcContextDependentUnit explicit implementation
-		IfcLabel IIfcContextDependentUnit.Name { get { return @Name; } }	
+		IfcLabel IIfcContextDependentUnit.Name { 
+			get { return @Name; } 
+ 
+			set { Name = value;}
+		}	
 		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcContextDependentUnit.HasExternalReference {  get { return @HasExternalReference; } }
 		#endregion

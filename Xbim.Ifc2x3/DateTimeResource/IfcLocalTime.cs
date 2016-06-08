@@ -28,11 +28,11 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcLocalTime : IPersistEntity, IfcDateTimeSelect, IfcObjectReferenceSelect
 	{
-		IfcHourInDay @HourComponent { get; }
-		IfcMinuteInHour? @MinuteComponent { get; }
-		IfcSecondInMinute? @SecondComponent { get; }
-		IIfcCoordinatedUniversalTimeOffset @Zone { get; }
-		IfcDaylightSavingHour? @DaylightSavingOffset { get; }
+		IfcHourInDay @HourComponent { get;  set; }
+		IfcMinuteInHour? @MinuteComponent { get;  set; }
+		IfcSecondInMinute? @SecondComponent { get;  set; }
+		IIfcCoordinatedUniversalTimeOffset @Zone { get;  set; }
+		IfcDaylightSavingHour? @DaylightSavingOffset { get;  set; }
 	
 	}
 }
@@ -44,11 +44,32 @@ namespace Xbim.Ifc2x3.DateTimeResource
 	public  partial class @IfcLocalTime : INotifyPropertyChanged, IInstantiableEntity, IIfcLocalTime, IContainsEntityReferences, IEquatable<@IfcLocalTime>
 	{
 		#region IIfcLocalTime explicit implementation
-		IfcHourInDay IIfcLocalTime.HourComponent { get { return @HourComponent; } }	
-		IfcMinuteInHour? IIfcLocalTime.MinuteComponent { get { return @MinuteComponent; } }	
-		IfcSecondInMinute? IIfcLocalTime.SecondComponent { get { return @SecondComponent; } }	
-		IIfcCoordinatedUniversalTimeOffset IIfcLocalTime.Zone { get { return @Zone; } }	
-		IfcDaylightSavingHour? IIfcLocalTime.DaylightSavingOffset { get { return @DaylightSavingOffset; } }	
+		IfcHourInDay IIfcLocalTime.HourComponent { 
+			get { return @HourComponent; } 
+ 
+			set { HourComponent = value;}
+		}	
+		IfcMinuteInHour? IIfcLocalTime.MinuteComponent { 
+			get { return @MinuteComponent; } 
+ 
+			set { MinuteComponent = value;}
+		}	
+		IfcSecondInMinute? IIfcLocalTime.SecondComponent { 
+			get { return @SecondComponent; } 
+ 
+			set { SecondComponent = value;}
+		}	
+		IIfcCoordinatedUniversalTimeOffset IIfcLocalTime.Zone { 
+			get { return @Zone; } 
+ 
+ 
+			set { Zone = value as IfcCoordinatedUniversalTimeOffset;}
+		}	
+		IfcDaylightSavingHour? IIfcLocalTime.DaylightSavingOffset { 
+			get { return @DaylightSavingOffset; } 
+ 
+			set { DaylightSavingOffset = value;}
+		}	
 		 
 		#endregion
 

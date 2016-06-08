@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcTextureMap : IIfcTextureCoordinate
 	{
 		IEnumerable<IIfcTextureVertex> @Vertices { get; }
-		IIfcFace @MappedTo { get; }
+		IIfcFace @MappedTo { get;  set; }
 	
 	}
 }
@@ -39,8 +39,15 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcTextureMap : IfcTextureCoordinate, IInstantiableEntity, IIfcTextureMap, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTextureMap>
 	{
 		#region IIfcTextureMap explicit implementation
-		IEnumerable<IIfcTextureVertex> IIfcTextureMap.Vertices { get { return @Vertices; } }	
-		IIfcFace IIfcTextureMap.MappedTo { get { return @MappedTo; } }	
+		IEnumerable<IIfcTextureVertex> IIfcTextureMap.Vertices { 
+			get { return @Vertices; } 
+		}	
+		IIfcFace IIfcTextureMap.MappedTo { 
+			get { return @MappedTo; } 
+ 
+ 
+			set { MappedTo = value as IfcFace;}
+		}	
 		 
 		#endregion
 

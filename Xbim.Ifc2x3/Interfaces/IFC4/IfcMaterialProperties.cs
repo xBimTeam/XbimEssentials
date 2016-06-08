@@ -22,24 +22,41 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				return Material as IIfcMaterialDefinition;
 			} 
+			set
+			{
+				Material = value as MaterialResource.IfcMaterial;
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcIdentifier? _name;
+
 		Ifc4.MeasureResource.IfcIdentifier? IIfcExtendedProperties.Name 
 		{ 
 			get
 			{
-				//## Handle return of Name for which no match was found
-			    return null;
-			    //##
+				return _name;
 			} 
+			set
+			{
+				SetValue(v => _name = v, _name, value, "Name", byte.MaxValue);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcText? _description;
+
 		Ifc4.MeasureResource.IfcText? IIfcExtendedProperties.Description 
 		{ 
 			get
 			{
-				//## Handle return of Description for which no match was found
-                return null;
-				//##
+				return _description;
 			} 
+			set
+			{
+				SetValue(v => _description = v, _description, value, "Description", byte.MaxValue);
+				
+			}
 		}
 		IEnumerable<IIfcProperty> IIfcExtendedProperties.Properties 
 		{ 
@@ -66,11 +83,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			                            System.StringComparison.InvariantCultureIgnoreCase) == 0);
 			        if (targetType == null) continue;
 			        var targetValue = System.Activator.CreateInstance(targetType, value) as Ifc4.MeasureResource.IfcValue;
-                    yield return new Interfaces.Conversions.IfcPropertySingleValueTransient
-                    {
-                        Name = name, 
-                        NominalValue = targetValue
-                    };
+                    yield return new Interfaces.Conversions.IfcPropertySingleValueTransient(name, targetValue);
 			    }
 				//##
 			} 

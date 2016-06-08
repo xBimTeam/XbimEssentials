@@ -40,7 +40,9 @@ namespace Xbim.Ifc2x3.MaterialResource
 	public  partial class @IfcMaterialList : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterialList, IContainsEntityReferences, IEquatable<@IfcMaterialList>
 	{
 		#region IIfcMaterialList explicit implementation
-		IEnumerable<IIfcMaterial> IIfcMaterialList.Materials { get { return @Materials; } }	
+		IEnumerable<IIfcMaterial> IIfcMaterialList.Materials { 
+			get { return @Materials; } 
+		}	
 		 
 		#endregion
 

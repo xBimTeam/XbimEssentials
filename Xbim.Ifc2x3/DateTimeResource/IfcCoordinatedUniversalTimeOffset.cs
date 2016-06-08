@@ -27,9 +27,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCoordinatedUniversalTimeOffset : IPersistEntity
 	{
-		IfcHourInDay @HourOffset { get; }
-		IfcMinuteInHour? @MinuteOffset { get; }
-		IfcAheadOrBehind @Sense { get; }
+		IfcHourInDay @HourOffset { get;  set; }
+		IfcMinuteInHour? @MinuteOffset { get;  set; }
+		IfcAheadOrBehind @Sense { get;  set; }
 	
 	}
 }
@@ -41,9 +41,21 @@ namespace Xbim.Ifc2x3.DateTimeResource
 	public  partial class @IfcCoordinatedUniversalTimeOffset : INotifyPropertyChanged, IInstantiableEntity, IIfcCoordinatedUniversalTimeOffset, IEquatable<@IfcCoordinatedUniversalTimeOffset>
 	{
 		#region IIfcCoordinatedUniversalTimeOffset explicit implementation
-		IfcHourInDay IIfcCoordinatedUniversalTimeOffset.HourOffset { get { return @HourOffset; } }	
-		IfcMinuteInHour? IIfcCoordinatedUniversalTimeOffset.MinuteOffset { get { return @MinuteOffset; } }	
-		IfcAheadOrBehind IIfcCoordinatedUniversalTimeOffset.Sense { get { return @Sense; } }	
+		IfcHourInDay IIfcCoordinatedUniversalTimeOffset.HourOffset { 
+			get { return @HourOffset; } 
+ 
+			set { HourOffset = value;}
+		}	
+		IfcMinuteInHour? IIfcCoordinatedUniversalTimeOffset.MinuteOffset { 
+			get { return @MinuteOffset; } 
+ 
+			set { MinuteOffset = value;}
+		}	
+		IfcAheadOrBehind IIfcCoordinatedUniversalTimeOffset.Sense { 
+			get { return @Sense; } 
+ 
+			set { Sense = value;}
+		}	
 		 
 		#endregion
 

@@ -27,9 +27,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcLibraryReference : IIfcExternalReference, IfcLibrarySelect
 	{
-		IfcText? @Description { get; }
-		IfcLanguageId? @Language { get; }
-		IIfcLibraryInformation @ReferencedLibrary { get; }
+		IfcText? @Description { get;  set; }
+		IfcLanguageId? @Language { get;  set; }
+		IIfcLibraryInformation @ReferencedLibrary { get;  set; }
 		IEnumerable<IIfcRelAssociatesLibrary> @LibraryRefForObjects {  get; }
 	
 	}
@@ -42,9 +42,22 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 	public  partial class @IfcLibraryReference : IfcExternalReference, IInstantiableEntity, IIfcLibraryReference, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcLibraryReference>
 	{
 		#region IIfcLibraryReference explicit implementation
-		IfcText? IIfcLibraryReference.Description { get { return @Description; } }	
-		IfcLanguageId? IIfcLibraryReference.Language { get { return @Language; } }	
-		IIfcLibraryInformation IIfcLibraryReference.ReferencedLibrary { get { return @ReferencedLibrary; } }	
+		IfcText? IIfcLibraryReference.Description { 
+			get { return @Description; } 
+ 
+			set { Description = value;}
+		}	
+		IfcLanguageId? IIfcLibraryReference.Language { 
+			get { return @Language; } 
+ 
+			set { Language = value;}
+		}	
+		IIfcLibraryInformation IIfcLibraryReference.ReferencedLibrary { 
+			get { return @ReferencedLibrary; } 
+ 
+ 
+			set { ReferencedLibrary = value as IfcLibraryInformation;}
+		}	
 		 
 		IEnumerable<IIfcRelAssociatesLibrary> IIfcLibraryReference.LibraryRefForObjects {  get { return @LibraryRefForObjects; } }
 		#endregion

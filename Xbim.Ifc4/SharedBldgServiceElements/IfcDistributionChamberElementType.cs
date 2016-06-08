@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDistributionChamberElementType : IIfcDistributionFlowElementType
 	{
-		IfcDistributionChamberElementTypeEnum @PredefinedType { get; }
+		IfcDistributionChamberElementTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -37,7 +37,11 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 	public  partial class @IfcDistributionChamberElementType : IfcDistributionFlowElementType, IInstantiableEntity, IIfcDistributionChamberElementType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDistributionChamberElementType>
 	{
 		#region IIfcDistributionChamberElementType explicit implementation
-		IfcDistributionChamberElementTypeEnum IIfcDistributionChamberElementType.PredefinedType { get { return @PredefinedType; } }	
+		IfcDistributionChamberElementTypeEnum IIfcDistributionChamberElementType.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 

@@ -27,10 +27,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcProject : IIfcObject
 	{
-		IfcLabel? @LongName { get; }
-		IfcLabel? @Phase { get; }
+		IfcLabel? @LongName { get;  set; }
+		IfcLabel? @Phase { get;  set; }
 		IEnumerable<IIfcRepresentationContext> @RepresentationContexts { get; }
-		IIfcUnitAssignment @UnitsInContext { get; }
+		IIfcUnitAssignment @UnitsInContext { get;  set; }
 	
 	}
 }
@@ -42,10 +42,25 @@ namespace Xbim.Ifc2x3.Kernel
 	public  partial class @IfcProject : IfcObject, IInstantiableEntity, IIfcProject, IContainsEntityReferences, IEquatable<@IfcProject>
 	{
 		#region IIfcProject explicit implementation
-		IfcLabel? IIfcProject.LongName { get { return @LongName; } }	
-		IfcLabel? IIfcProject.Phase { get { return @Phase; } }	
-		IEnumerable<IIfcRepresentationContext> IIfcProject.RepresentationContexts { get { return @RepresentationContexts; } }	
-		IIfcUnitAssignment IIfcProject.UnitsInContext { get { return @UnitsInContext; } }	
+		IfcLabel? IIfcProject.LongName { 
+			get { return @LongName; } 
+ 
+			set { LongName = value;}
+		}	
+		IfcLabel? IIfcProject.Phase { 
+			get { return @Phase; } 
+ 
+			set { Phase = value;}
+		}	
+		IEnumerable<IIfcRepresentationContext> IIfcProject.RepresentationContexts { 
+			get { return @RepresentationContexts; } 
+		}	
+		IIfcUnitAssignment IIfcProject.UnitsInContext { 
+			get { return @UnitsInContext; } 
+ 
+ 
+			set { UnitsInContext = value as IfcUnitAssignment;}
+		}	
 		 
 		#endregion
 

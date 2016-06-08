@@ -429,6 +429,13 @@ namespace Xbim.Ifc2x3.PropertyResource
 				if (!Expression.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Expression.Value);
 			} 
+			set
+			{
+				Expression = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
+				
+			}
 		}
 		IIfcUnit IIfcPropertyTableValue.DefiningUnit 
 		{ 
@@ -446,6 +453,33 @@ namespace Xbim.Ifc2x3.PropertyResource
 					return ifcmonetaryunit;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					DefiningUnit = null;
+					return;
+				}	
+				var ifcderivedunit = value as MeasureResource.IfcDerivedUnit;
+				if (ifcderivedunit != null) 
+				{
+					DefiningUnit = ifcderivedunit;
+					return;
+				}
+				var ifcmonetaryunit = value as MeasureResource.IfcMonetaryUnit;
+				if (ifcmonetaryunit != null) 
+				{
+					DefiningUnit = ifcmonetaryunit;
+					return;
+				}
+				var ifcnamedunit = value as MeasureResource.IfcNamedUnit;
+				if (ifcnamedunit != null) 
+				{
+					DefiningUnit = ifcnamedunit;
+					return;
+				}
+				
+			}
 		}
 		IIfcUnit IIfcPropertyTableValue.DefinedUnit 
 		{ 
@@ -463,15 +497,48 @@ namespace Xbim.Ifc2x3.PropertyResource
 					return ifcmonetaryunit;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					DefinedUnit = null;
+					return;
+				}	
+				var ifcderivedunit = value as MeasureResource.IfcDerivedUnit;
+				if (ifcderivedunit != null) 
+				{
+					DefinedUnit = ifcderivedunit;
+					return;
+				}
+				var ifcmonetaryunit = value as MeasureResource.IfcMonetaryUnit;
+				if (ifcmonetaryunit != null) 
+				{
+					DefinedUnit = ifcmonetaryunit;
+					return;
+				}
+				var ifcnamedunit = value as MeasureResource.IfcNamedUnit;
+				if (ifcnamedunit != null) 
+				{
+					DefinedUnit = ifcnamedunit;
+					return;
+				}
+				
+			}
 		}
+
+		private  Ifc4.Interfaces.IfcCurveInterpolationEnum? _curveInterpolation;
+
 		Ifc4.Interfaces.IfcCurveInterpolationEnum? IIfcPropertyTableValue.CurveInterpolation 
 		{ 
 			get
 			{
-				//## Handle return of CurveInterpolation for which no match was found
-                return null;
-				//##
+				return _curveInterpolation;
 			} 
+			set
+			{
+				SetValue(v => _curveInterpolation = v, _curveInterpolation, value, "CurveInterpolation", byte.MaxValue);
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 
 		{ 

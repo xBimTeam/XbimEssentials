@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcExternalSpatialElement : IIfcExternalSpatialStructureElement, IfcSpaceBoundarySelect
 	{
-		IfcExternalSpatialElementTypeEnum? @PredefinedType { get; }
+		IfcExternalSpatialElementTypeEnum? @PredefinedType { get;  set; }
 		IEnumerable<IIfcRelSpaceBoundary> @BoundedBy {  get; }
 	
 	}
@@ -38,7 +38,11 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcExternalSpatialElement : IfcExternalSpatialStructureElement, IInstantiableEntity, IIfcExternalSpatialElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcExternalSpatialElement>
 	{
 		#region IIfcExternalSpatialElement explicit implementation
-		IfcExternalSpatialElementTypeEnum? IIfcExternalSpatialElement.PredefinedType { get { return @PredefinedType; } }	
+		IfcExternalSpatialElementTypeEnum? IIfcExternalSpatialElement.PredefinedType { 
+			get { return @PredefinedType; } 
+ 
+			set { PredefinedType = value;}
+		}	
 		 
 		IEnumerable<IIfcRelSpaceBoundary> IIfcExternalSpatialElement.BoundedBy {  get { return @BoundedBy; } }
 		#endregion
