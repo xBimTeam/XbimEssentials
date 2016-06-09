@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-    public partial interface IIfcSpecularHighlightSelect : IExpressSelectType, IExpressValueType, Xbim.Ifc4.Interfaces.IIfcSpecularHighlightSelect
+	public partial interface IIfcSpecularHighlightSelect : IExpressSelectType, IExpressValueType
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

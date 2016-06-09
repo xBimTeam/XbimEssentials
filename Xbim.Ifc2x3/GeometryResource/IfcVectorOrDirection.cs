@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-    public partial interface IIfcVectorOrDirection : IExpressSelectType, IPersistEntity, Xbim.Ifc4.Interfaces.IIfcVectorOrDirection
+	public partial interface IIfcVectorOrDirection : IExpressSelectType, IPersistEntity
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

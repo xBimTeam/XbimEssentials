@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.CostResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-    public partial interface IIfcAppliedValueSelect : IExpressSelectType, Xbim.Ifc4.Interfaces.IIfcAppliedValueSelect
+	public partial interface IIfcAppliedValueSelect : IExpressSelectType
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-    public partial interface IIfcObjectReferenceSelect : IExpressSelectType, IPersistEntity, Xbim.Ifc4.Interfaces.IIfcObjectReferenceSelect
+	public partial interface IIfcObjectReferenceSelect : IExpressSelectType, IPersistEntity
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

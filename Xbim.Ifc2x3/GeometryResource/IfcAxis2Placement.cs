@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-    public partial interface IIfcAxis2Placement : IExpressSelectType, IPersistEntity, Xbim.Ifc4.Interfaces.IIfcAxis2Placement
+	public partial interface IIfcAxis2Placement : IExpressSelectType, IPersistEntity
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

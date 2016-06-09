@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-    public partial interface IIfcPresentationStyleSelect : IExpressSelectType, Xbim.Ifc4.Interfaces.IIfcPresentationStyleSelect
+	public partial interface IIfcPresentationStyleSelect : IExpressSelectType
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

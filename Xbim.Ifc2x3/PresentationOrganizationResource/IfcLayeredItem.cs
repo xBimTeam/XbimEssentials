@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-    public partial interface IIfcLayeredItem : IExpressSelectType, IPersistEntity, Xbim.Ifc4.Interfaces.IIfcLayeredItem
+	public partial interface IIfcLayeredItem : IExpressSelectType, IPersistEntity
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-    public partial interface IIfcUnit : IExpressSelectType, IPersistEntity, Xbim.Ifc4.Interfaces.IIfcUnit
+	public partial interface IIfcUnit : IExpressSelectType, IPersistEntity
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

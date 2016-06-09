@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-    public partial interface IIfcHatchLineDistanceSelect : IExpressSelectType, Xbim.Ifc4.Interfaces.IIfcHatchLineDistanceSelect
+	public partial interface IIfcHatchLineDistanceSelect : IExpressSelectType
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

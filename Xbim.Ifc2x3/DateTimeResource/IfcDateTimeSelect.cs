@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-    public partial interface IIfcDateTimeSelect : IIfcMetricValueSelect, IPersistEntity
+	public partial interface IIfcDateTimeSelect : IIfcMetricValueSelect, IPersistEntity
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

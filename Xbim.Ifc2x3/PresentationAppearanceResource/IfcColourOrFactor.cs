@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-    public partial interface IIfcColourOrFactor : IExpressSelectType, Xbim.Ifc4.Interfaces.IIfcColourOrFactor
+	public partial interface IIfcColourOrFactor : IExpressSelectType
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-    public partial interface IIfcCurveOrEdgeCurve : IExpressSelectType, IPersistEntity, Xbim.Ifc4.Interfaces.IIfcCurveOrEdgeCurve
+	public partial interface IIfcCurveOrEdgeCurve : IExpressSelectType, IPersistEntity
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface
