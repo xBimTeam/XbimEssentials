@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-	public partial interface IIfcLightDistributionDataSourceSelect : IExpressSelectType, IPersistEntity
+    public partial interface IIfcLightDistributionDataSourceSelect : IExpressSelectType, IPersistEntity, Xbim.Ifc4.Interfaces.IIfcLightDistributionDataSourceSelect
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

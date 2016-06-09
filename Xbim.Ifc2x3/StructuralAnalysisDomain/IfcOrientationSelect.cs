@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-	public partial interface IIfcOrientationSelect : IExpressSelectType
+    public partial interface IIfcOrientationSelect : IExpressSelectType
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

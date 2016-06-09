@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-	public partial interface IIfcStructuralActivityAssignmentSelect : IExpressSelectType, IPersistEntity
+    public partial interface IIfcStructuralActivityAssignmentSelect : IExpressSelectType, IPersistEntity, Xbim.Ifc4.Interfaces.IIfcStructuralActivityAssignmentSelect
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-	public partial interface IIfcMetricValueSelect : IExpressSelectType
+    public partial interface IIfcMetricValueSelect : IExpressSelectType, Xbim.Ifc4.Interfaces.IIfcMetricValueSelect
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

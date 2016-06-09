@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-	public partial interface IIfcDraughtingCalloutElement : IExpressSelectType, IPersistEntity
+    public partial interface IIfcDraughtingCalloutElement : IExpressSelectType, IPersistEntity
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

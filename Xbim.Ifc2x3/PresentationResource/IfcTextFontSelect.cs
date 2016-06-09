@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-	public partial interface IIfcTextFontSelect : IExpressSelectType, IPersistEntity
+    public partial interface IIfcTextFontSelect : IExpressSelectType, IPersistEntity, Xbim.Ifc4.Interfaces.IIfcTextFontSelect
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

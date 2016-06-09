@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-	public partial interface IIfcConditionCriterionSelect : IExpressSelectType
+    public partial interface IIfcConditionCriterionSelect : IExpressSelectType
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

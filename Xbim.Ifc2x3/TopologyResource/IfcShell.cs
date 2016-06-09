@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-	public partial interface IIfcShell : IExpressSelectType, IPersistEntity
+    public partial interface IIfcShell : IExpressSelectType, IPersistEntity, Xbim.Ifc4.Interfaces.IIfcShell
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

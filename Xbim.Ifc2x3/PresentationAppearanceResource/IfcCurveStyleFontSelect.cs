@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-	public partial interface IIfcCurveStyleFontSelect : IIfcCurveFontOrScaledCurveFontSelect, IPersistEntity
+    public partial interface IIfcCurveStyleFontSelect : IIfcCurveFontOrScaledCurveFontSelect, IPersistEntity, Xbim.Ifc4.Interfaces.IIfcCurveStyleFontSelect
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

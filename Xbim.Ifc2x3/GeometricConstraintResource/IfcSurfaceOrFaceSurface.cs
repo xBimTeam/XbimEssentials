@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-	public partial interface IIfcSurfaceOrFaceSurface : IExpressSelectType, IPersistEntity
+    public partial interface IIfcSurfaceOrFaceSurface : IExpressSelectType, IPersistEntity, Xbim.Ifc4.Interfaces.IIfcSurfaceOrFaceSurface
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

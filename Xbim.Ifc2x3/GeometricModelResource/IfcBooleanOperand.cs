@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-	public partial interface IIfcBooleanOperand : IExpressSelectType, IPersistEntity
+    public partial interface IIfcBooleanOperand : IExpressSelectType, IPersistEntity, Xbim.Ifc4.Interfaces.IIfcBooleanOperand
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

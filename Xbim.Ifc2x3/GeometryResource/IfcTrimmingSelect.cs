@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-	public partial interface IIfcTrimmingSelect : IExpressSelectType
+    public partial interface IIfcTrimmingSelect : IExpressSelectType, Xbim.Ifc4.Interfaces.IIfcTrimmingSelect
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface
