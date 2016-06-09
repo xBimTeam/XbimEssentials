@@ -74,6 +74,25 @@ namespace Xbim.Ifc4.MeasureResource
             if (existing != null)
                 return existing;
 
+            if (Model.IsTransactional && Model.CurrentTransaction == null)
+            {
+                using (var tx = Model.BeginTransaction("ExponentCreation"))
+                {
+                    var ret = Model.Instances.New<IfcDimensionalExponents>(e =>
+                    {
+                        e.LengthExponent = exponents[0];
+                        e.MassExponent = exponents[1];
+                        e.TimeExponent = exponents[2];
+                        e.ElectricCurrentExponent = exponents[3];
+                        e.ThermodynamicTemperatureExponent = exponents[4];
+                        e.AmountOfSubstanceExponent = exponents[5];
+                        e.LuminousIntensityExponent = exponents[6];
+                    });
+                    tx.Commit();
+                    return ret;
+                }
+            }
+
             return Model.Instances.New<IfcDimensionalExponents>(e =>
             {
                 e.LengthExponent = exponents[0];
