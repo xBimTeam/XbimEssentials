@@ -21,10 +21,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-				foreach (var member in Voids)
-				{
-					yield return member as IIfcClosedShell;
-				}
+			
+				return new Common.Collections.ProxyItemSet<TopologyResource.IfcClosedShell, IIfcClosedShell>(Voids);
 			} 
 		}
 	//## Custom code

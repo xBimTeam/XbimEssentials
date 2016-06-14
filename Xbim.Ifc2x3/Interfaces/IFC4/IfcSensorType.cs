@@ -21,6 +21,8 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcSensorTypeEnum.CO2SENSOR:
@@ -77,6 +79,8 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcSensorTypeEnum.CO2SENSOR:

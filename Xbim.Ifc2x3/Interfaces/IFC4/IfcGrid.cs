@@ -21,30 +21,24 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				foreach (var member in UAxes)
-				{
-					yield return member as IIfcGridAxis;
-				}
+			
+				return new Common.Collections.ProxyItemSet<GeometricConstraintResource.IfcGridAxis, IIfcGridAxis>(UAxes);
 			} 
 		}
 		IItemSet<IIfcGridAxis> IIfcGrid.VAxes 
 		{ 
 			get
 			{
-				foreach (var member in VAxes)
-				{
-					yield return member as IIfcGridAxis;
-				}
+			
+				return new Common.Collections.ProxyItemSet<GeometricConstraintResource.IfcGridAxis, IIfcGridAxis>(VAxes);
 			} 
 		}
 		IItemSet<IIfcGridAxis> IIfcGrid.WAxes 
 		{ 
 			get
 			{
-				foreach (var member in WAxes)
-				{
-					yield return member as IIfcGridAxis;
-				}
+			
+				return new Common.Collections.ProxyItemSet<GeometricConstraintResource.IfcGridAxis, IIfcGridAxis>(WAxes);
 			} 
 		}
 

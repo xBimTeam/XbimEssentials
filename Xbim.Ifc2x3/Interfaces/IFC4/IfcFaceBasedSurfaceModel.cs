@@ -21,10 +21,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-				foreach (var member in FbsmFaces)
-				{
-					yield return member as IIfcConnectedFaceSet;
-				}
+			
+				return new Common.Collections.ProxyItemSet<TopologyResource.IfcConnectedFaceSet, IIfcConnectedFaceSet>(FbsmFaces);
 			} 
 		}
 		Ifc4.GeometryResource.IfcDimensionCount IIfcFaceBasedSurfaceModel.Dim 

@@ -21,18 +21,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 		{ 
 			get
 			{
-				foreach (var member in Units)
-				{
-					var ifcderivedunit = member as IfcDerivedUnit;
-					if (ifcderivedunit != null) 
-						yield return ifcderivedunit;
-					var ifcnamedunit = member as IfcNamedUnit;
-					if (ifcnamedunit != null) 
-						yield return ifcnamedunit;
-					var ifcmonetaryunit = member as IfcMonetaryUnit;
-					if (ifcmonetaryunit != null) 
-						yield return ifcmonetaryunit;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcUnit, IIfcUnit>(Units);
 			} 
 		}
 	//## Custom code

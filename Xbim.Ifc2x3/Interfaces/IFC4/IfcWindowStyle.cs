@@ -21,6 +21,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of ConstructionType
+				//##
 				switch (ConstructionType)
 				{
 					case IfcWindowStyleConstructionEnum.ALUMINIUM:
@@ -54,6 +56,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of ConstructionType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcWindowStyleConstructionEnum.ALUMINIUM:
@@ -99,6 +103,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of OperationType
+				//##
 				switch (OperationType)
 				{
 					case IfcWindowStyleOperationEnum.SINGLE_PANEL:
@@ -143,6 +149,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of OperationType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcWindowStyleOperationEnum.SINGLE_PANEL:

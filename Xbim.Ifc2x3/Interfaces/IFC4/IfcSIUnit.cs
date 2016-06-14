@@ -21,6 +21,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of Prefix
+				//##
 				switch (Prefix)
 				{
 					case IfcSIPrefix.EXA:
@@ -78,6 +80,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of Prefix
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcSIPrefix.EXA:
@@ -155,6 +159,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of Name
+				//##
 				switch (Name)
 				{
 					case IfcSIUnitName.AMPERE:
@@ -254,6 +260,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of Name
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcSIUnitName.AMPERE:

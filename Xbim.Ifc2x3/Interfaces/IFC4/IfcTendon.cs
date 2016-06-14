@@ -21,6 +21,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcTendonTypeEnum.STRAND:
@@ -50,6 +52,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcTendonTypeEnum.BAR:

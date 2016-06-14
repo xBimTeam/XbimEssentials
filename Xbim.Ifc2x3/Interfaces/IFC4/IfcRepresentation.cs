@@ -63,10 +63,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				foreach (var member in Items)
-				{
-					yield return member as IIfcRepresentationItem;
-				}
+			
+				return new Common.Collections.ProxyItemSet<GeometryResource.IfcRepresentationItem, IIfcRepresentationItem>(Items);
 			} 
 		}
 		IEnumerable<IIfcRepresentationMap> IIfcRepresentation.RepresentationMap 

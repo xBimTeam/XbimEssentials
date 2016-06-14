@@ -21,10 +21,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get
 			{
-				foreach (var member in RelatedControlElements)
-				{
-					yield return member as IIfcDistributionControlElement;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcDistributionControlElement, IIfcDistributionControlElement>(RelatedControlElements);
 			} 
 		}
 		IIfcDistributionFlowElement IIfcRelFlowControlElements.RelatingFlowElement 

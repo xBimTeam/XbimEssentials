@@ -21,6 +21,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcAnalysisModelTypeEnum.IN_PLANE_LOADING_2D:
@@ -47,6 +49,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcAnalysisModelTypeEnum.IN_PLANE_LOADING_2D:
@@ -92,20 +96,16 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
-				foreach (var member in LoadedBy)
-				{
-					yield return member as IIfcStructuralLoadGroup;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcStructuralLoadGroup, IIfcStructuralLoadGroup>(LoadedBy);
 			} 
 		}
 		IItemSet<IIfcStructuralResultGroup> IIfcStructuralAnalysisModel.HasResults 
 		{ 
 			get
 			{
-				foreach (var member in HasResults)
-				{
-					yield return member as IIfcStructuralResultGroup;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcStructuralResultGroup, IIfcStructuralResultGroup>(HasResults);
 			} 
 		}
 

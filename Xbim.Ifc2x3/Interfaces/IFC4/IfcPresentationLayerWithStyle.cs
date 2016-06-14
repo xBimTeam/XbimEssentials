@@ -7,6 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using System;
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,7 +65,12 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			get
 			{
 				//## Handle return of LayerStyles for which no match was found
-                return LayerStyles.OfType<IIfcPresentationStyle>();
+                return new Common.Collections.ExtendedItemSet<PresentationAppearanceResource.IfcPresentationStyleSelect, IIfcPresentationStyle>
+                    (
+                    LayerStyles, new ItemSet<IIfcPresentationStyle>(this, 0, Byte.MaxValue), 
+                    i => i as  IIfcPresentationStyle,
+                    o => o as PresentationAppearanceResource.IfcPresentationStyleSelect
+                    ); 
 			    //##
 			} 
 		}

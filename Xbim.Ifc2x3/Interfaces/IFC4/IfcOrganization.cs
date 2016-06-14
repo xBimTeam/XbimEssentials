@@ -63,20 +63,16 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				foreach (var member in Roles)
-				{
-					yield return member as IIfcActorRole;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcActorRole, IIfcActorRole>(Roles);
 			} 
 		}
 		IItemSet<IIfcAddress> IIfcOrganization.Addresses 
 		{ 
 			get
 			{
-				foreach (var member in Addresses)
-				{
-					yield return member as IIfcAddress;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcAddress, IIfcAddress>(Addresses);
 			} 
 		}
 		IEnumerable<IIfcOrganizationRelationship> IIfcOrganization.IsRelatedBy 

@@ -33,10 +33,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				foreach (var member in RelatedObjects)
-				{
-					yield return member as IIfcObjectDefinition;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcObjectDefinition, IIfcObjectDefinition>(RelatedObjects);
 			} 
 		}
 	//## Custom code

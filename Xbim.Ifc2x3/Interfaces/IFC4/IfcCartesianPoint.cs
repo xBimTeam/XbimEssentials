@@ -21,10 +21,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				foreach (var member in Coordinates)
-				{
-					yield return new Ifc4.MeasureResource.IfcLengthMeasure((double)member);
-				}
+			
+				return new Common.Collections.ProxyValueSet<MeasureResource.IfcLengthMeasure, Ifc4.MeasureResource.IfcLengthMeasure>(Coordinates, 
+					s => new Ifc4.MeasureResource.IfcLengthMeasure(s), 
+					t => new MeasureResource.IfcLengthMeasure(t));
 			} 
 		}
 	//## Custom code

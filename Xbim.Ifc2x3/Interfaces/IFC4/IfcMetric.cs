@@ -21,6 +21,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of Benchmark
+				//##
 				switch (Benchmark)
 				{
 					case IfcBenchmarkEnum.GREATERTHAN:
@@ -48,6 +50,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of Benchmark
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcBenchmarkEnum.GREATERTHAN:

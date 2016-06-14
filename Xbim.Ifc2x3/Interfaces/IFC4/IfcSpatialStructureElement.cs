@@ -21,6 +21,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of CompositionType
+				//##
 				switch (CompositionType)
 				{
 					case IfcElementCompositionEnum.COMPLEX:
@@ -39,6 +41,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of CompositionType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcElementCompositionEnum.COMPLEX:

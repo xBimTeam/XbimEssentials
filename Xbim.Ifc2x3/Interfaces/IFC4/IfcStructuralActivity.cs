@@ -33,6 +33,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of GlobalOrLocal
+				//##
 				switch (GlobalOrLocal)
 				{
 					case RepresentationResource.IfcGlobalOrLocalEnum.GLOBAL_COORDS:
@@ -48,6 +50,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of GlobalOrLocal
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcGlobalOrLocalEnum.GLOBAL_COORDS:

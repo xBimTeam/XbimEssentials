@@ -66,10 +66,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				foreach (var member in RepresentationContexts)
-				{
-					yield return member as IIfcRepresentationContext;
-				}
+			
+				return new Common.Collections.ProxyItemSet<RepresentationResource.IfcRepresentationContext, IIfcRepresentationContext>(RepresentationContexts);
 			} 
 		}
 		IIfcUnitAssignment IIfcContext.UnitsInContext 

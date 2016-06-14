@@ -21,6 +21,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of TheoryType
+				//##
 				switch (TheoryType)
 				{
 					case IfcAnalysisTheoryTypeEnum.FIRST_ORDER_THEORY:
@@ -50,6 +52,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of TheoryType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.FIRST_ORDER_THEORY:

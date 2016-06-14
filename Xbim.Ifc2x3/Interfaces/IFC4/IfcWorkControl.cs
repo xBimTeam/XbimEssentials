@@ -52,10 +52,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get
 			{
-				foreach (var member in Creators)
-				{
-					yield return member as IIfcPerson;
-				}
+			
+				return new Common.Collections.ProxyItemSet<ActorResource.IfcPerson, IIfcPerson>(Creators);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcWorkControl.Purpose 

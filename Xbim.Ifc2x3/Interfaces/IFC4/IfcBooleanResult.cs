@@ -21,6 +21,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of Operator
+				//##
 				switch (Operator)
 				{
 					case IfcBooleanOperator.UNION:
@@ -39,6 +41,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of Operator
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcBooleanOperator.UNION:

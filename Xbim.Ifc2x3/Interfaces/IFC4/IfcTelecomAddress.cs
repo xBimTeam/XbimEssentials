@@ -21,20 +21,20 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				foreach (var member in TelephoneNumbers)
-				{
-					yield return new Ifc4.MeasureResource.IfcLabel((string)member);
-				}
+			
+				return new Common.Collections.ProxyValueSet<MeasureResource.IfcLabel, Ifc4.MeasureResource.IfcLabel>(TelephoneNumbers, 
+					s => new Ifc4.MeasureResource.IfcLabel(s), 
+					t => new MeasureResource.IfcLabel(t));
 			} 
 		}
 		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcTelecomAddress.FacsimileNumbers 
 		{ 
 			get
 			{
-				foreach (var member in FacsimileNumbers)
-				{
-					yield return new Ifc4.MeasureResource.IfcLabel((string)member);
-				}
+			
+				return new Common.Collections.ProxyValueSet<MeasureResource.IfcLabel, Ifc4.MeasureResource.IfcLabel>(FacsimileNumbers, 
+					s => new Ifc4.MeasureResource.IfcLabel(s), 
+					t => new MeasureResource.IfcLabel(t));
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcTelecomAddress.PagerNumber 
@@ -56,10 +56,10 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				foreach (var member in ElectronicMailAddresses)
-				{
-					yield return new Ifc4.MeasureResource.IfcLabel((string)member);
-				}
+			
+				return new Common.Collections.ProxyValueSet<MeasureResource.IfcLabel, Ifc4.MeasureResource.IfcLabel>(ElectronicMailAddresses, 
+					s => new Ifc4.MeasureResource.IfcLabel(s), 
+					t => new MeasureResource.IfcLabel(t));
 			} 
 		}
 		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcTelecomAddress.WWWHomePageURL 

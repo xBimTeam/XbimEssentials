@@ -33,20 +33,16 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-				foreach (var member in CrossSections)
-				{
-					yield return member as IIfcProfileDef;
-				}
+			
+				return new Common.Collections.ProxyItemSet<ProfileResource.IfcProfileDef, IIfcProfileDef>(CrossSections);
 			} 
 		}
 		IItemSet<IIfcAxis2Placement3D> IIfcSectionedSpine.CrossSectionPositions 
 		{ 
 			get
 			{
-				foreach (var member in CrossSectionPositions)
-				{
-					yield return member as IIfcAxis2Placement3D;
-				}
+			
+				return new Common.Collections.ProxyItemSet<GeometryResource.IfcAxis2Placement3D, IIfcAxis2Placement3D>(CrossSectionPositions);
 			} 
 		}
 		Ifc4.GeometryResource.IfcDimensionCount IIfcSectionedSpine.Dim 

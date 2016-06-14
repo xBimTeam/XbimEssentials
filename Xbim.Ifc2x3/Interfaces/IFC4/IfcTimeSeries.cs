@@ -110,6 +110,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of TimeSeriesDataType
+				//##
 				switch (TimeSeriesDataType)
 				{
 					case IfcTimeSeriesDataTypeEnum.CONTINUOUS:
@@ -140,6 +142,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of TimeSeriesDataType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcTimeSeriesDataTypeEnum.CONTINUOUS:
@@ -181,6 +185,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of DataOrigin
+				//##
 				switch (DataOrigin)
 				{
 					case IfcDataOriginEnum.MEASURED:
@@ -207,6 +213,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of DataOrigin
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcDataOriginEnum.MEASURED:

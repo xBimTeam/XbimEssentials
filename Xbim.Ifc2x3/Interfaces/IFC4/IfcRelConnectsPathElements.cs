@@ -39,6 +39,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of RelatedConnectionType
+				//##
 				switch (RelatedConnectionType)
 				{
 					case IfcConnectionTypeEnum.ATPATH:
@@ -60,6 +62,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of RelatedConnectionType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcConnectionTypeEnum.ATPATH:
@@ -89,6 +93,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of RelatingConnectionType
+				//##
 				switch (RelatingConnectionType)
 				{
 					case IfcConnectionTypeEnum.ATPATH:
@@ -110,6 +116,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of RelatingConnectionType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcConnectionTypeEnum.ATPATH:

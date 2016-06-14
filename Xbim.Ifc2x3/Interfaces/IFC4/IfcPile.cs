@@ -21,6 +21,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcPileTypeEnum.COHESION:
@@ -34,6 +36,16 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 					
 					case IfcPileTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if(ObjectType.HasValue)
+                            switch (ObjectType.Value)
+                            {
+                                case "BORED":
+                                case "DRIVEN":
+                                case "JETGROUTING":
+                                    return
+                                        (Ifc4.Interfaces.IfcPileTypeEnum)
+                                            System.Enum.Parse(typeof (Ifc4.Interfaces.IfcPileTypeEnum), ObjectType.Value);
+                            }
 						//##
 						return Ifc4.Interfaces.IfcPileTypeEnum.USERDEFINED;
 					
@@ -47,24 +59,29 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcPileTypeEnum.BORED:
 						//## Handle setting of BORED member from IfcPileTypeEnum in property PredefinedType
-						//TODO: Handle setting of BORED member from IfcPileTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+				        ObjectType = System.Enum.GetName(typeof (Ifc4.Interfaces.IfcPileTypeEnum), value);
+						PredefinedType = IfcPileTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcPileTypeEnum.DRIVEN:
 						//## Handle setting of DRIVEN member from IfcPileTypeEnum in property PredefinedType
-						//TODO: Handle setting of DRIVEN member from IfcPileTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ObjectType = System.Enum.GetName(typeof (Ifc4.Interfaces.IfcPileTypeEnum), value);
+						PredefinedType = IfcPileTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcPileTypeEnum.JETGROUTING:
 						//## Handle setting of JETGROUTING member from IfcPileTypeEnum in property PredefinedType
-						//TODO: Handle setting of JETGROUTING member from IfcPileTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ObjectType = System.Enum.GetName(typeof (Ifc4.Interfaces.IfcPileTypeEnum), value);
+						PredefinedType = IfcPileTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcPileTypeEnum.COHESION:
@@ -98,6 +115,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of ConstructionType
+				//##
 				switch (ConstructionType)
 				{
 					case IfcPileConstructionEnum.CAST_IN_PLACE:
@@ -127,6 +146,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of ConstructionType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcPileConstructionEnum.CAST_IN_PLACE:

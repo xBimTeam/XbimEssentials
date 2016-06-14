@@ -21,20 +21,18 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get
 			{
-				foreach (var member in IntersectingAxes)
-				{
-					yield return member as IIfcGridAxis;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcGridAxis, IIfcGridAxis>(IntersectingAxes);
 			} 
 		}
 		IItemSet<Xbim.Ifc4.MeasureResource.IfcLengthMeasure> IIfcVirtualGridIntersection.OffsetDistances 
 		{ 
 			get
 			{
-				foreach (var member in OffsetDistances)
-				{
-					yield return new Ifc4.MeasureResource.IfcLengthMeasure((double)member);
-				}
+			
+				return new Common.Collections.ProxyValueSet<MeasureResource.IfcLengthMeasure, Ifc4.MeasureResource.IfcLengthMeasure>(OffsetDistances, 
+					s => new Ifc4.MeasureResource.IfcLengthMeasure(s), 
+					t => new MeasureResource.IfcLengthMeasure(t));
 			} 
 		}
 	//## Custom code

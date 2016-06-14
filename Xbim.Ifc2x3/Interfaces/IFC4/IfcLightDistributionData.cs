@@ -33,20 +33,20 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get
 			{
-				foreach (var member in SecondaryPlaneAngle)
-				{
-					yield return new Ifc4.MeasureResource.IfcPlaneAngleMeasure((double)member);
-				}
+			
+				return new Common.Collections.ProxyValueSet<MeasureResource.IfcPlaneAngleMeasure, Ifc4.MeasureResource.IfcPlaneAngleMeasure>(SecondaryPlaneAngle, 
+					s => new Ifc4.MeasureResource.IfcPlaneAngleMeasure(s), 
+					t => new MeasureResource.IfcPlaneAngleMeasure(t));
 			} 
 		}
 		IItemSet<Xbim.Ifc4.MeasureResource.IfcLuminousIntensityDistributionMeasure> IIfcLightDistributionData.LuminousIntensity 
 		{ 
 			get
 			{
-				foreach (var member in LuminousIntensity)
-				{
-					yield return new Ifc4.MeasureResource.IfcLuminousIntensityDistributionMeasure((double)member);
-				}
+			
+				return new Common.Collections.ProxyValueSet<MeasureResource.IfcLuminousIntensityDistributionMeasure, Ifc4.MeasureResource.IfcLuminousIntensityDistributionMeasure>(LuminousIntensity, 
+					s => new Ifc4.MeasureResource.IfcLuminousIntensityDistributionMeasure(s), 
+					t => new MeasureResource.IfcLuminousIntensityDistributionMeasure(t));
 			} 
 		}
 	//## Custom code

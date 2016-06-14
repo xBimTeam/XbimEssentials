@@ -21,6 +21,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcCableSegmentTypeEnum.CABLESEGMENT:
@@ -44,6 +46,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcCableSegmentTypeEnum.BUSBARSEGMENT:

@@ -21,6 +21,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcElectricApplianceTypeEnum.COMPUTER:
@@ -134,6 +136,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.DISHWASHER:

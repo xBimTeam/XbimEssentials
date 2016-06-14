@@ -45,6 +45,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of ObjectiveQualifier
+				//##
 				switch (ObjectiveQualifier)
 				{
 					case IfcObjectiveEnum.CODECOMPLIANCE:
@@ -80,6 +82,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of ObjectiveQualifier
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcObjectiveEnum.CODECOMPLIANCE:

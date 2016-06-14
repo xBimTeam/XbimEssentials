@@ -21,10 +21,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
-				foreach (var member in Profiles)
-				{
-					yield return member as IIfcProfileDef;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcProfileDef, IIfcProfileDef>(Profiles);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcCompositeProfileDef.Label 

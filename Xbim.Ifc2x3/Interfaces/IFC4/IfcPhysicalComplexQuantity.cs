@@ -21,10 +21,8 @@ namespace Xbim.Ifc2x3.QuantityResource
 		{ 
 			get
 			{
-				foreach (var member in HasQuantities)
-				{
-					yield return member as IIfcPhysicalQuantity;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcPhysicalQuantity, IIfcPhysicalQuantity>(HasQuantities);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel IIfcPhysicalComplexQuantity.Discrimination 

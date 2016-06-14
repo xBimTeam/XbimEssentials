@@ -21,6 +21,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of AssemblyPlace
+				//##
 				switch (AssemblyPlace)
 				{
 					case IfcAssemblyPlaceEnum.SITE:
@@ -39,6 +41,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of AssemblyPlace
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcAssemblyPlaceEnum.SITE:
@@ -64,6 +68,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcElementAssemblyTypeEnum.ACCESSORY_ASSEMBLY:
@@ -108,6 +114,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcElementAssemblyTypeEnum.ACCESSORY_ASSEMBLY:

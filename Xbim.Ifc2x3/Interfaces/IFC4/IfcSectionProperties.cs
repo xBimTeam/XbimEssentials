@@ -21,6 +21,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of SectionType
+				//##
 				switch (SectionType)
 				{
 					case IfcSectionTypeEnum.UNIFORM:
@@ -36,6 +38,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of SectionType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcSectionTypeEnum.UNIFORM:

@@ -21,6 +21,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcBuildingElementProxyTypeEnum.USERDEFINED:
@@ -38,6 +40,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.COMPLEX:

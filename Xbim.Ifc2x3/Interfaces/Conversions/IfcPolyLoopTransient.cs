@@ -7,10 +7,13 @@ namespace Xbim.Ifc2x3.Interfaces.Conversions
 {
     internal class IfcPolyLoopTransient : PersistEntityTransient, Ifc4.Interfaces.IIfcPolyLoop
     {
-        readonly IEnumerable<IfcCartesianPoint> _points;
+        private readonly IItemSet<Ifc4.Interfaces.IIfcCartesianPoint> _points;
         public IfcPolyLoopTransient(IEnumerable<IfcCartesianPoint> points)
         {
-            _points = points;
+            var ps = new ItemSet<Ifc4.Interfaces.IIfcCartesianPoint>(this, 0, 255);
+            foreach (var point in points)
+                ps.InternalAdd(point);
+            _points = ps;
         }
         public IItemSet<Ifc4.Interfaces.IIfcCartesianPoint> Polygon
         {

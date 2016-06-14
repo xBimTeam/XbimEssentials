@@ -33,10 +33,8 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				foreach (var member in RelatedOrganizations)
-				{
-					yield return member as IIfcOrganization;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcOrganization, IIfcOrganization>(RelatedOrganizations);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 

@@ -21,10 +21,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get
 			{
-				foreach (var member in Polygon)
-				{
-					yield return member as IIfcCartesianPoint;
-				}
+			
+				return new Common.Collections.ProxyItemSet<GeometryResource.IfcCartesianPoint, IIfcCartesianPoint>(Polygon);
 			} 
 		}
 	//## Custom code

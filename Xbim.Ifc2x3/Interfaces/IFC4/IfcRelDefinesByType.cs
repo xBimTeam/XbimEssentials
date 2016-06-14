@@ -21,10 +21,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				foreach (var member in RelatedObjects)
-				{
-					yield return member as IIfcObject;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcObject, IIfcObject>(RelatedObjects);
 			} 
 		}
 		IIfcTypeObject IIfcRelDefinesByType.RelatingType 

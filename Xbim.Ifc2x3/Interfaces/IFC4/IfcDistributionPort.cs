@@ -21,6 +21,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of FlowDirection
+				//##
 				switch (FlowDirection)
 				{
 					case IfcFlowDirectionEnum.SOURCE:
@@ -42,6 +44,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of FlowDirection
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcFlowDirectionEnum.SOURCE:

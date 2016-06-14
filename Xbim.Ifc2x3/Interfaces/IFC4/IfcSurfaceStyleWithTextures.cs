@@ -21,10 +21,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				foreach (var member in Textures)
-				{
-					yield return member as IIfcSurfaceTexture;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcSurfaceTexture, IIfcSurfaceTexture>(Textures);
 			} 
 		}
 	//## Custom code

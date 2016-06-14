@@ -21,6 +21,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of ProjectedOrTrue
+				//##
 				switch (ProjectedOrTrue)
 				{
 					case IfcProjectedOrTrueLengthEnum.PROJECTED_LENGTH:
@@ -36,6 +38,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of ProjectedOrTrue
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcProjectedOrTrueLengthEnum.PROJECTED_LENGTH:

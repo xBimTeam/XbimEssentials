@@ -21,6 +21,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (ProcedureType)
 				{
 					case IfcProcedureTypeEnum.ADVICE_CAUTION:
@@ -59,6 +61,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcProcedureTypeEnum.ADVICE_CAUTION:

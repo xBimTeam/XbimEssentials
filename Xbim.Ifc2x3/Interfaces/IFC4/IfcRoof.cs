@@ -21,6 +21,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (ShapeType)
 				{
 					case IfcRoofTypeEnum.FLAT_ROOF:
@@ -72,6 +74,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcRoofTypeEnum.FLAT_ROOF:

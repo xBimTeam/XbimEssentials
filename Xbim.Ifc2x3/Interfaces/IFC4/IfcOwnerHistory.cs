@@ -45,6 +45,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of State
+				//##
 				switch (State)
 				{
 					case IfcStateEnum.READWRITE:
@@ -69,6 +71,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of State
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcStateEnum.READWRITE:
@@ -102,6 +106,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of ChangeAction
+				//##
 				switch (ChangeAction)
 				{
 					case IfcChangeActionEnum.NOCHANGE:
@@ -133,6 +139,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of ChangeAction
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcChangeActionEnum.NOCHANGE:

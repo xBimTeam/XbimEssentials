@@ -33,6 +33,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of UnitType
+				//##
 				switch (UnitType)
 				{
 					case IfcUnitEnum.ABSORBEDDOSEUNIT:
@@ -134,6 +136,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of UnitType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcUnitEnum.ABSORBEDDOSEUNIT:

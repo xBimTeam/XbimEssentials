@@ -21,6 +21,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcPumpTypeEnum.CIRCULATOR:
@@ -53,6 +55,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcPumpTypeEnum.CIRCULATOR:

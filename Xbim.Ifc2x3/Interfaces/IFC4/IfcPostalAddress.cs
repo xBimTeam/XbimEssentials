@@ -36,10 +36,10 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				foreach (var member in AddressLines)
-				{
-					yield return new Ifc4.MeasureResource.IfcLabel((string)member);
-				}
+			
+				return new Common.Collections.ProxyValueSet<MeasureResource.IfcLabel, Ifc4.MeasureResource.IfcLabel>(AddressLines, 
+					s => new Ifc4.MeasureResource.IfcLabel(s), 
+					t => new MeasureResource.IfcLabel(t));
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcPostalAddress.PostalBox 

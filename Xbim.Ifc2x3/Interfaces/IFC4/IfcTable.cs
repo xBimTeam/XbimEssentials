@@ -39,10 +39,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 		{ 
 			get
 			{
-				foreach (var member in Rows)
-				{
-					yield return member as IIfcTableRow;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcTableRow, IIfcTableRow>(Rows);
 			} 
 		}
 		IItemSet<IIfcTableColumn> IIfcTable.Columns 

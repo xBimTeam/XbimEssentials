@@ -21,10 +21,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				foreach (var member in RelatedElements)
-				{
-					yield return member as IIfcProduct;
-				}
+			
+				return new Common.Collections.ProxyItemSet<Kernel.IfcProduct, IIfcProduct>(RelatedElements);
 			} 
 		}
 		IIfcSpatialElement IIfcRelContainedInSpatialStructure.RelatingStructure 

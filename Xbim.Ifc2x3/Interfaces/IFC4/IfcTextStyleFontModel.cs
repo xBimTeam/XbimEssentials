@@ -21,10 +21,10 @@ namespace Xbim.Ifc2x3.PresentationResource
 		{ 
 			get
 			{
-				foreach (var member in FontFamily)
-				{
-					yield return new Ifc4.PresentationAppearanceResource.IfcTextFontName((string)member);
-				}
+			
+				return new Common.Collections.ProxyValueSet<IfcTextFontName, Ifc4.PresentationAppearanceResource.IfcTextFontName>(FontFamily, 
+					s => new Ifc4.PresentationAppearanceResource.IfcTextFontName(s), 
+					t => new IfcTextFontName(t));
 			} 
 		}
 		Ifc4.PresentationAppearanceResource.IfcFontStyle? IIfcTextStyleFontModel.FontStyle 

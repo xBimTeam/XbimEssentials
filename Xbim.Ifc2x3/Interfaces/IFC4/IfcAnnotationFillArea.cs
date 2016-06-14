@@ -33,10 +33,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		{ 
 			get
 			{
-				foreach (var member in InnerBoundaries)
-				{
-					yield return member as IIfcCurve;
-				}
+			
+				return new Common.Collections.ProxyItemSet<GeometryResource.IfcCurve, IIfcCurve>(InnerBoundaries);
 			} 
 		}
 	//## Custom code

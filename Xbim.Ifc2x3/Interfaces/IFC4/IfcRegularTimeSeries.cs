@@ -33,10 +33,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get
 			{
-				foreach (var member in Values)
-				{
-					yield return member as IIfcTimeSeriesValue;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcTimeSeriesValue, IIfcTimeSeriesValue>(Values);
 			} 
 		}
 	//## Custom code

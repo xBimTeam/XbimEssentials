@@ -21,37 +21,54 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				foreach (var member in Styles)
-				{
-					var ifccurvestyle = member as IfcCurveStyle;
-					if (ifccurvestyle != null) 
-						yield return ifccurvestyle;
-					var ifcsymbolstyle = member as IfcSymbolStyle;
-					if (ifcsymbolstyle != null) 
-						//## Handle entity IfcSymbolStyle which is not a part of the target select interface IIfcPresentationStyleSelect in property Styles
-				    {
-				      /*  var colour = ifcsymbolstyle.StyleOfSymbol as IIfcColourRgb;
-                        if(colour!=null)
-                            return colour;*/
-				        yield return new Ifc4.PresentationAppearanceResource.IfcNullStyle();
-				    }
-						//##
-					var ifcfillareastyle = member as IfcFillAreaStyle;
-					if (ifcfillareastyle != null) 
-						yield return ifcfillareastyle;
-					var ifctextstyle = member as IfcTextStyle;
-					if (ifctextstyle != null) 
-						yield return ifctextstyle;
-					var ifcsurfacestyle = member as IfcSurfaceStyle;
-					if (ifcsurfacestyle != null) 
-						yield return ifcsurfacestyle;
-					if (member is IfcNullStyle) 
-						//## Handle defined type IfcNullStyle which is not a part of the target select interface IItemSet<IIfcPresentationStyleSelect> in property Styles
-						//TODO: Handle defined type IfcNullStyle which is not a part of the target select interface IItemSet<IIfcPresentationStyleSelect> in property Styles
-						throw new System.NotImplementedException();
-						//##
-				}
+			
+				return _stylesIfc4 ?? (_stylesIfc4 = new Common.Collections.ExtendedItemSet<IfcPresentationStyleSelect, IIfcPresentationStyleSelect>(
+                    Styles, 
+                    new ItemSet<IIfcPresentationStyleSelect>(this, 0, 255), 
+                    StylesToIfc4, 
+                    StylesToIfc2x3));
 			} 
+		}
+
+		//private field to hold any extended data
+		private IItemSet<IIfcPresentationStyleSelect> _stylesIfc4;
+
+		//transformation function to convert/cast IFC2x3 data to appear as IFC4
+		private IIfcPresentationStyleSelect StylesToIfc4 (IfcPresentationStyleSelect member)
+		{
+			var ifccurvestyle = member as IfcCurveStyle;
+			if (ifccurvestyle != null) 
+				return ifccurvestyle;
+			var ifcsymbolstyle = member as IfcSymbolStyle;
+			if (ifcsymbolstyle != null) 
+				//## Handle entity IfcSymbolStyle which is not a part of the target select interface IIfcPresentationStyleSelect in property Styles
+				{
+				  /*  var colour = ifcsymbolstyle.StyleOfSymbol as IIfcColourRgb;
+                    if(colour!=null)
+                        return colour;*/
+				    return new Ifc4.PresentationAppearanceResource.IfcNullStyle();
+				}
+				//##
+			var ifcfillareastyle = member as IfcFillAreaStyle;
+			if (ifcfillareastyle != null) 
+				return ifcfillareastyle;
+			var ifctextstyle = member as IfcTextStyle;
+			if (ifctextstyle != null) 
+				return ifctextstyle;
+			var ifcsurfacestyle = member as IfcSurfaceStyle;
+			if (ifcsurfacestyle != null) 
+				return ifcsurfacestyle;
+			if (member is IfcNullStyle) 
+				//## Handle defined type IfcNullStyle which is not a part of the target select interface IItemSet<IIfcPresentationStyleSelect> in property Styles
+				//TODO: Handle defined type IfcNullStyle which is not a part of the target select interface IItemSet<IIfcPresentationStyleSelect> in property Styles
+				throw new System.NotImplementedException();
+				//##
+			throw new System.NotSupportedException();
+		}
+
+		//transformation function to convert/cast IFC4 data to appear as IFC2x3 if possible
+		private IfcPresentationStyleSelect StylesToIfc2x3 (IIfcPresentationStyleSelect member){
+			throw new System.NotImplementedException();
 		}
 	//## Custom code
 	    public IEnumerable<IIfcSurfaceStyle> SurfaceStyles

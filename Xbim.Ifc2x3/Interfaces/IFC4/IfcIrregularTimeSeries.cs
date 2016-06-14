@@ -21,10 +21,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get
 			{
-				foreach (var member in Values)
-				{
-					yield return member as IIfcIrregularTimeSeriesValue;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcIrregularTimeSeriesValue, IIfcIrregularTimeSeriesValue>(Values);
 			} 
 		}
 	//## Custom code

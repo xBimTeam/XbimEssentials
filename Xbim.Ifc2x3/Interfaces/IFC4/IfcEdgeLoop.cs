@@ -21,10 +21,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get
 			{
-				foreach (var member in EdgeList)
-				{
-					yield return member as IIfcOrientedEdge;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcOrientedEdge, IIfcOrientedEdge>(EdgeList);
 			} 
 		}
 		Ifc4.MeasureResource.IfcInteger IIfcEdgeLoop.Ne 

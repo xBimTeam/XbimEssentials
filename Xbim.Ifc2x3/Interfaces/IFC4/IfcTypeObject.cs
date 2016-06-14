@@ -36,10 +36,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				foreach (var member in HasPropertySets)
-				{
-					yield return member as IIfcPropertySetDefinition;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcPropertySetDefinition, IIfcPropertySetDefinition>(HasPropertySets);
 			} 
 		}
 		IEnumerable<IIfcRelDefinesByType> IIfcTypeObject.Types 

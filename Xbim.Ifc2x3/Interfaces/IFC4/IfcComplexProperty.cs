@@ -33,10 +33,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get
 			{
-				foreach (var member in HasProperties)
-				{
-					yield return member as IIfcProperty;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcProperty, IIfcProperty>(HasProperties);
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 

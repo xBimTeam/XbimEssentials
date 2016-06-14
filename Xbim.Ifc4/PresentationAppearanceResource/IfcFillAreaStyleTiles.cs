@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcFillAreaStyleTiles : IIfcGeometricRepresentationItem, IfcFillStyleSelect
 	{
-		IItemSet<IIfcVector> @TilingPattern { get; }
+		IEnumerable<IIfcVector> @TilingPattern { get; }
 		IItemSet<IIfcStyledItem> @Tiles { get; }
 		IfcPositiveRatioMeasure @TilingScale { get;  set; }
 	

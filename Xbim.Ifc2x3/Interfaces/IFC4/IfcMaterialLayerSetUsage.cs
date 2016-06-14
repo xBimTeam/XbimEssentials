@@ -33,6 +33,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of LayerSetDirection
+				//##
 				switch (LayerSetDirection)
 				{
 					case IfcLayerSetDirectionEnum.AXIS1:
@@ -51,6 +53,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of LayerSetDirection
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcLayerSetDirectionEnum.AXIS1:
@@ -76,6 +80,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of DirectionSense
+				//##
 				switch (DirectionSense)
 				{
 					case IfcDirectionSenseEnum.POSITIVE:
@@ -91,6 +97,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of DirectionSense
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcDirectionSenseEnum.POSITIVE:

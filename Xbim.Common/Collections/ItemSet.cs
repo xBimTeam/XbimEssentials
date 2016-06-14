@@ -50,7 +50,15 @@ namespace Xbim.Common.Collections
             if (!typeof(IList).IsAssignableFrom(typeof(T)))
                 return default(T);
 
-            var result = (T)Activator.CreateInstance(typeof(T), BindingFlags.NonPublic | BindingFlags.Instance, null,
+            //get non-abstract type of IItemSet
+            var type = GetType().GetGenericTypeDefinition();
+            //get generic argument of nested item set
+            var inner = typeof (T).GetGenericArguments()[0];
+            //create generic type which can be created and added to this set
+            var toCreate = type.MakeGenericType(inner);
+
+            //todo: test this after change above
+            var result = (T)Activator.CreateInstance(toCreate, BindingFlags.NonPublic | BindingFlags.Instance, null,
                 new object[] { OwningEntity, 4, Property }, null);
             Insert(index, result);
             return result;

@@ -79,6 +79,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PhysicalOrVirtualBoundary
+				//##
 				switch (PhysicalOrVirtualBoundary)
 				{
 					case IfcPhysicalOrVirtualEnum.PHYSICAL:
@@ -97,6 +99,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PhysicalOrVirtualBoundary
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcPhysicalOrVirtualEnum.PHYSICAL:
@@ -122,6 +126,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of InternalOrExternalBoundary
+				//##
 				switch (InternalOrExternalBoundary)
 				{
 					case IfcInternalOrExternalEnum.INTERNAL:
@@ -140,6 +146,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of InternalOrExternalBoundary
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcInternalOrExternalEnum.INTERNAL:

@@ -21,6 +21,8 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcProjectOrderTypeEnum.CHANGEORDER:
@@ -53,6 +55,8 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcProjectOrderTypeEnum.CHANGEORDER:

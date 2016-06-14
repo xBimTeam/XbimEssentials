@@ -21,18 +21,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-				foreach (var member in Elements)
-				{
-					var ifcpoint = member as GeometryResource.IfcPoint;
-					if (ifcpoint != null) 
-						yield return ifcpoint;
-					var ifccurve = member as GeometryResource.IfcCurve;
-					if (ifccurve != null) 
-						yield return ifccurve;
-					var ifcsurface = member as GeometryResource.IfcSurface;
-					if (ifcsurface != null) 
-						yield return ifcsurface;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcGeometricSetSelect, IIfcGeometricSetSelect>(Elements);
 			} 
 		}
 		Ifc4.GeometryResource.IfcDimensionCount IIfcGeometricSet.Dim 

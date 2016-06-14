@@ -21,6 +21,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of Transition
+				//##
 				switch (Transition)
 				{
 					case IfcTransitionCode.DISCONTINUOUS:
@@ -42,6 +44,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of Transition
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcTransitionCode.DISCONTINUOUS:

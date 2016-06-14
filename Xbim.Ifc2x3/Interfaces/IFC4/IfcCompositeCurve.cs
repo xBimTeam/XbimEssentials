@@ -21,10 +21,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				foreach (var member in Segments)
-				{
-					yield return member as IIfcCompositeCurveSegment;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcCompositeCurveSegment, IIfcCompositeCurveSegment>(Segments);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLogical IIfcCompositeCurve.SelfIntersect 

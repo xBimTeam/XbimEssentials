@@ -33,11 +33,27 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				foreach (var member in RelatedBuildings)
-				{
-					yield return member as IIfcSpatialElement;
-				}
+			
+				return _relatedBuildingsIfc4 ?? (_relatedBuildingsIfc4 = new Common.Collections.ExtendedItemSet<IfcSpatialStructureElement, IIfcSpatialElement>(
+                    RelatedBuildings, 
+                    new ItemSet<IIfcSpatialElement>(this, 0, 255), 
+                    RelatedBuildingsToIfc4, 
+                    RelatedBuildingsToIfc2x3));
 			} 
+		}
+
+		//private field to hold any extended data
+		private IItemSet<IIfcSpatialElement> _relatedBuildingsIfc4;
+
+		//transformation function to convert/cast IFC2x3 data to appear as IFC4
+		private IIfcSpatialElement RelatedBuildingsToIfc4 (IfcSpatialStructureElement member)
+		{
+			return member;
+		}
+
+		//transformation function to convert/cast IFC4 data to appear as IFC2x3 if possible
+		private IfcSpatialStructureElement RelatedBuildingsToIfc2x3 (IIfcSpatialElement member){
+			throw new System.NotImplementedException();
 		}
 	//## Custom code
 	//##

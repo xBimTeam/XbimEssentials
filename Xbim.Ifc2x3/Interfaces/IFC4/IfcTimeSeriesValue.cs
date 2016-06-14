@@ -21,204 +21,221 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get
 			{
-				foreach (var member in ListValues)
-				{
-					if (member is MeasureResource.IfcVolumeMeasure) 
-						yield return new Ifc4.MeasureResource.IfcVolumeMeasure((double)(MeasureResource.IfcVolumeMeasure)member);
-					if (member is MeasureResource.IfcTimeMeasure) 
-						yield return new Ifc4.MeasureResource.IfcTimeMeasure((double)(MeasureResource.IfcTimeMeasure)member);
-					if (member is MeasureResource.IfcThermodynamicTemperatureMeasure) 
-						yield return new Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure((double)(MeasureResource.IfcThermodynamicTemperatureMeasure)member);
-					if (member is MeasureResource.IfcSolidAngleMeasure) 
-						yield return new Ifc4.MeasureResource.IfcSolidAngleMeasure((double)(MeasureResource.IfcSolidAngleMeasure)member);
-					if (member is MeasureResource.IfcPositiveRatioMeasure) 
-						yield return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)(MeasureResource.IfcPositiveRatioMeasure)member);
-					if (member is MeasureResource.IfcRatioMeasure) 
-						yield return new Ifc4.MeasureResource.IfcRatioMeasure((double)(MeasureResource.IfcRatioMeasure)member);
-					if (member is MeasureResource.IfcPositivePlaneAngleMeasure) 
-						yield return new Ifc4.MeasureResource.IfcPositivePlaneAngleMeasure((double)(MeasureResource.IfcPositivePlaneAngleMeasure)member);
-					if (member is MeasureResource.IfcPlaneAngleMeasure) 
-						yield return new Ifc4.MeasureResource.IfcPlaneAngleMeasure((double)(MeasureResource.IfcPlaneAngleMeasure)member);
-					if (member is MeasureResource.IfcParameterValue) 
-						yield return new Ifc4.MeasureResource.IfcParameterValue((double)(MeasureResource.IfcParameterValue)member);
-					if (member is MeasureResource.IfcNumericMeasure) 
-						yield return new Ifc4.MeasureResource.IfcNumericMeasure((double)(MeasureResource.IfcNumericMeasure)member);
-					if (member is MeasureResource.IfcMassMeasure) 
-						yield return new Ifc4.MeasureResource.IfcMassMeasure((double)(MeasureResource.IfcMassMeasure)member);
-					if (member is MeasureResource.IfcPositiveLengthMeasure) 
-						yield return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)(MeasureResource.IfcPositiveLengthMeasure)member);
-					if (member is MeasureResource.IfcLengthMeasure) 
-						yield return new Ifc4.MeasureResource.IfcLengthMeasure((double)(MeasureResource.IfcLengthMeasure)member);
-					if (member is MeasureResource.IfcElectricCurrentMeasure) 
-						yield return new Ifc4.MeasureResource.IfcElectricCurrentMeasure((double)(MeasureResource.IfcElectricCurrentMeasure)member);
-					if (member is MeasureResource.IfcDescriptiveMeasure) 
-						yield return new Ifc4.MeasureResource.IfcDescriptiveMeasure((string)(MeasureResource.IfcDescriptiveMeasure)member);
-					if (member is MeasureResource.IfcCountMeasure) 
-						yield return new Ifc4.MeasureResource.IfcCountMeasure((double)(MeasureResource.IfcCountMeasure)member);
-					if (member is MeasureResource.IfcContextDependentMeasure) 
-						yield return new Ifc4.MeasureResource.IfcContextDependentMeasure((double)(MeasureResource.IfcContextDependentMeasure)member);
-					if (member is MeasureResource.IfcAreaMeasure) 
-						yield return new Ifc4.MeasureResource.IfcAreaMeasure((double)(MeasureResource.IfcAreaMeasure)member);
-					if (member is MeasureResource.IfcAmountOfSubstanceMeasure) 
-						yield return new Ifc4.MeasureResource.IfcAmountOfSubstanceMeasure((double)(MeasureResource.IfcAmountOfSubstanceMeasure)member);
-					if (member is MeasureResource.IfcLuminousIntensityMeasure) 
-						yield return new Ifc4.MeasureResource.IfcLuminousIntensityMeasure((double)(MeasureResource.IfcLuminousIntensityMeasure)member);
-					if (member is MeasureResource.IfcNormalisedRatioMeasure) 
-						yield return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(MeasureResource.IfcNormalisedRatioMeasure)member);
-					if (member is MeasureResource.IfcComplexNumber) 
-						yield return new Ifc4.MeasureResource.IfcComplexNumber((List<double>)(MeasureResource.IfcComplexNumber)member);
-					if (member is MeasureResource.IfcInteger) 
-						yield return new Ifc4.MeasureResource.IfcInteger((long)(MeasureResource.IfcInteger)member);
-					if (member is MeasureResource.IfcReal) 
-						yield return new Ifc4.MeasureResource.IfcReal((double)(MeasureResource.IfcReal)member);
-					if (member is MeasureResource.IfcBoolean) 
-						yield return new Ifc4.MeasureResource.IfcBoolean((bool)(MeasureResource.IfcBoolean)member);
-					if (member is MeasureResource.IfcIdentifier) 
-						yield return new Ifc4.MeasureResource.IfcIdentifier((string)(MeasureResource.IfcIdentifier)member);
-					if (member is MeasureResource.IfcText) 
-						yield return new Ifc4.MeasureResource.IfcText((string)(MeasureResource.IfcText)member);
-					if (member is MeasureResource.IfcLabel) 
-						yield return new Ifc4.MeasureResource.IfcLabel((string)(MeasureResource.IfcLabel)member);
-					if (member is MeasureResource.IfcLogical) 
-						yield return new Ifc4.MeasureResource.IfcLogical((bool?)(MeasureResource.IfcLogical)member);
-					if (member is MeasureResource.IfcVolumetricFlowRateMeasure) 
-						yield return new Ifc4.MeasureResource.IfcVolumetricFlowRateMeasure((double)(MeasureResource.IfcVolumetricFlowRateMeasure)member);
-					if (member is MeasureResource.IfcTimeStamp) 
-						yield return new Ifc4.DateTimeResource.IfcTimeStamp((long)(MeasureResource.IfcTimeStamp)member);
-					if (member is MeasureResource.IfcThermalTransmittanceMeasure) 
-						yield return new Ifc4.MeasureResource.IfcThermalTransmittanceMeasure((double)(MeasureResource.IfcThermalTransmittanceMeasure)member);
-					if (member is MeasureResource.IfcThermalResistanceMeasure) 
-						yield return new Ifc4.MeasureResource.IfcThermalResistanceMeasure((double)(MeasureResource.IfcThermalResistanceMeasure)member);
-					if (member is MeasureResource.IfcThermalAdmittanceMeasure) 
-						yield return new Ifc4.MeasureResource.IfcThermalAdmittanceMeasure((double)(MeasureResource.IfcThermalAdmittanceMeasure)member);
-					if (member is MeasureResource.IfcPressureMeasure) 
-						yield return new Ifc4.MeasureResource.IfcPressureMeasure((double)(MeasureResource.IfcPressureMeasure)member);
-					if (member is MeasureResource.IfcPowerMeasure) 
-						yield return new Ifc4.MeasureResource.IfcPowerMeasure((double)(MeasureResource.IfcPowerMeasure)member);
-					if (member is MeasureResource.IfcMassFlowRateMeasure) 
-						yield return new Ifc4.MeasureResource.IfcMassFlowRateMeasure((double)(MeasureResource.IfcMassFlowRateMeasure)member);
-					if (member is MeasureResource.IfcMassDensityMeasure) 
-						yield return new Ifc4.MeasureResource.IfcMassDensityMeasure((double)(MeasureResource.IfcMassDensityMeasure)member);
-					if (member is MeasureResource.IfcLinearVelocityMeasure) 
-						yield return new Ifc4.MeasureResource.IfcLinearVelocityMeasure((double)(MeasureResource.IfcLinearVelocityMeasure)member);
-					if (member is MeasureResource.IfcKinematicViscosityMeasure) 
-						yield return new Ifc4.MeasureResource.IfcKinematicViscosityMeasure((double)(MeasureResource.IfcKinematicViscosityMeasure)member);
-					if (member is MeasureResource.IfcIntegerCountRateMeasure) 
-						yield return new Ifc4.MeasureResource.IfcIntegerCountRateMeasure((long)(MeasureResource.IfcIntegerCountRateMeasure)member);
-					if (member is MeasureResource.IfcHeatFluxDensityMeasure) 
-						yield return new Ifc4.MeasureResource.IfcHeatFluxDensityMeasure((double)(MeasureResource.IfcHeatFluxDensityMeasure)member);
-					if (member is MeasureResource.IfcFrequencyMeasure) 
-						yield return new Ifc4.MeasureResource.IfcFrequencyMeasure((double)(MeasureResource.IfcFrequencyMeasure)member);
-					if (member is MeasureResource.IfcEnergyMeasure) 
-						yield return new Ifc4.MeasureResource.IfcEnergyMeasure((double)(MeasureResource.IfcEnergyMeasure)member);
-					if (member is MeasureResource.IfcElectricVoltageMeasure) 
-						yield return new Ifc4.MeasureResource.IfcElectricVoltageMeasure((double)(MeasureResource.IfcElectricVoltageMeasure)member);
-					if (member is MeasureResource.IfcDynamicViscosityMeasure) 
-						yield return new Ifc4.MeasureResource.IfcDynamicViscosityMeasure((double)(MeasureResource.IfcDynamicViscosityMeasure)member);
-					if (member is MeasureResource.IfcCompoundPlaneAngleMeasure) 
-						yield return new Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure((List<long>)(MeasureResource.IfcCompoundPlaneAngleMeasure)member);
-					if (member is MeasureResource.IfcAngularVelocityMeasure) 
-						yield return new Ifc4.MeasureResource.IfcAngularVelocityMeasure((double)(MeasureResource.IfcAngularVelocityMeasure)member);
-					if (member is MeasureResource.IfcThermalConductivityMeasure) 
-						yield return new Ifc4.MeasureResource.IfcThermalConductivityMeasure((double)(MeasureResource.IfcThermalConductivityMeasure)member);
-					if (member is MeasureResource.IfcMolecularWeightMeasure) 
-						yield return new Ifc4.MeasureResource.IfcMolecularWeightMeasure((double)(MeasureResource.IfcMolecularWeightMeasure)member);
-					if (member is MeasureResource.IfcVaporPermeabilityMeasure) 
-						yield return new Ifc4.MeasureResource.IfcVaporPermeabilityMeasure((double)(MeasureResource.IfcVaporPermeabilityMeasure)member);
-					if (member is MeasureResource.IfcMoistureDiffusivityMeasure) 
-						yield return new Ifc4.MeasureResource.IfcMoistureDiffusivityMeasure((double)(MeasureResource.IfcMoistureDiffusivityMeasure)member);
-					if (member is MeasureResource.IfcIsothermalMoistureCapacityMeasure) 
-						yield return new Ifc4.MeasureResource.IfcIsothermalMoistureCapacityMeasure((double)(MeasureResource.IfcIsothermalMoistureCapacityMeasure)member);
-					if (member is MeasureResource.IfcSpecificHeatCapacityMeasure) 
-						yield return new Ifc4.MeasureResource.IfcSpecificHeatCapacityMeasure((double)(MeasureResource.IfcSpecificHeatCapacityMeasure)member);
-					if (member is MeasureResource.IfcMonetaryMeasure) 
-						yield return new Ifc4.MeasureResource.IfcMonetaryMeasure((double)(MeasureResource.IfcMonetaryMeasure)member);
-					if (member is MeasureResource.IfcMagneticFluxDensityMeasure) 
-						yield return new Ifc4.MeasureResource.IfcMagneticFluxDensityMeasure((double)(MeasureResource.IfcMagneticFluxDensityMeasure)member);
-					if (member is MeasureResource.IfcMagneticFluxMeasure) 
-						yield return new Ifc4.MeasureResource.IfcMagneticFluxMeasure((double)(MeasureResource.IfcMagneticFluxMeasure)member);
-					if (member is MeasureResource.IfcLuminousFluxMeasure) 
-						yield return new Ifc4.MeasureResource.IfcLuminousFluxMeasure((double)(MeasureResource.IfcLuminousFluxMeasure)member);
-					if (member is MeasureResource.IfcForceMeasure) 
-						yield return new Ifc4.MeasureResource.IfcForceMeasure((double)(MeasureResource.IfcForceMeasure)member);
-					if (member is MeasureResource.IfcInductanceMeasure) 
-						yield return new Ifc4.MeasureResource.IfcInductanceMeasure((double)(MeasureResource.IfcInductanceMeasure)member);
-					if (member is MeasureResource.IfcIlluminanceMeasure) 
-						yield return new Ifc4.MeasureResource.IfcIlluminanceMeasure((double)(MeasureResource.IfcIlluminanceMeasure)member);
-					if (member is MeasureResource.IfcElectricResistanceMeasure) 
-						yield return new Ifc4.MeasureResource.IfcElectricResistanceMeasure((double)(MeasureResource.IfcElectricResistanceMeasure)member);
-					if (member is MeasureResource.IfcElectricConductanceMeasure) 
-						yield return new Ifc4.MeasureResource.IfcElectricConductanceMeasure((double)(MeasureResource.IfcElectricConductanceMeasure)member);
-					if (member is MeasureResource.IfcElectricChargeMeasure) 
-						yield return new Ifc4.MeasureResource.IfcElectricChargeMeasure((double)(MeasureResource.IfcElectricChargeMeasure)member);
-					if (member is MeasureResource.IfcDoseEquivalentMeasure) 
-						yield return new Ifc4.MeasureResource.IfcDoseEquivalentMeasure((double)(MeasureResource.IfcDoseEquivalentMeasure)member);
-					if (member is MeasureResource.IfcElectricCapacitanceMeasure) 
-						yield return new Ifc4.MeasureResource.IfcElectricCapacitanceMeasure((double)(MeasureResource.IfcElectricCapacitanceMeasure)member);
-					if (member is MeasureResource.IfcAbsorbedDoseMeasure) 
-						yield return new Ifc4.MeasureResource.IfcAbsorbedDoseMeasure((double)(MeasureResource.IfcAbsorbedDoseMeasure)member);
-					if (member is MeasureResource.IfcRadioActivityMeasure) 
-						yield return new Ifc4.MeasureResource.IfcRadioActivityMeasure((double)(MeasureResource.IfcRadioActivityMeasure)member);
-					if (member is MeasureResource.IfcRotationalFrequencyMeasure) 
-						yield return new Ifc4.MeasureResource.IfcRotationalFrequencyMeasure((double)(MeasureResource.IfcRotationalFrequencyMeasure)member);
-					if (member is MeasureResource.IfcTorqueMeasure) 
-						yield return new Ifc4.MeasureResource.IfcTorqueMeasure((double)(MeasureResource.IfcTorqueMeasure)member);
-					if (member is MeasureResource.IfcAccelerationMeasure) 
-						yield return new Ifc4.MeasureResource.IfcAccelerationMeasure((double)(MeasureResource.IfcAccelerationMeasure)member);
-					if (member is MeasureResource.IfcLinearForceMeasure) 
-						yield return new Ifc4.MeasureResource.IfcLinearForceMeasure((double)(MeasureResource.IfcLinearForceMeasure)member);
-					if (member is MeasureResource.IfcLinearStiffnessMeasure) 
-						yield return new Ifc4.MeasureResource.IfcLinearStiffnessMeasure((double)(MeasureResource.IfcLinearStiffnessMeasure)member);
-					if (member is MeasureResource.IfcModulusOfSubgradeReactionMeasure) 
-						yield return new Ifc4.MeasureResource.IfcModulusOfSubgradeReactionMeasure((double)(MeasureResource.IfcModulusOfSubgradeReactionMeasure)member);
-					if (member is MeasureResource.IfcModulusOfElasticityMeasure) 
-						yield return new Ifc4.MeasureResource.IfcModulusOfElasticityMeasure((double)(MeasureResource.IfcModulusOfElasticityMeasure)member);
-					if (member is MeasureResource.IfcMomentOfInertiaMeasure) 
-						yield return new Ifc4.MeasureResource.IfcMomentOfInertiaMeasure((double)(MeasureResource.IfcMomentOfInertiaMeasure)member);
-					if (member is MeasureResource.IfcPlanarForceMeasure) 
-						yield return new Ifc4.MeasureResource.IfcPlanarForceMeasure((double)(MeasureResource.IfcPlanarForceMeasure)member);
-					if (member is MeasureResource.IfcRotationalStiffnessMeasure) 
-						yield return new Ifc4.MeasureResource.IfcRotationalStiffnessMeasure((double)(MeasureResource.IfcRotationalStiffnessMeasure)member);
-					if (member is MeasureResource.IfcShearModulusMeasure) 
-						yield return new Ifc4.MeasureResource.IfcShearModulusMeasure((double)(MeasureResource.IfcShearModulusMeasure)member);
-					if (member is MeasureResource.IfcLinearMomentMeasure) 
-						yield return new Ifc4.MeasureResource.IfcLinearMomentMeasure((double)(MeasureResource.IfcLinearMomentMeasure)member);
-					if (member is MeasureResource.IfcLuminousIntensityDistributionMeasure) 
-						yield return new Ifc4.MeasureResource.IfcLuminousIntensityDistributionMeasure((double)(MeasureResource.IfcLuminousIntensityDistributionMeasure)member);
-					if (member is MeasureResource.IfcCurvatureMeasure) 
-						yield return new Ifc4.MeasureResource.IfcCurvatureMeasure((double)(MeasureResource.IfcCurvatureMeasure)member);
-					if (member is MeasureResource.IfcMassPerLengthMeasure) 
-						yield return new Ifc4.MeasureResource.IfcMassPerLengthMeasure((double)(MeasureResource.IfcMassPerLengthMeasure)member);
-					if (member is MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure) 
-						yield return new Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure((double)(MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure)member);
-					if (member is MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure) 
-						yield return new Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure((double)(MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure)member);
-					if (member is MeasureResource.IfcRotationalMassMeasure) 
-						yield return new Ifc4.MeasureResource.IfcRotationalMassMeasure((double)(MeasureResource.IfcRotationalMassMeasure)member);
-					if (member is MeasureResource.IfcSectionalAreaIntegralMeasure) 
-						yield return new Ifc4.MeasureResource.IfcSectionalAreaIntegralMeasure((double)(MeasureResource.IfcSectionalAreaIntegralMeasure)member);
-					if (member is MeasureResource.IfcSectionModulusMeasure) 
-						yield return new Ifc4.MeasureResource.IfcSectionModulusMeasure((double)(MeasureResource.IfcSectionModulusMeasure)member);
-					if (member is MeasureResource.IfcTemperatureGradientMeasure) 
-						yield return new Ifc4.MeasureResource.IfcTemperatureGradientMeasure((double)(MeasureResource.IfcTemperatureGradientMeasure)member);
-					if (member is MeasureResource.IfcThermalExpansionCoefficientMeasure) 
-						yield return new Ifc4.MeasureResource.IfcThermalExpansionCoefficientMeasure((double)(MeasureResource.IfcThermalExpansionCoefficientMeasure)member);
-					if (member is MeasureResource.IfcWarpingConstantMeasure) 
-						yield return new Ifc4.MeasureResource.IfcWarpingConstantMeasure((double)(MeasureResource.IfcWarpingConstantMeasure)member);
-					if (member is MeasureResource.IfcWarpingMomentMeasure) 
-						yield return new Ifc4.MeasureResource.IfcWarpingMomentMeasure((double)(MeasureResource.IfcWarpingMomentMeasure)member);
-					if (member is MeasureResource.IfcSoundPowerMeasure) 
-						yield return new Ifc4.MeasureResource.IfcSoundPowerMeasure((double)(MeasureResource.IfcSoundPowerMeasure)member);
-					if (member is MeasureResource.IfcSoundPressureMeasure) 
-						yield return new Ifc4.MeasureResource.IfcSoundPressureMeasure((double)(MeasureResource.IfcSoundPressureMeasure)member);
-					if (member is MeasureResource.IfcHeatingValueMeasure) 
-						yield return new Ifc4.MeasureResource.IfcHeatingValueMeasure((double)(MeasureResource.IfcHeatingValueMeasure)member);
-					if (member is MeasureResource.IfcPHMeasure) 
-						yield return new Ifc4.MeasureResource.IfcPHMeasure((double)(MeasureResource.IfcPHMeasure)member);
-					if (member is MeasureResource.IfcIonConcentrationMeasure) 
-						yield return new Ifc4.MeasureResource.IfcIonConcentrationMeasure((double)(MeasureResource.IfcIonConcentrationMeasure)member);
-				}
+			
+				return _listValuesIfc4 ?? (_listValuesIfc4 = new Common.Collections.ExtendedItemSet<MeasureResource.IfcValue, IIfcValue>(
+                    ListValues, 
+                    new ItemSet<IIfcValue>(this, 0, 255), 
+                    ListValuesToIfc4, 
+                    ListValuesToIfc2x3));
 			} 
+		}
+
+		//private field to hold any extended data
+		private IItemSet<IIfcValue> _listValuesIfc4;
+
+		//transformation function to convert/cast IFC2x3 data to appear as IFC4
+		private IIfcValue ListValuesToIfc4 (MeasureResource.IfcValue member)
+		{
+			if (member is MeasureResource.IfcVolumeMeasure) 
+				return new Ifc4.MeasureResource.IfcVolumeMeasure((MeasureResource.IfcVolumeMeasure)member);
+			if (member is MeasureResource.IfcTimeMeasure) 
+				return new Ifc4.MeasureResource.IfcTimeMeasure((MeasureResource.IfcTimeMeasure)member);
+			if (member is MeasureResource.IfcThermodynamicTemperatureMeasure) 
+				return new Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure((MeasureResource.IfcThermodynamicTemperatureMeasure)member);
+			if (member is MeasureResource.IfcSolidAngleMeasure) 
+				return new Ifc4.MeasureResource.IfcSolidAngleMeasure((MeasureResource.IfcSolidAngleMeasure)member);
+			if (member is MeasureResource.IfcPositiveRatioMeasure) 
+				return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((MeasureResource.IfcPositiveRatioMeasure)member);
+			if (member is MeasureResource.IfcRatioMeasure) 
+				return new Ifc4.MeasureResource.IfcRatioMeasure((MeasureResource.IfcRatioMeasure)member);
+			if (member is MeasureResource.IfcPositivePlaneAngleMeasure) 
+				return new Ifc4.MeasureResource.IfcPositivePlaneAngleMeasure((MeasureResource.IfcPositivePlaneAngleMeasure)member);
+			if (member is MeasureResource.IfcPlaneAngleMeasure) 
+				return new Ifc4.MeasureResource.IfcPlaneAngleMeasure((MeasureResource.IfcPlaneAngleMeasure)member);
+			if (member is MeasureResource.IfcParameterValue) 
+				return new Ifc4.MeasureResource.IfcParameterValue((MeasureResource.IfcParameterValue)member);
+			if (member is MeasureResource.IfcNumericMeasure) 
+				return new Ifc4.MeasureResource.IfcNumericMeasure((MeasureResource.IfcNumericMeasure)member);
+			if (member is MeasureResource.IfcMassMeasure) 
+				return new Ifc4.MeasureResource.IfcMassMeasure((MeasureResource.IfcMassMeasure)member);
+			if (member is MeasureResource.IfcPositiveLengthMeasure) 
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((MeasureResource.IfcPositiveLengthMeasure)member);
+			if (member is MeasureResource.IfcLengthMeasure) 
+				return new Ifc4.MeasureResource.IfcLengthMeasure((MeasureResource.IfcLengthMeasure)member);
+			if (member is MeasureResource.IfcElectricCurrentMeasure) 
+				return new Ifc4.MeasureResource.IfcElectricCurrentMeasure((MeasureResource.IfcElectricCurrentMeasure)member);
+			if (member is MeasureResource.IfcDescriptiveMeasure) 
+				return new Ifc4.MeasureResource.IfcDescriptiveMeasure((MeasureResource.IfcDescriptiveMeasure)member);
+			if (member is MeasureResource.IfcCountMeasure) 
+				return new Ifc4.MeasureResource.IfcCountMeasure((MeasureResource.IfcCountMeasure)member);
+			if (member is MeasureResource.IfcContextDependentMeasure) 
+				return new Ifc4.MeasureResource.IfcContextDependentMeasure((MeasureResource.IfcContextDependentMeasure)member);
+			if (member is MeasureResource.IfcAreaMeasure) 
+				return new Ifc4.MeasureResource.IfcAreaMeasure((MeasureResource.IfcAreaMeasure)member);
+			if (member is MeasureResource.IfcAmountOfSubstanceMeasure) 
+				return new Ifc4.MeasureResource.IfcAmountOfSubstanceMeasure((MeasureResource.IfcAmountOfSubstanceMeasure)member);
+			if (member is MeasureResource.IfcLuminousIntensityMeasure) 
+				return new Ifc4.MeasureResource.IfcLuminousIntensityMeasure((MeasureResource.IfcLuminousIntensityMeasure)member);
+			if (member is MeasureResource.IfcNormalisedRatioMeasure) 
+				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((MeasureResource.IfcNormalisedRatioMeasure)member);
+			if (member is MeasureResource.IfcComplexNumber) 
+				return new Ifc4.MeasureResource.IfcComplexNumber((MeasureResource.IfcComplexNumber)member);
+			if (member is MeasureResource.IfcInteger) 
+				return new Ifc4.MeasureResource.IfcInteger((MeasureResource.IfcInteger)member);
+			if (member is MeasureResource.IfcReal) 
+				return new Ifc4.MeasureResource.IfcReal((MeasureResource.IfcReal)member);
+			if (member is MeasureResource.IfcBoolean) 
+				return new Ifc4.MeasureResource.IfcBoolean((MeasureResource.IfcBoolean)member);
+			if (member is MeasureResource.IfcIdentifier) 
+				return new Ifc4.MeasureResource.IfcIdentifier((MeasureResource.IfcIdentifier)member);
+			if (member is MeasureResource.IfcText) 
+				return new Ifc4.MeasureResource.IfcText((MeasureResource.IfcText)member);
+			if (member is MeasureResource.IfcLabel) 
+				return new Ifc4.MeasureResource.IfcLabel((MeasureResource.IfcLabel)member);
+			if (member is MeasureResource.IfcLogical) 
+				return new Ifc4.MeasureResource.IfcLogical((MeasureResource.IfcLogical)member);
+			if (member is MeasureResource.IfcVolumetricFlowRateMeasure) 
+				return new Ifc4.MeasureResource.IfcVolumetricFlowRateMeasure((MeasureResource.IfcVolumetricFlowRateMeasure)member);
+			if (member is MeasureResource.IfcTimeStamp) 
+				return new Ifc4.DateTimeResource.IfcTimeStamp((MeasureResource.IfcTimeStamp)member);
+			if (member is MeasureResource.IfcThermalTransmittanceMeasure) 
+				return new Ifc4.MeasureResource.IfcThermalTransmittanceMeasure((MeasureResource.IfcThermalTransmittanceMeasure)member);
+			if (member is MeasureResource.IfcThermalResistanceMeasure) 
+				return new Ifc4.MeasureResource.IfcThermalResistanceMeasure((MeasureResource.IfcThermalResistanceMeasure)member);
+			if (member is MeasureResource.IfcThermalAdmittanceMeasure) 
+				return new Ifc4.MeasureResource.IfcThermalAdmittanceMeasure((MeasureResource.IfcThermalAdmittanceMeasure)member);
+			if (member is MeasureResource.IfcPressureMeasure) 
+				return new Ifc4.MeasureResource.IfcPressureMeasure((MeasureResource.IfcPressureMeasure)member);
+			if (member is MeasureResource.IfcPowerMeasure) 
+				return new Ifc4.MeasureResource.IfcPowerMeasure((MeasureResource.IfcPowerMeasure)member);
+			if (member is MeasureResource.IfcMassFlowRateMeasure) 
+				return new Ifc4.MeasureResource.IfcMassFlowRateMeasure((MeasureResource.IfcMassFlowRateMeasure)member);
+			if (member is MeasureResource.IfcMassDensityMeasure) 
+				return new Ifc4.MeasureResource.IfcMassDensityMeasure((MeasureResource.IfcMassDensityMeasure)member);
+			if (member is MeasureResource.IfcLinearVelocityMeasure) 
+				return new Ifc4.MeasureResource.IfcLinearVelocityMeasure((MeasureResource.IfcLinearVelocityMeasure)member);
+			if (member is MeasureResource.IfcKinematicViscosityMeasure) 
+				return new Ifc4.MeasureResource.IfcKinematicViscosityMeasure((MeasureResource.IfcKinematicViscosityMeasure)member);
+			if (member is MeasureResource.IfcIntegerCountRateMeasure) 
+				return new Ifc4.MeasureResource.IfcIntegerCountRateMeasure((MeasureResource.IfcIntegerCountRateMeasure)member);
+			if (member is MeasureResource.IfcHeatFluxDensityMeasure) 
+				return new Ifc4.MeasureResource.IfcHeatFluxDensityMeasure((MeasureResource.IfcHeatFluxDensityMeasure)member);
+			if (member is MeasureResource.IfcFrequencyMeasure) 
+				return new Ifc4.MeasureResource.IfcFrequencyMeasure((MeasureResource.IfcFrequencyMeasure)member);
+			if (member is MeasureResource.IfcEnergyMeasure) 
+				return new Ifc4.MeasureResource.IfcEnergyMeasure((MeasureResource.IfcEnergyMeasure)member);
+			if (member is MeasureResource.IfcElectricVoltageMeasure) 
+				return new Ifc4.MeasureResource.IfcElectricVoltageMeasure((MeasureResource.IfcElectricVoltageMeasure)member);
+			if (member is MeasureResource.IfcDynamicViscosityMeasure) 
+				return new Ifc4.MeasureResource.IfcDynamicViscosityMeasure((MeasureResource.IfcDynamicViscosityMeasure)member);
+			if (member is MeasureResource.IfcCompoundPlaneAngleMeasure) 
+				return new Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure((MeasureResource.IfcCompoundPlaneAngleMeasure)member);
+			if (member is MeasureResource.IfcAngularVelocityMeasure) 
+				return new Ifc4.MeasureResource.IfcAngularVelocityMeasure((MeasureResource.IfcAngularVelocityMeasure)member);
+			if (member is MeasureResource.IfcThermalConductivityMeasure) 
+				return new Ifc4.MeasureResource.IfcThermalConductivityMeasure((MeasureResource.IfcThermalConductivityMeasure)member);
+			if (member is MeasureResource.IfcMolecularWeightMeasure) 
+				return new Ifc4.MeasureResource.IfcMolecularWeightMeasure((MeasureResource.IfcMolecularWeightMeasure)member);
+			if (member is MeasureResource.IfcVaporPermeabilityMeasure) 
+				return new Ifc4.MeasureResource.IfcVaporPermeabilityMeasure((MeasureResource.IfcVaporPermeabilityMeasure)member);
+			if (member is MeasureResource.IfcMoistureDiffusivityMeasure) 
+				return new Ifc4.MeasureResource.IfcMoistureDiffusivityMeasure((MeasureResource.IfcMoistureDiffusivityMeasure)member);
+			if (member is MeasureResource.IfcIsothermalMoistureCapacityMeasure) 
+				return new Ifc4.MeasureResource.IfcIsothermalMoistureCapacityMeasure((MeasureResource.IfcIsothermalMoistureCapacityMeasure)member);
+			if (member is MeasureResource.IfcSpecificHeatCapacityMeasure) 
+				return new Ifc4.MeasureResource.IfcSpecificHeatCapacityMeasure((MeasureResource.IfcSpecificHeatCapacityMeasure)member);
+			if (member is MeasureResource.IfcMonetaryMeasure) 
+				return new Ifc4.MeasureResource.IfcMonetaryMeasure((MeasureResource.IfcMonetaryMeasure)member);
+			if (member is MeasureResource.IfcMagneticFluxDensityMeasure) 
+				return new Ifc4.MeasureResource.IfcMagneticFluxDensityMeasure((MeasureResource.IfcMagneticFluxDensityMeasure)member);
+			if (member is MeasureResource.IfcMagneticFluxMeasure) 
+				return new Ifc4.MeasureResource.IfcMagneticFluxMeasure((MeasureResource.IfcMagneticFluxMeasure)member);
+			if (member is MeasureResource.IfcLuminousFluxMeasure) 
+				return new Ifc4.MeasureResource.IfcLuminousFluxMeasure((MeasureResource.IfcLuminousFluxMeasure)member);
+			if (member is MeasureResource.IfcForceMeasure) 
+				return new Ifc4.MeasureResource.IfcForceMeasure((MeasureResource.IfcForceMeasure)member);
+			if (member is MeasureResource.IfcInductanceMeasure) 
+				return new Ifc4.MeasureResource.IfcInductanceMeasure((MeasureResource.IfcInductanceMeasure)member);
+			if (member is MeasureResource.IfcIlluminanceMeasure) 
+				return new Ifc4.MeasureResource.IfcIlluminanceMeasure((MeasureResource.IfcIlluminanceMeasure)member);
+			if (member is MeasureResource.IfcElectricResistanceMeasure) 
+				return new Ifc4.MeasureResource.IfcElectricResistanceMeasure((MeasureResource.IfcElectricResistanceMeasure)member);
+			if (member is MeasureResource.IfcElectricConductanceMeasure) 
+				return new Ifc4.MeasureResource.IfcElectricConductanceMeasure((MeasureResource.IfcElectricConductanceMeasure)member);
+			if (member is MeasureResource.IfcElectricChargeMeasure) 
+				return new Ifc4.MeasureResource.IfcElectricChargeMeasure((MeasureResource.IfcElectricChargeMeasure)member);
+			if (member is MeasureResource.IfcDoseEquivalentMeasure) 
+				return new Ifc4.MeasureResource.IfcDoseEquivalentMeasure((MeasureResource.IfcDoseEquivalentMeasure)member);
+			if (member is MeasureResource.IfcElectricCapacitanceMeasure) 
+				return new Ifc4.MeasureResource.IfcElectricCapacitanceMeasure((MeasureResource.IfcElectricCapacitanceMeasure)member);
+			if (member is MeasureResource.IfcAbsorbedDoseMeasure) 
+				return new Ifc4.MeasureResource.IfcAbsorbedDoseMeasure((MeasureResource.IfcAbsorbedDoseMeasure)member);
+			if (member is MeasureResource.IfcRadioActivityMeasure) 
+				return new Ifc4.MeasureResource.IfcRadioActivityMeasure((MeasureResource.IfcRadioActivityMeasure)member);
+			if (member is MeasureResource.IfcRotationalFrequencyMeasure) 
+				return new Ifc4.MeasureResource.IfcRotationalFrequencyMeasure((MeasureResource.IfcRotationalFrequencyMeasure)member);
+			if (member is MeasureResource.IfcTorqueMeasure) 
+				return new Ifc4.MeasureResource.IfcTorqueMeasure((MeasureResource.IfcTorqueMeasure)member);
+			if (member is MeasureResource.IfcAccelerationMeasure) 
+				return new Ifc4.MeasureResource.IfcAccelerationMeasure((MeasureResource.IfcAccelerationMeasure)member);
+			if (member is MeasureResource.IfcLinearForceMeasure) 
+				return new Ifc4.MeasureResource.IfcLinearForceMeasure((MeasureResource.IfcLinearForceMeasure)member);
+			if (member is MeasureResource.IfcLinearStiffnessMeasure) 
+				return new Ifc4.MeasureResource.IfcLinearStiffnessMeasure((MeasureResource.IfcLinearStiffnessMeasure)member);
+			if (member is MeasureResource.IfcModulusOfSubgradeReactionMeasure) 
+				return new Ifc4.MeasureResource.IfcModulusOfSubgradeReactionMeasure((MeasureResource.IfcModulusOfSubgradeReactionMeasure)member);
+			if (member is MeasureResource.IfcModulusOfElasticityMeasure) 
+				return new Ifc4.MeasureResource.IfcModulusOfElasticityMeasure((MeasureResource.IfcModulusOfElasticityMeasure)member);
+			if (member is MeasureResource.IfcMomentOfInertiaMeasure) 
+				return new Ifc4.MeasureResource.IfcMomentOfInertiaMeasure((MeasureResource.IfcMomentOfInertiaMeasure)member);
+			if (member is MeasureResource.IfcPlanarForceMeasure) 
+				return new Ifc4.MeasureResource.IfcPlanarForceMeasure((MeasureResource.IfcPlanarForceMeasure)member);
+			if (member is MeasureResource.IfcRotationalStiffnessMeasure) 
+				return new Ifc4.MeasureResource.IfcRotationalStiffnessMeasure((MeasureResource.IfcRotationalStiffnessMeasure)member);
+			if (member is MeasureResource.IfcShearModulusMeasure) 
+				return new Ifc4.MeasureResource.IfcShearModulusMeasure((MeasureResource.IfcShearModulusMeasure)member);
+			if (member is MeasureResource.IfcLinearMomentMeasure) 
+				return new Ifc4.MeasureResource.IfcLinearMomentMeasure((MeasureResource.IfcLinearMomentMeasure)member);
+			if (member is MeasureResource.IfcLuminousIntensityDistributionMeasure) 
+				return new Ifc4.MeasureResource.IfcLuminousIntensityDistributionMeasure((MeasureResource.IfcLuminousIntensityDistributionMeasure)member);
+			if (member is MeasureResource.IfcCurvatureMeasure) 
+				return new Ifc4.MeasureResource.IfcCurvatureMeasure((MeasureResource.IfcCurvatureMeasure)member);
+			if (member is MeasureResource.IfcMassPerLengthMeasure) 
+				return new Ifc4.MeasureResource.IfcMassPerLengthMeasure((MeasureResource.IfcMassPerLengthMeasure)member);
+			if (member is MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure) 
+				return new Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure((MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure)member);
+			if (member is MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure) 
+				return new Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure((MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure)member);
+			if (member is MeasureResource.IfcRotationalMassMeasure) 
+				return new Ifc4.MeasureResource.IfcRotationalMassMeasure((MeasureResource.IfcRotationalMassMeasure)member);
+			if (member is MeasureResource.IfcSectionalAreaIntegralMeasure) 
+				return new Ifc4.MeasureResource.IfcSectionalAreaIntegralMeasure((MeasureResource.IfcSectionalAreaIntegralMeasure)member);
+			if (member is MeasureResource.IfcSectionModulusMeasure) 
+				return new Ifc4.MeasureResource.IfcSectionModulusMeasure((MeasureResource.IfcSectionModulusMeasure)member);
+			if (member is MeasureResource.IfcTemperatureGradientMeasure) 
+				return new Ifc4.MeasureResource.IfcTemperatureGradientMeasure((MeasureResource.IfcTemperatureGradientMeasure)member);
+			if (member is MeasureResource.IfcThermalExpansionCoefficientMeasure) 
+				return new Ifc4.MeasureResource.IfcThermalExpansionCoefficientMeasure((MeasureResource.IfcThermalExpansionCoefficientMeasure)member);
+			if (member is MeasureResource.IfcWarpingConstantMeasure) 
+				return new Ifc4.MeasureResource.IfcWarpingConstantMeasure((MeasureResource.IfcWarpingConstantMeasure)member);
+			if (member is MeasureResource.IfcWarpingMomentMeasure) 
+				return new Ifc4.MeasureResource.IfcWarpingMomentMeasure((MeasureResource.IfcWarpingMomentMeasure)member);
+			if (member is MeasureResource.IfcSoundPowerMeasure) 
+				return new Ifc4.MeasureResource.IfcSoundPowerMeasure((MeasureResource.IfcSoundPowerMeasure)member);
+			if (member is MeasureResource.IfcSoundPressureMeasure) 
+				return new Ifc4.MeasureResource.IfcSoundPressureMeasure((MeasureResource.IfcSoundPressureMeasure)member);
+			if (member is MeasureResource.IfcHeatingValueMeasure) 
+				return new Ifc4.MeasureResource.IfcHeatingValueMeasure((MeasureResource.IfcHeatingValueMeasure)member);
+			if (member is MeasureResource.IfcPHMeasure) 
+				return new Ifc4.MeasureResource.IfcPHMeasure((MeasureResource.IfcPHMeasure)member);
+			if (member is MeasureResource.IfcIonConcentrationMeasure) 
+				return new Ifc4.MeasureResource.IfcIonConcentrationMeasure((MeasureResource.IfcIonConcentrationMeasure)member);
+			throw new System.NotSupportedException();
+		}
+
+		//transformation function to convert/cast IFC4 data to appear as IFC2x3 if possible
+		private MeasureResource.IfcValue ListValuesToIfc2x3 (IIfcValue member){
+			throw new System.NotImplementedException();
 		}
 	//## Custom code
 	//##

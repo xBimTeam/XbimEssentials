@@ -21,15 +21,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-				foreach (var member in SbsmBoundary)
-				{
-					var ifcclosedshell = member as TopologyResource.IfcClosedShell;
-					if (ifcclosedshell != null) 
-						yield return ifcclosedshell;
-					var ifcopenshell = member as TopologyResource.IfcOpenShell;
-					if (ifcopenshell != null) 
-						yield return ifcopenshell;
-				}
+			
+				return new Common.Collections.ProxyItemSet<TopologyResource.IfcShell, IIfcShell>(SbsmBoundary);
 			} 
 		}
 		Ifc4.GeometryResource.IfcDimensionCount IIfcShellBasedSurfaceModel.Dim 

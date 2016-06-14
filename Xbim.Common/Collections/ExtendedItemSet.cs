@@ -110,7 +110,7 @@ namespace Xbim.Common.Collections
 
         public IEnumerator<TOuter> GetEnumerator()
         {
-            return _extendedSet.Concat(Transformed).GetEnumerator();
+            return Transformed.Concat(_extendedSet).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -122,6 +122,12 @@ namespace Xbim.Common.Collections
         {
             if (item == null)
                 return;
+
+            if (_extendedSet.Any())
+            {
+                _extendedSet.Add(item);
+                return;
+            }
 
             var inner = _transformIn(item);
             if (inner == null)

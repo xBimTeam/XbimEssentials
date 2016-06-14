@@ -21,10 +21,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
-				foreach (var member in MaterialLayers)
-				{
-					yield return member as IIfcMaterialLayer;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcMaterialLayer, IIfcMaterialLayer>(MaterialLayers);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcMaterialLayerSet.LayerSetName 

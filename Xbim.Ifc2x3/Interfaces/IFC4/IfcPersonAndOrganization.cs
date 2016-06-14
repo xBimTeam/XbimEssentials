@@ -45,10 +45,8 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				foreach (var member in Roles)
-				{
-					yield return member as IIfcActorRole;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcActorRole, IIfcActorRole>(Roles);
 			} 
 		}
 	//## Custom code

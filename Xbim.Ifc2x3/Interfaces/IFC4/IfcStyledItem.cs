@@ -33,11 +33,27 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				foreach (var member in Styles)
-				{
-					yield return member;
-				}
+			
+				return _stylesIfc4 ?? (_stylesIfc4 = new Common.Collections.ExtendedItemSet<IfcPresentationStyleAssignment, IIfcStyleAssignmentSelect>(
+                    Styles, 
+                    new ItemSet<IIfcStyleAssignmentSelect>(this, 0, 255), 
+                    StylesToIfc4, 
+                    StylesToIfc2x3));
 			} 
+		}
+
+		//private field to hold any extended data
+		private IItemSet<IIfcStyleAssignmentSelect> _stylesIfc4;
+
+		//transformation function to convert/cast IFC2x3 data to appear as IFC4
+		private IIfcStyleAssignmentSelect StylesToIfc4 (IfcPresentationStyleAssignment member)
+		{
+			return member;
+		}
+
+		//transformation function to convert/cast IFC4 data to appear as IFC2x3 if possible
+		private IfcPresentationStyleAssignment StylesToIfc2x3 (IIfcStyleAssignmentSelect member){
+			throw new System.NotImplementedException();
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcStyledItem.Name 
 		{ 

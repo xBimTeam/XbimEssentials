@@ -21,6 +21,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of AssemblyPlace
+				//##
 				switch (AssemblyPlace)
 				{
 					case ProductExtension.IfcAssemblyPlaceEnum.SITE:
@@ -39,6 +41,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of AssemblyPlace
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcAssemblyPlaceEnum.SITE:

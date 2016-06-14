@@ -21,10 +21,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get
 			{
-				foreach (var member in CfsFaces)
-				{
-					yield return member as IIfcFace;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcFace, IIfcFace>(CfsFaces);
 			} 
 		}
 	//## Custom code

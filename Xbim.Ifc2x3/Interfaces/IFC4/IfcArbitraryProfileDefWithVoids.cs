@@ -21,10 +21,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
-				foreach (var member in InnerCurves)
-				{
-					yield return member as IIfcCurve;
-				}
+			
+				return new Common.Collections.ProxyItemSet<GeometryResource.IfcCurve, IIfcCurve>(InnerCurves);
 			} 
 		}
 	//## Custom code

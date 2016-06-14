@@ -36,10 +36,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				foreach (var member in Quantities)
-				{
-					yield return member as IIfcPhysicalQuantity;
-				}
+			
+				return new Common.Collections.ProxyItemSet<QuantityResource.IfcPhysicalQuantity, IIfcPhysicalQuantity>(Quantities);
 			} 
 		}
 	//## Custom code

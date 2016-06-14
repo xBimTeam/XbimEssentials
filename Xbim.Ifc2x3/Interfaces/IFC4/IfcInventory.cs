@@ -21,6 +21,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (InventoryType)
 				{
 					case IfcInventoryTypeEnum.ASSETINVENTORY:
@@ -47,6 +49,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcInventoryTypeEnum.ASSETINVENTORY:
@@ -124,10 +128,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get
 			{
-				foreach (var member in ResponsiblePersons)
-				{
-					yield return member as IIfcPerson;
-				}
+			
+				return new Common.Collections.ProxyItemSet<ActorResource.IfcPerson, IIfcPerson>(ResponsiblePersons);
 			} 
 		}
 		Ifc4.DateTimeResource.IfcDate? IIfcInventory.LastUpdateDate 

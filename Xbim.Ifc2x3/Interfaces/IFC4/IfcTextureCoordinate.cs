@@ -22,7 +22,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			get
 			{
 				//## Handle return of Maps for which no match was found
-                //not sure what to d with this one, maybe onlyh occurs in Ifc4 anyway
+                //not sure what to do with this one, maybe onlyh occurs in Ifc4 anyway
                 return Enumerable.Empty<IIfcSurfaceTexture>();
 				//##
 			} 

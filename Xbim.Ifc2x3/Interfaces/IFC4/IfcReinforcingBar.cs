@@ -79,6 +79,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of BarSurface
+				//##
 				switch (BarSurface)
 				{
 					case ProfilePropertyResource.IfcReinforcingBarSurfaceEnum.PLAIN:
@@ -94,6 +96,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of BarSurface
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcReinforcingBarSurfaceEnum.PLAIN:

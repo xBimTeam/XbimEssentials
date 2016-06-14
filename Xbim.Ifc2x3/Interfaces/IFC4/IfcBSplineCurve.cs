@@ -35,16 +35,16 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				foreach (var member in ControlPointsList)
-				{
-					yield return member as IIfcCartesianPoint;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcCartesianPoint, IIfcCartesianPoint>(ControlPointsList);
 			} 
 		}
 		Ifc4.Interfaces.IfcBSplineCurveForm IIfcBSplineCurve.CurveForm 
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of CurveForm
+				//##
 				switch (CurveForm)
 				{
 					case IfcBSplineCurveForm.POLYLINE_FORM:
@@ -72,6 +72,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of CurveForm
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcBSplineCurveForm.POLYLINE_FORM:

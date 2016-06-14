@@ -21,16 +21,16 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				foreach (var member in RelatedObjects)
-				{
-					yield return member as IIfcObjectDefinition;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcObjectDefinition, IIfcObjectDefinition>(RelatedObjects);
 			} 
 		}
 		Ifc4.Interfaces.IfcObjectTypeEnum? IIfcRelAssigns.RelatedObjectsType 
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of RelatedObjectsType
+				//##
 				switch (RelatedObjectsType)
 				{
 					case IfcObjectTypeEnum.PRODUCT:
@@ -64,6 +64,8 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of RelatedObjectsType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcObjectTypeEnum.PRODUCT:

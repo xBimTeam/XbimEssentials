@@ -21,10 +21,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get
 			{
-				foreach (var member in Bounds)
-				{
-					yield return member as IIfcFaceBound;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcFaceBound, IIfcFaceBound>(Bounds);
 			} 
 		}
 		IEnumerable<IIfcTextureMap> IIfcFace.HasTextureMaps 

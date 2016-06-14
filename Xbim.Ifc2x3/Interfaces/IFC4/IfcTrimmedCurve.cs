@@ -33,29 +33,63 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				foreach (var member in Trim1)
-				{
-					var ifccartesianpoint = member as IfcCartesianPoint;
-					if (ifccartesianpoint != null) 
-						yield return ifccartesianpoint;
-					if (member is MeasureResource.IfcParameterValue) 
-						yield return new Ifc4.MeasureResource.IfcParameterValue((double)(MeasureResource.IfcParameterValue)member);
-				}
+			
+				return _trim1Ifc4 ?? (_trim1Ifc4 = new Common.Collections.ExtendedItemSet<IfcTrimmingSelect, IIfcTrimmingSelect>(
+                    Trim1, 
+                    new ItemSet<IIfcTrimmingSelect>(this, 0, 255), 
+                    Trim1ToIfc4, 
+                    Trim1ToIfc2x3));
 			} 
+		}
+
+		//private field to hold any extended data
+		private IItemSet<IIfcTrimmingSelect> _trim1Ifc4;
+
+		//transformation function to convert/cast IFC2x3 data to appear as IFC4
+		private IIfcTrimmingSelect Trim1ToIfc4 (IfcTrimmingSelect member)
+		{
+			var ifccartesianpoint = member as IfcCartesianPoint;
+			if (ifccartesianpoint != null) 
+				return ifccartesianpoint;
+			if (member is MeasureResource.IfcParameterValue) 
+				return new Ifc4.MeasureResource.IfcParameterValue((MeasureResource.IfcParameterValue)member);
+			throw new System.NotSupportedException();
+		}
+
+		//transformation function to convert/cast IFC4 data to appear as IFC2x3 if possible
+		private IfcTrimmingSelect Trim1ToIfc2x3 (IIfcTrimmingSelect member){
+			throw new System.NotImplementedException();
 		}
 		IItemSet<IIfcTrimmingSelect> IIfcTrimmedCurve.Trim2 
 		{ 
 			get
 			{
-				foreach (var member in Trim2)
-				{
-					var ifccartesianpoint = member as IfcCartesianPoint;
-					if (ifccartesianpoint != null) 
-						yield return ifccartesianpoint;
-					if (member is MeasureResource.IfcParameterValue) 
-						yield return new Ifc4.MeasureResource.IfcParameterValue((double)(MeasureResource.IfcParameterValue)member);
-				}
+			
+				return _trim2Ifc4 ?? (_trim2Ifc4 = new Common.Collections.ExtendedItemSet<IfcTrimmingSelect, IIfcTrimmingSelect>(
+                    Trim2, 
+                    new ItemSet<IIfcTrimmingSelect>(this, 0, 255), 
+                    Trim2ToIfc4, 
+                    Trim2ToIfc2x3));
 			} 
+		}
+
+		//private field to hold any extended data
+		private IItemSet<IIfcTrimmingSelect> _trim2Ifc4;
+
+		//transformation function to convert/cast IFC2x3 data to appear as IFC4
+		private IIfcTrimmingSelect Trim2ToIfc4 (IfcTrimmingSelect member)
+		{
+			var ifccartesianpoint = member as IfcCartesianPoint;
+			if (ifccartesianpoint != null) 
+				return ifccartesianpoint;
+			if (member is MeasureResource.IfcParameterValue) 
+				return new Ifc4.MeasureResource.IfcParameterValue((MeasureResource.IfcParameterValue)member);
+			throw new System.NotSupportedException();
+		}
+
+		//transformation function to convert/cast IFC4 data to appear as IFC2x3 if possible
+		private IfcTrimmingSelect Trim2ToIfc2x3 (IIfcTrimmingSelect member){
+			throw new System.NotImplementedException();
 		}
 		Ifc4.MeasureResource.IfcBoolean IIfcTrimmedCurve.SenseAgreement 
 		{ 
@@ -75,6 +109,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of MasterRepresentation
+				//##
 				switch (MasterRepresentation)
 				{
 					case IfcTrimmingPreference.CARTESIAN:
@@ -93,6 +129,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of MasterRepresentation
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcTrimmingPreference.CARTESIAN:

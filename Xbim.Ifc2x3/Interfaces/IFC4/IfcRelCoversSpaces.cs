@@ -33,10 +33,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				foreach (var member in RelatedCoverings)
-				{
-					yield return member as IIfcCovering;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcCovering, IIfcCovering>(RelatedCoverings);
 			} 
 		}
 	//## Custom code

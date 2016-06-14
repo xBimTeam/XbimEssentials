@@ -21,10 +21,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				foreach (var member in ShapeRepresentations)
-				{
-					yield return member as IIfcShapeModel;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcShapeModel, IIfcShapeModel>(ShapeRepresentations);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcShapeAspect.Name 

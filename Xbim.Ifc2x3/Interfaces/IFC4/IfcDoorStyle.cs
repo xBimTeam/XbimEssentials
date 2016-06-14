@@ -21,6 +21,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of OperationType
+				//##
 				switch (OperationType)
 				{
 					case IfcDoorStyleOperationEnum.SINGLE_SWING_LEFT:
@@ -86,6 +88,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of OperationType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcDoorStyleOperationEnum.SINGLE_SWING_LEFT:
@@ -171,6 +175,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of ConstructionType
+				//##
 				switch (ConstructionType)
 				{
 					case IfcDoorStyleConstructionEnum.ALUMINIUM:
@@ -209,6 +215,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of ConstructionType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcDoorStyleConstructionEnum.ALUMINIUM:

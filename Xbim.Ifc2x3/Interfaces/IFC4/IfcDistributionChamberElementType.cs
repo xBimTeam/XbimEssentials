@@ -21,6 +21,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcDistributionChamberElementTypeEnum.FORMEDDUCT:
@@ -62,6 +64,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcDistributionChamberElementTypeEnum.FORMEDDUCT:

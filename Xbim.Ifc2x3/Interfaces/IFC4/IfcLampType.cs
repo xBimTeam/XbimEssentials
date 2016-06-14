@@ -21,6 +21,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcLampTypeEnum.COMPACTFLUORESCENT:
@@ -56,6 +58,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcLampTypeEnum.COMPACTFLUORESCENT:

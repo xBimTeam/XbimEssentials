@@ -21,10 +21,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
-				foreach (var member in Materials)
-				{
-					yield return member as IIfcMaterial;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcMaterial, IIfcMaterial>(Materials);
 			} 
 		}
 	//## Custom code

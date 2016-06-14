@@ -36,10 +36,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				foreach (var member in PatternList)
-				{
-					yield return member as IIfcCurveStyleFontPattern;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcCurveStyleFontPattern, IIfcCurveStyleFontPattern>(PatternList);
 			} 
 		}
 	//## Custom code

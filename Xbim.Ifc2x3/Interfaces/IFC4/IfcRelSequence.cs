@@ -61,6 +61,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of SequenceType
+				//##
 				switch (SequenceType)
 				{
 					case IfcSequenceEnum.START_START:
@@ -85,6 +87,8 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of SequenceType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcSequenceEnum.START_START:

@@ -21,10 +21,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				foreach (var member in RealizingElements)
-				{
-					yield return member as IIfcElement;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcElement, IIfcElement>(RealizingElements);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcRelConnectsWithRealizingElements.ConnectionType 

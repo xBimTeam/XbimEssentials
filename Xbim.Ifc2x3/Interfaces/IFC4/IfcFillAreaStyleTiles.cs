@@ -22,7 +22,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			get
 			{
 				//## Handle return of TilingPattern for which no match was found
-			    yield return TilingPattern.RepeatFactor;
+			    return TilingPattern.RepeatFactor;
 			    //##
 			} 
 		}

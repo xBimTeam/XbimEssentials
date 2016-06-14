@@ -51,10 +51,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				foreach (var member in Representations)
-				{
-					yield return member as IIfcRepresentation;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcRepresentation, IIfcRepresentation>(Representations);
 			} 
 		}
 	//## Custom code
