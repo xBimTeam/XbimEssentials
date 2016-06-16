@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcTextureCoordinateGenerator : IIfcTextureCoordinate
 	{
 		IfcLabel @Mode { get;  set; }
-		IItemSet<IfcReal> @Parameter { get; }
+		IEnumerable<IfcReal> @Parameter { get; }
 	
 	}
 }
@@ -44,7 +44,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			get { return @Mode; } 
 			set { Mode = value;}
 		}	
-		IItemSet<IfcReal> IIfcTextureCoordinateGenerator.Parameter { 
+		IEnumerable<IfcReal> IIfcTextureCoordinateGenerator.Parameter { 
 			get { return @Parameter; } 
 		}	
 		 

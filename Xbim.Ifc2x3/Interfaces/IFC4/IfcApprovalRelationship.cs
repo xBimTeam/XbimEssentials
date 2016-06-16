@@ -34,7 +34,13 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			get
 			{
 				//## Handle return of RelatedApprovals for which no match was found
-				yield return RelatedApproval;
+                return _relatedApprovals ?? (_relatedApprovals =  new Common.Collections.ExtendedSingleSet<IfcApproval, IIfcApproval>(
+                    () => RelatedApproval, 
+                    approval => RelatedApproval = approval,
+                    new ItemSet<IIfcApproval>(this, 0, byte.MaxValue),
+                    s => s,
+                    t => t as IfcApproval
+                    ));
 				//##
 			} 
 		}
@@ -68,6 +74,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			}
 		}
 	//## Custom code
-	//##
+	    private IItemSet<IIfcApproval> _relatedApprovals;
+	    //##
 	}
 }

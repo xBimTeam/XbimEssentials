@@ -9,8 +9,8 @@ using Xbim.Common.Exceptions;
 namespace Xbim.Common.Collections
 {
     public class ProxyValueSet<TInner, TOuter> : IItemSet<TOuter>, IDisposable, IList 
-        where TInner : struct, IExpressValueType
-        where TOuter : struct, IExpressValueType
+        where TInner : struct
+        where TOuter : struct
     {
         private readonly IItemSet<TInner> _inner;
         private readonly Func<TInner, TOuter> _toOut;
@@ -43,7 +43,7 @@ namespace Xbim.Common.Collections
 
         public IEnumerator<TOuter> GetEnumerator()
         {
-            return new ProxyEnumerator<TInner,TOuter>(this);
+            return new ProxyEnumerator(this);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -252,15 +252,12 @@ namespace Xbim.Common.Collections
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private class ProxyEnumerator<TIn, TOut> : IEnumerator<TOut>
-            where TIn : struct, IExpressValueType
-            where TOut : struct, IExpressValueType
-
+        private class ProxyEnumerator : IEnumerator<TOuter>
         {
-            private readonly ProxyValueSet<TIn, TOut> _proxy;
-            private readonly IEnumerator<TIn> _inner;
+            private readonly ProxyValueSet<TInner, TOuter> _proxy;
+            private readonly IEnumerator<TInner> _inner;
 
-            public ProxyEnumerator(ProxyValueSet<TIn, TOut> proxy)
+            public ProxyEnumerator(ProxyValueSet<TInner, TOuter> proxy)
             {
                 _proxy = proxy;
                 _inner = proxy._inner.GetEnumerator();
@@ -281,7 +278,7 @@ namespace Xbim.Common.Collections
                 _inner.Reset();
             }
 
-            public TOut Current
+            public TOuter Current
             {
                 get { return _proxy._toOut(_inner.Current); }
             }

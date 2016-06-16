@@ -17,7 +17,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	public partial class @IfcTextureMap : IIfcTextureMap
 	{
-		IItemSet<IIfcTextureVertex> IIfcTextureMap.Vertices 
+		IEnumerable<IIfcTextureVertex> IIfcTextureMap.Vertices 
 		{ 
 			get
 			{

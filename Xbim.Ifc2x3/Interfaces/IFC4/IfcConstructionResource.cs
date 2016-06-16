@@ -37,8 +37,8 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			get
 			{
 				//## Handle return of BaseCosts for which no match was found
-				yield break;
-				//##
+				return _baseCosts ?? (_baseCosts = new ItemSet<IIfcAppliedValue>(this, 0, byte.MaxValue));
+			    //##
 			} 
 		}
 		IIfcPhysicalQuantity IIfcConstructionResource.BaseQuantity 
@@ -91,6 +91,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			}
 		}
 	//## Custom code
-	//##
+	    private IItemSet<IIfcAppliedValue> _baseCosts;
+	    //##
 	}
 }

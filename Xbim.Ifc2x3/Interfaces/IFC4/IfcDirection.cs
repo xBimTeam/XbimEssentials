@@ -22,7 +22,9 @@ namespace Xbim.Ifc2x3.GeometryResource
 			get
 			{
 				//## Handle return of DirectionRatios for which no match was found
-			    return DirectionRatios.Select(ratio => new Ifc4.MeasureResource.IfcReal(ratio));
+                return new Common.Collections.ProxyValueSet<double, Ifc4.MeasureResource.IfcReal>(DirectionRatios,
+                    s => new Ifc4.MeasureResource.IfcReal(s),
+                    t => t);
 			    //##
 			} 
 		}

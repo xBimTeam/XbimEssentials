@@ -17,16 +17,16 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcFillAreaStyleTiles : IIfcFillAreaStyleTiles
 	{
-		IItemSet<IIfcVector> IIfcFillAreaStyleTiles.TilingPattern 
+		IEnumerable<IIfcVector> IIfcFillAreaStyleTiles.TilingPattern 
 		{ 
 			get
 			{
 				//## Handle return of TilingPattern for which no match was found
-			    return TilingPattern.RepeatFactor;
+			    yield return TilingPattern.RepeatFactor;
 			    //##
 			} 
 		}
-		IItemSet<IIfcStyledItem> IIfcFillAreaStyleTiles.Tiles 
+		IEnumerable<IIfcStyledItem> IIfcFillAreaStyleTiles.Tiles 
 		{ 
 			get
 			{

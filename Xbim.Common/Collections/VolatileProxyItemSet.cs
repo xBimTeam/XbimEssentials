@@ -8,15 +8,15 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Common.Collections
 {
-    public class ProxyItemSet<TInner, TOuter> : IItemSet<TOuter>, IDisposable, IList where TInner : TOuter
+    public class VolatileProxyItemSet<TInner, TOuter> : IItemSet<TOuter>, IDisposable, IList where TOuter : class where TInner: class
     {
         private readonly IItemSet<TInner> _inner;
         private IList List { get { return _inner as IList; } }
 
-        public ProxyItemSet(IItemSet<TInner> inner)
+        public VolatileProxyItemSet(IItemSet<TInner> inner)
         {
             _inner = inner;
-            if(List == null)
+            if (List == null)
                 throw new XbimException("Inner list has to implement IList");
 
             _inner.PropertyChanged += InnerOnPropertyChanged;
@@ -35,7 +35,7 @@ namespace Xbim.Common.Collections
 
         public IEnumerator<TOuter> GetEnumerator()
         {
-            return new ProxyEnumerator<TInner,TOuter>(_inner.GetEnumerator());
+            return new VolatileProxyEnumerator(_inner.GetEnumerator());
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -45,7 +45,7 @@ namespace Xbim.Common.Collections
 
         public void Add(TOuter item)
         {
-            _inner.Add(GetIn(item));
+            _inner.Add(item as TInner);
         }
 
         public int Add(object value)
@@ -106,7 +106,7 @@ namespace Xbim.Common.Collections
 
         public bool Contains(TOuter item)
         {
-            return _inner.Contains(GetIn(item));
+            return _inner.Contains(item as TInner);
         }
 
         public void CopyTo(TOuter[] array, int arrayIndex)
@@ -114,13 +114,12 @@ namespace Xbim.Common.Collections
             var result = new TInner[array.Length];
             _inner.CopyTo(result, arrayIndex);
             for (var i = 0; i < array.Length; i++)
-                array[i] = result[i];
+                array[i] = result[i] as TOuter;
         }
 
         public bool Remove(TOuter item)
         {
-            Check(item);
-            return _inner.Remove(GetIn(item));
+            return _inner.Remove(item as TInner);
         }
 
         public void CopyTo(Array array, int index)
@@ -130,7 +129,7 @@ namespace Xbim.Common.Collections
 
         int ICollection.Count
         {
-            get { return ((ICollection) _inner).Count; }
+            get { return ((ICollection)_inner).Count; }
         }
 
         public object SyncRoot
@@ -155,12 +154,12 @@ namespace Xbim.Common.Collections
 
         public int IndexOf(TOuter item)
         {
-            return _inner.IndexOf(GetIn(item));
+            return _inner.IndexOf(item as TInner);
         }
 
         public void Insert(int index, TOuter item)
         {
-            _inner.Insert(index, GetIn(item));
+            _inner.Insert(index, item as TInner);
         }
 
         void IList<TOuter>.RemoveAt(int index)
@@ -170,10 +169,10 @@ namespace Xbim.Common.Collections
 
         public TOuter this[int index]
         {
-            get { return _inner[index]; }
+            get { return _inner[index] as TOuter; }
             set
             {
-                _inner[index] = GetIn(value);
+                _inner[index] = value as TInner;
             }
         }
 
@@ -192,12 +191,12 @@ namespace Xbim.Common.Collections
 
         public TOuter First
         {
-            get { return _inner.First; }
+            get { return _inner.First as TOuter; }
         }
 
         public TOuter FirstOrDefault()
         {
-            return _inner.FirstOrDefault();
+            return _inner.FirstOrDefault() as TOuter;
         }
 
         public TOuter FirstOrDefault(Func<TOuter, bool> predicate)
@@ -232,21 +231,6 @@ namespace Xbim.Common.Collections
             _disposed = true;
         }
 
-        // ReSharper disable once UnusedParameter.Local
-        private static void Check(TOuter item)
-        {
-            if (item != null && !(item is TInner))
-                throw new XbimException("Invalid type for underlying collection");
-        }
-
-        private static TInner GetIn(TOuter outer)
-        {
-            if (outer == null)
-                return default(TInner);
-            Check(outer);
-            return (TInner) outer;
-        }
-
         protected virtual void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
         {
             var handler = CollectionChanged;
@@ -258,40 +242,40 @@ namespace Xbim.Common.Collections
             var handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
-    }
 
-    internal class ProxyEnumerator<TInner, TOuter> : IEnumerator<TOuter> where TInner : TOuter
-    {
-        private readonly IEnumerator<TInner> _inner;
-
-        public ProxyEnumerator(IEnumerator<TInner> inner)
+        internal class VolatileProxyEnumerator : IEnumerator<TOuter>
         {
-            _inner = inner;
-        }
+            private readonly IEnumerator<TInner> _inner;
 
-        public void Dispose()
-        {
-            _inner.Dispose();
-        }
+            public VolatileProxyEnumerator(IEnumerator<TInner> inner)
+            {
+                _inner = inner;
+            }
 
-        public bool MoveNext()
-        {
-            return _inner.MoveNext();
-        }
+            public void Dispose()
+            {
+                _inner.Dispose();
+            }
 
-        public void Reset()
-        {
-            _inner.Reset();
-        }
+            public bool MoveNext()
+            {
+                return _inner.MoveNext();
+            }
 
-        public TOuter Current
-        {
-            get { return _inner.Current; }
-        }
+            public void Reset()
+            {
+                _inner.Reset();
+            }
 
-        object IEnumerator.Current
-        {
-            get { return Current; }
+            public TOuter Current
+            {
+                get { return _inner.Current as TOuter; }
+            }
+
+            object IEnumerator.Current
+            {
+                get { return Current; }
+            }
         }
     }
 }

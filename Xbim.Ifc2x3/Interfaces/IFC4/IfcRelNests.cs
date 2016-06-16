@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Kernel
 			get
 			{
 				//## Handle return of RelatedObjects for which no match was found
-                return this.RelatedObjects;
+                return new Common.Collections.ProxyItemSet<IfcObjectDefinition, IIfcObjectDefinition>(RelatedObjects);
 				//##
 			} 
 		}

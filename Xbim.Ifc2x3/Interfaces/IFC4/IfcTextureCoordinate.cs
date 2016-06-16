@@ -22,12 +22,12 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			get
 			{
 				//## Handle return of Maps for which no match was found
-                //not sure what to do with this one, maybe onlyh occurs in Ifc4 anyway
-                return Enumerable.Empty<IIfcSurfaceTexture>();
+                return _ifcTextureCoordinate ?? (_ifcTextureCoordinate = new ItemSet<IIfcSurfaceTexture>(this, 0, byte.MaxValue));
 				//##
 			} 
 		}
 	//## Custom code
-	//##
+	    private IItemSet<IIfcSurfaceTexture> _ifcTextureCoordinate;
+	    //##
 	}
 }

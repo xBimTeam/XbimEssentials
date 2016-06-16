@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcLabel? @Category { get;  set; }
 		IfcLabel? @Condition { get;  set; }
 		IfcArithmeticOperatorEnum? @ArithmeticOperator { get;  set; }
-		IItemSet<IIfcAppliedValue> @Components { get; }
+		IEnumerable<IIfcAppliedValue> @Components { get; }
 		IEnumerable<IIfcExternalReferenceRelationship> @HasExternalReference {  get; }
 	
 	}
@@ -101,7 +101,7 @@ namespace Xbim.Ifc4.CostResource
 			get { return @ArithmeticOperator; } 
 			set { ArithmeticOperator = value;}
 		}	
-		IItemSet<IIfcAppliedValue> IIfcAppliedValue.Components { 
+		IEnumerable<IIfcAppliedValue> IIfcAppliedValue.Components { 
 			get { return new Common.Collections.ProxyItemSet<IfcAppliedValue, IIfcAppliedValue>( @Components); } 
 		}	
 		 

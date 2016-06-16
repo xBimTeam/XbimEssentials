@@ -59,6 +59,8 @@
     <Compile Include="Collections\ProxyValueSet.cs" />
     <Compile Include="Collections\ProxyItemSet.cs" />
     <Compile Include="Collections\ProxyNestedItemSet.cs" />
+    <Compile Include="Collections\ReverseProxyItemSet.cs" />
+    <Compile Include="Collections\VolatileProxyItemSet.cs" />
     <Compile Include="Federation\ReferencedModelCollection.cs" />
     <Compile Include="Federation\FederatedModelInstances.cs" />
     <Compile Include="Geometry\IXbimSurface.cs" />

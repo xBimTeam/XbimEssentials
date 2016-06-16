@@ -28,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IfcIdentifier? @Name { get;  set; }
 		IfcText? @Description { get;  set; }
-		IItemSet<IIfcProperty> @Properties { get; }
+		IEnumerable<IIfcProperty> @Properties { get; }
 	
 	}
 }
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.PropertyResource
 			get { return @Description; } 
 			set { Description = value;}
 		}	
-		IItemSet<IIfcProperty> IIfcExtendedProperties.Properties { 
+		IEnumerable<IIfcProperty> IIfcExtendedProperties.Properties { 
 			get { return new Common.Collections.ProxyItemSet<IfcProperty, IIfcProperty>( @Properties); } 
 		}	
 		 

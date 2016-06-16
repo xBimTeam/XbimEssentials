@@ -59,7 +59,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 				
 			}
 		}
-		IItemSet<IIfcProperty> IIfcExtendedProperties.Properties 
+		IEnumerable<IIfcProperty> IIfcExtendedProperties.Properties 
 		{ 
 			get
 			{

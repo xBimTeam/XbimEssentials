@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTextureMap : IIfcTextureCoordinate
 	{
-		IItemSet<IIfcTextureVertex> @Vertices { get; }
+		IEnumerable<IIfcTextureVertex> @Vertices { get; }
 		IIfcFace @MappedTo { get;  set; }
 	
 	}
@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcTextureMap : IfcTextureCoordinate, IInstantiableEntity, IIfcTextureMap, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTextureMap>
 	{
 		#region IIfcTextureMap explicit implementation
-		IItemSet<IIfcTextureVertex> IIfcTextureMap.Vertices { 
+		IEnumerable<IIfcTextureVertex> IIfcTextureMap.Vertices { 
 			get { return new Common.Collections.ProxyItemSet<IfcTextureVertex, IIfcTextureVertex>( @Vertices); } 
 		}	
 		IIfcFace IIfcTextureMap.MappedTo { 

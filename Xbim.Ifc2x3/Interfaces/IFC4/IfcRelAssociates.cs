@@ -22,7 +22,7 @@ namespace Xbim.Ifc2x3.Kernel
 			get
 			{
 				//## Handle return of RelatedObjects for which no match was found
-                return RelatedObjects.OfType<Xbim.Ifc4.Kernel.IfcDefinitionSelect>();              
+                return new Common.Collections.VolatileProxyItemSet<IfcRoot, IIfcDefinitionSelect>(RelatedObjects);
 				//##
 			} 
 		}

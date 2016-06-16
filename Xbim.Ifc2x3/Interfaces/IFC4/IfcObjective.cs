@@ -22,7 +22,13 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			get
 			{
 				//## Handle return of BenchmarkValues for which no match was found
-				yield return BenchmarkValues;
+                return _benchmarkValues4 ?? (_benchmarkValues4 = new Common.Collections.ExtendedSingleSet<IfcMetric,IIfcConstraint>(
+                    () => BenchmarkValues,
+                    v => BenchmarkValues = v,
+                    new ItemSet<IIfcConstraint>(this, 0, byte.MaxValue),
+                    s => s as IIfcConstraint,
+                    t => t as IfcMetric
+                    ));
 				//##
 			} 
 		}
@@ -69,6 +75,16 @@ namespace Xbim.Ifc2x3.ConstraintResource
 					
 					case IfcObjectiveEnum.USERDEFINED:
 						//## Optional custom handling of ObjectiveQualifier == .USERDEFINED. 
+                        if (UserDefinedQualifier.HasValue)
+                            switch (UserDefinedQualifier.Value)
+                            {
+                                case "CODEWAIVER":
+                                case "EXTERNAL":
+                                case "MERGECONFLICT":
+                                case "MODELVIEW":
+                                case "PARAMETER":
+                                    return (Ifc4.Interfaces.IfcObjectiveEnum)System.Enum.Parse(typeof(Ifc4.Interfaces.IfcObjectiveEnum), UserDefinedQualifier.Value);
+                            }
 						//##
 						return Ifc4.Interfaces.IfcObjectiveEnum.USERDEFINED;
 					
@@ -92,8 +108,9 @@ namespace Xbim.Ifc2x3.ConstraintResource
 					
 					case Ifc4.Interfaces.IfcObjectiveEnum.CODEWAIVER:
 						//## Handle setting of CODEWAIVER member from IfcObjectiveEnum in property ObjectiveQualifier
-						//TODO: Handle setting of CODEWAIVER member from IfcObjectiveEnum in property ObjectiveQualifier
-						throw new System.NotImplementedException();
+                        UserDefinedQualifier = "CODEWAIVER";
+				        ObjectiveQualifier = IfcObjectiveEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcObjectiveEnum.DESIGNINTENT:
@@ -102,8 +119,9 @@ namespace Xbim.Ifc2x3.ConstraintResource
 					
 					case Ifc4.Interfaces.IfcObjectiveEnum.EXTERNAL:
 						//## Handle setting of EXTERNAL member from IfcObjectiveEnum in property ObjectiveQualifier
-						//TODO: Handle setting of EXTERNAL member from IfcObjectiveEnum in property ObjectiveQualifier
-						throw new System.NotImplementedException();
+                        UserDefinedQualifier = "EXTERNAL";
+				        ObjectiveQualifier = IfcObjectiveEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcObjectiveEnum.HEALTHANDSAFETY:
@@ -112,20 +130,23 @@ namespace Xbim.Ifc2x3.ConstraintResource
 					
 					case Ifc4.Interfaces.IfcObjectiveEnum.MERGECONFLICT:
 						//## Handle setting of MERGECONFLICT member from IfcObjectiveEnum in property ObjectiveQualifier
-						//TODO: Handle setting of MERGECONFLICT member from IfcObjectiveEnum in property ObjectiveQualifier
-						throw new System.NotImplementedException();
+                        UserDefinedQualifier = value.ToString();
+				        ObjectiveQualifier = IfcObjectiveEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcObjectiveEnum.MODELVIEW:
 						//## Handle setting of MODELVIEW member from IfcObjectiveEnum in property ObjectiveQualifier
-						//TODO: Handle setting of MODELVIEW member from IfcObjectiveEnum in property ObjectiveQualifier
-						throw new System.NotImplementedException();
+						UserDefinedQualifier = value.ToString();
+				        ObjectiveQualifier = IfcObjectiveEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcObjectiveEnum.PARAMETER:
 						//## Handle setting of PARAMETER member from IfcObjectiveEnum in property ObjectiveQualifier
-						//TODO: Handle setting of PARAMETER member from IfcObjectiveEnum in property ObjectiveQualifier
-						throw new System.NotImplementedException();
+						UserDefinedQualifier = value.ToString();
+				        ObjectiveQualifier = IfcObjectiveEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcObjectiveEnum.REQUIREMENT:
@@ -171,6 +192,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			}
 		}
 	//## Custom code
-	//##
+	    private IItemSet<IIfcConstraint> _benchmarkValues4;
+	    //##
 	}
 }

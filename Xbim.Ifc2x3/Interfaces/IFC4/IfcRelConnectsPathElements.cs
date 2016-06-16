@@ -22,7 +22,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			get
 			{
 				//## Handle return of RelatingPriorities for which no match was found
-			    return RelatingPriorities.Select(priority => (Xbim.Ifc4.MeasureResource.IfcInteger) priority);
+                return new Common.Collections.ProxyValueSet<long, Ifc4.MeasureResource.IfcInteger>(RelatingPriorities,
+                    s => new Ifc4.MeasureResource.IfcInteger(s),
+                    t => t);
 			    //##
 			} 
 		}
@@ -31,7 +33,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			get
 			{
 				//## Handle return of RelatedPriorities for which no match was found
-			    return RelatedPriorities.Select(priority => (Xbim.Ifc4.MeasureResource.IfcInteger) priority);
+                return new Common.Collections.ProxyValueSet<long, Ifc4.MeasureResource.IfcInteger>(RelatedPriorities,
+                    s => new Ifc4.MeasureResource.IfcInteger(s),
+                    t => t);
 			    //##
 			} 
 		}

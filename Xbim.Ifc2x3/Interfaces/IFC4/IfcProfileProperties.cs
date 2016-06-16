@@ -59,12 +59,12 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				
 			}
 		}
-		IItemSet<IIfcProperty> IIfcExtendedProperties.Properties 
+		IEnumerable<IIfcProperty> IIfcExtendedProperties.Properties 
 		{ 
 			get
 			{
 				//## Handle return of Properties for which no match was found
-			    yield break;
+			    return _properties ?? (_properties = new ItemSet<IIfcProperty>(this, 0, byte.MaxValue));
 			    //##
 			} 
 		}
@@ -76,6 +76,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 		}
 	//## Custom code
-	//##
+	    private IItemSet<IIfcProperty> _properties;
+	    //##
 	}
 }

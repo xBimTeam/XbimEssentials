@@ -37,8 +37,8 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			get
 			{
 				//## Handle return of CostValues for which no match was found
-				yield break;
-				//##
+			    return _costValues ?? (_costValues = new ItemSet<IIfcCostValue>(this, 0, byte.MaxValue));
+			    //##
 			} 
 		}
 		IItemSet<IIfcPhysicalQuantity> IIfcCostItem.CostQuantities 
@@ -46,11 +46,13 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			get
 			{
 				//## Handle return of CostQuantities for which no match was found
-				yield break;
+                return _costQuantities ?? (_costQuantities = new ItemSet<IIfcPhysicalQuantity>(this, 0, byte.MaxValue));
 				//##
 			} 
 		}
 	//## Custom code
-	//##
+	    private IItemSet<IIfcCostValue> _costValues;
+	    private IItemSet<IIfcPhysicalQuantity> _costQuantities;
+	    //##
 	}
 }

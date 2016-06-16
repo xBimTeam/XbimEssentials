@@ -11,13 +11,31 @@ namespace Xbim.Common.Collections
     public class ExtendedSingleSet<TInner, TOuter> : IItemSet<TOuter>
     {
         private TInner Inner {get { return _getter(); } set { _setter(value); }}
+
+        private TOuter InnerOut
+        {
+            get
+            {
+                return Inner == null ? default(TOuter) : _toOut(Inner);
+            }
+            set
+            {
+                if (value == null)
+                    Inner = default(TInner);
+                Inner = _toIn(value);
+            }
+        }
+
+        private IEnumerable<TOuter> InnerSet { get { return new[] { _toOut(_getter()) }; } } 
         private readonly Func<TInner> _getter;
         private readonly Action<TInner> _setter;
         private readonly IItemSet<TOuter> _extended;
         private readonly Func<TInner, TOuter> _toOut;
         private readonly Func<TOuter, TInner> _toIn;
+        private int Increment { get { return Inner == null ? 0 : 1; } }
 
-        public ExtendedSingleSet(Func<TInner> getter, Action<TInner> setter, IItemSet<TOuter> extended, Func<TInner,TOuter> toOut, Func<TOuter, TInner> toIn)
+        public ExtendedSingleSet(Func<TInner> getter, Action<TInner> setter, IItemSet<TOuter> extended, 
+            Func<TInner,TOuter> toOut, Func<TOuter, TInner> toIn)
         {
             _getter = getter;
             _setter = setter;
@@ -30,7 +48,7 @@ namespace Xbim.Common.Collections
         {
             return Inner == null ? 
                 _extended.GetEnumerator() : 
-                _extended.Concat(new [] {_toOut(Inner)}).GetEnumerator();
+                _extended.Concat(InnerSet).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -75,7 +93,7 @@ namespace Xbim.Common.Collections
 
         public void CopyTo(TOuter[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            this.ToArray().CopyTo(array, arrayIndex);
         }
 
         public bool Remove(TOuter item)
@@ -85,17 +103,19 @@ namespace Xbim.Common.Collections
 
         public int Count
         {
-            get { throw new NotImplementedException(); }
+            get { return  _extended.Count + Increment; }
         }
 
         public bool IsReadOnly
         {
-            get { throw new NotImplementedException(); }
+            get { return false; }
         }
 
         public int IndexOf(TOuter item)
         {
-            throw new NotImplementedException();
+            if (item.Equals(InnerOut))
+                return 0;
+            return _extended.IndexOf(item) + Increment;
         }
 
         public void Insert(int index, TOuter item)

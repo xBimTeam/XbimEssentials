@@ -28,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcFillAreaStyleTiles : IIfcGeometricRepresentationItem, IfcFillStyleSelect
 	{
 		IEnumerable<IIfcVector> @TilingPattern { get; }
-		IItemSet<IIfcStyledItem> @Tiles { get; }
+		IEnumerable<IIfcStyledItem> @Tiles { get; }
 		IfcPositiveRatioMeasure @TilingScale { get;  set; }
 	
 	}
@@ -41,10 +41,10 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcFillAreaStyleTiles : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleTiles, IContainsEntityReferences, IEquatable<@IfcFillAreaStyleTiles>
 	{
 		#region IIfcFillAreaStyleTiles explicit implementation
-		IItemSet<IIfcVector> IIfcFillAreaStyleTiles.TilingPattern { 
+		IEnumerable<IIfcVector> IIfcFillAreaStyleTiles.TilingPattern { 
 			get { return new Common.Collections.ProxyItemSet<IfcVector, IIfcVector>( @TilingPattern); } 
 		}	
-		IItemSet<IIfcStyledItem> IIfcFillAreaStyleTiles.Tiles { 
+		IEnumerable<IIfcStyledItem> IIfcFillAreaStyleTiles.Tiles { 
 			get { return new Common.Collections.ProxyItemSet<IfcStyledItem, IIfcStyledItem>( @Tiles); } 
 		}	
 		IfcPositiveRatioMeasure IIfcFillAreaStyleTiles.TilingScale { 
