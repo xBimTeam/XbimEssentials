@@ -51,6 +51,12 @@ namespace Xbim.Ifc2x3.ProductExtension
 					
 					case IfcCoveringTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType.HasValue)
+                        {
+                            Ifc4.Interfaces.IfcCoveringTypeEnum result;
+                            if (System.Enum.TryParse(ElementType.Value, false, out result))
+                                return result;
+                        }
 						//##
 						return Ifc4.Interfaces.IfcCoveringTypeEnum.USERDEFINED;
 					
@@ -86,14 +92,16 @@ namespace Xbim.Ifc2x3.ProductExtension
 					
 					case Ifc4.Interfaces.IfcCoveringTypeEnum.MOLDING:
 						//## Handle setting of MOLDING member from IfcCoveringTypeEnum in property PredefinedType
-						//TODO: Handle setting of MOLDING member from IfcCoveringTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcCoveringTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcCoveringTypeEnum.SKIRTINGBOARD:
 						//## Handle setting of SKIRTINGBOARD member from IfcCoveringTypeEnum in property PredefinedType
-						//TODO: Handle setting of SKIRTINGBOARD member from IfcCoveringTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcCoveringTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcCoveringTypeEnum.INSULATION:

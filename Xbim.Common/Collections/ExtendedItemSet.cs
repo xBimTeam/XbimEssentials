@@ -349,6 +349,11 @@ namespace Xbim.Common.Collections
             get { return _innerSet.OwningEntity; }
         }
 
+        public TOuter GetAt(int index)
+        {
+            return _transformOut(_innerSet.GetAt(index));
+        }
+
         public void AddRange(IEnumerable<TOuter> values)
         {
             foreach (var value in values)

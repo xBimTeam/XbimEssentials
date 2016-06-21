@@ -36,6 +36,12 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 					
 					case IfcTransformerTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType.HasValue)
+                        {
+                            Ifc4.Interfaces.IfcTransformerTypeEnum result;
+                            if (System.Enum.TryParse(ElementType.Value, false, out result))
+                                return result;
+                        }
 						//##
 						return Ifc4.Interfaces.IfcTransformerTypeEnum.USERDEFINED;
 					
@@ -63,14 +69,16 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 					
 					case Ifc4.Interfaces.IfcTransformerTypeEnum.INVERTER:
 						//## Handle setting of INVERTER member from IfcTransformerTypeEnum in property PredefinedType
-						//TODO: Handle setting of INVERTER member from IfcTransformerTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcTransformerTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcTransformerTypeEnum.RECTIFIER:
 						//## Handle setting of RECTIFIER member from IfcTransformerTypeEnum in property PredefinedType
-						//TODO: Handle setting of RECTIFIER member from IfcTransformerTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcTransformerTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcTransformerTypeEnum.VOLTAGE:

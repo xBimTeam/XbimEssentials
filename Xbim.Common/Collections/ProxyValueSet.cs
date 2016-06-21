@@ -192,6 +192,11 @@ namespace Xbim.Common.Collections
             get { return _inner.OwningEntity; }
         }
 
+        public TOuter GetAt(int index)
+        {
+            return _toOut(_inner.GetAt(index));
+        }
+
         public void AddRange(IEnumerable<TOuter> values)
         {
             _inner.AddRange(values.Cast<TInner>());

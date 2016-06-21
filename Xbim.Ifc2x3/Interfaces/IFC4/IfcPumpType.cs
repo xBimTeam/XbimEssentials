@@ -42,6 +42,12 @@ namespace Xbim.Ifc2x3.HVACDomain
 					
 					case IfcPumpTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType.HasValue)
+                        {
+                            Ifc4.Interfaces.IfcPumpTypeEnum result;
+                            if (System.Enum.TryParse(ElementType.Value, false, out result))
+                                return result;
+                        }
 						//##
 						return Ifc4.Interfaces.IfcPumpTypeEnum.USERDEFINED;
 					
@@ -73,14 +79,16 @@ namespace Xbim.Ifc2x3.HVACDomain
 					
 					case Ifc4.Interfaces.IfcPumpTypeEnum.SUBMERSIBLEPUMP:
 						//## Handle setting of SUBMERSIBLEPUMP member from IfcPumpTypeEnum in property PredefinedType
-						//TODO: Handle setting of SUBMERSIBLEPUMP member from IfcPumpTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcPumpTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcPumpTypeEnum.SUMPPUMP:
 						//## Handle setting of SUMPPUMP member from IfcPumpTypeEnum in property PredefinedType
-						//TODO: Handle setting of SUMPPUMP member from IfcPumpTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcPumpTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcPumpTypeEnum.VERTICALINLINE:

@@ -42,6 +42,12 @@ namespace Xbim.Ifc2x3.HVACDomain
 					
 					case IfcEvaporatorTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType.HasValue)
+                        {
+                            Ifc4.Interfaces.IfcEvaporatorTypeEnum result;
+                            if (System.Enum.TryParse(ElementType.Value, false, out result))
+                                return result;
+                        }
 						//##
 						return Ifc4.Interfaces.IfcEvaporatorTypeEnum.USERDEFINED;
 					
@@ -61,8 +67,9 @@ namespace Xbim.Ifc2x3.HVACDomain
 				{
 					case Ifc4.Interfaces.IfcEvaporatorTypeEnum.DIRECTEXPANSION:
 						//## Handle setting of DIRECTEXPANSION member from IfcEvaporatorTypeEnum in property PredefinedType
-						//TODO: Handle setting of DIRECTEXPANSION member from IfcEvaporatorTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcEvaporatorTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcEvaporatorTypeEnum.DIRECTEXPANSIONSHELLANDTUBE:

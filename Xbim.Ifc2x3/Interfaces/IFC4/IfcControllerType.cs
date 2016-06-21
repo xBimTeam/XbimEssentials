@@ -51,6 +51,12 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 					
 					case IfcControllerTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType.HasValue)
+                        {
+                            Ifc4.Interfaces.IfcControllerTypeEnum result;
+                            if (System.Enum.TryParse(ElementType.Value, false, out result))
+                                return result;
+                        }
 						//##
 						return Ifc4.Interfaces.IfcControllerTypeEnum.USERDEFINED;
 					
@@ -74,8 +80,9 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 					
 					case Ifc4.Interfaces.IfcControllerTypeEnum.PROGRAMMABLE:
 						//## Handle setting of PROGRAMMABLE member from IfcControllerTypeEnum in property PredefinedType
-						//TODO: Handle setting of PROGRAMMABLE member from IfcControllerTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcControllerTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcControllerTypeEnum.PROPORTIONAL:
@@ -84,8 +91,9 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 					
 					case Ifc4.Interfaces.IfcControllerTypeEnum.MULTIPOSITION:
 						//## Handle setting of MULTIPOSITION member from IfcControllerTypeEnum in property PredefinedType
-						//TODO: Handle setting of MULTIPOSITION member from IfcControllerTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcControllerTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcControllerTypeEnum.TWOPOSITION:

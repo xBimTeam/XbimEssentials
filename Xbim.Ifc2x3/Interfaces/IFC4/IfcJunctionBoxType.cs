@@ -27,6 +27,12 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 				{
 					case IfcJunctionBoxTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType.HasValue)
+                        {
+                            Ifc4.Interfaces.IfcJunctionBoxTypeEnum result;
+                            if (System.Enum.TryParse(ElementType.Value, false, out result))
+                                return result;
+                        }
 						//##
 						return Ifc4.Interfaces.IfcJunctionBoxTypeEnum.USERDEFINED;
 					
@@ -46,14 +52,16 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 				{
 					case Ifc4.Interfaces.IfcJunctionBoxTypeEnum.DATA:
 						//## Handle setting of DATA member from IfcJunctionBoxTypeEnum in property PredefinedType
-						//TODO: Handle setting of DATA member from IfcJunctionBoxTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcJunctionBoxTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcJunctionBoxTypeEnum.POWER:
 						//## Handle setting of POWER member from IfcJunctionBoxTypeEnum in property PredefinedType
-						//TODO: Handle setting of POWER member from IfcJunctionBoxTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcJunctionBoxTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcJunctionBoxTypeEnum.USERDEFINED:

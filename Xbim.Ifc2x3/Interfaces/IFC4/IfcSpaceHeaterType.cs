@@ -60,6 +60,12 @@ namespace Xbim.Ifc2x3.HVACDomain
 										
 					case IfcSpaceHeaterTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType.HasValue)
+                        {
+                            Ifc4.Interfaces.IfcSpaceHeaterTypeEnum result;
+                            if (System.Enum.TryParse(ElementType.Value, false, out result))
+                                return result;
+                        }
 						//##
 						return Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.USERDEFINED;
 					
@@ -83,8 +89,9 @@ namespace Xbim.Ifc2x3.HVACDomain
 					
 					case Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.RADIATOR:
 						//## Handle setting of RADIATOR member from IfcSpaceHeaterTypeEnum in property PredefinedType
-						//TODO: Handle setting of RADIATOR member from IfcSpaceHeaterTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcSpaceHeaterTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.USERDEFINED:

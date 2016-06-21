@@ -22,6 +22,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			get
 			{
 				//## Custom code to handle enumeration of PredefinedType
+			    if (ObjectType.HasValue)
+			    {
+                    Ifc4.Interfaces.IfcRoofTypeEnum result;
+                    if (System.Enum.TryParse(ObjectType.Value, false, out result))
+                        return result;
+			    }
 				//##
 				switch (ShapeType)
 				{
@@ -132,8 +138,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					
 					case Ifc4.Interfaces.IfcRoofTypeEnum.USERDEFINED:
 						//## Handle setting of USERDEFINED member from IfcRoofTypeEnum in property PredefinedType
-						//TODO: Handle setting of USERDEFINED member from IfcRoofTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ObjectType = value.ToString();
+                        ShapeType = IfcRoofTypeEnum.NOTDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcRoofTypeEnum.NOTDEFINED:

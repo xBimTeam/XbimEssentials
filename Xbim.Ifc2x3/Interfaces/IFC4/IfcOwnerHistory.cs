@@ -107,6 +107,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 			get
 			{
 				//## Custom code to handle enumeration of ChangeAction
+			    if (_changeAction4.HasValue)
+			        return _changeAction4;
 				//##
 				switch (ChangeAction)
 				{
@@ -140,7 +142,9 @@ namespace Xbim.Ifc2x3.UtilityResource
 			set
 			{
 				//## Custom code to handle setting of enumeration of ChangeAction
-				//##
+                if (_changeAction4.HasValue && _changeAction4.Value != Ifc4.Interfaces.IfcChangeActionEnum.NOTDEFINED)
+                    SetValue(v => _changeAction4 = v, _changeAction4, null, "ChangeAction", byte.MaxValue);
+                //##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcChangeActionEnum.NOCHANGE:
@@ -161,8 +165,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 					
 					case Ifc4.Interfaces.IfcChangeActionEnum.NOTDEFINED:
 						//## Handle setting of NOTDEFINED member from IfcChangeActionEnum in property ChangeAction
-						//TODO: Handle setting of NOTDEFINED member from IfcChangeActionEnum in property ChangeAction
-						throw new System.NotImplementedException();
+						SetValue(v => _changeAction4 = v, _changeAction4, value, "ChangeAction", byte.MaxValue);
+				        return;
 						//##
 										
 					
@@ -224,6 +228,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 			}
 		}
 	//## Custom code
-	//##
+	    private Ifc4.Interfaces.IfcChangeActionEnum? _changeAction4;
+	    //##
 	}
 }

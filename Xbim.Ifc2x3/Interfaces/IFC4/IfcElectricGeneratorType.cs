@@ -27,6 +27,12 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 				{
 					case IfcElectricGeneratorTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+				        if (ElementType.HasValue)
+				        {
+                            Ifc4.Interfaces.IfcElectricGeneratorTypeEnum result;
+				            if (System.Enum.TryParse(ElementType.Value, false, out result))
+				                return result;
+				        }
 						//##
 						return Ifc4.Interfaces.IfcElectricGeneratorTypeEnum.USERDEFINED;
 					
@@ -46,20 +52,23 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 				{
 					case Ifc4.Interfaces.IfcElectricGeneratorTypeEnum.CHP:
 						//## Handle setting of CHP member from IfcElectricGeneratorTypeEnum in property PredefinedType
-						//TODO: Handle setting of CHP member from IfcElectricGeneratorTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+				        ElementType = value.ToString();
+                        PredefinedType = IfcElectricGeneratorTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcElectricGeneratorTypeEnum.ENGINEGENERATOR:
 						//## Handle setting of ENGINEGENERATOR member from IfcElectricGeneratorTypeEnum in property PredefinedType
-						//TODO: Handle setting of ENGINEGENERATOR member from IfcElectricGeneratorTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcElectricGeneratorTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcElectricGeneratorTypeEnum.STANDALONE:
 						//## Handle setting of STANDALONE member from IfcElectricGeneratorTypeEnum in property PredefinedType
-						//TODO: Handle setting of STANDALONE member from IfcElectricGeneratorTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcElectricGeneratorTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcElectricGeneratorTypeEnum.USERDEFINED:

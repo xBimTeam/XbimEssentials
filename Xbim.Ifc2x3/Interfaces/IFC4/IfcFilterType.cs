@@ -42,6 +42,12 @@ namespace Xbim.Ifc2x3.HVACDomain
 					
 					case IfcFilterTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType.HasValue)
+                        {
+                            Ifc4.Interfaces.IfcFilterTypeEnum result;
+                            if (System.Enum.TryParse(ElementType.Value, false, out result))
+                                return result;
+                        }
 						//##
 						return Ifc4.Interfaces.IfcFilterTypeEnum.USERDEFINED;
 					
@@ -65,8 +71,9 @@ namespace Xbim.Ifc2x3.HVACDomain
 					
 					case Ifc4.Interfaces.IfcFilterTypeEnum.COMPRESSEDAIRFILTER:
 						//## Handle setting of COMPRESSEDAIRFILTER member from IfcFilterTypeEnum in property PredefinedType
-						//TODO: Handle setting of COMPRESSEDAIRFILTER member from IfcFilterTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcFilterTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcFilterTypeEnum.ODORFILTER:

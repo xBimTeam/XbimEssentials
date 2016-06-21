@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialClassificationRelationship : IPersistEntity
 	{
-		IItemSet<IIfcClassificationNotationSelect> @MaterialClassifications { get; }
+		IEnumerable<IIfcClassificationNotationSelect> @MaterialClassifications { get; }
 		IIfcMaterial @ClassifiedMaterial { get;  set; }
 	
 	}
@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 	public  partial class @IfcMaterialClassificationRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterialClassificationRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMaterialClassificationRelationship>
 	{
 		#region IIfcMaterialClassificationRelationship explicit implementation
-		IItemSet<IIfcClassificationNotationSelect> IIfcMaterialClassificationRelationship.MaterialClassifications { 
+		IEnumerable<IIfcClassificationNotationSelect> IIfcMaterialClassificationRelationship.MaterialClassifications { 
 			get { return new Common.Collections.ProxyItemSet<IfcClassificationNotationSelect, IIfcClassificationNotationSelect>( @MaterialClassifications); } 
 		}	
 		IIfcMaterial IIfcMaterialClassificationRelationship.ClassifiedMaterial { 

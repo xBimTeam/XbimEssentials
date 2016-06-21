@@ -39,6 +39,12 @@ namespace Xbim.Ifc2x3.HVACDomain
 					
 					case IfcPipeSegmentTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType.HasValue)
+                        {
+                            Ifc4.Interfaces.IfcPipeSegmentTypeEnum result;
+                            if (System.Enum.TryParse(ElementType.Value, false, out result))
+                                return result;
+                        }
 						//##
 						return Ifc4.Interfaces.IfcPipeSegmentTypeEnum.USERDEFINED;
 					
@@ -58,8 +64,9 @@ namespace Xbim.Ifc2x3.HVACDomain
 				{
 					case Ifc4.Interfaces.IfcPipeSegmentTypeEnum.CULVERT:
 						//## Handle setting of CULVERT member from IfcPipeSegmentTypeEnum in property PredefinedType
-						//TODO: Handle setting of CULVERT member from IfcPipeSegmentTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcPipeSegmentTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcPipeSegmentTypeEnum.FLEXIBLESEGMENT:

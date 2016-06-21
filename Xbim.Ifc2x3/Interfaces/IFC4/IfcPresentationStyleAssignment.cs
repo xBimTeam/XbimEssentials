@@ -82,9 +82,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					return member as IfcTextStyle;
 				case "IfcNullStyle":
 					//## Handle return defined type IfcNullStyle which is not a part of the target select interface IfcPresentationStyleSelect in property Styles
-				//TODO: Handle defined type IfcNullStyle which is not a part of the target select interface IfcPresentationStyleSelect in property Styles
-				throw new System.NotImplementedException();
-				//##
+				    return null;
+				    //##
 				default:
 					throw new System.NotSupportedException();
 			}

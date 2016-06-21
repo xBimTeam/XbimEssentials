@@ -45,6 +45,12 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 					
 					case IfcLampTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType.HasValue)
+                        {
+                            Ifc4.Interfaces.IfcLampTypeEnum result;
+                            if (System.Enum.TryParse(ElementType.Value, false, out result))
+                                return result;
+                        }
 						//##
 						return Ifc4.Interfaces.IfcLampTypeEnum.USERDEFINED;
 					
@@ -72,8 +78,9 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 					
 					case Ifc4.Interfaces.IfcLampTypeEnum.HALOGEN:
 						//## Handle setting of HALOGEN member from IfcLampTypeEnum in property PredefinedType
-						//TODO: Handle setting of HALOGEN member from IfcLampTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcLampTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcLampTypeEnum.HIGHPRESSUREMERCURY:
@@ -86,8 +93,9 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 					
 					case Ifc4.Interfaces.IfcLampTypeEnum.LED:
 						//## Handle setting of LED member from IfcLampTypeEnum in property PredefinedType
-						//TODO: Handle setting of LED member from IfcLampTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcLampTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcLampTypeEnum.METALHALIDE:
@@ -96,8 +104,9 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 					
 					case Ifc4.Interfaces.IfcLampTypeEnum.OLED:
 						//## Handle setting of OLED member from IfcLampTypeEnum in property PredefinedType
-						//TODO: Handle setting of OLED member from IfcLampTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcLampTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcLampTypeEnum.TUNGSTENFILAMENT:

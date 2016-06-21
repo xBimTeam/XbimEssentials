@@ -42,6 +42,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					
 					case IfcWallTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType.HasValue)
+                        {
+                            Ifc4.Interfaces.IfcWallTypeEnum result;
+                            if (System.Enum.TryParse(ElementType.Value, false, out result))
+                                return result;
+                        }
 						//##
 						return Ifc4.Interfaces.IfcWallTypeEnum.USERDEFINED;
 					
@@ -61,20 +67,23 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				{
 					case Ifc4.Interfaces.IfcWallTypeEnum.MOVABLE:
 						//## Handle setting of MOVABLE member from IfcWallTypeEnum in property PredefinedType
-						//TODO: Handle setting of MOVABLE member from IfcWallTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcWallTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcWallTypeEnum.PARAPET:
 						//## Handle setting of PARAPET member from IfcWallTypeEnum in property PredefinedType
-						//TODO: Handle setting of PARAPET member from IfcWallTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcWallTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcWallTypeEnum.PARTITIONING:
 						//## Handle setting of PARTITIONING member from IfcWallTypeEnum in property PredefinedType
-						//TODO: Handle setting of PARTITIONING member from IfcWallTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcWallTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcWallTypeEnum.PLUMBINGWALL:
@@ -87,8 +96,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					
 					case Ifc4.Interfaces.IfcWallTypeEnum.SOLIDWALL:
 						//## Handle setting of SOLIDWALL member from IfcWallTypeEnum in property PredefinedType
-						//TODO: Handle setting of SOLIDWALL member from IfcWallTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcWallTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcWallTypeEnum.STANDARD:

@@ -41,7 +41,13 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 						return Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.TOGGLESWITCH;
 					
 					case IfcSwitchingDeviceTypeEnum.USERDEFINED:
-						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//## Optional custom handling of PredefinedType == .USERDEFINED.
+                        if (ElementType.HasValue)
+                        {
+                            Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum result;
+                            if (System.Enum.TryParse(ElementType.Value, false, out result))
+                                return result;
+                        }
 						//##
 						return Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.USERDEFINED;
 					
@@ -65,8 +71,9 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 					
 					case Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.DIMMERSWITCH:
 						//## Handle setting of DIMMERSWITCH member from IfcSwitchingDeviceTypeEnum in property PredefinedType
-						//TODO: Handle setting of DIMMERSWITCH member from IfcSwitchingDeviceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcSwitchingDeviceTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.EMERGENCYSTOP:
@@ -75,20 +82,23 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 					
 					case Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.KEYPAD:
 						//## Handle setting of KEYPAD member from IfcSwitchingDeviceTypeEnum in property PredefinedType
-						//TODO: Handle setting of KEYPAD member from IfcSwitchingDeviceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcSwitchingDeviceTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.MOMENTARYSWITCH:
 						//## Handle setting of MOMENTARYSWITCH member from IfcSwitchingDeviceTypeEnum in property PredefinedType
-						//TODO: Handle setting of MOMENTARYSWITCH member from IfcSwitchingDeviceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcSwitchingDeviceTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.SELECTORSWITCH:
 						//## Handle setting of SELECTORSWITCH member from IfcSwitchingDeviceTypeEnum in property PredefinedType
-						//TODO: Handle setting of SELECTORSWITCH member from IfcSwitchingDeviceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcSwitchingDeviceTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.STARTER:

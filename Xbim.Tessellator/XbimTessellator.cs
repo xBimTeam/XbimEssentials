@@ -149,9 +149,9 @@ namespace Xbim.Tessellator
                 //now write out the faces
                 if (triangulation.Normals.Any() ) //we have normals so obey them
                 {
-                    List<IEnumerable<IfcPositiveInteger>> normalIndex;
-                    if (triangulation.NormalIndex.Any()) normalIndex = triangulation.NormalIndex.ToList();
-                    else normalIndex = triangulation.CoordIndex.ToList(); //the normals are the same as the points
+                    var normalIndex = triangulation.NormalIndex.Any() ? 
+                        triangulation.NormalIndex.ToList() : 
+                        triangulation.CoordIndex.ToList();
                     binaryWriter.Write(facesCount); 
                     binaryWriter.Write((UInt32)verticesCount); //number of vertices
                     binaryWriter.Write(triangleCount); //number of triangles

@@ -141,6 +141,11 @@ namespace Xbim.Common.Collections
             get { return _extended.OwningEntity; }
         }
 
+        public TOuter GetAt(int index)
+        {
+            throw new NotImplementedException();
+        }
+
         public void AddRange(IEnumerable<TOuter> values)
         {
             throw new NotImplementedException();

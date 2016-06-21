@@ -110,7 +110,7 @@ namespace Xbim.Ifc2x3.Extensions
         /// <summary>
         ///   Returns set of IFC representation items from the specified context or null;
         /// </summary>
-        public static ItemSet<IfcRepresentationItem> GetShapeRepresentationItems(this IfcProduct prod,
+        public static IItemSet<IfcRepresentationItem> GetShapeRepresentationItems(this IfcProduct prod,
                                                                                  IfcRepresentationContext context)
         {
             var definitionShape = prod.Representation as IfcProductDefinitionShape;

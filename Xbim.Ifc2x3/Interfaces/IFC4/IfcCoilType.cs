@@ -45,6 +45,12 @@ namespace Xbim.Ifc2x3.HVACDomain
 					
 					case IfcCoilTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType.HasValue)
+                        {
+                            Ifc4.Interfaces.IfcCoilTypeEnum result;
+                            if (System.Enum.TryParse(ElementType.Value, false, out result))
+                                return result;
+                        }
 						//##
 						return Ifc4.Interfaces.IfcCoilTypeEnum.USERDEFINED;
 					
@@ -76,8 +82,9 @@ namespace Xbim.Ifc2x3.HVACDomain
 					
 					case Ifc4.Interfaces.IfcCoilTypeEnum.HYDRONICCOIL:
 						//## Handle setting of HYDRONICCOIL member from IfcCoilTypeEnum in property PredefinedType
-						//TODO: Handle setting of HYDRONICCOIL member from IfcCoilTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcCoilTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcCoilTypeEnum.STEAMHEATINGCOIL:

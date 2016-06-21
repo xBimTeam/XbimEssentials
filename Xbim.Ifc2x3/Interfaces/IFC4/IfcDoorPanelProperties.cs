@@ -60,6 +60,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					
 					case IfcDoorPanelOperationEnum.USERDEFINED:
 						//## Optional custom handling of PanelOperation == .USERDEFINED. 
+				        if (_panelOperation4.HasValue)
+				            return _panelOperation4.Value;
 						//##
 						return Ifc4.Interfaces.IfcDoorPanelOperationEnum.USERDEFINED;
 					
@@ -74,6 +76,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			set
 			{
 				//## Custom code to handle setting of enumeration of PanelOperation
+			    if (_panelOperation4.HasValue && value != Ifc4.Interfaces.IfcDoorPanelOperationEnum.FIXEDPANEL)
+                    SetValue(v => _panelOperation4 = v, _panelOperation4, null, "PanelOperation", byte.MaxValue);
 				//##
 				switch (value)
 				{
@@ -103,8 +107,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					
 					case Ifc4.Interfaces.IfcDoorPanelOperationEnum.FIXEDPANEL:
 						//## Handle setting of FIXEDPANEL member from IfcDoorPanelOperationEnum in property PanelOperation
-						//TODO: Handle setting of FIXEDPANEL member from IfcDoorPanelOperationEnum in property PanelOperation
-						throw new System.NotImplementedException();
+                        PanelOperation = IfcDoorPanelOperationEnum.USERDEFINED;
+                        SetValue(v => _panelOperation4 = v, _panelOperation4, value, "PanelOperation", byte.MaxValue);
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcDoorPanelOperationEnum.USERDEFINED:
@@ -204,6 +209,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			}
 		}
 	//## Custom code
-	//##
+	    private Ifc4.Interfaces.IfcDoorPanelOperationEnum? _panelOperation4;
+	    //##
 	}
 }

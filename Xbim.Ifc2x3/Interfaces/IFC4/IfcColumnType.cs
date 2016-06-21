@@ -30,6 +30,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					
 					case IfcColumnTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType.HasValue)
+                        {
+                            Ifc4.Interfaces.IfcColumnTypeEnum result;
+                            if (System.Enum.TryParse(ElementType.Value, false, out result))
+                                return result;
+                        }
 						//##
 						return Ifc4.Interfaces.IfcColumnTypeEnum.USERDEFINED;
 					
@@ -53,8 +59,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					
 					case Ifc4.Interfaces.IfcColumnTypeEnum.PILASTER:
 						//## Handle setting of PILASTER member from IfcColumnTypeEnum in property PredefinedType
-						//TODO: Handle setting of PILASTER member from IfcColumnTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcColumnTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcColumnTypeEnum.USERDEFINED:

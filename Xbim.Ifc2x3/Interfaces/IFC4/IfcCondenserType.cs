@@ -45,6 +45,12 @@ namespace Xbim.Ifc2x3.HVACDomain
 					
 					case IfcCondenserTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType.HasValue)
+                        {
+                            Ifc4.Interfaces.IfcCondenserTypeEnum result;
+                            if (System.Enum.TryParse(ElementType.Value, false, out result))
+                                return result;
+                        }
 						//##
 						return Ifc4.Interfaces.IfcCondenserTypeEnum.USERDEFINED;
 					
@@ -72,8 +78,9 @@ namespace Xbim.Ifc2x3.HVACDomain
 					
 					case Ifc4.Interfaces.IfcCondenserTypeEnum.WATERCOOLED:
 						//## Handle setting of WATERCOOLED member from IfcCondenserTypeEnum in property PredefinedType
-						//TODO: Handle setting of WATERCOOLED member from IfcCondenserTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcCondenserTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcCondenserTypeEnum.WATERCOOLEDBRAZEDPLATE:

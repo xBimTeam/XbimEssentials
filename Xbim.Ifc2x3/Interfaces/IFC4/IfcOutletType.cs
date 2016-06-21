@@ -36,6 +36,12 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 					
 					case IfcOutletTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType.HasValue)
+                        {
+                            Ifc4.Interfaces.IfcOutletTypeEnum result;
+                            if (System.Enum.TryParse(ElementType.Value, false, out result))
+                                return result;
+                        }
 						//##
 						return Ifc4.Interfaces.IfcOutletTypeEnum.USERDEFINED;
 					
@@ -67,14 +73,16 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 					
 					case Ifc4.Interfaces.IfcOutletTypeEnum.DATAOUTLET:
 						//## Handle setting of DATAOUTLET member from IfcOutletTypeEnum in property PredefinedType
-						//TODO: Handle setting of DATAOUTLET member from IfcOutletTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcOutletTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcOutletTypeEnum.TELEPHONEOUTLET:
 						//## Handle setting of TELEPHONEOUTLET member from IfcOutletTypeEnum in property PredefinedType
-						//TODO: Handle setting of TELEPHONEOUTLET member from IfcOutletTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcOutletTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcOutletTypeEnum.USERDEFINED:

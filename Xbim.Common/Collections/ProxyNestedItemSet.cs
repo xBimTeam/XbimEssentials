@@ -187,6 +187,10 @@ namespace Xbim.Common.Collections
         }
 
 
+        public IItemSet<TOuter> GetAt(int index)
+        {
+            return GetOut(_inner.GetAt(index));
+        }
 
         public void AddRange(IEnumerable<IItemSet<TOuter>> values)
         {

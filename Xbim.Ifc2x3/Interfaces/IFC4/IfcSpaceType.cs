@@ -27,6 +27,12 @@ namespace Xbim.Ifc2x3.ProductExtension
 				{
 					case IfcSpaceTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType.HasValue)
+                        {
+                            Ifc4.Interfaces.IfcSpaceTypeEnum result;
+                            if (System.Enum.TryParse(ElementType.Value, false, out result))
+                                return result;
+                        }
 						//##
 						return Ifc4.Interfaces.IfcSpaceTypeEnum.USERDEFINED;
 					
@@ -46,32 +52,37 @@ namespace Xbim.Ifc2x3.ProductExtension
 				{
 					case Ifc4.Interfaces.IfcSpaceTypeEnum.SPACE:
 						//## Handle setting of SPACE member from IfcSpaceTypeEnum in property PredefinedType
-						//TODO: Handle setting of SPACE member from IfcSpaceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcSpaceTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcSpaceTypeEnum.PARKING:
 						//## Handle setting of PARKING member from IfcSpaceTypeEnum in property PredefinedType
-						//TODO: Handle setting of PARKING member from IfcSpaceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcSpaceTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcSpaceTypeEnum.GFA:
 						//## Handle setting of GFA member from IfcSpaceTypeEnum in property PredefinedType
-						//TODO: Handle setting of GFA member from IfcSpaceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcSpaceTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcSpaceTypeEnum.INTERNAL:
 						//## Handle setting of INTERNAL member from IfcSpaceTypeEnum in property PredefinedType
-						//TODO: Handle setting of INTERNAL member from IfcSpaceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcSpaceTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcSpaceTypeEnum.EXTERNAL:
 						//## Handle setting of EXTERNAL member from IfcSpaceTypeEnum in property PredefinedType
-						//TODO: Handle setting of EXTERNAL member from IfcSpaceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcSpaceTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcSpaceTypeEnum.USERDEFINED:

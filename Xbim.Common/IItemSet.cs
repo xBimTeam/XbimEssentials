@@ -13,7 +13,7 @@ namespace Xbim.Common
     }
     public interface IItemSet<T> : IList<T>, INotifyCollectionChanged, INotifyPropertyChanged, IExpressEnumerable, IItemSet
     {
-        //T GetAt(int index);
+        T GetAt(int index);
         void AddRange(IEnumerable<T> values);
         T First { get; }
         T FirstOrDefault();

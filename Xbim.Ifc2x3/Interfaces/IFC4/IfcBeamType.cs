@@ -39,6 +39,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					
 					case IfcBeamTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType.HasValue)
+                        {
+                            Ifc4.Interfaces.IfcBeamTypeEnum result;
+                            if (System.Enum.TryParse(ElementType.Value, false, out result))
+                                return result;
+                        }
 						//##
 						return Ifc4.Interfaces.IfcBeamTypeEnum.USERDEFINED;
 					
@@ -66,8 +72,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					
 					case Ifc4.Interfaces.IfcBeamTypeEnum.HOLLOWCORE:
 						//## Handle setting of HOLLOWCORE member from IfcBeamTypeEnum in property PredefinedType
-						//TODO: Handle setting of HOLLOWCORE member from IfcBeamTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcBeamTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcBeamTypeEnum.LINTEL:
@@ -76,8 +83,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					
 					case Ifc4.Interfaces.IfcBeamTypeEnum.SPANDREL:
 						//## Handle setting of SPANDREL member from IfcBeamTypeEnum in property PredefinedType
-						//TODO: Handle setting of SPANDREL member from IfcBeamTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcBeamTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcBeamTypeEnum.T_BEAM:

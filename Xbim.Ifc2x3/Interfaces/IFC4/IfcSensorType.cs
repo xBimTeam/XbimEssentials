@@ -66,6 +66,12 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 					
 					case IfcSensorTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType.HasValue)
+                        {
+                            Ifc4.Interfaces.IfcSensorTypeEnum result;
+                            if (System.Enum.TryParse(ElementType.Value, false, out result))
+                                return result;
+                        }
 						//##
 						return Ifc4.Interfaces.IfcSensorTypeEnum.USERDEFINED;
 					
@@ -89,14 +95,16 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 					
 					case Ifc4.Interfaces.IfcSensorTypeEnum.CONDUCTANCESENSOR:
 						//## Handle setting of CONDUCTANCESENSOR member from IfcSensorTypeEnum in property PredefinedType
-						//TODO: Handle setting of CONDUCTANCESENSOR member from IfcSensorTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcSensorTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcSensorTypeEnum.CONTACTSENSOR:
 						//## Handle setting of CONTACTSENSOR member from IfcSensorTypeEnum in property PredefinedType
-						//TODO: Handle setting of CONTACTSENSOR member from IfcSensorTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcSensorTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcSensorTypeEnum.FIRESENSOR:
@@ -109,8 +117,9 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 					
 					case Ifc4.Interfaces.IfcSensorTypeEnum.FROSTSENSOR:
 						//## Handle setting of FROSTSENSOR member from IfcSensorTypeEnum in property PredefinedType
-						//TODO: Handle setting of FROSTSENSOR member from IfcSensorTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcSensorTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcSensorTypeEnum.GASSENSOR:
@@ -127,20 +136,23 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 					
 					case Ifc4.Interfaces.IfcSensorTypeEnum.IDENTIFIERSENSOR:
 						//## Handle setting of IDENTIFIERSENSOR member from IfcSensorTypeEnum in property PredefinedType
-						//TODO: Handle setting of IDENTIFIERSENSOR member from IfcSensorTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcSensorTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcSensorTypeEnum.IONCONCENTRATIONSENSOR:
 						//## Handle setting of IONCONCENTRATIONSENSOR member from IfcSensorTypeEnum in property PredefinedType
-						//TODO: Handle setting of IONCONCENTRATIONSENSOR member from IfcSensorTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcSensorTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcSensorTypeEnum.LEVELSENSOR:
 						//## Handle setting of LEVELSENSOR member from IfcSensorTypeEnum in property PredefinedType
-						//TODO: Handle setting of LEVELSENSOR member from IfcSensorTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcSensorTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcSensorTypeEnum.LIGHTSENSOR:
@@ -157,8 +169,9 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 					
 					case Ifc4.Interfaces.IfcSensorTypeEnum.PHSENSOR:
 						//## Handle setting of PHSENSOR member from IfcSensorTypeEnum in property PredefinedType
-						//TODO: Handle setting of PHSENSOR member from IfcSensorTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcSensorTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcSensorTypeEnum.PRESSURESENSOR:
@@ -167,14 +180,16 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 					
 					case Ifc4.Interfaces.IfcSensorTypeEnum.RADIATIONSENSOR:
 						//## Handle setting of RADIATIONSENSOR member from IfcSensorTypeEnum in property PredefinedType
-						//TODO: Handle setting of RADIATIONSENSOR member from IfcSensorTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcSensorTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcSensorTypeEnum.RADIOACTIVITYSENSOR:
 						//## Handle setting of RADIOACTIVITYSENSOR member from IfcSensorTypeEnum in property PredefinedType
-						//TODO: Handle setting of RADIOACTIVITYSENSOR member from IfcSensorTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcSensorTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcSensorTypeEnum.SMOKESENSOR:
@@ -191,8 +206,9 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 					
 					case Ifc4.Interfaces.IfcSensorTypeEnum.WINDSENSOR:
 						//## Handle setting of WINDSENSOR member from IfcSensorTypeEnum in property PredefinedType
-						//TODO: Handle setting of WINDSENSOR member from IfcSensorTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcSensorTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcSensorTypeEnum.USERDEFINED:
