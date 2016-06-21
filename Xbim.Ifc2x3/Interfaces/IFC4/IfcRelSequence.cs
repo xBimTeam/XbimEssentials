@@ -124,20 +124,18 @@ namespace Xbim.Ifc2x3.Kernel
 				
 			}
 		}
+
+		private  Ifc4.MeasureResource.IfcLabel? _userDefinedSequenceType;
+
 		Ifc4.MeasureResource.IfcLabel? IIfcRelSequence.UserDefinedSequenceType 
 		{ 
 			get
 			{
-				//## Handle return of UserDefinedSequenceType for which no match was found
-                return null;
-				//##
+				return _userDefinedSequenceType;
 			} 
 			set
 			{
-				//## Handle setting of UserDefinedSequenceType for which no match was found
-                throw new System.PlatformNotSupportedException();
-				//##
-				NotifyPropertyChanged("UserDefinedSequenceType");
+				SetValue(v => _userDefinedSequenceType = v, _userDefinedSequenceType, value, "UserDefinedSequenceType", byte.MaxValue);
 				
 			}
 		}

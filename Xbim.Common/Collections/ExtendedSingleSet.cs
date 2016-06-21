@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 
 namespace Xbim.Common.Collections
 {
@@ -139,7 +138,7 @@ namespace Xbim.Common.Collections
 
         public IPersistEntity OwningEntity
         {
-            get { throw new NotImplementedException(); }
+            get { return _extended.OwningEntity; }
         }
 
         public void AddRange(IEnumerable<TOuter> values)
@@ -149,12 +148,12 @@ namespace Xbim.Common.Collections
 
         public TOuter First
         {
-            get { throw new NotImplementedException(); }
+            get { return InnerOut; }
         }
 
         public TOuter FirstOrDefault()
         {
-            throw new NotImplementedException();
+             return InnerOut;
         }
 
         public TOuter FirstOrDefault(Func<TOuter, bool> predicate)

@@ -107,6 +107,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 				if (value == null)
 				{
 					PropertyReference = null;
+					if (_propertyReference4 != null)
+						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", byte.MaxValue);
 					return;
 				}	
 				var ifcaddress = value as ActorResource.IfcAddress;

@@ -25,23 +25,24 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return _stylesIfc4 ?? (_stylesIfc4 = new Common.Collections.ExtendedItemSet<IfcPresentationStyleSelect, IIfcPresentationStyleSelect>(
                     Styles, 
                     new ItemSet<IIfcPresentationStyleSelect>(this, 0, 255), 
-                    StylesToIfc4, 
-                    StylesToIfc2x3));
+					StylesToIfc4, 
+                    StylesToIfc2X3));
 			} 
 		}
 
 		//private field to hold any extended data
 		private IItemSet<IIfcPresentationStyleSelect> _stylesIfc4;
-
 		//transformation function to convert/cast IFC2x3 data to appear as IFC4
-		private IIfcPresentationStyleSelect StylesToIfc4 (IfcPresentationStyleSelect member)
+		private static IIfcPresentationStyleSelect StylesToIfc4 (IfcPresentationStyleSelect member)
 		{
-			var ifccurvestyle = member as IfcCurveStyle;
-			if (ifccurvestyle != null) 
-				return ifccurvestyle;
-			var ifcsymbolstyle = member as IfcSymbolStyle;
-			if (ifcsymbolstyle != null) 
-				//## Handle entity IfcSymbolStyle which is not a part of the target select interface IIfcPresentationStyleSelect in property Styles
+			if (member == null) 
+				return null;
+			switch (member.GetType().Name)
+			{
+				case "IfcCurveStyle":
+					return member as IfcCurveStyle;
+				case "IfcSymbolStyle":
+					//## Handle entity IfcSymbolStyle which is not a part of the target select interface IIfcPresentationStyleSelect in property Styles
 				{
 				  /*  var colour = ifcsymbolstyle.StyleOfSymbol as IIfcColourRgb;
                     if(colour!=null)
@@ -49,26 +50,44 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				    return new Ifc4.PresentationAppearanceResource.IfcNullStyle();
 				}
 				//##
-			var ifcfillareastyle = member as IfcFillAreaStyle;
-			if (ifcfillareastyle != null) 
-				return ifcfillareastyle;
-			var ifctextstyle = member as IfcTextStyle;
-			if (ifctextstyle != null) 
-				return ifctextstyle;
-			var ifcsurfacestyle = member as IfcSurfaceStyle;
-			if (ifcsurfacestyle != null) 
-				return ifcsurfacestyle;
-			if (member is IfcNullStyle) 
-				//## Handle defined type IfcNullStyle which is not a part of the target select interface IItemSet<IIfcPresentationStyleSelect> in property Styles
-				//TODO: Handle defined type IfcNullStyle which is not a part of the target select interface IItemSet<IIfcPresentationStyleSelect> in property Styles
-				throw new System.NotImplementedException();
+				case "IfcFillAreaStyle":
+					return member as IfcFillAreaStyle;
+				case "IfcTextStyle":
+					return member as IfcTextStyle;
+				case "IfcSurfaceStyle":
+					return member as IfcSurfaceStyle;
+				case "IfcNullStyle":
+					//## Handle defined type IfcNullStyle which is not a part of the target select interface IItemSet<IIfcPresentationStyleSelect> in property Styles
+		        return null;
 				//##
-			throw new System.NotSupportedException();
+				default:
+					throw new System.NotSupportedException();
+			}
 		}
 
 		//transformation function to convert/cast IFC4 data to appear as IFC2x3 if possible
-		private IfcPresentationStyleSelect StylesToIfc2x3 (IIfcPresentationStyleSelect member){
-			throw new System.NotImplementedException();
+		private static IfcPresentationStyleSelect StylesToIfc2X3 (IIfcPresentationStyleSelect member){
+			if (member == null) 
+				return null;
+			var name = member.GetType().Name;
+			switch (name)
+			{
+				case "IfcCurveStyle":
+					return member as IfcCurveStyle;
+				case "IfcFillAreaStyle":
+					return member as IfcFillAreaStyle;
+				case "IfcSurfaceStyle":
+					return member as IfcSurfaceStyle;
+				case "IfcTextStyle":
+					return member as IfcTextStyle;
+				case "IfcNullStyle":
+					//## Handle return defined type IfcNullStyle which is not a part of the target select interface IfcPresentationStyleSelect in property Styles
+				//TODO: Handle defined type IfcNullStyle which is not a part of the target select interface IfcPresentationStyleSelect in property Styles
+				throw new System.NotImplementedException();
+				//##
+				default:
+					throw new System.NotSupportedException();
+			}
 		}
 	//## Custom code
 	    public IEnumerable<IIfcSurfaceStyle> SurfaceStyles

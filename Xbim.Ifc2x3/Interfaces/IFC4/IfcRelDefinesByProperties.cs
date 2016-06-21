@@ -25,23 +25,22 @@ namespace Xbim.Ifc2x3.Kernel
 				return _relatedObjectsIfc4 ?? (_relatedObjectsIfc4 = new Common.Collections.ExtendedItemSet<IfcObject, IIfcObjectDefinition>(
                     RelatedObjects, 
                     new ItemSet<IIfcObjectDefinition>(this, 0, 255), 
-                    RelatedObjectsToIfc4, 
-                    RelatedObjectsToIfc2x3));
+					RelatedObjectsToIfc4, 
+                    RelatedObjectsToIfc2X3));
 			} 
 		}
 
 		//private field to hold any extended data
 		private IItemSet<IIfcObjectDefinition> _relatedObjectsIfc4;
-
 		//transformation function to convert/cast IFC2x3 data to appear as IFC4
-		private IIfcObjectDefinition RelatedObjectsToIfc4 (IfcObject member)
+		private static IIfcObjectDefinition RelatedObjectsToIfc4 (IfcObject member)
 		{
 			return member;
 		}
 
 		//transformation function to convert/cast IFC4 data to appear as IFC2x3 if possible
-		private IfcObject RelatedObjectsToIfc2x3 (IIfcObjectDefinition member){
-			throw new System.NotImplementedException();
+		private static IfcObject RelatedObjectsToIfc2X3 (IIfcObjectDefinition member){
+			return member as IfcObject;
 		}
 
 		private  IIfcPropertySetDefinitionSelect _relatingPropertyDefinition4;

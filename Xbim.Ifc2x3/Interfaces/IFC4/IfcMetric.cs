@@ -169,6 +169,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				if (value == null)
 				{
 					DataValue = null;
+					if (_dataValue4 != null)
+						SetValue(v => _dataValue4 = v, _dataValue4, null, "DataValue", byte.MaxValue);
 					return;
 				}	
 				var ifcappliedvalue = value as CostResource.IfcAppliedValue;

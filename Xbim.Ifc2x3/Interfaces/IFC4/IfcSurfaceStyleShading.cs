@@ -56,8 +56,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			        rendering.Transparency = new MeasureResource.IfcNormalisedRatioMeasure(value.Value);
 			    else
 			        rendering.Transparency = null;
-                //avoid duplicated notification
-			    return;
 				//##
 				NotifyPropertyChanged("Transparency");
 				

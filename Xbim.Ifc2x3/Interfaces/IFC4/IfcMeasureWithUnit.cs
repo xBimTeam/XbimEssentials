@@ -227,6 +227,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 				if (value == null)
 				{
 					ValueComponent = null;
+					if (_valueComponent4 != null)
+						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", byte.MaxValue);
 					return;
 				}	
 				if (value is Ifc4.MeasureResource.IfcAbsorbedDoseMeasure) 

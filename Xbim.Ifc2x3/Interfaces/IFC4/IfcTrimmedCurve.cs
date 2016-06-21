@@ -37,28 +37,43 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return _trim1Ifc4 ?? (_trim1Ifc4 = new Common.Collections.ExtendedItemSet<IfcTrimmingSelect, IIfcTrimmingSelect>(
                     Trim1, 
                     new ItemSet<IIfcTrimmingSelect>(this, 0, 255), 
-                    Trim1ToIfc4, 
-                    Trim1ToIfc2x3));
+					Trim1ToIfc4, 
+                    Trim1ToIfc2X3));
 			} 
 		}
 
 		//private field to hold any extended data
 		private IItemSet<IIfcTrimmingSelect> _trim1Ifc4;
-
 		//transformation function to convert/cast IFC2x3 data to appear as IFC4
-		private IIfcTrimmingSelect Trim1ToIfc4 (IfcTrimmingSelect member)
+		private static IIfcTrimmingSelect Trim1ToIfc4 (IfcTrimmingSelect member)
 		{
-			var ifccartesianpoint = member as IfcCartesianPoint;
-			if (ifccartesianpoint != null) 
-				return ifccartesianpoint;
-			if (member is MeasureResource.IfcParameterValue) 
-				return new Ifc4.MeasureResource.IfcParameterValue((MeasureResource.IfcParameterValue)member);
-			throw new System.NotSupportedException();
+			if (member == null) 
+				return null;
+			switch (member.GetType().Name)
+			{
+				case "IfcCartesianPoint":
+					return member as IfcCartesianPoint;
+				case "IfcParameterValue":
+					return new Ifc4.MeasureResource.IfcParameterValue((MeasureResource.IfcParameterValue)member);
+				default:
+					throw new System.NotSupportedException();
+			}
 		}
 
 		//transformation function to convert/cast IFC4 data to appear as IFC2x3 if possible
-		private IfcTrimmingSelect Trim1ToIfc2x3 (IIfcTrimmingSelect member){
-			throw new System.NotImplementedException();
+		private static IfcTrimmingSelect Trim1ToIfc2X3 (IIfcTrimmingSelect member){
+			if (member == null) 
+				return null;
+			var name = member.GetType().Name;
+			switch (name)
+			{
+				case "IfcCartesianPoint":
+					return member as IfcCartesianPoint;
+				case "IfcParameterValue":
+					return new MeasureResource.IfcParameterValue((Ifc4.MeasureResource.IfcParameterValue)member);
+				default:
+					throw new System.NotSupportedException();
+			}
 		}
 		IItemSet<IIfcTrimmingSelect> IIfcTrimmedCurve.Trim2 
 		{ 
@@ -68,28 +83,43 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return _trim2Ifc4 ?? (_trim2Ifc4 = new Common.Collections.ExtendedItemSet<IfcTrimmingSelect, IIfcTrimmingSelect>(
                     Trim2, 
                     new ItemSet<IIfcTrimmingSelect>(this, 0, 255), 
-                    Trim2ToIfc4, 
-                    Trim2ToIfc2x3));
+					Trim2ToIfc4, 
+                    Trim2ToIfc2X3));
 			} 
 		}
 
 		//private field to hold any extended data
 		private IItemSet<IIfcTrimmingSelect> _trim2Ifc4;
-
 		//transformation function to convert/cast IFC2x3 data to appear as IFC4
-		private IIfcTrimmingSelect Trim2ToIfc4 (IfcTrimmingSelect member)
+		private static IIfcTrimmingSelect Trim2ToIfc4 (IfcTrimmingSelect member)
 		{
-			var ifccartesianpoint = member as IfcCartesianPoint;
-			if (ifccartesianpoint != null) 
-				return ifccartesianpoint;
-			if (member is MeasureResource.IfcParameterValue) 
-				return new Ifc4.MeasureResource.IfcParameterValue((MeasureResource.IfcParameterValue)member);
-			throw new System.NotSupportedException();
+			if (member == null) 
+				return null;
+			switch (member.GetType().Name)
+			{
+				case "IfcCartesianPoint":
+					return member as IfcCartesianPoint;
+				case "IfcParameterValue":
+					return new Ifc4.MeasureResource.IfcParameterValue((MeasureResource.IfcParameterValue)member);
+				default:
+					throw new System.NotSupportedException();
+			}
 		}
 
 		//transformation function to convert/cast IFC4 data to appear as IFC2x3 if possible
-		private IfcTrimmingSelect Trim2ToIfc2x3 (IIfcTrimmingSelect member){
-			throw new System.NotImplementedException();
+		private static IfcTrimmingSelect Trim2ToIfc2X3 (IIfcTrimmingSelect member){
+			if (member == null) 
+				return null;
+			var name = member.GetType().Name;
+			switch (name)
+			{
+				case "IfcCartesianPoint":
+					return member as IfcCartesianPoint;
+				case "IfcParameterValue":
+					return new MeasureResource.IfcParameterValue((Ifc4.MeasureResource.IfcParameterValue)member);
+				default:
+					throw new System.NotSupportedException();
+			}
 		}
 		Ifc4.MeasureResource.IfcBoolean IIfcTrimmedCurve.SenseAgreement 
 		{ 

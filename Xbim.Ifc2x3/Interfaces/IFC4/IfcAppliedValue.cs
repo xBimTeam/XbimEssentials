@@ -70,6 +70,8 @@ namespace Xbim.Ifc2x3.CostResource
 				if (value == null)
 				{
 					AppliedValue = null;
+					if (_appliedValue4 != null)
+						SetValue(v => _appliedValue4 = v, _appliedValue4, null, "AppliedValue", byte.MaxValue);
 					return;
 				}	
 				var ifcmeasurewithunit = value as MeasureResource.IfcMeasureWithUnit;

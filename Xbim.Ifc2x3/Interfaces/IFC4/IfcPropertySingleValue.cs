@@ -227,6 +227,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 				if (value == null)
 				{
 					NominalValue = null;
+					if (_nominalValue4 != null)
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
 					return;
 				}	
 				if (value is Ifc4.MeasureResource.IfcAbsorbedDoseMeasure) 
