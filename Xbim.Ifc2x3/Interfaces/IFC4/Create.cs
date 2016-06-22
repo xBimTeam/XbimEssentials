@@ -36,5735 +36,3089 @@ namespace Xbim.Ifc4.Interfaces
 
 		public IIfcActionRequest ActionRequest(Action<IIfcActionRequest> init = null)
 		{
-			IIfcActionRequest result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedMgmtElements.IfcActionRequest>();
-			else
-				result = _model.Instances.New<Ifc2x3.FacilitiesMgmtDomain.IfcActionRequest>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedMgmtElements.IfcActionRequest>(init);
+			return _model.Instances.New<Ifc2x3.FacilitiesMgmtDomain.IfcActionRequest>(init);
 		}
 
 		public IIfcActor Actor(Action<IIfcActor> init = null)
 		{
-			IIfcActor result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<Kernel.IfcActor>();
-			else
-				result = _model.Instances.New<Ifc2x3.Kernel.IfcActor>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<Kernel.IfcActor>(init);
+			return _model.Instances.New<Ifc2x3.Kernel.IfcActor>(init);
 		}
 
 		public IIfcActorRole ActorRole(Action<IIfcActorRole> init = null)
 		{
-			IIfcActorRole result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ActorResource.IfcActorRole>();
-			else
-				result = _model.Instances.New<Ifc2x3.ActorResource.IfcActorRole>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ActorResource.IfcActorRole>(init);
+			return _model.Instances.New<Ifc2x3.ActorResource.IfcActorRole>(init);
 		}
 
 		public IIfcActuatorType ActuatorType(Action<IIfcActuatorType> init = null)
 		{
-			IIfcActuatorType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<BuildingControlsDomain.IfcActuatorType>();
-			else
-				result = _model.Instances.New<Ifc2x3.BuildingcontrolsDomain.IfcActuatorType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<BuildingControlsDomain.IfcActuatorType>(init);
+			return _model.Instances.New<Ifc2x3.BuildingcontrolsDomain.IfcActuatorType>(init);
 		}
 
 		public IIfcAirTerminalBoxType AirTerminalBoxType(Action<IIfcAirTerminalBoxType> init = null)
 		{
-			IIfcAirTerminalBoxType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcAirTerminalBoxType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcAirTerminalBoxType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcAirTerminalBoxType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcAirTerminalBoxType>(init);
 		}
 
 		public IIfcAirTerminalType AirTerminalType(Action<IIfcAirTerminalType> init = null)
 		{
-			IIfcAirTerminalType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcAirTerminalType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcAirTerminalType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcAirTerminalType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcAirTerminalType>(init);
 		}
 
 		public IIfcAirToAirHeatRecoveryType AirToAirHeatRecoveryType(Action<IIfcAirToAirHeatRecoveryType> init = null)
 		{
-			IIfcAirToAirHeatRecoveryType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcAirToAirHeatRecoveryType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcAirToAirHeatRecoveryType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcAirToAirHeatRecoveryType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcAirToAirHeatRecoveryType>(init);
 		}
 
 		public IIfcAlarmType AlarmType(Action<IIfcAlarmType> init = null)
 		{
-			IIfcAlarmType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<BuildingControlsDomain.IfcAlarmType>();
-			else
-				result = _model.Instances.New<Ifc2x3.BuildingcontrolsDomain.IfcAlarmType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<BuildingControlsDomain.IfcAlarmType>(init);
+			return _model.Instances.New<Ifc2x3.BuildingcontrolsDomain.IfcAlarmType>(init);
 		}
 
 		public IIfcAnnotation Annotation(Action<IIfcAnnotation> init = null)
 		{
-			IIfcAnnotation result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcAnnotation>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcAnnotation>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcAnnotation>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcAnnotation>(init);
 		}
 
 		public IIfcAnnotationFillArea AnnotationFillArea(Action<IIfcAnnotationFillArea> init = null)
 		{
-			IIfcAnnotationFillArea result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationDefinitionResource.IfcAnnotationFillArea>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationDefinitionResource.IfcAnnotationFillArea>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationDefinitionResource.IfcAnnotationFillArea>(init);
+			return _model.Instances.New<Ifc2x3.PresentationDefinitionResource.IfcAnnotationFillArea>(init);
 		}
 
 		public IIfcApplication Application(Action<IIfcApplication> init = null)
 		{
-			IIfcApplication result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<UtilityResource.IfcApplication>();
-			else
-				result = _model.Instances.New<Ifc2x3.UtilityResource.IfcApplication>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<UtilityResource.IfcApplication>(init);
+			return _model.Instances.New<Ifc2x3.UtilityResource.IfcApplication>(init);
 		}
 
 		public IIfcApproval Approval(Action<IIfcApproval> init = null)
 		{
-			IIfcApproval result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ApprovalResource.IfcApproval>();
-			else
-				result = _model.Instances.New<Ifc2x3.ApprovalResource.IfcApproval>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ApprovalResource.IfcApproval>(init);
+			return _model.Instances.New<Ifc2x3.ApprovalResource.IfcApproval>(init);
 		}
 
 		public IIfcApprovalRelationship ApprovalRelationship(Action<IIfcApprovalRelationship> init = null)
 		{
-			IIfcApprovalRelationship result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ApprovalResource.IfcApprovalRelationship>();
-			else
-				result = _model.Instances.New<Ifc2x3.ApprovalResource.IfcApprovalRelationship>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ApprovalResource.IfcApprovalRelationship>(init);
+			return _model.Instances.New<Ifc2x3.ApprovalResource.IfcApprovalRelationship>(init);
 		}
 
 		public IIfcArbitraryClosedProfileDef ArbitraryClosedProfileDef(Action<IIfcArbitraryClosedProfileDef> init = null)
 		{
-			IIfcArbitraryClosedProfileDef result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProfileResource.IfcArbitraryClosedProfileDef>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProfileResource.IfcArbitraryClosedProfileDef>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProfileResource.IfcArbitraryClosedProfileDef>(init);
+			return _model.Instances.New<Ifc2x3.ProfileResource.IfcArbitraryClosedProfileDef>(init);
 		}
 
 		public IIfcArbitraryOpenProfileDef ArbitraryOpenProfileDef(Action<IIfcArbitraryOpenProfileDef> init = null)
 		{
-			IIfcArbitraryOpenProfileDef result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProfileResource.IfcArbitraryOpenProfileDef>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProfileResource.IfcArbitraryOpenProfileDef>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProfileResource.IfcArbitraryOpenProfileDef>(init);
+			return _model.Instances.New<Ifc2x3.ProfileResource.IfcArbitraryOpenProfileDef>(init);
 		}
 
 		public IIfcArbitraryProfileDefWithVoids ArbitraryProfileDefWithVoids(Action<IIfcArbitraryProfileDefWithVoids> init = null)
 		{
-			IIfcArbitraryProfileDefWithVoids result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProfileResource.IfcArbitraryProfileDefWithVoids>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProfileResource.IfcArbitraryProfileDefWithVoids>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProfileResource.IfcArbitraryProfileDefWithVoids>(init);
+			return _model.Instances.New<Ifc2x3.ProfileResource.IfcArbitraryProfileDefWithVoids>(init);
 		}
 
 		public IIfcAsset Asset(Action<IIfcAsset> init = null)
 		{
-			IIfcAsset result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedFacilitiesElements.IfcAsset>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedFacilitiesElements.IfcAsset>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedFacilitiesElements.IfcAsset>(init);
+			return _model.Instances.New<Ifc2x3.SharedFacilitiesElements.IfcAsset>(init);
 		}
 
 		public IIfcAsymmetricIShapeProfileDef AsymmetricIShapeProfileDef(Action<IIfcAsymmetricIShapeProfileDef> init = null)
 		{
-			IIfcAsymmetricIShapeProfileDef result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProfileResource.IfcAsymmetricIShapeProfileDef>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProfileResource.IfcAsymmetricIShapeProfileDef>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProfileResource.IfcAsymmetricIShapeProfileDef>(init);
+			return _model.Instances.New<Ifc2x3.ProfileResource.IfcAsymmetricIShapeProfileDef>(init);
 		}
 
 		public IIfcAxis1Placement Axis1Placement(Action<IIfcAxis1Placement> init = null)
 		{
-			IIfcAxis1Placement result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcAxis1Placement>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcAxis1Placement>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcAxis1Placement>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcAxis1Placement>(init);
 		}
 
 		public IIfcAxis2Placement2D Axis2Placement2D(Action<IIfcAxis2Placement2D> init = null)
 		{
-			IIfcAxis2Placement2D result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcAxis2Placement2D>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcAxis2Placement2D>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcAxis2Placement2D>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcAxis2Placement2D>(init);
 		}
 
 		public IIfcAxis2Placement3D Axis2Placement3D(Action<IIfcAxis2Placement3D> init = null)
 		{
-			IIfcAxis2Placement3D result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcAxis2Placement3D>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcAxis2Placement3D>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcAxis2Placement3D>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcAxis2Placement3D>(init);
 		}
 
 		public IIfcBeam Beam(Action<IIfcBeam> init = null)
 		{
-			IIfcBeam result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcBeam>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcBeam>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcBeam>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcBeam>(init);
 		}
 
 		public IIfcBeamType BeamType(Action<IIfcBeamType> init = null)
 		{
-			IIfcBeamType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcBeamType>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcBeamType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcBeamType>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcBeamType>(init);
 		}
 
 		public IIfcBlobTexture BlobTexture(Action<IIfcBlobTexture> init = null)
 		{
-			IIfcBlobTexture result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcBlobTexture>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcBlobTexture>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcBlobTexture>(init);
+			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcBlobTexture>(init);
 		}
 
 		public IIfcBlock Block(Action<IIfcBlock> init = null)
 		{
-			IIfcBlock result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricModelResource.IfcBlock>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricModelResource.IfcBlock>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricModelResource.IfcBlock>(init);
+			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcBlock>(init);
 		}
 
 		public IIfcBoilerType BoilerType(Action<IIfcBoilerType> init = null)
 		{
-			IIfcBoilerType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcBoilerType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcBoilerType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcBoilerType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcBoilerType>(init);
 		}
 
 		public IIfcBooleanClippingResult BooleanClippingResult(Action<IIfcBooleanClippingResult> init = null)
 		{
-			IIfcBooleanClippingResult result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricModelResource.IfcBooleanClippingResult>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricModelResource.IfcBooleanClippingResult>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricModelResource.IfcBooleanClippingResult>(init);
+			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcBooleanClippingResult>(init);
 		}
 
 		public IIfcBooleanResult BooleanResult(Action<IIfcBooleanResult> init = null)
 		{
-			IIfcBooleanResult result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricModelResource.IfcBooleanResult>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricModelResource.IfcBooleanResult>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricModelResource.IfcBooleanResult>(init);
+			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcBooleanResult>(init);
 		}
 
 		public IIfcBoundaryEdgeCondition BoundaryEdgeCondition(Action<IIfcBoundaryEdgeCondition> init = null)
 		{
-			IIfcBoundaryEdgeCondition result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralLoadResource.IfcBoundaryEdgeCondition>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcBoundaryEdgeCondition>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralLoadResource.IfcBoundaryEdgeCondition>(init);
+			return _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcBoundaryEdgeCondition>(init);
 		}
 
 		public IIfcBoundaryFaceCondition BoundaryFaceCondition(Action<IIfcBoundaryFaceCondition> init = null)
 		{
-			IIfcBoundaryFaceCondition result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralLoadResource.IfcBoundaryFaceCondition>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcBoundaryFaceCondition>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralLoadResource.IfcBoundaryFaceCondition>(init);
+			return _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcBoundaryFaceCondition>(init);
 		}
 
 		public IIfcBoundaryNodeCondition BoundaryNodeCondition(Action<IIfcBoundaryNodeCondition> init = null)
 		{
-			IIfcBoundaryNodeCondition result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralLoadResource.IfcBoundaryNodeCondition>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcBoundaryNodeCondition>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralLoadResource.IfcBoundaryNodeCondition>(init);
+			return _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcBoundaryNodeCondition>(init);
 		}
 
 		public IIfcBoundaryNodeConditionWarping BoundaryNodeConditionWarping(Action<IIfcBoundaryNodeConditionWarping> init = null)
 		{
-			IIfcBoundaryNodeConditionWarping result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralLoadResource.IfcBoundaryNodeConditionWarping>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcBoundaryNodeConditionWarping>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralLoadResource.IfcBoundaryNodeConditionWarping>(init);
+			return _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcBoundaryNodeConditionWarping>(init);
 		}
 
 		public IIfcBoundingBox BoundingBox(Action<IIfcBoundingBox> init = null)
 		{
-			IIfcBoundingBox result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricModelResource.IfcBoundingBox>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricModelResource.IfcBoundingBox>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricModelResource.IfcBoundingBox>(init);
+			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcBoundingBox>(init);
 		}
 
 		public IIfcBoxedHalfSpace BoxedHalfSpace(Action<IIfcBoxedHalfSpace> init = null)
 		{
-			IIfcBoxedHalfSpace result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricModelResource.IfcBoxedHalfSpace>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricModelResource.IfcBoxedHalfSpace>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricModelResource.IfcBoxedHalfSpace>(init);
+			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcBoxedHalfSpace>(init);
 		}
 
 		public IIfcBuilding Building(Action<IIfcBuilding> init = null)
 		{
-			IIfcBuilding result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcBuilding>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcBuilding>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcBuilding>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcBuilding>(init);
 		}
 
 		public IIfcBuildingElementPart BuildingElementPart(Action<IIfcBuildingElementPart> init = null)
 		{
-			IIfcBuildingElementPart result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedComponentElements.IfcBuildingElementPart>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcBuildingElementPart>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedComponentElements.IfcBuildingElementPart>(init);
+			return _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcBuildingElementPart>(init);
 		}
 
 		public IIfcBuildingElementProxy BuildingElementProxy(Action<IIfcBuildingElementProxy> init = null)
 		{
-			IIfcBuildingElementProxy result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcBuildingElementProxy>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcBuildingElementProxy>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcBuildingElementProxy>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcBuildingElementProxy>(init);
 		}
 
 		public IIfcBuildingElementProxyType BuildingElementProxyType(Action<IIfcBuildingElementProxyType> init = null)
 		{
-			IIfcBuildingElementProxyType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcBuildingElementProxyType>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcBuildingElementProxyType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcBuildingElementProxyType>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcBuildingElementProxyType>(init);
 		}
 
 		public IIfcBuildingStorey BuildingStorey(Action<IIfcBuildingStorey> init = null)
 		{
-			IIfcBuildingStorey result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcBuildingStorey>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcBuildingStorey>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcBuildingStorey>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcBuildingStorey>(init);
 		}
 
 		public IIfcCShapeProfileDef CShapeProfileDef(Action<IIfcCShapeProfileDef> init = null)
 		{
-			IIfcCShapeProfileDef result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProfileResource.IfcCShapeProfileDef>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProfileResource.IfcCShapeProfileDef>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProfileResource.IfcCShapeProfileDef>(init);
+			return _model.Instances.New<Ifc2x3.ProfileResource.IfcCShapeProfileDef>(init);
 		}
 
 		public IIfcCableCarrierFittingType CableCarrierFittingType(Action<IIfcCableCarrierFittingType> init = null)
 		{
-			IIfcCableCarrierFittingType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ElectricalDomain.IfcCableCarrierFittingType>();
-			else
-				result = _model.Instances.New<Ifc2x3.ElectricalDomain.IfcCableCarrierFittingType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ElectricalDomain.IfcCableCarrierFittingType>(init);
+			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcCableCarrierFittingType>(init);
 		}
 
 		public IIfcCableCarrierSegmentType CableCarrierSegmentType(Action<IIfcCableCarrierSegmentType> init = null)
 		{
-			IIfcCableCarrierSegmentType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ElectricalDomain.IfcCableCarrierSegmentType>();
-			else
-				result = _model.Instances.New<Ifc2x3.ElectricalDomain.IfcCableCarrierSegmentType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ElectricalDomain.IfcCableCarrierSegmentType>(init);
+			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcCableCarrierSegmentType>(init);
 		}
 
 		public IIfcCableSegmentType CableSegmentType(Action<IIfcCableSegmentType> init = null)
 		{
-			IIfcCableSegmentType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ElectricalDomain.IfcCableSegmentType>();
-			else
-				result = _model.Instances.New<Ifc2x3.ElectricalDomain.IfcCableSegmentType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ElectricalDomain.IfcCableSegmentType>(init);
+			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcCableSegmentType>(init);
 		}
 
 		public IIfcCartesianPoint CartesianPoint(Action<IIfcCartesianPoint> init = null)
 		{
-			IIfcCartesianPoint result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcCartesianPoint>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcCartesianPoint>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcCartesianPoint>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcCartesianPoint>(init);
 		}
 
 		public IIfcCartesianTransformationOperator2D CartesianTransformationOperator2D(Action<IIfcCartesianTransformationOperator2D> init = null)
 		{
-			IIfcCartesianTransformationOperator2D result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcCartesianTransformationOperator2D>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcCartesianTransformationOperator2D>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcCartesianTransformationOperator2D>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcCartesianTransformationOperator2D>(init);
 		}
 
 		public IIfcCartesianTransformationOperator2DnonUniform CartesianTransformationOperator2DnonUniform(Action<IIfcCartesianTransformationOperator2DnonUniform> init = null)
 		{
-			IIfcCartesianTransformationOperator2DnonUniform result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcCartesianTransformationOperator2DnonUniform>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcCartesianTransformationOperator2DnonUniform>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcCartesianTransformationOperator2DnonUniform>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcCartesianTransformationOperator2DnonUniform>(init);
 		}
 
 		public IIfcCartesianTransformationOperator3D CartesianTransformationOperator3D(Action<IIfcCartesianTransformationOperator3D> init = null)
 		{
-			IIfcCartesianTransformationOperator3D result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcCartesianTransformationOperator3D>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcCartesianTransformationOperator3D>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcCartesianTransformationOperator3D>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcCartesianTransformationOperator3D>(init);
 		}
 
 		public IIfcCartesianTransformationOperator3DnonUniform CartesianTransformationOperator3DnonUniform(Action<IIfcCartesianTransformationOperator3DnonUniform> init = null)
 		{
-			IIfcCartesianTransformationOperator3DnonUniform result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcCartesianTransformationOperator3DnonUniform>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcCartesianTransformationOperator3DnonUniform>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcCartesianTransformationOperator3DnonUniform>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcCartesianTransformationOperator3DnonUniform>(init);
 		}
 
 		public IIfcCenterLineProfileDef CenterLineProfileDef(Action<IIfcCenterLineProfileDef> init = null)
 		{
-			IIfcCenterLineProfileDef result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProfileResource.IfcCenterLineProfileDef>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProfileResource.IfcCenterLineProfileDef>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProfileResource.IfcCenterLineProfileDef>(init);
+			return _model.Instances.New<Ifc2x3.ProfileResource.IfcCenterLineProfileDef>(init);
 		}
 
 		public IIfcChillerType ChillerType(Action<IIfcChillerType> init = null)
 		{
-			IIfcChillerType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcChillerType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcChillerType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcChillerType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcChillerType>(init);
 		}
 
 		public IIfcCircle Circle(Action<IIfcCircle> init = null)
 		{
-			IIfcCircle result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcCircle>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcCircle>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcCircle>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcCircle>(init);
 		}
 
 		public IIfcCircleHollowProfileDef CircleHollowProfileDef(Action<IIfcCircleHollowProfileDef> init = null)
 		{
-			IIfcCircleHollowProfileDef result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProfileResource.IfcCircleHollowProfileDef>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProfileResource.IfcCircleHollowProfileDef>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProfileResource.IfcCircleHollowProfileDef>(init);
+			return _model.Instances.New<Ifc2x3.ProfileResource.IfcCircleHollowProfileDef>(init);
 		}
 
 		public IIfcCircleProfileDef CircleProfileDef(Action<IIfcCircleProfileDef> init = null)
 		{
-			IIfcCircleProfileDef result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProfileResource.IfcCircleProfileDef>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProfileResource.IfcCircleProfileDef>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProfileResource.IfcCircleProfileDef>(init);
+			return _model.Instances.New<Ifc2x3.ProfileResource.IfcCircleProfileDef>(init);
 		}
 
 		public IIfcClassification Classification(Action<IIfcClassification> init = null)
 		{
-			IIfcClassification result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ExternalReferenceResource.IfcClassification>();
-			else
-				result = _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcClassification>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ExternalReferenceResource.IfcClassification>(init);
+			return _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcClassification>(init);
 		}
 
 		public IIfcClassificationReference ClassificationReference(Action<IIfcClassificationReference> init = null)
 		{
-			IIfcClassificationReference result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ExternalReferenceResource.IfcClassificationReference>();
-			else
-				result = _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcClassificationReference>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ExternalReferenceResource.IfcClassificationReference>(init);
+			return _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcClassificationReference>(init);
 		}
 
 		public IIfcClosedShell ClosedShell(Action<IIfcClosedShell> init = null)
 		{
-			IIfcClosedShell result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<TopologyResource.IfcClosedShell>();
-			else
-				result = _model.Instances.New<Ifc2x3.TopologyResource.IfcClosedShell>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<TopologyResource.IfcClosedShell>(init);
+			return _model.Instances.New<Ifc2x3.TopologyResource.IfcClosedShell>(init);
 		}
 
 		public IIfcCoilType CoilType(Action<IIfcCoilType> init = null)
 		{
-			IIfcCoilType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcCoilType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcCoilType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcCoilType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcCoilType>(init);
 		}
 
 		public IIfcColourRgb ColourRgb(Action<IIfcColourRgb> init = null)
 		{
-			IIfcColourRgb result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcColourRgb>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationResource.IfcColourRgb>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcColourRgb>(init);
+			return _model.Instances.New<Ifc2x3.PresentationResource.IfcColourRgb>(init);
 		}
 
 		public IIfcColumn Column(Action<IIfcColumn> init = null)
 		{
-			IIfcColumn result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcColumn>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcColumn>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcColumn>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcColumn>(init);
 		}
 
 		public IIfcColumnType ColumnType(Action<IIfcColumnType> init = null)
 		{
-			IIfcColumnType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcColumnType>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcColumnType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcColumnType>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcColumnType>(init);
 		}
 
 		public IIfcComplexProperty ComplexProperty(Action<IIfcComplexProperty> init = null)
 		{
-			IIfcComplexProperty result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PropertyResource.IfcComplexProperty>();
-			else
-				result = _model.Instances.New<Ifc2x3.PropertyResource.IfcComplexProperty>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PropertyResource.IfcComplexProperty>(init);
+			return _model.Instances.New<Ifc2x3.PropertyResource.IfcComplexProperty>(init);
 		}
 
 		public IIfcCompositeCurve CompositeCurve(Action<IIfcCompositeCurve> init = null)
 		{
-			IIfcCompositeCurve result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcCompositeCurve>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcCompositeCurve>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcCompositeCurve>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcCompositeCurve>(init);
 		}
 
 		public IIfcCompositeCurveSegment CompositeCurveSegment(Action<IIfcCompositeCurveSegment> init = null)
 		{
-			IIfcCompositeCurveSegment result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcCompositeCurveSegment>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcCompositeCurveSegment>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcCompositeCurveSegment>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcCompositeCurveSegment>(init);
 		}
 
 		public IIfcCompositeProfileDef CompositeProfileDef(Action<IIfcCompositeProfileDef> init = null)
 		{
-			IIfcCompositeProfileDef result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProfileResource.IfcCompositeProfileDef>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProfileResource.IfcCompositeProfileDef>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProfileResource.IfcCompositeProfileDef>(init);
+			return _model.Instances.New<Ifc2x3.ProfileResource.IfcCompositeProfileDef>(init);
 		}
 
 		public IIfcCompressorType CompressorType(Action<IIfcCompressorType> init = null)
 		{
-			IIfcCompressorType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcCompressorType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcCompressorType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcCompressorType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcCompressorType>(init);
 		}
 
 		public IIfcCondenserType CondenserType(Action<IIfcCondenserType> init = null)
 		{
-			IIfcCondenserType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcCondenserType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcCondenserType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcCondenserType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcCondenserType>(init);
 		}
 
 		public IIfcConnectedFaceSet ConnectedFaceSet(Action<IIfcConnectedFaceSet> init = null)
 		{
-			IIfcConnectedFaceSet result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<TopologyResource.IfcConnectedFaceSet>();
-			else
-				result = _model.Instances.New<Ifc2x3.TopologyResource.IfcConnectedFaceSet>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<TopologyResource.IfcConnectedFaceSet>(init);
+			return _model.Instances.New<Ifc2x3.TopologyResource.IfcConnectedFaceSet>(init);
 		}
 
 		public IIfcConnectionCurveGeometry ConnectionCurveGeometry(Action<IIfcConnectionCurveGeometry> init = null)
 		{
-			IIfcConnectionCurveGeometry result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricConstraintResource.IfcConnectionCurveGeometry>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcConnectionCurveGeometry>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricConstraintResource.IfcConnectionCurveGeometry>(init);
+			return _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcConnectionCurveGeometry>(init);
 		}
 
 		public IIfcConnectionPointEccentricity ConnectionPointEccentricity(Action<IIfcConnectionPointEccentricity> init = null)
 		{
-			IIfcConnectionPointEccentricity result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricConstraintResource.IfcConnectionPointEccentricity>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcConnectionPointEccentricity>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricConstraintResource.IfcConnectionPointEccentricity>(init);
+			return _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcConnectionPointEccentricity>(init);
 		}
 
 		public IIfcConnectionPointGeometry ConnectionPointGeometry(Action<IIfcConnectionPointGeometry> init = null)
 		{
-			IIfcConnectionPointGeometry result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricConstraintResource.IfcConnectionPointGeometry>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcConnectionPointGeometry>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricConstraintResource.IfcConnectionPointGeometry>(init);
+			return _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcConnectionPointGeometry>(init);
 		}
 
 		public IIfcConnectionSurfaceGeometry ConnectionSurfaceGeometry(Action<IIfcConnectionSurfaceGeometry> init = null)
 		{
-			IIfcConnectionSurfaceGeometry result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricConstraintResource.IfcConnectionSurfaceGeometry>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcConnectionSurfaceGeometry>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricConstraintResource.IfcConnectionSurfaceGeometry>(init);
+			return _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcConnectionSurfaceGeometry>(init);
 		}
 
 		public IIfcConstructionEquipmentResource ConstructionEquipmentResource(Action<IIfcConstructionEquipmentResource> init = null)
 		{
-			IIfcConstructionEquipmentResource result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ConstructionMgmtDomain.IfcConstructionEquipmentResource>();
-			else
-				result = _model.Instances.New<Ifc2x3.ConstructionMgmtDomain.IfcConstructionEquipmentResource>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ConstructionMgmtDomain.IfcConstructionEquipmentResource>(init);
+			return _model.Instances.New<Ifc2x3.ConstructionMgmtDomain.IfcConstructionEquipmentResource>(init);
 		}
 
 		public IIfcConstructionMaterialResource ConstructionMaterialResource(Action<IIfcConstructionMaterialResource> init = null)
 		{
-			IIfcConstructionMaterialResource result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ConstructionMgmtDomain.IfcConstructionMaterialResource>();
-			else
-				result = _model.Instances.New<Ifc2x3.ConstructionMgmtDomain.IfcConstructionMaterialResource>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ConstructionMgmtDomain.IfcConstructionMaterialResource>(init);
+			return _model.Instances.New<Ifc2x3.ConstructionMgmtDomain.IfcConstructionMaterialResource>(init);
 		}
 
 		public IIfcConstructionProductResource ConstructionProductResource(Action<IIfcConstructionProductResource> init = null)
 		{
-			IIfcConstructionProductResource result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ConstructionMgmtDomain.IfcConstructionProductResource>();
-			else
-				result = _model.Instances.New<Ifc2x3.ConstructionMgmtDomain.IfcConstructionProductResource>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ConstructionMgmtDomain.IfcConstructionProductResource>(init);
+			return _model.Instances.New<Ifc2x3.ConstructionMgmtDomain.IfcConstructionProductResource>(init);
 		}
 
 		public IIfcContextDependentUnit ContextDependentUnit(Action<IIfcContextDependentUnit> init = null)
 		{
-			IIfcContextDependentUnit result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<MeasureResource.IfcContextDependentUnit>();
-			else
-				result = _model.Instances.New<Ifc2x3.MeasureResource.IfcContextDependentUnit>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<MeasureResource.IfcContextDependentUnit>(init);
+			return _model.Instances.New<Ifc2x3.MeasureResource.IfcContextDependentUnit>(init);
 		}
 
 		public IIfcControllerType ControllerType(Action<IIfcControllerType> init = null)
 		{
-			IIfcControllerType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<BuildingControlsDomain.IfcControllerType>();
-			else
-				result = _model.Instances.New<Ifc2x3.BuildingcontrolsDomain.IfcControllerType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<BuildingControlsDomain.IfcControllerType>(init);
+			return _model.Instances.New<Ifc2x3.BuildingcontrolsDomain.IfcControllerType>(init);
 		}
 
 		public IIfcConversionBasedUnit ConversionBasedUnit(Action<IIfcConversionBasedUnit> init = null)
 		{
-			IIfcConversionBasedUnit result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<MeasureResource.IfcConversionBasedUnit>();
-			else
-				result = _model.Instances.New<Ifc2x3.MeasureResource.IfcConversionBasedUnit>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<MeasureResource.IfcConversionBasedUnit>(init);
+			return _model.Instances.New<Ifc2x3.MeasureResource.IfcConversionBasedUnit>(init);
 		}
 
 		public IIfcCooledBeamType CooledBeamType(Action<IIfcCooledBeamType> init = null)
 		{
-			IIfcCooledBeamType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcCooledBeamType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcCooledBeamType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcCooledBeamType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcCooledBeamType>(init);
 		}
 
 		public IIfcCoolingTowerType CoolingTowerType(Action<IIfcCoolingTowerType> init = null)
 		{
-			IIfcCoolingTowerType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcCoolingTowerType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcCoolingTowerType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcCoolingTowerType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcCoolingTowerType>(init);
 		}
 
 		public IIfcCostItem CostItem(Action<IIfcCostItem> init = null)
 		{
-			IIfcCostItem result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedMgmtElements.IfcCostItem>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedMgmtElements.IfcCostItem>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedMgmtElements.IfcCostItem>(init);
+			return _model.Instances.New<Ifc2x3.SharedMgmtElements.IfcCostItem>(init);
 		}
 
 		public IIfcCostSchedule CostSchedule(Action<IIfcCostSchedule> init = null)
 		{
-			IIfcCostSchedule result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedMgmtElements.IfcCostSchedule>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedMgmtElements.IfcCostSchedule>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedMgmtElements.IfcCostSchedule>(init);
+			return _model.Instances.New<Ifc2x3.SharedMgmtElements.IfcCostSchedule>(init);
 		}
 
 		public IIfcCostValue CostValue(Action<IIfcCostValue> init = null)
 		{
-			IIfcCostValue result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<CostResource.IfcCostValue>();
-			else
-				result = _model.Instances.New<Ifc2x3.CostResource.IfcCostValue>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<CostResource.IfcCostValue>(init);
+			return _model.Instances.New<Ifc2x3.CostResource.IfcCostValue>(init);
 		}
 
 		public IIfcCovering Covering(Action<IIfcCovering> init = null)
 		{
-			IIfcCovering result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcCovering>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcCovering>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcCovering>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcCovering>(init);
 		}
 
 		public IIfcCoveringType CoveringType(Action<IIfcCoveringType> init = null)
 		{
-			IIfcCoveringType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcCoveringType>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcCoveringType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcCoveringType>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcCoveringType>(init);
 		}
 
 		public IIfcCrewResource CrewResource(Action<IIfcCrewResource> init = null)
 		{
-			IIfcCrewResource result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ConstructionMgmtDomain.IfcCrewResource>();
-			else
-				result = _model.Instances.New<Ifc2x3.ConstructionMgmtDomain.IfcCrewResource>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ConstructionMgmtDomain.IfcCrewResource>(init);
+			return _model.Instances.New<Ifc2x3.ConstructionMgmtDomain.IfcCrewResource>(init);
 		}
 
 		public IIfcCsgSolid CsgSolid(Action<IIfcCsgSolid> init = null)
 		{
-			IIfcCsgSolid result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricModelResource.IfcCsgSolid>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricModelResource.IfcCsgSolid>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricModelResource.IfcCsgSolid>(init);
+			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcCsgSolid>(init);
 		}
 
 		public IIfcCurrencyRelationship CurrencyRelationship(Action<IIfcCurrencyRelationship> init = null)
 		{
-			IIfcCurrencyRelationship result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<CostResource.IfcCurrencyRelationship>();
-			else
-				result = _model.Instances.New<Ifc2x3.CostResource.IfcCurrencyRelationship>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<CostResource.IfcCurrencyRelationship>(init);
+			return _model.Instances.New<Ifc2x3.CostResource.IfcCurrencyRelationship>(init);
 		}
 
 		public IIfcCurtainWall CurtainWall(Action<IIfcCurtainWall> init = null)
 		{
-			IIfcCurtainWall result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcCurtainWall>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcCurtainWall>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcCurtainWall>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcCurtainWall>(init);
 		}
 
 		public IIfcCurtainWallType CurtainWallType(Action<IIfcCurtainWallType> init = null)
 		{
-			IIfcCurtainWallType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcCurtainWallType>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcCurtainWallType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcCurtainWallType>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcCurtainWallType>(init);
 		}
 
 		public IIfcCurveBoundedPlane CurveBoundedPlane(Action<IIfcCurveBoundedPlane> init = null)
 		{
-			IIfcCurveBoundedPlane result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcCurveBoundedPlane>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcCurveBoundedPlane>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcCurveBoundedPlane>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcCurveBoundedPlane>(init);
 		}
 
 		public IIfcCurveStyle CurveStyle(Action<IIfcCurveStyle> init = null)
 		{
-			IIfcCurveStyle result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcCurveStyle>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcCurveStyle>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcCurveStyle>(init);
+			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcCurveStyle>(init);
 		}
 
 		public IIfcCurveStyleFont CurveStyleFont(Action<IIfcCurveStyleFont> init = null)
 		{
-			IIfcCurveStyleFont result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcCurveStyleFont>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcCurveStyleFont>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcCurveStyleFont>(init);
+			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcCurveStyleFont>(init);
 		}
 
 		public IIfcCurveStyleFontAndScaling CurveStyleFontAndScaling(Action<IIfcCurveStyleFontAndScaling> init = null)
 		{
-			IIfcCurveStyleFontAndScaling result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcCurveStyleFontAndScaling>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcCurveStyleFontAndScaling>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcCurveStyleFontAndScaling>(init);
+			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcCurveStyleFontAndScaling>(init);
 		}
 
 		public IIfcCurveStyleFontPattern CurveStyleFontPattern(Action<IIfcCurveStyleFontPattern> init = null)
 		{
-			IIfcCurveStyleFontPattern result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcCurveStyleFontPattern>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcCurveStyleFontPattern>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcCurveStyleFontPattern>(init);
+			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcCurveStyleFontPattern>(init);
 		}
 
 		public IIfcDamperType DamperType(Action<IIfcDamperType> init = null)
 		{
-			IIfcDamperType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcDamperType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcDamperType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcDamperType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcDamperType>(init);
 		}
 
 		public IIfcDerivedProfileDef DerivedProfileDef(Action<IIfcDerivedProfileDef> init = null)
 		{
-			IIfcDerivedProfileDef result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProfileResource.IfcDerivedProfileDef>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProfileResource.IfcDerivedProfileDef>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProfileResource.IfcDerivedProfileDef>(init);
+			return _model.Instances.New<Ifc2x3.ProfileResource.IfcDerivedProfileDef>(init);
 		}
 
 		public IIfcDerivedUnit DerivedUnit(Action<IIfcDerivedUnit> init = null)
 		{
-			IIfcDerivedUnit result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<MeasureResource.IfcDerivedUnit>();
-			else
-				result = _model.Instances.New<Ifc2x3.MeasureResource.IfcDerivedUnit>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<MeasureResource.IfcDerivedUnit>(init);
+			return _model.Instances.New<Ifc2x3.MeasureResource.IfcDerivedUnit>(init);
 		}
 
 		public IIfcDerivedUnitElement DerivedUnitElement(Action<IIfcDerivedUnitElement> init = null)
 		{
-			IIfcDerivedUnitElement result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<MeasureResource.IfcDerivedUnitElement>();
-			else
-				result = _model.Instances.New<Ifc2x3.MeasureResource.IfcDerivedUnitElement>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<MeasureResource.IfcDerivedUnitElement>(init);
+			return _model.Instances.New<Ifc2x3.MeasureResource.IfcDerivedUnitElement>(init);
 		}
 
 		public IIfcDimensionalExponents DimensionalExponents(Action<IIfcDimensionalExponents> init = null)
 		{
-			IIfcDimensionalExponents result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<MeasureResource.IfcDimensionalExponents>();
-			else
-				result = _model.Instances.New<Ifc2x3.MeasureResource.IfcDimensionalExponents>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<MeasureResource.IfcDimensionalExponents>(init);
+			return _model.Instances.New<Ifc2x3.MeasureResource.IfcDimensionalExponents>(init);
 		}
 
 		public IIfcDirection Direction(Action<IIfcDirection> init = null)
 		{
-			IIfcDirection result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcDirection>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcDirection>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcDirection>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcDirection>(init);
 		}
 
 		public IIfcDiscreteAccessory DiscreteAccessory(Action<IIfcDiscreteAccessory> init = null)
 		{
-			IIfcDiscreteAccessory result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedComponentElements.IfcDiscreteAccessory>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedComponentElements.IfcDiscreteAccessory>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedComponentElements.IfcDiscreteAccessory>(init);
+			return _model.Instances.New<Ifc2x3.SharedComponentElements.IfcDiscreteAccessory>(init);
 		}
 
 		public IIfcDiscreteAccessoryType DiscreteAccessoryType(Action<IIfcDiscreteAccessoryType> init = null)
 		{
-			IIfcDiscreteAccessoryType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedComponentElements.IfcDiscreteAccessoryType>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedComponentElements.IfcDiscreteAccessoryType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedComponentElements.IfcDiscreteAccessoryType>(init);
+			return _model.Instances.New<Ifc2x3.SharedComponentElements.IfcDiscreteAccessoryType>(init);
 		}
 
 		public IIfcDistributionChamberElement DistributionChamberElement(Action<IIfcDistributionChamberElement> init = null)
 		{
-			IIfcDistributionChamberElement result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgServiceElements.IfcDistributionChamberElement>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcDistributionChamberElement>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgServiceElements.IfcDistributionChamberElement>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcDistributionChamberElement>(init);
 		}
 
 		public IIfcDistributionChamberElementType DistributionChamberElementType(Action<IIfcDistributionChamberElementType> init = null)
 		{
-			IIfcDistributionChamberElementType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgServiceElements.IfcDistributionChamberElementType>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcDistributionChamberElementType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgServiceElements.IfcDistributionChamberElementType>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcDistributionChamberElementType>(init);
 		}
 
 		public IIfcDistributionControlElement DistributionControlElement(Action<IIfcDistributionControlElement> init = null)
 		{
-			IIfcDistributionControlElement result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgServiceElements.IfcDistributionControlElement>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcDistributionControlElement>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgServiceElements.IfcDistributionControlElement>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcDistributionControlElement>(init);
 		}
 
 		public IIfcDistributionElement DistributionElement(Action<IIfcDistributionElement> init = null)
 		{
-			IIfcDistributionElement result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcDistributionElement>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcDistributionElement>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcDistributionElement>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcDistributionElement>(init);
 		}
 
 		public IIfcDistributionElementType DistributionElementType(Action<IIfcDistributionElementType> init = null)
 		{
-			IIfcDistributionElementType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcDistributionElementType>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcDistributionElementType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcDistributionElementType>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcDistributionElementType>(init);
 		}
 
 		public IIfcDistributionFlowElement DistributionFlowElement(Action<IIfcDistributionFlowElement> init = null)
 		{
-			IIfcDistributionFlowElement result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgServiceElements.IfcDistributionFlowElement>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcDistributionFlowElement>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgServiceElements.IfcDistributionFlowElement>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcDistributionFlowElement>(init);
 		}
 
 		public IIfcDistributionPort DistributionPort(Action<IIfcDistributionPort> init = null)
 		{
-			IIfcDistributionPort result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgServiceElements.IfcDistributionPort>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcDistributionPort>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgServiceElements.IfcDistributionPort>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcDistributionPort>(init);
 		}
 
 		public IIfcDocumentInformation DocumentInformation(Action<IIfcDocumentInformation> init = null)
 		{
-			IIfcDocumentInformation result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ExternalReferenceResource.IfcDocumentInformation>();
-			else
-				result = _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcDocumentInformation>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ExternalReferenceResource.IfcDocumentInformation>(init);
+			return _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcDocumentInformation>(init);
 		}
 
 		public IIfcDocumentInformationRelationship DocumentInformationRelationship(Action<IIfcDocumentInformationRelationship> init = null)
 		{
-			IIfcDocumentInformationRelationship result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ExternalReferenceResource.IfcDocumentInformationRelationship>();
-			else
-				result = _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcDocumentInformationRelationship>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ExternalReferenceResource.IfcDocumentInformationRelationship>(init);
+			return _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcDocumentInformationRelationship>(init);
 		}
 
 		public IIfcDocumentReference DocumentReference(Action<IIfcDocumentReference> init = null)
 		{
-			IIfcDocumentReference result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ExternalReferenceResource.IfcDocumentReference>();
-			else
-				result = _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcDocumentReference>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ExternalReferenceResource.IfcDocumentReference>(init);
+			return _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcDocumentReference>(init);
 		}
 
 		public IIfcDoor Door(Action<IIfcDoor> init = null)
 		{
-			IIfcDoor result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcDoor>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcDoor>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcDoor>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcDoor>(init);
 		}
 
 		public IIfcDoorLiningProperties DoorLiningProperties(Action<IIfcDoorLiningProperties> init = null)
 		{
-			IIfcDoorLiningProperties result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ArchitectureDomain.IfcDoorLiningProperties>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcDoorLiningProperties>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ArchitectureDomain.IfcDoorLiningProperties>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcDoorLiningProperties>(init);
 		}
 
 		public IIfcDoorPanelProperties DoorPanelProperties(Action<IIfcDoorPanelProperties> init = null)
 		{
-			IIfcDoorPanelProperties result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ArchitectureDomain.IfcDoorPanelProperties>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcDoorPanelProperties>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ArchitectureDomain.IfcDoorPanelProperties>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcDoorPanelProperties>(init);
 		}
 
 		public IIfcDoorStyle DoorStyle(Action<IIfcDoorStyle> init = null)
 		{
-			IIfcDoorStyle result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ArchitectureDomain.IfcDoorStyle>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcDoorStyle>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ArchitectureDomain.IfcDoorStyle>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcDoorStyle>(init);
 		}
 
 		public IIfcDraughtingPreDefinedColour DraughtingPreDefinedColour(Action<IIfcDraughtingPreDefinedColour> init = null)
 		{
-			IIfcDraughtingPreDefinedColour result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcDraughtingPreDefinedColour>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationResource.IfcDraughtingPreDefinedColour>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcDraughtingPreDefinedColour>(init);
+			return _model.Instances.New<Ifc2x3.PresentationResource.IfcDraughtingPreDefinedColour>(init);
 		}
 
 		public IIfcDraughtingPreDefinedCurveFont DraughtingPreDefinedCurveFont(Action<IIfcDraughtingPreDefinedCurveFont> init = null)
 		{
-			IIfcDraughtingPreDefinedCurveFont result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcDraughtingPreDefinedCurveFont>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcDraughtingPreDefinedCurveFont>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcDraughtingPreDefinedCurveFont>(init);
+			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcDraughtingPreDefinedCurveFont>(init);
 		}
 
 		public IIfcDuctFittingType DuctFittingType(Action<IIfcDuctFittingType> init = null)
 		{
-			IIfcDuctFittingType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcDuctFittingType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcDuctFittingType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcDuctFittingType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcDuctFittingType>(init);
 		}
 
 		public IIfcDuctSegmentType DuctSegmentType(Action<IIfcDuctSegmentType> init = null)
 		{
-			IIfcDuctSegmentType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcDuctSegmentType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcDuctSegmentType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcDuctSegmentType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcDuctSegmentType>(init);
 		}
 
 		public IIfcDuctSilencerType DuctSilencerType(Action<IIfcDuctSilencerType> init = null)
 		{
-			IIfcDuctSilencerType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcDuctSilencerType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcDuctSilencerType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcDuctSilencerType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcDuctSilencerType>(init);
 		}
 
 		public IIfcEdge Edge(Action<IIfcEdge> init = null)
 		{
-			IIfcEdge result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<TopologyResource.IfcEdge>();
-			else
-				result = _model.Instances.New<Ifc2x3.TopologyResource.IfcEdge>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<TopologyResource.IfcEdge>(init);
+			return _model.Instances.New<Ifc2x3.TopologyResource.IfcEdge>(init);
 		}
 
 		public IIfcEdgeCurve EdgeCurve(Action<IIfcEdgeCurve> init = null)
 		{
-			IIfcEdgeCurve result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<TopologyResource.IfcEdgeCurve>();
-			else
-				result = _model.Instances.New<Ifc2x3.TopologyResource.IfcEdgeCurve>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<TopologyResource.IfcEdgeCurve>(init);
+			return _model.Instances.New<Ifc2x3.TopologyResource.IfcEdgeCurve>(init);
 		}
 
 		public IIfcEdgeLoop EdgeLoop(Action<IIfcEdgeLoop> init = null)
 		{
-			IIfcEdgeLoop result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<TopologyResource.IfcEdgeLoop>();
-			else
-				result = _model.Instances.New<Ifc2x3.TopologyResource.IfcEdgeLoop>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<TopologyResource.IfcEdgeLoop>(init);
+			return _model.Instances.New<Ifc2x3.TopologyResource.IfcEdgeLoop>(init);
 		}
 
 		public IIfcElectricApplianceType ElectricApplianceType(Action<IIfcElectricApplianceType> init = null)
 		{
-			IIfcElectricApplianceType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ElectricalDomain.IfcElectricApplianceType>();
-			else
-				result = _model.Instances.New<Ifc2x3.ElectricalDomain.IfcElectricApplianceType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ElectricalDomain.IfcElectricApplianceType>(init);
+			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcElectricApplianceType>(init);
 		}
 
 		public IIfcElectricFlowStorageDeviceType ElectricFlowStorageDeviceType(Action<IIfcElectricFlowStorageDeviceType> init = null)
 		{
-			IIfcElectricFlowStorageDeviceType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ElectricalDomain.IfcElectricFlowStorageDeviceType>();
-			else
-				result = _model.Instances.New<Ifc2x3.ElectricalDomain.IfcElectricFlowStorageDeviceType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ElectricalDomain.IfcElectricFlowStorageDeviceType>(init);
+			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcElectricFlowStorageDeviceType>(init);
 		}
 
 		public IIfcElectricGeneratorType ElectricGeneratorType(Action<IIfcElectricGeneratorType> init = null)
 		{
-			IIfcElectricGeneratorType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ElectricalDomain.IfcElectricGeneratorType>();
-			else
-				result = _model.Instances.New<Ifc2x3.ElectricalDomain.IfcElectricGeneratorType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ElectricalDomain.IfcElectricGeneratorType>(init);
+			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcElectricGeneratorType>(init);
 		}
 
 		public IIfcElectricMotorType ElectricMotorType(Action<IIfcElectricMotorType> init = null)
 		{
-			IIfcElectricMotorType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ElectricalDomain.IfcElectricMotorType>();
-			else
-				result = _model.Instances.New<Ifc2x3.ElectricalDomain.IfcElectricMotorType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ElectricalDomain.IfcElectricMotorType>(init);
+			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcElectricMotorType>(init);
 		}
 
 		public IIfcElectricTimeControlType ElectricTimeControlType(Action<IIfcElectricTimeControlType> init = null)
 		{
-			IIfcElectricTimeControlType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ElectricalDomain.IfcElectricTimeControlType>();
-			else
-				result = _model.Instances.New<Ifc2x3.ElectricalDomain.IfcElectricTimeControlType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ElectricalDomain.IfcElectricTimeControlType>(init);
+			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcElectricTimeControlType>(init);
 		}
 
 		public IIfcElementAssembly ElementAssembly(Action<IIfcElementAssembly> init = null)
 		{
-			IIfcElementAssembly result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcElementAssembly>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcElementAssembly>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcElementAssembly>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcElementAssembly>(init);
 		}
 
 		public IIfcElementQuantity ElementQuantity(Action<IIfcElementQuantity> init = null)
 		{
-			IIfcElementQuantity result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcElementQuantity>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcElementQuantity>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcElementQuantity>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcElementQuantity>(init);
 		}
 
 		public IIfcEllipse Ellipse(Action<IIfcEllipse> init = null)
 		{
-			IIfcEllipse result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcEllipse>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcEllipse>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcEllipse>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcEllipse>(init);
 		}
 
 		public IIfcEllipseProfileDef EllipseProfileDef(Action<IIfcEllipseProfileDef> init = null)
 		{
-			IIfcEllipseProfileDef result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProfileResource.IfcEllipseProfileDef>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProfileResource.IfcEllipseProfileDef>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProfileResource.IfcEllipseProfileDef>(init);
+			return _model.Instances.New<Ifc2x3.ProfileResource.IfcEllipseProfileDef>(init);
 		}
 
 		public IIfcEnergyConversionDevice EnergyConversionDevice(Action<IIfcEnergyConversionDevice> init = null)
 		{
-			IIfcEnergyConversionDevice result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgServiceElements.IfcEnergyConversionDevice>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcEnergyConversionDevice>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgServiceElements.IfcEnergyConversionDevice>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcEnergyConversionDevice>(init);
 		}
 
 		public IIfcEvaporativeCoolerType EvaporativeCoolerType(Action<IIfcEvaporativeCoolerType> init = null)
 		{
-			IIfcEvaporativeCoolerType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcEvaporativeCoolerType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcEvaporativeCoolerType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcEvaporativeCoolerType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcEvaporativeCoolerType>(init);
 		}
 
 		public IIfcEvaporatorType EvaporatorType(Action<IIfcEvaporatorType> init = null)
 		{
-			IIfcEvaporatorType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcEvaporatorType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcEvaporatorType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcEvaporatorType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcEvaporatorType>(init);
 		}
 
 		public IIfcExternallyDefinedHatchStyle ExternallyDefinedHatchStyle(Action<IIfcExternallyDefinedHatchStyle> init = null)
 		{
-			IIfcExternallyDefinedHatchStyle result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcExternallyDefinedHatchStyle>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcExternallyDefinedHatchStyle>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcExternallyDefinedHatchStyle>(init);
+			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcExternallyDefinedHatchStyle>(init);
 		}
 
 		public IIfcExternallyDefinedSurfaceStyle ExternallyDefinedSurfaceStyle(Action<IIfcExternallyDefinedSurfaceStyle> init = null)
 		{
-			IIfcExternallyDefinedSurfaceStyle result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcExternallyDefinedSurfaceStyle>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcExternallyDefinedSurfaceStyle>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcExternallyDefinedSurfaceStyle>(init);
+			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcExternallyDefinedSurfaceStyle>(init);
 		}
 
 		public IIfcExternallyDefinedTextFont ExternallyDefinedTextFont(Action<IIfcExternallyDefinedTextFont> init = null)
 		{
-			IIfcExternallyDefinedTextFont result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcExternallyDefinedTextFont>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationResource.IfcExternallyDefinedTextFont>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcExternallyDefinedTextFont>(init);
+			return _model.Instances.New<Ifc2x3.PresentationResource.IfcExternallyDefinedTextFont>(init);
 		}
 
 		public IIfcExtrudedAreaSolid ExtrudedAreaSolid(Action<IIfcExtrudedAreaSolid> init = null)
 		{
-			IIfcExtrudedAreaSolid result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricModelResource.IfcExtrudedAreaSolid>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricModelResource.IfcExtrudedAreaSolid>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricModelResource.IfcExtrudedAreaSolid>(init);
+			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcExtrudedAreaSolid>(init);
 		}
 
 		public IIfcFace Face(Action<IIfcFace> init = null)
 		{
-			IIfcFace result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<TopologyResource.IfcFace>();
-			else
-				result = _model.Instances.New<Ifc2x3.TopologyResource.IfcFace>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<TopologyResource.IfcFace>(init);
+			return _model.Instances.New<Ifc2x3.TopologyResource.IfcFace>(init);
 		}
 
 		public IIfcFaceBasedSurfaceModel FaceBasedSurfaceModel(Action<IIfcFaceBasedSurfaceModel> init = null)
 		{
-			IIfcFaceBasedSurfaceModel result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricModelResource.IfcFaceBasedSurfaceModel>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricModelResource.IfcFaceBasedSurfaceModel>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricModelResource.IfcFaceBasedSurfaceModel>(init);
+			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcFaceBasedSurfaceModel>(init);
 		}
 
 		public IIfcFaceBound FaceBound(Action<IIfcFaceBound> init = null)
 		{
-			IIfcFaceBound result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<TopologyResource.IfcFaceBound>();
-			else
-				result = _model.Instances.New<Ifc2x3.TopologyResource.IfcFaceBound>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<TopologyResource.IfcFaceBound>(init);
+			return _model.Instances.New<Ifc2x3.TopologyResource.IfcFaceBound>(init);
 		}
 
 		public IIfcFaceOuterBound FaceOuterBound(Action<IIfcFaceOuterBound> init = null)
 		{
-			IIfcFaceOuterBound result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<TopologyResource.IfcFaceOuterBound>();
-			else
-				result = _model.Instances.New<Ifc2x3.TopologyResource.IfcFaceOuterBound>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<TopologyResource.IfcFaceOuterBound>(init);
+			return _model.Instances.New<Ifc2x3.TopologyResource.IfcFaceOuterBound>(init);
 		}
 
 		public IIfcFaceSurface FaceSurface(Action<IIfcFaceSurface> init = null)
 		{
-			IIfcFaceSurface result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<TopologyResource.IfcFaceSurface>();
-			else
-				result = _model.Instances.New<Ifc2x3.TopologyResource.IfcFaceSurface>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<TopologyResource.IfcFaceSurface>(init);
+			return _model.Instances.New<Ifc2x3.TopologyResource.IfcFaceSurface>(init);
 		}
 
 		public IIfcFacetedBrep FacetedBrep(Action<IIfcFacetedBrep> init = null)
 		{
-			IIfcFacetedBrep result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricModelResource.IfcFacetedBrep>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricModelResource.IfcFacetedBrep>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricModelResource.IfcFacetedBrep>(init);
+			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcFacetedBrep>(init);
 		}
 
 		public IIfcFacetedBrepWithVoids FacetedBrepWithVoids(Action<IIfcFacetedBrepWithVoids> init = null)
 		{
-			IIfcFacetedBrepWithVoids result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricModelResource.IfcFacetedBrepWithVoids>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricModelResource.IfcFacetedBrepWithVoids>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricModelResource.IfcFacetedBrepWithVoids>(init);
+			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcFacetedBrepWithVoids>(init);
 		}
 
 		public IIfcFailureConnectionCondition FailureConnectionCondition(Action<IIfcFailureConnectionCondition> init = null)
 		{
-			IIfcFailureConnectionCondition result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralLoadResource.IfcFailureConnectionCondition>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcFailureConnectionCondition>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralLoadResource.IfcFailureConnectionCondition>(init);
+			return _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcFailureConnectionCondition>(init);
 		}
 
 		public IIfcFanType FanType(Action<IIfcFanType> init = null)
 		{
-			IIfcFanType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcFanType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcFanType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcFanType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcFanType>(init);
 		}
 
 		public IIfcFastener Fastener(Action<IIfcFastener> init = null)
 		{
-			IIfcFastener result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedComponentElements.IfcFastener>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedComponentElements.IfcFastener>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedComponentElements.IfcFastener>(init);
+			return _model.Instances.New<Ifc2x3.SharedComponentElements.IfcFastener>(init);
 		}
 
 		public IIfcFastenerType FastenerType(Action<IIfcFastenerType> init = null)
 		{
-			IIfcFastenerType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedComponentElements.IfcFastenerType>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedComponentElements.IfcFastenerType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedComponentElements.IfcFastenerType>(init);
+			return _model.Instances.New<Ifc2x3.SharedComponentElements.IfcFastenerType>(init);
 		}
 
 		public IIfcFillAreaStyle FillAreaStyle(Action<IIfcFillAreaStyle> init = null)
 		{
-			IIfcFillAreaStyle result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcFillAreaStyle>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcFillAreaStyle>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcFillAreaStyle>(init);
+			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcFillAreaStyle>(init);
 		}
 
 		public IIfcFillAreaStyleHatching FillAreaStyleHatching(Action<IIfcFillAreaStyleHatching> init = null)
 		{
-			IIfcFillAreaStyleHatching result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcFillAreaStyleHatching>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcFillAreaStyleHatching>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcFillAreaStyleHatching>(init);
+			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcFillAreaStyleHatching>(init);
 		}
 
 		public IIfcFillAreaStyleTiles FillAreaStyleTiles(Action<IIfcFillAreaStyleTiles> init = null)
 		{
-			IIfcFillAreaStyleTiles result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcFillAreaStyleTiles>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcFillAreaStyleTiles>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcFillAreaStyleTiles>(init);
+			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcFillAreaStyleTiles>(init);
 		}
 
 		public IIfcFilterType FilterType(Action<IIfcFilterType> init = null)
 		{
-			IIfcFilterType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcFilterType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcFilterType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcFilterType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcFilterType>(init);
 		}
 
 		public IIfcFireSuppressionTerminalType FireSuppressionTerminalType(Action<IIfcFireSuppressionTerminalType> init = null)
 		{
-			IIfcFireSuppressionTerminalType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PlumbingFireProtectionDomain.IfcFireSuppressionTerminalType>();
-			else
-				result = _model.Instances.New<Ifc2x3.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PlumbingFireProtectionDomain.IfcFireSuppressionTerminalType>(init);
+			return _model.Instances.New<Ifc2x3.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalType>(init);
 		}
 
 		public IIfcFlowController FlowController(Action<IIfcFlowController> init = null)
 		{
-			IIfcFlowController result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgServiceElements.IfcFlowController>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowController>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgServiceElements.IfcFlowController>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowController>(init);
 		}
 
 		public IIfcFlowFitting FlowFitting(Action<IIfcFlowFitting> init = null)
 		{
-			IIfcFlowFitting result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgServiceElements.IfcFlowFitting>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowFitting>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgServiceElements.IfcFlowFitting>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowFitting>(init);
 		}
 
 		public IIfcFlowInstrumentType FlowInstrumentType(Action<IIfcFlowInstrumentType> init = null)
 		{
-			IIfcFlowInstrumentType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<BuildingControlsDomain.IfcFlowInstrumentType>();
-			else
-				result = _model.Instances.New<Ifc2x3.BuildingcontrolsDomain.IfcFlowInstrumentType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<BuildingControlsDomain.IfcFlowInstrumentType>(init);
+			return _model.Instances.New<Ifc2x3.BuildingcontrolsDomain.IfcFlowInstrumentType>(init);
 		}
 
 		public IIfcFlowMeterType FlowMeterType(Action<IIfcFlowMeterType> init = null)
 		{
-			IIfcFlowMeterType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcFlowMeterType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcFlowMeterType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcFlowMeterType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcFlowMeterType>(init);
 		}
 
 		public IIfcFlowMovingDevice FlowMovingDevice(Action<IIfcFlowMovingDevice> init = null)
 		{
-			IIfcFlowMovingDevice result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgServiceElements.IfcFlowMovingDevice>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowMovingDevice>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgServiceElements.IfcFlowMovingDevice>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowMovingDevice>(init);
 		}
 
 		public IIfcFlowSegment FlowSegment(Action<IIfcFlowSegment> init = null)
 		{
-			IIfcFlowSegment result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgServiceElements.IfcFlowSegment>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowSegment>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgServiceElements.IfcFlowSegment>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowSegment>(init);
 		}
 
 		public IIfcFlowStorageDevice FlowStorageDevice(Action<IIfcFlowStorageDevice> init = null)
 		{
-			IIfcFlowStorageDevice result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgServiceElements.IfcFlowStorageDevice>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowStorageDevice>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgServiceElements.IfcFlowStorageDevice>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowStorageDevice>(init);
 		}
 
 		public IIfcFlowTerminal FlowTerminal(Action<IIfcFlowTerminal> init = null)
 		{
-			IIfcFlowTerminal result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgServiceElements.IfcFlowTerminal>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowTerminal>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgServiceElements.IfcFlowTerminal>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowTerminal>(init);
 		}
 
 		public IIfcFlowTreatmentDevice FlowTreatmentDevice(Action<IIfcFlowTreatmentDevice> init = null)
 		{
-			IIfcFlowTreatmentDevice result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgServiceElements.IfcFlowTreatmentDevice>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowTreatmentDevice>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgServiceElements.IfcFlowTreatmentDevice>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowTreatmentDevice>(init);
 		}
 
 		public IIfcFooting Footing(Action<IIfcFooting> init = null)
 		{
-			IIfcFooting result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralElementsDomain.IfcFooting>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcFooting>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralElementsDomain.IfcFooting>(init);
+			return _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcFooting>(init);
 		}
 
 		public IIfcFurnishingElement FurnishingElement(Action<IIfcFurnishingElement> init = null)
 		{
-			IIfcFurnishingElement result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcFurnishingElement>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcFurnishingElement>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcFurnishingElement>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcFurnishingElement>(init);
 		}
 
 		public IIfcFurnishingElementType FurnishingElementType(Action<IIfcFurnishingElementType> init = null)
 		{
-			IIfcFurnishingElementType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcFurnishingElementType>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcFurnishingElementType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcFurnishingElementType>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcFurnishingElementType>(init);
 		}
 
 		public IIfcFurnitureType FurnitureType(Action<IIfcFurnitureType> init = null)
 		{
-			IIfcFurnitureType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedFacilitiesElements.IfcFurnitureType>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedFacilitiesElements.IfcFurnitureType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedFacilitiesElements.IfcFurnitureType>(init);
+			return _model.Instances.New<Ifc2x3.SharedFacilitiesElements.IfcFurnitureType>(init);
 		}
 
 		public IIfcGeometricCurveSet GeometricCurveSet(Action<IIfcGeometricCurveSet> init = null)
 		{
-			IIfcGeometricCurveSet result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricModelResource.IfcGeometricCurveSet>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricModelResource.IfcGeometricCurveSet>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricModelResource.IfcGeometricCurveSet>(init);
+			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcGeometricCurveSet>(init);
 		}
 
 		public IIfcGeometricRepresentationContext GeometricRepresentationContext(Action<IIfcGeometricRepresentationContext> init = null)
 		{
-			IIfcGeometricRepresentationContext result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<RepresentationResource.IfcGeometricRepresentationContext>();
-			else
-				result = _model.Instances.New<Ifc2x3.RepresentationResource.IfcGeometricRepresentationContext>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<RepresentationResource.IfcGeometricRepresentationContext>(init);
+			return _model.Instances.New<Ifc2x3.RepresentationResource.IfcGeometricRepresentationContext>(init);
 		}
 
 		public IIfcGeometricRepresentationSubContext GeometricRepresentationSubContext(Action<IIfcGeometricRepresentationSubContext> init = null)
 		{
-			IIfcGeometricRepresentationSubContext result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<RepresentationResource.IfcGeometricRepresentationSubContext>();
-			else
-				result = _model.Instances.New<Ifc2x3.RepresentationResource.IfcGeometricRepresentationSubContext>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<RepresentationResource.IfcGeometricRepresentationSubContext>(init);
+			return _model.Instances.New<Ifc2x3.RepresentationResource.IfcGeometricRepresentationSubContext>(init);
 		}
 
 		public IIfcGeometricSet GeometricSet(Action<IIfcGeometricSet> init = null)
 		{
-			IIfcGeometricSet result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricModelResource.IfcGeometricSet>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricModelResource.IfcGeometricSet>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricModelResource.IfcGeometricSet>(init);
+			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcGeometricSet>(init);
 		}
 
 		public IIfcGrid Grid(Action<IIfcGrid> init = null)
 		{
-			IIfcGrid result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcGrid>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcGrid>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcGrid>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcGrid>(init);
 		}
 
 		public IIfcGridAxis GridAxis(Action<IIfcGridAxis> init = null)
 		{
-			IIfcGridAxis result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricConstraintResource.IfcGridAxis>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcGridAxis>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricConstraintResource.IfcGridAxis>(init);
+			return _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcGridAxis>(init);
 		}
 
 		public IIfcGridPlacement GridPlacement(Action<IIfcGridPlacement> init = null)
 		{
-			IIfcGridPlacement result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricConstraintResource.IfcGridPlacement>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcGridPlacement>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricConstraintResource.IfcGridPlacement>(init);
+			return _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcGridPlacement>(init);
 		}
 
 		public IIfcGroup Group(Action<IIfcGroup> init = null)
 		{
-			IIfcGroup result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<Kernel.IfcGroup>();
-			else
-				result = _model.Instances.New<Ifc2x3.Kernel.IfcGroup>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<Kernel.IfcGroup>(init);
+			return _model.Instances.New<Ifc2x3.Kernel.IfcGroup>(init);
 		}
 
 		public IIfcHalfSpaceSolid HalfSpaceSolid(Action<IIfcHalfSpaceSolid> init = null)
 		{
-			IIfcHalfSpaceSolid result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricModelResource.IfcHalfSpaceSolid>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricModelResource.IfcHalfSpaceSolid>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricModelResource.IfcHalfSpaceSolid>(init);
+			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcHalfSpaceSolid>(init);
 		}
 
 		public IIfcHeatExchangerType HeatExchangerType(Action<IIfcHeatExchangerType> init = null)
 		{
-			IIfcHeatExchangerType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcHeatExchangerType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcHeatExchangerType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcHeatExchangerType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcHeatExchangerType>(init);
 		}
 
 		public IIfcHumidifierType HumidifierType(Action<IIfcHumidifierType> init = null)
 		{
-			IIfcHumidifierType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcHumidifierType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcHumidifierType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcHumidifierType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcHumidifierType>(init);
 		}
 
 		public IIfcIShapeProfileDef IShapeProfileDef(Action<IIfcIShapeProfileDef> init = null)
 		{
-			IIfcIShapeProfileDef result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProfileResource.IfcIShapeProfileDef>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProfileResource.IfcIShapeProfileDef>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProfileResource.IfcIShapeProfileDef>(init);
+			return _model.Instances.New<Ifc2x3.ProfileResource.IfcIShapeProfileDef>(init);
 		}
 
 		public IIfcImageTexture ImageTexture(Action<IIfcImageTexture> init = null)
 		{
-			IIfcImageTexture result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcImageTexture>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcImageTexture>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcImageTexture>(init);
+			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcImageTexture>(init);
 		}
 
 		public IIfcInventory Inventory(Action<IIfcInventory> init = null)
 		{
-			IIfcInventory result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedFacilitiesElements.IfcInventory>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedFacilitiesElements.IfcInventory>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedFacilitiesElements.IfcInventory>(init);
+			return _model.Instances.New<Ifc2x3.SharedFacilitiesElements.IfcInventory>(init);
 		}
 
 		public IIfcIrregularTimeSeries IrregularTimeSeries(Action<IIfcIrregularTimeSeries> init = null)
 		{
-			IIfcIrregularTimeSeries result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<DateTimeResource.IfcIrregularTimeSeries>();
-			else
-				result = _model.Instances.New<Ifc2x3.TimeSeriesResource.IfcIrregularTimeSeries>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<DateTimeResource.IfcIrregularTimeSeries>(init);
+			return _model.Instances.New<Ifc2x3.TimeSeriesResource.IfcIrregularTimeSeries>(init);
 		}
 
 		public IIfcIrregularTimeSeriesValue IrregularTimeSeriesValue(Action<IIfcIrregularTimeSeriesValue> init = null)
 		{
-			IIfcIrregularTimeSeriesValue result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<DateTimeResource.IfcIrregularTimeSeriesValue>();
-			else
-				result = _model.Instances.New<Ifc2x3.TimeSeriesResource.IfcIrregularTimeSeriesValue>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<DateTimeResource.IfcIrregularTimeSeriesValue>(init);
+			return _model.Instances.New<Ifc2x3.TimeSeriesResource.IfcIrregularTimeSeriesValue>(init);
 		}
 
 		public IIfcJunctionBoxType JunctionBoxType(Action<IIfcJunctionBoxType> init = null)
 		{
-			IIfcJunctionBoxType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ElectricalDomain.IfcJunctionBoxType>();
-			else
-				result = _model.Instances.New<Ifc2x3.ElectricalDomain.IfcJunctionBoxType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ElectricalDomain.IfcJunctionBoxType>(init);
+			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcJunctionBoxType>(init);
 		}
 
 		public IIfcLShapeProfileDef LShapeProfileDef(Action<IIfcLShapeProfileDef> init = null)
 		{
-			IIfcLShapeProfileDef result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProfileResource.IfcLShapeProfileDef>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProfileResource.IfcLShapeProfileDef>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProfileResource.IfcLShapeProfileDef>(init);
+			return _model.Instances.New<Ifc2x3.ProfileResource.IfcLShapeProfileDef>(init);
 		}
 
 		public IIfcLaborResource LaborResource(Action<IIfcLaborResource> init = null)
 		{
-			IIfcLaborResource result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ConstructionMgmtDomain.IfcLaborResource>();
-			else
-				result = _model.Instances.New<Ifc2x3.ConstructionMgmtDomain.IfcLaborResource>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ConstructionMgmtDomain.IfcLaborResource>(init);
+			return _model.Instances.New<Ifc2x3.ConstructionMgmtDomain.IfcLaborResource>(init);
 		}
 
 		public IIfcLampType LampType(Action<IIfcLampType> init = null)
 		{
-			IIfcLampType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ElectricalDomain.IfcLampType>();
-			else
-				result = _model.Instances.New<Ifc2x3.ElectricalDomain.IfcLampType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ElectricalDomain.IfcLampType>(init);
+			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcLampType>(init);
 		}
 
 		public IIfcLibraryInformation LibraryInformation(Action<IIfcLibraryInformation> init = null)
 		{
-			IIfcLibraryInformation result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ExternalReferenceResource.IfcLibraryInformation>();
-			else
-				result = _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcLibraryInformation>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ExternalReferenceResource.IfcLibraryInformation>(init);
+			return _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcLibraryInformation>(init);
 		}
 
 		public IIfcLibraryReference LibraryReference(Action<IIfcLibraryReference> init = null)
 		{
-			IIfcLibraryReference result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ExternalReferenceResource.IfcLibraryReference>();
-			else
-				result = _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcLibraryReference>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ExternalReferenceResource.IfcLibraryReference>(init);
+			return _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcLibraryReference>(init);
 		}
 
 		public IIfcLightDistributionData LightDistributionData(Action<IIfcLightDistributionData> init = null)
 		{
-			IIfcLightDistributionData result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationOrganizationResource.IfcLightDistributionData>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightDistributionData>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationOrganizationResource.IfcLightDistributionData>(init);
+			return _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightDistributionData>(init);
 		}
 
 		public IIfcLightFixtureType LightFixtureType(Action<IIfcLightFixtureType> init = null)
 		{
-			IIfcLightFixtureType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ElectricalDomain.IfcLightFixtureType>();
-			else
-				result = _model.Instances.New<Ifc2x3.ElectricalDomain.IfcLightFixtureType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ElectricalDomain.IfcLightFixtureType>(init);
+			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcLightFixtureType>(init);
 		}
 
 		public IIfcLightIntensityDistribution LightIntensityDistribution(Action<IIfcLightIntensityDistribution> init = null)
 		{
-			IIfcLightIntensityDistribution result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationOrganizationResource.IfcLightIntensityDistribution>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightIntensityDistribution>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationOrganizationResource.IfcLightIntensityDistribution>(init);
+			return _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightIntensityDistribution>(init);
 		}
 
 		public IIfcLightSourceAmbient LightSourceAmbient(Action<IIfcLightSourceAmbient> init = null)
 		{
-			IIfcLightSourceAmbient result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationOrganizationResource.IfcLightSourceAmbient>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightSourceAmbient>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationOrganizationResource.IfcLightSourceAmbient>(init);
+			return _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightSourceAmbient>(init);
 		}
 
 		public IIfcLightSourceDirectional LightSourceDirectional(Action<IIfcLightSourceDirectional> init = null)
 		{
-			IIfcLightSourceDirectional result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationOrganizationResource.IfcLightSourceDirectional>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightSourceDirectional>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationOrganizationResource.IfcLightSourceDirectional>(init);
+			return _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightSourceDirectional>(init);
 		}
 
 		public IIfcLightSourceGoniometric LightSourceGoniometric(Action<IIfcLightSourceGoniometric> init = null)
 		{
-			IIfcLightSourceGoniometric result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationOrganizationResource.IfcLightSourceGoniometric>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightSourceGoniometric>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationOrganizationResource.IfcLightSourceGoniometric>(init);
+			return _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightSourceGoniometric>(init);
 		}
 
 		public IIfcLightSourcePositional LightSourcePositional(Action<IIfcLightSourcePositional> init = null)
 		{
-			IIfcLightSourcePositional result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationOrganizationResource.IfcLightSourcePositional>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightSourcePositional>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationOrganizationResource.IfcLightSourcePositional>(init);
+			return _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightSourcePositional>(init);
 		}
 
 		public IIfcLightSourceSpot LightSourceSpot(Action<IIfcLightSourceSpot> init = null)
 		{
-			IIfcLightSourceSpot result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationOrganizationResource.IfcLightSourceSpot>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightSourceSpot>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationOrganizationResource.IfcLightSourceSpot>(init);
+			return _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightSourceSpot>(init);
 		}
 
 		public IIfcLine Line(Action<IIfcLine> init = null)
 		{
-			IIfcLine result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcLine>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcLine>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcLine>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcLine>(init);
 		}
 
 		public IIfcLocalPlacement LocalPlacement(Action<IIfcLocalPlacement> init = null)
 		{
-			IIfcLocalPlacement result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricConstraintResource.IfcLocalPlacement>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcLocalPlacement>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricConstraintResource.IfcLocalPlacement>(init);
+			return _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcLocalPlacement>(init);
 		}
 
 		public IIfcLoop Loop(Action<IIfcLoop> init = null)
 		{
-			IIfcLoop result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<TopologyResource.IfcLoop>();
-			else
-				result = _model.Instances.New<Ifc2x3.TopologyResource.IfcLoop>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<TopologyResource.IfcLoop>(init);
+			return _model.Instances.New<Ifc2x3.TopologyResource.IfcLoop>(init);
 		}
 
 		public IIfcMappedItem MappedItem(Action<IIfcMappedItem> init = null)
 		{
-			IIfcMappedItem result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcMappedItem>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcMappedItem>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcMappedItem>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcMappedItem>(init);
 		}
 
 		public IIfcMaterial Material(Action<IIfcMaterial> init = null)
 		{
-			IIfcMaterial result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<MaterialResource.IfcMaterial>();
-			else
-				result = _model.Instances.New<Ifc2x3.MaterialResource.IfcMaterial>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<MaterialResource.IfcMaterial>(init);
+			return _model.Instances.New<Ifc2x3.MaterialResource.IfcMaterial>(init);
 		}
 
 		public IIfcMaterialClassificationRelationship MaterialClassificationRelationship(Action<IIfcMaterialClassificationRelationship> init = null)
 		{
-			IIfcMaterialClassificationRelationship result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<MaterialResource.IfcMaterialClassificationRelationship>();
-			else
-				result = _model.Instances.New<Ifc2x3.MaterialResource.IfcMaterialClassificationRelationship>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<MaterialResource.IfcMaterialClassificationRelationship>(init);
+			return _model.Instances.New<Ifc2x3.MaterialResource.IfcMaterialClassificationRelationship>(init);
 		}
 
 		public IIfcMaterialDefinitionRepresentation MaterialDefinitionRepresentation(Action<IIfcMaterialDefinitionRepresentation> init = null)
 		{
-			IIfcMaterialDefinitionRepresentation result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<RepresentationResource.IfcMaterialDefinitionRepresentation>();
-			else
-				result = _model.Instances.New<Ifc2x3.RepresentationResource.IfcMaterialDefinitionRepresentation>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<RepresentationResource.IfcMaterialDefinitionRepresentation>(init);
+			return _model.Instances.New<Ifc2x3.RepresentationResource.IfcMaterialDefinitionRepresentation>(init);
 		}
 
 		public IIfcMaterialLayer MaterialLayer(Action<IIfcMaterialLayer> init = null)
 		{
-			IIfcMaterialLayer result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<MaterialResource.IfcMaterialLayer>();
-			else
-				result = _model.Instances.New<Ifc2x3.MaterialResource.IfcMaterialLayer>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<MaterialResource.IfcMaterialLayer>(init);
+			return _model.Instances.New<Ifc2x3.MaterialResource.IfcMaterialLayer>(init);
 		}
 
 		public IIfcMaterialLayerSet MaterialLayerSet(Action<IIfcMaterialLayerSet> init = null)
 		{
-			IIfcMaterialLayerSet result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<MaterialResource.IfcMaterialLayerSet>();
-			else
-				result = _model.Instances.New<Ifc2x3.MaterialResource.IfcMaterialLayerSet>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<MaterialResource.IfcMaterialLayerSet>(init);
+			return _model.Instances.New<Ifc2x3.MaterialResource.IfcMaterialLayerSet>(init);
 		}
 
 		public IIfcMaterialLayerSetUsage MaterialLayerSetUsage(Action<IIfcMaterialLayerSetUsage> init = null)
 		{
-			IIfcMaterialLayerSetUsage result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<MaterialResource.IfcMaterialLayerSetUsage>();
-			else
-				result = _model.Instances.New<Ifc2x3.MaterialResource.IfcMaterialLayerSetUsage>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<MaterialResource.IfcMaterialLayerSetUsage>(init);
+			return _model.Instances.New<Ifc2x3.MaterialResource.IfcMaterialLayerSetUsage>(init);
 		}
 
 		public IIfcMaterialList MaterialList(Action<IIfcMaterialList> init = null)
 		{
-			IIfcMaterialList result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<MaterialResource.IfcMaterialList>();
-			else
-				result = _model.Instances.New<Ifc2x3.MaterialResource.IfcMaterialList>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<MaterialResource.IfcMaterialList>(init);
+			return _model.Instances.New<Ifc2x3.MaterialResource.IfcMaterialList>(init);
 		}
 
 		public IIfcMeasureWithUnit MeasureWithUnit(Action<IIfcMeasureWithUnit> init = null)
 		{
-			IIfcMeasureWithUnit result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<MeasureResource.IfcMeasureWithUnit>();
-			else
-				result = _model.Instances.New<Ifc2x3.MeasureResource.IfcMeasureWithUnit>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<MeasureResource.IfcMeasureWithUnit>(init);
+			return _model.Instances.New<Ifc2x3.MeasureResource.IfcMeasureWithUnit>(init);
 		}
 
 		public IIfcMechanicalFastener MechanicalFastener(Action<IIfcMechanicalFastener> init = null)
 		{
-			IIfcMechanicalFastener result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedComponentElements.IfcMechanicalFastener>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedComponentElements.IfcMechanicalFastener>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedComponentElements.IfcMechanicalFastener>(init);
+			return _model.Instances.New<Ifc2x3.SharedComponentElements.IfcMechanicalFastener>(init);
 		}
 
 		public IIfcMechanicalFastenerType MechanicalFastenerType(Action<IIfcMechanicalFastenerType> init = null)
 		{
-			IIfcMechanicalFastenerType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedComponentElements.IfcMechanicalFastenerType>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedComponentElements.IfcMechanicalFastenerType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedComponentElements.IfcMechanicalFastenerType>(init);
+			return _model.Instances.New<Ifc2x3.SharedComponentElements.IfcMechanicalFastenerType>(init);
 		}
 
 		public IIfcMember Member(Action<IIfcMember> init = null)
 		{
-			IIfcMember result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcMember>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcMember>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcMember>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcMember>(init);
 		}
 
 		public IIfcMemberType MemberType(Action<IIfcMemberType> init = null)
 		{
-			IIfcMemberType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcMemberType>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcMemberType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcMemberType>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcMemberType>(init);
 		}
 
 		public IIfcMetric Metric(Action<IIfcMetric> init = null)
 		{
-			IIfcMetric result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ConstraintResource.IfcMetric>();
-			else
-				result = _model.Instances.New<Ifc2x3.ConstraintResource.IfcMetric>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ConstraintResource.IfcMetric>(init);
+			return _model.Instances.New<Ifc2x3.ConstraintResource.IfcMetric>(init);
 		}
 
 		public IIfcMonetaryUnit MonetaryUnit(Action<IIfcMonetaryUnit> init = null)
 		{
-			IIfcMonetaryUnit result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<MeasureResource.IfcMonetaryUnit>();
-			else
-				result = _model.Instances.New<Ifc2x3.MeasureResource.IfcMonetaryUnit>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<MeasureResource.IfcMonetaryUnit>(init);
+			return _model.Instances.New<Ifc2x3.MeasureResource.IfcMonetaryUnit>(init);
 		}
 
 		public IIfcMotorConnectionType MotorConnectionType(Action<IIfcMotorConnectionType> init = null)
 		{
-			IIfcMotorConnectionType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ElectricalDomain.IfcMotorConnectionType>();
-			else
-				result = _model.Instances.New<Ifc2x3.ElectricalDomain.IfcMotorConnectionType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ElectricalDomain.IfcMotorConnectionType>(init);
+			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcMotorConnectionType>(init);
 		}
 
 		public IIfcObjective Objective(Action<IIfcObjective> init = null)
 		{
-			IIfcObjective result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ConstraintResource.IfcObjective>();
-			else
-				result = _model.Instances.New<Ifc2x3.ConstraintResource.IfcObjective>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ConstraintResource.IfcObjective>(init);
+			return _model.Instances.New<Ifc2x3.ConstraintResource.IfcObjective>(init);
 		}
 
 		public IIfcOccupant Occupant(Action<IIfcOccupant> init = null)
 		{
-			IIfcOccupant result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedFacilitiesElements.IfcOccupant>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedFacilitiesElements.IfcOccupant>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedFacilitiesElements.IfcOccupant>(init);
+			return _model.Instances.New<Ifc2x3.SharedFacilitiesElements.IfcOccupant>(init);
 		}
 
 		public IIfcOffsetCurve2D OffsetCurve2D(Action<IIfcOffsetCurve2D> init = null)
 		{
-			IIfcOffsetCurve2D result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcOffsetCurve2D>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcOffsetCurve2D>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcOffsetCurve2D>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcOffsetCurve2D>(init);
 		}
 
 		public IIfcOffsetCurve3D OffsetCurve3D(Action<IIfcOffsetCurve3D> init = null)
 		{
-			IIfcOffsetCurve3D result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcOffsetCurve3D>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcOffsetCurve3D>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcOffsetCurve3D>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcOffsetCurve3D>(init);
 		}
 
 		public IIfcOpenShell OpenShell(Action<IIfcOpenShell> init = null)
 		{
-			IIfcOpenShell result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<TopologyResource.IfcOpenShell>();
-			else
-				result = _model.Instances.New<Ifc2x3.TopologyResource.IfcOpenShell>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<TopologyResource.IfcOpenShell>(init);
+			return _model.Instances.New<Ifc2x3.TopologyResource.IfcOpenShell>(init);
 		}
 
 		public IIfcOpeningElement OpeningElement(Action<IIfcOpeningElement> init = null)
 		{
-			IIfcOpeningElement result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcOpeningElement>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcOpeningElement>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcOpeningElement>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcOpeningElement>(init);
 		}
 
 		public IIfcOrganization Organization(Action<IIfcOrganization> init = null)
 		{
-			IIfcOrganization result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ActorResource.IfcOrganization>();
-			else
-				result = _model.Instances.New<Ifc2x3.ActorResource.IfcOrganization>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ActorResource.IfcOrganization>(init);
+			return _model.Instances.New<Ifc2x3.ActorResource.IfcOrganization>(init);
 		}
 
 		public IIfcOrganizationRelationship OrganizationRelationship(Action<IIfcOrganizationRelationship> init = null)
 		{
-			IIfcOrganizationRelationship result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ActorResource.IfcOrganizationRelationship>();
-			else
-				result = _model.Instances.New<Ifc2x3.ActorResource.IfcOrganizationRelationship>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ActorResource.IfcOrganizationRelationship>(init);
+			return _model.Instances.New<Ifc2x3.ActorResource.IfcOrganizationRelationship>(init);
 		}
 
 		public IIfcOrientedEdge OrientedEdge(Action<IIfcOrientedEdge> init = null)
 		{
-			IIfcOrientedEdge result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<TopologyResource.IfcOrientedEdge>();
-			else
-				result = _model.Instances.New<Ifc2x3.TopologyResource.IfcOrientedEdge>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<TopologyResource.IfcOrientedEdge>(init);
+			return _model.Instances.New<Ifc2x3.TopologyResource.IfcOrientedEdge>(init);
 		}
 
 		public IIfcOutletType OutletType(Action<IIfcOutletType> init = null)
 		{
-			IIfcOutletType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ElectricalDomain.IfcOutletType>();
-			else
-				result = _model.Instances.New<Ifc2x3.ElectricalDomain.IfcOutletType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ElectricalDomain.IfcOutletType>(init);
+			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcOutletType>(init);
 		}
 
 		public IIfcOwnerHistory OwnerHistory(Action<IIfcOwnerHistory> init = null)
 		{
-			IIfcOwnerHistory result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<UtilityResource.IfcOwnerHistory>();
-			else
-				result = _model.Instances.New<Ifc2x3.UtilityResource.IfcOwnerHistory>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<UtilityResource.IfcOwnerHistory>(init);
+			return _model.Instances.New<Ifc2x3.UtilityResource.IfcOwnerHistory>(init);
 		}
 
 		public IIfcPath Path(Action<IIfcPath> init = null)
 		{
-			IIfcPath result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<TopologyResource.IfcPath>();
-			else
-				result = _model.Instances.New<Ifc2x3.TopologyResource.IfcPath>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<TopologyResource.IfcPath>(init);
+			return _model.Instances.New<Ifc2x3.TopologyResource.IfcPath>(init);
 		}
 
 		public IIfcPerformanceHistory PerformanceHistory(Action<IIfcPerformanceHistory> init = null)
 		{
-			IIfcPerformanceHistory result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ControlExtension.IfcPerformanceHistory>();
-			else
-				result = _model.Instances.New<Ifc2x3.ControlExtension.IfcPerformanceHistory>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ControlExtension.IfcPerformanceHistory>(init);
+			return _model.Instances.New<Ifc2x3.ControlExtension.IfcPerformanceHistory>(init);
 		}
 
 		public IIfcPermeableCoveringProperties PermeableCoveringProperties(Action<IIfcPermeableCoveringProperties> init = null)
 		{
-			IIfcPermeableCoveringProperties result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ArchitectureDomain.IfcPermeableCoveringProperties>();
-			else
-				result = _model.Instances.New<Ifc2x3.ArchitectureDomain.IfcPermeableCoveringProperties>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ArchitectureDomain.IfcPermeableCoveringProperties>(init);
+			return _model.Instances.New<Ifc2x3.ArchitectureDomain.IfcPermeableCoveringProperties>(init);
 		}
 
 		public IIfcPermit Permit(Action<IIfcPermit> init = null)
 		{
-			IIfcPermit result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedMgmtElements.IfcPermit>();
-			else
-				result = _model.Instances.New<Ifc2x3.FacilitiesMgmtDomain.IfcPermit>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedMgmtElements.IfcPermit>(init);
+			return _model.Instances.New<Ifc2x3.FacilitiesMgmtDomain.IfcPermit>(init);
 		}
 
 		public IIfcPerson Person(Action<IIfcPerson> init = null)
 		{
-			IIfcPerson result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ActorResource.IfcPerson>();
-			else
-				result = _model.Instances.New<Ifc2x3.ActorResource.IfcPerson>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ActorResource.IfcPerson>(init);
+			return _model.Instances.New<Ifc2x3.ActorResource.IfcPerson>(init);
 		}
 
 		public IIfcPersonAndOrganization PersonAndOrganization(Action<IIfcPersonAndOrganization> init = null)
 		{
-			IIfcPersonAndOrganization result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ActorResource.IfcPersonAndOrganization>();
-			else
-				result = _model.Instances.New<Ifc2x3.ActorResource.IfcPersonAndOrganization>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ActorResource.IfcPersonAndOrganization>(init);
+			return _model.Instances.New<Ifc2x3.ActorResource.IfcPersonAndOrganization>(init);
 		}
 
 		public IIfcPhysicalComplexQuantity PhysicalComplexQuantity(Action<IIfcPhysicalComplexQuantity> init = null)
 		{
-			IIfcPhysicalComplexQuantity result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<QuantityResource.IfcPhysicalComplexQuantity>();
-			else
-				result = _model.Instances.New<Ifc2x3.QuantityResource.IfcPhysicalComplexQuantity>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<QuantityResource.IfcPhysicalComplexQuantity>(init);
+			return _model.Instances.New<Ifc2x3.QuantityResource.IfcPhysicalComplexQuantity>(init);
 		}
 
 		public IIfcPile Pile(Action<IIfcPile> init = null)
 		{
-			IIfcPile result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralElementsDomain.IfcPile>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcPile>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralElementsDomain.IfcPile>(init);
+			return _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcPile>(init);
 		}
 
 		public IIfcPipeFittingType PipeFittingType(Action<IIfcPipeFittingType> init = null)
 		{
-			IIfcPipeFittingType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcPipeFittingType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcPipeFittingType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcPipeFittingType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcPipeFittingType>(init);
 		}
 
 		public IIfcPipeSegmentType PipeSegmentType(Action<IIfcPipeSegmentType> init = null)
 		{
-			IIfcPipeSegmentType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcPipeSegmentType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcPipeSegmentType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcPipeSegmentType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcPipeSegmentType>(init);
 		}
 
 		public IIfcPixelTexture PixelTexture(Action<IIfcPixelTexture> init = null)
 		{
-			IIfcPixelTexture result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcPixelTexture>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcPixelTexture>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcPixelTexture>(init);
+			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcPixelTexture>(init);
 		}
 
 		public IIfcPlanarBox PlanarBox(Action<IIfcPlanarBox> init = null)
 		{
-			IIfcPlanarBox result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationDefinitionResource.IfcPlanarBox>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationResource.IfcPlanarBox>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationDefinitionResource.IfcPlanarBox>(init);
+			return _model.Instances.New<Ifc2x3.PresentationResource.IfcPlanarBox>(init);
 		}
 
 		public IIfcPlanarExtent PlanarExtent(Action<IIfcPlanarExtent> init = null)
 		{
-			IIfcPlanarExtent result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationDefinitionResource.IfcPlanarExtent>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationResource.IfcPlanarExtent>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationDefinitionResource.IfcPlanarExtent>(init);
+			return _model.Instances.New<Ifc2x3.PresentationResource.IfcPlanarExtent>(init);
 		}
 
 		public IIfcPlane Plane(Action<IIfcPlane> init = null)
 		{
-			IIfcPlane result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcPlane>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcPlane>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcPlane>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcPlane>(init);
 		}
 
 		public IIfcPlate Plate(Action<IIfcPlate> init = null)
 		{
-			IIfcPlate result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcPlate>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcPlate>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcPlate>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcPlate>(init);
 		}
 
 		public IIfcPlateType PlateType(Action<IIfcPlateType> init = null)
 		{
-			IIfcPlateType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcPlateType>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcPlateType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcPlateType>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcPlateType>(init);
 		}
 
 		public IIfcPointOnCurve PointOnCurve(Action<IIfcPointOnCurve> init = null)
 		{
-			IIfcPointOnCurve result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcPointOnCurve>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcPointOnCurve>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcPointOnCurve>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcPointOnCurve>(init);
 		}
 
 		public IIfcPointOnSurface PointOnSurface(Action<IIfcPointOnSurface> init = null)
 		{
-			IIfcPointOnSurface result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcPointOnSurface>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcPointOnSurface>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcPointOnSurface>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcPointOnSurface>(init);
 		}
 
 		public IIfcPolyLoop PolyLoop(Action<IIfcPolyLoop> init = null)
 		{
-			IIfcPolyLoop result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<TopologyResource.IfcPolyLoop>();
-			else
-				result = _model.Instances.New<Ifc2x3.TopologyResource.IfcPolyLoop>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<TopologyResource.IfcPolyLoop>(init);
+			return _model.Instances.New<Ifc2x3.TopologyResource.IfcPolyLoop>(init);
 		}
 
 		public IIfcPolygonalBoundedHalfSpace PolygonalBoundedHalfSpace(Action<IIfcPolygonalBoundedHalfSpace> init = null)
 		{
-			IIfcPolygonalBoundedHalfSpace result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricModelResource.IfcPolygonalBoundedHalfSpace>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricModelResource.IfcPolygonalBoundedHalfSpace>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricModelResource.IfcPolygonalBoundedHalfSpace>(init);
+			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcPolygonalBoundedHalfSpace>(init);
 		}
 
 		public IIfcPolyline Polyline(Action<IIfcPolyline> init = null)
 		{
-			IIfcPolyline result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcPolyline>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcPolyline>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcPolyline>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcPolyline>(init);
 		}
 
 		public IIfcPostalAddress PostalAddress(Action<IIfcPostalAddress> init = null)
 		{
-			IIfcPostalAddress result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ActorResource.IfcPostalAddress>();
-			else
-				result = _model.Instances.New<Ifc2x3.ActorResource.IfcPostalAddress>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ActorResource.IfcPostalAddress>(init);
+			return _model.Instances.New<Ifc2x3.ActorResource.IfcPostalAddress>(init);
 		}
 
 		public IIfcPresentationLayerAssignment PresentationLayerAssignment(Action<IIfcPresentationLayerAssignment> init = null)
 		{
-			IIfcPresentationLayerAssignment result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationOrganizationResource.IfcPresentationLayerAssignment>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcPresentationLayerAssignment>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationOrganizationResource.IfcPresentationLayerAssignment>(init);
+			return _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcPresentationLayerAssignment>(init);
 		}
 
 		public IIfcPresentationLayerWithStyle PresentationLayerWithStyle(Action<IIfcPresentationLayerWithStyle> init = null)
 		{
-			IIfcPresentationLayerWithStyle result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationOrganizationResource.IfcPresentationLayerWithStyle>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcPresentationLayerWithStyle>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationOrganizationResource.IfcPresentationLayerWithStyle>(init);
+			return _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcPresentationLayerWithStyle>(init);
 		}
 
 		public IIfcPresentationStyleAssignment PresentationStyleAssignment(Action<IIfcPresentationStyleAssignment> init = null)
 		{
-			IIfcPresentationStyleAssignment result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcPresentationStyleAssignment>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcPresentationStyleAssignment>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcPresentationStyleAssignment>(init);
+			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcPresentationStyleAssignment>(init);
 		}
 
 		public IIfcProcedure Procedure(Action<IIfcProcedure> init = null)
 		{
-			IIfcProcedure result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProcessExtension.IfcProcedure>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProcessExtension.IfcProcedure>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProcessExtension.IfcProcedure>(init);
+			return _model.Instances.New<Ifc2x3.ProcessExtension.IfcProcedure>(init);
 		}
 
 		public IIfcProductDefinitionShape ProductDefinitionShape(Action<IIfcProductDefinitionShape> init = null)
 		{
-			IIfcProductDefinitionShape result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<RepresentationResource.IfcProductDefinitionShape>();
-			else
-				result = _model.Instances.New<Ifc2x3.RepresentationResource.IfcProductDefinitionShape>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<RepresentationResource.IfcProductDefinitionShape>(init);
+			return _model.Instances.New<Ifc2x3.RepresentationResource.IfcProductDefinitionShape>(init);
 		}
 
 		public IIfcProject Project(Action<IIfcProject> init = null)
 		{
-			IIfcProject result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<Kernel.IfcProject>();
-			else
-				result = _model.Instances.New<Ifc2x3.Kernel.IfcProject>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<Kernel.IfcProject>(init);
+			return _model.Instances.New<Ifc2x3.Kernel.IfcProject>(init);
 		}
 
 		public IIfcProjectOrder ProjectOrder(Action<IIfcProjectOrder> init = null)
 		{
-			IIfcProjectOrder result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedMgmtElements.IfcProjectOrder>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedMgmtElements.IfcProjectOrder>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedMgmtElements.IfcProjectOrder>(init);
+			return _model.Instances.New<Ifc2x3.SharedMgmtElements.IfcProjectOrder>(init);
 		}
 
 		public IIfcProjectionElement ProjectionElement(Action<IIfcProjectionElement> init = null)
 		{
-			IIfcProjectionElement result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcProjectionElement>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcProjectionElement>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcProjectionElement>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcProjectionElement>(init);
 		}
 
 		public IIfcPropertyBoundedValue PropertyBoundedValue(Action<IIfcPropertyBoundedValue> init = null)
 		{
-			IIfcPropertyBoundedValue result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PropertyResource.IfcPropertyBoundedValue>();
-			else
-				result = _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyBoundedValue>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PropertyResource.IfcPropertyBoundedValue>(init);
+			return _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyBoundedValue>(init);
 		}
 
 		public IIfcPropertyDependencyRelationship PropertyDependencyRelationship(Action<IIfcPropertyDependencyRelationship> init = null)
 		{
-			IIfcPropertyDependencyRelationship result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PropertyResource.IfcPropertyDependencyRelationship>();
-			else
-				result = _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyDependencyRelationship>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PropertyResource.IfcPropertyDependencyRelationship>(init);
+			return _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyDependencyRelationship>(init);
 		}
 
 		public IIfcPropertyEnumeratedValue PropertyEnumeratedValue(Action<IIfcPropertyEnumeratedValue> init = null)
 		{
-			IIfcPropertyEnumeratedValue result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PropertyResource.IfcPropertyEnumeratedValue>();
-			else
-				result = _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyEnumeratedValue>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PropertyResource.IfcPropertyEnumeratedValue>(init);
+			return _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyEnumeratedValue>(init);
 		}
 
 		public IIfcPropertyEnumeration PropertyEnumeration(Action<IIfcPropertyEnumeration> init = null)
 		{
-			IIfcPropertyEnumeration result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PropertyResource.IfcPropertyEnumeration>();
-			else
-				result = _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyEnumeration>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PropertyResource.IfcPropertyEnumeration>(init);
+			return _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyEnumeration>(init);
 		}
 
 		public IIfcPropertyListValue PropertyListValue(Action<IIfcPropertyListValue> init = null)
 		{
-			IIfcPropertyListValue result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PropertyResource.IfcPropertyListValue>();
-			else
-				result = _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyListValue>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PropertyResource.IfcPropertyListValue>(init);
+			return _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyListValue>(init);
 		}
 
 		public IIfcPropertyReferenceValue PropertyReferenceValue(Action<IIfcPropertyReferenceValue> init = null)
 		{
-			IIfcPropertyReferenceValue result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PropertyResource.IfcPropertyReferenceValue>();
-			else
-				result = _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyReferenceValue>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PropertyResource.IfcPropertyReferenceValue>(init);
+			return _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyReferenceValue>(init);
 		}
 
 		public IIfcPropertySet PropertySet(Action<IIfcPropertySet> init = null)
 		{
-			IIfcPropertySet result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<Kernel.IfcPropertySet>();
-			else
-				result = _model.Instances.New<Ifc2x3.Kernel.IfcPropertySet>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<Kernel.IfcPropertySet>(init);
+			return _model.Instances.New<Ifc2x3.Kernel.IfcPropertySet>(init);
 		}
 
 		public IIfcPropertySingleValue PropertySingleValue(Action<IIfcPropertySingleValue> init = null)
 		{
-			IIfcPropertySingleValue result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PropertyResource.IfcPropertySingleValue>();
-			else
-				result = _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertySingleValue>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PropertyResource.IfcPropertySingleValue>(init);
+			return _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertySingleValue>(init);
 		}
 
 		public IIfcPropertyTableValue PropertyTableValue(Action<IIfcPropertyTableValue> init = null)
 		{
-			IIfcPropertyTableValue result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PropertyResource.IfcPropertyTableValue>();
-			else
-				result = _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyTableValue>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PropertyResource.IfcPropertyTableValue>(init);
+			return _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyTableValue>(init);
 		}
 
 		public IIfcProtectiveDeviceType ProtectiveDeviceType(Action<IIfcProtectiveDeviceType> init = null)
 		{
-			IIfcProtectiveDeviceType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ElectricalDomain.IfcProtectiveDeviceType>();
-			else
-				result = _model.Instances.New<Ifc2x3.ElectricalDomain.IfcProtectiveDeviceType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ElectricalDomain.IfcProtectiveDeviceType>(init);
+			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcProtectiveDeviceType>(init);
 		}
 
 		public IIfcProxy Proxy(Action<IIfcProxy> init = null)
 		{
-			IIfcProxy result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<Kernel.IfcProxy>();
-			else
-				result = _model.Instances.New<Ifc2x3.Kernel.IfcProxy>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<Kernel.IfcProxy>(init);
+			return _model.Instances.New<Ifc2x3.Kernel.IfcProxy>(init);
 		}
 
 		public IIfcPumpType PumpType(Action<IIfcPumpType> init = null)
 		{
-			IIfcPumpType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcPumpType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcPumpType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcPumpType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcPumpType>(init);
 		}
 
 		public IIfcQuantityArea QuantityArea(Action<IIfcQuantityArea> init = null)
 		{
-			IIfcQuantityArea result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<QuantityResource.IfcQuantityArea>();
-			else
-				result = _model.Instances.New<Ifc2x3.QuantityResource.IfcQuantityArea>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<QuantityResource.IfcQuantityArea>(init);
+			return _model.Instances.New<Ifc2x3.QuantityResource.IfcQuantityArea>(init);
 		}
 
 		public IIfcQuantityCount QuantityCount(Action<IIfcQuantityCount> init = null)
 		{
-			IIfcQuantityCount result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<QuantityResource.IfcQuantityCount>();
-			else
-				result = _model.Instances.New<Ifc2x3.QuantityResource.IfcQuantityCount>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<QuantityResource.IfcQuantityCount>(init);
+			return _model.Instances.New<Ifc2x3.QuantityResource.IfcQuantityCount>(init);
 		}
 
 		public IIfcQuantityLength QuantityLength(Action<IIfcQuantityLength> init = null)
 		{
-			IIfcQuantityLength result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<QuantityResource.IfcQuantityLength>();
-			else
-				result = _model.Instances.New<Ifc2x3.QuantityResource.IfcQuantityLength>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<QuantityResource.IfcQuantityLength>(init);
+			return _model.Instances.New<Ifc2x3.QuantityResource.IfcQuantityLength>(init);
 		}
 
 		public IIfcQuantityTime QuantityTime(Action<IIfcQuantityTime> init = null)
 		{
-			IIfcQuantityTime result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<QuantityResource.IfcQuantityTime>();
-			else
-				result = _model.Instances.New<Ifc2x3.QuantityResource.IfcQuantityTime>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<QuantityResource.IfcQuantityTime>(init);
+			return _model.Instances.New<Ifc2x3.QuantityResource.IfcQuantityTime>(init);
 		}
 
 		public IIfcQuantityVolume QuantityVolume(Action<IIfcQuantityVolume> init = null)
 		{
-			IIfcQuantityVolume result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<QuantityResource.IfcQuantityVolume>();
-			else
-				result = _model.Instances.New<Ifc2x3.QuantityResource.IfcQuantityVolume>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<QuantityResource.IfcQuantityVolume>(init);
+			return _model.Instances.New<Ifc2x3.QuantityResource.IfcQuantityVolume>(init);
 		}
 
 		public IIfcQuantityWeight QuantityWeight(Action<IIfcQuantityWeight> init = null)
 		{
-			IIfcQuantityWeight result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<QuantityResource.IfcQuantityWeight>();
-			else
-				result = _model.Instances.New<Ifc2x3.QuantityResource.IfcQuantityWeight>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<QuantityResource.IfcQuantityWeight>(init);
+			return _model.Instances.New<Ifc2x3.QuantityResource.IfcQuantityWeight>(init);
 		}
 
 		public IIfcRailing Railing(Action<IIfcRailing> init = null)
 		{
-			IIfcRailing result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcRailing>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRailing>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcRailing>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRailing>(init);
 		}
 
 		public IIfcRailingType RailingType(Action<IIfcRailingType> init = null)
 		{
-			IIfcRailingType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcRailingType>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRailingType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcRailingType>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRailingType>(init);
 		}
 
 		public IIfcRamp Ramp(Action<IIfcRamp> init = null)
 		{
-			IIfcRamp result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcRamp>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRamp>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcRamp>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRamp>(init);
 		}
 
 		public IIfcRampFlight RampFlight(Action<IIfcRampFlight> init = null)
 		{
-			IIfcRampFlight result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcRampFlight>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRampFlight>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcRampFlight>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRampFlight>(init);
 		}
 
 		public IIfcRampFlightType RampFlightType(Action<IIfcRampFlightType> init = null)
 		{
-			IIfcRampFlightType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcRampFlightType>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRampFlightType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcRampFlightType>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRampFlightType>(init);
 		}
 
 		public IIfcRectangleHollowProfileDef RectangleHollowProfileDef(Action<IIfcRectangleHollowProfileDef> init = null)
 		{
-			IIfcRectangleHollowProfileDef result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProfileResource.IfcRectangleHollowProfileDef>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProfileResource.IfcRectangleHollowProfileDef>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProfileResource.IfcRectangleHollowProfileDef>(init);
+			return _model.Instances.New<Ifc2x3.ProfileResource.IfcRectangleHollowProfileDef>(init);
 		}
 
 		public IIfcRectangleProfileDef RectangleProfileDef(Action<IIfcRectangleProfileDef> init = null)
 		{
-			IIfcRectangleProfileDef result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProfileResource.IfcRectangleProfileDef>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProfileResource.IfcRectangleProfileDef>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProfileResource.IfcRectangleProfileDef>(init);
+			return _model.Instances.New<Ifc2x3.ProfileResource.IfcRectangleProfileDef>(init);
 		}
 
 		public IIfcRectangularPyramid RectangularPyramid(Action<IIfcRectangularPyramid> init = null)
 		{
-			IIfcRectangularPyramid result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricModelResource.IfcRectangularPyramid>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricModelResource.IfcRectangularPyramid>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricModelResource.IfcRectangularPyramid>(init);
+			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcRectangularPyramid>(init);
 		}
 
 		public IIfcRectangularTrimmedSurface RectangularTrimmedSurface(Action<IIfcRectangularTrimmedSurface> init = null)
 		{
-			IIfcRectangularTrimmedSurface result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcRectangularTrimmedSurface>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcRectangularTrimmedSurface>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcRectangularTrimmedSurface>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcRectangularTrimmedSurface>(init);
 		}
 
 		public IIfcRegularTimeSeries RegularTimeSeries(Action<IIfcRegularTimeSeries> init = null)
 		{
-			IIfcRegularTimeSeries result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<DateTimeResource.IfcRegularTimeSeries>();
-			else
-				result = _model.Instances.New<Ifc2x3.TimeSeriesResource.IfcRegularTimeSeries>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<DateTimeResource.IfcRegularTimeSeries>(init);
+			return _model.Instances.New<Ifc2x3.TimeSeriesResource.IfcRegularTimeSeries>(init);
 		}
 
 		public IIfcReinforcementBarProperties ReinforcementBarProperties(Action<IIfcReinforcementBarProperties> init = null)
 		{
-			IIfcReinforcementBarProperties result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProfileResource.IfcReinforcementBarProperties>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProfilePropertyResource.IfcReinforcementBarProperties>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProfileResource.IfcReinforcementBarProperties>(init);
+			return _model.Instances.New<Ifc2x3.ProfilePropertyResource.IfcReinforcementBarProperties>(init);
 		}
 
 		public IIfcReinforcementDefinitionProperties ReinforcementDefinitionProperties(Action<IIfcReinforcementDefinitionProperties> init = null)
 		{
-			IIfcReinforcementDefinitionProperties result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralElementsDomain.IfcReinforcementDefinitionProperties>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcReinforcementDefinitionProperties>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralElementsDomain.IfcReinforcementDefinitionProperties>(init);
+			return _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcReinforcementDefinitionProperties>(init);
 		}
 
 		public IIfcReinforcingBar ReinforcingBar(Action<IIfcReinforcingBar> init = null)
 		{
-			IIfcReinforcingBar result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralElementsDomain.IfcReinforcingBar>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcReinforcingBar>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralElementsDomain.IfcReinforcingBar>(init);
+			return _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcReinforcingBar>(init);
 		}
 
 		public IIfcReinforcingMesh ReinforcingMesh(Action<IIfcReinforcingMesh> init = null)
 		{
-			IIfcReinforcingMesh result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralElementsDomain.IfcReinforcingMesh>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcReinforcingMesh>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralElementsDomain.IfcReinforcingMesh>(init);
+			return _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcReinforcingMesh>(init);
 		}
 
 		public IIfcRelAggregates RelAggregates(Action<IIfcRelAggregates> init = null)
 		{
-			IIfcRelAggregates result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<Kernel.IfcRelAggregates>();
-			else
-				result = _model.Instances.New<Ifc2x3.Kernel.IfcRelAggregates>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<Kernel.IfcRelAggregates>(init);
+			return _model.Instances.New<Ifc2x3.Kernel.IfcRelAggregates>(init);
 		}
 
 		public IIfcRelAssignsToActor RelAssignsToActor(Action<IIfcRelAssignsToActor> init = null)
 		{
-			IIfcRelAssignsToActor result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<Kernel.IfcRelAssignsToActor>();
-			else
-				result = _model.Instances.New<Ifc2x3.Kernel.IfcRelAssignsToActor>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<Kernel.IfcRelAssignsToActor>(init);
+			return _model.Instances.New<Ifc2x3.Kernel.IfcRelAssignsToActor>(init);
 		}
 
 		public IIfcRelAssignsToControl RelAssignsToControl(Action<IIfcRelAssignsToControl> init = null)
 		{
-			IIfcRelAssignsToControl result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<Kernel.IfcRelAssignsToControl>();
-			else
-				result = _model.Instances.New<Ifc2x3.Kernel.IfcRelAssignsToControl>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<Kernel.IfcRelAssignsToControl>(init);
+			return _model.Instances.New<Ifc2x3.Kernel.IfcRelAssignsToControl>(init);
 		}
 
 		public IIfcRelAssignsToGroup RelAssignsToGroup(Action<IIfcRelAssignsToGroup> init = null)
 		{
-			IIfcRelAssignsToGroup result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<Kernel.IfcRelAssignsToGroup>();
-			else
-				result = _model.Instances.New<Ifc2x3.Kernel.IfcRelAssignsToGroup>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<Kernel.IfcRelAssignsToGroup>(init);
+			return _model.Instances.New<Ifc2x3.Kernel.IfcRelAssignsToGroup>(init);
 		}
 
 		public IIfcRelAssignsToProcess RelAssignsToProcess(Action<IIfcRelAssignsToProcess> init = null)
 		{
-			IIfcRelAssignsToProcess result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<Kernel.IfcRelAssignsToProcess>();
-			else
-				result = _model.Instances.New<Ifc2x3.Kernel.IfcRelAssignsToProcess>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<Kernel.IfcRelAssignsToProcess>(init);
+			return _model.Instances.New<Ifc2x3.Kernel.IfcRelAssignsToProcess>(init);
 		}
 
 		public IIfcRelAssignsToProduct RelAssignsToProduct(Action<IIfcRelAssignsToProduct> init = null)
 		{
-			IIfcRelAssignsToProduct result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<Kernel.IfcRelAssignsToProduct>();
-			else
-				result = _model.Instances.New<Ifc2x3.Kernel.IfcRelAssignsToProduct>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<Kernel.IfcRelAssignsToProduct>(init);
+			return _model.Instances.New<Ifc2x3.Kernel.IfcRelAssignsToProduct>(init);
 		}
 
 		public IIfcRelAssignsToResource RelAssignsToResource(Action<IIfcRelAssignsToResource> init = null)
 		{
-			IIfcRelAssignsToResource result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<Kernel.IfcRelAssignsToResource>();
-			else
-				result = _model.Instances.New<Ifc2x3.Kernel.IfcRelAssignsToResource>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<Kernel.IfcRelAssignsToResource>(init);
+			return _model.Instances.New<Ifc2x3.Kernel.IfcRelAssignsToResource>(init);
 		}
 
 		public IIfcRelAssociatesApproval RelAssociatesApproval(Action<IIfcRelAssociatesApproval> init = null)
 		{
-			IIfcRelAssociatesApproval result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ControlExtension.IfcRelAssociatesApproval>();
-			else
-				result = _model.Instances.New<Ifc2x3.ControlExtension.IfcRelAssociatesApproval>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ControlExtension.IfcRelAssociatesApproval>(init);
+			return _model.Instances.New<Ifc2x3.ControlExtension.IfcRelAssociatesApproval>(init);
 		}
 
 		public IIfcRelAssociatesClassification RelAssociatesClassification(Action<IIfcRelAssociatesClassification> init = null)
 		{
-			IIfcRelAssociatesClassification result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<Kernel.IfcRelAssociatesClassification>();
-			else
-				result = _model.Instances.New<Ifc2x3.Kernel.IfcRelAssociatesClassification>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<Kernel.IfcRelAssociatesClassification>(init);
+			return _model.Instances.New<Ifc2x3.Kernel.IfcRelAssociatesClassification>(init);
 		}
 
 		public IIfcRelAssociatesConstraint RelAssociatesConstraint(Action<IIfcRelAssociatesConstraint> init = null)
 		{
-			IIfcRelAssociatesConstraint result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ControlExtension.IfcRelAssociatesConstraint>();
-			else
-				result = _model.Instances.New<Ifc2x3.ControlExtension.IfcRelAssociatesConstraint>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ControlExtension.IfcRelAssociatesConstraint>(init);
+			return _model.Instances.New<Ifc2x3.ControlExtension.IfcRelAssociatesConstraint>(init);
 		}
 
 		public IIfcRelAssociatesDocument RelAssociatesDocument(Action<IIfcRelAssociatesDocument> init = null)
 		{
-			IIfcRelAssociatesDocument result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<Kernel.IfcRelAssociatesDocument>();
-			else
-				result = _model.Instances.New<Ifc2x3.Kernel.IfcRelAssociatesDocument>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<Kernel.IfcRelAssociatesDocument>(init);
+			return _model.Instances.New<Ifc2x3.Kernel.IfcRelAssociatesDocument>(init);
 		}
 
 		public IIfcRelAssociatesLibrary RelAssociatesLibrary(Action<IIfcRelAssociatesLibrary> init = null)
 		{
-			IIfcRelAssociatesLibrary result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<Kernel.IfcRelAssociatesLibrary>();
-			else
-				result = _model.Instances.New<Ifc2x3.Kernel.IfcRelAssociatesLibrary>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<Kernel.IfcRelAssociatesLibrary>(init);
+			return _model.Instances.New<Ifc2x3.Kernel.IfcRelAssociatesLibrary>(init);
 		}
 
 		public IIfcRelAssociatesMaterial RelAssociatesMaterial(Action<IIfcRelAssociatesMaterial> init = null)
 		{
-			IIfcRelAssociatesMaterial result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcRelAssociatesMaterial>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcRelAssociatesMaterial>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcRelAssociatesMaterial>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelAssociatesMaterial>(init);
 		}
 
 		public IIfcRelConnectsElements RelConnectsElements(Action<IIfcRelConnectsElements> init = null)
 		{
-			IIfcRelConnectsElements result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcRelConnectsElements>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcRelConnectsElements>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcRelConnectsElements>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelConnectsElements>(init);
 		}
 
 		public IIfcRelConnectsPathElements RelConnectsPathElements(Action<IIfcRelConnectsPathElements> init = null)
 		{
-			IIfcRelConnectsPathElements result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcRelConnectsPathElements>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRelConnectsPathElements>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcRelConnectsPathElements>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRelConnectsPathElements>(init);
 		}
 
 		public IIfcRelConnectsPortToElement RelConnectsPortToElement(Action<IIfcRelConnectsPortToElement> init = null)
 		{
-			IIfcRelConnectsPortToElement result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcRelConnectsPortToElement>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcRelConnectsPortToElement>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcRelConnectsPortToElement>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelConnectsPortToElement>(init);
 		}
 
 		public IIfcRelConnectsPorts RelConnectsPorts(Action<IIfcRelConnectsPorts> init = null)
 		{
-			IIfcRelConnectsPorts result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcRelConnectsPorts>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcRelConnectsPorts>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcRelConnectsPorts>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelConnectsPorts>(init);
 		}
 
 		public IIfcRelConnectsStructuralActivity RelConnectsStructuralActivity(Action<IIfcRelConnectsStructuralActivity> init = null)
 		{
-			IIfcRelConnectsStructuralActivity result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralAnalysisDomain.IfcRelConnectsStructuralActivity>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcRelConnectsStructuralActivity>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralAnalysisDomain.IfcRelConnectsStructuralActivity>(init);
+			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcRelConnectsStructuralActivity>(init);
 		}
 
 		public IIfcRelConnectsStructuralMember RelConnectsStructuralMember(Action<IIfcRelConnectsStructuralMember> init = null)
 		{
-			IIfcRelConnectsStructuralMember result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralAnalysisDomain.IfcRelConnectsStructuralMember>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcRelConnectsStructuralMember>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralAnalysisDomain.IfcRelConnectsStructuralMember>(init);
+			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcRelConnectsStructuralMember>(init);
 		}
 
 		public IIfcRelConnectsWithEccentricity RelConnectsWithEccentricity(Action<IIfcRelConnectsWithEccentricity> init = null)
 		{
-			IIfcRelConnectsWithEccentricity result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralAnalysisDomain.IfcRelConnectsWithEccentricity>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcRelConnectsWithEccentricity>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralAnalysisDomain.IfcRelConnectsWithEccentricity>(init);
+			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcRelConnectsWithEccentricity>(init);
 		}
 
 		public IIfcRelConnectsWithRealizingElements RelConnectsWithRealizingElements(Action<IIfcRelConnectsWithRealizingElements> init = null)
 		{
-			IIfcRelConnectsWithRealizingElements result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcRelConnectsWithRealizingElements>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcRelConnectsWithRealizingElements>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcRelConnectsWithRealizingElements>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelConnectsWithRealizingElements>(init);
 		}
 
 		public IIfcRelContainedInSpatialStructure RelContainedInSpatialStructure(Action<IIfcRelContainedInSpatialStructure> init = null)
 		{
-			IIfcRelContainedInSpatialStructure result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcRelContainedInSpatialStructure>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcRelContainedInSpatialStructure>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcRelContainedInSpatialStructure>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelContainedInSpatialStructure>(init);
 		}
 
 		public IIfcRelCoversBldgElements RelCoversBldgElements(Action<IIfcRelCoversBldgElements> init = null)
 		{
-			IIfcRelCoversBldgElements result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcRelCoversBldgElements>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcRelCoversBldgElements>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcRelCoversBldgElements>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelCoversBldgElements>(init);
 		}
 
 		public IIfcRelCoversSpaces RelCoversSpaces(Action<IIfcRelCoversSpaces> init = null)
 		{
-			IIfcRelCoversSpaces result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcRelCoversSpaces>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcRelCoversSpaces>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcRelCoversSpaces>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelCoversSpaces>(init);
 		}
 
 		public IIfcRelDefinesByProperties RelDefinesByProperties(Action<IIfcRelDefinesByProperties> init = null)
 		{
-			IIfcRelDefinesByProperties result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<Kernel.IfcRelDefinesByProperties>();
-			else
-				result = _model.Instances.New<Ifc2x3.Kernel.IfcRelDefinesByProperties>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<Kernel.IfcRelDefinesByProperties>(init);
+			return _model.Instances.New<Ifc2x3.Kernel.IfcRelDefinesByProperties>(init);
 		}
 
 		public IIfcRelDefinesByType RelDefinesByType(Action<IIfcRelDefinesByType> init = null)
 		{
-			IIfcRelDefinesByType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<Kernel.IfcRelDefinesByType>();
-			else
-				result = _model.Instances.New<Ifc2x3.Kernel.IfcRelDefinesByType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<Kernel.IfcRelDefinesByType>(init);
+			return _model.Instances.New<Ifc2x3.Kernel.IfcRelDefinesByType>(init);
 		}
 
 		public IIfcRelFillsElement RelFillsElement(Action<IIfcRelFillsElement> init = null)
 		{
-			IIfcRelFillsElement result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcRelFillsElement>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcRelFillsElement>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcRelFillsElement>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelFillsElement>(init);
 		}
 
 		public IIfcRelFlowControlElements RelFlowControlElements(Action<IIfcRelFlowControlElements> init = null)
 		{
-			IIfcRelFlowControlElements result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgServiceElements.IfcRelFlowControlElements>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcRelFlowControlElements>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgServiceElements.IfcRelFlowControlElements>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcRelFlowControlElements>(init);
 		}
 
 		public IIfcRelNests RelNests(Action<IIfcRelNests> init = null)
 		{
-			IIfcRelNests result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<Kernel.IfcRelNests>();
-			else
-				result = _model.Instances.New<Ifc2x3.Kernel.IfcRelNests>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<Kernel.IfcRelNests>(init);
+			return _model.Instances.New<Ifc2x3.Kernel.IfcRelNests>(init);
 		}
 
 		public IIfcRelProjectsElement RelProjectsElement(Action<IIfcRelProjectsElement> init = null)
 		{
-			IIfcRelProjectsElement result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcRelProjectsElement>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcRelProjectsElement>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcRelProjectsElement>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelProjectsElement>(init);
 		}
 
 		public IIfcRelReferencedInSpatialStructure RelReferencedInSpatialStructure(Action<IIfcRelReferencedInSpatialStructure> init = null)
 		{
-			IIfcRelReferencedInSpatialStructure result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcRelReferencedInSpatialStructure>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcRelReferencedInSpatialStructure>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcRelReferencedInSpatialStructure>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelReferencedInSpatialStructure>(init);
 		}
 
 		public IIfcRelSequence RelSequence(Action<IIfcRelSequence> init = null)
 		{
-			IIfcRelSequence result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProcessExtension.IfcRelSequence>();
-			else
-				result = _model.Instances.New<Ifc2x3.Kernel.IfcRelSequence>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProcessExtension.IfcRelSequence>(init);
+			return _model.Instances.New<Ifc2x3.Kernel.IfcRelSequence>(init);
 		}
 
 		public IIfcRelServicesBuildings RelServicesBuildings(Action<IIfcRelServicesBuildings> init = null)
 		{
-			IIfcRelServicesBuildings result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcRelServicesBuildings>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcRelServicesBuildings>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcRelServicesBuildings>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelServicesBuildings>(init);
 		}
 
 		public IIfcRelSpaceBoundary RelSpaceBoundary(Action<IIfcRelSpaceBoundary> init = null)
 		{
-			IIfcRelSpaceBoundary result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcRelSpaceBoundary>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcRelSpaceBoundary>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcRelSpaceBoundary>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelSpaceBoundary>(init);
 		}
 
 		public IIfcRelVoidsElement RelVoidsElement(Action<IIfcRelVoidsElement> init = null)
 		{
-			IIfcRelVoidsElement result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcRelVoidsElement>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcRelVoidsElement>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcRelVoidsElement>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelVoidsElement>(init);
 		}
 
 		public IIfcRepresentationMap RepresentationMap(Action<IIfcRepresentationMap> init = null)
 		{
-			IIfcRepresentationMap result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcRepresentationMap>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcRepresentationMap>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcRepresentationMap>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcRepresentationMap>(init);
 		}
 
 		public IIfcRevolvedAreaSolid RevolvedAreaSolid(Action<IIfcRevolvedAreaSolid> init = null)
 		{
-			IIfcRevolvedAreaSolid result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricModelResource.IfcRevolvedAreaSolid>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricModelResource.IfcRevolvedAreaSolid>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricModelResource.IfcRevolvedAreaSolid>(init);
+			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcRevolvedAreaSolid>(init);
 		}
 
 		public IIfcRightCircularCone RightCircularCone(Action<IIfcRightCircularCone> init = null)
 		{
-			IIfcRightCircularCone result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricModelResource.IfcRightCircularCone>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricModelResource.IfcRightCircularCone>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricModelResource.IfcRightCircularCone>(init);
+			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcRightCircularCone>(init);
 		}
 
 		public IIfcRightCircularCylinder RightCircularCylinder(Action<IIfcRightCircularCylinder> init = null)
 		{
-			IIfcRightCircularCylinder result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricModelResource.IfcRightCircularCylinder>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricModelResource.IfcRightCircularCylinder>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricModelResource.IfcRightCircularCylinder>(init);
+			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcRightCircularCylinder>(init);
 		}
 
 		public IIfcRoof Roof(Action<IIfcRoof> init = null)
 		{
-			IIfcRoof result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcRoof>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRoof>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcRoof>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRoof>(init);
 		}
 
 		public IIfcRoundedRectangleProfileDef RoundedRectangleProfileDef(Action<IIfcRoundedRectangleProfileDef> init = null)
 		{
-			IIfcRoundedRectangleProfileDef result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProfileResource.IfcRoundedRectangleProfileDef>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProfileResource.IfcRoundedRectangleProfileDef>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProfileResource.IfcRoundedRectangleProfileDef>(init);
+			return _model.Instances.New<Ifc2x3.ProfileResource.IfcRoundedRectangleProfileDef>(init);
 		}
 
 		public IIfcSIUnit SIUnit(Action<IIfcSIUnit> init = null)
 		{
-			IIfcSIUnit result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<MeasureResource.IfcSIUnit>();
-			else
-				result = _model.Instances.New<Ifc2x3.MeasureResource.IfcSIUnit>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<MeasureResource.IfcSIUnit>(init);
+			return _model.Instances.New<Ifc2x3.MeasureResource.IfcSIUnit>(init);
 		}
 
 		public IIfcSanitaryTerminalType SanitaryTerminalType(Action<IIfcSanitaryTerminalType> init = null)
 		{
-			IIfcSanitaryTerminalType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PlumbingFireProtectionDomain.IfcSanitaryTerminalType>();
-			else
-				result = _model.Instances.New<Ifc2x3.PlumbingFireProtectionDomain.IfcSanitaryTerminalType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PlumbingFireProtectionDomain.IfcSanitaryTerminalType>(init);
+			return _model.Instances.New<Ifc2x3.PlumbingFireProtectionDomain.IfcSanitaryTerminalType>(init);
 		}
 
 		public IIfcSectionProperties SectionProperties(Action<IIfcSectionProperties> init = null)
 		{
-			IIfcSectionProperties result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProfileResource.IfcSectionProperties>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProfilePropertyResource.IfcSectionProperties>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProfileResource.IfcSectionProperties>(init);
+			return _model.Instances.New<Ifc2x3.ProfilePropertyResource.IfcSectionProperties>(init);
 		}
 
 		public IIfcSectionReinforcementProperties SectionReinforcementProperties(Action<IIfcSectionReinforcementProperties> init = null)
 		{
-			IIfcSectionReinforcementProperties result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProfileResource.IfcSectionReinforcementProperties>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProfilePropertyResource.IfcSectionReinforcementProperties>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProfileResource.IfcSectionReinforcementProperties>(init);
+			return _model.Instances.New<Ifc2x3.ProfilePropertyResource.IfcSectionReinforcementProperties>(init);
 		}
 
 		public IIfcSectionedSpine SectionedSpine(Action<IIfcSectionedSpine> init = null)
 		{
-			IIfcSectionedSpine result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricModelResource.IfcSectionedSpine>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricModelResource.IfcSectionedSpine>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricModelResource.IfcSectionedSpine>(init);
+			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcSectionedSpine>(init);
 		}
 
 		public IIfcSensorType SensorType(Action<IIfcSensorType> init = null)
 		{
-			IIfcSensorType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<BuildingControlsDomain.IfcSensorType>();
-			else
-				result = _model.Instances.New<Ifc2x3.BuildingcontrolsDomain.IfcSensorType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<BuildingControlsDomain.IfcSensorType>(init);
+			return _model.Instances.New<Ifc2x3.BuildingcontrolsDomain.IfcSensorType>(init);
 		}
 
 		public IIfcShapeAspect ShapeAspect(Action<IIfcShapeAspect> init = null)
 		{
-			IIfcShapeAspect result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<RepresentationResource.IfcShapeAspect>();
-			else
-				result = _model.Instances.New<Ifc2x3.RepresentationResource.IfcShapeAspect>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<RepresentationResource.IfcShapeAspect>(init);
+			return _model.Instances.New<Ifc2x3.RepresentationResource.IfcShapeAspect>(init);
 		}
 
 		public IIfcShapeRepresentation ShapeRepresentation(Action<IIfcShapeRepresentation> init = null)
 		{
-			IIfcShapeRepresentation result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<RepresentationResource.IfcShapeRepresentation>();
-			else
-				result = _model.Instances.New<Ifc2x3.RepresentationResource.IfcShapeRepresentation>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<RepresentationResource.IfcShapeRepresentation>(init);
+			return _model.Instances.New<Ifc2x3.RepresentationResource.IfcShapeRepresentation>(init);
 		}
 
 		public IIfcShellBasedSurfaceModel ShellBasedSurfaceModel(Action<IIfcShellBasedSurfaceModel> init = null)
 		{
-			IIfcShellBasedSurfaceModel result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricModelResource.IfcShellBasedSurfaceModel>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricModelResource.IfcShellBasedSurfaceModel>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricModelResource.IfcShellBasedSurfaceModel>(init);
+			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcShellBasedSurfaceModel>(init);
 		}
 
 		public IIfcSite Site(Action<IIfcSite> init = null)
 		{
-			IIfcSite result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcSite>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcSite>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcSite>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcSite>(init);
 		}
 
 		public IIfcSlab Slab(Action<IIfcSlab> init = null)
 		{
-			IIfcSlab result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcSlab>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcSlab>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcSlab>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcSlab>(init);
 		}
 
 		public IIfcSlabType SlabType(Action<IIfcSlabType> init = null)
 		{
-			IIfcSlabType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcSlabType>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcSlabType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcSlabType>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcSlabType>(init);
 		}
 
 		public IIfcSlippageConnectionCondition SlippageConnectionCondition(Action<IIfcSlippageConnectionCondition> init = null)
 		{
-			IIfcSlippageConnectionCondition result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralLoadResource.IfcSlippageConnectionCondition>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcSlippageConnectionCondition>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralLoadResource.IfcSlippageConnectionCondition>(init);
+			return _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcSlippageConnectionCondition>(init);
 		}
 
 		public IIfcSpace Space(Action<IIfcSpace> init = null)
 		{
-			IIfcSpace result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcSpace>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcSpace>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcSpace>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcSpace>(init);
 		}
 
 		public IIfcSpaceHeaterType SpaceHeaterType(Action<IIfcSpaceHeaterType> init = null)
 		{
-			IIfcSpaceHeaterType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcSpaceHeaterType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcSpaceHeaterType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcSpaceHeaterType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcSpaceHeaterType>(init);
 		}
 
 		public IIfcSpaceType SpaceType(Action<IIfcSpaceType> init = null)
 		{
-			IIfcSpaceType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcSpaceType>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcSpaceType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcSpaceType>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcSpaceType>(init);
 		}
 
 		public IIfcSphere Sphere(Action<IIfcSphere> init = null)
 		{
-			IIfcSphere result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricModelResource.IfcSphere>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricModelResource.IfcSphere>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricModelResource.IfcSphere>(init);
+			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcSphere>(init);
 		}
 
 		public IIfcStackTerminalType StackTerminalType(Action<IIfcStackTerminalType> init = null)
 		{
-			IIfcStackTerminalType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PlumbingFireProtectionDomain.IfcStackTerminalType>();
-			else
-				result = _model.Instances.New<Ifc2x3.PlumbingFireProtectionDomain.IfcStackTerminalType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PlumbingFireProtectionDomain.IfcStackTerminalType>(init);
+			return _model.Instances.New<Ifc2x3.PlumbingFireProtectionDomain.IfcStackTerminalType>(init);
 		}
 
 		public IIfcStair Stair(Action<IIfcStair> init = null)
 		{
-			IIfcStair result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcStair>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcStair>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcStair>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcStair>(init);
 		}
 
 		public IIfcStairFlight StairFlight(Action<IIfcStairFlight> init = null)
 		{
-			IIfcStairFlight result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcStairFlight>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcStairFlight>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcStairFlight>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcStairFlight>(init);
 		}
 
 		public IIfcStairFlightType StairFlightType(Action<IIfcStairFlightType> init = null)
 		{
-			IIfcStairFlightType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcStairFlightType>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcStairFlightType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcStairFlightType>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcStairFlightType>(init);
 		}
 
 		public IIfcStructuralAnalysisModel StructuralAnalysisModel(Action<IIfcStructuralAnalysisModel> init = null)
 		{
-			IIfcStructuralAnalysisModel result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralAnalysisDomain.IfcStructuralAnalysisModel>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralAnalysisModel>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralAnalysisModel>(init);
+			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralAnalysisModel>(init);
 		}
 
 		public IIfcStructuralCurveConnection StructuralCurveConnection(Action<IIfcStructuralCurveConnection> init = null)
 		{
-			IIfcStructuralCurveConnection result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralAnalysisDomain.IfcStructuralCurveConnection>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralCurveConnection>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralCurveConnection>(init);
+			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralCurveConnection>(init);
 		}
 
 		public IIfcStructuralCurveMember StructuralCurveMember(Action<IIfcStructuralCurveMember> init = null)
 		{
-			IIfcStructuralCurveMember result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralAnalysisDomain.IfcStructuralCurveMember>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralCurveMember>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralCurveMember>(init);
+			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralCurveMember>(init);
 		}
 
 		public IIfcStructuralCurveMemberVarying StructuralCurveMemberVarying(Action<IIfcStructuralCurveMemberVarying> init = null)
 		{
-			IIfcStructuralCurveMemberVarying result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralAnalysisDomain.IfcStructuralCurveMemberVarying>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralCurveMemberVarying>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralCurveMemberVarying>(init);
+			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralCurveMemberVarying>(init);
 		}
 
 		public IIfcStructuralLinearAction StructuralLinearAction(Action<IIfcStructuralLinearAction> init = null)
 		{
-			IIfcStructuralLinearAction result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralAnalysisDomain.IfcStructuralLinearAction>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralLinearAction>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralLinearAction>(init);
+			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralLinearAction>(init);
 		}
 
 		public IIfcStructuralLoadGroup StructuralLoadGroup(Action<IIfcStructuralLoadGroup> init = null)
 		{
-			IIfcStructuralLoadGroup result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralAnalysisDomain.IfcStructuralLoadGroup>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralLoadGroup>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralLoadGroup>(init);
+			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralLoadGroup>(init);
 		}
 
 		public IIfcStructuralLoadLinearForce StructuralLoadLinearForce(Action<IIfcStructuralLoadLinearForce> init = null)
 		{
-			IIfcStructuralLoadLinearForce result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralLoadResource.IfcStructuralLoadLinearForce>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadLinearForce>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralLoadResource.IfcStructuralLoadLinearForce>(init);
+			return _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadLinearForce>(init);
 		}
 
 		public IIfcStructuralLoadPlanarForce StructuralLoadPlanarForce(Action<IIfcStructuralLoadPlanarForce> init = null)
 		{
-			IIfcStructuralLoadPlanarForce result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralLoadResource.IfcStructuralLoadPlanarForce>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadPlanarForce>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralLoadResource.IfcStructuralLoadPlanarForce>(init);
+			return _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadPlanarForce>(init);
 		}
 
 		public IIfcStructuralLoadSingleDisplacement StructuralLoadSingleDisplacement(Action<IIfcStructuralLoadSingleDisplacement> init = null)
 		{
-			IIfcStructuralLoadSingleDisplacement result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralLoadResource.IfcStructuralLoadSingleDisplacement>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadSingleDisplacement>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralLoadResource.IfcStructuralLoadSingleDisplacement>(init);
+			return _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadSingleDisplacement>(init);
 		}
 
 		public IIfcStructuralLoadSingleDisplacementDistortion StructuralLoadSingleDisplacementDistortion(Action<IIfcStructuralLoadSingleDisplacementDistortion> init = null)
 		{
-			IIfcStructuralLoadSingleDisplacementDistortion result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralLoadResource.IfcStructuralLoadSingleDisplacementDistortion>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadSingleDisplacementDistortion>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralLoadResource.IfcStructuralLoadSingleDisplacementDistortion>(init);
+			return _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadSingleDisplacementDistortion>(init);
 		}
 
 		public IIfcStructuralLoadSingleForce StructuralLoadSingleForce(Action<IIfcStructuralLoadSingleForce> init = null)
 		{
-			IIfcStructuralLoadSingleForce result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralLoadResource.IfcStructuralLoadSingleForce>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadSingleForce>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralLoadResource.IfcStructuralLoadSingleForce>(init);
+			return _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadSingleForce>(init);
 		}
 
 		public IIfcStructuralLoadSingleForceWarping StructuralLoadSingleForceWarping(Action<IIfcStructuralLoadSingleForceWarping> init = null)
 		{
-			IIfcStructuralLoadSingleForceWarping result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralLoadResource.IfcStructuralLoadSingleForceWarping>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadSingleForceWarping>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralLoadResource.IfcStructuralLoadSingleForceWarping>(init);
+			return _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadSingleForceWarping>(init);
 		}
 
 		public IIfcStructuralLoadTemperature StructuralLoadTemperature(Action<IIfcStructuralLoadTemperature> init = null)
 		{
-			IIfcStructuralLoadTemperature result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralLoadResource.IfcStructuralLoadTemperature>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadTemperature>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralLoadResource.IfcStructuralLoadTemperature>(init);
+			return _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadTemperature>(init);
 		}
 
 		public IIfcStructuralPlanarAction StructuralPlanarAction(Action<IIfcStructuralPlanarAction> init = null)
 		{
-			IIfcStructuralPlanarAction result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralAnalysisDomain.IfcStructuralPlanarAction>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralPlanarAction>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralPlanarAction>(init);
+			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralPlanarAction>(init);
 		}
 
 		public IIfcStructuralPointAction StructuralPointAction(Action<IIfcStructuralPointAction> init = null)
 		{
-			IIfcStructuralPointAction result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralAnalysisDomain.IfcStructuralPointAction>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralPointAction>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralPointAction>(init);
+			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralPointAction>(init);
 		}
 
 		public IIfcStructuralPointConnection StructuralPointConnection(Action<IIfcStructuralPointConnection> init = null)
 		{
-			IIfcStructuralPointConnection result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralAnalysisDomain.IfcStructuralPointConnection>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralPointConnection>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralPointConnection>(init);
+			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralPointConnection>(init);
 		}
 
 		public IIfcStructuralPointReaction StructuralPointReaction(Action<IIfcStructuralPointReaction> init = null)
 		{
-			IIfcStructuralPointReaction result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralAnalysisDomain.IfcStructuralPointReaction>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralPointReaction>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralPointReaction>(init);
+			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralPointReaction>(init);
 		}
 
 		public IIfcStructuralResultGroup StructuralResultGroup(Action<IIfcStructuralResultGroup> init = null)
 		{
-			IIfcStructuralResultGroup result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralAnalysisDomain.IfcStructuralResultGroup>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralResultGroup>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralResultGroup>(init);
+			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralResultGroup>(init);
 		}
 
 		public IIfcStructuralSurfaceConnection StructuralSurfaceConnection(Action<IIfcStructuralSurfaceConnection> init = null)
 		{
-			IIfcStructuralSurfaceConnection result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralAnalysisDomain.IfcStructuralSurfaceConnection>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralSurfaceConnection>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralSurfaceConnection>(init);
+			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralSurfaceConnection>(init);
 		}
 
 		public IIfcStructuralSurfaceMember StructuralSurfaceMember(Action<IIfcStructuralSurfaceMember> init = null)
 		{
-			IIfcStructuralSurfaceMember result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralAnalysisDomain.IfcStructuralSurfaceMember>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralSurfaceMember>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralSurfaceMember>(init);
+			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralSurfaceMember>(init);
 		}
 
 		public IIfcStructuralSurfaceMemberVarying StructuralSurfaceMemberVarying(Action<IIfcStructuralSurfaceMemberVarying> init = null)
 		{
-			IIfcStructuralSurfaceMemberVarying result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralAnalysisDomain.IfcStructuralSurfaceMemberVarying>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralSurfaceMemberVarying>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralSurfaceMemberVarying>(init);
+			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralSurfaceMemberVarying>(init);
 		}
 
 		public IIfcStyledItem StyledItem(Action<IIfcStyledItem> init = null)
 		{
-			IIfcStyledItem result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcStyledItem>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcStyledItem>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcStyledItem>(init);
+			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcStyledItem>(init);
 		}
 
 		public IIfcStyledRepresentation StyledRepresentation(Action<IIfcStyledRepresentation> init = null)
 		{
-			IIfcStyledRepresentation result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<RepresentationResource.IfcStyledRepresentation>();
-			else
-				result = _model.Instances.New<Ifc2x3.RepresentationResource.IfcStyledRepresentation>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<RepresentationResource.IfcStyledRepresentation>(init);
+			return _model.Instances.New<Ifc2x3.RepresentationResource.IfcStyledRepresentation>(init);
 		}
 
 		public IIfcSubContractResource SubContractResource(Action<IIfcSubContractResource> init = null)
 		{
-			IIfcSubContractResource result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ConstructionMgmtDomain.IfcSubContractResource>();
-			else
-				result = _model.Instances.New<Ifc2x3.ConstructionMgmtDomain.IfcSubContractResource>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ConstructionMgmtDomain.IfcSubContractResource>(init);
+			return _model.Instances.New<Ifc2x3.ConstructionMgmtDomain.IfcSubContractResource>(init);
 		}
 
 		public IIfcSubedge Subedge(Action<IIfcSubedge> init = null)
 		{
-			IIfcSubedge result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<TopologyResource.IfcSubedge>();
-			else
-				result = _model.Instances.New<Ifc2x3.TopologyResource.IfcSubedge>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<TopologyResource.IfcSubedge>(init);
+			return _model.Instances.New<Ifc2x3.TopologyResource.IfcSubedge>(init);
 		}
 
 		public IIfcSurfaceCurveSweptAreaSolid SurfaceCurveSweptAreaSolid(Action<IIfcSurfaceCurveSweptAreaSolid> init = null)
 		{
-			IIfcSurfaceCurveSweptAreaSolid result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricModelResource.IfcSurfaceCurveSweptAreaSolid>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricModelResource.IfcSurfaceCurveSweptAreaSolid>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricModelResource.IfcSurfaceCurveSweptAreaSolid>(init);
+			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcSurfaceCurveSweptAreaSolid>(init);
 		}
 
 		public IIfcSurfaceOfLinearExtrusion SurfaceOfLinearExtrusion(Action<IIfcSurfaceOfLinearExtrusion> init = null)
 		{
-			IIfcSurfaceOfLinearExtrusion result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcSurfaceOfLinearExtrusion>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcSurfaceOfLinearExtrusion>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcSurfaceOfLinearExtrusion>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcSurfaceOfLinearExtrusion>(init);
 		}
 
 		public IIfcSurfaceOfRevolution SurfaceOfRevolution(Action<IIfcSurfaceOfRevolution> init = null)
 		{
-			IIfcSurfaceOfRevolution result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcSurfaceOfRevolution>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcSurfaceOfRevolution>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcSurfaceOfRevolution>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcSurfaceOfRevolution>(init);
 		}
 
 		public IIfcSurfaceStyle SurfaceStyle(Action<IIfcSurfaceStyle> init = null)
 		{
-			IIfcSurfaceStyle result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcSurfaceStyle>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyle>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcSurfaceStyle>(init);
+			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyle>(init);
 		}
 
 		public IIfcSurfaceStyleLighting SurfaceStyleLighting(Action<IIfcSurfaceStyleLighting> init = null)
 		{
-			IIfcSurfaceStyleLighting result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcSurfaceStyleLighting>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleLighting>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcSurfaceStyleLighting>(init);
+			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleLighting>(init);
 		}
 
 		public IIfcSurfaceStyleRefraction SurfaceStyleRefraction(Action<IIfcSurfaceStyleRefraction> init = null)
 		{
-			IIfcSurfaceStyleRefraction result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcSurfaceStyleRefraction>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleRefraction>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcSurfaceStyleRefraction>(init);
+			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleRefraction>(init);
 		}
 
 		public IIfcSurfaceStyleRendering SurfaceStyleRendering(Action<IIfcSurfaceStyleRendering> init = null)
 		{
-			IIfcSurfaceStyleRendering result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcSurfaceStyleRendering>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleRendering>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcSurfaceStyleRendering>(init);
+			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleRendering>(init);
 		}
 
 		public IIfcSurfaceStyleShading SurfaceStyleShading(Action<IIfcSurfaceStyleShading> init = null)
 		{
-			IIfcSurfaceStyleShading result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcSurfaceStyleShading>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleShading>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcSurfaceStyleShading>(init);
+			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleShading>(init);
 		}
 
 		public IIfcSurfaceStyleWithTextures SurfaceStyleWithTextures(Action<IIfcSurfaceStyleWithTextures> init = null)
 		{
-			IIfcSurfaceStyleWithTextures result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcSurfaceStyleWithTextures>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleWithTextures>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcSurfaceStyleWithTextures>(init);
+			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleWithTextures>(init);
 		}
 
 		public IIfcSweptDiskSolid SweptDiskSolid(Action<IIfcSweptDiskSolid> init = null)
 		{
-			IIfcSweptDiskSolid result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricModelResource.IfcSweptDiskSolid>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricModelResource.IfcSweptDiskSolid>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricModelResource.IfcSweptDiskSolid>(init);
+			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcSweptDiskSolid>(init);
 		}
 
 		public IIfcSwitchingDeviceType SwitchingDeviceType(Action<IIfcSwitchingDeviceType> init = null)
 		{
-			IIfcSwitchingDeviceType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ElectricalDomain.IfcSwitchingDeviceType>();
-			else
-				result = _model.Instances.New<Ifc2x3.ElectricalDomain.IfcSwitchingDeviceType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ElectricalDomain.IfcSwitchingDeviceType>(init);
+			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcSwitchingDeviceType>(init);
 		}
 
 		public IIfcSystem System(Action<IIfcSystem> init = null)
 		{
-			IIfcSystem result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcSystem>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcSystem>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcSystem>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcSystem>(init);
 		}
 
 		public IIfcSystemFurnitureElementType SystemFurnitureElementType(Action<IIfcSystemFurnitureElementType> init = null)
 		{
-			IIfcSystemFurnitureElementType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedFacilitiesElements.IfcSystemFurnitureElementType>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedFacilitiesElements.IfcSystemFurnitureElementType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedFacilitiesElements.IfcSystemFurnitureElementType>(init);
+			return _model.Instances.New<Ifc2x3.SharedFacilitiesElements.IfcSystemFurnitureElementType>(init);
 		}
 
 		public IIfcTShapeProfileDef TShapeProfileDef(Action<IIfcTShapeProfileDef> init = null)
 		{
-			IIfcTShapeProfileDef result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProfileResource.IfcTShapeProfileDef>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProfileResource.IfcTShapeProfileDef>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProfileResource.IfcTShapeProfileDef>(init);
+			return _model.Instances.New<Ifc2x3.ProfileResource.IfcTShapeProfileDef>(init);
 		}
 
 		public IIfcTable Table(Action<IIfcTable> init = null)
 		{
-			IIfcTable result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<UtilityResource.IfcTable>();
-			else
-				result = _model.Instances.New<Ifc2x3.UtilityResource.IfcTable>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<UtilityResource.IfcTable>(init);
+			return _model.Instances.New<Ifc2x3.UtilityResource.IfcTable>(init);
 		}
 
 		public IIfcTableRow TableRow(Action<IIfcTableRow> init = null)
 		{
-			IIfcTableRow result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<UtilityResource.IfcTableRow>();
-			else
-				result = _model.Instances.New<Ifc2x3.UtilityResource.IfcTableRow>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<UtilityResource.IfcTableRow>(init);
+			return _model.Instances.New<Ifc2x3.UtilityResource.IfcTableRow>(init);
 		}
 
 		public IIfcTankType TankType(Action<IIfcTankType> init = null)
 		{
-			IIfcTankType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcTankType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcTankType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcTankType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcTankType>(init);
 		}
 
 		public IIfcTask Task(Action<IIfcTask> init = null)
 		{
-			IIfcTask result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProcessExtension.IfcTask>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProcessExtension.IfcTask>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProcessExtension.IfcTask>(init);
+			return _model.Instances.New<Ifc2x3.ProcessExtension.IfcTask>(init);
 		}
 
 		public IIfcTelecomAddress TelecomAddress(Action<IIfcTelecomAddress> init = null)
 		{
-			IIfcTelecomAddress result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ActorResource.IfcTelecomAddress>();
-			else
-				result = _model.Instances.New<Ifc2x3.ActorResource.IfcTelecomAddress>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ActorResource.IfcTelecomAddress>(init);
+			return _model.Instances.New<Ifc2x3.ActorResource.IfcTelecomAddress>(init);
 		}
 
 		public IIfcTendon Tendon(Action<IIfcTendon> init = null)
 		{
-			IIfcTendon result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralElementsDomain.IfcTendon>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcTendon>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralElementsDomain.IfcTendon>(init);
+			return _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcTendon>(init);
 		}
 
 		public IIfcTendonAnchor TendonAnchor(Action<IIfcTendonAnchor> init = null)
 		{
-			IIfcTendonAnchor result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<StructuralElementsDomain.IfcTendonAnchor>();
-			else
-				result = _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcTendonAnchor>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<StructuralElementsDomain.IfcTendonAnchor>(init);
+			return _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcTendonAnchor>(init);
 		}
 
 		public IIfcTextLiteral TextLiteral(Action<IIfcTextLiteral> init = null)
 		{
-			IIfcTextLiteral result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationDefinitionResource.IfcTextLiteral>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationDefinitionResource.IfcTextLiteral>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationDefinitionResource.IfcTextLiteral>(init);
+			return _model.Instances.New<Ifc2x3.PresentationDefinitionResource.IfcTextLiteral>(init);
 		}
 
 		public IIfcTextLiteralWithExtent TextLiteralWithExtent(Action<IIfcTextLiteralWithExtent> init = null)
 		{
-			IIfcTextLiteralWithExtent result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationDefinitionResource.IfcTextLiteralWithExtent>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationDefinitionResource.IfcTextLiteralWithExtent>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationDefinitionResource.IfcTextLiteralWithExtent>(init);
+			return _model.Instances.New<Ifc2x3.PresentationDefinitionResource.IfcTextLiteralWithExtent>(init);
 		}
 
 		public IIfcTextStyle TextStyle(Action<IIfcTextStyle> init = null)
 		{
-			IIfcTextStyle result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcTextStyle>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcTextStyle>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcTextStyle>(init);
+			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcTextStyle>(init);
 		}
 
 		public IIfcTextStyleFontModel TextStyleFontModel(Action<IIfcTextStyleFontModel> init = null)
 		{
-			IIfcTextStyleFontModel result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcTextStyleFontModel>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationResource.IfcTextStyleFontModel>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcTextStyleFontModel>(init);
+			return _model.Instances.New<Ifc2x3.PresentationResource.IfcTextStyleFontModel>(init);
 		}
 
 		public IIfcTextStyleForDefinedFont TextStyleForDefinedFont(Action<IIfcTextStyleForDefinedFont> init = null)
 		{
-			IIfcTextStyleForDefinedFont result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcTextStyleForDefinedFont>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcTextStyleForDefinedFont>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcTextStyleForDefinedFont>(init);
+			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcTextStyleForDefinedFont>(init);
 		}
 
 		public IIfcTextStyleTextModel TextStyleTextModel(Action<IIfcTextStyleTextModel> init = null)
 		{
-			IIfcTextStyleTextModel result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcTextStyleTextModel>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcTextStyleTextModel>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcTextStyleTextModel>(init);
+			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcTextStyleTextModel>(init);
 		}
 
 		public IIfcTextureCoordinateGenerator TextureCoordinateGenerator(Action<IIfcTextureCoordinateGenerator> init = null)
 		{
-			IIfcTextureCoordinateGenerator result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcTextureCoordinateGenerator>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationDefinitionResource.IfcTextureCoordinateGenerator>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcTextureCoordinateGenerator>(init);
+			return _model.Instances.New<Ifc2x3.PresentationDefinitionResource.IfcTextureCoordinateGenerator>(init);
 		}
 
 		public IIfcTextureMap TextureMap(Action<IIfcTextureMap> init = null)
 		{
-			IIfcTextureMap result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcTextureMap>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationDefinitionResource.IfcTextureMap>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcTextureMap>(init);
+			return _model.Instances.New<Ifc2x3.PresentationDefinitionResource.IfcTextureMap>(init);
 		}
 
 		public IIfcTextureVertex TextureVertex(Action<IIfcTextureVertex> init = null)
 		{
-			IIfcTextureVertex result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PresentationAppearanceResource.IfcTextureVertex>();
-			else
-				result = _model.Instances.New<Ifc2x3.PresentationDefinitionResource.IfcTextureVertex>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PresentationAppearanceResource.IfcTextureVertex>(init);
+			return _model.Instances.New<Ifc2x3.PresentationDefinitionResource.IfcTextureVertex>(init);
 		}
 
 		public IIfcTimeSeriesValue TimeSeriesValue(Action<IIfcTimeSeriesValue> init = null)
 		{
-			IIfcTimeSeriesValue result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<DateTimeResource.IfcTimeSeriesValue>();
-			else
-				result = _model.Instances.New<Ifc2x3.TimeSeriesResource.IfcTimeSeriesValue>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<DateTimeResource.IfcTimeSeriesValue>(init);
+			return _model.Instances.New<Ifc2x3.TimeSeriesResource.IfcTimeSeriesValue>(init);
 		}
 
 		public IIfcTopologyRepresentation TopologyRepresentation(Action<IIfcTopologyRepresentation> init = null)
 		{
-			IIfcTopologyRepresentation result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<RepresentationResource.IfcTopologyRepresentation>();
-			else
-				result = _model.Instances.New<Ifc2x3.RepresentationResource.IfcTopologyRepresentation>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<RepresentationResource.IfcTopologyRepresentation>(init);
+			return _model.Instances.New<Ifc2x3.RepresentationResource.IfcTopologyRepresentation>(init);
 		}
 
 		public IIfcTransformerType TransformerType(Action<IIfcTransformerType> init = null)
 		{
-			IIfcTransformerType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ElectricalDomain.IfcTransformerType>();
-			else
-				result = _model.Instances.New<Ifc2x3.ElectricalDomain.IfcTransformerType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ElectricalDomain.IfcTransformerType>(init);
+			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcTransformerType>(init);
 		}
 
 		public IIfcTransportElement TransportElement(Action<IIfcTransportElement> init = null)
 		{
-			IIfcTransportElement result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcTransportElement>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcTransportElement>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcTransportElement>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcTransportElement>(init);
 		}
 
 		public IIfcTransportElementType TransportElementType(Action<IIfcTransportElementType> init = null)
 		{
-			IIfcTransportElementType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcTransportElementType>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcTransportElementType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcTransportElementType>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcTransportElementType>(init);
 		}
 
 		public IIfcTrapeziumProfileDef TrapeziumProfileDef(Action<IIfcTrapeziumProfileDef> init = null)
 		{
-			IIfcTrapeziumProfileDef result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProfileResource.IfcTrapeziumProfileDef>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProfileResource.IfcTrapeziumProfileDef>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProfileResource.IfcTrapeziumProfileDef>(init);
+			return _model.Instances.New<Ifc2x3.ProfileResource.IfcTrapeziumProfileDef>(init);
 		}
 
 		public IIfcTrimmedCurve TrimmedCurve(Action<IIfcTrimmedCurve> init = null)
 		{
-			IIfcTrimmedCurve result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcTrimmedCurve>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcTrimmedCurve>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcTrimmedCurve>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcTrimmedCurve>(init);
 		}
 
 		public IIfcTubeBundleType TubeBundleType(Action<IIfcTubeBundleType> init = null)
 		{
-			IIfcTubeBundleType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcTubeBundleType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcTubeBundleType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcTubeBundleType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcTubeBundleType>(init);
 		}
 
 		public IIfcTypeObject TypeObject(Action<IIfcTypeObject> init = null)
 		{
-			IIfcTypeObject result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<Kernel.IfcTypeObject>();
-			else
-				result = _model.Instances.New<Ifc2x3.Kernel.IfcTypeObject>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<Kernel.IfcTypeObject>(init);
+			return _model.Instances.New<Ifc2x3.Kernel.IfcTypeObject>(init);
 		}
 
 		public IIfcTypeProduct TypeProduct(Action<IIfcTypeProduct> init = null)
 		{
-			IIfcTypeProduct result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<Kernel.IfcTypeProduct>();
-			else
-				result = _model.Instances.New<Ifc2x3.Kernel.IfcTypeProduct>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<Kernel.IfcTypeProduct>(init);
+			return _model.Instances.New<Ifc2x3.Kernel.IfcTypeProduct>(init);
 		}
 
 		public IIfcUShapeProfileDef UShapeProfileDef(Action<IIfcUShapeProfileDef> init = null)
 		{
-			IIfcUShapeProfileDef result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProfileResource.IfcUShapeProfileDef>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProfileResource.IfcUShapeProfileDef>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProfileResource.IfcUShapeProfileDef>(init);
+			return _model.Instances.New<Ifc2x3.ProfileResource.IfcUShapeProfileDef>(init);
 		}
 
 		public IIfcUnitAssignment UnitAssignment(Action<IIfcUnitAssignment> init = null)
 		{
-			IIfcUnitAssignment result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<MeasureResource.IfcUnitAssignment>();
-			else
-				result = _model.Instances.New<Ifc2x3.MeasureResource.IfcUnitAssignment>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<MeasureResource.IfcUnitAssignment>(init);
+			return _model.Instances.New<Ifc2x3.MeasureResource.IfcUnitAssignment>(init);
 		}
 
 		public IIfcUnitaryEquipmentType UnitaryEquipmentType(Action<IIfcUnitaryEquipmentType> init = null)
 		{
-			IIfcUnitaryEquipmentType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcUnitaryEquipmentType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcUnitaryEquipmentType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcUnitaryEquipmentType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcUnitaryEquipmentType>(init);
 		}
 
 		public IIfcValveType ValveType(Action<IIfcValveType> init = null)
 		{
-			IIfcValveType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcValveType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcValveType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcValveType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcValveType>(init);
 		}
 
 		public IIfcVector Vector(Action<IIfcVector> init = null)
 		{
-			IIfcVector result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometryResource.IfcVector>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometryResource.IfcVector>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometryResource.IfcVector>(init);
+			return _model.Instances.New<Ifc2x3.GeometryResource.IfcVector>(init);
 		}
 
 		public IIfcVertex Vertex(Action<IIfcVertex> init = null)
 		{
-			IIfcVertex result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<TopologyResource.IfcVertex>();
-			else
-				result = _model.Instances.New<Ifc2x3.TopologyResource.IfcVertex>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<TopologyResource.IfcVertex>(init);
+			return _model.Instances.New<Ifc2x3.TopologyResource.IfcVertex>(init);
 		}
 
 		public IIfcVertexLoop VertexLoop(Action<IIfcVertexLoop> init = null)
 		{
-			IIfcVertexLoop result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<TopologyResource.IfcVertexLoop>();
-			else
-				result = _model.Instances.New<Ifc2x3.TopologyResource.IfcVertexLoop>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<TopologyResource.IfcVertexLoop>(init);
+			return _model.Instances.New<Ifc2x3.TopologyResource.IfcVertexLoop>(init);
 		}
 
 		public IIfcVertexPoint VertexPoint(Action<IIfcVertexPoint> init = null)
 		{
-			IIfcVertexPoint result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<TopologyResource.IfcVertexPoint>();
-			else
-				result = _model.Instances.New<Ifc2x3.TopologyResource.IfcVertexPoint>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<TopologyResource.IfcVertexPoint>(init);
+			return _model.Instances.New<Ifc2x3.TopologyResource.IfcVertexPoint>(init);
 		}
 
 		public IIfcVibrationIsolatorType VibrationIsolatorType(Action<IIfcVibrationIsolatorType> init = null)
 		{
-			IIfcVibrationIsolatorType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<HvacDomain.IfcVibrationIsolatorType>();
-			else
-				result = _model.Instances.New<Ifc2x3.HVACDomain.IfcVibrationIsolatorType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<HvacDomain.IfcVibrationIsolatorType>(init);
+			return _model.Instances.New<Ifc2x3.HVACDomain.IfcVibrationIsolatorType>(init);
 		}
 
 		public IIfcVirtualElement VirtualElement(Action<IIfcVirtualElement> init = null)
 		{
-			IIfcVirtualElement result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcVirtualElement>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcVirtualElement>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcVirtualElement>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcVirtualElement>(init);
 		}
 
 		public IIfcVirtualGridIntersection VirtualGridIntersection(Action<IIfcVirtualGridIntersection> init = null)
 		{
-			IIfcVirtualGridIntersection result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<GeometricConstraintResource.IfcVirtualGridIntersection>();
-			else
-				result = _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcVirtualGridIntersection>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<GeometricConstraintResource.IfcVirtualGridIntersection>(init);
+			return _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcVirtualGridIntersection>(init);
 		}
 
 		public IIfcWall Wall(Action<IIfcWall> init = null)
 		{
-			IIfcWall result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcWall>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcWall>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcWall>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcWall>(init);
 		}
 
 		public IIfcWallStandardCase WallStandardCase(Action<IIfcWallStandardCase> init = null)
 		{
-			IIfcWallStandardCase result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcWallStandardCase>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcWallStandardCase>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcWallStandardCase>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcWallStandardCase>(init);
 		}
 
 		public IIfcWallType WallType(Action<IIfcWallType> init = null)
 		{
-			IIfcWallType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcWallType>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcWallType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcWallType>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcWallType>(init);
 		}
 
 		public IIfcWasteTerminalType WasteTerminalType(Action<IIfcWasteTerminalType> init = null)
 		{
-			IIfcWasteTerminalType result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<PlumbingFireProtectionDomain.IfcWasteTerminalType>();
-			else
-				result = _model.Instances.New<Ifc2x3.PlumbingFireProtectionDomain.IfcWasteTerminalType>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<PlumbingFireProtectionDomain.IfcWasteTerminalType>(init);
+			return _model.Instances.New<Ifc2x3.PlumbingFireProtectionDomain.IfcWasteTerminalType>(init);
 		}
 
 		public IIfcWindow Window(Action<IIfcWindow> init = null)
 		{
-			IIfcWindow result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<SharedBldgElements.IfcWindow>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcWindow>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<SharedBldgElements.IfcWindow>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcWindow>(init);
 		}
 
 		public IIfcWindowLiningProperties WindowLiningProperties(Action<IIfcWindowLiningProperties> init = null)
 		{
-			IIfcWindowLiningProperties result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ArchitectureDomain.IfcWindowLiningProperties>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcWindowLiningProperties>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ArchitectureDomain.IfcWindowLiningProperties>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcWindowLiningProperties>(init);
 		}
 
 		public IIfcWindowPanelProperties WindowPanelProperties(Action<IIfcWindowPanelProperties> init = null)
 		{
-			IIfcWindowPanelProperties result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ArchitectureDomain.IfcWindowPanelProperties>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcWindowPanelProperties>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ArchitectureDomain.IfcWindowPanelProperties>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcWindowPanelProperties>(init);
 		}
 
 		public IIfcWindowStyle WindowStyle(Action<IIfcWindowStyle> init = null)
 		{
-			IIfcWindowStyle result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ArchitectureDomain.IfcWindowStyle>();
-			else
-				result = _model.Instances.New<Ifc2x3.SharedBldgElements.IfcWindowStyle>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ArchitectureDomain.IfcWindowStyle>(init);
+			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcWindowStyle>(init);
 		}
 
 		public IIfcWorkPlan WorkPlan(Action<IIfcWorkPlan> init = null)
 		{
-			IIfcWorkPlan result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProcessExtension.IfcWorkPlan>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProcessExtension.IfcWorkPlan>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProcessExtension.IfcWorkPlan>(init);
+			return _model.Instances.New<Ifc2x3.ProcessExtension.IfcWorkPlan>(init);
 		}
 
 		public IIfcWorkSchedule WorkSchedule(Action<IIfcWorkSchedule> init = null)
 		{
-			IIfcWorkSchedule result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProcessExtension.IfcWorkSchedule>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProcessExtension.IfcWorkSchedule>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProcessExtension.IfcWorkSchedule>(init);
+			return _model.Instances.New<Ifc2x3.ProcessExtension.IfcWorkSchedule>(init);
 		}
 
 		public IIfcZShapeProfileDef ZShapeProfileDef(Action<IIfcZShapeProfileDef> init = null)
 		{
-			IIfcZShapeProfileDef result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProfileResource.IfcZShapeProfileDef>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProfileResource.IfcZShapeProfileDef>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProfileResource.IfcZShapeProfileDef>(init);
+			return _model.Instances.New<Ifc2x3.ProfileResource.IfcZShapeProfileDef>(init);
 		}
 
 		public IIfcZone Zone(Action<IIfcZone> init = null)
 		{
-			IIfcZone result;
 			if (_version == IfcSchemaVersion.Ifc4)
-				result = _model.Instances.New<ProductExtension.IfcZone>();
-			else
-				result = _model.Instances.New<Ifc2x3.ProductExtension.IfcZone>();
-
-			if (init != null)
-				init(result);
-			return result;
+				return _model.Instances.New<ProductExtension.IfcZone>(init);
+			return _model.Instances.New<Ifc2x3.ProductExtension.IfcZone>(init);
 		}
 
 	    public void Dispose()
