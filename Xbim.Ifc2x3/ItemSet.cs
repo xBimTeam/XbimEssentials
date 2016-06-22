@@ -35,11 +35,10 @@ namespace Xbim.Ifc2x3
             if (index > Count)
                 throw new Exception("It is not possible to get object which is more that just the next after the last one.");
             
-            if (!typeof (IList).IsAssignableFrom(typeof (T)))
+            if (!typeof (IItemSet).IsAssignableFrom(typeof (T)))
                 return default(T);
 
-            var result = (T) Activator.CreateInstance(typeof (T), BindingFlags.NonPublic | BindingFlags.Instance, null,
-                new object[] {OwningEntity, Property}, null);
+            var result = CreateNestedSet();
             InternalAdd(result);
             return result;
 
