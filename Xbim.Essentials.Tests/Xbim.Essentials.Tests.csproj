@@ -75,6 +75,7 @@
     <Compile Include="InverseCacheTests.cs" />
     <Compile Include="CrossAccessTests.cs" />
     <Compile Include="EditableInterfaces.cs" />
+    <Compile Include="Pure4Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj">
