@@ -226,7 +226,7 @@ namespace Xbim.IO.Esent
 
                 //Shape data
                 columndef.coltyp = JET_coltyp.LongBinary;
-                columndef.grbit = ColumndefGrbit.ColumnNotNULL;
+                columndef.grbit = ColumndefGrbit.ColumnMaybeNull;
                 Api.JetAddColumn(sesid, tableid, colNameShapeData, columndef, null, 0, out columnid);
 
                 // The primary index is the geometry label.
