@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTextureMap : IIfcTextureCoordinate
 	{
-		IEnumerable<IIfcVertexBasedTextureMap> @TextureMaps { get; }
+		IItemSet<IIfcVertexBasedTextureMap> @TextureMaps { get; }
 	
 	}
 }
@@ -37,25 +37,24 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 	public  partial class @IfcTextureMap : IfcTextureCoordinate, IInstantiableEntity, IIfcTextureMap, IContainsEntityReferences, IEquatable<@IfcTextureMap>
 	{
 		#region IIfcTextureMap explicit implementation
-		IEnumerable<IIfcVertexBasedTextureMap> IIfcTextureMap.TextureMaps { 
-			get { return @TextureMaps; } 
+		IItemSet<IIfcVertexBasedTextureMap> IIfcTextureMap.TextureMaps { 
+			get { return new Common.Collections.ProxyItemSet<IfcVertexBasedTextureMap, IIfcVertexBasedTextureMap>( @TextureMaps); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextureMap(IModel model) : base(model) 		{ 
-			Model = model; 
 			_textureMaps = new ItemSet<IfcVertexBasedTextureMap>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcVertexBasedTextureMap> _textureMaps;
+		private readonly ItemSet<IfcVertexBasedTextureMap> _textureMaps;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 2)]
-		public ItemSet<IfcVertexBasedTextureMap> @TextureMaps 
+		public IItemSet<IfcVertexBasedTextureMap> @TextureMaps 
 		{ 
 			get 
 			{
@@ -118,7 +117,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

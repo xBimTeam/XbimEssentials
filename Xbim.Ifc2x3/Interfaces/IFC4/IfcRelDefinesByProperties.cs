@@ -10,21 +10,37 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelDefinesByProperties : IIfcRelDefinesByProperties
 	{
-		IEnumerable<IIfcObjectDefinition> IIfcRelDefinesByProperties.RelatedObjects 
+		IItemSet<IIfcObjectDefinition> IIfcRelDefinesByProperties.RelatedObjects 
 		{ 
 			get
 			{
-				foreach (var member in RelatedObjects)
-				{
-					yield return member as IIfcObjectDefinition;
-				}
+			
+				return _relatedObjectsIfc4 ?? (_relatedObjectsIfc4 = new Common.Collections.ExtendedItemSet<IfcObject, IIfcObjectDefinition>(
+                    RelatedObjects, 
+                    new ItemSet<IIfcObjectDefinition>(this, 0, 255), 
+					RelatedObjectsToIfc4, 
+                    RelatedObjectsToIfc2X3));
 			} 
+		}
+
+		//private field to hold any extended data
+		private IItemSet<IIfcObjectDefinition> _relatedObjectsIfc4;
+		//transformation function to convert/cast IFC2x3 data to appear as IFC4
+		private static IIfcObjectDefinition RelatedObjectsToIfc4 (IfcObject member)
+		{
+			return member;
+		}
+
+		//transformation function to convert/cast IFC4 data to appear as IFC2x3 if possible
+		private static IfcObject RelatedObjectsToIfc2X3 (IIfcObjectDefinition member){
+			return member as IfcObject;
 		}
 
 		private  IIfcPropertySetDefinitionSelect _relatingPropertyDefinition4;

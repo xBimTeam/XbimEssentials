@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.MeasureResource
@@ -32,6 +33,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of UnitType
+				//##
 				switch (UnitType)
 				{
 					case IfcUnitEnum.ABSORBEDDOSEUNIT:
@@ -133,6 +136,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of UnitType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcUnitEnum.ABSORBEDDOSEUNIT:

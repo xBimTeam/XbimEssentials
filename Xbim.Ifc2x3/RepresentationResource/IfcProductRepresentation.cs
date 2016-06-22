@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcLabel? @Name { get;  set; }
 		IfcText? @Description { get;  set; }
-		IEnumerable<IIfcRepresentation> @Representations { get; }
+		IItemSet<IIfcRepresentation> @Representations { get; }
 	
 	}
 }
@@ -43,17 +43,17 @@ namespace Xbim.Ifc2x3.RepresentationResource
 	{
 		#region IIfcProductRepresentation explicit implementation
 		IfcLabel? IIfcProductRepresentation.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IfcText? IIfcProductRepresentation.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
-		IEnumerable<IIfcRepresentation> IIfcProductRepresentation.Representations { 
-			get { return @Representations; } 
+		IItemSet<IIfcRepresentation> IIfcProductRepresentation.Representations { 
+			get { return new Common.Collections.ProxyItemSet<IfcRepresentation, IIfcRepresentation>( @Representations); } 
 		}	
 		 
 		#endregion
@@ -125,7 +125,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		#region Explicit attribute fields
 		private IfcLabel? _name;
 		private IfcText? _description;
-		private ItemSet<IfcRepresentation> _representations;
+		private readonly ItemSet<IfcRepresentation> _representations;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -159,7 +159,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		}	
 		[IndexedProperty]
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 3)]
-		public ItemSet<IfcRepresentation> @Representations 
+		public IItemSet<IfcRepresentation> @Representations 
 		{ 
 			get 
 			{
@@ -277,7 +277,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

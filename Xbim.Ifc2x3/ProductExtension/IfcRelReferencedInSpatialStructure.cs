@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelReferencedInSpatialStructure : IIfcRelConnects
 	{
-		IEnumerable<IIfcProduct> @RelatedElements { get; }
+		IItemSet<IIfcProduct> @RelatedElements { get; }
 		IIfcSpatialStructureElement @RelatingStructure { get;  set; }
 	
 	}
@@ -39,13 +39,13 @@ namespace Xbim.Ifc2x3.ProductExtension
 	public  partial class @IfcRelReferencedInSpatialStructure : IfcRelConnects, IInstantiableEntity, IIfcRelReferencedInSpatialStructure, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelReferencedInSpatialStructure>
 	{
 		#region IIfcRelReferencedInSpatialStructure explicit implementation
-		IEnumerable<IIfcProduct> IIfcRelReferencedInSpatialStructure.RelatedElements { 
-			get { return @RelatedElements; } 
+		IItemSet<IIfcProduct> IIfcRelReferencedInSpatialStructure.RelatedElements { 
+			get { return new Common.Collections.ProxyItemSet<IfcProduct, IIfcProduct>( @RelatedElements); } 
 		}	
 		IIfcSpatialStructureElement IIfcRelReferencedInSpatialStructure.RelatingStructure { 
+ 
+ 
 			get { return @RelatingStructure; } 
- 
- 
 			set { RelatingStructure = value as IfcSpatialStructureElement;}
 		}	
 		 
@@ -53,19 +53,18 @@ namespace Xbim.Ifc2x3.ProductExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelReferencedInSpatialStructure(IModel model) : base(model) 		{ 
-			Model = model; 
 			_relatedElements = new ItemSet<IfcProduct>( this, 0,  5);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcProduct> _relatedElements;
+		private readonly ItemSet<IfcProduct> _relatedElements;
 		private IfcSpatialStructureElement _relatingStructure;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 5)]
-		public ItemSet<IfcProduct> @RelatedElements 
+		public IItemSet<IfcProduct> @RelatedElements 
 		{ 
 			get 
 			{
@@ -152,7 +151,7 @@ namespace Xbim.Ifc2x3.ProductExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

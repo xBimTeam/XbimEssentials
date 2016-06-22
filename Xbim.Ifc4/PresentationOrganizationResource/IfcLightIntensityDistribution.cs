@@ -28,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcLightIntensityDistribution : IPersistEntity, IfcLightDistributionDataSourceSelect
 	{
 		IfcLightDistributionCurveEnum @LightDistributionCurve { get;  set; }
-		IEnumerable<IIfcLightDistributionData> @DistributionData { get; }
+		IItemSet<IIfcLightDistributionData> @DistributionData { get; }
 	
 	}
 }
@@ -41,12 +41,12 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 	{
 		#region IIfcLightIntensityDistribution explicit implementation
 		IfcLightDistributionCurveEnum IIfcLightIntensityDistribution.LightDistributionCurve { 
-			get { return @LightDistributionCurve; } 
  
+			get { return @LightDistributionCurve; } 
 			set { LightDistributionCurve = value;}
 		}	
-		IEnumerable<IIfcLightDistributionData> IIfcLightIntensityDistribution.DistributionData { 
-			get { return @DistributionData; } 
+		IItemSet<IIfcLightDistributionData> IIfcLightIntensityDistribution.DistributionData { 
+			get { return new Common.Collections.ProxyItemSet<IfcLightDistributionData, IIfcLightDistributionData>( @DistributionData); } 
 		}	
 		 
 		#endregion
@@ -117,7 +117,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 
 		#region Explicit attribute fields
 		private IfcLightDistributionCurveEnum _lightDistributionCurve;
-		private ItemSet<IfcLightDistributionData> _distributionData;
+		private readonly ItemSet<IfcLightDistributionData> _distributionData;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -136,7 +136,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 2)]
-		public ItemSet<IfcLightDistributionData> @DistributionData 
+		public IItemSet<IfcLightDistributionData> @DistributionData 
 		{ 
 			get 
 			{
@@ -251,7 +251,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

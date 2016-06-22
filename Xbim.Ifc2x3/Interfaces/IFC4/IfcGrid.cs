@@ -10,40 +10,35 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcGrid : IIfcGrid
 	{
-		IEnumerable<IIfcGridAxis> IIfcGrid.UAxes 
+		IItemSet<IIfcGridAxis> IIfcGrid.UAxes 
 		{ 
 			get
 			{
-				foreach (var member in UAxes)
-				{
-					yield return member as IIfcGridAxis;
-				}
+			
+				return new Common.Collections.ProxyItemSet<GeometricConstraintResource.IfcGridAxis, IIfcGridAxis>(UAxes);
 			} 
 		}
-		IEnumerable<IIfcGridAxis> IIfcGrid.VAxes 
+		IItemSet<IIfcGridAxis> IIfcGrid.VAxes 
 		{ 
 			get
 			{
-				foreach (var member in VAxes)
-				{
-					yield return member as IIfcGridAxis;
-				}
+			
+				return new Common.Collections.ProxyItemSet<GeometricConstraintResource.IfcGridAxis, IIfcGridAxis>(VAxes);
 			} 
 		}
-		IEnumerable<IIfcGridAxis> IIfcGrid.WAxes 
+		IItemSet<IIfcGridAxis> IIfcGrid.WAxes 
 		{ 
 			get
 			{
-				foreach (var member in WAxes)
-				{
-					yield return member as IIfcGridAxis;
-				}
+			
+				return new Common.Collections.ProxyItemSet<GeometricConstraintResource.IfcGridAxis, IIfcGridAxis>(WAxes);
 			} 
 		}
 

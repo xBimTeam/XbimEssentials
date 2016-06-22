@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcWorkControl : IIfcControl
 	{
 		IfcDateTime @CreationDate { get;  set; }
-		IEnumerable<IIfcPerson> @Creators { get; }
+		IItemSet<IIfcPerson> @Creators { get; }
 		IfcLabel? @Purpose { get;  set; }
 		IfcDuration? @Duration { get;  set; }
 		IfcDuration? @TotalFloat { get;  set; }
@@ -48,36 +48,36 @@ namespace Xbim.Ifc4.ProcessExtension
 	{
 		#region IIfcWorkControl explicit implementation
 		IfcDateTime IIfcWorkControl.CreationDate { 
-			get { return @CreationDate; } 
  
+			get { return @CreationDate; } 
 			set { CreationDate = value;}
 		}	
-		IEnumerable<IIfcPerson> IIfcWorkControl.Creators { 
-			get { return @Creators; } 
+		IItemSet<IIfcPerson> IIfcWorkControl.Creators { 
+			get { return new Common.Collections.ProxyItemSet<IfcPerson, IIfcPerson>( @Creators); } 
 		}	
 		IfcLabel? IIfcWorkControl.Purpose { 
-			get { return @Purpose; } 
  
+			get { return @Purpose; } 
 			set { Purpose = value;}
 		}	
 		IfcDuration? IIfcWorkControl.Duration { 
-			get { return @Duration; } 
  
+			get { return @Duration; } 
 			set { Duration = value;}
 		}	
 		IfcDuration? IIfcWorkControl.TotalFloat { 
-			get { return @TotalFloat; } 
  
+			get { return @TotalFloat; } 
 			set { TotalFloat = value;}
 		}	
 		IfcDateTime IIfcWorkControl.StartTime { 
-			get { return @StartTime; } 
  
+			get { return @StartTime; } 
 			set { StartTime = value;}
 		}	
 		IfcDateTime? IIfcWorkControl.FinishTime { 
-			get { return @FinishTime; } 
  
+			get { return @FinishTime; } 
 			set { FinishTime = value;}
 		}	
 		 
@@ -85,13 +85,12 @@ namespace Xbim.Ifc4.ProcessExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWorkControl(IModel model) : base(model) 		{ 
-			Model = model; 
 			_creators = new OptionalItemSet<IfcPerson>( this, 0,  8);
 		}
 
 		#region Explicit attribute fields
 		private IfcDateTime _creationDate;
-		private OptionalItemSet<IfcPerson> _creators;
+		private readonly OptionalItemSet<IfcPerson> _creators;
 		private IfcLabel? _purpose;
 		private IfcDuration? _duration;
 		private IfcDuration? _totalFloat;
@@ -115,7 +114,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 20)]
-		public OptionalItemSet<IfcPerson> @Creators 
+		public IOptionalItemSet<IfcPerson> @Creators 
 		{ 
 			get 
 			{
@@ -274,7 +273,7 @@ namespace Xbim.Ifc4.ProcessExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -28,8 +28,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcVertexBasedTextureMap : IPersistEntity
 	{
-		IEnumerable<IIfcTextureVertex> @TextureVertices { get; }
-		IEnumerable<IIfcCartesianPoint> @TexturePoints { get; }
+		IItemSet<IIfcTextureVertex> @TextureVertices { get; }
+		IItemSet<IIfcCartesianPoint> @TexturePoints { get; }
 	
 	}
 }
@@ -41,11 +41,11 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 	public  partial class @IfcVertexBasedTextureMap : INotifyPropertyChanged, IInstantiableEntity, IIfcVertexBasedTextureMap, IContainsEntityReferences, IEquatable<@IfcVertexBasedTextureMap>
 	{
 		#region IIfcVertexBasedTextureMap explicit implementation
-		IEnumerable<IIfcTextureVertex> IIfcVertexBasedTextureMap.TextureVertices { 
-			get { return @TextureVertices; } 
+		IItemSet<IIfcTextureVertex> IIfcVertexBasedTextureMap.TextureVertices { 
+			get { return new Common.Collections.ProxyItemSet<IfcTextureVertex, IIfcTextureVertex>( @TextureVertices); } 
 		}	
-		IEnumerable<IIfcCartesianPoint> IIfcVertexBasedTextureMap.TexturePoints { 
-			get { return @TexturePoints; } 
+		IItemSet<IIfcCartesianPoint> IIfcVertexBasedTextureMap.TexturePoints { 
+			get { return new Common.Collections.ProxyItemSet<IfcCartesianPoint, IIfcCartesianPoint>( @TexturePoints); } 
 		}	
 		 
 		#endregion
@@ -116,13 +116,13 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcTextureVertex> _textureVertices;
-		private ItemSet<IfcCartesianPoint> _texturePoints;
+		private readonly ItemSet<IfcTextureVertex> _textureVertices;
+		private readonly ItemSet<IfcCartesianPoint> _texturePoints;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 3, -1, 1)]
-		public ItemSet<IfcTextureVertex> @TextureVertices 
+		public IItemSet<IfcTextureVertex> @TextureVertices 
 		{ 
 			get 
 			{
@@ -132,7 +132,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 3, -1, 2)]
-		public ItemSet<IfcCartesianPoint> @TexturePoints 
+		public IItemSet<IfcCartesianPoint> @TexturePoints 
 		{ 
 			get 
 			{
@@ -247,7 +247,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcExternalReferenceRelationship : IIfcResourceLevelRelationship
 	{
 		IIfcExternalReference @RelatingReference { get;  set; }
-		IEnumerable<IIfcResourceObjectSelect> @RelatedResourceObjects { get; }
+		IItemSet<IIfcResourceObjectSelect> @RelatedResourceObjects { get; }
 	
 	}
 }
@@ -39,26 +39,25 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 	{
 		#region IIfcExternalReferenceRelationship explicit implementation
 		IIfcExternalReference IIfcExternalReferenceRelationship.RelatingReference { 
+ 
+ 
 			get { return @RelatingReference; } 
- 
- 
 			set { RelatingReference = value as IfcExternalReference;}
 		}	
-		IEnumerable<IIfcResourceObjectSelect> IIfcExternalReferenceRelationship.RelatedResourceObjects { 
-			get { return @RelatedResourceObjects; } 
+		IItemSet<IIfcResourceObjectSelect> IIfcExternalReferenceRelationship.RelatedResourceObjects { 
+			get { return new Common.Collections.ProxyItemSet<IfcResourceObjectSelect, IIfcResourceObjectSelect>( @RelatedResourceObjects); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcExternalReferenceRelationship(IModel model) : base(model) 		{ 
-			Model = model; 
 			_relatedResourceObjects = new ItemSet<IfcResourceObjectSelect>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
 		private IfcExternalReference _relatingReference;
-		private ItemSet<IfcResourceObjectSelect> _relatedResourceObjects;
+		private readonly ItemSet<IfcResourceObjectSelect> _relatedResourceObjects;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -79,7 +78,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		}	
 		[IndexedProperty]
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
-		public ItemSet<IfcResourceObjectSelect> @RelatedResourceObjects 
+		public IItemSet<IfcResourceObjectSelect> @RelatedResourceObjects 
 		{ 
 			get 
 			{
@@ -149,7 +148,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

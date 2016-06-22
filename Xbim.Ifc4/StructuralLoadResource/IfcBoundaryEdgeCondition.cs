@@ -43,39 +43,39 @@ namespace Xbim.Ifc4.StructuralLoadResource
 	{
 		#region IIfcBoundaryEdgeCondition explicit implementation
 		IIfcModulusOfTranslationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.TranslationalStiffnessByLengthX { 
+ 
+ 
 			get { return @TranslationalStiffnessByLengthX; } 
- 
- 
 			set { TranslationalStiffnessByLengthX = value as IfcModulusOfTranslationalSubgradeReactionSelect;}
 		}	
 		IIfcModulusOfTranslationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.TranslationalStiffnessByLengthY { 
+ 
+ 
 			get { return @TranslationalStiffnessByLengthY; } 
- 
- 
 			set { TranslationalStiffnessByLengthY = value as IfcModulusOfTranslationalSubgradeReactionSelect;}
 		}	
 		IIfcModulusOfTranslationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.TranslationalStiffnessByLengthZ { 
+ 
+ 
 			get { return @TranslationalStiffnessByLengthZ; } 
- 
- 
 			set { TranslationalStiffnessByLengthZ = value as IfcModulusOfTranslationalSubgradeReactionSelect;}
 		}	
 		IIfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthX { 
+ 
+ 
 			get { return @RotationalStiffnessByLengthX; } 
- 
- 
 			set { RotationalStiffnessByLengthX = value as IfcModulusOfRotationalSubgradeReactionSelect;}
 		}	
 		IIfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthY { 
+ 
+ 
 			get { return @RotationalStiffnessByLengthY; } 
- 
- 
 			set { RotationalStiffnessByLengthY = value as IfcModulusOfRotationalSubgradeReactionSelect;}
 		}	
 		IIfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthZ { 
+ 
+ 
 			get { return @RotationalStiffnessByLengthZ; } 
- 
- 
 			set { RotationalStiffnessByLengthZ = value as IfcModulusOfRotationalSubgradeReactionSelect;}
 		}	
 		 
@@ -83,7 +83,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBoundaryEdgeCondition(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -252,7 +251,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

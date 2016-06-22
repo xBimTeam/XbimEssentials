@@ -58,50 +58,50 @@ namespace Xbim.Ifc4.ApprovalResource
 	{
 		#region IIfcApproval explicit implementation
 		IfcIdentifier? IIfcApproval.Identifier { 
-			get { return @Identifier; } 
  
+			get { return @Identifier; } 
 			set { Identifier = value;}
 		}	
 		IfcLabel? IIfcApproval.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IfcText? IIfcApproval.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		IfcDateTime? IIfcApproval.TimeOfApproval { 
-			get { return @TimeOfApproval; } 
  
+			get { return @TimeOfApproval; } 
 			set { TimeOfApproval = value;}
 		}	
 		IfcLabel? IIfcApproval.Status { 
-			get { return @Status; } 
  
+			get { return @Status; } 
 			set { Status = value;}
 		}	
 		IfcLabel? IIfcApproval.Level { 
-			get { return @Level; } 
  
+			get { return @Level; } 
 			set { Level = value;}
 		}	
 		IfcText? IIfcApproval.Qualifier { 
-			get { return @Qualifier; } 
  
+			get { return @Qualifier; } 
 			set { Qualifier = value;}
 		}	
 		IIfcActorSelect IIfcApproval.RequestingApproval { 
+ 
+ 
 			get { return @RequestingApproval; } 
- 
- 
 			set { RequestingApproval = value as IfcActorSelect;}
 		}	
 		IIfcActorSelect IIfcApproval.GivingApproval { 
+ 
+ 
 			get { return @GivingApproval; } 
- 
- 
 			set { GivingApproval = value as IfcActorSelect;}
 		}	
 		 
@@ -488,7 +488,7 @@ namespace Xbim.Ifc4.ApprovalResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

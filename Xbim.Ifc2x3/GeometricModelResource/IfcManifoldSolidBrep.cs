@@ -39,9 +39,9 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 	{
 		#region IIfcManifoldSolidBrep explicit implementation
 		IIfcClosedShell IIfcManifoldSolidBrep.Outer { 
+ 
+ 
 			get { return @Outer; } 
- 
- 
 			set { Outer = value as IfcClosedShell;}
 		}	
 		 
@@ -49,7 +49,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcManifoldSolidBrep(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -125,7 +124,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

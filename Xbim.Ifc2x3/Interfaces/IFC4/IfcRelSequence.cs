@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.Kernel
@@ -60,6 +61,10 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of SequenceType
+			    if (_sequenceType4.HasValue)
+			        return _sequenceType4;
+				//##
 				switch (SequenceType)
 				{
 					case IfcSequenceEnum.START_START:
@@ -84,6 +89,12 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of SequenceType
+			    if (_sequenceType4.HasValue && value != Ifc4.Interfaces.IfcSequenceEnum.USERDEFINED)
+			    {
+                    SetValue(v => _sequenceType4 = v, _sequenceType4, null, "SequenceType", byte.MaxValue);
+			    }
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcSequenceEnum.START_START:
@@ -104,8 +115,9 @@ namespace Xbim.Ifc2x3.Kernel
 					
 					case Ifc4.Interfaces.IfcSequenceEnum.USERDEFINED:
 						//## Handle setting of USERDEFINED member from IfcSequenceEnum in property SequenceType
-						//TODO: Handle setting of USERDEFINED member from IfcSequenceEnum in property SequenceType
-						throw new System.NotImplementedException();
+                        SequenceType = IfcSequenceEnum.NOTDEFINED;
+						SetValue(v => _sequenceType4 = v, _sequenceType4, value, "SequenceType", byte.MaxValue);
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcSequenceEnum.NOTDEFINED:
@@ -119,24 +131,23 @@ namespace Xbim.Ifc2x3.Kernel
 				
 			}
 		}
+
+		private  Ifc4.MeasureResource.IfcLabel? _userDefinedSequenceType;
+
 		Ifc4.MeasureResource.IfcLabel? IIfcRelSequence.UserDefinedSequenceType 
 		{ 
 			get
 			{
-				//## Handle return of UserDefinedSequenceType for which no match was found
-                return null;
-				//##
+				return _userDefinedSequenceType;
 			} 
 			set
 			{
-				//## Handle setting of UserDefinedSequenceType for which no match was found
-                throw new System.PlatformNotSupportedException();
-				//##
-				NotifyPropertyChanged("UserDefinedSequenceType");
+				SetValue(v => _userDefinedSequenceType = v, _userDefinedSequenceType, value, "UserDefinedSequenceType", byte.MaxValue);
 				
 			}
 		}
 	//## Custom code
-	//##
+	    private Ifc4.Interfaces.IfcSequenceEnum? _sequenceType4;
+	    //##
 	}
 }

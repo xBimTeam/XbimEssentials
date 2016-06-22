@@ -45,31 +45,31 @@ namespace Xbim.Ifc4.ProcessExtension
 	{
 		#region IIfcRelSequence explicit implementation
 		IIfcProcess IIfcRelSequence.RelatingProcess { 
+ 
+ 
 			get { return @RelatingProcess; } 
- 
- 
 			set { RelatingProcess = value as IfcProcess;}
 		}	
 		IIfcProcess IIfcRelSequence.RelatedProcess { 
+ 
+ 
 			get { return @RelatedProcess; } 
- 
- 
 			set { RelatedProcess = value as IfcProcess;}
 		}	
 		IIfcLagTime IIfcRelSequence.TimeLag { 
+ 
+ 
 			get { return @TimeLag; } 
- 
- 
 			set { TimeLag = value as IfcLagTime;}
 		}	
 		IfcSequenceEnum? IIfcRelSequence.SequenceType { 
-			get { return @SequenceType; } 
  
+			get { return @SequenceType; } 
 			set { SequenceType = value;}
 		}	
 		IfcLabel? IIfcRelSequence.UserDefinedSequenceType { 
-			get { return @UserDefinedSequenceType; } 
  
+			get { return @UserDefinedSequenceType; } 
 			set { UserDefinedSequenceType = value;}
 		}	
 		 
@@ -77,7 +77,6 @@ namespace Xbim.Ifc4.ProcessExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelSequence(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -233,7 +232,7 @@ namespace Xbim.Ifc4.ProcessExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

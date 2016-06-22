@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.MeasureResource
@@ -20,6 +21,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of Prefix
+				//##
 				switch (Prefix)
 				{
 					case IfcSIPrefix.EXA:
@@ -77,6 +80,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of Prefix
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcSIPrefix.EXA:
@@ -154,6 +159,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of Name
+				//##
 				switch (Name)
 				{
 					case IfcSIUnitName.AMPERE:
@@ -253,6 +260,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of Name
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcSIUnitName.AMPERE:

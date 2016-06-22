@@ -42,20 +42,20 @@ namespace Xbim.Ifc4.PropertyResource
 	{
 		#region IIfcPropertyDependencyRelationship explicit implementation
 		IIfcProperty IIfcPropertyDependencyRelationship.DependingProperty { 
+ 
+ 
 			get { return @DependingProperty; } 
- 
- 
 			set { DependingProperty = value as IfcProperty;}
 		}	
 		IIfcProperty IIfcPropertyDependencyRelationship.DependantProperty { 
+ 
+ 
 			get { return @DependantProperty; } 
- 
- 
 			set { DependantProperty = value as IfcProperty;}
 		}	
 		IfcText? IIfcPropertyDependencyRelationship.Expression { 
-			get { return @Expression; } 
  
+			get { return @Expression; } 
 			set { Expression = value;}
 		}	
 		 
@@ -63,7 +63,6 @@ namespace Xbim.Ifc4.PropertyResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyDependencyRelationship(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -181,7 +180,7 @@ namespace Xbim.Ifc4.PropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

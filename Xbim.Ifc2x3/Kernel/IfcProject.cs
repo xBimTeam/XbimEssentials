@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcLabel? @LongName { get;  set; }
 		IfcLabel? @Phase { get;  set; }
-		IEnumerable<IIfcRepresentationContext> @RepresentationContexts { get; }
+		IItemSet<IIfcRepresentationContext> @RepresentationContexts { get; }
 		IIfcUnitAssignment @UnitsInContext { get;  set; }
 	
 	}
@@ -43,22 +43,22 @@ namespace Xbim.Ifc2x3.Kernel
 	{
 		#region IIfcProject explicit implementation
 		IfcLabel? IIfcProject.LongName { 
-			get { return @LongName; } 
  
+			get { return @LongName; } 
 			set { LongName = value;}
 		}	
 		IfcLabel? IIfcProject.Phase { 
-			get { return @Phase; } 
  
+			get { return @Phase; } 
 			set { Phase = value;}
 		}	
-		IEnumerable<IIfcRepresentationContext> IIfcProject.RepresentationContexts { 
-			get { return @RepresentationContexts; } 
+		IItemSet<IIfcRepresentationContext> IIfcProject.RepresentationContexts { 
+			get { return new Common.Collections.ProxyItemSet<IfcRepresentationContext, IIfcRepresentationContext>( @RepresentationContexts); } 
 		}	
 		IIfcUnitAssignment IIfcProject.UnitsInContext { 
+ 
+ 
 			get { return @UnitsInContext; } 
- 
- 
 			set { UnitsInContext = value as IfcUnitAssignment;}
 		}	
 		 
@@ -66,14 +66,13 @@ namespace Xbim.Ifc2x3.Kernel
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProject(IModel model) : base(model) 		{ 
-			Model = model; 
 			_representationContexts = new ItemSet<IfcRepresentationContext>( this, 0,  8);
 		}
 
 		#region Explicit attribute fields
 		private IfcLabel? _longName;
 		private IfcLabel? _phase;
-		private ItemSet<IfcRepresentationContext> _representationContexts;
+		private readonly ItemSet<IfcRepresentationContext> _representationContexts;
 		private IfcUnitAssignment _unitsInContext;
 		#endregion
 	
@@ -107,7 +106,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 13)]
-		public ItemSet<IfcRepresentationContext> @RepresentationContexts 
+		public IItemSet<IfcRepresentationContext> @RepresentationContexts 
 		{ 
 			get 
 			{
@@ -200,7 +199,7 @@ namespace Xbim.Ifc2x3.Kernel
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

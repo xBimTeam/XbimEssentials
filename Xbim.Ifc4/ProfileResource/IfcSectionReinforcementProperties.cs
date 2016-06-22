@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcLengthMeasure? @TransversePosition { get;  set; }
 		IfcReinforcingBarRoleEnum @ReinforcementRole { get;  set; }
 		IIfcSectionProperties @SectionDefinition { get;  set; }
-		IEnumerable<IIfcReinforcementBarProperties> @CrossSectionReinforcementDefinitions { get; }
+		IItemSet<IIfcReinforcementBarProperties> @CrossSectionReinforcementDefinitions { get; }
 	
 	}
 }
@@ -45,40 +45,39 @@ namespace Xbim.Ifc4.ProfileResource
 	{
 		#region IIfcSectionReinforcementProperties explicit implementation
 		IfcLengthMeasure IIfcSectionReinforcementProperties.LongitudinalStartPosition { 
-			get { return @LongitudinalStartPosition; } 
  
+			get { return @LongitudinalStartPosition; } 
 			set { LongitudinalStartPosition = value;}
 		}	
 		IfcLengthMeasure IIfcSectionReinforcementProperties.LongitudinalEndPosition { 
-			get { return @LongitudinalEndPosition; } 
  
+			get { return @LongitudinalEndPosition; } 
 			set { LongitudinalEndPosition = value;}
 		}	
 		IfcLengthMeasure? IIfcSectionReinforcementProperties.TransversePosition { 
-			get { return @TransversePosition; } 
  
+			get { return @TransversePosition; } 
 			set { TransversePosition = value;}
 		}	
 		IfcReinforcingBarRoleEnum IIfcSectionReinforcementProperties.ReinforcementRole { 
-			get { return @ReinforcementRole; } 
  
+			get { return @ReinforcementRole; } 
 			set { ReinforcementRole = value;}
 		}	
 		IIfcSectionProperties IIfcSectionReinforcementProperties.SectionDefinition { 
+ 
+ 
 			get { return @SectionDefinition; } 
- 
- 
 			set { SectionDefinition = value as IfcSectionProperties;}
 		}	
-		IEnumerable<IIfcReinforcementBarProperties> IIfcSectionReinforcementProperties.CrossSectionReinforcementDefinitions { 
-			get { return @CrossSectionReinforcementDefinitions; } 
+		IItemSet<IIfcReinforcementBarProperties> IIfcSectionReinforcementProperties.CrossSectionReinforcementDefinitions { 
+			get { return new Common.Collections.ProxyItemSet<IfcReinforcementBarProperties, IIfcReinforcementBarProperties>( @CrossSectionReinforcementDefinitions); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSectionReinforcementProperties(IModel model) : base(model) 		{ 
-			Model = model; 
 			_crossSectionReinforcementDefinitions = new ItemSet<IfcReinforcementBarProperties>( this, 0,  6);
 		}
 
@@ -88,7 +87,7 @@ namespace Xbim.Ifc4.ProfileResource
 		private IfcLengthMeasure? _transversePosition;
 		private IfcReinforcingBarRoleEnum _reinforcementRole;
 		private IfcSectionProperties _sectionDefinition;
-		private ItemSet<IfcReinforcementBarProperties> _crossSectionReinforcementDefinitions;
+		private readonly ItemSet<IfcReinforcementBarProperties> _crossSectionReinforcementDefinitions;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -163,7 +162,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 7)]
-		public ItemSet<IfcReinforcementBarProperties> @CrossSectionReinforcementDefinitions 
+		public IItemSet<IfcReinforcementBarProperties> @CrossSectionReinforcementDefinitions 
 		{ 
 			get 
 			{
@@ -241,7 +240,7 @@ namespace Xbim.Ifc4.ProfileResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

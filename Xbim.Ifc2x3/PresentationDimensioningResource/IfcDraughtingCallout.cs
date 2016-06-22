@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDraughtingCallout : IIfcGeometricRepresentationItem
 	{
-		IEnumerable<IIfcDraughtingCalloutElement> @Contents { get; }
+		IItemSet<IIfcDraughtingCalloutElement> @Contents { get; }
 		IEnumerable<IIfcDraughtingCalloutRelationship> @IsRelatedFromCallout {  get; }
 		IEnumerable<IIfcDraughtingCalloutRelationship> @IsRelatedToCallout {  get; }
 	
@@ -40,8 +40,8 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 	public  partial class @IfcDraughtingCallout : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDraughtingCallout, IEquatable<@IfcDraughtingCallout>
 	{
 		#region IIfcDraughtingCallout explicit implementation
-		IEnumerable<IIfcDraughtingCalloutElement> IIfcDraughtingCallout.Contents { 
-			get { return @Contents; } 
+		IItemSet<IIfcDraughtingCalloutElement> IIfcDraughtingCallout.Contents { 
+			get { return new Common.Collections.ProxyItemSet<IfcDraughtingCalloutElement, IIfcDraughtingCalloutElement>( @Contents); } 
 		}	
 		 
 		IEnumerable<IIfcDraughtingCalloutRelationship> IIfcDraughtingCallout.IsRelatedFromCallout {  get { return @IsRelatedFromCallout; } }
@@ -50,17 +50,16 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDraughtingCallout(IModel model) : base(model) 		{ 
-			Model = model; 
 			_contents = new ItemSet<IfcDraughtingCalloutElement>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcDraughtingCalloutElement> _contents;
+		private readonly ItemSet<IfcDraughtingCalloutElement> _contents;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 3)]
-		public ItemSet<IfcDraughtingCalloutElement> @Contents 
+		public IItemSet<IfcDraughtingCalloutElement> @Contents 
 		{ 
 			get 
 			{
@@ -143,7 +142,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

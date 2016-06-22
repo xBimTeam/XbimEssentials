@@ -45,20 +45,20 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 	{
 		#region IIfcClassificationItem explicit implementation
 		IIfcClassificationNotationFacet IIfcClassificationItem.Notation { 
+ 
+ 
 			get { return @Notation; } 
- 
- 
 			set { Notation = value as IfcClassificationNotationFacet;}
 		}	
 		IIfcClassification IIfcClassificationItem.ItemOf { 
+ 
+ 
 			get { return @ItemOf; } 
- 
- 
 			set { ItemOf = value as IfcClassification;}
 		}	
 		IfcLabel IIfcClassificationItem.Title { 
-			get { return @Title; } 
  
+			get { return @Title; } 
 			set { Title = value;}
 		}	
 		 
@@ -308,7 +308,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

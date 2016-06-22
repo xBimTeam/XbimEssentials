@@ -42,13 +42,13 @@ namespace Xbim.Ifc2x3.ProductExtension
 	{
 		#region IIfcSpace explicit implementation
 		IfcInternalOrExternalEnum IIfcSpace.InteriorOrExteriorSpace { 
-			get { return @InteriorOrExteriorSpace; } 
  
+			get { return @InteriorOrExteriorSpace; } 
 			set { InteriorOrExteriorSpace = value;}
 		}	
 		IfcLengthMeasure? IIfcSpace.ElevationWithFlooring { 
-			get { return @ElevationWithFlooring; } 
  
+			get { return @ElevationWithFlooring; } 
 			set { ElevationWithFlooring = value;}
 		}	
 		 
@@ -58,7 +58,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSpace(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -183,7 +182,7 @@ namespace Xbim.Ifc2x3.ProductExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

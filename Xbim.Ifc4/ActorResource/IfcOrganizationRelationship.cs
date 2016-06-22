@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcOrganizationRelationship : IIfcResourceLevelRelationship
 	{
 		IIfcOrganization @RelatingOrganization { get;  set; }
-		IEnumerable<IIfcOrganization> @RelatedOrganizations { get; }
+		IItemSet<IIfcOrganization> @RelatedOrganizations { get; }
 	
 	}
 }
@@ -40,26 +40,25 @@ namespace Xbim.Ifc4.ActorResource
 	{
 		#region IIfcOrganizationRelationship explicit implementation
 		IIfcOrganization IIfcOrganizationRelationship.RelatingOrganization { 
+ 
+ 
 			get { return @RelatingOrganization; } 
- 
- 
 			set { RelatingOrganization = value as IfcOrganization;}
 		}	
-		IEnumerable<IIfcOrganization> IIfcOrganizationRelationship.RelatedOrganizations { 
-			get { return @RelatedOrganizations; } 
+		IItemSet<IIfcOrganization> IIfcOrganizationRelationship.RelatedOrganizations { 
+			get { return new Common.Collections.ProxyItemSet<IfcOrganization, IIfcOrganization>( @RelatedOrganizations); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcOrganizationRelationship(IModel model) : base(model) 		{ 
-			Model = model; 
 			_relatedOrganizations = new ItemSet<IfcOrganization>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
 		private IfcOrganization _relatingOrganization;
-		private ItemSet<IfcOrganization> _relatedOrganizations;
+		private readonly ItemSet<IfcOrganization> _relatedOrganizations;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -80,7 +79,7 @@ namespace Xbim.Ifc4.ActorResource
 		}	
 		[IndexedProperty]
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
-		public ItemSet<IfcOrganization> @RelatedOrganizations 
+		public IItemSet<IfcOrganization> @RelatedOrganizations 
 		{ 
 			get 
 			{
@@ -150,7 +149,7 @@ namespace Xbim.Ifc4.ActorResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

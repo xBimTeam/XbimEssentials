@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ElectricalDomain
@@ -20,6 +21,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcCableCarrierFittingTypeEnum.BEND:
@@ -49,6 +52,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.BEND:

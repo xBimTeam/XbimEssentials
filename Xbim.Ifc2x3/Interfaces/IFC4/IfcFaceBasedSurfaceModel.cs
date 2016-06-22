@@ -10,20 +10,19 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcFaceBasedSurfaceModel : IIfcFaceBasedSurfaceModel
 	{
-		IEnumerable<IIfcConnectedFaceSet> IIfcFaceBasedSurfaceModel.FbsmFaces 
+		IItemSet<IIfcConnectedFaceSet> IIfcFaceBasedSurfaceModel.FbsmFaces 
 		{ 
 			get
 			{
-				foreach (var member in FbsmFaces)
-				{
-					yield return member as IIfcConnectedFaceSet;
-				}
+			
+				return new Common.Collections.ProxyItemSet<TopologyResource.IfcConnectedFaceSet, IIfcConnectedFaceSet>(FbsmFaces);
 			} 
 		}
 		Ifc4.GeometryResource.IfcDimensionCount IIfcFaceBasedSurfaceModel.Dim 

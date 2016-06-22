@@ -43,18 +43,18 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 	{
 		#region IIfcDocumentElectronicFormat explicit implementation
 		IfcLabel? IIfcDocumentElectronicFormat.FileExtension { 
-			get { return @FileExtension; } 
  
+			get { return @FileExtension; } 
 			set { FileExtension = value;}
 		}	
 		IfcLabel? IIfcDocumentElectronicFormat.MimeContentType { 
-			get { return @MimeContentType; } 
  
+			get { return @MimeContentType; } 
 			set { MimeContentType = value;}
 		}	
 		IfcLabel? IIfcDocumentElectronicFormat.MimeSubtype { 
-			get { return @MimeSubtype; } 
  
+			get { return @MimeSubtype; } 
 			set { MimeSubtype = value;}
 		}	
 		 
@@ -281,7 +281,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

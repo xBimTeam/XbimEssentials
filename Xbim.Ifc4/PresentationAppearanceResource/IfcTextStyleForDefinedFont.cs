@@ -40,15 +40,15 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	{
 		#region IIfcTextStyleForDefinedFont explicit implementation
 		IIfcColour IIfcTextStyleForDefinedFont.Colour { 
+ 
+ 
 			get { return @Colour; } 
- 
- 
 			set { Colour = value as IfcColour;}
 		}	
 		IIfcColour IIfcTextStyleForDefinedFont.BackgroundColour { 
+ 
+ 
 			get { return @BackgroundColour; } 
- 
- 
 			set { BackgroundColour = value as IfcColour;}
 		}	
 		 
@@ -56,7 +56,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextStyleForDefinedFont(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -150,7 +149,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

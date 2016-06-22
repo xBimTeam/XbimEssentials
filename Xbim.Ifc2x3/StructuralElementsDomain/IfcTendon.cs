@@ -46,43 +46,43 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 	{
 		#region IIfcTendon explicit implementation
 		IfcTendonTypeEnum IIfcTendon.PredefinedType { 
-			get { return @PredefinedType; } 
  
+			get { return @PredefinedType; } 
 			set { PredefinedType = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcTendon.NominalDiameter { 
-			get { return @NominalDiameter; } 
  
+			get { return @NominalDiameter; } 
 			set { NominalDiameter = value;}
 		}	
 		IfcAreaMeasure IIfcTendon.CrossSectionArea { 
-			get { return @CrossSectionArea; } 
  
+			get { return @CrossSectionArea; } 
 			set { CrossSectionArea = value;}
 		}	
 		IfcForceMeasure? IIfcTendon.TensionForce { 
-			get { return @TensionForce; } 
  
+			get { return @TensionForce; } 
 			set { TensionForce = value;}
 		}	
 		IfcPressureMeasure? IIfcTendon.PreStress { 
-			get { return @PreStress; } 
  
+			get { return @PreStress; } 
 			set { PreStress = value;}
 		}	
 		IfcNormalisedRatioMeasure? IIfcTendon.FrictionCoefficient { 
-			get { return @FrictionCoefficient; } 
  
+			get { return @FrictionCoefficient; } 
 			set { FrictionCoefficient = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcTendon.AnchorageSlip { 
-			get { return @AnchorageSlip; } 
  
+			get { return @AnchorageSlip; } 
 			set { AnchorageSlip = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcTendon.MinCurvatureRadius { 
-			get { return @MinCurvatureRadius; } 
  
+			get { return @MinCurvatureRadius; } 
 			set { MinCurvatureRadius = value;}
 		}	
 		 
@@ -90,7 +90,6 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTendon(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -303,7 +302,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

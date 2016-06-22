@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDerivedUnit : IPersistEntity, IfcUnit
 	{
-		IEnumerable<IIfcDerivedUnitElement> @Elements { get; }
+		IItemSet<IIfcDerivedUnitElement> @Elements { get; }
 		IfcDerivedUnitEnum @UnitType { get;  set; }
 		IfcLabel? @UserDefinedType { get;  set; }
 		Common.Geometry.XbimDimensionalExponents @Dimensions  { get ; }
@@ -42,17 +42,17 @@ namespace Xbim.Ifc2x3.MeasureResource
 	public  partial class @IfcDerivedUnit : INotifyPropertyChanged, IInstantiableEntity, IIfcDerivedUnit, IContainsEntityReferences, IEquatable<@IfcDerivedUnit>
 	{
 		#region IIfcDerivedUnit explicit implementation
-		IEnumerable<IIfcDerivedUnitElement> IIfcDerivedUnit.Elements { 
-			get { return @Elements; } 
+		IItemSet<IIfcDerivedUnitElement> IIfcDerivedUnit.Elements { 
+			get { return new Common.Collections.ProxyItemSet<IfcDerivedUnitElement, IIfcDerivedUnitElement>( @Elements); } 
 		}	
 		IfcDerivedUnitEnum IIfcDerivedUnit.UnitType { 
-			get { return @UnitType; } 
  
+			get { return @UnitType; } 
 			set { UnitType = value;}
 		}	
 		IfcLabel? IIfcDerivedUnit.UserDefinedType { 
-			get { return @UserDefinedType; } 
  
+			get { return @UserDefinedType; } 
 			set { UserDefinedType = value;}
 		}	
 		 
@@ -123,14 +123,14 @@ namespace Xbim.Ifc2x3.MeasureResource
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcDerivedUnitElement> _elements;
+		private readonly ItemSet<IfcDerivedUnitElement> _elements;
 		private IfcDerivedUnitEnum _unitType;
 		private IfcLabel? _userDefinedType;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 1)]
-		public ItemSet<IfcDerivedUnitElement> @Elements 
+		public IItemSet<IfcDerivedUnitElement> @Elements 
 		{ 
 			get 
 			{
@@ -316,7 +316,7 @@ namespace Xbim.Ifc2x3.MeasureResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

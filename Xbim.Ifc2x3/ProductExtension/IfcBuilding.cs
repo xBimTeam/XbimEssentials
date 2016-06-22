@@ -42,19 +42,19 @@ namespace Xbim.Ifc2x3.ProductExtension
 	{
 		#region IIfcBuilding explicit implementation
 		IfcLengthMeasure? IIfcBuilding.ElevationOfRefHeight { 
-			get { return @ElevationOfRefHeight; } 
  
+			get { return @ElevationOfRefHeight; } 
 			set { ElevationOfRefHeight = value;}
 		}	
 		IfcLengthMeasure? IIfcBuilding.ElevationOfTerrain { 
-			get { return @ElevationOfTerrain; } 
  
+			get { return @ElevationOfTerrain; } 
 			set { ElevationOfTerrain = value;}
 		}	
 		IIfcPostalAddress IIfcBuilding.BuildingAddress { 
+ 
+ 
 			get { return @BuildingAddress; } 
- 
- 
 			set { BuildingAddress = value as IfcPostalAddress;}
 		}	
 		 
@@ -62,7 +62,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBuilding(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -185,7 +184,7 @@ namespace Xbim.Ifc2x3.ProductExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

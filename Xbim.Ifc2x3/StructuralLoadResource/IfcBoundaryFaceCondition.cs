@@ -41,18 +41,18 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 	{
 		#region IIfcBoundaryFaceCondition explicit implementation
 		IfcModulusOfSubgradeReactionMeasure? IIfcBoundaryFaceCondition.LinearStiffnessByAreaX { 
-			get { return @LinearStiffnessByAreaX; } 
  
+			get { return @LinearStiffnessByAreaX; } 
 			set { LinearStiffnessByAreaX = value;}
 		}	
 		IfcModulusOfSubgradeReactionMeasure? IIfcBoundaryFaceCondition.LinearStiffnessByAreaY { 
-			get { return @LinearStiffnessByAreaY; } 
  
+			get { return @LinearStiffnessByAreaY; } 
 			set { LinearStiffnessByAreaY = value;}
 		}	
 		IfcModulusOfSubgradeReactionMeasure? IIfcBoundaryFaceCondition.LinearStiffnessByAreaZ { 
-			get { return @LinearStiffnessByAreaZ; } 
  
+			get { return @LinearStiffnessByAreaZ; } 
 			set { LinearStiffnessByAreaZ = value;}
 		}	
 		 
@@ -60,7 +60,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBoundaryFaceCondition(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -175,7 +174,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

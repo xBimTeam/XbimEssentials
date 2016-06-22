@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcConstraintClassificationRelationship : IPersistEntity
 	{
 		IIfcConstraint @ClassifiedConstraint { get;  set; }
-		IEnumerable<IIfcClassificationNotationSelect> @RelatedClassifications { get; }
+		IItemSet<IIfcClassificationNotationSelect> @RelatedClassifications { get; }
 	
 	}
 }
@@ -42,13 +42,13 @@ namespace Xbim.Ifc2x3.ConstraintResource
 	{
 		#region IIfcConstraintClassificationRelationship explicit implementation
 		IIfcConstraint IIfcConstraintClassificationRelationship.ClassifiedConstraint { 
+ 
+ 
 			get { return @ClassifiedConstraint; } 
- 
- 
 			set { ClassifiedConstraint = value as IfcConstraint;}
 		}	
-		IEnumerable<IIfcClassificationNotationSelect> IIfcConstraintClassificationRelationship.RelatedClassifications { 
-			get { return @RelatedClassifications; } 
+		IItemSet<IIfcClassificationNotationSelect> IIfcConstraintClassificationRelationship.RelatedClassifications { 
+			get { return new Common.Collections.ProxyItemSet<IfcClassificationNotationSelect, IIfcClassificationNotationSelect>( @RelatedClassifications); } 
 		}	
 		 
 		#endregion
@@ -119,7 +119,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 
 		#region Explicit attribute fields
 		private IfcConstraint _classifiedConstraint;
-		private ItemSet<IfcClassificationNotationSelect> _relatedClassifications;
+		private readonly ItemSet<IfcClassificationNotationSelect> _relatedClassifications;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -139,7 +139,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 2)]
-		public ItemSet<IfcClassificationNotationSelect> @RelatedClassifications 
+		public IItemSet<IfcClassificationNotationSelect> @RelatedClassifications 
 		{ 
 			get 
 			{
@@ -254,7 +254,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

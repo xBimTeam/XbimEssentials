@@ -40,9 +40,9 @@ namespace Xbim.Ifc4.ControlExtension
 	{
 		#region IIfcRelAssociatesApproval explicit implementation
 		IIfcApproval IIfcRelAssociatesApproval.RelatingApproval { 
+ 
+ 
 			get { return @RelatingApproval; } 
- 
- 
 			set { RelatingApproval = value as IfcApproval;}
 		}	
 		 
@@ -50,7 +50,6 @@ namespace Xbim.Ifc4.ControlExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssociatesApproval(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -134,7 +133,7 @@ namespace Xbim.Ifc4.ControlExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

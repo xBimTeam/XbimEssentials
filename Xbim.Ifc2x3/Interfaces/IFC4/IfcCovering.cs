@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProductExtension
@@ -20,6 +21,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcCoveringTypeEnum.CEILING:
@@ -48,6 +51,12 @@ namespace Xbim.Ifc2x3.ProductExtension
 					
 					case IfcCoveringTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ObjectType.HasValue)
+                        {
+                            Ifc4.Interfaces.IfcCoveringTypeEnum result;
+                            if (System.Enum.TryParse(ObjectType.Value, false, out result))
+                                return result;
+                        }
 						//##
 						return Ifc4.Interfaces.IfcCoveringTypeEnum.USERDEFINED;
 					
@@ -61,6 +70,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcCoveringTypeEnum.CEILING:
@@ -81,14 +92,16 @@ namespace Xbim.Ifc2x3.ProductExtension
 					
 					case Ifc4.Interfaces.IfcCoveringTypeEnum.MOLDING:
 						//## Handle setting of MOLDING member from IfcCoveringTypeEnum in property PredefinedType
-						//TODO: Handle setting of MOLDING member from IfcCoveringTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ObjectType = value.ToString();
+                        PredefinedType = IfcCoveringTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcCoveringTypeEnum.SKIRTINGBOARD:
 						//## Handle setting of SKIRTINGBOARD member from IfcCoveringTypeEnum in property PredefinedType
-						//TODO: Handle setting of SKIRTINGBOARD member from IfcCoveringTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ObjectType = value.ToString();
+                        PredefinedType = IfcCoveringTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcCoveringTypeEnum.INSULATION:

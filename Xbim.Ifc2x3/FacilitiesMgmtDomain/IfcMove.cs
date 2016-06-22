@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcSpatialStructureElement @MoveFrom { get;  set; }
 		IIfcSpatialStructureElement @MoveTo { get;  set; }
-		IEnumerable<IfcText> @PunchList { get; }
+		IItemSet<IfcText> @PunchList { get; }
 	
 	}
 }
@@ -43,18 +43,18 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 	{
 		#region IIfcMove explicit implementation
 		IIfcSpatialStructureElement IIfcMove.MoveFrom { 
+ 
+ 
 			get { return @MoveFrom; } 
- 
- 
 			set { MoveFrom = value as IfcSpatialStructureElement;}
 		}	
 		IIfcSpatialStructureElement IIfcMove.MoveTo { 
+ 
+ 
 			get { return @MoveTo; } 
- 
- 
 			set { MoveTo = value as IfcSpatialStructureElement;}
 		}	
-		IEnumerable<IfcText> IIfcMove.PunchList { 
+		IItemSet<IfcText> IIfcMove.PunchList { 
 			get { return @PunchList; } 
 		}	
 		 
@@ -62,14 +62,13 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMove(IModel model) : base(model) 		{ 
-			Model = model; 
 			_punchList = new OptionalItemSet<IfcText>( this, 0,  13);
 		}
 
 		#region Explicit attribute fields
 		private IfcSpatialStructureElement _moveFrom;
 		private IfcSpatialStructureElement _moveTo;
-		private OptionalItemSet<IfcText> _punchList;
+		private readonly OptionalItemSet<IfcText> _punchList;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -102,7 +101,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.ListUnique, EntityAttributeType.None, 1, -1, 21)]
-		public OptionalItemSet<IfcText> @PunchList 
+		public IOptionalItemSet<IfcText> @PunchList 
 		{ 
 			get 
 			{
@@ -183,7 +182,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

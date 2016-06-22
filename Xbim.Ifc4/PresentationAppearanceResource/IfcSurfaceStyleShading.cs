@@ -41,14 +41,14 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	{
 		#region IIfcSurfaceStyleShading explicit implementation
 		IIfcColourRgb IIfcSurfaceStyleShading.SurfaceColour { 
+ 
+ 
 			get { return @SurfaceColour; } 
- 
- 
 			set { SurfaceColour = value as IfcColourRgb;}
 		}	
 		IfcNormalisedRatioMeasure? IIfcSurfaceStyleShading.Transparency { 
-			get { return @Transparency; } 
  
+			get { return @Transparency; } 
 			set { Transparency = value;}
 		}	
 		 
@@ -56,7 +56,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceStyleShading(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -150,7 +149,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

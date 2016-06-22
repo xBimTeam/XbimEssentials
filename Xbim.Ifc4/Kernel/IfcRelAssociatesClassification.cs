@@ -39,9 +39,9 @@ namespace Xbim.Ifc4.Kernel
 	{
 		#region IIfcRelAssociatesClassification explicit implementation
 		IIfcClassificationSelect IIfcRelAssociatesClassification.RelatingClassification { 
+ 
+ 
 			get { return @RelatingClassification; } 
- 
- 
 			set { RelatingClassification = value as IfcClassificationSelect;}
 		}	
 		 
@@ -49,7 +49,6 @@ namespace Xbim.Ifc4.Kernel
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssociatesClassification(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -133,7 +132,7 @@ namespace Xbim.Ifc4.Kernel
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

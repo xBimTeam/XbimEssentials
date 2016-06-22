@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialList : IPersistEntity, IfcMaterialSelect
 	{
-		IEnumerable<IIfcMaterial> @Materials { get; }
+		IItemSet<IIfcMaterial> @Materials { get; }
 	
 	}
 }
@@ -39,8 +39,8 @@ namespace Xbim.Ifc4.MaterialResource
 	public  partial class @IfcMaterialList : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterialList, IContainsEntityReferences, IEquatable<@IfcMaterialList>
 	{
 		#region IIfcMaterialList explicit implementation
-		IEnumerable<IIfcMaterial> IIfcMaterialList.Materials { 
-			get { return @Materials; } 
+		IItemSet<IIfcMaterial> IIfcMaterialList.Materials { 
+			get { return new Common.Collections.ProxyItemSet<IfcMaterial, IIfcMaterial>( @Materials); } 
 		}	
 		 
 		#endregion
@@ -110,12 +110,12 @@ namespace Xbim.Ifc4.MaterialResource
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcMaterial> _materials;
+		private readonly ItemSet<IfcMaterial> _materials;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 1)]
-		public ItemSet<IfcMaterial> @Materials 
+		public IItemSet<IfcMaterial> @Materials 
 		{ 
 			get 
 			{
@@ -227,7 +227,7 @@ namespace Xbim.Ifc4.MaterialResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

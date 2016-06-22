@@ -39,9 +39,9 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	{
 		#region IIfcTwoDirectionRepeatFactor explicit implementation
 		IIfcVector IIfcTwoDirectionRepeatFactor.SecondRepeatFactor { 
+ 
+ 
 			get { return @SecondRepeatFactor; } 
- 
- 
 			set { SecondRepeatFactor = value as IfcVector;}
 		}	
 		 
@@ -49,7 +49,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTwoDirectionRepeatFactor(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -128,7 +127,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

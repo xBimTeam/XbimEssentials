@@ -55,40 +55,40 @@ namespace Xbim.Ifc2x3.ConstraintResource
 	{
 		#region IIfcConstraint explicit implementation
 		IfcLabel IIfcConstraint.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IfcText? IIfcConstraint.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		IfcConstraintEnum IIfcConstraint.ConstraintGrade { 
-			get { return @ConstraintGrade; } 
  
+			get { return @ConstraintGrade; } 
 			set { ConstraintGrade = value;}
 		}	
 		IfcLabel? IIfcConstraint.ConstraintSource { 
-			get { return @ConstraintSource; } 
  
+			get { return @ConstraintSource; } 
 			set { ConstraintSource = value;}
 		}	
 		IIfcActorSelect IIfcConstraint.CreatingActor { 
+ 
+ 
 			get { return @CreatingActor; } 
- 
- 
 			set { CreatingActor = value as IfcActorSelect;}
 		}	
 		IIfcDateTimeSelect IIfcConstraint.CreationTime { 
+ 
+ 
 			get { return @CreationTime; } 
- 
- 
 			set { CreationTime = value as IfcDateTimeSelect;}
 		}	
 		IfcLabel? IIfcConstraint.UserDefinedGrade { 
-			get { return @UserDefinedGrade; } 
  
+			get { return @UserDefinedGrade; } 
 			set { UserDefinedGrade = value;}
 		}	
 		 
@@ -449,7 +449,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

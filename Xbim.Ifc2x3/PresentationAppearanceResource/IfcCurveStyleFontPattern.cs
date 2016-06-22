@@ -42,13 +42,13 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	{
 		#region IIfcCurveStyleFontPattern explicit implementation
 		IfcLengthMeasure IIfcCurveStyleFontPattern.VisibleSegmentLength { 
-			get { return @VisibleSegmentLength; } 
  
+			get { return @VisibleSegmentLength; } 
 			set { VisibleSegmentLength = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcCurveStyleFontPattern.InvisibleSegmentLength { 
-			get { return @InvisibleSegmentLength; } 
  
+			get { return @InvisibleSegmentLength; } 
 			set { InvisibleSegmentLength = value;}
 		}	
 		 
@@ -257,7 +257,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -43,21 +43,21 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 	{
 		#region IIfcRelAssociatesProfileProperties explicit implementation
 		IIfcProfileProperties IIfcRelAssociatesProfileProperties.RelatingProfileProperties { 
+ 
+ 
 			get { return @RelatingProfileProperties; } 
- 
- 
 			set { RelatingProfileProperties = value as IfcProfileProperties;}
 		}	
 		IIfcShapeAspect IIfcRelAssociatesProfileProperties.ProfileSectionLocation { 
+ 
+ 
 			get { return @ProfileSectionLocation; } 
- 
- 
 			set { ProfileSectionLocation = value as IfcShapeAspect;}
 		}	
 		IIfcOrientationSelect IIfcRelAssociatesProfileProperties.ProfileOrientation { 
+ 
+ 
 			get { return @ProfileOrientation; } 
- 
- 
 			set { ProfileOrientation = value as IfcOrientationSelect;}
 		}	
 		 
@@ -65,7 +65,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssociatesProfileProperties(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -184,7 +183,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

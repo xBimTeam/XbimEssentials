@@ -43,23 +43,23 @@ namespace Xbim.Ifc4.SharedBldgElements
 	{
 		#region IIfcWindowType explicit implementation
 		IfcWindowTypeEnum IIfcWindowType.PredefinedType { 
-			get { return @PredefinedType; } 
  
+			get { return @PredefinedType; } 
 			set { PredefinedType = value;}
 		}	
 		IfcWindowTypePartitioningEnum IIfcWindowType.PartitioningType { 
-			get { return @PartitioningType; } 
  
+			get { return @PartitioningType; } 
 			set { PartitioningType = value;}
 		}	
 		IfcBoolean? IIfcWindowType.ParameterTakesPrecedence { 
-			get { return @ParameterTakesPrecedence; } 
  
+			get { return @ParameterTakesPrecedence; } 
 			set { ParameterTakesPrecedence = value;}
 		}	
 		IfcLabel? IIfcWindowType.UserDefinedPartitioningType { 
-			get { return @UserDefinedPartitioningType; } 
  
+			get { return @UserDefinedPartitioningType; } 
 			set { UserDefinedPartitioningType = value;}
 		}	
 		 
@@ -67,7 +67,6 @@ namespace Xbim.Ifc4.SharedBldgElements
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWindowType(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -208,7 +207,7 @@ namespace Xbim.Ifc4.SharedBldgElements
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

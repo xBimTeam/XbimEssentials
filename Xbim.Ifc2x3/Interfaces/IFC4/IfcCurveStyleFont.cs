@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
@@ -31,14 +32,12 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
-		IEnumerable<IIfcCurveStyleFontPattern> IIfcCurveStyleFont.PatternList 
+		IItemSet<IIfcCurveStyleFontPattern> IIfcCurveStyleFont.PatternList 
 		{ 
 			get
 			{
-				foreach (var member in PatternList)
-				{
-					yield return member as IIfcCurveStyleFontPattern;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcCurveStyleFontPattern, IIfcCurveStyleFontPattern>(PatternList);
 			} 
 		}
 	//## Custom code

@@ -42,21 +42,21 @@ namespace Xbim.Ifc4.ProductExtension
 	{
 		#region IIfcRelConnectsElements explicit implementation
 		IIfcConnectionGeometry IIfcRelConnectsElements.ConnectionGeometry { 
+ 
+ 
 			get { return @ConnectionGeometry; } 
- 
- 
 			set { ConnectionGeometry = value as IfcConnectionGeometry;}
 		}	
 		IIfcElement IIfcRelConnectsElements.RelatingElement { 
+ 
+ 
 			get { return @RelatingElement; } 
- 
- 
 			set { RelatingElement = value as IfcElement;}
 		}	
 		IIfcElement IIfcRelConnectsElements.RelatedElement { 
+ 
+ 
 			get { return @RelatedElement; } 
- 
- 
 			set { RelatedElement = value as IfcElement;}
 		}	
 		 
@@ -64,7 +64,6 @@ namespace Xbim.Ifc4.ProductExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelConnectsElements(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -184,7 +183,7 @@ namespace Xbim.Ifc4.ProductExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

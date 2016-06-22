@@ -42,21 +42,21 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 	{
 		#region IIfcConnectionPortGeometry explicit implementation
 		IIfcAxis2Placement IIfcConnectionPortGeometry.LocationAtRelatingElement { 
+ 
+ 
 			get { return @LocationAtRelatingElement; } 
- 
- 
 			set { LocationAtRelatingElement = value as IfcAxis2Placement;}
 		}	
 		IIfcAxis2Placement IIfcConnectionPortGeometry.LocationAtRelatedElement { 
+ 
+ 
 			get { return @LocationAtRelatedElement; } 
- 
- 
 			set { LocationAtRelatedElement = value as IfcAxis2Placement;}
 		}	
 		IIfcProfileDef IIfcConnectionPortGeometry.ProfileOfPort { 
+ 
+ 
 			get { return @ProfileOfPort; } 
- 
- 
 			set { ProfileOfPort = value as IfcProfileDef;}
 		}	
 		 
@@ -64,7 +64,6 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConnectionPortGeometry(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -176,7 +175,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -40,13 +40,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 	{
 		#region IIfcEllipseProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcEllipseProfileDef.SemiAxis1 { 
-			get { return @SemiAxis1; } 
  
+			get { return @SemiAxis1; } 
 			set { SemiAxis1 = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcEllipseProfileDef.SemiAxis2 { 
-			get { return @SemiAxis2; } 
  
+			get { return @SemiAxis2; } 
 			set { SemiAxis2 = value;}
 		}	
 		 
@@ -54,7 +54,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcEllipseProfileDef(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -153,7 +152,7 @@ namespace Xbim.Ifc2x3.ProfileResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

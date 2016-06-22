@@ -10,30 +10,29 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	public partial class @IfcVirtualGridIntersection : IIfcVirtualGridIntersection
 	{
-		IEnumerable<IIfcGridAxis> IIfcVirtualGridIntersection.IntersectingAxes 
+		IItemSet<IIfcGridAxis> IIfcVirtualGridIntersection.IntersectingAxes 
 		{ 
 			get
 			{
-				foreach (var member in IntersectingAxes)
-				{
-					yield return member as IIfcGridAxis;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcGridAxis, IIfcGridAxis>(IntersectingAxes);
 			} 
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLengthMeasure> IIfcVirtualGridIntersection.OffsetDistances 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcLengthMeasure> IIfcVirtualGridIntersection.OffsetDistances 
 		{ 
 			get
 			{
-				foreach (var member in OffsetDistances)
-				{
-					yield return new Ifc4.MeasureResource.IfcLengthMeasure((double)member);
-				}
+			
+				return new Common.Collections.ProxyValueSet<MeasureResource.IfcLengthMeasure, Ifc4.MeasureResource.IfcLengthMeasure>(OffsetDistances, 
+					s => new Ifc4.MeasureResource.IfcLengthMeasure(s), 
+					t => new MeasureResource.IfcLengthMeasure(t));
 			} 
 		}
 	//## Custom code

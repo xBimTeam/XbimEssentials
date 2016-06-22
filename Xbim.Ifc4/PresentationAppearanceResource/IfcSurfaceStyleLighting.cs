@@ -42,27 +42,27 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	{
 		#region IIfcSurfaceStyleLighting explicit implementation
 		IIfcColourRgb IIfcSurfaceStyleLighting.DiffuseTransmissionColour { 
+ 
+ 
 			get { return @DiffuseTransmissionColour; } 
- 
- 
 			set { DiffuseTransmissionColour = value as IfcColourRgb;}
 		}	
 		IIfcColourRgb IIfcSurfaceStyleLighting.DiffuseReflectionColour { 
+ 
+ 
 			get { return @DiffuseReflectionColour; } 
- 
- 
 			set { DiffuseReflectionColour = value as IfcColourRgb;}
 		}	
 		IIfcColourRgb IIfcSurfaceStyleLighting.TransmissionColour { 
+ 
+ 
 			get { return @TransmissionColour; } 
- 
- 
 			set { TransmissionColour = value as IfcColourRgb;}
 		}	
 		IIfcColourRgb IIfcSurfaceStyleLighting.ReflectanceColour { 
+ 
+ 
 			get { return @ReflectanceColour; } 
- 
- 
 			set { ReflectanceColour = value as IfcColourRgb;}
 		}	
 		 
@@ -70,7 +70,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceStyleLighting(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -200,7 +199,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

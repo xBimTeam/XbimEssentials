@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcClassificationNotation : IPersistEntity, IfcClassificationNotationSelect
 	{
-		IEnumerable<IIfcClassificationNotationFacet> @NotationFacets { get; }
+		IItemSet<IIfcClassificationNotationFacet> @NotationFacets { get; }
 	
 	}
 }
@@ -39,8 +39,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 	public  partial class @IfcClassificationNotation : INotifyPropertyChanged, IInstantiableEntity, IIfcClassificationNotation, IContainsEntityReferences, IEquatable<@IfcClassificationNotation>
 	{
 		#region IIfcClassificationNotation explicit implementation
-		IEnumerable<IIfcClassificationNotationFacet> IIfcClassificationNotation.NotationFacets { 
-			get { return @NotationFacets; } 
+		IItemSet<IIfcClassificationNotationFacet> IIfcClassificationNotation.NotationFacets { 
+			get { return new Common.Collections.ProxyItemSet<IfcClassificationNotationFacet, IIfcClassificationNotationFacet>( @NotationFacets); } 
 		}	
 		 
 		#endregion
@@ -110,12 +110,12 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcClassificationNotationFacet> _notationFacets;
+		private readonly ItemSet<IfcClassificationNotationFacet> _notationFacets;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 1)]
-		public ItemSet<IfcClassificationNotationFacet> @NotationFacets 
+		public IItemSet<IfcClassificationNotationFacet> @NotationFacets 
 		{ 
 			get 
 			{
@@ -227,7 +227,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -40,13 +40,13 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 	{
 		#region IIfcChamferEdgeFeature explicit implementation
 		IfcPositiveLengthMeasure? IIfcChamferEdgeFeature.Width { 
-			get { return @Width; } 
  
+			get { return @Width; } 
 			set { Width = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcChamferEdgeFeature.Height { 
-			get { return @Height; } 
  
+			get { return @Height; } 
 			set { Height = value;}
 		}	
 		 
@@ -54,7 +54,6 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcChamferEdgeFeature(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -159,7 +158,7 @@ namespace Xbim.Ifc2x3.SharedComponentElements
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

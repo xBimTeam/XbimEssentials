@@ -44,28 +44,28 @@ namespace Xbim.Ifc4.SharedBldgElements
 	{
 		#region IIfcStairFlight explicit implementation
 		IfcInteger? IIfcStairFlight.NumberOfRisers { 
-			get { return @NumberOfRisers; } 
  
+			get { return @NumberOfRisers; } 
 			set { NumberOfRisers = value;}
 		}	
 		IfcInteger? IIfcStairFlight.NumberOfTreads { 
-			get { return @NumberOfTreads; } 
  
+			get { return @NumberOfTreads; } 
 			set { NumberOfTreads = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcStairFlight.RiserHeight { 
-			get { return @RiserHeight; } 
  
+			get { return @RiserHeight; } 
 			set { RiserHeight = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcStairFlight.TreadLength { 
-			get { return @TreadLength; } 
  
+			get { return @TreadLength; } 
 			set { TreadLength = value;}
 		}	
 		IfcStairFlightTypeEnum? IIfcStairFlight.PredefinedType { 
-			get { return @PredefinedType; } 
  
+			get { return @PredefinedType; } 
 			set { PredefinedType = value;}
 		}	
 		 
@@ -73,7 +73,6 @@ namespace Xbim.Ifc4.SharedBldgElements
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStairFlight(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -231,7 +230,7 @@ namespace Xbim.Ifc4.SharedBldgElements
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

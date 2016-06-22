@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcAppliedValueRelationship : IPersistEntity
 	{
 		IIfcAppliedValue @ComponentOfTotal { get;  set; }
-		IEnumerable<IIfcAppliedValue> @Components { get; }
+		IItemSet<IIfcAppliedValue> @Components { get; }
 		IfcArithmeticOperatorEnum @ArithmeticOperator { get;  set; }
 		IfcLabel? @Name { get;  set; }
 		IfcText? @Description { get;  set; }
@@ -45,27 +45,27 @@ namespace Xbim.Ifc2x3.CostResource
 	{
 		#region IIfcAppliedValueRelationship explicit implementation
 		IIfcAppliedValue IIfcAppliedValueRelationship.ComponentOfTotal { 
+ 
+ 
 			get { return @ComponentOfTotal; } 
- 
- 
 			set { ComponentOfTotal = value as IfcAppliedValue;}
 		}	
-		IEnumerable<IIfcAppliedValue> IIfcAppliedValueRelationship.Components { 
-			get { return @Components; } 
+		IItemSet<IIfcAppliedValue> IIfcAppliedValueRelationship.Components { 
+			get { return new Common.Collections.ProxyItemSet<IfcAppliedValue, IIfcAppliedValue>( @Components); } 
 		}	
 		IfcArithmeticOperatorEnum IIfcAppliedValueRelationship.ArithmeticOperator { 
-			get { return @ArithmeticOperator; } 
  
+			get { return @ArithmeticOperator; } 
 			set { ArithmeticOperator = value;}
 		}	
 		IfcLabel? IIfcAppliedValueRelationship.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IfcText? IIfcAppliedValueRelationship.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		 
@@ -137,7 +137,7 @@ namespace Xbim.Ifc2x3.CostResource
 
 		#region Explicit attribute fields
 		private IfcAppliedValue _componentOfTotal;
-		private ItemSet<IfcAppliedValue> _components;
+		private readonly ItemSet<IfcAppliedValue> _components;
 		private IfcArithmeticOperatorEnum _arithmeticOperator;
 		private IfcLabel? _name;
 		private IfcText? _description;
@@ -161,7 +161,7 @@ namespace Xbim.Ifc2x3.CostResource
 		}	
 		[IndexedProperty]
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 2)]
-		public ItemSet<IfcAppliedValue> @Components 
+		public IItemSet<IfcAppliedValue> @Components 
 		{ 
 			get 
 			{
@@ -327,7 +327,7 @@ namespace Xbim.Ifc2x3.CostResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

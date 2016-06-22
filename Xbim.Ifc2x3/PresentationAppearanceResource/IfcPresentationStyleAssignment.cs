@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPresentationStyleAssignment : IPersistEntity
 	{
-		IEnumerable<IIfcPresentationStyleSelect> @Styles { get; }
+		IItemSet<IIfcPresentationStyleSelect> @Styles { get; }
 	
 	}
 }
@@ -39,8 +39,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	public  partial class @IfcPresentationStyleAssignment : INotifyPropertyChanged, IInstantiableEntity, IIfcPresentationStyleAssignment, IEquatable<@IfcPresentationStyleAssignment>
 	{
 		#region IIfcPresentationStyleAssignment explicit implementation
-		IEnumerable<IIfcPresentationStyleSelect> IIfcPresentationStyleAssignment.Styles { 
-			get { return @Styles; } 
+		IItemSet<IIfcPresentationStyleSelect> IIfcPresentationStyleAssignment.Styles { 
+			get { return new Common.Collections.ProxyItemSet<IfcPresentationStyleSelect, IIfcPresentationStyleSelect>( @Styles); } 
 		}	
 		 
 		#endregion
@@ -110,12 +110,12 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcPresentationStyleSelect> _styles;
+		private readonly ItemSet<IfcPresentationStyleSelect> _styles;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 1)]
-		public ItemSet<IfcPresentationStyleSelect> @Styles 
+		public IItemSet<IfcPresentationStyleSelect> @Styles 
 		{ 
 			get 
 			{
@@ -227,7 +227,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

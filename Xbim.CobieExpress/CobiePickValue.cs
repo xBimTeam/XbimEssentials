@@ -40,8 +40,8 @@ namespace Xbim.CobieExpress
 	{
 		#region ICobiePickValue explicit implementation
 		string ICobiePickValue.Value { 
-			get { return @Value; } 
  
+			get { return @Value; } 
 			set { Value = value;}
 		}	
 		 
@@ -232,7 +232,7 @@ namespace Xbim.CobieExpress
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

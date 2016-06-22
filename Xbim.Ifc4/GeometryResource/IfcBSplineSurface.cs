@@ -28,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IfcInteger @UDegree { get;  set; }
 		IfcInteger @VDegree { get;  set; }
-		IEnumerable<IEnumerable<IIfcCartesianPoint>> @ControlPointsList { get; }
+		IItemSet<IItemSet<IIfcCartesianPoint>> @ControlPointsList { get; }
 		IfcBSplineSurfaceForm @SurfaceForm { get;  set; }
 		IfcLogical @UClosed { get;  set; }
 		IfcLogical @VClosed { get;  set; }
@@ -48,36 +48,36 @@ namespace Xbim.Ifc4.GeometryResource
 	{
 		#region IIfcBSplineSurface explicit implementation
 		IfcInteger IIfcBSplineSurface.UDegree { 
-			get { return @UDegree; } 
  
+			get { return @UDegree; } 
 			set { UDegree = value;}
 		}	
 		IfcInteger IIfcBSplineSurface.VDegree { 
-			get { return @VDegree; } 
  
+			get { return @VDegree; } 
 			set { VDegree = value;}
 		}	
-		IEnumerable<IEnumerable<IIfcCartesianPoint>> IIfcBSplineSurface.ControlPointsList { 
-			get { return @ControlPointsList; } 
+		IItemSet<IItemSet<IIfcCartesianPoint>> IIfcBSplineSurface.ControlPointsList { 
+			get { return new Common.Collections.ProxyNestedItemSet<IfcCartesianPoint, IIfcCartesianPoint>( @ControlPointsList); } 
 		}	
 		IfcBSplineSurfaceForm IIfcBSplineSurface.SurfaceForm { 
-			get { return @SurfaceForm; } 
  
+			get { return @SurfaceForm; } 
 			set { SurfaceForm = value;}
 		}	
 		IfcLogical IIfcBSplineSurface.UClosed { 
-			get { return @UClosed; } 
  
+			get { return @UClosed; } 
 			set { UClosed = value;}
 		}	
 		IfcLogical IIfcBSplineSurface.VClosed { 
-			get { return @VClosed; } 
  
+			get { return @VClosed; } 
 			set { VClosed = value;}
 		}	
 		IfcLogical IIfcBSplineSurface.SelfIntersect { 
-			get { return @SelfIntersect; } 
  
+			get { return @SelfIntersect; } 
 			set { SelfIntersect = value;}
 		}	
 		 
@@ -85,14 +85,13 @@ namespace Xbim.Ifc4.GeometryResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBSplineSurface(IModel model) : base(model) 		{ 
-			Model = model; 
-			_controlPointsList = new ItemSet<ItemSet<IfcCartesianPoint>>( this, 0,  3);
+			_controlPointsList = new ItemSet<IItemSet<IfcCartesianPoint>>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
 		private IfcInteger _uDegree;
 		private IfcInteger _vDegree;
-		private ItemSet<ItemSet<IfcCartesianPoint>> _controlPointsList;
+		private readonly ItemSet<IItemSet<IfcCartesianPoint>> _controlPointsList;
 		private IfcBSplineSurfaceForm _surfaceForm;
 		private IfcLogical _uClosed;
 		private IfcLogical _vClosed;
@@ -129,7 +128,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, 2, -1, 5)]
-		public ItemSet<ItemSet<IfcCartesianPoint>> @ControlPointsList 
+		public IItemSet<IItemSet<IfcCartesianPoint>> @ControlPointsList 
 		{ 
 			get 
 			{
@@ -254,8 +253,8 @@ namespace Xbim.Ifc4.GeometryResource
 					_vDegree = value.IntegerVal;
 					return;
 				case 2: 
-					_controlPointsList
-						.InternalGetAt(nestedIndex[0])
+					((ItemSet<IfcCartesianPoint>)_controlPointsList
+						.InternalGetAt(nestedIndex[0]) )
 						.InternalAdd((IfcCartesianPoint)(value.EntityVal));
 					return;
 				case 3: 
@@ -310,7 +309,7 @@ namespace Xbim.Ifc4.GeometryResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

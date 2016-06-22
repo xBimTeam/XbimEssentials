@@ -47,38 +47,38 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 	{
 		#region IIfcRelConnectsStructuralMember explicit implementation
 		IIfcStructuralMember IIfcRelConnectsStructuralMember.RelatingStructuralMember { 
+ 
+ 
 			get { return @RelatingStructuralMember; } 
- 
- 
 			set { RelatingStructuralMember = value as IfcStructuralMember;}
 		}	
 		IIfcStructuralConnection IIfcRelConnectsStructuralMember.RelatedStructuralConnection { 
+ 
+ 
 			get { return @RelatedStructuralConnection; } 
- 
- 
 			set { RelatedStructuralConnection = value as IfcStructuralConnection;}
 		}	
 		IIfcBoundaryCondition IIfcRelConnectsStructuralMember.AppliedCondition { 
+ 
+ 
 			get { return @AppliedCondition; } 
- 
- 
 			set { AppliedCondition = value as IfcBoundaryCondition;}
 		}	
 		IIfcStructuralConnectionCondition IIfcRelConnectsStructuralMember.AdditionalConditions { 
+ 
+ 
 			get { return @AdditionalConditions; } 
- 
- 
 			set { AdditionalConditions = value as IfcStructuralConnectionCondition;}
 		}	
 		IfcLengthMeasure? IIfcRelConnectsStructuralMember.SupportedLength { 
-			get { return @SupportedLength; } 
  
+			get { return @SupportedLength; } 
 			set { SupportedLength = value;}
 		}	
 		IIfcAxis2Placement3D IIfcRelConnectsStructuralMember.ConditionCoordinateSystem { 
+ 
+ 
 			get { return @ConditionCoordinateSystem; } 
- 
- 
 			set { ConditionCoordinateSystem = value as IfcAxis2Placement3D;}
 		}	
 		 
@@ -86,7 +86,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelConnectsStructuralMember(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -260,7 +259,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProfilePropertyResource
@@ -63,7 +64,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			get
 			{
 				//## Handle return of Properties for which no match was found
-			    yield break;
+			    return _properties ?? (_properties = new ItemSet<IIfcProperty>(this, 0, byte.MaxValue));
 			    //##
 			} 
 		}
@@ -75,6 +76,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 		}
 	//## Custom code
-	//##
+	    private IItemSet<IIfcProperty> _properties;
+	    //##
 	}
 }

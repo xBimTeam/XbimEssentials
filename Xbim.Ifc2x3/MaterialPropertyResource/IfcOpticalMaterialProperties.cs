@@ -47,48 +47,48 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	{
 		#region IIfcOpticalMaterialProperties explicit implementation
 		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.VisibleTransmittance { 
-			get { return @VisibleTransmittance; } 
  
+			get { return @VisibleTransmittance; } 
 			set { VisibleTransmittance = value;}
 		}	
 		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.SolarTransmittance { 
-			get { return @SolarTransmittance; } 
  
+			get { return @SolarTransmittance; } 
 			set { SolarTransmittance = value;}
 		}	
 		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.ThermalIrTransmittance { 
-			get { return @ThermalIrTransmittance; } 
  
+			get { return @ThermalIrTransmittance; } 
 			set { ThermalIrTransmittance = value;}
 		}	
 		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.ThermalIrEmissivityBack { 
-			get { return @ThermalIrEmissivityBack; } 
  
+			get { return @ThermalIrEmissivityBack; } 
 			set { ThermalIrEmissivityBack = value;}
 		}	
 		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.ThermalIrEmissivityFront { 
-			get { return @ThermalIrEmissivityFront; } 
  
+			get { return @ThermalIrEmissivityFront; } 
 			set { ThermalIrEmissivityFront = value;}
 		}	
 		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.VisibleReflectanceBack { 
-			get { return @VisibleReflectanceBack; } 
  
+			get { return @VisibleReflectanceBack; } 
 			set { VisibleReflectanceBack = value;}
 		}	
 		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.VisibleReflectanceFront { 
-			get { return @VisibleReflectanceFront; } 
  
+			get { return @VisibleReflectanceFront; } 
 			set { VisibleReflectanceFront = value;}
 		}	
 		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.SolarReflectanceFront { 
-			get { return @SolarReflectanceFront; } 
  
+			get { return @SolarReflectanceFront; } 
 			set { SolarReflectanceFront = value;}
 		}	
 		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.SolarReflectanceBack { 
-			get { return @SolarReflectanceBack; } 
  
+			get { return @SolarReflectanceBack; } 
 			set { SolarReflectanceBack = value;}
 		}	
 		 
@@ -96,7 +96,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcOpticalMaterialProperties(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -319,7 +318,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

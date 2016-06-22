@@ -26,10 +26,10 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBSplineSurfaceWithKnots : IIfcBSplineSurface
 	{
-		IEnumerable<IfcInteger> @UMultiplicities { get; }
-		IEnumerable<IfcInteger> @VMultiplicities { get; }
-		IEnumerable<IfcParameterValue> @UKnots { get; }
-		IEnumerable<IfcParameterValue> @VKnots { get; }
+		IItemSet<IfcInteger> @UMultiplicities { get; }
+		IItemSet<IfcInteger> @VMultiplicities { get; }
+		IItemSet<IfcParameterValue> @UKnots { get; }
+		IItemSet<IfcParameterValue> @VKnots { get; }
 		IfcKnotType @KnotSpec { get;  set; }
 		IfcInteger @KnotVUpper  { get ; }
 		IfcInteger @KnotUUpper  { get ; }
@@ -44,21 +44,21 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcBSplineSurfaceWithKnots : IfcBSplineSurface, IInstantiableEntity, IIfcBSplineSurfaceWithKnots, IContainsEntityReferences, IEquatable<@IfcBSplineSurfaceWithKnots>
 	{
 		#region IIfcBSplineSurfaceWithKnots explicit implementation
-		IEnumerable<IfcInteger> IIfcBSplineSurfaceWithKnots.UMultiplicities { 
+		IItemSet<IfcInteger> IIfcBSplineSurfaceWithKnots.UMultiplicities { 
 			get { return @UMultiplicities; } 
 		}	
-		IEnumerable<IfcInteger> IIfcBSplineSurfaceWithKnots.VMultiplicities { 
+		IItemSet<IfcInteger> IIfcBSplineSurfaceWithKnots.VMultiplicities { 
 			get { return @VMultiplicities; } 
 		}	
-		IEnumerable<IfcParameterValue> IIfcBSplineSurfaceWithKnots.UKnots { 
+		IItemSet<IfcParameterValue> IIfcBSplineSurfaceWithKnots.UKnots { 
 			get { return @UKnots; } 
 		}	
-		IEnumerable<IfcParameterValue> IIfcBSplineSurfaceWithKnots.VKnots { 
+		IItemSet<IfcParameterValue> IIfcBSplineSurfaceWithKnots.VKnots { 
 			get { return @VKnots; } 
 		}	
 		IfcKnotType IIfcBSplineSurfaceWithKnots.KnotSpec { 
-			get { return @KnotSpec; } 
  
+			get { return @KnotSpec; } 
 			set { KnotSpec = value;}
 		}	
 		 
@@ -66,7 +66,6 @@ namespace Xbim.Ifc4.GeometryResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBSplineSurfaceWithKnots(IModel model) : base(model) 		{ 
-			Model = model; 
 			_uMultiplicities = new ItemSet<IfcInteger>( this, 0,  8);
 			_vMultiplicities = new ItemSet<IfcInteger>( this, 0,  9);
 			_uKnots = new ItemSet<IfcParameterValue>( this, 0,  10);
@@ -74,16 +73,16 @@ namespace Xbim.Ifc4.GeometryResource
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcInteger> _uMultiplicities;
-		private ItemSet<IfcInteger> _vMultiplicities;
-		private ItemSet<IfcParameterValue> _uKnots;
-		private ItemSet<IfcParameterValue> _vKnots;
+		private readonly ItemSet<IfcInteger> _uMultiplicities;
+		private readonly ItemSet<IfcInteger> _vMultiplicities;
+		private readonly ItemSet<IfcParameterValue> _uKnots;
+		private readonly ItemSet<IfcParameterValue> _vKnots;
 		private IfcKnotType _knotSpec;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1, 10)]
-		public ItemSet<IfcInteger> @UMultiplicities 
+		public IItemSet<IfcInteger> @UMultiplicities 
 		{ 
 			get 
 			{
@@ -93,7 +92,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1, 11)]
-		public ItemSet<IfcInteger> @VMultiplicities 
+		public IItemSet<IfcInteger> @VMultiplicities 
 		{ 
 			get 
 			{
@@ -103,7 +102,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1, 12)]
-		public ItemSet<IfcParameterValue> @UKnots 
+		public IItemSet<IfcParameterValue> @UKnots 
 		{ 
 			get 
 			{
@@ -113,7 +112,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1, 13)]
-		public ItemSet<IfcParameterValue> @VKnots 
+		public IItemSet<IfcParameterValue> @VKnots 
 		{ 
 			get 
 			{
@@ -235,7 +234,7 @@ namespace Xbim.Ifc4.GeometryResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

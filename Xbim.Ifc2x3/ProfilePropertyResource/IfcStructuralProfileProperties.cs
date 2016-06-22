@@ -54,83 +54,83 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 	{
 		#region IIfcStructuralProfileProperties explicit implementation
 		IfcMomentOfInertiaMeasure? IIfcStructuralProfileProperties.TorsionalConstantX { 
-			get { return @TorsionalConstantX; } 
  
+			get { return @TorsionalConstantX; } 
 			set { TorsionalConstantX = value;}
 		}	
 		IfcMomentOfInertiaMeasure? IIfcStructuralProfileProperties.MomentOfInertiaYZ { 
-			get { return @MomentOfInertiaYZ; } 
  
+			get { return @MomentOfInertiaYZ; } 
 			set { MomentOfInertiaYZ = value;}
 		}	
 		IfcMomentOfInertiaMeasure? IIfcStructuralProfileProperties.MomentOfInertiaY { 
-			get { return @MomentOfInertiaY; } 
  
+			get { return @MomentOfInertiaY; } 
 			set { MomentOfInertiaY = value;}
 		}	
 		IfcMomentOfInertiaMeasure? IIfcStructuralProfileProperties.MomentOfInertiaZ { 
-			get { return @MomentOfInertiaZ; } 
  
+			get { return @MomentOfInertiaZ; } 
 			set { MomentOfInertiaZ = value;}
 		}	
 		IfcWarpingConstantMeasure? IIfcStructuralProfileProperties.WarpingConstant { 
-			get { return @WarpingConstant; } 
  
+			get { return @WarpingConstant; } 
 			set { WarpingConstant = value;}
 		}	
 		IfcLengthMeasure? IIfcStructuralProfileProperties.ShearCentreZ { 
-			get { return @ShearCentreZ; } 
  
+			get { return @ShearCentreZ; } 
 			set { ShearCentreZ = value;}
 		}	
 		IfcLengthMeasure? IIfcStructuralProfileProperties.ShearCentreY { 
-			get { return @ShearCentreY; } 
  
+			get { return @ShearCentreY; } 
 			set { ShearCentreY = value;}
 		}	
 		IfcAreaMeasure? IIfcStructuralProfileProperties.ShearDeformationAreaZ { 
-			get { return @ShearDeformationAreaZ; } 
  
+			get { return @ShearDeformationAreaZ; } 
 			set { ShearDeformationAreaZ = value;}
 		}	
 		IfcAreaMeasure? IIfcStructuralProfileProperties.ShearDeformationAreaY { 
-			get { return @ShearDeformationAreaY; } 
  
+			get { return @ShearDeformationAreaY; } 
 			set { ShearDeformationAreaY = value;}
 		}	
 		IfcSectionModulusMeasure? IIfcStructuralProfileProperties.MaximumSectionModulusY { 
-			get { return @MaximumSectionModulusY; } 
  
+			get { return @MaximumSectionModulusY; } 
 			set { MaximumSectionModulusY = value;}
 		}	
 		IfcSectionModulusMeasure? IIfcStructuralProfileProperties.MinimumSectionModulusY { 
-			get { return @MinimumSectionModulusY; } 
  
+			get { return @MinimumSectionModulusY; } 
 			set { MinimumSectionModulusY = value;}
 		}	
 		IfcSectionModulusMeasure? IIfcStructuralProfileProperties.MaximumSectionModulusZ { 
-			get { return @MaximumSectionModulusZ; } 
  
+			get { return @MaximumSectionModulusZ; } 
 			set { MaximumSectionModulusZ = value;}
 		}	
 		IfcSectionModulusMeasure? IIfcStructuralProfileProperties.MinimumSectionModulusZ { 
-			get { return @MinimumSectionModulusZ; } 
  
+			get { return @MinimumSectionModulusZ; } 
 			set { MinimumSectionModulusZ = value;}
 		}	
 		IfcSectionModulusMeasure? IIfcStructuralProfileProperties.TorsionalSectionModulus { 
-			get { return @TorsionalSectionModulus; } 
  
+			get { return @TorsionalSectionModulus; } 
 			set { TorsionalSectionModulus = value;}
 		}	
 		IfcLengthMeasure? IIfcStructuralProfileProperties.CentreOfGravityInX { 
-			get { return @CentreOfGravityInX; } 
  
+			get { return @CentreOfGravityInX; } 
 			set { CentreOfGravityInX = value;}
 		}	
 		IfcLengthMeasure? IIfcStructuralProfileProperties.CentreOfGravityInY { 
-			get { return @CentreOfGravityInY; } 
  
+			get { return @CentreOfGravityInY; } 
 			set { CentreOfGravityInY = value;}
 		}	
 		 
@@ -138,7 +138,6 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralProfileProperties(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -493,7 +492,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

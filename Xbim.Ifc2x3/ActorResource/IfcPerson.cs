@@ -32,11 +32,11 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcIdentifier? @Id { get;  set; }
 		IfcLabel? @FamilyName { get;  set; }
 		IfcLabel? @GivenName { get;  set; }
-		IEnumerable<IfcLabel> @MiddleNames { get; }
-		IEnumerable<IfcLabel> @PrefixTitles { get; }
-		IEnumerable<IfcLabel> @SuffixTitles { get; }
-		IEnumerable<IIfcActorRole> @Roles { get; }
-		IEnumerable<IIfcAddress> @Addresses { get; }
+		IItemSet<IfcLabel> @MiddleNames { get; }
+		IItemSet<IfcLabel> @PrefixTitles { get; }
+		IItemSet<IfcLabel> @SuffixTitles { get; }
+		IItemSet<IIfcActorRole> @Roles { get; }
+		IItemSet<IIfcAddress> @Addresses { get; }
 		IEnumerable<IIfcPersonAndOrganization> @EngagedIn {  get; }
 	
 	}
@@ -50,34 +50,34 @@ namespace Xbim.Ifc2x3.ActorResource
 	{
 		#region IIfcPerson explicit implementation
 		IfcIdentifier? IIfcPerson.Id { 
-			get { return @Id; } 
  
+			get { return @Id; } 
 			set { Id = value;}
 		}	
 		IfcLabel? IIfcPerson.FamilyName { 
-			get { return @FamilyName; } 
  
+			get { return @FamilyName; } 
 			set { FamilyName = value;}
 		}	
 		IfcLabel? IIfcPerson.GivenName { 
-			get { return @GivenName; } 
  
+			get { return @GivenName; } 
 			set { GivenName = value;}
 		}	
-		IEnumerable<IfcLabel> IIfcPerson.MiddleNames { 
+		IItemSet<IfcLabel> IIfcPerson.MiddleNames { 
 			get { return @MiddleNames; } 
 		}	
-		IEnumerable<IfcLabel> IIfcPerson.PrefixTitles { 
+		IItemSet<IfcLabel> IIfcPerson.PrefixTitles { 
 			get { return @PrefixTitles; } 
 		}	
-		IEnumerable<IfcLabel> IIfcPerson.SuffixTitles { 
+		IItemSet<IfcLabel> IIfcPerson.SuffixTitles { 
 			get { return @SuffixTitles; } 
 		}	
-		IEnumerable<IIfcActorRole> IIfcPerson.Roles { 
-			get { return @Roles; } 
+		IItemSet<IIfcActorRole> IIfcPerson.Roles { 
+			get { return new Common.Collections.ProxyItemSet<IfcActorRole, IIfcActorRole>( @Roles); } 
 		}	
-		IEnumerable<IIfcAddress> IIfcPerson.Addresses { 
-			get { return @Addresses; } 
+		IItemSet<IIfcAddress> IIfcPerson.Addresses { 
+			get { return new Common.Collections.ProxyItemSet<IfcAddress, IIfcAddress>( @Addresses); } 
 		}	
 		 
 		IEnumerable<IIfcPersonAndOrganization> IIfcPerson.EngagedIn {  get { return @EngagedIn; } }
@@ -155,11 +155,11 @@ namespace Xbim.Ifc2x3.ActorResource
 		private IfcIdentifier? _id;
 		private IfcLabel? _familyName;
 		private IfcLabel? _givenName;
-		private OptionalItemSet<IfcLabel> _middleNames;
-		private OptionalItemSet<IfcLabel> _prefixTitles;
-		private OptionalItemSet<IfcLabel> _suffixTitles;
-		private OptionalItemSet<IfcActorRole> _roles;
-		private OptionalItemSet<IfcAddress> _addresses;
+		private readonly OptionalItemSet<IfcLabel> _middleNames;
+		private readonly OptionalItemSet<IfcLabel> _prefixTitles;
+		private readonly OptionalItemSet<IfcLabel> _suffixTitles;
+		private readonly OptionalItemSet<IfcActorRole> _roles;
+		private readonly OptionalItemSet<IfcAddress> _addresses;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -206,7 +206,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 4)]
-		public OptionalItemSet<IfcLabel> @MiddleNames 
+		public IOptionalItemSet<IfcLabel> @MiddleNames 
 		{ 
 			get 
 			{
@@ -216,7 +216,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 5)]
-		public OptionalItemSet<IfcLabel> @PrefixTitles 
+		public IOptionalItemSet<IfcLabel> @PrefixTitles 
 		{ 
 			get 
 			{
@@ -226,7 +226,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 6)]
-		public OptionalItemSet<IfcLabel> @SuffixTitles 
+		public IOptionalItemSet<IfcLabel> @SuffixTitles 
 		{ 
 			get 
 			{
@@ -236,7 +236,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 7)]
-		public OptionalItemSet<IfcActorRole> @Roles 
+		public IOptionalItemSet<IfcActorRole> @Roles 
 		{ 
 			get 
 			{
@@ -247,7 +247,7 @@ namespace Xbim.Ifc2x3.ActorResource
 		}	
 		[IndexedProperty]
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 8)]
-		public OptionalItemSet<IfcAddress> @Addresses 
+		public IOptionalItemSet<IfcAddress> @Addresses 
 		{ 
 			get 
 			{
@@ -391,7 +391,7 @@ namespace Xbim.Ifc2x3.ActorResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

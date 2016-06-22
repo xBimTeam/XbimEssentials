@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.RepresentationResource
@@ -47,6 +48,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of TargetView
+				//##
 				switch (TargetView)
 				{
 					case IfcGeometricProjectionEnum.GRAPH_VIEW:
@@ -85,6 +88,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of TargetView
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcGeometricProjectionEnum.GRAPH_VIEW:

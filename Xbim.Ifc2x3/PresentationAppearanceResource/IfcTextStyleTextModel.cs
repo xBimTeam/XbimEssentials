@@ -46,42 +46,42 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	{
 		#region IIfcTextStyleTextModel explicit implementation
 		IIfcSizeSelect IIfcTextStyleTextModel.TextIndent { 
+ 
+ 
 			get { return @TextIndent; } 
- 
- 
 			set { TextIndent = value as IfcSizeSelect;}
 		}	
 		IfcTextAlignment? IIfcTextStyleTextModel.TextAlign { 
-			get { return @TextAlign; } 
  
+			get { return @TextAlign; } 
 			set { TextAlign = value;}
 		}	
 		IfcTextDecoration? IIfcTextStyleTextModel.TextDecoration { 
-			get { return @TextDecoration; } 
  
+			get { return @TextDecoration; } 
 			set { TextDecoration = value;}
 		}	
 		IIfcSizeSelect IIfcTextStyleTextModel.LetterSpacing { 
+ 
+ 
 			get { return @LetterSpacing; } 
- 
- 
 			set { LetterSpacing = value as IfcSizeSelect;}
 		}	
 		IIfcSizeSelect IIfcTextStyleTextModel.WordSpacing { 
+ 
+ 
 			get { return @WordSpacing; } 
- 
- 
 			set { WordSpacing = value as IfcSizeSelect;}
 		}	
 		IfcTextTransformation? IIfcTextStyleTextModel.TextTransform { 
-			get { return @TextTransform; } 
  
+			get { return @TextTransform; } 
 			set { TextTransform = value;}
 		}	
 		IIfcSizeSelect IIfcTextStyleTextModel.LineHeight { 
+ 
+ 
 			get { return @LineHeight; } 
- 
- 
 			set { LineHeight = value as IfcSizeSelect;}
 		}	
 		 
@@ -380,7 +380,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

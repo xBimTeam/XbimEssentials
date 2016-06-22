@@ -10,30 +10,31 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ActorResource
 {
 	public partial class @IfcTelecomAddress : IIfcTelecomAddress
 	{
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcTelecomAddress.TelephoneNumbers 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcTelecomAddress.TelephoneNumbers 
 		{ 
 			get
 			{
-				foreach (var member in TelephoneNumbers)
-				{
-					yield return new Ifc4.MeasureResource.IfcLabel((string)member);
-				}
+			
+				return new Common.Collections.ProxyValueSet<MeasureResource.IfcLabel, Ifc4.MeasureResource.IfcLabel>(TelephoneNumbers, 
+					s => new Ifc4.MeasureResource.IfcLabel(s), 
+					t => new MeasureResource.IfcLabel(t));
 			} 
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcTelecomAddress.FacsimileNumbers 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcTelecomAddress.FacsimileNumbers 
 		{ 
 			get
 			{
-				foreach (var member in FacsimileNumbers)
-				{
-					yield return new Ifc4.MeasureResource.IfcLabel((string)member);
-				}
+			
+				return new Common.Collections.ProxyValueSet<MeasureResource.IfcLabel, Ifc4.MeasureResource.IfcLabel>(FacsimileNumbers, 
+					s => new Ifc4.MeasureResource.IfcLabel(s), 
+					t => new MeasureResource.IfcLabel(t));
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcTelecomAddress.PagerNumber 
@@ -51,14 +52,14 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcTelecomAddress.ElectronicMailAddresses 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcTelecomAddress.ElectronicMailAddresses 
 		{ 
 			get
 			{
-				foreach (var member in ElectronicMailAddresses)
-				{
-					yield return new Ifc4.MeasureResource.IfcLabel((string)member);
-				}
+			
+				return new Common.Collections.ProxyValueSet<MeasureResource.IfcLabel, Ifc4.MeasureResource.IfcLabel>(ElectronicMailAddresses, 
+					s => new Ifc4.MeasureResource.IfcLabel(s), 
+					t => new MeasureResource.IfcLabel(t));
 			} 
 		}
 		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcTelecomAddress.WWWHomePageURL 
@@ -76,7 +77,7 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
-		IEnumerable<Xbim.Ifc4.ExternalReferenceResource.IfcURIReference> IIfcTelecomAddress.MessagingIDs 
+		IItemSet<Xbim.Ifc4.ExternalReferenceResource.IfcURIReference> IIfcTelecomAddress.MessagingIDs 
 		{ 
 			get
 			{

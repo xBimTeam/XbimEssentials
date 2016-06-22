@@ -42,23 +42,23 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	{
 		#region IIfcFuelProperties explicit implementation
 		IfcThermodynamicTemperatureMeasure? IIfcFuelProperties.CombustionTemperature { 
-			get { return @CombustionTemperature; } 
  
+			get { return @CombustionTemperature; } 
 			set { CombustionTemperature = value;}
 		}	
 		IfcPositiveRatioMeasure? IIfcFuelProperties.CarbonContent { 
-			get { return @CarbonContent; } 
  
+			get { return @CarbonContent; } 
 			set { CarbonContent = value;}
 		}	
 		IfcHeatingValueMeasure? IIfcFuelProperties.LowerHeatingValue { 
-			get { return @LowerHeatingValue; } 
  
+			get { return @LowerHeatingValue; } 
 			set { LowerHeatingValue = value;}
 		}	
 		IfcHeatingValueMeasure? IIfcFuelProperties.HigherHeatingValue { 
-			get { return @HigherHeatingValue; } 
  
+			get { return @HigherHeatingValue; } 
 			set { HigherHeatingValue = value;}
 		}	
 		 
@@ -66,7 +66,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFuelProperties(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -199,7 +198,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

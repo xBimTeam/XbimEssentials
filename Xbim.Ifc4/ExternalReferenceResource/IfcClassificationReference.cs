@@ -44,19 +44,19 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 	{
 		#region IIfcClassificationReference explicit implementation
 		IIfcClassificationReferenceSelect IIfcClassificationReference.ReferencedSource { 
+ 
+ 
 			get { return @ReferencedSource; } 
- 
- 
 			set { ReferencedSource = value as IfcClassificationReferenceSelect;}
 		}	
 		IfcText? IIfcClassificationReference.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		IfcIdentifier? IIfcClassificationReference.Sort { 
-			get { return @Sort; } 
  
+			get { return @Sort; } 
 			set { Sort = value;}
 		}	
 		 
@@ -66,7 +66,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcClassificationReference(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -204,7 +203,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationOrganizationResource
@@ -20,6 +21,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of LightDistributionCurve
+				//##
 				switch (LightDistributionCurve)
 				{
 					case IfcLightDistributionCurveEnum.TYPE_A:
@@ -41,6 +44,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of LightDistributionCurve
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcLightDistributionCurveEnum.TYPE_A:
@@ -66,14 +71,12 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				
 			}
 		}
-		IEnumerable<IIfcLightDistributionData> IIfcLightIntensityDistribution.DistributionData 
+		IItemSet<IIfcLightDistributionData> IIfcLightIntensityDistribution.DistributionData 
 		{ 
 			get
 			{
-				foreach (var member in DistributionData)
-				{
-					yield return member as IIfcLightDistributionData;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcLightDistributionData, IIfcLightDistributionData>(DistributionData);
 			} 
 		}
 	//## Custom code

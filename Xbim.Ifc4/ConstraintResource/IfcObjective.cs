@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcObjective : IIfcConstraint
 	{
-		IEnumerable<IIfcConstraint> @BenchmarkValues { get; }
+		IItemSet<IIfcConstraint> @BenchmarkValues { get; }
 		IfcLogicalOperatorEnum? @LogicalAggregator { get;  set; }
 		IfcObjectiveEnum @ObjectiveQualifier { get;  set; }
 		IfcLabel? @UserDefinedQualifier { get;  set; }
@@ -41,22 +41,22 @@ namespace Xbim.Ifc4.ConstraintResource
 	public  partial class @IfcObjective : IfcConstraint, IInstantiableEntity, IIfcObjective, IContainsEntityReferences, IEquatable<@IfcObjective>
 	{
 		#region IIfcObjective explicit implementation
-		IEnumerable<IIfcConstraint> IIfcObjective.BenchmarkValues { 
-			get { return @BenchmarkValues; } 
+		IItemSet<IIfcConstraint> IIfcObjective.BenchmarkValues { 
+			get { return new Common.Collections.ProxyItemSet<IfcConstraint, IIfcConstraint>( @BenchmarkValues); } 
 		}	
 		IfcLogicalOperatorEnum? IIfcObjective.LogicalAggregator { 
-			get { return @LogicalAggregator; } 
  
+			get { return @LogicalAggregator; } 
 			set { LogicalAggregator = value;}
 		}	
 		IfcObjectiveEnum IIfcObjective.ObjectiveQualifier { 
-			get { return @ObjectiveQualifier; } 
  
+			get { return @ObjectiveQualifier; } 
 			set { ObjectiveQualifier = value;}
 		}	
 		IfcLabel? IIfcObjective.UserDefinedQualifier { 
-			get { return @UserDefinedQualifier; } 
  
+			get { return @UserDefinedQualifier; } 
 			set { UserDefinedQualifier = value;}
 		}	
 		 
@@ -64,12 +64,11 @@ namespace Xbim.Ifc4.ConstraintResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcObjective(IModel model) : base(model) 		{ 
-			Model = model; 
 			_benchmarkValues = new OptionalItemSet<IfcConstraint>( this, 0,  8);
 		}
 
 		#region Explicit attribute fields
-		private OptionalItemSet<IfcConstraint> _benchmarkValues;
+		private readonly OptionalItemSet<IfcConstraint> _benchmarkValues;
 		private IfcLogicalOperatorEnum? _logicalAggregator;
 		private IfcObjectiveEnum _objectiveQualifier;
 		private IfcLabel? _userDefinedQualifier;
@@ -77,7 +76,7 @@ namespace Xbim.Ifc4.ConstraintResource
 	
 		#region Explicit attribute properties
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 10)]
-		public OptionalItemSet<IfcConstraint> @BenchmarkValues 
+		public IOptionalItemSet<IfcConstraint> @BenchmarkValues 
 		{ 
 			get 
 			{
@@ -200,7 +199,7 @@ namespace Xbim.Ifc4.ConstraintResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

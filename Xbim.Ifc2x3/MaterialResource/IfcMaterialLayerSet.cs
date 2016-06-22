@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialLayerSet : IPersistEntity, IfcMaterialSelect
 	{
-		IEnumerable<IIfcMaterialLayer> @MaterialLayers { get; }
+		IItemSet<IIfcMaterialLayer> @MaterialLayers { get; }
 		IfcLabel? @LayerSetName { get;  set; }
 		IfcLengthMeasure @TotalThickness  { get ; }
 	
@@ -42,12 +42,12 @@ namespace Xbim.Ifc2x3.MaterialResource
 	public  partial class @IfcMaterialLayerSet : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterialLayerSet, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMaterialLayerSet>
 	{
 		#region IIfcMaterialLayerSet explicit implementation
-		IEnumerable<IIfcMaterialLayer> IIfcMaterialLayerSet.MaterialLayers { 
-			get { return @MaterialLayers; } 
+		IItemSet<IIfcMaterialLayer> IIfcMaterialLayerSet.MaterialLayers { 
+			get { return new Common.Collections.ProxyItemSet<IfcMaterialLayer, IIfcMaterialLayer>( @MaterialLayers); } 
 		}	
 		IfcLabel? IIfcMaterialLayerSet.LayerSetName { 
-			get { return @LayerSetName; } 
  
+			get { return @LayerSetName; } 
 			set { LayerSetName = value;}
 		}	
 		 
@@ -118,14 +118,14 @@ namespace Xbim.Ifc2x3.MaterialResource
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcMaterialLayer> _materialLayers;
+		private readonly ItemSet<IfcMaterialLayer> _materialLayers;
 		private IfcLabel? _layerSetName;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 1)]
-		public ItemSet<IfcMaterialLayer> @MaterialLayers 
+		public IItemSet<IfcMaterialLayer> @MaterialLayers 
 		{ 
 			get 
 			{
@@ -267,7 +267,7 @@ namespace Xbim.Ifc2x3.MaterialResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

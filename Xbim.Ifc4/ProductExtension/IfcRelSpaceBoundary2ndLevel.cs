@@ -39,9 +39,9 @@ namespace Xbim.Ifc4.ProductExtension
 	{
 		#region IIfcRelSpaceBoundary2ndLevel explicit implementation
 		IIfcRelSpaceBoundary2ndLevel IIfcRelSpaceBoundary2ndLevel.CorrespondingBoundary { 
+ 
+ 
 			get { return @CorrespondingBoundary; } 
- 
- 
 			set { CorrespondingBoundary = value as IfcRelSpaceBoundary2ndLevel;}
 		}	
 		 
@@ -50,7 +50,6 @@ namespace Xbim.Ifc4.ProductExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelSpaceBoundary2ndLevel(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -150,7 +149,7 @@ namespace Xbim.Ifc4.ProductExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

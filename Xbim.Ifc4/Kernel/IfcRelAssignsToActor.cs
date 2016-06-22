@@ -40,15 +40,15 @@ namespace Xbim.Ifc4.Kernel
 	{
 		#region IIfcRelAssignsToActor explicit implementation
 		IIfcActor IIfcRelAssignsToActor.RelatingActor { 
+ 
+ 
 			get { return @RelatingActor; } 
- 
- 
 			set { RelatingActor = value as IfcActor;}
 		}	
 		IIfcActorRole IIfcRelAssignsToActor.ActingRole { 
+ 
+ 
 			get { return @ActingRole; } 
- 
- 
 			set { ActingRole = value as IfcActorRole;}
 		}	
 		 
@@ -56,7 +56,6 @@ namespace Xbim.Ifc4.Kernel
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssignsToActor(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -159,7 +158,7 @@ namespace Xbim.Ifc4.Kernel
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

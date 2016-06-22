@@ -49,47 +49,47 @@ namespace Xbim.Ifc2x3.UtilityResource
 	{
 		#region IIfcOwnerHistory explicit implementation
 		IIfcPersonAndOrganization IIfcOwnerHistory.OwningUser { 
+ 
+ 
 			get { return @OwningUser; } 
- 
- 
 			set { OwningUser = value as IfcPersonAndOrganization;}
 		}	
 		IIfcApplication IIfcOwnerHistory.OwningApplication { 
+ 
+ 
 			get { return @OwningApplication; } 
- 
- 
 			set { OwningApplication = value as IfcApplication;}
 		}	
 		IfcStateEnum? IIfcOwnerHistory.State { 
-			get { return @State; } 
  
+			get { return @State; } 
 			set { State = value;}
 		}	
 		IfcChangeActionEnum IIfcOwnerHistory.ChangeAction { 
-			get { return @ChangeAction; } 
  
+			get { return @ChangeAction; } 
 			set { ChangeAction = value;}
 		}	
 		IfcTimeStamp? IIfcOwnerHistory.LastModifiedDate { 
-			get { return @LastModifiedDate; } 
  
+			get { return @LastModifiedDate; } 
 			set { LastModifiedDate = value;}
 		}	
 		IIfcPersonAndOrganization IIfcOwnerHistory.LastModifyingUser { 
+ 
+ 
 			get { return @LastModifyingUser; } 
- 
- 
 			set { LastModifyingUser = value as IfcPersonAndOrganization;}
 		}	
 		IIfcApplication IIfcOwnerHistory.LastModifyingApplication { 
+ 
+ 
 			get { return @LastModifyingApplication; } 
- 
- 
 			set { LastModifyingApplication = value as IfcApplication;}
 		}	
 		IfcTimeStamp IIfcOwnerHistory.CreationDate { 
-			get { return @CreationDate; } 
  
+			get { return @CreationDate; } 
 			set { CreationDate = value;}
 		}	
 		 
@@ -406,7 +406,7 @@ namespace Xbim.Ifc2x3.UtilityResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -41,14 +41,14 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 	{
 		#region IIfcAnnotationFillAreaOccurrence explicit implementation
 		IIfcPoint IIfcAnnotationFillAreaOccurrence.FillStyleTarget { 
+ 
+ 
 			get { return @FillStyleTarget; } 
- 
- 
 			set { FillStyleTarget = value as IfcPoint;}
 		}	
 		IfcGlobalOrLocalEnum? IIfcAnnotationFillAreaOccurrence.GlobalOrLocal { 
-			get { return @GlobalOrLocal; } 
  
+			get { return @GlobalOrLocal; } 
 			set { GlobalOrLocal = value;}
 		}	
 		 
@@ -56,7 +56,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAnnotationFillAreaOccurrence(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -155,7 +154,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

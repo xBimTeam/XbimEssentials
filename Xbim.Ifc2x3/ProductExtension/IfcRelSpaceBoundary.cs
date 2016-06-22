@@ -44,31 +44,31 @@ namespace Xbim.Ifc2x3.ProductExtension
 	{
 		#region IIfcRelSpaceBoundary explicit implementation
 		IIfcSpace IIfcRelSpaceBoundary.RelatingSpace { 
+ 
+ 
 			get { return @RelatingSpace; } 
- 
- 
 			set { RelatingSpace = value as IfcSpace;}
 		}	
 		IIfcElement IIfcRelSpaceBoundary.RelatedBuildingElement { 
+ 
+ 
 			get { return @RelatedBuildingElement; } 
- 
- 
 			set { RelatedBuildingElement = value as IfcElement;}
 		}	
 		IIfcConnectionGeometry IIfcRelSpaceBoundary.ConnectionGeometry { 
+ 
+ 
 			get { return @ConnectionGeometry; } 
- 
- 
 			set { ConnectionGeometry = value as IfcConnectionGeometry;}
 		}	
 		IfcPhysicalOrVirtualEnum IIfcRelSpaceBoundary.PhysicalOrVirtualBoundary { 
-			get { return @PhysicalOrVirtualBoundary; } 
  
+			get { return @PhysicalOrVirtualBoundary; } 
 			set { PhysicalOrVirtualBoundary = value;}
 		}	
 		IfcInternalOrExternalEnum IIfcRelSpaceBoundary.InternalOrExternalBoundary { 
-			get { return @InternalOrExternalBoundary; } 
  
+			get { return @InternalOrExternalBoundary; } 
 			set { InternalOrExternalBoundary = value;}
 		}	
 		 
@@ -76,7 +76,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelSpaceBoundary(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -232,7 +231,7 @@ namespace Xbim.Ifc2x3.ProductExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

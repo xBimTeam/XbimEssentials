@@ -42,15 +42,15 @@ namespace Xbim.Ifc2x3.DateTimeResource
 	{
 		#region IIfcDateAndTime explicit implementation
 		IIfcCalendarDate IIfcDateAndTime.DateComponent { 
+ 
+ 
 			get { return @DateComponent; } 
- 
- 
 			set { DateComponent = value as IfcCalendarDate;}
 		}	
 		IIfcLocalTime IIfcDateAndTime.TimeComponent { 
+ 
+ 
 			get { return @TimeComponent; } 
- 
- 
 			set { TimeComponent = value as IfcLocalTime;}
 		}	
 		 
@@ -259,7 +259,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

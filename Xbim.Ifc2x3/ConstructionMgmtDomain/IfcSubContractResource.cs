@@ -41,14 +41,14 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 	{
 		#region IIfcSubContractResource explicit implementation
 		IIfcActorSelect IIfcSubContractResource.SubContractor { 
+ 
+ 
 			get { return @SubContractor; } 
- 
- 
 			set { SubContractor = value as IfcActorSelect;}
 		}	
 		IfcText? IIfcSubContractResource.JobDescription { 
-			get { return @JobDescription; } 
  
+			get { return @JobDescription; } 
 			set { JobDescription = value;}
 		}	
 		 
@@ -56,7 +56,6 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSubContractResource(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -161,7 +160,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

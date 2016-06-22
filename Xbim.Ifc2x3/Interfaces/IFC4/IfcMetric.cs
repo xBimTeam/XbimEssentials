@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ConstraintResource
@@ -20,6 +21,10 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of Benchmark
+			    if (_benchmark4.HasValue)
+			        return _benchmark4.Value;
+				//##
 				switch (Benchmark)
 				{
 					case IfcBenchmarkEnum.GREATERTHAN:
@@ -47,6 +52,12 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of Benchmark
+			    if (_benchmark4.HasValue && (byte) value < (byte) Ifc4.Interfaces.IfcBenchmarkEnum.INCLUDES)
+			    {
+                    SetValue(v => _benchmark4 = v, _benchmark4, null, "Benchmark", byte.MaxValue);
+			    }
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcBenchmarkEnum.GREATERTHAN:
@@ -75,26 +86,26 @@ namespace Xbim.Ifc2x3.ConstraintResource
 					
 					case Ifc4.Interfaces.IfcBenchmarkEnum.INCLUDES:
 						//## Handle setting of INCLUDES member from IfcBenchmarkEnum in property Benchmark
-						//TODO: Handle setting of INCLUDES member from IfcBenchmarkEnum in property Benchmark
-						throw new System.NotImplementedException();
+                        SetValue(v => _benchmark4 = v, _benchmark4, value, "Benchmark", byte.MaxValue);
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcBenchmarkEnum.NOTINCLUDES:
 						//## Handle setting of NOTINCLUDES member from IfcBenchmarkEnum in property Benchmark
-						//TODO: Handle setting of NOTINCLUDES member from IfcBenchmarkEnum in property Benchmark
-						throw new System.NotImplementedException();
+                        SetValue(v => _benchmark4 = v, _benchmark4, value, "Benchmark", byte.MaxValue);
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcBenchmarkEnum.INCLUDEDIN:
 						//## Handle setting of INCLUDEDIN member from IfcBenchmarkEnum in property Benchmark
-						//TODO: Handle setting of INCLUDEDIN member from IfcBenchmarkEnum in property Benchmark
-						throw new System.NotImplementedException();
+                        SetValue(v => _benchmark4 = v, _benchmark4, value, "Benchmark", byte.MaxValue);
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcBenchmarkEnum.NOTINCLUDEDIN:
 						//## Handle setting of NOTINCLUDEDIN member from IfcBenchmarkEnum in property Benchmark
-						//TODO: Handle setting of NOTINCLUDEDIN member from IfcBenchmarkEnum in property Benchmark
-						throw new System.NotImplementedException();
+						SetValue(v => _benchmark4 = v, _benchmark4, value, "Benchmark", byte.MaxValue);
+				        return;
 						//##
 										
 					
@@ -164,6 +175,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				if (value == null)
 				{
 					DataValue = null;
+					if (_dataValue4 != null)
+						SetValue(v => _dataValue4 = v, _dataValue4, null, "DataValue", byte.MaxValue);
 					return;
 				}	
 				var ifcappliedvalue = value as CostResource.IfcAppliedValue;
@@ -976,6 +989,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			}
 		}
 	//## Custom code
-	//##
+	    private Ifc4.Interfaces.IfcBenchmarkEnum? _benchmark4;
+	    //##
 	}
 }

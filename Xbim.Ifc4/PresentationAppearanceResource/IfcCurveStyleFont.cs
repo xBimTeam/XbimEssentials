@@ -28,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcCurveStyleFont : IIfcPresentationItem, IfcCurveStyleFontSelect
 	{
 		IfcLabel? @Name { get;  set; }
-		IEnumerable<IIfcCurveStyleFontPattern> @PatternList { get; }
+		IItemSet<IIfcCurveStyleFontPattern> @PatternList { get; }
 	
 	}
 }
@@ -41,25 +41,24 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	{
 		#region IIfcCurveStyleFont explicit implementation
 		IfcLabel? IIfcCurveStyleFont.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
-		IEnumerable<IIfcCurveStyleFontPattern> IIfcCurveStyleFont.PatternList { 
-			get { return @PatternList; } 
+		IItemSet<IIfcCurveStyleFontPattern> IIfcCurveStyleFont.PatternList { 
+			get { return new Common.Collections.ProxyItemSet<IfcCurveStyleFontPattern, IIfcCurveStyleFontPattern>( @PatternList); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCurveStyleFont(IModel model) : base(model) 		{ 
-			Model = model; 
 			_patternList = new ItemSet<IfcCurveStyleFontPattern>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
 		private IfcLabel? _name;
-		private ItemSet<IfcCurveStyleFontPattern> _patternList;
+		private readonly ItemSet<IfcCurveStyleFontPattern> _patternList;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -78,7 +77,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 2)]
-		public ItemSet<IfcCurveStyleFontPattern> @PatternList 
+		public IItemSet<IfcCurveStyleFontPattern> @PatternList 
 		{ 
 			get 
 			{
@@ -144,7 +143,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

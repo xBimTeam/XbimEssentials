@@ -44,26 +44,26 @@ namespace Xbim.Ifc4.GeometryResource
 	{
 		#region IIfcCartesianTransformationOperator explicit implementation
 		IIfcDirection IIfcCartesianTransformationOperator.Axis1 { 
+ 
+ 
 			get { return @Axis1; } 
- 
- 
 			set { Axis1 = value as IfcDirection;}
 		}	
 		IIfcDirection IIfcCartesianTransformationOperator.Axis2 { 
+ 
+ 
 			get { return @Axis2; } 
- 
- 
 			set { Axis2 = value as IfcDirection;}
 		}	
 		IIfcCartesianPoint IIfcCartesianTransformationOperator.LocalOrigin { 
+ 
+ 
 			get { return @LocalOrigin; } 
- 
- 
 			set { LocalOrigin = value as IfcCartesianPoint;}
 		}	
 		IfcReal? IIfcCartesianTransformationOperator.Scale { 
-			get { return @Scale; } 
  
+			get { return @Scale; } 
 			set { Scale = value;}
 		}	
 		 
@@ -71,7 +71,6 @@ namespace Xbim.Ifc4.GeometryResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCartesianTransformationOperator(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -225,7 +224,7 @@ namespace Xbim.Ifc4.GeometryResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

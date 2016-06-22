@@ -46,36 +46,36 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 	{
 		#region IIfcLightSourceGoniometric explicit implementation
 		IIfcAxis2Placement3D IIfcLightSourceGoniometric.Position { 
+ 
+ 
 			get { return @Position; } 
- 
- 
 			set { Position = value as IfcAxis2Placement3D;}
 		}	
 		IIfcColourRgb IIfcLightSourceGoniometric.ColourAppearance { 
+ 
+ 
 			get { return @ColourAppearance; } 
- 
- 
 			set { ColourAppearance = value as IfcColourRgb;}
 		}	
 		IfcThermodynamicTemperatureMeasure IIfcLightSourceGoniometric.ColourTemperature { 
-			get { return @ColourTemperature; } 
  
+			get { return @ColourTemperature; } 
 			set { ColourTemperature = value;}
 		}	
 		IfcLuminousFluxMeasure IIfcLightSourceGoniometric.LuminousFlux { 
-			get { return @LuminousFlux; } 
  
+			get { return @LuminousFlux; } 
 			set { LuminousFlux = value;}
 		}	
 		IfcLightEmissionSourceEnum IIfcLightSourceGoniometric.LightEmissionSource { 
-			get { return @LightEmissionSource; } 
  
+			get { return @LightEmissionSource; } 
 			set { LightEmissionSource = value;}
 		}	
 		IIfcLightDistributionDataSourceSelect IIfcLightSourceGoniometric.LightDistributionDataSource { 
+ 
+ 
 			get { return @LightDistributionDataSource; } 
- 
- 
 			set { LightDistributionDataSource = value as IfcLightDistributionDataSourceSelect;}
 		}	
 		 
@@ -83,7 +83,6 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLightSourceGoniometric(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -255,7 +254,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

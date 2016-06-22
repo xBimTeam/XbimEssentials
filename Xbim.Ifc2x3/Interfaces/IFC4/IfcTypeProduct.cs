@@ -10,20 +10,19 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcTypeProduct : IIfcTypeProduct
 	{
-		IEnumerable<IIfcRepresentationMap> IIfcTypeProduct.RepresentationMaps 
+		IItemSet<IIfcRepresentationMap> IIfcTypeProduct.RepresentationMaps 
 		{ 
 			get
 			{
-				foreach (var member in RepresentationMaps)
-				{
-					yield return member as IIfcRepresentationMap;
-				}
+			
+				return new Common.Collections.ProxyItemSet<GeometryResource.IfcRepresentationMap, IIfcRepresentationMap>(RepresentationMaps);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcTypeProduct.Tag 

@@ -43,28 +43,28 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	{
 		#region IIfcMechanicalMaterialProperties explicit implementation
 		IfcDynamicViscosityMeasure? IIfcMechanicalMaterialProperties.DynamicViscosity { 
-			get { return @DynamicViscosity; } 
  
+			get { return @DynamicViscosity; } 
 			set { DynamicViscosity = value;}
 		}	
 		IfcModulusOfElasticityMeasure? IIfcMechanicalMaterialProperties.YoungModulus { 
-			get { return @YoungModulus; } 
  
+			get { return @YoungModulus; } 
 			set { YoungModulus = value;}
 		}	
 		IfcModulusOfElasticityMeasure? IIfcMechanicalMaterialProperties.ShearModulus { 
-			get { return @ShearModulus; } 
  
+			get { return @ShearModulus; } 
 			set { ShearModulus = value;}
 		}	
 		IfcPositiveRatioMeasure? IIfcMechanicalMaterialProperties.PoissonRatio { 
-			get { return @PoissonRatio; } 
  
+			get { return @PoissonRatio; } 
 			set { PoissonRatio = value;}
 		}	
 		IfcThermalExpansionCoefficientMeasure? IIfcMechanicalMaterialProperties.ThermalExpansionCoefficient { 
-			get { return @ThermalExpansionCoefficient; } 
  
+			get { return @ThermalExpansionCoefficient; } 
 			set { ThermalExpansionCoefficient = value;}
 		}	
 		 
@@ -72,7 +72,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMechanicalMaterialProperties(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -223,7 +222,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

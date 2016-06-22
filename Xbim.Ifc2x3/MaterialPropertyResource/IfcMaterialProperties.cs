@@ -41,9 +41,9 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	{
 		#region IIfcMaterialProperties explicit implementation
 		IIfcMaterial IIfcMaterialProperties.Material { 
+ 
+ 
 			get { return @Material; } 
- 
- 
 			set { Material = value as IfcMaterial;}
 		}	
 		 
@@ -234,7 +234,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

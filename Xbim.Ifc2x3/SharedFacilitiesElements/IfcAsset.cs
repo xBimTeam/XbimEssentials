@@ -51,56 +51,56 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 	{
 		#region IIfcAsset explicit implementation
 		IfcIdentifier IIfcAsset.AssetID { 
-			get { return @AssetID; } 
  
+			get { return @AssetID; } 
 			set { AssetID = value;}
 		}	
 		IIfcCostValue IIfcAsset.OriginalValue { 
+ 
+ 
 			get { return @OriginalValue; } 
- 
- 
 			set { OriginalValue = value as IfcCostValue;}
 		}	
 		IIfcCostValue IIfcAsset.CurrentValue { 
+ 
+ 
 			get { return @CurrentValue; } 
- 
- 
 			set { CurrentValue = value as IfcCostValue;}
 		}	
 		IIfcCostValue IIfcAsset.TotalReplacementCost { 
+ 
+ 
 			get { return @TotalReplacementCost; } 
- 
- 
 			set { TotalReplacementCost = value as IfcCostValue;}
 		}	
 		IIfcActorSelect IIfcAsset.Owner { 
+ 
+ 
 			get { return @Owner; } 
- 
- 
 			set { Owner = value as IfcActorSelect;}
 		}	
 		IIfcActorSelect IIfcAsset.User { 
+ 
+ 
 			get { return @User; } 
- 
- 
 			set { User = value as IfcActorSelect;}
 		}	
 		IIfcPerson IIfcAsset.ResponsiblePerson { 
+ 
+ 
 			get { return @ResponsiblePerson; } 
- 
- 
 			set { ResponsiblePerson = value as IfcPerson;}
 		}	
 		IIfcCalendarDate IIfcAsset.IncorporationDate { 
+ 
+ 
 			get { return @IncorporationDate; } 
- 
- 
 			set { IncorporationDate = value as IfcCalendarDate;}
 		}	
 		IIfcCostValue IIfcAsset.DepreciatedValue { 
+ 
+ 
 			get { return @DepreciatedValue; } 
- 
- 
 			set { DepreciatedValue = value as IfcCostValue;}
 		}	
 		 
@@ -108,7 +108,6 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAsset(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -335,7 +334,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

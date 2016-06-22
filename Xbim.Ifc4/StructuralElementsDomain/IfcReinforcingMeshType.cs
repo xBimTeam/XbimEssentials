@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcPositiveLengthMeasure? @LongitudinalBarSpacing { get;  set; }
 		IfcPositiveLengthMeasure? @TransverseBarSpacing { get;  set; }
 		IfcLabel? @BendingShapeCode { get;  set; }
-		IEnumerable<IIfcBendingParameterSelect> @BendingParameters { get; }
+		IItemSet<IIfcBendingParameterSelect> @BendingParameters { get; }
 	
 	}
 }
@@ -49,64 +49,63 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 	{
 		#region IIfcReinforcingMeshType explicit implementation
 		IfcReinforcingMeshTypeEnum IIfcReinforcingMeshType.PredefinedType { 
-			get { return @PredefinedType; } 
  
+			get { return @PredefinedType; } 
 			set { PredefinedType = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcReinforcingMeshType.MeshLength { 
-			get { return @MeshLength; } 
  
+			get { return @MeshLength; } 
 			set { MeshLength = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcReinforcingMeshType.MeshWidth { 
-			get { return @MeshWidth; } 
  
+			get { return @MeshWidth; } 
 			set { MeshWidth = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcReinforcingMeshType.LongitudinalBarNominalDiameter { 
-			get { return @LongitudinalBarNominalDiameter; } 
  
+			get { return @LongitudinalBarNominalDiameter; } 
 			set { LongitudinalBarNominalDiameter = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcReinforcingMeshType.TransverseBarNominalDiameter { 
-			get { return @TransverseBarNominalDiameter; } 
  
+			get { return @TransverseBarNominalDiameter; } 
 			set { TransverseBarNominalDiameter = value;}
 		}	
 		IfcAreaMeasure? IIfcReinforcingMeshType.LongitudinalBarCrossSectionArea { 
-			get { return @LongitudinalBarCrossSectionArea; } 
  
+			get { return @LongitudinalBarCrossSectionArea; } 
 			set { LongitudinalBarCrossSectionArea = value;}
 		}	
 		IfcAreaMeasure? IIfcReinforcingMeshType.TransverseBarCrossSectionArea { 
-			get { return @TransverseBarCrossSectionArea; } 
  
+			get { return @TransverseBarCrossSectionArea; } 
 			set { TransverseBarCrossSectionArea = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcReinforcingMeshType.LongitudinalBarSpacing { 
-			get { return @LongitudinalBarSpacing; } 
  
+			get { return @LongitudinalBarSpacing; } 
 			set { LongitudinalBarSpacing = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcReinforcingMeshType.TransverseBarSpacing { 
-			get { return @TransverseBarSpacing; } 
  
+			get { return @TransverseBarSpacing; } 
 			set { TransverseBarSpacing = value;}
 		}	
 		IfcLabel? IIfcReinforcingMeshType.BendingShapeCode { 
-			get { return @BendingShapeCode; } 
  
+			get { return @BendingShapeCode; } 
 			set { BendingShapeCode = value;}
 		}	
-		IEnumerable<IIfcBendingParameterSelect> IIfcReinforcingMeshType.BendingParameters { 
-			get { return @BendingParameters; } 
+		IItemSet<IIfcBendingParameterSelect> IIfcReinforcingMeshType.BendingParameters { 
+			get { return new Common.Collections.ProxyItemSet<IfcBendingParameterSelect, IIfcBendingParameterSelect>( @BendingParameters); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcReinforcingMeshType(IModel model) : base(model) 		{ 
-			Model = model; 
 			_bendingParameters = new OptionalItemSet<IfcBendingParameterSelect>( this, 0,  20);
 		}
 
@@ -121,7 +120,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		private IfcPositiveLengthMeasure? _longitudinalBarSpacing;
 		private IfcPositiveLengthMeasure? _transverseBarSpacing;
 		private IfcLabel? _bendingShapeCode;
-		private OptionalItemSet<IfcBendingParameterSelect> _bendingParameters;
+		private readonly OptionalItemSet<IfcBendingParameterSelect> _bendingParameters;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -266,7 +265,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			} 
 		}	
 		[EntityAttribute(20, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 29)]
-		public OptionalItemSet<IfcBendingParameterSelect> @BendingParameters 
+		public IOptionalItemSet<IfcBendingParameterSelect> @BendingParameters 
 		{ 
 			get 
 			{
@@ -370,7 +369,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

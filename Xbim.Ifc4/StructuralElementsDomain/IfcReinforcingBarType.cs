@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcPositiveLengthMeasure? @BarLength { get;  set; }
 		IfcReinforcingBarSurfaceEnum? @BarSurface { get;  set; }
 		IfcLabel? @BendingShapeCode { get;  set; }
-		IEnumerable<IIfcBendingParameterSelect> @BendingParameters { get; }
+		IItemSet<IIfcBendingParameterSelect> @BendingParameters { get; }
 	
 	}
 }
@@ -45,44 +45,43 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 	{
 		#region IIfcReinforcingBarType explicit implementation
 		IfcReinforcingBarTypeEnum IIfcReinforcingBarType.PredefinedType { 
-			get { return @PredefinedType; } 
  
+			get { return @PredefinedType; } 
 			set { PredefinedType = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcReinforcingBarType.NominalDiameter { 
-			get { return @NominalDiameter; } 
  
+			get { return @NominalDiameter; } 
 			set { NominalDiameter = value;}
 		}	
 		IfcAreaMeasure? IIfcReinforcingBarType.CrossSectionArea { 
-			get { return @CrossSectionArea; } 
  
+			get { return @CrossSectionArea; } 
 			set { CrossSectionArea = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcReinforcingBarType.BarLength { 
-			get { return @BarLength; } 
  
+			get { return @BarLength; } 
 			set { BarLength = value;}
 		}	
 		IfcReinforcingBarSurfaceEnum? IIfcReinforcingBarType.BarSurface { 
-			get { return @BarSurface; } 
  
+			get { return @BarSurface; } 
 			set { BarSurface = value;}
 		}	
 		IfcLabel? IIfcReinforcingBarType.BendingShapeCode { 
-			get { return @BendingShapeCode; } 
  
+			get { return @BendingShapeCode; } 
 			set { BendingShapeCode = value;}
 		}	
-		IEnumerable<IIfcBendingParameterSelect> IIfcReinforcingBarType.BendingParameters { 
-			get { return @BendingParameters; } 
+		IItemSet<IIfcBendingParameterSelect> IIfcReinforcingBarType.BendingParameters { 
+			get { return new Common.Collections.ProxyItemSet<IfcBendingParameterSelect, IIfcBendingParameterSelect>( @BendingParameters); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcReinforcingBarType(IModel model) : base(model) 		{ 
-			Model = model; 
 			_bendingParameters = new OptionalItemSet<IfcBendingParameterSelect>( this, 0,  16);
 		}
 
@@ -93,7 +92,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		private IfcPositiveLengthMeasure? _barLength;
 		private IfcReinforcingBarSurfaceEnum? _barSurface;
 		private IfcLabel? _bendingShapeCode;
-		private OptionalItemSet<IfcBendingParameterSelect> _bendingParameters;
+		private readonly OptionalItemSet<IfcBendingParameterSelect> _bendingParameters;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -182,7 +181,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			} 
 		}	
 		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 25)]
-		public OptionalItemSet<IfcBendingParameterSelect> @BendingParameters 
+		public IOptionalItemSet<IfcBendingParameterSelect> @BendingParameters 
 		{ 
 			get 
 			{
@@ -274,7 +273,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

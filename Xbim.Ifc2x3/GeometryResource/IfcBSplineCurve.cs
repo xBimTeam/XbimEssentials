@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcBSplineCurve : IIfcBoundedCurve
 	{
 		long @Degree { get;  set; }
-		IEnumerable<IIfcCartesianPoint> @ControlPointsList { get; }
+		IItemSet<IIfcCartesianPoint> @ControlPointsList { get; }
 		IfcBSplineCurveForm @CurveForm { get;  set; }
 		bool? @ClosedCurve { get;  set; }
 		bool? @SelfIntersect { get;  set; }
@@ -44,26 +44,26 @@ namespace Xbim.Ifc2x3.GeometryResource
 	{
 		#region IIfcBSplineCurve explicit implementation
 		long IIfcBSplineCurve.Degree { 
-			get { return @Degree; } 
  
+			get { return @Degree; } 
 			set { Degree = value;}
 		}	
-		IEnumerable<IIfcCartesianPoint> IIfcBSplineCurve.ControlPointsList { 
-			get { return @ControlPointsList; } 
+		IItemSet<IIfcCartesianPoint> IIfcBSplineCurve.ControlPointsList { 
+			get { return new Common.Collections.ProxyItemSet<IfcCartesianPoint, IIfcCartesianPoint>( @ControlPointsList); } 
 		}	
 		IfcBSplineCurveForm IIfcBSplineCurve.CurveForm { 
-			get { return @CurveForm; } 
  
+			get { return @CurveForm; } 
 			set { CurveForm = value;}
 		}	
 		bool? IIfcBSplineCurve.ClosedCurve { 
-			get { return @ClosedCurve; } 
  
+			get { return @ClosedCurve; } 
 			set { ClosedCurve = value;}
 		}	
 		bool? IIfcBSplineCurve.SelfIntersect { 
-			get { return @SelfIntersect; } 
  
+			get { return @SelfIntersect; } 
 			set { SelfIntersect = value;}
 		}	
 		 
@@ -71,13 +71,12 @@ namespace Xbim.Ifc2x3.GeometryResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBSplineCurve(IModel model) : base(model) 		{ 
-			Model = model; 
 			_controlPointsList = new ItemSet<IfcCartesianPoint>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
 		private long _degree;
-		private ItemSet<IfcCartesianPoint> _controlPointsList;
+		private readonly ItemSet<IfcCartesianPoint> _controlPointsList;
 		private IfcBSplineCurveForm _curveForm;
 		private bool? _closedCurve;
 		private bool? _selfIntersect;
@@ -99,7 +98,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 2, -1, 4)]
-		public ItemSet<IfcCartesianPoint> @ControlPointsList 
+		public IItemSet<IfcCartesianPoint> @ControlPointsList 
 		{ 
 			get 
 			{
@@ -240,7 +239,7 @@ namespace Xbim.Ifc2x3.GeometryResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

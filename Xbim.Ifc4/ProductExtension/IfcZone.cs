@@ -39,8 +39,8 @@ namespace Xbim.Ifc4.ProductExtension
 	{
 		#region IIfcZone explicit implementation
 		IfcLabel? IIfcZone.LongName { 
-			get { return @LongName; } 
  
+			get { return @LongName; } 
 			set { LongName = value;}
 		}	
 		 
@@ -48,7 +48,6 @@ namespace Xbim.Ifc4.ProductExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcZone(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -131,7 +130,7 @@ namespace Xbim.Ifc4.ProductExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

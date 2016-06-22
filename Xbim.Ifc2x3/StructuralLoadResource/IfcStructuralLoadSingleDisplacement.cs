@@ -44,33 +44,33 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 	{
 		#region IIfcStructuralLoadSingleDisplacement explicit implementation
 		IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementX { 
-			get { return @DisplacementX; } 
  
+			get { return @DisplacementX; } 
 			set { DisplacementX = value;}
 		}	
 		IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementY { 
-			get { return @DisplacementY; } 
  
+			get { return @DisplacementY; } 
 			set { DisplacementY = value;}
 		}	
 		IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementZ { 
-			get { return @DisplacementZ; } 
  
+			get { return @DisplacementZ; } 
 			set { DisplacementZ = value;}
 		}	
 		IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRX { 
-			get { return @RotationalDisplacementRX; } 
  
+			get { return @RotationalDisplacementRX; } 
 			set { RotationalDisplacementRX = value;}
 		}	
 		IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRY { 
-			get { return @RotationalDisplacementRY; } 
  
+			get { return @RotationalDisplacementRY; } 
 			set { RotationalDisplacementRY = value;}
 		}	
 		IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRZ { 
-			get { return @RotationalDisplacementRZ; } 
  
+			get { return @RotationalDisplacementRZ; } 
 			set { RotationalDisplacementRZ = value;}
 		}	
 		 
@@ -78,7 +78,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadSingleDisplacement(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -247,7 +246,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -55,88 +55,88 @@ namespace Xbim.Ifc4.DateTimeResource
 	{
 		#region IIfcTaskTime explicit implementation
 		IfcTaskDurationEnum? IIfcTaskTime.DurationType { 
-			get { return @DurationType; } 
  
+			get { return @DurationType; } 
 			set { DurationType = value;}
 		}	
 		IfcDuration? IIfcTaskTime.ScheduleDuration { 
-			get { return @ScheduleDuration; } 
  
+			get { return @ScheduleDuration; } 
 			set { ScheduleDuration = value;}
 		}	
 		IfcDateTime? IIfcTaskTime.ScheduleStart { 
-			get { return @ScheduleStart; } 
  
+			get { return @ScheduleStart; } 
 			set { ScheduleStart = value;}
 		}	
 		IfcDateTime? IIfcTaskTime.ScheduleFinish { 
-			get { return @ScheduleFinish; } 
  
+			get { return @ScheduleFinish; } 
 			set { ScheduleFinish = value;}
 		}	
 		IfcDateTime? IIfcTaskTime.EarlyStart { 
-			get { return @EarlyStart; } 
  
+			get { return @EarlyStart; } 
 			set { EarlyStart = value;}
 		}	
 		IfcDateTime? IIfcTaskTime.EarlyFinish { 
-			get { return @EarlyFinish; } 
  
+			get { return @EarlyFinish; } 
 			set { EarlyFinish = value;}
 		}	
 		IfcDateTime? IIfcTaskTime.LateStart { 
-			get { return @LateStart; } 
  
+			get { return @LateStart; } 
 			set { LateStart = value;}
 		}	
 		IfcDateTime? IIfcTaskTime.LateFinish { 
-			get { return @LateFinish; } 
  
+			get { return @LateFinish; } 
 			set { LateFinish = value;}
 		}	
 		IfcDuration? IIfcTaskTime.FreeFloat { 
-			get { return @FreeFloat; } 
  
+			get { return @FreeFloat; } 
 			set { FreeFloat = value;}
 		}	
 		IfcDuration? IIfcTaskTime.TotalFloat { 
-			get { return @TotalFloat; } 
  
+			get { return @TotalFloat; } 
 			set { TotalFloat = value;}
 		}	
 		IfcBoolean? IIfcTaskTime.IsCritical { 
-			get { return @IsCritical; } 
  
+			get { return @IsCritical; } 
 			set { IsCritical = value;}
 		}	
 		IfcDateTime? IIfcTaskTime.StatusTime { 
-			get { return @StatusTime; } 
  
+			get { return @StatusTime; } 
 			set { StatusTime = value;}
 		}	
 		IfcDuration? IIfcTaskTime.ActualDuration { 
-			get { return @ActualDuration; } 
  
+			get { return @ActualDuration; } 
 			set { ActualDuration = value;}
 		}	
 		IfcDateTime? IIfcTaskTime.ActualStart { 
-			get { return @ActualStart; } 
  
+			get { return @ActualStart; } 
 			set { ActualStart = value;}
 		}	
 		IfcDateTime? IIfcTaskTime.ActualFinish { 
-			get { return @ActualFinish; } 
  
+			get { return @ActualFinish; } 
 			set { ActualFinish = value;}
 		}	
 		IfcDuration? IIfcTaskTime.RemainingTime { 
-			get { return @RemainingTime; } 
  
+			get { return @RemainingTime; } 
 			set { RemainingTime = value;}
 		}	
 		IfcPositiveRatioMeasure? IIfcTaskTime.Completion { 
-			get { return @Completion; } 
  
+			get { return @Completion; } 
 			set { Completion = value;}
 		}	
 		 
@@ -144,7 +144,6 @@ namespace Xbim.Ifc4.DateTimeResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTaskTime(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -513,7 +512,7 @@ namespace Xbim.Ifc4.DateTimeResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -44,33 +44,33 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 	{
 		#region IIfcBoundaryNodeCondition explicit implementation
 		IfcLinearStiffnessMeasure? IIfcBoundaryNodeCondition.LinearStiffnessX { 
-			get { return @LinearStiffnessX; } 
  
+			get { return @LinearStiffnessX; } 
 			set { LinearStiffnessX = value;}
 		}	
 		IfcLinearStiffnessMeasure? IIfcBoundaryNodeCondition.LinearStiffnessY { 
-			get { return @LinearStiffnessY; } 
  
+			get { return @LinearStiffnessY; } 
 			set { LinearStiffnessY = value;}
 		}	
 		IfcLinearStiffnessMeasure? IIfcBoundaryNodeCondition.LinearStiffnessZ { 
-			get { return @LinearStiffnessZ; } 
  
+			get { return @LinearStiffnessZ; } 
 			set { LinearStiffnessZ = value;}
 		}	
 		IfcRotationalStiffnessMeasure? IIfcBoundaryNodeCondition.RotationalStiffnessX { 
-			get { return @RotationalStiffnessX; } 
  
+			get { return @RotationalStiffnessX; } 
 			set { RotationalStiffnessX = value;}
 		}	
 		IfcRotationalStiffnessMeasure? IIfcBoundaryNodeCondition.RotationalStiffnessY { 
-			get { return @RotationalStiffnessY; } 
  
+			get { return @RotationalStiffnessY; } 
 			set { RotationalStiffnessY = value;}
 		}	
 		IfcRotationalStiffnessMeasure? IIfcBoundaryNodeCondition.RotationalStiffnessZ { 
-			get { return @RotationalStiffnessZ; } 
  
+			get { return @RotationalStiffnessZ; } 
 			set { RotationalStiffnessZ = value;}
 		}	
 		 
@@ -78,7 +78,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBoundaryNodeCondition(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -247,7 +246,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

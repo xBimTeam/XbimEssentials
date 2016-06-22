@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPropertyListValue : IIfcSimpleProperty
 	{
-		IEnumerable<IIfcValue> @ListValues { get; }
+		IItemSet<IIfcValue> @ListValues { get; }
 		IIfcUnit @Unit { get;  set; }
 	
 	}
@@ -39,13 +39,13 @@ namespace Xbim.Ifc4.PropertyResource
 	public  partial class @IfcPropertyListValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyListValue, IContainsEntityReferences, IEquatable<@IfcPropertyListValue>
 	{
 		#region IIfcPropertyListValue explicit implementation
-		IEnumerable<IIfcValue> IIfcPropertyListValue.ListValues { 
-			get { return @ListValues; } 
+		IItemSet<IIfcValue> IIfcPropertyListValue.ListValues { 
+			get { return new Common.Collections.ProxyItemSet<IfcValue, IIfcValue>( @ListValues); } 
 		}	
 		IIfcUnit IIfcPropertyListValue.Unit { 
+ 
+ 
 			get { return @Unit; } 
- 
- 
 			set { Unit = value as IfcUnit;}
 		}	
 		 
@@ -53,18 +53,17 @@ namespace Xbim.Ifc4.PropertyResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyListValue(IModel model) : base(model) 		{ 
-			Model = model; 
 			_listValues = new OptionalItemSet<IfcValue>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
-		private OptionalItemSet<IfcValue> _listValues;
+		private readonly OptionalItemSet<IfcValue> _listValues;
 		private IfcUnit _unit;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 10)]
-		public OptionalItemSet<IfcValue> @ListValues 
+		public IOptionalItemSet<IfcValue> @ListValues 
 		{ 
 			get 
 			{
@@ -148,7 +147,7 @@ namespace Xbim.Ifc4.PropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

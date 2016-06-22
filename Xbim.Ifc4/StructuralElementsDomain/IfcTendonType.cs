@@ -42,23 +42,23 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 	{
 		#region IIfcTendonType explicit implementation
 		IfcTendonTypeEnum IIfcTendonType.PredefinedType { 
-			get { return @PredefinedType; } 
  
+			get { return @PredefinedType; } 
 			set { PredefinedType = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcTendonType.NominalDiameter { 
-			get { return @NominalDiameter; } 
  
+			get { return @NominalDiameter; } 
 			set { NominalDiameter = value;}
 		}	
 		IfcAreaMeasure? IIfcTendonType.CrossSectionArea { 
-			get { return @CrossSectionArea; } 
  
+			get { return @CrossSectionArea; } 
 			set { CrossSectionArea = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcTendonType.SheethDiameter { 
-			get { return @SheethDiameter; } 
  
+			get { return @SheethDiameter; } 
 			set { SheethDiameter = value;}
 		}	
 		 
@@ -66,7 +66,6 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTendonType(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -207,7 +206,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

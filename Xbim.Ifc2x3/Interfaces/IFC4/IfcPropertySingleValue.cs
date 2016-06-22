@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PropertyResource
@@ -226,6 +227,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 				if (value == null)
 				{
 					NominalValue = null;
+					if (_nominalValue4 != null)
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
 					return;
 				}	
 				if (value is Ifc4.MeasureResource.IfcAbsorbedDoseMeasure) 

@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTextStyleFontModel : IIfcPreDefinedTextFont
 	{
-		IEnumerable<IfcTextFontName> @FontFamily { get; }
+		IItemSet<IfcTextFontName> @FontFamily { get; }
 		IfcFontStyle? @FontStyle { get;  set; }
 		IfcFontVariant? @FontVariant { get;  set; }
 		IfcFontWeight? @FontWeight { get;  set; }
@@ -42,28 +42,28 @@ namespace Xbim.Ifc2x3.PresentationResource
 	public  partial class @IfcTextStyleFontModel : IfcPreDefinedTextFont, IInstantiableEntity, IIfcTextStyleFontModel, IEquatable<@IfcTextStyleFontModel>
 	{
 		#region IIfcTextStyleFontModel explicit implementation
-		IEnumerable<IfcTextFontName> IIfcTextStyleFontModel.FontFamily { 
+		IItemSet<IfcTextFontName> IIfcTextStyleFontModel.FontFamily { 
 			get { return @FontFamily; } 
 		}	
 		IfcFontStyle? IIfcTextStyleFontModel.FontStyle { 
-			get { return @FontStyle; } 
  
+			get { return @FontStyle; } 
 			set { FontStyle = value;}
 		}	
 		IfcFontVariant? IIfcTextStyleFontModel.FontVariant { 
-			get { return @FontVariant; } 
  
+			get { return @FontVariant; } 
 			set { FontVariant = value;}
 		}	
 		IfcFontWeight? IIfcTextStyleFontModel.FontWeight { 
-			get { return @FontWeight; } 
  
+			get { return @FontWeight; } 
 			set { FontWeight = value;}
 		}	
 		IIfcSizeSelect IIfcTextStyleFontModel.FontSize { 
+ 
+ 
 			get { return @FontSize; } 
- 
- 
 			set { FontSize = value as IfcSizeSelect;}
 		}	
 		 
@@ -71,12 +71,11 @@ namespace Xbim.Ifc2x3.PresentationResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextStyleFontModel(IModel model) : base(model) 		{ 
-			Model = model; 
 			_fontFamily = new OptionalItemSet<IfcTextFontName>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
-		private OptionalItemSet<IfcTextFontName> _fontFamily;
+		private readonly OptionalItemSet<IfcTextFontName> _fontFamily;
 		private IfcFontStyle? _fontStyle;
 		private IfcFontVariant? _fontVariant;
 		private IfcFontWeight? _fontWeight;
@@ -85,7 +84,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 	
 		#region Explicit attribute properties
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 2)]
-		public OptionalItemSet<IfcTextFontName> @FontFamily 
+		public IOptionalItemSet<IfcTextFontName> @FontFamily 
 		{ 
 			get 
 			{
@@ -219,7 +218,7 @@ namespace Xbim.Ifc2x3.PresentationResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

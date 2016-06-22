@@ -41,14 +41,14 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 	{
 		#region IIfcExtrudedAreaSolid explicit implementation
 		IIfcDirection IIfcExtrudedAreaSolid.ExtrudedDirection { 
+ 
+ 
 			get { return @ExtrudedDirection; } 
- 
- 
 			set { ExtrudedDirection = value as IfcDirection;}
 		}	
 		IfcPositiveLengthMeasure IIfcExtrudedAreaSolid.Depth { 
-			get { return @Depth; } 
  
+			get { return @Depth; } 
 			set { Depth = value;}
 		}	
 		 
@@ -56,7 +56,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcExtrudedAreaSolid(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -154,7 +153,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

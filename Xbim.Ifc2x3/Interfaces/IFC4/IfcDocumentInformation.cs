@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ExternalReferenceResource
@@ -195,22 +196,12 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
-		IEnumerable<IIfcActorSelect> IIfcDocumentInformation.Editors 
+		IItemSet<IIfcActorSelect> IIfcDocumentInformation.Editors 
 		{ 
 			get
 			{
-				foreach (var member in Editors)
-				{
-					var ifcorganization = member as ActorResource.IfcOrganization;
-					if (ifcorganization != null) 
-						yield return ifcorganization;
-					var ifcperson = member as ActorResource.IfcPerson;
-					if (ifcperson != null) 
-						yield return ifcperson;
-					var ifcpersonandorganization = member as ActorResource.IfcPersonAndOrganization;
-					if (ifcpersonandorganization != null) 
-						yield return ifcpersonandorganization;
-				}
+			
+				return new Common.Collections.ProxyItemSet<ActorResource.IfcActorSelect, IIfcActorSelect>(Editors);
 			} 
 		}
 		Ifc4.DateTimeResource.IfcDateTime? IIfcDocumentInformation.CreationTime 
@@ -385,6 +376,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of Confidentiality
+				//##
 				switch (Confidentiality)
 				{
 					case IfcDocumentConfidentialityEnum.PUBLIC:
@@ -414,6 +407,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of Confidentiality
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcDocumentConfidentialityEnum.PUBLIC:
@@ -451,6 +446,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of Status
+				//##
 				switch (Status)
 				{
 					case IfcDocumentStatusEnum.DRAFT:
@@ -475,6 +472,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of Status
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcDocumentStatusEnum.DRAFT:

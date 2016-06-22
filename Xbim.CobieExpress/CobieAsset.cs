@@ -27,11 +27,11 @@ namespace Xbim.CobieExpress.Interfaces
 	{
 		string @Name { get;  set; }
 		string @Description { get;  set; }
-		IEnumerable<ICobieCategory> @Categories { get; }
-		IEnumerable<ICobieImpact> @Impacts { get; }
-		IEnumerable<ICobieDocument> @Documents { get; }
-		IEnumerable<ICobieAttribute> @Attributes { get; }
-		IEnumerable<ICobieCoordinate> @Representations { get; }
+		IItemSet<ICobieCategory> @Categories { get; }
+		IItemSet<ICobieImpact> @Impacts { get; }
+		IItemSet<ICobieDocument> @Documents { get; }
+		IItemSet<ICobieAttribute> @Attributes { get; }
+		IItemSet<ICobieCoordinate> @Representations { get; }
 		IEnumerable<ICobieIssue> @CausingIssues {  get; }
 		IEnumerable<ICobieIssue> @AffectedBy {  get; }
 	
@@ -46,29 +46,29 @@ namespace Xbim.CobieExpress
 	{
 		#region ICobieAsset explicit implementation
 		string ICobieAsset.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		string ICobieAsset.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
-		IEnumerable<ICobieCategory> ICobieAsset.Categories { 
-			get { return @Categories; } 
+		IItemSet<ICobieCategory> ICobieAsset.Categories { 
+			get { return new Common.Collections.ProxyItemSet<CobieCategory, ICobieCategory>( @Categories); } 
 		}	
-		IEnumerable<ICobieImpact> ICobieAsset.Impacts { 
-			get { return @Impacts; } 
+		IItemSet<ICobieImpact> ICobieAsset.Impacts { 
+			get { return new Common.Collections.ProxyItemSet<CobieImpact, ICobieImpact>( @Impacts); } 
 		}	
-		IEnumerable<ICobieDocument> ICobieAsset.Documents { 
-			get { return @Documents; } 
+		IItemSet<ICobieDocument> ICobieAsset.Documents { 
+			get { return new Common.Collections.ProxyItemSet<CobieDocument, ICobieDocument>( @Documents); } 
 		}	
-		IEnumerable<ICobieAttribute> ICobieAsset.Attributes { 
-			get { return @Attributes; } 
+		IItemSet<ICobieAttribute> ICobieAsset.Attributes { 
+			get { return new Common.Collections.ProxyItemSet<CobieAttribute, ICobieAttribute>( @Attributes); } 
 		}	
-		IEnumerable<ICobieCoordinate> ICobieAsset.Representations { 
-			get { return @Representations; } 
+		IItemSet<ICobieCoordinate> ICobieAsset.Representations { 
+			get { return new Common.Collections.ProxyItemSet<CobieCoordinate, ICobieCoordinate>( @Representations); } 
 		}	
 		 
 		IEnumerable<ICobieIssue> ICobieAsset.CausingIssues {  get { return @CausingIssues; } }
@@ -77,7 +77,6 @@ namespace Xbim.CobieExpress
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieAsset(IModel model) : base(model) 		{ 
-			Model = model; 
 			_categories = new OptionalItemSet<CobieCategory>( this, 0,  8);
 			_impacts = new OptionalItemSet<CobieImpact>( this, 0,  9);
 			_documents = new OptionalItemSet<CobieDocument>( this, 0,  10);
@@ -88,11 +87,11 @@ namespace Xbim.CobieExpress
 		#region Explicit attribute fields
 		private string _name;
 		private string _description;
-		private OptionalItemSet<CobieCategory> _categories;
-		private OptionalItemSet<CobieImpact> _impacts;
-		private OptionalItemSet<CobieDocument> _documents;
-		private OptionalItemSet<CobieAttribute> _attributes;
-		private OptionalItemSet<CobieCoordinate> _representations;
+		private readonly OptionalItemSet<CobieCategory> _categories;
+		private readonly OptionalItemSet<CobieImpact> _impacts;
+		private readonly OptionalItemSet<CobieDocument> _documents;
+		private readonly OptionalItemSet<CobieAttribute> _attributes;
+		private readonly OptionalItemSet<CobieCoordinate> _representations;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -125,7 +124,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 8)]
-		public OptionalItemSet<CobieCategory> @Categories 
+		public IOptionalItemSet<CobieCategory> @Categories 
 		{ 
 			get 
 			{
@@ -135,7 +134,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 9)]
-		public OptionalItemSet<CobieImpact> @Impacts 
+		public IOptionalItemSet<CobieImpact> @Impacts 
 		{ 
 			get 
 			{
@@ -145,7 +144,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 10)]
-		public OptionalItemSet<CobieDocument> @Documents 
+		public IOptionalItemSet<CobieDocument> @Documents 
 		{ 
 			get 
 			{
@@ -155,7 +154,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 11)]
-		public OptionalItemSet<CobieAttribute> @Attributes 
+		public IOptionalItemSet<CobieAttribute> @Attributes 
 		{ 
 			get 
 			{
@@ -165,7 +164,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 12)]
-		public OptionalItemSet<CobieCoordinate> @Representations 
+		public IOptionalItemSet<CobieCoordinate> @Representations 
 		{ 
 			get 
 			{
@@ -273,7 +272,7 @@ namespace Xbim.CobieExpress
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

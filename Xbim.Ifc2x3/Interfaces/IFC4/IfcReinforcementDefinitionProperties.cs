@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralElementsDomain
@@ -31,14 +32,12 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				
 			}
 		}
-		IEnumerable<IIfcSectionReinforcementProperties> IIfcReinforcementDefinitionProperties.ReinforcementSectionDefinitions 
+		IItemSet<IIfcSectionReinforcementProperties> IIfcReinforcementDefinitionProperties.ReinforcementSectionDefinitions 
 		{ 
 			get
 			{
-				foreach (var member in ReinforcementSectionDefinitions)
-				{
-					yield return member as IIfcSectionReinforcementProperties;
-				}
+			
+				return new Common.Collections.ProxyItemSet<ProfilePropertyResource.IfcSectionReinforcementProperties, IIfcSectionReinforcementProperties>(ReinforcementSectionDefinitions);
 			} 
 		}
 	//## Custom code

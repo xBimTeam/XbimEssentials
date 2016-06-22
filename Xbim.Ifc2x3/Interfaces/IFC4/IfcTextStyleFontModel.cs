@@ -10,20 +10,21 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationResource
 {
 	public partial class @IfcTextStyleFontModel : IIfcTextStyleFontModel
 	{
-		IEnumerable<Xbim.Ifc4.PresentationAppearanceResource.IfcTextFontName> IIfcTextStyleFontModel.FontFamily 
+		IItemSet<Xbim.Ifc4.PresentationAppearanceResource.IfcTextFontName> IIfcTextStyleFontModel.FontFamily 
 		{ 
 			get
 			{
-				foreach (var member in FontFamily)
-				{
-					yield return new Ifc4.PresentationAppearanceResource.IfcTextFontName((string)member);
-				}
+			
+				return new Common.Collections.ProxyValueSet<IfcTextFontName, Ifc4.PresentationAppearanceResource.IfcTextFontName>(FontFamily, 
+					s => new Ifc4.PresentationAppearanceResource.IfcTextFontName(s), 
+					t => new IfcTextFontName(t));
 			} 
 		}
 		Ifc4.PresentationAppearanceResource.IfcFontStyle? IIfcTextStyleFontModel.FontStyle 

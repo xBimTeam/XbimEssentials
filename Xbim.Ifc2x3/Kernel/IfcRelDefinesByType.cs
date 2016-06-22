@@ -38,9 +38,9 @@ namespace Xbim.Ifc2x3.Kernel
 	{
 		#region IIfcRelDefinesByType explicit implementation
 		IIfcTypeObject IIfcRelDefinesByType.RelatingType { 
+ 
+ 
 			get { return @RelatingType; } 
- 
- 
 			set { RelatingType = value as IfcTypeObject;}
 		}	
 		 
@@ -48,7 +48,6 @@ namespace Xbim.Ifc2x3.Kernel
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelDefinesByType(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -132,7 +131,7 @@ namespace Xbim.Ifc2x3.Kernel
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

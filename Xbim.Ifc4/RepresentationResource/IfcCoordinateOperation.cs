@@ -41,15 +41,15 @@ namespace Xbim.Ifc4.RepresentationResource
 	{
 		#region IIfcCoordinateOperation explicit implementation
 		IIfcCoordinateReferenceSystemSelect IIfcCoordinateOperation.SourceCRS { 
+ 
+ 
 			get { return @SourceCRS; } 
- 
- 
 			set { SourceCRS = value as IfcCoordinateReferenceSystemSelect;}
 		}	
 		IIfcCoordinateReferenceSystem IIfcCoordinateOperation.TargetCRS { 
+ 
+ 
 			get { return @TargetCRS; } 
- 
- 
 			set { TargetCRS = value as IfcCoordinateReferenceSystem;}
 		}	
 		 
@@ -259,7 +259,7 @@ namespace Xbim.Ifc4.RepresentationResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

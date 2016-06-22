@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPropertyEnumeratedValue : IIfcSimpleProperty
 	{
-		IEnumerable<IIfcValue> @EnumerationValues { get; }
+		IItemSet<IIfcValue> @EnumerationValues { get; }
 		IIfcPropertyEnumeration @EnumerationReference { get;  set; }
 	
 	}
@@ -39,13 +39,13 @@ namespace Xbim.Ifc4.PropertyResource
 	public  partial class @IfcPropertyEnumeratedValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyEnumeratedValue, IContainsEntityReferences, IEquatable<@IfcPropertyEnumeratedValue>
 	{
 		#region IIfcPropertyEnumeratedValue explicit implementation
-		IEnumerable<IIfcValue> IIfcPropertyEnumeratedValue.EnumerationValues { 
-			get { return @EnumerationValues; } 
+		IItemSet<IIfcValue> IIfcPropertyEnumeratedValue.EnumerationValues { 
+			get { return new Common.Collections.ProxyItemSet<IfcValue, IIfcValue>( @EnumerationValues); } 
 		}	
 		IIfcPropertyEnumeration IIfcPropertyEnumeratedValue.EnumerationReference { 
+ 
+ 
 			get { return @EnumerationReference; } 
- 
- 
 			set { EnumerationReference = value as IfcPropertyEnumeration;}
 		}	
 		 
@@ -53,18 +53,17 @@ namespace Xbim.Ifc4.PropertyResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyEnumeratedValue(IModel model) : base(model) 		{ 
-			Model = model; 
 			_enumerationValues = new OptionalItemSet<IfcValue>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
-		private OptionalItemSet<IfcValue> _enumerationValues;
+		private readonly OptionalItemSet<IfcValue> _enumerationValues;
 		private IfcPropertyEnumeration _enumerationReference;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 10)]
-		public OptionalItemSet<IfcValue> @EnumerationValues 
+		public IOptionalItemSet<IfcValue> @EnumerationValues 
 		{ 
 			get 
 			{
@@ -148,7 +147,7 @@ namespace Xbim.Ifc4.PropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

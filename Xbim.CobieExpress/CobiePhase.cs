@@ -41,14 +41,14 @@ namespace Xbim.CobieExpress
 	{
 		#region ICobiePhase explicit implementation
 		string ICobiePhase.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		ICobieProject ICobiePhase.Project { 
+ 
+ 
 			get { return @Project; } 
- 
- 
 			set { Project = value as CobieProject;}
 		}	
 		 
@@ -258,7 +258,7 @@ namespace Xbim.CobieExpress
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

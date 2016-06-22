@@ -42,7 +42,6 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelOccupiesSpaces(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 
@@ -105,7 +104,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

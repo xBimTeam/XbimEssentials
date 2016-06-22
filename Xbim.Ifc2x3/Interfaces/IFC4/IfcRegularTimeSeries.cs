@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.TimeSeriesResource
@@ -28,14 +29,12 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 				
 			}
 		}
-		IEnumerable<IIfcTimeSeriesValue> IIfcRegularTimeSeries.Values 
+		IItemSet<IIfcTimeSeriesValue> IIfcRegularTimeSeries.Values 
 		{ 
 			get
 			{
-				foreach (var member in Values)
-				{
-					yield return member as IIfcTimeSeriesValue;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcTimeSeriesValue, IIfcTimeSeriesValue>(Values);
 			} 
 		}
 	//## Custom code

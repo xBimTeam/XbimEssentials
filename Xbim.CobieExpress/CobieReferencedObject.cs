@@ -44,31 +44,31 @@ namespace Xbim.CobieExpress
 	{
 		#region ICobieReferencedObject explicit implementation
 		ICobieCreatedInfo ICobieReferencedObject.Created { 
+ 
+ 
 			get { return @Created; } 
- 
- 
 			set { Created = value as CobieCreatedInfo;}
 		}	
 		string ICobieReferencedObject.ExternalId { 
-			get { return @ExternalId; } 
  
+			get { return @ExternalId; } 
 			set { ExternalId = value;}
 		}	
 		string ICobieReferencedObject.AltExternalId { 
-			get { return @AltExternalId; } 
  
+			get { return @AltExternalId; } 
 			set { AltExternalId = value;}
 		}	
 		ICobieExternalSystem ICobieReferencedObject.ExternalSystem { 
+ 
+ 
 			get { return @ExternalSystem; } 
- 
- 
 			set { ExternalSystem = value as CobieExternalSystem;}
 		}	
 		ICobieExternalObject ICobieReferencedObject.ExternalObject { 
+ 
+ 
 			get { return @ExternalObject; } 
- 
- 
 			set { ExternalObject = value as CobieExternalObject;}
 		}	
 		 
@@ -331,7 +331,7 @@ namespace Xbim.CobieExpress
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

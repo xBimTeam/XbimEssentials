@@ -50,63 +50,63 @@ namespace Xbim.Ifc2x3.ProfileResource
 	{
 		#region IIfcCraneRailAShapeProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.OverallHeight { 
-			get { return @OverallHeight; } 
  
+			get { return @OverallHeight; } 
 			set { OverallHeight = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.BaseWidth2 { 
-			get { return @BaseWidth2; } 
  
+			get { return @BaseWidth2; } 
 			set { BaseWidth2 = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcCraneRailAShapeProfileDef.Radius { 
-			get { return @Radius; } 
  
+			get { return @Radius; } 
 			set { Radius = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.HeadWidth { 
-			get { return @HeadWidth; } 
  
+			get { return @HeadWidth; } 
 			set { HeadWidth = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.HeadDepth2 { 
-			get { return @HeadDepth2; } 
  
+			get { return @HeadDepth2; } 
 			set { HeadDepth2 = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.HeadDepth3 { 
-			get { return @HeadDepth3; } 
  
+			get { return @HeadDepth3; } 
 			set { HeadDepth3 = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.WebThickness { 
-			get { return @WebThickness; } 
  
+			get { return @WebThickness; } 
 			set { WebThickness = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.BaseWidth4 { 
-			get { return @BaseWidth4; } 
  
+			get { return @BaseWidth4; } 
 			set { BaseWidth4 = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.BaseDepth1 { 
-			get { return @BaseDepth1; } 
  
+			get { return @BaseDepth1; } 
 			set { BaseDepth1 = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.BaseDepth2 { 
-			get { return @BaseDepth2; } 
  
+			get { return @BaseDepth2; } 
 			set { BaseDepth2 = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcCraneRailAShapeProfileDef.BaseDepth3 { 
-			get { return @BaseDepth3; } 
  
+			get { return @BaseDepth3; } 
 			set { BaseDepth3 = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcCraneRailAShapeProfileDef.CentreOfGravityInY { 
-			get { return @CentreOfGravityInY; } 
  
+			get { return @CentreOfGravityInY; } 
 			set { CentreOfGravityInY = value;}
 		}	
 		 
@@ -114,7 +114,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCraneRailAShapeProfileDef(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -393,7 +392,7 @@ namespace Xbim.Ifc2x3.ProfileResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

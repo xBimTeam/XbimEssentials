@@ -40,12 +40,12 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	{
 		#region IIfcTextureMap explicit implementation
 		IEnumerable<IIfcTextureVertex> IIfcTextureMap.Vertices { 
-			get { return @Vertices; } 
+			get { return new Common.Collections.ProxyItemSet<IfcTextureVertex, IIfcTextureVertex>( @Vertices); } 
 		}	
 		IIfcFace IIfcTextureMap.MappedTo { 
+ 
+ 
 			get { return @MappedTo; } 
- 
- 
 			set { MappedTo = value as IfcFace;}
 		}	
 		 
@@ -53,18 +53,17 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextureMap(IModel model) : base(model) 		{ 
-			Model = model; 
 			_vertices = new ItemSet<IfcTextureVertex>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcTextureVertex> _vertices;
+		private readonly ItemSet<IfcTextureVertex> _vertices;
 		private IfcFace _mappedTo;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 3, -1, 2)]
-		public ItemSet<IfcTextureVertex> @Vertices 
+		public IItemSet<IfcTextureVertex> @Vertices 
 		{ 
 			get 
 			{
@@ -148,7 +147,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

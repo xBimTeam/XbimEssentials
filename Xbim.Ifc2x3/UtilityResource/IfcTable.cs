@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcTable : IPersistEntity, IfcMetricValueSelect
 	{
 		string @Name { get;  set; }
-		IEnumerable<IIfcTableRow> @Rows { get; }
+		IItemSet<IIfcTableRow> @Rows { get; }
 		long @NumberOfCellsInRow  { get ; }
 		long @NumberOfHeadings  { get ; }
 		long @NumberOfDataRows  { get ; }
@@ -45,12 +45,12 @@ namespace Xbim.Ifc2x3.UtilityResource
 	{
 		#region IIfcTable explicit implementation
 		string IIfcTable.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
-		IEnumerable<IIfcTableRow> IIfcTable.Rows { 
-			get { return @Rows; } 
+		IItemSet<IIfcTableRow> IIfcTable.Rows { 
+			get { return new Common.Collections.ProxyItemSet<IfcTableRow, IIfcTableRow>( @Rows); } 
 		}	
 		 
 		#endregion
@@ -121,7 +121,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 
 		#region Explicit attribute fields
 		private string _name;
-		private ItemSet<IfcTableRow> _rows;
+		private readonly ItemSet<IfcTableRow> _rows;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -141,7 +141,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 		}	
 		[IndexedProperty]
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 2)]
-		public ItemSet<IfcTableRow> @Rows 
+		public IItemSet<IfcTableRow> @Rows 
 		{ 
 			get 
 			{
@@ -293,7 +293,7 @@ namespace Xbim.Ifc2x3.UtilityResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

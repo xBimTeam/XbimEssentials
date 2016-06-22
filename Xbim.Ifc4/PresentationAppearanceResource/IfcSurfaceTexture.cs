@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcBoolean @RepeatT { get;  set; }
 		IfcIdentifier? @Mode { get;  set; }
 		IIfcCartesianTransformationOperator2D @TextureTransform { get;  set; }
-		IEnumerable<IfcIdentifier> @Parameter { get; }
+		IItemSet<IfcIdentifier> @Parameter { get; }
 		IEnumerable<IIfcTextureCoordinate> @IsMappedBy {  get; }
 		IEnumerable<IIfcSurfaceStyleWithTextures> @UsedInStyles {  get; }
 	
@@ -47,27 +47,27 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	{
 		#region IIfcSurfaceTexture explicit implementation
 		IfcBoolean IIfcSurfaceTexture.RepeatS { 
-			get { return @RepeatS; } 
  
+			get { return @RepeatS; } 
 			set { RepeatS = value;}
 		}	
 		IfcBoolean IIfcSurfaceTexture.RepeatT { 
-			get { return @RepeatT; } 
  
+			get { return @RepeatT; } 
 			set { RepeatT = value;}
 		}	
 		IfcIdentifier? IIfcSurfaceTexture.Mode { 
-			get { return @Mode; } 
  
+			get { return @Mode; } 
 			set { Mode = value;}
 		}	
 		IIfcCartesianTransformationOperator2D IIfcSurfaceTexture.TextureTransform { 
+ 
+ 
 			get { return @TextureTransform; } 
- 
- 
 			set { TextureTransform = value as IfcCartesianTransformationOperator2D;}
 		}	
-		IEnumerable<IfcIdentifier> IIfcSurfaceTexture.Parameter { 
+		IItemSet<IfcIdentifier> IIfcSurfaceTexture.Parameter { 
 			get { return @Parameter; } 
 		}	
 		 
@@ -77,7 +77,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceTexture(IModel model) : base(model) 		{ 
-			Model = model; 
 			_parameter = new OptionalItemSet<IfcIdentifier>( this, 0,  5);
 		}
 
@@ -86,7 +85,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		private IfcBoolean _repeatT;
 		private IfcIdentifier? _mode;
 		private IfcCartesianTransformationOperator2D _textureTransform;
-		private OptionalItemSet<IfcIdentifier> _parameter;
+		private readonly OptionalItemSet<IfcIdentifier> _parameter;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -147,7 +146,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 5)]
-		public OptionalItemSet<IfcIdentifier> @Parameter 
+		public IOptionalItemSet<IfcIdentifier> @Parameter 
 		{ 
 			get 
 			{
@@ -242,7 +241,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

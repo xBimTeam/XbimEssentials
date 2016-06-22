@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
@@ -20,6 +21,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of FlowDirection
+				//##
 				switch (FlowDirection)
 				{
 					case IfcFlowDirectionEnum.SOURCE:
@@ -41,6 +44,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of FlowDirection
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcFlowDirectionEnum.SOURCE:

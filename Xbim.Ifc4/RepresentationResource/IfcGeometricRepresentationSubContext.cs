@@ -44,24 +44,24 @@ namespace Xbim.Ifc4.RepresentationResource
 	{
 		#region IIfcGeometricRepresentationSubContext explicit implementation
 		IIfcGeometricRepresentationContext IIfcGeometricRepresentationSubContext.ParentContext { 
+ 
+ 
 			get { return @ParentContext; } 
- 
- 
 			set { ParentContext = value as IfcGeometricRepresentationContext;}
 		}	
 		IfcPositiveRatioMeasure? IIfcGeometricRepresentationSubContext.TargetScale { 
-			get { return @TargetScale; } 
  
+			get { return @TargetScale; } 
 			set { TargetScale = value;}
 		}	
 		IfcGeometricProjectionEnum IIfcGeometricRepresentationSubContext.TargetView { 
-			get { return @TargetView; } 
  
+			get { return @TargetView; } 
 			set { TargetView = value;}
 		}	
 		IfcLabel? IIfcGeometricRepresentationSubContext.UserDefinedTargetView { 
-			get { return @UserDefinedTargetView; } 
  
+			get { return @UserDefinedTargetView; } 
 			set { UserDefinedTargetView = value;}
 		}	
 		 
@@ -69,7 +69,6 @@ namespace Xbim.Ifc4.RepresentationResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGeometricRepresentationSubContext(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -264,7 +263,7 @@ namespace Xbim.Ifc4.RepresentationResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

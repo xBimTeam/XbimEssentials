@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationOrganizationResource
@@ -43,19 +44,12 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				
 			}
 		}
-		IEnumerable<IIfcLayeredItem> IIfcPresentationLayerAssignment.AssignedItems 
+		IItemSet<IIfcLayeredItem> IIfcPresentationLayerAssignment.AssignedItems 
 		{ 
 			get
 			{
-				foreach (var member in AssignedItems)
-				{
-					var ifcrepresentationitem = member as GeometryResource.IfcRepresentationItem;
-					if (ifcrepresentationitem != null) 
-						yield return ifcrepresentationitem;
-					var ifcrepresentation = member as RepresentationResource.IfcRepresentation;
-					if (ifcrepresentation != null) 
-						yield return ifcrepresentation;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcLayeredItem, IIfcLayeredItem>(AssignedItems);
 			} 
 		}
 		Ifc4.MeasureResource.IfcIdentifier? IIfcPresentationLayerAssignment.Identifier 

@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.HVACDomain
@@ -20,6 +21,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcSpaceHeaterTypeEnum.SECTIONALRADIATOR:
@@ -57,6 +60,12 @@ namespace Xbim.Ifc2x3.HVACDomain
 										
 					case IfcSpaceHeaterTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType.HasValue)
+                        {
+                            Ifc4.Interfaces.IfcSpaceHeaterTypeEnum result;
+                            if (System.Enum.TryParse(ElementType.Value, false, out result))
+                                return result;
+                        }
 						//##
 						return Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.USERDEFINED;
 					
@@ -70,6 +79,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.CONVECTOR:
@@ -78,8 +89,9 @@ namespace Xbim.Ifc2x3.HVACDomain
 					
 					case Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.RADIATOR:
 						//## Handle setting of RADIATOR member from IfcSpaceHeaterTypeEnum in property PredefinedType
-						//TODO: Handle setting of RADIATOR member from IfcSpaceHeaterTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcSpaceHeaterTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.USERDEFINED:

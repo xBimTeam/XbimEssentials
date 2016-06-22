@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.Kernel
@@ -61,14 +62,12 @@ namespace Xbim.Ifc2x3.Kernel
 				
 			}
 		}
-		IEnumerable<IIfcRepresentationContext> IIfcContext.RepresentationContexts 
+		IItemSet<IIfcRepresentationContext> IIfcContext.RepresentationContexts 
 		{ 
 			get
 			{
-				foreach (var member in RepresentationContexts)
-				{
-					yield return member as IIfcRepresentationContext;
-				}
+			
+				return new Common.Collections.ProxyItemSet<RepresentationResource.IfcRepresentationContext, IIfcRepresentationContext>(RepresentationContexts);
 			} 
 		}
 		IIfcUnitAssignment IIfcContext.UnitsInContext 

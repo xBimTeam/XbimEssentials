@@ -38,9 +38,9 @@ namespace Xbim.Ifc4.DateTimeResource
 	{
 		#region IIfcTaskTimeRecurring explicit implementation
 		IIfcRecurrencePattern IIfcTaskTimeRecurring.Recurrence { 
+ 
+ 
 			get { return @Recurrence; } 
- 
- 
 			set { Recurrence = value as IfcRecurrencePattern;}
 		}	
 		 
@@ -48,7 +48,6 @@ namespace Xbim.Ifc4.DateTimeResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTaskTimeRecurring(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -146,7 +145,7 @@ namespace Xbim.Ifc4.DateTimeResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

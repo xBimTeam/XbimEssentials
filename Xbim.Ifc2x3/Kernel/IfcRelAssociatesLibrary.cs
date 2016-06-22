@@ -39,9 +39,9 @@ namespace Xbim.Ifc2x3.Kernel
 	{
 		#region IIfcRelAssociatesLibrary explicit implementation
 		IIfcLibrarySelect IIfcRelAssociatesLibrary.RelatingLibrary { 
+ 
+ 
 			get { return @RelatingLibrary; } 
- 
- 
 			set { RelatingLibrary = value as IfcLibrarySelect;}
 		}	
 		 
@@ -49,7 +49,6 @@ namespace Xbim.Ifc2x3.Kernel
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssociatesLibrary(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -132,7 +131,7 @@ namespace Xbim.Ifc2x3.Kernel
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

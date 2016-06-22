@@ -40,9 +40,9 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 	{
 		#region IIfcRelAssociatesAppliedValue explicit implementation
 		IIfcAppliedValue IIfcRelAssociatesAppliedValue.RelatingAppliedValue { 
+ 
+ 
 			get { return @RelatingAppliedValue; } 
- 
- 
 			set { RelatingAppliedValue = value as IfcAppliedValue;}
 		}	
 		 
@@ -50,7 +50,6 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssociatesAppliedValue(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -133,7 +132,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

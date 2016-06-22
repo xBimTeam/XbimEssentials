@@ -28,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IfcLabel? @UsageName { get;  set; }
 		IfcComplexPropertyTemplateTypeEnum? @TemplateType { get;  set; }
-		IEnumerable<IIfcPropertyTemplate> @HasPropertyTemplates { get; }
+		IItemSet<IIfcPropertyTemplate> @HasPropertyTemplates { get; }
 	
 	}
 }
@@ -41,31 +41,30 @@ namespace Xbim.Ifc4.Kernel
 	{
 		#region IIfcComplexPropertyTemplate explicit implementation
 		IfcLabel? IIfcComplexPropertyTemplate.UsageName { 
-			get { return @UsageName; } 
  
+			get { return @UsageName; } 
 			set { UsageName = value;}
 		}	
 		IfcComplexPropertyTemplateTypeEnum? IIfcComplexPropertyTemplate.TemplateType { 
-			get { return @TemplateType; } 
  
+			get { return @TemplateType; } 
 			set { TemplateType = value;}
 		}	
-		IEnumerable<IIfcPropertyTemplate> IIfcComplexPropertyTemplate.HasPropertyTemplates { 
-			get { return @HasPropertyTemplates; } 
+		IItemSet<IIfcPropertyTemplate> IIfcComplexPropertyTemplate.HasPropertyTemplates { 
+			get { return new Common.Collections.ProxyItemSet<IfcPropertyTemplate, IIfcPropertyTemplate>( @HasPropertyTemplates); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcComplexPropertyTemplate(IModel model) : base(model) 		{ 
-			Model = model; 
 			_hasPropertyTemplates = new OptionalItemSet<IfcPropertyTemplate>( this, 0,  7);
 		}
 
 		#region Explicit attribute fields
 		private IfcLabel? _usageName;
 		private IfcComplexPropertyTemplateTypeEnum? _templateType;
-		private OptionalItemSet<IfcPropertyTemplate> _hasPropertyTemplates;
+		private readonly OptionalItemSet<IfcPropertyTemplate> _hasPropertyTemplates;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -99,7 +98,7 @@ namespace Xbim.Ifc4.Kernel
 		}	
 		[IndexedProperty]
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 11)]
-		public OptionalItemSet<IfcPropertyTemplate> @HasPropertyTemplates 
+		public IOptionalItemSet<IfcPropertyTemplate> @HasPropertyTemplates 
 		{ 
 			get 
 			{
@@ -174,7 +173,7 @@ namespace Xbim.Ifc4.Kernel
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

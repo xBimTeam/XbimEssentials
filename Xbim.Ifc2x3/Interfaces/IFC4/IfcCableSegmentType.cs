@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ElectricalDomain
@@ -20,6 +21,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcCableSegmentTypeEnum.CABLESEGMENT:
@@ -30,6 +33,14 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 					
 					case IfcCableSegmentTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType.HasValue)
+                            switch (ElementType.Value)
+                            {
+                                case "BUSBARSEGMENT":
+                                    return Ifc4.Interfaces.IfcCableSegmentTypeEnum.BUSBARSEGMENT;
+                                case "CORESEGMENT":
+                                    return Ifc4.Interfaces.IfcCableSegmentTypeEnum.CORESEGMENT;
+                            }
 						//##
 						return Ifc4.Interfaces.IfcCableSegmentTypeEnum.USERDEFINED;
 					
@@ -43,12 +54,15 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcCableSegmentTypeEnum.BUSBARSEGMENT:
 						//## Handle setting of BUSBARSEGMENT member from IfcCableSegmentTypeEnum in property PredefinedType
-						//TODO: Handle setting of BUSBARSEGMENT member from IfcCableSegmentTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+                        PredefinedType = IfcCableSegmentTypeEnum.USERDEFINED;
+				        ElementType = value.ToString();
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcCableSegmentTypeEnum.CABLESEGMENT:
@@ -61,8 +75,9 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 					
 					case Ifc4.Interfaces.IfcCableSegmentTypeEnum.CORESEGMENT:
 						//## Handle setting of CORESEGMENT member from IfcCableSegmentTypeEnum in property PredefinedType
-						//TODO: Handle setting of CORESEGMENT member from IfcCableSegmentTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						PredefinedType = IfcCableSegmentTypeEnum.USERDEFINED;
+				        ElementType = value.ToString();
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcCableSegmentTypeEnum.USERDEFINED:

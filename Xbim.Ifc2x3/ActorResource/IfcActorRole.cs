@@ -43,18 +43,18 @@ namespace Xbim.Ifc2x3.ActorResource
 	{
 		#region IIfcActorRole explicit implementation
 		IfcRoleEnum IIfcActorRole.Role { 
-			get { return @Role; } 
  
+			get { return @Role; } 
 			set { Role = value;}
 		}	
 		IfcLabel? IIfcActorRole.UserDefinedRole { 
-			get { return @UserDefinedRole; } 
  
+			get { return @UserDefinedRole; } 
 			set { UserDefinedRole = value;}
 		}	
 		IfcText? IIfcActorRole.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		 
@@ -281,7 +281,7 @@ namespace Xbim.Ifc2x3.ActorResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

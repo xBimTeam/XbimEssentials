@@ -45,39 +45,39 @@ namespace Xbim.Ifc4.GeometryResource
 	{
 		#region IIfcRectangularTrimmedSurface explicit implementation
 		IIfcSurface IIfcRectangularTrimmedSurface.BasisSurface { 
+ 
+ 
 			get { return @BasisSurface; } 
- 
- 
 			set { BasisSurface = value as IfcSurface;}
 		}	
 		IfcParameterValue IIfcRectangularTrimmedSurface.U1 { 
-			get { return @U1; } 
  
+			get { return @U1; } 
 			set { U1 = value;}
 		}	
 		IfcParameterValue IIfcRectangularTrimmedSurface.V1 { 
-			get { return @V1; } 
  
+			get { return @V1; } 
 			set { V1 = value;}
 		}	
 		IfcParameterValue IIfcRectangularTrimmedSurface.U2 { 
-			get { return @U2; } 
  
+			get { return @U2; } 
 			set { U2 = value;}
 		}	
 		IfcParameterValue IIfcRectangularTrimmedSurface.V2 { 
-			get { return @V2; } 
  
+			get { return @V2; } 
 			set { V2 = value;}
 		}	
 		IfcBoolean IIfcRectangularTrimmedSurface.Usense { 
-			get { return @Usense; } 
  
+			get { return @Usense; } 
 			set { Usense = value;}
 		}	
 		IfcBoolean IIfcRectangularTrimmedSurface.Vsense { 
-			get { return @Vsense; } 
  
+			get { return @Vsense; } 
 			set { Vsense = value;}
 		}	
 		 
@@ -85,7 +85,6 @@ namespace Xbim.Ifc4.GeometryResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRectangularTrimmedSurface(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -269,7 +268,7 @@ namespace Xbim.Ifc4.GeometryResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

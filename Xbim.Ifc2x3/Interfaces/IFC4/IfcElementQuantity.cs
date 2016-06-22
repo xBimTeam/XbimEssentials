@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProductExtension
@@ -31,14 +32,12 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
-		IEnumerable<IIfcPhysicalQuantity> IIfcElementQuantity.Quantities 
+		IItemSet<IIfcPhysicalQuantity> IIfcElementQuantity.Quantities 
 		{ 
 			get
 			{
-				foreach (var member in Quantities)
-				{
-					yield return member as IIfcPhysicalQuantity;
-				}
+			
+				return new Common.Collections.ProxyItemSet<QuantityResource.IfcPhysicalQuantity, IIfcPhysicalQuantity>(Quantities);
 			} 
 		}
 	//## Custom code

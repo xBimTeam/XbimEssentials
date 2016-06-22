@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationOrganizationResource
@@ -58,12 +59,12 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				
 			}
 		}
-		IEnumerable<IIfcPresentationStyle> IIfcPresentationLayerWithStyle.LayerStyles 
+		IItemSet<IIfcPresentationStyle> IIfcPresentationLayerWithStyle.LayerStyles 
 		{ 
 			get
 			{
 				//## Handle return of LayerStyles for which no match was found
-                return LayerStyles.OfType<IIfcPresentationStyle>();
+                return new Common.Collections.VolatileProxyItemSet<PresentationAppearanceResource.IfcPresentationStyleSelect, IIfcPresentationStyle>(LayerStyles); 
 			    //##
 			} 
 		}

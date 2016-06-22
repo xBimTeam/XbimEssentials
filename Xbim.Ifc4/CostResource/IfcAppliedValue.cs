@@ -55,54 +55,54 @@ namespace Xbim.Ifc4.CostResource
 	{
 		#region IIfcAppliedValue explicit implementation
 		IfcLabel? IIfcAppliedValue.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IfcText? IIfcAppliedValue.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		IIfcAppliedValueSelect IIfcAppliedValue.AppliedValue { 
+ 
+ 
 			get { return @AppliedValue; } 
- 
- 
 			set { AppliedValue = value as IfcAppliedValueSelect;}
 		}	
 		IIfcMeasureWithUnit IIfcAppliedValue.UnitBasis { 
+ 
+ 
 			get { return @UnitBasis; } 
- 
- 
 			set { UnitBasis = value as IfcMeasureWithUnit;}
 		}	
 		IfcDate? IIfcAppliedValue.ApplicableDate { 
-			get { return @ApplicableDate; } 
  
+			get { return @ApplicableDate; } 
 			set { ApplicableDate = value;}
 		}	
 		IfcDate? IIfcAppliedValue.FixedUntilDate { 
-			get { return @FixedUntilDate; } 
  
+			get { return @FixedUntilDate; } 
 			set { FixedUntilDate = value;}
 		}	
 		IfcLabel? IIfcAppliedValue.Category { 
-			get { return @Category; } 
  
+			get { return @Category; } 
 			set { Category = value;}
 		}	
 		IfcLabel? IIfcAppliedValue.Condition { 
-			get { return @Condition; } 
  
+			get { return @Condition; } 
 			set { Condition = value;}
 		}	
 		IfcArithmeticOperatorEnum? IIfcAppliedValue.ArithmeticOperator { 
-			get { return @ArithmeticOperator; } 
  
+			get { return @ArithmeticOperator; } 
 			set { ArithmeticOperator = value;}
 		}	
 		IEnumerable<IIfcAppliedValue> IIfcAppliedValue.Components { 
-			get { return @Components; } 
+			get { return new Common.Collections.ProxyItemSet<IfcAppliedValue, IIfcAppliedValue>( @Components); } 
 		}	
 		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcAppliedValue.HasExternalReference {  get { return @HasExternalReference; } }
@@ -182,7 +182,7 @@ namespace Xbim.Ifc4.CostResource
 		private IfcLabel? _category;
 		private IfcLabel? _condition;
 		private IfcArithmeticOperatorEnum? _arithmeticOperator;
-		private OptionalItemSet<IfcAppliedValue> _components;
+		private readonly OptionalItemSet<IfcAppliedValue> _components;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -313,7 +313,7 @@ namespace Xbim.Ifc4.CostResource
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 10)]
-		public OptionalItemSet<IfcAppliedValue> @Components 
+		public IOptionalItemSet<IfcAppliedValue> @Components 
 		{ 
 			get 
 			{
@@ -463,7 +463,7 @@ namespace Xbim.Ifc4.CostResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

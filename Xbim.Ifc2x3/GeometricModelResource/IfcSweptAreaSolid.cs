@@ -41,15 +41,15 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 	{
 		#region IIfcSweptAreaSolid explicit implementation
 		IIfcProfileDef IIfcSweptAreaSolid.SweptArea { 
+ 
+ 
 			get { return @SweptArea; } 
- 
- 
 			set { SweptArea = value as IfcProfileDef;}
 		}	
 		IIfcAxis2Placement3D IIfcSweptAreaSolid.Position { 
+ 
+ 
 			get { return @Position; } 
- 
- 
 			set { Position = value as IfcAxis2Placement3D;}
 		}	
 		 
@@ -57,7 +57,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSweptAreaSolid(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -151,7 +150,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

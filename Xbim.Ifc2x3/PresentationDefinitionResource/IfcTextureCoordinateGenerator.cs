@@ -40,25 +40,24 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 	{
 		#region IIfcTextureCoordinateGenerator explicit implementation
 		IfcLabel IIfcTextureCoordinateGenerator.Mode { 
-			get { return @Mode; } 
  
+			get { return @Mode; } 
 			set { Mode = value;}
 		}	
 		IEnumerable<IIfcSimpleValue> IIfcTextureCoordinateGenerator.Parameter { 
-			get { return @Parameter; } 
+			get { return new Common.Collections.ProxyItemSet<IfcSimpleValue, IIfcSimpleValue>( @Parameter); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextureCoordinateGenerator(IModel model) : base(model) 		{ 
-			Model = model; 
 			_parameter = new ItemSet<IfcSimpleValue>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
 		private IfcLabel _mode;
-		private ItemSet<IfcSimpleValue> _parameter;
+		private readonly ItemSet<IfcSimpleValue> _parameter;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -77,7 +76,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 3)]
-		public ItemSet<IfcSimpleValue> @Parameter 
+		public IItemSet<IfcSimpleValue> @Parameter 
 		{ 
 			get 
 			{
@@ -143,7 +142,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

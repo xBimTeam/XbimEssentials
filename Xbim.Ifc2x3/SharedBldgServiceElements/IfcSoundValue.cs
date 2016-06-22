@@ -43,20 +43,20 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 	{
 		#region IIfcSoundValue explicit implementation
 		IIfcTimeSeries IIfcSoundValue.SoundLevelTimeSeries { 
+ 
+ 
 			get { return @SoundLevelTimeSeries; } 
- 
- 
 			set { SoundLevelTimeSeries = value as IfcTimeSeries;}
 		}	
 		IfcFrequencyMeasure IIfcSoundValue.Frequency { 
-			get { return @Frequency; } 
  
+			get { return @Frequency; } 
 			set { Frequency = value;}
 		}	
 		IIfcDerivedMeasureValue IIfcSoundValue.SoundLevelSingleValue { 
+ 
+ 
 			get { return @SoundLevelSingleValue; } 
- 
- 
 			set { SoundLevelSingleValue = value as IfcDerivedMeasureValue;}
 		}	
 		 
@@ -64,7 +64,6 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSoundValue(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -182,7 +181,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

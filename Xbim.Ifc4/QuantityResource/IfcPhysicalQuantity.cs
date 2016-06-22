@@ -45,13 +45,13 @@ namespace Xbim.Ifc4.QuantityResource
 	{
 		#region IIfcPhysicalQuantity explicit implementation
 		IfcLabel IIfcPhysicalQuantity.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IfcText? IIfcPhysicalQuantity.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		 
@@ -282,7 +282,7 @@ namespace Xbim.Ifc4.QuantityResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

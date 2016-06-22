@@ -43,19 +43,19 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	{
 		#region IIfcCurveStyleFontAndScaling explicit implementation
 		IfcLabel? IIfcCurveStyleFontAndScaling.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IIfcCurveStyleFontSelect IIfcCurveStyleFontAndScaling.CurveFont { 
+ 
+ 
 			get { return @CurveFont; } 
- 
- 
 			set { CurveFont = value as IfcCurveStyleFontSelect;}
 		}	
 		IfcPositiveRatioMeasure IIfcCurveStyleFontAndScaling.CurveFontScaling { 
-			get { return @CurveFontScaling; } 
  
+			get { return @CurveFontScaling; } 
 			set { CurveFontScaling = value;}
 		}	
 		 
@@ -282,7 +282,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

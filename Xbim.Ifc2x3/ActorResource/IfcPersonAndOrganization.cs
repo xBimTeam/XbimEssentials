@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcPerson @ThePerson { get;  set; }
 		IIfcOrganization @TheOrganization { get;  set; }
-		IEnumerable<IIfcActorRole> @Roles { get; }
+		IItemSet<IIfcActorRole> @Roles { get; }
 	
 	}
 }
@@ -43,19 +43,19 @@ namespace Xbim.Ifc2x3.ActorResource
 	{
 		#region IIfcPersonAndOrganization explicit implementation
 		IIfcPerson IIfcPersonAndOrganization.ThePerson { 
+ 
+ 
 			get { return @ThePerson; } 
- 
- 
 			set { ThePerson = value as IfcPerson;}
 		}	
 		IIfcOrganization IIfcPersonAndOrganization.TheOrganization { 
+ 
+ 
 			get { return @TheOrganization; } 
- 
- 
 			set { TheOrganization = value as IfcOrganization;}
 		}	
-		IEnumerable<IIfcActorRole> IIfcPersonAndOrganization.Roles { 
-			get { return @Roles; } 
+		IItemSet<IIfcActorRole> IIfcPersonAndOrganization.Roles { 
+			get { return new Common.Collections.ProxyItemSet<IfcActorRole, IIfcActorRole>( @Roles); } 
 		}	
 		 
 		#endregion
@@ -127,7 +127,7 @@ namespace Xbim.Ifc2x3.ActorResource
 		#region Explicit attribute fields
 		private IfcPerson _thePerson;
 		private IfcOrganization _theOrganization;
-		private OptionalItemSet<IfcActorRole> _roles;
+		private readonly OptionalItemSet<IfcActorRole> _roles;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -162,7 +162,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 3)]
-		public OptionalItemSet<IfcActorRole> @Roles 
+		public IOptionalItemSet<IfcActorRole> @Roles 
 		{ 
 			get 
 			{
@@ -280,7 +280,7 @@ namespace Xbim.Ifc2x3.ActorResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

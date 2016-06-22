@@ -33,13 +33,13 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcIdentifier @DocumentId { get;  set; }
 		IfcLabel @Name { get;  set; }
 		IfcText? @Description { get;  set; }
-		IEnumerable<IIfcDocumentReference> @DocumentReferences { get; }
+		IItemSet<IIfcDocumentReference> @DocumentReferences { get; }
 		IfcText? @Purpose { get;  set; }
 		IfcText? @IntendedUse { get;  set; }
 		IfcText? @Scope { get;  set; }
 		IfcLabel? @Revision { get;  set; }
 		IIfcActorSelect @DocumentOwner { get;  set; }
-		IEnumerable<IIfcActorSelect> @Editors { get; }
+		IItemSet<IIfcActorSelect> @Editors { get; }
 		IIfcDateAndTime @CreationTime { get;  set; }
 		IIfcDateAndTime @LastRevisionTime { get;  set; }
 		IIfcDocumentElectronicFormat @ElectronicFormat { get;  set; }
@@ -61,90 +61,90 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 	{
 		#region IIfcDocumentInformation explicit implementation
 		IfcIdentifier IIfcDocumentInformation.DocumentId { 
-			get { return @DocumentId; } 
  
+			get { return @DocumentId; } 
 			set { DocumentId = value;}
 		}	
 		IfcLabel IIfcDocumentInformation.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IfcText? IIfcDocumentInformation.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
-		IEnumerable<IIfcDocumentReference> IIfcDocumentInformation.DocumentReferences { 
-			get { return @DocumentReferences; } 
+		IItemSet<IIfcDocumentReference> IIfcDocumentInformation.DocumentReferences { 
+			get { return new Common.Collections.ProxyItemSet<IfcDocumentReference, IIfcDocumentReference>( @DocumentReferences); } 
 		}	
 		IfcText? IIfcDocumentInformation.Purpose { 
-			get { return @Purpose; } 
  
+			get { return @Purpose; } 
 			set { Purpose = value;}
 		}	
 		IfcText? IIfcDocumentInformation.IntendedUse { 
-			get { return @IntendedUse; } 
  
+			get { return @IntendedUse; } 
 			set { IntendedUse = value;}
 		}	
 		IfcText? IIfcDocumentInformation.Scope { 
-			get { return @Scope; } 
  
+			get { return @Scope; } 
 			set { Scope = value;}
 		}	
 		IfcLabel? IIfcDocumentInformation.Revision { 
-			get { return @Revision; } 
  
+			get { return @Revision; } 
 			set { Revision = value;}
 		}	
 		IIfcActorSelect IIfcDocumentInformation.DocumentOwner { 
+ 
+ 
 			get { return @DocumentOwner; } 
- 
- 
 			set { DocumentOwner = value as IfcActorSelect;}
 		}	
-		IEnumerable<IIfcActorSelect> IIfcDocumentInformation.Editors { 
-			get { return @Editors; } 
+		IItemSet<IIfcActorSelect> IIfcDocumentInformation.Editors { 
+			get { return new Common.Collections.ProxyItemSet<IfcActorSelect, IIfcActorSelect>( @Editors); } 
 		}	
 		IIfcDateAndTime IIfcDocumentInformation.CreationTime { 
+ 
+ 
 			get { return @CreationTime; } 
- 
- 
 			set { CreationTime = value as IfcDateAndTime;}
 		}	
 		IIfcDateAndTime IIfcDocumentInformation.LastRevisionTime { 
+ 
+ 
 			get { return @LastRevisionTime; } 
- 
- 
 			set { LastRevisionTime = value as IfcDateAndTime;}
 		}	
 		IIfcDocumentElectronicFormat IIfcDocumentInformation.ElectronicFormat { 
+ 
+ 
 			get { return @ElectronicFormat; } 
- 
- 
 			set { ElectronicFormat = value as IfcDocumentElectronicFormat;}
 		}	
 		IIfcCalendarDate IIfcDocumentInformation.ValidFrom { 
+ 
+ 
 			get { return @ValidFrom; } 
- 
- 
 			set { ValidFrom = value as IfcCalendarDate;}
 		}	
 		IIfcCalendarDate IIfcDocumentInformation.ValidUntil { 
+ 
+ 
 			get { return @ValidUntil; } 
- 
- 
 			set { ValidUntil = value as IfcCalendarDate;}
 		}	
 		IfcDocumentConfidentialityEnum? IIfcDocumentInformation.Confidentiality { 
-			get { return @Confidentiality; } 
  
+			get { return @Confidentiality; } 
 			set { Confidentiality = value;}
 		}	
 		IfcDocumentStatusEnum? IIfcDocumentInformation.Status { 
-			get { return @Status; } 
  
+			get { return @Status; } 
 			set { Status = value;}
 		}	
 		 
@@ -221,13 +221,13 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		private IfcIdentifier _documentId;
 		private IfcLabel _name;
 		private IfcText? _description;
-		private OptionalItemSet<IfcDocumentReference> _documentReferences;
+		private readonly OptionalItemSet<IfcDocumentReference> _documentReferences;
 		private IfcText? _purpose;
 		private IfcText? _intendedUse;
 		private IfcText? _scope;
 		private IfcLabel? _revision;
 		private IfcActorSelect _documentOwner;
-		private OptionalItemSet<IfcActorSelect> _editors;
+		private readonly OptionalItemSet<IfcActorSelect> _editors;
 		private IfcDateAndTime _creationTime;
 		private IfcDateAndTime _lastRevisionTime;
 		private IfcDocumentElectronicFormat _electronicFormat;
@@ -282,7 +282,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		}	
 		[IndexedProperty]
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
-		public OptionalItemSet<IfcDocumentReference> @DocumentReferences 
+		public IOptionalItemSet<IfcDocumentReference> @DocumentReferences 
 		{ 
 			get 
 			{
@@ -362,7 +362,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 10)]
-		public OptionalItemSet<IfcActorSelect> @Editors 
+		public IOptionalItemSet<IfcActorSelect> @Editors 
 		{ 
 			get 
 			{
@@ -640,7 +640,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

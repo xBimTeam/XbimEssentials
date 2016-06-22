@@ -41,18 +41,18 @@ namespace Xbim.Ifc4.GeometricModelResource
 	{
 		#region IIfcBlock explicit implementation
 		IfcPositiveLengthMeasure IIfcBlock.XLength { 
-			get { return @XLength; } 
  
+			get { return @XLength; } 
 			set { XLength = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcBlock.YLength { 
-			get { return @YLength; } 
  
+			get { return @YLength; } 
 			set { YLength = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcBlock.ZLength { 
-			get { return @ZLength; } 
  
+			get { return @ZLength; } 
 			set { ZLength = value;}
 		}	
 		 
@@ -60,7 +60,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBlock(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -175,7 +174,7 @@ namespace Xbim.Ifc4.GeometricModelResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

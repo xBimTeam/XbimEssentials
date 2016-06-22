@@ -29,7 +29,7 @@ namespace Xbim.CobieExpress.Interfaces
 		string @Description { get;  set; }
 		ICobieSpareType @SpareType { get;  set; }
 		ICobieType @Type { get;  set; }
-		IEnumerable<ICobieContact> @Suppliers { get; }
+		IItemSet<ICobieContact> @Suppliers { get; }
 		string @SetNumber { get;  set; }
 		string @PartNumber { get;  set; }
 	
@@ -44,38 +44,38 @@ namespace Xbim.CobieExpress
 	{
 		#region ICobieSpare explicit implementation
 		string ICobieSpare.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		string ICobieSpare.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		ICobieSpareType ICobieSpare.SpareType { 
+ 
+ 
 			get { return @SpareType; } 
- 
- 
 			set { SpareType = value as CobieSpareType;}
 		}	
 		ICobieType ICobieSpare.Type { 
+ 
+ 
 			get { return @Type; } 
- 
- 
 			set { Type = value as CobieType;}
 		}	
-		IEnumerable<ICobieContact> ICobieSpare.Suppliers { 
-			get { return @Suppliers; } 
+		IItemSet<ICobieContact> ICobieSpare.Suppliers { 
+			get { return new Common.Collections.ProxyItemSet<CobieContact, ICobieContact>( @Suppliers); } 
 		}	
 		string ICobieSpare.SetNumber { 
-			get { return @SetNumber; } 
  
+			get { return @SetNumber; } 
 			set { SetNumber = value;}
 		}	
 		string ICobieSpare.PartNumber { 
-			get { return @PartNumber; } 
  
+			get { return @PartNumber; } 
 			set { PartNumber = value;}
 		}	
 		 
@@ -83,7 +83,6 @@ namespace Xbim.CobieExpress
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieSpare(IModel model) : base(model) 		{ 
-			Model = model; 
 			_suppliers = new OptionalItemSet<CobieContact>( this, 0,  10);
 		}
 
@@ -92,7 +91,7 @@ namespace Xbim.CobieExpress
 		private string _description;
 		private CobieSpareType _spareType;
 		private CobieType _type;
-		private OptionalItemSet<CobieContact> _suppliers;
+		private readonly OptionalItemSet<CobieContact> _suppliers;
 		private string _setNumber;
 		private string _partNumber;
 		#endregion
@@ -156,7 +155,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 10)]
-		public OptionalItemSet<CobieContact> @Suppliers 
+		public IOptionalItemSet<CobieContact> @Suppliers 
 		{ 
 			get 
 			{
@@ -272,7 +271,7 @@ namespace Xbim.CobieExpress
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

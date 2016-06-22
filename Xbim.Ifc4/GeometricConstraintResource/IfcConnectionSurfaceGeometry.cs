@@ -39,15 +39,15 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 	{
 		#region IIfcConnectionSurfaceGeometry explicit implementation
 		IIfcSurfaceOrFaceSurface IIfcConnectionSurfaceGeometry.SurfaceOnRelatingElement { 
+ 
+ 
 			get { return @SurfaceOnRelatingElement; } 
- 
- 
 			set { SurfaceOnRelatingElement = value as IfcSurfaceOrFaceSurface;}
 		}	
 		IIfcSurfaceOrFaceSurface IIfcConnectionSurfaceGeometry.SurfaceOnRelatedElement { 
+ 
+ 
 			get { return @SurfaceOnRelatedElement; } 
- 
- 
 			set { SurfaceOnRelatedElement = value as IfcSurfaceOrFaceSurface;}
 		}	
 		 
@@ -55,7 +55,6 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConnectionSurfaceGeometry(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -149,7 +148,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

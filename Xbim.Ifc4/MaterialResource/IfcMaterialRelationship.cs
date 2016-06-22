@@ -28,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcMaterialRelationship : IIfcResourceLevelRelationship
 	{
 		IIfcMaterial @RelatingMaterial { get;  set; }
-		IEnumerable<IIfcMaterial> @RelatedMaterials { get; }
+		IItemSet<IIfcMaterial> @RelatedMaterials { get; }
 		IfcLabel? @Expression { get;  set; }
 	
 	}
@@ -42,17 +42,17 @@ namespace Xbim.Ifc4.MaterialResource
 	{
 		#region IIfcMaterialRelationship explicit implementation
 		IIfcMaterial IIfcMaterialRelationship.RelatingMaterial { 
+ 
+ 
 			get { return @RelatingMaterial; } 
- 
- 
 			set { RelatingMaterial = value as IfcMaterial;}
 		}	
-		IEnumerable<IIfcMaterial> IIfcMaterialRelationship.RelatedMaterials { 
-			get { return @RelatedMaterials; } 
+		IItemSet<IIfcMaterial> IIfcMaterialRelationship.RelatedMaterials { 
+			get { return new Common.Collections.ProxyItemSet<IfcMaterial, IIfcMaterial>( @RelatedMaterials); } 
 		}	
 		IfcLabel? IIfcMaterialRelationship.Expression { 
-			get { return @Expression; } 
  
+			get { return @Expression; } 
 			set { Expression = value;}
 		}	
 		 
@@ -60,13 +60,12 @@ namespace Xbim.Ifc4.MaterialResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialRelationship(IModel model) : base(model) 		{ 
-			Model = model; 
 			_relatedMaterials = new ItemSet<IfcMaterial>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
 		private IfcMaterial _relatingMaterial;
-		private ItemSet<IfcMaterial> _relatedMaterials;
+		private readonly ItemSet<IfcMaterial> _relatedMaterials;
 		private IfcLabel? _expression;
 		#endregion
 	
@@ -88,7 +87,7 @@ namespace Xbim.Ifc4.MaterialResource
 		}	
 		[IndexedProperty]
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
-		public ItemSet<IfcMaterial> @RelatedMaterials 
+		public IItemSet<IfcMaterial> @RelatedMaterials 
 		{ 
 			get 
 			{
@@ -175,7 +174,7 @@ namespace Xbim.Ifc4.MaterialResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

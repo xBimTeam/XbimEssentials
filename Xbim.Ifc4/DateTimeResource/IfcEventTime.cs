@@ -41,23 +41,23 @@ namespace Xbim.Ifc4.DateTimeResource
 	{
 		#region IIfcEventTime explicit implementation
 		IfcDateTime? IIfcEventTime.ActualDate { 
-			get { return @ActualDate; } 
  
+			get { return @ActualDate; } 
 			set { ActualDate = value;}
 		}	
 		IfcDateTime? IIfcEventTime.EarlyDate { 
-			get { return @EarlyDate; } 
  
+			get { return @EarlyDate; } 
 			set { EarlyDate = value;}
 		}	
 		IfcDateTime? IIfcEventTime.LateDate { 
-			get { return @LateDate; } 
  
+			get { return @LateDate; } 
 			set { LateDate = value;}
 		}	
 		IfcDateTime? IIfcEventTime.ScheduleDate { 
-			get { return @ScheduleDate; } 
  
+			get { return @ScheduleDate; } 
 			set { ScheduleDate = value;}
 		}	
 		 
@@ -65,7 +65,6 @@ namespace Xbim.Ifc4.DateTimeResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcEventTime(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -200,7 +199,7 @@ namespace Xbim.Ifc4.DateTimeResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

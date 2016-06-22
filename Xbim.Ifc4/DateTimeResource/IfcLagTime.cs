@@ -39,14 +39,14 @@ namespace Xbim.Ifc4.DateTimeResource
 	{
 		#region IIfcLagTime explicit implementation
 		IIfcTimeOrRatioSelect IIfcLagTime.LagValue { 
+ 
+ 
 			get { return @LagValue; } 
- 
- 
 			set { LagValue = value as IfcTimeOrRatioSelect;}
 		}	
 		IfcTaskDurationEnum IIfcLagTime.DurationType { 
-			get { return @DurationType; } 
  
+			get { return @DurationType; } 
 			set { DurationType = value;}
 		}	
 		 
@@ -54,7 +54,6 @@ namespace Xbim.Ifc4.DateTimeResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLagTime(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -153,7 +152,7 @@ namespace Xbim.Ifc4.DateTimeResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

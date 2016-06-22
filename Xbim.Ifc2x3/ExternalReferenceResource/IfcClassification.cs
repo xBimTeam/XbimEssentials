@@ -46,24 +46,24 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 	{
 		#region IIfcClassification explicit implementation
 		IfcLabel IIfcClassification.Source { 
-			get { return @Source; } 
  
+			get { return @Source; } 
 			set { Source = value;}
 		}	
 		IfcLabel IIfcClassification.Edition { 
-			get { return @Edition; } 
  
+			get { return @Edition; } 
 			set { Edition = value;}
 		}	
 		IIfcCalendarDate IIfcClassification.EditionDate { 
+ 
+ 
 			get { return @EditionDate; } 
- 
- 
 			set { EditionDate = value as IfcCalendarDate;}
 		}	
 		IfcLabel IIfcClassification.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		 
@@ -320,7 +320,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

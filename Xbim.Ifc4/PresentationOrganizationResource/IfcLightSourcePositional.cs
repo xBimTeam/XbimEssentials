@@ -44,29 +44,29 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 	{
 		#region IIfcLightSourcePositional explicit implementation
 		IIfcCartesianPoint IIfcLightSourcePositional.Position { 
+ 
+ 
 			get { return @Position; } 
- 
- 
 			set { Position = value as IfcCartesianPoint;}
 		}	
 		IfcPositiveLengthMeasure IIfcLightSourcePositional.Radius { 
-			get { return @Radius; } 
  
+			get { return @Radius; } 
 			set { Radius = value;}
 		}	
 		IfcReal IIfcLightSourcePositional.ConstantAttenuation { 
-			get { return @ConstantAttenuation; } 
  
+			get { return @ConstantAttenuation; } 
 			set { ConstantAttenuation = value;}
 		}	
 		IfcReal IIfcLightSourcePositional.DistanceAttenuation { 
-			get { return @DistanceAttenuation; } 
  
+			get { return @DistanceAttenuation; } 
 			set { DistanceAttenuation = value;}
 		}	
 		IfcReal IIfcLightSourcePositional.QuadricAttenuation { 
-			get { return @QuadricAttenuation; } 
  
+			get { return @QuadricAttenuation; } 
 			set { QuadricAttenuation = value;}
 		}	
 		 
@@ -74,7 +74,6 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLightSourcePositional(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -228,7 +227,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

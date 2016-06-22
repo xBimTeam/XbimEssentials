@@ -45,13 +45,13 @@ namespace Xbim.Ifc2x3.PropertyResource
 	{
 		#region IIfcProperty explicit implementation
 		IfcIdentifier IIfcProperty.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IfcText? IIfcProperty.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		 
@@ -292,7 +292,7 @@ namespace Xbim.Ifc2x3.PropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

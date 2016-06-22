@@ -52,64 +52,64 @@ namespace Xbim.Ifc4.ArchitectureDomain
 	{
 		#region IIfcWindowLiningProperties explicit implementation
 		IfcPositiveLengthMeasure? IIfcWindowLiningProperties.LiningDepth { 
-			get { return @LiningDepth; } 
  
+			get { return @LiningDepth; } 
 			set { LiningDepth = value;}
 		}	
 		IfcNonNegativeLengthMeasure? IIfcWindowLiningProperties.LiningThickness { 
-			get { return @LiningThickness; } 
  
+			get { return @LiningThickness; } 
 			set { LiningThickness = value;}
 		}	
 		IfcNonNegativeLengthMeasure? IIfcWindowLiningProperties.TransomThickness { 
-			get { return @TransomThickness; } 
  
+			get { return @TransomThickness; } 
 			set { TransomThickness = value;}
 		}	
 		IfcNonNegativeLengthMeasure? IIfcWindowLiningProperties.MullionThickness { 
-			get { return @MullionThickness; } 
  
+			get { return @MullionThickness; } 
 			set { MullionThickness = value;}
 		}	
 		IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.FirstTransomOffset { 
-			get { return @FirstTransomOffset; } 
  
+			get { return @FirstTransomOffset; } 
 			set { FirstTransomOffset = value;}
 		}	
 		IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.SecondTransomOffset { 
-			get { return @SecondTransomOffset; } 
  
+			get { return @SecondTransomOffset; } 
 			set { SecondTransomOffset = value;}
 		}	
 		IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.FirstMullionOffset { 
-			get { return @FirstMullionOffset; } 
  
+			get { return @FirstMullionOffset; } 
 			set { FirstMullionOffset = value;}
 		}	
 		IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.SecondMullionOffset { 
-			get { return @SecondMullionOffset; } 
  
+			get { return @SecondMullionOffset; } 
 			set { SecondMullionOffset = value;}
 		}	
 		IIfcShapeAspect IIfcWindowLiningProperties.ShapeAspectStyle { 
+ 
+ 
 			get { return @ShapeAspectStyle; } 
- 
- 
 			set { ShapeAspectStyle = value as IfcShapeAspect;}
 		}	
 		IfcLengthMeasure? IIfcWindowLiningProperties.LiningOffset { 
-			get { return @LiningOffset; } 
  
+			get { return @LiningOffset; } 
 			set { LiningOffset = value;}
 		}	
 		IfcLengthMeasure? IIfcWindowLiningProperties.LiningToPanelOffsetX { 
-			get { return @LiningToPanelOffsetX; } 
  
+			get { return @LiningToPanelOffsetX; } 
 			set { LiningToPanelOffsetX = value;}
 		}	
 		IfcLengthMeasure? IIfcWindowLiningProperties.LiningToPanelOffsetY { 
-			get { return @LiningToPanelOffsetY; } 
  
+			get { return @LiningToPanelOffsetY; } 
 			set { LiningToPanelOffsetY = value;}
 		}	
 		 
@@ -117,7 +117,6 @@ namespace Xbim.Ifc4.ArchitectureDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWindowLiningProperties(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -397,7 +396,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

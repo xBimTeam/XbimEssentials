@@ -10,26 +10,27 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	public partial class @IfcDerivedUnit : IIfcDerivedUnit
 	{
-		IEnumerable<IIfcDerivedUnitElement> IIfcDerivedUnit.Elements 
+		IItemSet<IIfcDerivedUnitElement> IIfcDerivedUnit.Elements 
 		{ 
 			get
 			{
-				foreach (var member in Elements)
-				{
-					yield return member as IIfcDerivedUnitElement;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcDerivedUnitElement, IIfcDerivedUnitElement>(Elements);
 			} 
 		}
 		Ifc4.Interfaces.IfcDerivedUnitEnum IIfcDerivedUnit.UnitType 
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of UnitType
+				//##
 				switch (UnitType)
 				{
 					case IfcDerivedUnitEnum.ANGULARVELOCITYUNIT:
@@ -178,6 +179,16 @@ namespace Xbim.Ifc2x3.MeasureResource
 					
 					case IfcDerivedUnitEnum.USERDEFINED:
 						//## Optional custom handling of UnitType == .USERDEFINED. 
+                        if (UserDefinedType.HasValue)
+                            switch (UserDefinedType.Value)
+                            {
+                                case "AREADENSITYUNIT":
+                                case "SOUNDPOWERLEVELUNIT":
+                                case "SOUNDPRESSURELEVELUNIT":
+                                case "TEMPERATURERATEOFCHANGEUNIT":
+                                    return (Ifc4.Interfaces.IfcDerivedUnitEnum)
+                                        System.Enum.Parse(typeof(Ifc4.Interfaces.IfcDerivedUnitEnum), UserDefinedType.Value);
+                            }
 						//##
 						return Ifc4.Interfaces.IfcDerivedUnitEnum.USERDEFINED;
 					
@@ -188,6 +199,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of UnitType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcDerivedUnitEnum.ANGULARVELOCITYUNIT:
@@ -196,8 +209,9 @@ namespace Xbim.Ifc2x3.MeasureResource
 					
 					case Ifc4.Interfaces.IfcDerivedUnitEnum.AREADENSITYUNIT:
 						//## Handle setting of AREADENSITYUNIT member from IfcDerivedUnitEnum in property UnitType
-						//TODO: Handle setting of AREADENSITYUNIT member from IfcDerivedUnitEnum in property UnitType
-						throw new System.NotImplementedException();
+				        UserDefinedType = System.Enum.GetName(typeof (Ifc4.Interfaces.IfcDerivedUnitEnum), value);
+	                    UnitType = IfcDerivedUnitEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcDerivedUnitEnum.COMPOUNDPLANEANGLEUNIT:
@@ -366,8 +380,9 @@ namespace Xbim.Ifc2x3.MeasureResource
 					
 					case Ifc4.Interfaces.IfcDerivedUnitEnum.SOUNDPOWERLEVELUNIT:
 						//## Handle setting of SOUNDPOWERLEVELUNIT member from IfcDerivedUnitEnum in property UnitType
-						//TODO: Handle setting of SOUNDPOWERLEVELUNIT member from IfcDerivedUnitEnum in property UnitType
-						throw new System.NotImplementedException();
+						UserDefinedType = System.Enum.GetName(typeof (Ifc4.Interfaces.IfcDerivedUnitEnum), value);
+	                    UnitType = IfcDerivedUnitEnum.USERDEFINED;
+                        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcDerivedUnitEnum.SOUNDPOWERUNIT:
@@ -376,8 +391,9 @@ namespace Xbim.Ifc2x3.MeasureResource
 					
 					case Ifc4.Interfaces.IfcDerivedUnitEnum.SOUNDPRESSURELEVELUNIT:
 						//## Handle setting of SOUNDPRESSURELEVELUNIT member from IfcDerivedUnitEnum in property UnitType
-						//TODO: Handle setting of SOUNDPRESSURELEVELUNIT member from IfcDerivedUnitEnum in property UnitType
-						throw new System.NotImplementedException();
+						UserDefinedType = System.Enum.GetName(typeof (Ifc4.Interfaces.IfcDerivedUnitEnum), value);
+	                    UnitType = IfcDerivedUnitEnum.USERDEFINED;
+                        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcDerivedUnitEnum.SOUNDPRESSUREUNIT:
@@ -390,8 +406,9 @@ namespace Xbim.Ifc2x3.MeasureResource
 					
 					case Ifc4.Interfaces.IfcDerivedUnitEnum.TEMPERATURERATEOFCHANGEUNIT:
 						//## Handle setting of TEMPERATURERATEOFCHANGEUNIT member from IfcDerivedUnitEnum in property UnitType
-						//TODO: Handle setting of TEMPERATURERATEOFCHANGEUNIT member from IfcDerivedUnitEnum in property UnitType
-						throw new System.NotImplementedException();
+						UserDefinedType = System.Enum.GetName(typeof (Ifc4.Interfaces.IfcDerivedUnitEnum), value);
+	                    UnitType = IfcDerivedUnitEnum.USERDEFINED;
+                        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcDerivedUnitEnum.THERMALEXPANSIONCOEFFICIENTUNIT:

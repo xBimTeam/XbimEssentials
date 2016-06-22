@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.UtilityResource
@@ -34,17 +35,15 @@ namespace Xbim.Ifc2x3.UtilityResource
 				
 			}
 		}
-		IEnumerable<IIfcTableRow> IIfcTable.Rows 
+		IItemSet<IIfcTableRow> IIfcTable.Rows 
 		{ 
 			get
 			{
-				foreach (var member in Rows)
-				{
-					yield return member as IIfcTableRow;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcTableRow, IIfcTableRow>(Rows);
 			} 
 		}
-		IEnumerable<IIfcTableColumn> IIfcTable.Columns 
+		IItemSet<IIfcTableColumn> IIfcTable.Columns 
 		{ 
 			get
 			{

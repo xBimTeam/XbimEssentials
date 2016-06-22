@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcLabel @Name { get;  set; }
 		IfcText? @Description { get;  set; }
-		IEnumerable<IIfcLayeredItem> @AssignedItems { get; }
+		IItemSet<IIfcLayeredItem> @AssignedItems { get; }
 		IfcIdentifier? @Identifier { get;  set; }
 	
 	}
@@ -44,21 +44,21 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 	{
 		#region IIfcPresentationLayerAssignment explicit implementation
 		IfcLabel IIfcPresentationLayerAssignment.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IfcText? IIfcPresentationLayerAssignment.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
-		IEnumerable<IIfcLayeredItem> IIfcPresentationLayerAssignment.AssignedItems { 
-			get { return @AssignedItems; } 
+		IItemSet<IIfcLayeredItem> IIfcPresentationLayerAssignment.AssignedItems { 
+			get { return new Common.Collections.ProxyItemSet<IfcLayeredItem, IIfcLayeredItem>( @AssignedItems); } 
 		}	
 		IfcIdentifier? IIfcPresentationLayerAssignment.Identifier { 
-			get { return @Identifier; } 
  
+			get { return @Identifier; } 
 			set { Identifier = value;}
 		}	
 		 
@@ -131,7 +131,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		#region Explicit attribute fields
 		private IfcLabel _name;
 		private IfcText? _description;
-		private ItemSet<IfcLayeredItem> _assignedItems;
+		private readonly ItemSet<IfcLayeredItem> _assignedItems;
 		private IfcIdentifier? _identifier;
 		#endregion
 	
@@ -166,7 +166,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		}	
 		[IndexedProperty]
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 3)]
-		public ItemSet<IfcLayeredItem> @AssignedItems 
+		public IItemSet<IfcLayeredItem> @AssignedItems 
 		{ 
 			get 
 			{
@@ -301,7 +301,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

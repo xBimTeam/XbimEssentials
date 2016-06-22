@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralLoadConfiguration : IIfcStructuralLoad
 	{
-		IEnumerable<IIfcStructuralLoadOrResult> @Values { get; }
-		IEnumerable<IEnumerable<IfcLengthMeasure>> @Locations { get; }
+		IItemSet<IIfcStructuralLoadOrResult> @Values { get; }
+		IItemSet<IItemSet<IfcLengthMeasure>> @Locations { get; }
 	
 	}
 }
@@ -39,10 +39,10 @@ namespace Xbim.Ifc4.StructuralLoadResource
 	public  partial class @IfcStructuralLoadConfiguration : IfcStructuralLoad, IInstantiableEntity, IIfcStructuralLoadConfiguration, IContainsEntityReferences, IEquatable<@IfcStructuralLoadConfiguration>
 	{
 		#region IIfcStructuralLoadConfiguration explicit implementation
-		IEnumerable<IIfcStructuralLoadOrResult> IIfcStructuralLoadConfiguration.Values { 
-			get { return @Values; } 
+		IItemSet<IIfcStructuralLoadOrResult> IIfcStructuralLoadConfiguration.Values { 
+			get { return new Common.Collections.ProxyItemSet<IfcStructuralLoadOrResult, IIfcStructuralLoadOrResult>( @Values); } 
 		}	
-		IEnumerable<IEnumerable<IfcLengthMeasure>> IIfcStructuralLoadConfiguration.Locations { 
+		IItemSet<IItemSet<IfcLengthMeasure>> IIfcStructuralLoadConfiguration.Locations { 
 			get { return @Locations; } 
 		}	
 		 
@@ -50,19 +50,18 @@ namespace Xbim.Ifc4.StructuralLoadResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadConfiguration(IModel model) : base(model) 		{ 
-			Model = model; 
 			_values = new ItemSet<IfcStructuralLoadOrResult>( this, 0,  2);
-			_locations = new OptionalItemSet<ItemSet<IfcLengthMeasure>>( this, 0,  3);
+			_locations = new OptionalItemSet<IItemSet<IfcLengthMeasure>>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcStructuralLoadOrResult> _values;
-		private OptionalItemSet<ItemSet<IfcLengthMeasure>> _locations;
+		private readonly ItemSet<IfcStructuralLoadOrResult> _values;
+		private readonly OptionalItemSet<IItemSet<IfcLengthMeasure>> _locations;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 2)]
-		public ItemSet<IfcStructuralLoadOrResult> @Values 
+		public IItemSet<IfcStructuralLoadOrResult> @Values 
 		{ 
 			get 
 			{
@@ -72,7 +71,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.List, 1, 2, 3)]
-		public OptionalItemSet<ItemSet<IfcLengthMeasure>> @Locations 
+		public IOptionalItemSet<IItemSet<IfcLengthMeasure>> @Locations 
 		{ 
 			get 
 			{
@@ -99,8 +98,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 					_values.InternalAdd((IfcStructuralLoadOrResult)value.EntityVal);
 					return;
 				case 2: 
-					_locations
-						.InternalGetAt(nestedIndex[0])
+					((ItemSet<IfcLengthMeasure>)_locations
+						.InternalGetAt(nestedIndex[0]) )
 						.InternalAdd((IfcLengthMeasure)(value.RealVal));
 					return;
 				default:
@@ -143,7 +142,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

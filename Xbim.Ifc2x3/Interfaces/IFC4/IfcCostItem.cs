@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.SharedMgmtElements
@@ -31,25 +32,27 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				
 			}
 		}
-		IEnumerable<IIfcCostValue> IIfcCostItem.CostValues 
+		IItemSet<IIfcCostValue> IIfcCostItem.CostValues 
 		{ 
 			get
 			{
 				//## Handle return of CostValues for which no match was found
-				yield break;
-				//##
+			    return _costValues ?? (_costValues = new ItemSet<IIfcCostValue>(this, 0, byte.MaxValue));
+			    //##
 			} 
 		}
-		IEnumerable<IIfcPhysicalQuantity> IIfcCostItem.CostQuantities 
+		IItemSet<IIfcPhysicalQuantity> IIfcCostItem.CostQuantities 
 		{ 
 			get
 			{
 				//## Handle return of CostQuantities for which no match was found
-				yield break;
+                return _costQuantities ?? (_costQuantities = new ItemSet<IIfcPhysicalQuantity>(this, 0, byte.MaxValue));
 				//##
 			} 
 		}
 	//## Custom code
-	//##
+	    private IItemSet<IIfcCostValue> _costValues;
+	    private IItemSet<IIfcPhysicalQuantity> _costQuantities;
+	    //##
 	}
 }

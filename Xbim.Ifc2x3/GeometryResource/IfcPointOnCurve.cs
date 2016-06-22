@@ -40,14 +40,14 @@ namespace Xbim.Ifc2x3.GeometryResource
 	{
 		#region IIfcPointOnCurve explicit implementation
 		IIfcCurve IIfcPointOnCurve.BasisCurve { 
+ 
+ 
 			get { return @BasisCurve; } 
- 
- 
 			set { BasisCurve = value as IfcCurve;}
 		}	
 		IfcParameterValue IIfcPointOnCurve.PointParameter { 
-			get { return @PointParameter; } 
  
+			get { return @PointParameter; } 
 			set { PointParameter = value;}
 		}	
 		 
@@ -55,7 +55,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPointOnCurve(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -162,7 +161,7 @@ namespace Xbim.Ifc2x3.GeometryResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

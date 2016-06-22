@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ActorResource
@@ -20,6 +21,8 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of Purpose
+				//##
 				switch (Purpose)
 				{
 					case IfcAddressTypeEnum.OFFICE:
@@ -46,6 +49,8 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of Purpose
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcAddressTypeEnum.OFFICE:

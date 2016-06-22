@@ -41,13 +41,13 @@ namespace Xbim.Ifc4.DateTimeResource
 	{
 		#region IIfcTimePeriod explicit implementation
 		IfcTime IIfcTimePeriod.StartTime { 
-			get { return @StartTime; } 
  
+			get { return @StartTime; } 
 			set { StartTime = value;}
 		}	
 		IfcTime IIfcTimePeriod.EndTime { 
-			get { return @EndTime; } 
  
+			get { return @EndTime; } 
 			set { EndTime = value;}
 		}	
 		 
@@ -256,7 +256,7 @@ namespace Xbim.Ifc4.DateTimeResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

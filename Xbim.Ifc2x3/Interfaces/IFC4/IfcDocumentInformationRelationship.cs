@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ExternalReferenceResource
@@ -28,14 +29,12 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
-		IEnumerable<IIfcDocumentInformation> IIfcDocumentInformationRelationship.RelatedDocuments 
+		IItemSet<IIfcDocumentInformation> IIfcDocumentInformationRelationship.RelatedDocuments 
 		{ 
 			get
 			{
-				foreach (var member in RelatedDocuments)
-				{
-					yield return member as IIfcDocumentInformation;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcDocumentInformation, IIfcDocumentInformation>(RelatedDocuments);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcDocumentInformationRelationship.RelationshipType 

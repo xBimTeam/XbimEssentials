@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelDefinesByTemplate : IIfcRelDefines
 	{
-		IEnumerable<IIfcPropertySetDefinition> @RelatedPropertySets { get; }
+		IItemSet<IIfcPropertySetDefinition> @RelatedPropertySets { get; }
 		IIfcPropertySetTemplate @RelatingTemplate { get;  set; }
 	
 	}
@@ -38,13 +38,13 @@ namespace Xbim.Ifc4.Kernel
 	public  partial class @IfcRelDefinesByTemplate : IfcRelDefines, IInstantiableEntity, IIfcRelDefinesByTemplate, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelDefinesByTemplate>
 	{
 		#region IIfcRelDefinesByTemplate explicit implementation
-		IEnumerable<IIfcPropertySetDefinition> IIfcRelDefinesByTemplate.RelatedPropertySets { 
-			get { return @RelatedPropertySets; } 
+		IItemSet<IIfcPropertySetDefinition> IIfcRelDefinesByTemplate.RelatedPropertySets { 
+			get { return new Common.Collections.ProxyItemSet<IfcPropertySetDefinition, IIfcPropertySetDefinition>( @RelatedPropertySets); } 
 		}	
 		IIfcPropertySetTemplate IIfcRelDefinesByTemplate.RelatingTemplate { 
+ 
+ 
 			get { return @RelatingTemplate; } 
- 
- 
 			set { RelatingTemplate = value as IfcPropertySetTemplate;}
 		}	
 		 
@@ -52,19 +52,18 @@ namespace Xbim.Ifc4.Kernel
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelDefinesByTemplate(IModel model) : base(model) 		{ 
-			Model = model; 
 			_relatedPropertySets = new ItemSet<IfcPropertySetDefinition>( this, 0,  5);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcPropertySetDefinition> _relatedPropertySets;
+		private readonly ItemSet<IfcPropertySetDefinition> _relatedPropertySets;
 		private IfcPropertySetTemplate _relatingTemplate;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 5)]
-		public ItemSet<IfcPropertySetDefinition> @RelatedPropertySets 
+		public IItemSet<IfcPropertySetDefinition> @RelatedPropertySets 
 		{ 
 			get 
 			{
@@ -151,7 +150,7 @@ namespace Xbim.Ifc4.Kernel
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

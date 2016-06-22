@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcConstructionResource : IIfcResource
 	{
 		IIfcResourceTime @Usage { get;  set; }
-		IEnumerable<IIfcAppliedValue> @BaseCosts { get; }
+		IItemSet<IIfcAppliedValue> @BaseCosts { get; }
 		IIfcPhysicalQuantity @BaseQuantity { get;  set; }
 	
 	}
@@ -44,18 +44,18 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 	{
 		#region IIfcConstructionResource explicit implementation
 		IIfcResourceTime IIfcConstructionResource.Usage { 
+ 
+ 
 			get { return @Usage; } 
- 
- 
 			set { Usage = value as IfcResourceTime;}
 		}	
-		IEnumerable<IIfcAppliedValue> IIfcConstructionResource.BaseCosts { 
-			get { return @BaseCosts; } 
+		IItemSet<IIfcAppliedValue> IIfcConstructionResource.BaseCosts { 
+			get { return new Common.Collections.ProxyItemSet<IfcAppliedValue, IIfcAppliedValue>( @BaseCosts); } 
 		}	
 		IIfcPhysicalQuantity IIfcConstructionResource.BaseQuantity { 
+ 
+ 
 			get { return @BaseQuantity; } 
- 
- 
 			set { BaseQuantity = value as IfcPhysicalQuantity;}
 		}	
 		 
@@ -63,13 +63,12 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConstructionResource(IModel model) : base(model) 		{ 
-			Model = model; 
 			_baseCosts = new OptionalItemSet<IfcAppliedValue>( this, 0,  9);
 		}
 
 		#region Explicit attribute fields
 		private IfcResourceTime _usage;
-		private OptionalItemSet<IfcAppliedValue> _baseCosts;
+		private readonly OptionalItemSet<IfcAppliedValue> _baseCosts;
 		private IfcPhysicalQuantity _baseQuantity;
 		#endregion
 	
@@ -89,7 +88,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 21)]
-		public OptionalItemSet<IfcAppliedValue> @BaseCosts 
+		public IOptionalItemSet<IfcAppliedValue> @BaseCosts 
 		{ 
 			get 
 			{
@@ -181,7 +180,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

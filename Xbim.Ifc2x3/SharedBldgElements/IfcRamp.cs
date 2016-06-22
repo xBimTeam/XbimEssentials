@@ -39,8 +39,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 	{
 		#region IIfcRamp explicit implementation
 		IfcRampTypeEnum IIfcRamp.ShapeType { 
-			get { return @ShapeType; } 
  
+			get { return @ShapeType; } 
 			set { ShapeType = value;}
 		}	
 		 
@@ -48,7 +48,6 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRamp(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -134,7 +133,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

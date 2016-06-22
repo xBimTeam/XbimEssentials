@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.SharedFacilitiesElements
@@ -20,6 +21,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (InventoryType)
 				{
 					case IfcInventoryTypeEnum.ASSETINVENTORY:
@@ -46,6 +49,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcInventoryTypeEnum.ASSETINVENTORY:
@@ -119,14 +124,12 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				
 			}
 		}
-		IEnumerable<IIfcPerson> IIfcInventory.ResponsiblePersons 
+		IItemSet<IIfcPerson> IIfcInventory.ResponsiblePersons 
 		{ 
 			get
 			{
-				foreach (var member in ResponsiblePersons)
-				{
-					yield return member as IIfcPerson;
-				}
+			
+				return new Common.Collections.ProxyItemSet<ActorResource.IfcPerson, IIfcPerson>(ResponsiblePersons);
 			} 
 		}
 		Ifc4.DateTimeResource.IfcDate? IIfcInventory.LastUpdateDate 

@@ -45,29 +45,29 @@ namespace Xbim.CobieExpress
 	{
 		#region ICobieSite explicit implementation
 		string ICobieSite.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		string ICobieSite.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		ICobieExternalObject ICobieSite.ExternalObject { 
+ 
+ 
 			get { return @ExternalObject; } 
- 
- 
 			set { ExternalObject = value as CobieExternalObject;}
 		}	
 		string ICobieSite.ExternalId { 
-			get { return @ExternalId; } 
  
+			get { return @ExternalId; } 
 			set { ExternalId = value;}
 		}	
 		string ICobieSite.AltExternalId { 
-			get { return @AltExternalId; } 
  
+			get { return @AltExternalId; } 
 			set { AltExternalId = value;}
 		}	
 		 
@@ -342,7 +342,7 @@ namespace Xbim.CobieExpress
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

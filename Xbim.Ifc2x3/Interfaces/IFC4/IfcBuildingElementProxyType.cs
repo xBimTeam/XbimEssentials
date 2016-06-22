@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProductExtension
@@ -20,10 +21,18 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcBuildingElementProxyTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType.HasValue)
+                        {
+                            Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum result;
+                            if (System.Enum.TryParse(ElementType.Value, false, out result))
+                                return result;
+                        }
 						//##
 						return Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.USERDEFINED;
 					
@@ -37,30 +46,36 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.COMPLEX:
 						//## Handle setting of COMPLEX member from IfcBuildingElementProxyTypeEnum in property PredefinedType
-						//TODO: Handle setting of COMPLEX member from IfcBuildingElementProxyTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcBuildingElementProxyTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.ELEMENT:
 						//## Handle setting of ELEMENT member from IfcBuildingElementProxyTypeEnum in property PredefinedType
-						//TODO: Handle setting of ELEMENT member from IfcBuildingElementProxyTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcBuildingElementProxyTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.PARTIAL:
 						//## Handle setting of PARTIAL member from IfcBuildingElementProxyTypeEnum in property PredefinedType
-						//TODO: Handle setting of PARTIAL member from IfcBuildingElementProxyTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcBuildingElementProxyTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.PROVISIONFORVOID:
 						//## Handle setting of PROVISIONFORVOID member from IfcBuildingElementProxyTypeEnum in property PredefinedType
-						//TODO: Handle setting of PROVISIONFORVOID member from IfcBuildingElementProxyTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcBuildingElementProxyTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.USERDEFINED:

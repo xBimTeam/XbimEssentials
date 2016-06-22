@@ -48,53 +48,53 @@ namespace Xbim.Ifc2x3.ProfileResource
 	{
 		#region IIfcTShapeProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcTShapeProfileDef.Depth { 
-			get { return @Depth; } 
  
+			get { return @Depth; } 
 			set { Depth = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcTShapeProfileDef.FlangeWidth { 
-			get { return @FlangeWidth; } 
  
+			get { return @FlangeWidth; } 
 			set { FlangeWidth = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcTShapeProfileDef.WebThickness { 
-			get { return @WebThickness; } 
  
+			get { return @WebThickness; } 
 			set { WebThickness = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcTShapeProfileDef.FlangeThickness { 
-			get { return @FlangeThickness; } 
  
+			get { return @FlangeThickness; } 
 			set { FlangeThickness = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcTShapeProfileDef.FilletRadius { 
-			get { return @FilletRadius; } 
  
+			get { return @FilletRadius; } 
 			set { FilletRadius = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcTShapeProfileDef.FlangeEdgeRadius { 
-			get { return @FlangeEdgeRadius; } 
  
+			get { return @FlangeEdgeRadius; } 
 			set { FlangeEdgeRadius = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcTShapeProfileDef.WebEdgeRadius { 
-			get { return @WebEdgeRadius; } 
  
+			get { return @WebEdgeRadius; } 
 			set { WebEdgeRadius = value;}
 		}	
 		IfcPlaneAngleMeasure? IIfcTShapeProfileDef.WebSlope { 
-			get { return @WebSlope; } 
  
+			get { return @WebSlope; } 
 			set { WebSlope = value;}
 		}	
 		IfcPlaneAngleMeasure? IIfcTShapeProfileDef.FlangeSlope { 
-			get { return @FlangeSlope; } 
  
+			get { return @FlangeSlope; } 
 			set { FlangeSlope = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcTShapeProfileDef.CentreOfGravityInY { 
-			get { return @CentreOfGravityInY; } 
  
+			get { return @CentreOfGravityInY; } 
 			set { CentreOfGravityInY = value;}
 		}	
 		 
@@ -102,7 +102,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTShapeProfileDef(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -345,7 +344,7 @@ namespace Xbim.Ifc2x3.ProfileResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

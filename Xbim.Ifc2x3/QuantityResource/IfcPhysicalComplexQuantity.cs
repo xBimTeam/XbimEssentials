@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPhysicalComplexQuantity : IIfcPhysicalQuantity
 	{
-		IEnumerable<IIfcPhysicalQuantity> @HasQuantities { get; }
+		IItemSet<IIfcPhysicalQuantity> @HasQuantities { get; }
 		IfcLabel @Discrimination { get;  set; }
 		IfcLabel? @Quality { get;  set; }
 		IfcLabel? @Usage { get;  set; }
@@ -41,22 +41,22 @@ namespace Xbim.Ifc2x3.QuantityResource
 	public  partial class @IfcPhysicalComplexQuantity : IfcPhysicalQuantity, IInstantiableEntity, IIfcPhysicalComplexQuantity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPhysicalComplexQuantity>
 	{
 		#region IIfcPhysicalComplexQuantity explicit implementation
-		IEnumerable<IIfcPhysicalQuantity> IIfcPhysicalComplexQuantity.HasQuantities { 
-			get { return @HasQuantities; } 
+		IItemSet<IIfcPhysicalQuantity> IIfcPhysicalComplexQuantity.HasQuantities { 
+			get { return new Common.Collections.ProxyItemSet<IfcPhysicalQuantity, IIfcPhysicalQuantity>( @HasQuantities); } 
 		}	
 		IfcLabel IIfcPhysicalComplexQuantity.Discrimination { 
-			get { return @Discrimination; } 
  
+			get { return @Discrimination; } 
 			set { Discrimination = value;}
 		}	
 		IfcLabel? IIfcPhysicalComplexQuantity.Quality { 
-			get { return @Quality; } 
  
+			get { return @Quality; } 
 			set { Quality = value;}
 		}	
 		IfcLabel? IIfcPhysicalComplexQuantity.Usage { 
-			get { return @Usage; } 
  
+			get { return @Usage; } 
 			set { Usage = value;}
 		}	
 		 
@@ -64,12 +64,11 @@ namespace Xbim.Ifc2x3.QuantityResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPhysicalComplexQuantity(IModel model) : base(model) 		{ 
-			Model = model; 
 			_hasQuantities = new ItemSet<IfcPhysicalQuantity>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcPhysicalQuantity> _hasQuantities;
+		private readonly ItemSet<IfcPhysicalQuantity> _hasQuantities;
 		private IfcLabel _discrimination;
 		private IfcLabel? _quality;
 		private IfcLabel? _usage;
@@ -78,7 +77,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
-		public ItemSet<IfcPhysicalQuantity> @HasQuantities 
+		public IItemSet<IfcPhysicalQuantity> @HasQuantities 
 		{ 
 			get 
 			{
@@ -196,7 +195,7 @@ namespace Xbim.Ifc2x3.QuantityResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

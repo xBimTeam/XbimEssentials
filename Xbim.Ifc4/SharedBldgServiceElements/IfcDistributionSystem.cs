@@ -41,13 +41,13 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 	{
 		#region IIfcDistributionSystem explicit implementation
 		IfcLabel? IIfcDistributionSystem.LongName { 
-			get { return @LongName; } 
  
+			get { return @LongName; } 
 			set { LongName = value;}
 		}	
 		IfcDistributionSystemEnum? IIfcDistributionSystem.PredefinedType { 
-			get { return @PredefinedType; } 
  
+			get { return @PredefinedType; } 
 			set { PredefinedType = value;}
 		}	
 		 
@@ -55,7 +55,6 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDistributionSystem(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -156,7 +155,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

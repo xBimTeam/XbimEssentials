@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcClassificationItemRelationship : IPersistEntity
 	{
 		IIfcClassificationItem @RelatingItem { get;  set; }
-		IEnumerable<IIfcClassificationItem> @RelatedItems { get; }
+		IItemSet<IIfcClassificationItem> @RelatedItems { get; }
 	
 	}
 }
@@ -41,13 +41,13 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 	{
 		#region IIfcClassificationItemRelationship explicit implementation
 		IIfcClassificationItem IIfcClassificationItemRelationship.RelatingItem { 
+ 
+ 
 			get { return @RelatingItem; } 
- 
- 
 			set { RelatingItem = value as IfcClassificationItem;}
 		}	
-		IEnumerable<IIfcClassificationItem> IIfcClassificationItemRelationship.RelatedItems { 
-			get { return @RelatedItems; } 
+		IItemSet<IIfcClassificationItem> IIfcClassificationItemRelationship.RelatedItems { 
+			get { return new Common.Collections.ProxyItemSet<IfcClassificationItem, IIfcClassificationItem>( @RelatedItems); } 
 		}	
 		 
 		#endregion
@@ -118,7 +118,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 
 		#region Explicit attribute fields
 		private IfcClassificationItem _relatingItem;
-		private ItemSet<IfcClassificationItem> _relatedItems;
+		private readonly ItemSet<IfcClassificationItem> _relatedItems;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -139,7 +139,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		}	
 		[IndexedProperty]
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 2)]
-		public ItemSet<IfcClassificationItem> @RelatedItems 
+		public IItemSet<IfcClassificationItem> @RelatedItems 
 		{ 
 			get 
 			{
@@ -254,7 +254,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

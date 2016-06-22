@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcCurveBoundedSurface : IIfcBoundedSurface
 	{
 		IIfcSurface @BasisSurface { get;  set; }
-		IEnumerable<IIfcBoundaryCurve> @Boundaries { get; }
+		IItemSet<IIfcBoundaryCurve> @Boundaries { get; }
 		IfcBoolean @ImplicitOuter { get;  set; }
 	
 	}
@@ -41,17 +41,17 @@ namespace Xbim.Ifc4.GeometryResource
 	{
 		#region IIfcCurveBoundedSurface explicit implementation
 		IIfcSurface IIfcCurveBoundedSurface.BasisSurface { 
+ 
+ 
 			get { return @BasisSurface; } 
- 
- 
 			set { BasisSurface = value as IfcSurface;}
 		}	
-		IEnumerable<IIfcBoundaryCurve> IIfcCurveBoundedSurface.Boundaries { 
-			get { return @Boundaries; } 
+		IItemSet<IIfcBoundaryCurve> IIfcCurveBoundedSurface.Boundaries { 
+			get { return new Common.Collections.ProxyItemSet<IfcBoundaryCurve, IIfcBoundaryCurve>( @Boundaries); } 
 		}	
 		IfcBoolean IIfcCurveBoundedSurface.ImplicitOuter { 
-			get { return @ImplicitOuter; } 
  
+			get { return @ImplicitOuter; } 
 			set { ImplicitOuter = value;}
 		}	
 		 
@@ -59,13 +59,12 @@ namespace Xbim.Ifc4.GeometryResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCurveBoundedSurface(IModel model) : base(model) 		{ 
-			Model = model; 
 			_boundaries = new ItemSet<IfcBoundaryCurve>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
 		private IfcSurface _basisSurface;
-		private ItemSet<IfcBoundaryCurve> _boundaries;
+		private readonly ItemSet<IfcBoundaryCurve> _boundaries;
 		private IfcBoolean _implicitOuter;
 		#endregion
 	
@@ -85,7 +84,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
-		public ItemSet<IfcBoundaryCurve> @Boundaries 
+		public IItemSet<IfcBoundaryCurve> @Boundaries 
 		{ 
 			get 
 			{
@@ -168,7 +167,7 @@ namespace Xbim.Ifc4.GeometryResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -44,28 +44,28 @@ namespace Xbim.Ifc2x3.ProcessExtension
 	{
 		#region IIfcTask explicit implementation
 		IfcIdentifier IIfcTask.TaskId { 
-			get { return @TaskId; } 
  
+			get { return @TaskId; } 
 			set { TaskId = value;}
 		}	
 		IfcLabel? IIfcTask.Status { 
-			get { return @Status; } 
  
+			get { return @Status; } 
 			set { Status = value;}
 		}	
 		IfcLabel? IIfcTask.WorkMethod { 
-			get { return @WorkMethod; } 
  
+			get { return @WorkMethod; } 
 			set { WorkMethod = value;}
 		}	
 		bool IIfcTask.IsMilestone { 
-			get { return @IsMilestone; } 
  
+			get { return @IsMilestone; } 
 			set { IsMilestone = value;}
 		}	
 		long? IIfcTask.Priority { 
-			get { return @Priority; } 
  
+			get { return @Priority; } 
 			set { Priority = value;}
 		}	
 		 
@@ -73,7 +73,6 @@ namespace Xbim.Ifc2x3.ProcessExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTask(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -228,7 +227,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

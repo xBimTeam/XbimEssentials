@@ -39,8 +39,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 	{
 		#region IIfcStructuralLoadSingleDisplacementDistortion explicit implementation
 		IfcCurvatureMeasure? IIfcStructuralLoadSingleDisplacementDistortion.Distortion { 
-			get { return @Distortion; } 
  
+			get { return @Distortion; } 
 			set { Distortion = value;}
 		}	
 		 
@@ -48,7 +48,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadSingleDisplacementDistortion(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -133,7 +132,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

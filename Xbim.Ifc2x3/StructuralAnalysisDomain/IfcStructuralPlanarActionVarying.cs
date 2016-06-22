@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcStructuralPlanarActionVarying : IIfcStructuralPlanarAction
 	{
 		IIfcShapeAspect @VaryingAppliedLoadLocation { get;  set; }
-		IEnumerable<IIfcStructuralLoad> @SubsequentAppliedLoads { get; }
+		IItemSet<IIfcStructuralLoad> @SubsequentAppliedLoads { get; }
 		List<IfcStructuralLoad> @VaryingAppliedLoads  { get ; }
 	
 	}
@@ -42,26 +42,25 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 	{
 		#region IIfcStructuralPlanarActionVarying explicit implementation
 		IIfcShapeAspect IIfcStructuralPlanarActionVarying.VaryingAppliedLoadLocation { 
+ 
+ 
 			get { return @VaryingAppliedLoadLocation; } 
- 
- 
 			set { VaryingAppliedLoadLocation = value as IfcShapeAspect;}
 		}	
-		IEnumerable<IIfcStructuralLoad> IIfcStructuralPlanarActionVarying.SubsequentAppliedLoads { 
-			get { return @SubsequentAppliedLoads; } 
+		IItemSet<IIfcStructuralLoad> IIfcStructuralPlanarActionVarying.SubsequentAppliedLoads { 
+			get { return new Common.Collections.ProxyItemSet<IfcStructuralLoad, IIfcStructuralLoad>( @SubsequentAppliedLoads); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralPlanarActionVarying(IModel model) : base(model) 		{ 
-			Model = model; 
 			_subsequentAppliedLoads = new ItemSet<IfcStructuralLoad>( this, 0,  14);
 		}
 
 		#region Explicit attribute fields
 		private IfcShapeAspect _varyingAppliedLoadLocation;
-		private ItemSet<IfcStructuralLoad> _subsequentAppliedLoads;
+		private readonly ItemSet<IfcStructuralLoad> _subsequentAppliedLoads;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -80,7 +79,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 2, -1, 21)]
-		public ItemSet<IfcStructuralLoad> @SubsequentAppliedLoads 
+		public IItemSet<IfcStructuralLoad> @SubsequentAppliedLoads 
 		{ 
 			get 
 			{
@@ -175,7 +174,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

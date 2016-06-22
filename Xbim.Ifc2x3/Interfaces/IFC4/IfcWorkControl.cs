@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProcessExtension
@@ -47,14 +48,12 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				
 			}
 		}
-		IEnumerable<IIfcPerson> IIfcWorkControl.Creators 
+		IItemSet<IIfcPerson> IIfcWorkControl.Creators 
 		{ 
 			get
 			{
-				foreach (var member in Creators)
-				{
-					yield return member as IIfcPerson;
-				}
+			
+				return new Common.Collections.ProxyItemSet<ActorResource.IfcPerson, IIfcPerson>(Creators);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcWorkControl.Purpose 

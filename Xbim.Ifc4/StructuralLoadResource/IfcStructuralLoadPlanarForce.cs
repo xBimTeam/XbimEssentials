@@ -41,18 +41,18 @@ namespace Xbim.Ifc4.StructuralLoadResource
 	{
 		#region IIfcStructuralLoadPlanarForce explicit implementation
 		IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceX { 
-			get { return @PlanarForceX; } 
  
+			get { return @PlanarForceX; } 
 			set { PlanarForceX = value;}
 		}	
 		IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceY { 
-			get { return @PlanarForceY; } 
  
+			get { return @PlanarForceY; } 
 			set { PlanarForceY = value;}
 		}	
 		IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceZ { 
-			get { return @PlanarForceZ; } 
  
+			get { return @PlanarForceZ; } 
 			set { PlanarForceZ = value;}
 		}	
 		 
@@ -60,7 +60,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadPlanarForce(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -175,7 +174,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

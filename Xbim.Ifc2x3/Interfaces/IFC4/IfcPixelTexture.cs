@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
@@ -52,12 +53,14 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcBinary> IIfcPixelTexture.Pixel 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcBinary> IIfcPixelTexture.Pixel 
 		{ 
 			get
 			{
 				//## Handle return of Pixel for which no match was found
-                return Pixel.Select(p => (new Ifc4.MeasureResource.IfcBinary(p)));
+                return new Common.Collections.ProxyValueSet<long, Ifc4.MeasureResource.IfcBinary>(Pixel,
+                    s => new Ifc4.MeasureResource.IfcBinary(s),
+                    t => t);
 			    //##
 			} 
 		}

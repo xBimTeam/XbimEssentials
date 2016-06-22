@@ -41,13 +41,13 @@ namespace Xbim.Ifc2x3.GeometryResource
 	{
 		#region IIfcCartesianTransformationOperator3DnonUniform explicit implementation
 		double? IIfcCartesianTransformationOperator3DnonUniform.Scale2 { 
-			get { return @Scale2; } 
  
+			get { return @Scale2; } 
 			set { Scale2 = value;}
 		}	
 		double? IIfcCartesianTransformationOperator3DnonUniform.Scale3 { 
-			get { return @Scale3; } 
  
+			get { return @Scale3; } 
 			set { Scale3 = value;}
 		}	
 		 
@@ -55,7 +55,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCartesianTransformationOperator3DnonUniform(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -180,7 +179,7 @@ namespace Xbim.Ifc2x3.GeometryResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

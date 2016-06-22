@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ElectricalDomain
@@ -20,10 +21,18 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcJunctionBoxTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType.HasValue)
+                        {
+                            Ifc4.Interfaces.IfcJunctionBoxTypeEnum result;
+                            if (System.Enum.TryParse(ElementType.Value, false, out result))
+                                return result;
+                        }
 						//##
 						return Ifc4.Interfaces.IfcJunctionBoxTypeEnum.USERDEFINED;
 					
@@ -37,18 +46,22 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcJunctionBoxTypeEnum.DATA:
 						//## Handle setting of DATA member from IfcJunctionBoxTypeEnum in property PredefinedType
-						//TODO: Handle setting of DATA member from IfcJunctionBoxTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcJunctionBoxTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcJunctionBoxTypeEnum.POWER:
 						//## Handle setting of POWER member from IfcJunctionBoxTypeEnum in property PredefinedType
-						//TODO: Handle setting of POWER member from IfcJunctionBoxTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcJunctionBoxTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcJunctionBoxTypeEnum.USERDEFINED:

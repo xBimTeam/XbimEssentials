@@ -43,20 +43,20 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 	{
 		#region IIfcSectionProperties explicit implementation
 		IfcSectionTypeEnum IIfcSectionProperties.SectionType { 
-			get { return @SectionType; } 
  
+			get { return @SectionType; } 
 			set { SectionType = value;}
 		}	
 		IIfcProfileDef IIfcSectionProperties.StartProfile { 
+ 
+ 
 			get { return @StartProfile; } 
- 
- 
 			set { StartProfile = value as IfcProfileDef;}
 		}	
 		IIfcProfileDef IIfcSectionProperties.EndProfile { 
+ 
+ 
 			get { return @EndProfile; } 
- 
- 
 			set { EndProfile = value as IfcProfileDef;}
 		}	
 		 
@@ -283,7 +283,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

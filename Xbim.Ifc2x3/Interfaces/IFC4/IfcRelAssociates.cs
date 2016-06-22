@@ -10,18 +10,19 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelAssociates : IIfcRelAssociates
 	{
-		IEnumerable<IIfcDefinitionSelect> IIfcRelAssociates.RelatedObjects 
+		IItemSet<IIfcDefinitionSelect> IIfcRelAssociates.RelatedObjects 
 		{ 
 			get
 			{
 				//## Handle return of RelatedObjects for which no match was found
-                return RelatedObjects.OfType<Xbim.Ifc4.Kernel.IfcDefinitionSelect>();              
+                return new Common.Collections.VolatileProxyItemSet<IfcRoot, IIfcDefinitionSelect>(RelatedObjects);
 				//##
 			} 
 		}

@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPolyLoop : IIfcLoop
 	{
-		IEnumerable<IIfcCartesianPoint> @Polygon { get; }
+		IItemSet<IIfcCartesianPoint> @Polygon { get; }
 	
 	}
 }
@@ -38,25 +38,24 @@ namespace Xbim.Ifc2x3.TopologyResource
 	public  partial class @IfcPolyLoop : IfcLoop, IInstantiableEntity, IIfcPolyLoop, IContainsEntityReferences, IEquatable<@IfcPolyLoop>
 	{
 		#region IIfcPolyLoop explicit implementation
-		IEnumerable<IIfcCartesianPoint> IIfcPolyLoop.Polygon { 
-			get { return @Polygon; } 
+		IItemSet<IIfcCartesianPoint> IIfcPolyLoop.Polygon { 
+			get { return new Common.Collections.ProxyItemSet<IfcCartesianPoint, IIfcCartesianPoint>( @Polygon); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPolyLoop(IModel model) : base(model) 		{ 
-			Model = model; 
 			_polygon = new ItemSet<IfcCartesianPoint>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcCartesianPoint> _polygon;
+		private readonly ItemSet<IfcCartesianPoint> _polygon;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 3, -1, 3)]
-		public ItemSet<IfcCartesianPoint> @Polygon 
+		public IItemSet<IfcCartesianPoint> @Polygon 
 		{ 
 			get 
 			{
@@ -119,7 +118,7 @@ namespace Xbim.Ifc2x3.TopologyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

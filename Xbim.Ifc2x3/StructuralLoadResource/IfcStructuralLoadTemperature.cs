@@ -41,18 +41,18 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 	{
 		#region IIfcStructuralLoadTemperature explicit implementation
 		IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaT_Constant { 
-			get { return @DeltaT_Constant; } 
  
+			get { return @DeltaT_Constant; } 
 			set { DeltaT_Constant = value;}
 		}	
 		IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaT_Y { 
-			get { return @DeltaT_Y; } 
  
+			get { return @DeltaT_Y; } 
 			set { DeltaT_Y = value;}
 		}	
 		IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaT_Z { 
-			get { return @DeltaT_Z; } 
  
+			get { return @DeltaT_Z; } 
 			set { DeltaT_Z = value;}
 		}	
 		 
@@ -60,7 +60,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadTemperature(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -175,7 +174,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

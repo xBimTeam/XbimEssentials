@@ -10,20 +10,21 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcCartesianPoint : IIfcCartesianPoint
 	{
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLengthMeasure> IIfcCartesianPoint.Coordinates 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcLengthMeasure> IIfcCartesianPoint.Coordinates 
 		{ 
 			get
 			{
-				foreach (var member in Coordinates)
-				{
-					yield return new Ifc4.MeasureResource.IfcLengthMeasure((double)member);
-				}
+			
+				return new Common.Collections.ProxyValueSet<MeasureResource.IfcLengthMeasure, Ifc4.MeasureResource.IfcLengthMeasure>(Coordinates, 
+					s => new Ifc4.MeasureResource.IfcLengthMeasure(s), 
+					t => new MeasureResource.IfcLengthMeasure(t));
 			} 
 		}
 	//## Custom code

@@ -45,18 +45,18 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 	{
 		#region IIfcExternalReference explicit implementation
 		IfcLabel? IIfcExternalReference.Location { 
-			get { return @Location; } 
  
+			get { return @Location; } 
 			set { Location = value;}
 		}	
 		IfcIdentifier? IIfcExternalReference.ItemReference { 
-			get { return @ItemReference; } 
  
+			get { return @ItemReference; } 
 			set { ItemReference = value;}
 		}	
 		IfcLabel? IIfcExternalReference.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		 
@@ -283,7 +283,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ExternalReferenceResource
@@ -113,7 +114,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcIdentifier> IIfcClassification.ReferenceTokens 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcIdentifier> IIfcClassification.ReferenceTokens 
 		{ 
 			get
 			{

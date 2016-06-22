@@ -44,28 +44,28 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 	{
 		#region IIfcReinforcingBar explicit implementation
 		IfcPositiveLengthMeasure IIfcReinforcingBar.NominalDiameter { 
-			get { return @NominalDiameter; } 
  
+			get { return @NominalDiameter; } 
 			set { NominalDiameter = value;}
 		}	
 		IfcAreaMeasure IIfcReinforcingBar.CrossSectionArea { 
-			get { return @CrossSectionArea; } 
  
+			get { return @CrossSectionArea; } 
 			set { CrossSectionArea = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcReinforcingBar.BarLength { 
-			get { return @BarLength; } 
  
+			get { return @BarLength; } 
 			set { BarLength = value;}
 		}	
 		IfcReinforcingBarRoleEnum IIfcReinforcingBar.BarRole { 
-			get { return @BarRole; } 
  
+			get { return @BarRole; } 
 			set { BarRole = value;}
 		}	
 		IfcReinforcingBarSurfaceEnum? IIfcReinforcingBar.BarSurface { 
-			get { return @BarSurface; } 
  
+			get { return @BarSurface; } 
 			set { BarSurface = value;}
 		}	
 		 
@@ -73,7 +73,6 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcReinforcingBar(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -232,7 +231,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

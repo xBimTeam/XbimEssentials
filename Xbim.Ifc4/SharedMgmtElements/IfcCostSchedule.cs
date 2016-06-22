@@ -44,23 +44,23 @@ namespace Xbim.Ifc4.SharedMgmtElements
 	{
 		#region IIfcCostSchedule explicit implementation
 		IfcCostScheduleTypeEnum? IIfcCostSchedule.PredefinedType { 
-			get { return @PredefinedType; } 
  
+			get { return @PredefinedType; } 
 			set { PredefinedType = value;}
 		}	
 		IfcLabel? IIfcCostSchedule.Status { 
-			get { return @Status; } 
  
+			get { return @Status; } 
 			set { Status = value;}
 		}	
 		IfcDateTime? IIfcCostSchedule.SubmittedOn { 
-			get { return @SubmittedOn; } 
  
+			get { return @SubmittedOn; } 
 			set { SubmittedOn = value;}
 		}	
 		IfcDateTime? IIfcCostSchedule.UpdateDate { 
-			get { return @UpdateDate; } 
  
+			get { return @UpdateDate; } 
 			set { UpdateDate = value;}
 		}	
 		 
@@ -68,7 +68,6 @@ namespace Xbim.Ifc4.SharedMgmtElements
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCostSchedule(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -206,7 +205,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

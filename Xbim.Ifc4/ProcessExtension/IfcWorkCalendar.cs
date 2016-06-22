@@ -27,8 +27,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcWorkCalendar : IIfcControl
 	{
-		IEnumerable<IIfcWorkTime> @WorkingTimes { get; }
-		IEnumerable<IIfcWorkTime> @ExceptionTimes { get; }
+		IItemSet<IIfcWorkTime> @WorkingTimes { get; }
+		IItemSet<IIfcWorkTime> @ExceptionTimes { get; }
 		IfcWorkCalendarTypeEnum? @PredefinedType { get;  set; }
 	
 	}
@@ -41,15 +41,15 @@ namespace Xbim.Ifc4.ProcessExtension
 	public  partial class @IfcWorkCalendar : IfcControl, IInstantiableEntity, IIfcWorkCalendar, IContainsEntityReferences, IEquatable<@IfcWorkCalendar>
 	{
 		#region IIfcWorkCalendar explicit implementation
-		IEnumerable<IIfcWorkTime> IIfcWorkCalendar.WorkingTimes { 
-			get { return @WorkingTimes; } 
+		IItemSet<IIfcWorkTime> IIfcWorkCalendar.WorkingTimes { 
+			get { return new Common.Collections.ProxyItemSet<IfcWorkTime, IIfcWorkTime>( @WorkingTimes); } 
 		}	
-		IEnumerable<IIfcWorkTime> IIfcWorkCalendar.ExceptionTimes { 
-			get { return @ExceptionTimes; } 
+		IItemSet<IIfcWorkTime> IIfcWorkCalendar.ExceptionTimes { 
+			get { return new Common.Collections.ProxyItemSet<IfcWorkTime, IIfcWorkTime>( @ExceptionTimes); } 
 		}	
 		IfcWorkCalendarTypeEnum? IIfcWorkCalendar.PredefinedType { 
-			get { return @PredefinedType; } 
  
+			get { return @PredefinedType; } 
 			set { PredefinedType = value;}
 		}	
 		 
@@ -57,20 +57,19 @@ namespace Xbim.Ifc4.ProcessExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWorkCalendar(IModel model) : base(model) 		{ 
-			Model = model; 
 			_workingTimes = new OptionalItemSet<IfcWorkTime>( this, 0,  7);
 			_exceptionTimes = new OptionalItemSet<IfcWorkTime>( this, 0,  8);
 		}
 
 		#region Explicit attribute fields
-		private OptionalItemSet<IfcWorkTime> _workingTimes;
-		private OptionalItemSet<IfcWorkTime> _exceptionTimes;
+		private readonly OptionalItemSet<IfcWorkTime> _workingTimes;
+		private readonly OptionalItemSet<IfcWorkTime> _exceptionTimes;
 		private IfcWorkCalendarTypeEnum? _predefinedType;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 19)]
-		public OptionalItemSet<IfcWorkTime> @WorkingTimes 
+		public IOptionalItemSet<IfcWorkTime> @WorkingTimes 
 		{ 
 			get 
 			{
@@ -80,7 +79,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 20)]
-		public OptionalItemSet<IfcWorkTime> @ExceptionTimes 
+		public IOptionalItemSet<IfcWorkTime> @ExceptionTimes 
 		{ 
 			get 
 			{
@@ -171,7 +170,7 @@ namespace Xbim.Ifc4.ProcessExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

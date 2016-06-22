@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ActorResource
@@ -58,24 +59,20 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
-		IEnumerable<IIfcActorRole> IIfcOrganization.Roles 
+		IItemSet<IIfcActorRole> IIfcOrganization.Roles 
 		{ 
 			get
 			{
-				foreach (var member in Roles)
-				{
-					yield return member as IIfcActorRole;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcActorRole, IIfcActorRole>(Roles);
 			} 
 		}
-		IEnumerable<IIfcAddress> IIfcOrganization.Addresses 
+		IItemSet<IIfcAddress> IIfcOrganization.Addresses 
 		{ 
 			get
 			{
-				foreach (var member in Addresses)
-				{
-					yield return member as IIfcAddress;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcAddress, IIfcAddress>(Addresses);
 			} 
 		}
 		IEnumerable<IIfcOrganizationRelationship> IIfcOrganization.IsRelatedBy 

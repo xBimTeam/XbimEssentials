@@ -10,20 +10,19 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.QuantityResource
 {
 	public partial class @IfcPhysicalComplexQuantity : IIfcPhysicalComplexQuantity
 	{
-		IEnumerable<IIfcPhysicalQuantity> IIfcPhysicalComplexQuantity.HasQuantities 
+		IItemSet<IIfcPhysicalQuantity> IIfcPhysicalComplexQuantity.HasQuantities 
 		{ 
 			get
 			{
-				foreach (var member in HasQuantities)
-				{
-					yield return member as IIfcPhysicalQuantity;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcPhysicalQuantity, IIfcPhysicalQuantity>(HasQuantities);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel IIfcPhysicalComplexQuantity.Discrimination 

@@ -42,14 +42,14 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	{
 		#region IIfcStructuralActivity explicit implementation
 		IIfcStructuralLoad IIfcStructuralActivity.AppliedLoad { 
+ 
+ 
 			get { return @AppliedLoad; } 
- 
- 
 			set { AppliedLoad = value as IfcStructuralLoad;}
 		}	
 		IfcGlobalOrLocalEnum IIfcStructuralActivity.GlobalOrLocal { 
-			get { return @GlobalOrLocal; } 
  
+			get { return @GlobalOrLocal; } 
 			set { GlobalOrLocal = value;}
 		}	
 		 
@@ -58,7 +58,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralActivity(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -172,7 +171,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

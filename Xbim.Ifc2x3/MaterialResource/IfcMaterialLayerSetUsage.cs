@@ -44,24 +44,24 @@ namespace Xbim.Ifc2x3.MaterialResource
 	{
 		#region IIfcMaterialLayerSetUsage explicit implementation
 		IIfcMaterialLayerSet IIfcMaterialLayerSetUsage.ForLayerSet { 
+ 
+ 
 			get { return @ForLayerSet; } 
- 
- 
 			set { ForLayerSet = value as IfcMaterialLayerSet;}
 		}	
 		IfcLayerSetDirectionEnum IIfcMaterialLayerSetUsage.LayerSetDirection { 
-			get { return @LayerSetDirection; } 
  
+			get { return @LayerSetDirection; } 
 			set { LayerSetDirection = value;}
 		}	
 		IfcDirectionSenseEnum IIfcMaterialLayerSetUsage.DirectionSense { 
-			get { return @DirectionSense; } 
  
+			get { return @DirectionSense; } 
 			set { DirectionSense = value;}
 		}	
 		IfcLengthMeasure IIfcMaterialLayerSetUsage.OffsetFromReferenceLine { 
-			get { return @OffsetFromReferenceLine; } 
  
+			get { return @OffsetFromReferenceLine; } 
 			set { OffsetFromReferenceLine = value;}
 		}	
 		 
@@ -306,7 +306,7 @@ namespace Xbim.Ifc2x3.MaterialResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

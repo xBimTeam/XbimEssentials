@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralLoadResource
@@ -49,8 +50,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 }
 
                 SetValue(v => _translationalStiffnessByLengthX = v, _translationalStiffnessByLengthX, value, "TranslationalStiffnessByLengthX", byte.MaxValue);
-                return;
-                
 				//##
 				NotifyPropertyChanged("TranslationalStiffnessByLengthX");
 				
@@ -89,8 +88,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 }
 
                 SetValue(v => _translationalStiffnessByLengthY = v, _translationalStiffnessByLengthY, value, "LinearStiffnessByLengthY", byte.MaxValue);
-                return;
-
                 //##
 				NotifyPropertyChanged("TranslationalStiffnessByLengthY");
 				
@@ -129,8 +126,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 }
 
                 SetValue(v => _translationalStiffnessByLengthZ = v, _translationalStiffnessByLengthZ, value, "TranslationalStiffnessByAreaZ", byte.MaxValue);
-                return;
-
                 //##
 				NotifyPropertyChanged("TranslationalStiffnessByLengthZ");
 				

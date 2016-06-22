@@ -46,38 +46,38 @@ namespace Xbim.Ifc4.MeasureResource
 	{
 		#region IIfcDimensionalExponents explicit implementation
 		long IIfcDimensionalExponents.LengthExponent { 
-			get { return @LengthExponent; } 
  
+			get { return @LengthExponent; } 
 			set { LengthExponent = value;}
 		}	
 		long IIfcDimensionalExponents.MassExponent { 
-			get { return @MassExponent; } 
  
+			get { return @MassExponent; } 
 			set { MassExponent = value;}
 		}	
 		long IIfcDimensionalExponents.TimeExponent { 
-			get { return @TimeExponent; } 
  
+			get { return @TimeExponent; } 
 			set { TimeExponent = value;}
 		}	
 		long IIfcDimensionalExponents.ElectricCurrentExponent { 
-			get { return @ElectricCurrentExponent; } 
  
+			get { return @ElectricCurrentExponent; } 
 			set { ElectricCurrentExponent = value;}
 		}	
 		long IIfcDimensionalExponents.ThermodynamicTemperatureExponent { 
-			get { return @ThermodynamicTemperatureExponent; } 
  
+			get { return @ThermodynamicTemperatureExponent; } 
 			set { ThermodynamicTemperatureExponent = value;}
 		}	
 		long IIfcDimensionalExponents.AmountOfSubstanceExponent { 
-			get { return @AmountOfSubstanceExponent; } 
  
+			get { return @AmountOfSubstanceExponent; } 
 			set { AmountOfSubstanceExponent = value;}
 		}	
 		long IIfcDimensionalExponents.LuminousIntensityExponent { 
-			get { return @LuminousIntensityExponent; } 
  
+			get { return @LuminousIntensityExponent; } 
 			set { LuminousIntensityExponent = value;}
 		}	
 		 
@@ -376,7 +376,7 @@ namespace Xbim.Ifc4.MeasureResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelFlowControlElements : IIfcRelConnects
 	{
-		IEnumerable<IIfcDistributionControlElement> @RelatedControlElements { get; }
+		IItemSet<IIfcDistributionControlElement> @RelatedControlElements { get; }
 		IIfcDistributionFlowElement @RelatingFlowElement { get;  set; }
 	
 	}
@@ -39,13 +39,13 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 	public  partial class @IfcRelFlowControlElements : IfcRelConnects, IInstantiableEntity, IIfcRelFlowControlElements, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelFlowControlElements>
 	{
 		#region IIfcRelFlowControlElements explicit implementation
-		IEnumerable<IIfcDistributionControlElement> IIfcRelFlowControlElements.RelatedControlElements { 
-			get { return @RelatedControlElements; } 
+		IItemSet<IIfcDistributionControlElement> IIfcRelFlowControlElements.RelatedControlElements { 
+			get { return new Common.Collections.ProxyItemSet<IfcDistributionControlElement, IIfcDistributionControlElement>( @RelatedControlElements); } 
 		}	
 		IIfcDistributionFlowElement IIfcRelFlowControlElements.RelatingFlowElement { 
+ 
+ 
 			get { return @RelatingFlowElement; } 
- 
- 
 			set { RelatingFlowElement = value as IfcDistributionFlowElement;}
 		}	
 		 
@@ -53,19 +53,18 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelFlowControlElements(IModel model) : base(model) 		{ 
-			Model = model; 
 			_relatedControlElements = new ItemSet<IfcDistributionControlElement>( this, 0,  5);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcDistributionControlElement> _relatedControlElements;
+		private readonly ItemSet<IfcDistributionControlElement> _relatedControlElements;
 		private IfcDistributionFlowElement _relatingFlowElement;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 5)]
-		public ItemSet<IfcDistributionControlElement> @RelatedControlElements 
+		public IItemSet<IfcDistributionControlElement> @RelatedControlElements 
 		{ 
 			get 
 			{
@@ -152,7 +151,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

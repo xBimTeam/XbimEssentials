@@ -41,18 +41,18 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 	{
 		#region IIfcConnectionPointEccentricity explicit implementation
 		IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInX { 
-			get { return @EccentricityInX; } 
  
+			get { return @EccentricityInX; } 
 			set { EccentricityInX = value;}
 		}	
 		IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInY { 
-			get { return @EccentricityInY; } 
  
+			get { return @EccentricityInY; } 
 			set { EccentricityInY = value;}
 		}	
 		IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInZ { 
-			get { return @EccentricityInZ; } 
  
+			get { return @EccentricityInZ; } 
 			set { EccentricityInZ = value;}
 		}	
 		 
@@ -60,7 +60,6 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConnectionPointEccentricity(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -176,7 +175,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

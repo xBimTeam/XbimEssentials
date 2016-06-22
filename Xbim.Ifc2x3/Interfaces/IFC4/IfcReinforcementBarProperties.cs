@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProfilePropertyResource
@@ -44,6 +45,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of BarSurface
+				//##
 				switch (BarSurface)
 				{
 					case IfcReinforcingBarSurfaceEnum.PLAIN:
@@ -59,6 +62,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of BarSurface
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcReinforcingBarSurfaceEnum.PLAIN:

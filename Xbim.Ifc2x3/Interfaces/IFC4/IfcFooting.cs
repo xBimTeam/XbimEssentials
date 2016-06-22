@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralElementsDomain
@@ -20,6 +21,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcFootingTypeEnum.FOOTING_BEAM:
@@ -36,6 +39,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 					
 					case IfcFootingTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ObjectType == "CAISSON_FOUNDATION")
+                            return Ifc4.Interfaces.IfcFootingTypeEnum.CAISSON_FOUNDATION;
 						//##
 						return Ifc4.Interfaces.IfcFootingTypeEnum.USERDEFINED;
 					
@@ -49,12 +54,15 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcFootingTypeEnum.CAISSON_FOUNDATION:
 						//## Handle setting of CAISSON_FOUNDATION member from IfcFootingTypeEnum in property PredefinedType
-						//TODO: Handle setting of CAISSON_FOUNDATION member from IfcFootingTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+				        ObjectType = value.ToString();
+                        PredefinedType = IfcFootingTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcFootingTypeEnum.FOOTING_BEAM:

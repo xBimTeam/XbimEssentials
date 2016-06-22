@@ -10,20 +10,19 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.TopologyResource
 {
 	public partial class @IfcPolyLoop : IIfcPolyLoop
 	{
-		IEnumerable<IIfcCartesianPoint> IIfcPolyLoop.Polygon 
+		IItemSet<IIfcCartesianPoint> IIfcPolyLoop.Polygon 
 		{ 
 			get
 			{
-				foreach (var member in Polygon)
-				{
-					yield return member as IIfcCartesianPoint;
-				}
+			
+				return new Common.Collections.ProxyItemSet<GeometryResource.IfcCartesianPoint, IIfcCartesianPoint>(Polygon);
 			} 
 		}
 	//## Custom code

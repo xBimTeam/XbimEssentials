@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProfileResource
@@ -20,6 +21,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of ProfileType
+				//##
 				switch (ProfileType)
 				{
 					case IfcProfileTypeEnum.CURVE:
@@ -35,6 +38,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of ProfileType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcProfileTypeEnum.CURVE:

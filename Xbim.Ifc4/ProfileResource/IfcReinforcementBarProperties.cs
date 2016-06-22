@@ -45,33 +45,33 @@ namespace Xbim.Ifc4.ProfileResource
 	{
 		#region IIfcReinforcementBarProperties explicit implementation
 		IfcAreaMeasure IIfcReinforcementBarProperties.TotalCrossSectionArea { 
-			get { return @TotalCrossSectionArea; } 
  
+			get { return @TotalCrossSectionArea; } 
 			set { TotalCrossSectionArea = value;}
 		}	
 		IfcLabel IIfcReinforcementBarProperties.SteelGrade { 
-			get { return @SteelGrade; } 
  
+			get { return @SteelGrade; } 
 			set { SteelGrade = value;}
 		}	
 		IfcReinforcingBarSurfaceEnum? IIfcReinforcementBarProperties.BarSurface { 
-			get { return @BarSurface; } 
  
+			get { return @BarSurface; } 
 			set { BarSurface = value;}
 		}	
 		IfcLengthMeasure? IIfcReinforcementBarProperties.EffectiveDepth { 
-			get { return @EffectiveDepth; } 
  
+			get { return @EffectiveDepth; } 
 			set { EffectiveDepth = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcReinforcementBarProperties.NominalBarDiameter { 
-			get { return @NominalBarDiameter; } 
  
+			get { return @NominalBarDiameter; } 
 			set { NominalBarDiameter = value;}
 		}	
 		IfcCountMeasure? IIfcReinforcementBarProperties.BarCount { 
-			get { return @BarCount; } 
  
+			get { return @BarCount; } 
 			set { BarCount = value;}
 		}	
 		 
@@ -79,7 +79,6 @@ namespace Xbim.Ifc4.ProfileResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcReinforcementBarProperties(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -245,7 +244,7 @@ namespace Xbim.Ifc4.ProfileResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcModulusOfElasticityMeasure? @HardeningModule { get;  set; }
 		IfcPressureMeasure? @ProportionalStress { get;  set; }
 		IfcPositiveRatioMeasure? @PlasticStrain { get;  set; }
-		IEnumerable<IIfcRelaxation> @Relaxations { get; }
+		IItemSet<IIfcRelaxation> @Relaxations { get; }
 	
 	}
 }
@@ -45,44 +45,43 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	{
 		#region IIfcMechanicalSteelMaterialProperties explicit implementation
 		IfcPressureMeasure? IIfcMechanicalSteelMaterialProperties.YieldStress { 
-			get { return @YieldStress; } 
  
+			get { return @YieldStress; } 
 			set { YieldStress = value;}
 		}	
 		IfcPressureMeasure? IIfcMechanicalSteelMaterialProperties.UltimateStress { 
-			get { return @UltimateStress; } 
  
+			get { return @UltimateStress; } 
 			set { UltimateStress = value;}
 		}	
 		IfcPositiveRatioMeasure? IIfcMechanicalSteelMaterialProperties.UltimateStrain { 
-			get { return @UltimateStrain; } 
  
+			get { return @UltimateStrain; } 
 			set { UltimateStrain = value;}
 		}	
 		IfcModulusOfElasticityMeasure? IIfcMechanicalSteelMaterialProperties.HardeningModule { 
-			get { return @HardeningModule; } 
  
+			get { return @HardeningModule; } 
 			set { HardeningModule = value;}
 		}	
 		IfcPressureMeasure? IIfcMechanicalSteelMaterialProperties.ProportionalStress { 
-			get { return @ProportionalStress; } 
  
+			get { return @ProportionalStress; } 
 			set { ProportionalStress = value;}
 		}	
 		IfcPositiveRatioMeasure? IIfcMechanicalSteelMaterialProperties.PlasticStrain { 
-			get { return @PlasticStrain; } 
  
+			get { return @PlasticStrain; } 
 			set { PlasticStrain = value;}
 		}	
-		IEnumerable<IIfcRelaxation> IIfcMechanicalSteelMaterialProperties.Relaxations { 
-			get { return @Relaxations; } 
+		IItemSet<IIfcRelaxation> IIfcMechanicalSteelMaterialProperties.Relaxations { 
+			get { return new Common.Collections.ProxyItemSet<IfcRelaxation, IIfcRelaxation>( @Relaxations); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMechanicalSteelMaterialProperties(IModel model) : base(model) 		{ 
-			Model = model; 
 			_relaxations = new OptionalItemSet<IfcRelaxation>( this, 0,  13);
 		}
 
@@ -93,7 +92,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		private IfcModulusOfElasticityMeasure? _hardeningModule;
 		private IfcPressureMeasure? _proportionalStress;
 		private IfcPositiveRatioMeasure? _plasticStrain;
-		private OptionalItemSet<IfcRelaxation> _relaxations;
+		private readonly OptionalItemSet<IfcRelaxation> _relaxations;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -182,7 +181,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 13)]
-		public OptionalItemSet<IfcRelaxation> @Relaxations 
+		public IOptionalItemSet<IfcRelaxation> @Relaxations 
 		{ 
 			get 
 			{
@@ -271,7 +270,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ConstraintResource
@@ -47,6 +48,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of ConstraintGrade
+				//##
 				switch (ConstraintGrade)
 				{
 					case IfcConstraintEnum.HARD:
@@ -73,6 +76,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of ConstraintGrade
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcConstraintEnum.HARD:

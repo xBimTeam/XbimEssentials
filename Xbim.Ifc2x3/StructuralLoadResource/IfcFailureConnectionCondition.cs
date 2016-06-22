@@ -44,33 +44,33 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 	{
 		#region IIfcFailureConnectionCondition explicit implementation
 		IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureX { 
-			get { return @TensionFailureX; } 
  
+			get { return @TensionFailureX; } 
 			set { TensionFailureX = value;}
 		}	
 		IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureY { 
-			get { return @TensionFailureY; } 
  
+			get { return @TensionFailureY; } 
 			set { TensionFailureY = value;}
 		}	
 		IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureZ { 
-			get { return @TensionFailureZ; } 
  
+			get { return @TensionFailureZ; } 
 			set { TensionFailureZ = value;}
 		}	
 		IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureX { 
-			get { return @CompressionFailureX; } 
  
+			get { return @CompressionFailureX; } 
 			set { CompressionFailureX = value;}
 		}	
 		IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureY { 
-			get { return @CompressionFailureY; } 
  
+			get { return @CompressionFailureY; } 
 			set { CompressionFailureY = value;}
 		}	
 		IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureZ { 
-			get { return @CompressionFailureZ; } 
  
+			get { return @CompressionFailureZ; } 
 			set { CompressionFailureZ = value;}
 		}	
 		 
@@ -78,7 +78,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFailureConnectionCondition(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -247,7 +246,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

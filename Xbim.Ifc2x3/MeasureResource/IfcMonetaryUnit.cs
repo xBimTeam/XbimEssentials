@@ -40,8 +40,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 	{
 		#region IIfcMonetaryUnit explicit implementation
 		IfcCurrencyEnum IIfcMonetaryUnit.Currency { 
-			get { return @Currency; } 
  
+			get { return @Currency; } 
 			set { Currency = value;}
 		}	
 		 
@@ -232,7 +232,7 @@ namespace Xbim.Ifc2x3.MeasureResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

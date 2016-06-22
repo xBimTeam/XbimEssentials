@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProductExtension
@@ -20,6 +21,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcTransportElementTypeEnum.ELEVATOR:
@@ -33,6 +36,12 @@ namespace Xbim.Ifc2x3.ProductExtension
 					
 					case IfcTransportElementTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType.HasValue)
+                        {
+                            Ifc4.Interfaces.IfcTransportElementTypeEnum result;
+                            if (System.Enum.TryParse(ElementType.Value, false, out result))
+                                return result;
+                        }
 						//##
 						return Ifc4.Interfaces.IfcTransportElementTypeEnum.USERDEFINED;
 					
@@ -46,6 +55,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcTransportElementTypeEnum.ELEVATOR:
@@ -62,14 +73,16 @@ namespace Xbim.Ifc2x3.ProductExtension
 					
 					case Ifc4.Interfaces.IfcTransportElementTypeEnum.CRANEWAY:
 						//## Handle setting of CRANEWAY member from IfcTransportElementTypeEnum in property PredefinedType
-						//TODO: Handle setting of CRANEWAY member from IfcTransportElementTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcTransportElementTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcTransportElementTypeEnum.LIFTINGGEAR:
 						//## Handle setting of LIFTINGGEAR member from IfcTransportElementTypeEnum in property PredefinedType
-						//TODO: Handle setting of LIFTINGGEAR member from IfcTransportElementTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcTransportElementTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcTransportElementTypeEnum.USERDEFINED:

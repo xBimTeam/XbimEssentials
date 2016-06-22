@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPolyline : IIfcBoundedCurve
 	{
-		IEnumerable<IIfcCartesianPoint> @Points { get; }
+		IItemSet<IIfcCartesianPoint> @Points { get; }
 	
 	}
 }
@@ -37,25 +37,24 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcPolyline : IfcBoundedCurve, IInstantiableEntity, IIfcPolyline, IContainsEntityReferences, IEquatable<@IfcPolyline>
 	{
 		#region IIfcPolyline explicit implementation
-		IEnumerable<IIfcCartesianPoint> IIfcPolyline.Points { 
-			get { return @Points; } 
+		IItemSet<IIfcCartesianPoint> IIfcPolyline.Points { 
+			get { return new Common.Collections.ProxyItemSet<IfcCartesianPoint, IIfcCartesianPoint>( @Points); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPolyline(IModel model) : base(model) 		{ 
-			Model = model; 
 			_points = new ItemSet<IfcCartesianPoint>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcCartesianPoint> _points;
+		private readonly ItemSet<IfcCartesianPoint> _points;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 2, -1, 3)]
-		public ItemSet<IfcCartesianPoint> @Points 
+		public IItemSet<IfcCartesianPoint> @Points 
 		{ 
 			get 
 			{
@@ -118,7 +117,7 @@ namespace Xbim.Ifc4.GeometryResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

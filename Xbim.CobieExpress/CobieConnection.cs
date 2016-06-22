@@ -45,47 +45,47 @@ namespace Xbim.CobieExpress
 	{
 		#region ICobieConnection explicit implementation
 		string ICobieConnection.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		string ICobieConnection.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		ICobieConnectionType ICobieConnection.ConnectionType { 
+ 
+ 
 			get { return @ConnectionType; } 
- 
- 
 			set { ConnectionType = value as CobieConnectionType;}
 		}	
 		ICobieTypeOrComponent ICobieConnection.ComponentA { 
+ 
+ 
 			get { return @ComponentA; } 
- 
- 
 			set { ComponentA = value as CobieTypeOrComponent;}
 		}	
 		ICobieTypeOrComponent ICobieConnection.ComponentB { 
+ 
+ 
 			get { return @ComponentB; } 
- 
- 
 			set { ComponentB = value as CobieTypeOrComponent;}
 		}	
 		ICobieTypeOrComponent ICobieConnection.RealizingComponent { 
+ 
+ 
 			get { return @RealizingComponent; } 
- 
- 
 			set { RealizingComponent = value as CobieTypeOrComponent;}
 		}	
 		string ICobieConnection.PortNameA { 
-			get { return @PortNameA; } 
  
+			get { return @PortNameA; } 
 			set { PortNameA = value;}
 		}	
 		string ICobieConnection.PortNameB { 
-			get { return @PortNameB; } 
  
+			get { return @PortNameB; } 
 			set { PortNameB = value;}
 		}	
 		 
@@ -93,7 +93,6 @@ namespace Xbim.CobieExpress
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieConnection(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -305,7 +304,7 @@ namespace Xbim.CobieExpress
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

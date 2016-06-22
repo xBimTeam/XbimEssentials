@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelOverridesProperties : IIfcRelDefinesByProperties
 	{
-		IEnumerable<IIfcProperty> @OverridingProperties { get; }
+		IItemSet<IIfcProperty> @OverridingProperties { get; }
 	
 	}
 }
@@ -38,25 +38,24 @@ namespace Xbim.Ifc2x3.Kernel
 	public  partial class @IfcRelOverridesProperties : IfcRelDefinesByProperties, IInstantiableEntity, IIfcRelOverridesProperties, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelOverridesProperties>
 	{
 		#region IIfcRelOverridesProperties explicit implementation
-		IEnumerable<IIfcProperty> IIfcRelOverridesProperties.OverridingProperties { 
-			get { return @OverridingProperties; } 
+		IItemSet<IIfcProperty> IIfcRelOverridesProperties.OverridingProperties { 
+			get { return new Common.Collections.ProxyItemSet<IfcProperty, IIfcProperty>( @OverridingProperties); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelOverridesProperties(IModel model) : base(model) 		{ 
-			Model = model; 
 			_overridingProperties = new ItemSet<IfcProperty>( this, 0,  7);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcProperty> _overridingProperties;
+		private readonly ItemSet<IfcProperty> _overridingProperties;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 7)]
-		public ItemSet<IfcProperty> @OverridingProperties 
+		public IItemSet<IfcProperty> @OverridingProperties 
 		{ 
 			get 
 			{
@@ -127,7 +126,7 @@ namespace Xbim.Ifc2x3.Kernel
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

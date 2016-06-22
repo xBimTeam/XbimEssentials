@@ -47,48 +47,48 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 	{
 		#region IIfcReinforcingMesh explicit implementation
 		IfcPositiveLengthMeasure? IIfcReinforcingMesh.MeshLength { 
-			get { return @MeshLength; } 
  
+			get { return @MeshLength; } 
 			set { MeshLength = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcReinforcingMesh.MeshWidth { 
-			get { return @MeshWidth; } 
  
+			get { return @MeshWidth; } 
 			set { MeshWidth = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcReinforcingMesh.LongitudinalBarNominalDiameter { 
-			get { return @LongitudinalBarNominalDiameter; } 
  
+			get { return @LongitudinalBarNominalDiameter; } 
 			set { LongitudinalBarNominalDiameter = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcReinforcingMesh.TransverseBarNominalDiameter { 
-			get { return @TransverseBarNominalDiameter; } 
  
+			get { return @TransverseBarNominalDiameter; } 
 			set { TransverseBarNominalDiameter = value;}
 		}	
 		IfcAreaMeasure? IIfcReinforcingMesh.LongitudinalBarCrossSectionArea { 
-			get { return @LongitudinalBarCrossSectionArea; } 
  
+			get { return @LongitudinalBarCrossSectionArea; } 
 			set { LongitudinalBarCrossSectionArea = value;}
 		}	
 		IfcAreaMeasure? IIfcReinforcingMesh.TransverseBarCrossSectionArea { 
-			get { return @TransverseBarCrossSectionArea; } 
  
+			get { return @TransverseBarCrossSectionArea; } 
 			set { TransverseBarCrossSectionArea = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcReinforcingMesh.LongitudinalBarSpacing { 
-			get { return @LongitudinalBarSpacing; } 
  
+			get { return @LongitudinalBarSpacing; } 
 			set { LongitudinalBarSpacing = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcReinforcingMesh.TransverseBarSpacing { 
-			get { return @TransverseBarSpacing; } 
  
+			get { return @TransverseBarSpacing; } 
 			set { TransverseBarSpacing = value;}
 		}	
 		IfcReinforcingMeshTypeEnum? IIfcReinforcingMesh.PredefinedType { 
-			get { return @PredefinedType; } 
  
+			get { return @PredefinedType; } 
 			set { PredefinedType = value;}
 		}	
 		 
@@ -96,7 +96,6 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcReinforcingMesh(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -327,7 +326,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

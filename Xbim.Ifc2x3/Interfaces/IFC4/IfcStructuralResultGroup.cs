@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
@@ -20,6 +21,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of TheoryType
+				//##
 				switch (TheoryType)
 				{
 					case IfcAnalysisTheoryTypeEnum.FIRST_ORDER_THEORY:
@@ -49,6 +52,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of TheoryType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.FIRST_ORDER_THEORY:

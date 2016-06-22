@@ -10,28 +10,19 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcGeometricSet : IIfcGeometricSet
 	{
-		IEnumerable<IIfcGeometricSetSelect> IIfcGeometricSet.Elements 
+		IItemSet<IIfcGeometricSetSelect> IIfcGeometricSet.Elements 
 		{ 
 			get
 			{
-				foreach (var member in Elements)
-				{
-					var ifcpoint = member as GeometryResource.IfcPoint;
-					if (ifcpoint != null) 
-						yield return ifcpoint;
-					var ifccurve = member as GeometryResource.IfcCurve;
-					if (ifccurve != null) 
-						yield return ifccurve;
-					var ifcsurface = member as GeometryResource.IfcSurface;
-					if (ifcsurface != null) 
-						yield return ifcsurface;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcGeometricSetSelect, IIfcGeometricSetSelect>(Elements);
 			} 
 		}
 		Ifc4.GeometryResource.IfcDimensionCount IIfcGeometricSet.Dim 

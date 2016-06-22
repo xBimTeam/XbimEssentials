@@ -42,13 +42,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	{
 		#region IIfcRelaxation explicit implementation
 		IfcNormalisedRatioMeasure IIfcRelaxation.RelaxationValue { 
-			get { return @RelaxationValue; } 
  
+			get { return @RelaxationValue; } 
 			set { RelaxationValue = value;}
 		}	
 		IfcNormalisedRatioMeasure IIfcRelaxation.InitialStress { 
-			get { return @InitialStress; } 
  
+			get { return @InitialStress; } 
 			set { InitialStress = value;}
 		}	
 		 
@@ -257,7 +257,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

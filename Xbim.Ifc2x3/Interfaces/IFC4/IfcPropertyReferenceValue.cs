@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PropertyResource
@@ -106,6 +107,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 				if (value == null)
 				{
 					PropertyReference = null;
+					if (_propertyReference4 != null)
+						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", byte.MaxValue);
 					return;
 				}	
 				var ifcaddress = value as ActorResource.IfcAddress;

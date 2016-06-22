@@ -10,20 +10,19 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcFacetedBrepWithVoids : IIfcFacetedBrepWithVoids
 	{
-		IEnumerable<IIfcClosedShell> IIfcFacetedBrepWithVoids.Voids 
+		IItemSet<IIfcClosedShell> IIfcFacetedBrepWithVoids.Voids 
 		{ 
 			get
 			{
-				foreach (var member in Voids)
-				{
-					yield return member as IIfcClosedShell;
-				}
+			
+				return new Common.Collections.ProxyItemSet<TopologyResource.IfcClosedShell, IIfcClosedShell>(Voids);
 			} 
 		}
 	//## Custom code

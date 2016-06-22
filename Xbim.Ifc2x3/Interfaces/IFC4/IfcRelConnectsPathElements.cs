@@ -10,27 +10,32 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcRelConnectsPathElements : IIfcRelConnectsPathElements
 	{
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcInteger> IIfcRelConnectsPathElements.RelatingPriorities 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcInteger> IIfcRelConnectsPathElements.RelatingPriorities 
 		{ 
 			get
 			{
 				//## Handle return of RelatingPriorities for which no match was found
-			    return RelatingPriorities.Select(priority => (Xbim.Ifc4.MeasureResource.IfcInteger) priority);
+                return new Common.Collections.ProxyValueSet<long, Ifc4.MeasureResource.IfcInteger>(RelatingPriorities,
+                    s => new Ifc4.MeasureResource.IfcInteger(s),
+                    t => t);
 			    //##
 			} 
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcInteger> IIfcRelConnectsPathElements.RelatedPriorities 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcInteger> IIfcRelConnectsPathElements.RelatedPriorities 
 		{ 
 			get
 			{
 				//## Handle return of RelatedPriorities for which no match was found
-			    return RelatedPriorities.Select(priority => (Xbim.Ifc4.MeasureResource.IfcInteger) priority);
+                return new Common.Collections.ProxyValueSet<long, Ifc4.MeasureResource.IfcInteger>(RelatedPriorities,
+                    s => new Ifc4.MeasureResource.IfcInteger(s),
+                    t => t);
 			    //##
 			} 
 		}
@@ -38,6 +43,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of RelatedConnectionType
+				//##
 				switch (RelatedConnectionType)
 				{
 					case IfcConnectionTypeEnum.ATPATH:
@@ -59,6 +66,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of RelatedConnectionType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcConnectionTypeEnum.ATPATH:
@@ -88,6 +97,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of RelatingConnectionType
+				//##
 				switch (RelatingConnectionType)
 				{
 					case IfcConnectionTypeEnum.ATPATH:
@@ -109,6 +120,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of RelatingConnectionType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcConnectionTypeEnum.ATPATH:

@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ActorResource
@@ -61,54 +62,50 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.MiddleNames 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.MiddleNames 
 		{ 
 			get
 			{
-				foreach (var member in MiddleNames)
-				{
-					yield return new Ifc4.MeasureResource.IfcLabel((string)member);
-				}
+			
+				return new Common.Collections.ProxyValueSet<MeasureResource.IfcLabel, Ifc4.MeasureResource.IfcLabel>(MiddleNames, 
+					s => new Ifc4.MeasureResource.IfcLabel(s), 
+					t => new MeasureResource.IfcLabel(t));
 			} 
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.PrefixTitles 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.PrefixTitles 
 		{ 
 			get
 			{
-				foreach (var member in PrefixTitles)
-				{
-					yield return new Ifc4.MeasureResource.IfcLabel((string)member);
-				}
+			
+				return new Common.Collections.ProxyValueSet<MeasureResource.IfcLabel, Ifc4.MeasureResource.IfcLabel>(PrefixTitles, 
+					s => new Ifc4.MeasureResource.IfcLabel(s), 
+					t => new MeasureResource.IfcLabel(t));
 			} 
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.SuffixTitles 
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.SuffixTitles 
 		{ 
 			get
 			{
-				foreach (var member in SuffixTitles)
-				{
-					yield return new Ifc4.MeasureResource.IfcLabel((string)member);
-				}
+			
+				return new Common.Collections.ProxyValueSet<MeasureResource.IfcLabel, Ifc4.MeasureResource.IfcLabel>(SuffixTitles, 
+					s => new Ifc4.MeasureResource.IfcLabel(s), 
+					t => new MeasureResource.IfcLabel(t));
 			} 
 		}
-		IEnumerable<IIfcActorRole> IIfcPerson.Roles 
+		IItemSet<IIfcActorRole> IIfcPerson.Roles 
 		{ 
 			get
 			{
-				foreach (var member in Roles)
-				{
-					yield return member as IIfcActorRole;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcActorRole, IIfcActorRole>(Roles);
 			} 
 		}
-		IEnumerable<IIfcAddress> IIfcPerson.Addresses 
+		IItemSet<IIfcAddress> IIfcPerson.Addresses 
 		{ 
 			get
 			{
-				foreach (var member in Addresses)
-				{
-					yield return member as IIfcAddress;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcAddress, IIfcAddress>(Addresses);
 			} 
 		}
 		IEnumerable<IIfcPersonAndOrganization> IIfcPerson.EngagedIn 

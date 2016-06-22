@@ -46,43 +46,43 @@ namespace Xbim.Ifc2x3.ProfileResource
 	{
 		#region IIfcLShapeProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcLShapeProfileDef.Depth { 
-			get { return @Depth; } 
  
+			get { return @Depth; } 
 			set { Depth = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcLShapeProfileDef.Width { 
-			get { return @Width; } 
  
+			get { return @Width; } 
 			set { Width = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcLShapeProfileDef.Thickness { 
-			get { return @Thickness; } 
  
+			get { return @Thickness; } 
 			set { Thickness = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcLShapeProfileDef.FilletRadius { 
-			get { return @FilletRadius; } 
  
+			get { return @FilletRadius; } 
 			set { FilletRadius = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcLShapeProfileDef.EdgeRadius { 
-			get { return @EdgeRadius; } 
  
+			get { return @EdgeRadius; } 
 			set { EdgeRadius = value;}
 		}	
 		IfcPlaneAngleMeasure? IIfcLShapeProfileDef.LegSlope { 
-			get { return @LegSlope; } 
  
+			get { return @LegSlope; } 
 			set { LegSlope = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcLShapeProfileDef.CentreOfGravityInX { 
-			get { return @CentreOfGravityInX; } 
  
+			get { return @CentreOfGravityInX; } 
 			set { CentreOfGravityInX = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcLShapeProfileDef.CentreOfGravityInY { 
-			get { return @CentreOfGravityInY; } 
  
+			get { return @CentreOfGravityInY; } 
 			set { CentreOfGravityInY = value;}
 		}	
 		 
@@ -90,7 +90,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLShapeProfileDef(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -297,7 +296,7 @@ namespace Xbim.Ifc2x3.ProfileResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

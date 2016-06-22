@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProfilePropertyResource
@@ -59,6 +60,10 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of ReinforcementRole
+			    if (_role.HasValue) 
+                    return _role.Value;
+				//##
 				switch (ReinforcementRole)
 				{
 					case IfcReinforcingBarRoleEnum.MAIN:
@@ -97,6 +102,10 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of ReinforcementRole
+                if (value != Ifc4.Interfaces.IfcReinforcingBarRoleEnum.ANCHORING)
+                    SetValue(v => _role = v, _role, null, "ReinforcementRole", 255);
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcReinforcingBarRoleEnum.MAIN:
@@ -129,8 +138,9 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 					
 					case Ifc4.Interfaces.IfcReinforcingBarRoleEnum.ANCHORING:
 						//## Handle setting of ANCHORING member from IfcReinforcingBarRoleEnum in property ReinforcementRole
-						//TODO: Handle setting of ANCHORING member from IfcReinforcingBarRoleEnum in property ReinforcementRole
-						throw new System.NotImplementedException();
+						ReinforcementRole = IfcReinforcingBarRoleEnum.USERDEFINED;
+                        SetValue(v => _role = v, _role, value, "ReinforcementRole", 255);
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcReinforcingBarRoleEnum.USERDEFINED:
@@ -160,14 +170,12 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				
 			}
 		}
-		IEnumerable<IIfcReinforcementBarProperties> IIfcSectionReinforcementProperties.CrossSectionReinforcementDefinitions 
+		IItemSet<IIfcReinforcementBarProperties> IIfcSectionReinforcementProperties.CrossSectionReinforcementDefinitions 
 		{ 
 			get
 			{
-				foreach (var member in CrossSectionReinforcementDefinitions)
-				{
-					yield return member as IIfcReinforcementBarProperties;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcReinforcementBarProperties, IIfcReinforcementBarProperties>(CrossSectionReinforcementDefinitions);
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 
@@ -178,6 +186,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 		}
 	//## Custom code
-	//##
+	    private Ifc4.Interfaces.IfcReinforcingBarRoleEnum? _role;
+	    //##
 	}
 }

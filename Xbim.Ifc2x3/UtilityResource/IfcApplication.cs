@@ -45,24 +45,24 @@ namespace Xbim.Ifc2x3.UtilityResource
 	{
 		#region IIfcApplication explicit implementation
 		IIfcOrganization IIfcApplication.ApplicationDeveloper { 
+ 
+ 
 			get { return @ApplicationDeveloper; } 
- 
- 
 			set { ApplicationDeveloper = value as IfcOrganization;}
 		}	
 		IfcLabel IIfcApplication.Version { 
-			get { return @Version; } 
  
+			get { return @Version; } 
 			set { Version = value;}
 		}	
 		IfcLabel IIfcApplication.ApplicationFullName { 
-			get { return @ApplicationFullName; } 
  
+			get { return @ApplicationFullName; } 
 			set { ApplicationFullName = value;}
 		}	
 		IfcIdentifier IIfcApplication.ApplicationIdentifier { 
-			get { return @ApplicationIdentifier; } 
  
+			get { return @ApplicationIdentifier; } 
 			set { ApplicationIdentifier = value;}
 		}	
 		 
@@ -307,7 +307,7 @@ namespace Xbim.Ifc2x3.UtilityResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

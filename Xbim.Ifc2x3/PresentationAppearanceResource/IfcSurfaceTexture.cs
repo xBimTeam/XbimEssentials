@@ -44,24 +44,24 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	{
 		#region IIfcSurfaceTexture explicit implementation
 		bool IIfcSurfaceTexture.RepeatS { 
-			get { return @RepeatS; } 
  
+			get { return @RepeatS; } 
 			set { RepeatS = value;}
 		}	
 		bool IIfcSurfaceTexture.RepeatT { 
-			get { return @RepeatT; } 
  
+			get { return @RepeatT; } 
 			set { RepeatT = value;}
 		}	
 		IfcSurfaceTextureEnum IIfcSurfaceTexture.TextureType { 
-			get { return @TextureType; } 
  
+			get { return @TextureType; } 
 			set { TextureType = value;}
 		}	
 		IIfcCartesianTransformationOperator2D IIfcSurfaceTexture.TextureTransform { 
+ 
+ 
 			get { return @TextureTransform; } 
- 
- 
 			set { TextureTransform = value as IfcCartesianTransformationOperator2D;}
 		}	
 		 
@@ -306,7 +306,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralLoadCase : IIfcStructuralLoadGroup
 	{
-		IEnumerable<IfcRatioMeasure> @SelfWeightCoefficients { get; }
+		IItemSet<IfcRatioMeasure> @SelfWeightCoefficients { get; }
 	
 	}
 }
@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	public  partial class @IfcStructuralLoadCase : IfcStructuralLoadGroup, IInstantiableEntity, IIfcStructuralLoadCase, IContainsEntityReferences, IEquatable<@IfcStructuralLoadCase>
 	{
 		#region IIfcStructuralLoadCase explicit implementation
-		IEnumerable<IfcRatioMeasure> IIfcStructuralLoadCase.SelfWeightCoefficients { 
+		IItemSet<IfcRatioMeasure> IIfcStructuralLoadCase.SelfWeightCoefficients { 
 			get { return @SelfWeightCoefficients; } 
 		}	
 		 
@@ -46,17 +46,16 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadCase(IModel model) : base(model) 		{ 
-			Model = model; 
 			_selfWeightCoefficients = new OptionalItemSet<IfcRatioMeasure>( this, 3,  11);
 		}
 
 		#region Explicit attribute fields
-		private OptionalItemSet<IfcRatioMeasure> _selfWeightCoefficients;
+		private readonly OptionalItemSet<IfcRatioMeasure> _selfWeightCoefficients;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 3, 3, 25)]
-		public OptionalItemSet<IfcRatioMeasure> @SelfWeightCoefficients 
+		public IOptionalItemSet<IfcRatioMeasure> @SelfWeightCoefficients 
 		{ 
 			get 
 			{
@@ -131,7 +130,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

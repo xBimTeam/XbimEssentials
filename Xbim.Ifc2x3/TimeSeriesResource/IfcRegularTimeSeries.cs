@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcRegularTimeSeries : IIfcTimeSeries
 	{
 		IfcTimeMeasure @TimeStep { get;  set; }
-		IEnumerable<IIfcTimeSeriesValue> @Values { get; }
+		IItemSet<IIfcTimeSeriesValue> @Values { get; }
 	
 	}
 }
@@ -40,25 +40,24 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 	{
 		#region IIfcRegularTimeSeries explicit implementation
 		IfcTimeMeasure IIfcRegularTimeSeries.TimeStep { 
-			get { return @TimeStep; } 
  
+			get { return @TimeStep; } 
 			set { TimeStep = value;}
 		}	
-		IEnumerable<IIfcTimeSeriesValue> IIfcRegularTimeSeries.Values { 
-			get { return @Values; } 
+		IItemSet<IIfcTimeSeriesValue> IIfcRegularTimeSeries.Values { 
+			get { return new Common.Collections.ProxyItemSet<IfcTimeSeriesValue, IIfcTimeSeriesValue>( @Values); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRegularTimeSeries(IModel model) : base(model) 		{ 
-			Model = model; 
 			_values = new ItemSet<IfcTimeSeriesValue>( this, 0,  10);
 		}
 
 		#region Explicit attribute fields
 		private IfcTimeMeasure _timeStep;
-		private ItemSet<IfcTimeSeriesValue> _values;
+		private readonly ItemSet<IfcTimeSeriesValue> _values;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -77,7 +76,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 11)]
-		public ItemSet<IfcTimeSeriesValue> @Values 
+		public IItemSet<IfcTimeSeriesValue> @Values 
 		{ 
 			get 
 			{
@@ -153,7 +152,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

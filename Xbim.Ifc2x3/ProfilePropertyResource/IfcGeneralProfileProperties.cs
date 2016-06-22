@@ -43,28 +43,28 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 	{
 		#region IIfcGeneralProfileProperties explicit implementation
 		IfcMassPerLengthMeasure? IIfcGeneralProfileProperties.PhysicalWeight { 
-			get { return @PhysicalWeight; } 
  
+			get { return @PhysicalWeight; } 
 			set { PhysicalWeight = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcGeneralProfileProperties.Perimeter { 
-			get { return @Perimeter; } 
  
+			get { return @Perimeter; } 
 			set { Perimeter = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcGeneralProfileProperties.MinimumPlateThickness { 
-			get { return @MinimumPlateThickness; } 
  
+			get { return @MinimumPlateThickness; } 
 			set { MinimumPlateThickness = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcGeneralProfileProperties.MaximumPlateThickness { 
-			get { return @MaximumPlateThickness; } 
  
+			get { return @MaximumPlateThickness; } 
 			set { MaximumPlateThickness = value;}
 		}	
 		IfcAreaMeasure? IIfcGeneralProfileProperties.CrossSectionArea { 
-			get { return @CrossSectionArea; } 
  
+			get { return @CrossSectionArea; } 
 			set { CrossSectionArea = value;}
 		}	
 		 
@@ -72,7 +72,6 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGeneralProfileProperties(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -224,7 +223,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

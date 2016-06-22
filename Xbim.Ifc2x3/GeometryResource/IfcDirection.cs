@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDirection : IIfcGeometricRepresentationItem, IfcOrientationSelect, IfcVectorOrDirection
 	{
-		IEnumerable<double> @DirectionRatios { get; }
+		IItemSet<double> @DirectionRatios { get; }
 		IfcDimensionCount @Dim  { get ; }
 	
 	}
@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 	public  partial class @IfcDirection : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDirection, IEquatable<@IfcDirection>
 	{
 		#region IIfcDirection explicit implementation
-		IEnumerable<double> IIfcDirection.DirectionRatios { 
+		IItemSet<double> IIfcDirection.DirectionRatios { 
 			get { return @DirectionRatios; } 
 		}	
 		 
@@ -47,17 +47,16 @@ namespace Xbim.Ifc2x3.GeometryResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDirection(IModel model) : base(model) 		{ 
-			Model = model; 
 			_directionRatios = new ItemSet<double>( this, 3,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<double> _directionRatios;
+		private readonly ItemSet<double> _directionRatios;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, 3, 3)]
-		public ItemSet<double> @DirectionRatios 
+		public IItemSet<double> @DirectionRatios 
 		{ 
 			get 
 			{
@@ -133,7 +132,7 @@ namespace Xbim.Ifc2x3.GeometryResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

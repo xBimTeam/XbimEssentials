@@ -40,8 +40,8 @@ namespace Xbim.Ifc2x3.Kernel
 	{
 		#region IIfcObject explicit implementation
 		IfcLabel? IIfcObject.ObjectType { 
-			get { return @ObjectType; } 
  
+			get { return @ObjectType; } 
 			set { ObjectType = value;}
 		}	
 		 
@@ -50,7 +50,6 @@ namespace Xbim.Ifc2x3.Kernel
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcObject(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -143,7 +142,7 @@ namespace Xbim.Ifc2x3.Kernel
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

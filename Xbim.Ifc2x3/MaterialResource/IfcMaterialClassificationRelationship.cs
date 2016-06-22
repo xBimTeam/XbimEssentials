@@ -42,12 +42,12 @@ namespace Xbim.Ifc2x3.MaterialResource
 	{
 		#region IIfcMaterialClassificationRelationship explicit implementation
 		IEnumerable<IIfcClassificationNotationSelect> IIfcMaterialClassificationRelationship.MaterialClassifications { 
-			get { return @MaterialClassifications; } 
+			get { return new Common.Collections.ProxyItemSet<IfcClassificationNotationSelect, IIfcClassificationNotationSelect>( @MaterialClassifications); } 
 		}	
 		IIfcMaterial IIfcMaterialClassificationRelationship.ClassifiedMaterial { 
+ 
+ 
 			get { return @ClassifiedMaterial; } 
- 
- 
 			set { ClassifiedMaterial = value as IfcMaterial;}
 		}	
 		 
@@ -118,13 +118,13 @@ namespace Xbim.Ifc2x3.MaterialResource
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcClassificationNotationSelect> _materialClassifications;
+		private readonly ItemSet<IfcClassificationNotationSelect> _materialClassifications;
 		private IfcMaterial _classifiedMaterial;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 1)]
-		public ItemSet<IfcClassificationNotationSelect> @MaterialClassifications 
+		public IItemSet<IfcClassificationNotationSelect> @MaterialClassifications 
 		{ 
 			get 
 			{
@@ -254,7 +254,7 @@ namespace Xbim.Ifc2x3.MaterialResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

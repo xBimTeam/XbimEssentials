@@ -32,7 +32,7 @@ namespace Xbim.CobieExpress.Interfaces
 		string @BarCode { get;  set; }
 		string @AssetIdentifier { get;  set; }
 		ICobieType @Type { get;  set; }
-		IEnumerable<ICobieSpace> @Spaces { get; }
+		IItemSet<ICobieSpace> @Spaces { get; }
 		IEnumerable<ICobieSystem> @InSystems {  get; }
 	
 	}
@@ -46,43 +46,43 @@ namespace Xbim.CobieExpress
 	{
 		#region ICobieComponent explicit implementation
 		string ICobieComponent.SerialNumber { 
-			get { return @SerialNumber; } 
  
+			get { return @SerialNumber; } 
 			set { SerialNumber = value;}
 		}	
 		DateTimeValue? ICobieComponent.InstallationDate { 
-			get { return @InstallationDate; } 
  
+			get { return @InstallationDate; } 
 			set { InstallationDate = value;}
 		}	
 		DateTimeValue? ICobieComponent.WarrantyStartDate { 
-			get { return @WarrantyStartDate; } 
  
+			get { return @WarrantyStartDate; } 
 			set { WarrantyStartDate = value;}
 		}	
 		string ICobieComponent.TagNumber { 
-			get { return @TagNumber; } 
  
+			get { return @TagNumber; } 
 			set { TagNumber = value;}
 		}	
 		string ICobieComponent.BarCode { 
-			get { return @BarCode; } 
  
+			get { return @BarCode; } 
 			set { BarCode = value;}
 		}	
 		string ICobieComponent.AssetIdentifier { 
-			get { return @AssetIdentifier; } 
  
+			get { return @AssetIdentifier; } 
 			set { AssetIdentifier = value;}
 		}	
 		ICobieType ICobieComponent.Type { 
+ 
+ 
 			get { return @Type; } 
- 
- 
 			set { Type = value as CobieType;}
 		}	
-		IEnumerable<ICobieSpace> ICobieComponent.Spaces { 
-			get { return @Spaces; } 
+		IItemSet<ICobieSpace> ICobieComponent.Spaces { 
+			get { return new Common.Collections.ProxyItemSet<CobieSpace, ICobieSpace>( @Spaces); } 
 		}	
 		 
 		IEnumerable<ICobieSystem> ICobieComponent.InSystems {  get { return @InSystems; } }
@@ -90,7 +90,6 @@ namespace Xbim.CobieExpress
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieComponent(IModel model) : base(model) 		{ 
-			Model = model; 
 			_spaces = new ItemSet<CobieSpace>( this, 2,  21);
 		}
 
@@ -102,7 +101,7 @@ namespace Xbim.CobieExpress
 		private string _barCode;
 		private string _assetIdentifier;
 		private CobieType _type;
-		private ItemSet<CobieSpace> _spaces;
+		private readonly ItemSet<CobieSpace> _spaces;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -207,7 +206,7 @@ namespace Xbim.CobieExpress
 		}	
 		[IndexedProperty]
 		[EntityAttribute(21, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, 2, 26)]
-		public ItemSet<CobieSpace> @Spaces 
+		public IItemSet<CobieSpace> @Spaces 
 		{ 
 			get 
 			{
@@ -317,7 +316,7 @@ namespace Xbim.CobieExpress
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

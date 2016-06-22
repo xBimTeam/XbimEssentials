@@ -40,14 +40,14 @@ namespace Xbim.Ifc4.TopologyResource
 	{
 		#region IIfcFaceBound explicit implementation
 		IIfcLoop IIfcFaceBound.Bound { 
+ 
+ 
 			get { return @Bound; } 
- 
- 
 			set { Bound = value as IfcLoop;}
 		}	
 		IfcBoolean IIfcFaceBound.Orientation { 
-			get { return @Orientation; } 
  
+			get { return @Orientation; } 
 			set { Orientation = value;}
 		}	
 		 
@@ -55,7 +55,6 @@ namespace Xbim.Ifc4.TopologyResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFaceBound(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -149,7 +148,7 @@ namespace Xbim.Ifc4.TopologyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

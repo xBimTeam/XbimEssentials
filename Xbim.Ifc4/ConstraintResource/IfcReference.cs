@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcIdentifier? @TypeIdentifier { get;  set; }
 		IfcIdentifier? @AttributeIdentifier { get;  set; }
 		IfcLabel? @InstanceName { get;  set; }
-		IEnumerable<IfcInteger> @ListPositions { get; }
+		IItemSet<IfcInteger> @ListPositions { get; }
 		IIfcReference @InnerReference { get;  set; }
 	
 	}
@@ -46,27 +46,27 @@ namespace Xbim.Ifc4.ConstraintResource
 	{
 		#region IIfcReference explicit implementation
 		IfcIdentifier? IIfcReference.TypeIdentifier { 
-			get { return @TypeIdentifier; } 
  
+			get { return @TypeIdentifier; } 
 			set { TypeIdentifier = value;}
 		}	
 		IfcIdentifier? IIfcReference.AttributeIdentifier { 
-			get { return @AttributeIdentifier; } 
  
+			get { return @AttributeIdentifier; } 
 			set { AttributeIdentifier = value;}
 		}	
 		IfcLabel? IIfcReference.InstanceName { 
-			get { return @InstanceName; } 
  
+			get { return @InstanceName; } 
 			set { InstanceName = value;}
 		}	
-		IEnumerable<IfcInteger> IIfcReference.ListPositions { 
+		IItemSet<IfcInteger> IIfcReference.ListPositions { 
 			get { return @ListPositions; } 
 		}	
 		IIfcReference IIfcReference.InnerReference { 
+ 
+ 
 			get { return @InnerReference; } 
- 
- 
 			set { InnerReference = value as IfcReference;}
 		}	
 		 
@@ -140,7 +140,7 @@ namespace Xbim.Ifc4.ConstraintResource
 		private IfcIdentifier? _typeIdentifier;
 		private IfcIdentifier? _attributeIdentifier;
 		private IfcLabel? _instanceName;
-		private OptionalItemSet<IfcInteger> _listPositions;
+		private readonly OptionalItemSet<IfcInteger> _listPositions;
 		private IfcReference _innerReference;
 		#endregion
 	
@@ -188,7 +188,7 @@ namespace Xbim.Ifc4.ConstraintResource
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 4)]
-		public OptionalItemSet<IfcInteger> @ListPositions 
+		public IOptionalItemSet<IfcInteger> @ListPositions 
 		{ 
 			get 
 			{
@@ -326,7 +326,7 @@ namespace Xbim.Ifc4.ConstraintResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

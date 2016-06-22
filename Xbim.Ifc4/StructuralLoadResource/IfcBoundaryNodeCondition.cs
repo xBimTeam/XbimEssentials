@@ -43,39 +43,39 @@ namespace Xbim.Ifc4.StructuralLoadResource
 	{
 		#region IIfcBoundaryNodeCondition explicit implementation
 		IIfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessX { 
+ 
+ 
 			get { return @TranslationalStiffnessX; } 
- 
- 
 			set { TranslationalStiffnessX = value as IfcTranslationalStiffnessSelect;}
 		}	
 		IIfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessY { 
+ 
+ 
 			get { return @TranslationalStiffnessY; } 
- 
- 
 			set { TranslationalStiffnessY = value as IfcTranslationalStiffnessSelect;}
 		}	
 		IIfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessZ { 
+ 
+ 
 			get { return @TranslationalStiffnessZ; } 
- 
- 
 			set { TranslationalStiffnessZ = value as IfcTranslationalStiffnessSelect;}
 		}	
 		IIfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessX { 
+ 
+ 
 			get { return @RotationalStiffnessX; } 
- 
- 
 			set { RotationalStiffnessX = value as IfcRotationalStiffnessSelect;}
 		}	
 		IIfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessY { 
+ 
+ 
 			get { return @RotationalStiffnessY; } 
- 
- 
 			set { RotationalStiffnessY = value as IfcRotationalStiffnessSelect;}
 		}	
 		IIfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessZ { 
+ 
+ 
 			get { return @RotationalStiffnessZ; } 
- 
- 
 			set { RotationalStiffnessZ = value as IfcRotationalStiffnessSelect;}
 		}	
 		 
@@ -83,7 +83,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBoundaryNodeCondition(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -252,7 +251,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

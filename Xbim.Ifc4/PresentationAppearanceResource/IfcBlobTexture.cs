@@ -40,13 +40,13 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	{
 		#region IIfcBlobTexture explicit implementation
 		IfcIdentifier IIfcBlobTexture.RasterFormat { 
-			get { return @RasterFormat; } 
  
+			get { return @RasterFormat; } 
 			set { RasterFormat = value;}
 		}	
 		IfcBinary IIfcBlobTexture.RasterCode { 
-			get { return @RasterCode; } 
  
+			get { return @RasterCode; } 
 			set { RasterCode = value;}
 		}	
 		 
@@ -54,7 +54,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBlobTexture(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -155,7 +154,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

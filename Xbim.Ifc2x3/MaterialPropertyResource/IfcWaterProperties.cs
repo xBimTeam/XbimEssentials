@@ -45,38 +45,38 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	{
 		#region IIfcWaterProperties explicit implementation
 		bool? IIfcWaterProperties.IsPotable { 
-			get { return @IsPotable; } 
  
+			get { return @IsPotable; } 
 			set { IsPotable = value;}
 		}	
 		IfcIonConcentrationMeasure? IIfcWaterProperties.Hardness { 
-			get { return @Hardness; } 
  
+			get { return @Hardness; } 
 			set { Hardness = value;}
 		}	
 		IfcIonConcentrationMeasure? IIfcWaterProperties.AlkalinityConcentration { 
-			get { return @AlkalinityConcentration; } 
  
+			get { return @AlkalinityConcentration; } 
 			set { AlkalinityConcentration = value;}
 		}	
 		IfcIonConcentrationMeasure? IIfcWaterProperties.AcidityConcentration { 
-			get { return @AcidityConcentration; } 
  
+			get { return @AcidityConcentration; } 
 			set { AcidityConcentration = value;}
 		}	
 		IfcNormalisedRatioMeasure? IIfcWaterProperties.ImpuritiesContent { 
-			get { return @ImpuritiesContent; } 
  
+			get { return @ImpuritiesContent; } 
 			set { ImpuritiesContent = value;}
 		}	
 		IfcPHMeasure? IIfcWaterProperties.PHLevel { 
-			get { return @PHLevel; } 
  
+			get { return @PHLevel; } 
 			set { PHLevel = value;}
 		}	
 		IfcNormalisedRatioMeasure? IIfcWaterProperties.DissolvedSolidsContent { 
-			get { return @DissolvedSolidsContent; } 
  
+			get { return @DissolvedSolidsContent; } 
 			set { DissolvedSolidsContent = value;}
 		}	
 		 
@@ -84,7 +84,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWaterProperties(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -271,7 +270,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

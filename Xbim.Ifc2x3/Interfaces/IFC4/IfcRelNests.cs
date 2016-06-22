@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.Kernel
@@ -28,12 +29,12 @@ namespace Xbim.Ifc2x3.Kernel
 				
 			}
 		}
-		IEnumerable<IIfcObjectDefinition> IIfcRelNests.RelatedObjects 
+		IItemSet<IIfcObjectDefinition> IIfcRelNests.RelatedObjects 
 		{ 
 			get
 			{
 				//## Handle return of RelatedObjects for which no match was found
-                return this.RelatedObjects;
+                return new Common.Collections.ProxyItemSet<IfcObjectDefinition, IIfcObjectDefinition>(RelatedObjects);
 				//##
 			} 
 		}

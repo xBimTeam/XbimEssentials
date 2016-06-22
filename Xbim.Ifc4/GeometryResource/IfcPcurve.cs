@@ -39,15 +39,15 @@ namespace Xbim.Ifc4.GeometryResource
 	{
 		#region IIfcPcurve explicit implementation
 		IIfcSurface IIfcPcurve.BasisSurface { 
+ 
+ 
 			get { return @BasisSurface; } 
- 
- 
 			set { BasisSurface = value as IfcSurface;}
 		}	
 		IIfcCurve IIfcPcurve.ReferenceCurve { 
+ 
+ 
 			get { return @ReferenceCurve; } 
- 
- 
 			set { ReferenceCurve = value as IfcCurve;}
 		}	
 		 
@@ -55,7 +55,6 @@ namespace Xbim.Ifc4.GeometryResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPcurve(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -149,7 +148,7 @@ namespace Xbim.Ifc4.GeometryResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

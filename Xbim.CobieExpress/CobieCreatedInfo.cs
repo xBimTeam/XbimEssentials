@@ -41,14 +41,14 @@ namespace Xbim.CobieExpress
 	{
 		#region ICobieCreatedInfo explicit implementation
 		ICobieContact ICobieCreatedInfo.CreatedBy { 
+ 
+ 
 			get { return @CreatedBy; } 
- 
- 
 			set { CreatedBy = value as CobieContact;}
 		}	
 		DateTimeValue ICobieCreatedInfo.CreatedOn { 
-			get { return @CreatedOn; } 
  
+			get { return @CreatedOn; } 
 			set { CreatedOn = value;}
 		}	
 		 
@@ -257,7 +257,7 @@ namespace Xbim.CobieExpress
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

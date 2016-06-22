@@ -39,15 +39,15 @@ namespace Xbim.Ifc2x3.TopologyResource
 	{
 		#region IIfcEdge explicit implementation
 		IIfcVertex IIfcEdge.EdgeStart { 
+ 
+ 
 			get { return @EdgeStart; } 
- 
- 
 			set { EdgeStart = value as IfcVertex;}
 		}	
 		IIfcVertex IIfcEdge.EdgeEnd { 
+ 
+ 
 			get { return @EdgeEnd; } 
- 
- 
 			set { EdgeEnd = value as IfcVertex;}
 		}	
 		 
@@ -55,7 +55,6 @@ namespace Xbim.Ifc2x3.TopologyResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcEdge(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -149,7 +148,7 @@ namespace Xbim.Ifc2x3.TopologyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ApprovalResource
@@ -28,12 +29,18 @@ namespace Xbim.Ifc2x3.ApprovalResource
 				
 			}
 		}
-		IEnumerable<IIfcApproval> IIfcApprovalRelationship.RelatedApprovals 
+		IItemSet<IIfcApproval> IIfcApprovalRelationship.RelatedApprovals 
 		{ 
 			get
 			{
 				//## Handle return of RelatedApprovals for which no match was found
-				yield return RelatedApproval;
+                return _relatedApprovals ?? (_relatedApprovals =  new Common.Collections.ExtendedSingleSet<IfcApproval, IIfcApproval>(
+                    () => RelatedApproval, 
+                    approval => RelatedApproval = approval,
+                    new ItemSet<IIfcApproval>(this, 0, byte.MaxValue),
+                    s => s,
+                    t => t as IfcApproval
+                    ));
 				//##
 			} 
 		}
@@ -67,6 +74,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			}
 		}
 	//## Custom code
-	//##
+	    private IItemSet<IIfcApproval> _relatedApprovals;
+	    //##
 	}
 }

@@ -10,20 +10,19 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcPropertySet : IIfcPropertySet
 	{
-		IEnumerable<IIfcProperty> IIfcPropertySet.HasProperties 
+		IItemSet<IIfcProperty> IIfcPropertySet.HasProperties 
 		{ 
 			get
 			{
-				foreach (var member in HasProperties)
-				{
-					yield return member as IIfcProperty;
-				}
+			
+				return new Common.Collections.ProxyItemSet<PropertyResource.IfcProperty, IIfcProperty>(HasProperties);
 			} 
 		}
 	//## Custom code

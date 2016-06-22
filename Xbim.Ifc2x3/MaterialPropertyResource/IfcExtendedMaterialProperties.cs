@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcExtendedMaterialProperties : IIfcMaterialProperties
 	{
-		IEnumerable<IIfcProperty> @ExtendedProperties { get; }
+		IItemSet<IIfcProperty> @ExtendedProperties { get; }
 		IfcText? @Description { get;  set; }
 		IfcLabel @Name { get;  set; }
 	
@@ -41,17 +41,17 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	public  partial class @IfcExtendedMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcExtendedMaterialProperties, IContainsEntityReferences, IEquatable<@IfcExtendedMaterialProperties>
 	{
 		#region IIfcExtendedMaterialProperties explicit implementation
-		IEnumerable<IIfcProperty> IIfcExtendedMaterialProperties.ExtendedProperties { 
-			get { return @ExtendedProperties; } 
+		IItemSet<IIfcProperty> IIfcExtendedMaterialProperties.ExtendedProperties { 
+			get { return new Common.Collections.ProxyItemSet<IfcProperty, IIfcProperty>( @ExtendedProperties); } 
 		}	
 		IfcText? IIfcExtendedMaterialProperties.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		IfcLabel IIfcExtendedMaterialProperties.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		 
@@ -59,19 +59,18 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcExtendedMaterialProperties(IModel model) : base(model) 		{ 
-			Model = model; 
 			_extendedProperties = new ItemSet<IfcProperty>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcProperty> _extendedProperties;
+		private readonly ItemSet<IfcProperty> _extendedProperties;
 		private IfcText? _description;
 		private IfcLabel _name;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 2)]
-		public ItemSet<IfcProperty> @ExtendedProperties 
+		public IItemSet<IfcProperty> @ExtendedProperties 
 		{ 
 			get 
 			{
@@ -171,7 +170,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -42,14 +42,14 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	{
 		#region IIfcFillAreaStyleTiles explicit implementation
 		IEnumerable<IIfcVector> IIfcFillAreaStyleTiles.TilingPattern { 
-			get { return @TilingPattern; } 
+			get { return new Common.Collections.ProxyItemSet<IfcVector, IIfcVector>( @TilingPattern); } 
 		}	
 		IEnumerable<IIfcStyledItem> IIfcFillAreaStyleTiles.Tiles { 
-			get { return @Tiles; } 
+			get { return new Common.Collections.ProxyItemSet<IfcStyledItem, IIfcStyledItem>( @Tiles); } 
 		}	
 		IfcPositiveRatioMeasure IIfcFillAreaStyleTiles.TilingScale { 
-			get { return @TilingScale; } 
  
+			get { return @TilingScale; } 
 			set { TilingScale = value;}
 		}	
 		 
@@ -57,20 +57,19 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFillAreaStyleTiles(IModel model) : base(model) 		{ 
-			Model = model; 
 			_tilingPattern = new ItemSet<IfcVector>( this, 2,  1);
 			_tiles = new ItemSet<IfcStyledItem>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcVector> _tilingPattern;
-		private ItemSet<IfcStyledItem> _tiles;
+		private readonly ItemSet<IfcVector> _tilingPattern;
+		private readonly ItemSet<IfcStyledItem> _tiles;
 		private IfcPositiveRatioMeasure _tilingScale;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 2, 2, 3)]
-		public ItemSet<IfcVector> @TilingPattern 
+		public IItemSet<IfcVector> @TilingPattern 
 		{ 
 			get 
 			{
@@ -80,7 +79,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
-		public ItemSet<IfcStyledItem> @Tiles 
+		public IItemSet<IfcStyledItem> @Tiles 
 		{ 
 			get 
 			{
@@ -163,7 +162,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

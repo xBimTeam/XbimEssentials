@@ -41,18 +41,18 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	{
 		#region IIfcGeneralMaterialProperties explicit implementation
 		IfcMolecularWeightMeasure? IIfcGeneralMaterialProperties.MolecularWeight { 
-			get { return @MolecularWeight; } 
  
+			get { return @MolecularWeight; } 
 			set { MolecularWeight = value;}
 		}	
 		IfcNormalisedRatioMeasure? IIfcGeneralMaterialProperties.Porosity { 
-			get { return @Porosity; } 
  
+			get { return @Porosity; } 
 			set { Porosity = value;}
 		}	
 		IfcMassDensityMeasure? IIfcGeneralMaterialProperties.MassDensity { 
-			get { return @MassDensity; } 
  
+			get { return @MassDensity; } 
 			set { MassDensity = value;}
 		}	
 		 
@@ -60,7 +60,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGeneralMaterialProperties(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -175,7 +174,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

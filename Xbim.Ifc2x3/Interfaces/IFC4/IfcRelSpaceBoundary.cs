@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProductExtension
@@ -78,6 +79,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PhysicalOrVirtualBoundary
+				//##
 				switch (PhysicalOrVirtualBoundary)
 				{
 					case IfcPhysicalOrVirtualEnum.PHYSICAL:
@@ -96,6 +99,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PhysicalOrVirtualBoundary
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcPhysicalOrVirtualEnum.PHYSICAL:
@@ -121,6 +126,20 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of InternalOrExternalBoundary
+                if(Description.HasValue)
+                    switch (Description.Value)
+                    {
+                        case "EXTERNAL_EARTH":
+                        case "EXTERNAL_WATER":
+                        case "EXTERNAL_FIRE":
+                            return
+                                (Ifc4.Interfaces.IfcInternalOrExternalEnum)
+                                    System.Enum.Parse(typeof (Ifc4.Interfaces.IfcInternalOrExternalEnum),
+                                        Description.Value);
+                    }
+
+				//##
 				switch (InternalOrExternalBoundary)
 				{
 					case IfcInternalOrExternalEnum.INTERNAL:
@@ -139,6 +158,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of InternalOrExternalBoundary
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcInternalOrExternalEnum.INTERNAL:
@@ -151,20 +172,20 @@ namespace Xbim.Ifc2x3.ProductExtension
 					
 					case Ifc4.Interfaces.IfcInternalOrExternalEnum.EXTERNAL_EARTH:
 						//## Handle setting of EXTERNAL_EARTH member from IfcInternalOrExternalEnum in property InternalOrExternalBoundary
-						//TODO: Handle setting of EXTERNAL_EARTH member from IfcInternalOrExternalEnum in property InternalOrExternalBoundary
-						throw new System.NotImplementedException();
+				        Description = value.ToString();
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcInternalOrExternalEnum.EXTERNAL_WATER:
 						//## Handle setting of EXTERNAL_WATER member from IfcInternalOrExternalEnum in property InternalOrExternalBoundary
-						//TODO: Handle setting of EXTERNAL_WATER member from IfcInternalOrExternalEnum in property InternalOrExternalBoundary
-						throw new System.NotImplementedException();
+						Description = value.ToString();
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcInternalOrExternalEnum.EXTERNAL_FIRE:
 						//## Handle setting of EXTERNAL_FIRE member from IfcInternalOrExternalEnum in property InternalOrExternalBoundary
-						//TODO: Handle setting of EXTERNAL_FIRE member from IfcInternalOrExternalEnum in property InternalOrExternalBoundary
-						throw new System.NotImplementedException();
+						Description = value.ToString();
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcInternalOrExternalEnum.NOTDEFINED:

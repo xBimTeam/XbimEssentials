@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ElectricalDomain
@@ -20,6 +21,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcTransformerTypeEnum.CURRENT:
@@ -33,6 +36,12 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 					
 					case IfcTransformerTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType.HasValue)
+                        {
+                            Ifc4.Interfaces.IfcTransformerTypeEnum result;
+                            if (System.Enum.TryParse(ElementType.Value, false, out result))
+                                return result;
+                        }
 						//##
 						return Ifc4.Interfaces.IfcTransformerTypeEnum.USERDEFINED;
 					
@@ -46,6 +55,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcTransformerTypeEnum.CURRENT:
@@ -58,14 +69,16 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 					
 					case Ifc4.Interfaces.IfcTransformerTypeEnum.INVERTER:
 						//## Handle setting of INVERTER member from IfcTransformerTypeEnum in property PredefinedType
-						//TODO: Handle setting of INVERTER member from IfcTransformerTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcTransformerTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcTransformerTypeEnum.RECTIFIER:
 						//## Handle setting of RECTIFIER member from IfcTransformerTypeEnum in property PredefinedType
-						//TODO: Handle setting of RECTIFIER member from IfcTransformerTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcTransformerTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcTransformerTypeEnum.VOLTAGE:

@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
@@ -28,14 +29,12 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				
 			}
 		}
-		IEnumerable<IIfcCurve> IIfcAnnotationFillArea.InnerBoundaries 
+		IItemSet<IIfcCurve> IIfcAnnotationFillArea.InnerBoundaries 
 		{ 
 			get
 			{
-				foreach (var member in InnerBoundaries)
-				{
-					yield return member as IIfcCurve;
-				}
+			
+				return new Common.Collections.ProxyItemSet<GeometryResource.IfcCurve, IIfcCurve>(InnerBoundaries);
 			} 
 		}
 	//## Custom code

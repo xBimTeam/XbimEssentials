@@ -67,144 +67,144 @@ namespace Xbim.CobieExpress
 	{
 		#region ICobieType explicit implementation
 		ICobieAssetType ICobieType.AssetType { 
+ 
+ 
 			get { return @AssetType; } 
- 
- 
 			set { AssetType = value as CobieAssetType;}
 		}	
 		ICobieContact ICobieType.Manufacturer { 
+ 
+ 
 			get { return @Manufacturer; } 
- 
- 
 			set { Manufacturer = value as CobieContact;}
 		}	
 		string ICobieType.ModelNumber { 
-			get { return @ModelNumber; } 
  
+			get { return @ModelNumber; } 
 			set { ModelNumber = value;}
 		}	
 		string ICobieType.WarrantyDescription { 
-			get { return @WarrantyDescription; } 
  
+			get { return @WarrantyDescription; } 
 			set { WarrantyDescription = value;}
 		}	
 		ICobieContact ICobieType.WarrantyGuarantorParts { 
+ 
+ 
 			get { return @WarrantyGuarantorParts; } 
- 
- 
 			set { WarrantyGuarantorParts = value as CobieContact;}
 		}	
 		double? ICobieType.WarrantyDurationParts { 
-			get { return @WarrantyDurationParts; } 
  
+			get { return @WarrantyDurationParts; } 
 			set { WarrantyDurationParts = value;}
 		}	
 		ICobieContact ICobieType.WarrantyGuarantorLabor { 
+ 
+ 
 			get { return @WarrantyGuarantorLabor; } 
- 
- 
 			set { WarrantyGuarantorLabor = value as CobieContact;}
 		}	
 		double? ICobieType.WarrantyDurationLabor { 
-			get { return @WarrantyDurationLabor; } 
  
+			get { return @WarrantyDurationLabor; } 
 			set { WarrantyDurationLabor = value;}
 		}	
 		ICobieDurationUnit ICobieType.WarrantyDurationUnit { 
+ 
+ 
 			get { return @WarrantyDurationUnit; } 
- 
- 
 			set { WarrantyDurationUnit = value as CobieDurationUnit;}
 		}	
 		double? ICobieType.ReplacementCost { 
-			get { return @ReplacementCost; } 
  
+			get { return @ReplacementCost; } 
 			set { ReplacementCost = value;}
 		}	
 		double? ICobieType.ExpectedLife { 
-			get { return @ExpectedLife; } 
  
+			get { return @ExpectedLife; } 
 			set { ExpectedLife = value;}
 		}	
 		ICobieDurationUnit ICobieType.DurationUnit { 
+ 
+ 
 			get { return @DurationUnit; } 
- 
- 
 			set { DurationUnit = value as CobieDurationUnit;}
 		}	
 		double? ICobieType.NominalLength { 
-			get { return @NominalLength; } 
  
+			get { return @NominalLength; } 
 			set { NominalLength = value;}
 		}	
 		double? ICobieType.NominalWidth { 
-			get { return @NominalWidth; } 
  
+			get { return @NominalWidth; } 
 			set { NominalWidth = value;}
 		}	
 		double? ICobieType.NominalHeight { 
-			get { return @NominalHeight; } 
  
+			get { return @NominalHeight; } 
 			set { NominalHeight = value;}
 		}	
 		string ICobieType.ModelReference { 
-			get { return @ModelReference; } 
  
+			get { return @ModelReference; } 
 			set { ModelReference = value;}
 		}	
 		string ICobieType.Shape { 
-			get { return @Shape; } 
  
+			get { return @Shape; } 
 			set { Shape = value;}
 		}	
 		string ICobieType.Size { 
-			get { return @Size; } 
  
+			get { return @Size; } 
 			set { Size = value;}
 		}	
 		string ICobieType.Color { 
-			get { return @Color; } 
  
+			get { return @Color; } 
 			set { Color = value;}
 		}	
 		string ICobieType.Finish { 
-			get { return @Finish; } 
  
+			get { return @Finish; } 
 			set { Finish = value;}
 		}	
 		string ICobieType.Grade { 
-			get { return @Grade; } 
  
+			get { return @Grade; } 
 			set { Grade = value;}
 		}	
 		string ICobieType.Material { 
-			get { return @Material; } 
  
+			get { return @Material; } 
 			set { Material = value;}
 		}	
 		string ICobieType.Constituents { 
-			get { return @Constituents; } 
  
+			get { return @Constituents; } 
 			set { Constituents = value;}
 		}	
 		string ICobieType.Features { 
-			get { return @Features; } 
  
+			get { return @Features; } 
 			set { Features = value;}
 		}	
 		string ICobieType.AccessibilityPerformance { 
-			get { return @AccessibilityPerformance; } 
  
+			get { return @AccessibilityPerformance; } 
 			set { AccessibilityPerformance = value;}
 		}	
 		string ICobieType.CodePerformance { 
-			get { return @CodePerformance; } 
  
+			get { return @CodePerformance; } 
 			set { CodePerformance = value;}
 		}	
 		string ICobieType.SustainabilityPerformance { 
-			get { return @SustainabilityPerformance; } 
  
+			get { return @SustainabilityPerformance; } 
 			set { SustainabilityPerformance = value;}
 		}	
 		 
@@ -215,7 +215,6 @@ namespace Xbim.CobieExpress
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieType(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -803,7 +802,7 @@ namespace Xbim.CobieExpress
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

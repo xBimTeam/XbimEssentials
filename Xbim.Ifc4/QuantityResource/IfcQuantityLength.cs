@@ -40,13 +40,13 @@ namespace Xbim.Ifc4.QuantityResource
 	{
 		#region IIfcQuantityLength explicit implementation
 		IfcLengthMeasure IIfcQuantityLength.LengthValue { 
-			get { return @LengthValue; } 
  
+			get { return @LengthValue; } 
 			set { LengthValue = value;}
 		}	
 		IfcLabel? IIfcQuantityLength.Formula { 
-			get { return @Formula; } 
  
+			get { return @Formula; } 
 			set { Formula = value;}
 		}	
 		 
@@ -54,7 +54,6 @@ namespace Xbim.Ifc4.QuantityResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcQuantityLength(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -153,7 +152,7 @@ namespace Xbim.Ifc4.QuantityResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

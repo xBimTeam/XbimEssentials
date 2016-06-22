@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 		IIfcRepresentationContext @ContextOfItems { get;  set; }
 		IfcLabel? @RepresentationIdentifier { get;  set; }
 		IfcLabel? @RepresentationType { get;  set; }
-		IEnumerable<IIfcRepresentationItem> @Items { get; }
+		IItemSet<IIfcRepresentationItem> @Items { get; }
 		IEnumerable<IIfcRepresentationMap> @RepresentationMap {  get; }
 		IEnumerable<IIfcPresentationLayerAssignment> @LayerAssignments {  get; }
 		IEnumerable<IIfcProductRepresentation> @OfProductRepresentation {  get; }
@@ -49,23 +49,23 @@ namespace Xbim.Ifc4.RepresentationResource
 	{
 		#region IIfcRepresentation explicit implementation
 		IIfcRepresentationContext IIfcRepresentation.ContextOfItems { 
+ 
+ 
 			get { return @ContextOfItems; } 
- 
- 
 			set { ContextOfItems = value as IfcRepresentationContext;}
 		}	
 		IfcLabel? IIfcRepresentation.RepresentationIdentifier { 
-			get { return @RepresentationIdentifier; } 
  
+			get { return @RepresentationIdentifier; } 
 			set { RepresentationIdentifier = value;}
 		}	
 		IfcLabel? IIfcRepresentation.RepresentationType { 
-			get { return @RepresentationType; } 
  
+			get { return @RepresentationType; } 
 			set { RepresentationType = value;}
 		}	
-		IEnumerable<IIfcRepresentationItem> IIfcRepresentation.Items { 
-			get { return @Items; } 
+		IItemSet<IIfcRepresentationItem> IIfcRepresentation.Items { 
+			get { return new Common.Collections.ProxyItemSet<IfcRepresentationItem, IIfcRepresentationItem>( @Items); } 
 		}	
 		 
 		IEnumerable<IIfcRepresentationMap> IIfcRepresentation.RepresentationMap {  get { return @RepresentationMap; } }
@@ -141,7 +141,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		private IfcRepresentationContext _contextOfItems;
 		private IfcLabel? _representationIdentifier;
 		private IfcLabel? _representationType;
-		private ItemSet<IfcRepresentationItem> _items;
+		private readonly ItemSet<IfcRepresentationItem> _items;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -189,7 +189,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
-		public ItemSet<IfcRepresentationItem> @Items 
+		public IItemSet<IfcRepresentationItem> @Items 
 		{ 
 			get 
 			{
@@ -339,7 +339,7 @@ namespace Xbim.Ifc4.RepresentationResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcProjectOrderRecord : IIfcControl
 	{
-		IEnumerable<IIfcRelAssignsToProjectOrder> @Records { get; }
+		IItemSet<IIfcRelAssignsToProjectOrder> @Records { get; }
 		IfcProjectOrderRecordTypeEnum @PredefinedType { get;  set; }
 	
 	}
@@ -39,12 +39,12 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 	public  partial class @IfcProjectOrderRecord : IfcControl, IInstantiableEntity, IIfcProjectOrderRecord, IContainsEntityReferences, IEquatable<@IfcProjectOrderRecord>
 	{
 		#region IIfcProjectOrderRecord explicit implementation
-		IEnumerable<IIfcRelAssignsToProjectOrder> IIfcProjectOrderRecord.Records { 
-			get { return @Records; } 
+		IItemSet<IIfcRelAssignsToProjectOrder> IIfcProjectOrderRecord.Records { 
+			get { return new Common.Collections.ProxyItemSet<IfcRelAssignsToProjectOrder, IIfcRelAssignsToProjectOrder>( @Records); } 
 		}	
 		IfcProjectOrderRecordTypeEnum IIfcProjectOrderRecord.PredefinedType { 
-			get { return @PredefinedType; } 
  
+			get { return @PredefinedType; } 
 			set { PredefinedType = value;}
 		}	
 		 
@@ -52,18 +52,17 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProjectOrderRecord(IModel model) : base(model) 		{ 
-			Model = model; 
 			_records = new ItemSet<IfcRelAssignsToProjectOrder>( this, 0,  6);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcRelAssignsToProjectOrder> _records;
+		private readonly ItemSet<IfcRelAssignsToProjectOrder> _records;
 		private IfcProjectOrderRecordTypeEnum _predefinedType;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1, 12)]
-		public ItemSet<IfcRelAssignsToProjectOrder> @Records 
+		public IItemSet<IfcRelAssignsToProjectOrder> @Records 
 		{ 
 			get 
 			{
@@ -150,7 +149,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

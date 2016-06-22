@@ -41,18 +41,18 @@ namespace Xbim.Ifc2x3.ProductExtension
 	{
 		#region IIfcTransportElement explicit implementation
 		IfcTransportElementTypeEnum? IIfcTransportElement.OperationType { 
-			get { return @OperationType; } 
  
+			get { return @OperationType; } 
 			set { OperationType = value;}
 		}	
 		IfcMassMeasure? IIfcTransportElement.CapacityByWeight { 
-			get { return @CapacityByWeight; } 
  
+			get { return @CapacityByWeight; } 
 			set { CapacityByWeight = value;}
 		}	
 		IfcCountMeasure? IIfcTransportElement.CapacityByNumber { 
-			get { return @CapacityByNumber; } 
  
+			get { return @CapacityByNumber; } 
 			set { CapacityByNumber = value;}
 		}	
 		 
@@ -60,7 +60,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTransportElement(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -182,7 +181,7 @@ namespace Xbim.Ifc2x3.ProductExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

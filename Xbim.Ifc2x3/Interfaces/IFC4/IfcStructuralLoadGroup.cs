@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
@@ -20,6 +21,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcLoadGroupTypeEnum.LOAD_GROUP:
@@ -51,6 +54,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcLoadGroupTypeEnum.LOAD_GROUP:
@@ -84,6 +89,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of ActionType
+				//##
 				switch (ActionType)
 				{
 					case IfcActionTypeEnum.PERMANENT_G:
@@ -110,6 +117,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of ActionType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcActionTypeEnum.PERMANENT_G:
@@ -143,6 +152,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of ActionSource
+				//##
 				switch (ActionSource)
 				{
 					case IfcActionSourceTypeEnum.DEAD_LOAD_G:
@@ -235,6 +246,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of ActionSource
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcActionSourceTypeEnum.DEAD_LOAD_G:

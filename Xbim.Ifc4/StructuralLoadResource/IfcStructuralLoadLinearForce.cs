@@ -44,33 +44,33 @@ namespace Xbim.Ifc4.StructuralLoadResource
 	{
 		#region IIfcStructuralLoadLinearForce explicit implementation
 		IfcLinearForceMeasure? IIfcStructuralLoadLinearForce.LinearForceX { 
-			get { return @LinearForceX; } 
  
+			get { return @LinearForceX; } 
 			set { LinearForceX = value;}
 		}	
 		IfcLinearForceMeasure? IIfcStructuralLoadLinearForce.LinearForceY { 
-			get { return @LinearForceY; } 
  
+			get { return @LinearForceY; } 
 			set { LinearForceY = value;}
 		}	
 		IfcLinearForceMeasure? IIfcStructuralLoadLinearForce.LinearForceZ { 
-			get { return @LinearForceZ; } 
  
+			get { return @LinearForceZ; } 
 			set { LinearForceZ = value;}
 		}	
 		IfcLinearMomentMeasure? IIfcStructuralLoadLinearForce.LinearMomentX { 
-			get { return @LinearMomentX; } 
  
+			get { return @LinearMomentX; } 
 			set { LinearMomentX = value;}
 		}	
 		IfcLinearMomentMeasure? IIfcStructuralLoadLinearForce.LinearMomentY { 
-			get { return @LinearMomentY; } 
  
+			get { return @LinearMomentY; } 
 			set { LinearMomentY = value;}
 		}	
 		IfcLinearMomentMeasure? IIfcStructuralLoadLinearForce.LinearMomentZ { 
-			get { return @LinearMomentZ; } 
  
+			get { return @LinearMomentZ; } 
 			set { LinearMomentZ = value;}
 		}	
 		 
@@ -78,7 +78,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadLinearForce(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -247,7 +246,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

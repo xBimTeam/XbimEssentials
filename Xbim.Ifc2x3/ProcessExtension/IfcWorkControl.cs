@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcIdentifier @Identifier { get;  set; }
 		IIfcDateTimeSelect @CreationDate { get;  set; }
-		IEnumerable<IIfcPerson> @Creators { get; }
+		IItemSet<IIfcPerson> @Creators { get; }
 		IfcLabel? @Purpose { get;  set; }
 		IfcTimeMeasure? @Duration { get;  set; }
 		IfcTimeMeasure? @TotalFloat { get;  set; }
@@ -51,54 +51,54 @@ namespace Xbim.Ifc2x3.ProcessExtension
 	{
 		#region IIfcWorkControl explicit implementation
 		IfcIdentifier IIfcWorkControl.Identifier { 
-			get { return @Identifier; } 
  
+			get { return @Identifier; } 
 			set { Identifier = value;}
 		}	
 		IIfcDateTimeSelect IIfcWorkControl.CreationDate { 
+ 
+ 
 			get { return @CreationDate; } 
- 
- 
 			set { CreationDate = value as IfcDateTimeSelect;}
 		}	
-		IEnumerable<IIfcPerson> IIfcWorkControl.Creators { 
-			get { return @Creators; } 
+		IItemSet<IIfcPerson> IIfcWorkControl.Creators { 
+			get { return new Common.Collections.ProxyItemSet<IfcPerson, IIfcPerson>( @Creators); } 
 		}	
 		IfcLabel? IIfcWorkControl.Purpose { 
-			get { return @Purpose; } 
  
+			get { return @Purpose; } 
 			set { Purpose = value;}
 		}	
 		IfcTimeMeasure? IIfcWorkControl.Duration { 
-			get { return @Duration; } 
  
+			get { return @Duration; } 
 			set { Duration = value;}
 		}	
 		IfcTimeMeasure? IIfcWorkControl.TotalFloat { 
-			get { return @TotalFloat; } 
  
+			get { return @TotalFloat; } 
 			set { TotalFloat = value;}
 		}	
 		IIfcDateTimeSelect IIfcWorkControl.StartTime { 
+ 
+ 
 			get { return @StartTime; } 
- 
- 
 			set { StartTime = value as IfcDateTimeSelect;}
 		}	
 		IIfcDateTimeSelect IIfcWorkControl.FinishTime { 
+ 
+ 
 			get { return @FinishTime; } 
- 
- 
 			set { FinishTime = value as IfcDateTimeSelect;}
 		}	
 		IfcWorkControlTypeEnum? IIfcWorkControl.WorkControlType { 
-			get { return @WorkControlType; } 
  
+			get { return @WorkControlType; } 
 			set { WorkControlType = value;}
 		}	
 		IfcLabel? IIfcWorkControl.UserDefinedControlType { 
-			get { return @UserDefinedControlType; } 
  
+			get { return @UserDefinedControlType; } 
 			set { UserDefinedControlType = value;}
 		}	
 		 
@@ -106,14 +106,13 @@ namespace Xbim.Ifc2x3.ProcessExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWorkControl(IModel model) : base(model) 		{ 
-			Model = model; 
 			_creators = new OptionalItemSet<IfcPerson>( this, 0,  8);
 		}
 
 		#region Explicit attribute fields
 		private IfcIdentifier _identifier;
 		private IfcDateTimeSelect _creationDate;
-		private OptionalItemSet<IfcPerson> _creators;
+		private readonly OptionalItemSet<IfcPerson> _creators;
 		private IfcLabel? _purpose;
 		private IfcTimeMeasure? _duration;
 		private IfcTimeMeasure? _totalFloat;
@@ -153,7 +152,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 14)]
-		public OptionalItemSet<IfcPerson> @Creators 
+		public IOptionalItemSet<IfcPerson> @Creators 
 		{ 
 			get 
 			{
@@ -348,7 +347,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

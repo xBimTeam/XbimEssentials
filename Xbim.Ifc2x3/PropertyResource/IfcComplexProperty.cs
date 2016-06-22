@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcComplexProperty : IIfcProperty
 	{
 		IfcIdentifier @UsageName { get;  set; }
-		IEnumerable<IIfcProperty> @HasProperties { get; }
+		IItemSet<IIfcProperty> @HasProperties { get; }
 	
 	}
 }
@@ -40,25 +40,24 @@ namespace Xbim.Ifc2x3.PropertyResource
 	{
 		#region IIfcComplexProperty explicit implementation
 		IfcIdentifier IIfcComplexProperty.UsageName { 
-			get { return @UsageName; } 
  
+			get { return @UsageName; } 
 			set { UsageName = value;}
 		}	
-		IEnumerable<IIfcProperty> IIfcComplexProperty.HasProperties { 
-			get { return @HasProperties; } 
+		IItemSet<IIfcProperty> IIfcComplexProperty.HasProperties { 
+			get { return new Common.Collections.ProxyItemSet<IfcProperty, IIfcProperty>( @HasProperties); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcComplexProperty(IModel model) : base(model) 		{ 
-			Model = model; 
 			_hasProperties = new ItemSet<IfcProperty>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
 		private IfcIdentifier _usageName;
-		private ItemSet<IfcProperty> _hasProperties;
+		private readonly ItemSet<IfcProperty> _hasProperties;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -78,7 +77,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 		}	
 		[IndexedProperty]
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 7)]
-		public ItemSet<IfcProperty> @HasProperties 
+		public IItemSet<IfcProperty> @HasProperties 
 		{ 
 			get 
 			{
@@ -148,7 +147,7 @@ namespace Xbim.Ifc2x3.PropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

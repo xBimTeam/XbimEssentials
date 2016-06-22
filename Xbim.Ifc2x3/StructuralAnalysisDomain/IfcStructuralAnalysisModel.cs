@@ -29,8 +29,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcAnalysisModelTypeEnum @PredefinedType { get;  set; }
 		IIfcAxis2Placement3D @OrientationOf2DPlane { get;  set; }
-		IEnumerable<IIfcStructuralLoadGroup> @LoadedBy { get; }
-		IEnumerable<IIfcStructuralResultGroup> @HasResults { get; }
+		IItemSet<IIfcStructuralLoadGroup> @LoadedBy { get; }
+		IItemSet<IIfcStructuralResultGroup> @HasResults { get; }
 	
 	}
 }
@@ -43,28 +43,27 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 	{
 		#region IIfcStructuralAnalysisModel explicit implementation
 		IfcAnalysisModelTypeEnum IIfcStructuralAnalysisModel.PredefinedType { 
-			get { return @PredefinedType; } 
  
+			get { return @PredefinedType; } 
 			set { PredefinedType = value;}
 		}	
 		IIfcAxis2Placement3D IIfcStructuralAnalysisModel.OrientationOf2DPlane { 
+ 
+ 
 			get { return @OrientationOf2DPlane; } 
- 
- 
 			set { OrientationOf2DPlane = value as IfcAxis2Placement3D;}
 		}	
-		IEnumerable<IIfcStructuralLoadGroup> IIfcStructuralAnalysisModel.LoadedBy { 
-			get { return @LoadedBy; } 
+		IItemSet<IIfcStructuralLoadGroup> IIfcStructuralAnalysisModel.LoadedBy { 
+			get { return new Common.Collections.ProxyItemSet<IfcStructuralLoadGroup, IIfcStructuralLoadGroup>( @LoadedBy); } 
 		}	
-		IEnumerable<IIfcStructuralResultGroup> IIfcStructuralAnalysisModel.HasResults { 
-			get { return @HasResults; } 
+		IItemSet<IIfcStructuralResultGroup> IIfcStructuralAnalysisModel.HasResults { 
+			get { return new Common.Collections.ProxyItemSet<IfcStructuralResultGroup, IIfcStructuralResultGroup>( @HasResults); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralAnalysisModel(IModel model) : base(model) 		{ 
-			Model = model; 
 			_loadedBy = new OptionalItemSet<IfcStructuralLoadGroup>( this, 0,  8);
 			_hasResults = new OptionalItemSet<IfcStructuralResultGroup>( this, 0,  9);
 		}
@@ -72,8 +71,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		#region Explicit attribute fields
 		private IfcAnalysisModelTypeEnum _predefinedType;
 		private IfcAxis2Placement3D _orientationOf2DPlane;
-		private OptionalItemSet<IfcStructuralLoadGroup> _loadedBy;
-		private OptionalItemSet<IfcStructuralResultGroup> _hasResults;
+		private readonly OptionalItemSet<IfcStructuralLoadGroup> _loadedBy;
+		private readonly OptionalItemSet<IfcStructuralResultGroup> _hasResults;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -107,7 +106,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		}	
 		[IndexedProperty]
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 15)]
-		public OptionalItemSet<IfcStructuralLoadGroup> @LoadedBy 
+		public IOptionalItemSet<IfcStructuralLoadGroup> @LoadedBy 
 		{ 
 			get 
 			{
@@ -118,7 +117,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		}	
 		[IndexedProperty]
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 16)]
-		public OptionalItemSet<IfcStructuralResultGroup> @HasResults 
+		public IOptionalItemSet<IfcStructuralResultGroup> @HasResults 
 		{ 
 			get 
 			{
@@ -197,7 +196,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ConstructionMgmtDomain
@@ -31,13 +32,13 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 				
 			}
 		}
-		IEnumerable<IIfcAppliedValue> IIfcConstructionResource.BaseCosts 
+		IItemSet<IIfcAppliedValue> IIfcConstructionResource.BaseCosts 
 		{ 
 			get
 			{
 				//## Handle return of BaseCosts for which no match was found
-				yield break;
-				//##
+				return _baseCosts ?? (_baseCosts = new ItemSet<IIfcAppliedValue>(this, 0, byte.MaxValue));
+			    //##
 			} 
 		}
 		IIfcPhysicalQuantity IIfcConstructionResource.BaseQuantity 
@@ -90,6 +91,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			}
 		}
 	//## Custom code
-	//##
+	    private IItemSet<IIfcAppliedValue> _baseCosts;
+	    //##
 	}
 }

@@ -43,24 +43,24 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 	{
 		#region IIfcLightSourceSpot explicit implementation
 		IIfcDirection IIfcLightSourceSpot.Orientation { 
+ 
+ 
 			get { return @Orientation; } 
- 
- 
 			set { Orientation = value as IfcDirection;}
 		}	
 		IfcReal? IIfcLightSourceSpot.ConcentrationExponent { 
-			get { return @ConcentrationExponent; } 
  
+			get { return @ConcentrationExponent; } 
 			set { ConcentrationExponent = value;}
 		}	
 		IfcPositivePlaneAngleMeasure IIfcLightSourceSpot.SpreadAngle { 
-			get { return @SpreadAngle; } 
  
+			get { return @SpreadAngle; } 
 			set { SpreadAngle = value;}
 		}	
 		IfcPositivePlaneAngleMeasure IIfcLightSourceSpot.BeamWidthAngle { 
-			get { return @BeamWidthAngle; } 
  
+			get { return @BeamWidthAngle; } 
 			set { BeamWidthAngle = value;}
 		}	
 		 
@@ -68,7 +68,6 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLightSourceSpot(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -209,7 +208,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

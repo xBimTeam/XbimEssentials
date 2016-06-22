@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ElectricalDomain
@@ -20,6 +21,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcElectricApplianceTypeEnum.COMPUTER:
@@ -120,6 +123,12 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 										
 					case IfcElectricApplianceTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType.HasValue)
+                        {
+                            Ifc4.Interfaces.IfcElectricApplianceTypeEnum result;
+                            if (System.Enum.TryParse(ElementType.Value, false, out result))
+                                return result;
+                        }
 						//##
 						return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.USERDEFINED;
 					
@@ -133,6 +142,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.DISHWASHER:
@@ -145,8 +156,9 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 					
 					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FREESTANDINGELECTRICHEATER:
 						//## Handle setting of FREESTANDINGELECTRICHEATER member from IfcElectricApplianceTypeEnum in property PredefinedType
-						//TODO: Handle setting of FREESTANDINGELECTRICHEATER member from IfcElectricApplianceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcElectricApplianceTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FREESTANDINGFAN:
@@ -155,14 +167,16 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 					
 					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FREESTANDINGWATERHEATER:
 						//## Handle setting of FREESTANDINGWATERHEATER member from IfcElectricApplianceTypeEnum in property PredefinedType
-						//TODO: Handle setting of FREESTANDINGWATERHEATER member from IfcElectricApplianceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcElectricApplianceTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FREESTANDINGWATERCOOLER:
 						//## Handle setting of FREESTANDINGWATERCOOLER member from IfcElectricApplianceTypeEnum in property PredefinedType
-						//TODO: Handle setting of FREESTANDINGWATERCOOLER member from IfcElectricApplianceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcElectricApplianceTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FREEZER:
@@ -179,8 +193,9 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 					
 					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.KITCHENMACHINE:
 						//## Handle setting of KITCHENMACHINE member from IfcElectricApplianceTypeEnum in property PredefinedType
-						//TODO: Handle setting of KITCHENMACHINE member from IfcElectricApplianceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcElectricApplianceTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.MICROWAVE:

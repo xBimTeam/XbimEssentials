@@ -44,33 +44,33 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	{
 		#region IIfcMechanicalConcreteMaterialProperties explicit implementation
 		IfcPressureMeasure? IIfcMechanicalConcreteMaterialProperties.CompressiveStrength { 
-			get { return @CompressiveStrength; } 
  
+			get { return @CompressiveStrength; } 
 			set { CompressiveStrength = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcMechanicalConcreteMaterialProperties.MaxAggregateSize { 
-			get { return @MaxAggregateSize; } 
  
+			get { return @MaxAggregateSize; } 
 			set { MaxAggregateSize = value;}
 		}	
 		IfcText? IIfcMechanicalConcreteMaterialProperties.AdmixturesDescription { 
-			get { return @AdmixturesDescription; } 
  
+			get { return @AdmixturesDescription; } 
 			set { AdmixturesDescription = value;}
 		}	
 		IfcText? IIfcMechanicalConcreteMaterialProperties.Workability { 
-			get { return @Workability; } 
  
+			get { return @Workability; } 
 			set { Workability = value;}
 		}	
 		IfcNormalisedRatioMeasure? IIfcMechanicalConcreteMaterialProperties.ProtectivePoreRatio { 
-			get { return @ProtectivePoreRatio; } 
  
+			get { return @ProtectivePoreRatio; } 
 			set { ProtectivePoreRatio = value;}
 		}	
 		IfcText? IIfcMechanicalConcreteMaterialProperties.WaterImpermeability { 
-			get { return @WaterImpermeability; } 
  
+			get { return @WaterImpermeability; } 
 			set { WaterImpermeability = value;}
 		}	
 		 
@@ -78,7 +78,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMechanicalConcreteMaterialProperties(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -252,7 +251,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

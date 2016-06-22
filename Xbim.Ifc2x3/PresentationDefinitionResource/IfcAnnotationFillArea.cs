@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcAnnotationFillArea : IIfcGeometricRepresentationItem
 	{
 		IIfcCurve @OuterBoundary { get;  set; }
-		IEnumerable<IIfcCurve> @InnerBoundaries { get; }
+		IItemSet<IIfcCurve> @InnerBoundaries { get; }
 	
 	}
 }
@@ -40,26 +40,25 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 	{
 		#region IIfcAnnotationFillArea explicit implementation
 		IIfcCurve IIfcAnnotationFillArea.OuterBoundary { 
+ 
+ 
 			get { return @OuterBoundary; } 
- 
- 
 			set { OuterBoundary = value as IfcCurve;}
 		}	
-		IEnumerable<IIfcCurve> IIfcAnnotationFillArea.InnerBoundaries { 
-			get { return @InnerBoundaries; } 
+		IItemSet<IIfcCurve> IIfcAnnotationFillArea.InnerBoundaries { 
+			get { return new Common.Collections.ProxyItemSet<IfcCurve, IIfcCurve>( @InnerBoundaries); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAnnotationFillArea(IModel model) : base(model) 		{ 
-			Model = model; 
 			_innerBoundaries = new OptionalItemSet<IfcCurve>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
 		private IfcCurve _outerBoundary;
-		private OptionalItemSet<IfcCurve> _innerBoundaries;
+		private readonly OptionalItemSet<IfcCurve> _innerBoundaries;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -78,7 +77,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
-		public OptionalItemSet<IfcCurve> @InnerBoundaries 
+		public IOptionalItemSet<IfcCurve> @InnerBoundaries 
 		{ 
 			get 
 			{
@@ -144,7 +143,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

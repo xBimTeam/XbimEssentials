@@ -30,7 +30,7 @@ namespace Xbim.CobieExpress.Interfaces
 		ICobieStageType @Stage { get;  set; }
 		IAttributeValue @Value { get;  set; }
 		string @Unit { get;  set; }
-		IEnumerable<string> @AllowedValues { get; }
+		IItemSet<string> @AllowedValues { get; }
 		CobieExternalObject @PropertySet  { get ; }
 	
 	}
@@ -44,33 +44,33 @@ namespace Xbim.CobieExpress
 	{
 		#region ICobieAttribute explicit implementation
 		string ICobieAttribute.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		string ICobieAttribute.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		ICobieStageType ICobieAttribute.Stage { 
+ 
+ 
 			get { return @Stage; } 
- 
- 
 			set { Stage = value as CobieStageType;}
 		}	
 		IAttributeValue ICobieAttribute.Value { 
+ 
+ 
 			get { return @Value; } 
- 
- 
 			set { Value = value as AttributeValue;}
 		}	
 		string ICobieAttribute.Unit { 
-			get { return @Unit; } 
  
+			get { return @Unit; } 
 			set { Unit = value;}
 		}	
-		IEnumerable<string> ICobieAttribute.AllowedValues { 
+		IItemSet<string> ICobieAttribute.AllowedValues { 
 			get { return @AllowedValues; } 
 		}	
 		 
@@ -78,7 +78,6 @@ namespace Xbim.CobieExpress
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieAttribute(IModel model) : base(model) 		{ 
-			Model = model; 
 			_allowedValues = new OptionalItemSet<string>( this, 0,  11);
 		}
 
@@ -88,7 +87,7 @@ namespace Xbim.CobieExpress
 		private CobieStageType _stage;
 		private AttributeValue _value;
 		private string _unit;
-		private OptionalItemSet<string> _allowedValues;
+		private readonly OptionalItemSet<string> _allowedValues;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -163,7 +162,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 0, -1, 11)]
-		public OptionalItemSet<string> @AllowedValues 
+		public IOptionalItemSet<string> @AllowedValues 
 		{ 
 			get 
 			{
@@ -261,7 +260,7 @@ namespace Xbim.CobieExpress
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

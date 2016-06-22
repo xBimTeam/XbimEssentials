@@ -37,7 +37,7 @@ namespace Xbim.CobieExpress.Interfaces
 		double? @Frequency { get;  set; }
 		ICobieDurationUnit @FrequencyUnit { get;  set; }
 		ICobieJob @Priors { get;  set; }
-		IEnumerable<ICobieResource> @Resources { get; }
+		IItemSet<ICobieResource> @Resources { get; }
 		ICobieType @Type { get;  set; }
 	
 	}
@@ -51,78 +51,78 @@ namespace Xbim.CobieExpress
 	{
 		#region ICobieJob explicit implementation
 		string ICobieJob.TaskNumber { 
-			get { return @TaskNumber; } 
  
+			get { return @TaskNumber; } 
 			set { TaskNumber = value;}
 		}	
 		string ICobieJob.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		string ICobieJob.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		ICobieJobType ICobieJob.JobType { 
+ 
+ 
 			get { return @JobType; } 
- 
- 
 			set { JobType = value as CobieJobType;}
 		}	
 		ICobieJobStatusType ICobieJob.JobStatusType { 
+ 
+ 
 			get { return @JobStatusType; } 
- 
- 
 			set { JobStatusType = value as CobieJobStatusType;}
 		}	
 		double? ICobieJob.Duration { 
-			get { return @Duration; } 
  
+			get { return @Duration; } 
 			set { Duration = value;}
 		}	
 		ICobieDurationUnit ICobieJob.DurationUnit { 
+ 
+ 
 			get { return @DurationUnit; } 
- 
- 
 			set { DurationUnit = value as CobieDurationUnit;}
 		}	
 		double? ICobieJob.Start { 
-			get { return @Start; } 
  
+			get { return @Start; } 
 			set { Start = value;}
 		}	
 		ICobieDurationUnit ICobieJob.StartUnit { 
+ 
+ 
 			get { return @StartUnit; } 
- 
- 
 			set { StartUnit = value as CobieDurationUnit;}
 		}	
 		double? ICobieJob.Frequency { 
-			get { return @Frequency; } 
  
+			get { return @Frequency; } 
 			set { Frequency = value;}
 		}	
 		ICobieDurationUnit ICobieJob.FrequencyUnit { 
+ 
+ 
 			get { return @FrequencyUnit; } 
- 
- 
 			set { FrequencyUnit = value as CobieDurationUnit;}
 		}	
 		ICobieJob ICobieJob.Priors { 
+ 
+ 
 			get { return @Priors; } 
- 
- 
 			set { Priors = value as CobieJob;}
 		}	
-		IEnumerable<ICobieResource> ICobieJob.Resources { 
-			get { return @Resources; } 
+		IItemSet<ICobieResource> ICobieJob.Resources { 
+			get { return new Common.Collections.ProxyItemSet<CobieResource, ICobieResource>( @Resources); } 
 		}	
 		ICobieType ICobieJob.Type { 
+ 
+ 
 			get { return @Type; } 
- 
- 
 			set { Type = value as CobieType;}
 		}	
 		 
@@ -130,7 +130,6 @@ namespace Xbim.CobieExpress
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieJob(IModel model) : base(model) 		{ 
-			Model = model; 
 			_resources = new OptionalItemSet<CobieResource>( this, 0,  18);
 		}
 
@@ -147,7 +146,7 @@ namespace Xbim.CobieExpress
 		private double? _frequency;
 		private CobieDurationUnit _frequencyUnit;
 		private CobieJob _priors;
-		private OptionalItemSet<CobieResource> _resources;
+		private readonly OptionalItemSet<CobieResource> _resources;
 		private CobieType _type;
 		#endregion
 	
@@ -321,7 +320,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 18)]
-		public OptionalItemSet<CobieResource> @Resources 
+		public IOptionalItemSet<CobieResource> @Resources 
 		{ 
 			get 
 			{
@@ -445,7 +444,7 @@ namespace Xbim.CobieExpress
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

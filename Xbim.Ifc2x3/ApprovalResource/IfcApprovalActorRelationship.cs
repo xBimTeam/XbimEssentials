@@ -43,21 +43,21 @@ namespace Xbim.Ifc2x3.ApprovalResource
 	{
 		#region IIfcApprovalActorRelationship explicit implementation
 		IIfcActorSelect IIfcApprovalActorRelationship.Actor { 
+ 
+ 
 			get { return @Actor; } 
- 
- 
 			set { Actor = value as IfcActorSelect;}
 		}	
 		IIfcApproval IIfcApprovalActorRelationship.Approval { 
+ 
+ 
 			get { return @Approval; } 
- 
- 
 			set { Approval = value as IfcApproval;}
 		}	
 		IIfcActorRole IIfcApprovalActorRelationship.Role { 
+ 
+ 
 			get { return @Role; } 
- 
- 
 			set { Role = value as IfcActorRole;}
 		}	
 		 
@@ -285,7 +285,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

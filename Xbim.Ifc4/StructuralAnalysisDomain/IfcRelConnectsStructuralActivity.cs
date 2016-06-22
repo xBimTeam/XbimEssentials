@@ -40,15 +40,15 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	{
 		#region IIfcRelConnectsStructuralActivity explicit implementation
 		IIfcStructuralActivityAssignmentSelect IIfcRelConnectsStructuralActivity.RelatingElement { 
+ 
+ 
 			get { return @RelatingElement; } 
- 
- 
 			set { RelatingElement = value as IfcStructuralActivityAssignmentSelect;}
 		}	
 		IIfcStructuralActivity IIfcRelConnectsStructuralActivity.RelatedStructuralActivity { 
+ 
+ 
 			get { return @RelatedStructuralActivity; } 
- 
- 
 			set { RelatedStructuralActivity = value as IfcStructuralActivity;}
 		}	
 		 
@@ -56,7 +56,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelConnectsStructuralActivity(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -158,7 +157,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

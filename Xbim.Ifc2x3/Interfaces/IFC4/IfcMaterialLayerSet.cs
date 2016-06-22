@@ -10,20 +10,19 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.MaterialResource
 {
 	public partial class @IfcMaterialLayerSet : IIfcMaterialLayerSet
 	{
-		IEnumerable<IIfcMaterialLayer> IIfcMaterialLayerSet.MaterialLayers 
+		IItemSet<IIfcMaterialLayer> IIfcMaterialLayerSet.MaterialLayers 
 		{ 
 			get
 			{
-				foreach (var member in MaterialLayers)
-				{
-					yield return member as IIfcMaterialLayer;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcMaterialLayer, IIfcMaterialLayer>(MaterialLayers);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcMaterialLayerSet.LayerSetName 

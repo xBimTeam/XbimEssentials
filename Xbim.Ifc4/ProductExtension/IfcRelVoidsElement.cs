@@ -40,15 +40,15 @@ namespace Xbim.Ifc4.ProductExtension
 	{
 		#region IIfcRelVoidsElement explicit implementation
 		IIfcElement IIfcRelVoidsElement.RelatingBuildingElement { 
+ 
+ 
 			get { return @RelatingBuildingElement; } 
- 
- 
 			set { RelatingBuildingElement = value as IfcElement;}
 		}	
 		IIfcFeatureElementSubtraction IIfcRelVoidsElement.RelatedOpeningElement { 
+ 
+ 
 			get { return @RelatedOpeningElement; } 
- 
- 
 			set { RelatedOpeningElement = value as IfcFeatureElementSubtraction;}
 		}	
 		 
@@ -56,7 +56,6 @@ namespace Xbim.Ifc4.ProductExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelVoidsElement(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -158,7 +157,7 @@ namespace Xbim.Ifc4.ProductExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

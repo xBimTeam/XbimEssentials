@@ -40,15 +40,15 @@ namespace Xbim.Ifc2x3.ProductExtension
 	{
 		#region IIfcRelConnectsPortToElement explicit implementation
 		IIfcPort IIfcRelConnectsPortToElement.RelatingPort { 
+ 
+ 
 			get { return @RelatingPort; } 
- 
- 
 			set { RelatingPort = value as IfcPort;}
 		}	
 		IIfcElement IIfcRelConnectsPortToElement.RelatedElement { 
+ 
+ 
 			get { return @RelatedElement; } 
- 
- 
 			set { RelatedElement = value as IfcElement;}
 		}	
 		 
@@ -56,7 +56,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelConnectsPortToElement(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -158,7 +157,7 @@ namespace Xbim.Ifc2x3.ProductExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

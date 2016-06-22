@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelConnectsWithRealizingElements : IIfcRelConnectsElements
 	{
-		IEnumerable<IIfcElement> @RealizingElements { get; }
+		IItemSet<IIfcElement> @RealizingElements { get; }
 		IfcLabel? @ConnectionType { get;  set; }
 	
 	}
@@ -39,12 +39,12 @@ namespace Xbim.Ifc2x3.ProductExtension
 	public  partial class @IfcRelConnectsWithRealizingElements : IfcRelConnectsElements, IInstantiableEntity, IIfcRelConnectsWithRealizingElements, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsWithRealizingElements>
 	{
 		#region IIfcRelConnectsWithRealizingElements explicit implementation
-		IEnumerable<IIfcElement> IIfcRelConnectsWithRealizingElements.RealizingElements { 
-			get { return @RealizingElements; } 
+		IItemSet<IIfcElement> IIfcRelConnectsWithRealizingElements.RealizingElements { 
+			get { return new Common.Collections.ProxyItemSet<IfcElement, IIfcElement>( @RealizingElements); } 
 		}	
 		IfcLabel? IIfcRelConnectsWithRealizingElements.ConnectionType { 
-			get { return @ConnectionType; } 
  
+			get { return @ConnectionType; } 
 			set { ConnectionType = value;}
 		}	
 		 
@@ -52,19 +52,18 @@ namespace Xbim.Ifc2x3.ProductExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelConnectsWithRealizingElements(IModel model) : base(model) 		{ 
-			Model = model; 
 			_realizingElements = new ItemSet<IfcElement>( this, 0,  8);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcElement> _realizingElements;
+		private readonly ItemSet<IfcElement> _realizingElements;
 		private IfcLabel? _connectionType;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 8)]
-		public ItemSet<IfcElement> @RealizingElements 
+		public IItemSet<IfcElement> @RealizingElements 
 		{ 
 			get 
 			{
@@ -153,7 +152,7 @@ namespace Xbim.Ifc2x3.ProductExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

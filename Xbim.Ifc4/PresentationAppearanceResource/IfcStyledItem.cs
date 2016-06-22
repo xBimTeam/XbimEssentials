@@ -28,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcStyledItem : IIfcRepresentationItem
 	{
 		IIfcRepresentationItem @Item { get;  set; }
-		IEnumerable<IIfcStyleAssignmentSelect> @Styles { get; }
+		IItemSet<IIfcStyleAssignmentSelect> @Styles { get; }
 		IfcLabel? @Name { get;  set; }
 	
 	}
@@ -42,17 +42,17 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	{
 		#region IIfcStyledItem explicit implementation
 		IIfcRepresentationItem IIfcStyledItem.Item { 
+ 
+ 
 			get { return @Item; } 
- 
- 
 			set { Item = value as IfcRepresentationItem;}
 		}	
-		IEnumerable<IIfcStyleAssignmentSelect> IIfcStyledItem.Styles { 
-			get { return @Styles; } 
+		IItemSet<IIfcStyleAssignmentSelect> IIfcStyledItem.Styles { 
+			get { return new Common.Collections.ProxyItemSet<IfcStyleAssignmentSelect, IIfcStyleAssignmentSelect>( @Styles); } 
 		}	
 		IfcLabel? IIfcStyledItem.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		 
@@ -60,13 +60,12 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStyledItem(IModel model) : base(model) 		{ 
-			Model = model; 
 			_styles = new ItemSet<IfcStyleAssignmentSelect>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
 		private IfcRepresentationItem _item;
-		private ItemSet<IfcStyleAssignmentSelect> _styles;
+		private readonly ItemSet<IfcStyleAssignmentSelect> _styles;
 		private IfcLabel? _name;
 		#endregion
 	
@@ -87,7 +86,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
-		public ItemSet<IfcStyleAssignmentSelect> @Styles 
+		public IItemSet<IfcStyleAssignmentSelect> @Styles 
 		{ 
 			get 
 			{
@@ -170,7 +169,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

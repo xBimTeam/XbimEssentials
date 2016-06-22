@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConnectedFaceSet : IIfcTopologicalRepresentationItem
 	{
-		IEnumerable<IIfcFace> @CfsFaces { get; }
+		IItemSet<IIfcFace> @CfsFaces { get; }
 	
 	}
 }
@@ -37,25 +37,24 @@ namespace Xbim.Ifc4.TopologyResource
 	public  partial class @IfcConnectedFaceSet : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcConnectedFaceSet, IContainsEntityReferences, IEquatable<@IfcConnectedFaceSet>
 	{
 		#region IIfcConnectedFaceSet explicit implementation
-		IEnumerable<IIfcFace> IIfcConnectedFaceSet.CfsFaces { 
-			get { return @CfsFaces; } 
+		IItemSet<IIfcFace> IIfcConnectedFaceSet.CfsFaces { 
+			get { return new Common.Collections.ProxyItemSet<IfcFace, IIfcFace>( @CfsFaces); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConnectedFaceSet(IModel model) : base(model) 		{ 
-			Model = model; 
 			_cfsFaces = new ItemSet<IfcFace>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcFace> _cfsFaces;
+		private readonly ItemSet<IfcFace> _cfsFaces;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 3)]
-		public ItemSet<IfcFace> @CfsFaces 
+		public IItemSet<IfcFace> @CfsFaces 
 		{ 
 			get 
 			{
@@ -118,7 +117,7 @@ namespace Xbim.Ifc4.TopologyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

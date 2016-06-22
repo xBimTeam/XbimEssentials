@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTextureCoordinate : IIfcPresentationItem
 	{
-		IEnumerable<IIfcSurfaceTexture> @Maps { get; }
+		IItemSet<IIfcSurfaceTexture> @Maps { get; }
 	
 	}
 }
@@ -38,26 +38,25 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public abstract partial class @IfcTextureCoordinate : IfcPresentationItem, IIfcTextureCoordinate, IEquatable<@IfcTextureCoordinate>
 	{
 		#region IIfcTextureCoordinate explicit implementation
-		IEnumerable<IIfcSurfaceTexture> IIfcTextureCoordinate.Maps { 
-			get { return @Maps; } 
+		IItemSet<IIfcSurfaceTexture> IIfcTextureCoordinate.Maps { 
+			get { return new Common.Collections.ProxyItemSet<IfcSurfaceTexture, IIfcSurfaceTexture>( @Maps); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextureCoordinate(IModel model) : base(model) 		{ 
-			Model = model; 
 			_maps = new ItemSet<IfcSurfaceTexture>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcSurfaceTexture> _maps;
+		private readonly ItemSet<IfcSurfaceTexture> _maps;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 1)]
-		public ItemSet<IfcSurfaceTexture> @Maps 
+		public IItemSet<IfcSurfaceTexture> @Maps 
 		{ 
 			get 
 			{
@@ -120,7 +119,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

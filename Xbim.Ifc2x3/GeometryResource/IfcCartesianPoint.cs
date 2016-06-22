@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCartesianPoint : IIfcPoint, IfcTrimmingSelect
 	{
-		IEnumerable<IfcLengthMeasure> @Coordinates { get; }
+		IItemSet<IfcLengthMeasure> @Coordinates { get; }
 	
 	}
 }
@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 	public  partial class @IfcCartesianPoint : IfcPoint, IInstantiableEntity, IIfcCartesianPoint, IEquatable<@IfcCartesianPoint>
 	{
 		#region IIfcCartesianPoint explicit implementation
-		IEnumerable<IfcLengthMeasure> IIfcCartesianPoint.Coordinates { 
+		IItemSet<IfcLengthMeasure> IIfcCartesianPoint.Coordinates { 
 			get { return @Coordinates; } 
 		}	
 		 
@@ -46,17 +46,16 @@ namespace Xbim.Ifc2x3.GeometryResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCartesianPoint(IModel model) : base(model) 		{ 
-			Model = model; 
 			_coordinates = new ItemSet<IfcLengthMeasure>( this, 3,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcLengthMeasure> _coordinates;
+		private readonly ItemSet<IfcLengthMeasure> _coordinates;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, 3, 3)]
-		public ItemSet<IfcLengthMeasure> @Coordinates 
+		public IItemSet<IfcLengthMeasure> @Coordinates 
 		{ 
 			get 
 			{
@@ -132,7 +131,7 @@ namespace Xbim.Ifc2x3.GeometryResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

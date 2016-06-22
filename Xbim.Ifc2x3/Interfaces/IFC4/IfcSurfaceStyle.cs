@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
@@ -20,6 +21,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of Side
+				//##
 				switch (Side)
 				{
 					case IfcSurfaceSide.POSITIVE:
@@ -38,6 +41,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of Side
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcSurfaceSide.POSITIVE:
@@ -59,28 +64,12 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
-		IEnumerable<IIfcSurfaceStyleElementSelect> IIfcSurfaceStyle.Styles 
+		IItemSet<IIfcSurfaceStyleElementSelect> IIfcSurfaceStyle.Styles 
 		{ 
 			get
 			{
-				foreach (var member in Styles)
-				{
-					var ifcsurfacestyleshading = member as IfcSurfaceStyleShading;
-					if (ifcsurfacestyleshading != null) 
-						yield return ifcsurfacestyleshading;
-					var ifcsurfacestylelighting = member as IfcSurfaceStyleLighting;
-					if (ifcsurfacestylelighting != null) 
-						yield return ifcsurfacestylelighting;
-					var ifcsurfacestylewithtextures = member as IfcSurfaceStyleWithTextures;
-					if (ifcsurfacestylewithtextures != null) 
-						yield return ifcsurfacestylewithtextures;
-					var ifcexternallydefinedsurfacestyle = member as IfcExternallyDefinedSurfaceStyle;
-					if (ifcexternallydefinedsurfacestyle != null) 
-						yield return ifcexternallydefinedsurfacestyle;
-					var ifcsurfacestylerefraction = member as IfcSurfaceStyleRefraction;
-					if (ifcsurfacestylerefraction != null) 
-						yield return ifcsurfacestylerefraction;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcSurfaceStyleElementSelect, IIfcSurfaceStyleElementSelect>(Styles);
 			} 
 		}
 	//## Custom code

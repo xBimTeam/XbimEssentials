@@ -44,33 +44,33 @@ namespace Xbim.Ifc4.ProfileResource
 	{
 		#region IIfcZShapeProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcZShapeProfileDef.Depth { 
-			get { return @Depth; } 
  
+			get { return @Depth; } 
 			set { Depth = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcZShapeProfileDef.FlangeWidth { 
-			get { return @FlangeWidth; } 
  
+			get { return @FlangeWidth; } 
 			set { FlangeWidth = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcZShapeProfileDef.WebThickness { 
-			get { return @WebThickness; } 
  
+			get { return @WebThickness; } 
 			set { WebThickness = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcZShapeProfileDef.FlangeThickness { 
-			get { return @FlangeThickness; } 
  
+			get { return @FlangeThickness; } 
 			set { FlangeThickness = value;}
 		}	
 		IfcNonNegativeLengthMeasure? IIfcZShapeProfileDef.FilletRadius { 
-			get { return @FilletRadius; } 
  
+			get { return @FilletRadius; } 
 			set { FilletRadius = value;}
 		}	
 		IfcNonNegativeLengthMeasure? IIfcZShapeProfileDef.EdgeRadius { 
-			get { return @EdgeRadius; } 
  
+			get { return @EdgeRadius; } 
 			set { EdgeRadius = value;}
 		}	
 		 
@@ -78,7 +78,6 @@ namespace Xbim.Ifc4.ProfileResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcZShapeProfileDef(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -249,7 +248,7 @@ namespace Xbim.Ifc4.ProfileResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

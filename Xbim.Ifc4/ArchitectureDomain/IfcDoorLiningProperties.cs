@@ -53,69 +53,69 @@ namespace Xbim.Ifc4.ArchitectureDomain
 	{
 		#region IIfcDoorLiningProperties explicit implementation
 		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.LiningDepth { 
-			get { return @LiningDepth; } 
  
+			get { return @LiningDepth; } 
 			set { LiningDepth = value;}
 		}	
 		IfcNonNegativeLengthMeasure? IIfcDoorLiningProperties.LiningThickness { 
-			get { return @LiningThickness; } 
  
+			get { return @LiningThickness; } 
 			set { LiningThickness = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.ThresholdDepth { 
-			get { return @ThresholdDepth; } 
  
+			get { return @ThresholdDepth; } 
 			set { ThresholdDepth = value;}
 		}	
 		IfcNonNegativeLengthMeasure? IIfcDoorLiningProperties.ThresholdThickness { 
-			get { return @ThresholdThickness; } 
  
+			get { return @ThresholdThickness; } 
 			set { ThresholdThickness = value;}
 		}	
 		IfcNonNegativeLengthMeasure? IIfcDoorLiningProperties.TransomThickness { 
-			get { return @TransomThickness; } 
  
+			get { return @TransomThickness; } 
 			set { TransomThickness = value;}
 		}	
 		IfcLengthMeasure? IIfcDoorLiningProperties.TransomOffset { 
-			get { return @TransomOffset; } 
  
+			get { return @TransomOffset; } 
 			set { TransomOffset = value;}
 		}	
 		IfcLengthMeasure? IIfcDoorLiningProperties.LiningOffset { 
-			get { return @LiningOffset; } 
  
+			get { return @LiningOffset; } 
 			set { LiningOffset = value;}
 		}	
 		IfcLengthMeasure? IIfcDoorLiningProperties.ThresholdOffset { 
-			get { return @ThresholdOffset; } 
  
+			get { return @ThresholdOffset; } 
 			set { ThresholdOffset = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.CasingThickness { 
-			get { return @CasingThickness; } 
  
+			get { return @CasingThickness; } 
 			set { CasingThickness = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.CasingDepth { 
-			get { return @CasingDepth; } 
  
+			get { return @CasingDepth; } 
 			set { CasingDepth = value;}
 		}	
 		IIfcShapeAspect IIfcDoorLiningProperties.ShapeAspectStyle { 
+ 
+ 
 			get { return @ShapeAspectStyle; } 
- 
- 
 			set { ShapeAspectStyle = value as IfcShapeAspect;}
 		}	
 		IfcLengthMeasure? IIfcDoorLiningProperties.LiningToPanelOffsetX { 
-			get { return @LiningToPanelOffsetX; } 
  
+			get { return @LiningToPanelOffsetX; } 
 			set { LiningToPanelOffsetX = value;}
 		}	
 		IfcLengthMeasure? IIfcDoorLiningProperties.LiningToPanelOffsetY { 
-			get { return @LiningToPanelOffsetY; } 
  
+			get { return @LiningToPanelOffsetY; } 
 			set { LiningToPanelOffsetY = value;}
 		}	
 		 
@@ -123,7 +123,6 @@ namespace Xbim.Ifc4.ArchitectureDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDoorLiningProperties(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -421,7 +420,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

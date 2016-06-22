@@ -10,20 +10,19 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.TopologyResource
 {
 	public partial class @IfcFace : IIfcFace
 	{
-		IEnumerable<IIfcFaceBound> IIfcFace.Bounds 
+		IItemSet<IIfcFaceBound> IIfcFace.Bounds 
 		{ 
 			get
 			{
-				foreach (var member in Bounds)
-				{
-					yield return member as IIfcFaceBound;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcFaceBound, IIfcFaceBound>(Bounds);
 			} 
 		}
 		IEnumerable<IIfcTextureMap> IIfcFace.HasTextureMaps 

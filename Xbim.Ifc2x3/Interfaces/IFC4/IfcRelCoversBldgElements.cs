@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProductExtension
@@ -28,14 +29,12 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
-		IEnumerable<IIfcCovering> IIfcRelCoversBldgElements.RelatedCoverings 
+		IItemSet<IIfcCovering> IIfcRelCoversBldgElements.RelatedCoverings 
 		{ 
 			get
 			{
-				foreach (var member in RelatedCoverings)
-				{
-					yield return member as IIfcCovering;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcCovering, IIfcCovering>(RelatedCoverings);
 			} 
 		}
 	//## Custom code

@@ -42,19 +42,19 @@ namespace Xbim.Ifc2x3.GeometryResource
 	{
 		#region IIfcCompositeCurveSegment explicit implementation
 		IfcTransitionCode IIfcCompositeCurveSegment.Transition { 
-			get { return @Transition; } 
  
+			get { return @Transition; } 
 			set { Transition = value;}
 		}	
 		bool IIfcCompositeCurveSegment.SameSense { 
-			get { return @SameSense; } 
  
+			get { return @SameSense; } 
 			set { SameSense = value;}
 		}	
 		IIfcCurve IIfcCompositeCurveSegment.ParentCurve { 
+ 
+ 
 			get { return @ParentCurve; } 
- 
- 
 			set { ParentCurve = value as IfcCurve;}
 		}	
 		 
@@ -63,7 +63,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCompositeCurveSegment(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -199,7 +198,7 @@ namespace Xbim.Ifc2x3.GeometryResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

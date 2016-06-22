@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLabel? @Version { get;  set; }
 		IIfcOrganization @Publisher { get;  set; }
 		IIfcCalendarDate @VersionDate { get;  set; }
-		IEnumerable<IIfcLibraryReference> @LibraryReference { get; }
+		IItemSet<IIfcLibraryReference> @LibraryReference { get; }
 	
 	}
 }
@@ -47,29 +47,29 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 	{
 		#region IIfcLibraryInformation explicit implementation
 		IfcLabel IIfcLibraryInformation.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IfcLabel? IIfcLibraryInformation.Version { 
-			get { return @Version; } 
  
+			get { return @Version; } 
 			set { Version = value;}
 		}	
 		IIfcOrganization IIfcLibraryInformation.Publisher { 
+ 
+ 
 			get { return @Publisher; } 
- 
- 
 			set { Publisher = value as IfcOrganization;}
 		}	
 		IIfcCalendarDate IIfcLibraryInformation.VersionDate { 
+ 
+ 
 			get { return @VersionDate; } 
- 
- 
 			set { VersionDate = value as IfcCalendarDate;}
 		}	
-		IEnumerable<IIfcLibraryReference> IIfcLibraryInformation.LibraryReference { 
-			get { return @LibraryReference; } 
+		IItemSet<IIfcLibraryReference> IIfcLibraryInformation.LibraryReference { 
+			get { return new Common.Collections.ProxyItemSet<IfcLibraryReference, IIfcLibraryReference>( @LibraryReference); } 
 		}	
 		 
 		#endregion
@@ -143,7 +143,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		private IfcLabel? _version;
 		private IfcOrganization _publisher;
 		private IfcCalendarDate _versionDate;
-		private OptionalItemSet<IfcLibraryReference> _libraryReference;
+		private readonly OptionalItemSet<IfcLibraryReference> _libraryReference;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -205,7 +205,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		}	
 		[IndexedProperty]
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 5)]
-		public OptionalItemSet<IfcLibraryReference> @LibraryReference 
+		public IOptionalItemSet<IfcLibraryReference> @LibraryReference 
 		{ 
 			get 
 			{
@@ -329,7 +329,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

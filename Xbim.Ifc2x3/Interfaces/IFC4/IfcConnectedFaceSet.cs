@@ -10,20 +10,19 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.TopologyResource
 {
 	public partial class @IfcConnectedFaceSet : IIfcConnectedFaceSet
 	{
-		IEnumerable<IIfcFace> IIfcConnectedFaceSet.CfsFaces 
+		IItemSet<IIfcFace> IIfcConnectedFaceSet.CfsFaces 
 		{ 
 			get
 			{
-				foreach (var member in CfsFaces)
-				{
-					yield return member as IIfcFace;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcFace, IIfcFace>(CfsFaces);
 			} 
 		}
 	//## Custom code

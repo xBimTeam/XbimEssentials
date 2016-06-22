@@ -42,18 +42,18 @@ namespace Xbim.Ifc2x3.DateTimeResource
 	{
 		#region IIfcCoordinatedUniversalTimeOffset explicit implementation
 		IfcHourInDay IIfcCoordinatedUniversalTimeOffset.HourOffset { 
-			get { return @HourOffset; } 
  
+			get { return @HourOffset; } 
 			set { HourOffset = value;}
 		}	
 		IfcMinuteInHour? IIfcCoordinatedUniversalTimeOffset.MinuteOffset { 
-			get { return @MinuteOffset; } 
  
+			get { return @MinuteOffset; } 
 			set { MinuteOffset = value;}
 		}	
 		IfcAheadOrBehind IIfcCoordinatedUniversalTimeOffset.Sense { 
-			get { return @Sense; } 
  
+			get { return @Sense; } 
 			set { Sense = value;}
 		}	
 		 
@@ -280,7 +280,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

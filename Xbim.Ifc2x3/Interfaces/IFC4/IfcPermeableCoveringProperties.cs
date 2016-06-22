@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ArchitectureDomain
@@ -20,6 +21,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of OperationType
+				//##
 				switch (OperationType)
 				{
 					case IfcPermeableCoveringOperationEnum.GRILL:
@@ -46,6 +49,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of OperationType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcPermeableCoveringOperationEnum.GRILL:
@@ -79,6 +84,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PanelPosition
+				//##
 				switch (PanelPosition)
 				{
 					case SharedBldgElements.IfcWindowPanelPositionEnum.LEFT:
@@ -106,6 +113,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PanelPosition
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcWindowPanelPositionEnum.LEFT:

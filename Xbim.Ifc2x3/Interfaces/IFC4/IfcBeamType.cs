@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.SharedBldgElements
@@ -20,6 +21,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcBeamTypeEnum.BEAM:
@@ -36,6 +39,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					
 					case IfcBeamTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+                        if (ElementType.HasValue)
+                        {
+                            Ifc4.Interfaces.IfcBeamTypeEnum result;
+                            if (System.Enum.TryParse(ElementType.Value, false, out result))
+                                return result;
+                        }
 						//##
 						return Ifc4.Interfaces.IfcBeamTypeEnum.USERDEFINED;
 					
@@ -49,6 +58,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcBeamTypeEnum.BEAM:
@@ -61,8 +72,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					
 					case Ifc4.Interfaces.IfcBeamTypeEnum.HOLLOWCORE:
 						//## Handle setting of HOLLOWCORE member from IfcBeamTypeEnum in property PredefinedType
-						//TODO: Handle setting of HOLLOWCORE member from IfcBeamTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcBeamTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcBeamTypeEnum.LINTEL:
@@ -71,8 +83,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					
 					case Ifc4.Interfaces.IfcBeamTypeEnum.SPANDREL:
 						//## Handle setting of SPANDREL member from IfcBeamTypeEnum in property PredefinedType
-						//TODO: Handle setting of SPANDREL member from IfcBeamTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcBeamTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcBeamTypeEnum.T_BEAM:

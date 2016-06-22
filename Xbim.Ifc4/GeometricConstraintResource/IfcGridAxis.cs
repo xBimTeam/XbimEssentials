@@ -49,19 +49,19 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 	{
 		#region IIfcGridAxis explicit implementation
 		IfcLabel? IIfcGridAxis.AxisTag { 
-			get { return @AxisTag; } 
  
+			get { return @AxisTag; } 
 			set { AxisTag = value;}
 		}	
 		IIfcCurve IIfcGridAxis.AxisCurve { 
+ 
+ 
 			get { return @AxisCurve; } 
- 
- 
 			set { AxisCurve = value as IfcCurve;}
 		}	
 		IfcBoolean IIfcGridAxis.SameSense { 
-			get { return @SameSense; } 
  
+			get { return @SameSense; } 
 			set { SameSense = value;}
 		}	
 		 
@@ -330,7 +330,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

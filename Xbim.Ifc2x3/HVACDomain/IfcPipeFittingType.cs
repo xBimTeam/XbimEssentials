@@ -39,8 +39,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 	{
 		#region IIfcPipeFittingType explicit implementation
 		IfcPipeFittingTypeEnum IIfcPipeFittingType.PredefinedType { 
-			get { return @PredefinedType; } 
  
+			get { return @PredefinedType; } 
 			set { PredefinedType = value;}
 		}	
 		 
@@ -48,7 +48,6 @@ namespace Xbim.Ifc2x3.HVACDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPipeFittingType(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -135,7 +134,7 @@ namespace Xbim.Ifc2x3.HVACDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

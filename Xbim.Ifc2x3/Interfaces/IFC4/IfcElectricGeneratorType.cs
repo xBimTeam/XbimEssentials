@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ElectricalDomain
@@ -20,10 +21,18 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcElectricGeneratorTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+				        if (ElementType.HasValue)
+				        {
+                            Ifc4.Interfaces.IfcElectricGeneratorTypeEnum result;
+				            if (System.Enum.TryParse(ElementType.Value, false, out result))
+				                return result;
+				        }
 						//##
 						return Ifc4.Interfaces.IfcElectricGeneratorTypeEnum.USERDEFINED;
 					
@@ -37,24 +46,29 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 			} 
 			set
 			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcElectricGeneratorTypeEnum.CHP:
 						//## Handle setting of CHP member from IfcElectricGeneratorTypeEnum in property PredefinedType
-						//TODO: Handle setting of CHP member from IfcElectricGeneratorTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+				        ElementType = value.ToString();
+                        PredefinedType = IfcElectricGeneratorTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcElectricGeneratorTypeEnum.ENGINEGENERATOR:
 						//## Handle setting of ENGINEGENERATOR member from IfcElectricGeneratorTypeEnum in property PredefinedType
-						//TODO: Handle setting of ENGINEGENERATOR member from IfcElectricGeneratorTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcElectricGeneratorTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcElectricGeneratorTypeEnum.STANDALONE:
 						//## Handle setting of STANDALONE member from IfcElectricGeneratorTypeEnum in property PredefinedType
-						//TODO: Handle setting of STANDALONE member from IfcElectricGeneratorTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						ElementType = value.ToString();
+                        PredefinedType = IfcElectricGeneratorTypeEnum.USERDEFINED;
+				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcElectricGeneratorTypeEnum.USERDEFINED:

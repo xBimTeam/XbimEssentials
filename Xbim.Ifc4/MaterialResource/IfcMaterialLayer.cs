@@ -46,39 +46,39 @@ namespace Xbim.Ifc4.MaterialResource
 	{
 		#region IIfcMaterialLayer explicit implementation
 		IIfcMaterial IIfcMaterialLayer.Material { 
+ 
+ 
 			get { return @Material; } 
- 
- 
 			set { Material = value as IfcMaterial;}
 		}	
 		IfcNonNegativeLengthMeasure IIfcMaterialLayer.LayerThickness { 
-			get { return @LayerThickness; } 
  
+			get { return @LayerThickness; } 
 			set { LayerThickness = value;}
 		}	
 		IfcLogical? IIfcMaterialLayer.IsVentilated { 
-			get { return @IsVentilated; } 
  
+			get { return @IsVentilated; } 
 			set { IsVentilated = value;}
 		}	
 		IfcLabel? IIfcMaterialLayer.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IfcText? IIfcMaterialLayer.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		IfcLabel? IIfcMaterialLayer.Category { 
-			get { return @Category; } 
  
+			get { return @Category; } 
 			set { Category = value;}
 		}	
 		IfcInteger? IIfcMaterialLayer.Priority { 
-			get { return @Priority; } 
  
+			get { return @Priority; } 
 			set { Priority = value;}
 		}	
 		 
@@ -87,7 +87,6 @@ namespace Xbim.Ifc4.MaterialResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialLayer(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -282,7 +281,7 @@ namespace Xbim.Ifc4.MaterialResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

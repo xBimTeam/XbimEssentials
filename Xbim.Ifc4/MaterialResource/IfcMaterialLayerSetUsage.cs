@@ -43,29 +43,29 @@ namespace Xbim.Ifc4.MaterialResource
 	{
 		#region IIfcMaterialLayerSetUsage explicit implementation
 		IIfcMaterialLayerSet IIfcMaterialLayerSetUsage.ForLayerSet { 
+ 
+ 
 			get { return @ForLayerSet; } 
- 
- 
 			set { ForLayerSet = value as IfcMaterialLayerSet;}
 		}	
 		IfcLayerSetDirectionEnum IIfcMaterialLayerSetUsage.LayerSetDirection { 
-			get { return @LayerSetDirection; } 
  
+			get { return @LayerSetDirection; } 
 			set { LayerSetDirection = value;}
 		}	
 		IfcDirectionSenseEnum IIfcMaterialLayerSetUsage.DirectionSense { 
-			get { return @DirectionSense; } 
  
+			get { return @DirectionSense; } 
 			set { DirectionSense = value;}
 		}	
 		IfcLengthMeasure IIfcMaterialLayerSetUsage.OffsetFromReferenceLine { 
-			get { return @OffsetFromReferenceLine; } 
  
+			get { return @OffsetFromReferenceLine; } 
 			set { OffsetFromReferenceLine = value;}
 		}	
 		IfcPositiveLengthMeasure? IIfcMaterialLayerSetUsage.ReferenceExtent { 
-			get { return @ReferenceExtent; } 
  
+			get { return @ReferenceExtent; } 
 			set { ReferenceExtent = value;}
 		}	
 		 
@@ -73,7 +73,6 @@ namespace Xbim.Ifc4.MaterialResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialLayerSetUsage(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -221,7 +220,7 @@ namespace Xbim.Ifc4.MaterialResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

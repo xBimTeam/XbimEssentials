@@ -47,29 +47,29 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 	{
 		#region IIfcSpaceProgram explicit implementation
 		IfcIdentifier IIfcSpaceProgram.SpaceProgramIdentifier { 
-			get { return @SpaceProgramIdentifier; } 
  
+			get { return @SpaceProgramIdentifier; } 
 			set { SpaceProgramIdentifier = value;}
 		}	
 		IfcAreaMeasure? IIfcSpaceProgram.MaxRequiredArea { 
-			get { return @MaxRequiredArea; } 
  
+			get { return @MaxRequiredArea; } 
 			set { MaxRequiredArea = value;}
 		}	
 		IfcAreaMeasure? IIfcSpaceProgram.MinRequiredArea { 
-			get { return @MinRequiredArea; } 
  
+			get { return @MinRequiredArea; } 
 			set { MinRequiredArea = value;}
 		}	
 		IIfcSpatialStructureElement IIfcSpaceProgram.RequestedLocation { 
+ 
+ 
 			get { return @RequestedLocation; } 
- 
- 
 			set { RequestedLocation = value as IfcSpatialStructureElement;}
 		}	
 		IfcAreaMeasure IIfcSpaceProgram.StandardRequiredArea { 
-			get { return @StandardRequiredArea; } 
  
+			get { return @StandardRequiredArea; } 
 			set { StandardRequiredArea = value;}
 		}	
 		 
@@ -79,7 +79,6 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSpaceProgram(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -254,7 +253,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

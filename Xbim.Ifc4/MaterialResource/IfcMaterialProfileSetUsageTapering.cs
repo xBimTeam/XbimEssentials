@@ -39,14 +39,14 @@ namespace Xbim.Ifc4.MaterialResource
 	{
 		#region IIfcMaterialProfileSetUsageTapering explicit implementation
 		IIfcMaterialProfileSet IIfcMaterialProfileSetUsageTapering.ForProfileEndSet { 
+ 
+ 
 			get { return @ForProfileEndSet; } 
- 
- 
 			set { ForProfileEndSet = value as IfcMaterialProfileSet;}
 		}	
 		IfcCardinalPointReference? IIfcMaterialProfileSetUsageTapering.CardinalEndPoint { 
-			get { return @CardinalEndPoint; } 
  
+			get { return @CardinalEndPoint; } 
 			set { CardinalEndPoint = value;}
 		}	
 		 
@@ -54,7 +54,6 @@ namespace Xbim.Ifc4.MaterialResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialProfileSetUsageTapering(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -153,7 +152,7 @@ namespace Xbim.Ifc4.MaterialResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

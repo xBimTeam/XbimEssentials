@@ -42,23 +42,23 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	{
 		#region IIfcThermalMaterialProperties explicit implementation
 		IfcSpecificHeatCapacityMeasure? IIfcThermalMaterialProperties.SpecificHeatCapacity { 
-			get { return @SpecificHeatCapacity; } 
  
+			get { return @SpecificHeatCapacity; } 
 			set { SpecificHeatCapacity = value;}
 		}	
 		IfcThermodynamicTemperatureMeasure? IIfcThermalMaterialProperties.BoilingPoint { 
-			get { return @BoilingPoint; } 
  
+			get { return @BoilingPoint; } 
 			set { BoilingPoint = value;}
 		}	
 		IfcThermodynamicTemperatureMeasure? IIfcThermalMaterialProperties.FreezingPoint { 
-			get { return @FreezingPoint; } 
  
+			get { return @FreezingPoint; } 
 			set { FreezingPoint = value;}
 		}	
 		IfcThermalConductivityMeasure? IIfcThermalMaterialProperties.ThermalConductivity { 
-			get { return @ThermalConductivity; } 
  
+			get { return @ThermalConductivity; } 
 			set { ThermalConductivity = value;}
 		}	
 		 
@@ -66,7 +66,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcThermalMaterialProperties(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -199,7 +198,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcIrregularTimeSeries : IIfcTimeSeries
 	{
-		IEnumerable<IIfcIrregularTimeSeriesValue> @Values { get; }
+		IItemSet<IIfcIrregularTimeSeriesValue> @Values { get; }
 	
 	}
 }
@@ -37,25 +37,24 @@ namespace Xbim.Ifc4.DateTimeResource
 	public  partial class @IfcIrregularTimeSeries : IfcTimeSeries, IInstantiableEntity, IIfcIrregularTimeSeries, IContainsEntityReferences, IEquatable<@IfcIrregularTimeSeries>
 	{
 		#region IIfcIrregularTimeSeries explicit implementation
-		IEnumerable<IIfcIrregularTimeSeriesValue> IIfcIrregularTimeSeries.Values { 
-			get { return @Values; } 
+		IItemSet<IIfcIrregularTimeSeriesValue> IIfcIrregularTimeSeries.Values { 
+			get { return new Common.Collections.ProxyItemSet<IfcIrregularTimeSeriesValue, IIfcIrregularTimeSeriesValue>( @Values); } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcIrregularTimeSeries(IModel model) : base(model) 		{ 
-			Model = model; 
 			_values = new ItemSet<IfcIrregularTimeSeriesValue>( this, 0,  9);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcIrregularTimeSeriesValue> _values;
+		private readonly ItemSet<IfcIrregularTimeSeriesValue> _values;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 10)]
-		public ItemSet<IfcIrregularTimeSeriesValue> @Values 
+		public IItemSet<IfcIrregularTimeSeriesValue> @Values 
 		{ 
 			get 
 			{
@@ -128,7 +127,7 @@ namespace Xbim.Ifc4.DateTimeResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

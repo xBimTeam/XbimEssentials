@@ -41,13 +41,13 @@ namespace Xbim.Ifc4.ControlExtension
 	{
 		#region IIfcPerformanceHistory explicit implementation
 		IfcLabel IIfcPerformanceHistory.LifeCyclePhase { 
-			get { return @LifeCyclePhase; } 
  
+			get { return @LifeCyclePhase; } 
 			set { LifeCyclePhase = value;}
 		}	
 		IfcPerformanceHistoryTypeEnum? IIfcPerformanceHistory.PredefinedType { 
-			get { return @PredefinedType; } 
  
+			get { return @PredefinedType; } 
 			set { PredefinedType = value;}
 		}	
 		 
@@ -55,7 +55,6 @@ namespace Xbim.Ifc4.ControlExtension
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPerformanceHistory(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -157,7 +156,7 @@ namespace Xbim.Ifc4.ControlExtension
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

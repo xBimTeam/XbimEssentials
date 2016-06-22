@@ -46,35 +46,35 @@ namespace Xbim.Ifc4.MaterialResource
 	{
 		#region IIfcMaterialProfile explicit implementation
 		IfcLabel? IIfcMaterialProfile.Name { 
-			get { return @Name; } 
  
+			get { return @Name; } 
 			set { Name = value;}
 		}	
 		IfcText? IIfcMaterialProfile.Description { 
-			get { return @Description; } 
  
+			get { return @Description; } 
 			set { Description = value;}
 		}	
 		IIfcMaterial IIfcMaterialProfile.Material { 
+ 
+ 
 			get { return @Material; } 
- 
- 
 			set { Material = value as IfcMaterial;}
 		}	
 		IIfcProfileDef IIfcMaterialProfile.Profile { 
+ 
+ 
 			get { return @Profile; } 
- 
- 
 			set { Profile = value as IfcProfileDef;}
 		}	
 		IfcInteger? IIfcMaterialProfile.Priority { 
-			get { return @Priority; } 
  
+			get { return @Priority; } 
 			set { Priority = value;}
 		}	
 		IfcLabel? IIfcMaterialProfile.Category { 
-			get { return @Category; } 
  
+			get { return @Category; } 
 			set { Category = value;}
 		}	
 		 
@@ -83,7 +83,6 @@ namespace Xbim.Ifc4.MaterialResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialProfile(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -260,7 +259,7 @@ namespace Xbim.Ifc4.MaterialResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 

@@ -42,23 +42,23 @@ namespace Xbim.Ifc2x3.ProfileResource
 	{
 		#region IIfcTrapeziumProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.BottomXDim { 
-			get { return @BottomXDim; } 
  
+			get { return @BottomXDim; } 
 			set { BottomXDim = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.TopXDim { 
-			get { return @TopXDim; } 
  
+			get { return @TopXDim; } 
 			set { TopXDim = value;}
 		}	
 		IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.YDim { 
-			get { return @YDim; } 
  
+			get { return @YDim; } 
 			set { YDim = value;}
 		}	
 		IfcLengthMeasure IIfcTrapeziumProfileDef.TopXOffset { 
-			get { return @TopXOffset; } 
  
+			get { return @TopXOffset; } 
 			set { TopXOffset = value;}
 		}	
 		 
@@ -66,7 +66,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTrapeziumProfileDef(IModel model) : base(model) 		{ 
-			Model = model; 
 		}
 
 		#region Explicit attribute fields
@@ -201,7 +200,7 @@ namespace Xbim.Ifc2x3.ProfileResource
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
                 return false;
 
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
+            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
 
         }
 
