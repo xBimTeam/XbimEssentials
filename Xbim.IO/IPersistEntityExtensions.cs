@@ -143,6 +143,7 @@ namespace Xbim.IO
         /// </summary>
         /// <param name="entityWriter">The TextWriter</param>
         /// <param name="entity">The entity to write</param>
+        /// <param name="metadata"></param>
         /// <param name="map"></param>
         internal static void WriteEntity(this IPersistEntity entity, TextWriter entityWriter, ExpressMetaData metadata, IDictionary<int, int> map = null)
         {
@@ -183,6 +184,7 @@ namespace Xbim.IO
         /// <param name="propVal"></param>
         /// <param name="entityWriter"></param>
         /// <param name="map"></param>
+        /// <param name="metadata"></param>
         public static void WriteProperty(Type propType, object propVal, TextWriter entityWriter,IDictionary<int,int> map, ExpressMetaData metadata)
         {
             Type itemType;
