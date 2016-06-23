@@ -85,6 +85,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatingProfileProperties = v, _relatingProfileProperties, value,  "RelatingProfileProperties", 6);
 			} 
 		}	
@@ -99,6 +101,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _profileSectionLocation = v, _profileSectionLocation, value,  "ProfileSectionLocation", 7);
 			} 
 		}	
@@ -113,6 +117,9 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				var entity = value as IPersistEntity;
+				if (entity != null && !(ReferenceEquals(Model, entity.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _profileOrientation = v, _profileOrientation, value,  "ProfileOrientation", 8);
 			} 
 		}	

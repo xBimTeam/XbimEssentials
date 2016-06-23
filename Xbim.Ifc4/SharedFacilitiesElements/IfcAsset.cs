@@ -147,6 +147,8 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _originalValue = v, _originalValue, value,  "OriginalValue", 7);
 			} 
 		}	
@@ -161,6 +163,8 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _currentValue = v, _currentValue, value,  "CurrentValue", 8);
 			} 
 		}	
@@ -175,6 +179,8 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _totalReplacementCost = v, _totalReplacementCost, value,  "TotalReplacementCost", 9);
 			} 
 		}	
@@ -189,6 +195,8 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _owner = v, _owner, value,  "Owner", 10);
 			} 
 		}	
@@ -203,6 +211,8 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _user = v, _user, value,  "User", 11);
 			} 
 		}	
@@ -217,6 +227,8 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _responsiblePerson = v, _responsiblePerson, value,  "ResponsiblePerson", 12);
 			} 
 		}	
@@ -245,6 +257,8 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _depreciatedValue = v, _depreciatedValue, value,  "DepreciatedValue", 14);
 			} 
 		}	

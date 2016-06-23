@@ -152,6 +152,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _siteAddress = v, _siteAddress, value,  "SiteAddress", 14);
 			} 
 		}	

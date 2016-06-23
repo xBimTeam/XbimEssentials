@@ -136,6 +136,8 @@ namespace Xbim.Ifc2x3.DateTimeResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _dateComponent = v, _dateComponent, value,  "DateComponent", 1);
 			} 
 		}	
@@ -150,6 +152,8 @@ namespace Xbim.Ifc2x3.DateTimeResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _timeComponent = v, _timeComponent, value,  "TimeComponent", 2);
 			} 
 		}	

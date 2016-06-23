@@ -259,6 +259,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _assetType = v, _assetType, value,  "AssetType", 14);
 			} 
 		}	
@@ -273,6 +275,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _manufacturer = v, _manufacturer, value,  "Manufacturer", 15);
 			} 
 		}	
@@ -315,6 +319,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _warrantyGuarantorParts = v, _warrantyGuarantorParts, value,  "WarrantyGuarantorParts", 18);
 			} 
 		}	
@@ -343,6 +349,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _warrantyGuarantorLabor = v, _warrantyGuarantorLabor, value,  "WarrantyGuarantorLabor", 20);
 			} 
 		}	
@@ -371,6 +379,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _warrantyDurationUnit = v, _warrantyDurationUnit, value,  "WarrantyDurationUnit", 22);
 			} 
 		}	
@@ -413,6 +423,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _durationUnit = v, _durationUnit, value,  "DurationUnit", 25);
 			} 
 		}	

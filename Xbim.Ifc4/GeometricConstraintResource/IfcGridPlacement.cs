@@ -74,6 +74,8 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _placementLocation = v, _placementLocation, value,  "PlacementLocation", 1);
 			} 
 		}	
@@ -88,6 +90,8 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _placementRefDirection = v, _placementRefDirection, value,  "PlacementRefDirection", 2);
 			} 
 		}	

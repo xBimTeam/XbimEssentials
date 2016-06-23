@@ -76,6 +76,8 @@ namespace Xbim.Ifc4.TopologyResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _faceSurface = v, _faceSurface, value,  "FaceSurface", 2);
 			} 
 		}	

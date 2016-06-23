@@ -127,6 +127,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _locationOfInteraction = v, _locationOfInteraction, value,  "LocationOfInteraction", 7);
 			} 
 		}	
@@ -142,6 +144,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatedSpaceProgram = v, _relatedSpaceProgram, value,  "RelatedSpaceProgram", 8);
 			} 
 		}	
@@ -157,6 +161,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatingSpaceProgram = v, _relatingSpaceProgram, value,  "RelatingSpaceProgram", 9);
 			} 
 		}	

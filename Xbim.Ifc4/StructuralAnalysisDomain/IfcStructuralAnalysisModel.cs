@@ -110,6 +110,8 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _orientationOf2DPlane = v, _orientationOf2DPlane, value,  "OrientationOf2DPlane", 7);
 			} 
 		}	
@@ -146,6 +148,8 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _sharedPlacement = v, _sharedPlacement, value,  "SharedPlacement", 10);
 			} 
 		}	

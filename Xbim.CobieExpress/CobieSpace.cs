@@ -155,6 +155,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _floor = v, _floor, value,  "Floor", 17);
 			} 
 		}	

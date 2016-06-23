@@ -134,6 +134,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatingItem = v, _relatingItem, value,  "RelatingItem", 1);
 			} 
 		}	

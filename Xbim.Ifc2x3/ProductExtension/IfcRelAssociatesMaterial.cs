@@ -68,6 +68,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatingMaterial = v, _relatingMaterial, value,  "RelatingMaterial", 6);
 			} 
 		}	

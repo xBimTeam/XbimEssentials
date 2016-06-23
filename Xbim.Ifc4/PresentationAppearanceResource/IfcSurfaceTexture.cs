@@ -142,6 +142,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _textureTransform = v, _textureTransform, value,  "TextureTransform", 4);
 			} 
 		}	

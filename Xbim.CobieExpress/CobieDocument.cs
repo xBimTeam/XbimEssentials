@@ -152,6 +152,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _documentType = v, _documentType, value,  "DocumentType", 8);
 			} 
 		}	
@@ -166,6 +168,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _approvalType = v, _approvalType, value,  "ApprovalType", 9);
 			} 
 		}	
@@ -180,6 +184,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _stage = v, _stage, value,  "Stage", 10);
 			} 
 		}	

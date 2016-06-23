@@ -179,6 +179,8 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatingDraughtingCallout = v, _relatingDraughtingCallout, value,  "RelatingDraughtingCallout", 3);
 			} 
 		}	
@@ -194,6 +196,8 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatedDraughtingCallout = v, _relatedDraughtingCallout, value,  "RelatedDraughtingCallout", 4);
 			} 
 		}	

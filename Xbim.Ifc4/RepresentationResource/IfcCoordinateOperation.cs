@@ -136,6 +136,8 @@ namespace Xbim.Ifc4.RepresentationResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _sourceCRS = v, _sourceCRS, value,  "SourceCRS", 1);
 			} 
 		}	
@@ -150,6 +152,8 @@ namespace Xbim.Ifc4.RepresentationResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _targetCRS = v, _targetCRS, value,  "TargetCRS", 2);
 			} 
 		}	

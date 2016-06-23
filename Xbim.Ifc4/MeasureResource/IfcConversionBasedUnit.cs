@@ -90,6 +90,8 @@ namespace Xbim.Ifc4.MeasureResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _conversionFactor = v, _conversionFactor, value,  "ConversionFactor", 4);
 			} 
 		}	

@@ -113,6 +113,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
+				var entity = value as IPersistEntity;
+				if (entity != null && !(ReferenceEquals(Model, entity.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _diffuseColour = v, _diffuseColour, value,  "DiffuseColour", 3);
 			} 
 		}	
@@ -127,6 +130,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
+				var entity = value as IPersistEntity;
+				if (entity != null && !(ReferenceEquals(Model, entity.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _transmissionColour = v, _transmissionColour, value,  "TransmissionColour", 4);
 			} 
 		}	
@@ -141,6 +147,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
+				var entity = value as IPersistEntity;
+				if (entity != null && !(ReferenceEquals(Model, entity.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _diffuseTransmissionColour = v, _diffuseTransmissionColour, value,  "DiffuseTransmissionColour", 5);
 			} 
 		}	
@@ -155,6 +164,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
+				var entity = value as IPersistEntity;
+				if (entity != null && !(ReferenceEquals(Model, entity.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _reflectionColour = v, _reflectionColour, value,  "ReflectionColour", 6);
 			} 
 		}	
@@ -169,6 +181,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
+				var entity = value as IPersistEntity;
+				if (entity != null && !(ReferenceEquals(Model, entity.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _specularColour = v, _specularColour, value,  "SpecularColour", 7);
 			} 
 		}	

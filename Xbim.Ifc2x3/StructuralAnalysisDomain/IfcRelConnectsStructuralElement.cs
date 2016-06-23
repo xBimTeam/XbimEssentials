@@ -77,6 +77,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatingElement = v, _relatingElement, value,  "RelatingElement", 5);
 			} 
 		}	
@@ -92,6 +94,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatedStructuralMember = v, _relatedStructuralMember, value,  "RelatedStructuralMember", 6);
 			} 
 		}	

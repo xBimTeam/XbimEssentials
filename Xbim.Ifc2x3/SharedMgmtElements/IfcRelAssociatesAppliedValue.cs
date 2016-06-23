@@ -68,6 +68,8 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatingAppliedValue = v, _relatingAppliedValue, value,  "RelatingAppliedValue", 6);
 			} 
 		}	

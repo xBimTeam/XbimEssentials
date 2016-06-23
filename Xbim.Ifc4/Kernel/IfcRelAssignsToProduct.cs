@@ -67,6 +67,8 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatingProduct = v, _relatingProduct, value,  "RelatingProduct", 7);
 			} 
 		}	

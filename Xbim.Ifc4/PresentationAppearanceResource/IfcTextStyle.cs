@@ -90,6 +90,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _textCharacterAppearance = v, _textCharacterAppearance, value,  "TextCharacterAppearance", 2);
 			} 
 		}	
@@ -104,6 +106,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _textStyle = v, _textStyle, value,  "TextStyle", 3);
 			} 
 		}	
@@ -118,6 +122,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _textFontStyle = v, _textFontStyle, value,  "TextFontStyle", 4);
 			} 
 		}	

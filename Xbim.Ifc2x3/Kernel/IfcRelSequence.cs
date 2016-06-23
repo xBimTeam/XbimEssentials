@@ -90,6 +90,8 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatingProcess = v, _relatingProcess, value,  "RelatingProcess", 5);
 			} 
 		}	
@@ -105,6 +107,8 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatedProcess = v, _relatedProcess, value,  "RelatedProcess", 6);
 			} 
 		}	

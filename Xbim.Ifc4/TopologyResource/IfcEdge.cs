@@ -74,6 +74,8 @@ namespace Xbim.Ifc4.TopologyResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _edgeStart = v, _edgeStart, value,  "EdgeStart", 1);
 			} 
 		}	
@@ -88,6 +90,8 @@ namespace Xbim.Ifc4.TopologyResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _edgeEnd = v, _edgeEnd, value,  "EdgeEnd", 2);
 			} 
 		}	

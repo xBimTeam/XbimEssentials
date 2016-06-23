@@ -91,6 +91,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _mappedTo = v, _mappedTo, value,  "MappedTo", 1);
 			} 
 		}	
@@ -119,6 +121,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _colours = v, _colours, value,  "Colours", 3);
 			} 
 		}	

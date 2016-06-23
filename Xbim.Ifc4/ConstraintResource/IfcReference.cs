@@ -208,6 +208,8 @@ namespace Xbim.Ifc4.ConstraintResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _innerReference = v, _innerReference, value,  "InnerReference", 5);
 			} 
 		}	

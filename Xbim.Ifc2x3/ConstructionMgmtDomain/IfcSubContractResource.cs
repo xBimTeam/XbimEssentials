@@ -75,6 +75,8 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _subContractor = v, _subContractor, value,  "SubContractor", 10);
 			} 
 		}	

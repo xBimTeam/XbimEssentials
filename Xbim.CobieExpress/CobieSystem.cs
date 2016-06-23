@@ -84,6 +84,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _facility = v, _facility, value,  "Facility", 14);
 			} 
 		}	

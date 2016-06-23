@@ -74,6 +74,8 @@ namespace Xbim.Ifc4.ConstraintResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatingConstraint = v, _relatingConstraint, value,  "RelatingConstraint", 3);
 			} 
 		}	

@@ -241,6 +241,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _creatingActor = v, _creatingActor, value,  "CreatingActor", 5);
 			} 
 		}	
@@ -255,6 +257,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _creationTime = v, _creationTime, value,  "CreationTime", 6);
 			} 
 		}	

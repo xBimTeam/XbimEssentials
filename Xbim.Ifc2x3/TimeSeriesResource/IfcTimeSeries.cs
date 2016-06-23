@@ -212,6 +212,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _startTime = v, _startTime, value,  "StartTime", 3);
 			} 
 		}	
@@ -226,6 +228,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _endTime = v, _endTime, value,  "EndTime", 4);
 			} 
 		}	
@@ -282,6 +286,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _unit = v, _unit, value,  "Unit", 8);
 			} 
 		}	

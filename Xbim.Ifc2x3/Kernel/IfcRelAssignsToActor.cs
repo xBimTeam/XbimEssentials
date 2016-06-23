@@ -76,6 +76,8 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatingActor = v, _relatingActor, value,  "RelatingActor", 7);
 			} 
 		}	
@@ -90,6 +92,8 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _actingRole = v, _actingRole, value,  "ActingRole", 8);
 			} 
 		}	

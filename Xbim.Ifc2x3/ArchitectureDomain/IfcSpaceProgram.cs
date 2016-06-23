@@ -143,6 +143,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _requestedLocation = v, _requestedLocation, value,  "RequestedLocation", 9);
 			} 
 		}	

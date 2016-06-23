@@ -68,6 +68,8 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _annotatedCurve = v, _annotatedCurve, value,  "AnnotatedCurve", 4);
 			} 
 		}	

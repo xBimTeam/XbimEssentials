@@ -110,6 +110,8 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatingStructuralMember = v, _relatingStructuralMember, value,  "RelatingStructuralMember", 5);
 			} 
 		}	
@@ -125,6 +127,8 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatedStructuralConnection = v, _relatedStructuralConnection, value,  "RelatedStructuralConnection", 6);
 			} 
 		}	
@@ -139,6 +143,8 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _appliedCondition = v, _appliedCondition, value,  "AppliedCondition", 7);
 			} 
 		}	
@@ -153,6 +159,8 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _additionalConditions = v, _additionalConditions, value,  "AdditionalConditions", 8);
 			} 
 		}	
@@ -181,6 +189,8 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _conditionCoordinateSystem = v, _conditionCoordinateSystem, value,  "ConditionCoordinateSystem", 10);
 			} 
 		}	

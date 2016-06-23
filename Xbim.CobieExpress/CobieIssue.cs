@@ -163,6 +163,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _issueType = v, _issueType, value,  "IssueType", 8);
 			} 
 		}	
@@ -177,6 +179,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _risk = v, _risk, value,  "Risk", 9);
 			} 
 		}	
@@ -191,6 +195,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _chance = v, _chance, value,  "Chance", 10);
 			} 
 		}	
@@ -205,6 +211,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _impact = v, _impact, value,  "Impact", 11);
 			} 
 		}	
@@ -219,6 +227,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _owner = v, _owner, value,  "Owner", 12);
 			} 
 		}	
@@ -248,6 +258,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _causing = v, _causing, value,  "Causing", 14);
 			} 
 		}	
@@ -263,6 +275,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _affected = v, _affected, value,  "Affected", 15);
 			} 
 		}	

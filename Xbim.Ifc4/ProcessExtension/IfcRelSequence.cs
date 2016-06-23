@@ -100,6 +100,8 @@ namespace Xbim.Ifc4.ProcessExtension
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatingProcess = v, _relatingProcess, value,  "RelatingProcess", 5);
 			} 
 		}	
@@ -115,6 +117,8 @@ namespace Xbim.Ifc4.ProcessExtension
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatedProcess = v, _relatedProcess, value,  "RelatedProcess", 6);
 			} 
 		}	
@@ -129,6 +133,8 @@ namespace Xbim.Ifc4.ProcessExtension
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _timeLag = v, _timeLag, value,  "TimeLag", 7);
 			} 
 		}	

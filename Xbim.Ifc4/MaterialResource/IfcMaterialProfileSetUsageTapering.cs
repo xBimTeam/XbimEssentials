@@ -73,6 +73,8 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _forProfileEndSet = v, _forProfileEndSet, value,  "ForProfileEndSet", 4);
 			} 
 		}	

@@ -198,6 +198,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _actualStart = v, _actualStart, value,  "ActualStart", 6);
 			} 
 		}	
@@ -212,6 +214,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _earlyStart = v, _earlyStart, value,  "EarlyStart", 7);
 			} 
 		}	
@@ -226,6 +230,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _lateStart = v, _lateStart, value,  "LateStart", 8);
 			} 
 		}	
@@ -240,6 +246,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _scheduleStart = v, _scheduleStart, value,  "ScheduleStart", 9);
 			} 
 		}	
@@ -254,6 +262,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _actualFinish = v, _actualFinish, value,  "ActualFinish", 10);
 			} 
 		}	
@@ -268,6 +278,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _earlyFinish = v, _earlyFinish, value,  "EarlyFinish", 11);
 			} 
 		}	
@@ -282,6 +294,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _lateFinish = v, _lateFinish, value,  "LateFinish", 12);
 			} 
 		}	
@@ -296,6 +310,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _scheduleFinish = v, _scheduleFinish, value,  "ScheduleFinish", 13);
 			} 
 		}	
@@ -394,6 +410,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _statusTime = v, _statusTime, value,  "StatusTime", 20);
 			} 
 		}	

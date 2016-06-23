@@ -90,6 +90,8 @@ namespace Xbim.Ifc2x3.ControlExtension
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatingConstraint = v, _relatingConstraint, value,  "RelatingConstraint", 7);
 			} 
 		}	

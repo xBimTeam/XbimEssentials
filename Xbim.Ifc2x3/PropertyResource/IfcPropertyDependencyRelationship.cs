@@ -158,6 +158,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _dependingProperty = v, _dependingProperty, value,  "DependingProperty", 1);
 			} 
 		}	
@@ -173,6 +175,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _dependantProperty = v, _dependantProperty, value,  "DependantProperty", 2);
 			} 
 		}	

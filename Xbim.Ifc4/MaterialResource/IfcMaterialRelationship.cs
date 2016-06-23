@@ -82,6 +82,8 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatingMaterial = v, _relatingMaterial, value,  "RelatingMaterial", 3);
 			} 
 		}	

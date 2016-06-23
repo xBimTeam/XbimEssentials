@@ -96,6 +96,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _directrix = v, _directrix, value,  "Directrix", 1);
 			} 
 		}	

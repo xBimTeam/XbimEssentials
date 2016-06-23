@@ -75,6 +75,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _item = v, _item, value,  "Item", 1);
 			} 
 		}	
@@ -90,6 +92,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _textureCoordinates = v, _textureCoordinates, value,  "TextureCoordinates", 2);
 			} 
 		}	

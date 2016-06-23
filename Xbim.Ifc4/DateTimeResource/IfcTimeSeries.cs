@@ -280,6 +280,8 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _unit = v, _unit, value,  "Unit", 8);
 			} 
 		}	

@@ -68,6 +68,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _timeForTask = v, _timeForTask, value,  "TimeForTask", 8);
 			} 
 		}	

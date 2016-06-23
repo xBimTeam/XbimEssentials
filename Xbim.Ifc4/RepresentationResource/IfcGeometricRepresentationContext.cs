@@ -122,6 +122,8 @@ namespace Xbim.Ifc4.RepresentationResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _worldCoordinateSystem = v, _worldCoordinateSystem, value,  "WorldCoordinateSystem", 5);
 			} 
 		}	
@@ -136,6 +138,8 @@ namespace Xbim.Ifc4.RepresentationResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _trueNorth = v, _trueNorth, value,  "TrueNorth", 6);
 			} 
 		}	

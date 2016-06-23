@@ -112,6 +112,8 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _parentCurve = v, _parentCurve, value,  "ParentCurve", 3);
 			} 
 		}	

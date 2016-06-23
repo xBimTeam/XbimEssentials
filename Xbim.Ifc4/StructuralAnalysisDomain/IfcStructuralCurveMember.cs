@@ -88,6 +88,8 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _axis = v, _axis, value,  "Axis", 9);
 			} 
 		}	

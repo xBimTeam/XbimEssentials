@@ -186,6 +186,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _publisher = v, _publisher, value,  "Publisher", 3);
 			} 
 		}	
@@ -200,6 +202,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _versionDate = v, _versionDate, value,  "VersionDate", 4);
 			} 
 		}	

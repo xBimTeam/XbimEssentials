@@ -68,6 +68,8 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatingDocument = v, _relatingDocument, value,  "RelatingDocument", 6);
 			} 
 		}	

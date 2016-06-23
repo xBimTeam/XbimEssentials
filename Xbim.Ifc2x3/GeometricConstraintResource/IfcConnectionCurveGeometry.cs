@@ -74,6 +74,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _curveOnRelatingElement = v, _curveOnRelatingElement, value,  "CurveOnRelatingElement", 1);
 			} 
 		}	
@@ -88,6 +90,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _curveOnRelatedElement = v, _curveOnRelatedElement, value,  "CurveOnRelatedElement", 2);
 			} 
 		}	

@@ -67,6 +67,8 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _axisPosition = v, _axisPosition, value,  "AxisPosition", 3);
 			} 
 		}	

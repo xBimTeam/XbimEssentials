@@ -160,6 +160,8 @@ namespace Xbim.Ifc4.ProcessExtension
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _taskTime = v, _taskTime, value,  "TaskTime", 12);
 			} 
 		}	

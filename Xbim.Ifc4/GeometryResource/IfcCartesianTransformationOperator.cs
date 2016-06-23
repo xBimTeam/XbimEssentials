@@ -92,6 +92,8 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _axis1 = v, _axis1, value,  "Axis1", 1);
 			} 
 		}	
@@ -106,6 +108,8 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _axis2 = v, _axis2, value,  "Axis2", 2);
 			} 
 		}	
@@ -120,6 +124,8 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _localOrigin = v, _localOrigin, value,  "LocalOrigin", 3);
 			} 
 		}	

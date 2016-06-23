@@ -106,6 +106,8 @@ namespace Xbim.Ifc2x3.ControlExtension
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _timeSeries = v, _timeSeries, value,  "TimeSeries", 8);
 			} 
 		}	

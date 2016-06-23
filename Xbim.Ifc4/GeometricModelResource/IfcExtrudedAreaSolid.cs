@@ -75,6 +75,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _extrudedDirection = v, _extrudedDirection, value,  "ExtrudedDirection", 3);
 			} 
 		}	

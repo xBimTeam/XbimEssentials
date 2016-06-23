@@ -157,6 +157,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _created = v, _created, value,  "Created", 1);
 			} 
 		}	
@@ -199,6 +201,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _externalSystem = v, _externalSystem, value,  "ExternalSystem", 4);
 			} 
 		}	
@@ -213,6 +217,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _externalObject = v, _externalObject, value,  "ExternalObject", 5);
 			} 
 		}	

@@ -181,6 +181,8 @@ namespace Xbim.Ifc4.UtilityResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _owningUser = v, _owningUser, value,  "OwningUser", 1);
 			} 
 		}	
@@ -195,6 +197,8 @@ namespace Xbim.Ifc4.UtilityResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _owningApplication = v, _owningApplication, value,  "OwningApplication", 2);
 			} 
 		}	
@@ -251,6 +255,8 @@ namespace Xbim.Ifc4.UtilityResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _lastModifyingUser = v, _lastModifyingUser, value,  "LastModifyingUser", 6);
 			} 
 		}	
@@ -265,6 +271,8 @@ namespace Xbim.Ifc4.UtilityResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _lastModifyingApplication = v, _lastModifyingApplication, value,  "LastModifyingApplication", 7);
 			} 
 		}	

@@ -96,6 +96,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _firstOperand = v, _firstOperand, value,  "FirstOperand", 2);
 			} 
 		}	
@@ -110,6 +112,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _secondOperand = v, _secondOperand, value,  "SecondOperand", 3);
 			} 
 		}	

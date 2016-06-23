@@ -166,6 +166,8 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _axisCurve = v, _axisCurve, value,  "AxisCurve", 2);
 			} 
 		}	

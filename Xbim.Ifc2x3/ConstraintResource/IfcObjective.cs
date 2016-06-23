@@ -89,6 +89,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _benchmarkValues = v, _benchmarkValues, value,  "BenchmarkValues", 8);
 			} 
 		}	
@@ -103,6 +105,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _resultValues = v, _resultValues, value,  "ResultValues", 9);
 			} 
 		}	

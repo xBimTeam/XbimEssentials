@@ -76,6 +76,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _mappedTo = v, _mappedTo, value,  "MappedTo", 2);
 			} 
 		}	
@@ -90,6 +92,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _texCoords = v, _texCoords, value,  "TexCoords", 3);
 			} 
 		}	

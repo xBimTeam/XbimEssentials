@@ -161,6 +161,8 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatingMonetaryUnit = v, _relatingMonetaryUnit, value,  "RelatingMonetaryUnit", 1);
 			} 
 		}	
@@ -175,6 +177,8 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatedMonetaryUnit = v, _relatedMonetaryUnit, value,  "RelatedMonetaryUnit", 2);
 			} 
 		}	
@@ -203,6 +207,8 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _rateDateTime = v, _rateDateTime, value,  "RateDateTime", 4);
 			} 
 		}	
@@ -217,6 +223,8 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _rateSource = v, _rateSource, value,  "RateSource", 5);
 			} 
 		}	

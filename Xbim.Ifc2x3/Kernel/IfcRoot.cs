@@ -164,6 +164,8 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _ownerHistory = v, _ownerHistory, value,  "OwnerHistory", 2);
 			} 
 		}	

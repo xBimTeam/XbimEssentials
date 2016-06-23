@@ -144,6 +144,8 @@ namespace Xbim.Ifc4.ActorResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _thePerson = v, _thePerson, value,  "ThePerson", 1);
 			} 
 		}	
@@ -159,6 +161,8 @@ namespace Xbim.Ifc4.ActorResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _theOrganization = v, _theOrganization, value,  "TheOrganization", 2);
 			} 
 		}	

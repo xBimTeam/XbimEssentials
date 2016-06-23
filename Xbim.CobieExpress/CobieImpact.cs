@@ -160,6 +160,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _impactType = v, _impactType, value,  "ImpactType", 8);
 			} 
 		}	
@@ -174,6 +176,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _impactStage = v, _impactStage, value,  "ImpactStage", 9);
 			} 
 		}	
@@ -202,6 +206,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _impactUnit = v, _impactUnit, value,  "ImpactUnit", 11);
 			} 
 		}	
@@ -258,6 +264,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _durationUnit = v, _durationUnit, value,  "DurationUnit", 15);
 			} 
 		}	

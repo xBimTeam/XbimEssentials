@@ -216,6 +216,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _thermalLoadTimeSeriesValues = v, _thermalLoadTimeSeriesValues, value,  "ThermalLoadTimeSeriesValues", 11);
 			} 
 		}	

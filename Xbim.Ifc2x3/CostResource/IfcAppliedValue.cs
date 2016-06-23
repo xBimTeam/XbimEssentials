@@ -202,6 +202,9 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
+				var entity = value as IPersistEntity;
+				if (entity != null && !(ReferenceEquals(Model, entity.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _appliedValue = v, _appliedValue, value,  "AppliedValue", 3);
 			} 
 		}	
@@ -216,6 +219,8 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _unitBasis = v, _unitBasis, value,  "UnitBasis", 4);
 			} 
 		}	
@@ -230,6 +235,8 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _applicableDate = v, _applicableDate, value,  "ApplicableDate", 5);
 			} 
 		}	
@@ -244,6 +251,8 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _fixedUntilDate = v, _fixedUntilDate, value,  "FixedUntilDate", 6);
 			} 
 		}	

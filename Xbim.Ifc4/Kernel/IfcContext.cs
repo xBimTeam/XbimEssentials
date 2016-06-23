@@ -151,6 +151,8 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _unitsInContext = v, _unitsInContext, value,  "UnitsInContext", 9);
 			} 
 		}	

@@ -108,6 +108,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _resourceType = v, _resourceType, value,  "ResourceType", 8);
 			} 
 		}	

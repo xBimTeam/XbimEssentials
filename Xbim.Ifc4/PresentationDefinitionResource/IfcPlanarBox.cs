@@ -67,6 +67,8 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _placement = v, _placement, value,  "Placement", 3);
 			} 
 		}	

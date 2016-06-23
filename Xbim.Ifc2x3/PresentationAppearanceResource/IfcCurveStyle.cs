@@ -83,6 +83,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _curveFont = v, _curveFont, value,  "CurveFont", 2);
 			} 
 		}	
@@ -111,6 +113,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _curveColour = v, _curveColour, value,  "CurveColour", 4);
 			} 
 		}	

@@ -67,6 +67,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _endSweptArea = v, _endSweptArea, value,  "EndSweptArea", 5);
 			} 
 		}	

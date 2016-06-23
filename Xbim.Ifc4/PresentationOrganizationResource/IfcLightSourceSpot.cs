@@ -89,6 +89,8 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _orientation = v, _orientation, value,  "Orientation", 10);
 			} 
 		}	

@@ -74,6 +74,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _pnt = v, _pnt, value,  "Pnt", 1);
 			} 
 		}	
@@ -88,6 +90,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _dir = v, _dir, value,  "Dir", 2);
 			} 
 		}	

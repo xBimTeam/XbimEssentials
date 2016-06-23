@@ -75,6 +75,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _surfaceColour = v, _surfaceColour, value,  "SurfaceColour", 1);
 			} 
 		}	

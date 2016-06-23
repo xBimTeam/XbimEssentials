@@ -83,6 +83,8 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _moveFrom = v, _moveFrom, value,  "MoveFrom", 11);
 			} 
 		}	
@@ -97,6 +99,8 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _moveTo = v, _moveTo, value,  "MoveTo", 12);
 			} 
 		}	

@@ -76,6 +76,9 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			} 
 			set
 			{
+				var entity = value as IPersistEntity;
+				if (entity != null && !(ReferenceEquals(Model, entity.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _criterion = v, _criterion, value,  "Criterion", 6);
 			} 
 		}	
@@ -90,6 +93,8 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _criterionDateTime = v, _criterionDateTime, value,  "CriterionDateTime", 7);
 			} 
 		}	

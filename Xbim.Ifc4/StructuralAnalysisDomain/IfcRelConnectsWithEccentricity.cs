@@ -67,6 +67,8 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _connectionConstraint = v, _connectionConstraint, value,  "ConnectionConstraint", 11);
 			} 
 		}	

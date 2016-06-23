@@ -84,6 +84,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _locationAtRelatingElement = v, _locationAtRelatingElement, value,  "LocationAtRelatingElement", 1);
 			} 
 		}	
@@ -98,6 +100,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _locationAtRelatedElement = v, _locationAtRelatedElement, value,  "LocationAtRelatedElement", 2);
 			} 
 		}	
@@ -112,6 +116,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _profileOfPort = v, _profileOfPort, value,  "ProfileOfPort", 3);
 			} 
 		}	

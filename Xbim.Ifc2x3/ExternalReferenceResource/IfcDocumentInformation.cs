@@ -358,6 +358,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _documentOwner = v, _documentOwner, value,  "DocumentOwner", 9);
 			} 
 		}	
@@ -382,6 +384,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _creationTime = v, _creationTime, value,  "CreationTime", 11);
 			} 
 		}	
@@ -396,6 +400,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _lastRevisionTime = v, _lastRevisionTime, value,  "LastRevisionTime", 12);
 			} 
 		}	
@@ -410,6 +416,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _electronicFormat = v, _electronicFormat, value,  "ElectronicFormat", 13);
 			} 
 		}	
@@ -424,6 +432,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _validFrom = v, _validFrom, value,  "ValidFrom", 14);
 			} 
 		}	
@@ -438,6 +448,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _validUntil = v, _validUntil, value,  "ValidUntil", 15);
 			} 
 		}	

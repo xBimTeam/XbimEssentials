@@ -204,6 +204,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _jobType = v, _jobType, value,  "JobType", 9);
 			} 
 		}	
@@ -218,6 +220,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _jobStatusType = v, _jobStatusType, value,  "JobStatusType", 10);
 			} 
 		}	
@@ -246,6 +250,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _durationUnit = v, _durationUnit, value,  "DurationUnit", 12);
 			} 
 		}	
@@ -274,6 +280,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _startUnit = v, _startUnit, value,  "StartUnit", 14);
 			} 
 		}	
@@ -302,6 +310,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _frequencyUnit = v, _frequencyUnit, value,  "FrequencyUnit", 16);
 			} 
 		}	
@@ -316,6 +326,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _priors = v, _priors, value,  "Priors", 17);
 			} 
 		}	
@@ -341,6 +353,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _type = v, _type, value,  "Type", 19);
 			} 
 		}	

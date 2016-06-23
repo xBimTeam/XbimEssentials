@@ -218,6 +218,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _sectionDefinition = v, _sectionDefinition, value,  "SectionDefinition", 5);
 			} 
 		}	

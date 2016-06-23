@@ -91,6 +91,8 @@ namespace Xbim.Ifc4.RepresentationResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _parentContext = v, _parentContext, value,  "ParentContext", 7);
 			} 
 		}	

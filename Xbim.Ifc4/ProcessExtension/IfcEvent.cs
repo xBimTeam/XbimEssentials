@@ -132,6 +132,8 @@ namespace Xbim.Ifc4.ProcessExtension
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _eventOccurenceTime = v, _eventOccurenceTime, value,  "EventOccurenceTime", 11);
 			} 
 		}	

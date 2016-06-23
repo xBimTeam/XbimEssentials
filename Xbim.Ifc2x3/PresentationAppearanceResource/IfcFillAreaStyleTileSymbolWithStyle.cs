@@ -68,6 +68,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _symbol = v, _symbol, value,  "Symbol", 1);
 			} 
 		}	

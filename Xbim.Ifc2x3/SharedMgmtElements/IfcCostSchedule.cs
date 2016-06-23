@@ -121,6 +121,8 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _submittedBy = v, _submittedBy, value,  "SubmittedBy", 6);
 			} 
 		}	
@@ -135,6 +137,8 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _preparedBy = v, _preparedBy, value,  "PreparedBy", 7);
 			} 
 		}	
@@ -149,6 +153,8 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _submittedOn = v, _submittedOn, value,  "SubmittedOn", 8);
 			} 
 		}	
@@ -187,6 +193,8 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _updateDate = v, _updateDate, value,  "UpdateDate", 11);
 			} 
 		}	

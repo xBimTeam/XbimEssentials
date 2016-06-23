@@ -69,6 +69,8 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _correspondingBoundary = v, _correspondingBoundary, value,  "CorrespondingBoundary", 11);
 			} 
 		}	

@@ -84,6 +84,8 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _usage = v, _usage, value,  "Usage", 8);
 			} 
 		}	
@@ -108,6 +110,8 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _baseQuantity = v, _baseQuantity, value,  "BaseQuantity", 10);
 			} 
 		}	

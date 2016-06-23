@@ -89,6 +89,8 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _basisCurve = v, _basisCurve, value,  "BasisCurve", 1);
 			} 
 		}	
@@ -131,6 +133,8 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _refDirection = v, _refDirection, value,  "RefDirection", 4);
 			} 
 		}	

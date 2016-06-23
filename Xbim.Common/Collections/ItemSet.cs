@@ -5,29 +5,28 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using Xbim.Common.Exceptions;
 
 namespace Xbim.Common.Collections
 {
     public abstract class ItemSet<T> : IItemSet<T>, IList
     {
-        protected readonly List<T> InteraList;
 		protected readonly byte Property;
+        protected readonly bool IsEntitySet;
 
         protected IModel Model { get { return OwningEntity.Model; } }
 
 		public IPersistEntity OwningEntity { get; private set; }
 
-        protected List<T> Internal
-        {
-            get { return InteraList; }
-        }
+        protected List<T> Internal { get; private set; }
 
         protected ItemSet(IPersistEntity entity, int capacity, byte property)
         {
 			//this will create internal list of optimal capacity
-            InteraList = new List<T>(capacity > 0 ? capacity : 0);
+            Internal = new List<T>(capacity > 0 ? capacity : 0);
 			Property = property;
 			OwningEntity = entity;
+            IsEntitySet = typeof (IPersistEntity).IsAssignableFrom(typeof (T));
         }
 
         
@@ -75,12 +74,17 @@ namespace Xbim.Common.Collections
         public void AddRange(IEnumerable<T> values)
 		{
 			if(Model.IsTransactional && Model.CurrentTransaction == null)
-                throw new Exception("Operation out of transaction");
-			
-			//activate owning entity for write in case it is not active yet
+                throw new XbimException("Operation out of transaction");
+
+            var enumerable = values as T[] ?? values.ToArray();
+            if (IsEntitySet && enumerable.Any(v => v != null && !ReferenceEquals(((IPersistEntity) v).Model, Model)))
+                throw new XbimException("Cross model entity assignment");
+
+
+            //activate owning entity for write in case it is not active yet
 			OwningEntity.Activate(true);
 
-            var items = values as T[] ?? values.ToArray();
+            var items = values as T[] ?? enumerable.ToArray();
 			Action doAction = () => {
 				Internal.AddRange(items);
 				NotifyCollectionChanged(NotifyCollectionChangedAction.Add, items);
@@ -174,7 +178,10 @@ namespace Xbim.Common.Collections
         {
             if(Model.IsTransactional && Model.CurrentTransaction == null)
                 throw new Exception("Operation out of transaction");
-			
+
+            if (IsEntitySet && item != null && !ReferenceEquals(((IPersistEntity)item).Model, Model))
+                throw new XbimException("Cross model entity assignment");
+
 			//activate owning entity for write in case it is not active yet
 			OwningEntity.Activate(true);
 
@@ -367,7 +374,10 @@ namespace Xbim.Common.Collections
 		    set
 		    {
 				if(Model.IsTransactional && Model.CurrentTransaction == null)
-				    throw new Exception("Operation out of transaction");
+				    throw new XbimException("Operation out of transaction");
+
+                if (IsEntitySet && value != null && !ReferenceEquals(((IPersistEntity)value).Model, Model))
+                    throw new XbimException("Cross model entity assignment");
 
                 OwningEntity.Activate(true);
 
@@ -401,7 +411,10 @@ namespace Xbim.Common.Collections
         public void Insert(int index, T item)
         {
             if (Model.IsTransactional && Model.CurrentTransaction == null)
-                throw new Exception("Operation out of transaction");
+                throw new XbimException("Operation out of transaction");
+
+            if (IsEntitySet && item != null && !ReferenceEquals(((IPersistEntity)item).Model, Model))
+                throw new XbimException("Cross model entity assignment");
 
             OwningEntity.Activate(true);
 

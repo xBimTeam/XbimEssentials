@@ -68,6 +68,8 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _profileDefinition = v, _profileDefinition, value,  "ProfileDefinition", 4);
 			} 
 		}	

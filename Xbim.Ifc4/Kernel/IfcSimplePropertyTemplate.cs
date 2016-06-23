@@ -161,6 +161,8 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _enumerators = v, _enumerators, value,  "Enumerators", 8);
 			} 
 		}	
@@ -175,6 +177,8 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _primaryUnit = v, _primaryUnit, value,  "PrimaryUnit", 9);
 			} 
 		}	
@@ -189,6 +193,8 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _secondaryUnit = v, _secondaryUnit, value,  "SecondaryUnit", 10);
 			} 
 		}	

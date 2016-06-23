@@ -88,6 +88,8 @@ namespace Xbim.Ifc4.PropertyResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _propertyReference = v, _propertyReference, value,  "PropertyReference", 4);
 			} 
 		}	

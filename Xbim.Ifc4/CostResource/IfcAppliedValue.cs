@@ -225,6 +225,9 @@ namespace Xbim.Ifc4.CostResource
 			} 
 			set
 			{
+				var entity = value as IPersistEntity;
+				if (entity != null && !(ReferenceEquals(Model, entity.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _appliedValue = v, _appliedValue, value,  "AppliedValue", 3);
 			} 
 		}	
@@ -239,6 +242,8 @@ namespace Xbim.Ifc4.CostResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _unitBasis = v, _unitBasis, value,  "UnitBasis", 4);
 			} 
 		}	

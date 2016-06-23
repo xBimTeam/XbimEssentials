@@ -200,6 +200,8 @@ namespace Xbim.Ifc4.UtilityResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _unit = v, _unit, value,  "Unit", 4);
 			} 
 		}	
@@ -214,6 +216,8 @@ namespace Xbim.Ifc4.UtilityResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _referencePath = v, _referencePath, value,  "ReferencePath", 5);
 			} 
 		}	

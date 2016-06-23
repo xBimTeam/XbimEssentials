@@ -66,6 +66,8 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _recurrence = v, _recurrence, value,  "Recurrence", 21);
 			} 
 		}	

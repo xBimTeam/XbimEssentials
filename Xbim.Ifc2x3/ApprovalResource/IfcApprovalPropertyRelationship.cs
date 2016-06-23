@@ -144,6 +144,8 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _approval = v, _approval, value,  "Approval", 2);
 			} 
 		}	

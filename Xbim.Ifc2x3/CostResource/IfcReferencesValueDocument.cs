@@ -149,6 +149,8 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _referencedDocument = v, _referencedDocument, value,  "ReferencedDocument", 1);
 			} 
 		}	

@@ -233,6 +233,8 @@ namespace Xbim.Ifc4.ConstraintResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _creatingActor = v, _creatingActor, value,  "CreatingActor", 5);
 			} 
 		}	

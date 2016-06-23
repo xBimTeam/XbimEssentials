@@ -109,6 +109,8 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _basisSurface = v, _basisSurface, value,  "BasisSurface", 1);
 			} 
 		}	

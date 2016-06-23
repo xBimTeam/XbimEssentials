@@ -84,6 +84,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatingPort = v, _relatingPort, value,  "RelatingPort", 5);
 			} 
 		}	
@@ -99,6 +101,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatedPort = v, _relatedPort, value,  "RelatedPort", 6);
 			} 
 		}	
@@ -113,6 +117,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _realizingElement = v, _realizingElement, value,  "RealizingElement", 7);
 			} 
 		}	

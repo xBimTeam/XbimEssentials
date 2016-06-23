@@ -88,6 +88,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _classification = v, _classification, value,  "Classification", 3);
 			} 
 		}	

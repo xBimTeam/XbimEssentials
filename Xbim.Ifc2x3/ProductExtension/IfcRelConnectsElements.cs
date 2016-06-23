@@ -84,6 +84,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _connectionGeometry = v, _connectionGeometry, value,  "ConnectionGeometry", 5);
 			} 
 		}	
@@ -99,6 +101,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatingElement = v, _relatingElement, value,  "RelatingElement", 6);
 			} 
 		}	
@@ -114,6 +118,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _relatedElement = v, _relatedElement, value,  "RelatedElement", 7);
 			} 
 		}	

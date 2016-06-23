@@ -109,6 +109,9 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
+				var entity = value as IPersistEntity;
+				if (entity != null && !(ReferenceEquals(Model, entity.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _dataValue = v, _dataValue, value,  "DataValue", 10);
 			} 
 		}	

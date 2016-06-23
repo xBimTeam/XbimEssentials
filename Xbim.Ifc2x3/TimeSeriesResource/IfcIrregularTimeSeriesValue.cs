@@ -135,6 +135,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _timeStamp = v, _timeStamp, value,  "TimeStamp", 1);
 			} 
 		}	

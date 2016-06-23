@@ -75,6 +75,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _fillStyleTarget = v, _fillStyleTarget, value,  "FillStyleTarget", 4);
 			} 
 		}	

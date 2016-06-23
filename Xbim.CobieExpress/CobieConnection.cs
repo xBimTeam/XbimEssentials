@@ -146,6 +146,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _connectionType = v, _connectionType, value,  "ConnectionType", 8);
 			} 
 		}	
@@ -161,6 +163,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _componentA = v, _componentA, value,  "ComponentA", 9);
 			} 
 		}	
@@ -176,6 +180,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _componentB = v, _componentB, value,  "ComponentB", 10);
 			} 
 		}	
@@ -191,6 +197,8 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
 				SetValue( v =>  _realizingComponent = v, _realizingComponent, value,  "RealizingComponent", 11);
 			} 
 		}	
