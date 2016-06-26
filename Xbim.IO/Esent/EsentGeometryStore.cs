@@ -133,7 +133,7 @@ namespace Xbim.IO.Esent
                 catch (Exception ex)
                 {
                     Log.InfoFormat("Esent model {0} does not contain geometry tables.", _esentModel.DatabaseName);
-                    return false;
+                    return true;
                 }
                 finally
                 {
