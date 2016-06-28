@@ -17,6 +17,7 @@ namespace Xbim.Common.Metadata
         public bool IsInverse { get { return EntityAttribute.Order < 0; } }
         public bool IsDerived { get { return EntityAttribute.State == EntityAttributeState.Derived; } }
         public bool IsExplicit { get { return EntityAttribute.Order > 0; } }
+        public bool IsIndexed { get; internal set; }
     }
 
     /// <summary>

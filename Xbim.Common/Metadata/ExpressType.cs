@@ -161,6 +161,7 @@ namespace Xbim.Common.Metadata
 
                 var isIndexed =
                     propInfo.GetCustomAttributes(typeof(IndexedProperty), false).Any();
+                metaProperty.IsIndexed = isIndexed;
                 if (!isIndexed) continue;
 
                 //TODO: MC: Review with Steve. This is not true for IfcRelDefinesByProperties.RelatingPropertyDefinition in IFC4
