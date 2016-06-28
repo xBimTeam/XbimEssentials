@@ -1,10 +1,14 @@
 ﻿using System;
+using log4net;
 using Xbim.Common.Geometry;
 
 namespace Xbim.IO.Esent
 {
     internal class EsentGeometryStore : IGeometryStore
     {
+
+        private static readonly ILog Log = LogManager.GetLogger("Xbim.IO.Esent.EsentGeometryStore");
+
         private readonly EsentModel _esentModel;
 
         private EsentGeometryInitialiser _currentTransaction = null;
@@ -124,7 +128,12 @@ namespace Xbim.IO.Esent
                     {
                         var isEmpty = !shapeGeometryCursor.TryMoveFirstShapeGeometry(ref shapeGeometry);
                         return isEmpty;
-                    }                                     
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.InfoFormat("Esent model {0} does not contain geometry tables.", _esentModel.DatabaseName);
+                    return true;
                 }
                 finally
                 {

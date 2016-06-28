@@ -145,7 +145,7 @@ namespace Xbim.IO
         /// <param name="entity">The entity to write</param>
         /// <param name="metadata"></param>
         /// <param name="map"></param>
-        internal static void WriteEntity(this IPersistEntity entity, TextWriter entityWriter, ExpressMetaData metadata, IDictionary<int, int> map = null)
+        public static void WriteEntity(this IPersistEntity entity, TextWriter entityWriter, ExpressMetaData metadata, IDictionary<int, int> map = null)
         {
             var expressType = metadata.ExpressType(entity);
             if (map != null && map.Keys.Contains(entity.EntityLabel)) return; //if the entity is replaced in the map do not write it
