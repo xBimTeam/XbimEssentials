@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -211,104 +210,9 @@ namespace Xbim.IO.Memory
         /// <param name="entity">Entity to be deleted</param>
         public virtual void Delete(IPersistEntity entity)
         {
-            //remove from entity collection
-            var removed = _instances.RemoveReversible(entity);
-            if (!removed) return;
-
-            var entityType = entity.GetType();
-            List<DeleteCandidateType> candidateTypes;
-            if (!_deteteCandidatesCache.TryGetValue(entityType, out candidateTypes))
-            {
-                candidateTypes = new List<DeleteCandidateType>();
-                _deteteCandidatesCache.Add(entityType, candidateTypes);
-
-                //find all potential references and delete from there
-                var types = Metadata.Types().Where(t => typeof(IInstantiableEntity).IsAssignableFrom(t.Type));
-                // ReSharper disable once LoopCanBeConvertedToQuery
-                foreach (var type in types)
-                {
-                    var toNullify = type.Properties.Values.Where(p =>
-                        p.EntityAttribute != null && p.EntityAttribute.Order > 0 &&
-                        p.PropertyInfo.PropertyType.IsAssignableFrom(entityType)).ToList();
-                    var toRemove =
-                        type.Properties.Values.Where(p =>
-                            p.EntityAttribute != null && p.EntityAttribute.Order > 0 &&
-                            p.PropertyInfo.PropertyType.IsGenericType &&
-                            p.PropertyInfo.PropertyType.GenericTypeArgumentIsAssignableFrom(entityType)).ToList();
-                    if (!toNullify.Any() && !toRemove.Any()) continue;
-
-                    candidateTypes.Add(new DeleteCandidateType { Type = type, ToNullify = toNullify, ToRemove = toRemove });
-                }
-            }
-
-            foreach (var candidateType in candidateTypes)
-                DeleteReferences(entity, candidateType);
+            ModelHelper.Delete(this, entity, e => _instances.RemoveReversible(e));
         }
-
-        /// <summary>
-        /// Deletes references to specified entity from all entities in the model where entity is
-        /// a references as an object or as a member of a collection.
-        /// </summary>
-        /// <param name="entity">Entity to be removed from references</param>
-        /// <param name="candidateType">Candidate type containing reference to the type of entity</param>
-        protected virtual void DeleteReferences(IPersistEntity entity, DeleteCandidateType candidateType)
-        {
-            //get all instances of this type and nullify and remove the entity
-            var entitiesToCheck = _instances.OfType(candidateType.Type.Type);
-            foreach (var toCheck in entitiesToCheck)
-            {
-                //check properties
-                foreach (var pInfo in candidateType.ToNullify.Select(p => p.PropertyInfo))
-                {
-                    var pVal = pInfo.GetValue(toCheck);
-                    if (pVal == null) continue;
-                    //it is enough to compare references
-                    if (!ReferenceEquals(pVal, entity)) continue;
-                    pInfo.SetValue(toCheck, null);
-                }
-
-                foreach (var pInfo in candidateType.ToRemove.Select(p => p.PropertyInfo))
-                {
-                    var pVal = pInfo.GetValue(toCheck);
-                    if (pVal == null) continue;
-
-                    //it might be uninitialized optional item set
-                    var optSet = pVal as IOptionalItemSet;
-                    if (optSet != null && !optSet.Initialized) continue;
-
-                    //or it is non-optional item set implementind IList
-                    var itemSet = pVal as IList;
-                    if (itemSet != null)
-                    {
-                        if (itemSet.Contains(entity))
-                            itemSet.Remove(entity);
-                        continue;
-                    }
-
-                    //fall back operating on common list functions using reflection (this is slow)
-                    var contMethod = pInfo.PropertyType.GetMethod("Contains");
-                    if (contMethod == null) continue;
-                    var contains = (bool)contMethod.Invoke(pVal, new object[] { entity });
-                    if (!contains) continue;
-                    var removeMethod = pInfo.PropertyType.GetMethod("Remove");
-                    if (removeMethod == null) continue;
-                    removeMethod.Invoke(pVal, new object[] { entity });
-                }
-            }
-        }
-
-        /// <summary>
-        /// Helper structure to hold information for reference removal. If multiple objects of the same type are to
-        /// be removed this will cache the information about where to have a look for the references.
-        /// </summary>
-        protected struct DeleteCandidateType
-        {
-            public ExpressType Type;
-            public List<ExpressMetaProperty> ToNullify;
-            public List<ExpressMetaProperty> ToRemove;
-        }
-
-        private readonly Dictionary<Type, List<DeleteCandidateType>> _deteteCandidatesCache = new Dictionary<Type, List<DeleteCandidateType>>(); 
+       
 
         public virtual ITransaction BeginTransaction(string name)
         {
@@ -742,7 +646,6 @@ namespace Xbim.IO.Memory
         public void Dispose()
         {
             _instances.Dispose();
-            _deteteCandidatesCache.Clear();
             _transactionReference = null;
         }
 
@@ -787,125 +690,20 @@ namespace Xbim.IO.Memory
         public T InsertCopy<T>(T toCopy, XbimInstanceHandleMap mappings, PropertyTranformDelegate propTransform, bool includeInverses,
            bool keepLabels, bool noTransaction) where T : IPersistEntity
         {
-            var tName = toCopy.ExpressType.Name;
             if (noTransaction)
                 IsTransactional = false;
+            T result;
             try
             {
-                var toCopyLabel = toCopy.EntityLabel;
-                XbimInstanceHandle copyHandle;
-                var toCopyHandle = new XbimInstanceHandle(toCopy);
-                //try to get the value if it was created before
-                if (mappings.TryGetValue(toCopyHandle, out copyHandle))
-                {
-                    return (T) copyHandle.GetEntity();
-                }
-
-                var expressType = Metadata.ExpressType(toCopy);
-                var copy = keepLabels ? _instances.New(toCopy.GetType(), toCopyLabel) : _instances.New(toCopy.GetType());
-                copyHandle = new XbimInstanceHandle(copy);
-                //key is the label in original model
-                mappings.Add(toCopyHandle, copyHandle);
-
-                var props = expressType.Properties.Values.Where(p => !p.EntityAttribute.IsDerived);
-                if (includeInverses)
-                    props = props.Union(expressType.Inverses);
-
-                foreach (var prop in props)
-                {
-                    var value = propTransform != null
-                        ? propTransform(prop, toCopy)
-                        : prop.PropertyInfo.GetValue(toCopy, null);
-                    if (value == null) continue;
-
-                    var isInverse = (prop.EntityAttribute.Order == -1); //don't try and set the values for inverses
-                    var theType = value.GetType();
-                    //if it is an express type or a value type, set the value
-                    if (theType.IsValueType || typeof(ExpressType).IsAssignableFrom(theType) ||
-                        theType == typeof(string))
-                    {
-                        prop.PropertyInfo.SetValue(copy, value, null);
-                    }
-                    else if (!isInverse && typeof(IPersistEntity).IsAssignableFrom(theType))
-                    {
-                        prop.PropertyInfo.SetValue(copy,
-                            InsertCopy((IPersistEntity) value, mappings, propTransform, includeInverses, keepLabels,
-                                noTransaction), null);
-                    }
-                    else if (!isInverse && typeof(IList).IsAssignableFrom(theType))
-                    {
-                        var itemType = theType.GetItemTypeFromGenericType();
-
-                        var copyColl = prop.PropertyInfo.GetValue(copy, null) as IList;
-                        if (copyColl == null)
-                            throw new Exception(string.Format("Unexpected collection type ({0}) found", itemType.Name));
-
-                        foreach (var item in (IList) value)
-                        {
-                            var actualItemType = item.GetType();
-                            if (actualItemType.IsValueType || typeof(ExpressType).IsAssignableFrom(actualItemType))
-                                copyColl.Add(item);
-                            else if (typeof(IPersistEntity).IsAssignableFrom(actualItemType))
-                            {
-                                var cpy = InsertCopy((IPersistEntity) item, mappings, propTransform, includeInverses,
-                                    keepLabels, noTransaction);
-                                copyColl.Add(cpy);
-                            }
-                            else if (typeof(IList).IsAssignableFrom(actualItemType)) //list of lists
-                            {
-                                var listColl = (IList) item;
-                                var getAt = copyColl.GetType().GetMethod("GetAt");
-                                if (getAt == null) throw new Exception(string.Format("GetAt Method not found on ({0}) found", copyColl.GetType().Name));
-                                var copyListColl = getAt.Invoke(copyColl, new object[] { copyColl.Count }) as IList;
-                                foreach (var listItem in listColl)
-                                {
-                                    var actualListItemType = listItem.GetType();
-                                    if (actualListItemType.IsValueType ||
-                                        typeof(ExpressType).IsAssignableFrom(actualListItemType))
-                                        copyListColl.Add(listItem);
-                                    else if (typeof(IPersistEntity).IsAssignableFrom(actualListItemType))
-                                    {
-                                        var cpy = InsertCopy((IPersistEntity) listItem, mappings, propTransform,
-                                            includeInverses,
-                                            keepLabels, noTransaction);
-                                        copyListColl.Add(cpy);
-                                    }
-                                    else
-                                        throw new Exception(string.Format("Unexpected collection item type ({0}) found",
-                                            itemType.Name));
-                                }
-                            }
-                            else
-                                throw new Exception(string.Format("Unexpected collection item type ({0}) found",
-                                    itemType.Name));
-                        }
-                    }
-                    else if (isInverse && value is IEnumerable<IPersistEntity>) //just an enumeration of IPersistEntity
-                    {
-                        foreach (var ent in (IEnumerable<IPersistEntity>) value)
-                        {
-                            InsertCopy(ent, mappings, propTransform, includeInverses, keepLabels, noTransaction);
-                        }
-                    }
-                    else if (isInverse && value is IPersistEntity) //it is an inverse and has a single value
-                    {
-                        InsertCopy((IPersistEntity) value, mappings, propTransform, includeInverses, keepLabels,
-                            noTransaction);
-                    }
-                    else
-                        throw new Exception(string.Format("Unexpected item type ({0})  found", theType.Name));
-                }
-                return (T) copy;
+                result = ModelHelper.InsertCopy(this, toCopy, mappings, propTransform, includeInverses, keepLabels,
+                    (type, i) => _instances.New(type, i));
             }
-            catch (Exception e)
-            {
-                throw new Exception(string.Format("General failure in InsertCopy ({0})", e.Message));
-            }     
             finally
             {
                 //make sure model is transactional at the end again
                 IsTransactional = true;
             }
+            return result;
         }
 
 
