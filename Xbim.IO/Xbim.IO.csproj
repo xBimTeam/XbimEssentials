@@ -103,6 +103,7 @@
     <Compile Include="Esent\EsentGeometryStoreReader.cs" />
     <Compile Include="Esent\XbimSurfaceStyle.cs" />
     <Compile Include="Esent\XbimSurfaceStyleMap.cs" />
+    <Compile Include="ModelHelper.cs" />
     <Compile Include="StringExtensions.cs" />
     <Compile Include="FileReferenceResolver.cs" />
     <Compile Include="JSON\JSONWritter.cs" />
