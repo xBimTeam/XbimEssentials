@@ -55,7 +55,7 @@ namespace Xbim.IO.Memory
                 throw new Exception("Transaction is closed already");
 
             //from back to front
-            for (var i = _log.Count -1 ; i == 0 ; i--)
+            for (var i = _log.Count -1 ; i >= 0 ; i--)
                 _log[i].UndoAction();
             
             Finish();
@@ -115,7 +115,7 @@ namespace Xbim.IO.Memory
                 return; //don't undo multiple times
 
             //from back to front
-            for (var i = _log.Count - 1; i == 0; i--)
+            for (var i = _log.Count - 1; i >= 0; i--)
                 _log[i].UndoAction();
             _undone = true;
         }

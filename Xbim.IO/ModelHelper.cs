@@ -11,7 +11,7 @@ namespace Xbim.IO
 {
     public class ModelHelper
     {
-        #region Entity deletion
+        #region Delete
         /// <summary>
         /// This only keeps cache of metadata and types to speed up reflection search.
         /// </summary>
@@ -31,10 +31,6 @@ namespace Xbim.IO
         /// This should be reversable action within a transaction.</param>
         public static void Delete(IModel model, IPersistEntity entity, Func<IPersistEntity, bool> instanceRemoval)
         {
-            //remove from entity collection
-            var removed = instanceRemoval(entity);
-            if (!removed) return;
-
             var entityType = entity.GetType();
             List<DeleteCandidateType> candidateTypes;
             if (!DeteteCandidatesCache.TryGetValue(entityType, out candidateTypes))
@@ -63,6 +59,9 @@ namespace Xbim.IO
 
             foreach (var candidateType in candidateTypes)
                 DeleteReferences(model, entity, candidateType);
+
+            //Remove from entity collection. This must be at the end for case it is being used in the meantime.
+            instanceRemoval(entity);
         }
 
         /// <summary>
@@ -131,6 +130,7 @@ namespace Xbim.IO
         }
  #endregion
 
+        #region Insert
         /// <summary>
         /// Inserts deep copy of an object into this model. The entity must originate from the same schema (the same EntityFactory). 
         /// This operation happens within a transaction which you have to handle yourself unless you set the parameter "noTransaction" to true.
@@ -264,5 +264,6 @@ namespace Xbim.IO
                 throw new XbimException(string.Format("General failure in InsertCopy ({0})", e.Message), e);
             }
         }
+        #endregion
     }
 }

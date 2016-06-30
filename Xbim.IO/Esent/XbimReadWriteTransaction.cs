@@ -118,7 +118,7 @@ namespace Xbim.IO.Esent
             try
             {
                 //roll the transaction back to front
-                for (var i = _undoActions.Count - 1; i == 0; i--)
+                for (var i = _undoActions.Count - 1; i >= 0; i--)
                     _undoActions[i]();
                 
                 if (InTransaction) _readWriteTransaction.RollBack();
