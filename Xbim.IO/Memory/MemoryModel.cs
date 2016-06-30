@@ -111,13 +111,14 @@ namespace Xbim.IO.Memory
 
         internal IEntityFactory EntityFactory { get { return _entityFactory; } }
 
+        public object Tag { get; set; }
         public int UserDefinedId { get; set; }
-        public MemoryModel(IEntityFactory entityFactory)
+        public MemoryModel(IEntityFactory entityFactory, int labelFrom = 0)
         {
             if (entityFactory == null) throw new ArgumentNullException("entityFactory");
 
             _entityFactory = entityFactory;
-            _instances = new EntityCollection(this);
+            _instances = new EntityCollection(this, labelFrom);
             Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults);
             foreach (var schemasId in _instances.Factory.SchemasIds)
                 Header.FileSchema.Schemas.Add(schemasId);

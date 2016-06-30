@@ -47,6 +47,21 @@ namespace Xbim.CobieExpress.IO
             InitEvents();
         }
 
+        public object Tag { get; set; }
+
+        /// <summary>
+        /// This constructor only opens an in memory model
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="labelFrom"></param>
+        /// <returns></returns>
+        public static CobieModel OpenStep21(string input, int labelFrom)
+        {
+            var model = new MemoryModel(new EntityFactory(), labelFrom);
+            model.LoadStep21(input);
+            return new CobieModel(model);
+        }
+
         public static CobieModel OpenStep21(string input, bool esentDB = false)
         {
             if (esentDB)

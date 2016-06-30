@@ -33,8 +33,9 @@ namespace Xbim.IO.Memory
 
         internal int CurrentLabel = 0;
 
-        public EntityCollection(MemoryModel model)
+        public EntityCollection(MemoryModel model, int labelFrom = 0)
         {
+            CurrentLabel = Math.Max(CurrentLabel, labelFrom);
             _model = model;
             _internal = XbimMultiValueDictionary<Type, IPersistEntity>.Create(()=> new HashSet<IPersistEntity>(new EntityLabelComparer()));
         }

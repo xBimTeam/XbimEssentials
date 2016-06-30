@@ -13,6 +13,8 @@ namespace Xbim.Common
         /// </summary>
         int UserDefinedId { get; set; }
 
+        object Tag { get; set; }
+
         /// <summary>
         /// Returns a geometry store, null if geometry storage is not supported
         /// </summary>
