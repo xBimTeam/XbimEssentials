@@ -55,10 +55,10 @@ namespace Xbim.CobieExpress.IO
         /// <param name="input"></param>
         /// <param name="labelFrom"></param>
         /// <returns></returns>
-        public static CobieModel OpenStep21(string input, int labelFrom)
+        public static CobieModel OpenStep21(Stream input, long streamSize, int labelFrom)
         {
             var model = new MemoryModel(new EntityFactory(), labelFrom);
-            model.LoadStep21(input);
+            model.LoadStep21(input, streamSize);
             return new CobieModel(model);
         }
 
