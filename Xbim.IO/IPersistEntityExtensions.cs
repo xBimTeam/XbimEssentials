@@ -173,7 +173,7 @@ namespace Xbim.IO
                     first = false;
                 }
             }
-            entityWriter.WriteLine(");");
+            entityWriter.Write(");");
 
         }
 

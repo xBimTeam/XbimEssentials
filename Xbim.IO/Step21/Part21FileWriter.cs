@@ -31,7 +31,10 @@ namespace Xbim.IO.Step21
         {
             output.Write(HeaderAsString(model.Header ?? new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults)));
             foreach (var entity in model.Instances)
+            {
                 entity.WriteEntity(output, metadata, map);
+                output.WriteLine();
+            }
 
             output.WriteLine("ENDSEC;");
             output.WriteLine("END-ISO-10303-21;");
@@ -49,6 +52,7 @@ namespace Xbim.IO.Step21
             {
                 var entity = model.GetInstanceVolatile(item.EntityLabel);
                 entity.WriteEntity(output, metadata, map);
+                output.WriteLine();
             }
 
             output.WriteLine("ENDSEC;");
