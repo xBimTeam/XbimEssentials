@@ -150,7 +150,7 @@
     <Compile Include="Step21\Parser\StepP21Entity.cs" />
     <Compile Include="Step21\Parser\StepP21Lex.cs" />
     <Compile Include="Step21\Parser\StepP21Parser.cs" />
-    <Compile Include="Step21\Part21FileWriter.cs" />
+    <Compile Include="Step21\Part21Writer.cs" />
     <Compile Include="Step21\Part21Formatter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TypeExtensions.cs" />

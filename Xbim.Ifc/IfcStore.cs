@@ -860,8 +860,7 @@ namespace Xbim.Ifc
                 
             using (TextWriter tw = new StreamWriter(stream))
             {
-                var p21 = new Part21FileWriter();
-                p21.Write(_model, tw, _model.Metadata);
+                Part21Writer.Write(_model, tw, _model.Metadata);
                 tw.Flush();
             }
         }

@@ -8,6 +8,7 @@ using Xbim.Ifc;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.PropertyResource;
 using Xbim.Ifc2x3.SharedBldgElements;
+using Xbim.IO.Step21;
 using PersistEntityExtensions = Xbim.IO.PersistEntityExtensions;
 
 namespace Xbim.Essentials.Tests
@@ -41,7 +42,7 @@ namespace Xbim.Essentials.Tests
                         var value = pInfo.PropertyInfo.GetValue(entity, null);
 
                         //this is part of the serialization engine but you can use it for a single property as well
-                        PersistEntityExtensions.WriteProperty(pInfo.PropertyInfo.PropertyType, value, valuesLog, null, model.Metadata);
+                        Part21Writer.WriteProperty(pInfo.PropertyInfo.PropertyType, value, valuesLog, null, model.Metadata);
                     }
                     
                     valuesLog.WriteLine();
@@ -57,7 +58,7 @@ namespace Xbim.Essentials.Tests
                         else
                         {
                             var value = property.PropertyInfo.GetValue(entity, null);
-                            PersistEntityExtensions.WriteProperty(property.PropertyInfo.PropertyType, value, initialLog, null, model.Metadata);
+                            Part21Writer.WriteProperty(property.PropertyInfo.PropertyType, value, initialLog, null, model.Metadata);
                         }
                         initialLog.WriteLine();
                     }

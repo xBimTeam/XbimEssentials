@@ -15,27 +15,6 @@ namespace Xbim.IO
        
 
         #region Write the properties of an IPersistEntity to a stream
-
-        ///// <summary>
-        ///// Returns the index value of this type for use in Xbim database storage
-        ///// </summary>
-        ///// <param name="entity"></param>
-        ///// <returns></returns>
-        //public static short ExpressTypeId(this  IPersist entity)
-        //{
-        //    return ExpressMetaData.ExpressTypeId(entity);
-        //}
-
-        ///// <summary>
-        ///// Returns the Xbim meta data about the Ifc Properties of the Type
-        ///// </summary>
-        ///// <param name="entity"></param>
-        ///// <returns></returns>
-        //public static ExpressType ExpressType(this  IPersist entity)
-        //{
-        //    return ExpressMetaData.ExpressType(entity);
-        //}
-
         internal static void WriteEntity(this IPersistEntity entity, TextWriter tw, byte[] propertyData, ExpressMetaData metadata)
         {
             var type = metadata.ExpressType(entity);
@@ -138,225 +117,12 @@ namespace Xbim.IO
             tw.WriteLine();
         }
 
-        /// <summary>
-        /// Writes the entity to a TextWriter in the Part21 format
-        /// </summary>
-        /// <param name="entityWriter">The TextWriter</param>
-        /// <param name="entity">The entity to write</param>
-        /// <param name="metadata"></param>
-        /// <param name="map"></param>
-        public static void WriteEntity(this IPersistEntity entity, TextWriter entityWriter, ExpressMetaData metadata, IDictionary<int, int> map = null)
-        {
-            var expressType = metadata.ExpressType(entity);
-            if (map != null && map.Keys.Contains(entity.EntityLabel)) return; //if the entity is replaced in the map do not write it
-            entityWriter.Write("#{0}={1}(", entity.EntityLabel, expressType.ExpressNameUpper);
-            
-            var first = true;
-            
-            foreach (var ifcProperty in expressType.Properties.Values)
-            //only write out persistent attributes, ignore inverses
-            {
-                if (ifcProperty.EntityAttribute.State == EntityAttributeState.DerivedOverride)
-                {
-                    if (!first)
-                        entityWriter.Write(',');
-                    entityWriter.Write('*');
-                    first = false;
-                }
-                else
-                {
-                    var propType = ifcProperty.PropertyInfo.PropertyType;
-                    var propVal = ifcProperty.PropertyInfo.GetValue(entity, null);
-                    if (!first)
-                        entityWriter.Write(',');
-                    WriteProperty(propType, propVal, entityWriter, map, metadata);
-                    first = false;
-                }
-            }
-            entityWriter.Write(");");
-
-        }
-
-        /// <summary>
-        /// Writes a property of an entity to the TextWriter in the Part21 format
-        /// </summary>
-        /// <param name="propType"></param>
-        /// <param name="propVal"></param>
-        /// <param name="entityWriter"></param>
-        /// <param name="map"></param>
-        /// <param name="metadata"></param>
-        public static void WriteProperty(Type propType, object propVal, TextWriter entityWriter,IDictionary<int,int> map, ExpressMetaData metadata)
-        {
-            Type itemType;
-            if (propVal == null) //null or a value type that maybe null
-                entityWriter.Write('$');
-            else if (propVal is IOptionalItemSet && !((IOptionalItemSet)propVal).Initialized)
-                entityWriter.Write('$');
-            else if (propType.IsGenericType && propType.GetGenericTypeDefinition() == typeof(Nullable<>))
-            //deal with undefined types (nullables)
-            {
-                var complexType = propVal as IExpressComplexType;
-                if (complexType != null)
-                {
-                    entityWriter.Write('(');
-                    var first = true;
-                    foreach (var compVal in complexType.Properties)
-                    {
-                        if (!first)
-                            entityWriter.Write(',');
-                        WriteProperty(compVal.GetType(), compVal, entityWriter,map, metadata);
-                        first = false;
-                    }
-                    entityWriter.Write(')');
-                }
-                else if ((propVal is IExpressValueType))
-                {
-                    var expressVal = (IExpressValueType)propVal;
-                    WriteValueType(expressVal.UnderlyingSystemType, expressVal.Value, entityWriter);
-                }
-                else // if (propVal.GetType().IsEnum)
-                {
-                    WriteValueType(propVal.GetType(), propVal, entityWriter);
-                }
-            }
-            else if (typeof(IExpressComplexType).IsAssignableFrom(propType))
-            {
-                entityWriter.Write('(');
-                var first = true;
-                foreach (var compVal in ((IExpressComplexType)propVal).Properties)
-                {
-                    if (!first)
-                        entityWriter.Write(',');
-                    WriteProperty(compVal.GetType(), compVal, entityWriter, map, metadata);
-                    first = false;
-                }
-                entityWriter.Write(')');
-            }
-            else if (typeof(IExpressValueType).IsAssignableFrom(propType))
-            //value types with a single property (IfcLabel, IfcInteger)
-            {
-                var realType = propVal.GetType();
-                if (realType != propType)
-                //we have a type but it is a select type use the actual value but write out explricitly
-                {
-                    entityWriter.Write(realType.Name.ToUpper());
-                    entityWriter.Write('(');
-                    WriteProperty(realType, propVal, entityWriter, map, metadata);
-                    entityWriter.Write(')');
-                }
-                else //need to write out underlying property value
-                {
-                    var expressVal = (IExpressValueType)propVal;
-                    WriteValueType(expressVal.UnderlyingSystemType, expressVal.Value, entityWriter);
-                }
-            }
-            else if (typeof(IExpressEnumerable).IsAssignableFrom(propType) &&
-                     (itemType = propType.GetItemTypeFromGenericType()) != null)
-            //only process lists that are real lists, see cartesianpoint
-            {
-                entityWriter.Write('(');
-                var first = true;
-                foreach (var item in ((IExpressEnumerable)propVal))
-                {
-                    if (!first)
-                        entityWriter.Write(',');
-                    WriteProperty(itemType, item, entityWriter, map, metadata);
-                    first = false;
-                }
-                entityWriter.Write(')');
-            }
-            else if (typeof(IPersistEntity).IsAssignableFrom(propType))
-            //all writable entities must support this interface and ExpressType have been handled so only entities left
-            {
-                entityWriter.Write('#');
-                var label = ((IPersistEntity)propVal).EntityLabel;
-                int mapLabel;
-                if(map!=null &&  map.TryGetValue(label, out mapLabel))
-                    label = mapLabel;
-                entityWriter.Write(label);
-            }
-            else if (propType.IsValueType || propVal is string) //it might be an in-built value type double, string etc
-            {
-                WriteValueType(propVal.GetType(), propVal, entityWriter);
-            }
-            else if (typeof(IExpressSelectType).IsAssignableFrom(propType))
-            // a select type get the type of the actual value
-            {
-                if (propVal.GetType().IsValueType) //we have a value type, so write out explicitly
-                {
-                    var type = metadata.ExpressType(propVal.GetType());
-                    entityWriter.Write(type.ExpressNameUpper);
-                    entityWriter.Write('(');
-                    WriteProperty(propVal.GetType(), propVal, entityWriter, map, metadata);
-                    entityWriter.Write(')');
-                }
-                else //could be anything so re-evaluate actual type
-                {
-                    WriteProperty(propVal.GetType(), propVal, entityWriter, map, metadata);
-                }
-            }
-            else
-                throw new Exception(string.Format("Entity  has illegal property {0} of type {1}",
-                                                  propType.Name, propType.Name));
-        }
-
-        /// <summary>
-        /// Writes the value of a property to the TextWriter in the Part 21 format
-        /// </summary>
-        /// <param name="pInfoType"></param>
-        /// <param name="pVal"></param>
-        /// <param name="entityWriter"></param>
-        private static void WriteValueType(Type pInfoType, object pVal, TextWriter entityWriter)
-        {
-            if (pInfoType == typeof(Double))
-                entityWriter.Write(string.Format(new Part21Formatter(), "{0:R}", pVal));
-            else if (pInfoType == typeof(String)) //convert  string
-            {
-                if (pVal == null)
-                    entityWriter.Write('$');
-                else
-                {
-                    entityWriter.Write('\'');
-                    entityWriter.Write(((string)pVal).ToPart21());
-                    entityWriter.Write('\'');
-                }
-            }
-            else if (pInfoType == typeof(Int16) || pInfoType == typeof(Int32) || pInfoType == typeof(Int64))
-                entityWriter.Write(pVal.ToString());
-            else if (pInfoType.IsEnum) //convert enum
-                entityWriter.Write(".{0}.", pVal.ToString().ToUpper());
-            else if (pInfoType == typeof(bool))
-            {
-                if (pVal != null)
-                {
-                    var b = (bool)pVal;
-                    entityWriter.Write(".{0}.", b ? "T" : "F");
-                }
-            }
-            else if (pInfoType == typeof(DateTime)) //convert  TimeStamp
-                entityWriter.Write(string.Format(new Part21Formatter(), "{0:T}", pVal));
-            else if (pInfoType == typeof(Guid)) //convert  Guid string
-            {
-                if (pVal == null)
-                    entityWriter.Write('$');
-                else
-                    entityWriter.Write(string.Format(new Part21Formatter(), "{0:G}", pVal));
-            }
-            else if (pInfoType == typeof(bool?)) //convert  logical
-            {
-                var b = (bool?)pVal;
-                entityWriter.Write(!b.HasValue ? ".U." : string.Format(".{0}.", b.Value ? "T" : "F"));
-            }
-            else
-                throw new ArgumentException(string.Format("Invalid Value Type {0}", pInfoType.Name), "pInfoType");
-        }
-
-        public static XbimInstanceHandle GetHandle(this IPersistEntity entity)
+        internal static XbimInstanceHandle GetHandle(this IPersistEntity entity)
         {
             return new XbimInstanceHandle(entity);
         }
 
-        public static void WriteEntity(this IPersistEntity entity, BinaryWriter entityWriter, ExpressMetaData metadata)
+        internal static void WriteEntity(this IPersistEntity entity, BinaryWriter entityWriter, ExpressMetaData metadata)
         {
 
             var expressType = metadata.ExpressType(entity);
@@ -607,7 +373,7 @@ namespace Xbim.IO
         /// <param name="br"></param>
         /// <param name="unCached">If true instances inside the properties are not added to the cache</param>
         /// <param name="fromCache"> If true the instance is read from the cache if not present it is created, used during parsing</param>
-        public static void ReadEntityProperties(this IPersistEntity entity, PersistedEntityInstanceCache cache, BinaryReader br, bool unCached = false, bool fromCache = false)
+        internal static void ReadEntityProperties(this IPersistEntity entity, PersistedEntityInstanceCache cache, BinaryReader br, bool unCached = false, bool fromCache = false)
         {
             var action = (P21ParseAction)br.ReadByte();
 

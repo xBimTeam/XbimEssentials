@@ -1598,8 +1598,7 @@ namespace Xbim.IO.Esent
                 {
                     using (TextWriter tw = new StreamWriter(zipStream))
                     {
-                        var p21 = new Part21FileWriter();
-                        p21.Write(_model, tw, Model.Metadata);
+                        Part21Writer.Write(_model, tw, Model.Metadata);
                         tw.Flush();
                     }
                 }
@@ -1629,8 +1628,7 @@ namespace Xbim.IO.Esent
                 {
                     using (TextWriter tw = new StreamWriter(storageFileName))
                     {
-                        var p21 = new Part21FileWriter();
-                        p21.Write(_model, tw, Model.Metadata, map);
+                        Part21Writer.Write(_model, tw, Model.Metadata, map);
                         tw.Flush();
                     }
                 }

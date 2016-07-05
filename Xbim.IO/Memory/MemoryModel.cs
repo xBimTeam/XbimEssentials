@@ -640,8 +640,7 @@ namespace Xbim.IO.Memory
         /// <param name="progress"></param>
         public virtual void SaveAsStep21(TextWriter writer, ReportProgressDelegate progress = null)
         {
-            var part21Writer = new Part21FileWriter();
-            part21Writer.Write(this, writer, Metadata, new Dictionary<int, int>());
+            Part21Writer.Write(this, writer, Metadata, new Dictionary<int, int>());
         }
 
         public void Dispose()
