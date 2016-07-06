@@ -226,8 +226,6 @@ namespace Xbim.Common.Metadata
                         keys.Add(h); //normally there are only one or two keys so don't worry about performance of contains on a list
                     }                    
                 }
-                //TODO: MC: This won't be true for IfcRelDefinesByProperties.RelatingPropertyDefinition where 'o' might be only IPersist (IfcPropertySetDefinitionSet is a value type)
-
             }
             return keys;
         }

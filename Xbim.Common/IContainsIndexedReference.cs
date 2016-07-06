@@ -2,7 +2,7 @@
 
 namespace Xbim.Common
 {
-    public interface IContainsIndexedReferences
+    public interface IContainsIndexedReferences: IPersistEntity
     {
         IEnumerable<IPersistEntity> IndexedReferences { get; }
     }

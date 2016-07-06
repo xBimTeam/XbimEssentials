@@ -54,7 +54,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcAxis2Placement3D(IModel model) : base(model) 		{ 
+		internal IfcAxis2Placement3D(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -134,9 +135,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		#endregion
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -160,54 +160,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcAxis2Placement3D
-            var root = (@IfcAxis2Placement3D)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcAxis2Placement3D left, @IfcAxis2Placement3D right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
-
-        }
-
-        public static bool operator !=(@IfcAxis2Placement3D left, @IfcAxis2Placement3D right)
-        {
-            return !(left == right);
-        }
-
-        public static bool operator ==(@IfcAxis2Placement3D left, IfcAxis2Placement right)
-		{
-			return left == right as @IfcAxis2Placement3D;
-		}
-
-		public static bool operator !=(@IfcAxis2Placement3D left, IfcAxis2Placement right)
-		{
-			return !(left == right);
-		}
-
         #endregion
 
 		#region IContainsEntityReferences

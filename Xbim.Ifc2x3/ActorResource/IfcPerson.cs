@@ -46,7 +46,7 @@ namespace Xbim.Ifc2x3.ActorResource
 {
 	[ExpressType("IfcPerson", 198)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPerson : INotifyPropertyChanged, IInstantiableEntity, IIfcPerson, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPerson>
+	public  partial class @IfcPerson : PersistEntity, IInstantiableEntity, IIfcPerson, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPerson>
 	{
 		#region IIfcPerson explicit implementation
 		IfcIdentifier? IIfcPerson.Id { 
@@ -83,67 +83,9 @@ namespace Xbim.Ifc2x3.ActorResource
 		IEnumerable<IIfcPersonAndOrganization> IIfcPerson.EngagedIn {  get { return @EngagedIn; } }
 		#endregion
 
-		#region Implementation of IPersistEntity
-
-		public int EntityLabel {get; internal set;}
-		
-		public IModel Model { get; internal set; }
-
-		/// <summary>
-        /// This property is deprecated and likely to be removed. Use just 'Model' instead.
-        /// </summary>
-		[Obsolete("This property is deprecated and likely to be removed. Use just 'Model' instead.")]
-        public IModel ModelOf { get { return Model; } }
-		
-	    internal ActivationStatus ActivationStatus = ActivationStatus.NotActivated;
-
-	    ActivationStatus IPersistEntity.ActivationStatus { get { return ActivationStatus; } }
-		
-		void IPersistEntity.Activate(bool write)
-		{
-			switch (ActivationStatus)
-		    {
-		        case ActivationStatus.ActivatedReadWrite:
-		            return;
-		        case ActivationStatus.NotActivated:
-		            lock (this)
-		            {
-                        //check again in the lock
-		                if (ActivationStatus == ActivationStatus.NotActivated)
-		                {
-		                    if (Model.Activate(this, write))
-		                    {
-		                        ActivationStatus = write
-		                            ? ActivationStatus.ActivatedReadWrite
-		                            : ActivationStatus.ActivatedRead;
-		                    }
-		                }
-		            }
-		            break;
-		        case ActivationStatus.ActivatedRead:
-		            if (!write) return;
-		            if (Model.Activate(this, true))
-                        ActivationStatus = ActivationStatus.ActivatedReadWrite;
-		            break;
-		        default:
-		            throw new ArgumentOutOfRangeException();
-		    }
-		}
-
-		void IPersistEntity.Activate (Action activation)
-		{
-			if (ActivationStatus != ActivationStatus.NotActivated) return; //activation can only happen once in a lifetime of the object
-			
-			activation();
-			ActivationStatus = ActivationStatus.ActivatedRead;
-		}
-
-		ExpressType IPersistEntity.ExpressType { get { return Model.Metadata.ExpressType(this);  } }
-		#endregion
-
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcPerson(IModel model) 		{ 
-			Model = model; 
+		internal IfcPerson(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 			_middleNames = new OptionalItemSet<IfcLabel>( this, 0,  4);
 			_prefixTitles = new OptionalItemSet<IfcLabel>( this, 0,  5);
 			_suffixTitles = new OptionalItemSet<IfcLabel>( this, 0,  6);
@@ -272,58 +214,8 @@ namespace Xbim.Ifc2x3.ActorResource
 		}
 		#endregion
 
-		#region INotifyPropertyChanged implementation
-		 
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected void NotifyPropertyChanged( string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-		#endregion
-
-		#region Transactional property setting
-
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
-		{
-			//activate for write if it is not activated yet
-			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
-				((IPersistEntity)this).Activate(true);
-
-			//just set the value if the model is marked as non-transactional
-			if (!Model.IsTransactional)
-			{
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-				return;
-			}
-
-			//check there is a transaction
-			var txn = Model.CurrentTransaction;
-			if (txn == null) throw new Exception("Operation out of transaction.");
-
-			Action doAction = () => {
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			Action undoAction = () => {
-				setter(oldValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			doAction();
-
-			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
-		}
-
-		#endregion
-
 		#region IPersist implementation
-		public virtual void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -362,64 +254,6 @@ namespace Xbim.Ifc2x3.ActorResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcPerson
-            var root = (@IfcPerson)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcPerson left, @IfcPerson right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (ReferenceEquals(left.Model, right.Model));
-
-        }
-
-        public static bool operator !=(@IfcPerson left, @IfcPerson right)
-        {
-            return !(left == right);
-        }
-
-        public static bool operator ==(@IfcPerson left, IfcActorSelect right)
-		{
-			return left == right as @IfcPerson;
-		}
-
-		public static bool operator !=(@IfcPerson left, IfcActorSelect right)
-		{
-			return !(left == right);
-		}
-
-        public static bool operator ==(@IfcPerson left, IfcObjectReferenceSelect right)
-		{
-			return left == right as @IfcPerson;
-		}
-
-		public static bool operator !=(@IfcPerson left, IfcObjectReferenceSelect right)
-		{
-			return !(left == right);
-		}
-
         #endregion
 
 		#region IContainsEntityReferences

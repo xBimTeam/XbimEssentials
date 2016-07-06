@@ -68,6 +68,7 @@
     <Compile Include="IContainsEntityReferences.cs" />
     <Compile Include="IContainsIndexedReference.cs" />
     <Compile Include="IInverseCache.cs" />
+    <Compile Include="PersistEntity.cs" />
     <Compile Include="PlaceboTransaction.cs" />
     <Compile Include="Collections\MultiValueDictionary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

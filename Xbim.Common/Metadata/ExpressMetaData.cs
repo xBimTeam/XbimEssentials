@@ -143,7 +143,7 @@ namespace Xbim.Common.Metadata
         internal void AddParent(ExpressType child)
         {
             var baseParent = child.Type.BaseType;
-            if (baseParent == null || typeof(object) == baseParent || typeof(ValueType) == baseParent)
+            if (baseParent == null || typeof(object) == baseParent || typeof(ValueType) == baseParent || typeof(PersistEntity) == baseParent)
                 return;
             ExpressType expressParent;
             if (!_typeToExpressTypeLookup.ContainsKey(baseParent))
