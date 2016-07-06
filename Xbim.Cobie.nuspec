@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>Xbim.Cobie</id>
+    <version>4.0.0-V216</version>
+    <title>xBIM Cobie for Essentials 4</title>
+    <authors>xBIM team</authors>
+    <owners>Steve Lockley, Martin Cerny</owners>
+    <licenseUrl>https://raw.githubusercontent.com/xBimTeam/XbimExchange/master/LICENCE.md</licenseUrl>
+    <projectUrl>https://github.com/xBimTeam/XbimExchange</projectUrl>
+    <iconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;s=200</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>
+      xBIM Essentials is the core part of the toolkit that deals with reading and writing IFC data files. It does not contain support for geometric operations and 3D visualisation.
+      This package contains libraries to work with COBie data in tabular form and COBie specialized IModel.
+    </description>
+    <summary>The .Net toolkit for developing BIM applications based on the IFC standards. Essential support for the IFC2x3 and IFC4 data models</summary>
+    <releaseNotes>Support for tabular data</releaseNotes>
+    <language>en-GB</language>
+    <tags>COBie, BIM, IFC, IfcXml, IfcZip, COBie, .Net, C#, BuildingSmart</tags>
+    <dependencies>
+      <dependency id="NPOI" version="2.1.3.1" />
+      <dependency id="Xbim.Essentials" version="4.0.0-V216" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Output\Release\Xbim.CobieExpress.IO.dll" target="lib\net40\Xbim.CobieExpress.IO.dll" />
+    <file src="Output\Release\Xbim.IO.TableStore.dll"   target="lib\net40\Xbim.IO.TableStore.dll" />
+    <file src="Output\Release\Xbim.CobieExpress.IO.pdb" target="lib\net40\Xbim.CobieExpress.IO.pdb" />
+    <file src="Output\Release\Xbim.IO.TableStore.pdb"   target="lib\net40\Xbim.IO.TableStore.pdb" />
+    <file src="Output\Release\Xbim.CobieExpress.IO.XML" target="lib\net40\Xbim.CobieExpress.IO.XML" />
+    <file src="Output\Release\Xbim.IO.TableStore.XML"   target="lib\net40\Xbim.IO.TableStore.XML" />
+  </files>
+</package>
