@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcRelConnectsPathElements : IIfcRelConnectsPathElements
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelConnectsPathElements), 8)]
 		IItemSet<Xbim.Ifc4.MeasureResource.IfcInteger> IIfcRelConnectsPathElements.RelatingPriorities 
 		{ 
 			get
@@ -28,6 +30,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			    //##
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelConnectsPathElements), 9)]
 		IItemSet<Xbim.Ifc4.MeasureResource.IfcInteger> IIfcRelConnectsPathElements.RelatedPriorities 
 		{ 
 			get
@@ -39,6 +43,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			    //##
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelConnectsPathElements), 10)]
 		Ifc4.Interfaces.IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatedConnectionType 
 		{ 
 			get
@@ -93,6 +99,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelConnectsPathElements), 11)]
 		Ifc4.Interfaces.IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatingConnectionType 
 		{ 
 			get

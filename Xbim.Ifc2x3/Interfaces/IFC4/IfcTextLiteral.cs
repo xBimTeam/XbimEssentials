@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	public partial class @IfcTextLiteral : IIfcTextLiteral
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTextLiteral), 1)]
 		Ifc4.PresentationAppearanceResource.IfcPresentableText IIfcTextLiteral.Literal 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTextLiteral), 2)]
 		IIfcAxis2Placement IIfcTextLiteral.Placement 
 		{ 
 			get
@@ -64,6 +68,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTextLiteral), 3)]
 		Ifc4.Interfaces.IfcTextPath IIfcTextLiteral.Path 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcTankType : IIfcTankType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTankType), 10)]
 		Ifc4.Interfaces.IfcTankTypeEnum IIfcTankType.PredefinedType 
 		{ 
 			get

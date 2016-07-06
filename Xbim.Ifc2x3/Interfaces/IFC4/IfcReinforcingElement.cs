@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	public partial class @IfcReinforcingElement : IIfcReinforcingElement
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcReinforcingElement), 9)]
 		Ifc4.MeasureResource.IfcLabel? IIfcReinforcingElement.SteelGrade 
 		{ 
 			get

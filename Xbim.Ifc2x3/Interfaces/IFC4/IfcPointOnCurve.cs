@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcPointOnCurve : IIfcPointOnCurve
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPointOnCurve), 1)]
 		IIfcCurve IIfcPointOnCurve.BasisCurve 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPointOnCurve), 2)]
 		Ifc4.MeasureResource.IfcParameterValue IIfcPointOnCurve.PointParameter 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 {
 	public partial class @IfcTask : IIfcTask
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTask), 8)]
 		Ifc4.MeasureResource.IfcLabel? IIfcTask.Status 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTask), 9)]
 		Ifc4.MeasureResource.IfcLabel? IIfcTask.WorkMethod 
 		{ 
 			get
@@ -47,6 +51,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTask), 10)]
 		Ifc4.MeasureResource.IfcBoolean IIfcTask.IsMilestone 
 		{ 
 			get
@@ -61,6 +67,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTask), 11)]
 		Ifc4.MeasureResource.IfcInteger? IIfcTask.Priority 
 		{ 
 			get
@@ -78,6 +86,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 
 		private  IIfcTaskTime _taskTime;
 
+
+		[CrossSchemaAttribute(typeof(IIfcTask), 12)]
 		IIfcTaskTime IIfcTask.TaskTime 
 		{ 
 			get
@@ -86,13 +96,15 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue(v => _taskTime = v, _taskTime, value, "TaskTime", byte.MaxValue);
+				SetValue(v => _taskTime = v, _taskTime, value, "TaskTime", -12);
 				
 			}
 		}
 
 		private  Ifc4.Interfaces.IfcTaskTypeEnum? _predefinedType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcTask), 13)]
 		Ifc4.Interfaces.IfcTaskTypeEnum? IIfcTask.PredefinedType 
 		{ 
 			get
@@ -101,7 +113,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -13);
 				
 			}
 		}

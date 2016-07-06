@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 {
 	public partial class @IfcMaterialClassificationRelationship : IIfcMaterialClassificationRelationship
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialClassificationRelationship), 1)]
 		IEnumerable<IIfcClassificationSelect> IIfcMaterialClassificationRelationship.MaterialClassifications 
 		{ 
 			get
@@ -47,6 +49,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 				//##
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialClassificationRelationship), 2)]
 		IIfcMaterial IIfcMaterialClassificationRelationship.ClassifiedMaterial 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcPresentationStyle : IIfcPresentationStyle
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPresentationStyle), 1)]
 		Ifc4.MeasureResource.IfcLabel? IIfcPresentationStyle.Name 
 		{ 
 			get

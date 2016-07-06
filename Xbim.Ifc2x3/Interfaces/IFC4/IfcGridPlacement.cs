@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	public partial class @IfcGridPlacement : IIfcGridPlacement
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcGridPlacement), 1)]
 		IIfcVirtualGridIntersection IIfcGridPlacement.PlacementLocation 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 
 		private  IIfcGridPlacementDirectionSelect _placementRefDirection4;
 
+
+		[CrossSchemaAttribute(typeof(IIfcGridPlacement), 2)]
 		IIfcGridPlacementDirectionSelect IIfcGridPlacement.PlacementRefDirection 
 		{ 
 			get
@@ -44,7 +48,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				{
 					PlacementRefDirection = null;
 					if (_placementRefDirection4 != null)
-						SetValue(v => _placementRefDirection4 = v, _placementRefDirection4, null, "PlacementRefDirection", byte.MaxValue);
+						SetValue(v => _placementRefDirection4 = v, _placementRefDirection4, null, "PlacementRefDirection", -2);
 					return;
 				}
 				
@@ -53,13 +57,13 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				{
 					PlacementRefDirection = val;
 					if (_placementRefDirection4 != null)
-						SetValue(v => _placementRefDirection4 = v, _placementRefDirection4, null, "PlacementRefDirection", byte.MaxValue);
+						SetValue(v => _placementRefDirection4 = v, _placementRefDirection4, null, "PlacementRefDirection", -2);
 					return;
 				} 
 
 				if(PlacementRefDirection != null)
 					PlacementRefDirection = null;
-				SetValue(v => _placementRefDirection4 = v, _placementRefDirection4, value, "PlacementRefDirection", byte.MaxValue);
+				SetValue(v => _placementRefDirection4 = v, _placementRefDirection4, value, "PlacementRefDirection", -2);
 				
 			}
 		}

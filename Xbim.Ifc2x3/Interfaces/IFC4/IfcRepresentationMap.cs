@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcRepresentationMap : IIfcRepresentationMap
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRepresentationMap), 1)]
 		IIfcAxis2Placement IIfcRepresentationMap.MappingOrigin 
 		{ 
 			get
@@ -52,6 +54,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRepresentationMap), 2)]
 		IIfcRepresentation IIfcRepresentationMap.MappedRepresentation 
 		{ 
 			get

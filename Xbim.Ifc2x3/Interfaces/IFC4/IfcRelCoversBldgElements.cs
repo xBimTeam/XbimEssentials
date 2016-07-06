@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcRelCoversBldgElements : IIfcRelCoversBldgElements
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelCoversBldgElements), 5)]
 		IIfcElement IIfcRelCoversBldgElements.RelatingBuildingElement 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelCoversBldgElements), 6)]
 		IItemSet<IIfcCovering> IIfcRelCoversBldgElements.RelatedCoverings 
 		{ 
 			get

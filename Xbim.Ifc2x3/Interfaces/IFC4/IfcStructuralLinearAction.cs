@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralLinearAction : IIfcStructuralLinearAction
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLinearAction), 11)]
 		Ifc4.Interfaces.IfcProjectedOrTrueLengthEnum? IIfcStructuralCurveAction.ProjectedOrTrue 
 		{ 
 			get
@@ -60,6 +62,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 
 		private  Ifc4.Interfaces.IfcStructuralCurveActivityTypeEnum _predefinedType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLinearAction), 12)]
 		Ifc4.Interfaces.IfcStructuralCurveActivityTypeEnum IIfcStructuralCurveAction.PredefinedType 
 		{ 
 			get
@@ -68,7 +72,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -12);
 				
 			}
 		}

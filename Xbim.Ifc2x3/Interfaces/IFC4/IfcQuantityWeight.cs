@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.QuantityResource
 {
 	public partial class @IfcQuantityWeight : IIfcQuantityWeight
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcQuantityWeight), 4)]
 		Ifc4.MeasureResource.IfcMassMeasure IIfcQuantityWeight.WeightValue 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.QuantityResource
 
 		private  Ifc4.MeasureResource.IfcLabel? _formula;
 
+
+		[CrossSchemaAttribute(typeof(IIfcQuantityWeight), 5)]
 		Ifc4.MeasureResource.IfcLabel? IIfcQuantityWeight.Formula 
 		{ 
 			get
@@ -40,7 +44,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 			} 
 			set
 			{
-				SetValue(v => _formula = v, _formula, value, "Formula", byte.MaxValue);
+				SetValue(v => _formula = v, _formula, value, "Formula", -5);
 				
 			}
 		}

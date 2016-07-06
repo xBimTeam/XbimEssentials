@@ -20,6 +20,8 @@ namespace Xbim.Ifc2x3.Kernel
 
 		private  IIfcProcessSelect _relatingProcess4;
 
+
+		[CrossSchemaAttribute(typeof(IIfcRelAssignsToProcess), 7)]
 		IIfcProcessSelect IIfcRelAssignsToProcess.RelatingProcess 
 		{ 
 			get
@@ -32,7 +34,7 @@ namespace Xbim.Ifc2x3.Kernel
 				{
 					RelatingProcess = null;
 					if (_relatingProcess4 != null)
-						SetValue(v => _relatingProcess4 = v, _relatingProcess4, null, "RelatingProcess", byte.MaxValue);
+						SetValue(v => _relatingProcess4 = v, _relatingProcess4, null, "RelatingProcess", -7);
 					return;
 				}
 				
@@ -41,16 +43,18 @@ namespace Xbim.Ifc2x3.Kernel
 				{
 					RelatingProcess = val;
 					if (_relatingProcess4 != null)
-						SetValue(v => _relatingProcess4 = v, _relatingProcess4, null, "RelatingProcess", byte.MaxValue);
+						SetValue(v => _relatingProcess4 = v, _relatingProcess4, null, "RelatingProcess", -7);
 					return;
 				} 
 
 				if(RelatingProcess != null)
 					RelatingProcess = null;
-				SetValue(v => _relatingProcess4 = v, _relatingProcess4, value, "RelatingProcess", byte.MaxValue);
+				SetValue(v => _relatingProcess4 = v, _relatingProcess4, value, "RelatingProcess", -7);
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelAssignsToProcess), 8)]
 		IIfcMeasureWithUnit IIfcRelAssignsToProcess.QuantityInProcess 
 		{ 
 			get

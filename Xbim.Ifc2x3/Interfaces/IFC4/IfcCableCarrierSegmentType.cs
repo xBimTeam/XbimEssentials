@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcCableCarrierSegmentType : IIfcCableCarrierSegmentType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCableCarrierSegmentType), 10)]
 		Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum IIfcCableCarrierSegmentType.PredefinedType 
 		{ 
 			get

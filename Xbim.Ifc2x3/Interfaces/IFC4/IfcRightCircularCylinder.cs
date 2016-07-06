@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcRightCircularCylinder : IIfcRightCircularCylinder
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRightCircularCylinder), 2)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRightCircularCylinder.Height 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRightCircularCylinder), 3)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRightCircularCylinder.Radius 
 		{ 
 			get

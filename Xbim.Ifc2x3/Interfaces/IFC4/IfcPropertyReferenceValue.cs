@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 {
 	public partial class @IfcPropertyReferenceValue : IIfcPropertyReferenceValue
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPropertyReferenceValue), 3)]
 		Ifc4.MeasureResource.IfcText? IIfcPropertyReferenceValue.UsageName 
 		{ 
 			get
@@ -35,6 +37,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 
 		private  IIfcObjectReferenceSelect _propertyReference4;
 
+
+		[CrossSchemaAttribute(typeof(IIfcPropertyReferenceValue), 4)]
 		IIfcObjectReferenceSelect IIfcPropertyReferenceValue.PropertyReference 
 		{ 
 			get
@@ -108,7 +112,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 				{
 					PropertyReference = null;
 					if (_propertyReference4 != null)
-						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", byte.MaxValue);
+						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", -4);
 					return;
 				}	
 				var ifcaddress = value as ActorResource.IfcAddress;
@@ -116,7 +120,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 				{
 					PropertyReference = ifcaddress;
 					if (_propertyReference4 != null)
-						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", byte.MaxValue);
+						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", -4);
 					return;
 				}
 				var ifcappliedvalue = value as CostResource.IfcAppliedValue;
@@ -124,7 +128,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 				{
 					PropertyReference = ifcappliedvalue;
 					if (_propertyReference4 != null)
-						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", byte.MaxValue);
+						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", -4);
 					return;
 				}
 				var ifcexternalreference = value as ExternalReferenceResource.IfcExternalReference;
@@ -132,7 +136,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 				{
 					PropertyReference = ifcexternalreference;
 					if (_propertyReference4 != null)
-						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", byte.MaxValue);
+						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", -4);
 					return;
 				}
 				var ifcorganization = value as ActorResource.IfcOrganization;
@@ -140,7 +144,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 				{
 					PropertyReference = ifcorganization;
 					if (_propertyReference4 != null)
-						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", byte.MaxValue);
+						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", -4);
 					return;
 				}
 				var ifcperson = value as ActorResource.IfcPerson;
@@ -148,7 +152,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 				{
 					PropertyReference = ifcperson;
 					if (_propertyReference4 != null)
-						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", byte.MaxValue);
+						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", -4);
 					return;
 				}
 				var ifcpersonandorganization = value as ActorResource.IfcPersonAndOrganization;
@@ -156,7 +160,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 				{
 					PropertyReference = ifcpersonandorganization;
 					if (_propertyReference4 != null)
-						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", byte.MaxValue);
+						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", -4);
 					return;
 				}
 				var ifctable = value as UtilityResource.IfcTable;
@@ -174,7 +178,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 				{
 					PropertyReference = ifctimeseries;
 					if (_propertyReference4 != null)
-						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", byte.MaxValue);
+						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", -4);
 					return;
 				}
 				

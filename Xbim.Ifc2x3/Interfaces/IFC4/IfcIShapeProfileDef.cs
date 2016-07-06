@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcIShapeProfileDef : IIfcIShapeProfileDef
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcIShapeProfileDef), 4)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcIShapeProfileDef.OverallWidth 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcIShapeProfileDef), 5)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcIShapeProfileDef.OverallDepth 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcIShapeProfileDef), 6)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcIShapeProfileDef.WebThickness 
 		{ 
 			get
@@ -53,6 +59,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcIShapeProfileDef), 7)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcIShapeProfileDef.FlangeThickness 
 		{ 
 			get
@@ -65,6 +73,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcIShapeProfileDef), 8)]
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcIShapeProfileDef.FilletRadius 
 		{ 
 			get
@@ -83,6 +93,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 
 		private  Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? _flangeEdgeRadius;
 
+
+		[CrossSchemaAttribute(typeof(IIfcIShapeProfileDef), 9)]
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcIShapeProfileDef.FlangeEdgeRadius 
 		{ 
 			get
@@ -91,13 +103,15 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue(v => _flangeEdgeRadius = v, _flangeEdgeRadius, value, "FlangeEdgeRadius", byte.MaxValue);
+				SetValue(v => _flangeEdgeRadius = v, _flangeEdgeRadius, value, "FlangeEdgeRadius", -9);
 				
 			}
 		}
 
 		private  Ifc4.MeasureResource.IfcPlaneAngleMeasure? _flangeSlope;
 
+
+		[CrossSchemaAttribute(typeof(IIfcIShapeProfileDef), 10)]
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcIShapeProfileDef.FlangeSlope 
 		{ 
 			get
@@ -106,7 +120,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue(v => _flangeSlope = v, _flangeSlope, value, "FlangeSlope", byte.MaxValue);
+				SetValue(v => _flangeSlope = v, _flangeSlope, value, "FlangeSlope", -10);
 				
 			}
 		}

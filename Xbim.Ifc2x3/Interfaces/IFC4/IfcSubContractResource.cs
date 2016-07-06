@@ -20,6 +20,8 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 
 		private  Ifc4.Interfaces.IfcSubContractResourceTypeEnum? _predefinedType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcSubContractResource), 11)]
 		Ifc4.Interfaces.IfcSubContractResourceTypeEnum? IIfcSubContractResource.PredefinedType 
 		{ 
 			get
@@ -28,7 +30,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			} 
 			set
 			{
-				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -11);
 				
 			}
 		}

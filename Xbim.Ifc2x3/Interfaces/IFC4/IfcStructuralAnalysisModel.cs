@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralAnalysisModel : IIfcStructuralAnalysisModel
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralAnalysisModel), 6)]
 		Ifc4.Interfaces.IfcAnalysisModelTypeEnum IIfcStructuralAnalysisModel.PredefinedType 
 		{ 
 			get
@@ -80,6 +82,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralAnalysisModel), 7)]
 		IIfcAxis2Placement3D IIfcStructuralAnalysisModel.OrientationOf2DPlane 
 		{ 
 			get
@@ -92,6 +96,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralAnalysisModel), 8)]
 		IItemSet<IIfcStructuralLoadGroup> IIfcStructuralAnalysisModel.LoadedBy 
 		{ 
 			get
@@ -100,6 +106,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				return new Common.Collections.ProxyItemSet<IfcStructuralLoadGroup, IIfcStructuralLoadGroup>(LoadedBy);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralAnalysisModel), 9)]
 		IItemSet<IIfcStructuralResultGroup> IIfcStructuralAnalysisModel.HasResults 
 		{ 
 			get
@@ -111,6 +119,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 
 		private  IIfcObjectPlacement _sharedPlacement;
 
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralAnalysisModel), 10)]
 		IIfcObjectPlacement IIfcStructuralAnalysisModel.SharedPlacement 
 		{ 
 			get
@@ -119,7 +129,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue(v => _sharedPlacement = v, _sharedPlacement, value, "SharedPlacement", byte.MaxValue);
+				SetValue(v => _sharedPlacement = v, _sharedPlacement, value, "SharedPlacement", -10);
 				
 			}
 		}

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	public partial class @IfcLightSourceGoniometric : IIfcLightSourceGoniometric
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcLightSourceGoniometric), 5)]
 		IIfcAxis2Placement3D IIfcLightSourceGoniometric.Position 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcLightSourceGoniometric), 6)]
 		IIfcColourRgb IIfcLightSourceGoniometric.ColourAppearance 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcLightSourceGoniometric), 7)]
 		Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure IIfcLightSourceGoniometric.ColourTemperature 
 		{ 
 			get
@@ -53,6 +59,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcLightSourceGoniometric), 8)]
 		Ifc4.MeasureResource.IfcLuminousFluxMeasure IIfcLightSourceGoniometric.LuminousFlux 
 		{ 
 			get
@@ -65,6 +73,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcLightSourceGoniometric), 9)]
 		Ifc4.Interfaces.IfcLightEmissionSourceEnum IIfcLightSourceGoniometric.LightEmissionSource 
 		{ 
 			get
@@ -168,6 +178,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcLightSourceGoniometric), 10)]
 		IIfcLightDistributionDataSourceSelect IIfcLightSourceGoniometric.LightDistributionDataSource 
 		{ 
 			get

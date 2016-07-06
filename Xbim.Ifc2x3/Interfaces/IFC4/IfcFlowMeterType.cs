@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcFlowMeterType : IIfcFlowMeterType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcFlowMeterType), 10)]
 		Ifc4.Interfaces.IfcFlowMeterTypeEnum IIfcFlowMeterType.PredefinedType 
 		{ 
 			get

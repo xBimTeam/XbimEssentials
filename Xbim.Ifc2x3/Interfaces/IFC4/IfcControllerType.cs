@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 {
 	public partial class @IfcControllerType : IIfcControllerType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcControllerType), 10)]
 		Ifc4.Interfaces.IfcControllerTypeEnum IIfcControllerType.PredefinedType 
 		{ 
 			get

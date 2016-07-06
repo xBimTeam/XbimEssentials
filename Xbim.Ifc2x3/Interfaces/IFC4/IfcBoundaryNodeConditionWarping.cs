@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcBoundaryNodeConditionWarping : IIfcBoundaryNodeConditionWarping
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcBoundaryNodeConditionWarping), 8)]
 		IIfcWarpingStiffnessSelect IIfcBoundaryNodeConditionWarping.WarpingStiffness 
 		{ 
 			get

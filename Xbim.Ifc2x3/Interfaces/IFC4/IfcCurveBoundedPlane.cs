@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcCurveBoundedPlane : IIfcCurveBoundedPlane
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCurveBoundedPlane), 1)]
 		IIfcPlane IIfcCurveBoundedPlane.BasisSurface 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCurveBoundedPlane), 2)]
 		IIfcCurve IIfcCurveBoundedPlane.OuterBoundary 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCurveBoundedPlane), 3)]
 		IItemSet<IIfcCurve> IIfcCurveBoundedPlane.InnerBoundaries 
 		{ 
 			get

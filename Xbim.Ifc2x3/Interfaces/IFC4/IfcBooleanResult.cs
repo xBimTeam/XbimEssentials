@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcBooleanResult : IIfcBooleanResult
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcBooleanResult), 1)]
 		Ifc4.Interfaces.IfcBooleanOperator IIfcBooleanResult.Operator 
 		{ 
 			get
@@ -64,6 +66,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBooleanResult), 2)]
 		IIfcBooleanOperand IIfcBooleanResult.FirstOperand 
 		{ 
 			get
@@ -117,6 +121,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBooleanResult), 3)]
 		IIfcBooleanOperand IIfcBooleanResult.SecondOperand 
 		{ 
 			get

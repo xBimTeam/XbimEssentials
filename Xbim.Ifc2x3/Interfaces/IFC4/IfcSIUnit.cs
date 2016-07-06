@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	public partial class @IfcSIUnit : IIfcSIUnit
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSIUnit), 3)]
 		Ifc4.Interfaces.IfcSIPrefix? IIfcSIUnit.Prefix 
 		{ 
 			get
@@ -155,6 +157,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSIUnit), 4)]
 		Ifc4.Interfaces.IfcSIUnitName IIfcSIUnit.Name 
 		{ 
 			get

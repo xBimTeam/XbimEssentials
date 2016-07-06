@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcDuctFittingType : IIfcDuctFittingType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcDuctFittingType), 10)]
 		Ifc4.Interfaces.IfcDuctFittingTypeEnum IIfcDuctFittingType.PredefinedType 
 		{ 
 			get

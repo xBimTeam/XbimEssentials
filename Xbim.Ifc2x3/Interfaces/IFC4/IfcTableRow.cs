@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 {
 	public partial class @IfcTableRow : IIfcTableRow
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTableRow), 1)]
 		IItemSet<IIfcValue> IIfcTableRow.RowCells 
 		{ 
 			get
@@ -24,7 +26,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 			
 				return _rowCellsIfc4 ?? (_rowCellsIfc4 = new Common.Collections.ExtendedItemSet<MeasureResource.IfcValue, IIfcValue>(
                     RowCells, 
-                    new ItemSet<IIfcValue>(this, 0, 255), 
+                    new ItemSet<IIfcValue>(this, 0, -1), 
                     v => v.ToIfc4(), 
                     v => v.ToIfc3()));
 			} 
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 
 		//private field to hold any extended data
 		private IItemSet<IIfcValue> _rowCellsIfc4;
+
+		[CrossSchemaAttribute(typeof(IIfcTableRow), 2)]
 		Ifc4.MeasureResource.IfcBoolean? IIfcTableRow.IsHeading 
 		{ 
 			get

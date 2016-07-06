@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcSurfaceCurveSweptAreaSolid : IIfcSurfaceCurveSweptAreaSolid
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceCurveSweptAreaSolid), 3)]
 		IIfcCurve IIfcSurfaceCurveSweptAreaSolid.Directrix 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceCurveSweptAreaSolid), 4)]
 		Ifc4.MeasureResource.IfcParameterValue? IIfcSurfaceCurveSweptAreaSolid.StartParam 
 		{ 
 			get
@@ -43,6 +47,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceCurveSweptAreaSolid), 5)]
 		Ifc4.MeasureResource.IfcParameterValue? IIfcSurfaceCurveSweptAreaSolid.EndParam 
 		{ 
 			get
@@ -57,6 +63,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceCurveSweptAreaSolid), 6)]
 		IIfcSurface IIfcSurfaceCurveSweptAreaSolid.ReferenceSurface 
 		{ 
 			get

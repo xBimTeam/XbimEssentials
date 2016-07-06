@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcUnitaryEquipmentType : IIfcUnitaryEquipmentType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcUnitaryEquipmentType), 10)]
 		Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum IIfcUnitaryEquipmentType.PredefinedType 
 		{ 
 			get

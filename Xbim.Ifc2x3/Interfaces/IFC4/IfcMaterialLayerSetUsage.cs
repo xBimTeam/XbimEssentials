@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 {
 	public partial class @IfcMaterialLayerSetUsage : IIfcMaterialLayerSetUsage
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialLayerSetUsage), 1)]
 		IIfcMaterialLayerSet IIfcMaterialLayerSetUsage.ForLayerSet 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialLayerSetUsage), 2)]
 		Ifc4.Interfaces.IfcLayerSetDirectionEnum IIfcMaterialLayerSetUsage.LayerSetDirection 
 		{ 
 			get
@@ -76,6 +80,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialLayerSetUsage), 3)]
 		Ifc4.Interfaces.IfcDirectionSenseEnum IIfcMaterialLayerSetUsage.DirectionSense 
 		{ 
 			get
@@ -116,6 +122,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialLayerSetUsage), 4)]
 		Ifc4.MeasureResource.IfcLengthMeasure IIfcMaterialLayerSetUsage.OffsetFromReferenceLine 
 		{ 
 			get
@@ -131,6 +139,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 
 		private  Ifc4.MeasureResource.IfcPositiveLengthMeasure? _referenceExtent;
 
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialLayerSetUsage), 5)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMaterialLayerSetUsage.ReferenceExtent 
 		{ 
 			get
@@ -139,7 +149,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
-				SetValue(v => _referenceExtent = v, _referenceExtent, value, "ReferenceExtent", byte.MaxValue);
+				SetValue(v => _referenceExtent = v, _referenceExtent, value, "ReferenceExtent", -5);
 				
 			}
 		}

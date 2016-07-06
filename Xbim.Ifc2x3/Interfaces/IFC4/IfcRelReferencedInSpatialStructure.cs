@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcRelReferencedInSpatialStructure : IIfcRelReferencedInSpatialStructure
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelReferencedInSpatialStructure), 5)]
 		IItemSet<IIfcProduct> IIfcRelReferencedInSpatialStructure.RelatedElements 
 		{ 
 			get
@@ -25,6 +27,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return new Common.Collections.ProxyItemSet<Kernel.IfcProduct, IIfcProduct>(RelatedElements);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelReferencedInSpatialStructure), 6)]
 		IIfcSpatialElement IIfcRelReferencedInSpatialStructure.RelatingStructure 
 		{ 
 			get

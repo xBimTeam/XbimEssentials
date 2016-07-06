@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 {
 	public partial class @IfcPropertyTableValue : IIfcPropertyTableValue
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPropertyTableValue), 3)]
 		IItemSet<IIfcValue> IIfcPropertyTableValue.DefiningValues 
 		{ 
 			get
@@ -24,7 +26,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			
 				return _definingValuesIfc4 ?? (_definingValuesIfc4 = new Common.Collections.ExtendedItemSet<MeasureResource.IfcValue, IIfcValue>(
                     DefiningValues, 
-                    new ItemSet<IIfcValue>(this, 0, 255), 
+                    new ItemSet<IIfcValue>(this, 0, -3), 
                     v => v.ToIfc4(), 
                     v => v.ToIfc3()));
 			} 
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 
 		//private field to hold any extended data
 		private IItemSet<IIfcValue> _definingValuesIfc4;
+
+		[CrossSchemaAttribute(typeof(IIfcPropertyTableValue), 4)]
 		IItemSet<IIfcValue> IIfcPropertyTableValue.DefinedValues 
 		{ 
 			get
@@ -39,7 +43,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			
 				return _definedValuesIfc4 ?? (_definedValuesIfc4 = new Common.Collections.ExtendedItemSet<MeasureResource.IfcValue, IIfcValue>(
                     DefinedValues, 
-                    new ItemSet<IIfcValue>(this, 0, 255), 
+                    new ItemSet<IIfcValue>(this, 0, -4), 
                     v => v.ToIfc4(), 
                     v => v.ToIfc3()));
 			} 
@@ -47,6 +51,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 
 		//private field to hold any extended data
 		private IItemSet<IIfcValue> _definedValuesIfc4;
+
+		[CrossSchemaAttribute(typeof(IIfcPropertyTableValue), 5)]
 		Ifc4.MeasureResource.IfcText? IIfcPropertyTableValue.Expression 
 		{ 
 			get
@@ -62,6 +68,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPropertyTableValue), 6)]
 		IIfcUnit IIfcPropertyTableValue.DefiningUnit 
 		{ 
 			get
@@ -106,6 +114,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPropertyTableValue), 7)]
 		IIfcUnit IIfcPropertyTableValue.DefinedUnit 
 		{ 
 			get
@@ -153,6 +163,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 
 		private  Ifc4.Interfaces.IfcCurveInterpolationEnum? _curveInterpolation;
 
+
+		[CrossSchemaAttribute(typeof(IIfcPropertyTableValue), 8)]
 		Ifc4.Interfaces.IfcCurveInterpolationEnum? IIfcPropertyTableValue.CurveInterpolation 
 		{ 
 			get
@@ -161,7 +173,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
-				SetValue(v => _curveInterpolation = v, _curveInterpolation, value, "CurveInterpolation", byte.MaxValue);
+				SetValue(v => _curveInterpolation = v, _curveInterpolation, value, "CurveInterpolation", -8);
 				
 			}
 		}

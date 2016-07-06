@@ -212,7 +212,7 @@ namespace Xbim.IO.Esent
             }
         }
 
-        internal void HandleEntityChange(ChangeType changeType, IPersistEntity entity, byte property)
+        internal void HandleEntityChange(ChangeType changeType, IPersistEntity entity, int property)
         {
             switch (changeType)
             {

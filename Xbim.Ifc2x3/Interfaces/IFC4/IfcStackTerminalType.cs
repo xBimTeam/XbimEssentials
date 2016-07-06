@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 {
 	public partial class @IfcStackTerminalType : IIfcStackTerminalType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStackTerminalType), 10)]
 		Ifc4.Interfaces.IfcStackTerminalTypeEnum IIfcStackTerminalType.PredefinedType 
 		{ 
 			get

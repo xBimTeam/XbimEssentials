@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	public partial class @IfcFooting : IIfcFooting
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcFooting), 9)]
 		Ifc4.Interfaces.IfcFootingTypeEnum? IIfcFooting.PredefinedType 
 		{ 
 			get

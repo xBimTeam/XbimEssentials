@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcSurfaceStyleShading : IIfcSurfaceStyleShading
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceStyleShading), 1)]
 		IIfcColourRgb IIfcSurfaceStyleShading.SurfaceColour 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceStyleShading), 2)]
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcSurfaceStyleShading.Transparency 
 		{ 
 			get

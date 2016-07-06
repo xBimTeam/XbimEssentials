@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcFillAreaStyleTiles : IIfcFillAreaStyleTiles
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcFillAreaStyleTiles), 1)]
 		IEnumerable<IIfcVector> IIfcFillAreaStyleTiles.TilingPattern 
 		{ 
 			get
@@ -26,6 +28,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			    //##
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcFillAreaStyleTiles), 2)]
 		IEnumerable<IIfcStyledItem> IIfcFillAreaStyleTiles.Tiles 
 		{ 
 			get
@@ -35,6 +39,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			    //##
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcFillAreaStyleTiles), 3)]
 		Ifc4.MeasureResource.IfcPositiveRatioMeasure IIfcFillAreaStyleTiles.TilingScale 
 		{ 
 			get

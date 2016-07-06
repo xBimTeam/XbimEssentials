@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ApprovalResource
 {
 	public partial class @IfcApproval : IIfcApproval
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcApproval), 1)]
 		Ifc4.MeasureResource.IfcIdentifier? IIfcApproval.Identifier 
 		{ 
 			get
@@ -31,6 +33,8 @@ namespace Xbim.Ifc2x3.ApprovalResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcApproval), 2)]
 		Ifc4.MeasureResource.IfcLabel? IIfcApproval.Name 
 		{ 
 			get
@@ -45,6 +49,8 @@ namespace Xbim.Ifc2x3.ApprovalResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcApproval), 3)]
 		Ifc4.MeasureResource.IfcText? IIfcApproval.Description 
 		{ 
 			get
@@ -60,6 +66,8 @@ namespace Xbim.Ifc2x3.ApprovalResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcApproval), 4)]
 		Ifc4.DateTimeResource.IfcDateTime? IIfcApproval.TimeOfApproval 
 		{ 
 			get
@@ -99,6 +107,8 @@ namespace Xbim.Ifc2x3.ApprovalResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcApproval), 5)]
 		Ifc4.MeasureResource.IfcLabel? IIfcApproval.Status 
 		{ 
 			get
@@ -114,6 +124,8 @@ namespace Xbim.Ifc2x3.ApprovalResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcApproval), 6)]
 		Ifc4.MeasureResource.IfcLabel? IIfcApproval.Level 
 		{ 
 			get
@@ -129,6 +141,8 @@ namespace Xbim.Ifc2x3.ApprovalResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcApproval), 7)]
 		Ifc4.MeasureResource.IfcText? IIfcApproval.Qualifier 
 		{ 
 			get
@@ -147,6 +161,8 @@ namespace Xbim.Ifc2x3.ApprovalResource
 
 		private  IIfcActorSelect _requestingApproval;
 
+
+		[CrossSchemaAttribute(typeof(IIfcApproval), 8)]
 		IIfcActorSelect IIfcApproval.RequestingApproval 
 		{ 
 			get
@@ -155,13 +171,15 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
-				SetValue(v => _requestingApproval = v, _requestingApproval, value, "RequestingApproval", byte.MaxValue);
+				SetValue(v => _requestingApproval = v, _requestingApproval, value, "RequestingApproval", -8);
 				
 			}
 		}
 
 		private  IIfcActorSelect _givingApproval;
 
+
+		[CrossSchemaAttribute(typeof(IIfcApproval), 9)]
 		IIfcActorSelect IIfcApproval.GivingApproval 
 		{ 
 			get
@@ -170,7 +188,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
-				SetValue(v => _givingApproval = v, _givingApproval, value, "GivingApproval", byte.MaxValue);
+				SetValue(v => _givingApproval = v, _givingApproval, value, "GivingApproval", -9);
 				
 			}
 		}

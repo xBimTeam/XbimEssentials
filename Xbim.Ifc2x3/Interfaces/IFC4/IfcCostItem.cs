@@ -20,6 +20,8 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 
 		private  Ifc4.Interfaces.IfcCostItemTypeEnum? _predefinedType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcCostItem), 7)]
 		Ifc4.Interfaces.IfcCostItemTypeEnum? IIfcCostItem.PredefinedType 
 		{ 
 			get
@@ -28,10 +30,12 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			} 
 			set
 			{
-				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -7);
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCostItem), 8)]
 		IItemSet<IIfcCostValue> IIfcCostItem.CostValues 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			    //##
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCostItem), 9)]
 		IItemSet<IIfcPhysicalQuantity> IIfcCostItem.CostQuantities 
 		{ 
 			get

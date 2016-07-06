@@ -20,6 +20,8 @@ namespace Xbim.Ifc2x3.Kernel
 
 		private  IIfcProductSelect _relatingProduct4;
 
+
+		[CrossSchemaAttribute(typeof(IIfcRelAssignsToProduct), 7)]
 		IIfcProductSelect IIfcRelAssignsToProduct.RelatingProduct 
 		{ 
 			get
@@ -32,7 +34,7 @@ namespace Xbim.Ifc2x3.Kernel
 				{
 					RelatingProduct = null;
 					if (_relatingProduct4 != null)
-						SetValue(v => _relatingProduct4 = v, _relatingProduct4, null, "RelatingProduct", byte.MaxValue);
+						SetValue(v => _relatingProduct4 = v, _relatingProduct4, null, "RelatingProduct", -7);
 					return;
 				}
 				
@@ -41,13 +43,13 @@ namespace Xbim.Ifc2x3.Kernel
 				{
 					RelatingProduct = val;
 					if (_relatingProduct4 != null)
-						SetValue(v => _relatingProduct4 = v, _relatingProduct4, null, "RelatingProduct", byte.MaxValue);
+						SetValue(v => _relatingProduct4 = v, _relatingProduct4, null, "RelatingProduct", -7);
 					return;
 				} 
 
 				if(RelatingProduct != null)
 					RelatingProduct = null;
-				SetValue(v => _relatingProduct4 = v, _relatingProduct4, value, "RelatingProduct", byte.MaxValue);
+				SetValue(v => _relatingProduct4 = v, _relatingProduct4, value, "RelatingProduct", -7);
 				
 			}
 		}

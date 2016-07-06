@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 {
 	public partial class @IfcMaterialDefinitionRepresentation : IIfcMaterialDefinitionRepresentation
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialDefinitionRepresentation), 4)]
 		IIfcMaterial IIfcMaterialDefinitionRepresentation.RepresentedMaterial 
 		{ 
 			get

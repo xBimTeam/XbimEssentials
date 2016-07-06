@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	public partial class @IfcCostSchedule : IIfcCostSchedule
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCostSchedule), 7)]
 		Ifc4.Interfaces.IfcCostScheduleTypeEnum? IIfcCostSchedule.PredefinedType 
 		{ 
 			get
@@ -108,6 +110,8 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCostSchedule), 8)]
 		Ifc4.MeasureResource.IfcLabel? IIfcCostSchedule.Status 
 		{ 
 			get
@@ -123,6 +127,8 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCostSchedule), 9)]
 		Ifc4.DateTimeResource.IfcDateTime? IIfcCostSchedule.SubmittedOn 
 		{ 
 			get
@@ -161,6 +167,8 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCostSchedule), 10)]
 		Ifc4.DateTimeResource.IfcDateTime? IIfcCostSchedule.UpdateDate 
 		{ 
 			get

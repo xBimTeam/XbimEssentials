@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcManifoldSolidBrep : IIfcManifoldSolidBrep
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcManifoldSolidBrep), 1)]
 		IIfcClosedShell IIfcManifoldSolidBrep.Outer 
 		{ 
 			get

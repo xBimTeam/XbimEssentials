@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcParameterizedProfileDef : IIfcParameterizedProfileDef
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcParameterizedProfileDef), 3)]
 		IIfcAxis2Placement2D IIfcParameterizedProfileDef.Position 
 		{ 
 			get

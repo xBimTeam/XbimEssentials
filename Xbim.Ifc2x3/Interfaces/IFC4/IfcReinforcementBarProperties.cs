@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	public partial class @IfcReinforcementBarProperties : IIfcReinforcementBarProperties
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcReinforcementBarProperties), 1)]
 		Ifc4.MeasureResource.IfcAreaMeasure IIfcReinforcementBarProperties.TotalCrossSectionArea 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcReinforcementBarProperties), 2)]
 		Ifc4.MeasureResource.IfcLabel IIfcReinforcementBarProperties.SteelGrade 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcReinforcementBarProperties), 3)]
 		Ifc4.Interfaces.IfcReinforcingBarSurfaceEnum? IIfcReinforcementBarProperties.BarSurface 
 		{ 
 			get
@@ -81,6 +87,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcReinforcementBarProperties), 4)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcReinforcementBarProperties.EffectiveDepth 
 		{ 
 			get
@@ -96,6 +104,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcReinforcementBarProperties), 5)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcReinforcementBarProperties.NominalBarDiameter 
 		{ 
 			get
@@ -111,6 +121,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcReinforcementBarProperties), 6)]
 		Ifc4.MeasureResource.IfcCountMeasure? IIfcReinforcementBarProperties.BarCount 
 		{ 
 			get

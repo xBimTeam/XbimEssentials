@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 {
 	public partial class @IfcFlowInstrumentType : IIfcFlowInstrumentType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcFlowInstrumentType), 10)]
 		Ifc4.Interfaces.IfcFlowInstrumentTypeEnum IIfcFlowInstrumentType.PredefinedType 
 		{ 
 			get

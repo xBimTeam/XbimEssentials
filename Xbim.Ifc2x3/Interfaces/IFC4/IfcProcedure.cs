@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 {
 	public partial class @IfcProcedure : IIfcProcedure
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcProcedure), 8)]
 		Ifc4.Interfaces.IfcProcedureTypeEnum? IIfcProcedure.PredefinedType 
 		{ 
 			get

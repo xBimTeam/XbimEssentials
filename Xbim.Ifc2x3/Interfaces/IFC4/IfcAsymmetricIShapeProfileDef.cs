@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcAsymmetricIShapeProfileDef : IIfcAsymmetricIShapeProfileDef
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcAsymmetricIShapeProfileDef), 4)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.BottomFlangeWidth 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAsymmetricIShapeProfileDef), 5)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.OverallDepth 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAsymmetricIShapeProfileDef), 6)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.WebThickness 
 		{ 
 			get
@@ -53,6 +59,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAsymmetricIShapeProfileDef), 7)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.BottomFlangeThickness 
 		{ 
 			get
@@ -65,6 +73,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAsymmetricIShapeProfileDef), 8)]
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeFilletRadius 
 		{ 
 			get
@@ -80,6 +90,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAsymmetricIShapeProfileDef), 9)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.TopFlangeWidth 
 		{ 
 			get
@@ -92,6 +104,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAsymmetricIShapeProfileDef), 10)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeThickness 
 		{ 
 			get
@@ -107,6 +121,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAsymmetricIShapeProfileDef), 11)]
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeFilletRadius 
 		{ 
 			get
@@ -125,6 +141,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 
 		private  Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? _bottomFlangeEdgeRadius;
 
+
+		[CrossSchemaAttribute(typeof(IIfcAsymmetricIShapeProfileDef), 12)]
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeEdgeRadius 
 		{ 
 			get
@@ -133,13 +151,15 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue(v => _bottomFlangeEdgeRadius = v, _bottomFlangeEdgeRadius, value, "BottomFlangeEdgeRadius", byte.MaxValue);
+				SetValue(v => _bottomFlangeEdgeRadius = v, _bottomFlangeEdgeRadius, value, "BottomFlangeEdgeRadius", -12);
 				
 			}
 		}
 
 		private  Ifc4.MeasureResource.IfcPlaneAngleMeasure? _bottomFlangeSlope;
 
+
+		[CrossSchemaAttribute(typeof(IIfcAsymmetricIShapeProfileDef), 13)]
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeSlope 
 		{ 
 			get
@@ -148,13 +168,15 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue(v => _bottomFlangeSlope = v, _bottomFlangeSlope, value, "BottomFlangeSlope", byte.MaxValue);
+				SetValue(v => _bottomFlangeSlope = v, _bottomFlangeSlope, value, "BottomFlangeSlope", -13);
 				
 			}
 		}
 
 		private  Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? _topFlangeEdgeRadius;
 
+
+		[CrossSchemaAttribute(typeof(IIfcAsymmetricIShapeProfileDef), 14)]
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeEdgeRadius 
 		{ 
 			get
@@ -163,13 +185,15 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue(v => _topFlangeEdgeRadius = v, _topFlangeEdgeRadius, value, "TopFlangeEdgeRadius", byte.MaxValue);
+				SetValue(v => _topFlangeEdgeRadius = v, _topFlangeEdgeRadius, value, "TopFlangeEdgeRadius", -14);
 				
 			}
 		}
 
 		private  Ifc4.MeasureResource.IfcPlaneAngleMeasure? _topFlangeSlope;
 
+
+		[CrossSchemaAttribute(typeof(IIfcAsymmetricIShapeProfileDef), 15)]
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeSlope 
 		{ 
 			get
@@ -178,7 +202,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue(v => _topFlangeSlope = v, _topFlangeSlope, value, "TopFlangeSlope", byte.MaxValue);
+				SetValue(v => _topFlangeSlope = v, _topFlangeSlope, value, "TopFlangeSlope", -15);
 				
 			}
 		}

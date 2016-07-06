@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	public partial class @IfcGridAxis : IIfcGridAxis
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcGridAxis), 1)]
 		Ifc4.MeasureResource.IfcLabel? IIfcGridAxis.AxisTag 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcGridAxis), 2)]
 		IIfcCurve IIfcGridAxis.AxisCurve 
 		{ 
 			get
@@ -44,6 +48,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcGridAxis), 3)]
 		Ifc4.MeasureResource.IfcBoolean IIfcGridAxis.SameSense 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 {
 	public partial class @IfcConstraint : IIfcConstraint
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcConstraint), 1)]
 		Ifc4.MeasureResource.IfcLabel IIfcConstraint.Name 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcConstraint), 2)]
 		Ifc4.MeasureResource.IfcText? IIfcConstraint.Description 
 		{ 
 			get
@@ -44,6 +48,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcConstraint), 3)]
 		Ifc4.Interfaces.IfcConstraintEnum IIfcConstraint.ConstraintGrade 
 		{ 
 			get
@@ -107,6 +113,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcConstraint), 4)]
 		Ifc4.MeasureResource.IfcLabel? IIfcConstraint.ConstraintSource 
 		{ 
 			get
@@ -122,6 +130,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcConstraint), 5)]
 		IIfcActorSelect IIfcConstraint.CreatingActor 
 		{ 
 			get
@@ -166,6 +176,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcConstraint), 6)]
 		Ifc4.DateTimeResource.IfcDateTime? IIfcConstraint.CreationTime 
 		{ 
 			get
@@ -204,6 +216,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcConstraint), 7)]
 		Ifc4.MeasureResource.IfcLabel? IIfcConstraint.UserDefinedGrade 
 		{ 
 			get

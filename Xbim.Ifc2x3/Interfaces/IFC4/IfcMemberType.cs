@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcMemberType : IIfcMemberType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcMemberType), 10)]
 		Ifc4.Interfaces.IfcMemberTypeEnum IIfcMemberType.PredefinedType 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcExtrudedAreaSolid : IIfcExtrudedAreaSolid
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcExtrudedAreaSolid), 3)]
 		IIfcDirection IIfcExtrudedAreaSolid.ExtrudedDirection 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcExtrudedAreaSolid), 4)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcExtrudedAreaSolid.Depth 
 		{ 
 			get

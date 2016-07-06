@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcPolygonalBoundedHalfSpace : IIfcPolygonalBoundedHalfSpace
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPolygonalBoundedHalfSpace), 3)]
 		IIfcAxis2Placement3D IIfcPolygonalBoundedHalfSpace.Position 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPolygonalBoundedHalfSpace), 4)]
 		IIfcBoundedCurve IIfcPolygonalBoundedHalfSpace.PolygonalBoundary 
 		{ 
 			get

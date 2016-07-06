@@ -20,6 +20,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 
 		private  Ifc4.Interfaces.IfcProjectionElementTypeEnum? _predefinedType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcProjectionElement), 9)]
 		Ifc4.Interfaces.IfcProjectionElementTypeEnum? IIfcProjectionElement.PredefinedType 
 		{ 
 			get
@@ -28,7 +30,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -9);
 				
 			}
 		}

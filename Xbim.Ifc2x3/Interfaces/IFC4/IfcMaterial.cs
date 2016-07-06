@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 {
 	public partial class @IfcMaterial : IIfcMaterial
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcMaterial), 1)]
 		Ifc4.MeasureResource.IfcLabel IIfcMaterial.Name 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 
 		private  Ifc4.MeasureResource.IfcText? _description;
 
+
+		[CrossSchemaAttribute(typeof(IIfcMaterial), 2)]
 		Ifc4.MeasureResource.IfcText? IIfcMaterial.Description 
 		{ 
 			get
@@ -40,13 +44,15 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
-				SetValue(v => _description = v, _description, value, "Description", byte.MaxValue);
+				SetValue(v => _description = v, _description, value, "Description", -2);
 				
 			}
 		}
 
 		private  Ifc4.MeasureResource.IfcLabel? _category;
 
+
+		[CrossSchemaAttribute(typeof(IIfcMaterial), 3)]
 		Ifc4.MeasureResource.IfcLabel? IIfcMaterial.Category 
 		{ 
 			get
@@ -55,7 +61,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
-				SetValue(v => _category = v, _category, value, "Category", byte.MaxValue);
+				SetValue(v => _category = v, _category, value, "Category", -3);
 				
 			}
 		}

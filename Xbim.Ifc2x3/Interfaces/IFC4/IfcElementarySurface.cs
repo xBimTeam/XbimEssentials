@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcElementarySurface : IIfcElementarySurface
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcElementarySurface), 1)]
 		IIfcAxis2Placement3D IIfcElementarySurface.Position 
 		{ 
 			get

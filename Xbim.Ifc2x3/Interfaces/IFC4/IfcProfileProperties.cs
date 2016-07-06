@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	public partial class @IfcProfileProperties : IIfcProfileProperties
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcProfileProperties), 4)]
 		IIfcProfileDef IIfcProfileProperties.ProfileDefinition 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcProfileProperties), 1)]
 		Ifc4.MeasureResource.IfcIdentifier? IIfcExtendedProperties.Name 
 		{ 
 			get
@@ -47,6 +51,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 
 		private  Ifc4.MeasureResource.IfcText? _description;
 
+
+		[CrossSchemaAttribute(typeof(IIfcProfileProperties), 2)]
 		Ifc4.MeasureResource.IfcText? IIfcExtendedProperties.Description 
 		{ 
 			get
@@ -55,10 +61,12 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue(v => _description = v, _description, value, "Description", byte.MaxValue);
+				SetValue(v => _description = v, _description, value, "Description", -2);
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcProfileProperties), 3)]
 		IEnumerable<IIfcProperty> IIfcExtendedProperties.Properties 
 		{ 
 			get

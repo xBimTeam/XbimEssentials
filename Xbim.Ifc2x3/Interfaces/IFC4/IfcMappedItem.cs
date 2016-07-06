@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcMappedItem : IIfcMappedItem
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcMappedItem), 1)]
 		IIfcRepresentationMap IIfcMappedItem.MappingSource 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcMappedItem), 2)]
 		IIfcCartesianTransformationOperator IIfcMappedItem.MappingTarget 
 		{ 
 			get

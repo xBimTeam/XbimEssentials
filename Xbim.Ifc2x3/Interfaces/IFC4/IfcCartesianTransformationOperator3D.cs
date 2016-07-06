@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcCartesianTransformationOperator3D : IIfcCartesianTransformationOperator3D
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCartesianTransformationOperator3D), 5)]
 		IIfcDirection IIfcCartesianTransformationOperator3D.Axis3 
 		{ 
 			get

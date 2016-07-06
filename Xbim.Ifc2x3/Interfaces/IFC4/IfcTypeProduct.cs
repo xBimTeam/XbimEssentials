@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcTypeProduct : IIfcTypeProduct
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTypeProduct), 7)]
 		IItemSet<IIfcRepresentationMap> IIfcTypeProduct.RepresentationMaps 
 		{ 
 			get
@@ -25,6 +27,8 @@ namespace Xbim.Ifc2x3.Kernel
 				return new Common.Collections.ProxyItemSet<GeometryResource.IfcRepresentationMap, IIfcRepresentationMap>(RepresentationMaps);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTypeProduct), 8)]
 		Ifc4.MeasureResource.IfcLabel? IIfcTypeProduct.Tag 
 		{ 
 			get

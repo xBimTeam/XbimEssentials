@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	public partial class @IfcSectionProperties : IIfcSectionProperties
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSectionProperties), 1)]
 		Ifc4.Interfaces.IfcSectionTypeEnum IIfcSectionProperties.SectionType 
 		{ 
 			get
@@ -57,6 +59,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSectionProperties), 2)]
 		IIfcProfileDef IIfcSectionProperties.StartProfile 
 		{ 
 			get
@@ -69,6 +73,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSectionProperties), 3)]
 		IIfcProfileDef IIfcSectionProperties.EndProfile 
 		{ 
 			get

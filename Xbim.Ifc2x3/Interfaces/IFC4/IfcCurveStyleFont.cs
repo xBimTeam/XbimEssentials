@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcCurveStyleFont : IIfcCurveStyleFont
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCurveStyleFont), 1)]
 		Ifc4.MeasureResource.IfcLabel? IIfcCurveStyleFont.Name 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCurveStyleFont), 2)]
 		IItemSet<IIfcCurveStyleFontPattern> IIfcCurveStyleFont.PatternList 
 		{ 
 			get

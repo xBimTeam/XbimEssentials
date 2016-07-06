@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcCompositeCurveSegment : IIfcCompositeCurveSegment
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCompositeCurveSegment), 1)]
 		Ifc4.Interfaces.IfcTransitionCode IIfcCompositeCurveSegment.Transition 
 		{ 
 			get
@@ -71,6 +73,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCompositeCurveSegment), 2)]
 		Ifc4.MeasureResource.IfcBoolean IIfcCompositeCurveSegment.SameSense 
 		{ 
 			get
@@ -85,6 +89,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCompositeCurveSegment), 3)]
 		IIfcCurve IIfcCompositeCurveSegment.ParentCurve 
 		{ 
 			get

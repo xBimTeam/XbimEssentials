@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 {
 	public partial class @IfcMaterialLayerSet : IIfcMaterialLayerSet
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialLayerSet), 1)]
 		IItemSet<IIfcMaterialLayer> IIfcMaterialLayerSet.MaterialLayers 
 		{ 
 			get
@@ -25,6 +27,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 				return new Common.Collections.ProxyItemSet<IfcMaterialLayer, IIfcMaterialLayer>(MaterialLayers);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialLayerSet), 2)]
 		Ifc4.MeasureResource.IfcLabel? IIfcMaterialLayerSet.LayerSetName 
 		{ 
 			get
@@ -43,6 +47,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 
 		private  Ifc4.MeasureResource.IfcText? _description;
 
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialLayerSet), 3)]
 		Ifc4.MeasureResource.IfcText? IIfcMaterialLayerSet.Description 
 		{ 
 			get
@@ -51,7 +57,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
-				SetValue(v => _description = v, _description, value, "Description", byte.MaxValue);
+				SetValue(v => _description = v, _description, value, "Description", -3);
 				
 			}
 		}

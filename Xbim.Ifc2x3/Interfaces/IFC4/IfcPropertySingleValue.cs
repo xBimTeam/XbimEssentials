@@ -20,6 +20,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 
 		private  IIfcValue _nominalValue4;
 
+
+		[CrossSchemaAttribute(typeof(IIfcPropertySingleValue), 3)]
 		IIfcValue IIfcPropertySingleValue.NominalValue 
 		{ 
 			get
@@ -228,761 +230,763 @@ namespace Xbim.Ifc2x3.PropertyResource
 				{
 					NominalValue = null;
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}	
 				if (value is Ifc4.MeasureResource.IfcAbsorbedDoseMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcAbsorbedDoseMeasure((Ifc4.MeasureResource.IfcAbsorbedDoseMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcAccelerationMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcAccelerationMeasure((Ifc4.MeasureResource.IfcAccelerationMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcAngularVelocityMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcAngularVelocityMeasure((Ifc4.MeasureResource.IfcAngularVelocityMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcAreaDensityMeasure) 
 				{
 					if (NominalValue != null)
 						NominalValue = null;
-					SetValue(v => _nominalValue4 = v, _nominalValue4, value, "NominalValue", byte.MaxValue);
+					SetValue(v => _nominalValue4 = v, _nominalValue4, value, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcCompoundPlaneAngleMeasure((Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcCurvatureMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcCurvatureMeasure((Ifc4.MeasureResource.IfcCurvatureMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcDoseEquivalentMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcDoseEquivalentMeasure((Ifc4.MeasureResource.IfcDoseEquivalentMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcDynamicViscosityMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcDynamicViscosityMeasure((Ifc4.MeasureResource.IfcDynamicViscosityMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcElectricCapacitanceMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcElectricCapacitanceMeasure((Ifc4.MeasureResource.IfcElectricCapacitanceMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcElectricChargeMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcElectricChargeMeasure((Ifc4.MeasureResource.IfcElectricChargeMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcElectricConductanceMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcElectricConductanceMeasure((Ifc4.MeasureResource.IfcElectricConductanceMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcElectricResistanceMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcElectricResistanceMeasure((Ifc4.MeasureResource.IfcElectricResistanceMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcElectricVoltageMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcElectricVoltageMeasure((Ifc4.MeasureResource.IfcElectricVoltageMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcEnergyMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcEnergyMeasure((Ifc4.MeasureResource.IfcEnergyMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcForceMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcForceMeasure((Ifc4.MeasureResource.IfcForceMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcFrequencyMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcFrequencyMeasure((Ifc4.MeasureResource.IfcFrequencyMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcHeatFluxDensityMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcHeatFluxDensityMeasure((Ifc4.MeasureResource.IfcHeatFluxDensityMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcHeatingValueMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcHeatingValueMeasure((Ifc4.MeasureResource.IfcHeatingValueMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcIlluminanceMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcIlluminanceMeasure((Ifc4.MeasureResource.IfcIlluminanceMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcInductanceMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcInductanceMeasure((Ifc4.MeasureResource.IfcInductanceMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcIntegerCountRateMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcIntegerCountRateMeasure((Ifc4.MeasureResource.IfcIntegerCountRateMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcIonConcentrationMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcIonConcentrationMeasure((Ifc4.MeasureResource.IfcIonConcentrationMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcIsothermalMoistureCapacityMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcIsothermalMoistureCapacityMeasure((Ifc4.MeasureResource.IfcIsothermalMoistureCapacityMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcKinematicViscosityMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcKinematicViscosityMeasure((Ifc4.MeasureResource.IfcKinematicViscosityMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcLinearForceMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcLinearForceMeasure((Ifc4.MeasureResource.IfcLinearForceMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcLinearMomentMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcLinearMomentMeasure((Ifc4.MeasureResource.IfcLinearMomentMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcLinearStiffnessMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcLinearStiffnessMeasure((Ifc4.MeasureResource.IfcLinearStiffnessMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcLinearVelocityMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcLinearVelocityMeasure((Ifc4.MeasureResource.IfcLinearVelocityMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcLuminousFluxMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcLuminousFluxMeasure((Ifc4.MeasureResource.IfcLuminousFluxMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcLuminousIntensityDistributionMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcLuminousIntensityDistributionMeasure((Ifc4.MeasureResource.IfcLuminousIntensityDistributionMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcMagneticFluxDensityMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcMagneticFluxDensityMeasure((Ifc4.MeasureResource.IfcMagneticFluxDensityMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcMagneticFluxMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcMagneticFluxMeasure((Ifc4.MeasureResource.IfcMagneticFluxMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcMassDensityMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcMassDensityMeasure((Ifc4.MeasureResource.IfcMassDensityMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcMassFlowRateMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcMassFlowRateMeasure((Ifc4.MeasureResource.IfcMassFlowRateMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcMassPerLengthMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcMassPerLengthMeasure((Ifc4.MeasureResource.IfcMassPerLengthMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcModulusOfElasticityMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcModulusOfElasticityMeasure((Ifc4.MeasureResource.IfcModulusOfElasticityMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure((Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure((Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcModulusOfSubgradeReactionMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcModulusOfSubgradeReactionMeasure((Ifc4.MeasureResource.IfcModulusOfSubgradeReactionMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcMoistureDiffusivityMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcMoistureDiffusivityMeasure((Ifc4.MeasureResource.IfcMoistureDiffusivityMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcMolecularWeightMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcMolecularWeightMeasure((Ifc4.MeasureResource.IfcMolecularWeightMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcMomentOfInertiaMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcMomentOfInertiaMeasure((Ifc4.MeasureResource.IfcMomentOfInertiaMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcMonetaryMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcMonetaryMeasure((Ifc4.MeasureResource.IfcMonetaryMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcPHMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcPHMeasure((Ifc4.MeasureResource.IfcPHMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcPlanarForceMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcPlanarForceMeasure((Ifc4.MeasureResource.IfcPlanarForceMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcPowerMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcPowerMeasure((Ifc4.MeasureResource.IfcPowerMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcPressureMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcPressureMeasure((Ifc4.MeasureResource.IfcPressureMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcRadioActivityMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcRadioActivityMeasure((Ifc4.MeasureResource.IfcRadioActivityMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcRotationalFrequencyMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcRotationalFrequencyMeasure((Ifc4.MeasureResource.IfcRotationalFrequencyMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcRotationalMassMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcRotationalMassMeasure((Ifc4.MeasureResource.IfcRotationalMassMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcRotationalStiffnessMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcRotationalStiffnessMeasure((Ifc4.MeasureResource.IfcRotationalStiffnessMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcSectionModulusMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcSectionModulusMeasure((Ifc4.MeasureResource.IfcSectionModulusMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcSectionalAreaIntegralMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcSectionalAreaIntegralMeasure((Ifc4.MeasureResource.IfcSectionalAreaIntegralMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcShearModulusMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcShearModulusMeasure((Ifc4.MeasureResource.IfcShearModulusMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcSoundPowerLevelMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcSoundPowerMeasure((Ifc4.MeasureResource.IfcSoundPowerLevelMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcSoundPowerMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcSoundPowerMeasure((Ifc4.MeasureResource.IfcSoundPowerMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcSoundPressureLevelMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcSoundPressureMeasure((Ifc4.MeasureResource.IfcSoundPressureLevelMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcSoundPressureMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcSoundPressureMeasure((Ifc4.MeasureResource.IfcSoundPressureMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcSpecificHeatCapacityMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcSpecificHeatCapacityMeasure((Ifc4.MeasureResource.IfcSpecificHeatCapacityMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcTemperatureGradientMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcTemperatureGradientMeasure((Ifc4.MeasureResource.IfcTemperatureGradientMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcTemperatureRateOfChangeMeasure) 
 				{
 					if (NominalValue != null)
 						NominalValue = null;
-					SetValue(v => _nominalValue4 = v, _nominalValue4, value, "NominalValue", byte.MaxValue);
+					SetValue(v => _nominalValue4 = v, _nominalValue4, value, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcThermalAdmittanceMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcThermalAdmittanceMeasure((Ifc4.MeasureResource.IfcThermalAdmittanceMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcThermalConductivityMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcThermalConductivityMeasure((Ifc4.MeasureResource.IfcThermalConductivityMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcThermalExpansionCoefficientMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcThermalExpansionCoefficientMeasure((Ifc4.MeasureResource.IfcThermalExpansionCoefficientMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcThermalResistanceMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcThermalResistanceMeasure((Ifc4.MeasureResource.IfcThermalResistanceMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcThermalTransmittanceMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcThermalTransmittanceMeasure((Ifc4.MeasureResource.IfcThermalTransmittanceMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcTorqueMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcTorqueMeasure((Ifc4.MeasureResource.IfcTorqueMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcVaporPermeabilityMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcVaporPermeabilityMeasure((Ifc4.MeasureResource.IfcVaporPermeabilityMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcVolumetricFlowRateMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcVolumetricFlowRateMeasure((Ifc4.MeasureResource.IfcVolumetricFlowRateMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcWarpingConstantMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcWarpingConstantMeasure((Ifc4.MeasureResource.IfcWarpingConstantMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcWarpingMomentMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcWarpingMomentMeasure((Ifc4.MeasureResource.IfcWarpingMomentMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcAmountOfSubstanceMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcAmountOfSubstanceMeasure((Ifc4.MeasureResource.IfcAmountOfSubstanceMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcAreaMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcAreaMeasure((Ifc4.MeasureResource.IfcAreaMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcComplexNumber) 
 				{
 					NominalValue = new MeasureResource.IfcComplexNumber((Ifc4.MeasureResource.IfcComplexNumber)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcContextDependentMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcContextDependentMeasure((Ifc4.MeasureResource.IfcContextDependentMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcCountMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcCountMeasure((Ifc4.MeasureResource.IfcCountMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcDescriptiveMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcDescriptiveMeasure((Ifc4.MeasureResource.IfcDescriptiveMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcElectricCurrentMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcElectricCurrentMeasure((Ifc4.MeasureResource.IfcElectricCurrentMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcLengthMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcLengthMeasure((Ifc4.MeasureResource.IfcLengthMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcLuminousIntensityMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcLuminousIntensityMeasure((Ifc4.MeasureResource.IfcLuminousIntensityMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcMassMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcMassMeasure((Ifc4.MeasureResource.IfcMassMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcNonNegativeLengthMeasure) 
 				{
 					if (NominalValue != null)
 						NominalValue = null;
-					SetValue(v => _nominalValue4 = v, _nominalValue4, value, "NominalValue", byte.MaxValue);
+					SetValue(v => _nominalValue4 = v, _nominalValue4, value, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcNormalisedRatioMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcNormalisedRatioMeasure((Ifc4.MeasureResource.IfcNormalisedRatioMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcNumericMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcNumericMeasure((Ifc4.MeasureResource.IfcNumericMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcParameterValue) 
 				{
 					NominalValue = new MeasureResource.IfcParameterValue((Ifc4.MeasureResource.IfcParameterValue)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcPlaneAngleMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcPlaneAngleMeasure((Ifc4.MeasureResource.IfcPlaneAngleMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcPositiveLengthMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcPositiveLengthMeasure((Ifc4.MeasureResource.IfcPositiveLengthMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcPositivePlaneAngleMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcPositivePlaneAngleMeasure((Ifc4.MeasureResource.IfcPositivePlaneAngleMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcPositiveRatioMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcPositiveRatioMeasure((Ifc4.MeasureResource.IfcPositiveRatioMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcRatioMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcRatioMeasure((Ifc4.MeasureResource.IfcRatioMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcSolidAngleMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcSolidAngleMeasure((Ifc4.MeasureResource.IfcSolidAngleMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcThermodynamicTemperatureMeasure((Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcTimeMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcTimeMeasure((Ifc4.MeasureResource.IfcTimeMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcVolumeMeasure) 
 				{
 					NominalValue = new MeasureResource.IfcVolumeMeasure((Ifc4.MeasureResource.IfcVolumeMeasure)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcBoolean) 
 				{
 					NominalValue = new MeasureResource.IfcBoolean((Ifc4.MeasureResource.IfcBoolean)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.DateTimeResource.IfcDate) 
 				{
 					if (NominalValue != null)
 						NominalValue = null;
-					SetValue(v => _nominalValue4 = v, _nominalValue4, value, "NominalValue", byte.MaxValue);
+					SetValue(v => _nominalValue4 = v, _nominalValue4, value, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.DateTimeResource.IfcDateTime) 
 				{
 					if (NominalValue != null)
 						NominalValue = null;
-					SetValue(v => _nominalValue4 = v, _nominalValue4, value, "NominalValue", byte.MaxValue);
+					SetValue(v => _nominalValue4 = v, _nominalValue4, value, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.DateTimeResource.IfcDuration) 
 				{
 					if (NominalValue != null)
 						NominalValue = null;
-					SetValue(v => _nominalValue4 = v, _nominalValue4, value, "NominalValue", byte.MaxValue);
+					SetValue(v => _nominalValue4 = v, _nominalValue4, value, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcIdentifier) 
 				{
 					NominalValue = new MeasureResource.IfcIdentifier((Ifc4.MeasureResource.IfcIdentifier)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcInteger) 
 				{
 					NominalValue = new MeasureResource.IfcInteger((Ifc4.MeasureResource.IfcInteger)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcLabel) 
 				{
 					NominalValue = new MeasureResource.IfcLabel((Ifc4.MeasureResource.IfcLabel)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcLogical) 
 				{
 					NominalValue = new MeasureResource.IfcLogical((Ifc4.MeasureResource.IfcLogical)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcPositiveInteger) 
 				{
 					if (NominalValue != null)
 						NominalValue = null;
-					SetValue(v => _nominalValue4 = v, _nominalValue4, value, "NominalValue", byte.MaxValue);
+					SetValue(v => _nominalValue4 = v, _nominalValue4, value, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcReal) 
 				{
 					NominalValue = new MeasureResource.IfcReal((Ifc4.MeasureResource.IfcReal)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcText) 
 				{
 					NominalValue = new MeasureResource.IfcText((Ifc4.MeasureResource.IfcText)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.DateTimeResource.IfcTime) 
 				{
 					if (NominalValue != null)
 						NominalValue = null;
-					SetValue(v => _nominalValue4 = v, _nominalValue4, value, "NominalValue", byte.MaxValue);
+					SetValue(v => _nominalValue4 = v, _nominalValue4, value, "NominalValue", -3);
 					return;
 				}
 				if (value is Ifc4.DateTimeResource.IfcTimeStamp) 
 				{
 					NominalValue = new MeasureResource.IfcTimeStamp((Ifc4.DateTimeResource.IfcTimeStamp)value);
 					if (_nominalValue4 != null)
-						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", byte.MaxValue);
+						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPropertySingleValue), 4)]
 		IIfcUnit IIfcPropertySingleValue.Unit 
 		{ 
 			get

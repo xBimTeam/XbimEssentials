@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcGeometricSet : IIfcGeometricSet
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcGeometricSet), 1)]
 		IItemSet<IIfcGeometricSetSelect> IIfcGeometricSet.Elements 
 		{ 
 			get

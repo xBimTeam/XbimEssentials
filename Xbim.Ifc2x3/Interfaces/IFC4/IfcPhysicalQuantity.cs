@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.QuantityResource
 {
 	public partial class @IfcPhysicalQuantity : IIfcPhysicalQuantity
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPhysicalQuantity), 1)]
 		Ifc4.MeasureResource.IfcLabel IIfcPhysicalQuantity.Name 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.QuantityResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPhysicalQuantity), 2)]
 		Ifc4.MeasureResource.IfcText? IIfcPhysicalQuantity.Description 
 		{ 
 			get

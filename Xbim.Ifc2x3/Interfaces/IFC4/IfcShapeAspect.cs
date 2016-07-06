@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 {
 	public partial class @IfcShapeAspect : IIfcShapeAspect
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcShapeAspect), 1)]
 		IItemSet<IIfcShapeModel> IIfcShapeAspect.ShapeRepresentations 
 		{ 
 			get
@@ -25,6 +27,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				return new Common.Collections.ProxyItemSet<IfcShapeModel, IIfcShapeModel>(ShapeRepresentations);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcShapeAspect), 2)]
 		Ifc4.MeasureResource.IfcLabel? IIfcShapeAspect.Name 
 		{ 
 			get
@@ -40,6 +44,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcShapeAspect), 3)]
 		Ifc4.MeasureResource.IfcText? IIfcShapeAspect.Description 
 		{ 
 			get
@@ -55,6 +61,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcShapeAspect), 4)]
 		Ifc4.MeasureResource.IfcLogical IIfcShapeAspect.ProductDefinitional 
 		{ 
 			get
@@ -72,6 +80,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 
 		private  IIfcProductRepresentationSelect _partOfProductDefinitionShape4;
 
+
+		[CrossSchemaAttribute(typeof(IIfcShapeAspect), 5)]
 		IIfcProductRepresentationSelect IIfcShapeAspect.PartOfProductDefinitionShape 
 		{ 
 			get
@@ -84,7 +94,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				{
 					PartOfProductDefinitionShape = null;
 					if (_partOfProductDefinitionShape4 != null)
-						SetValue(v => _partOfProductDefinitionShape4 = v, _partOfProductDefinitionShape4, null, "PartOfProductDefinitionShape", byte.MaxValue);
+						SetValue(v => _partOfProductDefinitionShape4 = v, _partOfProductDefinitionShape4, null, "PartOfProductDefinitionShape", -5);
 					return;
 				}
 				
@@ -93,13 +103,13 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				{
 					PartOfProductDefinitionShape = val;
 					if (_partOfProductDefinitionShape4 != null)
-						SetValue(v => _partOfProductDefinitionShape4 = v, _partOfProductDefinitionShape4, null, "PartOfProductDefinitionShape", byte.MaxValue);
+						SetValue(v => _partOfProductDefinitionShape4 = v, _partOfProductDefinitionShape4, null, "PartOfProductDefinitionShape", -5);
 					return;
 				} 
 
 				if(PartOfProductDefinitionShape != null)
 					PartOfProductDefinitionShape = null;
-				SetValue(v => _partOfProductDefinitionShape4 = v, _partOfProductDefinitionShape4, value, "PartOfProductDefinitionShape", byte.MaxValue);
+				SetValue(v => _partOfProductDefinitionShape4 = v, _partOfProductDefinitionShape4, value, "PartOfProductDefinitionShape", -5);
 				
 			}
 		}

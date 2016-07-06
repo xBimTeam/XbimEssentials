@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcTransformerType : IIfcTransformerType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTransformerType), 10)]
 		Ifc4.Interfaces.IfcTransformerTypeEnum IIfcTransformerType.PredefinedType 
 		{ 
 			get

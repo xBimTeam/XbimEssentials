@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcStairFlight : IIfcStairFlight
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStairFlight), 9)]
 		Ifc4.MeasureResource.IfcInteger? IIfcStairFlight.NumberOfRisers 
 		{ 
 			get
@@ -34,6 +36,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStairFlight), 10)]
 		Ifc4.MeasureResource.IfcInteger? IIfcStairFlight.NumberOfTreads 
 		{ 
 			get
@@ -48,6 +52,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStairFlight), 11)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcStairFlight.RiserHeight 
 		{ 
 			get
@@ -63,6 +69,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStairFlight), 12)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcStairFlight.TreadLength 
 		{ 
 			get
@@ -81,6 +89,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 
 		private  Ifc4.Interfaces.IfcStairFlightTypeEnum? _predefinedType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcStairFlight), 13)]
 		Ifc4.Interfaces.IfcStairFlightTypeEnum? IIfcStairFlight.PredefinedType 
 		{ 
 			get
@@ -89,7 +99,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -13);
 				
 			}
 		}

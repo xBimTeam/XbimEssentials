@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	public partial class @IfcMonetaryUnit : IIfcMonetaryUnit
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcMonetaryUnit), 1)]
 		Ifc4.MeasureResource.IfcLabel IIfcMonetaryUnit.Currency 
 		{ 
 			get

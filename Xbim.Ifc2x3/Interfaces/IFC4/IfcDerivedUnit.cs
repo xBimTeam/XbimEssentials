@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	public partial class @IfcDerivedUnit : IIfcDerivedUnit
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcDerivedUnit), 1)]
 		IItemSet<IIfcDerivedUnitElement> IIfcDerivedUnit.Elements 
 		{ 
 			get
@@ -25,6 +27,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 				return new Common.Collections.ProxyItemSet<IfcDerivedUnitElement, IIfcDerivedUnitElement>(Elements);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDerivedUnit), 2)]
 		Ifc4.Interfaces.IfcDerivedUnitEnum IIfcDerivedUnit.UnitType 
 		{ 
 			get
@@ -434,6 +438,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDerivedUnit), 3)]
 		Ifc4.MeasureResource.IfcLabel? IIfcDerivedUnit.UserDefinedType 
 		{ 
 			get

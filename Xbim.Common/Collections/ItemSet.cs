@@ -11,7 +11,7 @@ namespace Xbim.Common.Collections
 {
     public abstract class ItemSet<T> : IItemSet<T>, IList
     {
-		protected readonly byte Property;
+		protected readonly int Property;
         protected readonly bool IsEntitySet;
 
         protected IModel Model { get { return OwningEntity.Model; } }
@@ -20,7 +20,7 @@ namespace Xbim.Common.Collections
 
         protected List<T> Internal { get; private set; }
 
-        protected ItemSet(IPersistEntity entity, int capacity, byte property)
+        protected ItemSet(IPersistEntity entity, int capacity, int property)
         {
 			//this will create internal list of optimal capacity
             Internal = new List<T>(capacity > 0 ? capacity : 0);

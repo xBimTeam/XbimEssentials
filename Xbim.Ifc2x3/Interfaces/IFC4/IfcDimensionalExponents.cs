@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	public partial class @IfcDimensionalExponents : IIfcDimensionalExponents
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcDimensionalExponents), 1)]
 		long IIfcDimensionalExponents.LengthExponent 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDimensionalExponents), 2)]
 		long IIfcDimensionalExponents.MassExponent 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDimensionalExponents), 3)]
 		long IIfcDimensionalExponents.TimeExponent 
 		{ 
 			get
@@ -53,6 +59,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDimensionalExponents), 4)]
 		long IIfcDimensionalExponents.ElectricCurrentExponent 
 		{ 
 			get
@@ -65,6 +73,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDimensionalExponents), 5)]
 		long IIfcDimensionalExponents.ThermodynamicTemperatureExponent 
 		{ 
 			get
@@ -77,6 +87,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDimensionalExponents), 6)]
 		long IIfcDimensionalExponents.AmountOfSubstanceExponent 
 		{ 
 			get
@@ -89,6 +101,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDimensionalExponents), 7)]
 		long IIfcDimensionalExponents.LuminousIntensityExponent 
 		{ 
 			get

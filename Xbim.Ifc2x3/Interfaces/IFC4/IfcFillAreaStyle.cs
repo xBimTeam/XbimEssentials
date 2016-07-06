@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcFillAreaStyle : IIfcFillAreaStyle
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcFillAreaStyle), 2)]
 		IItemSet<IIfcFillStyleSelect> IIfcFillAreaStyle.FillStyles 
 		{ 
 			get
@@ -28,6 +30,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 
 		private  Ifc4.MeasureResource.IfcBoolean? _modelorDraughting;
 
+
+		[CrossSchemaAttribute(typeof(IIfcFillAreaStyle), 3)]
 		Ifc4.MeasureResource.IfcBoolean? IIfcFillAreaStyle.ModelorDraughting 
 		{ 
 			get
@@ -36,7 +40,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue(v => _modelorDraughting = v, _modelorDraughting, value, "ModelorDraughting", byte.MaxValue);
+				SetValue(v => _modelorDraughting = v, _modelorDraughting, value, "ModelorDraughting", -3);
 				
 			}
 		}

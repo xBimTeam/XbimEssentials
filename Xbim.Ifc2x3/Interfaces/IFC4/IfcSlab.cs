@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcSlab : IIfcSlab
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSlab), 9)]
 		Ifc4.Interfaces.IfcSlabTypeEnum? IIfcSlab.PredefinedType 
 		{ 
 			get

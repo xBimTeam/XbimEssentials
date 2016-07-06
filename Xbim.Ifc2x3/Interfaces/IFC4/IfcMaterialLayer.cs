@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 {
 	public partial class @IfcMaterialLayer : IIfcMaterialLayer
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialLayer), 1)]
 		IIfcMaterial IIfcMaterialLayer.Material 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialLayer), 2)]
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure IIfcMaterialLayer.LayerThickness 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialLayer), 3)]
 		Ifc4.MeasureResource.IfcLogical? IIfcMaterialLayer.IsVentilated 
 		{ 
 			get
@@ -59,6 +65,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 
 		private  Ifc4.MeasureResource.IfcLabel? _name;
 
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialLayer), 4)]
 		Ifc4.MeasureResource.IfcLabel? IIfcMaterialLayer.Name 
 		{ 
 			get
@@ -67,13 +75,15 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
-				SetValue(v => _name = v, _name, value, "Name", byte.MaxValue);
+				SetValue(v => _name = v, _name, value, "Name", -4);
 				
 			}
 		}
 
 		private  Ifc4.MeasureResource.IfcText? _description;
 
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialLayer), 5)]
 		Ifc4.MeasureResource.IfcText? IIfcMaterialLayer.Description 
 		{ 
 			get
@@ -82,13 +92,15 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
-				SetValue(v => _description = v, _description, value, "Description", byte.MaxValue);
+				SetValue(v => _description = v, _description, value, "Description", -5);
 				
 			}
 		}
 
 		private  Ifc4.MeasureResource.IfcLabel? _category;
 
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialLayer), 6)]
 		Ifc4.MeasureResource.IfcLabel? IIfcMaterialLayer.Category 
 		{ 
 			get
@@ -97,13 +109,15 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
-				SetValue(v => _category = v, _category, value, "Category", byte.MaxValue);
+				SetValue(v => _category = v, _category, value, "Category", -6);
 				
 			}
 		}
 
 		private  Ifc4.MeasureResource.IfcInteger? _priority;
 
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialLayer), 7)]
 		Ifc4.MeasureResource.IfcInteger? IIfcMaterialLayer.Priority 
 		{ 
 			get
@@ -112,7 +126,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
-				SetValue(v => _priority = v, _priority, value, "Priority", byte.MaxValue);
+				SetValue(v => _priority = v, _priority, value, "Priority", -7);
 				
 			}
 		}

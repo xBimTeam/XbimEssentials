@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcEllipse : IIfcEllipse
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcEllipse), 2)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcEllipse.SemiAxis1 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcEllipse), 3)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcEllipse.SemiAxis2 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 {
 	public partial class @IfcSensorType : IIfcSensorType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSensorType), 10)]
 		Ifc4.Interfaces.IfcSensorTypeEnum IIfcSensorType.PredefinedType 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcProtectiveDeviceType : IIfcProtectiveDeviceType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcProtectiveDeviceType), 10)]
 		Ifc4.Interfaces.IfcProtectiveDeviceTypeEnum IIfcProtectiveDeviceType.PredefinedType 
 		{ 
 			get

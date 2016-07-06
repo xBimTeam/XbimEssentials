@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	public partial class @IfcLightSourceSpot : IIfcLightSourceSpot
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcLightSourceSpot), 10)]
 		IIfcDirection IIfcLightSourceSpot.Orientation 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcLightSourceSpot), 11)]
 		Ifc4.MeasureResource.IfcReal? IIfcLightSourceSpot.ConcentrationExponent 
 		{ 
 			get
@@ -44,6 +48,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcLightSourceSpot), 12)]
 		Ifc4.MeasureResource.IfcPositivePlaneAngleMeasure IIfcLightSourceSpot.SpreadAngle 
 		{ 
 			get
@@ -56,6 +62,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcLightSourceSpot), 13)]
 		Ifc4.MeasureResource.IfcPositivePlaneAngleMeasure IIfcLightSourceSpot.BeamWidthAngle 
 		{ 
 			get

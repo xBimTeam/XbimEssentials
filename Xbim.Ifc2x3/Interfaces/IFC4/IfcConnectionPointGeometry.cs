@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	public partial class @IfcConnectionPointGeometry : IIfcConnectionPointGeometry
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcConnectionPointGeometry), 1)]
 		IIfcPointOrVertexPoint IIfcConnectionPointGeometry.PointOnRelatingElement 
 		{ 
 			get
@@ -52,6 +54,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcConnectionPointGeometry), 2)]
 		IIfcPointOrVertexPoint IIfcConnectionPointGeometry.PointOnRelatedElement 
 		{ 
 			get

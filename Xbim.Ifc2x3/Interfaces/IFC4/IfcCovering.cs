@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcCovering : IIfcCovering
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCovering), 9)]
 		Ifc4.Interfaces.IfcCoveringTypeEnum? IIfcCovering.PredefinedType 
 		{ 
 			get

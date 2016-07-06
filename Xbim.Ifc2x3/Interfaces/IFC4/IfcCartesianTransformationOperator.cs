@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcCartesianTransformationOperator : IIfcCartesianTransformationOperator
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCartesianTransformationOperator), 1)]
 		IIfcDirection IIfcCartesianTransformationOperator.Axis1 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCartesianTransformationOperator), 2)]
 		IIfcDirection IIfcCartesianTransformationOperator.Axis2 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCartesianTransformationOperator), 3)]
 		IIfcCartesianPoint IIfcCartesianTransformationOperator.LocalOrigin 
 		{ 
 			get
@@ -53,6 +59,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCartesianTransformationOperator), 4)]
 		Ifc4.MeasureResource.IfcReal? IIfcCartesianTransformationOperator.Scale 
 		{ 
 			get

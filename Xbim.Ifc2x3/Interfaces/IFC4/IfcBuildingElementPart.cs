@@ -20,6 +20,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 
 		private  Ifc4.Interfaces.IfcBuildingElementPartTypeEnum? _predefinedType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcBuildingElementPart), 9)]
 		Ifc4.Interfaces.IfcBuildingElementPartTypeEnum? IIfcBuildingElementPart.PredefinedType 
 		{ 
 			get
@@ -28,7 +30,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -9);
 				
 			}
 		}

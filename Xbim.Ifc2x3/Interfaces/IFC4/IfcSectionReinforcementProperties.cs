@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	public partial class @IfcSectionReinforcementProperties : IIfcSectionReinforcementProperties
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSectionReinforcementProperties), 1)]
 		Ifc4.MeasureResource.IfcLengthMeasure IIfcSectionReinforcementProperties.LongitudinalStartPosition 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSectionReinforcementProperties), 2)]
 		Ifc4.MeasureResource.IfcLengthMeasure IIfcSectionReinforcementProperties.LongitudinalEndPosition 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSectionReinforcementProperties), 3)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcSectionReinforcementProperties.TransversePosition 
 		{ 
 			get
@@ -56,6 +62,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSectionReinforcementProperties), 4)]
 		Ifc4.Interfaces.IfcReinforcingBarRoleEnum IIfcSectionReinforcementProperties.ReinforcementRole 
 		{ 
 			get
@@ -158,6 +166,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSectionReinforcementProperties), 5)]
 		IIfcSectionProperties IIfcSectionReinforcementProperties.SectionDefinition 
 		{ 
 			get
@@ -170,6 +180,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSectionReinforcementProperties), 6)]
 		IItemSet<IIfcReinforcementBarProperties> IIfcSectionReinforcementProperties.CrossSectionReinforcementDefinitions 
 		{ 
 			get

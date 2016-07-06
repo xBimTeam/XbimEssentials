@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.QuantityResource
 {
 	public partial class @IfcQuantityCount : IIfcQuantityCount
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcQuantityCount), 4)]
 		Ifc4.MeasureResource.IfcCountMeasure IIfcQuantityCount.CountValue 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.QuantityResource
 
 		private  Ifc4.MeasureResource.IfcLabel? _formula;
 
+
+		[CrossSchemaAttribute(typeof(IIfcQuantityCount), 5)]
 		Ifc4.MeasureResource.IfcLabel? IIfcQuantityCount.Formula 
 		{ 
 			get
@@ -40,7 +44,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 			} 
 			set
 			{
-				SetValue(v => _formula = v, _formula, value, "Formula", byte.MaxValue);
+				SetValue(v => _formula = v, _formula, value, "Formula", -5);
 				
 			}
 		}

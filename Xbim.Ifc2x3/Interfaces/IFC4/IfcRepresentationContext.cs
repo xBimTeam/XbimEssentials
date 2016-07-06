@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 {
 	public partial class @IfcRepresentationContext : IIfcRepresentationContext
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRepresentationContext), 1)]
 		Ifc4.MeasureResource.IfcLabel? IIfcRepresentationContext.ContextIdentifier 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRepresentationContext), 2)]
 		Ifc4.MeasureResource.IfcLabel? IIfcRepresentationContext.ContextType 
 		{ 
 			get

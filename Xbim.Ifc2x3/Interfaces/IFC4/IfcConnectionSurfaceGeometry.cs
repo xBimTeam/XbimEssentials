@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	public partial class @IfcConnectionSurfaceGeometry : IIfcConnectionSurfaceGeometry
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcConnectionSurfaceGeometry), 1)]
 		IIfcSurfaceOrFaceSurface IIfcConnectionSurfaceGeometry.SurfaceOnRelatingElement 
 		{ 
 			get
@@ -61,6 +63,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcConnectionSurfaceGeometry), 2)]
 		IIfcSurfaceOrFaceSurface IIfcConnectionSurfaceGeometry.SurfaceOnRelatedElement 
 		{ 
 			get

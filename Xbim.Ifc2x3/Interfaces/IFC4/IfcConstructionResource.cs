@@ -20,6 +20,8 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 
 		private  IIfcResourceTime _usage;
 
+
+		[CrossSchemaAttribute(typeof(IIfcConstructionResource), 8)]
 		IIfcResourceTime IIfcConstructionResource.Usage 
 		{ 
 			get
@@ -28,10 +30,12 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			} 
 			set
 			{
-				SetValue(v => _usage = v, _usage, value, "Usage", byte.MaxValue);
+				SetValue(v => _usage = v, _usage, value, "Usage", -8);
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcConstructionResource), 9)]
 		IItemSet<IIfcAppliedValue> IIfcConstructionResource.BaseCosts 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			    //##
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcConstructionResource), 10)]
 		IIfcPhysicalQuantity IIfcConstructionResource.BaseQuantity 
 		{ 
 			get

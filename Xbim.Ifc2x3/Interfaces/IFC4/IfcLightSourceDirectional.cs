@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	public partial class @IfcLightSourceDirectional : IIfcLightSourceDirectional
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcLightSourceDirectional), 5)]
 		IIfcDirection IIfcLightSourceDirectional.Orientation 
 		{ 
 			get

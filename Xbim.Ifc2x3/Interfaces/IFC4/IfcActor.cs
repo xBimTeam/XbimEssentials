@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcActor : IIfcActor
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcActor), 6)]
 		IIfcActorSelect IIfcActor.TheActor 
 		{ 
 			get

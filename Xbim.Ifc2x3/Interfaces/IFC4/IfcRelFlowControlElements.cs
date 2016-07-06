@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	public partial class @IfcRelFlowControlElements : IIfcRelFlowControlElements
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelFlowControlElements), 5)]
 		IItemSet<IIfcDistributionControlElement> IIfcRelFlowControlElements.RelatedControlElements 
 		{ 
 			get
@@ -25,6 +27,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 				return new Common.Collections.ProxyItemSet<IfcDistributionControlElement, IIfcDistributionControlElement>(RelatedControlElements);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelFlowControlElements), 6)]
 		IIfcDistributionFlowElement IIfcRelFlowControlElements.RelatingFlowElement 
 		{ 
 			get

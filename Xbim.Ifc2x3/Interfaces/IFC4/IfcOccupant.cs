@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	public partial class @IfcOccupant : IIfcOccupant
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcOccupant), 7)]
 		Ifc4.Interfaces.IfcOccupantTypeEnum? IIfcOccupant.PredefinedType 
 		{ 
 			get

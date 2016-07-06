@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.CostResource
 {
 	public partial class @IfcCurrencyRelationship : IIfcCurrencyRelationship
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCurrencyRelationship), 3)]
 		IIfcMonetaryUnit IIfcCurrencyRelationship.RelatingMonetaryUnit 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.CostResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCurrencyRelationship), 4)]
 		IIfcMonetaryUnit IIfcCurrencyRelationship.RelatedMonetaryUnit 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.CostResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCurrencyRelationship), 5)]
 		Ifc4.MeasureResource.IfcPositiveRatioMeasure IIfcCurrencyRelationship.ExchangeRate 
 		{ 
 			get
@@ -53,6 +59,8 @@ namespace Xbim.Ifc2x3.CostResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCurrencyRelationship), 6)]
 		Ifc4.DateTimeResource.IfcDateTime? IIfcCurrencyRelationship.RateDateTime 
 		{ 
 			get
@@ -91,6 +99,8 @@ namespace Xbim.Ifc2x3.CostResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCurrencyRelationship), 7)]
 		IIfcLibraryInformation IIfcCurrencyRelationship.RateSource 
 		{ 
 			get
@@ -106,6 +116,8 @@ namespace Xbim.Ifc2x3.CostResource
 
 		private  Ifc4.MeasureResource.IfcLabel? _name;
 
+
+		[CrossSchemaAttribute(typeof(IIfcCurrencyRelationship), 1)]
 		Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
 		{ 
 			get
@@ -114,13 +126,15 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
-				SetValue(v => _name = v, _name, value, "Name", byte.MaxValue);
+				SetValue(v => _name = v, _name, value, "Name", -1);
 				
 			}
 		}
 
 		private  Ifc4.MeasureResource.IfcText? _description;
 
+
+		[CrossSchemaAttribute(typeof(IIfcCurrencyRelationship), 2)]
 		Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
 		{ 
 			get
@@ -129,7 +143,7 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
-				SetValue(v => _description = v, _description, value, "Description", byte.MaxValue);
+				SetValue(v => _description = v, _description, value, "Description", -2);
 				
 			}
 		}

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcRelCoversSpaces : IIfcRelCoversSpaces
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelCoversSpaces), 5)]
 		IIfcSpace IIfcRelCoversSpaces.RelatingSpace 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelCoversSpaces), 6)]
 		IItemSet<IIfcCovering> IIfcRelCoversSpaces.RelatedCoverings 
 		{ 
 			get

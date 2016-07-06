@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcRevolvedAreaSolid : IIfcRevolvedAreaSolid
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRevolvedAreaSolid), 3)]
 		IIfcAxis1Placement IIfcRevolvedAreaSolid.Axis 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRevolvedAreaSolid), 4)]
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure IIfcRevolvedAreaSolid.Angle 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ActorResource
 {
 	public partial class @IfcPersonAndOrganization : IIfcPersonAndOrganization
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPersonAndOrganization), 1)]
 		IIfcPerson IIfcPersonAndOrganization.ThePerson 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPersonAndOrganization), 2)]
 		IIfcOrganization IIfcPersonAndOrganization.TheOrganization 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPersonAndOrganization), 3)]
 		IItemSet<IIfcActorRole> IIfcPersonAndOrganization.Roles 
 		{ 
 			get

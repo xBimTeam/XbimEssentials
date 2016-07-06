@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	public partial class @IfcInventory : IIfcInventory
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcInventory), 6)]
 		Ifc4.Interfaces.IfcInventoryTypeEnum? IIfcInventory.PredefinedType 
 		{ 
 			get
@@ -80,6 +82,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcInventory), 7)]
 		IIfcActorSelect IIfcInventory.Jurisdiction 
 		{ 
 			get
@@ -124,6 +128,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcInventory), 8)]
 		IItemSet<IIfcPerson> IIfcInventory.ResponsiblePersons 
 		{ 
 			get
@@ -132,6 +138,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				return new Common.Collections.ProxyItemSet<ActorResource.IfcPerson, IIfcPerson>(ResponsiblePersons);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcInventory), 9)]
 		Ifc4.DateTimeResource.IfcDate? IIfcInventory.LastUpdateDate 
 		{ 
 			get
@@ -161,6 +169,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcInventory), 10)]
 		IIfcCostValue IIfcInventory.CurrentValue 
 		{ 
 			get
@@ -173,6 +183,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcInventory), 11)]
 		IIfcCostValue IIfcInventory.OriginalValue 
 		{ 
 			get

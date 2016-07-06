@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcLampType : IIfcLampType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcLampType), 10)]
 		Ifc4.Interfaces.IfcLampTypeEnum IIfcLampType.PredefinedType 
 		{ 
 			get

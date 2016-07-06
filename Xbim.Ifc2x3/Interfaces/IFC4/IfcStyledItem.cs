@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcStyledItem : IIfcStyledItem
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStyledItem), 1)]
 		IIfcRepresentationItem IIfcStyledItem.Item 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStyledItem), 2)]
 		IItemSet<IIfcStyleAssignmentSelect> IIfcStyledItem.Styles 
 		{ 
 			get
@@ -36,7 +40,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			
 				return _stylesIfc4 ?? (_stylesIfc4 = new Common.Collections.ExtendedItemSet<IfcPresentationStyleAssignment, IIfcStyleAssignmentSelect>(
                     Styles, 
-                    new ItemSet<IIfcStyleAssignmentSelect>(this, 0, 255), 
+                    new ItemSet<IIfcStyleAssignmentSelect>(this, 0, -2), 
 					StylesToIfc4, 
                     StylesToIfc2X3));
 			} 
@@ -54,6 +58,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		private static IfcPresentationStyleAssignment StylesToIfc2X3 (IIfcStyleAssignmentSelect member){
 			return member as IfcPresentationStyleAssignment;
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStyledItem), 3)]
 		Ifc4.MeasureResource.IfcLabel? IIfcStyledItem.Name 
 		{ 
 			get

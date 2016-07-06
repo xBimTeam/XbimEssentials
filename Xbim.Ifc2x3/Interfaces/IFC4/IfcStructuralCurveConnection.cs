@@ -20,6 +20,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 
 		private  IIfcDirection _axis;
 
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralCurveConnection), 9)]
 		IIfcDirection IIfcStructuralCurveConnection.Axis 
 		{ 
 			get
@@ -28,7 +30,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue(v => _axis = v, _axis, value, "Axis", byte.MaxValue);
+				SetValue(v => _axis = v, _axis, value, "Axis", -9);
 				
 			}
 		}

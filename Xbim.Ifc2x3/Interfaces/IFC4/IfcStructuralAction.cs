@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralAction : IIfcStructuralAction
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralAction), 10)]
 		Ifc4.MeasureResource.IfcBoolean? IIfcStructuralAction.DestabilizingLoad 
 		{ 
 			get

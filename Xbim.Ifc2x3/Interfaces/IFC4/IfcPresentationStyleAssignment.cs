@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcPresentationStyleAssignment : IIfcPresentationStyleAssignment
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPresentationStyleAssignment), 1)]
 		IItemSet<IIfcPresentationStyleSelect> IIfcPresentationStyleAssignment.Styles 
 		{ 
 			get
@@ -24,7 +26,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			
 				return _stylesIfc4 ?? (_stylesIfc4 = new Common.Collections.ExtendedItemSet<IfcPresentationStyleSelect, IIfcPresentationStyleSelect>(
                     Styles, 
-                    new ItemSet<IIfcPresentationStyleSelect>(this, 0, 255), 
+                    new ItemSet<IIfcPresentationStyleSelect>(this, 0, -1), 
 					StylesToIfc4, 
                     StylesToIfc2X3));
 			} 

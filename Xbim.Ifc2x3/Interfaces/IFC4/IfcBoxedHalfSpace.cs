@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcBoxedHalfSpace : IIfcBoxedHalfSpace
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcBoxedHalfSpace), 3)]
 		IIfcBoundingBox IIfcBoxedHalfSpace.Enclosure 
 		{ 
 			get

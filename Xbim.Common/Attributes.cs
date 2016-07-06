@@ -78,9 +78,9 @@ namespace Xbim.Common
         private readonly EntityAttributeType _entityType;
         private readonly int _order;
         private readonly int _globalOrder;
-        private readonly int _maxCardinality = -1;
-        private readonly int _minCardinality = -1;
-        private readonly EntityAttributeType _memberType = EntityAttributeType.Class;
+        private readonly int _maxCardinality;
+        private readonly int _minCardinality;
+        private readonly EntityAttributeType _memberType;
 
         public EntityAttributeState State
         {
@@ -112,17 +112,6 @@ namespace Xbim.Common
             get { return _memberType; }
         }
 
-        //public EntityAttributeAttribute()
-        //{
-        //}
-
-        //public EntityAttributeAttribute(int order, EntityAttributeState state)
-        //{
-        //    _state = state;
-        //    _order = order;
-        //    _entityType = EntityAttributeType.Class;
-        //}
-
         public EntityAttributeAttribute(int order, EntityAttributeState state, EntityAttributeType entityType, EntityAttributeType memberType,
                             int minCardinality, int maxCardinality, int globalOrder)
         {
@@ -134,49 +123,6 @@ namespace Xbim.Common
             _maxCardinality = maxCardinality;
             _globalOrder = globalOrder;
         }
-
-        //public EntityAttributeAttribute(int order, EntityAttributeState state, EntityAttributeType entityType, int minCardinality,
-        //                    int maxCardinality)
-        //{
-        //    _state = state;
-        //    _order = order;
-        //    _entityType = entityType;
-        //    _minCardinality = minCardinality;
-        //    _maxCardinality = maxCardinality;
-        //}
-
-        //public EntityAttributeAttribute(int order, EntityAttributeState state, EntityAttributeType entityType, int minCardinality)
-        //{
-        //    _state = state;
-        //    _order = order;
-        //    _entityType = entityType;
-        //    _minCardinality = minCardinality;
-        //}
-
-        //public EntityAttributeAttribute(int order, EntityAttributeState state, EntityAttributeType entityType, EntityAttributeType memberType,
-        //                    int minCardinality)
-        //{
-        //    _state = state;
-        //    _order = order;
-        //    _entityType = entityType;
-        //    _memberType = memberType;
-        //    _minCardinality = minCardinality;
-        //}
-
-        //public EntityAttributeAttribute(int order, EntityAttributeState state, EntityAttributeType entityType)
-        //{
-        //    _state = state;
-        //    _order = order;
-        //    _entityType = entityType;
-        //}
-
-        //public EntityAttributeAttribute(int order, EntityAttributeState state, EntityAttributeType entityType, EntityAttributeType memberType)
-        //{
-        //    _state = state;
-        //    _order = order;
-        //    _entityType = entityType;
-        //    _memberType = memberType;
-        //}
 
         public bool IsEnumerable
         {
@@ -262,6 +208,19 @@ namespace Xbim.Common
         public int GlobalOrder
         {
             get { return _globalOrder; }
+        }
+    }
+
+    [AttributeUsage(AttributeTargets.Property)]
+    public sealed class CrossSchemaAttributeAttribute : Attribute
+    {
+        public Type ForType { get; private set; }
+        public int Order { get; private set; }
+
+        public CrossSchemaAttributeAttribute(Type forType, int order)
+        {
+            ForType = forType;
+            Order = order;
         }
     }
 }

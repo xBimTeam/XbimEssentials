@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcStructuralConnectionCondition : IIfcStructuralConnectionCondition
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralConnectionCondition), 1)]
 		Ifc4.MeasureResource.IfcLabel? IIfcStructuralConnectionCondition.Name 
 		{ 
 			get

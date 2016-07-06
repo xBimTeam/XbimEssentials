@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcFilterType : IIfcFilterType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcFilterType), 10)]
 		Ifc4.Interfaces.IfcFilterTypeEnum IIfcFilterType.PredefinedType 
 		{ 
 			get

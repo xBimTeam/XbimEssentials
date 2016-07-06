@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 {
 	public partial class @IfcRegularTimeSeries : IIfcRegularTimeSeries
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRegularTimeSeries), 9)]
 		Ifc4.MeasureResource.IfcTimeMeasure IIfcRegularTimeSeries.TimeStep 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRegularTimeSeries), 10)]
 		IItemSet<IIfcTimeSeriesValue> IIfcRegularTimeSeries.Values 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcFaceBasedSurfaceModel : IIfcFaceBasedSurfaceModel
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcFaceBasedSurfaceModel), 1)]
 		IItemSet<IIfcConnectedFaceSet> IIfcFaceBasedSurfaceModel.FbsmFaces 
 		{ 
 			get

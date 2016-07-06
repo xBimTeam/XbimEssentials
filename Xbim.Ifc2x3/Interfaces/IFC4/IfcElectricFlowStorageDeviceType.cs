@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcElectricFlowStorageDeviceType : IIfcElectricFlowStorageDeviceType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcElectricFlowStorageDeviceType), 10)]
 		Ifc4.Interfaces.IfcElectricFlowStorageDeviceTypeEnum IIfcElectricFlowStorageDeviceType.PredefinedType 
 		{ 
 			get

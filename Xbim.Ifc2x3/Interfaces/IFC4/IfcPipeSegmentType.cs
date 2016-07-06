@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcPipeSegmentType : IIfcPipeSegmentType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPipeSegmentType), 10)]
 		Ifc4.Interfaces.IfcPipeSegmentTypeEnum IIfcPipeSegmentType.PredefinedType 
 		{ 
 			get

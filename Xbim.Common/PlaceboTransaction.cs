@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Xbim.Common
 {
@@ -25,7 +22,7 @@ namespace Xbim.Common
            //do nothing
         }
 
-        public void AddReversibleAction(Action doAction, Action undoAction, IPersistEntity entity, ChangeType changeType, byte property)
+        public void AddReversibleAction(Action doAction, Action undoAction, IPersistEntity entity, ChangeType changeType, int property)
         {
             //do nothing
         }

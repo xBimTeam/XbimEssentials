@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcWindowPanelProperties : IIfcWindowPanelProperties
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcWindowPanelProperties), 5)]
 		Ifc4.Interfaces.IfcWindowPanelOperationEnum IIfcWindowPanelProperties.OperationType 
 		{ 
 			get
@@ -141,6 +143,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWindowPanelProperties), 6)]
 		Ifc4.Interfaces.IfcWindowPanelPositionEnum IIfcWindowPanelProperties.PanelPosition 
 		{ 
 			get
@@ -209,6 +213,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWindowPanelProperties), 7)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcWindowPanelProperties.FrameDepth 
 		{ 
 			get
@@ -224,6 +230,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWindowPanelProperties), 8)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcWindowPanelProperties.FrameThickness 
 		{ 
 			get
@@ -239,6 +247,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWindowPanelProperties), 9)]
 		IIfcShapeAspect IIfcWindowPanelProperties.ShapeAspectStyle 
 		{ 
 			get

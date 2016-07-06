@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 {
 	public partial class @IfcOwnerHistory : IIfcOwnerHistory
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcOwnerHistory), 1)]
 		IIfcPersonAndOrganization IIfcOwnerHistory.OwningUser 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcOwnerHistory), 2)]
 		IIfcApplication IIfcOwnerHistory.OwningApplication 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcOwnerHistory), 3)]
 		Ifc4.Interfaces.IfcStateEnum? IIfcOwnerHistory.State 
 		{ 
 			get
@@ -102,6 +108,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcOwnerHistory), 4)]
 		Ifc4.Interfaces.IfcChangeActionEnum? IIfcOwnerHistory.ChangeAction 
 		{ 
 			get
@@ -176,6 +184,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcOwnerHistory), 5)]
 		Ifc4.DateTimeResource.IfcTimeStamp? IIfcOwnerHistory.LastModifiedDate 
 		{ 
 			get
@@ -191,6 +201,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcOwnerHistory), 6)]
 		IIfcPersonAndOrganization IIfcOwnerHistory.LastModifyingUser 
 		{ 
 			get
@@ -203,6 +215,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcOwnerHistory), 7)]
 		IIfcApplication IIfcOwnerHistory.LastModifyingApplication 
 		{ 
 			get
@@ -215,6 +229,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcOwnerHistory), 8)]
 		Ifc4.DateTimeResource.IfcTimeStamp IIfcOwnerHistory.CreationDate 
 		{ 
 			get

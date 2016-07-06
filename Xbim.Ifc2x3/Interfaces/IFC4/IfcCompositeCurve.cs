@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcCompositeCurve : IIfcCompositeCurve
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCompositeCurve), 1)]
 		IItemSet<IIfcCompositeCurveSegment> IIfcCompositeCurve.Segments 
 		{ 
 			get
@@ -25,6 +27,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return new Common.Collections.ProxyItemSet<IfcCompositeCurveSegment, IIfcCompositeCurveSegment>(Segments);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCompositeCurve), 2)]
 		Ifc4.MeasureResource.IfcLogical IIfcCompositeCurve.SelfIntersect 
 		{ 
 			get

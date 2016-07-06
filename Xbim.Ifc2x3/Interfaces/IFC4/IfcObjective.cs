@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 {
 	public partial class @IfcObjective : IIfcObjective
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcObjective), 8)]
 		IItemSet<IIfcConstraint> IIfcObjective.BenchmarkValues 
 		{ 
 			get
@@ -35,6 +37,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 
 		private  Ifc4.Interfaces.IfcLogicalOperatorEnum? _logicalAggregator;
 
+
+		[CrossSchemaAttribute(typeof(IIfcObjective), 9)]
 		Ifc4.Interfaces.IfcLogicalOperatorEnum? IIfcObjective.LogicalAggregator 
 		{ 
 			get
@@ -43,10 +47,12 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				SetValue(v => _logicalAggregator = v, _logicalAggregator, value, "LogicalAggregator", byte.MaxValue);
+				SetValue(v => _logicalAggregator = v, _logicalAggregator, value, "LogicalAggregator", -9);
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcObjective), 10)]
 		Ifc4.Interfaces.IfcObjectiveEnum IIfcObjective.ObjectiveQualifier 
 		{ 
 			get
@@ -176,6 +182,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcObjective), 11)]
 		Ifc4.MeasureResource.IfcLabel? IIfcObjective.UserDefinedQualifier 
 		{ 
 			get

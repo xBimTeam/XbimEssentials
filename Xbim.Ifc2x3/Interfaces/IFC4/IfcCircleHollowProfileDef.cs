@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcCircleHollowProfileDef : IIfcCircleHollowProfileDef
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCircleHollowProfileDef), 5)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcCircleHollowProfileDef.WallThickness 
 		{ 
 			get

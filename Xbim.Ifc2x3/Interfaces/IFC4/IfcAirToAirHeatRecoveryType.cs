@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcAirToAirHeatRecoveryType : IIfcAirToAirHeatRecoveryType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcAirToAirHeatRecoveryType), 10)]
 		Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum IIfcAirToAirHeatRecoveryType.PredefinedType 
 		{ 
 			get

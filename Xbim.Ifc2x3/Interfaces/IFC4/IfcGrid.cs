@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcGrid : IIfcGrid
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcGrid), 8)]
 		IItemSet<IIfcGridAxis> IIfcGrid.UAxes 
 		{ 
 			get
@@ -25,6 +27,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return new Common.Collections.ProxyItemSet<GeometricConstraintResource.IfcGridAxis, IIfcGridAxis>(UAxes);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcGrid), 9)]
 		IItemSet<IIfcGridAxis> IIfcGrid.VAxes 
 		{ 
 			get
@@ -33,6 +37,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return new Common.Collections.ProxyItemSet<GeometricConstraintResource.IfcGridAxis, IIfcGridAxis>(VAxes);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcGrid), 10)]
 		IItemSet<IIfcGridAxis> IIfcGrid.WAxes 
 		{ 
 			get
@@ -44,6 +50,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 
 		private  Ifc4.Interfaces.IfcGridTypeEnum? _predefinedType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcGrid), 11)]
 		Ifc4.Interfaces.IfcGridTypeEnum? IIfcGrid.PredefinedType 
 		{ 
 			get
@@ -52,7 +60,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -11);
 				
 			}
 		}

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	public partial class @IfcSubedge : IIfcSubedge
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSubedge), 3)]
 		IIfcEdge IIfcSubedge.ParentEdge 
 		{ 
 			get

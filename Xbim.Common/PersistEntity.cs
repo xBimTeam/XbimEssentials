@@ -90,7 +90,7 @@ namespace Xbim.Common
 
         #region Transactional property setting
 
-        protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
+        protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, int propertyOrder)
         {
             //activate for write if it is not activated yet
             if (ActivationStatus != ActivationStatus.ActivatedReadWrite)

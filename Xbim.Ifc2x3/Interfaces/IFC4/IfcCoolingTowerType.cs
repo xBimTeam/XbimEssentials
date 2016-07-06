@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcCoolingTowerType : IIfcCoolingTowerType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCoolingTowerType), 10)]
 		Ifc4.Interfaces.IfcCoolingTowerTypeEnum IIfcCoolingTowerType.PredefinedType 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcStructuralLoadSingleForce : IIfcStructuralLoadSingleForce
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleForce), 2)]
 		Ifc4.MeasureResource.IfcForceMeasure? IIfcStructuralLoadSingleForce.ForceX 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleForce), 3)]
 		Ifc4.MeasureResource.IfcForceMeasure? IIfcStructuralLoadSingleForce.ForceY 
 		{ 
 			get
@@ -47,6 +51,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleForce), 4)]
 		Ifc4.MeasureResource.IfcForceMeasure? IIfcStructuralLoadSingleForce.ForceZ 
 		{ 
 			get
@@ -62,6 +68,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleForce), 5)]
 		Ifc4.MeasureResource.IfcTorqueMeasure? IIfcStructuralLoadSingleForce.MomentX 
 		{ 
 			get
@@ -77,6 +85,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleForce), 6)]
 		Ifc4.MeasureResource.IfcTorqueMeasure? IIfcStructuralLoadSingleForce.MomentY 
 		{ 
 			get
@@ -92,6 +102,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleForce), 7)]
 		Ifc4.MeasureResource.IfcTorqueMeasure? IIfcStructuralLoadSingleForce.MomentZ 
 		{ 
 			get

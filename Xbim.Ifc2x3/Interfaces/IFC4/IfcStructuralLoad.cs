@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcStructuralLoad : IIfcStructuralLoad
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoad), 1)]
 		Ifc4.MeasureResource.IfcLabel? IIfcStructuralLoad.Name 
 		{ 
 			get

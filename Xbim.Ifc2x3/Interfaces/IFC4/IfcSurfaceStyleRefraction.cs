@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcSurfaceStyleRefraction : IIfcSurfaceStyleRefraction
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceStyleRefraction), 1)]
 		Ifc4.MeasureResource.IfcReal? IIfcSurfaceStyleRefraction.RefractionIndex 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceStyleRefraction), 2)]
 		Ifc4.MeasureResource.IfcReal? IIfcSurfaceStyleRefraction.DispersionFactor 
 		{ 
 			get

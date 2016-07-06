@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcRelConnectsWithEccentricity : IIfcRelConnectsWithEccentricity
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelConnectsWithEccentricity), 11)]
 		IIfcConnectionGeometry IIfcRelConnectsWithEccentricity.ConnectionConstraint 
 		{ 
 			get

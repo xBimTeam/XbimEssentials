@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	public partial class @IfcTendon : IIfcTendon
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTendon), 10)]
 		Ifc4.Interfaces.IfcTendonTypeEnum? IIfcTendon.PredefinedType 
 		{ 
 			get
@@ -87,6 +89,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTendon), 11)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcTendon.NominalDiameter 
 		{ 
 			get
@@ -101,6 +105,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTendon), 12)]
 		Ifc4.MeasureResource.IfcAreaMeasure? IIfcTendon.CrossSectionArea 
 		{ 
 			get
@@ -115,6 +121,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTendon), 13)]
 		Ifc4.MeasureResource.IfcForceMeasure? IIfcTendon.TensionForce 
 		{ 
 			get
@@ -130,6 +138,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTendon), 14)]
 		Ifc4.MeasureResource.IfcPressureMeasure? IIfcTendon.PreStress 
 		{ 
 			get
@@ -145,6 +155,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTendon), 15)]
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcTendon.FrictionCoefficient 
 		{ 
 			get
@@ -160,6 +172,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTendon), 16)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcTendon.AnchorageSlip 
 		{ 
 			get
@@ -175,6 +189,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTendon), 17)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcTendon.MinCurvatureRadius 
 		{ 
 			get

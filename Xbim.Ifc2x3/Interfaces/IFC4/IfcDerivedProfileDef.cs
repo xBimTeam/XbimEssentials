@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcDerivedProfileDef : IIfcDerivedProfileDef
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcDerivedProfileDef), 3)]
 		IIfcProfileDef IIfcDerivedProfileDef.ParentProfile 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDerivedProfileDef), 4)]
 		IIfcCartesianTransformationOperator2D IIfcDerivedProfileDef.Operator 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDerivedProfileDef), 5)]
 		Ifc4.MeasureResource.IfcLabel? IIfcDerivedProfileDef.Label 
 		{ 
 			get

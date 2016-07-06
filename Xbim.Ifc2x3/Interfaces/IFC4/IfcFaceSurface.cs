@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	public partial class @IfcFaceSurface : IIfcFaceSurface
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcFaceSurface), 2)]
 		IIfcSurface IIfcFaceSurface.FaceSurface 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcFaceSurface), 3)]
 		Ifc4.MeasureResource.IfcBoolean IIfcFaceSurface.SameSense 
 		{ 
 			get

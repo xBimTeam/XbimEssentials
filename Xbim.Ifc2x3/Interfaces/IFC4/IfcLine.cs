@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcLine : IIfcLine
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcLine), 1)]
 		IIfcCartesianPoint IIfcLine.Pnt 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcLine), 2)]
 		IIfcVector IIfcLine.Dir 
 		{ 
 			get

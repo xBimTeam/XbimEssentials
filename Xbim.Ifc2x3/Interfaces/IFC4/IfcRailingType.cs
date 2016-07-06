@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcRailingType : IIfcRailingType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRailingType), 10)]
 		Ifc4.Interfaces.IfcRailingTypeEnum IIfcRailingType.PredefinedType 
 		{ 
 			get

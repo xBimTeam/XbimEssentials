@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcJunctionBoxType : IIfcJunctionBoxType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcJunctionBoxType), 10)]
 		Ifc4.Interfaces.IfcJunctionBoxTypeEnum IIfcJunctionBoxType.PredefinedType 
 		{ 
 			get

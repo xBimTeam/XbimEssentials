@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcSite : IIfcSite
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSite), 10)]
 		Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure? IIfcSite.RefLatitude 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSite), 11)]
 		Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure? IIfcSite.RefLongitude 
 		{ 
 			get
@@ -47,6 +51,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSite), 12)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcSite.RefElevation 
 		{ 
 			get
@@ -62,6 +68,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSite), 13)]
 		Ifc4.MeasureResource.IfcLabel? IIfcSite.LandTitleNumber 
 		{ 
 			get
@@ -77,6 +85,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSite), 14)]
 		IIfcPostalAddress IIfcSite.SiteAddress 
 		{ 
 			get
@@ -89,6 +99,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSite), 8)]
 		Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
 		{ 
 			get

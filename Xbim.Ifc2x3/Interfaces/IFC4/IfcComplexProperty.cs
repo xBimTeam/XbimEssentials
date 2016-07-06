@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 {
 	public partial class @IfcComplexProperty : IIfcComplexProperty
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcComplexProperty), 3)]
 		Ifc4.MeasureResource.IfcIdentifier IIfcComplexProperty.UsageName 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcComplexProperty), 4)]
 		IItemSet<IIfcProperty> IIfcComplexProperty.HasProperties 
 		{ 
 			get

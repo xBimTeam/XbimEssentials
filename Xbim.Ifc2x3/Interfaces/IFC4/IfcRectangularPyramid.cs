@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcRectangularPyramid : IIfcRectangularPyramid
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRectangularPyramid), 2)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRectangularPyramid.XLength 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRectangularPyramid), 3)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRectangularPyramid.YLength 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRectangularPyramid), 4)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRectangularPyramid.Height 
 		{ 
 			get

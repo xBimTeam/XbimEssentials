@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcRectangularTrimmedSurface : IIfcRectangularTrimmedSurface
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRectangularTrimmedSurface), 1)]
 		IIfcSurface IIfcRectangularTrimmedSurface.BasisSurface 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRectangularTrimmedSurface), 2)]
 		Ifc4.MeasureResource.IfcParameterValue IIfcRectangularTrimmedSurface.U1 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRectangularTrimmedSurface), 3)]
 		Ifc4.MeasureResource.IfcParameterValue IIfcRectangularTrimmedSurface.V1 
 		{ 
 			get
@@ -53,6 +59,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRectangularTrimmedSurface), 4)]
 		Ifc4.MeasureResource.IfcParameterValue IIfcRectangularTrimmedSurface.U2 
 		{ 
 			get
@@ -65,6 +73,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRectangularTrimmedSurface), 5)]
 		Ifc4.MeasureResource.IfcParameterValue IIfcRectangularTrimmedSurface.V2 
 		{ 
 			get
@@ -77,6 +87,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRectangularTrimmedSurface), 6)]
 		Ifc4.MeasureResource.IfcBoolean IIfcRectangularTrimmedSurface.Usense 
 		{ 
 			get
@@ -91,6 +103,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRectangularTrimmedSurface), 7)]
 		Ifc4.MeasureResource.IfcBoolean IIfcRectangularTrimmedSurface.Vsense 
 		{ 
 			get

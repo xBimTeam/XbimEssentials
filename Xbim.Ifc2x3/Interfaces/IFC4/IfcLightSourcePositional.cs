@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	public partial class @IfcLightSourcePositional : IIfcLightSourcePositional
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcLightSourcePositional), 5)]
 		IIfcCartesianPoint IIfcLightSourcePositional.Position 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcLightSourcePositional), 6)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcLightSourcePositional.Radius 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcLightSourcePositional), 7)]
 		Ifc4.MeasureResource.IfcReal IIfcLightSourcePositional.ConstantAttenuation 
 		{ 
 			get
@@ -53,6 +59,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcLightSourcePositional), 8)]
 		Ifc4.MeasureResource.IfcReal IIfcLightSourcePositional.DistanceAttenuation 
 		{ 
 			get
@@ -65,6 +73,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcLightSourcePositional), 9)]
 		Ifc4.MeasureResource.IfcReal IIfcLightSourcePositional.QuadricAttenuation 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	public partial class @IfcMaterialProperties : IIfcMaterialProperties
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialProperties), 4)]
 		IIfcMaterialDefinition IIfcMaterialProperties.Material 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 
 		private  Ifc4.MeasureResource.IfcIdentifier? _name;
 
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialProperties), 1)]
 		Ifc4.MeasureResource.IfcIdentifier? IIfcExtendedProperties.Name 
 		{ 
 			get
@@ -40,13 +44,15 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue(v => _name = v, _name, value, "Name", byte.MaxValue);
+				SetValue(v => _name = v, _name, value, "Name", -1);
 				
 			}
 		}
 
 		private  Ifc4.MeasureResource.IfcText? _description;
 
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialProperties), 2)]
 		Ifc4.MeasureResource.IfcText? IIfcExtendedProperties.Description 
 		{ 
 			get
@@ -55,10 +61,12 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue(v => _description = v, _description, value, "Description", byte.MaxValue);
+				SetValue(v => _description = v, _description, value, "Description", -2);
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialProperties), 3)]
 		IEnumerable<IIfcProperty> IIfcExtendedProperties.Properties 
 		{ 
 			get

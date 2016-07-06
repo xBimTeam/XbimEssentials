@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	public partial class @IfcTextureCoordinateGenerator : IIfcTextureCoordinateGenerator
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTextureCoordinateGenerator), 2)]
 		Ifc4.MeasureResource.IfcLabel IIfcTextureCoordinateGenerator.Mode 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTextureCoordinateGenerator), 3)]
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcReal> IIfcTextureCoordinateGenerator.Parameter 
 		{ 
 			get

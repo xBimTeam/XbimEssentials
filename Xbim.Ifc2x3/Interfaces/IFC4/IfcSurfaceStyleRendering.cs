@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcSurfaceStyleRendering : IIfcSurfaceStyleRendering
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceStyleRendering), 3)]
 		IIfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseColour 
 		{ 
 			get
@@ -50,6 +52,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceStyleRendering), 4)]
 		IIfcColourOrFactor IIfcSurfaceStyleRendering.TransmissionColour 
 		{ 
 			get
@@ -83,6 +87,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceStyleRendering), 5)]
 		IIfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseTransmissionColour 
 		{ 
 			get
@@ -116,6 +122,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceStyleRendering), 6)]
 		IIfcColourOrFactor IIfcSurfaceStyleRendering.ReflectionColour 
 		{ 
 			get
@@ -149,6 +157,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceStyleRendering), 7)]
 		IIfcColourOrFactor IIfcSurfaceStyleRendering.SpecularColour 
 		{ 
 			get
@@ -182,6 +192,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceStyleRendering), 8)]
 		IIfcSpecularHighlightSelect IIfcSurfaceStyleRendering.SpecularHighlight 
 		{ 
 			get
@@ -213,6 +225,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceStyleRendering), 9)]
 		Ifc4.Interfaces.IfcReflectanceMethodEnum IIfcSurfaceStyleRendering.ReflectanceMethod 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	public partial class @IfcLightSource : IIfcLightSource
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcLightSource), 1)]
 		Ifc4.MeasureResource.IfcLabel? IIfcLightSource.Name 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcLightSource), 2)]
 		IIfcColourRgb IIfcLightSource.LightColour 
 		{ 
 			get
@@ -44,6 +48,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcLightSource), 3)]
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcLightSource.AmbientIntensity 
 		{ 
 			get
@@ -59,6 +65,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcLightSource), 4)]
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcLightSource.Intensity 
 		{ 
 			get

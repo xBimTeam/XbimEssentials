@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationResource
 {
 	public partial class @IfcPlanarExtent : IIfcPlanarExtent
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPlanarExtent), 1)]
 		Ifc4.MeasureResource.IfcLengthMeasure IIfcPlanarExtent.SizeInX 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.PresentationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPlanarExtent), 2)]
 		Ifc4.MeasureResource.IfcLengthMeasure IIfcPlanarExtent.SizeInY 
 		{ 
 			get

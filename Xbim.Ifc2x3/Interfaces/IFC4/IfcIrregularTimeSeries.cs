@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 {
 	public partial class @IfcIrregularTimeSeries : IIfcIrregularTimeSeries
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcIrregularTimeSeries), 9)]
 		IItemSet<IIfcIrregularTimeSeriesValue> IIfcIrregularTimeSeries.Values 
 		{ 
 			get

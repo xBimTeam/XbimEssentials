@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 {
 	public partial class @IfcTable : IIfcTable
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTable), 1)]
 		Ifc4.MeasureResource.IfcLabel? IIfcTable.Name 
 		{ 
 			get
@@ -35,6 +37,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTable), 2)]
 		IItemSet<IIfcTableRow> IIfcTable.Rows 
 		{ 
 			get
@@ -43,6 +47,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 				return new Common.Collections.ProxyItemSet<IfcTableRow, IIfcTableRow>(Rows);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTable), 3)]
 		IItemSet<IIfcTableColumn> IIfcTable.Columns 
 		{ 
 			get

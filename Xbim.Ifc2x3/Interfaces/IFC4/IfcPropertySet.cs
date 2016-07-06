@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcPropertySet : IIfcPropertySet
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPropertySet), 5)]
 		IItemSet<IIfcProperty> IIfcPropertySet.HasProperties 
 		{ 
 			get

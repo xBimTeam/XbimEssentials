@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	public partial class @IfcDistributionPort : IIfcDistributionPort
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcDistributionPort), 8)]
 		Ifc4.Interfaces.IfcFlowDirectionEnum? IIfcDistributionPort.FlowDirection 
 		{ 
 			get
@@ -74,6 +76,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 
 		private  Ifc4.Interfaces.IfcDistributionPortTypeEnum? _predefinedType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcDistributionPort), 9)]
 		Ifc4.Interfaces.IfcDistributionPortTypeEnum? IIfcDistributionPort.PredefinedType 
 		{ 
 			get
@@ -82,13 +86,15 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -9);
 				
 			}
 		}
 
 		private  Ifc4.Interfaces.IfcDistributionSystemEnum? _systemType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcDistributionPort), 10)]
 		Ifc4.Interfaces.IfcDistributionSystemEnum? IIfcDistributionPort.SystemType 
 		{ 
 			get
@@ -97,7 +103,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue(v => _systemType = v, _systemType, value, "SystemType", byte.MaxValue);
+				SetValue(v => _systemType = v, _systemType, value, "SystemType", -10);
 				
 			}
 		}

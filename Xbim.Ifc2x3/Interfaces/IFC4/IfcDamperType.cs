@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcDamperType : IIfcDamperType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcDamperType), 10)]
 		Ifc4.Interfaces.IfcDamperTypeEnum IIfcDamperType.PredefinedType 
 		{ 
 			get

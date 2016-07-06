@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcDoor : IIfcDoor
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcDoor), 9)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcDoor.OverallHeight 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDoor), 10)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcDoor.OverallWidth 
 		{ 
 			get
@@ -50,6 +54,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 
 		private  Ifc4.Interfaces.IfcDoorTypeEnum? _predefinedType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcDoor), 11)]
 		Ifc4.Interfaces.IfcDoorTypeEnum? IIfcDoor.PredefinedType 
 		{ 
 			get
@@ -58,13 +64,15 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -11);
 				
 			}
 		}
 
 		private  Ifc4.Interfaces.IfcDoorTypeOperationEnum? _operationType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcDoor), 12)]
 		Ifc4.Interfaces.IfcDoorTypeOperationEnum? IIfcDoor.OperationType 
 		{ 
 			get
@@ -73,13 +81,15 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				SetValue(v => _operationType = v, _operationType, value, "OperationType", byte.MaxValue);
+				SetValue(v => _operationType = v, _operationType, value, "OperationType", -12);
 				
 			}
 		}
 
 		private  Ifc4.MeasureResource.IfcLabel? _userDefinedOperationType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcDoor), 13)]
 		Ifc4.MeasureResource.IfcLabel? IIfcDoor.UserDefinedOperationType 
 		{ 
 			get
@@ -88,7 +98,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				SetValue(v => _userDefinedOperationType = v, _userDefinedOperationType, value, "UserDefinedOperationType", byte.MaxValue);
+				SetValue(v => _userDefinedOperationType = v, _userDefinedOperationType, value, "UserDefinedOperationType", -13);
 				
 			}
 		}

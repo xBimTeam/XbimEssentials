@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelAssignsToActor : IIfcRelAssignsToActor
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelAssignsToActor), 7)]
 		IIfcActor IIfcRelAssignsToActor.RelatingActor 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.Kernel
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelAssignsToActor), 8)]
 		IIfcActorRole IIfcRelAssignsToActor.ActingRole 
 		{ 
 			get

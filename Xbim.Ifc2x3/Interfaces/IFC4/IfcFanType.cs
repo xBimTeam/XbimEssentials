@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcFanType : IIfcFanType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcFanType), 10)]
 		Ifc4.Interfaces.IfcFanTypeEnum IIfcFanType.PredefinedType 
 		{ 
 			get

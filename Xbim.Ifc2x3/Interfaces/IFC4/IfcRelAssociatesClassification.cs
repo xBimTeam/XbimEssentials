@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelAssociatesClassification : IIfcRelAssociatesClassification
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelAssociatesClassification), 6)]
 		IIfcClassificationSelect IIfcRelAssociatesClassification.RelatingClassification 
 		{ 
 			get

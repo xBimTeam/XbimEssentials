@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcRelFillsElement : IIfcRelFillsElement
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelFillsElement), 5)]
 		IIfcOpeningElement IIfcRelFillsElement.RelatingOpeningElement 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelFillsElement), 6)]
 		IIfcElement IIfcRelFillsElement.RelatedBuildingElement 
 		{ 
 			get

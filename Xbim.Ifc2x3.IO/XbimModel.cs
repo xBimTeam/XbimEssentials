@@ -435,7 +435,7 @@ namespace Xbim.Ifc2x3.IO
             }
         }
 
-        public void IfcRootModified(IPersistEntity entity, byte property)
+        public void IfcRootModified(IPersistEntity entity, int property)
         {
             if (!AutoAddOwnerHistory) return;
 

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcRelConnectsStructuralMember : IIfcRelConnectsStructuralMember
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelConnectsStructuralMember), 5)]
 		IIfcStructuralMember IIfcRelConnectsStructuralMember.RelatingStructuralMember 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelConnectsStructuralMember), 6)]
 		IIfcStructuralConnection IIfcRelConnectsStructuralMember.RelatedStructuralConnection 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelConnectsStructuralMember), 7)]
 		IIfcBoundaryCondition IIfcRelConnectsStructuralMember.AppliedCondition 
 		{ 
 			get
@@ -53,6 +59,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelConnectsStructuralMember), 8)]
 		IIfcStructuralConnectionCondition IIfcRelConnectsStructuralMember.AdditionalConditions 
 		{ 
 			get
@@ -65,6 +73,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelConnectsStructuralMember), 9)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcRelConnectsStructuralMember.SupportedLength 
 		{ 
 			get
@@ -80,6 +90,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelConnectsStructuralMember), 10)]
 		IIfcAxis2Placement3D IIfcRelConnectsStructuralMember.ConditionCoordinateSystem 
 		{ 
 			get

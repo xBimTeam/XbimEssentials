@@ -20,6 +20,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 
 		private  Ifc4.Interfaces.IfcWorkPlanTypeEnum? _predefinedType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcWorkPlan), 14)]
 		Ifc4.Interfaces.IfcWorkPlanTypeEnum? IIfcWorkPlan.PredefinedType 
 		{ 
 			get
@@ -28,7 +30,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -14);
 				
 			}
 		}

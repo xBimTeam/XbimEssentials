@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	public partial class @IfcOrientedEdge : IIfcOrientedEdge
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcOrientedEdge), 3)]
 		IIfcEdge IIfcOrientedEdge.EdgeElement 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcOrientedEdge), 4)]
 		Ifc4.MeasureResource.IfcBoolean IIfcOrientedEdge.Orientation 
 		{ 
 			get

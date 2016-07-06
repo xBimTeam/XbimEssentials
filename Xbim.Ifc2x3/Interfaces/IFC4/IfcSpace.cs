@@ -20,6 +20,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 
 		private  Ifc4.Interfaces.IfcSpaceTypeEnum? _predefinedType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcSpace), 10)]
 		Ifc4.Interfaces.IfcSpaceTypeEnum? IIfcSpace.PredefinedType 
 		{ 
 			get
@@ -28,10 +30,12 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -10);
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSpace), 11)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcSpace.ElevationWithFlooring 
 		{ 
 			get
@@ -47,6 +51,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSpace), 8)]
 		Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
 		{ 
 			get

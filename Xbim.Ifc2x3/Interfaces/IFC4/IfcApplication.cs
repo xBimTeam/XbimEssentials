@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 {
 	public partial class @IfcApplication : IIfcApplication
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcApplication), 1)]
 		IIfcOrganization IIfcApplication.ApplicationDeveloper 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcApplication), 2)]
 		Ifc4.MeasureResource.IfcLabel IIfcApplication.Version 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcApplication), 3)]
 		Ifc4.MeasureResource.IfcLabel IIfcApplication.ApplicationFullName 
 		{ 
 			get
@@ -53,6 +59,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcApplication), 4)]
 		Ifc4.MeasureResource.IfcIdentifier IIfcApplication.ApplicationIdentifier 
 		{ 
 			get

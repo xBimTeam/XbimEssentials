@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcProduct : IIfcProduct
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcProduct), 6)]
 		IIfcObjectPlacement IIfcProduct.ObjectPlacement 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.Kernel
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcProduct), 7)]
 		IIfcProductRepresentation IIfcProduct.Representation 
 		{ 
 			get

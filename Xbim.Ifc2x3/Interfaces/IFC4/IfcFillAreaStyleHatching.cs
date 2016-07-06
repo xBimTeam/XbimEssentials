@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcFillAreaStyleHatching : IIfcFillAreaStyleHatching
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcFillAreaStyleHatching), 1)]
 		IIfcCurveStyle IIfcFillAreaStyleHatching.HatchLineAppearance 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcFillAreaStyleHatching), 2)]
 		IIfcHatchLineDistanceSelect IIfcFillAreaStyleHatching.StartOfNextHatchLine 
 		{ 
 			get
@@ -66,6 +70,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcFillAreaStyleHatching), 3)]
 		IIfcCartesianPoint IIfcFillAreaStyleHatching.PointOfReferenceHatchLine 
 		{ 
 			get
@@ -78,6 +84,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcFillAreaStyleHatching), 4)]
 		IIfcCartesianPoint IIfcFillAreaStyleHatching.PatternStart 
 		{ 
 			get
@@ -90,6 +98,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcFillAreaStyleHatching), 5)]
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure IIfcFillAreaStyleHatching.HatchLineAngle 
 		{ 
 			get

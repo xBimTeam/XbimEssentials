@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcTextStyleTextModel : IIfcTextStyleTextModel
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTextStyleTextModel), 1)]
 		IIfcSizeSelect IIfcTextStyleTextModel.TextIndent 
 		{ 
 			get
@@ -76,6 +78,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTextStyleTextModel), 2)]
 		Ifc4.PresentationAppearanceResource.IfcTextAlignment? IIfcTextStyleTextModel.TextAlign 
 		{ 
 			get
@@ -91,6 +95,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTextStyleTextModel), 3)]
 		Ifc4.PresentationAppearanceResource.IfcTextDecoration? IIfcTextStyleTextModel.TextDecoration 
 		{ 
 			get
@@ -106,6 +112,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTextStyleTextModel), 4)]
 		IIfcSizeSelect IIfcTextStyleTextModel.LetterSpacing 
 		{ 
 			get
@@ -165,6 +173,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTextStyleTextModel), 5)]
 		IIfcSizeSelect IIfcTextStyleTextModel.WordSpacing 
 		{ 
 			get
@@ -224,6 +234,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTextStyleTextModel), 6)]
 		Ifc4.PresentationAppearanceResource.IfcTextTransformation? IIfcTextStyleTextModel.TextTransform 
 		{ 
 			get
@@ -239,6 +251,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTextStyleTextModel), 7)]
 		IIfcSizeSelect IIfcTextStyleTextModel.LineHeight 
 		{ 
 			get

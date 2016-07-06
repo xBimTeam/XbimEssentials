@@ -20,6 +20,8 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 
 		private  Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum _predefinedType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcMechanicalFastenerType), 10)]
 		Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum IIfcMechanicalFastenerType.PredefinedType 
 		{ 
 			get
@@ -28,13 +30,15 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 			} 
 			set
 			{
-				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -10);
 				
 			}
 		}
 
 		private  Ifc4.MeasureResource.IfcPositiveLengthMeasure? _nominalDiameter;
 
+
+		[CrossSchemaAttribute(typeof(IIfcMechanicalFastenerType), 11)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMechanicalFastenerType.NominalDiameter 
 		{ 
 			get
@@ -43,13 +47,15 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 			} 
 			set
 			{
-				SetValue(v => _nominalDiameter = v, _nominalDiameter, value, "NominalDiameter", byte.MaxValue);
+				SetValue(v => _nominalDiameter = v, _nominalDiameter, value, "NominalDiameter", -11);
 				
 			}
 		}
 
 		private  Ifc4.MeasureResource.IfcPositiveLengthMeasure? _nominalLength;
 
+
+		[CrossSchemaAttribute(typeof(IIfcMechanicalFastenerType), 12)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMechanicalFastenerType.NominalLength 
 		{ 
 			get
@@ -58,7 +64,7 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 			} 
 			set
 			{
-				SetValue(v => _nominalLength = v, _nominalLength, value, "NominalLength", byte.MaxValue);
+				SetValue(v => _nominalLength = v, _nominalLength, value, "NominalLength", -12);
 				
 			}
 		}

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcUShapeProfileDef : IIfcUShapeProfileDef
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcUShapeProfileDef), 4)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcUShapeProfileDef.Depth 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcUShapeProfileDef), 5)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcUShapeProfileDef.FlangeWidth 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcUShapeProfileDef), 6)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcUShapeProfileDef.WebThickness 
 		{ 
 			get
@@ -53,6 +59,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcUShapeProfileDef), 7)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcUShapeProfileDef.FlangeThickness 
 		{ 
 			get
@@ -65,6 +73,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcUShapeProfileDef), 8)]
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcUShapeProfileDef.FilletRadius 
 		{ 
 			get
@@ -80,6 +90,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcUShapeProfileDef), 9)]
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcUShapeProfileDef.EdgeRadius 
 		{ 
 			get
@@ -95,6 +107,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcUShapeProfileDef), 10)]
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcUShapeProfileDef.FlangeSlope 
 		{ 
 			get

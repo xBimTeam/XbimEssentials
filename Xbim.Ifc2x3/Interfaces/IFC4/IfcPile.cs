@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	public partial class @IfcPile : IIfcPile
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPile), 9)]
 		Ifc4.Interfaces.IfcPileTypeEnum? IIfcPile.PredefinedType 
 		{ 
 			get
@@ -111,6 +113,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPile), 10)]
 		Ifc4.Interfaces.IfcPileConstructionEnum? IIfcPile.ConstructionType 
 		{ 
 			get

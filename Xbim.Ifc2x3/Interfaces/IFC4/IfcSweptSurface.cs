@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcSweptSurface : IIfcSweptSurface
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSweptSurface), 1)]
 		IIfcProfileDef IIfcSweptSurface.SweptCurve 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSweptSurface), 2)]
 		IIfcAxis2Placement3D IIfcSweptSurface.Position 
 		{ 
 			get

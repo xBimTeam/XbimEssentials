@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelAssignsToControl : IIfcRelAssignsToControl
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelAssignsToControl), 7)]
 		IIfcControl IIfcRelAssignsToControl.RelatingControl 
 		{ 
 			get

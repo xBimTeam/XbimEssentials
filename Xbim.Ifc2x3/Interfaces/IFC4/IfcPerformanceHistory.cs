@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ControlExtension
 {
 	public partial class @IfcPerformanceHistory : IIfcPerformanceHistory
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPerformanceHistory), 7)]
 		Ifc4.MeasureResource.IfcLabel IIfcPerformanceHistory.LifeCyclePhase 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.ControlExtension
 
 		private  Ifc4.Interfaces.IfcPerformanceHistoryTypeEnum? _predefinedType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcPerformanceHistory), 8)]
 		Ifc4.Interfaces.IfcPerformanceHistoryTypeEnum? IIfcPerformanceHistory.PredefinedType 
 		{ 
 			get
@@ -40,7 +44,7 @@ namespace Xbim.Ifc2x3.ControlExtension
 			} 
 			set
 			{
-				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -8);
 				
 			}
 		}

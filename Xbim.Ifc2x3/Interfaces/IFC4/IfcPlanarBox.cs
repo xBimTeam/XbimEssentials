@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationResource
 {
 	public partial class @IfcPlanarBox : IIfcPlanarBox
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPlanarBox), 3)]
 		IIfcAxis2Placement IIfcPlanarBox.Placement 
 		{ 
 			get

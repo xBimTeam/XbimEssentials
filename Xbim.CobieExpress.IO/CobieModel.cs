@@ -302,7 +302,7 @@ namespace Xbim.CobieExpress.IO
             if (handler != null) handler(entity);
         }
 
-        protected virtual void OnEntityModified(IPersistEntity entity, byte property)
+        protected virtual void OnEntityModified(IPersistEntity entity, int property)
         {
             var handler = EntityModified;
             if (handler != null) handler(entity, property);
@@ -320,7 +320,7 @@ namespace Xbim.CobieExpress.IO
         private bool _ownChange;
         private IPersistEntity _lastEntity;
 
-        protected virtual void SetEntityCreatedInfo(IPersistEntity entity, byte property)
+        protected virtual void SetEntityCreatedInfo(IPersistEntity entity, int property)
         {
             SetEntityCreatedInfo(entity);
         }

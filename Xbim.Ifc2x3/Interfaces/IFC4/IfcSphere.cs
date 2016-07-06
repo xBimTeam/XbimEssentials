@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcSphere : IIfcSphere
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSphere), 2)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcSphere.Radius 
 		{ 
 			get

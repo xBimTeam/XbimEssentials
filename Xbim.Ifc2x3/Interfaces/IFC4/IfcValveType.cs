@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcValveType : IIfcValveType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcValveType), 10)]
 		Ifc4.Interfaces.IfcValveTypeEnum IIfcValveType.PredefinedType 
 		{ 
 			get

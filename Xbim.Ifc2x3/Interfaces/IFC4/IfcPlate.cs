@@ -20,6 +20,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 
 		private  Ifc4.Interfaces.IfcPlateTypeEnum? _predefinedType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcPlate), 9)]
 		Ifc4.Interfaces.IfcPlateTypeEnum? IIfcPlate.PredefinedType 
 		{ 
 			get
@@ -28,7 +30,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -9);
 				
 			}
 		}

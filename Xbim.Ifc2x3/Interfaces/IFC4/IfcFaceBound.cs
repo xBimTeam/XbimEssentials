@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	public partial class @IfcFaceBound : IIfcFaceBound
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcFaceBound), 1)]
 		IIfcLoop IIfcFaceBound.Bound 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcFaceBound), 2)]
 		Ifc4.MeasureResource.IfcBoolean IIfcFaceBound.Orientation 
 		{ 
 			get

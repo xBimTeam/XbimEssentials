@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcTransportElementType : IIfcTransportElementType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTransportElementType), 10)]
 		Ifc4.Interfaces.IfcTransportElementTypeEnum IIfcTransportElementType.PredefinedType 
 		{ 
 			get

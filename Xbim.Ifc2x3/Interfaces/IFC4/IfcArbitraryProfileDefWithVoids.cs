@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcArbitraryProfileDefWithVoids : IIfcArbitraryProfileDefWithVoids
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcArbitraryProfileDefWithVoids), 4)]
 		IItemSet<IIfcCurve> IIfcArbitraryProfileDefWithVoids.InnerCurves 
 		{ 
 			get

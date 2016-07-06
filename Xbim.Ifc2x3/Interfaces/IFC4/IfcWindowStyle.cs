@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcWindowStyle : IIfcWindowStyle
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcWindowStyle), 9)]
 		Ifc4.Interfaces.IfcWindowStyleConstructionEnum IIfcWindowStyle.ConstructionType 
 		{ 
 			get
@@ -99,6 +101,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWindowStyle), 10)]
 		Ifc4.Interfaces.IfcWindowStyleOperationEnum IIfcWindowStyle.OperationType 
 		{ 
 			get
@@ -204,6 +208,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWindowStyle), 11)]
 		Ifc4.MeasureResource.IfcBoolean IIfcWindowStyle.ParameterTakesPrecedence 
 		{ 
 			get
@@ -218,6 +224,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWindowStyle), 12)]
 		Ifc4.MeasureResource.IfcBoolean IIfcWindowStyle.Sizeable 
 		{ 
 			get

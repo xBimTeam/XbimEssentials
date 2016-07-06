@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	public partial class @IfcTextureMap : IIfcTextureMap
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTextureMap), 2)]
 		IEnumerable<IIfcTextureVertex> IIfcTextureMap.Vertices 
 		{ 
 			get
@@ -27,6 +29,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			    //##
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTextureMap), 3)]
 		IIfcFace IIfcTextureMap.MappedTo 
 		{ 
 			get

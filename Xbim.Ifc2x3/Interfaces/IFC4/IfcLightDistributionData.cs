@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	public partial class @IfcLightDistributionData : IIfcLightDistributionData
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcLightDistributionData), 1)]
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure IIfcLightDistributionData.MainPlaneAngle 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcLightDistributionData), 2)]
 		IItemSet<Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure> IIfcLightDistributionData.SecondaryPlaneAngle 
 		{ 
 			get
@@ -39,6 +43,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 					t => new MeasureResource.IfcPlaneAngleMeasure(t));
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcLightDistributionData), 3)]
 		IItemSet<Xbim.Ifc4.MeasureResource.IfcLuminousIntensityDistributionMeasure> IIfcLightDistributionData.LuminousIntensity 
 		{ 
 			get

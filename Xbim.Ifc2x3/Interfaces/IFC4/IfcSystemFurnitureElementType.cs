@@ -20,6 +20,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 
 		private  Ifc4.Interfaces.IfcSystemFurnitureElementTypeEnum? _predefinedType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcSystemFurnitureElementType), 10)]
 		Ifc4.Interfaces.IfcSystemFurnitureElementTypeEnum? IIfcSystemFurnitureElementType.PredefinedType 
 		{ 
 			get
@@ -28,7 +30,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
-				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -10);
 				
 			}
 		}

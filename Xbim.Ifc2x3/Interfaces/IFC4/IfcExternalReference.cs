@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	public partial class @IfcExternalReference : IIfcExternalReference
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcExternalReference), 1)]
 		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcExternalReference.Location 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcExternalReference), 2)]
 		Ifc4.MeasureResource.IfcIdentifier? IIfcExternalReference.Identification 
 		{ 
 			get
@@ -47,6 +51,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcExternalReference), 3)]
 		Ifc4.MeasureResource.IfcLabel? IIfcExternalReference.Name 
 		{ 
 			get

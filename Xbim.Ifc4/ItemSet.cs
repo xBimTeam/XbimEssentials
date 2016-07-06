@@ -16,7 +16,7 @@ namespace Xbim.Ifc4
 {
     public class ItemSet<T> : Common.Collections.ItemSet<T>
     {
-        internal ItemSet(IPersistEntity entity, int capacity, byte property): base(entity, capacity, property)
+        internal ItemSet(IPersistEntity entity, int capacity, int property): base(entity, capacity, property)
         {
         }
 

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcBSplineCurve : IIfcBSplineCurve
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcBSplineCurve), 1)]
 		Ifc4.MeasureResource.IfcInteger IIfcBSplineCurve.Degree 
 		{ 
 			get
@@ -31,6 +33,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBSplineCurve), 2)]
 		IItemSet<IIfcCartesianPoint> IIfcBSplineCurve.ControlPointsList 
 		{ 
 			get
@@ -39,6 +43,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return new Common.Collections.ProxyItemSet<IfcCartesianPoint, IIfcCartesianPoint>(ControlPointsList);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBSplineCurve), 3)]
 		Ifc4.Interfaces.IfcBSplineCurveForm IIfcBSplineCurve.CurveForm 
 		{ 
 			get
@@ -107,6 +113,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBSplineCurve), 4)]
 		Ifc4.MeasureResource.IfcLogical IIfcBSplineCurve.ClosedCurve 
 		{ 
 			get
@@ -121,6 +129,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBSplineCurve), 5)]
 		Ifc4.MeasureResource.IfcLogical IIfcBSplineCurve.SelfIntersect 
 		{ 
 			get

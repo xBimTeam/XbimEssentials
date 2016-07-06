@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcConic : IIfcConic
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcConic), 1)]
 		IIfcAxis2Placement IIfcConic.Position 
 		{ 
 			get

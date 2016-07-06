@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcPlateType : IIfcPlateType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPlateType), 10)]
 		Ifc4.Interfaces.IfcPlateTypeEnum IIfcPlateType.PredefinedType 
 		{ 
 			get

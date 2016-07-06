@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcHumidifierType : IIfcHumidifierType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcHumidifierType), 10)]
 		Ifc4.Interfaces.IfcHumidifierTypeEnum IIfcHumidifierType.PredefinedType 
 		{ 
 			get

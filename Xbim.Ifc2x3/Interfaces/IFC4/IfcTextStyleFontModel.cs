@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationResource
 {
 	public partial class @IfcTextStyleFontModel : IIfcTextStyleFontModel
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTextStyleFontModel), 2)]
 		IItemSet<Xbim.Ifc4.PresentationAppearanceResource.IfcTextFontName> IIfcTextStyleFontModel.FontFamily 
 		{ 
 			get
@@ -27,6 +29,8 @@ namespace Xbim.Ifc2x3.PresentationResource
 					t => new IfcTextFontName(t));
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTextStyleFontModel), 3)]
 		Ifc4.PresentationAppearanceResource.IfcFontStyle? IIfcTextStyleFontModel.FontStyle 
 		{ 
 			get
@@ -42,6 +46,8 @@ namespace Xbim.Ifc2x3.PresentationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTextStyleFontModel), 4)]
 		Ifc4.PresentationAppearanceResource.IfcFontVariant? IIfcTextStyleFontModel.FontVariant 
 		{ 
 			get
@@ -57,6 +63,8 @@ namespace Xbim.Ifc2x3.PresentationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTextStyleFontModel), 5)]
 		Ifc4.PresentationAppearanceResource.IfcFontWeight? IIfcTextStyleFontModel.FontWeight 
 		{ 
 			get
@@ -72,6 +80,8 @@ namespace Xbim.Ifc2x3.PresentationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTextStyleFontModel), 6)]
 		IIfcSizeSelect IIfcTextStyleFontModel.FontSize 
 		{ 
 			get

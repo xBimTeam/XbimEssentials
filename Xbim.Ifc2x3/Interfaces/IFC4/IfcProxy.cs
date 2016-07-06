@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcProxy : IIfcProxy
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcProxy), 8)]
 		Ifc4.Interfaces.IfcObjectTypeEnum IIfcProxy.ProxyType 
 		{ 
 			get
@@ -99,6 +101,8 @@ namespace Xbim.Ifc2x3.Kernel
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcProxy), 9)]
 		Ifc4.MeasureResource.IfcLabel? IIfcProxy.Tag 
 		{ 
 			get

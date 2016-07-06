@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcOutletType : IIfcOutletType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcOutletType), 10)]
 		Ifc4.Interfaces.IfcOutletTypeEnum IIfcOutletType.PredefinedType 
 		{ 
 			get

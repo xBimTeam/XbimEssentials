@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcVector : IIfcVector
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcVector), 1)]
 		IIfcDirection IIfcVector.Orientation 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcVector), 2)]
 		Ifc4.MeasureResource.IfcLengthMeasure IIfcVector.Magnitude 
 		{ 
 			get

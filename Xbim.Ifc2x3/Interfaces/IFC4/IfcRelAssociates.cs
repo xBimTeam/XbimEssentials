@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelAssociates : IIfcRelAssociates
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelAssociates), 5)]
 		IItemSet<IIfcDefinitionSelect> IIfcRelAssociates.RelatedObjects 
 		{ 
 			get

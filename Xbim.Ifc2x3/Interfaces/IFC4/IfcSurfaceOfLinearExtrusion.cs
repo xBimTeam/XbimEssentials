@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcSurfaceOfLinearExtrusion : IIfcSurfaceOfLinearExtrusion
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceOfLinearExtrusion), 3)]
 		IIfcDirection IIfcSurfaceOfLinearExtrusion.ExtrudedDirection 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceOfLinearExtrusion), 4)]
 		Ifc4.MeasureResource.IfcLengthMeasure IIfcSurfaceOfLinearExtrusion.Depth 
 		{ 
 			get

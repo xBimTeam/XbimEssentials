@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcBlobTexture : IIfcBlobTexture
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcBlobTexture), 6)]
 		Ifc4.MeasureResource.IfcIdentifier IIfcBlobTexture.RasterFormat 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBlobTexture), 7)]
 		Ifc4.MeasureResource.IfcBinary IIfcBlobTexture.RasterCode 
 		{ 
 			get

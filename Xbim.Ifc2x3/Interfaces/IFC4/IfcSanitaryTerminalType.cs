@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 {
 	public partial class @IfcSanitaryTerminalType : IIfcSanitaryTerminalType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSanitaryTerminalType), 10)]
 		Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum IIfcSanitaryTerminalType.PredefinedType 
 		{ 
 			get

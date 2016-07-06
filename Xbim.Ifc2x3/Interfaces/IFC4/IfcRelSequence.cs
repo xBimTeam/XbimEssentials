@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelSequence : IIfcRelSequence
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelSequence), 5)]
 		IIfcProcess IIfcRelSequence.RelatingProcess 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.Kernel
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelSequence), 6)]
 		IIfcProcess IIfcRelSequence.RelatedProcess 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.Kernel
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelSequence), 7)]
 		IIfcLagTime IIfcRelSequence.TimeLag 
 		{ 
 			get
@@ -57,6 +63,8 @@ namespace Xbim.Ifc2x3.Kernel
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelSequence), 8)]
 		Ifc4.Interfaces.IfcSequenceEnum? IIfcRelSequence.SequenceType 
 		{ 
 			get
@@ -134,6 +142,8 @@ namespace Xbim.Ifc2x3.Kernel
 
 		private  Ifc4.MeasureResource.IfcLabel? _userDefinedSequenceType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcRelSequence), 9)]
 		Ifc4.MeasureResource.IfcLabel? IIfcRelSequence.UserDefinedSequenceType 
 		{ 
 			get
@@ -142,7 +152,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				SetValue(v => _userDefinedSequenceType = v, _userDefinedSequenceType, value, "UserDefinedSequenceType", byte.MaxValue);
+				SetValue(v => _userDefinedSequenceType = v, _userDefinedSequenceType, value, "UserDefinedSequenceType", -9);
 				
 			}
 		}

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcProject : IIfcProject
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcProject), 5)]
 		Ifc4.MeasureResource.IfcLabel? IIfcContext.ObjectType 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.Kernel
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcProject), 6)]
 		Ifc4.MeasureResource.IfcLabel? IIfcContext.LongName 
 		{ 
 			get
@@ -47,6 +51,8 @@ namespace Xbim.Ifc2x3.Kernel
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcProject), 7)]
 		Ifc4.MeasureResource.IfcLabel? IIfcContext.Phase 
 		{ 
 			get
@@ -62,6 +68,8 @@ namespace Xbim.Ifc2x3.Kernel
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcProject), 8)]
 		IItemSet<IIfcRepresentationContext> IIfcContext.RepresentationContexts 
 		{ 
 			get
@@ -70,6 +78,8 @@ namespace Xbim.Ifc2x3.Kernel
 				return new Common.Collections.ProxyItemSet<RepresentationResource.IfcRepresentationContext, IIfcRepresentationContext>(RepresentationContexts);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcProject), 9)]
 		IIfcUnitAssignment IIfcContext.UnitsInContext 
 		{ 
 			get

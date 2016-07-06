@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ActorResource
 {
 	public partial class @IfcPerson : IIfcPerson
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPerson), 1)]
 		Ifc4.MeasureResource.IfcIdentifier? IIfcPerson.Identification 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPerson), 2)]
 		Ifc4.MeasureResource.IfcLabel? IIfcPerson.FamilyName 
 		{ 
 			get
@@ -47,6 +51,8 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPerson), 3)]
 		Ifc4.MeasureResource.IfcLabel? IIfcPerson.GivenName 
 		{ 
 			get
@@ -62,6 +68,8 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPerson), 4)]
 		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.MiddleNames 
 		{ 
 			get
@@ -72,6 +80,8 @@ namespace Xbim.Ifc2x3.ActorResource
 					t => new MeasureResource.IfcLabel(t));
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPerson), 5)]
 		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.PrefixTitles 
 		{ 
 			get
@@ -82,6 +92,8 @@ namespace Xbim.Ifc2x3.ActorResource
 					t => new MeasureResource.IfcLabel(t));
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPerson), 6)]
 		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.SuffixTitles 
 		{ 
 			get
@@ -92,6 +104,8 @@ namespace Xbim.Ifc2x3.ActorResource
 					t => new MeasureResource.IfcLabel(t));
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPerson), 7)]
 		IItemSet<IIfcActorRole> IIfcPerson.Roles 
 		{ 
 			get
@@ -100,6 +114,8 @@ namespace Xbim.Ifc2x3.ActorResource
 				return new Common.Collections.ProxyItemSet<IfcActorRole, IIfcActorRole>(Roles);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPerson), 8)]
 		IItemSet<IIfcAddress> IIfcPerson.Addresses 
 		{ 
 			get

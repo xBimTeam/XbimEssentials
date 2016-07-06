@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcSurfaceTexture : IIfcSurfaceTexture
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceTexture), 1)]
 		Ifc4.MeasureResource.IfcBoolean IIfcSurfaceTexture.RepeatS 
 		{ 
 			get
@@ -31,6 +33,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceTexture), 2)]
 		Ifc4.MeasureResource.IfcBoolean IIfcSurfaceTexture.RepeatT 
 		{ 
 			get
@@ -48,6 +52,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 
 		private  Ifc4.MeasureResource.IfcIdentifier? _mode;
 
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceTexture), 3)]
 		Ifc4.MeasureResource.IfcIdentifier? IIfcSurfaceTexture.Mode 
 		{ 
 			get
@@ -56,10 +62,12 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue(v => _mode = v, _mode, value, "Mode", byte.MaxValue);
+				SetValue(v => _mode = v, _mode, value, "Mode", -3);
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceTexture), 4)]
 		IIfcCartesianTransformationOperator2D IIfcSurfaceTexture.TextureTransform 
 		{ 
 			get
@@ -72,6 +80,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceTexture), 5)]
 		IItemSet<Xbim.Ifc4.MeasureResource.IfcIdentifier> IIfcSurfaceTexture.Parameter 
 		{ 
 			get

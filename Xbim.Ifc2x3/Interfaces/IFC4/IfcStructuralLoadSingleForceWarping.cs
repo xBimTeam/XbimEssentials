@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcStructuralLoadSingleForceWarping : IIfcStructuralLoadSingleForceWarping
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleForceWarping), 8)]
 		Ifc4.MeasureResource.IfcWarpingMomentMeasure? IIfcStructuralLoadSingleForceWarping.WarpingMoment 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 {
 	public partial class @IfcAlarmType : IIfcAlarmType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcAlarmType), 10)]
 		Ifc4.Interfaces.IfcAlarmTypeEnum IIfcAlarmType.PredefinedType 
 		{ 
 			get

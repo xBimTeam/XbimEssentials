@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 {
 	public partial class @IfcPropertyListValue : IIfcPropertyListValue
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPropertyListValue), 3)]
 		IItemSet<IIfcValue> IIfcPropertyListValue.ListValues 
 		{ 
 			get
@@ -24,7 +26,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			
 				return _listValuesIfc4 ?? (_listValuesIfc4 = new Common.Collections.ExtendedItemSet<MeasureResource.IfcValue, IIfcValue>(
                     ListValues, 
-                    new ItemSet<IIfcValue>(this, 0, 255), 
+                    new ItemSet<IIfcValue>(this, 0, -3), 
                     v => v.ToIfc4(), 
                     v => v.ToIfc3()));
 			} 
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 
 		//private field to hold any extended data
 		private IItemSet<IIfcValue> _listValuesIfc4;
+
+		[CrossSchemaAttribute(typeof(IIfcPropertyListValue), 4)]
 		IIfcUnit IIfcPropertyListValue.Unit 
 		{ 
 			get

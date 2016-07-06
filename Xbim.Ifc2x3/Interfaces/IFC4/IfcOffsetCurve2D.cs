@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcOffsetCurve2D : IIfcOffsetCurve2D
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcOffsetCurve2D), 1)]
 		IIfcCurve IIfcOffsetCurve2D.BasisCurve 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcOffsetCurve2D), 2)]
 		Ifc4.MeasureResource.IfcLengthMeasure IIfcOffsetCurve2D.Distance 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcOffsetCurve2D), 3)]
 		Ifc4.MeasureResource.IfcLogical IIfcOffsetCurve2D.SelfIntersect 
 		{ 
 			get

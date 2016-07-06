@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelAggregates : IIfcRelAggregates
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelAggregates), 5)]
 		IIfcObjectDefinition IIfcRelAggregates.RelatingObject 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.Kernel
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelAggregates), 6)]
 		IItemSet<IIfcObjectDefinition> IIfcRelAggregates.RelatedObjects 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralCurveMember : IIfcStructuralCurveMember
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralCurveMember), 8)]
 		Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum IIfcStructuralCurveMember.PredefinedType 
 		{ 
 			get
@@ -97,6 +99,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 
 		private  IIfcDirection _axis;
 
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralCurveMember), 9)]
 		IIfcDirection IIfcStructuralCurveMember.Axis 
 		{ 
 			get
@@ -105,7 +109,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue(v => _axis = v, _axis, value, "Axis", byte.MaxValue);
+				SetValue(v => _axis = v, _axis, value, "Axis", -9);
 				
 			}
 		}

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcHalfSpaceSolid : IIfcHalfSpaceSolid
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcHalfSpaceSolid), 1)]
 		IIfcSurface IIfcHalfSpaceSolid.BaseSurface 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcHalfSpaceSolid), 2)]
 		Ifc4.MeasureResource.IfcBoolean IIfcHalfSpaceSolid.AgreementFlag 
 		{ 
 			get

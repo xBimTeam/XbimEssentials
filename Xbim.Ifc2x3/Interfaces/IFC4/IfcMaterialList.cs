@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 {
 	public partial class @IfcMaterialList : IIfcMaterialList
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialList), 1)]
 		IItemSet<IIfcMaterial> IIfcMaterialList.Materials 
 		{ 
 			get

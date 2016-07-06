@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	public partial class @IfcEdgeCurve : IIfcEdgeCurve
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcEdgeCurve), 3)]
 		IIfcCurve IIfcEdgeCurve.EdgeGeometry 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcEdgeCurve), 4)]
 		Ifc4.MeasureResource.IfcBoolean IIfcEdgeCurve.SameSense 
 		{ 
 			get

@@ -20,6 +20,8 @@ namespace Xbim.Ifc2x3.Kernel
 
 		private  Ifc4.MeasureResource.IfcIdentifier? _identification;
 
+
+		[CrossSchemaAttribute(typeof(IIfcProcess), 6)]
 		Ifc4.MeasureResource.IfcIdentifier? IIfcProcess.Identification 
 		{ 
 			get
@@ -28,13 +30,15 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				SetValue(v => _identification = v, _identification, value, "Identification", byte.MaxValue);
+				SetValue(v => _identification = v, _identification, value, "Identification", -6);
 				
 			}
 		}
 
 		private  Ifc4.MeasureResource.IfcText? _longDescription;
 
+
+		[CrossSchemaAttribute(typeof(IIfcProcess), 7)]
 		Ifc4.MeasureResource.IfcText? IIfcProcess.LongDescription 
 		{ 
 			get
@@ -43,7 +47,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				SetValue(v => _longDescription = v, _longDescription, value, "LongDescription", byte.MaxValue);
+				SetValue(v => _longDescription = v, _longDescription, value, "LongDescription", -7);
 				
 			}
 		}

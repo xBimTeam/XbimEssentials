@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcCompositeProfileDef : IIfcCompositeProfileDef
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCompositeProfileDef), 3)]
 		IItemSet<IIfcProfileDef> IIfcCompositeProfileDef.Profiles 
 		{ 
 			get
@@ -25,6 +27,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				return new Common.Collections.ProxyItemSet<IfcProfileDef, IIfcProfileDef>(Profiles);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCompositeProfileDef), 4)]
 		Ifc4.MeasureResource.IfcLabel? IIfcCompositeProfileDef.Label 
 		{ 
 			get

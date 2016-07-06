@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 {
 	public partial class @IfcPropertyEnumeratedValue : IIfcPropertyEnumeratedValue
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPropertyEnumeratedValue), 3)]
 		IItemSet<IIfcValue> IIfcPropertyEnumeratedValue.EnumerationValues 
 		{ 
 			get
@@ -24,7 +26,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			
 				return _enumerationValuesIfc4 ?? (_enumerationValuesIfc4 = new Common.Collections.ExtendedItemSet<MeasureResource.IfcValue, IIfcValue>(
                     EnumerationValues, 
-                    new ItemSet<IIfcValue>(this, 0, 255), 
+                    new ItemSet<IIfcValue>(this, 0, -3), 
                     v => v.ToIfc4(), 
                     v => v.ToIfc3()));
 			} 
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 
 		//private field to hold any extended data
 		private IItemSet<IIfcValue> _enumerationValuesIfc4;
+
+		[CrossSchemaAttribute(typeof(IIfcPropertyEnumeratedValue), 4)]
 		IIfcPropertyEnumeration IIfcPropertyEnumeratedValue.EnumerationReference 
 		{ 
 			get

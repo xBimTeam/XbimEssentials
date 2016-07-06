@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	public partial class @IfcAsset : IIfcAsset
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcAsset), 6)]
 		Ifc4.MeasureResource.IfcIdentifier? IIfcAsset.Identification 
 		{ 
 			get
@@ -31,6 +33,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAsset), 7)]
 		IIfcCostValue IIfcAsset.OriginalValue 
 		{ 
 			get
@@ -43,6 +47,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAsset), 8)]
 		IIfcCostValue IIfcAsset.CurrentValue 
 		{ 
 			get
@@ -55,6 +61,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAsset), 9)]
 		IIfcCostValue IIfcAsset.TotalReplacementCost 
 		{ 
 			get
@@ -67,6 +75,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAsset), 10)]
 		IIfcActorSelect IIfcAsset.Owner 
 		{ 
 			get
@@ -111,6 +121,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAsset), 11)]
 		IIfcActorSelect IIfcAsset.User 
 		{ 
 			get
@@ -155,6 +167,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAsset), 12)]
 		IIfcPerson IIfcAsset.ResponsiblePerson 
 		{ 
 			get
@@ -167,6 +181,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAsset), 13)]
 		Ifc4.DateTimeResource.IfcDate? IIfcAsset.IncorporationDate 
 		{ 
 			get
@@ -196,6 +212,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAsset), 14)]
 		IIfcCostValue IIfcAsset.DepreciatedValue 
 		{ 
 			get

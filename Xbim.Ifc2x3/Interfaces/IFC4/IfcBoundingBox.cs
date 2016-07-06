@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcBoundingBox : IIfcBoundingBox
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcBoundingBox), 1)]
 		IIfcCartesianPoint IIfcBoundingBox.Corner 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBoundingBox), 2)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcBoundingBox.XDim 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBoundingBox), 3)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcBoundingBox.YDim 
 		{ 
 			get
@@ -53,6 +59,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBoundingBox), 4)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcBoundingBox.ZDim 
 		{ 
 			get

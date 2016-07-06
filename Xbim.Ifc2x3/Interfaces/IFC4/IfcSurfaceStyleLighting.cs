@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcSurfaceStyleLighting : IIfcSurfaceStyleLighting
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceStyleLighting), 1)]
 		IIfcColourRgb IIfcSurfaceStyleLighting.DiffuseTransmissionColour 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceStyleLighting), 2)]
 		IIfcColourRgb IIfcSurfaceStyleLighting.DiffuseReflectionColour 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceStyleLighting), 3)]
 		IIfcColourRgb IIfcSurfaceStyleLighting.TransmissionColour 
 		{ 
 			get
@@ -53,6 +59,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceStyleLighting), 4)]
 		IIfcColourRgb IIfcSurfaceStyleLighting.ReflectanceColour 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcDuctSilencerType : IIfcDuctSilencerType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcDuctSilencerType), 10)]
 		Ifc4.Interfaces.IfcDuctSilencerTypeEnum IIfcDuctSilencerType.PredefinedType 
 		{ 
 			get

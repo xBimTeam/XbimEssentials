@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	public partial class @IfcTextLiteralWithExtent : IIfcTextLiteralWithExtent
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTextLiteralWithExtent), 4)]
 		IIfcPlanarExtent IIfcTextLiteralWithExtent.Extent 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTextLiteralWithExtent), 5)]
 		Ifc4.PresentationDefinitionResource.IfcBoxAlignment IIfcTextLiteralWithExtent.BoxAlignment 
 		{ 
 			get

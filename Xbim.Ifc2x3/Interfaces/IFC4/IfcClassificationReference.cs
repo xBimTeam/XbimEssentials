@@ -20,6 +20,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 
 		private  IIfcClassificationReferenceSelect _referencedSource4;
 
+
+		[CrossSchemaAttribute(typeof(IIfcClassificationReference), 4)]
 		IIfcClassificationReferenceSelect IIfcClassificationReference.ReferencedSource 
 		{ 
 			get
@@ -32,7 +34,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				{
 					ReferencedSource = null;
 					if (_referencedSource4 != null)
-						SetValue(v => _referencedSource4 = v, _referencedSource4, null, "ReferencedSource", byte.MaxValue);
+						SetValue(v => _referencedSource4 = v, _referencedSource4, null, "ReferencedSource", -4);
 					return;
 				}
 				
@@ -41,19 +43,21 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				{
 					ReferencedSource = val;
 					if (_referencedSource4 != null)
-						SetValue(v => _referencedSource4 = v, _referencedSource4, null, "ReferencedSource", byte.MaxValue);
+						SetValue(v => _referencedSource4 = v, _referencedSource4, null, "ReferencedSource", -4);
 					return;
 				} 
 
 				if(ReferencedSource != null)
 					ReferencedSource = null;
-				SetValue(v => _referencedSource4 = v, _referencedSource4, value, "ReferencedSource", byte.MaxValue);
+				SetValue(v => _referencedSource4 = v, _referencedSource4, value, "ReferencedSource", -4);
 				
 			}
 		}
 
 		private  Ifc4.MeasureResource.IfcText? _description;
 
+
+		[CrossSchemaAttribute(typeof(IIfcClassificationReference), 5)]
 		Ifc4.MeasureResource.IfcText? IIfcClassificationReference.Description 
 		{ 
 			get
@@ -62,13 +66,15 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue(v => _description = v, _description, value, "Description", byte.MaxValue);
+				SetValue(v => _description = v, _description, value, "Description", -5);
 				
 			}
 		}
 
 		private  Ifc4.MeasureResource.IfcIdentifier? _sort;
 
+
+		[CrossSchemaAttribute(typeof(IIfcClassificationReference), 6)]
 		Ifc4.MeasureResource.IfcIdentifier? IIfcClassificationReference.Sort 
 		{ 
 			get
@@ -77,7 +83,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue(v => _sort = v, _sort, value, "Sort", byte.MaxValue);
+				SetValue(v => _sort = v, _sort, value, "Sort", -6);
 				
 			}
 		}

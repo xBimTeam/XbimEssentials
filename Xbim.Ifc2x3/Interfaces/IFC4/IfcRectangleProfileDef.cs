@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcRectangleProfileDef : IIfcRectangleProfileDef
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRectangleProfileDef), 4)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRectangleProfileDef.XDim 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRectangleProfileDef), 5)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRectangleProfileDef.YDim 
 		{ 
 			get

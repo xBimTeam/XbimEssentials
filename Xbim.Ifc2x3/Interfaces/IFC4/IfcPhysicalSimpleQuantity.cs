@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.QuantityResource
 {
 	public partial class @IfcPhysicalSimpleQuantity : IIfcPhysicalSimpleQuantity
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPhysicalSimpleQuantity), 3)]
 		IIfcNamedUnit IIfcPhysicalSimpleQuantity.Unit 
 		{ 
 			get

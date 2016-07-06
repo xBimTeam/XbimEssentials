@@ -20,6 +20,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 
 		private  Ifc4.Interfaces.IfcTendonAnchorTypeEnum? _predefinedType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcTendonAnchor), 10)]
 		Ifc4.Interfaces.IfcTendonAnchorTypeEnum? IIfcTendonAnchor.PredefinedType 
 		{ 
 			get
@@ -28,7 +30,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -10);
 				
 			}
 		}

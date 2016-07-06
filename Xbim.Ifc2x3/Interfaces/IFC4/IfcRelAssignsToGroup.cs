@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelAssignsToGroup : IIfcRelAssignsToGroup
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelAssignsToGroup), 7)]
 		IIfcGroup IIfcRelAssignsToGroup.RelatingGroup 
 		{ 
 			get

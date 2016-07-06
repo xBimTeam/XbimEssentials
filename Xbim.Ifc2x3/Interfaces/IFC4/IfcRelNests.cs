@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelNests : IIfcRelNests
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelNests), 5)]
 		IIfcObjectDefinition IIfcRelNests.RelatingObject 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.Kernel
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelNests), 6)]
 		IItemSet<IIfcObjectDefinition> IIfcRelNests.RelatedObjects 
 		{ 
 			get

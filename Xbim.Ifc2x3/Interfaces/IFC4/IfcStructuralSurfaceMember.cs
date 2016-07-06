@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralSurfaceMember : IIfcStructuralSurfaceMember
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralSurfaceMember), 8)]
 		Ifc4.Interfaces.IfcStructuralSurfaceMemberTypeEnum IIfcStructuralSurfaceMember.PredefinedType 
 		{ 
 			get
@@ -80,6 +82,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralSurfaceMember), 9)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcStructuralSurfaceMember.Thickness 
 		{ 
 			get

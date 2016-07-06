@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcDoorStyle : IIfcDoorStyle
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcDoorStyle), 9)]
 		Ifc4.Interfaces.IfcDoorStyleOperationEnum IIfcDoorStyle.OperationType 
 		{ 
 			get
@@ -171,6 +173,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDoorStyle), 10)]
 		Ifc4.Interfaces.IfcDoorStyleConstructionEnum IIfcDoorStyle.ConstructionType 
 		{ 
 			get
@@ -262,6 +266,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDoorStyle), 11)]
 		Ifc4.MeasureResource.IfcBoolean IIfcDoorStyle.ParameterTakesPrecedence 
 		{ 
 			get
@@ -276,6 +282,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDoorStyle), 12)]
 		Ifc4.MeasureResource.IfcBoolean IIfcDoorStyle.Sizeable 
 		{ 
 			get

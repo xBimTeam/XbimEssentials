@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralConnection : IIfcStructuralConnection
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralConnection), 8)]
 		IIfcBoundaryCondition IIfcStructuralConnection.AppliedCondition 
 		{ 
 			get

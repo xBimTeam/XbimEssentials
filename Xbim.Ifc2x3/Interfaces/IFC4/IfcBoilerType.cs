@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcBoilerType : IIfcBoilerType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcBoilerType), 10)]
 		Ifc4.Interfaces.IfcBoilerTypeEnum IIfcBoilerType.PredefinedType 
 		{ 
 			get

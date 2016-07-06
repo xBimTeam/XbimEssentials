@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcPlacement : IIfcPlacement
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPlacement), 1)]
 		IIfcCartesianPoint IIfcPlacement.Location 
 		{ 
 			get

@@ -20,6 +20,8 @@ namespace Xbim.Ifc2x3.Kernel
 
 		private  Ifc4.MeasureResource.IfcIdentifier? _identification;
 
+
+		[CrossSchemaAttribute(typeof(IIfcControl), 6)]
 		Ifc4.MeasureResource.IfcIdentifier? IIfcControl.Identification 
 		{ 
 			get
@@ -28,7 +30,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				SetValue(v => _identification = v, _identification, value, "Identification", byte.MaxValue);
+				SetValue(v => _identification = v, _identification, value, "Identification", -6);
 				
 			}
 		}

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcStructuralLoadPlanarForce : IIfcStructuralLoadPlanarForce
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadPlanarForce), 2)]
 		Ifc4.MeasureResource.IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceX 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadPlanarForce), 3)]
 		Ifc4.MeasureResource.IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceY 
 		{ 
 			get
@@ -47,6 +51,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadPlanarForce), 4)]
 		Ifc4.MeasureResource.IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceZ 
 		{ 
 			get

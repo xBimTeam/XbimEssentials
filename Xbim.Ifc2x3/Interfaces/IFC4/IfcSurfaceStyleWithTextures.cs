@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcSurfaceStyleWithTextures : IIfcSurfaceStyleWithTextures
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceStyleWithTextures), 1)]
 		IItemSet<IIfcSurfaceTexture> IIfcSurfaceStyleWithTextures.Textures 
 		{ 
 			get

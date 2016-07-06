@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcElementQuantity : IIfcElementQuantity
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcElementQuantity), 5)]
 		Ifc4.MeasureResource.IfcLabel? IIfcElementQuantity.MethodOfMeasurement 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcElementQuantity), 6)]
 		IItemSet<IIfcPhysicalQuantity> IIfcElementQuantity.Quantities 
 		{ 
 			get

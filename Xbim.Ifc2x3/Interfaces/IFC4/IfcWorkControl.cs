@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 {
 	public partial class @IfcWorkControl : IIfcWorkControl
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcWorkControl), 7)]
 		Ifc4.DateTimeResource.IfcDateTime IIfcWorkControl.CreationDate 
 		{ 
 			get
@@ -48,6 +50,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWorkControl), 8)]
 		IItemSet<IIfcPerson> IIfcWorkControl.Creators 
 		{ 
 			get
@@ -56,6 +60,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				return new Common.Collections.ProxyItemSet<ActorResource.IfcPerson, IIfcPerson>(Creators);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWorkControl), 9)]
 		Ifc4.MeasureResource.IfcLabel? IIfcWorkControl.Purpose 
 		{ 
 			get
@@ -71,6 +77,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWorkControl), 10)]
 		Ifc4.DateTimeResource.IfcDuration? IIfcWorkControl.Duration 
 		{ 
 			get
@@ -94,6 +102,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWorkControl), 11)]
 		Ifc4.DateTimeResource.IfcDuration? IIfcWorkControl.TotalFloat 
 		{ 
 			get
@@ -117,6 +127,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWorkControl), 12)]
 		Ifc4.DateTimeResource.IfcDateTime IIfcWorkControl.StartTime 
 		{ 
 			get
@@ -148,6 +160,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWorkControl), 13)]
 		Ifc4.DateTimeResource.IfcDateTime? IIfcWorkControl.FinishTime 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcElementAssembly : IIfcElementAssembly
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcElementAssembly), 9)]
 		Ifc4.Interfaces.IfcAssemblyPlaceEnum? IIfcElementAssembly.AssemblyPlace 
 		{ 
 			get
@@ -64,6 +66,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcElementAssembly), 10)]
 		Ifc4.Interfaces.IfcElementAssemblyTypeEnum? IIfcElementAssembly.PredefinedType 
 		{ 
 			get

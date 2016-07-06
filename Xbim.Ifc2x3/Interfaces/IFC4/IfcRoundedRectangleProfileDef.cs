@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcRoundedRectangleProfileDef : IIfcRoundedRectangleProfileDef
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRoundedRectangleProfileDef), 6)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRoundedRectangleProfileDef.RoundingRadius 
 		{ 
 			get

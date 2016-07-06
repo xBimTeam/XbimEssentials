@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	public partial class @IfcNamedUnit : IIfcNamedUnit
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcNamedUnit), 1)]
 		IIfcDimensionalExponents IIfcNamedUnit.Dimensions 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcNamedUnit), 2)]
 		Ifc4.Interfaces.IfcUnitEnum IIfcNamedUnit.UnitType 
 		{ 
 			get

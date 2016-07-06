@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcCircle : IIfcCircle
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCircle), 2)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcCircle.Radius 
 		{ 
 			get

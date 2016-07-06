@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcSpatialStructureElementType : IIfcSpatialStructureElementType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSpatialStructureElementType), 9)]
 		Ifc4.MeasureResource.IfcLabel? IIfcSpatialElementType.ElementType 
 		{ 
 			get

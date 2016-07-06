@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelAssociatesDocument : IIfcRelAssociatesDocument
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelAssociatesDocument), 6)]
 		IIfcDocumentSelect IIfcRelAssociatesDocument.RelatingDocument 
 		{ 
 			get

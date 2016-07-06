@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	public partial class @IfcMechanicalFastener : IIfcMechanicalFastener
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcMechanicalFastener), 9)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalDiameter 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcMechanicalFastener), 10)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalLength 
 		{ 
 			get
@@ -50,6 +54,8 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 
 		private  Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum? _predefinedType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcMechanicalFastener), 11)]
 		Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum? IIfcMechanicalFastener.PredefinedType 
 		{ 
 			get
@@ -58,7 +64,7 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 			} 
 			set
 			{
-				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -11);
 				
 			}
 		}

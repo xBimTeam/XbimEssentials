@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcCooledBeamType : IIfcCooledBeamType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCooledBeamType), 10)]
 		Ifc4.Interfaces.IfcCooledBeamTypeEnum IIfcCooledBeamType.PredefinedType 
 		{ 
 			get

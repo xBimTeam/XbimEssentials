@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ActorResource
 {
 	public partial class @IfcTelecomAddress : IIfcTelecomAddress
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTelecomAddress), 4)]
 		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcTelecomAddress.TelephoneNumbers 
 		{ 
 			get
@@ -27,6 +29,8 @@ namespace Xbim.Ifc2x3.ActorResource
 					t => new MeasureResource.IfcLabel(t));
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTelecomAddress), 5)]
 		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcTelecomAddress.FacsimileNumbers 
 		{ 
 			get
@@ -37,6 +41,8 @@ namespace Xbim.Ifc2x3.ActorResource
 					t => new MeasureResource.IfcLabel(t));
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTelecomAddress), 6)]
 		Ifc4.MeasureResource.IfcLabel? IIfcTelecomAddress.PagerNumber 
 		{ 
 			get
@@ -52,6 +58,8 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTelecomAddress), 7)]
 		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcTelecomAddress.ElectronicMailAddresses 
 		{ 
 			get
@@ -62,6 +70,8 @@ namespace Xbim.Ifc2x3.ActorResource
 					t => new MeasureResource.IfcLabel(t));
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTelecomAddress), 8)]
 		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcTelecomAddress.WWWHomePageURL 
 		{ 
 			get
@@ -77,6 +87,8 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTelecomAddress), 9)]
 		IItemSet<Xbim.Ifc4.ExternalReferenceResource.IfcURIReference> IIfcTelecomAddress.MessagingIDs 
 		{ 
 			get

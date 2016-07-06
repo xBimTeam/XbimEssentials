@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	public partial class @IfcVirtualGridIntersection : IIfcVirtualGridIntersection
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcVirtualGridIntersection), 1)]
 		IItemSet<IIfcGridAxis> IIfcVirtualGridIntersection.IntersectingAxes 
 		{ 
 			get
@@ -25,6 +27,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				return new Common.Collections.ProxyItemSet<IfcGridAxis, IIfcGridAxis>(IntersectingAxes);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcVirtualGridIntersection), 2)]
 		IItemSet<Xbim.Ifc4.MeasureResource.IfcLengthMeasure> IIfcVirtualGridIntersection.OffsetDistances 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcBuilding : IIfcBuilding
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcBuilding), 10)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcBuilding.ElevationOfRefHeight 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBuilding), 11)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcBuilding.ElevationOfTerrain 
 		{ 
 			get
@@ -47,6 +51,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBuilding), 12)]
 		IIfcPostalAddress IIfcBuilding.BuildingAddress 
 		{ 
 			get
@@ -59,6 +65,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBuilding), 8)]
 		Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
 		{ 
 			get

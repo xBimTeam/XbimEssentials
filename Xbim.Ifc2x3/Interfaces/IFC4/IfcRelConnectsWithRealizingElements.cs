@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcRelConnectsWithRealizingElements : IIfcRelConnectsWithRealizingElements
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelConnectsWithRealizingElements), 8)]
 		IItemSet<IIfcElement> IIfcRelConnectsWithRealizingElements.RealizingElements 
 		{ 
 			get
@@ -25,6 +27,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return new Common.Collections.ProxyItemSet<IfcElement, IIfcElement>(RealizingElements);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelConnectsWithRealizingElements), 9)]
 		Ifc4.MeasureResource.IfcLabel? IIfcRelConnectsWithRealizingElements.ConnectionType 
 		{ 
 			get

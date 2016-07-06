@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	public partial class @IfcFace : IIfcFace
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcFace), 1)]
 		IItemSet<IIfcFaceBound> IIfcFace.Bounds 
 		{ 
 			get

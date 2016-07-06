@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcSweptDiskSolid : IIfcSweptDiskSolid
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSweptDiskSolid), 1)]
 		IIfcCurve IIfcSweptDiskSolid.Directrix 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSweptDiskSolid), 2)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcSweptDiskSolid.Radius 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSweptDiskSolid), 3)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcSweptDiskSolid.InnerRadius 
 		{ 
 			get
@@ -56,6 +62,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSweptDiskSolid), 4)]
 		Ifc4.MeasureResource.IfcParameterValue? IIfcSweptDiskSolid.StartParam 
 		{ 
 			get
@@ -70,6 +78,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSweptDiskSolid), 5)]
 		Ifc4.MeasureResource.IfcParameterValue? IIfcSweptDiskSolid.EndParam 
 		{ 
 			get

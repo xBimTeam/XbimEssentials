@@ -7,7 +7,7 @@ namespace Xbim.Common
 		string Name { get; }
 		void Commit();
 		void RollBack();
-		void AddReversibleAction(Action doAction, Action undoAction, IPersistEntity entity, ChangeType changeType, byte property);
+		void AddReversibleAction(Action doAction, Action undoAction, IPersistEntity entity, ChangeType changeType, int property);
 	}
 
 	public enum ChangeType

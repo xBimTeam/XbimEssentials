@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 {
 	public partial class @IfcGeometricRepresentationContext : IIfcGeometricRepresentationContext
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcGeometricRepresentationContext), 3)]
 		Ifc4.GeometryResource.IfcDimensionCount IIfcGeometricRepresentationContext.CoordinateSpaceDimension 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcGeometricRepresentationContext), 4)]
 		Ifc4.MeasureResource.IfcReal? IIfcGeometricRepresentationContext.Precision 
 		{ 
 			get
@@ -43,6 +47,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcGeometricRepresentationContext), 5)]
 		IIfcAxis2Placement IIfcGeometricRepresentationContext.WorldCoordinateSystem 
 		{ 
 			get
@@ -78,6 +84,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcGeometricRepresentationContext), 6)]
 		IIfcDirection IIfcGeometricRepresentationContext.TrueNorth 
 		{ 
 			get

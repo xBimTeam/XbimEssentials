@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcCurveStyle : IIfcCurveStyle
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCurveStyle), 2)]
 		IIfcCurveFontOrScaledCurveFontSelect IIfcCurveStyle.CurveFont 
 		{ 
 			get
@@ -61,6 +63,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCurveStyle), 3)]
 		IIfcSizeSelect IIfcCurveStyle.CurveWidth 
 		{ 
 			get
@@ -120,6 +124,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCurveStyle), 4)]
 		IIfcColour IIfcCurveStyle.CurveColour 
 		{ 
 			get
@@ -158,6 +164,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 
 		private  Ifc4.MeasureResource.IfcBoolean? _modelOrDraughting;
 
+
+		[CrossSchemaAttribute(typeof(IIfcCurveStyle), 5)]
 		Ifc4.MeasureResource.IfcBoolean? IIfcCurveStyle.ModelOrDraughting 
 		{ 
 			get
@@ -166,7 +174,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue(v => _modelOrDraughting = v, _modelOrDraughting, value, "ModelOrDraughting", byte.MaxValue);
+				SetValue(v => _modelOrDraughting = v, _modelOrDraughting, value, "ModelOrDraughting", -5);
 				
 			}
 		}

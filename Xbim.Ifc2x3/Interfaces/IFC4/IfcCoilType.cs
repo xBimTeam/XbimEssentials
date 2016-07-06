@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcCoilType : IIfcCoilType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCoilType), 10)]
 		Ifc4.Interfaces.IfcCoilTypeEnum IIfcCoilType.PredefinedType 
 		{ 
 			get

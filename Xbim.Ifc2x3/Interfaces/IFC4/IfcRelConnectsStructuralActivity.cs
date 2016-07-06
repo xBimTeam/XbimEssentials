@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcRelConnectsStructuralActivity : IIfcRelConnectsStructuralActivity
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelConnectsStructuralActivity), 5)]
 		IIfcStructuralActivityAssignmentSelect IIfcRelConnectsStructuralActivity.RelatingElement 
 		{ 
 			get
@@ -52,6 +54,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelConnectsStructuralActivity), 6)]
 		IIfcStructuralActivity IIfcRelConnectsStructuralActivity.RelatedStructuralActivity 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	public partial class @IfcEdge : IIfcEdge
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcEdge), 1)]
 		IIfcVertex IIfcEdge.EdgeStart 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcEdge), 2)]
 		IIfcVertex IIfcEdge.EdgeEnd 
 		{ 
 			get

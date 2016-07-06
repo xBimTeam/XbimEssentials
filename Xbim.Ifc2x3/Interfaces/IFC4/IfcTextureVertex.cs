@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	public partial class @IfcTextureVertex : IIfcTextureVertex
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTextureVertex), 1)]
 		IItemSet<Xbim.Ifc4.MeasureResource.IfcParameterValue> IIfcTextureVertex.Coordinates 
 		{ 
 			get

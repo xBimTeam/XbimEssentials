@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcStructuralLoadTemperature : IIfcStructuralLoadTemperature
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadTemperature), 2)]
 		Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaTConstant 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadTemperature), 3)]
 		Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaTY 
 		{ 
 			get
@@ -47,6 +51,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadTemperature), 4)]
 		Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaTZ 
 		{ 
 			get

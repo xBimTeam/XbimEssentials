@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	public partial class @IfcDerivedUnitElement : IIfcDerivedUnitElement
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcDerivedUnitElement), 1)]
 		IIfcNamedUnit IIfcDerivedUnitElement.Unit 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDerivedUnitElement), 2)]
 		long IIfcDerivedUnitElement.Exponent 
 		{ 
 			get

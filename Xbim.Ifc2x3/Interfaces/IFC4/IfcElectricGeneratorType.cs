@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcElectricGeneratorType : IIfcElectricGeneratorType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcElectricGeneratorType), 10)]
 		Ifc4.Interfaces.IfcElectricGeneratorTypeEnum IIfcElectricGeneratorType.PredefinedType 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	public partial class @IfcLibraryInformation : IIfcLibraryInformation
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcLibraryInformation), 1)]
 		Ifc4.MeasureResource.IfcLabel IIfcLibraryInformation.Name 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcLibraryInformation), 2)]
 		Ifc4.MeasureResource.IfcLabel? IIfcLibraryInformation.Version 
 		{ 
 			get
@@ -47,6 +51,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 
 		private  IIfcActorSelect _publisher4;
 
+
+		[CrossSchemaAttribute(typeof(IIfcLibraryInformation), 3)]
 		IIfcActorSelect IIfcLibraryInformation.Publisher 
 		{ 
 			get
@@ -59,7 +65,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				{
 					Publisher = null;
 					if (_publisher4 != null)
-						SetValue(v => _publisher4 = v, _publisher4, null, "Publisher", byte.MaxValue);
+						SetValue(v => _publisher4 = v, _publisher4, null, "Publisher", -3);
 					return;
 				}
 				
@@ -68,16 +74,18 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				{
 					Publisher = val;
 					if (_publisher4 != null)
-						SetValue(v => _publisher4 = v, _publisher4, null, "Publisher", byte.MaxValue);
+						SetValue(v => _publisher4 = v, _publisher4, null, "Publisher", -3);
 					return;
 				} 
 
 				if(Publisher != null)
 					Publisher = null;
-				SetValue(v => _publisher4 = v, _publisher4, value, "Publisher", byte.MaxValue);
+				SetValue(v => _publisher4 = v, _publisher4, value, "Publisher", -3);
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcLibraryInformation), 4)]
 		Ifc4.DateTimeResource.IfcDateTime? IIfcLibraryInformation.VersionDate 
 		{ 
 			get
@@ -107,6 +115,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcLibraryInformation), 5)]
 		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcLibraryInformation.Location 
 		{ 
 			get
@@ -142,6 +152,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 
 		private  Ifc4.MeasureResource.IfcText? _description;
 
+
+		[CrossSchemaAttribute(typeof(IIfcLibraryInformation), 6)]
 		Ifc4.MeasureResource.IfcText? IIfcLibraryInformation.Description 
 		{ 
 			get
@@ -150,7 +162,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue(v => _description = v, _description, value, "Description", byte.MaxValue);
+				SetValue(v => _description = v, _description, value, "Description", -6);
 				
 			}
 		}

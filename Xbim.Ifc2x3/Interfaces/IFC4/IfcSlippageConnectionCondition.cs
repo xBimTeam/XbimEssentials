@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcSlippageConnectionCondition : IIfcSlippageConnectionCondition
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSlippageConnectionCondition), 2)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageX 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSlippageConnectionCondition), 3)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageY 
 		{ 
 			get
@@ -47,6 +51,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSlippageConnectionCondition), 4)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageZ 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	public partial class @IfcUnitAssignment : IIfcUnitAssignment
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcUnitAssignment), 1)]
 		IItemSet<IIfcUnit> IIfcUnitAssignment.Units 
 		{ 
 			get

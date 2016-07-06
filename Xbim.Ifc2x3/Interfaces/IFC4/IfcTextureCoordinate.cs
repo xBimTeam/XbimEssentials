@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	public partial class @IfcTextureCoordinate : IIfcTextureCoordinate
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTextureCoordinate), 1)]
 		IItemSet<IIfcSurfaceTexture> IIfcTextureCoordinate.Maps 
 		{ 
 			get

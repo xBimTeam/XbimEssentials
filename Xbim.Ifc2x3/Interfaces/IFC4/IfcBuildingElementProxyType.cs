@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcBuildingElementProxyType : IIfcBuildingElementProxyType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcBuildingElementProxyType), 10)]
 		Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum IIfcBuildingElementProxyType.PredefinedType 
 		{ 
 			get

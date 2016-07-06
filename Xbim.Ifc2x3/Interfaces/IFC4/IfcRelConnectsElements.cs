@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcRelConnectsElements : IIfcRelConnectsElements
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelConnectsElements), 5)]
 		IIfcConnectionGeometry IIfcRelConnectsElements.ConnectionGeometry 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelConnectsElements), 6)]
 		IIfcElement IIfcRelConnectsElements.RelatingElement 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelConnectsElements), 7)]
 		IIfcElement IIfcRelConnectsElements.RelatedElement 
 		{ 
 			get

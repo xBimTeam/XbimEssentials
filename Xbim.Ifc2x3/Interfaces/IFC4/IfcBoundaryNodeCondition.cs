@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcBoundaryNodeCondition : IIfcBoundaryNodeCondition
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcBoundaryNodeCondition), 2)]
 		IIfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessX 
 		{ 
 			get
@@ -55,6 +57,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBoundaryNodeCondition), 3)]
 		IIfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessY 
 		{ 
 			get
@@ -93,6 +97,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBoundaryNodeCondition), 4)]
 		IIfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessZ 
 		{ 
 			get
@@ -130,6 +136,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBoundaryNodeCondition), 5)]
 		IIfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessX 
 		{ 
 			get
@@ -167,6 +175,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBoundaryNodeCondition), 6)]
 		IIfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessY 
 		{ 
 			get
@@ -204,6 +214,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBoundaryNodeCondition), 7)]
 		IIfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessZ 
 		{ 
 			get

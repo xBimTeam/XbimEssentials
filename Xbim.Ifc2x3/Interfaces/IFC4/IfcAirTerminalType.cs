@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcAirTerminalType : IIfcAirTerminalType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcAirTerminalType), 10)]
 		Ifc4.Interfaces.IfcAirTerminalTypeEnum IIfcAirTerminalType.PredefinedType 
 		{ 
 			get

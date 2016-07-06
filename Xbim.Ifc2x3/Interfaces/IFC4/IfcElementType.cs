@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcElementType : IIfcElementType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcElementType), 9)]
 		Ifc4.MeasureResource.IfcLabel? IIfcElementType.ElementType 
 		{ 
 			get

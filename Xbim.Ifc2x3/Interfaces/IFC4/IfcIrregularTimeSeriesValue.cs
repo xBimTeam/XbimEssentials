@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 {
 	public partial class @IfcIrregularTimeSeriesValue : IIfcIrregularTimeSeriesValue
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcIrregularTimeSeriesValue), 1)]
 		Ifc4.DateTimeResource.IfcDateTime IIfcIrregularTimeSeriesValue.TimeStamp 
 		{ 
 			get
@@ -50,6 +52,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcIrregularTimeSeriesValue), 2)]
 		IItemSet<IIfcValue> IIfcIrregularTimeSeriesValue.ListValues 
 		{ 
 			get
@@ -57,7 +61,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			
 				return _listValuesIfc4 ?? (_listValuesIfc4 = new Common.Collections.ExtendedItemSet<MeasureResource.IfcValue, IIfcValue>(
                     ListValues, 
-                    new ItemSet<IIfcValue>(this, 0, 255), 
+                    new ItemSet<IIfcValue>(this, 0, -2), 
                     v => v.ToIfc4(), 
                     v => v.ToIfc3()));
 			} 

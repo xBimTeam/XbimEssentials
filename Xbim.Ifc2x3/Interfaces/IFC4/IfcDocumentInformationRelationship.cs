@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	public partial class @IfcDocumentInformationRelationship : IIfcDocumentInformationRelationship
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformationRelationship), 3)]
 		IIfcDocumentInformation IIfcDocumentInformationRelationship.RelatingDocument 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformationRelationship), 4)]
 		IItemSet<IIfcDocumentInformation> IIfcDocumentInformationRelationship.RelatedDocuments 
 		{ 
 			get
@@ -37,6 +41,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				return new Common.Collections.ProxyItemSet<IfcDocumentInformation, IIfcDocumentInformation>(RelatedDocuments);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformationRelationship), 5)]
 		Ifc4.MeasureResource.IfcLabel? IIfcDocumentInformationRelationship.RelationshipType 
 		{ 
 			get
@@ -55,6 +61,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 
 		private  Ifc4.MeasureResource.IfcLabel? _name;
 
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformationRelationship), 1)]
 		Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
 		{ 
 			get
@@ -63,13 +71,15 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue(v => _name = v, _name, value, "Name", byte.MaxValue);
+				SetValue(v => _name = v, _name, value, "Name", -1);
 				
 			}
 		}
 
 		private  Ifc4.MeasureResource.IfcText? _description;
 
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformationRelationship), 2)]
 		Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
 		{ 
 			get
@@ -78,7 +88,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue(v => _description = v, _description, value, "Description", byte.MaxValue);
+				SetValue(v => _description = v, _description, value, "Description", -2);
 				
 			}
 		}

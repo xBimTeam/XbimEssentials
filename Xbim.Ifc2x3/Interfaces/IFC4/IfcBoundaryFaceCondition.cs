@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcBoundaryFaceCondition : IIfcBoundaryFaceCondition
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcBoundaryFaceCondition), 2)]
 		IIfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaX 
 		{ 
 			get
@@ -55,6 +57,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBoundaryFaceCondition), 3)]
 		IIfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaY 
 		{ 
 			get
@@ -93,6 +97,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBoundaryFaceCondition), 4)]
 		IIfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaZ 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcRamp : IIfcRamp
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRamp), 9)]
 		Ifc4.Interfaces.IfcRampTypeEnum? IIfcRamp.PredefinedType 
 		{ 
 			get

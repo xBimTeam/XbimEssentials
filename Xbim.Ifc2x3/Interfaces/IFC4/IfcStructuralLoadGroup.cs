@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralLoadGroup : IIfcStructuralLoadGroup
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadGroup), 6)]
 		Ifc4.Interfaces.IfcLoadGroupTypeEnum IIfcStructuralLoadGroup.PredefinedType 
 		{ 
 			get
@@ -85,6 +87,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadGroup), 7)]
 		Ifc4.Interfaces.IfcActionTypeEnum IIfcStructuralLoadGroup.ActionType 
 		{ 
 			get
@@ -148,6 +152,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadGroup), 8)]
 		Ifc4.Interfaces.IfcActionSourceTypeEnum IIfcStructuralLoadGroup.ActionSource 
 		{ 
 			get
@@ -365,6 +371,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadGroup), 9)]
 		Ifc4.MeasureResource.IfcRatioMeasure? IIfcStructuralLoadGroup.Coefficient 
 		{ 
 			get
@@ -380,6 +388,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadGroup), 10)]
 		Ifc4.MeasureResource.IfcLabel? IIfcStructuralLoadGroup.Purpose 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcCenterLineProfileDef : IIfcCenterLineProfileDef
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCenterLineProfileDef), 4)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcCenterLineProfileDef.Thickness 
 		{ 
 			get

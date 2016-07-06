@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralActivity : IIfcStructuralActivity
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralActivity), 8)]
 		IIfcStructuralLoad IIfcStructuralActivity.AppliedLoad 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralActivity), 9)]
 		Ifc4.Interfaces.IfcGlobalOrLocalEnum IIfcStructuralActivity.GlobalOrLocal 
 		{ 
 			get

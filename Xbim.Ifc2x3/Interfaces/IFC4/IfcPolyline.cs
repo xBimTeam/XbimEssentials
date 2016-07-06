@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcPolyline : IIfcPolyline
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPolyline), 1)]
 		IItemSet<IIfcCartesianPoint> IIfcPolyline.Points 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	public partial class @IfcReinforcementDefinitionProperties : IIfcReinforcementDefinitionProperties
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcReinforcementDefinitionProperties), 5)]
 		Ifc4.MeasureResource.IfcLabel? IIfcReinforcementDefinitionProperties.DefinitionType 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcReinforcementDefinitionProperties), 6)]
 		IItemSet<IIfcSectionReinforcementProperties> IIfcReinforcementDefinitionProperties.ReinforcementSectionDefinitions 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcRoof : IIfcRoof
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRoof), 9)]
 		Ifc4.Interfaces.IfcRoofTypeEnum? IIfcRoof.PredefinedType 
 		{ 
 			get

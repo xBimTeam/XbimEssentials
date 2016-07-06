@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 {
 	public partial class @IfcProductRepresentation : IIfcProductRepresentation
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcProductRepresentation), 1)]
 		Ifc4.MeasureResource.IfcLabel? IIfcProductRepresentation.Name 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcProductRepresentation), 2)]
 		Ifc4.MeasureResource.IfcText? IIfcProductRepresentation.Description 
 		{ 
 			get
@@ -47,6 +51,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcProductRepresentation), 3)]
 		IItemSet<IIfcRepresentation> IIfcProductRepresentation.Representations 
 		{ 
 			get

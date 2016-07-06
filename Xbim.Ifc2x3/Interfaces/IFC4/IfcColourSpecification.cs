@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationResource
 {
 	public partial class @IfcColourSpecification : IIfcColourSpecification
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcColourSpecification), 1)]
 		Ifc4.MeasureResource.IfcLabel? IIfcColourSpecification.Name 
 		{ 
 			get

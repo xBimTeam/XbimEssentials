@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	public partial class @IfcDocumentInformation : IIfcDocumentInformation
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 1)]
 		Ifc4.MeasureResource.IfcIdentifier IIfcDocumentInformation.Identification 
 		{ 
 			get
@@ -34,6 +36,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 2)]
 		Ifc4.MeasureResource.IfcLabel IIfcDocumentInformation.Name 
 		{ 
 			get
@@ -46,6 +50,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 3)]
 		Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.Description 
 		{ 
 			get
@@ -61,6 +67,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 4)]
 		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcDocumentInformation.Location 
 		{ 
 			get
@@ -92,6 +100,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 5)]
 		Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.Purpose 
 		{ 
 			get
@@ -107,6 +117,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 6)]
 		Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.IntendedUse 
 		{ 
 			get
@@ -122,6 +134,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 7)]
 		Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.Scope 
 		{ 
 			get
@@ -137,6 +151,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 8)]
 		Ifc4.MeasureResource.IfcLabel? IIfcDocumentInformation.Revision 
 		{ 
 			get
@@ -152,6 +168,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 9)]
 		IIfcActorSelect IIfcDocumentInformation.DocumentOwner 
 		{ 
 			get
@@ -196,6 +214,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 10)]
 		IItemSet<IIfcActorSelect> IIfcDocumentInformation.Editors 
 		{ 
 			get
@@ -204,6 +224,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				return new Common.Collections.ProxyItemSet<ActorResource.IfcActorSelect, IIfcActorSelect>(Editors);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 11)]
 		Ifc4.DateTimeResource.IfcDateTime? IIfcDocumentInformation.CreationTime 
 		{ 
 			get
@@ -242,6 +264,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 12)]
 		Ifc4.DateTimeResource.IfcDateTime? IIfcDocumentInformation.LastRevisionTime 
 		{ 
 			get
@@ -280,6 +304,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 13)]
 		Ifc4.MeasureResource.IfcIdentifier? IIfcDocumentInformation.ElectronicFormat 
 		{ 
 			get
@@ -314,6 +340,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 14)]
 		Ifc4.DateTimeResource.IfcDate? IIfcDocumentInformation.ValidFrom 
 		{ 
 			get
@@ -343,6 +371,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 15)]
 		Ifc4.DateTimeResource.IfcDate? IIfcDocumentInformation.ValidUntil 
 		{ 
 			get
@@ -372,6 +402,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 16)]
 		Ifc4.Interfaces.IfcDocumentConfidentialityEnum? IIfcDocumentInformation.Confidentiality 
 		{ 
 			get
@@ -442,6 +474,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 17)]
 		Ifc4.Interfaces.IfcDocumentStatusEnum? IIfcDocumentInformation.Status 
 		{ 
 			get

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -125,7 +124,7 @@ namespace Xbim.Ifc
             if(EntityNew!=null) EntityNew.Invoke(entity);
         }
 
-        private void _model_EntityModified(IPersistEntity entity, byte property)
+        private void _model_EntityModified(IPersistEntity entity, int property)
         {
             if(EntityModified !=null)EntityModified.Invoke(entity, property);
         }
@@ -537,7 +536,7 @@ namespace Xbim.Ifc
         #region OwnerHistory Management
 
 
-        private void IfcRootModifiedIfc2X3(IPersistEntity entity, byte property)
+        private void IfcRootModifiedIfc2X3(IPersistEntity entity, int property)
         {
 
             var root = entity as Ifc2x3.Kernel.IfcRoot;
@@ -559,7 +558,7 @@ namespace Xbim.Ifc
         }
 
 
-        private void IfcRootModifiedIfc4(IPersistEntity entity, byte property)
+        private void IfcRootModifiedIfc4(IPersistEntity entity, int property)
         {
             var root = entity as Ifc4.Kernel.IfcRoot;
             if (root == null || root.OwnerHistory == (Ifc4.UtilityResource.IfcOwnerHistory)_ownerHistoryAddObject)

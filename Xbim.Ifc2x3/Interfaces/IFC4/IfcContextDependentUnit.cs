@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	public partial class @IfcContextDependentUnit : IIfcContextDependentUnit
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcContextDependentUnit), 3)]
 		Ifc4.MeasureResource.IfcLabel IIfcContextDependentUnit.Name 
 		{ 
 			get

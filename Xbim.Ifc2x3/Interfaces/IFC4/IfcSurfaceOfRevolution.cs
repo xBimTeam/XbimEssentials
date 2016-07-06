@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcSurfaceOfRevolution : IIfcSurfaceOfRevolution
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceOfRevolution), 3)]
 		IIfcAxis1Placement IIfcSurfaceOfRevolution.AxisPosition 
 		{ 
 			get

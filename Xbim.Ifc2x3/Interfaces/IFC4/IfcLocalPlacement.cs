@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	public partial class @IfcLocalPlacement : IIfcLocalPlacement
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcLocalPlacement), 1)]
 		IIfcObjectPlacement IIfcLocalPlacement.PlacementRelTo 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcLocalPlacement), 2)]
 		IIfcAxis2Placement IIfcLocalPlacement.RelativePlacement 
 		{ 
 			get

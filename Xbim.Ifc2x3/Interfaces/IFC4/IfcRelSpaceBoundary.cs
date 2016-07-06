@@ -20,6 +20,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 
 		private  IIfcSpaceBoundarySelect _relatingSpace4;
 
+
+		[CrossSchemaAttribute(typeof(IIfcRelSpaceBoundary), 5)]
 		IIfcSpaceBoundarySelect IIfcRelSpaceBoundary.RelatingSpace 
 		{ 
 			get
@@ -32,7 +34,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 				{
 					RelatingSpace = null;
 					if (_relatingSpace4 != null)
-						SetValue(v => _relatingSpace4 = v, _relatingSpace4, null, "RelatingSpace", byte.MaxValue);
+						SetValue(v => _relatingSpace4 = v, _relatingSpace4, null, "RelatingSpace", -5);
 					return;
 				}
 				
@@ -41,16 +43,18 @@ namespace Xbim.Ifc2x3.ProductExtension
 				{
 					RelatingSpace = val;
 					if (_relatingSpace4 != null)
-						SetValue(v => _relatingSpace4 = v, _relatingSpace4, null, "RelatingSpace", byte.MaxValue);
+						SetValue(v => _relatingSpace4 = v, _relatingSpace4, null, "RelatingSpace", -5);
 					return;
 				} 
 
 				if(RelatingSpace != null)
 					RelatingSpace = null;
-				SetValue(v => _relatingSpace4 = v, _relatingSpace4, value, "RelatingSpace", byte.MaxValue);
+				SetValue(v => _relatingSpace4 = v, _relatingSpace4, value, "RelatingSpace", -5);
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelSpaceBoundary), 6)]
 		IIfcElement IIfcRelSpaceBoundary.RelatedBuildingElement 
 		{ 
 			get
@@ -63,6 +67,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelSpaceBoundary), 7)]
 		IIfcConnectionGeometry IIfcRelSpaceBoundary.ConnectionGeometry 
 		{ 
 			get
@@ -75,6 +81,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelSpaceBoundary), 8)]
 		Ifc4.Interfaces.IfcPhysicalOrVirtualEnum IIfcRelSpaceBoundary.PhysicalOrVirtualBoundary 
 		{ 
 			get
@@ -122,6 +130,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelSpaceBoundary), 9)]
 		Ifc4.Interfaces.IfcInternalOrExternalEnum IIfcRelSpaceBoundary.InternalOrExternalBoundary 
 		{ 
 			get

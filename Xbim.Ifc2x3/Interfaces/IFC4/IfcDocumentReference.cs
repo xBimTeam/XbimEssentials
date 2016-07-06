@@ -20,6 +20,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 
 		private  Ifc4.MeasureResource.IfcText? _description;
 
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentReference), 4)]
 		Ifc4.MeasureResource.IfcText? IIfcDocumentReference.Description 
 		{ 
 			get
@@ -28,10 +30,12 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue(v => _description = v, _description, value, "Description", byte.MaxValue);
+				SetValue(v => _description = v, _description, value, "Description", -4);
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentReference), 5)]
 		IIfcDocumentInformation IIfcDocumentReference.ReferencedDocument 
 		{ 
 			get

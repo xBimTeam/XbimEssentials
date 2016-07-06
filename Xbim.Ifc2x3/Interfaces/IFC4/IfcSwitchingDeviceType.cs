@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcSwitchingDeviceType : IIfcSwitchingDeviceType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSwitchingDeviceType), 10)]
 		Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum IIfcSwitchingDeviceType.PredefinedType 
 		{ 
 			get

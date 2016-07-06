@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcSpaceHeaterType : IIfcSpaceHeaterType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSpaceHeaterType), 10)]
 		Ifc4.Interfaces.IfcSpaceHeaterTypeEnum IIfcSpaceHeaterType.PredefinedType 
 		{ 
 			get

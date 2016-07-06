@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	public partial class @IfcPresentationLayerAssignment : IIfcPresentationLayerAssignment
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPresentationLayerAssignment), 1)]
 		Ifc4.MeasureResource.IfcLabel IIfcPresentationLayerAssignment.Name 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPresentationLayerAssignment), 2)]
 		Ifc4.MeasureResource.IfcText? IIfcPresentationLayerAssignment.Description 
 		{ 
 			get
@@ -44,6 +48,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPresentationLayerAssignment), 3)]
 		IItemSet<IIfcLayeredItem> IIfcPresentationLayerAssignment.AssignedItems 
 		{ 
 			get
@@ -52,6 +58,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				return new Common.Collections.ProxyItemSet<IfcLayeredItem, IIfcLayeredItem>(AssignedItems);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPresentationLayerAssignment), 4)]
 		Ifc4.MeasureResource.IfcIdentifier? IIfcPresentationLayerAssignment.Identifier 
 		{ 
 			get

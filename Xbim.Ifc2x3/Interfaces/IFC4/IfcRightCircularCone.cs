@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcRightCircularCone : IIfcRightCircularCone
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRightCircularCone), 2)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRightCircularCone.Height 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRightCircularCone), 3)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRightCircularCone.BottomRadius 
 		{ 
 			get

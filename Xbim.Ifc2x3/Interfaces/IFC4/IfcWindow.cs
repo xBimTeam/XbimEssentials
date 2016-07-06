@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcWindow : IIfcWindow
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcWindow), 9)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcWindow.OverallHeight 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWindow), 10)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcWindow.OverallWidth 
 		{ 
 			get
@@ -50,6 +54,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 
 		private  Ifc4.Interfaces.IfcWindowTypeEnum? _predefinedType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcWindow), 11)]
 		Ifc4.Interfaces.IfcWindowTypeEnum? IIfcWindow.PredefinedType 
 		{ 
 			get
@@ -58,13 +64,15 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -11);
 				
 			}
 		}
 
 		private  Ifc4.Interfaces.IfcWindowTypePartitioningEnum? _partitioningType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcWindow), 12)]
 		Ifc4.Interfaces.IfcWindowTypePartitioningEnum? IIfcWindow.PartitioningType 
 		{ 
 			get
@@ -73,13 +81,15 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				SetValue(v => _partitioningType = v, _partitioningType, value, "PartitioningType", byte.MaxValue);
+				SetValue(v => _partitioningType = v, _partitioningType, value, "PartitioningType", -12);
 				
 			}
 		}
 
 		private  Ifc4.MeasureResource.IfcLabel? _userDefinedPartitioningType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcWindow), 13)]
 		Ifc4.MeasureResource.IfcLabel? IIfcWindow.UserDefinedPartitioningType 
 		{ 
 			get
@@ -88,7 +98,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				SetValue(v => _userDefinedPartitioningType = v, _userDefinedPartitioningType, value, "UserDefinedPartitioningType", byte.MaxValue);
+				SetValue(v => _userDefinedPartitioningType = v, _userDefinedPartitioningType, value, "UserDefinedPartitioningType", -13);
 				
 			}
 		}

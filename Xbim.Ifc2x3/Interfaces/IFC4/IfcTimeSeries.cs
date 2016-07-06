@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 {
 	public partial class @IfcTimeSeries : IIfcTimeSeries
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTimeSeries), 1)]
 		Ifc4.MeasureResource.IfcLabel IIfcTimeSeries.Name 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTimeSeries), 2)]
 		Ifc4.MeasureResource.IfcText? IIfcTimeSeries.Description 
 		{ 
 			get
@@ -44,6 +48,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTimeSeries), 3)]
 		Ifc4.DateTimeResource.IfcDateTime IIfcTimeSeries.StartTime 
 		{ 
 			get
@@ -75,6 +81,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTimeSeries), 4)]
 		Ifc4.DateTimeResource.IfcDateTime IIfcTimeSeries.EndTime 
 		{ 
 			get
@@ -106,6 +114,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTimeSeries), 5)]
 		Ifc4.Interfaces.IfcTimeSeriesDataTypeEnum IIfcTimeSeries.TimeSeriesDataType 
 		{ 
 			get
@@ -181,6 +191,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTimeSeries), 6)]
 		Ifc4.Interfaces.IfcDataOriginEnum IIfcTimeSeries.DataOrigin 
 		{ 
 			get
@@ -244,6 +256,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTimeSeries), 7)]
 		Ifc4.MeasureResource.IfcLabel? IIfcTimeSeries.UserDefinedDataOrigin 
 		{ 
 			get
@@ -259,6 +273,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTimeSeries), 8)]
 		IIfcUnit IIfcTimeSeries.Unit 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	public partial class @IfcEdgeLoop : IIfcEdgeLoop
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcEdgeLoop), 1)]
 		IItemSet<IIfcOrientedEdge> IIfcEdgeLoop.EdgeList 
 		{ 
 			get

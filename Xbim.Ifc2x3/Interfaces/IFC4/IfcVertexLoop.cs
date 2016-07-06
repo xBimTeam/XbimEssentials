@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	public partial class @IfcVertexLoop : IIfcVertexLoop
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcVertexLoop), 1)]
 		IIfcVertex IIfcVertexLoop.LoopVertex 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcHeatExchangerType : IIfcHeatExchangerType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcHeatExchangerType), 10)]
 		Ifc4.Interfaces.IfcHeatExchangerTypeEnum IIfcHeatExchangerType.PredefinedType 
 		{ 
 			get

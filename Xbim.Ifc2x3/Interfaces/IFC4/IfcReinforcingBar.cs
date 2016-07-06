@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	public partial class @IfcReinforcingBar : IIfcReinforcingBar
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcReinforcingBar), 10)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcReinforcingBar.NominalDiameter 
 		{ 
 			get
@@ -31,6 +33,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcReinforcingBar), 11)]
 		Ifc4.MeasureResource.IfcAreaMeasure? IIfcReinforcingBar.CrossSectionArea 
 		{ 
 			get
@@ -45,6 +49,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcReinforcingBar), 12)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcReinforcingBar.BarLength 
 		{ 
 			get
@@ -63,6 +69,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 
 		private  Ifc4.Interfaces.IfcReinforcingBarTypeEnum? _predefinedType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcReinforcingBar), 13)]
 		Ifc4.Interfaces.IfcReinforcingBarTypeEnum? IIfcReinforcingBar.PredefinedType 
 		{ 
 			get
@@ -71,10 +79,12 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -13);
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcReinforcingBar), 14)]
 		Ifc4.Interfaces.IfcReinforcingBarSurfaceEnum? IIfcReinforcingBar.BarSurface 
 		{ 
 			get

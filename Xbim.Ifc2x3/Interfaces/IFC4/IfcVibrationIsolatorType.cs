@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcVibrationIsolatorType : IIfcVibrationIsolatorType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcVibrationIsolatorType), 10)]
 		Ifc4.Interfaces.IfcVibrationIsolatorTypeEnum IIfcVibrationIsolatorType.PredefinedType 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcTShapeProfileDef : IIfcTShapeProfileDef
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTShapeProfileDef), 4)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcTShapeProfileDef.Depth 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTShapeProfileDef), 5)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcTShapeProfileDef.FlangeWidth 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTShapeProfileDef), 6)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcTShapeProfileDef.WebThickness 
 		{ 
 			get
@@ -53,6 +59,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTShapeProfileDef), 7)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcTShapeProfileDef.FlangeThickness 
 		{ 
 			get
@@ -65,6 +73,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTShapeProfileDef), 8)]
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcTShapeProfileDef.FilletRadius 
 		{ 
 			get
@@ -80,6 +90,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTShapeProfileDef), 9)]
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcTShapeProfileDef.FlangeEdgeRadius 
 		{ 
 			get
@@ -95,6 +107,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTShapeProfileDef), 10)]
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcTShapeProfileDef.WebEdgeRadius 
 		{ 
 			get
@@ -110,6 +124,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTShapeProfileDef), 11)]
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcTShapeProfileDef.WebSlope 
 		{ 
 			get
@@ -125,6 +141,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTShapeProfileDef), 12)]
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcTShapeProfileDef.FlangeSlope 
 		{ 
 			get

@@ -20,6 +20,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 
 		private  Ifc4.MeasureResource.IfcText? _description;
 
+
+		[CrossSchemaAttribute(typeof(IIfcLibraryReference), 4)]
 		Ifc4.MeasureResource.IfcText? IIfcLibraryReference.Description 
 		{ 
 			get
@@ -28,13 +30,15 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue(v => _description = v, _description, value, "Description", byte.MaxValue);
+				SetValue(v => _description = v, _description, value, "Description", -4);
 				
 			}
 		}
 
 		private  Ifc4.ExternalReferenceResource.IfcLanguageId? _language;
 
+
+		[CrossSchemaAttribute(typeof(IIfcLibraryReference), 5)]
 		Ifc4.ExternalReferenceResource.IfcLanguageId? IIfcLibraryReference.Language 
 		{ 
 			get
@@ -43,13 +47,15 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue(v => _language = v, _language, value, "Language", byte.MaxValue);
+				SetValue(v => _language = v, _language, value, "Language", -5);
 				
 			}
 		}
 
 		private  IIfcLibraryInformation _referencedLibrary;
 
+
+		[CrossSchemaAttribute(typeof(IIfcLibraryReference), 6)]
 		IIfcLibraryInformation IIfcLibraryReference.ReferencedLibrary 
 		{ 
 			get
@@ -58,7 +64,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue(v => _referencedLibrary = v, _referencedLibrary, value, "ReferencedLibrary", byte.MaxValue);
+				SetValue(v => _referencedLibrary = v, _referencedLibrary, value, "ReferencedLibrary", -6);
 				
 			}
 		}

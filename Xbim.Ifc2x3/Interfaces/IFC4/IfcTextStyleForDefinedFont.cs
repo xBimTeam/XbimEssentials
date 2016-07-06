@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcTextStyleForDefinedFont : IIfcTextStyleForDefinedFont
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTextStyleForDefinedFont), 1)]
 		IIfcColour IIfcTextStyleForDefinedFont.Colour 
 		{ 
 			get
@@ -52,6 +54,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTextStyleForDefinedFont), 2)]
 		IIfcColour IIfcTextStyleForDefinedFont.BackgroundColour 
 		{ 
 			get

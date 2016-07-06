@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 {
 	public partial class @IfcGeometricRepresentationSubContext : IIfcGeometricRepresentationSubContext
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcGeometricRepresentationSubContext), 7)]
 		IIfcGeometricRepresentationContext IIfcGeometricRepresentationSubContext.ParentContext 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcGeometricRepresentationSubContext), 8)]
 		Ifc4.MeasureResource.IfcPositiveRatioMeasure? IIfcGeometricRepresentationSubContext.TargetScale 
 		{ 
 			get
@@ -44,6 +48,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcGeometricRepresentationSubContext), 9)]
 		Ifc4.Interfaces.IfcGeometricProjectionEnum IIfcGeometricRepresentationSubContext.TargetView 
 		{ 
 			get
@@ -135,6 +141,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcGeometricRepresentationSubContext), 10)]
 		Ifc4.MeasureResource.IfcLabel? IIfcGeometricRepresentationSubContext.UserDefinedTargetView 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcPixelTexture : IIfcPixelTexture
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPixelTexture), 6)]
 		Ifc4.MeasureResource.IfcInteger IIfcPixelTexture.Width 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPixelTexture), 7)]
 		Ifc4.MeasureResource.IfcInteger IIfcPixelTexture.Height 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPixelTexture), 8)]
 		Ifc4.MeasureResource.IfcInteger IIfcPixelTexture.ColourComponents 
 		{ 
 			get
@@ -53,6 +59,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPixelTexture), 9)]
 		IItemSet<Xbim.Ifc4.MeasureResource.IfcBinary> IIfcPixelTexture.Pixel 
 		{ 
 			get

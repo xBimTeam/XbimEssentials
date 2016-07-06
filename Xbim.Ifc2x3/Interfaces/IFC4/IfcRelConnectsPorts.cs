@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcRelConnectsPorts : IIfcRelConnectsPorts
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelConnectsPorts), 5)]
 		IIfcPort IIfcRelConnectsPorts.RelatingPort 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelConnectsPorts), 6)]
 		IIfcPort IIfcRelConnectsPorts.RelatedPort 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelConnectsPorts), 7)]
 		IIfcElement IIfcRelConnectsPorts.RealizingElement 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcElectricTimeControlType : IIfcElectricTimeControlType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcElectricTimeControlType), 10)]
 		Ifc4.Interfaces.IfcElectricTimeControlTypeEnum IIfcElectricTimeControlType.PredefinedType 
 		{ 
 			get

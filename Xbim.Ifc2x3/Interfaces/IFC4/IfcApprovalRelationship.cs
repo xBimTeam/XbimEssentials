@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ApprovalResource
 {
 	public partial class @IfcApprovalRelationship : IIfcApprovalRelationship
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcApprovalRelationship), 3)]
 		IIfcApproval IIfcApprovalRelationship.RelatingApproval 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.ApprovalResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcApprovalRelationship), 4)]
 		IItemSet<IIfcApproval> IIfcApprovalRelationship.RelatedApprovals 
 		{ 
 			get
@@ -44,6 +48,8 @@ namespace Xbim.Ifc2x3.ApprovalResource
 				//##
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcApprovalRelationship), 1)]
 		Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
 		{ 
 			get
@@ -58,6 +64,8 @@ namespace Xbim.Ifc2x3.ApprovalResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcApprovalRelationship), 2)]
 		Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcPointOnSurface : IIfcPointOnSurface
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPointOnSurface), 1)]
 		IIfcSurface IIfcPointOnSurface.BasisSurface 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPointOnSurface), 2)]
 		Ifc4.MeasureResource.IfcParameterValue IIfcPointOnSurface.PointParameterU 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPointOnSurface), 3)]
 		Ifc4.MeasureResource.IfcParameterValue IIfcPointOnSurface.PointParameterV 
 		{ 
 			get

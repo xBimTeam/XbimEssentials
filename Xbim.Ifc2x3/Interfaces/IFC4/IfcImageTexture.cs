@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcImageTexture : IIfcImageTexture
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcImageTexture), 6)]
 		Ifc4.ExternalReferenceResource.IfcURIReference IIfcImageTexture.URLReference 
 		{ 
 			get

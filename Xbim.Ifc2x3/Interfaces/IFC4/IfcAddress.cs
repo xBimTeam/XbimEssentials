@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ActorResource
 {
 	public partial class @IfcAddress : IIfcAddress
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcAddress), 1)]
 		Ifc4.Interfaces.IfcAddressTypeEnum? IIfcAddress.Purpose 
 		{ 
 			get
@@ -80,6 +82,8 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAddress), 2)]
 		Ifc4.MeasureResource.IfcText? IIfcAddress.Description 
 		{ 
 			get
@@ -95,6 +99,8 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAddress), 3)]
 		Ifc4.MeasureResource.IfcLabel? IIfcAddress.UserDefinedPurpose 
 		{ 
 			get

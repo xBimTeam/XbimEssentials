@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcAxis1Placement : IIfcAxis1Placement
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcAxis1Placement), 2)]
 		IIfcDirection IIfcAxis1Placement.Axis 
 		{ 
 			get

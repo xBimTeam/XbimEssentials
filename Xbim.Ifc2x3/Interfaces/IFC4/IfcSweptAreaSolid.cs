@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcSweptAreaSolid : IIfcSweptAreaSolid
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSweptAreaSolid), 1)]
 		IIfcProfileDef IIfcSweptAreaSolid.SweptArea 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSweptAreaSolid), 2)]
 		IIfcAxis2Placement3D IIfcSweptAreaSolid.Position 
 		{ 
 			get

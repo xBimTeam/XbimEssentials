@@ -131,9 +131,9 @@ namespace Xbim.IO.Esent
             }
         }
 
-        private readonly List<Action> _undoActions = new List<Action>(); 
-        
-        void ITransaction.AddReversibleAction(Action doAction, Action undoAction, IPersistEntity entity, ChangeType changeType, byte property)
+        private readonly List<Action> _undoActions = new List<Action>();
+
+        void ITransaction.AddReversibleAction(Action doAction, Action undoAction, IPersistEntity entity, ChangeType changeType, int property)
         {
             _undoActions.Add(undoAction);
             Model.HandleEntityChange(changeType, entity, property);

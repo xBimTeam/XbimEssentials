@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcColumnType : IIfcColumnType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcColumnType), 10)]
 		Ifc4.Interfaces.IfcColumnTypeEnum IIfcColumnType.PredefinedType 
 		{ 
 			get

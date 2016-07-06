@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcSectionedSpine : IIfcSectionedSpine
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSectionedSpine), 1)]
 		IIfcCompositeCurve IIfcSectionedSpine.SpineCurve 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSectionedSpine), 2)]
 		IItemSet<IIfcProfileDef> IIfcSectionedSpine.CrossSections 
 		{ 
 			get
@@ -37,6 +41,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				return new Common.Collections.ProxyItemSet<ProfileResource.IfcProfileDef, IIfcProfileDef>(CrossSections);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSectionedSpine), 3)]
 		IItemSet<IIfcAxis2Placement3D> IIfcSectionedSpine.CrossSectionPositions 
 		{ 
 			get

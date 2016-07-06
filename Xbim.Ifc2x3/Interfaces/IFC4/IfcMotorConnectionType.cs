@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcMotorConnectionType : IIfcMotorConnectionType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcMotorConnectionType), 10)]
 		Ifc4.Interfaces.IfcMotorConnectionTypeEnum IIfcMotorConnectionType.PredefinedType 
 		{ 
 			get

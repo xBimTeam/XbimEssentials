@@ -20,6 +20,8 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 
 		private  Ifc4.Interfaces.IfcFastenerTypeEnum? _predefinedType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcFastener), 9)]
 		Ifc4.Interfaces.IfcFastenerTypeEnum? IIfcFastener.PredefinedType 
 		{ 
 			get
@@ -28,7 +30,7 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 			} 
 			set
 			{
-				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -9);
 				
 			}
 		}

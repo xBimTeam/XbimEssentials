@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	public partial class @IfcLightIntensityDistribution : IIfcLightIntensityDistribution
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcLightIntensityDistribution), 1)]
 		Ifc4.Interfaces.IfcLightDistributionCurveEnum IIfcLightIntensityDistribution.LightDistributionCurve 
 		{ 
 			get
@@ -71,6 +73,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcLightIntensityDistribution), 2)]
 		IItemSet<IIfcLightDistributionData> IIfcLightIntensityDistribution.DistributionData 
 		{ 
 			get

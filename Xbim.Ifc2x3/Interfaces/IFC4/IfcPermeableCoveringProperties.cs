@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 {
 	public partial class @IfcPermeableCoveringProperties : IIfcPermeableCoveringProperties
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPermeableCoveringProperties), 5)]
 		Ifc4.Interfaces.IfcPermeableCoveringOperationEnum IIfcPermeableCoveringProperties.OperationType 
 		{ 
 			get
@@ -80,6 +82,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPermeableCoveringProperties), 6)]
 		Ifc4.Interfaces.IfcWindowPanelPositionEnum IIfcPermeableCoveringProperties.PanelPosition 
 		{ 
 			get
@@ -148,6 +152,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPermeableCoveringProperties), 7)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcPermeableCoveringProperties.FrameDepth 
 		{ 
 			get
@@ -163,6 +169,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPermeableCoveringProperties), 8)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcPermeableCoveringProperties.FrameThickness 
 		{ 
 			get
@@ -178,6 +186,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPermeableCoveringProperties), 9)]
 		IIfcShapeAspect IIfcPermeableCoveringProperties.ShapeAspectStyle 
 		{ 
 			get

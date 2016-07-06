@@ -20,6 +20,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 
 		private  Ifc4.MeasureResource.IfcLabel? _longName;
 
+
+		[CrossSchemaAttribute(typeof(IIfcZone), 6)]
 		Ifc4.MeasureResource.IfcLabel? IIfcZone.LongName 
 		{ 
 			get
@@ -28,7 +30,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				SetValue(v => _longName = v, _longName, value, "LongName", byte.MaxValue);
+				SetValue(v => _longName = v, _longName, value, "LongName", -6);
 				
 			}
 		}

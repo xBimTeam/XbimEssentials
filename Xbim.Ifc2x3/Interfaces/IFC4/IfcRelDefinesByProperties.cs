@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelDefinesByProperties : IIfcRelDefinesByProperties
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelDefinesByProperties), 5)]
 		IItemSet<IIfcObjectDefinition> IIfcRelDefinesByProperties.RelatedObjects 
 		{ 
 			get
@@ -24,7 +26,7 @@ namespace Xbim.Ifc2x3.Kernel
 			
 				return _relatedObjectsIfc4 ?? (_relatedObjectsIfc4 = new Common.Collections.ExtendedItemSet<IfcObject, IIfcObjectDefinition>(
                     RelatedObjects, 
-                    new ItemSet<IIfcObjectDefinition>(this, 0, 255), 
+                    new ItemSet<IIfcObjectDefinition>(this, 0, -5), 
 					RelatedObjectsToIfc4, 
                     RelatedObjectsToIfc2X3));
 			} 
@@ -45,6 +47,8 @@ namespace Xbim.Ifc2x3.Kernel
 
 		private  IIfcPropertySetDefinitionSelect _relatingPropertyDefinition4;
 
+
+		[CrossSchemaAttribute(typeof(IIfcRelDefinesByProperties), 6)]
 		IIfcPropertySetDefinitionSelect IIfcRelDefinesByProperties.RelatingPropertyDefinition 
 		{ 
 			get
@@ -57,7 +61,7 @@ namespace Xbim.Ifc2x3.Kernel
 				{
 					RelatingPropertyDefinition = null;
 					if (_relatingPropertyDefinition4 != null)
-						SetValue(v => _relatingPropertyDefinition4 = v, _relatingPropertyDefinition4, null, "RelatingPropertyDefinition", byte.MaxValue);
+						SetValue(v => _relatingPropertyDefinition4 = v, _relatingPropertyDefinition4, null, "RelatingPropertyDefinition", -6);
 					return;
 				}
 				
@@ -66,13 +70,13 @@ namespace Xbim.Ifc2x3.Kernel
 				{
 					RelatingPropertyDefinition = val;
 					if (_relatingPropertyDefinition4 != null)
-						SetValue(v => _relatingPropertyDefinition4 = v, _relatingPropertyDefinition4, null, "RelatingPropertyDefinition", byte.MaxValue);
+						SetValue(v => _relatingPropertyDefinition4 = v, _relatingPropertyDefinition4, null, "RelatingPropertyDefinition", -6);
 					return;
 				} 
 
 				if(RelatingPropertyDefinition != null)
 					RelatingPropertyDefinition = null;
-				SetValue(v => _relatingPropertyDefinition4 = v, _relatingPropertyDefinition4, value, "RelatingPropertyDefinition", byte.MaxValue);
+				SetValue(v => _relatingPropertyDefinition4 = v, _relatingPropertyDefinition4, value, "RelatingPropertyDefinition", -6);
 				
 			}
 		}

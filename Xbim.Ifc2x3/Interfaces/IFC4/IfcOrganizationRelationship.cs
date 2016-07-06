@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ActorResource
 {
 	public partial class @IfcOrganizationRelationship : IIfcOrganizationRelationship
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcOrganizationRelationship), 3)]
 		IIfcOrganization IIfcOrganizationRelationship.RelatingOrganization 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcOrganizationRelationship), 4)]
 		IItemSet<IIfcOrganization> IIfcOrganizationRelationship.RelatedOrganizations 
 		{ 
 			get
@@ -37,6 +41,8 @@ namespace Xbim.Ifc2x3.ActorResource
 				return new Common.Collections.ProxyItemSet<IfcOrganization, IIfcOrganization>(RelatedOrganizations);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcOrganizationRelationship), 1)]
 		Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
 		{ 
 			get
@@ -51,6 +57,8 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcOrganizationRelationship), 2)]
 		Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
 		{ 
 			get

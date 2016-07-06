@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	public partial class @IfcClassification : IIfcClassification
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcClassification), 1)]
 		Ifc4.MeasureResource.IfcLabel? IIfcClassification.Source 
 		{ 
 			get
@@ -31,6 +33,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcClassification), 2)]
 		Ifc4.MeasureResource.IfcLabel? IIfcClassification.Edition 
 		{ 
 			get
@@ -45,6 +49,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcClassification), 3)]
 		Ifc4.DateTimeResource.IfcDate? IIfcClassification.EditionDate 
 		{ 
 			get
@@ -72,6 +78,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcClassification), 4)]
 		Ifc4.MeasureResource.IfcLabel IIfcClassification.Name 
 		{ 
 			get
@@ -87,6 +95,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 
 		private  Ifc4.MeasureResource.IfcText? _description;
 
+
+		[CrossSchemaAttribute(typeof(IIfcClassification), 5)]
 		Ifc4.MeasureResource.IfcText? IIfcClassification.Description 
 		{ 
 			get
@@ -95,13 +105,15 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue(v => _description = v, _description, value, "Description", byte.MaxValue);
+				SetValue(v => _description = v, _description, value, "Description", -5);
 				
 			}
 		}
 
 		private  Ifc4.ExternalReferenceResource.IfcURIReference? _location;
 
+
+		[CrossSchemaAttribute(typeof(IIfcClassification), 6)]
 		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcClassification.Location 
 		{ 
 			get
@@ -110,10 +122,12 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue(v => _location = v, _location, value, "Location", byte.MaxValue);
+				SetValue(v => _location = v, _location, value, "Location", -6);
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcClassification), 7)]
 		IItemSet<Xbim.Ifc4.MeasureResource.IfcIdentifier> IIfcClassification.ReferenceTokens 
 		{ 
 			get

@@ -68,7 +68,7 @@ namespace Xbim.IO.Esent
             throw new Exception("This is a read-only transaction so you can't commit anything.");
         }
 
-        void ITransaction.AddReversibleAction(Action doAction, Action undoAction, IPersistEntity entity, ChangeType changeType, byte property)
+        void ITransaction.AddReversibleAction(Action doAction, Action undoAction, IPersistEntity entity, ChangeType changeType, int property)
         {
             throw new Exception("This is a read-only transaction so you can't commit anything.");
         }

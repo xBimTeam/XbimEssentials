@@ -20,6 +20,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 
 		private  IIfcAxis2Placement3D _conditionCoordinateSystem;
 
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralPointConnection), 9)]
 		IIfcAxis2Placement3D IIfcStructuralPointConnection.ConditionCoordinateSystem 
 		{ 
 			get
@@ -28,7 +30,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue(v => _conditionCoordinateSystem = v, _conditionCoordinateSystem, value, "ConditionCoordinateSystem", byte.MaxValue);
+				SetValue(v => _conditionCoordinateSystem = v, _conditionCoordinateSystem, value, "ConditionCoordinateSystem", -9);
 				
 			}
 		}

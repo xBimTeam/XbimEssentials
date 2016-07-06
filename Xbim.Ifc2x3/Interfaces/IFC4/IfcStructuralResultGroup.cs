@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralResultGroup : IIfcStructuralResultGroup
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralResultGroup), 6)]
 		Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum IIfcStructuralResultGroup.TheoryType 
 		{ 
 			get
@@ -87,6 +89,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralResultGroup), 7)]
 		IIfcStructuralLoadGroup IIfcStructuralResultGroup.ResultForLoadGroup 
 		{ 
 			get
@@ -99,6 +103,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralResultGroup), 8)]
 		Ifc4.MeasureResource.IfcBoolean IIfcStructuralResultGroup.IsLinear 
 		{ 
 			get

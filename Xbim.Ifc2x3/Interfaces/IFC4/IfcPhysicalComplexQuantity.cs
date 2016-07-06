@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.QuantityResource
 {
 	public partial class @IfcPhysicalComplexQuantity : IIfcPhysicalComplexQuantity
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPhysicalComplexQuantity), 3)]
 		IItemSet<IIfcPhysicalQuantity> IIfcPhysicalComplexQuantity.HasQuantities 
 		{ 
 			get
@@ -25,6 +27,8 @@ namespace Xbim.Ifc2x3.QuantityResource
 				return new Common.Collections.ProxyItemSet<IfcPhysicalQuantity, IIfcPhysicalQuantity>(HasQuantities);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPhysicalComplexQuantity), 4)]
 		Ifc4.MeasureResource.IfcLabel IIfcPhysicalComplexQuantity.Discrimination 
 		{ 
 			get
@@ -37,6 +41,8 @@ namespace Xbim.Ifc2x3.QuantityResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPhysicalComplexQuantity), 5)]
 		Ifc4.MeasureResource.IfcLabel? IIfcPhysicalComplexQuantity.Quality 
 		{ 
 			get
@@ -52,6 +58,8 @@ namespace Xbim.Ifc2x3.QuantityResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPhysicalComplexQuantity), 6)]
 		Ifc4.MeasureResource.IfcLabel? IIfcPhysicalComplexQuantity.Usage 
 		{ 
 			get

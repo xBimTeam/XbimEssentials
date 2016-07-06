@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	public partial class @IfcPolyLoop : IIfcPolyLoop
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPolyLoop), 1)]
 		IItemSet<IIfcCartesianPoint> IIfcPolyLoop.Polygon 
 		{ 
 			get

@@ -20,6 +20,8 @@ namespace Xbim.Ifc2x3.Kernel
 
 		private  IIfcResourceSelect _relatingResource4;
 
+
+		[CrossSchemaAttribute(typeof(IIfcRelAssignsToResource), 7)]
 		IIfcResourceSelect IIfcRelAssignsToResource.RelatingResource 
 		{ 
 			get
@@ -32,7 +34,7 @@ namespace Xbim.Ifc2x3.Kernel
 				{
 					RelatingResource = null;
 					if (_relatingResource4 != null)
-						SetValue(v => _relatingResource4 = v, _relatingResource4, null, "RelatingResource", byte.MaxValue);
+						SetValue(v => _relatingResource4 = v, _relatingResource4, null, "RelatingResource", -7);
 					return;
 				}
 				
@@ -41,13 +43,13 @@ namespace Xbim.Ifc2x3.Kernel
 				{
 					RelatingResource = val;
 					if (_relatingResource4 != null)
-						SetValue(v => _relatingResource4 = v, _relatingResource4, null, "RelatingResource", byte.MaxValue);
+						SetValue(v => _relatingResource4 = v, _relatingResource4, null, "RelatingResource", -7);
 					return;
 				} 
 
 				if(RelatingResource != null)
 					RelatingResource = null;
-				SetValue(v => _relatingResource4 = v, _relatingResource4, value, "RelatingResource", byte.MaxValue);
+				SetValue(v => _relatingResource4 = v, _relatingResource4, value, "RelatingResource", -7);
 				
 			}
 		}

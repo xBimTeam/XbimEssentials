@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcDoorPanelProperties : IIfcDoorPanelProperties
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcDoorPanelProperties), 5)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcDoorPanelProperties.PanelDepth 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDoorPanelProperties), 6)]
 		Ifc4.Interfaces.IfcDoorPanelOperationEnum IIfcDoorPanelProperties.PanelOperation 
 		{ 
 			get
@@ -127,6 +131,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDoorPanelProperties), 7)]
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcDoorPanelProperties.PanelWidth 
 		{ 
 			get
@@ -142,6 +148,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDoorPanelProperties), 8)]
 		Ifc4.Interfaces.IfcDoorPanelPositionEnum IIfcDoorPanelProperties.PanelPosition 
 		{ 
 			get
@@ -196,6 +204,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDoorPanelProperties), 9)]
 		IIfcShapeAspect IIfcDoorPanelProperties.ShapeAspectStyle 
 		{ 
 			get

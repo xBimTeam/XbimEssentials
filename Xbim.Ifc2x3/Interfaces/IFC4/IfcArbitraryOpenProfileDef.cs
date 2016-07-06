@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcArbitraryOpenProfileDef : IIfcArbitraryOpenProfileDef
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcArbitraryOpenProfileDef), 3)]
 		IIfcBoundedCurve IIfcArbitraryOpenProfileDef.Curve 
 		{ 
 			get

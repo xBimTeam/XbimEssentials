@@ -20,6 +20,8 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 
 		private  Ifc4.Interfaces.IfcActionRequestTypeEnum? _predefinedType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcActionRequest), 7)]
 		Ifc4.Interfaces.IfcActionRequestTypeEnum? IIfcActionRequest.PredefinedType 
 		{ 
 			get
@@ -28,13 +30,15 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			} 
 			set
 			{
-				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -7);
 				
 			}
 		}
 
 		private  Ifc4.MeasureResource.IfcLabel? _status;
 
+
+		[CrossSchemaAttribute(typeof(IIfcActionRequest), 8)]
 		Ifc4.MeasureResource.IfcLabel? IIfcActionRequest.Status 
 		{ 
 			get
@@ -43,13 +47,15 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			} 
 			set
 			{
-				SetValue(v => _status = v, _status, value, "Status", byte.MaxValue);
+				SetValue(v => _status = v, _status, value, "Status", -8);
 				
 			}
 		}
 
 		private  Ifc4.MeasureResource.IfcText? _longDescription;
 
+
+		[CrossSchemaAttribute(typeof(IIfcActionRequest), 9)]
 		Ifc4.MeasureResource.IfcText? IIfcActionRequest.LongDescription 
 		{ 
 			get
@@ -58,7 +64,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			} 
 			set
 			{
-				SetValue(v => _longDescription = v, _longDescription, value, "LongDescription", byte.MaxValue);
+				SetValue(v => _longDescription = v, _longDescription, value, "LongDescription", -9);
 				
 			}
 		}

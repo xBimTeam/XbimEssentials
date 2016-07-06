@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcCurveStyleFontPattern : IIfcCurveStyleFontPattern
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCurveStyleFontPattern), 1)]
 		Ifc4.MeasureResource.IfcLengthMeasure IIfcCurveStyleFontPattern.VisibleSegmentLength 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCurveStyleFontPattern), 2)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcCurveStyleFontPattern.InvisibleSegmentLength 
 		{ 
 			get

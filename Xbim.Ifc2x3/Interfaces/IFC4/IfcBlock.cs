@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcBlock : IIfcBlock
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcBlock), 2)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcBlock.XLength 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBlock), 3)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcBlock.YLength 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBlock), 4)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcBlock.ZLength 
 		{ 
 			get

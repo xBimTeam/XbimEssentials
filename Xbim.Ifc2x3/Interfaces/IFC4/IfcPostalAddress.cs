@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ActorResource
 {
 	public partial class @IfcPostalAddress : IIfcPostalAddress
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPostalAddress), 4)]
 		Ifc4.MeasureResource.IfcLabel? IIfcPostalAddress.InternalLocation 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPostalAddress), 5)]
 		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPostalAddress.AddressLines 
 		{ 
 			get
@@ -42,6 +46,8 @@ namespace Xbim.Ifc2x3.ActorResource
 					t => new MeasureResource.IfcLabel(t));
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPostalAddress), 6)]
 		Ifc4.MeasureResource.IfcLabel? IIfcPostalAddress.PostalBox 
 		{ 
 			get
@@ -57,6 +63,8 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPostalAddress), 7)]
 		Ifc4.MeasureResource.IfcLabel? IIfcPostalAddress.Town 
 		{ 
 			get
@@ -72,6 +80,8 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPostalAddress), 8)]
 		Ifc4.MeasureResource.IfcLabel? IIfcPostalAddress.Region 
 		{ 
 			get
@@ -87,6 +97,8 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPostalAddress), 9)]
 		Ifc4.MeasureResource.IfcLabel? IIfcPostalAddress.PostalCode 
 		{ 
 			get
@@ -102,6 +114,8 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPostalAddress), 10)]
 		Ifc4.MeasureResource.IfcLabel? IIfcPostalAddress.Country 
 		{ 
 			get

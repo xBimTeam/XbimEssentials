@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcRelAssociatesMaterial : IIfcRelAssociatesMaterial
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelAssociatesMaterial), 6)]
 		IIfcMaterialSelect IIfcRelAssociatesMaterial.RelatingMaterial 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelDefinesByType : IIfcRelDefinesByType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelDefinesByType), 5)]
 		IItemSet<IIfcObject> IIfcRelDefinesByType.RelatedObjects 
 		{ 
 			get
@@ -25,6 +27,8 @@ namespace Xbim.Ifc2x3.Kernel
 				return new Common.Collections.ProxyItemSet<IfcObject, IIfcObject>(RelatedObjects);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelDefinesByType), 6)]
 		IIfcTypeObject IIfcRelDefinesByType.RelatingType 
 		{ 
 			get

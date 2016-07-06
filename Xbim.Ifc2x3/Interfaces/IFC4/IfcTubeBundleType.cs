@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcTubeBundleType : IIfcTubeBundleType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTubeBundleType), 10)]
 		Ifc4.Interfaces.IfcTubeBundleTypeEnum IIfcTubeBundleType.PredefinedType 
 		{ 
 			get

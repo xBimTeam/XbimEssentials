@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRoot : IIfcRoot
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRoot), 1)]
 		Ifc4.UtilityResource.IfcGloballyUniqueId IIfcRoot.GlobalId 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.Kernel
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRoot), 2)]
 		IIfcOwnerHistory IIfcRoot.OwnerHistory 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.Kernel
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRoot), 3)]
 		Ifc4.MeasureResource.IfcLabel? IIfcRoot.Name 
 		{ 
 			get
@@ -56,6 +62,8 @@ namespace Xbim.Ifc2x3.Kernel
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRoot), 4)]
 		Ifc4.MeasureResource.IfcText? IIfcRoot.Description 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	public partial class @IfcAnnotationFillArea : IIfcAnnotationFillArea
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcAnnotationFillArea), 1)]
 		IIfcCurve IIfcAnnotationFillArea.OuterBoundary 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAnnotationFillArea), 2)]
 		IItemSet<IIfcCurve> IIfcAnnotationFillArea.InnerBoundaries 
 		{ 
 			get

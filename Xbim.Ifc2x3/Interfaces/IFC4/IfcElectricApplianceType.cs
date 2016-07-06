@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcElectricApplianceType : IIfcElectricApplianceType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcElectricApplianceType), 10)]
 		Ifc4.Interfaces.IfcElectricApplianceTypeEnum IIfcElectricApplianceType.PredefinedType 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcPumpType : IIfcPumpType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPumpType), 10)]
 		Ifc4.Interfaces.IfcPumpTypeEnum IIfcPumpType.PredefinedType 
 		{ 
 			get

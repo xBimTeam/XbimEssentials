@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcLightFixtureType : IIfcLightFixtureType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcLightFixtureType), 10)]
 		Ifc4.Interfaces.IfcLightFixtureTypeEnum IIfcLightFixtureType.PredefinedType 
 		{ 
 			get

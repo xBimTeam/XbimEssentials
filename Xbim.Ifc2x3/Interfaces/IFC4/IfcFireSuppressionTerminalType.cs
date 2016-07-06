@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 {
 	public partial class @IfcFireSuppressionTerminalType : IIfcFireSuppressionTerminalType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcFireSuppressionTerminalType), 10)]
 		Ifc4.Interfaces.IfcFireSuppressionTerminalTypeEnum IIfcFireSuppressionTerminalType.PredefinedType 
 		{ 
 			get

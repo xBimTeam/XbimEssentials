@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcStructuralLoadSingleDisplacementDistortion : IIfcStructuralLoadSingleDisplacementDistortion
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleDisplacementDistortion), 8)]
 		Ifc4.MeasureResource.IfcCurvatureMeasure? IIfcStructuralLoadSingleDisplacementDistortion.Distortion 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcFailureConnectionCondition : IIfcFailureConnectionCondition
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcFailureConnectionCondition), 2)]
 		Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureX 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcFailureConnectionCondition), 3)]
 		Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureY 
 		{ 
 			get
@@ -47,6 +51,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcFailureConnectionCondition), 4)]
 		Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureZ 
 		{ 
 			get
@@ -62,6 +68,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcFailureConnectionCondition), 5)]
 		Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureX 
 		{ 
 			get
@@ -77,6 +85,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcFailureConnectionCondition), 6)]
 		Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureY 
 		{ 
 			get
@@ -92,6 +102,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcFailureConnectionCondition), 7)]
 		Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureZ 
 		{ 
 			get

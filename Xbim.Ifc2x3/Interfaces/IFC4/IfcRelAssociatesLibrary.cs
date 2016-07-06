@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelAssociatesLibrary : IIfcRelAssociatesLibrary
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelAssociatesLibrary), 6)]
 		IIfcLibrarySelect IIfcRelAssociatesLibrary.RelatingLibrary 
 		{ 
 			get

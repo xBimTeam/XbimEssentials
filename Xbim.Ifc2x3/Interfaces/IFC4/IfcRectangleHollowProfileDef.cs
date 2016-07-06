@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcRectangleHollowProfileDef : IIfcRectangleHollowProfileDef
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRectangleHollowProfileDef), 6)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRectangleHollowProfileDef.WallThickness 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRectangleHollowProfileDef), 7)]
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcRectangleHollowProfileDef.InnerFilletRadius 
 		{ 
 			get
@@ -44,6 +48,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRectangleHollowProfileDef), 8)]
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcRectangleHollowProfileDef.OuterFilletRadius 
 		{ 
 			get

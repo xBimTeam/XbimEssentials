@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcCsgSolid : IIfcCsgSolid
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCsgSolid), 1)]
 		IIfcCsgSelect IIfcCsgSolid.TreeRootExpression 
 		{ 
 			get

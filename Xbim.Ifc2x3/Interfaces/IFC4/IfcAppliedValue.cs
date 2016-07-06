@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.CostResource
 {
 	public partial class @IfcAppliedValue : IIfcAppliedValue
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcAppliedValue), 1)]
 		Ifc4.MeasureResource.IfcLabel? IIfcAppliedValue.Name 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.CostResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAppliedValue), 2)]
 		Ifc4.MeasureResource.IfcText? IIfcAppliedValue.Description 
 		{ 
 			get
@@ -50,6 +54,8 @@ namespace Xbim.Ifc2x3.CostResource
 
 		private  IIfcAppliedValueSelect _appliedValue4;
 
+
+		[CrossSchemaAttribute(typeof(IIfcAppliedValue), 3)]
 		IIfcAppliedValueSelect IIfcAppliedValue.AppliedValue 
 		{ 
 			get
@@ -71,7 +77,7 @@ namespace Xbim.Ifc2x3.CostResource
 				{
 					AppliedValue = null;
 					if (_appliedValue4 != null)
-						SetValue(v => _appliedValue4 = v, _appliedValue4, null, "AppliedValue", byte.MaxValue);
+						SetValue(v => _appliedValue4 = v, _appliedValue4, null, "AppliedValue", -3);
 					return;
 				}	
 				var ifcmeasurewithunit = value as MeasureResource.IfcMeasureWithUnit;
@@ -79,761 +85,763 @@ namespace Xbim.Ifc2x3.CostResource
 				{
 					AppliedValue = ifcmeasurewithunit;
 					if (_appliedValue4 != null)
-						SetValue(v => _appliedValue4 = v, _appliedValue4, null, "AppliedValue", byte.MaxValue);
+						SetValue(v => _appliedValue4 = v, _appliedValue4, null, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcAbsorbedDoseMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcAccelerationMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcAngularVelocityMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcAreaDensityMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcCurvatureMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcDoseEquivalentMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcDynamicViscosityMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcElectricCapacitanceMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcElectricChargeMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcElectricConductanceMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcElectricResistanceMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcElectricVoltageMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcEnergyMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcForceMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcFrequencyMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcHeatFluxDensityMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcHeatingValueMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcIlluminanceMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcInductanceMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcIntegerCountRateMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcIonConcentrationMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcIsothermalMoistureCapacityMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcKinematicViscosityMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcLinearForceMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcLinearMomentMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcLinearStiffnessMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcLinearVelocityMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcLuminousFluxMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcLuminousIntensityDistributionMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcMagneticFluxDensityMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcMagneticFluxMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcMassDensityMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcMassFlowRateMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcMassPerLengthMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcModulusOfElasticityMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcModulusOfSubgradeReactionMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcMoistureDiffusivityMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcMolecularWeightMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcMomentOfInertiaMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcMonetaryMeasure) 
 				{
 					AppliedValue = new MeasureResource.IfcMonetaryMeasure((Ifc4.MeasureResource.IfcMonetaryMeasure)value);
 					if (_appliedValue4 != null)
-						SetValue(v => _appliedValue4 = v, _appliedValue4, null, "AppliedValue", byte.MaxValue);
+						SetValue(v => _appliedValue4 = v, _appliedValue4, null, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcPHMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcPlanarForceMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcPowerMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcPressureMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcRadioActivityMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcRotationalFrequencyMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcRotationalMassMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcRotationalStiffnessMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcSectionModulusMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcSectionalAreaIntegralMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcShearModulusMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcSoundPowerLevelMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcSoundPowerMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcSoundPressureLevelMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcSoundPressureMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcSpecificHeatCapacityMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcTemperatureGradientMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcTemperatureRateOfChangeMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcThermalAdmittanceMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcThermalConductivityMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcThermalExpansionCoefficientMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcThermalResistanceMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcThermalTransmittanceMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcTorqueMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcVaporPermeabilityMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcVolumetricFlowRateMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcWarpingConstantMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcWarpingMomentMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcAmountOfSubstanceMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcAreaMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcComplexNumber) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcContextDependentMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcCountMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcDescriptiveMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcElectricCurrentMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcLengthMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcLuminousIntensityMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcMassMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcNonNegativeLengthMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcNormalisedRatioMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcNumericMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcParameterValue) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcPlaneAngleMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcPositiveLengthMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcPositivePlaneAngleMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcPositiveRatioMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcRatioMeasure) 
 				{
 					AppliedValue = new MeasureResource.IfcRatioMeasure((Ifc4.MeasureResource.IfcRatioMeasure)value);
 					if (_appliedValue4 != null)
-						SetValue(v => _appliedValue4 = v, _appliedValue4, null, "AppliedValue", byte.MaxValue);
+						SetValue(v => _appliedValue4 = v, _appliedValue4, null, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcSolidAngleMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcTimeMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcVolumeMeasure) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcBoolean) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.DateTimeResource.IfcDate) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.DateTimeResource.IfcDateTime) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.DateTimeResource.IfcDuration) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcIdentifier) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcInteger) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcLabel) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcLogical) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcPositiveInteger) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcReal) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcText) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.DateTimeResource.IfcTime) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				if (value is Ifc4.DateTimeResource.IfcTimeStamp) 
 				{
 					if (AppliedValue != null)
 						AppliedValue = null;
-					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", byte.MaxValue);
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAppliedValue), 4)]
 		IIfcMeasureWithUnit IIfcAppliedValue.UnitBasis 
 		{ 
 			get
@@ -846,6 +854,8 @@ namespace Xbim.Ifc2x3.CostResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAppliedValue), 5)]
 		Ifc4.DateTimeResource.IfcDate? IIfcAppliedValue.ApplicableDate 
 		{ 
 			get
@@ -873,6 +883,8 @@ namespace Xbim.Ifc2x3.CostResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAppliedValue), 6)]
 		Ifc4.DateTimeResource.IfcDate? IIfcAppliedValue.FixedUntilDate 
 		{ 
 			get
@@ -903,6 +915,8 @@ namespace Xbim.Ifc2x3.CostResource
 
 		private  Ifc4.MeasureResource.IfcLabel? _category;
 
+
+		[CrossSchemaAttribute(typeof(IIfcAppliedValue), 7)]
 		Ifc4.MeasureResource.IfcLabel? IIfcAppliedValue.Category 
 		{ 
 			get
@@ -911,13 +925,15 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
-				SetValue(v => _category = v, _category, value, "Category", byte.MaxValue);
+				SetValue(v => _category = v, _category, value, "Category", -7);
 				
 			}
 		}
 
 		private  Ifc4.MeasureResource.IfcLabel? _condition;
 
+
+		[CrossSchemaAttribute(typeof(IIfcAppliedValue), 8)]
 		Ifc4.MeasureResource.IfcLabel? IIfcAppliedValue.Condition 
 		{ 
 			get
@@ -926,10 +942,12 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
-				SetValue(v => _condition = v, _condition, value, "Condition", byte.MaxValue);
+				SetValue(v => _condition = v, _condition, value, "Condition", -8);
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAppliedValue), 9)]
 		Ifc4.Interfaces.IfcArithmeticOperatorEnum? IIfcAppliedValue.ArithmeticOperator 
 		{ 
 			get
@@ -987,6 +1005,8 @@ namespace Xbim.Ifc2x3.CostResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAppliedValue), 10)]
 		IEnumerable<IIfcAppliedValue> IIfcAppliedValue.Components 
 		{ 
 			get

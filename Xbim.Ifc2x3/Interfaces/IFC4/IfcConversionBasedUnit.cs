@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	public partial class @IfcConversionBasedUnit : IIfcConversionBasedUnit
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcConversionBasedUnit), 3)]
 		Ifc4.MeasureResource.IfcLabel IIfcConversionBasedUnit.Name 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcConversionBasedUnit), 4)]
 		IIfcMeasureWithUnit IIfcConversionBasedUnit.ConversionFactor 
 		{ 
 			get

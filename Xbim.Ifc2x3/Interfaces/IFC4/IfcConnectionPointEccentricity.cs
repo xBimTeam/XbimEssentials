@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	public partial class @IfcConnectionPointEccentricity : IIfcConnectionPointEccentricity
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcConnectionPointEccentricity), 3)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInX 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcConnectionPointEccentricity), 4)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInY 
 		{ 
 			get
@@ -47,6 +51,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcConnectionPointEccentricity), 5)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInZ 
 		{ 
 			get

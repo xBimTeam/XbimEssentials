@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 {
 	public partial class @IfcPropertyDependencyRelationship : IIfcPropertyDependencyRelationship
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPropertyDependencyRelationship), 3)]
 		IIfcProperty IIfcPropertyDependencyRelationship.DependingProperty 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPropertyDependencyRelationship), 4)]
 		IIfcProperty IIfcPropertyDependencyRelationship.DependantProperty 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPropertyDependencyRelationship), 5)]
 		Ifc4.MeasureResource.IfcText? IIfcPropertyDependencyRelationship.Expression 
 		{ 
 			get
@@ -56,6 +62,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPropertyDependencyRelationship), 1)]
 		Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
 		{ 
 			get
@@ -71,6 +79,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPropertyDependencyRelationship), 2)]
 		Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
 		{ 
 			get

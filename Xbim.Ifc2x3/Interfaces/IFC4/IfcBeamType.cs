@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcBeamType : IIfcBeamType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcBeamType), 10)]
 		Ifc4.Interfaces.IfcBeamTypeEnum IIfcBeamType.PredefinedType 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 {
 	public partial class @IfcTimeSeriesValue : IIfcTimeSeriesValue
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTimeSeriesValue), 1)]
 		IItemSet<IIfcValue> IIfcTimeSeriesValue.ListValues 
 		{ 
 			get
@@ -24,7 +26,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			
 				return _listValuesIfc4 ?? (_listValuesIfc4 = new Common.Collections.ExtendedItemSet<MeasureResource.IfcValue, IIfcValue>(
                     ListValues, 
-                    new ItemSet<IIfcValue>(this, 0, 255), 
+                    new ItemSet<IIfcValue>(this, 0, -1), 
                     v => v.ToIfc4(), 
                     v => v.ToIfc3()));
 			} 

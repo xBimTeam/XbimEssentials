@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcRampFlightType : IIfcRampFlightType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRampFlightType), 10)]
 		Ifc4.Interfaces.IfcRampFlightTypeEnum IIfcRampFlightType.PredefinedType 
 		{ 
 			get

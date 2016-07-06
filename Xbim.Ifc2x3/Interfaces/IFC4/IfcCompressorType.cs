@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcCompressorType : IIfcCompressorType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCompressorType), 10)]
 		Ifc4.Interfaces.IfcCompressorTypeEnum IIfcCompressorType.PredefinedType 
 		{ 
 			get

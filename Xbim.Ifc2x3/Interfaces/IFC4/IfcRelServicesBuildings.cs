@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcRelServicesBuildings : IIfcRelServicesBuildings
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelServicesBuildings), 5)]
 		IIfcSystem IIfcRelServicesBuildings.RelatingSystem 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelServicesBuildings), 6)]
 		IItemSet<IIfcSpatialElement> IIfcRelServicesBuildings.RelatedBuildings 
 		{ 
 			get
@@ -36,7 +40,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			
 				return _relatedBuildingsIfc4 ?? (_relatedBuildingsIfc4 = new Common.Collections.ExtendedItemSet<IfcSpatialStructureElement, IIfcSpatialElement>(
                     RelatedBuildings, 
-                    new ItemSet<IIfcSpatialElement>(this, 0, 255), 
+                    new ItemSet<IIfcSpatialElement>(this, 0, -6), 
 					RelatedBuildingsToIfc4, 
                     RelatedBuildingsToIfc2X3));
 			} 

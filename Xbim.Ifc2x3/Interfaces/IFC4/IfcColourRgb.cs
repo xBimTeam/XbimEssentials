@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationResource
 {
 	public partial class @IfcColourRgb : IIfcColourRgb
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcColourRgb), 2)]
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure IIfcColourRgb.Red 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.PresentationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcColourRgb), 3)]
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure IIfcColourRgb.Green 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.PresentationResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcColourRgb), 4)]
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure IIfcColourRgb.Blue 
 		{ 
 			get

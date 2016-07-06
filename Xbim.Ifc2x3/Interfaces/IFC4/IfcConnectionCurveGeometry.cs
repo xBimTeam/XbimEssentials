@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	public partial class @IfcConnectionCurveGeometry : IIfcConnectionCurveGeometry
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcConnectionCurveGeometry), 1)]
 		IIfcCurveOrEdgeCurve IIfcConnectionCurveGeometry.CurveOnRelatingElement 
 		{ 
 			get
@@ -52,6 +54,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcConnectionCurveGeometry), 2)]
 		IIfcCurveOrEdgeCurve IIfcConnectionCurveGeometry.CurveOnRelatedElement 
 		{ 
 			get

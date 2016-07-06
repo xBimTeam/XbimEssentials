@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	public partial class @IfcFurnitureType : IIfcFurnitureType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcFurnitureType), 10)]
 		Ifc4.Interfaces.IfcAssemblyPlaceEnum IIfcFurnitureType.AssemblyPlace 
 		{ 
 			get
@@ -67,6 +69,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 
 		private  Ifc4.Interfaces.IfcFurnitureTypeEnum? _predefinedType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcFurnitureType), 11)]
 		Ifc4.Interfaces.IfcFurnitureTypeEnum? IIfcFurnitureType.PredefinedType 
 		{ 
 			get
@@ -75,7 +79,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
-				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -11);
 				
 			}
 		}

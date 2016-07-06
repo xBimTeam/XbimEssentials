@@ -335,7 +335,7 @@ namespace Xbim.IO.Memory
             }
         }
 
-        internal void HandleEntityChange(ChangeType changeType, IPersistEntity entity, byte propertyOrder)
+        internal void HandleEntityChange(ChangeType changeType, IPersistEntity entity, int propertyOrder)
         {
             switch (changeType)
             {

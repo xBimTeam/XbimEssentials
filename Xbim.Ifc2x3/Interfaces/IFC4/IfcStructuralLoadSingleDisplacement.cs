@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcStructuralLoadSingleDisplacement : IIfcStructuralLoadSingleDisplacement
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleDisplacement), 2)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementX 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleDisplacement), 3)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementY 
 		{ 
 			get
@@ -47,6 +51,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleDisplacement), 4)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementZ 
 		{ 
 			get
@@ -62,6 +68,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleDisplacement), 5)]
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRX 
 		{ 
 			get
@@ -77,6 +85,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleDisplacement), 6)]
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRY 
 		{ 
 			get
@@ -92,6 +102,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleDisplacement), 7)]
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRZ 
 		{ 
 			get

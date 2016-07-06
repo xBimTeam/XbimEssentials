@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ActorResource
 {
 	public partial class @IfcActorRole : IIfcActorRole
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcActorRole), 1)]
 		Ifc4.Interfaces.IfcRoleEnum IIfcActorRole.Role 
 		{ 
 			get
@@ -213,6 +215,8 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcActorRole), 2)]
 		Ifc4.MeasureResource.IfcLabel? IIfcActorRole.UserDefinedRole 
 		{ 
 			get
@@ -228,6 +232,8 @@ namespace Xbim.Ifc2x3.ActorResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcActorRole), 3)]
 		Ifc4.MeasureResource.IfcText? IIfcActorRole.Description 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcCsgPrimitive3D : IIfcCsgPrimitive3D
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCsgPrimitive3D), 1)]
 		IIfcAxis2Placement3D IIfcCsgPrimitive3D.Position 
 		{ 
 			get

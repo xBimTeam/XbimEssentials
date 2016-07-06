@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcSpaceType : IIfcSpaceType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSpaceType), 10)]
 		Ifc4.Interfaces.IfcSpaceTypeEnum IIfcSpaceType.PredefinedType 
 		{ 
 			get
@@ -103,6 +105,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 
 		private  Ifc4.MeasureResource.IfcLabel? _longName;
 
+
+		[CrossSchemaAttribute(typeof(IIfcSpaceType), 11)]
 		Ifc4.MeasureResource.IfcLabel? IIfcSpaceType.LongName 
 		{ 
 			get
@@ -111,10 +115,12 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				SetValue(v => _longName = v, _longName, value, "LongName", byte.MaxValue);
+				SetValue(v => _longName = v, _longName, value, "LongName", -11);
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSpaceType), 9)]
 		Ifc4.MeasureResource.IfcLabel? IIfcSpatialElementType.ElementType 
 		{ 
 			get

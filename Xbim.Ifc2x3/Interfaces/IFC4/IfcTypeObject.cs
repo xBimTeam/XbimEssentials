@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcTypeObject : IIfcTypeObject
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTypeObject), 5)]
 		Ifc4.MeasureResource.IfcIdentifier? IIfcTypeObject.ApplicableOccurrence 
 		{ 
 			get
@@ -32,6 +34,8 @@ namespace Xbim.Ifc2x3.Kernel
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTypeObject), 6)]
 		IItemSet<IIfcPropertySetDefinition> IIfcTypeObject.HasPropertySets 
 		{ 
 			get

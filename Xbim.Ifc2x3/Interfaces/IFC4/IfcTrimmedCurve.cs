@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcTrimmedCurve : IIfcTrimmedCurve
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTrimmedCurve), 1)]
 		IIfcCurve IIfcTrimmedCurve.BasisCurve 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTrimmedCurve), 2)]
 		IItemSet<IIfcTrimmingSelect> IIfcTrimmedCurve.Trim1 
 		{ 
 			get
@@ -36,7 +40,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			
 				return _trim1Ifc4 ?? (_trim1Ifc4 = new Common.Collections.ExtendedItemSet<IfcTrimmingSelect, IIfcTrimmingSelect>(
                     Trim1, 
-                    new ItemSet<IIfcTrimmingSelect>(this, 0, 255), 
+                    new ItemSet<IIfcTrimmingSelect>(this, 0, -2), 
 					Trim1ToIfc4, 
                     Trim1ToIfc2X3));
 			} 
@@ -75,6 +79,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 					throw new System.NotSupportedException();
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTrimmedCurve), 3)]
 		IItemSet<IIfcTrimmingSelect> IIfcTrimmedCurve.Trim2 
 		{ 
 			get
@@ -82,7 +88,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			
 				return _trim2Ifc4 ?? (_trim2Ifc4 = new Common.Collections.ExtendedItemSet<IfcTrimmingSelect, IIfcTrimmingSelect>(
                     Trim2, 
-                    new ItemSet<IIfcTrimmingSelect>(this, 0, 255), 
+                    new ItemSet<IIfcTrimmingSelect>(this, 0, -3), 
 					Trim2ToIfc4, 
                     Trim2ToIfc2X3));
 			} 
@@ -121,6 +127,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 					throw new System.NotSupportedException();
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTrimmedCurve), 4)]
 		Ifc4.MeasureResource.IfcBoolean IIfcTrimmedCurve.SenseAgreement 
 		{ 
 			get
@@ -135,6 +143,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTrimmedCurve), 5)]
 		Ifc4.Interfaces.IfcTrimmingPreference IIfcTrimmedCurve.MasterRepresentation 
 		{ 
 			get

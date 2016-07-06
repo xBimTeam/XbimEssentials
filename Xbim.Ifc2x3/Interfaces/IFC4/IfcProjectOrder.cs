@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	public partial class @IfcProjectOrder : IIfcProjectOrder
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcProjectOrder), 7)]
 		Ifc4.Interfaces.IfcProjectOrderTypeEnum? IIfcProjectOrder.PredefinedType 
 		{ 
 			get
@@ -94,6 +96,8 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcProjectOrder), 8)]
 		Ifc4.MeasureResource.IfcLabel? IIfcProjectOrder.Status 
 		{ 
 			get
@@ -109,6 +113,8 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcProjectOrder), 9)]
 		Ifc4.MeasureResource.IfcText? IIfcProjectOrder.LongDescription 
 		{ 
 			get

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcObject : IIfcObject
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcObject), 5)]
 		Ifc4.MeasureResource.IfcLabel? IIfcObject.ObjectType 
 		{ 
 			get

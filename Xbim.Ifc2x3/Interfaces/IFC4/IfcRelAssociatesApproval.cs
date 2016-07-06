@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ControlExtension
 {
 	public partial class @IfcRelAssociatesApproval : IIfcRelAssociatesApproval
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelAssociatesApproval), 6)]
 		IIfcApproval IIfcRelAssociatesApproval.RelatingApproval 
 		{ 
 			get

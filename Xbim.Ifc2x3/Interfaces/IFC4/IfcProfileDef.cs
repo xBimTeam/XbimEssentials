@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcProfileDef : IIfcProfileDef
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcProfileDef), 1)]
 		Ifc4.Interfaces.IfcProfileTypeEnum IIfcProfileDef.ProfileType 
 		{ 
 			get
@@ -57,6 +59,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcProfileDef), 2)]
 		Ifc4.MeasureResource.IfcLabel? IIfcProfileDef.ProfileName 
 		{ 
 			get

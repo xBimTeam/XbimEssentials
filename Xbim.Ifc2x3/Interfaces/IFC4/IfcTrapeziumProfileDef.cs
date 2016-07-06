@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcTrapeziumProfileDef : IIfcTrapeziumProfileDef
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTrapeziumProfileDef), 4)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.BottomXDim 
 		{ 
 			get
@@ -29,6 +31,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTrapeziumProfileDef), 5)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.TopXDim 
 		{ 
 			get
@@ -41,6 +45,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTrapeziumProfileDef), 6)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.YDim 
 		{ 
 			get
@@ -53,6 +59,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTrapeziumProfileDef), 7)]
 		Ifc4.MeasureResource.IfcLengthMeasure IIfcTrapeziumProfileDef.TopXOffset 
 		{ 
 			get

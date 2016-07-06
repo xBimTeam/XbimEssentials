@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcCartesianTransformationOperator3DnonUniform : IIfcCartesianTransformationOperator3DnonUniform
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCartesianTransformationOperator3DnonUniform), 6)]
 		Ifc4.MeasureResource.IfcReal? IIfcCartesianTransformationOperator3DnonUniform.Scale2 
 		{ 
 			get
@@ -31,6 +33,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCartesianTransformationOperator3DnonUniform), 7)]
 		Ifc4.MeasureResource.IfcReal? IIfcCartesianTransformationOperator3DnonUniform.Scale3 
 		{ 
 			get

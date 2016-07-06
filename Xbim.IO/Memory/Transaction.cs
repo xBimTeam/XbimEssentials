@@ -61,7 +61,7 @@ namespace Xbim.IO.Memory
             Finish();
         }
 
-        public void AddReversibleAction(Action doAction, Action undoAction, IPersistEntity entity, ChangeType changeType, byte propertyOrder)
+        public void AddReversibleAction(Action doAction, Action undoAction, IPersistEntity entity, ChangeType changeType, int propertyOrder)
         {
             if (_closed)
                 throw new Exception("Transaction is closed already");

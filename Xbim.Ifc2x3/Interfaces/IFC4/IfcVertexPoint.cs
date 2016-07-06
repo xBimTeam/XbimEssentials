@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	public partial class @IfcVertexPoint : IIfcVertexPoint
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcVertexPoint), 1)]
 		IIfcPoint IIfcVertexPoint.VertexGeometry 
 		{ 
 			get

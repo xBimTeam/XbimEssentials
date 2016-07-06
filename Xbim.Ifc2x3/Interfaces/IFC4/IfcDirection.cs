@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcDirection : IIfcDirection
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcDirection), 1)]
 		IItemSet<Xbim.Ifc4.MeasureResource.IfcReal> IIfcDirection.DirectionRatios 
 		{ 
 			get

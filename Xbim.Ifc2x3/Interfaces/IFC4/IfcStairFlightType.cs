@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcStairFlightType : IIfcStairFlightType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStairFlightType), 10)]
 		Ifc4.Interfaces.IfcStairFlightTypeEnum IIfcStairFlightType.PredefinedType 
 		{ 
 			get

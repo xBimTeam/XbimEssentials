@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcShellBasedSurfaceModel : IIfcShellBasedSurfaceModel
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcShellBasedSurfaceModel), 1)]
 		IItemSet<IIfcShell> IIfcShellBasedSurfaceModel.SbsmBoundary 
 		{ 
 			get

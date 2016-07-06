@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcSurfaceStyle : IIfcSurfaceStyle
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceStyle), 2)]
 		Ifc4.Interfaces.IfcSurfaceSide IIfcSurfaceStyle.Side 
 		{ 
 			get
@@ -64,6 +66,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceStyle), 3)]
 		IItemSet<IIfcSurfaceStyleElementSelect> IIfcSurfaceStyle.Styles 
 		{ 
 			get

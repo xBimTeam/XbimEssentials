@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcElement : IIfcElement
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcElement), 8)]
 		Ifc4.MeasureResource.IfcIdentifier? IIfcElement.Tag 
 		{ 
 			get

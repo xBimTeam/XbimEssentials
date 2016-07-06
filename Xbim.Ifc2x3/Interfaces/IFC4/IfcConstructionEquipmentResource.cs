@@ -20,6 +20,8 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 
 		private  Ifc4.Interfaces.IfcConstructionEquipmentResourceTypeEnum? _predefinedType;
 
+
+		[CrossSchemaAttribute(typeof(IIfcConstructionEquipmentResource), 11)]
 		Ifc4.Interfaces.IfcConstructionEquipmentResourceTypeEnum? IIfcConstructionEquipmentResource.PredefinedType 
 		{ 
 			get
@@ -28,7 +30,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			} 
 			set
 			{
-				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", byte.MaxValue);
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -11);
 				
 			}
 		}

@@ -17,6 +17,8 @@ namespace Xbim.Ifc2x3.ControlExtension
 {
 	public partial class @IfcRelAssociatesConstraint : IIfcRelAssociatesConstraint
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelAssociatesConstraint), 6)]
 		Ifc4.MeasureResource.IfcLabel? IIfcRelAssociatesConstraint.Intent 
 		{ 
 			get
@@ -31,6 +33,8 @@ namespace Xbim.Ifc2x3.ControlExtension
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelAssociatesConstraint), 7)]
 		IIfcConstraint IIfcRelAssociatesConstraint.RelatingConstraint 
 		{ 
 			get
