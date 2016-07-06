@@ -31,7 +31,7 @@ namespace Xbim.IO.Memory
             get { return _model.EntityFactory; }
         }
 
-        internal int CurrentLabel = 0;
+        internal int CurrentLabel;
 
         public EntityCollection(MemoryModel model, int labelFrom = 0)
         {
@@ -244,11 +244,14 @@ namespace Xbim.IO.Memory
                 _collection.Add(entity.EntityLabel, entity);
                 if (_naturalOrder != null) _naturalOrder.Add(entity.EntityLabel);
             };
-            doAction();
 
-            if (_model.IsTransactional)
-                _model.CurrentTransaction.AddReversibleAction(doAction, undo, entity, ChangeType.New, 0);
-
+            if (!_model.IsTransactional)
+            {
+                doAction();
+                return;
+            }
+            
+            _model.CurrentTransaction.DoReversibleAction(doAction, undo, entity, ChangeType.New, 0);
         }
 
         public bool Contains(IPersistEntity entity)
@@ -274,10 +277,13 @@ namespace Xbim.IO.Memory
                 _collection.Add(entity.EntityLabel, entity);
                 _naturalOrder = oldOrder;
             };
-            doAction();
 
-            if (_model.IsTransactional) 
-                _model.CurrentTransaction.AddReversibleAction(doAction, undo, entity, ChangeType.Deleted, 0);
+            if (!_model.IsTransactional)
+            {
+                doAction();
+                return removed;
+            }
+            _model.CurrentTransaction.DoReversibleAction(doAction, undo, entity, ChangeType.Deleted, 0);
             return removed;
         }
 

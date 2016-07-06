@@ -109,7 +109,6 @@
     <Compile Include="CobieType.cs" />
     <Compile Include="CobieTypeOrComponent.cs" />
     <Compile Include="CobieVolumeUnit.cs" />
-    <Compile Include="CobieWarranty.cs" />
     <Compile Include="CobieZone.cs" />
     <Compile Include="CoordinateTypeEnum.cs" />
     <Compile Include="CustomCode\CobieAttribute.cs" />

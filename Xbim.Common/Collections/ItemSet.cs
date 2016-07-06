@@ -91,9 +91,12 @@ namespace Xbim.Common.Collections
 				NotifyCountChanged();
 			};
 
-			doAction();
 
-            if (!Model.IsTransactional) return;
+            if (!Model.IsTransactional)
+            {
+                doAction();
+                return;
+            }
             
             Action undoAction = () => {
 				foreach(var value in items)
@@ -102,7 +105,7 @@ namespace Xbim.Common.Collections
 				NotifyCountChanged();
 			};
 
-            Model.CurrentTransaction.AddReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified, Property);
+            Model.CurrentTransaction.DoReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified, Property);
 		}
 
         public T First
@@ -191,9 +194,12 @@ namespace Xbim.Common.Collections
 				NotifyCountChanged();
 			};
 
-			doAction();
 
-            if (!Model.IsTransactional) return;
+            if (!Model.IsTransactional)
+            {
+                doAction();
+                return;
+            }
             
             Action undoAction = () => {
 				Internal.Remove(item);
@@ -201,7 +207,7 @@ namespace Xbim.Common.Collections
 				NotifyCountChanged();
 			};
 
-            Model.CurrentTransaction.AddReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified, Property);
+            Model.CurrentTransaction.DoReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified, Property);
         }
 
 
@@ -219,9 +225,12 @@ namespace Xbim.Common.Collections
                 NotifyCollectionChanged(NotifyCollectionChangedAction.Reset);
                 NotifyCountChanged();
             };
-            doAction();
 
-            if (!Model.IsTransactional) return;
+            if (!Model.IsTransactional)
+            {
+                doAction();
+                return;
+            }
 
             Action undoAction = () =>
             {
@@ -229,7 +238,7 @@ namespace Xbim.Common.Collections
                 NotifyCollectionChanged(NotifyCollectionChangedAction.Add, oldItems);
                 NotifyCountChanged();
             };
-            Model.CurrentTransaction.AddReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified, Property);
+            Model.CurrentTransaction.DoReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified, Property);
         }
 
         public bool Contains(T item)
@@ -255,14 +264,6 @@ namespace Xbim.Common.Collections
 
             OwningEntity.Activate(true);
 
-            var removed = Internal.Remove(item);
-            //don't do anything if nothing happened realy
-            if (!removed) return false;
-			//raise events
-            NotifyCollectionChanged(NotifyCollectionChangedAction.Remove, item);
-            NotifyCountChanged();
-
-            if (!Model.IsTransactional) return true;
 
             Action doAction = () =>
             {
@@ -276,7 +277,14 @@ namespace Xbim.Common.Collections
                 NotifyCollectionChanged(NotifyCollectionChangedAction.Add, item);
                 NotifyCountChanged();
             };
-            Model.CurrentTransaction.AddReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified, Property);
+
+            if (!Model.IsTransactional)
+            {
+                doAction();
+                return true;
+            }
+
+            Model.CurrentTransaction.DoReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified, Property);
             
             return true;
         }
@@ -388,9 +396,12 @@ namespace Xbim.Common.Collections
                     NotifyCollectionChanged(NotifyCollectionChangedAction.Replace, value);
                 };
 
-		        doAction();
 
-		        if (!Model.IsTransactional) return;
+		        if (!Model.IsTransactional)
+		        {
+                    doAction();
+                    return;
+		        }
 
 		        Action undoAction = () =>
 		        {
@@ -398,7 +409,7 @@ namespace Xbim.Common.Collections
                     NotifyCollectionChanged(NotifyCollectionChangedAction.Replace, oldValue);
 		        };
 		        
-				Model.CurrentTransaction.AddReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified, Property);
+				Model.CurrentTransaction.DoReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified, Property);
 		    }
 		}
 
@@ -424,9 +435,12 @@ namespace Xbim.Common.Collections
                 NotifyCollectionChanged(NotifyCollectionChangedAction.Add, item);
                 NotifyCountChanged();
             };
-			doAction();
 
-            if (!Model.IsTransactional) return;
+            if (!Model.IsTransactional)
+            {
+                doAction();
+                return;
+            }
 
             Action undoAction = () =>
             {
@@ -434,7 +448,7 @@ namespace Xbim.Common.Collections
                 NotifyCollectionChanged(NotifyCollectionChangedAction.Remove, item);
                 NotifyCountChanged();
             };
-            Model.CurrentTransaction.AddReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified, Property);
+            Model.CurrentTransaction.DoReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified, Property);
         }
 
         public void RemoveAt(int index)

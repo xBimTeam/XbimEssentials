@@ -118,10 +118,8 @@ namespace Xbim.Common
                 setter(oldValue);
                 NotifyPropertyChanged(notifyPropertyName);
             };
-            doAction();
 
-            //do action and THAN add to transaction so that it gets the object in new state
-            txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
+            txn.DoReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
         }
 
         #endregion
