@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcAngularDimension", 738)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAngularDimension : IfcDimensionCurveDirectedCallout, IInstantiableEntity, IIfcAngularDimension, IEquatable<@IfcAngularDimension>
+	public  partial class @IfcAngularDimension : IfcDimensionCurveDirectedCallout, IInstantiableEntity, IIfcAngularDimension, IContainsEntityReferences, IEquatable<@IfcAngularDimension>
 	{
 		#region IIfcAngularDimension explicit implementation
 		 
@@ -68,6 +68,17 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 	        return this == other;
 	    }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @Contents)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

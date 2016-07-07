@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.MeasureResource
 {
 	[ExpressType("IfcUnitAssignment", 245)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcUnitAssignment : PersistEntity, IInstantiableEntity, IIfcUnitAssignment, IEquatable<@IfcUnitAssignment>
+	public  partial class @IfcUnitAssignment : PersistEntity, IInstantiableEntity, IIfcUnitAssignment, IContainsEntityReferences, IEquatable<@IfcUnitAssignment>
 	{
 		#region IIfcUnitAssignment explicit implementation
 		IItemSet<IIfcUnit> IIfcUnitAssignment.Units { 
@@ -91,6 +91,17 @@ namespace Xbim.Ifc4.MeasureResource
 	        return this == other;
 	    }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @Units)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

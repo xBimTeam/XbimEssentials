@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcLinearDimension", 746)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLinearDimension : IfcDimensionCurveDirectedCallout, IInstantiableEntity, IIfcLinearDimension, IEquatable<@IfcLinearDimension>
+	public  partial class @IfcLinearDimension : IfcDimensionCurveDirectedCallout, IInstantiableEntity, IIfcLinearDimension, IContainsEntityReferences, IEquatable<@IfcLinearDimension>
 	{
 		#region IIfcLinearDimension explicit implementation
 		 
@@ -68,6 +68,17 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 	        return this == other;
 	    }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @Contents)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

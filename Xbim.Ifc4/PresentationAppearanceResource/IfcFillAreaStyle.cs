@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcFillAreaStyle", 33)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFillAreaStyle : IfcPresentationStyle, IInstantiableEntity, IIfcFillAreaStyle, IEquatable<@IfcFillAreaStyle>
+	public  partial class @IfcFillAreaStyle : IfcPresentationStyle, IInstantiableEntity, IIfcFillAreaStyle, IContainsEntityReferences, IEquatable<@IfcFillAreaStyle>
 	{
 		#region IIfcFillAreaStyle explicit implementation
 		IItemSet<IIfcFillStyleSelect> IIfcFillAreaStyle.FillStyles { 
@@ -117,6 +117,17 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	        return this == other;
 	    }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @FillStyles)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

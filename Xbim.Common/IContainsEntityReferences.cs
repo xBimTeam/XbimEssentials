@@ -2,7 +2,7 @@
 
 namespace Xbim.Common
 {
-    public interface IContainsEntityReferences
+    public interface IContainsEntityReferences: IPersistEntity
     {
         IEnumerable<IPersistEntity> References { get; } 
     }

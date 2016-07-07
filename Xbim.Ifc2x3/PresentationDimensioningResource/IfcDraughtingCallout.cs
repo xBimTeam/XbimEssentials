@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcDraughtingCallout", 222)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDraughtingCallout : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDraughtingCallout, IEquatable<@IfcDraughtingCallout>
+	public  partial class @IfcDraughtingCallout : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDraughtingCallout, IContainsEntityReferences, IEquatable<@IfcDraughtingCallout>
 	{
 		#region IIfcDraughtingCallout explicit implementation
 		IItemSet<IIfcDraughtingCalloutElement> IIfcDraughtingCallout.Contents { 
@@ -114,6 +114,17 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 	        return this == other;
 	    }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @Contents)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code
