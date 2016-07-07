@@ -24,7 +24,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			get
 			{
 				//## Handle return of Maps for which no match was found
-                return _ifcTextureCoordinate ?? (_ifcTextureCoordinate = new ItemSet<IIfcSurfaceTexture>(this, 0, byte.MaxValue));
+                return _ifcTextureCoordinate ?? (_ifcTextureCoordinate = new ItemSet<IIfcSurfaceTexture>(this, 0, -1));
 				//##
 			} 
 		}

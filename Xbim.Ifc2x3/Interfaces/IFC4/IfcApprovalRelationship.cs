@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
                 return _relatedApprovals ?? (_relatedApprovals =  new Common.Collections.ExtendedSingleSet<IfcApproval, IIfcApproval>(
                     () => RelatedApproval, 
                     approval => RelatedApproval = approval,
-                    new ItemSet<IIfcApproval>(this, 0, byte.MaxValue),
+                    new ItemSet<IIfcApproval>(this, 0, -4),
                     s => s,
                     t => t as IfcApproval
                     ));

@@ -14,6 +14,8 @@ namespace Profiling.Parsing
         {
             //const string name = "SampleHouse.ifc";
             var modelName = "Lakeside.ifc";
+            //var modelName = @"c:\CODE\SampleData\UniversityOfAuckland\20160125WestRiverSide Hospital - IFC4-Autodesk_Hospital_Metric_Electrical.ifc";
+            //var modelName = @"c:\CODE\SampleData\UniversityOfAuckland\20160125WestRiverSide Hospital - IFC4-Autodesk_Hospital_Metric_Plumbing.ifc";
             if (args.Length > 0)
             {
                 if(File.Exists(args[0]))

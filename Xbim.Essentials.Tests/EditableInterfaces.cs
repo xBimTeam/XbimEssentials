@@ -32,7 +32,7 @@ namespace Xbim.Essentials.Tests
             using (var model = IfcStore.Open(file))
             {
                 var extendedChanges = 0;
-                model.EntityModified += (entity, property) => { if (property == byte.MaxValue) extendedChanges++; };
+                model.EntityModified += (entity, property) => { if (property < 0) extendedChanges++; };
 
                 using (var txn = model.BeginTransaction())
                 {
@@ -117,7 +117,7 @@ namespace Xbim.Essentials.Tests
             using (var model = IfcStore.Open(file))
             {
                 var extendedChanges = 0;
-                model.EntityModified += (entity, property) => { if (property == byte.MaxValue) extendedChanges++; };
+                model.EntityModified += (entity, property) => { if (property < 0) extendedChanges++; };
 
                 using (var txn = model.BeginTransaction())
                 {

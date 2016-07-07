@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			get
 			{
 				//## Handle return of BaseCosts for which no match was found
-				return _baseCosts ?? (_baseCosts = new ItemSet<IIfcAppliedValue>(this, 0, byte.MaxValue));
+				return _baseCosts ?? (_baseCosts = new ItemSet<IIfcAppliedValue>(this, 0, -9));
 			    //##
 			} 
 		}

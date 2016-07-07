@@ -14,7 +14,7 @@ namespace Xbim.Ifc2x3
     {
         private bool _initialized;
 
-        internal OptionalItemSet(IPersistEntity entity, int capacity, byte property) : base(entity, capacity, property)
+        internal OptionalItemSet(IPersistEntity entity, int capacity, int property) : base(entity, capacity, property)
         {
         }
 

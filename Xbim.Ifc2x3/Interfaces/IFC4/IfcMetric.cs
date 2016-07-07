@@ -57,7 +57,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				//## Custom code to handle setting of enumeration of Benchmark
 			    if (_benchmark4.HasValue && (byte) value < (byte) Ifc4.Interfaces.IfcBenchmarkEnum.INCLUDES)
 			    {
-                    SetValue(v => _benchmark4 = v, _benchmark4, null, "Benchmark", byte.MaxValue);
+                    SetValue(v => _benchmark4 = v, _benchmark4, null, "Benchmark", -8);
 			    }
 				//##
 				switch (value)
@@ -88,25 +88,25 @@ namespace Xbim.Ifc2x3.ConstraintResource
 					
 					case Ifc4.Interfaces.IfcBenchmarkEnum.INCLUDES:
 						//## Handle setting of INCLUDES member from IfcBenchmarkEnum in property Benchmark
-                        SetValue(v => _benchmark4 = v, _benchmark4, value, "Benchmark", byte.MaxValue);
+                        SetValue(v => _benchmark4 = v, _benchmark4, value, "Benchmark", -8);
 				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcBenchmarkEnum.NOTINCLUDES:
 						//## Handle setting of NOTINCLUDES member from IfcBenchmarkEnum in property Benchmark
-                        SetValue(v => _benchmark4 = v, _benchmark4, value, "Benchmark", byte.MaxValue);
+                        SetValue(v => _benchmark4 = v, _benchmark4, value, "Benchmark", -8);
 				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcBenchmarkEnum.INCLUDEDIN:
 						//## Handle setting of INCLUDEDIN member from IfcBenchmarkEnum in property Benchmark
-                        SetValue(v => _benchmark4 = v, _benchmark4, value, "Benchmark", byte.MaxValue);
+                        SetValue(v => _benchmark4 = v, _benchmark4, value, "Benchmark", -8);
 				        return;
 						//##
 										
 					case Ifc4.Interfaces.IfcBenchmarkEnum.NOTINCLUDEDIN:
 						//## Handle setting of NOTINCLUDEDIN member from IfcBenchmarkEnum in property Benchmark
-						SetValue(v => _benchmark4 = v, _benchmark4, value, "Benchmark", byte.MaxValue);
+						SetValue(v => _benchmark4 = v, _benchmark4, value, "Benchmark", -8);
 				        return;
 						//##
 										
@@ -194,12 +194,12 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				    {
 				        DataValue = ifccostvalue;
                         if (_dataValue4 != null)
-                            SetValue(v => _dataValue4 = v, _dataValue4, null, "DataValue", byte.MaxValue);
+                            SetValue(v => _dataValue4 = v, _dataValue4, null, "DataValue", -10);
 				    }
 
 				    if (DataValue != null)
                         DataValue = null;
-                    SetValue(v => _dataValue4 = v, _dataValue4, value, "DataValue", byte.MaxValue);
+                    SetValue(v => _dataValue4 = v, _dataValue4, value, "DataValue", -10);
                     return;
 					//##
 				}

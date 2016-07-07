@@ -151,7 +151,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 			{
 				//## Custom code to handle setting of enumeration of ChangeAction
                 if (_changeAction4.HasValue && _changeAction4.Value != Ifc4.Interfaces.IfcChangeActionEnum.NOTDEFINED)
-                    SetValue(v => _changeAction4 = v, _changeAction4, null, "ChangeAction", byte.MaxValue);
+                    SetValue(v => _changeAction4 = v, _changeAction4, null, "ChangeAction", -4);
                 //##
 				switch (value)
 				{
@@ -173,7 +173,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 					
 					case Ifc4.Interfaces.IfcChangeActionEnum.NOTDEFINED:
 						//## Handle setting of NOTDEFINED member from IfcChangeActionEnum in property ChangeAction
-						SetValue(v => _changeAction4 = v, _changeAction4, value, "ChangeAction", byte.MaxValue);
+						SetValue(v => _changeAction4 = v, _changeAction4, value, "ChangeAction", -4);
 				        return;
 						//##
 										

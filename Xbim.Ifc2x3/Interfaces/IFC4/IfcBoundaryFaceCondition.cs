@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			    {
 			        LinearStiffnessByAreaX = null;
                     if (_translationalStiffnessByAreaX != null)
-                        SetValue(v => _translationalStiffnessByAreaX = v, _translationalStiffnessByAreaX, null, "TranslationalStiffnessByAreaX", byte.MaxValue);
+                        SetValue(v => _translationalStiffnessByAreaX = v, _translationalStiffnessByAreaX, null, "TranslationalStiffnessByAreaX", -2);
 			        return;
 
 			    }
@@ -47,11 +47,11 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 {
                     LinearStiffnessByAreaX = new MeasureResource.IfcModulusOfSubgradeReactionMeasure((Ifc4.MeasureResource.IfcModulusOfSubgradeReactionMeasure)value);
                     if (_translationalStiffnessByAreaX != null)
-                        SetValue(v => _translationalStiffnessByAreaX = v, _translationalStiffnessByAreaX, null, "TranslationalStiffnessByAreaX", byte.MaxValue);
+                        SetValue(v => _translationalStiffnessByAreaX = v, _translationalStiffnessByAreaX, null, "TranslationalStiffnessByAreaX", -2);
                     return;
                 }
 
-                SetValue(v => _translationalStiffnessByAreaX = v, _translationalStiffnessByAreaX, value, "TranslationalStiffnessByAreaX", byte.MaxValue);
+                SetValue(v => _translationalStiffnessByAreaX = v, _translationalStiffnessByAreaX, value, "TranslationalStiffnessByAreaX", -2);
 				//##
 				NotifyPropertyChanged("TranslationalStiffnessByAreaX");
 				
@@ -79,7 +79,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 {
                     LinearStiffnessByAreaY = null;
                     if (_translationalStiffnessByAreaY != null)
-                        SetValue(v => _translationalStiffnessByAreaY = v, _translationalStiffnessByAreaY, null, "TranslationalStiffnessByAreaY", byte.MaxValue);
+                        SetValue(v => _translationalStiffnessByAreaY = v, _translationalStiffnessByAreaY, null, "TranslationalStiffnessByAreaY", -3);
                     return;
 
                 }
@@ -87,11 +87,11 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 {
                     LinearStiffnessByAreaY = new MeasureResource.IfcModulusOfSubgradeReactionMeasure((Ifc4.MeasureResource.IfcModulusOfSubgradeReactionMeasure)value);
                     if (_translationalStiffnessByAreaY != null)
-                        SetValue(v => _translationalStiffnessByAreaY = v, _translationalStiffnessByAreaY, null, "TranslationalStiffnessByAreaY", byte.MaxValue);
+                        SetValue(v => _translationalStiffnessByAreaY = v, _translationalStiffnessByAreaY, null, "TranslationalStiffnessByAreaY", -3);
                     return;
                 }
 
-                SetValue(v => _translationalStiffnessByAreaY = v, _translationalStiffnessByAreaY, value, "TranslationalStiffnessByAreaY", byte.MaxValue);
+                SetValue(v => _translationalStiffnessByAreaY = v, _translationalStiffnessByAreaY, value, "TranslationalStiffnessByAreaY", -3);
                 //##
 				NotifyPropertyChanged("TranslationalStiffnessByAreaY");
 				
@@ -119,7 +119,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 {
                     LinearStiffnessByAreaZ = null;
                     if (_translationalStiffnessByAreaZ != null)
-                        SetValue(v => _translationalStiffnessByAreaZ = v, _translationalStiffnessByAreaZ, null, "TranslationalStiffnessByAreaZ", byte.MaxValue);
+                        SetValue(v => _translationalStiffnessByAreaZ = v, _translationalStiffnessByAreaZ, null, "TranslationalStiffnessByAreaZ", -4);
                     return;
 
                 }
@@ -127,11 +127,11 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 {
                     LinearStiffnessByAreaZ = new MeasureResource.IfcModulusOfSubgradeReactionMeasure((Ifc4.MeasureResource.IfcModulusOfSubgradeReactionMeasure)value);
                     if (_translationalStiffnessByAreaZ != null)
-                        SetValue(v => _translationalStiffnessByAreaZ = v, _translationalStiffnessByAreaZ, null, "TranslationalStiffnessByAreaZ", byte.MaxValue);
+                        SetValue(v => _translationalStiffnessByAreaZ = v, _translationalStiffnessByAreaZ, null, "TranslationalStiffnessByAreaZ", -4);
                     return;
                 }
 
-                SetValue(v => _translationalStiffnessByAreaZ = v, _translationalStiffnessByAreaZ, value, "TranslationalStiffnessByAreaZ", byte.MaxValue);
+                SetValue(v => _translationalStiffnessByAreaZ = v, _translationalStiffnessByAreaZ, value, "TranslationalStiffnessByAreaZ", -4);
                 //##
 				NotifyPropertyChanged("TranslationalStiffnessByAreaZ");
 				

@@ -44,7 +44,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			set
 			{
 				//## Handle setting of RasterCode for which no match was found
-                SetValue(v => _rasterCode4 = v, _rasterCode4, value, "RasterCode", byte.MaxValue);
+                SetValue(v => _rasterCode4 = v, _rasterCode4, value, "RasterCode", -7);
 				//##
 				
 			}

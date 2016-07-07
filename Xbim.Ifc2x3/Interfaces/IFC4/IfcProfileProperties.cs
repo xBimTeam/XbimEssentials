@@ -72,7 +72,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			get
 			{
 				//## Handle return of Properties for which no match was found
-			    return _properties ?? (_properties = new ItemSet<IIfcProperty>(this, 0, byte.MaxValue));
+			    return _properties ?? (_properties = new ItemSet<IIfcProperty>(this, 0, -3));
 			    //##
 			} 
 		}

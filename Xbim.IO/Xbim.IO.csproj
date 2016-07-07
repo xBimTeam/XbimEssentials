@@ -98,6 +98,7 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Delta\TransactionLog.cs" />
     <Compile Include="Esent\EsentGeometryStore.cs" />
     <Compile Include="Esent\EsentGeometryInitialiser.cs" />
     <Compile Include="Esent\EsentGeometryStoreReader.cs" />

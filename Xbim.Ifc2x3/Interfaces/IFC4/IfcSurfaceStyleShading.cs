@@ -52,7 +52,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
                 var rendering = this as IfcSurfaceStyleRendering;
 			    if (rendering == null)
 			    {
-			        SetValue(v => _transparency = v, _transparency, value, "Transparency", byte.MaxValue);
+			        SetValue(v => _transparency = v, _transparency, value, "Transparency", -2);
 			        return;
 			    }
 

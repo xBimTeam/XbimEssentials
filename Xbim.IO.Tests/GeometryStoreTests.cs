@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common.Geometry;
@@ -119,6 +120,7 @@ namespace Xbim.EsentModel.Tests
                 int c = model.Instances.OfType<IfcDoor>().Count();
                 model.Close();
             }
+            Thread.SpinWait(200);
             Assert.IsTrue(IO.Esent.EsentModel.ModelOpenCount == 0);
 
         }

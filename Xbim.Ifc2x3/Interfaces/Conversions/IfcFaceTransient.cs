@@ -17,7 +17,7 @@ namespace Xbim.Ifc2x3.Interfaces.Conversions
             _faceBounds = new ExtendedSingleSet<Ifc4.Interfaces.IIfcFaceBound,Ifc4.Interfaces.IIfcFaceBound>(
                 () => _bound, 
                 transient => _bound = transient,
-                new ItemSet<Ifc4.Interfaces.IIfcFaceBound>(this, 0, byte.MaxValue), 
+                new ItemSet<Ifc4.Interfaces.IIfcFaceBound>(this, 0, 0), 
                 bound => bound, bound => bound
                 );
         }

@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 {
                     LinearStiffnessX = null;
                     if (_translationalStiffnessX != null)
-                        SetValue(v => _translationalStiffnessX = v, _translationalStiffnessX, null, "TranslationalStiffnessX", byte.MaxValue);
+                        SetValue(v => _translationalStiffnessX = v, _translationalStiffnessX, null, "TranslationalStiffnessX", -2);
                     return;
 
                 }
@@ -47,11 +47,11 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 {
                     LinearStiffnessX = new MeasureResource.IfcLinearStiffnessMeasure((Ifc4.MeasureResource.IfcLinearStiffnessMeasure)value);
                     if (_translationalStiffnessX != null)
-                        SetValue(v => _translationalStiffnessX = v, _translationalStiffnessX, null, "TranslationalStiffnessX", byte.MaxValue);
+                        SetValue(v => _translationalStiffnessX = v, _translationalStiffnessX, null, "TranslationalStiffnessX", -2);
                     return;
                 }
 
-                SetValue(v => _translationalStiffnessX = v, _translationalStiffnessX, value, "TranslationalStiffnessX", byte.MaxValue);
+                SetValue(v => _translationalStiffnessX = v, _translationalStiffnessX, value, "TranslationalStiffnessX", -2);
 				//##
 				NotifyPropertyChanged("TranslationalStiffnessX");
 				
@@ -79,7 +79,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 {
                     LinearStiffnessY = null;
                     if (_translationalStiffnessY != null)
-                        SetValue(v => _translationalStiffnessY = v, _translationalStiffnessY, null, "TranslationalStiffnessY", byte.MaxValue);
+                        SetValue(v => _translationalStiffnessY = v, _translationalStiffnessY, null, "TranslationalStiffnessY", -3);
                     return;
 
                 }
@@ -87,11 +87,11 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 {
                     LinearStiffnessY = new MeasureResource.IfcLinearStiffnessMeasure((Ifc4.MeasureResource.IfcLinearStiffnessMeasure)value);
                     if (_translationalStiffnessY != null)
-                        SetValue(v => _translationalStiffnessY = v, _translationalStiffnessY, null, "TranslationalStiffnessY", byte.MaxValue);
+                        SetValue(v => _translationalStiffnessY = v, _translationalStiffnessY, null, "TranslationalStiffnessY", -3);
                     return;
                 }
 
-                SetValue(v => _translationalStiffnessY = v, _translationalStiffnessY, value, "TranslationalStiffnessY", byte.MaxValue);
+                SetValue(v => _translationalStiffnessY = v, _translationalStiffnessY, value, "TranslationalStiffnessY", -3);
                 //##
 				NotifyPropertyChanged("TranslationalStiffnessY");
 				
@@ -119,18 +119,18 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 {
                     LinearStiffnessZ = null;
                     if (_translationalStiffnessZ != null)
-                        SetValue(v => _translationalStiffnessZ = v, _translationalStiffnessZ, null, "TranslationalStiffnessZ", byte.MaxValue);
+                        SetValue(v => _translationalStiffnessZ = v, _translationalStiffnessZ, null, "TranslationalStiffnessZ", -4);
                     return;
 
                 }
                 if (value is Ifc4.MeasureResource.IfcLinearStiffnessMeasure)
                 {
                     LinearStiffnessZ = new MeasureResource.IfcLinearStiffnessMeasure((Ifc4.MeasureResource.IfcLinearStiffnessMeasure)value);
-                    SetValue(v => _translationalStiffnessZ = v, _translationalStiffnessZ, null, "TranslationalStiffnessZ", byte.MaxValue);
+                    SetValue(v => _translationalStiffnessZ = v, _translationalStiffnessZ, null, "TranslationalStiffnessZ", -4);
                     return;
                 }
 
-                SetValue(v => _translationalStiffnessZ = v, _translationalStiffnessZ, value, "TranslationalStiffnessZ", byte.MaxValue);
+                SetValue(v => _translationalStiffnessZ = v, _translationalStiffnessZ, value, "TranslationalStiffnessZ", -4);
                 //##
 				NotifyPropertyChanged("TranslationalStiffnessZ");
 				
@@ -158,7 +158,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 {
                     RotationalStiffnessX = null;
                     if (_rotationalStiffnessX4 != null)
-                        SetValue(v => _rotationalStiffnessX4 = v, _rotationalStiffnessX4, null, "RotationalStiffnessX", byte.MaxValue);
+                        SetValue(v => _rotationalStiffnessX4 = v, _rotationalStiffnessX4, null, "RotationalStiffnessX", -5);
                     return;
 
                 }
@@ -166,11 +166,11 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 {
                     RotationalStiffnessX = new MeasureResource.IfcRotationalStiffnessMeasure((Ifc4.MeasureResource.IfcRotationalStiffnessMeasure)value);
                     if (_rotationalStiffnessX4 != null)
-                        SetValue(v => _rotationalStiffnessX4 = v, _rotationalStiffnessX4, null, "RotationalStiffnessX", byte.MaxValue);
+                        SetValue(v => _rotationalStiffnessX4 = v, _rotationalStiffnessX4, null, "RotationalStiffnessX", -5);
                     return;
                 }
 
-                SetValue(v => _rotationalStiffnessX4 = v, _rotationalStiffnessX4, value, "RotationalStiffnessX", byte.MaxValue);
+                SetValue(v => _rotationalStiffnessX4 = v, _rotationalStiffnessX4, value, "RotationalStiffnessX", -5);
 				//##
 				
 			}
@@ -197,7 +197,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 {
                     RotationalStiffnessY = null;
                     if (_rotationalStiffnessY4 != null)
-                        SetValue(v => _rotationalStiffnessY4 = v, _rotationalStiffnessY4, null, "RotationalStiffnessY", byte.MaxValue);
+                        SetValue(v => _rotationalStiffnessY4 = v, _rotationalStiffnessY4, null, "RotationalStiffnessY", -6);
                     return;
 
                 }
@@ -205,11 +205,11 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 {
                     RotationalStiffnessY = new MeasureResource.IfcRotationalStiffnessMeasure((Ifc4.MeasureResource.IfcRotationalStiffnessMeasure)value);
                     if (_rotationalStiffnessY4 != null)
-                        SetValue(v => _rotationalStiffnessY4 = v, _rotationalStiffnessY4, null, "RotationalStiffnessY", byte.MaxValue);
+                        SetValue(v => _rotationalStiffnessY4 = v, _rotationalStiffnessY4, null, "RotationalStiffnessY", -6);
                     return;
                 }
 
-                SetValue(v => _rotationalStiffnessY4 = v, _rotationalStiffnessY4, value, "RotationalStiffnessY", byte.MaxValue);
+                SetValue(v => _rotationalStiffnessY4 = v, _rotationalStiffnessY4, value, "RotationalStiffnessY", -6);
                 //##
 				
 			}
@@ -236,7 +236,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 {
                     RotationalStiffnessZ = null;
                     if (_rotationalStiffnessZ4 != null)
-                        SetValue(v => _rotationalStiffnessZ4 = v, _rotationalStiffnessZ4, null, "RotationalStiffnessZ", byte.MaxValue);
+                        SetValue(v => _rotationalStiffnessZ4 = v, _rotationalStiffnessZ4, null, "RotationalStiffnessZ", -7);
                     return;
 
                 }
@@ -244,11 +244,11 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 {
                     RotationalStiffnessZ = new MeasureResource.IfcRotationalStiffnessMeasure((Ifc4.MeasureResource.IfcRotationalStiffnessMeasure)value);
                     if (_rotationalStiffnessZ4 != null)
-                        SetValue(v => _rotationalStiffnessZ4 = v, _rotationalStiffnessZ4, null, "RotationalStiffnessZ", byte.MaxValue);
+                        SetValue(v => _rotationalStiffnessZ4 = v, _rotationalStiffnessZ4, null, "RotationalStiffnessZ", -7);
                     return;
                 }
 
-                SetValue(v => _rotationalStiffnessZ4 = v, _rotationalStiffnessZ4, value, "RotationalStiffnessZ", byte.MaxValue);
+                SetValue(v => _rotationalStiffnessZ4 = v, _rotationalStiffnessZ4, value, "RotationalStiffnessZ", -7);
                 //##
 				
 			}

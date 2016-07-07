@@ -10,7 +10,7 @@ namespace Xbim.Ifc2x3.Interfaces.Conversions
         private readonly IItemSet<Ifc4.Interfaces.IIfcCartesianPoint> _points;
         public IfcPolyLoopTransient(IEnumerable<IfcCartesianPoint> points)
         {
-            var ps = new ItemSet<Ifc4.Interfaces.IIfcCartesianPoint>(this, 0, 255);
+            var ps = new ItemSet<Ifc4.Interfaces.IIfcCartesianPoint>(this, 0, 0);
             foreach (var point in points)
                 ps.InternalAdd(point);
             _points = ps;

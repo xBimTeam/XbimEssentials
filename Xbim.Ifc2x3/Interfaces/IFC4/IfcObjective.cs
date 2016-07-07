@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
                 return _benchmarkValues4 ?? (_benchmarkValues4 = new Common.Collections.ExtendedSingleSet<IfcMetric,IIfcConstraint>(
                     () => BenchmarkValues,
                     v => BenchmarkValues = v,
-                    new ItemSet<IIfcConstraint>(this, 0, byte.MaxValue),
+                    new ItemSet<IIfcConstraint>(this, 0, -8),
                     s => s as IIfcConstraint,
                     t => t as IfcMetric
                     ));

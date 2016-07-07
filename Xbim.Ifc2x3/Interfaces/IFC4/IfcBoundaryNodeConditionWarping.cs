@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 {
                     WarpingStiffness = null;
                     if (_warpingStiffness4 != null)
-                        SetValue(v => _warpingStiffness4 = v, _warpingStiffness4, null, "WarpingStiffness", byte.MaxValue);
+                        SetValue(v => _warpingStiffness4 = v, _warpingStiffness4, null, "WarpingStiffness", -8);
                     return;
 
                 }
@@ -47,11 +47,11 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
                 {
                     WarpingStiffness = new MeasureResource.IfcWarpingMomentMeasure((Ifc4.MeasureResource.IfcWarpingMomentMeasure)value);
                     if (_warpingStiffness4 != null)
-                        SetValue(v => _warpingStiffness4 = v, _warpingStiffness4, null, "WarpingStiffness", byte.MaxValue);
+                        SetValue(v => _warpingStiffness4 = v, _warpingStiffness4, null, "WarpingStiffness", -8);
                     return;
                 }
 
-                SetValue(v => _warpingStiffness4 = v, _warpingStiffness4, value, "WarpingStiffness", byte.MaxValue);
+                SetValue(v => _warpingStiffness4 = v, _warpingStiffness4, value, "WarpingStiffness", -8);
 				//##
 				
 			}

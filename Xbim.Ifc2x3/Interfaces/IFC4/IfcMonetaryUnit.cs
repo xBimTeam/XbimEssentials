@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 			    if (System.Enum.TryParse(value.ToString(), true, out c))
 			        Currency = c;
 			    else
-			        SetValue(v => _currencyLabel = v, _currencyLabel, value, "Currency", byte.MaxValue);
+			        SetValue(v => _currencyLabel = v, _currencyLabel, value, "Currency", -1);
 			    //##
 				
 			}

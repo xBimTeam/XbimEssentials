@@ -100,7 +100,7 @@ namespace Xbim.Ifc2x3.Kernel
 				//## Custom code to handle setting of enumeration of SequenceType
 			    if (_sequenceType4.HasValue && value != Ifc4.Interfaces.IfcSequenceEnum.USERDEFINED)
 			    {
-                    SetValue(v => _sequenceType4 = v, _sequenceType4, null, "SequenceType", byte.MaxValue);
+                    SetValue(v => _sequenceType4 = v, _sequenceType4, null, "SequenceType", -8);
 			    }
 				//##
 				switch (value)
@@ -124,7 +124,7 @@ namespace Xbim.Ifc2x3.Kernel
 					case Ifc4.Interfaces.IfcSequenceEnum.USERDEFINED:
 						//## Handle setting of USERDEFINED member from IfcSequenceEnum in property SequenceType
                         SequenceType = IfcSequenceEnum.NOTDEFINED;
-						SetValue(v => _sequenceType4 = v, _sequenceType4, value, "SequenceType", byte.MaxValue);
+						SetValue(v => _sequenceType4 = v, _sequenceType4, value, "SequenceType", -8);
 				        return;
 						//##
 										

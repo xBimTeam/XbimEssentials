@@ -42,7 +42,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			set
 			{
 				//## Handle setting of MappedTo for which no match was found
-                SetValue(v => _mappedTo = v, _mappedTo, value, "MappedTo", byte.MaxValue);
+                SetValue(v => _mappedTo = v, _mappedTo, value, "MappedTo", -3);
 			    //##
 				NotifyPropertyChanged("MappedTo");
 				

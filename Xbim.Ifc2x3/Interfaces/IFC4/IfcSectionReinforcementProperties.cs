@@ -112,7 +112,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				//## Custom code to handle setting of enumeration of ReinforcementRole
                 if (value != Ifc4.Interfaces.IfcReinforcingBarRoleEnum.ANCHORING)
-                    SetValue(v => _role = v, _role, null, "ReinforcementRole", 255);
+                    SetValue(v => _role = v, _role, null, "ReinforcementRole", -4);
 				//##
 				switch (value)
 				{
@@ -147,7 +147,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 					case Ifc4.Interfaces.IfcReinforcingBarRoleEnum.ANCHORING:
 						//## Handle setting of ANCHORING member from IfcReinforcingBarRoleEnum in property ReinforcementRole
 						ReinforcementRole = IfcReinforcingBarRoleEnum.USERDEFINED;
-                        SetValue(v => _role = v, _role, value, "ReinforcementRole", 255);
+                        SetValue(v => _role = v, _role, value, "ReinforcementRole", -4);
 				        return;
 						//##
 										

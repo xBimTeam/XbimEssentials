@@ -169,7 +169,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 					//## Handle setting of entity IfcTable which is not a part of the target select interface IIfcObjectReferenceSelect in property PropertyReference
 				    if (PropertyReference != null)
 				        PropertyReference = null;
-                    SetValue(v => _propertyReference4 = v, _propertyReference4, value, "PropertyReference", byte.MaxValue);
+                    SetValue(v => _propertyReference4 = v, _propertyReference4, value, "PropertyReference", -4);
                     return;
 					//##
 				}
