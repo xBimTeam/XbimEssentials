@@ -76,6 +76,7 @@
     <Compile Include="CrossAccessTests.cs" />
     <Compile Include="EditableInterfaces.cs" />
     <Compile Include="Pure4Tests.cs" />
+    <Compile Include="UnitNameTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj">

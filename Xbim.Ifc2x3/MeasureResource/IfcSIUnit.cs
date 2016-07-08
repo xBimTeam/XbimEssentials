@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcSIUnit", 164)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSIUnit : IfcNamedUnit, IInstantiableEntity, IIfcSIUnit, IContainsEntityReferences, IEquatable<@IfcSIUnit>
+	public  partial class @IfcSIUnit : IfcNamedUnit, IInstantiableEntity, IIfcSIUnit, IEquatable<@IfcSIUnit>
 	{
 		#region IIfcSIUnit explicit implementation
 		IfcSIPrefix? IIfcSIUnit.Prefix { 
@@ -136,17 +136,6 @@ namespace Xbim.Ifc2x3.MeasureResource
 	        return this == other;
 	    }
         #endregion
-
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				if (@Dimensions != null)
-					yield return @Dimensions;
-			}
-		}
-		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code
