@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Xbim.Common;
+using Xbim.Common.Exceptions;
 using Xbim.Common.Logging;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
@@ -296,7 +297,7 @@ namespace Xbim.IO.Step21
             catch (Exception )
             {
                 if (ErrorCount > MaxErrorCount)
-                    throw new Exception("Too many errors in file, parser execution terminated");
+                    throw new XbimParserException("Too many errors in file, parser execution terminated");
                 ErrorCount++;
                 var mainEntity = _processStack.Last();
                 if (mainEntity != null)
@@ -342,7 +343,7 @@ namespace Xbim.IO.Step21
             catch (Exception )
             {
                 if (ErrorCount > MaxErrorCount)
-                    throw new Exception("Too many errors in file, parser execution terminated");
+                    throw new XbimParserException("Too many errors in file, parser execution terminated");
                 ErrorCount++;
                 var mainEntity = _processStack.Last();
                 if (mainEntity != null)
@@ -406,7 +407,7 @@ namespace Xbim.IO.Step21
             catch (Exception )
             {
                 if (ErrorCount > MaxErrorCount)
-                    throw new Exception("Too many errors in file, parser execution terminated");
+                    throw new XbimParserException("Too many errors in file, parser execution terminated");
                 ErrorCount++;
                 var expressType = Metadata.ExpressType(host);
                 var propertyName = paramIndex+1 > expressType.Properties.Count ? "[UnknownProperty]" :

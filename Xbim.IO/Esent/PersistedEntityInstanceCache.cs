@@ -736,7 +736,7 @@ namespace Xbim.IO.Esent
             {
 
                 _forwardReferences = new BlockingCollection<StepForwardReference>();
-                using (var part21Parser = new P21toIndexParser(stream, streamSize, table, this, codePageOverride))
+                using (var part21Parser = new P21ToIndexParser(stream, streamSize, table, this, codePageOverride))
                 {
                     if (progressHandler != null) part21Parser.ProgressStatus += progressHandler;
                     part21Parser.Parse();
@@ -813,7 +813,7 @@ namespace Xbim.IO.Esent
                                     using (var reader = zipFile.GetInputStream(entry))
                                     {
                                         _forwardReferences = new BlockingCollection<StepForwardReference>();
-                                        using (var part21Parser = new P21toIndexParser(reader, entry.Size, table, this, codePageOverride))
+                                        using (var part21Parser = new P21ToIndexParser(reader, entry.Size, table, this, codePageOverride))
                                         {
                                             if (progressHandler != null) part21Parser.ProgressStatus += progressHandler;
                                             part21Parser.Parse();
