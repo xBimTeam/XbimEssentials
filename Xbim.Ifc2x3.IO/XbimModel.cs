@@ -5,7 +5,6 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Geometry;
-using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
 using Xbim.Ifc;
 using Xbim.Ifc2x3.ActorResource;
@@ -20,7 +19,8 @@ using Xbim.IO.Esent;
 
 namespace Xbim.Ifc2x3.IO
 {
-    public class XbimModel: EsentModel
+    [Obsolete("XbimModel is obsolete. Use IfcStore instead. XbimModel can only handle IFC2x3 and is only based on Esent model.")]
+    public class XbimModel : EsentModel
     {
         /// <summary>
         /// If true OwnerHistory properties are added modified when an object is added or modified, by default this is on, turn off with care as it can lead to models that do not comply with the schema
@@ -30,6 +30,7 @@ namespace Xbim.Ifc2x3.IO
 
         private const string RefDocument = "XbimReferencedModel";
 
+        [Obsolete("XbimModel is obsolete. Use IfcStore instead. XbimModel can only handle IFC2x3 and is only based on Esent model.")]
         public XbimModel()
         {
             var factory = new EntityFactory();
@@ -101,22 +102,16 @@ namespace Xbim.Ifc2x3.IO
                 break;
             }
             //get the world coordinate system
-            XbimMatrix3D? wcs = null;
             var context = Instances.OfType<IfcGeometricRepresentationContext>().FirstOrDefault(c =>
                 c.GetType() == typeof(IfcGeometricRepresentationContext) && string.Compare(c.ContextType, "model", true) == 0 || string.Compare(c.ContextType, "design", true) == 0); //allow for incorrect older models
             if (context != null)
             {
                 WorldCoordinateSystem = context.WorldCoordinateSystem;
-                wcs = WorldCoordinateSystem.ToMatrix3D();
+                XbimMatrix3D? wcs = WorldCoordinateSystem.ToMatrix3D();
                 if (!wcs.Value.IsIdentity)
                 {
                     wcs.Value.Invert();
                 }
-                else
-                {
-                    wcs = null; //just ignore it
-                }
-
             }
             //check if angle units are incorrectly defined, this happens in some old models
             if (Math.Abs(angleToRadiansConversionFactor - 1) < 1e-10)

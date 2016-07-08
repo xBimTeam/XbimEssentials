@@ -85,18 +85,12 @@ namespace Xbim.Ifc
                     EditorsOrganisationName = "Unspecified",
                     EditorsGivenName = ""
                 };
-            else _editorDetails = editorDetails;
+            else 
+                _editorDetails = editorDetails;
+
+            _model.EntityNew += IfcRootInit;
+            _model.EntityModified += IfcRootModified;
             
-            if (schema == IfcSchemaVersion.Ifc4)
-            {
-                _model.EntityNew += IfcRootInitIfc4;
-                _model.EntityModified += IfcRootModifiedIfc4;
-            }
-            else //its 2x3
-            {
-                _model.EntityNew += IfcRootInitIfc2X3;
-                _model.EntityModified += IfcRootModifiedIfc2X3;
-            }
             LoadReferenceModels();
             CalculateModelFactors();
         }
@@ -536,47 +530,25 @@ namespace Xbim.Ifc
         #region OwnerHistory Management
 
 
-        private void IfcRootModifiedIfc2X3(IPersistEntity entity, int property)
+        private void IfcRootModified(IPersistEntity entity, int property)
         {
-
-            var root = entity as Ifc2x3.Kernel.IfcRoot;
-
-            if (root == null || root.OwnerHistory == (Ifc2x3.UtilityResource.IfcOwnerHistory)_ownerHistoryAddObject)
+            var root = entity as IIfcRoot;
+            if (root == null || root.OwnerHistory == _ownerHistoryAddObject)
                 return;
 
-            if (root.OwnerHistory != (Ifc2x3.UtilityResource.IfcOwnerHistory)_ownerHistoryModifyObject)
-                root.OwnerHistory = (Ifc2x3.UtilityResource.IfcOwnerHistory)OwnerHistoryModifyObject;
+            if (root.OwnerHistory != _ownerHistoryModifyObject)
+                root.OwnerHistory = OwnerHistoryModifyObject;
         }
 
-        private void IfcRootInitIfc2X3(IPersistEntity entity)
+        private void IfcRootInit(IPersistEntity entity)
         {
-            var root = entity as Ifc2x3.Kernel.IfcRoot;
+            var root = entity as IIfcRoot;
             if (root != null)
             {
-                root.OwnerHistory = (Ifc2x3.UtilityResource.IfcOwnerHistory)OwnerHistoryAddObject;
+                root.OwnerHistory = OwnerHistoryAddObject;
+                root.GlobalId = Guid.NewGuid().ToPart21();
             }
         }
-
-
-        private void IfcRootModifiedIfc4(IPersistEntity entity, int property)
-        {
-            var root = entity as Ifc4.Kernel.IfcRoot;
-            if (root == null || root.OwnerHistory == (Ifc4.UtilityResource.IfcOwnerHistory)_ownerHistoryAddObject)
-                return;
-
-            if (root.OwnerHistory != (Ifc4.UtilityResource.IfcOwnerHistory)_ownerHistoryModifyObject)
-                root.OwnerHistory = (Ifc4.UtilityResource.IfcOwnerHistory)OwnerHistoryModifyObject;
-        }
-
-        private void IfcRootInitIfc4(IPersistEntity entity)
-        {
-            var root = entity as Ifc4.Kernel.IfcRoot;
-            if (root != null)
-            {
-                root.OwnerHistory = (Ifc4.UtilityResource.IfcOwnerHistory)OwnerHistoryAddObject;
-            }
-        }
-
 
         public IIfcPersonAndOrganization DefaultOwningUser
         {

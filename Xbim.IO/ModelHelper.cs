@@ -15,8 +15,8 @@ namespace Xbim.IO
         /// <summary>
         /// This only keeps cache of metadata and types to speed up reflection search.
         /// </summary>
-        private static readonly ConcurrentDictionary<Type, List<DeleteCandidateType>> DeteteCandidatesCache =
-            new ConcurrentDictionary<Type, List<DeleteCandidateType>>();
+        private static readonly ConcurrentDictionary<Type, List<ReferingType>> ReferingTypesCache =
+            new ConcurrentDictionary<Type, List<ReferingType>>();
 
         /// <summary>
         /// This will delete the entity from model dictionary and also from any references in the model.
@@ -31,37 +31,74 @@ namespace Xbim.IO
         /// This should be reversable action within a transaction.</param>
         public static void Delete(IModel model, IPersistEntity entity, Func<IPersistEntity, bool> instanceRemoval)
         {
-            var entityType = entity.GetType();
-            List<DeleteCandidateType> candidateTypes;
-            if (!DeteteCandidatesCache.TryGetValue(entityType, out candidateTypes))
-            {
-                candidateTypes = new List<DeleteCandidateType>();
-                DeteteCandidatesCache.TryAdd(entityType, candidateTypes);
-
-                //find all potential references and delete from there
-                var types = model.Metadata.Types().Where(t => typeof(IInstantiableEntity).IsAssignableFrom(t.Type));
-                // ReSharper disable once LoopCanBeConvertedToQuery
-                foreach (var type in types)
-                {
-                    var toNullify = type.Properties.Values.Where(p =>
-                        p.EntityAttribute != null && p.EntityAttribute.Order > 0 &&
-                        p.PropertyInfo.PropertyType.IsAssignableFrom(entityType)).ToList();
-                    var toRemove =
-                        type.Properties.Values.Where(p =>
-                            p.EntityAttribute != null && p.EntityAttribute.Order > 0 &&
-                            p.PropertyInfo.PropertyType.IsGenericType &&
-                            p.PropertyInfo.PropertyType.GenericTypeArgumentIsAssignableFrom(entityType)).ToList();
-                    if (!toNullify.Any() && !toRemove.Any()) continue;
-
-                    candidateTypes.Add(new DeleteCandidateType { Type = type, ToNullify = toNullify, ToRemove = toRemove });
-                }
-            }
-
-            foreach (var candidateType in candidateTypes)
-                DeleteReferences(model, entity, candidateType);
+            var referingTypes = GetReferingTypes(model, entity);
+            foreach (var referingType in referingTypes)
+                ReplaceReferences<IPersistEntity, IPersistEntity>(model, entity, referingType, null);
 
             //Remove from entity collection. This must be at the end for case it is being used in the meantime.
             instanceRemoval(entity);
+        }
+
+        /// <summary>
+        /// This will replace the entity with another entity and will optionally remove it from model dictionary.
+        /// This will replace all references in the model.
+        /// Be carefull as this might take a while to check for all occurances of the object. 
+        /// </summary>
+        /// <param name="model">Model from which the entity should be deleted</param>
+        /// <param name="entity">Entity to be replaces</param>
+        /// <param name="replacement">Entity to replace first entity</param>
+        /// <param name="instanceRemoval">Optional delegate to be used to remove entity from the instance collection.
+        /// This should be reversable action within a transaction.</param>
+        public static void Replace<TEntity, TReplacement>(IModel model, TEntity entity, TReplacement replacement, Func<IPersistEntity, bool> instanceRemoval = null)
+            where TEntity : IPersistEntity
+            where TReplacement : TEntity
+        {
+            if (!entity.Model.Equals(replacement.Model))
+                throw new XbimException("It isn't possible to replace entities from different models. Insert copy of the entity first.");
+
+            var referingTypes = GetReferingTypes(model, entity);
+            foreach (var referingType in referingTypes)
+                ReplaceReferences<IPersistEntity, IPersistEntity>(model, entity, referingType, replacement);
+
+            //Remove from entity collection. This must be at the end for case it is being used in the meantime.
+            if (instanceRemoval != null)
+                instanceRemoval(entity);
+        }
+
+
+        private static IEnumerable<ReferingType> GetReferingTypes(IModel model, IPersistEntity entity)
+        {
+            var entityType = entity.GetType();
+            List<ReferingType> referingTypes;
+            if (ReferingTypesCache.TryGetValue(entityType, out referingTypes)) 
+                return referingTypes;
+
+            referingTypes = new List<ReferingType>();
+            if (!ReferingTypesCache.TryAdd(entityType, referingTypes))
+            {
+                //it is there already (done in another thread)
+                return ReferingTypesCache[entityType];
+            }
+
+            //find all potential references
+            var types = model.Metadata.Types().Where(t => typeof(IInstantiableEntity).IsAssignableFrom(t.Type));
+            
+            // ReSharper disable once LoopCanBeConvertedToQuery
+            foreach (var type in types)
+            {
+                var singleReferences = type.Properties.Values.Where(p =>
+                    p.EntityAttribute != null && p.EntityAttribute.Order > 0 &&
+                    p.PropertyInfo.PropertyType.IsAssignableFrom(entityType)).ToList();
+                var listReferences =
+                    type.Properties.Values.Where(p =>
+                        p.EntityAttribute != null && p.EntityAttribute.Order > 0 &&
+                        p.PropertyInfo.PropertyType.IsGenericType &&
+                        p.PropertyInfo.PropertyType.GenericTypeArgumentIsAssignableFrom(entityType)).ToList();
+                if (!singleReferences.Any() && !listReferences.Any()) continue;
+
+                referingTypes.Add(new ReferingType { Type = type, SingleReferences = singleReferences, ListReferences = listReferences });
+            }
+            return referingTypes;
         }
 
         /// <summary>
@@ -70,24 +107,31 @@ namespace Xbim.IO
         /// </summary>
         /// <param name="model">Model to be used</param>
         /// <param name="entity">Entity to be removed from references</param>
-        /// <param name="candidateType">Candidate type containing reference to the type of entity</param>
-        private static void DeleteReferences(IModel model, IPersistEntity entity, DeleteCandidateType candidateType)
+        /// <param name="referingType">Candidate type containing reference to the type of entity</param>
+        /// <param name="replacement">New reference. If this is null it just removes references to entity</param>
+        private static void ReplaceReferences<TEntity, TReplacement>(IModel model, TEntity entity, ReferingType referingType, TReplacement replacement) 
+            where TEntity: IPersistEntity where TReplacement : TEntity
         {
+            if (entity == null)
+                return;
+
             //get all instances of this type and nullify and remove the entity
-            var entitiesToCheck = model.Instances.OfType(candidateType.Type.Type.Name, true);
+            var entitiesToCheck = model.Instances.OfType(referingType.Type.Type.Name, true);
             foreach (var toCheck in entitiesToCheck)
             {
                 //check properties
-                foreach (var pInfo in candidateType.ToNullify.Select(p => p.PropertyInfo))
+                foreach (var pInfo in referingType.SingleReferences.Select(p => p.PropertyInfo))
                 {
                     var pVal = pInfo.GetValue(toCheck);
-                    if (pVal == null) continue;
+                    if (pVal == null && replacement == null) 
+                        continue;
+                    
                     //it is enough to compare references
                     if (!ReferenceEquals(pVal, entity)) continue;
-                    pInfo.SetValue(toCheck, null);
+                    pInfo.SetValue(toCheck, replacement);
                 }
 
-                foreach (var pInfo in candidateType.ToRemove.Select(p => p.PropertyInfo))
+                foreach (var pInfo in referingType.ListReferences.Select(p => p.PropertyInfo))
                 {
                     var pVal = pInfo.GetValue(toCheck);
                     if (pVal == null) continue;
@@ -96,23 +140,53 @@ namespace Xbim.IO
                     var optSet = pVal as IOptionalItemSet;
                     if (optSet != null && !optSet.Initialized) continue;
 
-                    //or it is non-optional item set implementind IList
+                    //or it is non-optional item set implementing IList
                     var itemSet = pVal as IList;
                     if (itemSet != null)
                     {
                         if (itemSet.Contains(entity))
                             itemSet.Remove(entity);
+                        if (replacement != null)
+                            itemSet.Add(replacement);
                         continue;
                     }
 
                     //fall back operating on common list functions using reflection (this is slow)
                     var contMethod = pInfo.PropertyType.GetMethod("Contains");
-                    if (contMethod == null) continue;
+                    if (contMethod == null)
+                    {
+                        var msg =
+                            string.Format(
+                                "It wasn't possible to check containment of entity {0} in property {1} of {2}. No suitable method found.",
+                                entity.GetType().Name, pInfo.Name, toCheck.GetType().Name);
+                        throw new XbimException(msg);
+                    }
                     var contains = (bool)contMethod.Invoke(pVal, new object[] { entity });
                     if (!contains) continue;
                     var removeMethod = pInfo.PropertyType.GetMethod("Remove");
-                    if (removeMethod == null) continue;
+                    if (removeMethod == null)
+                    {
+                        var msg =
+                            string.Format(
+                                "It wasn't possible to remove reference to entity {0} in property {1} of {2}. No suitable method found.",
+                                entity.GetType().Name, pInfo.Name, toCheck.GetType().Name);
+                        throw new XbimException(msg);
+                    }
                     removeMethod.Invoke(pVal, new object[] { entity });
+
+                    if (replacement == null) 
+                        continue;
+                    
+                    var addMethod = pInfo.PropertyType.GetMethod("Add");
+                    if (addMethod == null)
+                    {
+                        var msg =
+                            string.Format(
+                                "It wasn't possible to add reference to entity {0} in property {1} of {2}. No suitable method found.",
+                                entity.GetType().Name, pInfo.Name, toCheck.GetType().Name);
+                        throw new XbimException(msg);
+                    }
+                    addMethod.Invoke(pVal, new object[] {replacement});
                 }
             }
        
@@ -122,11 +196,11 @@ namespace Xbim.IO
         /// Helper structure to hold information for reference removal. If multiple objects of the same type are to
         /// be removed this will cache the information about where to have a look for the references.
         /// </summary>
-        private struct DeleteCandidateType
+        private struct ReferingType
         {
             public ExpressType Type;
-            public List<ExpressMetaProperty> ToNullify;
-            public List<ExpressMetaProperty> ToRemove;
+            public List<ExpressMetaProperty> SingleReferences;
+            public List<ExpressMetaProperty> ListReferences;
         }
  #endregion
 
