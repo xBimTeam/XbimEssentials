@@ -9,6 +9,7 @@ using Xbim.Ifc;
 using Xbim.Ifc2x3.SharedBldgElements;
 using Xbim.IO;
 using Xbim.IO.Parser;
+using Xbim.IO.Step21;
 
 namespace Xbim.MemoryModel.Tests
 {
@@ -348,6 +349,7 @@ namespace Xbim.MemoryModel.Tests
         [DeploymentItem("TestFiles")]
         public void IfcStoreTransactionTest()
         {
+            var doorId = Guid.NewGuid().ToPart21();
             using (var ifcStore = IfcStore.Open("4walls1floorSite.ifc")) //test memory model databases first
             {
                 var count = ifcStore.Instances.Count;
@@ -356,6 +358,7 @@ namespace Xbim.MemoryModel.Tests
                 {
                     var door = ifcStore.Instances.New<IfcDoor>();
                     door.Name = "Door 1";
+                    door.GlobalId = doorId;
                     txn.Commit();
                 }
                 Assert.IsTrue(ifcStore.Instances.Count == count +7); //door plus all the owner history objects
@@ -371,6 +374,7 @@ namespace Xbim.MemoryModel.Tests
                 {
                     var door = ifcStore.Instances.New<IfcDoor>();
                     door.Name = "Door 1";
+                    door.GlobalId = doorId;
                     txn.Commit();
                 }
                 Assert.IsTrue(ifcStore.Instances.Count == count + 7); //door plus all the owner history objects
