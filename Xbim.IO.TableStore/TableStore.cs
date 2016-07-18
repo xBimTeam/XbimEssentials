@@ -113,7 +113,7 @@ namespace Xbim.IO.TableStore
             
         }
 
-        public void Store(Stream stream, ExcelTypeEnum type, Stream template = null, bool recalculate = false)
+        public Stream Store(Stream stream, ExcelTypeEnum type, Stream template = null, bool recalculate = false)
         {
             Log = new StringWriter();
             IWorkbook workbook;
@@ -134,7 +134,7 @@ namespace Xbim.IO.TableStore
             if (!recalculate || template == null)
             {
                 workbook.Write(stream);
-                return;
+                return stream;
             }
 
             //refresh formulas
@@ -152,6 +152,7 @@ namespace Xbim.IO.TableStore
 
             //write to output stream
             workbook.Write(stream);
+            return stream;
         }
 
         public void Store(IWorkbook workbook)
