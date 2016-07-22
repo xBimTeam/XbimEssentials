@@ -56,21 +56,21 @@ namespace Xbim.Ifc4.Kernel
         /// <param name="pSetName"></param>
         /// <param name="caseSensitive"></param>
         /// <returns></returns>
-        public IfcPropertySet GetPropertySet(string pSetName, bool caseSensitive = true)
+        public IIfcPropertySet GetPropertySet(string pSetName, bool caseSensitive = true)
         {
             return PropertySets.FirstOrDefault(pset => string.Compare(pSetName, pset.Name, !caseSensitive) == 0);           
         }
-        public IfcPropertySingleValue GetPropertySingleValue(string pSetName, string propertyName)
+        public IIfcPropertySingleValue GetPropertySingleValue(string pSetName, string propertyName)
         {
             var pset = GetPropertySet(pSetName);
-            return pset != null ? pset.HasProperties.OfType<IfcPropertySingleValue>().FirstOrDefault(p => p.Name == propertyName) : null;
+            return pset != null ? pset.HasProperties.OfType<IIfcPropertySingleValue>().FirstOrDefault(p => p.Name == propertyName) : null;
         }
-        public TValueType GetPropertySingleValue<TValueType>(string pSetName, string propertyName) where TValueType : IfcValue
+        public TValueType GetPropertySingleValue<TValueType>(string pSetName, string propertyName) where TValueType : IIfcValue
         {
             var pset = GetPropertySet(pSetName);
             if (pset == null) return default(TValueType);
             var pVal =
-                pset.HasProperties.OfType<IfcPropertySingleValue>().FirstOrDefault(p => p.Name == propertyName);
+                pset.HasProperties.OfType<IIfcPropertySingleValue>().FirstOrDefault(p => p.Name == propertyName);
             if (pVal != null && pVal.NominalValue is TValueType) return (TValueType)pVal.NominalValue;
             return default(TValueType);
         }
@@ -81,18 +81,18 @@ namespace Xbim.Ifc4.Kernel
         /// <param name="pSetName"></param>
         /// <param name="propertyName"></param>
         /// <returns></returns>
-        public IfcValue GetPropertySingleNominalValue(string pSetName, string propertyName)
+        public IIfcValue GetPropertySingleNominalValue(string pSetName, string propertyName)
         {
             var psv = GetPropertySingleValue(pSetName, propertyName);
             return psv == null ? null : psv.NominalValue;
         }
 
-        public IEnumerable<IfcPropertySet> PropertySets
+        public IEnumerable<IIfcPropertySet> PropertySets
         {
             get
             {
                 var pSets = IsDefinedBy.SelectMany(r => r.RelatingPropertyDefinition.PropertySetDefinitions);
-                return pSets.OfType<IfcPropertySet>();
+                return pSets.OfType<IIfcPropertySet>();
                
             }
         }
@@ -106,7 +106,7 @@ namespace Xbim.Ifc4.Kernel
         /// <param name="propertyName">Property name</param>
         /// <param name="type">Type of the property</param>
         /// <returns>Property single value with default value of the specified type</returns>
-        public IfcPropertySingleValue SetPropertySingleValue(string pSetName, string propertyName, Type type)
+        public IIfcPropertySingleValue SetPropertySingleValue(string pSetName, string propertyName, Type type)
         {
             if (typeof(IfcValue).IsAssignableFrom(type))
             {
@@ -123,7 +123,7 @@ namespace Xbim.Ifc4.Kernel
             throw new ArgumentException("Type '" + type.Name + "' is not compatible with IfcValue type.");
         }
 
-        public IfcPropertySingleValue SetPropertySingleValue(string pSetName, string propertyName, IfcValue value)
+        public IIfcPropertySingleValue SetPropertySingleValue(string pSetName, string propertyName, IfcValue value)
         {
             var pset = GetPropertySet(pSetName);
             if (pset == null)
@@ -159,12 +159,12 @@ namespace Xbim.Ifc4.Kernel
         /// <returns></returns>
         public IEnumerable<IIfcElement> GetExternalElements(IModel model)
         {
-            return model.Instances.OfType<IfcRelSpaceBoundary>().Where(r => r.InternalOrExternalBoundary == IfcInternalOrExternalEnum.EXTERNAL
+            return model.Instances.OfType<IIfcRelSpaceBoundary>().Where(r => r.InternalOrExternalBoundary == IfcInternalOrExternalEnum.EXTERNAL
                 && r.PhysicalOrVirtualBoundary == IfcPhysicalOrVirtualEnum.PHYSICAL
                 && r.RelatedBuildingElement != null).Select(rsb => rsb.RelatedBuildingElement).Distinct();
         }
 
-        public IfcElementQuantity GetElementQuantity(string pSetName, bool caseSensitive = true)
+        public IIfcElementQuantity GetElementQuantity(string pSetName, bool caseSensitive = true)
         {
             var qSets = IsDefinedBy.SelectMany(r => r.RelatingPropertyDefinition.PropertySetDefinitions).OfType<IfcElementQuantity>();
             return qSets.FirstOrDefault(qset=>string.Compare(pSetName,qset.Name,!caseSensitive)==0);         
@@ -174,12 +174,12 @@ namespace Xbim.Ifc4.Kernel
         /// Use this method to get all element quantities related to this object
         /// </summary>
         /// <returns>All related element quantities</returns>
-        public IEnumerable<IfcElementQuantity> ElementQuantities
+        public IEnumerable<IIfcElementQuantity> ElementQuantities
         {
             get
             {
-                var rels = IsDefinedBy.Where(r => r.RelatingPropertyDefinition is IfcElementQuantity);
-                return rels.Select(rel => rel.RelatingPropertyDefinition as IfcElementQuantity);
+                var rels = IsDefinedBy.Where(r => r.RelatingPropertyDefinition is IIfcElementQuantity);
+                return rels.Select(rel => rel.RelatingPropertyDefinition as IIfcElementQuantity);
             }
         }
 
@@ -191,7 +191,7 @@ namespace Xbim.Ifc4.Kernel
         {
             get
             {
-                return ElementQuantities.SelectMany(eq => eq.Quantities).OfType<IfcPhysicalSimpleQuantity>();
+                return ElementQuantities.SelectMany(eq => eq.Quantities).OfType<IIfcPhysicalSimpleQuantity>();
             }
         }
 
@@ -202,7 +202,7 @@ namespace Xbim.Ifc4.Kernel
         /// <param name="pSetName"></param>
         /// <param name="qName"></param>
         /// <returns></returns>
-        public TQType GetQuantity<TQType>(string pSetName, string qName) where TQType : IfcPhysicalQuantity
+        public TQType GetQuantity<TQType>(string pSetName, string qName) where TQType : IIfcPhysicalQuantity
         {
             var propSets = IsDefinedBy.SelectMany(r=>r.RelatingPropertyDefinition.PropertySetDefinitions);
             var rel = propSets.FirstOrDefault(r =>  r is IfcElementQuantity && r.Name == pSetName);
@@ -217,9 +217,9 @@ namespace Xbim.Ifc4.Kernel
         /// <typeparam name="TQType"></typeparam>
         /// <param name="qName"></param>
         /// <returns></returns>
-        public TQType GetQuantity<TQType>(string qName) where TQType : IfcPhysicalQuantity
+        public TQType GetQuantity<TQType>(string qName) where TQType : IIfcPhysicalQuantity
         {
-            var qSets = IsDefinedBy.SelectMany(r => r.RelatingPropertyDefinition.PropertySetDefinitions).OfType<IfcElementQuantity>();
+            var qSets = IsDefinedBy.SelectMany(r => r.RelatingPropertyDefinition.PropertySetDefinitions).OfType<IIfcElementQuantity>();
             return qSets.SelectMany(qset=>qset.Quantities).OfType<TQType>().FirstOrDefault(q => q.Name == qName);
         }
 
@@ -229,7 +229,7 @@ namespace Xbim.Ifc4.Kernel
         /// <param name="propertySetName">Name of the IfcElementQuantity property set</param>
         /// <param name="quantity">quantity to be added</param>
         /// <param name="methodOfMeasurement">Sets the method of measurement, if not null overrides previous value</param>
-        public IfcElementQuantity AddQuantity(string propertySetName, IfcPhysicalQuantity quantity, string methodOfMeasurement)
+        public IIfcElementQuantity AddQuantity(string propertySetName, IIfcPhysicalQuantity quantity, string methodOfMeasurement)
         {
             var pset = GetElementQuantity(propertySetName);
 
@@ -251,7 +251,7 @@ namespace Xbim.Ifc4.Kernel
         /// </summary>
         /// <param name="propertySetName">Name of the IfcElementQuantity property set</param>
         /// <param name="quantity">quantity to be added</param>
-        public IfcElementQuantity AddQuantity(string propertySetName, IfcPhysicalQuantity quantity)
+        public IIfcElementQuantity AddQuantity(string propertySetName, IIfcPhysicalQuantity quantity)
         {
             return AddQuantity(propertySetName, quantity, null);
         }
@@ -262,17 +262,17 @@ namespace Xbim.Ifc4.Kernel
         /// <param name="pSetName"></param>
         /// <param name="qualityName"></param>
         /// <returns></returns>
-        public IfcPhysicalSimpleQuantity GetElementPhysicalSimpleQuantity(string pSetName, string qualityName)
+        public IIfcPhysicalSimpleQuantity GetElementPhysicalSimpleQuantity(string pSetName, string qualityName)
         {
             var elementQuality = GetElementQuantity(pSetName);
             if (elementQuality != null)
             {
-                return elementQuality.Quantities.FirstOrDefault<IfcPhysicalSimpleQuantity>(sq => sq.Name == qualityName);
+                return elementQuality.Quantities.FirstOrDefault<IIfcPhysicalSimpleQuantity>(sq => sq.Name == qualityName);
             }
             return null;
         }
 
-        public void SetElementPhysicalSimpleQuantity(string qSetName, string qualityName, double value, XbimQuantityTypeEnum quantityType, IfcNamedUnit unit)
+        public void SetElementPhysicalSimpleQuantity(string qSetName, string qualityName, double value, XbimQuantityTypeEnum quantityType, IIfcNamedUnit unit)
         {
 
 
@@ -330,7 +330,7 @@ namespace Xbim.Ifc4.Kernel
             var pset = GetPropertySet(pSetName);
             if (pset != null)
             {
-                var singleValue = pset.HasProperties.FirstOrDefault<IfcPropertySingleValue>(p => p.Name == propertyName);
+                var singleValue = pset.HasProperties.FirstOrDefault<IIfcPropertySingleValue>(p => p.Name == propertyName);
                 if (singleValue != null)
                 {
                     pset.HasProperties.Remove(singleValue);
@@ -344,7 +344,7 @@ namespace Xbim.Ifc4.Kernel
             var elementQuality = GetElementQuantity(pSetName);
             if (elementQuality != null)
             {
-                var simpleQuality = elementQuality.Quantities.FirstOrDefault<IfcPhysicalSimpleQuantity>(sq => sq.Name == qualityName);
+                var simpleQuality = elementQuality.Quantities.FirstOrDefault<IIfcPhysicalSimpleQuantity>(sq => sq.Name == qualityName);
                 if (simpleQuality != null)
                 {
                     elementQuality.Quantities.Remove(simpleQuality);
