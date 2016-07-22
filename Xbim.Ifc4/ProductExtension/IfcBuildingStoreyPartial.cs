@@ -24,7 +24,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
     public partial class IfcBuildingStorey
     {
-        internal static int CompareStoreysByElevation(IfcBuildingStorey x, IfcBuildingStorey y)
+        internal static int CompareStoreysByElevation(IIfcBuildingStorey x, IIfcBuildingStorey y)
         {
             double a = x.Elevation ?? 0;
             double b = y.Elevation ?? 0;

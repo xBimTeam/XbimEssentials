@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.ProductExtension
          {
              get
              {
-                 return Decomposes.SelectMany(r => r.RelatedObjects).OfType<IfcSite>().FirstOrDefault();
+                 return Decomposes.SelectMany(r => r.RelatedObjects).OfType<IIfcSite>().FirstOrDefault();
              }
          }
 
@@ -43,7 +43,7 @@ namespace Xbim.Ifc4.ProductExtension
          {
              get
              {
-                 return IsDecomposedBy.SelectMany(s => s.RelatedObjects).OfType<IfcBuilding>();             
+                 return IsDecomposedBy.SelectMany(s => s.RelatedObjects).OfType<IIfcBuilding>();             
              }
          }
 
@@ -55,7 +55,7 @@ namespace Xbim.Ifc4.ProductExtension
          {
              get
              {
-                 return IsDecomposedBy.SelectMany(s => s.RelatedObjects).OfType<IfcSpace>();         
+                 return IsDecomposedBy.SelectMany(s => s.RelatedObjects).OfType<IIfcSpace>();         
              }
          }
 
@@ -69,7 +69,7 @@ namespace Xbim.Ifc4.ProductExtension
          {
              get
              {
-                 var storeys = IsDecomposedBy.SelectMany(s => s.RelatedObjects).OfType<IfcBuildingStorey>().ToList();
+                 var storeys = IsDecomposedBy.SelectMany(s => s.RelatedObjects).OfType<IIfcBuildingStorey>().ToList();
                  storeys.Sort(IfcBuildingStorey.CompareStoreysByElevation);
                  return storeys;               
              }
