@@ -60,7 +60,9 @@ namespace Xbim.IO.TableStore
         private readonly Dictionary<ExpressType, Dictionary<string, IPersistEntity>> _globalEntities = new Dictionary<ExpressType, Dictionary<string, IPersistEntity>>();
 
         //cache of all reference contexts which are only built once (string parsing, search for express properties and types)
-        private Dictionary<ClassMapping, ReferenceContext> _referenceContexts; 
+        private Dictionary<ClassMapping, ReferenceContext> _referenceContexts;
+
+        public Dictionary<string, Dictionary<int, int>> RowNoToEntityLabelLookup = new Dictionary<string, Dictionary<int, int>>();
 
         public TableStore(IModel model, ModelMapping mapping)
         {
@@ -216,6 +218,7 @@ namespace Xbim.IO.TableStore
             List<string> multiValues = null;
             PropertyMapping multiMapping = null;
             var row = GetRow(sheet);
+            RowNoToEntityLabelLookup[sheet.SheetName].Add(row.RowNum, entity.EntityLabel);
 
             foreach (var propertyMapping in mapping.PropertyMappings)
             {
@@ -267,7 +270,8 @@ namespace Xbim.IO.TableStore
             {
                 var rowNum = GetNextRowNum(sheet);
                 var copy = sheet.CopyRow(multiRow, rowNum);
-                Store(copy, value, multiMapping);    
+                Store(copy, value, multiMapping);
+                RowNoToEntityLabelLookup[sheet.SheetName].Add(rowNum, entity.EntityLabel);
             }
         }
 
@@ -838,6 +842,7 @@ namespace Xbim.IO.TableStore
             foreach (var name in names)
             {
                 var sheet = workbook.GetSheet(name) ?? workbook.CreateSheet(name);
+                RowNoToEntityLabelLookup.Add(sheet.SheetName, new Dictionary<int, int>());
                 var classMapping = Mapping.ClassMappings.First(m => m.TableName == name);
                 SetUpHeader(sheet, classMapping);
 
