@@ -6,6 +6,7 @@ using Xbim.Ifc4.PresentationAppearanceResource;
 
 namespace Xbim.Ifc4
 {
+    [Serializable]
     public class SurfaceStyle :  IPhongMaterial
     {
         public static SurfaceStyle NullSurfaceStyle { get; private set; }
@@ -17,6 +18,7 @@ namespace Xbim.Ifc4
         }
 
 
+        [NonSerialized]
         private readonly IIfcSurfaceStyle _surfaceStyle;
         public string Name { get; set; }
 
@@ -36,9 +38,13 @@ namespace Xbim.Ifc4
         public RgbaColour EmissiveColour { get;  set; }
         public RgbaColour SpecularColour { get;  set; }
         public double SpecularShininess { get;  set; }
-        public IIfcPixelTexture DiffuseMap { get; set; }
-        public IIfcPixelTexture DisplacementMap { get; set; }
-        public IIfcPixelTexture NormalMap { get; set; }
+
+        [NonSerialized]
+        public IIfcPixelTexture DiffuseMap;
+        [NonSerialized]
+        public IIfcPixelTexture DisplacementMap;
+        [NonSerialized]
+        public IIfcPixelTexture NormalMap;
 
         public SurfaceStyle(IIfcSurfaceStyle surfaceStyle)
         {
@@ -166,6 +172,45 @@ namespace Xbim.Ifc4
             {
                 return  Math.Abs(DiffuseColour.Alpha) < 1e-9 && Math.Abs(DiffuseColour.Red) < 1e-9 && Math.Abs(DiffuseColour.Green) < 1e-9 &&
                        Math.Abs(DiffuseColour.Blue) < 1e-9;
+            }
+        }
+
+        IIfcPixelTexture IPhongMaterial.DiffuseMap
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        IIfcPixelTexture IPhongMaterial.DisplacementMap
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        IIfcPixelTexture IPhongMaterial.NormalMap
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
             }
         }
     }
