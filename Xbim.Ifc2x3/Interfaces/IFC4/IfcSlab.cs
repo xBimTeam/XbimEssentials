@@ -49,7 +49,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					
 					
 					default:
-						throw new System.ArgumentOutOfRangeException();
+						return null;
 				}
 			} 
 			set

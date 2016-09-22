@@ -77,7 +77,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 					
 					
 					default:
-						throw new System.ArgumentOutOfRangeException();
+						return null;
 				}
 			} 
 			set

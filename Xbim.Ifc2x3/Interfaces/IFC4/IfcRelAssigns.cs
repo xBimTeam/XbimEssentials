@@ -63,7 +63,7 @@ namespace Xbim.Ifc2x3.Kernel
 					
 					
 					default:
-						throw new System.ArgumentOutOfRangeException();
+						return null;
 				}
 			} 
 			set

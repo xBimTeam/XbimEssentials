@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 					
 					
 					default:
-						throw new System.ArgumentOutOfRangeException();
+						return null;
 				}
 			} 
 			set

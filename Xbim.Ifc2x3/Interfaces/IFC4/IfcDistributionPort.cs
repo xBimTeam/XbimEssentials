@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 					
 					
 					default:
-						throw new System.ArgumentOutOfRangeException();
+						return null;
 				}
 			} 
 			set

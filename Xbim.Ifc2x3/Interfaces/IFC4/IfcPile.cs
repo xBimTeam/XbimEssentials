@@ -145,7 +145,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 					
 					
 					default:
-						throw new System.ArgumentOutOfRangeException();
+						return null;
 				}
 			} 
 			set

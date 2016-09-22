@@ -31,7 +31,7 @@ namespace Xbim.Essentials.Tests
                 model.Header.FileName.Organization.Add(umlaut); 
                 model.SaveAs("testOutput.ifc");
             }
-            using (var model = new Xbim.Ifc2x3.IO.XbimModel())
+            using (var model = new Ifc2x3.IO.XbimModel())
             {
                 model.CreateFrom("testOutput.ifc", null, null, true);
                 Assert.IsTrue(model.Header.FileName.Name == path);
