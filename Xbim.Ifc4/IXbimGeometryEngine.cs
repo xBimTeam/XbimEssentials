@@ -136,6 +136,7 @@ namespace Xbim.Ifc4.Interfaces
         IXbimGeometryObject Moved(IXbimGeometryObject geometryObject, IIfcAxis2Placement3D placement);
         IXbimGeometryObject Moved(IXbimGeometryObject geometryObject, IIfcAxis2Placement2D placement);
 
-
+        IXbimGeometryObject FromBrep(string brepStr);
+        string ToBrep(IXbimGeometryObject geometryObject);
     }
 }

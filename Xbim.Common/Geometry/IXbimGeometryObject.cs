@@ -31,5 +31,7 @@ namespace Xbim.Common.Geometry
         /// </summary>
         object Tag { get; set; }
 
+       
+       
     }
 }

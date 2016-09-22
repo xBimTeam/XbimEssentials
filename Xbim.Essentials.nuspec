@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
     <id>Xbim.Essentials</id>
-    <version>4.0.0-V227</version>
+    <version>4.0.0-V233</version>
     <title>xBIM Essentials 4</title>
     <authors>xBIM team</authors>
     <owners>Steve Lockley, Martin Cerny</owners>
@@ -25,8 +25,8 @@
     <language>en-GB</language>
     <tags>BIM, IFC, IfcXml, IfcZip, COBie, .Net, C#, BuildingSmart</tags>
     <dependencies>
-      <dependency id="log4net" version="2.0.4" />
-      <dependency id="ManagedEsent" version="1.9.2.0" />
+      <dependency id="log4net" version="2.0.5" />
+      <dependency id="ManagedEsent" version="1.9.4" />
       <dependency id="SharpZipLib" version="0.86.0" />
     </dependencies>
   </metadata>

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Xbim.Ifc4.Interfaces;
-using Xbim.Ifc4.MaterialResource;
 using Xbim.Ifc4.ProductExtension;
 using Xbim.Ifc4.PropertyResource;
 using Xbim.Ifc4.QuantityResource;
@@ -17,6 +16,8 @@ namespace Xbim.Ifc4.Interfaces
         /// <param name="property">Property name. Use '.' to separate optional property set name like PSet_WallCommon.Reference</param>
         /// <returns>Value of the property if defined</returns>
         IIfcValue this[string property] { get;}
+
+        IIfcMaterialSelect Material { get; }
     }
 
 }
@@ -25,11 +26,11 @@ namespace Xbim.Ifc4.Kernel
 {
     public partial class IfcObjectDefinition
     {     
-        public IfcMaterialSelect Material
+        public IIfcMaterialSelect Material
         {
             get
             {
-                var relMat = HasAssociations.OfType<IfcRelAssociatesMaterial>().FirstOrDefault();
+                var relMat = HasAssociations.OfType<IIfcRelAssociatesMaterial>().FirstOrDefault();
                 return relMat != null ? relMat.RelatingMaterial : null;
             }
         }
@@ -112,7 +113,6 @@ namespace Xbim.Ifc4.Kernel
             {
                 return
                     ((IfcPropertySetDefinitionSet)defSelect).Value as IEnumerable<IfcPropertySetDefinition>;
-
             }
             return null;
         }
