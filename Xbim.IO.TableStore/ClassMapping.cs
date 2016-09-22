@@ -124,6 +124,13 @@ namespace Xbim.IO.TableStore
                         yield return mapping;
                         continue;
                     }
+                    foreach (var item in mType.SubTypes)
+                    {
+                        if (item.SubTypes != null && item.SubTypes.Contains(type))
+                        {
+                            yield return mapping;
+                        }
+                    }
                     if (mType.SubTypes != null && mType.SubTypes.Contains(type))
                     {
                         yield return mapping;

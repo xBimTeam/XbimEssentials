@@ -20,38 +20,41 @@ namespace Xbim.MemoryModel.Tests
     [TestClass]
     public class TableStorageTests
     {
-        //[TestMethod]
+        [TestMethod]
         public void SplitAndExport()
         {
-            const string file = @"c:\Users\mxfm2\Desktop\Jeff\CFH-IBI-B01-ZZ-M3-BA-001_MainBuilding_v3_2016.cobie";
+            //const string file = @"c:\Users\mxfm2\Desktop\Jeff\CFH-IBI-B01-ZZ-M3-BA-001_MainBuilding_v3_2016.cobie";
+            const string file = @"c:\Test\2012-03-23-Clinic-Handover - Finished.cobie";
             using (var cobie = CobieModel.OpenStep21(file))
             {
-                var floors = cobie.Instances.OfType<CobieFloor>();
-                foreach (var floor in floors)
-                {
-                    var components = floor.Spaces.SelectMany(s => s.Components);
-                    var floorName = floor.Name;
-                    var output = Path.ChangeExtension(file, "_" + floorName + ".cobie");
-                    var outputXlsx = Path.ChangeExtension(file, "_" + floorName + ".xlsx");
-                    using (var cobieFloor = new CobieModel())
-                    {
-                        using (var txn = cobieFloor.BeginTransaction("Insertion of a single floor"))
-                        {
-                            cobieFloor.InsertCopy(components, false, new XbimInstanceHandleMap(cobie, cobieFloor));
-                            MakeUniqueNames<CobieFacility>(cobieFloor);
-                            MakeUniqueNames<CobieFloor>(cobieFloor);
-                            MakeUniqueNames<CobieSpace>(cobieFloor);
-                            MakeUniqueNames<CobieZone>(cobieFloor);
-                            MakeUniqueNames<CobieComponent>(cobieFloor);
-                            MakeUniqueNames<CobieSystem>(cobieFloor);
-                            MakeUniqueNames<CobieType>(cobieFloor);
-                            txn.Commit();                            
-                        }
-                        cobieFloor.SaveAsStep21(output);
-                        string report;
-                        cobieFloor.ExportToTable(outputXlsx, out report);
-                    }
-                }
+                string report;
+                cobie.ExportToTable(Path.ChangeExtension(file, ".xlsx"), out report);
+                //var floors = cobie.Instances.OfType<CobieFloor>();
+                //foreach (var floor in floors)
+                //{
+                //    var components = floor.Spaces.SelectMany(s => s.Components);
+                //    var floorName = floor.Name;
+                //    var output = Path.ChangeExtension(file, "_" + floorName + ".cobie");
+                //    var outputXlsx = Path.ChangeExtension(file, "_" + floorName + ".xlsx");
+                //    using (var cobieFloor = new CobieModel())
+                //    {
+                //        using (var txn = cobieFloor.BeginTransaction("Insertion of a single floor"))
+                //        {
+                //            cobieFloor.InsertCopy(components, false, new XbimInstanceHandleMap(cobie, cobieFloor));
+                //            MakeUniqueNames<CobieFacility>(cobieFloor);
+                //            MakeUniqueNames<CobieFloor>(cobieFloor);
+                //            MakeUniqueNames<CobieSpace>(cobieFloor);
+                //            MakeUniqueNames<CobieZone>(cobieFloor);
+                //            MakeUniqueNames<CobieComponent>(cobieFloor);
+                //            MakeUniqueNames<CobieSystem>(cobieFloor);
+                //            MakeUniqueNames<CobieType>(cobieFloor);
+                //            txn.Commit();                            
+                //        }
+                //        cobieFloor.SaveAsStep21(output);
+                //        string report;
+                //        cobieFloor.ExportToTable(outputXlsx, out report);
+                //    }
+                //}
             }
         }
 
@@ -389,5 +392,7 @@ namespace Xbim.MemoryModel.Tests
         {
             return ModelMapping.Load(CobieExpress.IO.Properties.Resources.COBieUK2012);
         }
+
+
     }
 }
