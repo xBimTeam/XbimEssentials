@@ -72,7 +72,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 					
 					
 					default:
-						throw new System.ArgumentOutOfRangeException();
+						return null;
 				}
 			} 
 			set

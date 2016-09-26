@@ -46,7 +46,7 @@ namespace Xbim.Ifc2x3.ActorResource
 					
 					
 					default:
-						throw new System.ArgumentOutOfRangeException();
+						return null;
 				}
 			} 
 			set

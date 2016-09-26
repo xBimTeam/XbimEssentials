@@ -434,7 +434,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 					
 					
 					default:
-						throw new System.ArgumentOutOfRangeException();
+						return null;
 				}
 			} 
 			set
@@ -501,7 +501,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 					
 					
 					default:
-						throw new System.ArgumentOutOfRangeException();
+						return null;
 				}
 			} 
 			set
