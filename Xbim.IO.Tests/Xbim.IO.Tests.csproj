@@ -147,6 +147,9 @@
     <None Include="TestFiles\4walls1floorSite.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="TestFiles\DoubleBackSlashName.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TestFiles\Ifc4WithNestedLists.ifczip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

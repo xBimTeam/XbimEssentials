@@ -56,6 +56,31 @@ namespace Xbim.MemoryModel.Tests
 
         [TestMethod]
         [DeploymentItem("TestFiles")]
+        public void DoubleBackSlashName()
+        {
+            // I've come across a file that has an ifclabel specified as 'TextEndingInEscapedBackslash\\'
+            // this causes the parser to break.
+            // the problem does not occur if there's any text after the double backslash (i.e. 'TextEndingInEscapedBackslash\\MoreText').
+            using (var store = IfcStore.Open("DoubleBackSlashName.ifc"))
+            {
+                var mat1 = (Ifc2x3.MaterialResource.IfcMaterial)store.Instances[417];
+                Assert.AreEqual(mat1.Name.ToString(), "TextEndingInEscapedBackslash\\MoreText", "String containing double backslash is not parsed correctly");
+
+                var mat2 = (Ifc2x3.MaterialResource.IfcMaterial)store.Instances[418];
+                Assert.IsTrue(mat2.Name.ToString().EndsWith("\\"), "String ending in double backslash is not parsed correctly");
+
+                var mat3 = (Ifc2x3.MaterialResource.IfcMaterial)store.Instances[419];
+                Assert.IsTrue(mat3.Name.ToString().EndsWith("à"), "String ending in double backslash is not parsed correctly");
+
+                var beam = (IfcBeam)store.Instances[432];
+                Assert.IsNotNull(beam, "element after double backslash is not read correctly");
+
+                store.Close();
+            }
+        }
+
+        [TestMethod]
+        [DeploymentItem("TestFiles")]
         public void IfcOpenIfcZipTest()
         {
             long count;
@@ -78,22 +103,18 @@ namespace Xbim.MemoryModel.Tests
         [DeploymentItem("TestFiles")]
         public void ScannerTest()
         {
-
-            
             using (var strm = File.OpenRead("Badly formed Ifc file.ifc"))
             {
                 var scanner = new Scanner(strm);
                 int tok;
                 do
                 {
-
                     tok = scanner.yylex();
                     var txt = scanner.yytext;
                     Console.WriteLine("Tok={0}, Txt = {1}", Enum.GetName(typeof(Tokens),tok),txt);
                 }
                 while ( tok!= (int) Tokens.EOF);
-            }
-        
+            }        
         }
 
 
@@ -101,7 +122,6 @@ namespace Xbim.MemoryModel.Tests
         [DeploymentItem("TestFiles")]
         public void ErrorRecoveryOfParserTest()
         {
-
             //in memory model
             using (var store = IfcStore.Open("Badly formed Ifc file.ifc"))
             {
@@ -110,7 +130,6 @@ namespace Xbim.MemoryModel.Tests
             //esent database
             using (var store = IfcStore.Open("Badly formed Ifc file.ifc", null, 0))
             {
-
                 store.Close();
             }
         }
