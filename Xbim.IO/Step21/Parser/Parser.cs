@@ -32,10 +32,7 @@ namespace Xbim.IO.Parser
             Logger.ErrorFormat("Illegal character found at line {0}, column {1}\n{2}", this.yyline, this.yycol, errmsg);
         }
     }
-
-
-   
-
+    
     public delegate IPersist CreateEntityEventHandler(string className, long? label, bool headerEntity, out int[] i);
 
     public delegate long EntityStoreHandler(IPersistEntity ent);
