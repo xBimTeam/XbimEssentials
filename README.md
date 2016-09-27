@@ -16,11 +16,10 @@ bi-directional translation between IFC and COBie formats
 
 ## Getting Started
 
-You will need Visual Studio 2010 SP1 or newer to compile the Solution. To compile the SceneJSWebViewer sample
-project you will require ASP.NET MVC 3.0 to be installed. All solutions target .NET 4.0. The 4.0 Client profile
-may be supported for some projects.
+You will need Visual Studio 2013 or newer to compile the Solution. All solutions target .NET 4.0. The 4.0 Client profile
+may be supported for some projects. The roadmap expects to move to 4.5 versions of the .NET framework soon.
 
-XbimEssentials is a software library to be used for the creation of complex applications, other repositories under the [XbimTeam](https://github.com/xBimTeam) page include a number of sample applications to demonstrate its capabilities
+XbimEssentials is a software library to be used for the creation of complex applications, other repositories under the [XbimTeam](https://github.com/xBimTeam) page include a number of example applications to demonstrate its capabilities
 
 * [XbimXplorer](https://github.com/xBimTeam/XbimWindowsUI) - a Windows WPF sample application that can open and render 3D IFC models (and native XBIM models ) as well as displaying semantic data.
 * [XbimWebUI](https://github.com/xBimTeam/XbimWebUI) - a web application that can open and render 3D IFC models. 
@@ -28,8 +27,7 @@ XbimEssentials is a software library to be used for the creation of complex appl
 * [Xbim.COBie.Client]() - A sample windows application demonstrating how a COBie spreadsheet can be generated from an IFC model.
 * [HelloWall](https://github.com/xBimTeam/XbimSamples) - a sample console application demonstrating how to undertake simple IFC creation with Xbim.
 
-Please note: all the applications are provided as examples of how to use the Xbim library, they are not intended for use in uncontrolled 
-production environments.
+Please note: all the applications are provided to demonstrate how to use the Xbim library, they are not intended for use in uncontrolled production environments.
 
 ## Licence
 
@@ -65,7 +63,7 @@ if you use Visual Studio 2015+ add the following package sources:
 * https://www.myget.org/F/xbim-develop/api/v3/index.json
 * https://www.myget.org/F/xbim-master/api/v3/index.json
 
-if you use Visual Studio 2012+ add the following package sources:
+if you use Visual Studio 2013+ add the following package sources:
 * https://www.myget.org/F/xbim-develop/api/v2
 * https://www.myget.org/F/xbim-master/api/v2
 
