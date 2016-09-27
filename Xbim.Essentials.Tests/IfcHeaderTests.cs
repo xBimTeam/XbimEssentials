@@ -17,7 +17,7 @@ namespace Xbim.Essentials.Tests
         {
             const string path = @"x:\path1\path2\filename.ifc";
             const string umlaut = "name with umlaut ü";
-            using (var model = Xbim.Ifc2x3.IO.XbimModel.CreateTemporaryModel())
+            using (var model = Ifc2x3.IO.XbimModel.CreateTemporaryModel())
             {
 
                 model.Initialise("Creating Author", " Creating Organisation", "This Application", "This Developer", "v1.1");
@@ -40,14 +40,12 @@ namespace Xbim.Essentials.Tests
             }
         }
 
-        [DeploymentItem("TestFiles")]
+        [DeploymentItem("TestSourceFiles")]
         [TestMethod]
         public void ReadPreProcessorTest()
         {
-            // todo: test fails unless on Steve's computer.
-            // Is it worth putting the Axis2PlacementError.ifc in the test folder of this package?
             string revitPattern = @"- Exporter\s(\d*.\d*.\d*.\d*)";
-            string[] files = new[] { @"C:\Users\Steve\Source\Repos\XbimGeometry\Xbim.Geometry.Engine.Tests\Ifc4TestFiles\Axis2PlacementError.ifc", "4walls1floorSite.ifc", "SampleHouse4.ifc" };
+            string[] files = new[] { @"Axis2PlacementError.ifc", "4walls1floorSite.ifc", "SampleHouse4.ifc" };
             var surfaceOfLinearExtrusionVersion = new Version(17, 0, 416, 0);
           
             foreach (var file in files)
