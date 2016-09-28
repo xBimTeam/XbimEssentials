@@ -179,7 +179,12 @@ namespace Xbim.IO.Step21
             if (InHeader)
             {
                 int[] reqParams;
-                CurrentInstance = new Part21Entity(EntityCreate(entityTypeName, null, InHeader, out reqParams))
+                // instantiates an empty IPersist from the header information
+                var t = EntityCreate(entityTypeName, null, InHeader, out reqParams);
+                // then attaches it to a new Part21Entity, this will be processed later from the _processStack
+                // to debug value initialisation place a breakpoing on the Parse() function of 
+                // StepFileName, StepFileSchema or StepFileDescription classes.
+                CurrentInstance = new Part21Entity(t)
                 {
                     RequiredParameters = reqParams
                 };

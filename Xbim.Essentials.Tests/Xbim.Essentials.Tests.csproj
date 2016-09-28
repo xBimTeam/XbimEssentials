@@ -126,6 +126,12 @@
     <None Include="TestSourceFiles\AlmostEmptyIFC4.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="TestSourceFiles\Axis2PlacementError.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\SampleHouse4.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TestSourceFiles\TestZip.ifczip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
