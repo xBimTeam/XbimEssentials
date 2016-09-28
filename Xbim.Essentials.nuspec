@@ -1,29 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <id>Xbim.Essentials</id>
-    <version>4.0.0-V233</version>
+    <id>Xbim.Essentials.4</id>
+    <version>4.0.0</version>
     <title>xBIM Essentials 4</title>
-    <authors>xBIM team</authors>
+    <authors>xBIM Team</authors>
     <owners>Steve Lockley, Martin Cerny</owners>
     <licenseUrl>https://raw.githubusercontent.com/xBimTeam/XbimExchange/master/LICENCE.md</licenseUrl>
     <projectUrl>https://github.com/xBimTeam/XbimExchange</projectUrl>
     <iconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;s=200</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>
-      xBIM Essentials is the core part of the toolkit that deals with reading and writing IFC data files. It does not contain support for geometric operations and 3D visualisation.
-      Use xBIM 3D if you need support for geometry and presentation, its also open source.
-      xBIM is an Open Source Toolkit for developing IFC based applications (BuildingSmart Data model).
-      3.0 contains a new geometry engine that has a full API to allow geometry constructions, boolean operations and meshing.
-      It provides full support for reading and writing geometry, topology and data in accordance with the Ifc2x3 schema.
-      xBIM reads and writes Ifc, IfcXMl and IfcZip formats.
-      The xBIM project provides packages to convert IFC models to COBie spreadsheets in both UK and US cultures as well as a range of 3D viewing controls for use with Windows forms, WPF, WEBGL and OpenGL platforms.
-      IOS and Android versions are under development.
+      xBIM Essentials 4 provides support for Ifc2x2, Ifc2x3 and Ifc4 Addendum 1. 
+      This release provides IfcStore, a single point for opening any Ifc file, including XML, STEP21 and IFCZIP formats.
+      All programmatic access to Ifc Entities is through a single interface, allowing one code base to work with all Ifc formats.
+      Ifc4 is the default interface future proofing your development work.
+      This release replaces Xbim Essentials 3 but minor code reafactoring will be required, XbimModel is deprecated in favour of IfcStore.
     </description>
     <summary>The .Net toolkit for developing BIM applications based on the IFC standards. Essential support for the IFC2x3 and IFC4 data models</summary>
-    <releaseNotes>Support for IFC2x3 and IFC4 and Tesselation added</releaseNotes>
+    <releaseNotes>Support for IFC4</releaseNotes>
     <language>en-GB</language>
-    <tags>BIM, IFC, IfcXml, IfcZip, COBie, .Net, C#, BuildingSmart</tags>
+    <tags>BIM, IFC, IfcXml, IfcZip, Ifc4,  COBie, .Net, C#, BuildingSmart</tags>
     <dependencies>
       <dependency id="log4net" version="2.0.5" />
       <dependency id="ManagedEsent" version="1.9.4" />

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <id>Xbim.Cobie</id>
-    <version>4.0.0-V232</version>
+    <id>Xbim.Cobie.4</id>
+    <version>4.0.0</version>
     <title>xBIM Cobie for Essentials 4</title>
     <authors>xBIM team</authors>
     <owners>Steve Lockley, Martin Cerny</owners>
@@ -11,16 +11,16 @@
     <iconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;s=200</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>
-      xBIM Essentials is the core part of the toolkit that deals with reading and writing IFC data files. It does not contain support for geometric operations and 3D visualisation.
-      This package contains libraries to work with COBie data in tabular form and COBie specialized IModel.
+      xBIM Cobie provides an object model for handling the Cobie schema used in both the UK and US implementations.
+      It supports easy transformation from Ifc to Cobie and exports to Spreadsheet, JSOn and XML formats.
     </description>
-    <summary>The .Net toolkit for developing BIM applications based on the IFC standards. Essential support for the IFC2x3 and IFC4 data models</summary>
+    <summary>The .Net toolkit for developing BIM applications based on the IFC standards. Essential support for Cobie 2 and 3</summary>
     <releaseNotes>Support for tabular data</releaseNotes>
     <language>en-GB</language>
-    <tags>COBie, BIM, IFC, IfcXml, IfcZip, COBie, .Net, C#, BuildingSmart</tags>
+    <tags>COBie, BIM, IFC, IfcXml, IfcZip, COBie, Ifc4, .Net, C#, BuildingSmart</tags>
     <dependencies>
       <dependency id="NPOI" version="2.2.1" />
-      <dependency id="Xbim.Essentials" version="4.0.0-V231" />
+      <dependency id="Xbim.Essentials.4" version="4.0.0" />
     </dependencies>
   </metadata>
   <files>
