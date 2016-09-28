@@ -1,7 +1,6 @@
 ﻿using System;
-using Xbim.Common.Geometry;
 
-namespace XbimGeometry.Interfaces
+namespace Xbim.Common.Geometry
 {
     /// <summary>
     /// A 3 Dimensional Point

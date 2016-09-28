@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using Xbim.Ifc2x3.MeasureResource;
 using Xbim.Ifc2x3.QuantityResource;
 
@@ -22,7 +19,7 @@ namespace Xbim.Ifc2x3.Extensions
         {
             if (ifcPhysicalSimpleQuantity.Unit != null)
                 return ifcPhysicalSimpleQuantity.Unit;
-            IfcUnitAssignment modelUnits = ifcPhysicalSimpleQuantity.ModelOf.Instances.OfType<IfcUnitAssignment>().FirstOrDefault(); // not optional, should never return void in valid model
+            IfcUnitAssignment modelUnits = ifcPhysicalSimpleQuantity.Model.Instances.OfType<IfcUnitAssignment>().FirstOrDefault(); // not optional, should never return void in valid model
             return modelUnits.GetUnitFor(ifcPhysicalSimpleQuantity);
         }
 

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Xbim.Ifc2x3.TopologyResource;
 
 namespace Xbim.Ifc2x3.Extensions
@@ -11,30 +9,23 @@ namespace Xbim.Ifc2x3.Extensions
         /// <summary>
         /// Calculates the maximum number of points in this object, does not remove geometric duplicates
         /// </summary>
-        /// <param name="sbsm"></param>
+        /// <param name="face"></param>
         /// <returns></returns>
         public static int NumberOfPointsMax(this IfcFace face)
         {
-            int pointCount = 0;
-            foreach (IfcFaceBound bound in face.Bounds)
-            {
-                pointCount += bound.NumberOfPointsMax();
-            }
-            return pointCount;
+            return face.Bounds.Sum(bound => bound.NumberOfPointsMax());
         }
 
         /// <summary>
         /// returns a Hash for the geometric behaviour of this object
         /// </summary>
-        /// <param name="solid"></param>
+        /// <param name="face"></param>
         /// <returns></returns>
         public static int GetGeometryHashCode(this IfcFace face)
         {
             int hash = face.Bounds.Count;
             if (hash > 2) return hash; //probably unique enough
-            foreach (var b in face.Bounds)
-                hash ^= b.GetGeometryHashCode();
-            return hash;
+            return face.Bounds.Aggregate(hash, (current, b) => current ^ b.GetGeometryHashCode());
         }
 
         /// <summary>

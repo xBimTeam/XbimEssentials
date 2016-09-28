@@ -82,8 +82,8 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void MatrixArrayConversion()
         {
-            var m = XbimMatrix3D.CreateTranslation(10,20,30);
-            m.RotateAroundXAxis(Math.PI/4);
+            var m = XbimMatrix3D.CreateTranslation(10, 20, 30);
+            m.RotateAroundXAxis(Math.PI / 4);
             m.Scale(.05);
 
             var outM = m.ToArray(true);
@@ -110,6 +110,5 @@ namespace Xbim.Essentials.Tests
             Assert.AreEqual(rback.M44, m.M44);
 
         }
-
     }
 }

@@ -5,13 +5,14 @@ using Xbim.Common.Geometry;
 
 namespace Xbim.Common.XbimExtensions
 {
-    [CLSCompliant(false)]
+   
     public static class BinaryReaderExtensions
     {
         public static XbimShapeTriangulation ReadShapeTriangulation(this BinaryReader br)
         {
             var version = br.ReadByte(); //stream format version
 			var numVertices = br.ReadInt32();
+            // ReSharper disable once UnusedVariable
             var numTriangles = br.ReadInt32();
             var vertices = new List<XbimPoint3D>(numVertices);
 

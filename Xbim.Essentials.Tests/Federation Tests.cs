@@ -1,13 +1,13 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Xbim.Ifc2x3.RepresentationResource;
-using Xbim.IO;
+using Xbim.Common.Federation;
 using Xbim.Ifc2x3.ActorResource;
-using Xbim.XbimExtensions.Interfaces;
+using Xbim.Ifc2x3.RepresentationResource;
+using Xbim.Ifc2x3.IO;
 using Xbim.Ifc2x3.Kernel;
+using Xbim.IO.Esent;
+using Xbim.IO;
 
 namespace Xbim.Essentials.Tests
 {
@@ -30,7 +30,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void ValidIdentityInFederation()
         {
-            using (var fedModel = XbimModel.CreateTemporaryModel())
+            using (var fedModel = Xbim.Ifc2x3.IO.XbimModel.CreateTemporaryModel())
             {
                 fedModel.Initialise("Federation Creating Author", "Federation Creating Organisation", "This Application", "This Developer", "v1.1");
                 using (var txn = fedModel.BeginTransaction())
@@ -39,19 +39,19 @@ namespace Xbim.Essentials.Tests
                     txn.Commit();
                 }
                 //now add federated models
-                fedModel.AddModelReference(ModelFedP1, "The Architects Name", IfcRole.Architect);
-                fedModel.AddModelReference(ModelFedP2, "The Owners Name", IfcRole.BuildingOwner);
-                fedModel.SaveAs("P1P2Federation", XbimStorageType.IFC);
+                fedModel.AddModelReference(ModelFedP1, "The Architects Name", IfcRoleEnum.ARCHITECT);
+                fedModel.AddModelReference(ModelFedP2, "The Owners Name", IfcRoleEnum.BUILDINGOWNER);
+                fedModel.SaveAs("P1P2Federation", IfcStorageType.Ifc);
             } //close and automatically delete the temporary database
             //Now open the Ifc file and see what we have
-            using (var fed = new XbimModel())
+            using (var fed = new Xbim.Ifc2x3.IO.XbimModel())
             {
                 fed.CreateFrom("P1P2Federation.ifc", "P1P2Federation.xBIMF"); //use xBIMF to help us distinguish
-                fed.Open("P1P2Federation.xBIMF", XbimExtensions.XbimDBAccess.Read);
+                fed.Open("P1P2Federation.xBIMF");
                 fed.EnsureUniqueUserDefinedId();
 
                 var mustDiffer =
-                    fed.Instances.OfType<IfcGeometricRepresentationSubContext>()
+                    fed.FederatedInstances.OfType<IfcGeometricRepresentationSubContext>()
                         .Where(x => x.ContextIdentifier == @"Body").ToArray();
                 
                 // we are expecting two items (one body from each model loaded)
@@ -65,6 +65,7 @@ namespace Xbim.Essentials.Tests
                 var tst = new HashSet<IfcGeometricRepresentationContext>();
                 tst.Add(first);
                 tst.Add(second);
+                Assert.IsTrue(tst.Count==2);
             }
         }
 
@@ -74,7 +75,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void CreateFederation()
         {
-            using (var fedModel = XbimModel.CreateTemporaryModel())
+            using (var fedModel = Xbim.Ifc2x3.IO.XbimModel.CreateTemporaryModel())
             {
                 fedModel.Initialise("Federation Creating Author", "Federation Creating Organisation", "This Application", "This Developer", "v1.1");
                 using (var txn = fedModel.BeginTransaction())
@@ -83,20 +84,20 @@ namespace Xbim.Essentials.Tests
                     txn.Commit();
                 }
                 //now add federated models
-                fedModel.AddModelReference(ModelA, "The Architects Name", IfcRole.Architect);
-                fedModel.AddModelReference(ModelB, "The Owners Name", IfcRole.BuildingOwner);
+                fedModel.AddModelReference(ModelA, "The Architects Name", IfcRoleEnum.ARCHITECT);
+                fedModel.AddModelReference(ModelB, "The Owners Name", IfcRoleEnum.BUILDINGOWNER);
                 // fedModel.AddModelReference(ModelC, "The Cost Consultants Name", IfcRole.UserDefined, "Cost Consultant");
-                fedModel.SaveAs("Federated Model", XbimStorageType.IFC);
+                fedModel.SaveAs("Federated Model", IfcStorageType.Ifc);
             } //close and automatically delete the temporary database
             //Now open the Ifc file and see what we have
-            using (var fed = new XbimModel())
+            using (var fed = new Xbim.Ifc2x3.IO.XbimModel())
             {
                 fed.CreateFrom("Federated Model.ifc", "Federated Model.xBIMF"); //use xBIMF to help us distinguish
-                fed.Open("Federated Model.xBIMF", XbimExtensions.XbimDBAccess.Read);
+                fed.Open("Federated Model.xBIMF");
 
                 //check the various ways of access objects give consistent results.
-                var localInstances = fed.InstancesLocal.Count;
-                var totalInstances = fed.Instances.Count;
+                var localInstances = fed.Instances.Count;
+                var totalInstances = fed.FederatedInstances.Count;
                 long refInstancesCount = 0;
                 foreach (var refModel in fed.ReferencedModels)
                 {
@@ -106,14 +107,14 @@ namespace Xbim.Essentials.Tests
                 Assert.IsTrue(totalInstances == refInstancesCount + localInstances);
 
                 long enumeratingInstancesCount = 0;
-                foreach (var item in fed.Instances)
+                foreach (var item in fed.FederatedInstances)
                 {
                     enumeratingInstancesCount++;
                 }
                 Assert.IsTrue(totalInstances == enumeratingInstancesCount);
 
-                long fedProjectCount = fed.Instances.OfType<IfcProject>().Count();
-                long localProjectCount = fed.InstancesLocal.OfType<IfcProject>().Count();
+                long fedProjectCount = fed.FederatedInstances.OfType<IfcProject>().Count();
+                long localProjectCount = fed.Instances.OfType<IfcProject>().Count();
                 Assert.IsTrue(fedProjectCount == 3);
                 Assert.IsTrue(localProjectCount == 1);
             }

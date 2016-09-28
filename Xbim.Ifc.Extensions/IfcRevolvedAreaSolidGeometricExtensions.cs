@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Xbim.Ifc2x3.GeometricModelResource;
 using Xbim.Ifc2x3.GeometryResource;
 
@@ -17,7 +14,7 @@ namespace Xbim.Ifc2x3.Extensions
             /// <returns></returns>
             public static int GetGeometryHashCode(this IfcRevolvedAreaSolid solid)
             {
-                Func<double, int> f = solid.ModelOf.ModelFactors.GetGeometryDoubleHash;
+                Func<double, int> f = solid.Model.ModelFactors.GetGeometryDoubleHash;
                 return solid.Axis.GetGeometryHashCode() ^
                        f(solid.Angle) ^
                        solid.Position.GetGeometryHashCode() ^
@@ -34,7 +31,7 @@ namespace Xbim.Ifc2x3.Extensions
             {
                 IfcRevolvedAreaSolid eas = b as IfcRevolvedAreaSolid;
                 if (eas == null) return false; //different types are not the same
-                double precision = a.ModelOf.ModelFactors.Precision;
+                double precision = a.Model.ModelFactors.Precision;
                 return Math.Abs(a.Angle - eas.Angle) <= precision &&
                        a.Axis.GeometricEquals(eas.Axis) &&
                        a.Position.GeometricEquals(eas.Position) &&

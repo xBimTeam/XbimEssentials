@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Xbim.Ifc2x3.ProfileResource;
 
 namespace Xbim.Ifc2x3.Extensions
@@ -15,7 +12,7 @@ namespace Xbim.Ifc2x3.Extensions
         /// <returns></returns>
         public static int GetGeometryHashCode(this IfcIShapeProfileDef profile)
         {
-            Func<double, int> f = profile.ModelOf.ModelFactors.GetGeometryDoubleHash;
+            Func<double, int> f = profile.Model.ModelFactors.GetGeometryDoubleHash;
 
             int hash = f(profile.WebThickness) ^
                  f(profile.FlangeThickness) ^

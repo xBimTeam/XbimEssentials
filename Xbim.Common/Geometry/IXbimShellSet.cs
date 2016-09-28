@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace XbimGeometry.Interfaces
+namespace Xbim.Common.Geometry
 {
     public interface IXbimShellSet : IEnumerable<IXbimShell>, IXbimGeometryObject
     {

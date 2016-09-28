@@ -13,16 +13,14 @@
 #region Directives
 
 using System.Diagnostics;
-using System.Linq;
 using Xbim.Ifc2x3.ExternalReferenceResource;
 using Xbim.Ifc2x3.Kernel;
-using Xbim.XbimExtensions.SelectTypes;
-using Xbim.XbimExtensions;
 using System;
+using System.Linq;
+using Xbim.Common;
 using Xbim.Ifc2x3.MaterialResource;
 using Xbim.Ifc2x3.ProductExtension;
 using Xbim.Ifc2x3.MeasureResource;
-using Xbim.XbimExtensions.Interfaces;
 
 #endregion
 
@@ -58,7 +56,7 @@ namespace Xbim.Ifc2x3.Extensions
             if (obj is IfcTypeProduct && matSel is IfcMaterialLayerSetUsage)
                 throw new Exception("IfcElementType cannot have an IfcMaterialLayerSetUsage as it's associated material");
 
-            IModel model = obj.ModelOf;
+            IModel model = obj.Model;
 
             IfcRelAssociatesMaterial relMat = model.Instances.Where<IfcRelAssociatesMaterial>(r => r.RelatedObjects.Contains(obj)).FirstOrDefault();
             if (relMat == null)
@@ -72,7 +70,7 @@ namespace Xbim.Ifc2x3.Extensions
 
         public static IfcMaterialSelect GetMaterial(this IfcRoot obj)
         {
-            IModel model = (obj as IPersistIfcEntity).ModelOf;
+            IModel model = (obj as IPersistEntity).Model;
 
             IfcRelAssociatesMaterial relMat = model.Instances.Where<IfcRelAssociatesMaterial>(r => r.RelatedObjects.Contains(obj)).FirstOrDefault();
             if (relMat != null)
@@ -151,7 +149,7 @@ namespace Xbim.Ifc2x3.Extensions
                                                     IfcDirectionSenseEnum directionSense,
                                                     IfcLengthMeasure offsetFromReferenceLine)
         {
-            IModel model = element.ModelOf;
+            IModel model = element.Model;
             element.SetMaterialLayerSetUsage(model, forLayerSet, layerSetDirection, directionSense,
                                              offsetFromReferenceLine);
         }

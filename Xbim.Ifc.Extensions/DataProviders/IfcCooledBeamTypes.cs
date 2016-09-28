@@ -13,9 +13,9 @@
 #region Directives
 
 using System.Collections.Generic;
-using Xbim.XbimExtensions.Interfaces;
+using Xbim.Common;
 using Xbim.Ifc2x3.HVACDomain;
-using System.Linq;
+
 #endregion
 
 namespace Xbim.XbimExtensions.DataProviders

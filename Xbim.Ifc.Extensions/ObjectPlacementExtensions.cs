@@ -13,6 +13,8 @@
 using System;
 using Xbim.Common.Geometry;
 using Xbim.Ifc2x3.GeometricConstraintResource;
+using Xbim.Ifc2x3.GeometryResource;
+
 namespace Xbim.Ifc2x3.Extensions
 {
     public static class ObjectPlacementExtensions
