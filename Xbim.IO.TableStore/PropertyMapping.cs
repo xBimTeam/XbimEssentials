@@ -80,6 +80,12 @@ namespace Xbim.IO.TableStore
         [XmlAttribute(Namespace = "http://www.openbim.org/mapping/table/1.0")]
         public bool IsMultiRowIdentity { get; set; }
 
+        /// <summary>
+        /// Allowed Data Type of the column
+        /// </summary>
+        [XmlAttribute(Namespace = "http://www.openbim.org/mapping/table/1.0")]
+        public AllowedType DataType { get; set; }
+
         private List<string> _pathsEnumerationCache;
         private string _paths;
 
@@ -102,5 +108,19 @@ namespace Xbim.IO.TableStore
         None,
         IfNecessary,
         Always
+    }
+
+    /// <summary>
+    /// Allowed Types to allow validation of fields to correct format
+    /// </summary>
+    public enum AllowedType
+    {
+        Text,
+        AlphaNumeric,
+        Email,
+        Numeric,
+        ISODate,
+        ISODateTime,
+        AnyType
     }
 }
