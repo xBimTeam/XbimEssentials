@@ -1170,8 +1170,8 @@ namespace Xbim.Ifc
                     Version modelVersion;
                     if (Version.TryParse(matches[0].Groups[1].Value, out modelVersion))
                     {
-                        //SurfaceOfLinearExtrusion bug found in version 17.0.416
-                        var surfaceOfLinearExtrusionVersion = new Version(17, 0, 416, 0);
+                        //SurfaceOfLinearExtrusion bug found in version 17.2.0 and earlier
+                        var surfaceOfLinearExtrusionVersion = new Version(17, 2, 0, 0);
                         if (modelVersion <= surfaceOfLinearExtrusionVersion)
                             ((XbimModelFactors)ModelFactors).AddWorkAround("#SurfaceOfLinearExtrusion");
                     }
