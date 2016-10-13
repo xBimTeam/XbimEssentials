@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <id>Xbim.Cobie.4</id>
-    <version>4.0.1</version>
-    <title>xBIM Cobie for Essentials 4</title>
+    <id>Xbim.Cobie</id>
+    <version>4.0.2</version>
+    <title>xBIM Cobie</title>
     <authors>xBIM team</authors>
     <owners>Steve Lockley, Martin Cerny</owners>
-    <licenseUrl>https://raw.githubusercontent.com/xBimTeam/XbimExchange/master/LICENCE.md</licenseUrl>
-    <projectUrl>https://github.com/xBimTeam/XbimExchange</projectUrl>
-    <iconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;s=200</iconUrl>
+    <licenseUrl>https://raw.githubusercontent.com/xBimTeam/XbimEssentials/master/LICENCE.md</licenseUrl>
+    <projectUrl>https://github.com/xBimTeam/</projectUrl>
+    <iconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;s=240</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>
       xBIM Cobie provides an object model for handling the Cobie schema used in both the UK and US implementations.
@@ -20,7 +20,7 @@
     <tags>COBie, BIM, IFC, IfcXml, IfcZip, COBie, Ifc4, .Net, C#, BuildingSmart</tags>
     <dependencies>
       <dependency id="NPOI" version="2.2.1" />
-      <dependency id="Xbim.Essentials.4" version="4.0.1" />
+      <dependency id="Xbim.Essentials" version="4.0.2" />
     </dependencies>
   </metadata>
   <files>
