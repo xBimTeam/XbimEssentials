@@ -3,6 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.IO;
 using System.IO;
 using Xbim.XbimExtensions.Interfaces;
+using Xbim.Ifc2x3.ActorResource;
+using Xbim.Ifc2x3.SharedBldgServiceElements;
 
 namespace Xbim.Essentials.Tests
 {
@@ -18,7 +20,30 @@ namespace Xbim.Essentials.Tests
                 model.CreateFrom("4walls1floorSite.ifc");
                 model.Close();
             }
+        }
 
+        [TestMethod]
+        [DeploymentItem("TestSourceFiles\fileWithAbstractClass.ifc", "fileWithAbstractClass.ifc")]
+        public void ToleratesFileWithAbstractClass()
+        {
+            // should survive parsing file with abstract class
+            // and use null for offending instances.
+            // 
+            using (var model = new XbimModel())
+            {
+                model.CreateFrom(@"fileWithAbstractClass.ifc", null, null, true);
+
+                foreach (var item in model.Instances.OfType<IfcFlowSegment>())
+                {
+                }
+
+                var inst = model.Instances[1240086];
+                Assert.IsNotNull(inst, "Instance should exist.");
+
+                var inst2 = model.Instances[1240084];
+                Assert.IsNull(inst2, "Instance should not exist.");
+                model.Close();
+            }
         }
 
         [TestMethod]

@@ -16,14 +16,12 @@ namespace Xbim.Essentials.Tests
         {
             using (var source = new XbimModel())
             {
-                PropertyTranformDelegate propTransform = delegate(IfcMetaProperty prop, object toCopy)
-                {              
+                PropertyTranformDelegate propTransform = delegate (IfcMetaProperty prop, object toCopy)
+                {
                     var value = prop.PropertyInfo.GetValue(toCopy, null);
                     return value;
                 };
-
-
-
+                
                 source.Open("BIM Logo-LetterM.xBIM");
                 source.SaveAs("WithGeometry.ifc");
                 using (var target = XbimModel.CreateTemporaryModel())
@@ -45,23 +43,23 @@ namespace Xbim.Essentials.Tests
                 //the two files should be the same
             }
         }
-        
+
         [TestMethod]
         public void ExtractIfcGeometryEntitiesTest()
         {
             using (var source = new XbimModel())
             {
-                PropertyTranformDelegate propTransform = delegate(IfcMetaProperty prop, object toCopy)
+                PropertyTranformDelegate propTransform = delegate (IfcMetaProperty prop, object toCopy)
                 {
 
                     if (typeof(IfcProduct).IsAssignableFrom(toCopy.GetType()))
                     {
                         if (prop.PropertyInfo.Name == "ObjectPlacement" || prop.PropertyInfo.Name == "Representation")
                             return null;
-                    }   
-                    if(typeof(IfcTypeProduct).IsAssignableFrom(toCopy.GetType()))
+                    }
+                    if (typeof(IfcTypeProduct).IsAssignableFrom(toCopy.GetType()))
                     {
-                        if (prop.PropertyInfo.Name == "RepresentationMaps" )
+                        if (prop.PropertyInfo.Name == "RepresentationMaps")
                             return null;
                     }
                     return prop.PropertyInfo.GetValue(toCopy, null);//just pass through the value               
@@ -70,10 +68,10 @@ namespace Xbim.Essentials.Tests
                 //source.Open("BIM Logo-LetterM.xBIM");
                 //source.SaveAs("WithGeometry.ifc");
                 string modelName = @"4walls1floorSite";
-                string xbimModelName = Path.ChangeExtension(modelName,"xbim");
-                
-                source.CreateFrom( Path.ChangeExtension(modelName,"ifc"), null, null, true);
-               
+                //string xbimModelName = Path.ChangeExtension(modelName, "xbim");
+
+                source.CreateFrom(Path.ChangeExtension(modelName, "ifc"), null, null, true);
+
                 using (var target = XbimModel.CreateModel(Path.ChangeExtension(modelName + "_NoGeom", "xbim")))
                 {
                     target.AutoAddOwnerHistory = false;
@@ -87,15 +85,14 @@ namespace Xbim.Essentials.Tests
                         }
                         txn.Commit();
                     }
-                    
+
                     target.SaveAs(Path.ChangeExtension(modelName + "_NoGeom", "ifc"));
                     target.Close();
-                    
+
                 }
-                
                 source.Close();
-               // XbimModel.Compact(Path.ChangeExtension(modelName + "_NoGeom", "xbim"), Path.ChangeExtension(modelName + "_NoGeom_Compacted", "xbim"));
-                //the two files should be the same
+                // XbimModel.Compact(Path.ChangeExtension(modelName + "_NoGeom", "xbim"), Path.ChangeExtension(modelName + "_NoGeom_Compacted", "xbim"));
+                // the two files should be the same
             }
         }
     }

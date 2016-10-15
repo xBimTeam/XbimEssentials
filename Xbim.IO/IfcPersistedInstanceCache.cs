@@ -977,7 +977,15 @@ namespace Xbim.IO
                         short currentIfcTypeId = entityTable.GetIfcType();
                         if (currentIfcTypeId == 0) // this should never happen (there's a test for it, but old xbim files might be incorrectly identified)
                             return null;
-                        IPersistIfcEntity entity = (IPersistIfcEntity)Activator.CreateInstance(IfcMetaData.GetType(currentIfcTypeId));
+                        var istanceType = IfcMetaData.GetType(currentIfcTypeId);
+                        if (istanceType.IsAbstract)
+                        {
+                            var msg = $"Illegal element in file; cannot instatiate the abstract type {istanceType.Name} at label {entityLabel}.";
+                            XbimModel.Logger.Error(msg);
+                            return null;
+                        }
+
+                        IPersistIfcEntity entity = (IPersistIfcEntity)Activator.CreateInstance(istanceType);
                         if (loadProperties)
                         {
                             byte[] properties = entityTable.GetProperties();
