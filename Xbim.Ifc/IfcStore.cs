@@ -191,7 +191,7 @@ namespace Xbim.Ifc
         /// </summary>
         /// <param name="path">the file name of the ifc, ifczip, ifcxml or xbim file to be opened</param>
         /// <param name="editorDetails">This is only required if the store is opened for editing</param>
-        /// <param name="ifcDatabaseSizeThreshHold">if not defined the DefaultIfcDatabaseSizeThreshHold is used, Ifc files below this size will be opened in memory, above this size a database will be created. If -1 is specified an in memory model will be created for all Ifc files that are opened. Xbim files are always opened as databases</param>
+        /// <param name="ifcDatabaseSizeThreshHold">Expressed in MB. If not defined the DefaultIfcDatabaseSizeThreshHold is used, Ifc files below this size will be opened in memory, above this size a database will be created. If -1 is specified an in memory model will be created for all Ifc files that are opened. Xbim files are always opened as databases</param>
         /// <param name="progDelegate"></param>
         /// <param name="accessMode"></param>
         public static IfcStore Open(string path, XbimEditorCredentials editorDetails = null, double? ifcDatabaseSizeThreshHold = null, ReportProgressDelegate progDelegate = null, XbimDBAccess accessMode = XbimDBAccess.Read)

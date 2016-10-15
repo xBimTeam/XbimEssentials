@@ -1244,6 +1244,11 @@ namespace Xbim.IO.Esent
                         {
                             var properties = entityTable.GetProperties();
                             entity = _factory.New(_model, currentIfcTypeId, entityLabel, true);
+                            if (entity == null)
+                            {
+                                // this has been seen to happen when files attempt to instantiate abstract classes.
+                                return null;
+                            }
                             entity.ReadEntityProperties(this, new BinaryReader(new MemoryStream(properties)), unCached);
                         }
                         else

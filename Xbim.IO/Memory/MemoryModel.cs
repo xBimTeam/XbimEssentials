@@ -13,11 +13,14 @@ using Xbim.IO.Step21;
 using Xbim.IO.Xml;
 using Xbim.IO.Xml.BsConf;
 using PropertyTranformDelegate = Xbim.Common.PropertyTranformDelegate;
+using log4net;
 
 namespace Xbim.IO.Memory
 {
     public class MemoryModel : IModel, IDisposable
     {
+        private static readonly ILog Log = LogManager.GetLogger("Xbim.IO.Memory.MemoryModel");
+
         private static ZipEntry GetZipEntry(Stream fileStream)
         {
             // used because - The ZipInputStream has one major advantage over using ZipFile to read a zip: 
@@ -509,8 +512,21 @@ namespace Xbim.IO.Memory
 
                 var typeId = Metadata.ExpressTypeId(name);
                 var ent = _instances.Factory.New(this, typeId, (int)label, true);
-                _instances.InternalAdd(ent);
 
+                // if ent is null do not add so that the file load operation can survive an illegal entity
+                // e.g. an abstract class instantiation.
+                if (ent != null)
+                    _instances.InternalAdd(ent);
+                else
+                {
+                    var msg = $"Error in file at label {label} for type {name}.";
+                    if (Metadata.ExpressType(typeId).Type.IsAbstract)
+                    {
+                        msg = $"Illegal element in file; cannot instatiate the abstract type {name} at label {label}.";
+                    }
+                    Log.Error(msg);
+                }
+                
                 //make sure that new added entities will have higher labels to avoid any clashes
                 if (label >= _instances.CurrentLabel)
                     _instances.CurrentLabel = (int)label;
