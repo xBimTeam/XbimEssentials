@@ -600,6 +600,7 @@ namespace Xbim.Ifc
                                  a.ApplicationDeveloper = Instances.New<Ifc4.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.ApplicationDevelopersName);
                                  a.ApplicationFullName = _editorDetails.ApplicationFullName;
                                  a.ApplicationIdentifier = _editorDetails.ApplicationIdentifier;
+                                 a.Version = _editorDetails.ApplicationVersion;
                              }
                 ));
                 return _defaultOwningApplication ??
@@ -609,6 +610,7 @@ namespace Xbim.Ifc
                                 a.ApplicationDeveloper = Instances.New<Ifc2x3.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.ApplicationDevelopersName);
                                 a.ApplicationFullName = _editorDetails.ApplicationFullName;
                                 a.ApplicationIdentifier = _editorDetails.ApplicationIdentifier;
+                                a.Version = _editorDetails.ApplicationVersion;
                             }
                 ));
             }
