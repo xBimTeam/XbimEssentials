@@ -550,11 +550,20 @@ namespace Xbim.Ifc
             }
         }
 
+        /// <summary>
+        /// Returns default user used to fill in owner history on new or modified objects. This object is only populated if
+        /// you provide XbimEditorCredentials in one of constructors
+        /// </summary>
         public IIfcPersonAndOrganization DefaultOwningUser
         {
             get
             {
                 if (_defaultOwningUser != null) return _defaultOwningUser;
+
+                //data wasn't supplied to create default user and application
+                if (_editorDetails == null)
+                    return null;
+
                 if (_schema == IfcSchemaVersion.Ifc4)
                 {
                     var person = Instances.New<Ifc4.ActorResource.IfcPerson>(p =>
@@ -587,11 +596,20 @@ namespace Xbim.Ifc
             }
         }
 
+        /// <summary>
+        /// Returns default application used to fill in owner history on new or modified objects. This object is only populated if
+        /// you provide XbimEditorCredentials in one of constructors
+        /// </summary>
         public IIfcApplication DefaultOwningApplication
         {
             get
             {
                 if (_defaultOwningApplication != null) return _defaultOwningApplication;
+                
+                //data wasn't supplied to create default user and application
+                if (_editorDetails == null)
+                    return null;
+
                 if (_schema == IfcSchemaVersion.Ifc4)
                     return _defaultOwningApplication ??
                          (_defaultOwningApplication =
