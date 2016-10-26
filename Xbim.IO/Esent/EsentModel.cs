@@ -227,6 +227,10 @@ namespace Xbim.IO.Esent
                 case ChangeType.Modified:
                     if (EntityModified != null)
                         EntityModified(entity, property);
+                    if (entity != null)
+                        //make sure modified entity is in modified collection. This might not be true if it was committed in a previous transaction.
+                        Cache.AddModified(entity);
+
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("changeType", changeType, null);
