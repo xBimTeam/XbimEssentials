@@ -522,7 +522,7 @@ namespace Xbim.IO.Memory
                     var msg = $"Error in file at label {label} for type {name}.";
                     if (Metadata.ExpressType(typeId).Type.IsAbstract)
                     {
-                        msg = $"Illegal element in file; cannot instatiate the abstract type {name} at label {label}.";
+                        msg = $"Illegal element in file; cannot instantiate the abstract type {name} at label {label}.";
                     }
                     Log.Error(msg);
                 }

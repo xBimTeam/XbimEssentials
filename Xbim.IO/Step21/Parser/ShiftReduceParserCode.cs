@@ -201,6 +201,11 @@ namespace QUT.Gppg {
         /// <returns>True if parse succeeds, else false for
         /// unrecoverable errors</returns>
         public bool Parse() {
+            //clear stacks for case this is being reused for multiple parse passes
+            StateStack.Clear();
+            valueStack.Clear();
+            LocationStack.Clear();
+
             Initialize();	// allow derived classes to instantiate rules, states and nonTerminals
 
             NextToken = 0;
@@ -871,5 +876,11 @@ namespace QUT.Gppg {
         internal T TopElement() { return array[tos - 1]; }
 
         internal bool IsEmpty() { return tos == 0; }
+
+        internal void Clear()
+        {
+            array = new T[8];
+            tos = 0;
+        }
     }
 }
