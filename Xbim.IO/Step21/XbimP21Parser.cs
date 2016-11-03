@@ -48,7 +48,7 @@ namespace Xbim.IO.Step21
         public int[] NestedIndex { get { return ListNestLevel > 0 ? _nestedIndex.ToArray() : null; } }
 
         protected readonly ExpressMetaData Metadata;
-
+        protected bool KeepEntities = true;
 
         public XbimP21Parser(Stream strm, ExpressMetaData metadata, long streamSize)
             : base(strm)
@@ -83,7 +83,7 @@ namespace Xbim.IO.Step21
 
         protected override void CharacterError()
         {
-            Logger.WarnFormat("Error parsing Ifc File, illegal character found");
+            Logger.WarnFormat("Error parsing IFC File, illegal character found");
         }
 
         protected override void BeginParse()
@@ -182,7 +182,7 @@ namespace Xbim.IO.Step21
                 // instantiates an empty IPersist from the header information
                 var t = EntityCreate(entityTypeName, null, InHeader, out reqParams);
                 // then attaches it to a new Part21Entity, this will be processed later from the _processStack
-                // to debug value initialisation place a breakpoing on the Parse() function of 
+                // to debug value initialisation place a breakpoint on the Parse() function of 
                 // StepFileName, StepFileSchema or StepFileDescription classes.
                 CurrentInstance = new Part21Entity(t)
                 {
@@ -205,7 +205,7 @@ namespace Xbim.IO.Step21
             var p21 = _processStack.Pop();
             //Debug.Assert(_processStack.Count == 0);
             CurrentInstance = null;
-            if (p21.Entity != null)
+            if (p21.Entity != null && KeepEntities)
                 _entities.Add(p21.EntityLabel, p21.Entity);
 
 
