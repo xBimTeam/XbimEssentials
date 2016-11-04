@@ -1,16 +1,17 @@
 ﻿using System;
 using System.ComponentModel;
+using Xbim.Common.Exceptions;
 using Xbim.Common.Metadata;
 
 namespace Xbim.Common
 {
-    public abstract class PersistEntity: IPersistEntity, INotifyPropertyChanged
+    public abstract class PersistEntity : IPersistEntity, INotifyPropertyChanged
     {
         protected PersistEntity(IModel model, int label, bool activated)
-        { 
-			Model = model;
+        {
+            Model = model;
             EntityLabel = label;
-            ActivationStatus = activated ? ActivationStatus.ActivatedRead : ActivationStatus.NotActivated;
+            _activated = activated;
         }
 
         #region IPersistEntity
@@ -24,47 +25,24 @@ namespace Xbim.Common
         [Obsolete("This property is deprecated and likely to be removed. Use just 'Model' instead.")]
         public IModel ModelOf { get { return Model; } }
 
-        ActivationStatus IPersistEntity.ActivationStatus { get { return ActivationStatus; } }
+        internal bool _activated;
+        bool IPersistEntity.Activated { get { return _activated; } }
 
-        protected ActivationStatus ActivationStatus { get; set; }
-
-        void IPersistEntity.Activate(bool write)
+        void IPersistEntity.Activate()
         {
-            switch (ActivationStatus)
+            //only activate once in a lifetime
+            if (_activated)
+                return;
+            lock (this)
             {
-                case ActivationStatus.ActivatedReadWrite:
+                //check again in the lock
+                if (_activated)
                     return;
-                case ActivationStatus.NotActivated:
-                    lock (this)
-                    {
-                        //check again in the lock
-                        if (ActivationStatus == ActivationStatus.NotActivated)
-                        {
-                            if (Model.Activate(this, write))
-                            {
-                                ActivationStatus = write
-                                    ? ActivationStatus.ActivatedReadWrite
-                                    : ActivationStatus.ActivatedRead;
-                            }
-                        }
-                    }
-                    break;
-                case ActivationStatus.ActivatedRead:
-                    if (!write) return;
-                    if (Model.Activate(this, true))
-                        ActivationStatus = ActivationStatus.ActivatedReadWrite;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+
+                _activated = Model.Activate(this);
+                if (!_activated)
+                    throw new XbimInitializationFailedException( string.Format("Failed to activate #{0}={1}", EntityLabel, ((IPersistEntity)this).ExpressType.ExpressNameUpper));
             }
-        }
-
-        void IPersistEntity.Activate(Action activation)
-        {
-            if (ActivationStatus != ActivationStatus.NotActivated) return; //activation can only happen once in a lifetime of the object
-
-            activation();
-            ActivationStatus = ActivationStatus.ActivatedRead;
         }
 
         ExpressType IPersistEntity.ExpressType { get { return Model.Metadata.ExpressType(this); } }
@@ -93,8 +71,8 @@ namespace Xbim.Common
         protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, int propertyOrder)
         {
             //activate for write if it is not activated yet
-            if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
-                ((IPersistEntity)this).Activate(true);
+            if (!_activated)
+                ((IPersistEntity)this).Activate();
 
             //just set the value if the model is marked as non-transactional
             if (!Model.IsTransactional)

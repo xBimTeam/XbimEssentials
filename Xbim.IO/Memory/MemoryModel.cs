@@ -12,7 +12,6 @@ using Xbim.Common.Step21;
 using Xbim.IO.Step21;
 using Xbim.IO.Xml;
 using Xbim.IO.Xml.BsConf;
-using PropertyTranformDelegate = Xbim.Common.PropertyTranformDelegate;
 using log4net;
 
 namespace Xbim.IO.Memory
@@ -72,7 +71,7 @@ namespace Xbim.IO.Memory
                 }
                 if (storageType.HasFlag(IfcStorageType.IfcXml) )
                     return XbimXmlReader4.ReadHeader(stream);
-                //go for default of Ifc
+                //go for default of IFC
                 return GetStepFileHeader(stream);
             }
         }
@@ -139,8 +138,9 @@ namespace Xbim.IO.Memory
             get { return _instances; }
         }
 
-        public virtual bool Activate(IPersistEntity owningEntity, bool write)
+        bool IModel.Activate(IPersistEntity owningEntity)
         {
+            //always return true because all entities are activated all the time in memory
             return true;
         }
 
@@ -150,13 +150,13 @@ namespace Xbim.IO.Memory
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="depth"></param>
-        public void Activate(IPersistEntity entity, int depth)
+        void IModel.Activate(IPersistEntity entity, int depth)
         {
             
         }
 
         /// <summary>
-        /// This function will try and release a persistant entity from the model, if the entity is referenced by another entity 
+        /// This function will try and release a persistent entity from the model, if the entity is referenced by another entity 
         /// it will stay in the model but can only be accessed via other entities,however if the model is saved and then reloaded 
         /// the entity will be restored to persisted status
         /// if the the entity is not referenced it will be garbage collected and removed and lost
@@ -193,7 +193,7 @@ namespace Xbim.IO.Memory
                     else if (propVal is IExpressEnumerable)
                     {
                         var propType = ifcProperty.PropertyInfo.PropertyType;
-                        //only process lists that are real lists, see cartesianpoint
+                        //only process lists that are real lists, see Cartesian point
                         var genType = propType.GetItemTypeFromGenericType();
                         if (genType != null && typeof(IPersistEntity).IsAssignableFrom(genType))
                         {
@@ -206,7 +206,7 @@ namespace Xbim.IO.Memory
         }
         /// <summary>
         /// This will delete the entity from model dictionary and also from any references in the model.
-        /// Be carefull as this might take a while to check for all occurances of the object. Also make sure 
+        /// Be careful as this might take a while to check for all occurrences of the object. Also make sure 
         /// you don't use this object anymore yourself because it won't get disposed until than. This operation
         /// doesn't guarantee that model is compliant with any kind of schema but it leaves it consistent. So if you
         /// serialize the model there won't be any references to the object which wouldn't be there.
@@ -237,7 +237,7 @@ namespace Xbim.IO.Memory
         /// <summary>
         /// Weak reference allows garbage collector to collect transaction once it goes out of the scope
         /// even if it is still referenced from model. This is important for the cases where the transaction
-        /// is both not commited and not rolled back either.
+        /// is both not committed and not rolled back either.
         /// </summary>
         private WeakReference _transactionReference;
 
@@ -513,7 +513,7 @@ namespace Xbim.IO.Memory
                 var typeId = Metadata.ExpressTypeId(name);
                 var ent = _instances.Factory.New(this, typeId, (int)label, true);
 
-                // if ent is null do not add so that the file load operation can survive an illegal entity
+                // if entity is null do not add so that the file load operation can survive an illegal entity
                 // e.g. an abstract class instantiation.
                 if (ent != null)
                     _instances.InternalAdd(ent);
@@ -585,7 +585,7 @@ namespace Xbim.IO.Memory
 
         private IEnumerable<IPersistEntity> GetXmlOrderedEntities(string schema)
         {
-            if (schema != null && schema.ToLower().Contains("cobie"))
+            if (schema != null && schema.ToUpper().Contains("COBIE"))
             {
                 return Instances.OfType("Facility", true)
                     .Concat(Instances);
@@ -669,7 +669,7 @@ namespace Xbim.IO.Memory
         /// Inserts deep copy of an object into this model. The entity must originate from the same schema (the same EntityFactory). 
         /// This operation happens within a transaction which you have to handle yourself unless you set the parameter "noTransaction" to true.
         /// Insert will happen outside of transactional behaviour in that case. Resulting model is not guaranteed to be valid according to any
-        /// model view definition. However, it is granted to be consistent. You can optionaly bring in all inverse relationships. Be carefull as it
+        /// model view definition. However, it is granted to be consistent. You can optionally bring in all inverse relationships. Be careful as it
         /// might easily bring in almost full model.
         /// 
         /// </summary>
@@ -678,7 +678,7 @@ namespace Xbim.IO.Memory
         /// <param name="mappings">Mappings of previous inserts</param>
         /// <param name="includeInverses">Option if to bring in all inverse entities (enumerations in original entity)</param>
         /// <param name="keepLabels">Option if to keep entity labels the same</param>
-        /// <param name="propTransform">Optional delegate which you can use to filter the content which will get coppied over.</param>
+        /// <param name="propTransform">Optional delegate which you can use to filter the content which will get copied over.</param>
         /// <returns>Copy from this model</returns>
         public T InsertCopy<T>(T toCopy, XbimInstanceHandleMap mappings, PropertyTranformDelegate propTransform, bool includeInverses,
            bool keepLabels) where T : IPersistEntity
@@ -690,7 +690,7 @@ namespace Xbim.IO.Memory
         /// Inserts deep copy of an object into this model. The entity must originate from the same schema (the same EntityFactory). 
         /// This operation happens within a transaction which you have to handle yourself unless you set the parameter "noTransaction" to true.
         /// Insert will happen outside of transactional behaviour in that case. Resulting model is not guaranteed to be valid according to any
-        /// model view definition. However, it is granted to be consistent. You can optionaly bring in all inverse relationships. Be carefull as it
+        /// model view definition. However, it is granted to be consistent. You can optionally bring in all inverse relationships. Be careful as it
         /// might easily bring in almost full model.
         /// 
         /// </summary>
@@ -699,7 +699,7 @@ namespace Xbim.IO.Memory
         /// <param name="mappings">Mappings of previous inserts</param>
         /// <param name="includeInverses">Option if to bring in all inverse entities (enumerations in original entity)</param>
         /// <param name="keepLabels">Option if to keep entity labels the same</param>
-        /// <param name="propTransform">Optional delegate which you can use to filter the content which will get coppied over.</param>
+        /// <param name="propTransform">Optional delegate which you can use to filter the content which will get copied over.</param>
         /// <param name="noTransaction">If TRUE all operations inside this function will happen out of transaction. 
         /// Also no notifications will be fired from objects.</param>
         /// <returns>Copy from this model</returns>

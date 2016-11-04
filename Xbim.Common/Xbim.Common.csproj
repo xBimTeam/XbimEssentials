@@ -61,8 +61,10 @@
     <Compile Include="Collections\ProxyNestedItemSet.cs" />
     <Compile Include="Collections\ReverseProxyItemSet.cs" />
     <Compile Include="Collections\VolatileProxyItemSet.cs" />
+    <Compile Include="Exceptions\XbimInitializationFailedException.cs" />
     <Compile Include="Federation\ReferencedModelCollection.cs" />
     <Compile Include="Federation\FederatedModelInstances.cs" />
+    <Compile Include="FlagSetter.cs" />
     <Compile Include="Geometry\IXbimSurface.cs" />
     <Compile Include="Geometry\XbimContextRegionCollection.cs" />
     <Compile Include="IContainsEntityReferences.cs" />
@@ -186,7 +188,7 @@
     <None Include="XbimOpenSourceKeyFile.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-    <PropertyGroup>
+  <PropertyGroup>
     <Year>$([System.DateTime]::Now.ToString("yy"))</Year>
     <Month>$([System.DateTime]::Now.ToString("MM"))</Month>
     <Day>$([System.DateTime]::Now.ToString("dd"))</Day>

@@ -19,7 +19,7 @@ using Xbim.Common.Step21;
 namespace Xbim.IO.Esent
 {
     /// <summary>
-    /// General Model class for memory based model suport
+    /// IModel implementation for Esent DB based model support
     /// </summary>
 
     public class EsentModel: IModel, IFederatedModel, IDisposable
@@ -80,7 +80,7 @@ namespace Xbim.IO.Esent
         }
 
         /// <summary>
-        /// Only inherited models can call parameterless constructor and it is their responsibility to 
+        /// Only inherited models can call parameter-less constructor and it is their responsibility to 
         /// call Init() as the very first thing.
         /// </summary>
         protected EsentModel()
@@ -228,7 +228,8 @@ namespace Xbim.IO.Esent
                     if (EntityModified != null)
                         EntityModified(entity, property);
                     if (entity != null)
-                        //make sure modified entity is in modified collection. This might not be true if it was committed in a previous transaction.
+                        //Ass entity to 'Modified' collection. This is the single point of access where all changes go through
+                        //so it is the best place to keep the track reliably.
                         Cache.AddModified(entity);
 
                     break;
@@ -281,28 +282,13 @@ namespace Xbim.IO.Esent
             InstanceCache.FreeTable(table);
         }
         //Loads the property data of an entity, if it is not already loaded
-        bool IModel.Activate(IPersistEntity entity, bool write)
+        bool IModel.Activate(IPersistEntity entity)
         {
-            if (write) //we want to activate for reading
-            {
-                //if (!Transaction.IsRollingBack)
-                InstanceCache.AddModified(entity);
-            }
-            if(entity.ActivationStatus == ActivationStatus.NotActivated)
+            if(!entity.Activated)
             {
                 InstanceCache.Activate(entity);
             }
             return true;
-        }
-
-        /// <summary>
-        /// EsentModel doesn't support activation of data island of defined depth
-        /// </summary>
-        /// <param name="entity">Entity to be activated</param>
-        /// <param name="depth">Depth of activation</param>
-        public void Activate(IPersistEntity entity, int depth)
-        {
-            
         }
 
         #region Transaction support
@@ -526,7 +512,7 @@ namespace Xbim.IO.Esent
 
         public byte[] GetEntityBinaryData(IInstantiableEntity entity)
         {
-            if (entity.ActivationStatus != ActivationStatus.NotActivated) //we have it in memory but not written to store yet
+            if (!entity.Activated) //we have it in memory but not written to store yet
             {
                 var entityStream = new MemoryStream(4096);
                 var entityWriter = new BinaryWriter(entityStream);
@@ -912,13 +898,10 @@ namespace Xbim.IO.Esent
 
 
 
-
         public void Print()
         {
             InstanceCache.Print();
         }
-
-        
 
         ~EsentModel()
         {
@@ -1323,6 +1306,12 @@ namespace Xbim.IO.Esent
             Close();
             var dbName = Path.ChangeExtension(fileName, "xBIM");
             InstanceCache.ImportModel(model, dbName, progDelegate);
+        }
+
+        public void Activate(IPersistEntity entity, int depth)
+        {
+            //this implementation doesn't do depth activation yet 
+            ((IModel)this).Activate(entity);
         }
 
         public IModel ReferencingModel

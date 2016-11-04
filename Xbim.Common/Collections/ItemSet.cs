@@ -11,25 +11,25 @@ namespace Xbim.Common.Collections
 {
     public abstract class ItemSet<T> : IItemSet<T>, IList
     {
-		protected readonly int Property;
+        protected readonly int Property;
         protected readonly bool IsEntitySet;
 
         protected IModel Model { get { return OwningEntity.Model; } }
 
-		public IPersistEntity OwningEntity { get; private set; }
+        public IPersistEntity OwningEntity { get; private set; }
 
         protected List<T> Internal { get; private set; }
 
         protected ItemSet(IPersistEntity entity, int capacity, int property)
         {
-			//this will create internal list of optimal capacity
+            //this will create internal list of optimal capacity
             Internal = new List<T>(capacity > 0 ? capacity : 0);
-			Property = property;
-			OwningEntity = entity;
-            IsEntitySet = typeof (IPersistEntity).IsAssignableFrom(typeof (T));
+            Property = property;
+            OwningEntity = entity;
+            IsEntitySet = typeof(IPersistEntity).IsAssignableFrom(typeof(T));
         }
 
-        
+
 
         #region IItemSet<T> Members
         /// <summary>
@@ -72,24 +72,26 @@ namespace Xbim.Common.Collections
         }
 
         public void AddRange(IEnumerable<T> values)
-		{
-			if(Model.IsTransactional && Model.CurrentTransaction == null)
+        {
+            if (Model.IsTransactional && Model.CurrentTransaction == null)
                 throw new XbimException("Operation out of transaction");
 
             var enumerable = values as T[] ?? values.ToArray();
-            if (IsEntitySet && enumerable.Any(v => v != null && !ReferenceEquals(((IPersistEntity) v).Model, Model)))
+            if (IsEntitySet && enumerable.Any(v => v != null && !ReferenceEquals(((IPersistEntity)v).Model, Model)))
                 throw new XbimException("Cross model entity assignment");
 
 
             //activate owning entity for write in case it is not active yet
-			OwningEntity.Activate(true);
+            if (!OwningEntity.Activated)
+                OwningEntity.Activate();
 
             var items = values as T[] ?? enumerable.ToArray();
-			Action doAction = () => {
-				Internal.AddRange(items);
-				NotifyCollectionChanged(NotifyCollectionChangedAction.Add, items);
-				NotifyCountChanged();
-			};
+            Action doAction = () =>
+            {
+                Internal.AddRange(items);
+                NotifyCollectionChanged(NotifyCollectionChangedAction.Add, items);
+                NotifyCountChanged();
+            };
 
 
             if (!Model.IsTransactional)
@@ -97,16 +99,17 @@ namespace Xbim.Common.Collections
                 doAction();
                 return;
             }
-            
-            Action undoAction = () => {
-				foreach(var value in items)
-					Internal.Remove(value);
-				NotifyCollectionChanged(NotifyCollectionChangedAction.Remove, items);
-				NotifyCountChanged();
-			};
+
+            Action undoAction = () =>
+            {
+                foreach (var value in items)
+                    Internal.Remove(value);
+                NotifyCollectionChanged(NotifyCollectionChangedAction.Remove, items);
+                NotifyCountChanged();
+            };
 
             Model.CurrentTransaction.DoReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified, Property);
-		}
+        }
 
         public T First
         {
@@ -154,24 +157,24 @@ namespace Xbim.Common.Collections
         #region INotifyCollectionChanged Members
 
         public event NotifyCollectionChangedEventHandler CollectionChanged;
-		
-		private void NotifyCollectionChanged(NotifyCollectionChangedAction action, T item)
-		{
-			if (CollectionChanged == null) return;
-			CollectionChanged(this, new NotifyCollectionChangedEventArgs(action, item));
-		}
 
-		private void NotifyCollectionChanged(NotifyCollectionChangedAction action, IEnumerable<T> items)
-		{
-			if (CollectionChanged == null) return;
-			CollectionChanged(this, new NotifyCollectionChangedEventArgs(action, items));
-		}
+        private void NotifyCollectionChanged(NotifyCollectionChangedAction action, T item)
+        {
+            if (CollectionChanged == null) return;
+            CollectionChanged(this, new NotifyCollectionChangedEventArgs(action, item));
+        }
 
-		private void NotifyCollectionChanged(NotifyCollectionChangedAction action)
-		{
-			if (CollectionChanged == null) return;
-			CollectionChanged(this, new NotifyCollectionChangedEventArgs(action));
-		}
+        private void NotifyCollectionChanged(NotifyCollectionChangedAction action, IEnumerable<T> items)
+        {
+            if (CollectionChanged == null) return;
+            CollectionChanged(this, new NotifyCollectionChangedEventArgs(action, items));
+        }
+
+        private void NotifyCollectionChanged(NotifyCollectionChangedAction action)
+        {
+            if (CollectionChanged == null) return;
+            CollectionChanged(this, new NotifyCollectionChangedEventArgs(action));
+        }
 
         #endregion
 
@@ -179,20 +182,22 @@ namespace Xbim.Common.Collections
 
         public virtual void Add(T item)
         {
-            if(Model.IsTransactional && Model.CurrentTransaction == null)
+            if (Model.IsTransactional && Model.CurrentTransaction == null)
                 throw new Exception("Operation out of transaction");
 
             if (IsEntitySet && item != null && !ReferenceEquals(((IPersistEntity)item).Model, Model))
                 throw new XbimException("Cross model entity assignment");
 
-			//activate owning entity for write in case it is not active yet
-			OwningEntity.Activate(true);
+            //activate owning entity for write in case it is not active yet
+            if (!OwningEntity.Activated)
+                OwningEntity.Activate();
 
-			Action doAction = () => {
-				Internal.Add(item);
-				NotifyCollectionChanged(NotifyCollectionChangedAction.Add, item);
-				NotifyCountChanged();
-			};
+            Action doAction = () =>
+            {
+                Internal.Add(item);
+                NotifyCollectionChanged(NotifyCollectionChangedAction.Add, item);
+                NotifyCountChanged();
+            };
 
 
             if (!Model.IsTransactional)
@@ -200,12 +205,13 @@ namespace Xbim.Common.Collections
                 doAction();
                 return;
             }
-            
-            Action undoAction = () => {
-				Internal.Remove(item);
-				NotifyCollectionChanged(NotifyCollectionChangedAction.Remove, item);
-				NotifyCountChanged();
-			};
+
+            Action undoAction = () =>
+            {
+                Internal.Remove(item);
+                NotifyCollectionChanged(NotifyCollectionChangedAction.Remove, item);
+                NotifyCountChanged();
+            };
 
             Model.CurrentTransaction.DoReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified, Property);
         }
@@ -213,10 +219,11 @@ namespace Xbim.Common.Collections
 
         public virtual void Clear()
         {
-                        if (Model.IsTransactional && Model.CurrentTransaction == null)
+            if (Model.IsTransactional && Model.CurrentTransaction == null)
                 throw new Exception("Operation out of transaction");
 
-            OwningEntity.Activate(true);
+            if (!OwningEntity.Activated)
+                OwningEntity.Activate();
 
             var oldItems = Internal.ToArray();
             Action doAction = () =>
@@ -262,7 +269,8 @@ namespace Xbim.Common.Collections
             if (Model.IsTransactional && Model.CurrentTransaction == null)
                 throw new Exception("Operation out of transaction");
 
-            OwningEntity.Activate(true);
+            if (!OwningEntity.Activated)
+                OwningEntity.Activate();
 
 
             Action doAction = () =>
@@ -285,7 +293,7 @@ namespace Xbim.Common.Collections
             }
 
             Model.CurrentTransaction.DoReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified, Property);
-            
+
             return true;
         }
 
@@ -372,24 +380,25 @@ namespace Xbim.Common.Collections
 
         #endregion
 
-		#region IList<T> members
-		public T this[int index]
-		{
-		    get
-		    {
-		        return Internal[index];
-		    }
-		    set
-		    {
-				if(Model.IsTransactional && Model.CurrentTransaction == null)
-				    throw new XbimException("Operation out of transaction");
+        #region IList<T> members
+        public T this[int index]
+        {
+            get
+            {
+                return Internal[index];
+            }
+            set
+            {
+                if (Model.IsTransactional && Model.CurrentTransaction == null)
+                    throw new XbimException("Operation out of transaction");
 
                 if (IsEntitySet && value != null && !ReferenceEquals(((IPersistEntity)value).Model, Model))
                     throw new XbimException("Cross model entity assignment");
 
-                OwningEntity.Activate(true);
+                if (!OwningEntity.Activated)
+                    OwningEntity.Activate();
 
-				var oldValue = Internal[index];
+                var oldValue = Internal[index];
                 Action doAction = () =>
                 {
                     Internal[index] = value;
@@ -397,26 +406,26 @@ namespace Xbim.Common.Collections
                 };
 
 
-		        if (!Model.IsTransactional)
-		        {
+                if (!Model.IsTransactional)
+                {
                     doAction();
                     return;
-		        }
+                }
 
-		        Action undoAction = () =>
-		        {
-		            Internal[index] = oldValue;
+                Action undoAction = () =>
+                {
+                    Internal[index] = oldValue;
                     NotifyCollectionChanged(NotifyCollectionChangedAction.Replace, oldValue);
-		        };
-		        
-				Model.CurrentTransaction.DoReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified, Property);
-		    }
-		}
+                };
 
-		public int IndexOf(T item)
-		{
-			return Internal.IndexOf(item);
-		}
+                Model.CurrentTransaction.DoReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified, Property);
+            }
+        }
+
+        public int IndexOf(T item)
+        {
+            return Internal.IndexOf(item);
+        }
 
 
         public void Insert(int index, T item)
@@ -427,7 +436,8 @@ namespace Xbim.Common.Collections
             if (IsEntitySet && item != null && !ReferenceEquals(((IPersistEntity)item).Model, Model))
                 throw new XbimException("Cross model entity assignment");
 
-            OwningEntity.Activate(true);
+            if (!OwningEntity.Activated)
+                OwningEntity.Activate();
 
             Action doAction = () =>
             {
@@ -463,7 +473,7 @@ namespace Xbim.Common.Collections
         {
             if (!(value is T)) return -1;
 
-            var v = (T) value;
+            var v = (T)value;
             Add(v);
             return Internal.Count - 1;
         }

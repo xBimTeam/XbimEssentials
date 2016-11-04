@@ -27,7 +27,7 @@ namespace Xbim.Common
 
         /// <summary>
         /// All instances which exist within a scope of the model.
-        /// Use thit property to retrieve the data from model.
+        /// Use this property to retrieve the data from model.
         /// </summary>
 	    IEntityCollection Instances { get; }
 
@@ -37,9 +37,8 @@ namespace Xbim.Common
         /// on-the-fly as their properties are accessed.
         /// </summary>
         /// <param name="owningEntity">Entity to be activated</param>
-        /// <param name="write">True if the entity should be activated for writing</param>
         /// <returns>True if activation was successful, False otherwise</returns>
-	    bool Activate(IPersistEntity owningEntity, bool write);
+	    bool Activate(IPersistEntity owningEntity);
 
         /// <summary>
         /// This function is to be used to activate data island of certain depth.
@@ -55,23 +54,23 @@ namespace Xbim.Common
         /// <summary>
         /// Deletes entity from the model and removes all references to this entity in all entities
         /// in the model. This operation is potentially very expensive and some implementations of
-        /// IModel migh not implement it at all.
+        /// IModel might not implement it at all.
         /// </summary>
         /// <param name="entity"></param>
 		void Delete (IPersistEntity entity);
 		
         /// <summary>
         /// Begins transaction on the model to handle all modifications. You should use this function within
-        /// a 'using' statement to restrict scope of the transaction. IModel shoulc only hold weak reference to
+        /// a 'using' statement to restrict scope of the transaction. IModel should only hold weak reference to
         /// this object in 'CurrentTransaction' property.
         /// </summary>
-        /// <param name="name">Name of the transaction. This is usefull in case you keep the transactions for undo-redo sessions</param>
+        /// <param name="name">Name of the transaction. This is useful in case you keep the transactions for undo-redo sessions</param>
         /// <returns>Transaction object.</returns>
 		ITransaction BeginTransaction(string name);
 		
 		/// <summary>
         /// It is a good practise to implement this property with WeakReference back field so it gets disposed 
-		/// when transaction goes out of the scope. It would stay allive otherwise which is not desired unless you 
+		/// when transaction goes out of the scope. It would stay alive otherwise which is not desired unless you 
 		/// want to keep it for undo-redo sessions. But even it that case it should be referenced from elsewhere.
         /// </summary>
 		ITransaction CurrentTransaction { get; }
@@ -95,7 +94,7 @@ namespace Xbim.Common
         /// <param name="toCopy">Object to copy</param>
         /// <param name="mappings">Mappings make sure object is only inserted once. You should use one instance of mappings for all InsertCopy() calls between two models</param>
         /// <param name="propTransform">Delegate which can be used to transform properties. You can use this to filter out certain properties or referenced objects</param>
-        /// <param name="includeInverses">If TRUE interse relations are also copied over. This may potentially bring over almost entire model if not controlled by propTransform delegate</param>
+        /// <param name="includeInverses">If TRUE inverse relations are also copied over. This may potentially bring over almost entire model if not controlled by propTransform delegate</param>
         /// <param name="keepLabels">If TRUE entity labels of inserted objects will be the same as the labels of original objects. This should be FALSE if you are inserting objects to existing model
         /// or if you are inserting objects from multiple source models into a single target model where entity labels may potentially clash.</param>
         /// <returns>New created object in this model which is a deep copy of original object</returns>
@@ -167,7 +166,7 @@ namespace Xbim.Common
         int ProfileDefLevelOfDetail { get; set; }
 
         /// <summary>
-        /// If this number is greater than 0, any faceted meshes will be simplified if the number of faces exceeds the threshhold
+        /// If this number is greater than 0, any faceted meshes will be simplified if the number of faces exceeds the threshold
         /// </summary>
         int SimplifyFaceCountThreshHold { get; set; }
 
@@ -207,7 +206,8 @@ namespace Xbim.Common
         double VertexPointDiameter { get; }
 
         /// <summary>
-        /// The maximum number of faces to sew and check the result is a valid BREP, face sets with more than this number of faces will be processed as read from the model
+        /// The maximum number of faces to sew and check the result is a valid BREP, face sets with more than this number of faces will be processed 
+        /// as read from the model
         /// </summary>
         int MaxBRepSewFaceCount { get; set; }
 
@@ -225,7 +225,8 @@ namespace Xbim.Common
         double PrecisionMax { get; set; }
 
         /// <summary>
-        /// The number of decimal places to round a number to in order to truncate distances, not to be confused with precision, this is mostly for hashing and reporting, precision determins if two points are the same. NB this must be less that the precision for booleans
+        /// The number of decimal places to round a number to in order to truncate distances, not to be confused with precision, this is 
+        /// mostly for hashing and reporting, precision determines if two points are the same. NB this must be less that the precision for Booleans
         /// </summary>
         int Rounding { get; }
 
@@ -237,7 +238,7 @@ namespace Xbim.Common
         double OneMilliMetre { get; }
 
         /// <summary>
-        /// The min angle used when meshing shapes, works with DeflectionTolerance to set the resolution for linearising edges, default = 0.5
+        /// The min angle used when meshing shapes, works with DeflectionTolerance to set the resolution for linearizing edges, default = 0.5
         /// </summary>
         double DeflectionAngle { get; set; }
 
@@ -278,7 +279,7 @@ namespace Xbim.Common
         public int ProfileDefLevelOfDetail { get; set; }
 
         /// <summary>
-        /// If this number is greater than 0, any faceted meshes will be simplified if the number of faces exceeds the threshhold
+        /// If this number is greater than 0, any faceted meshes will be simplified if the number of faces exceeds the threshold
         /// </summary>
         public int SimplifyFaceCountThreshHold { get; set; }
 
@@ -326,7 +327,8 @@ namespace Xbim.Common
         /// </summary>
         public double PrecisionMax { get; set; }
         /// <summary>
-        /// The number of decimal places to round a number to in order to truncate distances, not to be confused with precision, this is mostly for hashing and reporting, precision determins if two points are the same. NB this must be less that the precision for booleans
+        /// The number of decimal places to round a number to in order to truncate distances, not to be confused with precision, this is mostly for hashing and reporting, 
+        /// precision determines if two points are the same. NB this must be less that the precision for booleans
         /// </summary>
         public int Rounding { get; private set; }
         
@@ -337,7 +339,6 @@ namespace Xbim.Common
         /// </summary>
         public double OneMilliMetre { get; private set; }
 
-    //    public readonly XbimMatrix3D? WorldCoordinateSystem;
         private int _significantOrder;
         public int GetGeometryFloatHash(float number)
         {
@@ -355,7 +356,7 @@ namespace Xbim.Common
         }
 
         /// <summary>
-        /// The min angle used when meshing shapes, works with DeflectionTolerance to set the resolution for linearising edges, default = 0.5
+        /// The min angle used when meshing shapes, works with DeflectionTolerance to set the resolution for linearizing edges, default = 0.5
         /// </summary>
         public double DeflectionAngle { get; set; }
 

@@ -139,11 +139,8 @@ namespace Xbim.IO.Memory
 
         public IEnumerable<T> OfType<T>(bool activate) where T : IPersistEntity
         {
-            foreach (var entity in OfType<T>())
-            {
-                if (activate) _model.Activate(entity, true);
-                yield return entity;
-            }
+            //activation doesn't exist because everything is activated by default
+            return OfType<T>();
         }
 
         public IEnumerable<IPersistEntity> OfType(string stringType, bool activate)
@@ -153,7 +150,6 @@ namespace Xbim.IO.Memory
                 throw new ArgumentException("StringType must be a name of the existing persist entity type");
             foreach (var entity in OfType(queryType.Type))
             {
-                if (activate) _model.Activate(entity, true);
                 yield return entity;
             }
         }
@@ -211,13 +207,6 @@ namespace Xbim.IO.Memory
         public long CountOf<T>() where T : IPersistEntity
         {
             return OfType<T>().Count();
-
-            //Steve's code bellow wouldn't consider abstract types and interfaces.
-            //var queryType = typeof(T);
-            //ICollection<IPersistEntity> entities;           
-            //if (_internal.TryGetValue(queryType, out entities))
-            //     return entities.Count;
-            //return 0;
         }
 
         internal void InternalAdd(IPersistEntity entity)
@@ -296,7 +285,6 @@ namespace Xbim.IO.Memory
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            //return _internal.SelectMany(kv => kv.Value, (pair, entity) => entity).GetEnumerator();
             return _collection.GetEnumerator();
         }
 
