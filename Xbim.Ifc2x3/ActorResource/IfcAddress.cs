@@ -82,8 +82,8 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _purpose;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _purpose;
+				Activate();
 				return _purpose;
 			} 
 			set
@@ -96,8 +96,8 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
@@ -110,8 +110,8 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _userDefinedPurpose;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _userDefinedPurpose;
+				Activate();
 				return _userDefinedPurpose;
 			} 
 			set

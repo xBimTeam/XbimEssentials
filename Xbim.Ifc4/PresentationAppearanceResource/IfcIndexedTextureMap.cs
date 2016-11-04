@@ -71,8 +71,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _mappedTo;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _mappedTo;
+				Activate();
 				return _mappedTo;
 			} 
 			set
@@ -87,8 +87,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _texCoords;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _texCoords;
+				Activate();
 				return _texCoords;
 			} 
 			set

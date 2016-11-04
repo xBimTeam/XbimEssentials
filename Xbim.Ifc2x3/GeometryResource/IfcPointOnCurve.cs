@@ -69,8 +69,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _basisCurve;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _basisCurve;
+				Activate();
 				return _basisCurve;
 			} 
 			set
@@ -85,8 +85,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _pointParameter;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _pointParameter;
+				Activate();
 				return _pointParameter;
 			} 
 			set

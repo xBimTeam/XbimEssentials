@@ -89,8 +89,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _upperVaporResistanceFactor;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _upperVaporResistanceFactor;
+				Activate();
 				return _upperVaporResistanceFactor;
 			} 
 			set
@@ -103,8 +103,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _lowerVaporResistanceFactor;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _lowerVaporResistanceFactor;
+				Activate();
 				return _lowerVaporResistanceFactor;
 			} 
 			set
@@ -117,8 +117,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _isothermalMoistureCapacity;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _isothermalMoistureCapacity;
+				Activate();
 				return _isothermalMoistureCapacity;
 			} 
 			set
@@ -131,8 +131,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _vaporPermeability;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _vaporPermeability;
+				Activate();
 				return _vaporPermeability;
 			} 
 			set
@@ -145,8 +145,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _moistureDiffusivity;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _moistureDiffusivity;
+				Activate();
 				return _moistureDiffusivity;
 			} 
 			set

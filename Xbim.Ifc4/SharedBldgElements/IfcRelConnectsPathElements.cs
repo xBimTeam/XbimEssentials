@@ -81,8 +81,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingPriorities;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingPriorities;
+				Activate();
 				return _relatingPriorities;
 			} 
 		}	
@@ -91,8 +91,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedPriorities;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedPriorities;
+				Activate();
 				return _relatedPriorities;
 			} 
 		}	
@@ -101,8 +101,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedConnectionType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedConnectionType;
+				Activate();
 				return _relatedConnectionType;
 			} 
 			set
@@ -115,8 +115,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingConnectionType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingConnectionType;
+				Activate();
 				return _relatingConnectionType;
 			} 
 			set

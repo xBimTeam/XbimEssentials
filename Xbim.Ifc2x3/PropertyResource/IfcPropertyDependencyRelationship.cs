@@ -94,8 +94,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _dependingProperty;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _dependingProperty;
+				Activate();
 				return _dependingProperty;
 			} 
 			set
@@ -111,8 +111,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _dependantProperty;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _dependantProperty;
+				Activate();
 				return _dependantProperty;
 			} 
 			set
@@ -127,8 +127,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
@@ -141,8 +141,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
@@ -155,8 +155,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _expression;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _expression;
+				Activate();
 				return _expression;
 			} 
 			set

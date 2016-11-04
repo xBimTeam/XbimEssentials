@@ -69,8 +69,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _pnt;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _pnt;
+				Activate();
 				return _pnt;
 			} 
 			set
@@ -85,8 +85,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _dir;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _dir;
+				Activate();
 				return _dir;
 			} 
 			set

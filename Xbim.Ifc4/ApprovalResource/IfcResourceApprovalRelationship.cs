@@ -69,8 +69,8 @@ namespace Xbim.Ifc4.ApprovalResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedResourceObjects;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedResourceObjects;
+				Activate();
 				return _relatedResourceObjects;
 			} 
 		}	
@@ -80,8 +80,8 @@ namespace Xbim.Ifc4.ApprovalResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingApproval;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingApproval;
+				Activate();
 				return _relatingApproval;
 			} 
 			set

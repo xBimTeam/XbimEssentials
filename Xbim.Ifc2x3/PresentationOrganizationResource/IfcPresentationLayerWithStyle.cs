@@ -81,8 +81,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _layerOn;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _layerOn;
+				Activate();
 				return _layerOn;
 			} 
 			set
@@ -95,8 +95,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _layerFrozen;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _layerFrozen;
+				Activate();
 				return _layerFrozen;
 			} 
 			set
@@ -109,8 +109,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _layerBlocked;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _layerBlocked;
+				Activate();
 				return _layerBlocked;
 			} 
 			set
@@ -123,8 +123,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _layerStyles;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _layerStyles;
+				Activate();
 				return _layerStyles;
 			} 
 		}	

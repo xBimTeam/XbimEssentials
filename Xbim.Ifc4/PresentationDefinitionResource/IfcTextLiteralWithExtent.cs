@@ -68,8 +68,8 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _extent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _extent;
+				Activate();
 				return _extent;
 			} 
 			set
@@ -84,8 +84,8 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _boxAlignment;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _boxAlignment;
+				Activate();
 				return _boxAlignment;
 			} 
 			set

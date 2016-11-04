@@ -104,8 +104,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _basisSurface;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _basisSurface;
+				Activate();
 				return _basisSurface;
 			} 
 			set
@@ -120,8 +120,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _u1;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _u1;
+				Activate();
 				return _u1;
 			} 
 			set
@@ -134,8 +134,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _v1;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _v1;
+				Activate();
 				return _v1;
 			} 
 			set
@@ -148,8 +148,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _u2;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _u2;
+				Activate();
 				return _u2;
 			} 
 			set
@@ -162,8 +162,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _v2;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _v2;
+				Activate();
 				return _v2;
 			} 
 			set
@@ -176,8 +176,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _usense;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _usense;
+				Activate();
 				return _usense;
 			} 
 			set
@@ -190,8 +190,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _vsense;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _vsense;
+				Activate();
 				return _vsense;
 			} 
 			set

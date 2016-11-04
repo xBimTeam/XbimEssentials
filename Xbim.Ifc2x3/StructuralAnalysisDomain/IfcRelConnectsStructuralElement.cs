@@ -72,8 +72,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingElement;
+				Activate();
 				return _relatingElement;
 			} 
 			set
@@ -89,8 +89,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedStructuralMember;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedStructuralMember;
+				Activate();
 				return _relatedStructuralMember;
 			} 
 			set

@@ -70,8 +70,8 @@ namespace Xbim.Ifc4.MeasureResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _unit;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _unit;
+				Activate();
 				return _unit;
 			} 
 			set
@@ -86,8 +86,8 @@ namespace Xbim.Ifc4.MeasureResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _exponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _exponent;
+				Activate();
 				return _exponent;
 			} 
 			set

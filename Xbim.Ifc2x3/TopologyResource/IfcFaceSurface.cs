@@ -70,8 +70,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _faceSurface;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _faceSurface;
+				Activate();
 				return _faceSurface;
 			} 
 			set
@@ -86,8 +86,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _sameSense;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _sameSense;
+				Activate();
 				return _sameSense;
 			} 
 			set

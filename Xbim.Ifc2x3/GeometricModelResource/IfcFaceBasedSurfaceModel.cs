@@ -63,8 +63,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _fbsmFaces;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _fbsmFaces;
+				Activate();
 				return _fbsmFaces;
 			} 
 		}	

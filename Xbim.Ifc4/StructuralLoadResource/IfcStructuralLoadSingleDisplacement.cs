@@ -96,8 +96,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _displacementX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _displacementX;
+				Activate();
 				return _displacementX;
 			} 
 			set
@@ -110,8 +110,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _displacementY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _displacementY;
+				Activate();
 				return _displacementY;
 			} 
 			set
@@ -124,8 +124,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _displacementZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _displacementZ;
+				Activate();
 				return _displacementZ;
 			} 
 			set
@@ -138,8 +138,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rotationalDisplacementRX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rotationalDisplacementRX;
+				Activate();
 				return _rotationalDisplacementRX;
 			} 
 			set
@@ -152,8 +152,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rotationalDisplacementRY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rotationalDisplacementRY;
+				Activate();
 				return _rotationalDisplacementRY;
 			} 
 			set
@@ -166,8 +166,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rotationalDisplacementRZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rotationalDisplacementRZ;
+				Activate();
 				return _rotationalDisplacementRZ;
 			} 
 			set

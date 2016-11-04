@@ -64,8 +64,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _material;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _material;
+				Activate();
 				return _material;
 			} 
 			set

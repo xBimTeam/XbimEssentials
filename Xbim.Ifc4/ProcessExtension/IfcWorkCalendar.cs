@@ -74,8 +74,8 @@ namespace Xbim.Ifc4.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _workingTimes;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _workingTimes;
+				Activate();
 				return _workingTimes;
 			} 
 		}	
@@ -84,8 +84,8 @@ namespace Xbim.Ifc4.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _exceptionTimes;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _exceptionTimes;
+				Activate();
 				return _exceptionTimes;
 			} 
 		}	
@@ -94,8 +94,8 @@ namespace Xbim.Ifc4.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set

@@ -82,8 +82,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _combustionTemperature;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _combustionTemperature;
+				Activate();
 				return _combustionTemperature;
 			} 
 			set
@@ -96,8 +96,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _carbonContent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _carbonContent;
+				Activate();
 				return _carbonContent;
 			} 
 			set
@@ -110,8 +110,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _lowerHeatingValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _lowerHeatingValue;
+				Activate();
 				return _lowerHeatingValue;
 			} 
 			set
@@ -124,8 +124,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _higherHeatingValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _higherHeatingValue;
+				Activate();
 				return _higherHeatingValue;
 			} 
 			set

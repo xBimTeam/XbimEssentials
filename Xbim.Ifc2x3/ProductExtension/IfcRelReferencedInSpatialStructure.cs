@@ -69,8 +69,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedElements;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedElements;
+				Activate();
 				return _relatedElements;
 			} 
 		}	
@@ -80,8 +80,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingStructure;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingStructure;
+				Activate();
 				return _relatingStructure;
 			} 
 			set

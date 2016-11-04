@@ -93,8 +93,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _operationType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _operationType;
+				Activate();
 				return _operationType;
 			} 
 			set
@@ -107,8 +107,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _panelPosition;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _panelPosition;
+				Activate();
 				return _panelPosition;
 			} 
 			set
@@ -121,8 +121,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _frameDepth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _frameDepth;
+				Activate();
 				return _frameDepth;
 			} 
 			set
@@ -135,8 +135,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _frameThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _frameThickness;
+				Activate();
 				return _frameThickness;
 			} 
 			set
@@ -149,8 +149,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _shapeAspectStyle;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _shapeAspectStyle;
+				Activate();
 				return _shapeAspectStyle;
 			} 
 			set

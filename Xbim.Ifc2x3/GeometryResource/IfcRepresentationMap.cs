@@ -74,8 +74,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _mappingOrigin;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _mappingOrigin;
+				Activate();
 				return _mappingOrigin;
 			} 
 			set
@@ -91,8 +91,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _mappedRepresentation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _mappedRepresentation;
+				Activate();
 				return _mappedRepresentation;
 			} 
 			set

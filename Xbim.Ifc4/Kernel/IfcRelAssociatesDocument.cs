@@ -63,8 +63,8 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingDocument;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingDocument;
+				Activate();
 				return _relatingDocument;
 			} 
 			set

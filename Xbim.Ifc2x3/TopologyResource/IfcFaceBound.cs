@@ -68,8 +68,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _bound;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _bound;
+				Activate();
 				return _bound;
 			} 
 			set
@@ -84,8 +84,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _orientation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _orientation;
+				Activate();
 				return _orientation;
 			} 
 			set

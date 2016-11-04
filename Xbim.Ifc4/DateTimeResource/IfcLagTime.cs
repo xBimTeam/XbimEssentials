@@ -68,8 +68,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _lagValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _lagValue;
+				Activate();
 				return _lagValue;
 			} 
 			set
@@ -82,8 +82,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _durationType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _durationType;
+				Activate();
 				return _durationType;
 			} 
 			set

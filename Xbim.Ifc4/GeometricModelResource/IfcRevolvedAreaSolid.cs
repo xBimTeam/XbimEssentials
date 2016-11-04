@@ -71,8 +71,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _axis;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _axis;
+				Activate();
 				return _axis;
 			} 
 			set
@@ -87,8 +87,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _angle;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _angle;
+				Activate();
 				return _angle;
 			} 
 			set

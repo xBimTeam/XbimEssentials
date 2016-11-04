@@ -61,8 +61,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _warpingMoment;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _warpingMoment;
+				Activate();
 				return _warpingMoment;
 			} 
 			set

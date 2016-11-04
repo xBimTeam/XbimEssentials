@@ -62,8 +62,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _directionRatios;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _directionRatios;
+				Activate();
 				return _directionRatios;
 			} 
 		}	

@@ -75,8 +75,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _mainPlaneAngle;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _mainPlaneAngle;
+				Activate();
 				return _mainPlaneAngle;
 			} 
 			set
@@ -89,8 +89,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _secondaryPlaneAngle;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _secondaryPlaneAngle;
+				Activate();
 				return _secondaryPlaneAngle;
 			} 
 		}	
@@ -99,8 +99,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _luminousIntensity;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _luminousIntensity;
+				Activate();
 				return _luminousIntensity;
 			} 
 		}	

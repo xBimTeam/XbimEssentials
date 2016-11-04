@@ -77,8 +77,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _translationalStiffnessByAreaX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _translationalStiffnessByAreaX;
+				Activate();
 				return _translationalStiffnessByAreaX;
 			} 
 			set
@@ -91,8 +91,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _translationalStiffnessByAreaY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _translationalStiffnessByAreaY;
+				Activate();
 				return _translationalStiffnessByAreaY;
 			} 
 			set
@@ -105,8 +105,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _translationalStiffnessByAreaZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _translationalStiffnessByAreaZ;
+				Activate();
 				return _translationalStiffnessByAreaZ;
 			} 
 			set

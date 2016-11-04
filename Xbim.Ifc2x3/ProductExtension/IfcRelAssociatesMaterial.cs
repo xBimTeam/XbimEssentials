@@ -63,8 +63,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingMaterial;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingMaterial;
+				Activate();
 				return _relatingMaterial;
 			} 
 			set

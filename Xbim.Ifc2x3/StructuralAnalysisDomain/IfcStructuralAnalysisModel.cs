@@ -82,8 +82,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
@@ -96,8 +96,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _orientationOf2DPlane;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _orientationOf2DPlane;
+				Activate();
 				return _orientationOf2DPlane;
 			} 
 			set
@@ -113,8 +113,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _loadedBy;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _loadedBy;
+				Activate();
 				return _loadedBy;
 			} 
 		}	
@@ -124,8 +124,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _hasResults;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _hasResults;
+				Activate();
 				return _hasResults;
 			} 
 		}	

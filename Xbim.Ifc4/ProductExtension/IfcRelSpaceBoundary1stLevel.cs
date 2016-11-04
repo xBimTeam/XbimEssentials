@@ -64,8 +64,8 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _parentBoundary;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _parentBoundary;
+				Activate();
 				return _parentBoundary;
 			} 
 			set

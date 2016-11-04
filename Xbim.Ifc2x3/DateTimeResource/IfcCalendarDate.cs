@@ -77,8 +77,8 @@ namespace Xbim.Ifc2x3.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _dayComponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _dayComponent;
+				Activate();
 				return _dayComponent;
 			} 
 			set
@@ -91,8 +91,8 @@ namespace Xbim.Ifc2x3.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _monthComponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _monthComponent;
+				Activate();
 				return _monthComponent;
 			} 
 			set
@@ -105,8 +105,8 @@ namespace Xbim.Ifc2x3.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _yearComponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _yearComponent;
+				Activate();
 				return _yearComponent;
 			} 
 			set

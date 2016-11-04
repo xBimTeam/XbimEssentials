@@ -86,8 +86,8 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
@@ -100,8 +100,8 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
@@ -115,8 +115,8 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingDraughtingCallout;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingDraughtingCallout;
+				Activate();
 				return _relatingDraughtingCallout;
 			} 
 			set
@@ -132,8 +132,8 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedDraughtingCallout;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedDraughtingCallout;
+				Activate();
 				return _relatedDraughtingCallout;
 			} 
 			set

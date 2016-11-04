@@ -78,8 +78,8 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _moveFrom;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _moveFrom;
+				Activate();
 				return _moveFrom;
 			} 
 			set
@@ -94,8 +94,8 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _moveTo;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _moveTo;
+				Activate();
 				return _moveTo;
 			} 
 			set
@@ -110,8 +110,8 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _punchList;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _punchList;
+				Activate();
 				return _punchList;
 			} 
 		}	

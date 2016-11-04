@@ -117,8 +117,8 @@ namespace Xbim.Ifc4.UtilityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _owningUser;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _owningUser;
+				Activate();
 				return _owningUser;
 			} 
 			set
@@ -133,8 +133,8 @@ namespace Xbim.Ifc4.UtilityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _owningApplication;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _owningApplication;
+				Activate();
 				return _owningApplication;
 			} 
 			set
@@ -149,8 +149,8 @@ namespace Xbim.Ifc4.UtilityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _state;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _state;
+				Activate();
 				return _state;
 			} 
 			set
@@ -163,8 +163,8 @@ namespace Xbim.Ifc4.UtilityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _changeAction;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _changeAction;
+				Activate();
 				return _changeAction;
 			} 
 			set
@@ -177,8 +177,8 @@ namespace Xbim.Ifc4.UtilityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _lastModifiedDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _lastModifiedDate;
+				Activate();
 				return _lastModifiedDate;
 			} 
 			set
@@ -191,8 +191,8 @@ namespace Xbim.Ifc4.UtilityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _lastModifyingUser;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _lastModifyingUser;
+				Activate();
 				return _lastModifyingUser;
 			} 
 			set
@@ -207,8 +207,8 @@ namespace Xbim.Ifc4.UtilityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _lastModifyingApplication;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _lastModifyingApplication;
+				Activate();
 				return _lastModifyingApplication;
 			} 
 			set
@@ -223,8 +223,8 @@ namespace Xbim.Ifc4.UtilityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _creationDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _creationDate;
+				Activate();
 				return _creationDate;
 			} 
 			set

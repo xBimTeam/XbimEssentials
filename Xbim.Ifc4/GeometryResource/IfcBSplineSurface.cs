@@ -105,8 +105,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _uDegree;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _uDegree;
+				Activate();
 				return _uDegree;
 			} 
 			set
@@ -119,8 +119,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _vDegree;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _vDegree;
+				Activate();
 				return _vDegree;
 			} 
 			set
@@ -133,8 +133,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _controlPointsList;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _controlPointsList;
+				Activate();
 				return _controlPointsList;
 			} 
 		}	
@@ -143,8 +143,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _surfaceForm;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _surfaceForm;
+				Activate();
 				return _surfaceForm;
 			} 
 			set
@@ -157,8 +157,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _uClosed;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _uClosed;
+				Activate();
 				return _uClosed;
 			} 
 			set
@@ -171,8 +171,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _vClosed;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _vClosed;
+				Activate();
 				return _vClosed;
 			} 
 			set
@@ -185,8 +185,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _selfIntersect;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _selfIntersect;
+				Activate();
 				return _selfIntersect;
 			} 
 			set

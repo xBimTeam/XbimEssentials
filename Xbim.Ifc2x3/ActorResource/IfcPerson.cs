@@ -110,8 +110,8 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _id;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _id;
+				Activate();
 				return _id;
 			} 
 			set
@@ -124,8 +124,8 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _familyName;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _familyName;
+				Activate();
 				return _familyName;
 			} 
 			set
@@ -138,8 +138,8 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _givenName;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _givenName;
+				Activate();
 				return _givenName;
 			} 
 			set
@@ -152,8 +152,8 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _middleNames;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _middleNames;
+				Activate();
 				return _middleNames;
 			} 
 		}	
@@ -162,8 +162,8 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _prefixTitles;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _prefixTitles;
+				Activate();
 				return _prefixTitles;
 			} 
 		}	
@@ -172,8 +172,8 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _suffixTitles;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _suffixTitles;
+				Activate();
 				return _suffixTitles;
 			} 
 		}	
@@ -182,8 +182,8 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _roles;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _roles;
+				Activate();
 				return _roles;
 			} 
 		}	
@@ -193,8 +193,8 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _addresses;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _addresses;
+				Activate();
 				return _addresses;
 			} 
 		}	

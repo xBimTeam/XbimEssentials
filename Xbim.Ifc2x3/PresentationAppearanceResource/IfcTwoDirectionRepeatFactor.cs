@@ -62,8 +62,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _secondRepeatFactor;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _secondRepeatFactor;
+				Activate();
 				return _secondRepeatFactor;
 			} 
 			set

@@ -62,8 +62,8 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _placement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _placement;
+				Activate();
 				return _placement;
 			} 
 			set

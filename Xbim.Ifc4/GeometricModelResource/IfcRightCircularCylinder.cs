@@ -68,8 +68,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _height;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _height;
+				Activate();
 				return _height;
 			} 
 			set
@@ -82,8 +82,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _radius;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _radius;
+				Activate();
 				return _radius;
 			} 
 			set

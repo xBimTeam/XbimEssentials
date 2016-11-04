@@ -75,8 +75,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _planarForceX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _planarForceX;
+				Activate();
 				return _planarForceX;
 			} 
 			set
@@ -89,8 +89,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _planarForceY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _planarForceY;
+				Activate();
 				return _planarForceY;
 			} 
 			set
@@ -103,8 +103,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _planarForceZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _planarForceZ;
+				Activate();
 				return _planarForceZ;
 			} 
 			set

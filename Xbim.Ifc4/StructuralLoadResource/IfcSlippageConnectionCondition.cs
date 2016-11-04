@@ -75,8 +75,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _slippageX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _slippageX;
+				Activate();
 				return _slippageX;
 			} 
 			set
@@ -89,8 +89,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _slippageY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _slippageY;
+				Activate();
 				return _slippageY;
 			} 
 			set
@@ -103,8 +103,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _slippageZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _slippageZ;
+				Activate();
 				return _slippageZ;
 			} 
 			set

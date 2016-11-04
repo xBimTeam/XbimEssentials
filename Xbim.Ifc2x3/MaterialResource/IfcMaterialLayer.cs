@@ -81,8 +81,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _material;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _material;
+				Activate();
 				return _material;
 			} 
 			set
@@ -97,8 +97,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _layerThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _layerThickness;
+				Activate();
 				return _layerThickness;
 			} 
 			set
@@ -111,8 +111,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _isVentilated;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _isVentilated;
+				Activate();
 				return _isVentilated;
 			} 
 			set

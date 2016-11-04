@@ -85,8 +85,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
@@ -99,8 +99,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _lightColour;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _lightColour;
+				Activate();
 				return _lightColour;
 			} 
 			set
@@ -115,8 +115,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _ambientIntensity;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _ambientIntensity;
+				Activate();
 				return _ambientIntensity;
 			} 
 			set
@@ -129,8 +129,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _intensity;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _intensity;
+				Activate();
 				return _intensity;
 			} 
 			set

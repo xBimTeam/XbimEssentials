@@ -62,8 +62,8 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _conditionCoordinateSystem;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _conditionCoordinateSystem;
+				Activate();
 				return _conditionCoordinateSystem;
 			} 
 			set

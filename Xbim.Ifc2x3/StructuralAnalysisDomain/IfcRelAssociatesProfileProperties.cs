@@ -80,8 +80,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingProfileProperties;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingProfileProperties;
+				Activate();
 				return _relatingProfileProperties;
 			} 
 			set
@@ -96,8 +96,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _profileSectionLocation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _profileSectionLocation;
+				Activate();
 				return _profileSectionLocation;
 			} 
 			set
@@ -112,8 +112,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _profileOrientation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _profileOrientation;
+				Activate();
 				return _profileOrientation;
 			} 
 			set

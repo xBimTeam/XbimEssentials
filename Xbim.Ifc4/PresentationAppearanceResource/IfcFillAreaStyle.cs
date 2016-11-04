@@ -67,8 +67,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _fillStyles;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _fillStyles;
+				Activate();
 				return _fillStyles;
 			} 
 		}	
@@ -77,8 +77,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _modelorDraughting;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _modelorDraughting;
+				Activate();
 				return _modelorDraughting;
 			} 
 			set

@@ -69,8 +69,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _distributionPointFunction;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _distributionPointFunction;
+				Activate();
 				return _distributionPointFunction;
 			} 
 			set
@@ -83,8 +83,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _userDefinedFunction;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _userDefinedFunction;
+				Activate();
 				return _userDefinedFunction;
 			} 
 			set

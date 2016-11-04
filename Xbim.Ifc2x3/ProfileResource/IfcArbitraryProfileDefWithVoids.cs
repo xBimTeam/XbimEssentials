@@ -60,8 +60,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _innerCurves;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _innerCurves;
+				Activate();
 				return _innerCurves;
 			} 
 		}	

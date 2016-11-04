@@ -94,8 +94,8 @@ namespace Xbim.Ifc4.UtilityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _identifier;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _identifier;
+				Activate();
 				return _identifier;
 			} 
 			set
@@ -108,8 +108,8 @@ namespace Xbim.Ifc4.UtilityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
@@ -122,8 +122,8 @@ namespace Xbim.Ifc4.UtilityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
@@ -136,8 +136,8 @@ namespace Xbim.Ifc4.UtilityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _unit;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _unit;
+				Activate();
 				return _unit;
 			} 
 			set
@@ -152,8 +152,8 @@ namespace Xbim.Ifc4.UtilityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _referencePath;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _referencePath;
+				Activate();
 				return _referencePath;
 			} 
 			set

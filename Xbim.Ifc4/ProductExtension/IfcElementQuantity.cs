@@ -69,8 +69,8 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _methodOfMeasurement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _methodOfMeasurement;
+				Activate();
 				return _methodOfMeasurement;
 			} 
 			set
@@ -83,8 +83,8 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _quantities;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _quantities;
+				Activate();
 				return _quantities;
 			} 
 		}	

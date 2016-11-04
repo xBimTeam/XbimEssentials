@@ -62,8 +62,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _value;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _value;
+				Activate();
 				return _value;
 			} 
 			set

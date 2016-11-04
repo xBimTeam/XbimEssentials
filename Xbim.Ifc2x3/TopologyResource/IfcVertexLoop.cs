@@ -61,8 +61,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _loopVertex;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _loopVertex;
+				Activate();
 				return _loopVertex;
 			} 
 			set

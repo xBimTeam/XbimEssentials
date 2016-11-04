@@ -111,8 +111,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _serialNumber;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _serialNumber;
+				Activate();
 				return _serialNumber;
 			} 
 			set
@@ -125,8 +125,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _installationDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _installationDate;
+				Activate();
 				return _installationDate;
 			} 
 			set
@@ -139,8 +139,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _warrantyStartDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _warrantyStartDate;
+				Activate();
 				return _warrantyStartDate;
 			} 
 			set
@@ -153,8 +153,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _tagNumber;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _tagNumber;
+				Activate();
 				return _tagNumber;
 			} 
 			set
@@ -167,8 +167,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _barCode;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _barCode;
+				Activate();
 				return _barCode;
 			} 
 			set
@@ -181,8 +181,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _assetIdentifier;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _assetIdentifier;
+				Activate();
 				return _assetIdentifier;
 			} 
 			set
@@ -196,8 +196,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _type;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _type;
+				Activate();
 				return _type;
 			} 
 			set
@@ -213,8 +213,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _spaces;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _spaces;
+				Activate();
 				return _spaces;
 			} 
 		}	

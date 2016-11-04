@@ -94,8 +94,8 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
@@ -108,8 +108,8 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _actionType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _actionType;
+				Activate();
 				return _actionType;
 			} 
 			set
@@ -122,8 +122,8 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _actionSource;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _actionSource;
+				Activate();
 				return _actionSource;
 			} 
 			set
@@ -136,8 +136,8 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _coefficient;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _coefficient;
+				Activate();
 				return _coefficient;
 			} 
 			set
@@ -150,8 +150,8 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _purpose;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _purpose;
+				Activate();
 				return _purpose;
 			} 
 			set

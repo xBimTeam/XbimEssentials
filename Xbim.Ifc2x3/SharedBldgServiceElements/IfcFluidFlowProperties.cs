@@ -170,8 +170,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _propertySource;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _propertySource;
+				Activate();
 				return _propertySource;
 			} 
 			set
@@ -184,8 +184,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _flowConditionTimeSeries;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _flowConditionTimeSeries;
+				Activate();
 				return _flowConditionTimeSeries;
 			} 
 			set
@@ -200,8 +200,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _velocityTimeSeries;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _velocityTimeSeries;
+				Activate();
 				return _velocityTimeSeries;
 			} 
 			set
@@ -216,8 +216,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _flowrateTimeSeries;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _flowrateTimeSeries;
+				Activate();
 				return _flowrateTimeSeries;
 			} 
 			set
@@ -232,8 +232,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _fluid;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _fluid;
+				Activate();
 				return _fluid;
 			} 
 			set
@@ -248,8 +248,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _pressureTimeSeries;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _pressureTimeSeries;
+				Activate();
 				return _pressureTimeSeries;
 			} 
 			set
@@ -264,8 +264,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _userDefinedPropertySource;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _userDefinedPropertySource;
+				Activate();
 				return _userDefinedPropertySource;
 			} 
 			set
@@ -278,8 +278,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _temperatureSingleValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _temperatureSingleValue;
+				Activate();
 				return _temperatureSingleValue;
 			} 
 			set
@@ -292,8 +292,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _wetBulbTemperatureSingleValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _wetBulbTemperatureSingleValue;
+				Activate();
 				return _wetBulbTemperatureSingleValue;
 			} 
 			set
@@ -306,8 +306,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _wetBulbTemperatureTimeSeries;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _wetBulbTemperatureTimeSeries;
+				Activate();
 				return _wetBulbTemperatureTimeSeries;
 			} 
 			set
@@ -322,8 +322,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _temperatureTimeSeries;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _temperatureTimeSeries;
+				Activate();
 				return _temperatureTimeSeries;
 			} 
 			set
@@ -338,8 +338,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _flowrateSingleValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _flowrateSingleValue;
+				Activate();
 				return _flowrateSingleValue;
 			} 
 			set
@@ -352,8 +352,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _flowConditionSingleValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _flowConditionSingleValue;
+				Activate();
 				return _flowConditionSingleValue;
 			} 
 			set
@@ -366,8 +366,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _velocitySingleValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _velocitySingleValue;
+				Activate();
 				return _velocitySingleValue;
 			} 
 			set
@@ -380,8 +380,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _pressureSingleValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _pressureSingleValue;
+				Activate();
 				return _pressureSingleValue;
 			} 
 			set

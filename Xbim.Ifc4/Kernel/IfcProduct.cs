@@ -74,8 +74,8 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _objectPlacement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _objectPlacement;
+				Activate();
 				return _objectPlacement;
 			} 
 			set
@@ -91,8 +91,8 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _representation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _representation;
+				Activate();
 				return _representation;
 			} 
 			set

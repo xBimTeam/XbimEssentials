@@ -71,8 +71,8 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingPort;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingPort;
+				Activate();
 				return _relatingPort;
 			} 
 			set
@@ -88,8 +88,8 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedElement;
+				Activate();
 				return _relatedElement;
 			} 
 			set

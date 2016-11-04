@@ -97,8 +97,8 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _identification;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _identification;
+				Activate();
 				return _identification;
 			} 
 			set
@@ -111,8 +111,8 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
@@ -125,8 +125,8 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
@@ -139,8 +139,8 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _roles;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _roles;
+				Activate();
 				return _roles;
 			} 
 		}	
@@ -150,8 +150,8 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _addresses;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _addresses;
+				Activate();
 				return _addresses;
 			} 
 		}	

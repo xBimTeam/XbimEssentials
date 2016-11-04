@@ -82,8 +82,8 @@ namespace Xbim.Ifc2x3.QuantityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _hasQuantities;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _hasQuantities;
+				Activate();
 				return _hasQuantities;
 			} 
 		}	
@@ -92,8 +92,8 @@ namespace Xbim.Ifc2x3.QuantityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _discrimination;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _discrimination;
+				Activate();
 				return _discrimination;
 			} 
 			set
@@ -106,8 +106,8 @@ namespace Xbim.Ifc2x3.QuantityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _quality;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _quality;
+				Activate();
 				return _quality;
 			} 
 			set
@@ -120,8 +120,8 @@ namespace Xbim.Ifc2x3.QuantityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _usage;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _usage;
+				Activate();
 				return _usage;
 			} 
 			set

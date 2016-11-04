@@ -103,8 +103,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _isPotable;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _isPotable;
+				Activate();
 				return _isPotable;
 			} 
 			set
@@ -117,8 +117,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _hardness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _hardness;
+				Activate();
 				return _hardness;
 			} 
 			set
@@ -131,8 +131,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _alkalinityConcentration;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _alkalinityConcentration;
+				Activate();
 				return _alkalinityConcentration;
 			} 
 			set
@@ -145,8 +145,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _acidityConcentration;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _acidityConcentration;
+				Activate();
 				return _acidityConcentration;
 			} 
 			set
@@ -159,8 +159,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _impuritiesContent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _impuritiesContent;
+				Activate();
 				return _impuritiesContent;
 			} 
 			set
@@ -173,8 +173,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _pHLevel;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _pHLevel;
+				Activate();
 				return _pHLevel;
 			} 
 			set
@@ -187,8 +187,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _dissolvedSolidsContent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _dissolvedSolidsContent;
+				Activate();
 				return _dissolvedSolidsContent;
 			} 
 			set

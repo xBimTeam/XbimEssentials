@@ -83,7 +83,7 @@ namespace Xbim.Common.Collections
 
             //activate owning entity for write in case it is not active yet
             if (!OwningEntity.Activated)
-                OwningEntity.Activate();
+                Model.Activate(OwningEntity);
 
             var items = values as T[] ?? enumerable.ToArray();
             Action doAction = () =>
@@ -190,7 +190,7 @@ namespace Xbim.Common.Collections
 
             //activate owning entity for write in case it is not active yet
             if (!OwningEntity.Activated)
-                OwningEntity.Activate();
+                Model.Activate(OwningEntity);
 
             Action doAction = () =>
             {
@@ -223,7 +223,7 @@ namespace Xbim.Common.Collections
                 throw new Exception("Operation out of transaction");
 
             if (!OwningEntity.Activated)
-                OwningEntity.Activate();
+                Model.Activate(OwningEntity);
 
             var oldItems = Internal.ToArray();
             Action doAction = () =>
@@ -270,7 +270,7 @@ namespace Xbim.Common.Collections
                 throw new Exception("Operation out of transaction");
 
             if (!OwningEntity.Activated)
-                OwningEntity.Activate();
+                Model.Activate(OwningEntity);
 
 
             Action doAction = () =>
@@ -396,7 +396,7 @@ namespace Xbim.Common.Collections
                     throw new XbimException("Cross model entity assignment");
 
                 if (!OwningEntity.Activated)
-                    OwningEntity.Activate();
+                    Model.Activate(OwningEntity);
 
                 var oldValue = Internal[index];
                 Action doAction = () =>
@@ -437,7 +437,7 @@ namespace Xbim.Common.Collections
                 throw new XbimException("Cross model entity assignment");
 
             if (!OwningEntity.Activated)
-                OwningEntity.Activate();
+                Model.Activate(OwningEntity);
 
             Action doAction = () =>
             {

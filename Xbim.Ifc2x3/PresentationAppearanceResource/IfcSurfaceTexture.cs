@@ -85,8 +85,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _repeatS;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _repeatS;
+				Activate();
 				return _repeatS;
 			} 
 			set
@@ -99,8 +99,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _repeatT;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _repeatT;
+				Activate();
 				return _repeatT;
 			} 
 			set
@@ -113,8 +113,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _textureType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _textureType;
+				Activate();
 				return _textureType;
 			} 
 			set
@@ -127,8 +127,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _textureTransform;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _textureTransform;
+				Activate();
 				return _textureTransform;
 			} 
 			set

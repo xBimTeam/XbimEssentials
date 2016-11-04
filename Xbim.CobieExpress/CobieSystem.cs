@@ -68,8 +68,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _components;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _components;
+				Activate();
 				return _components;
 			} 
 		}	
@@ -79,8 +79,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _facility;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _facility;
+				Activate();
 				return _facility;
 			} 
 			set

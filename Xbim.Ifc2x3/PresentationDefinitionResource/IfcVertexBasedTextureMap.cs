@@ -68,8 +68,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _textureVertices;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _textureVertices;
+				Activate();
 				return _textureVertices;
 			} 
 		}	
@@ -78,8 +78,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _texturePoints;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _texturePoints;
+				Activate();
 				return _texturePoints;
 			} 
 		}	

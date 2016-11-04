@@ -61,8 +61,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _referencedSource;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _referencedSource;
+				Activate();
 				return _referencedSource;
 			} 
 			set

@@ -23,13 +23,6 @@ namespace Xbim.Common
 		bool Activated { get; }
 
         /// <summary>
-        /// This function should only be called by external code if you know very well what you are doing.
-        /// Otherwise it is called by the entity internally when you first access the internal data and it has
-        /// not been activated yet.
-        /// </summary>
-        void Activate();
-
-        /// <summary>
         /// Cached reflection information for this type of object
         /// </summary>
 		ExpressType ExpressType { get; }

@@ -62,8 +62,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _scale2;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _scale2;
+				Activate();
 				return _scale2;
 			} 
 			set

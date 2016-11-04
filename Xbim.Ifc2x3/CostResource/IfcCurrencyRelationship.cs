@@ -97,8 +97,8 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingMonetaryUnit;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingMonetaryUnit;
+				Activate();
 				return _relatingMonetaryUnit;
 			} 
 			set
@@ -113,8 +113,8 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedMonetaryUnit;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedMonetaryUnit;
+				Activate();
 				return _relatedMonetaryUnit;
 			} 
 			set
@@ -129,8 +129,8 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _exchangeRate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _exchangeRate;
+				Activate();
 				return _exchangeRate;
 			} 
 			set
@@ -143,8 +143,8 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rateDateTime;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rateDateTime;
+				Activate();
 				return _rateDateTime;
 			} 
 			set
@@ -159,8 +159,8 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rateSource;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rateSource;
+				Activate();
 				return _rateSource;
 			} 
 			set

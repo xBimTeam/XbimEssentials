@@ -67,8 +67,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _timeStep;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _timeStep;
+				Activate();
 				return _timeStep;
 			} 
 			set
@@ -81,8 +81,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _values;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _values;
+				Activate();
 				return _values;
 			} 
 		}	

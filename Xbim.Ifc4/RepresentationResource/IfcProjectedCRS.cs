@@ -76,8 +76,8 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _mapProjection;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _mapProjection;
+				Activate();
 				return _mapProjection;
 			} 
 			set
@@ -90,8 +90,8 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _mapZone;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _mapZone;
+				Activate();
 				return _mapZone;
 			} 
 			set
@@ -104,8 +104,8 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _mapUnit;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _mapUnit;
+				Activate();
 				return _mapUnit;
 			} 
 			set

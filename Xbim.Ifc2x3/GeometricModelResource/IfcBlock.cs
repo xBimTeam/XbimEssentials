@@ -75,8 +75,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _xLength;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _xLength;
+				Activate();
 				return _xLength;
 			} 
 			set
@@ -89,8 +89,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _yLength;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _yLength;
+				Activate();
 				return _yLength;
 			} 
 			set
@@ -103,8 +103,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _zLength;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _zLength;
+				Activate();
 				return _zLength;
 			} 
 			set

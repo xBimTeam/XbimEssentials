@@ -67,8 +67,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _coordIndex;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _coordIndex;
+				Activate();
 				return _coordIndex;
 			} 
 		}	
@@ -77,8 +77,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _normalIndex;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _normalIndex;
+				Activate();
 				return _normalIndex;
 			} 
 		}	

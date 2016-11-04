@@ -60,8 +60,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _weightsData;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _weightsData;
+				Activate();
 				return _weightsData;
 			} 
 		}	

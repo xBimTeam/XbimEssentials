@@ -86,8 +86,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _mappedTo;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _mappedTo;
+				Activate();
 				return _mappedTo;
 			} 
 			set
@@ -102,8 +102,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _opacity;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _opacity;
+				Activate();
 				return _opacity;
 			} 
 			set
@@ -116,8 +116,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _colours;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _colours;
+				Activate();
 				return _colours;
 			} 
 			set
@@ -132,8 +132,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _colourIndex;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _colourIndex;
+				Activate();
 				return _colourIndex;
 			} 
 		}	

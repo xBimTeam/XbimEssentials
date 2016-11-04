@@ -77,8 +77,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _fileExtension;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _fileExtension;
+				Activate();
 				return _fileExtension;
 			} 
 			set
@@ -91,8 +91,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _mimeContentType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _mimeContentType;
+				Activate();
 				return _mimeContentType;
 			} 
 			set
@@ -105,8 +105,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _mimeSubtype;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _mimeSubtype;
+				Activate();
 				return _mimeSubtype;
 			} 
 			set

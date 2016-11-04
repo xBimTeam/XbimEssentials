@@ -105,8 +105,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingStructuralMember;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingStructuralMember;
+				Activate();
 				return _relatingStructuralMember;
 			} 
 			set
@@ -122,8 +122,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedStructuralConnection;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedStructuralConnection;
+				Activate();
 				return _relatedStructuralConnection;
 			} 
 			set
@@ -138,8 +138,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _appliedCondition;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _appliedCondition;
+				Activate();
 				return _appliedCondition;
 			} 
 			set
@@ -154,8 +154,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _additionalConditions;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _additionalConditions;
+				Activate();
 				return _additionalConditions;
 			} 
 			set
@@ -170,8 +170,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _supportedLength;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _supportedLength;
+				Activate();
 				return _supportedLength;
 			} 
 			set
@@ -184,8 +184,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _conditionCoordinateSystem;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _conditionCoordinateSystem;
+				Activate();
 				return _conditionCoordinateSystem;
 			} 
 			set

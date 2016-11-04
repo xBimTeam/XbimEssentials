@@ -98,8 +98,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _longitudinalStartPosition;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _longitudinalStartPosition;
+				Activate();
 				return _longitudinalStartPosition;
 			} 
 			set
@@ -112,8 +112,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _longitudinalEndPosition;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _longitudinalEndPosition;
+				Activate();
 				return _longitudinalEndPosition;
 			} 
 			set
@@ -126,8 +126,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _transversePosition;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _transversePosition;
+				Activate();
 				return _transversePosition;
 			} 
 			set
@@ -140,8 +140,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _reinforcementRole;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _reinforcementRole;
+				Activate();
 				return _reinforcementRole;
 			} 
 			set
@@ -154,8 +154,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _sectionDefinition;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _sectionDefinition;
+				Activate();
 				return _sectionDefinition;
 			} 
 			set
@@ -170,8 +170,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _crossSectionReinforcementDefinitions;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _crossSectionReinforcementDefinitions;
+				Activate();
 				return _crossSectionReinforcementDefinitions;
 			} 
 		}	

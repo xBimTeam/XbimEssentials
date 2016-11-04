@@ -92,8 +92,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _shapeRepresentations;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _shapeRepresentations;
+				Activate();
 				return _shapeRepresentations;
 			} 
 		}	
@@ -102,8 +102,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
@@ -116,8 +116,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
@@ -130,8 +130,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _productDefinitional;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _productDefinitional;
+				Activate();
 				return _productDefinitional;
 			} 
 			set
@@ -145,8 +145,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _partOfProductDefinitionShape;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _partOfProductDefinitionShape;
+				Activate();
 				return _partOfProductDefinitionShape;
 			} 
 			set

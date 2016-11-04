@@ -121,8 +121,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
@@ -135,8 +135,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
@@ -149,8 +149,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _constraintGrade;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _constraintGrade;
+				Activate();
 				return _constraintGrade;
 			} 
 			set
@@ -163,8 +163,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _constraintSource;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _constraintSource;
+				Activate();
 				return _constraintSource;
 			} 
 			set
@@ -177,8 +177,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _creatingActor;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _creatingActor;
+				Activate();
 				return _creatingActor;
 			} 
 			set
@@ -193,8 +193,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _creationTime;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _creationTime;
+				Activate();
 				return _creationTime;
 			} 
 			set
@@ -209,8 +209,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _userDefinedGrade;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _userDefinedGrade;
+				Activate();
 				return _userDefinedGrade;
 			} 
 			set

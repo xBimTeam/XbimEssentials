@@ -67,8 +67,8 @@ namespace Xbim.Ifc4.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _usageName;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _usageName;
+				Activate();
 				return _usageName;
 			} 
 			set
@@ -82,8 +82,8 @@ namespace Xbim.Ifc4.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _hasProperties;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _hasProperties;
+				Activate();
 				return _hasProperties;
 			} 
 		}	

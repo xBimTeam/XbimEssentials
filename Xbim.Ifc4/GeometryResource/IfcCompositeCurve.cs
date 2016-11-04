@@ -70,8 +70,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _segments;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _segments;
+				Activate();
 				return _segments;
 			} 
 		}	
@@ -80,8 +80,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _selfIntersect;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _selfIntersect;
+				Activate();
 				return _selfIntersect;
 			} 
 			set

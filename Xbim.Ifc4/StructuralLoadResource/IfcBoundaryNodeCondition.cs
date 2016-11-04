@@ -101,8 +101,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _translationalStiffnessX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _translationalStiffnessX;
+				Activate();
 				return _translationalStiffnessX;
 			} 
 			set
@@ -115,8 +115,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _translationalStiffnessY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _translationalStiffnessY;
+				Activate();
 				return _translationalStiffnessY;
 			} 
 			set
@@ -129,8 +129,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _translationalStiffnessZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _translationalStiffnessZ;
+				Activate();
 				return _translationalStiffnessZ;
 			} 
 			set
@@ -143,8 +143,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rotationalStiffnessX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rotationalStiffnessX;
+				Activate();
 				return _rotationalStiffnessX;
 			} 
 			set
@@ -157,8 +157,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rotationalStiffnessY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rotationalStiffnessY;
+				Activate();
 				return _rotationalStiffnessY;
 			} 
 			set
@@ -171,8 +171,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rotationalStiffnessZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rotationalStiffnessZ;
+				Activate();
 				return _rotationalStiffnessZ;
 			} 
 			set

@@ -74,8 +74,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _knotMultiplicities;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _knotMultiplicities;
+				Activate();
 				return _knotMultiplicities;
 			} 
 		}	
@@ -84,8 +84,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _knots;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _knots;
+				Activate();
 				return _knots;
 			} 
 		}	
@@ -94,8 +94,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _knotSpec;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _knotSpec;
+				Activate();
 				return _knotSpec;
 			} 
 			set

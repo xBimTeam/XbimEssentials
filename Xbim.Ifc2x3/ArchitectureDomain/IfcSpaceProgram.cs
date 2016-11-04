@@ -96,8 +96,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _spaceProgramIdentifier;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _spaceProgramIdentifier;
+				Activate();
 				return _spaceProgramIdentifier;
 			} 
 			set
@@ -110,8 +110,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _maxRequiredArea;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _maxRequiredArea;
+				Activate();
 				return _maxRequiredArea;
 			} 
 			set
@@ -124,8 +124,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _minRequiredArea;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _minRequiredArea;
+				Activate();
 				return _minRequiredArea;
 			} 
 			set
@@ -138,8 +138,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _requestedLocation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _requestedLocation;
+				Activate();
 				return _requestedLocation;
 			} 
 			set
@@ -154,8 +154,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _standardRequiredArea;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _standardRequiredArea;
+				Activate();
 				return _standardRequiredArea;
 			} 
 			set

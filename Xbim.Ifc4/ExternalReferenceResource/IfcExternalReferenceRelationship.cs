@@ -68,8 +68,8 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingReference;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingReference;
+				Activate();
 				return _relatingReference;
 			} 
 			set
@@ -85,8 +85,8 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedResourceObjects;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedResourceObjects;
+				Activate();
 				return _relatedResourceObjects;
 			} 
 		}	

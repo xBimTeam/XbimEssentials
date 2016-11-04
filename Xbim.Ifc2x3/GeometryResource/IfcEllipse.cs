@@ -68,8 +68,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _semiAxis1;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _semiAxis1;
+				Activate();
 				return _semiAxis1;
 			} 
 			set
@@ -82,8 +82,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _semiAxis2;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _semiAxis2;
+				Activate();
 				return _semiAxis2;
 			} 
 			set

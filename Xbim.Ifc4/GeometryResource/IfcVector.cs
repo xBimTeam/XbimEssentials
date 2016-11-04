@@ -71,8 +71,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _orientation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _orientation;
+				Activate();
 				return _orientation;
 			} 
 			set
@@ -87,8 +87,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _magnitude;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _magnitude;
+				Activate();
 				return _magnitude;
 			} 
 			set

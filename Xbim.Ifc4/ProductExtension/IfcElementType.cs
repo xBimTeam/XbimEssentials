@@ -62,8 +62,8 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _elementType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _elementType;
+				Activate();
 				return _elementType;
 			} 
 			set

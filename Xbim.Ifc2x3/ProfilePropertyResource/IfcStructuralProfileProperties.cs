@@ -166,8 +166,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _torsionalConstantX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _torsionalConstantX;
+				Activate();
 				return _torsionalConstantX;
 			} 
 			set
@@ -180,8 +180,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _momentOfInertiaYZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _momentOfInertiaYZ;
+				Activate();
 				return _momentOfInertiaYZ;
 			} 
 			set
@@ -194,8 +194,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _momentOfInertiaY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _momentOfInertiaY;
+				Activate();
 				return _momentOfInertiaY;
 			} 
 			set
@@ -208,8 +208,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _momentOfInertiaZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _momentOfInertiaZ;
+				Activate();
 				return _momentOfInertiaZ;
 			} 
 			set
@@ -222,8 +222,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _warpingConstant;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _warpingConstant;
+				Activate();
 				return _warpingConstant;
 			} 
 			set
@@ -236,8 +236,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _shearCentreZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _shearCentreZ;
+				Activate();
 				return _shearCentreZ;
 			} 
 			set
@@ -250,8 +250,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _shearCentreY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _shearCentreY;
+				Activate();
 				return _shearCentreY;
 			} 
 			set
@@ -264,8 +264,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _shearDeformationAreaZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _shearDeformationAreaZ;
+				Activate();
 				return _shearDeformationAreaZ;
 			} 
 			set
@@ -278,8 +278,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _shearDeformationAreaY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _shearDeformationAreaY;
+				Activate();
 				return _shearDeformationAreaY;
 			} 
 			set
@@ -292,8 +292,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _maximumSectionModulusY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _maximumSectionModulusY;
+				Activate();
 				return _maximumSectionModulusY;
 			} 
 			set
@@ -306,8 +306,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _minimumSectionModulusY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _minimumSectionModulusY;
+				Activate();
 				return _minimumSectionModulusY;
 			} 
 			set
@@ -320,8 +320,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _maximumSectionModulusZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _maximumSectionModulusZ;
+				Activate();
 				return _maximumSectionModulusZ;
 			} 
 			set
@@ -334,8 +334,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _minimumSectionModulusZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _minimumSectionModulusZ;
+				Activate();
 				return _minimumSectionModulusZ;
 			} 
 			set
@@ -348,8 +348,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _torsionalSectionModulus;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _torsionalSectionModulus;
+				Activate();
 				return _torsionalSectionModulus;
 			} 
 			set
@@ -362,8 +362,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _centreOfGravityInX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _centreOfGravityInX;
+				Activate();
 				return _centreOfGravityInX;
 			} 
 			set
@@ -376,8 +376,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _centreOfGravityInY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _centreOfGravityInY;
+				Activate();
 				return _centreOfGravityInY;
 			} 
 			set

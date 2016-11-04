@@ -74,8 +74,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _tilingPattern;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _tilingPattern;
+				Activate();
 				return _tilingPattern;
 			} 
 		}	
@@ -84,8 +84,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _tiles;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _tiles;
+				Activate();
 				return _tiles;
 			} 
 		}	
@@ -94,8 +94,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _tilingScale;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _tilingScale;
+				Activate();
 				return _tilingScale;
 			} 
 			set

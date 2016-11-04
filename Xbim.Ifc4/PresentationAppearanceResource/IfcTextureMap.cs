@@ -68,8 +68,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _vertices;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _vertices;
+				Activate();
 				return _vertices;
 			} 
 		}	
@@ -79,8 +79,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _mappedTo;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _mappedTo;
+				Activate();
 				return _mappedTo;
 			} 
 			set

@@ -60,8 +60,8 @@ namespace Xbim.Ifc4.TopologyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _polygon;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _polygon;
+				Activate();
 				return _polygon;
 			} 
 		}	

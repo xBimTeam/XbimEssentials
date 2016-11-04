@@ -86,8 +86,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _axis1;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _axis1;
+				Activate();
 				return _axis1;
 			} 
 			set
@@ -102,8 +102,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _axis2;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _axis2;
+				Activate();
 				return _axis2;
 			} 
 			set
@@ -118,8 +118,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _localOrigin;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _localOrigin;
+				Activate();
 				return _localOrigin;
 			} 
 			set
@@ -134,8 +134,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _scale;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _scale;
+				Activate();
 				return _scale;
 			} 
 			set

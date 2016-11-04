@@ -69,8 +69,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _overallHeight;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _overallHeight;
+				Activate();
 				return _overallHeight;
 			} 
 			set
@@ -83,8 +83,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _overallWidth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _overallWidth;
+				Activate();
 				return _overallWidth;
 			} 
 			set

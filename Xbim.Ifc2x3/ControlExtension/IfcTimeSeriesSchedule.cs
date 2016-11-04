@@ -77,8 +77,8 @@ namespace Xbim.Ifc2x3.ControlExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _applicableDates;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _applicableDates;
+				Activate();
 				return _applicableDates;
 			} 
 		}	
@@ -87,8 +87,8 @@ namespace Xbim.Ifc2x3.ControlExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _timeSeriesScheduleType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _timeSeriesScheduleType;
+				Activate();
 				return _timeSeriesScheduleType;
 			} 
 			set
@@ -101,8 +101,8 @@ namespace Xbim.Ifc2x3.ControlExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _timeSeries;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _timeSeries;
+				Activate();
 				return _timeSeries;
 			} 
 			set

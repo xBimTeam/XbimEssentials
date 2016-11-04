@@ -69,8 +69,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _serviceLifeType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _serviceLifeType;
+				Activate();
 				return _serviceLifeType;
 			} 
 			set
@@ -83,8 +83,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _serviceLifeDuration;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _serviceLifeDuration;
+				Activate();
 				return _serviceLifeDuration;
 			} 
 			set

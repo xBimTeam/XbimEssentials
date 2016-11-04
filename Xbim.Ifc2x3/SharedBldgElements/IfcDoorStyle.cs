@@ -82,8 +82,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _operationType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _operationType;
+				Activate();
 				return _operationType;
 			} 
 			set
@@ -96,8 +96,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _constructionType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _constructionType;
+				Activate();
 				return _constructionType;
 			} 
 			set
@@ -110,8 +110,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _parameterTakesPrecedence;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _parameterTakesPrecedence;
+				Activate();
 				return _parameterTakesPrecedence;
 			} 
 			set
@@ -124,8 +124,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _sizeable;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _sizeable;
+				Activate();
 				return _sizeable;
 			} 
 			set

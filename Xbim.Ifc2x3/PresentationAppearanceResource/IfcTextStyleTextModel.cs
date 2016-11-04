@@ -108,8 +108,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _textIndent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _textIndent;
+				Activate();
 				return _textIndent;
 			} 
 			set
@@ -122,8 +122,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _textAlign;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _textAlign;
+				Activate();
 				return _textAlign;
 			} 
 			set
@@ -136,8 +136,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _textDecoration;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _textDecoration;
+				Activate();
 				return _textDecoration;
 			} 
 			set
@@ -150,8 +150,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _letterSpacing;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _letterSpacing;
+				Activate();
 				return _letterSpacing;
 			} 
 			set
@@ -164,8 +164,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _wordSpacing;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _wordSpacing;
+				Activate();
 				return _wordSpacing;
 			} 
 			set
@@ -178,8 +178,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _textTransform;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _textTransform;
+				Activate();
 				return _textTransform;
 			} 
 			set
@@ -192,8 +192,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _lineHeight;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _lineHeight;
+				Activate();
 				return _lineHeight;
 			} 
 			set

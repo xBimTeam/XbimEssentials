@@ -60,8 +60,8 @@ namespace Xbim.Ifc4.MeasureResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _conversionOffset;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _conversionOffset;
+				Activate();
 				return _conversionOffset;
 			} 
 			set

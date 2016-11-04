@@ -69,8 +69,8 @@ namespace Xbim.Ifc4.UtilityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rowCells;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rowCells;
+				Activate();
 				return _rowCells;
 			} 
 		}	
@@ -79,8 +79,8 @@ namespace Xbim.Ifc4.UtilityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _isHeading;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _isHeading;
+				Activate();
 				return _isHeading;
 			} 
 			set

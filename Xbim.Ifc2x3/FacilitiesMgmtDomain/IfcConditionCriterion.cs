@@ -71,8 +71,8 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _criterion;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _criterion;
+				Activate();
 				return _criterion;
 			} 
 			set
@@ -88,8 +88,8 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _criterionDateTime;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _criterionDateTime;
+				Activate();
 				return _criterionDateTime;
 			} 
 			set

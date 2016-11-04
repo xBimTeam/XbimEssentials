@@ -88,8 +88,8 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _axisTag;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _axisTag;
+				Activate();
 				return _axisTag;
 			} 
 			set
@@ -102,8 +102,8 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _axisCurve;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _axisCurve;
+				Activate();
 				return _axisCurve;
 			} 
 			set
@@ -118,8 +118,8 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _sameSense;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _sameSense;
+				Activate();
 				return _sameSense;
 			} 
 			set

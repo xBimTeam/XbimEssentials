@@ -173,8 +173,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _durationType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _durationType;
+				Activate();
 				return _durationType;
 			} 
 			set
@@ -187,8 +187,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _scheduleDuration;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _scheduleDuration;
+				Activate();
 				return _scheduleDuration;
 			} 
 			set
@@ -201,8 +201,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _scheduleStart;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _scheduleStart;
+				Activate();
 				return _scheduleStart;
 			} 
 			set
@@ -215,8 +215,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _scheduleFinish;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _scheduleFinish;
+				Activate();
 				return _scheduleFinish;
 			} 
 			set
@@ -229,8 +229,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _earlyStart;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _earlyStart;
+				Activate();
 				return _earlyStart;
 			} 
 			set
@@ -243,8 +243,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _earlyFinish;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _earlyFinish;
+				Activate();
 				return _earlyFinish;
 			} 
 			set
@@ -257,8 +257,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _lateStart;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _lateStart;
+				Activate();
 				return _lateStart;
 			} 
 			set
@@ -271,8 +271,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _lateFinish;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _lateFinish;
+				Activate();
 				return _lateFinish;
 			} 
 			set
@@ -285,8 +285,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _freeFloat;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _freeFloat;
+				Activate();
 				return _freeFloat;
 			} 
 			set
@@ -299,8 +299,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _totalFloat;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _totalFloat;
+				Activate();
 				return _totalFloat;
 			} 
 			set
@@ -313,8 +313,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _isCritical;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _isCritical;
+				Activate();
 				return _isCritical;
 			} 
 			set
@@ -327,8 +327,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _statusTime;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _statusTime;
+				Activate();
 				return _statusTime;
 			} 
 			set
@@ -341,8 +341,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _actualDuration;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _actualDuration;
+				Activate();
 				return _actualDuration;
 			} 
 			set
@@ -355,8 +355,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _actualStart;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _actualStart;
+				Activate();
 				return _actualStart;
 			} 
 			set
@@ -369,8 +369,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _actualFinish;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _actualFinish;
+				Activate();
 				return _actualFinish;
 			} 
 			set
@@ -383,8 +383,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _remainingTime;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _remainingTime;
+				Activate();
 				return _remainingTime;
 			} 
 			set
@@ -397,8 +397,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _completion;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _completion;
+				Activate();
 				return _completion;
 			} 
 			set

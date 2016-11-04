@@ -120,8 +120,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
@@ -134,8 +134,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
@@ -148,8 +148,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _startTime;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _startTime;
+				Activate();
 				return _startTime;
 			} 
 			set
@@ -164,8 +164,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _endTime;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _endTime;
+				Activate();
 				return _endTime;
 			} 
 			set
@@ -180,8 +180,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _timeSeriesDataType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _timeSeriesDataType;
+				Activate();
 				return _timeSeriesDataType;
 			} 
 			set
@@ -194,8 +194,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _dataOrigin;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _dataOrigin;
+				Activate();
 				return _dataOrigin;
 			} 
 			set
@@ -208,8 +208,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _userDefinedDataOrigin;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _userDefinedDataOrigin;
+				Activate();
 				return _userDefinedDataOrigin;
 			} 
 			set
@@ -222,8 +222,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _unit;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _unit;
+				Activate();
 				return _unit;
 			} 
 			set

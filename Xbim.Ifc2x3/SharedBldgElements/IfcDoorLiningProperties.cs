@@ -134,8 +134,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _liningDepth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _liningDepth;
+				Activate();
 				return _liningDepth;
 			} 
 			set
@@ -148,8 +148,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _liningThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _liningThickness;
+				Activate();
 				return _liningThickness;
 			} 
 			set
@@ -162,8 +162,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _thresholdDepth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _thresholdDepth;
+				Activate();
 				return _thresholdDepth;
 			} 
 			set
@@ -176,8 +176,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _thresholdThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _thresholdThickness;
+				Activate();
 				return _thresholdThickness;
 			} 
 			set
@@ -190,8 +190,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _transomThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _transomThickness;
+				Activate();
 				return _transomThickness;
 			} 
 			set
@@ -204,8 +204,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _transomOffset;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _transomOffset;
+				Activate();
 				return _transomOffset;
 			} 
 			set
@@ -218,8 +218,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _liningOffset;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _liningOffset;
+				Activate();
 				return _liningOffset;
 			} 
 			set
@@ -232,8 +232,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _thresholdOffset;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _thresholdOffset;
+				Activate();
 				return _thresholdOffset;
 			} 
 			set
@@ -246,8 +246,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _casingThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _casingThickness;
+				Activate();
 				return _casingThickness;
 			} 
 			set
@@ -260,8 +260,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _casingDepth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _casingDepth;
+				Activate();
 				return _casingDepth;
 			} 
 			set
@@ -274,8 +274,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _shapeAspectStyle;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _shapeAspectStyle;
+				Activate();
 				return _shapeAspectStyle;
 			} 
 			set

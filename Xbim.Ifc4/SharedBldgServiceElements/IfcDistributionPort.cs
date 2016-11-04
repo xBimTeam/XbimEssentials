@@ -75,8 +75,8 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _flowDirection;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _flowDirection;
+				Activate();
 				return _flowDirection;
 			} 
 			set
@@ -89,8 +89,8 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
@@ -103,8 +103,8 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _systemType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _systemType;
+				Activate();
 				return _systemType;
 			} 
 			set

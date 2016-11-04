@@ -89,8 +89,8 @@ namespace Xbim.Ifc2x3.PresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _fontFamily;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _fontFamily;
+				Activate();
 				return _fontFamily;
 			} 
 		}	
@@ -99,8 +99,8 @@ namespace Xbim.Ifc2x3.PresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _fontStyle;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _fontStyle;
+				Activate();
 				return _fontStyle;
 			} 
 			set
@@ -113,8 +113,8 @@ namespace Xbim.Ifc2x3.PresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _fontVariant;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _fontVariant;
+				Activate();
 				return _fontVariant;
 			} 
 			set
@@ -127,8 +127,8 @@ namespace Xbim.Ifc2x3.PresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _fontWeight;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _fontWeight;
+				Activate();
 				return _fontWeight;
 			} 
 			set
@@ -141,8 +141,8 @@ namespace Xbim.Ifc2x3.PresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _fontSize;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _fontSize;
+				Activate();
 				return _fontSize;
 			} 
 			set

@@ -138,8 +138,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _overallHeight;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _overallHeight;
+				Activate();
 				return _overallHeight;
 			} 
 			set
@@ -152,8 +152,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _baseWidth2;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _baseWidth2;
+				Activate();
 				return _baseWidth2;
 			} 
 			set
@@ -166,8 +166,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _radius;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _radius;
+				Activate();
 				return _radius;
 			} 
 			set
@@ -180,8 +180,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _headWidth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _headWidth;
+				Activate();
 				return _headWidth;
 			} 
 			set
@@ -194,8 +194,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _headDepth2;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _headDepth2;
+				Activate();
 				return _headDepth2;
 			} 
 			set
@@ -208,8 +208,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _headDepth3;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _headDepth3;
+				Activate();
 				return _headDepth3;
 			} 
 			set
@@ -222,8 +222,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _webThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _webThickness;
+				Activate();
 				return _webThickness;
 			} 
 			set
@@ -236,8 +236,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _baseWidth4;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _baseWidth4;
+				Activate();
 				return _baseWidth4;
 			} 
 			set
@@ -250,8 +250,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _baseDepth1;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _baseDepth1;
+				Activate();
 				return _baseDepth1;
 			} 
 			set
@@ -264,8 +264,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _baseDepth2;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _baseDepth2;
+				Activate();
 				return _baseDepth2;
 			} 
 			set
@@ -278,8 +278,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _baseDepth3;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _baseDepth3;
+				Activate();
 				return _baseDepth3;
 			} 
 			set
@@ -292,8 +292,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _centreOfGravityInY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _centreOfGravityInY;
+				Activate();
 				return _centreOfGravityInY;
 			} 
 			set

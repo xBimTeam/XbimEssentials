@@ -82,8 +82,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _topFlangeWidth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _topFlangeWidth;
+				Activate();
 				return _topFlangeWidth;
 			} 
 			set
@@ -96,8 +96,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _topFlangeThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _topFlangeThickness;
+				Activate();
 				return _topFlangeThickness;
 			} 
 			set
@@ -110,8 +110,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _topFlangeFilletRadius;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _topFlangeFilletRadius;
+				Activate();
 				return _topFlangeFilletRadius;
 			} 
 			set
@@ -124,8 +124,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _centreOfGravityInY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _centreOfGravityInY;
+				Activate();
 				return _centreOfGravityInY;
 			} 
 			set

@@ -230,14 +230,9 @@ namespace Xbim.CobieExpress.IO
         public IEntityCollection Instances {
             get { return _model.Instances; }
         }
-        public bool Activate(IPersistEntity owningEntity, bool write)
+        public bool Activate(IPersistEntity owningEntity)
         {
-            return _model.Activate(owningEntity, write);
-        }
-
-        public void Activate(IPersistEntity entity, int depth)
-        {
-            _model.Activate(entity, depth);
+            return _model.Activate(owningEntity);
         }
 
         public void Delete(IPersistEntity entity)

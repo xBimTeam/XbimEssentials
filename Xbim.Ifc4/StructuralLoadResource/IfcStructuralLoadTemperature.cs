@@ -75,8 +75,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _deltaTConstant;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _deltaTConstant;
+				Activate();
 				return _deltaTConstant;
 			} 
 			set
@@ -89,8 +89,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _deltaTY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _deltaTY;
+				Activate();
 				return _deltaTY;
 			} 
 			set
@@ -103,8 +103,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _deltaTZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _deltaTZ;
+				Activate();
 				return _deltaTZ;
 			} 
 			set

@@ -84,8 +84,8 @@ namespace Xbim.Ifc4.SharedMgmtElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
@@ -98,8 +98,8 @@ namespace Xbim.Ifc4.SharedMgmtElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _status;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _status;
+				Activate();
 				return _status;
 			} 
 			set
@@ -112,8 +112,8 @@ namespace Xbim.Ifc4.SharedMgmtElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _submittedOn;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _submittedOn;
+				Activate();
 				return _submittedOn;
 			} 
 			set
@@ -126,8 +126,8 @@ namespace Xbim.Ifc4.SharedMgmtElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _updateDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _updateDate;
+				Activate();
 				return _updateDate;
 			} 
 			set

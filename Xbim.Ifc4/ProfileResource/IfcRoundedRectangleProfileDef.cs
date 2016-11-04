@@ -61,8 +61,8 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _roundingRadius;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _roundingRadius;
+				Activate();
 				return _roundingRadius;
 			} 
 			set

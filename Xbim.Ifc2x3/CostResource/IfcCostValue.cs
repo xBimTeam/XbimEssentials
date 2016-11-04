@@ -69,8 +69,8 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _costType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _costType;
+				Activate();
 				return _costType;
 			} 
 			set
@@ -83,8 +83,8 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _condition;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _condition;
+				Activate();
 				return _condition;
 			} 
 			set

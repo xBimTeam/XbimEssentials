@@ -110,8 +110,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _meshLength;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _meshLength;
+				Activate();
 				return _meshLength;
 			} 
 			set
@@ -124,8 +124,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _meshWidth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _meshWidth;
+				Activate();
 				return _meshWidth;
 			} 
 			set
@@ -138,8 +138,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _longitudinalBarNominalDiameter;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _longitudinalBarNominalDiameter;
+				Activate();
 				return _longitudinalBarNominalDiameter;
 			} 
 			set
@@ -152,8 +152,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _transverseBarNominalDiameter;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _transverseBarNominalDiameter;
+				Activate();
 				return _transverseBarNominalDiameter;
 			} 
 			set
@@ -166,8 +166,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _longitudinalBarCrossSectionArea;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _longitudinalBarCrossSectionArea;
+				Activate();
 				return _longitudinalBarCrossSectionArea;
 			} 
 			set
@@ -180,8 +180,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _transverseBarCrossSectionArea;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _transverseBarCrossSectionArea;
+				Activate();
 				return _transverseBarCrossSectionArea;
 			} 
 			set
@@ -194,8 +194,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _longitudinalBarSpacing;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _longitudinalBarSpacing;
+				Activate();
 				return _longitudinalBarSpacing;
 			} 
 			set
@@ -208,8 +208,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _transverseBarSpacing;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _transverseBarSpacing;
+				Activate();
 				return _transverseBarSpacing;
 			} 
 			set

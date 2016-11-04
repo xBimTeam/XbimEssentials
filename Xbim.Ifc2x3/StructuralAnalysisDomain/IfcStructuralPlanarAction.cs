@@ -60,8 +60,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _projectedOrTrue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _projectedOrTrue;
+				Activate();
 				return _projectedOrTrue;
 			} 
 			set

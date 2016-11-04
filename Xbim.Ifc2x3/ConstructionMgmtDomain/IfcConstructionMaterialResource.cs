@@ -68,8 +68,8 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _suppliers;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _suppliers;
+				Activate();
 				return _suppliers;
 			} 
 		}	
@@ -78,8 +78,8 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _usageRatio;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _usageRatio;
+				Activate();
 				return _usageRatio;
 			} 
 			set

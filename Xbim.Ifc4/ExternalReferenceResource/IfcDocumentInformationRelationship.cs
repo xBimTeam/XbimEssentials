@@ -76,8 +76,8 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingDocument;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingDocument;
+				Activate();
 				return _relatingDocument;
 			} 
 			set
@@ -93,8 +93,8 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedDocuments;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedDocuments;
+				Activate();
 				return _relatedDocuments;
 			} 
 		}	
@@ -103,8 +103,8 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relationshipType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relationshipType;
+				Activate();
 				return _relationshipType;
 			} 
 			set

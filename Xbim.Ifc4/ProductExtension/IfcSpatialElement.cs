@@ -68,8 +68,8 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _longName;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _longName;
+				Activate();
 				return _longName;
 			} 
 			set

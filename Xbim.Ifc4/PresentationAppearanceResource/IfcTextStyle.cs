@@ -85,8 +85,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _textCharacterAppearance;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _textCharacterAppearance;
+				Activate();
 				return _textCharacterAppearance;
 			} 
 			set
@@ -101,8 +101,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _textStyle;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _textStyle;
+				Activate();
 				return _textStyle;
 			} 
 			set
@@ -117,8 +117,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _textFontStyle;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _textFontStyle;
+				Activate();
 				return _textFontStyle;
 			} 
 			set
@@ -133,8 +133,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _modelOrDraughting;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _modelOrDraughting;
+				Activate();
 				return _modelOrDraughting;
 			} 
 			set

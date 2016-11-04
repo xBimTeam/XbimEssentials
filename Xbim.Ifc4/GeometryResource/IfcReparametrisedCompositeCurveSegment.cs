@@ -61,8 +61,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _paramLength;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _paramLength;
+				Activate();
 				return _paramLength;
 			} 
 			set

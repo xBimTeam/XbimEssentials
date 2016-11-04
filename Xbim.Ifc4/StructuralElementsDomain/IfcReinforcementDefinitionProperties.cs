@@ -69,8 +69,8 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _definitionType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _definitionType;
+				Activate();
 				return _definitionType;
 			} 
 			set
@@ -83,8 +83,8 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _reinforcementSectionDefinitions;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _reinforcementSectionDefinitions;
+				Activate();
 				return _reinforcementSectionDefinitions;
 			} 
 		}	

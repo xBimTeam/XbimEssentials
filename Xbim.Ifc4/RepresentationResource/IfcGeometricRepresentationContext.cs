@@ -89,8 +89,8 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _coordinateSpaceDimension;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _coordinateSpaceDimension;
+				Activate();
 				return _coordinateSpaceDimension;
 			} 
 			set
@@ -103,8 +103,8 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _precision;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _precision;
+				Activate();
 				return _precision;
 			} 
 			set
@@ -117,8 +117,8 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _worldCoordinateSystem;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _worldCoordinateSystem;
+				Activate();
 				return _worldCoordinateSystem;
 			} 
 			set
@@ -133,8 +133,8 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _trueNorth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _trueNorth;
+				Activate();
 				return _trueNorth;
 			} 
 			set

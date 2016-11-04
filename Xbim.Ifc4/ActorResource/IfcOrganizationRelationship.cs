@@ -69,8 +69,8 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingOrganization;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingOrganization;
+				Activate();
 				return _relatingOrganization;
 			} 
 			set
@@ -86,8 +86,8 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedOrganizations;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedOrganizations;
+				Activate();
 				return _relatedOrganizations;
 			} 
 		}	

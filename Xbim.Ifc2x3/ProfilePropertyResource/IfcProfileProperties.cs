@@ -72,8 +72,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _profileName;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _profileName;
+				Activate();
 				return _profileName;
 			} 
 			set
@@ -86,8 +86,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _profileDefinition;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _profileDefinition;
+				Activate();
 				return _profileDefinition;
 			} 
 			set

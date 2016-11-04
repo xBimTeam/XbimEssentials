@@ -68,8 +68,8 @@ namespace Xbim.Ifc4.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _enumerationValues;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _enumerationValues;
+				Activate();
 				return _enumerationValues;
 			} 
 		}	
@@ -78,8 +78,8 @@ namespace Xbim.Ifc4.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _enumerationReference;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _enumerationReference;
+				Activate();
 				return _enumerationReference;
 			} 
 			set

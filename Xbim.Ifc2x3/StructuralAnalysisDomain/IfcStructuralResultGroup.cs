@@ -78,8 +78,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _theoryType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _theoryType;
+				Activate();
 				return _theoryType;
 			} 
 			set
@@ -93,8 +93,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _resultForLoadGroup;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _resultForLoadGroup;
+				Activate();
 				return _resultForLoadGroup;
 			} 
 			set
@@ -109,8 +109,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _isLinear;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _isLinear;
+				Activate();
 				return _isLinear;
 			} 
 			set

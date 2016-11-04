@@ -114,8 +114,8 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _templateType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _templateType;
+				Activate();
 				return _templateType;
 			} 
 			set
@@ -128,8 +128,8 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _primaryMeasureType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _primaryMeasureType;
+				Activate();
 				return _primaryMeasureType;
 			} 
 			set
@@ -142,8 +142,8 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _secondaryMeasureType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _secondaryMeasureType;
+				Activate();
 				return _secondaryMeasureType;
 			} 
 			set
@@ -156,8 +156,8 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _enumerators;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _enumerators;
+				Activate();
 				return _enumerators;
 			} 
 			set
@@ -172,8 +172,8 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _primaryUnit;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _primaryUnit;
+				Activate();
 				return _primaryUnit;
 			} 
 			set
@@ -188,8 +188,8 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _secondaryUnit;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _secondaryUnit;
+				Activate();
 				return _secondaryUnit;
 			} 
 			set
@@ -204,8 +204,8 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _expression;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _expression;
+				Activate();
 				return _expression;
 			} 
 			set
@@ -218,8 +218,8 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _accessState;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _accessState;
+				Activate();
 				return _accessState;
 			} 
 			set

@@ -61,8 +61,8 @@ namespace Xbim.Ifc4.TopologyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _edgeList;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _edgeList;
+				Activate();
 				return _edgeList;
 			} 
 		}	

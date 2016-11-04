@@ -68,8 +68,8 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _proxyType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _proxyType;
+				Activate();
 				return _proxyType;
 			} 
 			set
@@ -82,8 +82,8 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _tag;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _tag;
+				Activate();
 				return _tag;
 			} 
 			set

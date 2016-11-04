@@ -22,7 +22,7 @@ namespace Xbim.IO.Esent
     /// IModel implementation for Esent DB based model support
     /// </summary>
 
-    public class EsentModel: IModel, IFederatedModel, IDisposable
+    public class EsentModel : IModel, IFederatedModel, IDisposable
     {
         #region Fields
 
@@ -44,7 +44,7 @@ namespace Xbim.IO.Esent
 
         private EsentEntityCursor _editTransactionEntityCursor;
         private bool _deleteOnClose;
-        
+
 
         private int _codePageOverrideForStepFiles = -1;
 
@@ -59,7 +59,7 @@ namespace Xbim.IO.Esent
         private string _importFilePath;
 
         private IEntityFactory _factory;
-        public IEntityFactory Factory {get { return _factory; }}
+        public IEntityFactory Factory { get { return _factory; } }
 
         public ExpressMetaData Metadata { get; private set; }
         #endregion
@@ -69,7 +69,7 @@ namespace Xbim.IO.Esent
         /// </summary>
         public IModelFactors ModelFactors
         {
-            get; 
+            get;
             protected set;
         }
 
@@ -95,7 +95,7 @@ namespace Xbim.IO.Esent
             var r = new Random();
             UserDefinedId = (short)r.Next(short.MaxValue); // initialise value at random to reduce chance of duplicates
             Metadata = ExpressMetaData.GetMetadata(factory.GetType().Module);
-            ModelFactors = new XbimModelFactors(Math.PI / 180, 1e-3,1e-5);
+            ModelFactors = new XbimModelFactors(Math.PI / 180, 1e-3, 1e-5);
         }
 
         public string DatabaseName
@@ -126,11 +126,11 @@ namespace Xbim.IO.Esent
         /// </example>
         public int CodePageOverride
         {
-           get { return _codePageOverrideForStepFiles; }
-           set { _codePageOverrideForStepFiles = value; }
+            get { return _codePageOverrideForStepFiles; }
+            set { _codePageOverrideForStepFiles = value; }
         }
 
-        private XbimInstanceCollection InstancesLocal { get;  set; }
+        private XbimInstanceCollection InstancesLocal { get; set; }
 
         /// <summary>
         /// Returns a collection of all instances only in the model 
@@ -171,7 +171,7 @@ namespace Xbim.IO.Esent
 
         public IInverseCache BeginCaching()
         {
-            if(CurrentTransaction != null)
+            if (CurrentTransaction != null)
                 throw new XbimException("Caching is not allowed within active transaction.");
             var c = InverseCache;
             if (c != null)
@@ -238,7 +238,7 @@ namespace Xbim.IO.Esent
             }
         }
 
-        
+
         /// <summary>
         /// Starts a transaction to allow bulk updates on the geometry table, FreeGeometry Table should be called when no longer required
         /// </summary>
@@ -284,11 +284,27 @@ namespace Xbim.IO.Esent
         //Loads the property data of an entity, if it is not already loaded
         bool IModel.Activate(IPersistEntity entity)
         {
-            if(!entity.Activated)
+            if (entity.Activated)
+                return true;
+
+            try
             {
-                InstanceCache.Activate(entity);
+                lock (entity)
+                {
+                    //check again in the lock
+                    if (entity.Activated)
+                        return true;
+
+                    //activate and set the flag
+                    InstanceCache.Activate(entity);
+                    FlagSetter.SetActivationFlag(entity, true);
+                    return true;
+                }
             }
-            return true;
+            catch (Exception e)
+            {
+                throw new XbimInitializationFailedException(string.Format("Failed to activate #{0}={1}", entity.EntityLabel, entity.ExpressType.ExpressNameUpper), e);
+            }
         }
 
         #region Transaction support
@@ -310,7 +326,7 @@ namespace Xbim.IO.Esent
             if (InverseCache != null)
                 throw new XbimException("Transaction can't be open when cache is in operation.");
 
-            if (_editTransactionEntityCursor != null) 
+            if (_editTransactionEntityCursor != null)
                 throw new XbimException("Attempt to begin another transaction whilst one is already running");
             try
             {
@@ -327,10 +343,10 @@ namespace Xbim.IO.Esent
                 throw new XbimException("Failed to create ReadWrite transaction", e);
             }
 
-           
+
         }
 
-        
+
 
         /// <summary>
         /// Performs a set of actions on a collection of entities inside a single read only transaction
@@ -405,9 +421,9 @@ namespace Xbim.IO.Esent
                 throw new FileNotFoundException(_importFilePath + " file was not found");
             if (string.IsNullOrWhiteSpace(xbimDbName))
                 xbimDbName = Path.ChangeExtension(importFrom, "xBIM");
-            
+
             var toImportStorageType = importFrom.StorageType();
-            
+
             switch (toImportStorageType)
             {
                 case IfcStorageType.IfcXml:
@@ -424,7 +440,7 @@ namespace Xbim.IO.Esent
                     break;
                 case IfcStorageType.Xbim:
                     throw new NotImplementedException("Use save as");
-                  
+
                 default:
                     return false;
             }
@@ -434,12 +450,12 @@ namespace Xbim.IO.Esent
         public virtual bool CreateFrom(Stream inputStream, long streamSize, IfcStorageType streamType, string xbimDbName, ReportProgressDelegate progDelegate = null, bool keepOpen = false, bool cacheEntities = false)
         {
             Close();
-            if(streamType.HasFlag(IfcStorageType.IfcZip))
-                    Cache.ImportStepZip(xbimDbName, inputStream, progDelegate, keepOpen, cacheEntities, _codePageOverrideForStepFiles);   
-            else if(streamType.HasFlag(IfcStorageType.Ifc))
+            if (streamType.HasFlag(IfcStorageType.IfcZip))
+                Cache.ImportStepZip(xbimDbName, inputStream, progDelegate, keepOpen, cacheEntities, _codePageOverrideForStepFiles);
+            else if (streamType.HasFlag(IfcStorageType.Ifc))
                 Cache.ImportStep(xbimDbName, inputStream, streamSize, progDelegate, keepOpen, cacheEntities, _codePageOverrideForStepFiles);
-            else if(streamType.HasFlag(IfcStorageType.IfcXml))
-                    Cache.ImportIfcXml(xbimDbName, inputStream, progDelegate, keepOpen, cacheEntities); 
+            else if (streamType.HasFlag(IfcStorageType.IfcXml))
+                Cache.ImportIfcXml(xbimDbName, inputStream, progDelegate, keepOpen, cacheEntities);
             return true;
         }
 
@@ -450,12 +466,12 @@ namespace Xbim.IO.Esent
         /// <returns></returns>
         static public EsentModel CreateTemporaryModel(IEntityFactory factory)
         {
-            
+
             var tmpFileName = Path.GetTempFileName();
             try
             {
                 var model = new EsentModel(factory);
-                model.CreateDatabase(tmpFileName);  
+                model.CreateDatabase(tmpFileName);
                 model.Open(tmpFileName, XbimDBAccess.ReadWrite, true);
                 model.Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults);
                 foreach (var schemasId in factory.SchemasIds)
@@ -467,7 +483,7 @@ namespace Xbim.IO.Esent
 
                 throw new XbimException("Failed to create and open temporary xBIM file \'" + tmpFileName + "\'\n" + e.Message, e);
             }
-           
+
         }
 
         protected void CreateDatabase(string tmpFileName)
@@ -495,9 +511,9 @@ namespace Xbim.IO.Esent
                 if (string.IsNullOrWhiteSpace(Path.GetExtension(dbFileName)))
                     dbFileName += ".xBIM";
                 var model = new EsentModel(factory);
-                model.CreateDatabase(dbFileName); 
+                model.CreateDatabase(dbFileName);
                 model.Open(dbFileName, access);
-                model.Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults) { FileName = {Name = dbFileName} };
+                model.Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults) { FileName = { Name = dbFileName } };
                 foreach (var schemasId in factory.SchemasIds)
                     model.Header.FileSchema.Schemas.Add(schemasId);
                 return model;
@@ -646,7 +662,7 @@ namespace Xbim.IO.Esent
             var propVal = prop.PropertyInfo.GetValue(instance, null);
             var propName = prop.PropertyInfo.Name;
 
-            
+
 
             if (entAttr.State == EntityAttributeState.Mandatory && propVal == null)
                 return string.Format("{0}.{1} is not optional", instance.GetType().Name, propName);
@@ -663,8 +679,8 @@ namespace Xbim.IO.Esent
             //}
 
             if (entAttr.EntityType != EntityAttributeType.Set && entAttr.EntityType != EntityAttributeType.List &&
-                entAttr.EntityType != EntityAttributeType.ListUnique && entAttr.EntityType != EntityAttributeType.Array && 
-                entAttr.EntityType != EntityAttributeType.ArrayUnique && entAttr.EntityType != EntityAttributeType.Bag) 
+                entAttr.EntityType != EntityAttributeType.ListUnique && entAttr.EntityType != EntityAttributeType.Array &&
+                entAttr.EntityType != EntityAttributeType.ArrayUnique && entAttr.EntityType != EntityAttributeType.Bag)
                 return null;
 
             if (entAttr.MinCardinality < 1 && entAttr.MaxCardinality < 0) //we don't care how many so don't check
@@ -714,9 +730,9 @@ namespace Xbim.IO.Esent
         public virtual void Close()
         {
             var dbName = DatabaseName;
-            ModelFactors = new XbimModelFactors(Math.PI / 180, 1e-3,1e-5);          
+            ModelFactors = new XbimModelFactors(Math.PI / 180, 1e-3, 1e-5);
             Header = null;
-            
+
             if (_editTransactionEntityCursor != null)
                 EndTransaction();
             if (_geometryStore != null)
@@ -745,7 +761,7 @@ namespace Xbim.IO.Esent
         #endregion
 
         protected void Open(string fileName, XbimDBAccess accessMode, bool deleteOnClose)
-        {      
+        {
             Open(fileName, accessMode);
             _deleteOnClose = deleteOnClose;
         }
@@ -756,7 +772,7 @@ namespace Xbim.IO.Esent
         public void CacheStart()
         {
             if (_editTransactionEntityCursor == null) //if we are in a transaction caching is on anyway
-                 InstanceCache.CacheStart();
+                InstanceCache.CacheStart();
         }
         /// <summary>
         /// Clears all read data in the cache
@@ -789,7 +805,7 @@ namespace Xbim.IO.Esent
             {
                 Close();
                 InstanceCache.Open(fileName, accessMode); //opens the database
-               
+
                 return true;
             }
             catch (Exception e)
@@ -815,23 +831,23 @@ namespace Xbim.IO.Esent
                 if (storageType.Value == IfcStorageType.Invalid)
                 {
                     var ext = Path.GetExtension(outputFileName);
-                    if(string.IsNullOrWhiteSpace(ext))
+                    if (string.IsNullOrWhiteSpace(ext))
                         throw new XbimException("Invalid file type, no extension specified in file " + outputFileName);
                     throw new XbimException("Invalid file extension " + ext.ToUpper() + " in file " + outputFileName);
                 }
                 if (storageType.Value == IfcStorageType.Xbim && DatabaseName != null) //make a copy
                 {
                     var srcFile = DatabaseName;
-                    if(string.Compare(srcFile, outputFileName, true, CultureInfo.InvariantCulture) == 0)
+                    if (string.Compare(srcFile, outputFileName, true, CultureInfo.InvariantCulture) == 0)
                         throw new XbimException("Cannot save file to the same name, " + outputFileName);
                     var deleteOnClose = _deleteOnClose;
                     var accessMode = InstanceCache.AccessMode;
                     try
                     {
                         _deleteOnClose = false; //regardless we need to keep it to copy it
-                        Close(); 
+                        Close();
                         File.Copy(srcFile, outputFileName);
-                        
+
                         if (deleteOnClose)
                             File.Delete(srcFile);
                         srcFile = outputFileName;
@@ -839,7 +855,7 @@ namespace Xbim.IO.Esent
                     }
                     catch (Exception e)
                     {
-                        throw new XbimException("Failed to save file as outputFileName" , e);
+                        throw new XbimException("Failed to save file as outputFileName", e);
                     }
                     finally
                     {
@@ -917,7 +933,7 @@ namespace Xbim.IO.Esent
             GC.SuppressFinalize(this);
         }
 
-       
+
         protected void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -951,9 +967,9 @@ namespace Xbim.IO.Esent
             }
         }
 
-        public XbimGeometryHandleCollection GetGeometryHandles(XbimGeometryType geomType=XbimGeometryType.TriangulatedMesh, XbimGeometrySort sortOrder=XbimGeometrySort.OrderByIfcSurfaceStyleThenIfcType)
+        public XbimGeometryHandleCollection GetGeometryHandles(XbimGeometryType geomType = XbimGeometryType.TriangulatedMesh, XbimGeometrySort sortOrder = XbimGeometrySort.OrderByIfcSurfaceStyleThenIfcType)
         {
-            return InstanceCache.GetGeometryHandles(geomType,sortOrder);
+            return InstanceCache.GetGeometryHandles(geomType, sortOrder);
         }
 
         public XbimGeometryHandle GetGeometryHandle(int geometryLabel)
@@ -1013,7 +1029,7 @@ namespace Xbim.IO.Esent
                             return 2;
                     }
                 }
-                else if (DatabaseHasGeometryTable() && GetGeometryData(XbimGeometryType.TriangulatedMesh).Any()) 
+                else if (DatabaseHasGeometryTable() && GetGeometryData(XbimGeometryType.TriangulatedMesh).Any())
                     return 1;
                 return 0;
             }
@@ -1072,13 +1088,13 @@ namespace Xbim.IO.Esent
         }
 
         internal void EndTransaction()
-        {           
+        {
             //FreeTable(_editTransactionEntityCursor); //release the cursor back to the pool
             InstanceCache.EndCaching();
             _editTransactionEntityCursor.Dispose();
             _editTransactionEntityCursor = null;
         }
-       
+
         internal void Flush()
         {
             InstanceCache.Write(_editTransactionEntityCursor);
@@ -1090,7 +1106,7 @@ namespace Xbim.IO.Esent
             return _editTransactionEntityCursor;
         }
 
-     
+
 
         public XbimGeometryData GetGeometryData(XbimGeometryHandle handle)
         {
@@ -1107,16 +1123,16 @@ namespace Xbim.IO.Esent
             return InstanceCache.GetGeometryData(handles);
         }
 
-        
-        
 
 
 
- 
-    
+
+
+
+
 
         public object Tag { get; set; }
-        
+
         internal EsentShapeGeometryCursor GetShapeGeometryTable()
         {
             return InstanceCache.GetShapeGeometryTable();
@@ -1217,7 +1233,7 @@ namespace Xbim.IO.Esent
         {
             get
             {
-                return _referencedModels.Any() || string.Compare(Path.GetExtension(InstanceCache.DatabaseName), ".xbimf", StringComparison.OrdinalIgnoreCase) == 0; 
+                return _referencedModels.Any() || string.Compare(Path.GetExtension(InstanceCache.DatabaseName), ".xbimf", StringComparison.OrdinalIgnoreCase) == 0;
             }
         }
 
@@ -1246,7 +1262,7 @@ namespace Xbim.IO.Esent
         {
             short iId = 0;
             var allModels =
-                (new[] {this}).Concat(ReferencedModels.Where(rm => rm.Model is EsentModel).Select(rm => rm.Model))
+                (new[] { this }).Concat(ReferencedModels.Where(rm => rm.Model is EsentModel).Select(rm => rm.Model))
                     .Cast<EsentModel>();
             foreach (var model in allModels)
             {
@@ -1301,17 +1317,11 @@ namespace Xbim.IO.Esent
             return header;
         }
 
-        public void CreateFrom(IModel model, string fileName,  ReportProgressDelegate progDelegate = null)
+        public void CreateFrom(IModel model, string fileName, ReportProgressDelegate progDelegate = null)
         {
             Close();
             var dbName = Path.ChangeExtension(fileName, "xBIM");
             InstanceCache.ImportModel(model, dbName, progDelegate);
-        }
-
-        public void Activate(IPersistEntity entity, int depth)
-        {
-            //this implementation doesn't do depth activation yet 
-            ((IModel)this).Activate(entity);
         }
 
         public IModel ReferencingModel
@@ -1324,7 +1334,7 @@ namespace Xbim.IO.Esent
         {
             get
             {
-                var allModels = ReferencedModels.Select(r=>r.Model).Concat(new[] {this});
+                var allModels = ReferencedModels.Select(r => r.Model).Concat(new[] { this });
                 return allModels.SelectMany(m => m.InstanceHandles).ToList();
             }
         }

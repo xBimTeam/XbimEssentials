@@ -86,8 +86,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _applicationDeveloper;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _applicationDeveloper;
+				Activate();
 				return _applicationDeveloper;
 			} 
 			set
@@ -102,8 +102,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _version;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _version;
+				Activate();
 				return _version;
 			} 
 			set
@@ -116,8 +116,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _applicationFullName;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _applicationFullName;
+				Activate();
 				return _applicationFullName;
 			} 
 			set
@@ -130,8 +130,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _applicationIdentifier;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _applicationIdentifier;
+				Activate();
 				return _applicationIdentifier;
 			} 
 			set

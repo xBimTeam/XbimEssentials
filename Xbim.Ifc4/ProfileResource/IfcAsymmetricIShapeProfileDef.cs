@@ -138,8 +138,8 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _bottomFlangeWidth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _bottomFlangeWidth;
+				Activate();
 				return _bottomFlangeWidth;
 			} 
 			set
@@ -152,8 +152,8 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _overallDepth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _overallDepth;
+				Activate();
 				return _overallDepth;
 			} 
 			set
@@ -166,8 +166,8 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _webThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _webThickness;
+				Activate();
 				return _webThickness;
 			} 
 			set
@@ -180,8 +180,8 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _bottomFlangeThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _bottomFlangeThickness;
+				Activate();
 				return _bottomFlangeThickness;
 			} 
 			set
@@ -194,8 +194,8 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _bottomFlangeFilletRadius;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _bottomFlangeFilletRadius;
+				Activate();
 				return _bottomFlangeFilletRadius;
 			} 
 			set
@@ -208,8 +208,8 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _topFlangeWidth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _topFlangeWidth;
+				Activate();
 				return _topFlangeWidth;
 			} 
 			set
@@ -222,8 +222,8 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _topFlangeThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _topFlangeThickness;
+				Activate();
 				return _topFlangeThickness;
 			} 
 			set
@@ -236,8 +236,8 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _topFlangeFilletRadius;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _topFlangeFilletRadius;
+				Activate();
 				return _topFlangeFilletRadius;
 			} 
 			set
@@ -250,8 +250,8 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _bottomFlangeEdgeRadius;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _bottomFlangeEdgeRadius;
+				Activate();
 				return _bottomFlangeEdgeRadius;
 			} 
 			set
@@ -264,8 +264,8 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _bottomFlangeSlope;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _bottomFlangeSlope;
+				Activate();
 				return _bottomFlangeSlope;
 			} 
 			set
@@ -278,8 +278,8 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _topFlangeEdgeRadius;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _topFlangeEdgeRadius;
+				Activate();
 				return _topFlangeEdgeRadius;
 			} 
 			set
@@ -292,8 +292,8 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _topFlangeSlope;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _topFlangeSlope;
+				Activate();
 				return _topFlangeSlope;
 			} 
 			set

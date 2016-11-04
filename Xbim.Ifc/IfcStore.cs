@@ -53,7 +53,8 @@ namespace Xbim.Ifc
 
         private bool _disposed;
         /// <summary>
-        /// The default largest size in MB for an ifc file to be loaded into memory, above this size the store will choose to use the database storage media to mimise the memory footprint. This size can be set in the config file or in the open statement of this store 
+        /// The default largest size in MB for an IFC file to be loaded into memory, above this size the store will choose to use 
+        /// the database storage media to minimise the memory footprint. This size can be set in the config file or in the open statement of this store 
         /// </summary>
         public static double DefaultIfcDatabaseSizeThreshHold = 100; //default size set to 100MB
         private IIfcOwnerHistory _ownerHistoryAddObject;
@@ -122,63 +123,6 @@ namespace Xbim.Ifc
         {
             if(EntityModified !=null)EntityModified.Invoke(entity, property);
         }
-        //public static IfcStore LoadStep21( Stream inputStream, XbimStorageType storageType, string xbimDbName, XbimDBAccess accessMode = XbimDBAccess.Read, double? ifcDatabaseSizeThreshHold = null, ReportProgressDelegate progDelegate = null)
-        //{
-        //    var ifcVersion = GetIfcSchemaVersion(inputStream);
-        //    if (ifcVersion == IfcSchemaVersion.Unsupported)
-        //        throw new FileLoadException(filePath + " is not a valid Ifc file format, ifc, ifcxml, ifczip and xBIM are supported");
-        //    if (storageType == XbimStorageType.Xbim) //open the XbimFile
-        //    {
-        //        if (ifcVersion == IfcSchemaVersion.Ifc4)
-        //        {
-        //            var model = new EsentModel(new Ifc4.EntityFactory());
-        //            model.LoadStep21(inputStream, accessMode, progDelegate);
-        //            return new IfcStore(model);
-        //        }
-        //        else //it will be Ifc2x3
-        //        {
-        //            var model = new EsentModel(new Ifc2x3.EntityFactory());
-        //            model.LoadStep21(inputStream, accessMode, progDelegate);
-        //            return new IfcStore(model);
-        //        }
-        //    }
-        //    else //it will be an Ifc file if we are at this point
-        //    {
-        //        var fInfo = new FileInfo(path);
-        //        double ifcMaxLength = (ifcDatabaseSizeThreshHold ?? DefaultIfcDatabaseSizeThreshHold) * 1024 * 1024;
-        //        if (fInfo.Length > ifcMaxLength) //we need to make an esent database
-        //        {
-        //            var tmpFileName = Path.GetTempFileName();
-        //            if (ifcVersion == IfcSchemaVersion.Ifc4)
-        //            {
-        //                var model = new EsentModel(new Ifc4.EntityFactory());
-        //                model.CreateFrom(path, tmpFileName, progDelegate, true);
-        //                return new IfcStore(model);
-        //            }
-        //            else //it will be Ifc2x3
-        //            {
-        //                var model = new EsentModel(new Ifc2x3.EntityFactory());
-        //                model.CreateFrom(path, tmpFileName, progDelegate, true);
-        //                return new IfcStore(model);
-        //            }
-        //        }
-        //        else //we can use a memory model
-        //        {
-        //            if (ifcVersion == IfcSchemaVersion.Ifc4)
-        //            {
-        //                var model = new MemoryModel<Ifc4.EntityFactory>();
-        //                model.LoadStep21(path, progDelegate);
-        //                return new IfcStore(model);
-        //            }
-        //            else //it will be Ifc2x3
-        //            {
-        //                var model = new MemoryModel<Ifc2x3.EntityFactory>();
-        //                model.LoadStep21(path, progDelegate);
-        //                return new IfcStore(model);
-        //            }
-        //        }
-        //    }
-        //}
 
         public static IfcStore Open(string path, XbimEditorCredentials editorDetails,bool writeAccess = true,
             double? ifcDatabaseSizeThreshHold = null, ReportProgressDelegate progDelegate = null)
@@ -187,11 +131,13 @@ namespace Xbim.Ifc
         }
 
         /// <summary>
-        /// Opens an Ifc file, Ifcxml, IfcZip, xbim
+        /// Opens an IFC file, Ifcxml, IfcZip, xbim
         /// </summary>
         /// <param name="path">the file name of the ifc, ifczip, ifcxml or xbim file to be opened</param>
         /// <param name="editorDetails">This is only required if the store is opened for editing</param>
-        /// <param name="ifcDatabaseSizeThreshHold">Expressed in MB. If not defined the DefaultIfcDatabaseSizeThreshHold is used, Ifc files below this size will be opened in memory, above this size a database will be created. If -1 is specified an in memory model will be created for all Ifc files that are opened. Xbim files are always opened as databases</param>
+        /// <param name="ifcDatabaseSizeThreshHold">Expressed in MB. If not defined the DefaultIfcDatabaseSizeThreshHold is used, 
+        /// IFC files below this size will be opened in memory, above this size a database will be created. If -1 is specified an in memory model will be 
+        /// created for all IFC files that are opened. Xbim files are always opened as databases</param>
         /// <param name="progDelegate"></param>
         /// <param name="accessMode"></param>
         public static IfcStore Open(string path, XbimEditorCredentials editorDetails = null, double? ifcDatabaseSizeThreshHold = null, ReportProgressDelegate progDelegate = null, XbimDBAccess accessMode = XbimDBAccess.Read)
@@ -227,11 +173,11 @@ namespace Xbim.Ifc
                     return new IfcStore(model, ifcVersion, editorDetails, path);
                 }
             }
-            else //it will be an Ifc file if we are at this point
+            else //it will be an IFC file if we are at this point
             {
                 var fInfo = new FileInfo(path);
                 double ifcMaxLength = (ifcDatabaseSizeThreshHold ?? DefaultIfcDatabaseSizeThreshHold) * 1024 * 1024;
-                if (ifcMaxLength >= 0 && fInfo.Length > ifcMaxLength) //we need to make an esent database, if ifcMaxLength<0 we use in memory
+                if (ifcMaxLength >= 0 && fInfo.Length > ifcMaxLength) //we need to make an Esent database, if ifcMaxLength<0 we use in memory
                 {
                     var tmpFileName = Path.GetTempFileName();
                     if (ifcVersion == IfcSchemaVersion.Ifc4)
@@ -239,14 +185,14 @@ namespace Xbim.Ifc
                         var model = new EsentModel(new Ifc4.EntityFactory());
                         if(model.CreateFrom(path, tmpFileName, progDelegate, true))
                             return new IfcStore(model, ifcVersion, editorDetails, path, tmpFileName, true);
-                        throw new FileLoadException(filePath + " file was not a valid ifc format");
+                        throw new FileLoadException(filePath + " file was not a valid IFC format");
                     }
                     else //it will be Ifc2x3
                     {
                         var model = new EsentModel(new Ifc2x3.EntityFactory());
                         if(model.CreateFrom(path, tmpFileName, progDelegate, true))
                             return new IfcStore(model, ifcVersion, editorDetails, path, tmpFileName, true);
-                        throw new FileLoadException(filePath + " file was not a valid ifc format");
+                        throw new FileLoadException(filePath + " file was not a valid IFC format");
                     }
                 }
                 else //we can use a memory model
@@ -339,14 +285,9 @@ namespace Xbim.Ifc
             get { return _model.Instances; }
         }
 
-        public bool Activate(IPersistEntity owningEntity, bool write)
+        bool IModel.Activate(IPersistEntity owningEntity)
         {
-            return _model.Activate(owningEntity, write);
-        }
-
-        public void Activate(IPersistEntity entity, int depth)
-        {
-            _model.Activate(entity, depth);
+            return _model.Activate(owningEntity);
         }
 
         public void Delete(IPersistEntity entity)
@@ -357,7 +298,7 @@ namespace Xbim.Ifc
         public ITransaction BeginTransaction(string name = null)
         {
             var esentModel = _model as EsentModel;
-            if (esentModel != null) //we need to do transaction handling on esent model, make sure we can write to it
+            if (esentModel != null) //we need to do transaction handling on Esent model, make sure we can write to it
             {
                 esentModel.Header.StampXbimApplication(_schema);
                 return esentModel.BeginTransaction(name);
@@ -421,7 +362,7 @@ namespace Xbim.Ifc
                         var disposeInterface = _model as IDisposable;
                         if(disposeInterface!=null) disposeInterface.Dispose();
                     }
-                    //unmanaged, mostly esent related                  
+                    //unmanaged, mostly Esent related                  
                 }
                 catch
                 {

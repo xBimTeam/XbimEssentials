@@ -70,8 +70,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _varyingAppliedLoadLocation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _varyingAppliedLoadLocation;
+				Activate();
 				return _varyingAppliedLoadLocation;
 			} 
 			set
@@ -86,8 +86,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _subsequentAppliedLoads;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _subsequentAppliedLoads;
+				Activate();
 				return _subsequentAppliedLoads;
 			} 
 		}	

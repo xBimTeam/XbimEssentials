@@ -84,8 +84,8 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _resourceIdentifier;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _resourceIdentifier;
+				Activate();
 				return _resourceIdentifier;
 			} 
 			set
@@ -98,8 +98,8 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _resourceGroup;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _resourceGroup;
+				Activate();
 				return _resourceGroup;
 			} 
 			set
@@ -112,8 +112,8 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _resourceConsumption;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _resourceConsumption;
+				Activate();
 				return _resourceConsumption;
 			} 
 			set
@@ -126,8 +126,8 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _baseQuantity;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _baseQuantity;
+				Activate();
 				return _baseQuantity;
 			} 
 			set

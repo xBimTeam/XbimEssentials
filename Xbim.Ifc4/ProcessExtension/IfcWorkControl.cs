@@ -105,8 +105,8 @@ namespace Xbim.Ifc4.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _creationDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _creationDate;
+				Activate();
 				return _creationDate;
 			} 
 			set
@@ -119,8 +119,8 @@ namespace Xbim.Ifc4.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _creators;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _creators;
+				Activate();
 				return _creators;
 			} 
 		}	
@@ -129,8 +129,8 @@ namespace Xbim.Ifc4.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _purpose;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _purpose;
+				Activate();
 				return _purpose;
 			} 
 			set
@@ -143,8 +143,8 @@ namespace Xbim.Ifc4.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _duration;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _duration;
+				Activate();
 				return _duration;
 			} 
 			set
@@ -157,8 +157,8 @@ namespace Xbim.Ifc4.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _totalFloat;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _totalFloat;
+				Activate();
 				return _totalFloat;
 			} 
 			set
@@ -171,8 +171,8 @@ namespace Xbim.Ifc4.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _startTime;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _startTime;
+				Activate();
 				return _startTime;
 			} 
 			set
@@ -185,8 +185,8 @@ namespace Xbim.Ifc4.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _finishTime;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _finishTime;
+				Activate();
 				return _finishTime;
 			} 
 			set

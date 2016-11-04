@@ -83,8 +83,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _notation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _notation;
+				Activate();
 				return _notation;
 			} 
 			set
@@ -100,8 +100,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _itemOf;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _itemOf;
+				Activate();
 				return _itemOf;
 			} 
 			set
@@ -116,8 +116,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _title;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _title;
+				Activate();
 				return _title;
 			} 
 			set

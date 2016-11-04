@@ -24,42 +24,24 @@ namespace Xbim.MemoryModel.Tests
         {
             var wall = model.Instances.FirstOrDefault<IfcWall>();
             var instance = (IPersistEntity) wall;
-            Assert.IsTrue(instance.ActivationStatus == ActivationStatus.NotActivated);
+            Assert.IsFalse(instance.Activated);
 
             var name = wall.Name;
-            Assert.IsTrue(instance.ActivationStatus == ActivationStatus.ActivatedRead);
-
-            using (model.BeginTransaction("Test"))
-            {
-                wall.Name = "New Name";
-                Assert.IsTrue(instance.ActivationStatus == ActivationStatus.ActivatedReadWrite);
-            }
+            Assert.IsTrue(instance.Activated);
 
             var rel = model.Instances.FirstOrDefault<IfcRelDefinesByProperties>();
             instance = rel;
-            Assert.IsTrue(instance.ActivationStatus == ActivationStatus.NotActivated);
+            Assert.IsFalse(instance.Activated);
 
             var relObj = rel.RelatedObjects;
-            Assert.IsTrue(instance.ActivationStatus == ActivationStatus.ActivatedRead);
-
-            using (model.BeginTransaction("Test"))
-            {
-                relObj.Clear();
-                Assert.IsTrue(instance.ActivationStatus == ActivationStatus.ActivatedReadWrite);
-            }
+            Assert.IsTrue(instance.Activated);
 
             var tRel = model.Instances.FirstOrDefault<IfcRelDefinesByType>();
             instance = tRel;
-            Assert.IsTrue(instance.ActivationStatus == ActivationStatus.NotActivated);
+            Assert.IsFalse(instance.Activated);
 
             var numObj = tRel.RelatedObjects.Count;
-            Assert.IsTrue(instance.ActivationStatus == ActivationStatus.ActivatedRead);
-
-            using (model.BeginTransaction("Test"))
-            {
-                tRel.Name = "New name";
-                Assert.IsTrue(instance.ActivationStatus == ActivationStatus.ActivatedReadWrite);
-            }
+            Assert.IsTrue(instance.Activated);
 
             //activation for write shouldn't load the data again
             Assert.AreEqual(numObj, tRel.RelatedObjects.Count);

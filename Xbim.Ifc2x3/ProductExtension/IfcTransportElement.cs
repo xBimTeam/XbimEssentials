@@ -75,8 +75,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _operationType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _operationType;
+				Activate();
 				return _operationType;
 			} 
 			set
@@ -89,8 +89,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _capacityByWeight;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _capacityByWeight;
+				Activate();
 				return _capacityByWeight;
 			} 
 			set
@@ -103,8 +103,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _capacityByNumber;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _capacityByNumber;
+				Activate();
 				return _capacityByNumber;
 			} 
 			set

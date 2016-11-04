@@ -60,8 +60,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _coordList;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _coordList;
+				Activate();
 				return _coordList;
 			} 
 		}	

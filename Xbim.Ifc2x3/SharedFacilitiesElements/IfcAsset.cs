@@ -129,8 +129,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _assetID;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _assetID;
+				Activate();
 				return _assetID;
 			} 
 			set
@@ -143,8 +143,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _originalValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _originalValue;
+				Activate();
 				return _originalValue;
 			} 
 			set
@@ -159,8 +159,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _currentValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _currentValue;
+				Activate();
 				return _currentValue;
 			} 
 			set
@@ -175,8 +175,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _totalReplacementCost;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _totalReplacementCost;
+				Activate();
 				return _totalReplacementCost;
 			} 
 			set
@@ -191,8 +191,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _owner;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _owner;
+				Activate();
 				return _owner;
 			} 
 			set
@@ -207,8 +207,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _user;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _user;
+				Activate();
 				return _user;
 			} 
 			set
@@ -223,8 +223,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _responsiblePerson;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _responsiblePerson;
+				Activate();
 				return _responsiblePerson;
 			} 
 			set
@@ -239,8 +239,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _incorporationDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _incorporationDate;
+				Activate();
 				return _incorporationDate;
 			} 
 			set
@@ -255,8 +255,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _depreciatedValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _depreciatedValue;
+				Activate();
 				return _depreciatedValue;
 			} 
 			set

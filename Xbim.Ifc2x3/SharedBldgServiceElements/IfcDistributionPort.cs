@@ -61,8 +61,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _flowDirection;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _flowDirection;
+				Activate();
 				return _flowDirection;
 			} 
 			set

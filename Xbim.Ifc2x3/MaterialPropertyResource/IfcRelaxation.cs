@@ -70,8 +70,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relaxationValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relaxationValue;
+				Activate();
 				return _relaxationValue;
 			} 
 			set
@@ -84,8 +84,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _initialStress;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _initialStress;
+				Activate();
 				return _initialStress;
 			} 
 			set

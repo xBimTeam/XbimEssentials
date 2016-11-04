@@ -59,8 +59,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _bounds;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _bounds;
+				Activate();
 				return _bounds;
 			} 
 		}	

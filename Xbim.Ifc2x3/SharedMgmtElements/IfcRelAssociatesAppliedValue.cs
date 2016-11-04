@@ -63,8 +63,8 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingAppliedValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingAppliedValue;
+				Activate();
 				return _relatingAppliedValue;
 			} 
 			set

@@ -89,8 +89,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _physicalWeight;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _physicalWeight;
+				Activate();
 				return _physicalWeight;
 			} 
 			set
@@ -103,8 +103,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _perimeter;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _perimeter;
+				Activate();
 				return _perimeter;
 			} 
 			set
@@ -117,8 +117,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _minimumPlateThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _minimumPlateThickness;
+				Activate();
 				return _minimumPlateThickness;
 			} 
 			set
@@ -131,8 +131,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _maximumPlateThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _maximumPlateThickness;
+				Activate();
 				return _maximumPlateThickness;
 			} 
 			set
@@ -145,8 +145,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _crossSectionArea;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _crossSectionArea;
+				Activate();
 				return _crossSectionArea;
 			} 
 			set

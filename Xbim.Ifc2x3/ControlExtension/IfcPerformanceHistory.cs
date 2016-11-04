@@ -62,8 +62,8 @@ namespace Xbim.Ifc2x3.ControlExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _lifeCyclePhase;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _lifeCyclePhase;
+				Activate();
 				return _lifeCyclePhase;
 			} 
 			set

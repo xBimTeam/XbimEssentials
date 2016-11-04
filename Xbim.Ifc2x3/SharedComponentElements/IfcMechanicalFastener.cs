@@ -68,8 +68,8 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _nominalDiameter;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _nominalDiameter;
+				Activate();
 				return _nominalDiameter;
 			} 
 			set
@@ -82,8 +82,8 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _nominalLength;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _nominalLength;
+				Activate();
 				return _nominalLength;
 			} 
 			set

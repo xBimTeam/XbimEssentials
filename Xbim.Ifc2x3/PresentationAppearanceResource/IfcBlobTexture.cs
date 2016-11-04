@@ -68,8 +68,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rasterFormat;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rasterFormat;
+				Activate();
 				return _rasterFormat;
 			} 
 			set
@@ -82,8 +82,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rasterCode;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rasterCode;
+				Activate();
 				return _rasterCode;
 			} 
 			set

@@ -64,8 +64,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _controlElementId;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _controlElementId;
+				Activate();
 				return _controlElementId;
 			} 
 			set

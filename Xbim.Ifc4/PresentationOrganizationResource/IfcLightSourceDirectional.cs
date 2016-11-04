@@ -62,8 +62,8 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _orientation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _orientation;
+				Activate();
 				return _orientation;
 			} 
 			set

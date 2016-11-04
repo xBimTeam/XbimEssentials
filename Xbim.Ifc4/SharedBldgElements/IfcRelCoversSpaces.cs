@@ -70,8 +70,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingSpace;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingSpace;
+				Activate();
 				return _relatingSpace;
 			} 
 			set
@@ -87,8 +87,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedCoverings;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedCoverings;
+				Activate();
 				return _relatedCoverings;
 			} 
 		}	

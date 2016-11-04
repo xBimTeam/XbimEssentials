@@ -69,8 +69,8 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _sizeInX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _sizeInX;
+				Activate();
 				return _sizeInX;
 			} 
 			set
@@ -83,8 +83,8 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _sizeInY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _sizeInY;
+				Activate();
 				return _sizeInY;
 			} 
 			set

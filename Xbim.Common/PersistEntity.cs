@@ -25,24 +25,16 @@ namespace Xbim.Common
         [Obsolete("This property is deprecated and likely to be removed. Use just 'Model' instead.")]
         public IModel ModelOf { get { return Model; } }
 
-        internal bool _activated;
+        internal protected bool _activated;
         bool IPersistEntity.Activated { get { return _activated; } }
 
-        void IPersistEntity.Activate()
+        protected void Activate()
         {
             //only activate once in a lifetime
             if (_activated)
                 return;
-            lock (this)
-            {
-                //check again in the lock
-                if (_activated)
-                    return;
 
-                _activated = Model.Activate(this);
-                if (!_activated)
-                    throw new XbimInitializationFailedException( string.Format("Failed to activate #{0}={1}", EntityLabel, ((IPersistEntity)this).ExpressType.ExpressNameUpper));
-            }
+            Model.Activate(this);
         }
 
         ExpressType IPersistEntity.ExpressType { get { return Model.Metadata.ExpressType(this); } }
@@ -70,9 +62,9 @@ namespace Xbim.Common
 
         protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, int propertyOrder)
         {
-            //activate for write if it is not activated yet
+            //activate if it is not activated yet so that values don't get overwritten once activated
             if (!_activated)
-                ((IPersistEntity)this).Activate();
+                Activate();
 
             //just set the value if the model is marked as non-transactional
             if (!Model.IsTransactional)

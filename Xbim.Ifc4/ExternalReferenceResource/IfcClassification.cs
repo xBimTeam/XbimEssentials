@@ -108,8 +108,8 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _source;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _source;
+				Activate();
 				return _source;
 			} 
 			set
@@ -122,8 +122,8 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _edition;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _edition;
+				Activate();
 				return _edition;
 			} 
 			set
@@ -136,8 +136,8 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _editionDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _editionDate;
+				Activate();
 				return _editionDate;
 			} 
 			set
@@ -150,8 +150,8 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
@@ -164,8 +164,8 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
@@ -178,8 +178,8 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _location;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _location;
+				Activate();
 				return _location;
 			} 
 			set
@@ -192,8 +192,8 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _referenceTokens;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _referenceTokens;
+				Activate();
 				return _referenceTokens;
 			} 
 		}	

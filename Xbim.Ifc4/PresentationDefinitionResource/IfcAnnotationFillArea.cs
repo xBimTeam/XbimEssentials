@@ -68,8 +68,8 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _outerBoundary;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _outerBoundary;
+				Activate();
 				return _outerBoundary;
 			} 
 			set
@@ -84,8 +84,8 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _innerBoundaries;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _innerBoundaries;
+				Activate();
 				return _innerBoundaries;
 			} 
 		}	

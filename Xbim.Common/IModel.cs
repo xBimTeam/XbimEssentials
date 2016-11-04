@@ -41,17 +41,6 @@ namespace Xbim.Common
 	    bool Activate(IPersistEntity owningEntity);
 
         /// <summary>
-        /// This function is to be used to activate data island of certain depth.
-        /// It only makes sense for implementation of IModel which use some kind
-        /// of persistence storage and load the data on-demand. It is usually more
-        /// efficient to retrieve complete data island in batch especially for operations
-        /// like geometry processing.
-        /// </summary>
-        /// <param name="entity">Entity to be activated</param>
-        /// <param name="depth">Depth of activation.</param>
-	    void Activate(IPersistEntity entity, int depth);
-
-        /// <summary>
         /// Deletes entity from the model and removes all references to this entity in all entities
         /// in the model. This operation is potentially very expensive and some implementations of
         /// IModel might not implement it at all.

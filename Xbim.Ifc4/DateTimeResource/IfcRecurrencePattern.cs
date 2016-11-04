@@ -108,8 +108,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _recurrenceType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _recurrenceType;
+				Activate();
 				return _recurrenceType;
 			} 
 			set
@@ -122,8 +122,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _dayComponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _dayComponent;
+				Activate();
 				return _dayComponent;
 			} 
 		}	
@@ -132,8 +132,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _weekdayComponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _weekdayComponent;
+				Activate();
 				return _weekdayComponent;
 			} 
 		}	
@@ -142,8 +142,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _monthComponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _monthComponent;
+				Activate();
 				return _monthComponent;
 			} 
 		}	
@@ -152,8 +152,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _position;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _position;
+				Activate();
 				return _position;
 			} 
 			set
@@ -166,8 +166,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _interval;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _interval;
+				Activate();
 				return _interval;
 			} 
 			set
@@ -180,8 +180,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _occurrences;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _occurrences;
+				Activate();
 				return _occurrences;
 			} 
 			set
@@ -194,8 +194,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _timePeriods;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _timePeriods;
+				Activate();
 				return _timePeriods;
 			} 
 		}	

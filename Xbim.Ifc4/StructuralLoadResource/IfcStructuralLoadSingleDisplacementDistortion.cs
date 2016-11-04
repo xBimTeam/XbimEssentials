@@ -61,8 +61,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _distortion;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _distortion;
+				Activate();
 				return _distortion;
 			} 
 			set

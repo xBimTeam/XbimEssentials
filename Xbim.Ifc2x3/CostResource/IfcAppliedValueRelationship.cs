@@ -92,8 +92,8 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _componentOfTotal;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _componentOfTotal;
+				Activate();
 				return _componentOfTotal;
 			} 
 			set
@@ -109,8 +109,8 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _components;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _components;
+				Activate();
 				return _components;
 			} 
 		}	
@@ -119,8 +119,8 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _arithmeticOperator;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _arithmeticOperator;
+				Activate();
 				return _arithmeticOperator;
 			} 
 			set
@@ -133,8 +133,8 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
@@ -147,8 +147,8 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set

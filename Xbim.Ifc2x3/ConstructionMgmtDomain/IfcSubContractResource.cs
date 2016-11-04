@@ -70,8 +70,8 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _subContractor;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _subContractor;
+				Activate();
 				return _subContractor;
 			} 
 			set
@@ -86,8 +86,8 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _jobDescription;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _jobDescription;
+				Activate();
 				return _jobDescription;
 			} 
 			set

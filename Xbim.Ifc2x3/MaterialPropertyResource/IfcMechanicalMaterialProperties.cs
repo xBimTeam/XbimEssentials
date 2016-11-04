@@ -89,8 +89,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _dynamicViscosity;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _dynamicViscosity;
+				Activate();
 				return _dynamicViscosity;
 			} 
 			set
@@ -103,8 +103,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _youngModulus;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _youngModulus;
+				Activate();
 				return _youngModulus;
 			} 
 			set
@@ -117,8 +117,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _shearModulus;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _shearModulus;
+				Activate();
 				return _shearModulus;
 			} 
 			set
@@ -131,8 +131,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _poissonRatio;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _poissonRatio;
+				Activate();
 				return _poissonRatio;
 			} 
 			set
@@ -145,8 +145,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _thermalExpansionCoefficient;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _thermalExpansionCoefficient;
+				Activate();
 				return _thermalExpansionCoefficient;
 			} 
 			set

@@ -91,8 +91,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _refLatitude;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _refLatitude;
+				Activate();
 				return _refLatitude;
 			} 
 			set
@@ -105,8 +105,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _refLongitude;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _refLongitude;
+				Activate();
 				return _refLongitude;
 			} 
 			set
@@ -119,8 +119,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _refElevation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _refElevation;
+				Activate();
 				return _refElevation;
 			} 
 			set
@@ -133,8 +133,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _landTitleNumber;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _landTitleNumber;
+				Activate();
 				return _landTitleNumber;
 			} 
 			set
@@ -147,8 +147,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _siteAddress;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _siteAddress;
+				Activate();
 				return _siteAddress;
 			} 
 			set

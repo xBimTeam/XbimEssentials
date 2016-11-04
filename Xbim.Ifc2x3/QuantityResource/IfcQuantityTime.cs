@@ -61,8 +61,8 @@ namespace Xbim.Ifc2x3.QuantityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _timeValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _timeValue;
+				Activate();
 				return _timeValue;
 			} 
 			set

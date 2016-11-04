@@ -68,8 +68,8 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedPropertySets;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedPropertySets;
+				Activate();
 				return _relatedPropertySets;
 			} 
 		}	
@@ -79,8 +79,8 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingTemplate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingTemplate;
+				Activate();
 				return _relatingTemplate;
 			} 
 			set

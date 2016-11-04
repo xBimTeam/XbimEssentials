@@ -94,8 +94,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _hatchLineAppearance;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _hatchLineAppearance;
+				Activate();
 				return _hatchLineAppearance;
 			} 
 			set
@@ -110,8 +110,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _startOfNextHatchLine;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _startOfNextHatchLine;
+				Activate();
 				return _startOfNextHatchLine;
 			} 
 			set
@@ -127,8 +127,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _pointOfReferenceHatchLine;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _pointOfReferenceHatchLine;
+				Activate();
 				return _pointOfReferenceHatchLine;
 			} 
 			set
@@ -143,8 +143,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _patternStart;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _patternStart;
+				Activate();
 				return _patternStart;
 			} 
 			set
@@ -159,8 +159,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _hatchLineAngle;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _hatchLineAngle;
+				Activate();
 				return _hatchLineAngle;
 			} 
 			set

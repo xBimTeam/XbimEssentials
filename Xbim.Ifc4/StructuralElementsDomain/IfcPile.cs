@@ -68,8 +68,8 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
@@ -82,8 +82,8 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _constructionType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _constructionType;
+				Activate();
 				return _constructionType;
 			} 
 			set

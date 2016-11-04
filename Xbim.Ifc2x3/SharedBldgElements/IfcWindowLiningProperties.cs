@@ -120,8 +120,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _liningDepth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _liningDepth;
+				Activate();
 				return _liningDepth;
 			} 
 			set
@@ -134,8 +134,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _liningThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _liningThickness;
+				Activate();
 				return _liningThickness;
 			} 
 			set
@@ -148,8 +148,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _transomThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _transomThickness;
+				Activate();
 				return _transomThickness;
 			} 
 			set
@@ -162,8 +162,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _mullionThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _mullionThickness;
+				Activate();
 				return _mullionThickness;
 			} 
 			set
@@ -176,8 +176,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _firstTransomOffset;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _firstTransomOffset;
+				Activate();
 				return _firstTransomOffset;
 			} 
 			set
@@ -190,8 +190,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _secondTransomOffset;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _secondTransomOffset;
+				Activate();
 				return _secondTransomOffset;
 			} 
 			set
@@ -204,8 +204,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _firstMullionOffset;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _firstMullionOffset;
+				Activate();
 				return _firstMullionOffset;
 			} 
 			set
@@ -218,8 +218,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _secondMullionOffset;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _secondMullionOffset;
+				Activate();
 				return _secondMullionOffset;
 			} 
 			set
@@ -232,8 +232,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _shapeAspectStyle;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _shapeAspectStyle;
+				Activate();
 				return _shapeAspectStyle;
 			} 
 			set

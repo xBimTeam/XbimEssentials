@@ -82,8 +82,8 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _referencedSource;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _referencedSource;
+				Activate();
 				return _referencedSource;
 			} 
 			set
@@ -98,8 +98,8 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
@@ -112,8 +112,8 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _sort;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _sort;
+				Activate();
 				return _sort;
 			} 
 			set

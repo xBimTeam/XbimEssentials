@@ -63,8 +63,8 @@ namespace Xbim.Ifc4.TopologyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _vertexGeometry;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _vertexGeometry;
+				Activate();
 				return _vertexGeometry;
 			} 
 			set

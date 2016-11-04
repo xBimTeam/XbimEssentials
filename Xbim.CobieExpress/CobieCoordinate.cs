@@ -109,8 +109,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
@@ -123,8 +123,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _coordinateType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _coordinateType;
+				Activate();
 				return _coordinateType;
 			} 
 			set
@@ -137,8 +137,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _x;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _x;
+				Activate();
 				return _x;
 			} 
 			set
@@ -151,8 +151,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _y;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _y;
+				Activate();
 				return _y;
 			} 
 			set
@@ -165,8 +165,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _z;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _z;
+				Activate();
 				return _z;
 			} 
 			set
@@ -179,8 +179,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rotationX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rotationX;
+				Activate();
 				return _rotationX;
 			} 
 			set
@@ -193,8 +193,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rotationY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rotationY;
+				Activate();
 				return _rotationY;
 			} 
 			set
@@ -207,8 +207,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rotationZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rotationZ;
+				Activate();
 				return _rotationZ;
 			} 
 			set

@@ -76,8 +76,8 @@ namespace Xbim.Ifc2x3.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _hourOffset;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _hourOffset;
+				Activate();
 				return _hourOffset;
 			} 
 			set
@@ -90,8 +90,8 @@ namespace Xbim.Ifc2x3.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _minuteOffset;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _minuteOffset;
+				Activate();
 				return _minuteOffset;
 			} 
 			set
@@ -104,8 +104,8 @@ namespace Xbim.Ifc2x3.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _sense;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _sense;
+				Activate();
 				return _sense;
 			} 
 			set

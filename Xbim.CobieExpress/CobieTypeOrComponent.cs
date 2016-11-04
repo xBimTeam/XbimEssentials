@@ -65,8 +65,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _assemblyOf;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _assemblyOf;
+				Activate();
 				return _assemblyOf;
 			} 
 		}	
