@@ -35,8 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profiling.Parsing", "Profil
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8CF88033-2F9A-4A2E-BDA5-4B7B972A0915}"
 	ProjectSection(SolutionItems) = preProject
-		Xbim.Cobie.package.nuspec = Xbim.Cobie.package.nuspec
-		Xbim.Essentials.package.nuspec = Xbim.Essentials.package.nuspec
+		Xbim.Cobie.nuspec = Xbim.Cobie.nuspec
+		Xbim.Essentials.nuspec = Xbim.Essentials.nuspec
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{A54B7B62-7457-48AB-A9C2-16B087A82C36}"
