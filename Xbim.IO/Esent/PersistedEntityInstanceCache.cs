@@ -2140,7 +2140,7 @@ namespace Xbim.IO.Esent
         }
 
         /// <summary>
-        /// Writes the content of the modified cache to the table, assumes a transaction is in scope, modified and createnew caches are cleared
+        /// Writes the content of the modified cache to the table, assumes a transaction is in scope, modified and create new caches are cleared
         /// </summary>
         internal void Write(EsentEntityCursor entityTable)
         {
