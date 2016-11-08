@@ -48,7 +48,6 @@ namespace Xbim.IO.Step21
         public int[] NestedIndex { get { return ListNestLevel > 0 ? _nestedIndex.ToArray() : null; } }
 
         protected readonly ExpressMetaData Metadata;
-        protected bool KeepEntities = true;
 
         public XbimP21Parser(Stream strm, ExpressMetaData metadata, long streamSize)
             : base(strm)
@@ -205,7 +204,7 @@ namespace Xbim.IO.Step21
             var p21 = _processStack.Pop();
             //Debug.Assert(_processStack.Count == 0);
             CurrentInstance = null;
-            if (p21.Entity != null && KeepEntities)
+            if (p21.Entity != null)
                 _entities.Add(p21.EntityLabel, p21.Entity);
 
 
