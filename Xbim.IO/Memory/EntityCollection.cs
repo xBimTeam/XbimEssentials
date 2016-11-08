@@ -25,7 +25,7 @@ namespace Xbim.IO.Memory
         private readonly MemoryModel _model;
         private readonly XbimMultiValueDictionary<Type, IPersistEntity> _internal;
         private readonly Dictionary<int,IPersistEntity> _collection = new Dictionary<int,IPersistEntity>(0x77777);
-        private List<int> _naturalOrder = new List<int>(0x77777); //about a default of half a million stops too much growing, and 7 is lucky; 
+        private readonly List<int> _naturalOrder = new List<int>(0x77777); //about a default of half a million stops too much growing, and 7 is lucky; 
         internal IEntityFactory Factory
         {
             get { return _model.EntityFactory; }
@@ -225,7 +225,7 @@ namespace Xbim.IO.Memory
             {
                 _internal.Remove(key,entity);
                 _collection.Remove(entity.EntityLabel);
-                if (_naturalOrder != null) _naturalOrder.RemoveAt(_naturalOrder.Count-1);
+                if (_naturalOrder != null) _naturalOrder.Remove(entity.EntityLabel);
             };
             Action doAction = () =>
             {
@@ -253,18 +253,17 @@ namespace Xbim.IO.Memory
             if (_model.IsTransactional && _model.CurrentTransaction == null) throw new Exception("Operation out of transaction");
             var key = entity.GetType();
             bool removed = false;
-            var oldOrder = _naturalOrder;
             Action doAction = () =>
             {
                 _internal.Remove(key,entity);
                 removed =_collection.Remove(entity.EntityLabel);
-                _naturalOrder = null;
+                _naturalOrder.Remove(entity.EntityLabel);
             };
             Action undo = () =>
             {
                 _internal.Add(key,entity);
                 _collection.Add(entity.EntityLabel, entity);
-                _naturalOrder = oldOrder;
+                _naturalOrder.Add(entity.EntityLabel);
             };
 
             if (!_model.IsTransactional)
@@ -292,7 +291,10 @@ namespace Xbim.IO.Memory
         {
             _internal.Clear();
             _collection.Clear();
-            _naturalOrder.Clear();            
+            if (_naturalOrder != null)
+            {
+                _naturalOrder.Clear();
+            }
         }
               
 
