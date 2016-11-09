@@ -29,13 +29,10 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 				{
 					case IfcTransformerTypeEnum.CURRENT:
 						return Ifc4.Interfaces.IfcTransformerTypeEnum.CURRENT;
-					
 					case IfcTransformerTypeEnum.FREQUENCY:
 						return Ifc4.Interfaces.IfcTransformerTypeEnum.FREQUENCY;
-					
 					case IfcTransformerTypeEnum.VOLTAGE:
 						return Ifc4.Interfaces.IfcTransformerTypeEnum.VOLTAGE;
-					
 					case IfcTransformerTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
                         if (ElementType.HasValue)
@@ -46,10 +43,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
                         }
 						//##
 						return Ifc4.Interfaces.IfcTransformerTypeEnum.USERDEFINED;
-					
 					case IfcTransformerTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcTransformerTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -64,38 +59,30 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 					case Ifc4.Interfaces.IfcTransformerTypeEnum.CURRENT:
 						PredefinedType = IfcTransformerTypeEnum.CURRENT;
 						return;
-					
 					case Ifc4.Interfaces.IfcTransformerTypeEnum.FREQUENCY:
 						PredefinedType = IfcTransformerTypeEnum.FREQUENCY;
 						return;
-					
 					case Ifc4.Interfaces.IfcTransformerTypeEnum.INVERTER:
 						//## Handle setting of INVERTER member from IfcTransformerTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcTransformerTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcTransformerTypeEnum.RECTIFIER:
+										case Ifc4.Interfaces.IfcTransformerTypeEnum.RECTIFIER:
 						//## Handle setting of RECTIFIER member from IfcTransformerTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcTransformerTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcTransformerTypeEnum.VOLTAGE:
+										case Ifc4.Interfaces.IfcTransformerTypeEnum.VOLTAGE:
 						PredefinedType = IfcTransformerTypeEnum.VOLTAGE;
 						return;
-					
 					case Ifc4.Interfaces.IfcTransformerTypeEnum.USERDEFINED:
 						PredefinedType = IfcTransformerTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcTransformerTypeEnum.NOTDEFINED:
 						PredefinedType = IfcTransformerTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

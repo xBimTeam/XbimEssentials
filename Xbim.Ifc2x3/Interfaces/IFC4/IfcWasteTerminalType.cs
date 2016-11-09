@@ -29,48 +29,36 @@ namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 				{
 					case IfcWasteTerminalTypeEnum.FLOORTRAP:
 						return Ifc4.Interfaces.IfcWasteTerminalTypeEnum.FLOORTRAP;
-					
 					case IfcWasteTerminalTypeEnum.FLOORWASTE:
 						return Ifc4.Interfaces.IfcWasteTerminalTypeEnum.FLOORWASTE;
-					
 					case IfcWasteTerminalTypeEnum.GULLYSUMP:
 						return Ifc4.Interfaces.IfcWasteTerminalTypeEnum.GULLYSUMP;
-					
 					case IfcWasteTerminalTypeEnum.GULLYTRAP:
 						return Ifc4.Interfaces.IfcWasteTerminalTypeEnum.GULLYTRAP;
-					
 					case IfcWasteTerminalTypeEnum.GREASEINTERCEPTOR:
 						//## Handle translation of GREASEINTERCEPTOR member from IfcWasteTerminalTypeEnum in property PredefinedType
                         return Ifc4.Interfaces.IfcWasteTerminalTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcWasteTerminalTypeEnum.OILINTERCEPTOR:
 						//## Handle translation of OILINTERCEPTOR member from IfcWasteTerminalTypeEnum in property PredefinedType
                         return Ifc4.Interfaces.IfcWasteTerminalTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcWasteTerminalTypeEnum.PETROLINTERCEPTOR:
 						//## Handle translation of PETROLINTERCEPTOR member from IfcWasteTerminalTypeEnum in property PredefinedType
                         return Ifc4.Interfaces.IfcWasteTerminalTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcWasteTerminalTypeEnum.ROOFDRAIN:
 						return Ifc4.Interfaces.IfcWasteTerminalTypeEnum.ROOFDRAIN;
-					
 					case IfcWasteTerminalTypeEnum.WASTEDISPOSALUNIT:
 						return Ifc4.Interfaces.IfcWasteTerminalTypeEnum.WASTEDISPOSALUNIT;
-					
 					case IfcWasteTerminalTypeEnum.WASTETRAP:
 						return Ifc4.Interfaces.IfcWasteTerminalTypeEnum.WASTETRAP;
-					
 					case IfcWasteTerminalTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcWasteTerminalTypeEnum.USERDEFINED;
-					
 					case IfcWasteTerminalTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcWasteTerminalTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -85,40 +73,30 @@ namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 					case Ifc4.Interfaces.IfcWasteTerminalTypeEnum.FLOORTRAP:
 						PredefinedType = IfcWasteTerminalTypeEnum.FLOORTRAP;
 						return;
-					
 					case Ifc4.Interfaces.IfcWasteTerminalTypeEnum.FLOORWASTE:
 						PredefinedType = IfcWasteTerminalTypeEnum.FLOORWASTE;
 						return;
-					
 					case Ifc4.Interfaces.IfcWasteTerminalTypeEnum.GULLYSUMP:
 						PredefinedType = IfcWasteTerminalTypeEnum.GULLYSUMP;
 						return;
-					
 					case Ifc4.Interfaces.IfcWasteTerminalTypeEnum.GULLYTRAP:
 						PredefinedType = IfcWasteTerminalTypeEnum.GULLYTRAP;
 						return;
-					
 					case Ifc4.Interfaces.IfcWasteTerminalTypeEnum.ROOFDRAIN:
 						PredefinedType = IfcWasteTerminalTypeEnum.ROOFDRAIN;
 						return;
-					
 					case Ifc4.Interfaces.IfcWasteTerminalTypeEnum.WASTEDISPOSALUNIT:
 						PredefinedType = IfcWasteTerminalTypeEnum.WASTEDISPOSALUNIT;
 						return;
-					
 					case Ifc4.Interfaces.IfcWasteTerminalTypeEnum.WASTETRAP:
 						PredefinedType = IfcWasteTerminalTypeEnum.WASTETRAP;
 						return;
-					
 					case Ifc4.Interfaces.IfcWasteTerminalTypeEnum.USERDEFINED:
 						PredefinedType = IfcWasteTerminalTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcWasteTerminalTypeEnum.NOTDEFINED:
 						PredefinedType = IfcWasteTerminalTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

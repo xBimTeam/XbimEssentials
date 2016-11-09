@@ -29,33 +29,24 @@ namespace Xbim.Ifc2x3.HVACDomain
 				{
 					case IfcFanTypeEnum.CENTRIFUGALFORWARDCURVED:
 						return Ifc4.Interfaces.IfcFanTypeEnum.CENTRIFUGALFORWARDCURVED;
-					
 					case IfcFanTypeEnum.CENTRIFUGALRADIAL:
 						return Ifc4.Interfaces.IfcFanTypeEnum.CENTRIFUGALRADIAL;
-					
 					case IfcFanTypeEnum.CENTRIFUGALBACKWARDINCLINEDCURVED:
 						return Ifc4.Interfaces.IfcFanTypeEnum.CENTRIFUGALBACKWARDINCLINEDCURVED;
-					
 					case IfcFanTypeEnum.CENTRIFUGALAIRFOIL:
 						return Ifc4.Interfaces.IfcFanTypeEnum.CENTRIFUGALAIRFOIL;
-					
 					case IfcFanTypeEnum.TUBEAXIAL:
 						return Ifc4.Interfaces.IfcFanTypeEnum.TUBEAXIAL;
-					
 					case IfcFanTypeEnum.VANEAXIAL:
 						return Ifc4.Interfaces.IfcFanTypeEnum.VANEAXIAL;
-					
 					case IfcFanTypeEnum.PROPELLORAXIAL:
 						return Ifc4.Interfaces.IfcFanTypeEnum.PROPELLORAXIAL;
-					
 					case IfcFanTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcFanTypeEnum.USERDEFINED;
-					
 					case IfcFanTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcFanTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -70,40 +61,30 @@ namespace Xbim.Ifc2x3.HVACDomain
 					case Ifc4.Interfaces.IfcFanTypeEnum.CENTRIFUGALFORWARDCURVED:
 						PredefinedType = IfcFanTypeEnum.CENTRIFUGALFORWARDCURVED;
 						return;
-					
 					case Ifc4.Interfaces.IfcFanTypeEnum.CENTRIFUGALRADIAL:
 						PredefinedType = IfcFanTypeEnum.CENTRIFUGALRADIAL;
 						return;
-					
 					case Ifc4.Interfaces.IfcFanTypeEnum.CENTRIFUGALBACKWARDINCLINEDCURVED:
 						PredefinedType = IfcFanTypeEnum.CENTRIFUGALBACKWARDINCLINEDCURVED;
 						return;
-					
 					case Ifc4.Interfaces.IfcFanTypeEnum.CENTRIFUGALAIRFOIL:
 						PredefinedType = IfcFanTypeEnum.CENTRIFUGALAIRFOIL;
 						return;
-					
 					case Ifc4.Interfaces.IfcFanTypeEnum.TUBEAXIAL:
 						PredefinedType = IfcFanTypeEnum.TUBEAXIAL;
 						return;
-					
 					case Ifc4.Interfaces.IfcFanTypeEnum.VANEAXIAL:
 						PredefinedType = IfcFanTypeEnum.VANEAXIAL;
 						return;
-					
 					case Ifc4.Interfaces.IfcFanTypeEnum.PROPELLORAXIAL:
 						PredefinedType = IfcFanTypeEnum.PROPELLORAXIAL;
 						return;
-					
 					case Ifc4.Interfaces.IfcFanTypeEnum.USERDEFINED:
 						PredefinedType = IfcFanTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcFanTypeEnum.NOTDEFINED:
 						PredefinedType = IfcFanTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

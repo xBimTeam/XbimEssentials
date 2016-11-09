@@ -55,22 +55,16 @@ namespace Xbim.Ifc2x3.GeometryResource
 				{
 					case IfcBSplineCurveForm.POLYLINE_FORM:
 						return Ifc4.Interfaces.IfcBSplineCurveForm.POLYLINE_FORM;
-					
 					case IfcBSplineCurveForm.CIRCULAR_ARC:
 						return Ifc4.Interfaces.IfcBSplineCurveForm.CIRCULAR_ARC;
-					
 					case IfcBSplineCurveForm.ELLIPTIC_ARC:
 						return Ifc4.Interfaces.IfcBSplineCurveForm.ELLIPTIC_ARC;
-					
 					case IfcBSplineCurveForm.PARABOLIC_ARC:
 						return Ifc4.Interfaces.IfcBSplineCurveForm.PARABOLIC_ARC;
-					
 					case IfcBSplineCurveForm.HYPERBOLIC_ARC:
 						return Ifc4.Interfaces.IfcBSplineCurveForm.HYPERBOLIC_ARC;
-					
 					case IfcBSplineCurveForm.UNSPECIFIED:
 						return Ifc4.Interfaces.IfcBSplineCurveForm.UNSPECIFIED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -85,28 +79,21 @@ namespace Xbim.Ifc2x3.GeometryResource
 					case Ifc4.Interfaces.IfcBSplineCurveForm.POLYLINE_FORM:
 						CurveForm = IfcBSplineCurveForm.POLYLINE_FORM;
 						return;
-					
 					case Ifc4.Interfaces.IfcBSplineCurveForm.CIRCULAR_ARC:
 						CurveForm = IfcBSplineCurveForm.CIRCULAR_ARC;
 						return;
-					
 					case Ifc4.Interfaces.IfcBSplineCurveForm.ELLIPTIC_ARC:
 						CurveForm = IfcBSplineCurveForm.ELLIPTIC_ARC;
 						return;
-					
 					case Ifc4.Interfaces.IfcBSplineCurveForm.PARABOLIC_ARC:
 						CurveForm = IfcBSplineCurveForm.PARABOLIC_ARC;
 						return;
-					
 					case Ifc4.Interfaces.IfcBSplineCurveForm.HYPERBOLIC_ARC:
 						CurveForm = IfcBSplineCurveForm.HYPERBOLIC_ARC;
 						return;
-					
 					case Ifc4.Interfaces.IfcBSplineCurveForm.UNSPECIFIED:
 						CurveForm = IfcBSplineCurveForm.UNSPECIFIED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

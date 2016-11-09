@@ -414,27 +414,23 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				{
 					case IfcDocumentConfidentialityEnum.PUBLIC:
 						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.PUBLIC;
-					
 					case IfcDocumentConfidentialityEnum.RESTRICTED:
 						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.RESTRICTED;
-					
 					case IfcDocumentConfidentialityEnum.CONFIDENTIAL:
 						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.CONFIDENTIAL;
-					
 					case IfcDocumentConfidentialityEnum.PERSONAL:
 						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.PERSONAL;
-					
 					case IfcDocumentConfidentialityEnum.USERDEFINED:
 						//## Optional custom handling of Confidentiality == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.USERDEFINED;
-					
 					case IfcDocumentConfidentialityEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.NOTDEFINED;
-					
+					case null: 
+						return null;
 					
 					default:
-						return null;
+						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
 			set
@@ -446,28 +442,25 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 					case Ifc4.Interfaces.IfcDocumentConfidentialityEnum.PUBLIC:
 						Confidentiality = IfcDocumentConfidentialityEnum.PUBLIC;
 						return;
-					
 					case Ifc4.Interfaces.IfcDocumentConfidentialityEnum.RESTRICTED:
 						Confidentiality = IfcDocumentConfidentialityEnum.RESTRICTED;
 						return;
-					
 					case Ifc4.Interfaces.IfcDocumentConfidentialityEnum.CONFIDENTIAL:
 						Confidentiality = IfcDocumentConfidentialityEnum.CONFIDENTIAL;
 						return;
-					
 					case Ifc4.Interfaces.IfcDocumentConfidentialityEnum.PERSONAL:
 						Confidentiality = IfcDocumentConfidentialityEnum.PERSONAL;
 						return;
-					
 					case Ifc4.Interfaces.IfcDocumentConfidentialityEnum.USERDEFINED:
 						Confidentiality = IfcDocumentConfidentialityEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcDocumentConfidentialityEnum.NOTDEFINED:
 						Confidentiality = IfcDocumentConfidentialityEnum.NOTDEFINED;
 						return;
 					
-					
+					case null:
+						Confidentiality = null;
+						return;
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}
@@ -486,22 +479,19 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				{
 					case IfcDocumentStatusEnum.DRAFT:
 						return Ifc4.Interfaces.IfcDocumentStatusEnum.DRAFT;
-					
 					case IfcDocumentStatusEnum.FINALDRAFT:
 						return Ifc4.Interfaces.IfcDocumentStatusEnum.FINALDRAFT;
-					
 					case IfcDocumentStatusEnum.FINAL:
 						return Ifc4.Interfaces.IfcDocumentStatusEnum.FINAL;
-					
 					case IfcDocumentStatusEnum.REVISION:
 						return Ifc4.Interfaces.IfcDocumentStatusEnum.REVISION;
-					
 					case IfcDocumentStatusEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcDocumentStatusEnum.NOTDEFINED;
-					
+					case null: 
+						return null;
 					
 					default:
-						return null;
+						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
 			set
@@ -513,24 +503,22 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 					case Ifc4.Interfaces.IfcDocumentStatusEnum.DRAFT:
 						Status = IfcDocumentStatusEnum.DRAFT;
 						return;
-					
 					case Ifc4.Interfaces.IfcDocumentStatusEnum.FINALDRAFT:
 						Status = IfcDocumentStatusEnum.FINALDRAFT;
 						return;
-					
 					case Ifc4.Interfaces.IfcDocumentStatusEnum.FINAL:
 						Status = IfcDocumentStatusEnum.FINAL;
 						return;
-					
 					case Ifc4.Interfaces.IfcDocumentStatusEnum.REVISION:
 						Status = IfcDocumentStatusEnum.REVISION;
 						return;
-					
 					case Ifc4.Interfaces.IfcDocumentStatusEnum.NOTDEFINED:
 						Status = IfcDocumentStatusEnum.NOTDEFINED;
 						return;
 					
-					
+					case null:
+						Status = null;
+						return;
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

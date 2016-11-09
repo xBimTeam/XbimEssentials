@@ -29,24 +29,21 @@ namespace Xbim.Ifc2x3.ActorResource
 				{
 					case IfcAddressTypeEnum.OFFICE:
 						return Ifc4.Interfaces.IfcAddressTypeEnum.OFFICE;
-					
 					case IfcAddressTypeEnum.SITE:
 						return Ifc4.Interfaces.IfcAddressTypeEnum.SITE;
-					
 					case IfcAddressTypeEnum.HOME:
 						return Ifc4.Interfaces.IfcAddressTypeEnum.HOME;
-					
 					case IfcAddressTypeEnum.DISTRIBUTIONPOINT:
 						return Ifc4.Interfaces.IfcAddressTypeEnum.DISTRIBUTIONPOINT;
-					
 					case IfcAddressTypeEnum.USERDEFINED:
 						//## Optional custom handling of Purpose == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcAddressTypeEnum.USERDEFINED;
-					
+					case null: 
+						return null;
 					
 					default:
-						return null;
+						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
 			set
@@ -58,24 +55,22 @@ namespace Xbim.Ifc2x3.ActorResource
 					case Ifc4.Interfaces.IfcAddressTypeEnum.OFFICE:
 						Purpose = IfcAddressTypeEnum.OFFICE;
 						return;
-					
 					case Ifc4.Interfaces.IfcAddressTypeEnum.SITE:
 						Purpose = IfcAddressTypeEnum.SITE;
 						return;
-					
 					case Ifc4.Interfaces.IfcAddressTypeEnum.HOME:
 						Purpose = IfcAddressTypeEnum.HOME;
 						return;
-					
 					case Ifc4.Interfaces.IfcAddressTypeEnum.DISTRIBUTIONPOINT:
 						Purpose = IfcAddressTypeEnum.DISTRIBUTIONPOINT;
 						return;
-					
 					case Ifc4.Interfaces.IfcAddressTypeEnum.USERDEFINED:
 						Purpose = IfcAddressTypeEnum.USERDEFINED;
 						return;
 					
-					
+					case null:
+						Purpose = null;
+						return;
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

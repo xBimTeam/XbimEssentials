@@ -29,28 +29,20 @@ namespace Xbim.Ifc2x3.ProductExtension
 				{
 					case IfcCoveringTypeEnum.CEILING:
 						return Ifc4.Interfaces.IfcCoveringTypeEnum.CEILING;
-					
 					case IfcCoveringTypeEnum.FLOORING:
 						return Ifc4.Interfaces.IfcCoveringTypeEnum.FLOORING;
-					
 					case IfcCoveringTypeEnum.CLADDING:
 						return Ifc4.Interfaces.IfcCoveringTypeEnum.CLADDING;
-					
 					case IfcCoveringTypeEnum.ROOFING:
 						return Ifc4.Interfaces.IfcCoveringTypeEnum.ROOFING;
-					
 					case IfcCoveringTypeEnum.INSULATION:
 						return Ifc4.Interfaces.IfcCoveringTypeEnum.INSULATION;
-					
 					case IfcCoveringTypeEnum.MEMBRANE:
 						return Ifc4.Interfaces.IfcCoveringTypeEnum.MEMBRANE;
-					
 					case IfcCoveringTypeEnum.SLEEVING:
 						return Ifc4.Interfaces.IfcCoveringTypeEnum.SLEEVING;
-					
 					case IfcCoveringTypeEnum.WRAPPING:
 						return Ifc4.Interfaces.IfcCoveringTypeEnum.WRAPPING;
-					
 					case IfcCoveringTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
                         if (ElementType.HasValue)
@@ -61,10 +53,8 @@ namespace Xbim.Ifc2x3.ProductExtension
                         }
 						//##
 						return Ifc4.Interfaces.IfcCoveringTypeEnum.USERDEFINED;
-					
 					case IfcCoveringTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcCoveringTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -79,58 +69,45 @@ namespace Xbim.Ifc2x3.ProductExtension
 					case Ifc4.Interfaces.IfcCoveringTypeEnum.CEILING:
 						PredefinedType = IfcCoveringTypeEnum.CEILING;
 						return;
-					
 					case Ifc4.Interfaces.IfcCoveringTypeEnum.FLOORING:
 						PredefinedType = IfcCoveringTypeEnum.FLOORING;
 						return;
-					
 					case Ifc4.Interfaces.IfcCoveringTypeEnum.CLADDING:
 						PredefinedType = IfcCoveringTypeEnum.CLADDING;
 						return;
-					
 					case Ifc4.Interfaces.IfcCoveringTypeEnum.ROOFING:
 						PredefinedType = IfcCoveringTypeEnum.ROOFING;
 						return;
-					
 					case Ifc4.Interfaces.IfcCoveringTypeEnum.MOLDING:
 						//## Handle setting of MOLDING member from IfcCoveringTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcCoveringTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcCoveringTypeEnum.SKIRTINGBOARD:
+										case Ifc4.Interfaces.IfcCoveringTypeEnum.SKIRTINGBOARD:
 						//## Handle setting of SKIRTINGBOARD member from IfcCoveringTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcCoveringTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcCoveringTypeEnum.INSULATION:
+										case Ifc4.Interfaces.IfcCoveringTypeEnum.INSULATION:
 						PredefinedType = IfcCoveringTypeEnum.INSULATION;
 						return;
-					
 					case Ifc4.Interfaces.IfcCoveringTypeEnum.MEMBRANE:
 						PredefinedType = IfcCoveringTypeEnum.MEMBRANE;
 						return;
-					
 					case Ifc4.Interfaces.IfcCoveringTypeEnum.SLEEVING:
 						PredefinedType = IfcCoveringTypeEnum.SLEEVING;
 						return;
-					
 					case Ifc4.Interfaces.IfcCoveringTypeEnum.WRAPPING:
 						PredefinedType = IfcCoveringTypeEnum.WRAPPING;
 						return;
-					
 					case Ifc4.Interfaces.IfcCoveringTypeEnum.USERDEFINED:
 						PredefinedType = IfcCoveringTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcCoveringTypeEnum.NOTDEFINED:
 						PredefinedType = IfcCoveringTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

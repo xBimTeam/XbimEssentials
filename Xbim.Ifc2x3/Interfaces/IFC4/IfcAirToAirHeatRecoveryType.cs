@@ -29,39 +29,28 @@ namespace Xbim.Ifc2x3.HVACDomain
 				{
 					case IfcAirToAirHeatRecoveryTypeEnum.FIXEDPLATECOUNTERFLOWEXCHANGER:
 						return Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.FIXEDPLATECOUNTERFLOWEXCHANGER;
-					
 					case IfcAirToAirHeatRecoveryTypeEnum.FIXEDPLATECROSSFLOWEXCHANGER:
 						return Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.FIXEDPLATECROSSFLOWEXCHANGER;
-					
 					case IfcAirToAirHeatRecoveryTypeEnum.FIXEDPLATEPARALLELFLOWEXCHANGER:
 						return Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.FIXEDPLATEPARALLELFLOWEXCHANGER;
-					
 					case IfcAirToAirHeatRecoveryTypeEnum.ROTARYWHEEL:
 						return Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.ROTARYWHEEL;
-					
 					case IfcAirToAirHeatRecoveryTypeEnum.RUNAROUNDCOILLOOP:
 						return Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.RUNAROUNDCOILLOOP;
-					
 					case IfcAirToAirHeatRecoveryTypeEnum.HEATPIPE:
 						return Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.HEATPIPE;
-					
 					case IfcAirToAirHeatRecoveryTypeEnum.TWINTOWERENTHALPYRECOVERYLOOPS:
 						return Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.TWINTOWERENTHALPYRECOVERYLOOPS;
-					
 					case IfcAirToAirHeatRecoveryTypeEnum.THERMOSIPHONSEALEDTUBEHEATEXCHANGERS:
 						return Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.THERMOSIPHONSEALEDTUBEHEATEXCHANGERS;
-					
 					case IfcAirToAirHeatRecoveryTypeEnum.THERMOSIPHONCOILTYPEHEATEXCHANGERS:
 						return Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.THERMOSIPHONCOILTYPEHEATEXCHANGERS;
-					
 					case IfcAirToAirHeatRecoveryTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.USERDEFINED;
-					
 					case IfcAirToAirHeatRecoveryTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -76,48 +65,36 @@ namespace Xbim.Ifc2x3.HVACDomain
 					case Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.FIXEDPLATECOUNTERFLOWEXCHANGER:
 						PredefinedType = IfcAirToAirHeatRecoveryTypeEnum.FIXEDPLATECOUNTERFLOWEXCHANGER;
 						return;
-					
 					case Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.FIXEDPLATECROSSFLOWEXCHANGER:
 						PredefinedType = IfcAirToAirHeatRecoveryTypeEnum.FIXEDPLATECROSSFLOWEXCHANGER;
 						return;
-					
 					case Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.FIXEDPLATEPARALLELFLOWEXCHANGER:
 						PredefinedType = IfcAirToAirHeatRecoveryTypeEnum.FIXEDPLATEPARALLELFLOWEXCHANGER;
 						return;
-					
 					case Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.ROTARYWHEEL:
 						PredefinedType = IfcAirToAirHeatRecoveryTypeEnum.ROTARYWHEEL;
 						return;
-					
 					case Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.RUNAROUNDCOILLOOP:
 						PredefinedType = IfcAirToAirHeatRecoveryTypeEnum.RUNAROUNDCOILLOOP;
 						return;
-					
 					case Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.HEATPIPE:
 						PredefinedType = IfcAirToAirHeatRecoveryTypeEnum.HEATPIPE;
 						return;
-					
 					case Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.TWINTOWERENTHALPYRECOVERYLOOPS:
 						PredefinedType = IfcAirToAirHeatRecoveryTypeEnum.TWINTOWERENTHALPYRECOVERYLOOPS;
 						return;
-					
 					case Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.THERMOSIPHONSEALEDTUBEHEATEXCHANGERS:
 						PredefinedType = IfcAirToAirHeatRecoveryTypeEnum.THERMOSIPHONSEALEDTUBEHEATEXCHANGERS;
 						return;
-					
 					case Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.THERMOSIPHONCOILTYPEHEATEXCHANGERS:
 						PredefinedType = IfcAirToAirHeatRecoveryTypeEnum.THERMOSIPHONCOILTYPEHEATEXCHANGERS;
 						return;
-					
 					case Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.USERDEFINED:
 						PredefinedType = IfcAirToAirHeatRecoveryTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.NOTDEFINED:
 						PredefinedType = IfcAirToAirHeatRecoveryTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

@@ -55,16 +55,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				{
 					case IfcConnectionTypeEnum.ATPATH:
 						return Ifc4.Interfaces.IfcConnectionTypeEnum.ATPATH;
-					
 					case IfcConnectionTypeEnum.ATSTART:
 						return Ifc4.Interfaces.IfcConnectionTypeEnum.ATSTART;
-					
 					case IfcConnectionTypeEnum.ATEND:
 						return Ifc4.Interfaces.IfcConnectionTypeEnum.ATEND;
-					
 					case IfcConnectionTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcConnectionTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -79,20 +75,15 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					case Ifc4.Interfaces.IfcConnectionTypeEnum.ATPATH:
 						RelatedConnectionType = IfcConnectionTypeEnum.ATPATH;
 						return;
-					
 					case Ifc4.Interfaces.IfcConnectionTypeEnum.ATSTART:
 						RelatedConnectionType = IfcConnectionTypeEnum.ATSTART;
 						return;
-					
 					case Ifc4.Interfaces.IfcConnectionTypeEnum.ATEND:
 						RelatedConnectionType = IfcConnectionTypeEnum.ATEND;
 						return;
-					
 					case Ifc4.Interfaces.IfcConnectionTypeEnum.NOTDEFINED:
 						RelatedConnectionType = IfcConnectionTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}
@@ -111,16 +102,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				{
 					case IfcConnectionTypeEnum.ATPATH:
 						return Ifc4.Interfaces.IfcConnectionTypeEnum.ATPATH;
-					
 					case IfcConnectionTypeEnum.ATSTART:
 						return Ifc4.Interfaces.IfcConnectionTypeEnum.ATSTART;
-					
 					case IfcConnectionTypeEnum.ATEND:
 						return Ifc4.Interfaces.IfcConnectionTypeEnum.ATEND;
-					
 					case IfcConnectionTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcConnectionTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -135,20 +122,15 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					case Ifc4.Interfaces.IfcConnectionTypeEnum.ATPATH:
 						RelatingConnectionType = IfcConnectionTypeEnum.ATPATH;
 						return;
-					
 					case Ifc4.Interfaces.IfcConnectionTypeEnum.ATSTART:
 						RelatingConnectionType = IfcConnectionTypeEnum.ATSTART;
 						return;
-					
 					case Ifc4.Interfaces.IfcConnectionTypeEnum.ATEND:
 						RelatingConnectionType = IfcConnectionTypeEnum.ATEND;
 						return;
-					
 					case Ifc4.Interfaces.IfcConnectionTypeEnum.NOTDEFINED:
 						RelatingConnectionType = IfcConnectionTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

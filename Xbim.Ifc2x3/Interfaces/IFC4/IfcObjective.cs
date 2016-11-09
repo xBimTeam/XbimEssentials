@@ -63,22 +63,16 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				{
 					case IfcObjectiveEnum.CODECOMPLIANCE:
 						return Ifc4.Interfaces.IfcObjectiveEnum.CODECOMPLIANCE;
-					
 					case IfcObjectiveEnum.DESIGNINTENT:
 						return Ifc4.Interfaces.IfcObjectiveEnum.DESIGNINTENT;
-					
 					case IfcObjectiveEnum.HEALTHANDSAFETY:
 						return Ifc4.Interfaces.IfcObjectiveEnum.HEALTHANDSAFETY;
-					
 					case IfcObjectiveEnum.REQUIREMENT:
 						return Ifc4.Interfaces.IfcObjectiveEnum.REQUIREMENT;
-					
 					case IfcObjectiveEnum.SPECIFICATION:
 						return Ifc4.Interfaces.IfcObjectiveEnum.SPECIFICATION;
-					
 					case IfcObjectiveEnum.TRIGGERCONDITION:
 						return Ifc4.Interfaces.IfcObjectiveEnum.TRIGGERCONDITION;
-					
 					case IfcObjectiveEnum.USERDEFINED:
 						//## Optional custom handling of ObjectiveQualifier == .USERDEFINED. 
                         if (UserDefinedQualifier.HasValue)
@@ -93,10 +87,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
                             }
 						//##
 						return Ifc4.Interfaces.IfcObjectiveEnum.USERDEFINED;
-					
 					case IfcObjectiveEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcObjectiveEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -111,71 +103,57 @@ namespace Xbim.Ifc2x3.ConstraintResource
 					case Ifc4.Interfaces.IfcObjectiveEnum.CODECOMPLIANCE:
 						ObjectiveQualifier = IfcObjectiveEnum.CODECOMPLIANCE;
 						return;
-					
 					case Ifc4.Interfaces.IfcObjectiveEnum.CODEWAIVER:
 						//## Handle setting of CODEWAIVER member from IfcObjectiveEnum in property ObjectiveQualifier
                         UserDefinedQualifier = "CODEWAIVER";
 				        ObjectiveQualifier = IfcObjectiveEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcObjectiveEnum.DESIGNINTENT:
+										case Ifc4.Interfaces.IfcObjectiveEnum.DESIGNINTENT:
 						ObjectiveQualifier = IfcObjectiveEnum.DESIGNINTENT;
 						return;
-					
 					case Ifc4.Interfaces.IfcObjectiveEnum.EXTERNAL:
 						//## Handle setting of EXTERNAL member from IfcObjectiveEnum in property ObjectiveQualifier
                         UserDefinedQualifier = "EXTERNAL";
 				        ObjectiveQualifier = IfcObjectiveEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcObjectiveEnum.HEALTHANDSAFETY:
+										case Ifc4.Interfaces.IfcObjectiveEnum.HEALTHANDSAFETY:
 						ObjectiveQualifier = IfcObjectiveEnum.HEALTHANDSAFETY;
 						return;
-					
 					case Ifc4.Interfaces.IfcObjectiveEnum.MERGECONFLICT:
 						//## Handle setting of MERGECONFLICT member from IfcObjectiveEnum in property ObjectiveQualifier
                         UserDefinedQualifier = value.ToString();
 				        ObjectiveQualifier = IfcObjectiveEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcObjectiveEnum.MODELVIEW:
+										case Ifc4.Interfaces.IfcObjectiveEnum.MODELVIEW:
 						//## Handle setting of MODELVIEW member from IfcObjectiveEnum in property ObjectiveQualifier
 						UserDefinedQualifier = value.ToString();
 				        ObjectiveQualifier = IfcObjectiveEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcObjectiveEnum.PARAMETER:
+										case Ifc4.Interfaces.IfcObjectiveEnum.PARAMETER:
 						//## Handle setting of PARAMETER member from IfcObjectiveEnum in property ObjectiveQualifier
 						UserDefinedQualifier = value.ToString();
 				        ObjectiveQualifier = IfcObjectiveEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcObjectiveEnum.REQUIREMENT:
+										case Ifc4.Interfaces.IfcObjectiveEnum.REQUIREMENT:
 						ObjectiveQualifier = IfcObjectiveEnum.REQUIREMENT;
 						return;
-					
 					case Ifc4.Interfaces.IfcObjectiveEnum.SPECIFICATION:
 						ObjectiveQualifier = IfcObjectiveEnum.SPECIFICATION;
 						return;
-					
 					case Ifc4.Interfaces.IfcObjectiveEnum.TRIGGERCONDITION:
 						ObjectiveQualifier = IfcObjectiveEnum.TRIGGERCONDITION;
 						return;
-					
 					case Ifc4.Interfaces.IfcObjectiveEnum.USERDEFINED:
 						ObjectiveQualifier = IfcObjectiveEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcObjectiveEnum.NOTDEFINED:
 						ObjectiveQualifier = IfcObjectiveEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

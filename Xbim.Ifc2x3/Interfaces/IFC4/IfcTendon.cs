@@ -29,24 +29,18 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				{
 					case IfcTendonTypeEnum.STRAND:
 						return Ifc4.Interfaces.IfcTendonTypeEnum.STRAND;
-					
 					case IfcTendonTypeEnum.WIRE:
 						return Ifc4.Interfaces.IfcTendonTypeEnum.WIRE;
-					
 					case IfcTendonTypeEnum.BAR:
 						return Ifc4.Interfaces.IfcTendonTypeEnum.BAR;
-					
 					case IfcTendonTypeEnum.COATED:
 						return Ifc4.Interfaces.IfcTendonTypeEnum.COATED;
-					
 					case IfcTendonTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcTendonTypeEnum.USERDEFINED;
-					
 					case IfcTendonTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcTendonTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -61,28 +55,24 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 					case Ifc4.Interfaces.IfcTendonTypeEnum.BAR:
 						PredefinedType = IfcTendonTypeEnum.BAR;
 						return;
-					
 					case Ifc4.Interfaces.IfcTendonTypeEnum.COATED:
 						PredefinedType = IfcTendonTypeEnum.COATED;
 						return;
-					
 					case Ifc4.Interfaces.IfcTendonTypeEnum.STRAND:
 						PredefinedType = IfcTendonTypeEnum.STRAND;
 						return;
-					
 					case Ifc4.Interfaces.IfcTendonTypeEnum.WIRE:
 						PredefinedType = IfcTendonTypeEnum.WIRE;
 						return;
-					
 					case Ifc4.Interfaces.IfcTendonTypeEnum.USERDEFINED:
 						PredefinedType = IfcTendonTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcTendonTypeEnum.NOTDEFINED:
 						PredefinedType = IfcTendonTypeEnum.NOTDEFINED;
 						return;
-					
-					
+					case null:
+						PredefinedType = IfcTendonTypeEnum.NOTDEFINED;
+						return;
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

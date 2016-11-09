@@ -31,18 +31,14 @@ namespace Xbim.Ifc2x3.HVACDomain
 						//## Handle translation of PREFORMED member from IfcTankTypeEnum in property PredefinedType
                         return Ifc4.Interfaces.IfcTankTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcTankTypeEnum.SECTIONAL:
 						//## Handle translation of SECTIONAL member from IfcTankTypeEnum in property PredefinedType
                         return Ifc4.Interfaces.IfcTankTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcTankTypeEnum.EXPANSION:
 						return Ifc4.Interfaces.IfcTankTypeEnum.EXPANSION;
-					
 					case IfcTankTypeEnum.PRESSUREVESSEL:
 						return Ifc4.Interfaces.IfcTankTypeEnum.PRESSUREVESSEL;
-					
 					case IfcTankTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 				        var custom = ElementType ?? "";
@@ -57,10 +53,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 				        }
 						//##
 						return Ifc4.Interfaces.IfcTankTypeEnum.USERDEFINED;
-					
 					case IfcTankTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcTankTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -78,52 +72,42 @@ namespace Xbim.Ifc2x3.HVACDomain
 				        ElementType = "BASIN";
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcTankTypeEnum.BREAKPRESSURE:
+										case Ifc4.Interfaces.IfcTankTypeEnum.BREAKPRESSURE:
 						//## Handle setting of BREAKPRESSURE member from IfcTankTypeEnum in property PredefinedType
 						PredefinedType = IfcTankTypeEnum.USERDEFINED;
                         ElementType = "BREAKPRESSURE";
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcTankTypeEnum.EXPANSION:
+										case Ifc4.Interfaces.IfcTankTypeEnum.EXPANSION:
 						PredefinedType = IfcTankTypeEnum.EXPANSION;
 						return;
-					
 					case Ifc4.Interfaces.IfcTankTypeEnum.FEEDANDEXPANSION:
 						//## Handle setting of FEEDANDEXPANSION member from IfcTankTypeEnum in property PredefinedType
 						PredefinedType = IfcTankTypeEnum.USERDEFINED;
                         ElementType = "FEEDANDEXPANSION";
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcTankTypeEnum.PRESSUREVESSEL:
+										case Ifc4.Interfaces.IfcTankTypeEnum.PRESSUREVESSEL:
 						PredefinedType = IfcTankTypeEnum.PRESSUREVESSEL;
 						return;
-					
 					case Ifc4.Interfaces.IfcTankTypeEnum.STORAGE:
 						//## Handle setting of STORAGE member from IfcTankTypeEnum in property PredefinedType
 						PredefinedType = IfcTankTypeEnum.USERDEFINED;
                         ElementType = "STORAGE";
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcTankTypeEnum.VESSEL:
+										case Ifc4.Interfaces.IfcTankTypeEnum.VESSEL:
 						//## Handle setting of VESSEL member from IfcTankTypeEnum in property PredefinedType
 						PredefinedType = IfcTankTypeEnum.USERDEFINED;
                         ElementType = "VESSEL";
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcTankTypeEnum.USERDEFINED:
+										case Ifc4.Interfaces.IfcTankTypeEnum.USERDEFINED:
 						PredefinedType = IfcTankTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcTankTypeEnum.NOTDEFINED:
 						PredefinedType = IfcTankTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

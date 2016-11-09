@@ -37,10 +37,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
                         }
 						//##
 						return Ifc4.Interfaces.IfcJunctionBoxTypeEnum.USERDEFINED;
-					
 					case IfcJunctionBoxTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcJunctionBoxTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -58,23 +56,18 @@ namespace Xbim.Ifc2x3.ElectricalDomain
                         PredefinedType = IfcJunctionBoxTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcJunctionBoxTypeEnum.POWER:
+										case Ifc4.Interfaces.IfcJunctionBoxTypeEnum.POWER:
 						//## Handle setting of POWER member from IfcJunctionBoxTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcJunctionBoxTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcJunctionBoxTypeEnum.USERDEFINED:
+										case Ifc4.Interfaces.IfcJunctionBoxTypeEnum.USERDEFINED:
 						PredefinedType = IfcJunctionBoxTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcJunctionBoxTypeEnum.NOTDEFINED:
 						PredefinedType = IfcJunctionBoxTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

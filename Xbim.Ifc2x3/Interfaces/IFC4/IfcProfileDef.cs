@@ -29,10 +29,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				{
 					case IfcProfileTypeEnum.CURVE:
 						return Ifc4.Interfaces.IfcProfileTypeEnum.CURVE;
-					
 					case IfcProfileTypeEnum.AREA:
 						return Ifc4.Interfaces.IfcProfileTypeEnum.AREA;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -47,12 +45,9 @@ namespace Xbim.Ifc2x3.ProfileResource
 					case Ifc4.Interfaces.IfcProfileTypeEnum.CURVE:
 						ProfileType = IfcProfileTypeEnum.CURVE;
 						return;
-					
 					case Ifc4.Interfaces.IfcProfileTypeEnum.AREA:
 						ProfileType = IfcProfileTypeEnum.AREA;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

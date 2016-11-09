@@ -29,13 +29,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 				{
 					case IfcElementCompositionEnum.COMPLEX:
 						return Ifc4.Interfaces.IfcElementCompositionEnum.COMPLEX;
-					
 					case IfcElementCompositionEnum.ELEMENT:
 						return Ifc4.Interfaces.IfcElementCompositionEnum.ELEMENT;
-					
 					case IfcElementCompositionEnum.PARTIAL:
 						return Ifc4.Interfaces.IfcElementCompositionEnum.PARTIAL;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -50,16 +47,15 @@ namespace Xbim.Ifc2x3.ProductExtension
 					case Ifc4.Interfaces.IfcElementCompositionEnum.COMPLEX:
 						CompositionType = IfcElementCompositionEnum.COMPLEX;
 						return;
-					
 					case Ifc4.Interfaces.IfcElementCompositionEnum.ELEMENT:
 						CompositionType = IfcElementCompositionEnum.ELEMENT;
 						return;
-					
 					case Ifc4.Interfaces.IfcElementCompositionEnum.PARTIAL:
 						CompositionType = IfcElementCompositionEnum.PARTIAL;
 						return;
-					
-					
+					case null:
+						CompositionType = IfcElementCompositionEnum.ELEMENT;
+						return;
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

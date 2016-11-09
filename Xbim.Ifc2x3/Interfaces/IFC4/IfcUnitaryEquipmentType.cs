@@ -29,16 +29,12 @@ namespace Xbim.Ifc2x3.HVACDomain
 				{
 					case IfcUnitaryEquipmentTypeEnum.AIRHANDLER:
 						return Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.AIRHANDLER;
-					
 					case IfcUnitaryEquipmentTypeEnum.AIRCONDITIONINGUNIT:
 						return Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.AIRCONDITIONINGUNIT;
-					
 					case IfcUnitaryEquipmentTypeEnum.SPLITSYSTEM:
 						return Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.SPLITSYSTEM;
-					
 					case IfcUnitaryEquipmentTypeEnum.ROOFTOPUNIT:
 						return Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.ROOFTOPUNIT;
-					
 					case IfcUnitaryEquipmentTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
                         if (ElementType.HasValue)
@@ -49,10 +45,8 @@ namespace Xbim.Ifc2x3.HVACDomain
                         }
 						//##
 						return Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.USERDEFINED;
-					
 					case IfcUnitaryEquipmentTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -67,35 +61,27 @@ namespace Xbim.Ifc2x3.HVACDomain
 					case Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.AIRHANDLER:
 						PredefinedType = IfcUnitaryEquipmentTypeEnum.AIRHANDLER;
 						return;
-					
 					case Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.AIRCONDITIONINGUNIT:
 						PredefinedType = IfcUnitaryEquipmentTypeEnum.AIRCONDITIONINGUNIT;
 						return;
-					
 					case Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.DEHUMIDIFIER:
 						//## Handle setting of DEHUMIDIFIER member from IfcUnitaryEquipmentTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcUnitaryEquipmentTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.SPLITSYSTEM:
+										case Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.SPLITSYSTEM:
 						PredefinedType = IfcUnitaryEquipmentTypeEnum.SPLITSYSTEM;
 						return;
-					
 					case Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.ROOFTOPUNIT:
 						PredefinedType = IfcUnitaryEquipmentTypeEnum.ROOFTOPUNIT;
 						return;
-					
 					case Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.USERDEFINED:
 						PredefinedType = IfcUnitaryEquipmentTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.NOTDEFINED:
 						PredefinedType = IfcUnitaryEquipmentTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

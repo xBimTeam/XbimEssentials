@@ -29,21 +29,16 @@ namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 				{
 					case IfcStackTerminalTypeEnum.BIRDCAGE:
 						return Ifc4.Interfaces.IfcStackTerminalTypeEnum.BIRDCAGE;
-					
 					case IfcStackTerminalTypeEnum.COWL:
 						return Ifc4.Interfaces.IfcStackTerminalTypeEnum.COWL;
-					
 					case IfcStackTerminalTypeEnum.RAINWATERHOPPER:
 						return Ifc4.Interfaces.IfcStackTerminalTypeEnum.RAINWATERHOPPER;
-					
 					case IfcStackTerminalTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcStackTerminalTypeEnum.USERDEFINED;
-					
 					case IfcStackTerminalTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcStackTerminalTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -58,24 +53,18 @@ namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 					case Ifc4.Interfaces.IfcStackTerminalTypeEnum.BIRDCAGE:
 						PredefinedType = IfcStackTerminalTypeEnum.BIRDCAGE;
 						return;
-					
 					case Ifc4.Interfaces.IfcStackTerminalTypeEnum.COWL:
 						PredefinedType = IfcStackTerminalTypeEnum.COWL;
 						return;
-					
 					case Ifc4.Interfaces.IfcStackTerminalTypeEnum.RAINWATERHOPPER:
 						PredefinedType = IfcStackTerminalTypeEnum.RAINWATERHOPPER;
 						return;
-					
 					case Ifc4.Interfaces.IfcStackTerminalTypeEnum.USERDEFINED:
 						PredefinedType = IfcStackTerminalTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcStackTerminalTypeEnum.NOTDEFINED:
 						PredefinedType = IfcStackTerminalTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

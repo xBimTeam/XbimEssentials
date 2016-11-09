@@ -29,18 +29,14 @@ namespace Xbim.Ifc2x3.HVACDomain
 				{
 					case IfcDuctSegmentTypeEnum.RIGIDSEGMENT:
 						return Ifc4.Interfaces.IfcDuctSegmentTypeEnum.RIGIDSEGMENT;
-					
 					case IfcDuctSegmentTypeEnum.FLEXIBLESEGMENT:
 						return Ifc4.Interfaces.IfcDuctSegmentTypeEnum.FLEXIBLESEGMENT;
-					
 					case IfcDuctSegmentTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcDuctSegmentTypeEnum.USERDEFINED;
-					
 					case IfcDuctSegmentTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcDuctSegmentTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -55,20 +51,15 @@ namespace Xbim.Ifc2x3.HVACDomain
 					case Ifc4.Interfaces.IfcDuctSegmentTypeEnum.RIGIDSEGMENT:
 						PredefinedType = IfcDuctSegmentTypeEnum.RIGIDSEGMENT;
 						return;
-					
 					case Ifc4.Interfaces.IfcDuctSegmentTypeEnum.FLEXIBLESEGMENT:
 						PredefinedType = IfcDuctSegmentTypeEnum.FLEXIBLESEGMENT;
 						return;
-					
 					case Ifc4.Interfaces.IfcDuctSegmentTypeEnum.USERDEFINED:
 						PredefinedType = IfcDuctSegmentTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcDuctSegmentTypeEnum.NOTDEFINED:
 						PredefinedType = IfcDuctSegmentTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

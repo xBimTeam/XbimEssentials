@@ -29,22 +29,16 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 				{
 					case IfcLampTypeEnum.COMPACTFLUORESCENT:
 						return Ifc4.Interfaces.IfcLampTypeEnum.COMPACTFLUORESCENT;
-					
 					case IfcLampTypeEnum.FLUORESCENT:
 						return Ifc4.Interfaces.IfcLampTypeEnum.FLUORESCENT;
-					
 					case IfcLampTypeEnum.HIGHPRESSUREMERCURY:
 						return Ifc4.Interfaces.IfcLampTypeEnum.HIGHPRESSUREMERCURY;
-					
 					case IfcLampTypeEnum.HIGHPRESSURESODIUM:
 						return Ifc4.Interfaces.IfcLampTypeEnum.HIGHPRESSURESODIUM;
-					
 					case IfcLampTypeEnum.METALHALIDE:
 						return Ifc4.Interfaces.IfcLampTypeEnum.METALHALIDE;
-					
 					case IfcLampTypeEnum.TUNGSTENFILAMENT:
 						return Ifc4.Interfaces.IfcLampTypeEnum.TUNGSTENFILAMENT;
-					
 					case IfcLampTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
                         if (ElementType.HasValue)
@@ -55,10 +49,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
                         }
 						//##
 						return Ifc4.Interfaces.IfcLampTypeEnum.USERDEFINED;
-					
 					case IfcLampTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcLampTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -73,57 +65,45 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 					case Ifc4.Interfaces.IfcLampTypeEnum.COMPACTFLUORESCENT:
 						PredefinedType = IfcLampTypeEnum.COMPACTFLUORESCENT;
 						return;
-					
 					case Ifc4.Interfaces.IfcLampTypeEnum.FLUORESCENT:
 						PredefinedType = IfcLampTypeEnum.FLUORESCENT;
 						return;
-					
 					case Ifc4.Interfaces.IfcLampTypeEnum.HALOGEN:
 						//## Handle setting of HALOGEN member from IfcLampTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcLampTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcLampTypeEnum.HIGHPRESSUREMERCURY:
+										case Ifc4.Interfaces.IfcLampTypeEnum.HIGHPRESSUREMERCURY:
 						PredefinedType = IfcLampTypeEnum.HIGHPRESSUREMERCURY;
 						return;
-					
 					case Ifc4.Interfaces.IfcLampTypeEnum.HIGHPRESSURESODIUM:
 						PredefinedType = IfcLampTypeEnum.HIGHPRESSURESODIUM;
 						return;
-					
 					case Ifc4.Interfaces.IfcLampTypeEnum.LED:
 						//## Handle setting of LED member from IfcLampTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcLampTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcLampTypeEnum.METALHALIDE:
+										case Ifc4.Interfaces.IfcLampTypeEnum.METALHALIDE:
 						PredefinedType = IfcLampTypeEnum.METALHALIDE;
 						return;
-					
 					case Ifc4.Interfaces.IfcLampTypeEnum.OLED:
 						//## Handle setting of OLED member from IfcLampTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcLampTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcLampTypeEnum.TUNGSTENFILAMENT:
+										case Ifc4.Interfaces.IfcLampTypeEnum.TUNGSTENFILAMENT:
 						PredefinedType = IfcLampTypeEnum.TUNGSTENFILAMENT;
 						return;
-					
 					case Ifc4.Interfaces.IfcLampTypeEnum.USERDEFINED:
 						PredefinedType = IfcLampTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcLampTypeEnum.NOTDEFINED:
 						PredefinedType = IfcLampTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

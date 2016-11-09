@@ -29,21 +29,16 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 				{
 					case IfcElectricTimeControlTypeEnum.TIMECLOCK:
 						return Ifc4.Interfaces.IfcElectricTimeControlTypeEnum.TIMECLOCK;
-					
 					case IfcElectricTimeControlTypeEnum.TIMEDELAY:
 						return Ifc4.Interfaces.IfcElectricTimeControlTypeEnum.TIMEDELAY;
-					
 					case IfcElectricTimeControlTypeEnum.RELAY:
 						return Ifc4.Interfaces.IfcElectricTimeControlTypeEnum.RELAY;
-					
 					case IfcElectricTimeControlTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcElectricTimeControlTypeEnum.USERDEFINED;
-					
 					case IfcElectricTimeControlTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcElectricTimeControlTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -58,24 +53,18 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 					case Ifc4.Interfaces.IfcElectricTimeControlTypeEnum.TIMECLOCK:
 						PredefinedType = IfcElectricTimeControlTypeEnum.TIMECLOCK;
 						return;
-					
 					case Ifc4.Interfaces.IfcElectricTimeControlTypeEnum.TIMEDELAY:
 						PredefinedType = IfcElectricTimeControlTypeEnum.TIMEDELAY;
 						return;
-					
 					case Ifc4.Interfaces.IfcElectricTimeControlTypeEnum.RELAY:
 						PredefinedType = IfcElectricTimeControlTypeEnum.RELAY;
 						return;
-					
 					case Ifc4.Interfaces.IfcElectricTimeControlTypeEnum.USERDEFINED:
 						PredefinedType = IfcElectricTimeControlTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcElectricTimeControlTypeEnum.NOTDEFINED:
 						PredefinedType = IfcElectricTimeControlTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

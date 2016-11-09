@@ -29,28 +29,20 @@ namespace Xbim.Ifc2x3.Kernel
 				{
 					case IfcObjectTypeEnum.PRODUCT:
 						return Ifc4.Interfaces.IfcObjectTypeEnum.PRODUCT;
-					
 					case IfcObjectTypeEnum.PROCESS:
 						return Ifc4.Interfaces.IfcObjectTypeEnum.PROCESS;
-					
 					case IfcObjectTypeEnum.CONTROL:
 						return Ifc4.Interfaces.IfcObjectTypeEnum.CONTROL;
-					
 					case IfcObjectTypeEnum.RESOURCE:
 						return Ifc4.Interfaces.IfcObjectTypeEnum.RESOURCE;
-					
 					case IfcObjectTypeEnum.ACTOR:
 						return Ifc4.Interfaces.IfcObjectTypeEnum.ACTOR;
-					
 					case IfcObjectTypeEnum.GROUP:
 						return Ifc4.Interfaces.IfcObjectTypeEnum.GROUP;
-					
 					case IfcObjectTypeEnum.PROJECT:
 						return Ifc4.Interfaces.IfcObjectTypeEnum.PROJECT;
-					
 					case IfcObjectTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcObjectTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -65,36 +57,27 @@ namespace Xbim.Ifc2x3.Kernel
 					case Ifc4.Interfaces.IfcObjectTypeEnum.PRODUCT:
 						ProxyType = IfcObjectTypeEnum.PRODUCT;
 						return;
-					
 					case Ifc4.Interfaces.IfcObjectTypeEnum.PROCESS:
 						ProxyType = IfcObjectTypeEnum.PROCESS;
 						return;
-					
 					case Ifc4.Interfaces.IfcObjectTypeEnum.CONTROL:
 						ProxyType = IfcObjectTypeEnum.CONTROL;
 						return;
-					
 					case Ifc4.Interfaces.IfcObjectTypeEnum.RESOURCE:
 						ProxyType = IfcObjectTypeEnum.RESOURCE;
 						return;
-					
 					case Ifc4.Interfaces.IfcObjectTypeEnum.ACTOR:
 						ProxyType = IfcObjectTypeEnum.ACTOR;
 						return;
-					
 					case Ifc4.Interfaces.IfcObjectTypeEnum.GROUP:
 						ProxyType = IfcObjectTypeEnum.GROUP;
 						return;
-					
 					case Ifc4.Interfaces.IfcObjectTypeEnum.PROJECT:
 						ProxyType = IfcObjectTypeEnum.PROJECT;
 						return;
-					
 					case Ifc4.Interfaces.IfcObjectTypeEnum.NOTDEFINED:
 						ProxyType = IfcObjectTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

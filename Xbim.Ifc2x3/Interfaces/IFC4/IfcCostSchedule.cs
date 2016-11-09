@@ -29,33 +29,24 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				{
 					case IfcCostScheduleTypeEnum.BUDGET:
 						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.BUDGET;
-					
 					case IfcCostScheduleTypeEnum.COSTPLAN:
 						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.COSTPLAN;
-					
 					case IfcCostScheduleTypeEnum.ESTIMATE:
 						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.ESTIMATE;
-					
 					case IfcCostScheduleTypeEnum.TENDER:
 						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.TENDER;
-					
 					case IfcCostScheduleTypeEnum.PRICEDBILLOFQUANTITIES:
 						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.PRICEDBILLOFQUANTITIES;
-					
 					case IfcCostScheduleTypeEnum.UNPRICEDBILLOFQUANTITIES:
 						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.UNPRICEDBILLOFQUANTITIES;
-					
 					case IfcCostScheduleTypeEnum.SCHEDULEOFRATES:
 						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.SCHEDULEOFRATES;
-					
 					case IfcCostScheduleTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.USERDEFINED;
-					
 					case IfcCostScheduleTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -70,40 +61,33 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 					case Ifc4.Interfaces.IfcCostScheduleTypeEnum.BUDGET:
 						PredefinedType = IfcCostScheduleTypeEnum.BUDGET;
 						return;
-					
 					case Ifc4.Interfaces.IfcCostScheduleTypeEnum.COSTPLAN:
 						PredefinedType = IfcCostScheduleTypeEnum.COSTPLAN;
 						return;
-					
 					case Ifc4.Interfaces.IfcCostScheduleTypeEnum.ESTIMATE:
 						PredefinedType = IfcCostScheduleTypeEnum.ESTIMATE;
 						return;
-					
 					case Ifc4.Interfaces.IfcCostScheduleTypeEnum.TENDER:
 						PredefinedType = IfcCostScheduleTypeEnum.TENDER;
 						return;
-					
 					case Ifc4.Interfaces.IfcCostScheduleTypeEnum.PRICEDBILLOFQUANTITIES:
 						PredefinedType = IfcCostScheduleTypeEnum.PRICEDBILLOFQUANTITIES;
 						return;
-					
 					case Ifc4.Interfaces.IfcCostScheduleTypeEnum.UNPRICEDBILLOFQUANTITIES:
 						PredefinedType = IfcCostScheduleTypeEnum.UNPRICEDBILLOFQUANTITIES;
 						return;
-					
 					case Ifc4.Interfaces.IfcCostScheduleTypeEnum.SCHEDULEOFRATES:
 						PredefinedType = IfcCostScheduleTypeEnum.SCHEDULEOFRATES;
 						return;
-					
 					case Ifc4.Interfaces.IfcCostScheduleTypeEnum.USERDEFINED:
 						PredefinedType = IfcCostScheduleTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcCostScheduleTypeEnum.NOTDEFINED:
 						PredefinedType = IfcCostScheduleTypeEnum.NOTDEFINED;
 						return;
-					
-					
+					case null:
+						PredefinedType = IfcCostScheduleTypeEnum.NOTDEFINED;
+						return;
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

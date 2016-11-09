@@ -95,13 +95,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				{
 					case ProfilePropertyResource.IfcReinforcingBarSurfaceEnum.PLAIN:
 						return Ifc4.Interfaces.IfcReinforcingBarSurfaceEnum.PLAIN;
-					
 					case ProfilePropertyResource.IfcReinforcingBarSurfaceEnum.TEXTURED:
 						return Ifc4.Interfaces.IfcReinforcingBarSurfaceEnum.TEXTURED;
-					
+					case null: 
+						return null;
 					
 					default:
-						return null;
+						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
 			set
@@ -113,12 +113,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 					case Ifc4.Interfaces.IfcReinforcingBarSurfaceEnum.PLAIN:
 						BarSurface = ProfilePropertyResource.IfcReinforcingBarSurfaceEnum.PLAIN;
 						return;
-					
 					case Ifc4.Interfaces.IfcReinforcingBarSurfaceEnum.TEXTURED:
 						BarSurface = ProfilePropertyResource.IfcReinforcingBarSurfaceEnum.TEXTURED;
 						return;
 					
-					
+					case null:
+						BarSurface = null;
+						return;
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

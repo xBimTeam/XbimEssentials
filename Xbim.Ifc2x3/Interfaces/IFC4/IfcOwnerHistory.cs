@@ -57,22 +57,19 @@ namespace Xbim.Ifc2x3.UtilityResource
 				{
 					case IfcStateEnum.READWRITE:
 						return Ifc4.Interfaces.IfcStateEnum.READWRITE;
-					
 					case IfcStateEnum.READONLY:
 						return Ifc4.Interfaces.IfcStateEnum.READONLY;
-					
 					case IfcStateEnum.LOCKED:
 						return Ifc4.Interfaces.IfcStateEnum.LOCKED;
-					
 					case IfcStateEnum.READWRITELOCKED:
 						return Ifc4.Interfaces.IfcStateEnum.READWRITELOCKED;
-					
 					case IfcStateEnum.READONLYLOCKED:
 						return Ifc4.Interfaces.IfcStateEnum.READONLYLOCKED;
-					
+					case null: 
+						return null;
 					
 					default:
-						return null;
+						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
 			set
@@ -84,24 +81,22 @@ namespace Xbim.Ifc2x3.UtilityResource
 					case Ifc4.Interfaces.IfcStateEnum.READWRITE:
 						State = IfcStateEnum.READWRITE;
 						return;
-					
 					case Ifc4.Interfaces.IfcStateEnum.READONLY:
 						State = IfcStateEnum.READONLY;
 						return;
-					
 					case Ifc4.Interfaces.IfcStateEnum.LOCKED:
 						State = IfcStateEnum.LOCKED;
 						return;
-					
 					case Ifc4.Interfaces.IfcStateEnum.READWRITELOCKED:
 						State = IfcStateEnum.READWRITELOCKED;
 						return;
-					
 					case Ifc4.Interfaces.IfcStateEnum.READONLYLOCKED:
 						State = IfcStateEnum.READONLYLOCKED;
 						return;
 					
-					
+					case null:
+						State = null;
+						return;
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}
@@ -122,26 +117,20 @@ namespace Xbim.Ifc2x3.UtilityResource
 				{
 					case IfcChangeActionEnum.NOCHANGE:
 						return Ifc4.Interfaces.IfcChangeActionEnum.NOCHANGE;
-					
 					case IfcChangeActionEnum.MODIFIED:
 						return Ifc4.Interfaces.IfcChangeActionEnum.MODIFIED;
-					
 					case IfcChangeActionEnum.ADDED:
 						return Ifc4.Interfaces.IfcChangeActionEnum.ADDED;
-					
 					case IfcChangeActionEnum.DELETED:
 						return Ifc4.Interfaces.IfcChangeActionEnum.DELETED;
-					
 					case IfcChangeActionEnum.MODIFIEDADDED:
 						//## Handle translation of MODIFIEDADDED member from IfcChangeActionEnum in property ChangeAction
                         return Ifc4.Interfaces.IfcChangeActionEnum.ADDED;
 						//##
-										
 					case IfcChangeActionEnum.MODIFIEDDELETED:
 						//## Handle translation of MODIFIEDDELETED member from IfcChangeActionEnum in property ChangeAction
                         return Ifc4.Interfaces.IfcChangeActionEnum.DELETED;
 						//##
-										
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -158,26 +147,23 @@ namespace Xbim.Ifc2x3.UtilityResource
 					case Ifc4.Interfaces.IfcChangeActionEnum.NOCHANGE:
 						ChangeAction = IfcChangeActionEnum.NOCHANGE;
 						return;
-					
 					case Ifc4.Interfaces.IfcChangeActionEnum.MODIFIED:
 						ChangeAction = IfcChangeActionEnum.MODIFIED;
 						return;
-					
 					case Ifc4.Interfaces.IfcChangeActionEnum.ADDED:
 						ChangeAction = IfcChangeActionEnum.ADDED;
 						return;
-					
 					case Ifc4.Interfaces.IfcChangeActionEnum.DELETED:
 						ChangeAction = IfcChangeActionEnum.DELETED;
 						return;
-					
 					case Ifc4.Interfaces.IfcChangeActionEnum.NOTDEFINED:
 						//## Handle setting of NOTDEFINED member from IfcChangeActionEnum in property ChangeAction
 						SetValue(v => _changeAction4 = v, _changeAction4, value, "ChangeAction", -4);
 				        return;
 						//##
-										
-					
+										case null:
+						ChangeAction = IfcChangeActionEnum.NOCHANGE;
+						return;
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

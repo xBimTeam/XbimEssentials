@@ -29,10 +29,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				{
 					case IfcSectionTypeEnum.UNIFORM:
 						return Ifc4.Interfaces.IfcSectionTypeEnum.UNIFORM;
-					
 					case IfcSectionTypeEnum.TAPERED:
 						return Ifc4.Interfaces.IfcSectionTypeEnum.TAPERED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -47,12 +45,9 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 					case Ifc4.Interfaces.IfcSectionTypeEnum.UNIFORM:
 						SectionType = IfcSectionTypeEnum.UNIFORM;
 						return;
-					
 					case Ifc4.Interfaces.IfcSectionTypeEnum.TAPERED:
 						SectionType = IfcSectionTypeEnum.TAPERED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

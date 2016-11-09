@@ -237,34 +237,24 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				{
 					case IfcReflectanceMethodEnum.BLINN:
 						return Ifc4.Interfaces.IfcReflectanceMethodEnum.BLINN;
-					
 					case IfcReflectanceMethodEnum.FLAT:
 						return Ifc4.Interfaces.IfcReflectanceMethodEnum.FLAT;
-					
 					case IfcReflectanceMethodEnum.GLASS:
 						return Ifc4.Interfaces.IfcReflectanceMethodEnum.GLASS;
-					
 					case IfcReflectanceMethodEnum.MATT:
 						return Ifc4.Interfaces.IfcReflectanceMethodEnum.MATT;
-					
 					case IfcReflectanceMethodEnum.METAL:
 						return Ifc4.Interfaces.IfcReflectanceMethodEnum.METAL;
-					
 					case IfcReflectanceMethodEnum.MIRROR:
 						return Ifc4.Interfaces.IfcReflectanceMethodEnum.MIRROR;
-					
 					case IfcReflectanceMethodEnum.PHONG:
 						return Ifc4.Interfaces.IfcReflectanceMethodEnum.PHONG;
-					
 					case IfcReflectanceMethodEnum.PLASTIC:
 						return Ifc4.Interfaces.IfcReflectanceMethodEnum.PLASTIC;
-					
 					case IfcReflectanceMethodEnum.STRAUSS:
 						return Ifc4.Interfaces.IfcReflectanceMethodEnum.STRAUSS;
-					
 					case IfcReflectanceMethodEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcReflectanceMethodEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -279,44 +269,33 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					case Ifc4.Interfaces.IfcReflectanceMethodEnum.BLINN:
 						ReflectanceMethod = IfcReflectanceMethodEnum.BLINN;
 						return;
-					
 					case Ifc4.Interfaces.IfcReflectanceMethodEnum.FLAT:
 						ReflectanceMethod = IfcReflectanceMethodEnum.FLAT;
 						return;
-					
 					case Ifc4.Interfaces.IfcReflectanceMethodEnum.GLASS:
 						ReflectanceMethod = IfcReflectanceMethodEnum.GLASS;
 						return;
-					
 					case Ifc4.Interfaces.IfcReflectanceMethodEnum.MATT:
 						ReflectanceMethod = IfcReflectanceMethodEnum.MATT;
 						return;
-					
 					case Ifc4.Interfaces.IfcReflectanceMethodEnum.METAL:
 						ReflectanceMethod = IfcReflectanceMethodEnum.METAL;
 						return;
-					
 					case Ifc4.Interfaces.IfcReflectanceMethodEnum.MIRROR:
 						ReflectanceMethod = IfcReflectanceMethodEnum.MIRROR;
 						return;
-					
 					case Ifc4.Interfaces.IfcReflectanceMethodEnum.PHONG:
 						ReflectanceMethod = IfcReflectanceMethodEnum.PHONG;
 						return;
-					
 					case Ifc4.Interfaces.IfcReflectanceMethodEnum.PLASTIC:
 						ReflectanceMethod = IfcReflectanceMethodEnum.PLASTIC;
 						return;
-					
 					case Ifc4.Interfaces.IfcReflectanceMethodEnum.STRAUSS:
 						ReflectanceMethod = IfcReflectanceMethodEnum.STRAUSS;
 						return;
-					
 					case Ifc4.Interfaces.IfcReflectanceMethodEnum.NOTDEFINED:
 						ReflectanceMethod = IfcReflectanceMethodEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

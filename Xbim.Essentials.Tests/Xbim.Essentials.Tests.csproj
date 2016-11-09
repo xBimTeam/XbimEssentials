@@ -81,6 +81,7 @@
     <Compile Include="Pure4Tests.cs" />
     <Compile Include="UnitNameTest.cs" />
     <Compile Include="OwnerHistoryTests.cs" />
+    <Compile Include="NullableInterfaceEnumMemberTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj">

@@ -29,24 +29,18 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 				{
 					case IfcCableCarrierSegmentTypeEnum.CABLELADDERSEGMENT:
 						return Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CABLELADDERSEGMENT;
-					
 					case IfcCableCarrierSegmentTypeEnum.CABLETRAYSEGMENT:
 						return Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CABLETRAYSEGMENT;
-					
 					case IfcCableCarrierSegmentTypeEnum.CABLETRUNKINGSEGMENT:
 						return Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CABLETRUNKINGSEGMENT;
-					
 					case IfcCableCarrierSegmentTypeEnum.CONDUITSEGMENT:
 						return Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CONDUITSEGMENT;
-					
 					case IfcCableCarrierSegmentTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.USERDEFINED;
-					
 					case IfcCableCarrierSegmentTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -61,28 +55,21 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 					case Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CABLELADDERSEGMENT:
 						PredefinedType = IfcCableCarrierSegmentTypeEnum.CABLELADDERSEGMENT;
 						return;
-					
 					case Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CABLETRAYSEGMENT:
 						PredefinedType = IfcCableCarrierSegmentTypeEnum.CABLETRAYSEGMENT;
 						return;
-					
 					case Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CABLETRUNKINGSEGMENT:
 						PredefinedType = IfcCableCarrierSegmentTypeEnum.CABLETRUNKINGSEGMENT;
 						return;
-					
 					case Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CONDUITSEGMENT:
 						PredefinedType = IfcCableCarrierSegmentTypeEnum.CONDUITSEGMENT;
 						return;
-					
 					case Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.USERDEFINED:
 						PredefinedType = IfcCableCarrierSegmentTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.NOTDEFINED:
 						PredefinedType = IfcCableCarrierSegmentTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

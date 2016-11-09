@@ -87,7 +87,7 @@ namespace QUT.Gppg {
         protected PushdownPrefixState<TValue> ValueStack { get { return valueStack; } }
 
         /// <summary>
-        /// The stack of location value (YYLTYPE) varlues.
+        /// The stack of location value (YYLTYPE) values.
         /// </summary>
         protected PushdownPrefixState<TSpan> LocationStack { get { return locationStack; } }
 

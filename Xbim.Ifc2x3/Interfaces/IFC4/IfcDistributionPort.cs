@@ -29,19 +29,17 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 				{
 					case IfcFlowDirectionEnum.SOURCE:
 						return Ifc4.Interfaces.IfcFlowDirectionEnum.SOURCE;
-					
 					case IfcFlowDirectionEnum.SINK:
 						return Ifc4.Interfaces.IfcFlowDirectionEnum.SINK;
-					
 					case IfcFlowDirectionEnum.SOURCEANDSINK:
 						return Ifc4.Interfaces.IfcFlowDirectionEnum.SOURCEANDSINK;
-					
 					case IfcFlowDirectionEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcFlowDirectionEnum.NOTDEFINED;
-					
+					case null: 
+						return null;
 					
 					default:
-						return null;
+						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
 			set
@@ -53,20 +51,19 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 					case Ifc4.Interfaces.IfcFlowDirectionEnum.SOURCE:
 						FlowDirection = IfcFlowDirectionEnum.SOURCE;
 						return;
-					
 					case Ifc4.Interfaces.IfcFlowDirectionEnum.SINK:
 						FlowDirection = IfcFlowDirectionEnum.SINK;
 						return;
-					
 					case Ifc4.Interfaces.IfcFlowDirectionEnum.SOURCEANDSINK:
 						FlowDirection = IfcFlowDirectionEnum.SOURCEANDSINK;
 						return;
-					
 					case Ifc4.Interfaces.IfcFlowDirectionEnum.NOTDEFINED:
 						FlowDirection = IfcFlowDirectionEnum.NOTDEFINED;
 						return;
 					
-					
+					case null:
+						FlowDirection = null;
+						return;
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

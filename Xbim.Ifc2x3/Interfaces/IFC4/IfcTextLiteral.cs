@@ -80,16 +80,12 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				{
 					case IfcTextPath.LEFT:
 						return Ifc4.Interfaces.IfcTextPath.LEFT;
-					
 					case IfcTextPath.RIGHT:
 						return Ifc4.Interfaces.IfcTextPath.RIGHT;
-					
 					case IfcTextPath.UP:
 						return Ifc4.Interfaces.IfcTextPath.UP;
-					
 					case IfcTextPath.DOWN:
 						return Ifc4.Interfaces.IfcTextPath.DOWN;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -104,20 +100,15 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 					case Ifc4.Interfaces.IfcTextPath.LEFT:
 						Path = IfcTextPath.LEFT;
 						return;
-					
 					case Ifc4.Interfaces.IfcTextPath.RIGHT:
 						Path = IfcTextPath.RIGHT;
 						return;
-					
 					case Ifc4.Interfaces.IfcTextPath.UP:
 						Path = IfcTextPath.UP;
 						return;
-					
 					case Ifc4.Interfaces.IfcTextPath.DOWN:
 						Path = IfcTextPath.DOWN;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

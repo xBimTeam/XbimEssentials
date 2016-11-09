@@ -29,21 +29,16 @@ namespace Xbim.Ifc2x3.HVACDomain
 				{
 					case IfcAirTerminalBoxTypeEnum.CONSTANTFLOW:
 						return Ifc4.Interfaces.IfcAirTerminalBoxTypeEnum.CONSTANTFLOW;
-					
 					case IfcAirTerminalBoxTypeEnum.VARIABLEFLOWPRESSUREDEPENDANT:
 						return Ifc4.Interfaces.IfcAirTerminalBoxTypeEnum.VARIABLEFLOWPRESSUREDEPENDANT;
-					
 					case IfcAirTerminalBoxTypeEnum.VARIABLEFLOWPRESSUREINDEPENDANT:
 						return Ifc4.Interfaces.IfcAirTerminalBoxTypeEnum.VARIABLEFLOWPRESSUREINDEPENDANT;
-					
 					case IfcAirTerminalBoxTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcAirTerminalBoxTypeEnum.USERDEFINED;
-					
 					case IfcAirTerminalBoxTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcAirTerminalBoxTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -58,24 +53,18 @@ namespace Xbim.Ifc2x3.HVACDomain
 					case Ifc4.Interfaces.IfcAirTerminalBoxTypeEnum.CONSTANTFLOW:
 						PredefinedType = IfcAirTerminalBoxTypeEnum.CONSTANTFLOW;
 						return;
-					
 					case Ifc4.Interfaces.IfcAirTerminalBoxTypeEnum.VARIABLEFLOWPRESSUREDEPENDANT:
 						PredefinedType = IfcAirTerminalBoxTypeEnum.VARIABLEFLOWPRESSUREDEPENDANT;
 						return;
-					
 					case Ifc4.Interfaces.IfcAirTerminalBoxTypeEnum.VARIABLEFLOWPRESSUREINDEPENDANT:
 						PredefinedType = IfcAirTerminalBoxTypeEnum.VARIABLEFLOWPRESSUREINDEPENDANT;
 						return;
-					
 					case Ifc4.Interfaces.IfcAirTerminalBoxTypeEnum.USERDEFINED:
 						PredefinedType = IfcAirTerminalBoxTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcAirTerminalBoxTypeEnum.NOTDEFINED:
 						PredefinedType = IfcAirTerminalBoxTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

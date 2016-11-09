@@ -29,19 +29,14 @@ namespace Xbim.Ifc2x3.HVACDomain
 				{
 					case IfcFilterTypeEnum.AIRPARTICLEFILTER:
 						return Ifc4.Interfaces.IfcFilterTypeEnum.AIRPARTICLEFILTER;
-					
 					case IfcFilterTypeEnum.ODORFILTER:
 						return Ifc4.Interfaces.IfcFilterTypeEnum.ODORFILTER;
-					
 					case IfcFilterTypeEnum.OILFILTER:
 						return Ifc4.Interfaces.IfcFilterTypeEnum.OILFILTER;
-					
 					case IfcFilterTypeEnum.STRAINER:
 						return Ifc4.Interfaces.IfcFilterTypeEnum.STRAINER;
-					
 					case IfcFilterTypeEnum.WATERFILTER:
 						return Ifc4.Interfaces.IfcFilterTypeEnum.WATERFILTER;
-					
 					case IfcFilterTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
                         if (ElementType.HasValue)
@@ -52,10 +47,8 @@ namespace Xbim.Ifc2x3.HVACDomain
                         }
 						//##
 						return Ifc4.Interfaces.IfcFilterTypeEnum.USERDEFINED;
-					
 					case IfcFilterTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcFilterTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -70,39 +63,30 @@ namespace Xbim.Ifc2x3.HVACDomain
 					case Ifc4.Interfaces.IfcFilterTypeEnum.AIRPARTICLEFILTER:
 						PredefinedType = IfcFilterTypeEnum.AIRPARTICLEFILTER;
 						return;
-					
 					case Ifc4.Interfaces.IfcFilterTypeEnum.COMPRESSEDAIRFILTER:
 						//## Handle setting of COMPRESSEDAIRFILTER member from IfcFilterTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcFilterTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcFilterTypeEnum.ODORFILTER:
+										case Ifc4.Interfaces.IfcFilterTypeEnum.ODORFILTER:
 						PredefinedType = IfcFilterTypeEnum.ODORFILTER;
 						return;
-					
 					case Ifc4.Interfaces.IfcFilterTypeEnum.OILFILTER:
 						PredefinedType = IfcFilterTypeEnum.OILFILTER;
 						return;
-					
 					case Ifc4.Interfaces.IfcFilterTypeEnum.STRAINER:
 						PredefinedType = IfcFilterTypeEnum.STRAINER;
 						return;
-					
 					case Ifc4.Interfaces.IfcFilterTypeEnum.WATERFILTER:
 						PredefinedType = IfcFilterTypeEnum.WATERFILTER;
 						return;
-					
 					case Ifc4.Interfaces.IfcFilterTypeEnum.USERDEFINED:
 						PredefinedType = IfcFilterTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcFilterTypeEnum.NOTDEFINED:
 						PredefinedType = IfcFilterTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

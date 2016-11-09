@@ -85,37 +85,26 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				{
 					case IfcLightEmissionSourceEnum.COMPACTFLUORESCENT:
 						return Ifc4.Interfaces.IfcLightEmissionSourceEnum.COMPACTFLUORESCENT;
-					
 					case IfcLightEmissionSourceEnum.FLUORESCENT:
 						return Ifc4.Interfaces.IfcLightEmissionSourceEnum.FLUORESCENT;
-					
 					case IfcLightEmissionSourceEnum.HIGHPRESSUREMERCURY:
 						return Ifc4.Interfaces.IfcLightEmissionSourceEnum.HIGHPRESSUREMERCURY;
-					
 					case IfcLightEmissionSourceEnum.HIGHPRESSURESODIUM:
 						return Ifc4.Interfaces.IfcLightEmissionSourceEnum.HIGHPRESSURESODIUM;
-					
 					case IfcLightEmissionSourceEnum.LIGHTEMITTINGDIODE:
 						return Ifc4.Interfaces.IfcLightEmissionSourceEnum.LIGHTEMITTINGDIODE;
-					
 					case IfcLightEmissionSourceEnum.LOWPRESSURESODIUM:
 						return Ifc4.Interfaces.IfcLightEmissionSourceEnum.LOWPRESSURESODIUM;
-					
 					case IfcLightEmissionSourceEnum.LOWVOLTAGEHALOGEN:
 						return Ifc4.Interfaces.IfcLightEmissionSourceEnum.LOWVOLTAGEHALOGEN;
-					
 					case IfcLightEmissionSourceEnum.MAINVOLTAGEHALOGEN:
 						return Ifc4.Interfaces.IfcLightEmissionSourceEnum.MAINVOLTAGEHALOGEN;
-					
 					case IfcLightEmissionSourceEnum.METALHALIDE:
 						return Ifc4.Interfaces.IfcLightEmissionSourceEnum.METALHALIDE;
-					
 					case IfcLightEmissionSourceEnum.TUNGSTENFILAMENT:
 						return Ifc4.Interfaces.IfcLightEmissionSourceEnum.TUNGSTENFILAMENT;
-					
 					case IfcLightEmissionSourceEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcLightEmissionSourceEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -130,48 +119,36 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 					case Ifc4.Interfaces.IfcLightEmissionSourceEnum.COMPACTFLUORESCENT:
 						LightEmissionSource = IfcLightEmissionSourceEnum.COMPACTFLUORESCENT;
 						return;
-					
 					case Ifc4.Interfaces.IfcLightEmissionSourceEnum.FLUORESCENT:
 						LightEmissionSource = IfcLightEmissionSourceEnum.FLUORESCENT;
 						return;
-					
 					case Ifc4.Interfaces.IfcLightEmissionSourceEnum.HIGHPRESSUREMERCURY:
 						LightEmissionSource = IfcLightEmissionSourceEnum.HIGHPRESSUREMERCURY;
 						return;
-					
 					case Ifc4.Interfaces.IfcLightEmissionSourceEnum.HIGHPRESSURESODIUM:
 						LightEmissionSource = IfcLightEmissionSourceEnum.HIGHPRESSURESODIUM;
 						return;
-					
 					case Ifc4.Interfaces.IfcLightEmissionSourceEnum.LIGHTEMITTINGDIODE:
 						LightEmissionSource = IfcLightEmissionSourceEnum.LIGHTEMITTINGDIODE;
 						return;
-					
 					case Ifc4.Interfaces.IfcLightEmissionSourceEnum.LOWPRESSURESODIUM:
 						LightEmissionSource = IfcLightEmissionSourceEnum.LOWPRESSURESODIUM;
 						return;
-					
 					case Ifc4.Interfaces.IfcLightEmissionSourceEnum.LOWVOLTAGEHALOGEN:
 						LightEmissionSource = IfcLightEmissionSourceEnum.LOWVOLTAGEHALOGEN;
 						return;
-					
 					case Ifc4.Interfaces.IfcLightEmissionSourceEnum.MAINVOLTAGEHALOGEN:
 						LightEmissionSource = IfcLightEmissionSourceEnum.MAINVOLTAGEHALOGEN;
 						return;
-					
 					case Ifc4.Interfaces.IfcLightEmissionSourceEnum.METALHALIDE:
 						LightEmissionSource = IfcLightEmissionSourceEnum.METALHALIDE;
 						return;
-					
 					case Ifc4.Interfaces.IfcLightEmissionSourceEnum.TUNGSTENFILAMENT:
 						LightEmissionSource = IfcLightEmissionSourceEnum.TUNGSTENFILAMENT;
 						return;
-					
 					case Ifc4.Interfaces.IfcLightEmissionSourceEnum.NOTDEFINED:
 						LightEmissionSource = IfcLightEmissionSourceEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

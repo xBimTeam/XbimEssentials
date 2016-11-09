@@ -29,24 +29,18 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				{
 					case IfcAnalysisTheoryTypeEnum.FIRST_ORDER_THEORY:
 						return Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.FIRST_ORDER_THEORY;
-					
 					case IfcAnalysisTheoryTypeEnum.SECOND_ORDER_THEORY:
 						return Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.SECOND_ORDER_THEORY;
-					
 					case IfcAnalysisTheoryTypeEnum.THIRD_ORDER_THEORY:
 						return Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.THIRD_ORDER_THEORY;
-					
 					case IfcAnalysisTheoryTypeEnum.FULL_NONLINEAR_THEORY:
 						return Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.FULL_NONLINEAR_THEORY;
-					
 					case IfcAnalysisTheoryTypeEnum.USERDEFINED:
 						//## Optional custom handling of TheoryType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.USERDEFINED;
-					
 					case IfcAnalysisTheoryTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -61,28 +55,21 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					case Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.FIRST_ORDER_THEORY:
 						TheoryType = IfcAnalysisTheoryTypeEnum.FIRST_ORDER_THEORY;
 						return;
-					
 					case Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.SECOND_ORDER_THEORY:
 						TheoryType = IfcAnalysisTheoryTypeEnum.SECOND_ORDER_THEORY;
 						return;
-					
 					case Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.THIRD_ORDER_THEORY:
 						TheoryType = IfcAnalysisTheoryTypeEnum.THIRD_ORDER_THEORY;
 						return;
-					
 					case Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.FULL_NONLINEAR_THEORY:
 						TheoryType = IfcAnalysisTheoryTypeEnum.FULL_NONLINEAR_THEORY;
 						return;
-					
 					case Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.USERDEFINED:
 						TheoryType = IfcAnalysisTheoryTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.NOTDEFINED:
 						TheoryType = IfcAnalysisTheoryTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

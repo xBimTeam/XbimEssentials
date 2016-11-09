@@ -31,32 +31,24 @@ namespace Xbim.Ifc2x3.HVACDomain
 						//## Handle translation of ELECTRICMETER member from IfcFlowMeterTypeEnum in property PredefinedType
                         return Ifc4.Interfaces.IfcFlowMeterTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcFlowMeterTypeEnum.ENERGYMETER:
 						return Ifc4.Interfaces.IfcFlowMeterTypeEnum.ENERGYMETER;
-					
 					case IfcFlowMeterTypeEnum.FLOWMETER:
 						//## Handle translation of FLOWMETER member from IfcFlowMeterTypeEnum in property PredefinedType
                         return Ifc4.Interfaces.IfcFlowMeterTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcFlowMeterTypeEnum.GASMETER:
 						return Ifc4.Interfaces.IfcFlowMeterTypeEnum.GASMETER;
-					
 					case IfcFlowMeterTypeEnum.OILMETER:
 						return Ifc4.Interfaces.IfcFlowMeterTypeEnum.OILMETER;
-					
 					case IfcFlowMeterTypeEnum.WATERMETER:
 						return Ifc4.Interfaces.IfcFlowMeterTypeEnum.WATERMETER;
-					
 					case IfcFlowMeterTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcFlowMeterTypeEnum.USERDEFINED;
-					
 					case IfcFlowMeterTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcFlowMeterTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -71,28 +63,21 @@ namespace Xbim.Ifc2x3.HVACDomain
 					case Ifc4.Interfaces.IfcFlowMeterTypeEnum.ENERGYMETER:
 						PredefinedType = IfcFlowMeterTypeEnum.ENERGYMETER;
 						return;
-					
 					case Ifc4.Interfaces.IfcFlowMeterTypeEnum.GASMETER:
 						PredefinedType = IfcFlowMeterTypeEnum.GASMETER;
 						return;
-					
 					case Ifc4.Interfaces.IfcFlowMeterTypeEnum.OILMETER:
 						PredefinedType = IfcFlowMeterTypeEnum.OILMETER;
 						return;
-					
 					case Ifc4.Interfaces.IfcFlowMeterTypeEnum.WATERMETER:
 						PredefinedType = IfcFlowMeterTypeEnum.WATERMETER;
 						return;
-					
 					case Ifc4.Interfaces.IfcFlowMeterTypeEnum.USERDEFINED:
 						PredefinedType = IfcFlowMeterTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcFlowMeterTypeEnum.NOTDEFINED:
 						PredefinedType = IfcFlowMeterTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

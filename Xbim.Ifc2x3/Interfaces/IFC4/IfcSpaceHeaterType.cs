@@ -31,35 +31,28 @@ namespace Xbim.Ifc2x3.HVACDomain
 						//## Handle translation of SECTIONALRADIATOR member from IfcSpaceHeaterTypeEnum in property PredefinedType
                         return Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcSpaceHeaterTypeEnum.PANELRADIATOR:
 						//## Handle translation of PANELRADIATOR member from IfcSpaceHeaterTypeEnum in property PredefinedType
                         return Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcSpaceHeaterTypeEnum.TUBULARRADIATOR:
 						//## Handle translation of TUBULARRADIATOR member from IfcSpaceHeaterTypeEnum in property PredefinedType
                         return Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcSpaceHeaterTypeEnum.CONVECTOR:
 						return Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.CONVECTOR;
-					
 					case IfcSpaceHeaterTypeEnum.BASEBOARDHEATER:
 						//## Handle translation of BASEBOARDHEATER member from IfcSpaceHeaterTypeEnum in property PredefinedType
                         return Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcSpaceHeaterTypeEnum.FINNEDTUBEUNIT:
 						//## Handle translation of FINNEDTUBEUNIT member from IfcSpaceHeaterTypeEnum in property PredefinedType
                         return Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcSpaceHeaterTypeEnum.UNITHEATER:
 						//## Handle translation of UNITHEATER member from IfcSpaceHeaterTypeEnum in property PredefinedType
                         return Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcSpaceHeaterTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
                         if (ElementType.HasValue)
@@ -70,10 +63,8 @@ namespace Xbim.Ifc2x3.HVACDomain
                         }
 						//##
 						return Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.USERDEFINED;
-					
 					case IfcSpaceHeaterTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -88,23 +79,18 @@ namespace Xbim.Ifc2x3.HVACDomain
 					case Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.CONVECTOR:
 						PredefinedType = IfcSpaceHeaterTypeEnum.CONVECTOR;
 						return;
-					
 					case Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.RADIATOR:
 						//## Handle setting of RADIATOR member from IfcSpaceHeaterTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcSpaceHeaterTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.USERDEFINED:
+										case Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.USERDEFINED:
 						PredefinedType = IfcSpaceHeaterTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.NOTDEFINED:
 						PredefinedType = IfcSpaceHeaterTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

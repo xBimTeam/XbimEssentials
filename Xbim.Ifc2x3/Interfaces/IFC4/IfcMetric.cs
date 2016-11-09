@@ -31,22 +31,16 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				{
 					case IfcBenchmarkEnum.GREATERTHAN:
 						return Ifc4.Interfaces.IfcBenchmarkEnum.GREATERTHAN;
-					
 					case IfcBenchmarkEnum.GREATERTHANOREQUALTO:
 						return Ifc4.Interfaces.IfcBenchmarkEnum.GREATERTHANOREQUALTO;
-					
 					case IfcBenchmarkEnum.LESSTHAN:
 						return Ifc4.Interfaces.IfcBenchmarkEnum.LESSTHAN;
-					
 					case IfcBenchmarkEnum.LESSTHANOREQUALTO:
 						return Ifc4.Interfaces.IfcBenchmarkEnum.LESSTHANOREQUALTO;
-					
 					case IfcBenchmarkEnum.EQUALTO:
 						return Ifc4.Interfaces.IfcBenchmarkEnum.EQUALTO;
-					
 					case IfcBenchmarkEnum.NOTEQUALTO:
 						return Ifc4.Interfaces.IfcBenchmarkEnum.NOTEQUALTO;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -65,53 +59,42 @@ namespace Xbim.Ifc2x3.ConstraintResource
 					case Ifc4.Interfaces.IfcBenchmarkEnum.GREATERTHAN:
 						Benchmark = IfcBenchmarkEnum.GREATERTHAN;
 						return;
-					
 					case Ifc4.Interfaces.IfcBenchmarkEnum.GREATERTHANOREQUALTO:
 						Benchmark = IfcBenchmarkEnum.GREATERTHANOREQUALTO;
 						return;
-					
 					case Ifc4.Interfaces.IfcBenchmarkEnum.LESSTHAN:
 						Benchmark = IfcBenchmarkEnum.LESSTHAN;
 						return;
-					
 					case Ifc4.Interfaces.IfcBenchmarkEnum.LESSTHANOREQUALTO:
 						Benchmark = IfcBenchmarkEnum.LESSTHANOREQUALTO;
 						return;
-					
 					case Ifc4.Interfaces.IfcBenchmarkEnum.EQUALTO:
 						Benchmark = IfcBenchmarkEnum.EQUALTO;
 						return;
-					
 					case Ifc4.Interfaces.IfcBenchmarkEnum.NOTEQUALTO:
 						Benchmark = IfcBenchmarkEnum.NOTEQUALTO;
 						return;
-					
 					case Ifc4.Interfaces.IfcBenchmarkEnum.INCLUDES:
 						//## Handle setting of INCLUDES member from IfcBenchmarkEnum in property Benchmark
                         SetValue(v => _benchmark4 = v, _benchmark4, value, "Benchmark", -8);
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcBenchmarkEnum.NOTINCLUDES:
+										case Ifc4.Interfaces.IfcBenchmarkEnum.NOTINCLUDES:
 						//## Handle setting of NOTINCLUDES member from IfcBenchmarkEnum in property Benchmark
                         SetValue(v => _benchmark4 = v, _benchmark4, value, "Benchmark", -8);
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcBenchmarkEnum.INCLUDEDIN:
+										case Ifc4.Interfaces.IfcBenchmarkEnum.INCLUDEDIN:
 						//## Handle setting of INCLUDEDIN member from IfcBenchmarkEnum in property Benchmark
                         SetValue(v => _benchmark4 = v, _benchmark4, value, "Benchmark", -8);
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcBenchmarkEnum.NOTINCLUDEDIN:
+										case Ifc4.Interfaces.IfcBenchmarkEnum.NOTINCLUDEDIN:
 						//## Handle setting of NOTINCLUDEDIN member from IfcBenchmarkEnum in property Benchmark
 						SetValue(v => _benchmark4 = v, _benchmark4, value, "Benchmark", -8);
 				        return;
 						//##
-										
-					
-					default:
+										default:
 						throw new System.ArgumentOutOfRangeException();
 				}
 				
