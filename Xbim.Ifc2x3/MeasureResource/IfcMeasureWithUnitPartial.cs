@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Xbim.Ifc2x3.MeasureResource
+﻿namespace Xbim.Ifc2x3.MeasureResource
 {
     public partial class IfcMeasureWithUnit
     {

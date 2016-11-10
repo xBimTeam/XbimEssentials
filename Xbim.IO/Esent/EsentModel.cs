@@ -65,7 +65,7 @@ namespace Xbim.IO.Esent
         #endregion
 
         /// <summary>
-        /// Model wide factors, precision etc
+        /// Model wide factors, precision etc.
         /// </summary>
         public IModelFactors ModelFactors
         {
@@ -118,8 +118,8 @@ namespace Xbim.IO.Esent
         }
 
         /// <summary>
-        /// Some applications do not comply with the standard and used the Windows codepage for text. This property gives the possibility to override the character encoding when reading ifc.
-        /// default value = -1 - by standart http://www.buildingsmart-tech.org/implementation/get-started/string-encoding/string-encoding-decoding-summary
+        /// Some applications do not comply with the standard and used the Windows code page for text. This property gives the possibility to override the character encoding when reading ifc.
+        /// default value = -1 - by standard http://www.buildingsmart-tech.org/implementation/get-started/string-encoding/string-encoding-decoding-summary
         /// </summary>
         /// <example>
         /// model.CodePageOverride = Encoding.Default.WindowsCodePage;

@@ -8,7 +8,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Common.Collections
 {
-    public class ExtendedItemSet<TInner, TOuter> : IItemSet<TOuter>, IDisposable, IList
+    public class ExtendedItemSet<TInner, TOuter> : IItemSet<TOuter>, IList
     {
         private readonly IItemSet<TOuter> _extendedSet;
         private readonly Func<TInner, TOuter> _transformOut;
@@ -32,74 +32,6 @@ namespace Xbim.Common.Collections
 
             _transformOut = transformOut;
             _transformIn = transformIn;
-
-            //hook to inner events
-            _innerSet.PropertyChanged += InnerSetOnPropertyChanged;
-            _extendedSet.PropertyChanged += InnerSetOnPropertyChanged;
-            _innerSet.CollectionChanged += InnerSetOnCollectionChanged;
-            _extendedSet.CollectionChanged += ExtendedSetOnCollectionChanged;
-        }
-
-        private void ExtendedSetOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs ncArgs)
-        {
-            var innerCount = ((ICollection) _innerSet).Count;
-            //we need to translate items to outer type before we fire it from this object
-            NotifyCollectionChangedEventArgs args;
-            switch (ncArgs.Action)
-            {
-                case NotifyCollectionChangedAction.Add:
-                    args = new NotifyCollectionChangedEventArgs(ncArgs.Action, ncArgs.NewItems);
-                    break;
-                case NotifyCollectionChangedAction.Remove:
-                    args = new NotifyCollectionChangedEventArgs(ncArgs.Action, ncArgs.OldItems);
-                    break;
-                case NotifyCollectionChangedAction.Replace:
-                    args = new NotifyCollectionChangedEventArgs(ncArgs.Action, ncArgs.NewItems, ncArgs.OldItems);
-                    break;
-                case NotifyCollectionChangedAction.Move:
-                    args = new NotifyCollectionChangedEventArgs(ncArgs.Action, ncArgs.NewItems, ncArgs.NewStartingIndex + innerCount, ncArgs.OldStartingIndex + innerCount);
-                    break;
-                case NotifyCollectionChangedAction.Reset:
-                    args = new NotifyCollectionChangedEventArgs(ncArgs.Action);
-                    break;
-                default:
-                    args = new NotifyCollectionChangedEventArgs(ncArgs.Action);
-                    break;
-            }
-            OnCollectionChanged(args);
-        }
-
-        private void InnerSetOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs ncArgs)
-        {
-            //we need to translate items to outer type before we fire it from this object
-            NotifyCollectionChangedEventArgs args;
-            switch (ncArgs.Action)
-            {
-                case NotifyCollectionChangedAction.Add:
-                    args = new NotifyCollectionChangedEventArgs(ncArgs.Action, ncArgs.NewItems);
-                    break;
-                case NotifyCollectionChangedAction.Remove:
-                    args = new NotifyCollectionChangedEventArgs(ncArgs.Action, ncArgs.OldItems);
-                    break;
-                case NotifyCollectionChangedAction.Replace:
-                    args = new NotifyCollectionChangedEventArgs(ncArgs.Action, ncArgs.NewItems, ncArgs.OldItems);
-                    break;
-                case NotifyCollectionChangedAction.Move:
-                    args = new NotifyCollectionChangedEventArgs(ncArgs.Action, ncArgs.NewItems, ncArgs.NewStartingIndex, ncArgs.OldStartingIndex);
-                    break;
-                case NotifyCollectionChangedAction.Reset:
-                    args = new NotifyCollectionChangedEventArgs(ncArgs.Action);
-                    break;
-                default:
-                    args = new NotifyCollectionChangedEventArgs(ncArgs.Action);
-                    break;
-            }
-            OnCollectionChanged(args);
-        }
-
-        private void InnerSetOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
-        {
-            OnPropertyChanged(propertyChangedEventArgs.PropertyName);
         }
 
         private IEnumerable<TOuter> Transformed
@@ -341,8 +273,33 @@ namespace Xbim.Common.Collections
             }
         }
 
-        public event NotifyCollectionChangedEventHandler CollectionChanged;
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event NotifyCollectionChangedEventHandler CollectionChanged
+        {
+            add
+            {
+                _innerSet.CollectionChanged += value;
+                _extendedSet.CollectionChanged += value;
+            }
+            remove
+            {
+                _innerSet.CollectionChanged -= value;
+                _extendedSet.CollectionChanged -= value;
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged
+        {
+            add
+            {
+                _innerSet.PropertyChanged += value;
+                _extendedSet.PropertyChanged += value;
+            }
+            remove
+            {
+                _innerSet.PropertyChanged -= value;
+                _extendedSet.PropertyChanged -= value;
+            }
+        }
 
         public IPersistEntity OwningEntity
         {
@@ -411,33 +368,6 @@ namespace Xbim.Common.Collections
         public IEnumerable<TO> OfType<TO>()
         {
             return _extendedSet.OfType<TO>().Concat(Transformed.OfType<TO>());
-        }
-
-        protected virtual void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
-        {
-            var handler = CollectionChanged;
-            if (handler != null) handler(this, e);
-        }
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            var handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        private bool _disposed;
-
-        public void Dispose()
-        {
-            if (_disposed)
-                return;
-
-            _innerSet.PropertyChanged -= InnerSetOnPropertyChanged;
-            _extendedSet.PropertyChanged -= InnerSetOnPropertyChanged;
-            _innerSet.CollectionChanged -= InnerSetOnCollectionChanged;
-            _extendedSet.CollectionChanged -= ExtendedSetOnCollectionChanged;
-
-            _disposed = true;
         }
     }
 }

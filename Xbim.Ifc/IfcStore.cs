@@ -358,9 +358,17 @@ namespace Xbim.Ifc
                     // and unmanaged resources.
                     if (disposing)
                     {
+                        //release event handlers
+                        if (_model != null)
+                        {
+                            _model.EntityDeleted -= _model_EntityDeleted;
+                            _model.EntityNew -= _model_EntityNew;
+                            _model.EntityModified -= _model_EntityModified;
+                        }
+
                         //managed resources
                         var disposeInterface = _model as IDisposable;
-                        if(disposeInterface!=null) disposeInterface.Dispose();
+                        if (disposeInterface != null) disposeInterface.Dispose();
                     }
                     //unmanaged, mostly Esent related                  
                 }
@@ -1031,7 +1039,7 @@ namespace Xbim.Ifc
         public const int WexBimId = 94132117;
 
         /// <summary>
-        /// Calculates and sets the model factors, call everytime a unit of measurement is changed
+        /// Calculates and sets the model factors, call every time a unit of measurement is changed
         /// </summary>
         public void CalculateModelFactors()
         {
@@ -1115,7 +1123,7 @@ namespace Xbim.Ifc
         }
 
         /// <summary>
-        /// Code to determine model specific work arounds (BIM tool ifc exporter quirks)
+        /// Code to determine model specific workarounds (BIM tool IFC exporter quirks)
         /// </summary>
         private void SetWorkArounds()
         {

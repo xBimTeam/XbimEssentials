@@ -9,7 +9,33 @@ namespace Xbim.Common.Collections
 {
     public class ExtendedSingleSet<TInner, TOuter> : IItemSet<TOuter>
     {
-        private TInner Inner {get { return _getter(); } set { _setter(value); }}
+        private TInner Inner
+        {
+            get
+            {
+                return _getter();
+            }
+            set
+            {
+                var old = Inner;
+                _setter(value);
+                if (_collectionChanged != null)
+                {
+                    if (old != null)
+                        _collectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, old));
+                    if (value != null)
+                        _collectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, value));
+                }
+                if (_propertyChanged != null)
+                {
+                    if (old == null && value != null)
+                        _propertyChanged(this, new PropertyChangedEventArgs("Count"));
+                    if (old != null && value == null)
+                        _propertyChanged(this, new PropertyChangedEventArgs("Count"));
+                }
+
+            }
+        }
 
         private TOuter InnerOut
         {
@@ -25,7 +51,7 @@ namespace Xbim.Common.Collections
             }
         }
 
-        private IEnumerable<TOuter> InnerSet { get { return new[] { _toOut(_getter()) }; } } 
+        private IEnumerable<TOuter> InnerSet { get { return new[] { _toOut(_getter()) }; } }
         private readonly Func<TInner> _getter;
         private readonly Action<TInner> _setter;
         private readonly IItemSet<TOuter> _extended;
@@ -33,8 +59,8 @@ namespace Xbim.Common.Collections
         private readonly Func<TOuter, TInner> _toIn;
         private int Increment { get { return Inner == null ? 0 : 1; } }
 
-        public ExtendedSingleSet(Func<TInner> getter, Action<TInner> setter, IItemSet<TOuter> extended, 
-            Func<TInner,TOuter> toOut, Func<TOuter, TInner> toIn)
+        public ExtendedSingleSet(Func<TInner> getter, Action<TInner> setter, IItemSet<TOuter> extended,
+            Func<TInner, TOuter> toOut, Func<TOuter, TInner> toIn)
         {
             _getter = getter;
             _setter = setter;
@@ -45,8 +71,8 @@ namespace Xbim.Common.Collections
 
         public IEnumerator<TOuter> GetEnumerator()
         {
-            return Inner == null ? 
-                _extended.GetEnumerator() : 
+            return Inner == null ?
+                _extended.GetEnumerator() :
                 _extended.Concat(InnerSet).GetEnumerator();
         }
 
@@ -102,7 +128,7 @@ namespace Xbim.Common.Collections
 
         public int Count
         {
-            get { return  _extended.Count + Increment; }
+            get { return _extended.Count + Increment; }
         }
 
         public bool IsReadOnly
@@ -133,8 +159,35 @@ namespace Xbim.Common.Collections
             set { throw new NotImplementedException(); }
         }
 
-        public event NotifyCollectionChangedEventHandler CollectionChanged;
-        public event PropertyChangedEventHandler PropertyChanged;
+        private event NotifyCollectionChangedEventHandler _collectionChanged;
+        public event NotifyCollectionChangedEventHandler CollectionChanged
+        {
+            add
+            {
+                _extended.CollectionChanged += value;
+                _collectionChanged += value;
+            }
+            remove
+            {
+                _extended.CollectionChanged -= value;
+                _collectionChanged -= value;
+            }
+        }
+
+        private event PropertyChangedEventHandler _propertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged
+        {
+            add
+            {
+                _extended.PropertyChanged += value;
+                _propertyChanged += value;
+            }
+            remove
+            {
+                _extended.PropertyChanged -= value;
+                _propertyChanged -= value;
+            }
+        }
 
         public IPersistEntity OwningEntity
         {
@@ -158,7 +211,7 @@ namespace Xbim.Common.Collections
 
         public TOuter FirstOrDefault()
         {
-             return InnerOut;
+            return InnerOut;
         }
 
         public TOuter FirstOrDefault(Func<TOuter, bool> predicate)
@@ -182,5 +235,5 @@ namespace Xbim.Common.Collections
         }
     }
 
-    
+
 }

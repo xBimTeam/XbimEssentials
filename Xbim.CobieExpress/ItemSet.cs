@@ -8,8 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using System;
-using System.Collections;
-using System.Reflection;
 using Xbim.Common;
 
 namespace Xbim.CobieExpress
@@ -20,7 +18,7 @@ namespace Xbim.CobieExpress
         {
         }
 
-		//this is to be only used internaly to add object outside of any transaction or event firing
+		//this is to be only used internally to add object outside of any transaction or event firing
 		//that is typically during parsing operation
 		internal void InternalAdd(T value)
 		{
