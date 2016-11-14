@@ -5,6 +5,7 @@ using Xbim.Common.Step21;
 using Xbim.Common;
 using Xbim.Ifc2x3.SharedBldgElements;
 using Xbim.Ifc2x3.UtilityResource;
+using System.IO;
 
 namespace Xbim.MemoryModel.Tests
 {
@@ -27,12 +28,15 @@ namespace Xbim.MemoryModel.Tests
             };
 
             const string file = "header_test.ifc";
+            const string xmlfile = "header_test.ifcxml";
 
             //normal way to create and save with memory model
             using (var model = IfcStore.Create(editor, IfcSchemaVersion.Ifc2X3, XbimStoreType.InMemoryModel))
             {
                 CreateWall(model);
                 model.SaveAs(file);
+                model.SaveAs(xmlfile);
+                var c = Directory.GetCurrentDirectory();
             }
             using (var model = IfcStore.Open(file))
             {

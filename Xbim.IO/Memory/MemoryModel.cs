@@ -353,6 +353,7 @@ namespace Xbim.IO.Memory
             using (var file = File.OpenRead(path))
             {
                 LoadXml(file, file.Length, progDelegate);
+                file.Close();
             }
         }
 
