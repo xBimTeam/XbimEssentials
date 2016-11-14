@@ -1094,6 +1094,7 @@ namespace Xbim.Ifc
             {
                 if (!gc.ContextType.HasValue || string.Compare(gc.ContextType.Value, "model", true) != 0) continue;
                 if (!gc.Precision.HasValue) continue;
+                if (gc.Precision == 0) continue;
                 defaultPrecision = gc.Precision.Value;
                 break;
             }

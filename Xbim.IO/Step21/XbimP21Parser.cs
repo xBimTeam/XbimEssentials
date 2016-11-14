@@ -352,11 +352,9 @@ namespace Xbim.IO.Step21
                 var mainEntity = _processStack.Last();
                 if (mainEntity != null)
                 {
-                    if (Metadata != null)
+                    var expressType = Metadata?.ExpressType(mainEntity.Entity);
+                    if (expressType != null)
                     {
-                        var expressType = Metadata.ExpressType(mainEntity.Entity);
-
-
                         var propertyName = mainEntity.CurrentParamIndex + 1 > expressType.Properties.Count
                             ? "[UnknownProperty]"
                             : expressType.Properties[mainEntity.CurrentParamIndex + 1].PropertyInfo.Name;
