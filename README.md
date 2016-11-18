@@ -1,5 +1,5 @@
 # XbimEssentials
-Part of Xbim; the eXtensible Building Information Modelling (BIM) Toolkit
+Part of Xbim; the eXtensible [Building Information Modelling (BIM) Toolkit](https://xbimteam.github.io/)
 
 Build Status (master branch): [ ![Build Status](http://xbimbuilds.cloudapp.net/app/rest/builds/buildType:(id:XbimEssentials_XbimEssentials),branch:(name:master)/statusIcon "Build Status") ](http://xbimbuilds.cloudapp.net/project.html?projectId=XbimEssentials&tab=projectOverview "Build Status")
 
