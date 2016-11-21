@@ -1,0 +1,697 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Xbim.CobieExpress.@CobieAsset">
+    <Position X="17.75" Y="3" Width="2.25" />
+    <Members>
+      <Field Name="_attributes" Hidden="true" />
+      <Field Name="_categories" Hidden="true" />
+      <Field Name="_description" Hidden="true" />
+      <Field Name="_documents" Hidden="true" />
+      <Field Name="_impacts" Hidden="true" />
+      <Field Name="_name" Hidden="true" />
+      <Field Name="_representations" Hidden="true" />
+      <Method Name="CobieAsset" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Property Name="ICobieAsset.AffectedBy" Hidden="true" />
+      <Property Name="ICobieAsset.Attributes" Hidden="true" />
+      <Property Name="ICobieAsset.Categories" Hidden="true" />
+      <Property Name="ICobieAsset.CausingIssues" Hidden="true" />
+      <Property Name="ICobieAsset.Description" Hidden="true" />
+      <Property Name="ICobieAsset.Documents" Hidden="true" />
+      <Property Name="ICobieAsset.Impacts" Hidden="true" />
+      <Property Name="ICobieAsset.Name" Hidden="true" />
+      <Property Name="ICobieAsset.Representations" Hidden="true" />
+      <Method Name="Parse" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AMAhJIBACAAAQCAGjACAIAAAAAAAQAAAEAAAiEDCEAA=</HashCode>
+      <FileName>CobieAsset.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Xbim.CobieExpress.@CobieAttribute">
+    <Position X="28.75" Y="7.25" Width="1.5" />
+    <Members>
+      <Field Name="_allowedValues" Hidden="true" />
+      <Field Name="_description" Hidden="true" />
+      <Field Name="_name" Hidden="true" />
+      <Field Name="_stage" Hidden="true" />
+      <Field Name="_unit" Hidden="true" />
+      <Field Name="_value" Hidden="true" />
+      <Method Name="CobieAttribute" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Property Name="ICobieAttribute.AllowedValues" Hidden="true" />
+      <Property Name="ICobieAttribute.Description" Hidden="true" />
+      <Property Name="ICobieAttribute.Name" Hidden="true" />
+      <Property Name="ICobieAttribute.Stage" Hidden="true" />
+      <Property Name="ICobieAttribute.Unit" Hidden="true" />
+      <Property Name="ICobieAttribute.Value" Hidden="true" />
+      <Property Name="IContainsEntityReferences.References" Hidden="true" />
+      <Method Name="Parse" Hidden="true" />
+      <Method Name="Set" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AVggIIAABgAKBAAEgAABCAAAEACAAEAAgAAAAIABAAI=</HashCode>
+      <FileName>CobieAttribute.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Xbim.CobieExpress.@CobieComponent">
+    <Position X="11.25" Y="7.25" Width="1.5" />
+    <Members>
+      <Field Name="_assetIdentifier" Hidden="true" />
+      <Field Name="_barCode" Hidden="true" />
+      <Field Name="_installationDate" Hidden="true" />
+      <Field Name="_serialNumber" Hidden="true" />
+      <Field Name="_spaces" Hidden="true" />
+      <Field Name="_tagNumber" Hidden="true" />
+      <Field Name="_type" Hidden="true" />
+      <Field Name="_warrantyStartDate" Hidden="true" />
+      <Method Name="CobieComponent" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Property Name="ICobieComponent.AssetIdentifier" Hidden="true" />
+      <Property Name="ICobieComponent.BarCode" Hidden="true" />
+      <Property Name="ICobieComponent.InstallationDate" Hidden="true" />
+      <Property Name="ICobieComponent.InSystems" Hidden="true" />
+      <Property Name="ICobieComponent.SerialNumber" Hidden="true" />
+      <Property Name="ICobieComponent.Spaces" Hidden="true" />
+      <Property Name="ICobieComponent.TagNumber" Hidden="true" />
+      <Property Name="ICobieComponent.Type" Hidden="true" />
+      <Property Name="ICobieComponent.WarrantyStartDate" Hidden="true" />
+      <Property Name="IContainsEntityReferences.References" Hidden="true" />
+      <Property Name="IContainsIndexedReferences.IndexedReferences" Hidden="true" />
+      <Method Name="Parse" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAGgAEEEAADAAIQCgAAAyACAIsIJAAwAAABABIgABAA=</HashCode>
+      <FileName>CobieComponent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Xbim.CobieExpress.@CobieConnection">
+    <Position X="17.75" Y="7.25" Width="1.5" />
+    <Members>
+      <Field Name="_componentA" Hidden="true" />
+      <Field Name="_componentB" Hidden="true" />
+      <Field Name="_connectionType" Hidden="true" />
+      <Field Name="_description" Hidden="true" />
+      <Field Name="_name" Hidden="true" />
+      <Field Name="_portNameA" Hidden="true" />
+      <Field Name="_portNameB" Hidden="true" />
+      <Field Name="_realizingComponent" Hidden="true" />
+      <Method Name="CobieConnection" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Property Name="ICobieConnection.ComponentA" Hidden="true" />
+      <Property Name="ICobieConnection.ComponentB" Hidden="true" />
+      <Property Name="ICobieConnection.ConnectionType" Hidden="true" />
+      <Property Name="ICobieConnection.Description" Hidden="true" />
+      <Property Name="ICobieConnection.Name" Hidden="true" />
+      <Property Name="ICobieConnection.PortNameA" Hidden="true" />
+      <Property Name="ICobieConnection.PortNameB" Hidden="true" />
+      <Property Name="ICobieConnection.RealizingComponent" Hidden="true" />
+      <Property Name="IContainsEntityReferences.References" Hidden="true" />
+      <Property Name="IContainsIndexedReferences.IndexedReferences" Hidden="true" />
+      <Method Name="Parse" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>gECoYIAAAAEAAABEgQIACAABAAAIABAIAAAJAJAAIBI=</HashCode>
+      <FileName>CobieConnection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Xbim.CobieExpress.@CobieContact">
+    <Position X="0.75" Y="7.25" Width="1.5" />
+    <Members>
+      <Field Name="_category" Hidden="true" />
+      <Field Name="_company" Hidden="true" />
+      <Field Name="_country" Hidden="true" />
+      <Field Name="_department" Hidden="true" />
+      <Field Name="_email" Hidden="true" />
+      <Field Name="_familyName" Hidden="true" />
+      <Field Name="_givenName" Hidden="true" />
+      <Field Name="_organizationCode" Hidden="true" />
+      <Field Name="_phone" Hidden="true" />
+      <Field Name="_postalBox" Hidden="true" />
+      <Field Name="_postalCode" Hidden="true" />
+      <Field Name="_stateRegion" Hidden="true" />
+      <Field Name="_street" Hidden="true" />
+      <Field Name="_town" Hidden="true" />
+      <Method Name="CobieContact" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Property Name="ICobieContact.Category" Hidden="true" />
+      <Property Name="ICobieContact.Company" Hidden="true" />
+      <Property Name="ICobieContact.Country" Hidden="true" />
+      <Property Name="ICobieContact.Department" Hidden="true" />
+      <Property Name="ICobieContact.Email" Hidden="true" />
+      <Property Name="ICobieContact.FamilyName" Hidden="true" />
+      <Property Name="ICobieContact.GivenName" Hidden="true" />
+      <Property Name="ICobieContact.OrganizationCode" Hidden="true" />
+      <Property Name="ICobieContact.Phone" Hidden="true" />
+      <Property Name="ICobieContact.PostalBox" Hidden="true" />
+      <Property Name="ICobieContact.PostalCode" Hidden="true" />
+      <Property Name="ICobieContact.StateRegion" Hidden="true" />
+      <Property Name="ICobieContact.Street" Hidden="true" />
+      <Property Name="ICobieContact.Town" Hidden="true" />
+      <Property Name="IContainsEntityReferences.References" Hidden="true" />
+      <Method Name="Parse" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>EoAgQAGAgQAABCAIgEAACAA0AoNCQgBQAAECgCUQGhE=</HashCode>
+      <FileName>CobieContact.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Xbim.CobieExpress.@CobieCoordinate">
+    <Position X="30.5" Y="7.25" Width="1.75" />
+    <Members>
+      <Field Name="_coordinateType" Hidden="true" />
+      <Field Name="_name" Hidden="true" />
+      <Field Name="_rotationX" Hidden="true" />
+      <Field Name="_rotationY" Hidden="true" />
+      <Field Name="_rotationZ" Hidden="true" />
+      <Field Name="_x" Hidden="true" />
+      <Field Name="_y" Hidden="true" />
+      <Field Name="_z" Hidden="true" />
+      <Method Name="CobieCoordinate" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Property Name="ICobieCoordinate.CoordinateType" Hidden="true" />
+      <Property Name="ICobieCoordinate.Name" Hidden="true" />
+      <Property Name="ICobieCoordinate.RotationX" Hidden="true" />
+      <Property Name="ICobieCoordinate.RotationY" Hidden="true" />
+      <Property Name="ICobieCoordinate.RotationZ" Hidden="true" />
+      <Property Name="ICobieCoordinate.X" Hidden="true" />
+      <Property Name="ICobieCoordinate.Y" Hidden="true" />
+      <Property Name="ICobieCoordinate.Z" Hidden="true" />
+      <Property Name="IContainsEntityReferences.References" Hidden="true" />
+      <Method Name="Parse" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>DkAgIBAIAAQABAA8gAAACAEQCgAAgAAAgAAAAgAAIAA=</HashCode>
+      <FileName>CobieCoordinate.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Xbim.CobieExpress.@CobieDocument">
+    <Position X="26.75" Y="7.25" Width="1.5" />
+    <Members>
+      <Field Name="_approvalType" Hidden="true" />
+      <Field Name="_description" Hidden="true" />
+      <Field Name="_directory" Hidden="true" />
+      <Field Name="_documentType" Hidden="true" />
+      <Field Name="_file" Hidden="true" />
+      <Field Name="_name" Hidden="true" />
+      <Field Name="_reference" Hidden="true" />
+      <Field Name="_stage" Hidden="true" />
+      <Field Name="_uRL" Hidden="true" />
+      <Method Name="CobieDocument" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Property Name="ICobieDocument.ApprovalType" Hidden="true" />
+      <Property Name="ICobieDocument.Description" Hidden="true" />
+      <Property Name="ICobieDocument.Directory" Hidden="true" />
+      <Property Name="ICobieDocument.DocumentType" Hidden="true" />
+      <Property Name="ICobieDocument.File" Hidden="true" />
+      <Property Name="ICobieDocument.Name" Hidden="true" />
+      <Property Name="ICobieDocument.Reference" Hidden="true" />
+      <Property Name="ICobieDocument.Stage" Hidden="true" />
+      <Property Name="ICobieDocument.URL" Hidden="true" />
+      <Property Name="IContainsEntityReferences.References" Hidden="true" />
+      <Method Name="Parse" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>EMAkIoAgAAAAAAAFkAABjxBAgAiAoABAAAAIEAAAEAA=</HashCode>
+      <FileName>CobieDocument.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Xbim.CobieExpress.@CobieFacility">
+    <Position X="2.5" Y="7.25" Width="1.5" />
+    <Members>
+      <Field Name="_areaMeasurement" Hidden="true" />
+      <Field Name="_areaUnits" Hidden="true" />
+      <Field Name="_currencyUnit" Hidden="true" />
+      <Field Name="_linearUnits" Hidden="true" />
+      <Field Name="_phase" Hidden="true" />
+      <Field Name="_project" Hidden="true" />
+      <Field Name="_site" Hidden="true" />
+      <Field Name="_volumeUnits" Hidden="true" />
+      <Method Name="CobieFacility" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Property Name="ICobieFacility.AreaMeasurement" Hidden="true" />
+      <Property Name="ICobieFacility.AreaUnits" Hidden="true" />
+      <Property Name="ICobieFacility.CurrencyUnit" Hidden="true" />
+      <Property Name="ICobieFacility.Floors" Hidden="true" />
+      <Property Name="ICobieFacility.LinearUnits" Hidden="true" />
+      <Property Name="ICobieFacility.Phase" Hidden="true" />
+      <Property Name="ICobieFacility.Project" Hidden="true" />
+      <Property Name="ICobieFacility.Site" Hidden="true" />
+      <Property Name="ICobieFacility.Systems" Hidden="true" />
+      <Property Name="ICobieFacility.VolumeUnits" Hidden="true" />
+      <Property Name="IContainsEntityReferences.References" Hidden="true" />
+      <Property Name="IContainsIndexedReferences.IndexedReferences" Hidden="true" />
+      <Method Name="Parse" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AACgAAAAICABCIEQgCADGAAAIBAEAQICGAAJQQAAIAA=</HashCode>
+      <FileName>CobieFacility.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Xbim.CobieExpress.@CobieFloor">
+    <Position X="4.25" Y="7.25" Width="1.5" />
+    <Members>
+      <Field Name="_elevation" Hidden="true" />
+      <Field Name="_facility" Hidden="true" />
+      <Field Name="_height" Hidden="true" />
+      <Method Name="CobieFloor" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Property Name="ICobieFloor.Elevation" Hidden="true" />
+      <Property Name="ICobieFloor.Facility" Hidden="true" />
+      <Property Name="ICobieFloor.Height" Hidden="true" />
+      <Property Name="ICobieFloor.Spaces" Hidden="true" />
+      <Property Name="IContainsEntityReferences.References" Hidden="true" />
+      <Property Name="IContainsIndexedReferences.IndexedReferences" Hidden="true" />
+      <Method Name="Parse" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AQCgAAEAAACACCAAgAAQCBAAQAAgAAAEAAgAAAAAAAA=</HashCode>
+      <FileName>CobieFloor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Xbim.CobieExpress.@CobieImpact">
+    <Position X="25" Y="7.25" Width="1.5" />
+    <Members>
+      <Field Name="_description" Hidden="true" />
+      <Field Name="_duration" Hidden="true" />
+      <Field Name="_durationUnit" Hidden="true" />
+      <Field Name="_impactStage" Hidden="true" />
+      <Field Name="_impactType" Hidden="true" />
+      <Field Name="_impactUnit" Hidden="true" />
+      <Field Name="_leadInTime" Hidden="true" />
+      <Field Name="_leadOutTime" Hidden="true" />
+      <Field Name="_name" Hidden="true" />
+      <Field Name="_value" Hidden="true" />
+      <Method Name="CobieImpact" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Property Name="ICobieImpact.Description" Hidden="true" />
+      <Property Name="ICobieImpact.Duration" Hidden="true" />
+      <Property Name="ICobieImpact.DurationUnit" Hidden="true" />
+      <Property Name="ICobieImpact.ImpactStage" Hidden="true" />
+      <Property Name="ICobieImpact.ImpactType" Hidden="true" />
+      <Property Name="ICobieImpact.ImpactUnit" Hidden="true" />
+      <Property Name="ICobieImpact.LeadInTime" Hidden="true" />
+      <Property Name="ICobieImpact.LeadOutTime" Hidden="true" />
+      <Property Name="ICobieImpact.Name" Hidden="true" />
+      <Property Name="ICobieImpact.Value" Hidden="true" />
+      <Property Name="IContainsEntityReferences.References" Hidden="true" />
+      <Method Name="Parse" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>IHggIIQQgAAAAAAEsBQACBAAAEUYAgAAACgAAJAADCA=</HashCode>
+      <FileName>CobieImpact.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Xbim.CobieExpress.@CobieIssue">
+    <Position X="32.75" Y="7.25" Width="1.5" />
+    <Members>
+      <Field Name="_affected" Hidden="true" />
+      <Field Name="_causing" Hidden="true" />
+      <Field Name="_chance" Hidden="true" />
+      <Field Name="_description" Hidden="true" />
+      <Field Name="_impact" Hidden="true" />
+      <Field Name="_issueType" Hidden="true" />
+      <Field Name="_mitigation" Hidden="true" />
+      <Field Name="_name" Hidden="true" />
+      <Field Name="_owner" Hidden="true" />
+      <Field Name="_risk" Hidden="true" />
+      <Method Name="CobieIssue" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Property Name="ICobieIssue.Affected" Hidden="true" />
+      <Property Name="ICobieIssue.Causing" Hidden="true" />
+      <Property Name="ICobieIssue.Chance" Hidden="true" />
+      <Property Name="ICobieIssue.Description" Hidden="true" />
+      <Property Name="ICobieIssue.Impact" Hidden="true" />
+      <Property Name="ICobieIssue.IssueType" Hidden="true" />
+      <Property Name="ICobieIssue.Mitigation" Hidden="true" />
+      <Property Name="ICobieIssue.Name" Hidden="true" />
+      <Property Name="ICobieIssue.Owner" Hidden="true" />
+      <Property Name="ICobieIssue.Risk" Hidden="true" />
+      <Property Name="IContainsEntityReferences.References" Hidden="true" />
+      <Property Name="IContainsIndexedReferences.IndexedReferences" Hidden="true" />
+      <Method Name="Parse" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>BEjooIQAAAQgAAAM0AAACgBAAAAACQCBAEAAVICAAAA=</HashCode>
+      <FileName>CobieIssue.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Xbim.CobieExpress.@CobieJob">
+    <Position X="23.25" Y="7.25" Width="1.5" />
+    <Members>
+      <Field Name="_description" Hidden="true" />
+      <Field Name="_duration" Hidden="true" />
+      <Field Name="_durationUnit" Hidden="true" />
+      <Field Name="_frequency" Hidden="true" />
+      <Field Name="_frequencyUnit" Hidden="true" />
+      <Field Name="_jobStatusType" Hidden="true" />
+      <Field Name="_jobType" Hidden="true" />
+      <Field Name="_name" Hidden="true" />
+      <Field Name="_priors" Hidden="true" />
+      <Field Name="_resources" Hidden="true" />
+      <Field Name="_start" Hidden="true" />
+      <Field Name="_startUnit" Hidden="true" />
+      <Field Name="_taskNumber" Hidden="true" />
+      <Field Name="_type" Hidden="true" />
+      <Method Name="CobieJob" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Property Name="ICobieJob.Description" Hidden="true" />
+      <Property Name="ICobieJob.Duration" Hidden="true" />
+      <Property Name="ICobieJob.DurationUnit" Hidden="true" />
+      <Property Name="ICobieJob.Frequency" Hidden="true" />
+      <Property Name="ICobieJob.FrequencyUnit" Hidden="true" />
+      <Property Name="ICobieJob.JobStatusType" Hidden="true" />
+      <Property Name="ICobieJob.JobType" Hidden="true" />
+      <Property Name="ICobieJob.Name" Hidden="true" />
+      <Property Name="ICobieJob.Priors" Hidden="true" />
+      <Property Name="ICobieJob.Resources" Hidden="true" />
+      <Property Name="ICobieJob.Start" Hidden="true" />
+      <Property Name="ICobieJob.StartUnit" Hidden="true" />
+      <Property Name="ICobieJob.TaskNumber" Hidden="true" />
+      <Property Name="ICobieJob.Type" Hidden="true" />
+      <Property Name="IContainsEntityReferences.References" Hidden="true" />
+      <Property Name="IContainsIndexedReferences.IndexedReferences" Hidden="true" />
+      <Method Name="Parse" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>BmCgIIAAMomIwqYEpNEBGAAAAEAAQgKAAAAAABAAQUA=</HashCode>
+      <FileName>CobieJob.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Xbim.CobieExpress.@CobieReferencedObject">
+    <Position X="20.25" Y="0.75" Width="1.5" />
+    <Members>
+      <Field Name="_altExternalId" Hidden="true" />
+      <Field Name="_created" Hidden="true" />
+      <Field Name="_externalId" Hidden="true" />
+      <Field Name="_externalObject" Hidden="true" />
+      <Field Name="_externalSystem" Hidden="true" />
+      <Method Name="CobieReferencedObject" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Property Name="ICobieReferencedObject.AltExternalId" Hidden="true" />
+      <Property Name="ICobieReferencedObject.Created" Hidden="true" />
+      <Property Name="ICobieReferencedObject.ExternalId" Hidden="true" />
+      <Property Name="ICobieReferencedObject.ExternalObject" Hidden="true" />
+      <Property Name="ICobieReferencedObject.ExternalSystem" Hidden="true" />
+      <Method Name="Parse" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAChAAYAAKAAAAAAgQAQAgAABAACAgAAQAQAAIAAAAA=</HashCode>
+      <FileName>CobieReferencedObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Xbim.CobieExpress.@CobieResource">
+    <Position X="21.5" Y="7.25" Width="1.5" />
+    <Members>
+      <Field Name="_description" Hidden="true" />
+      <Field Name="_name" Hidden="true" />
+      <Field Name="_resourceType" Hidden="true" />
+      <Method Name="CobieResource" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Property Name="ICobieResource.Description" Hidden="true" />
+      <Property Name="ICobieResource.Name" Hidden="true" />
+      <Property Name="ICobieResource.ResourceType" Hidden="true" />
+      <Property Name="IContainsEntityReferences.References" Hidden="true" />
+      <Method Name="Parse" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AEAgKIAAAAAAAAAEgAAAyAAAAAAAAAAAAAAEAAAQAAA=</HashCode>
+      <FileName>CobieResource.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Xbim.CobieExpress.@CobieSpace">
+    <Position X="6" Y="7.25" Width="1.5" />
+    <Members>
+      <Field Name="_floor" Hidden="true" />
+      <Field Name="_grossArea" Hidden="true" />
+      <Field Name="_netArea" Hidden="true" />
+      <Field Name="_roomTag" Hidden="true" />
+      <Field Name="_usableHeight" Hidden="true" />
+      <Method Name="CobieSpace" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Property Name="ICobieSpace.Components" Hidden="true" />
+      <Property Name="ICobieSpace.Floor" Hidden="true" />
+      <Property Name="ICobieSpace.GrossArea" Hidden="true" />
+      <Property Name="ICobieSpace.InZones" Hidden="true" />
+      <Property Name="ICobieSpace.NetArea" Hidden="true" />
+      <Property Name="ICobieSpace.RoomTag" Hidden="true" />
+      <Property Name="ICobieSpace.UsableHeight" Hidden="true" />
+      <Property Name="IContainsEntityReferences.References" Hidden="true" />
+      <Property Name="IContainsIndexedReferences.IndexedReferences" Hidden="true" />
+      <Method Name="Parse" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAioGAJAABAAAAIAgAAASAAAMAAAACQEACBAAgCABAA=</HashCode>
+      <FileName>CobieSpace.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Xbim.CobieExpress.@CobieSpare">
+    <Position X="19.5" Y="7.25" Width="1.5" />
+    <Members>
+      <Field Name="_description" Hidden="true" />
+      <Field Name="_name" Hidden="true" />
+      <Field Name="_partNumber" Hidden="true" />
+      <Field Name="_setNumber" Hidden="true" />
+      <Field Name="_spareType" Hidden="true" />
+      <Field Name="_suppliers" Hidden="true" />
+      <Field Name="_type" Hidden="true" />
+      <Method Name="CobieSpare" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Property Name="ICobieSpare.Description" Hidden="true" />
+      <Property Name="ICobieSpare.Name" Hidden="true" />
+      <Property Name="ICobieSpare.PartNumber" Hidden="true" />
+      <Property Name="ICobieSpare.SetNumber" Hidden="true" />
+      <Property Name="ICobieSpare.SpareType" Hidden="true" />
+      <Property Name="ICobieSpare.Suppliers" Hidden="true" />
+      <Property Name="ICobieSpare.Type" Hidden="true" />
+      <Property Name="IContainsEntityReferences.References" Hidden="true" />
+      <Property Name="IContainsIndexedReferences.IndexedReferences" Hidden="true" />
+      <Method Name="Parse" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AECooIgADACAAAQEgAAASAAAIEQAQAEAAAAAAiAEAAA=</HashCode>
+      <FileName>CobieSpare.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Xbim.CobieExpress.@CobieSystem">
+    <Position X="13" Y="7.25" Width="1.5" />
+    <Members>
+      <Field Name="_components" Hidden="true" />
+      <Field Name="_facility" Hidden="true" />
+      <Method Name="CobieSystem" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Property Name="ICobieSystem.Components" Hidden="true" />
+      <Property Name="ICobieSystem.Facility" Hidden="true" />
+      <Property Name="IContainsEntityReferences.References" Hidden="true" />
+      <Property Name="IContainsIndexedReferences.IndexedReferences" Hidden="true" />
+      <Method Name="Parse" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AACgAABAAAAAIAAAgAAACAQIAAAgAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>CobieSystem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Xbim.CobieExpress.@CobieType">
+    <Position X="9.5" Y="7.25" Width="1.75" />
+    <Members>
+      <Field Name="_accessibilityPerformance" Hidden="true" />
+      <Field Name="_assetType" Hidden="true" />
+      <Field Name="_codePerformance" Hidden="true" />
+      <Field Name="_color" Hidden="true" />
+      <Field Name="_constituents" Hidden="true" />
+      <Field Name="_durationUnit" Hidden="true" />
+      <Field Name="_expectedLife" Hidden="true" />
+      <Field Name="_features" Hidden="true" />
+      <Field Name="_finish" Hidden="true" />
+      <Field Name="_grade" Hidden="true" />
+      <Field Name="_manufacturer" Hidden="true" />
+      <Field Name="_material" Hidden="true" />
+      <Field Name="_modelNumber" Hidden="true" />
+      <Field Name="_modelReference" Hidden="true" />
+      <Field Name="_nominalHeight" Hidden="true" />
+      <Field Name="_nominalLength" Hidden="true" />
+      <Field Name="_nominalWidth" Hidden="true" />
+      <Field Name="_replacementCost" Hidden="true" />
+      <Field Name="_shape" Hidden="true" />
+      <Field Name="_size" Hidden="true" />
+      <Field Name="_sustainabilityPerformance" Hidden="true" />
+      <Field Name="_warrantyDescription" Hidden="true" />
+      <Field Name="_warrantyDurationLabor" Hidden="true" />
+      <Field Name="_warrantyDurationParts" Hidden="true" />
+      <Field Name="_warrantyDurationUnit" Hidden="true" />
+      <Field Name="_warrantyGuarantorLabor" Hidden="true" />
+      <Field Name="_warrantyGuarantorParts" Hidden="true" />
+      <Method Name="CobieType" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Property Name="ICobieType.AccessibilityPerformance" Hidden="true" />
+      <Property Name="ICobieType.AssetType" Hidden="true" />
+      <Property Name="ICobieType.CodePerformance" Hidden="true" />
+      <Property Name="ICobieType.Color" Hidden="true" />
+      <Property Name="ICobieType.Components" Hidden="true" />
+      <Property Name="ICobieType.Constituents" Hidden="true" />
+      <Property Name="ICobieType.DurationUnit" Hidden="true" />
+      <Property Name="ICobieType.ExpectedLife" Hidden="true" />
+      <Property Name="ICobieType.Features" Hidden="true" />
+      <Property Name="ICobieType.Finish" Hidden="true" />
+      <Property Name="ICobieType.Grade" Hidden="true" />
+      <Property Name="ICobieType.Jobs" Hidden="true" />
+      <Property Name="ICobieType.Manufacturer" Hidden="true" />
+      <Property Name="ICobieType.Material" Hidden="true" />
+      <Property Name="ICobieType.ModelNumber" Hidden="true" />
+      <Property Name="ICobieType.ModelReference" Hidden="true" />
+      <Property Name="ICobieType.NominalHeight" Hidden="true" />
+      <Property Name="ICobieType.NominalLength" Hidden="true" />
+      <Property Name="ICobieType.NominalWidth" Hidden="true" />
+      <Property Name="ICobieType.ReplacementCost" Hidden="true" />
+      <Property Name="ICobieType.Shape" Hidden="true" />
+      <Property Name="ICobieType.Size" Hidden="true" />
+      <Property Name="ICobieType.Spares" Hidden="true" />
+      <Property Name="ICobieType.SustainabilityPerformance" Hidden="true" />
+      <Property Name="ICobieType.WarrantyDescription" Hidden="true" />
+      <Property Name="ICobieType.WarrantyDurationLabor" Hidden="true" />
+      <Property Name="ICobieType.WarrantyDurationParts" Hidden="true" />
+      <Property Name="ICobieType.WarrantyDurationUnit" Hidden="true" />
+      <Property Name="ICobieType.WarrantyGuarantorLabor" Hidden="true" />
+      <Property Name="ICobieType.WarrantyGuarantorParts" Hidden="true" />
+      <Property Name="IContainsEntityReferences.References" Hidden="true" />
+      <Method Name="Parse" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>WkBnujFoSwCOKIEgoEgUCJ0AGhAEAGIE3EShJDbjBEg=</HashCode>
+      <FileName>CobieType.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Xbim.CobieExpress.@CobieTypeOrComponent">
+    <Position X="15" Y="7.25" Width="2" />
+    <Members>
+      <Field Name="_assemblyOf" Hidden="true" />
+      <Method Name="CobieTypeOrComponent" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Property Name="ICobieTypeOrComponent.AssemblyOf" Hidden="true" />
+      <Property Name="ICobieTypeOrComponent.ConnectedAfter" Hidden="true" />
+      <Property Name="ICobieTypeOrComponent.ConnectedBefore" Hidden="true" />
+      <Property Name="ICobieTypeOrComponent.Connecting" Hidden="true" />
+      <Method Name="Parse" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>EEQhAAAgAAAAAAAAgAAAEAAQAAgAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>CobieTypeOrComponent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Xbim.CobieExpress.@CobieZone">
+    <Position X="7.75" Y="7.25" Width="1.5" />
+    <Members>
+      <Field Name="_spaces" Hidden="true" />
+      <Method Name="CobieZone" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Property Name="ICobieZone.Spaces" Hidden="true" />
+      <Property Name="IContainsEntityReferences.References" Hidden="true" />
+      <Property Name="IContainsIndexedReferences.IndexedReferences" Hidden="true" />
+      <Method Name="Parse" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AACgAAEAAAAAAAAAgAAACACAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>CobieZone.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
