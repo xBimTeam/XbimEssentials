@@ -185,7 +185,7 @@
         <PropertyMapping Header="SheetName" Column="D" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.[table]"  IsKey="true"/>
         <PropertyMapping Header="ParentName" Column="E" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.Name"  IsKey="true"/>
         <PropertyMapping Header="ChildNames" Column="F" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Name" IsKey="true"/>
-        <PropertyMapping Header="AssemblyType" Column="G" Status="PickValue" MultiRow="None" DefaultValue="unknown" Paths="" />
+        <PropertyMapping Header="AssemblyType" Column="G" Status="PickValue" MultiRow="None" DefaultValue="Fixed" Paths="" />
         <PropertyMapping Header="ExtSystem" Column="H" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="parent.ExternalSystem.Name"  Hidden="true"/>
         <PropertyMapping Header="ExtObject" Column="I" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="parent.ExternalObject.Name"  Hidden="true"/>
         <PropertyMapping Header="ExtIdentifier" Column="J" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="parent.ExternalId"  Hidden="true"/>
