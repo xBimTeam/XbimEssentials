@@ -496,8 +496,18 @@ namespace Xbim.IO.Memory
                 if (first) 
                 {
                     first = false;
-                    if (!Header.FileSchema.Schemas.All(s => _instances.Factory.SchemasIds.Contains(s)))
-                        throw new Exception("Mismatch between schema defined in the file and schemas available in the data model.");
+                    //fix case if necessary
+                    for (int i = 0; i < Header.FileSchema.Schemas.Count; i++)
+                    {
+                        var id = Header.FileSchema.Schemas[i];
+                        var sid = _instances.Factory.SchemasIds.FirstOrDefault(s => string.Equals(s, id, StringComparison.InvariantCultureIgnoreCase));
+                        if (sid == null)
+                            throw new Exception("Mismatch between schema defined in the file and schemas available in the data model.");
+
+                        //if the case is different set it to the one from entity factory
+                        if (id != sid)
+                            Header.FileSchema.Schemas[i] = sid;
+                    }
                 }
 
                 var typeId = Metadata.ExpressTypeId(name);
