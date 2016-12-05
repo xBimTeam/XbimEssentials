@@ -29,27 +29,20 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				{
 					case IfcStairFlightTypeEnum.STRAIGHT:
 						return Ifc4.Interfaces.IfcStairFlightTypeEnum.STRAIGHT;
-					
 					case IfcStairFlightTypeEnum.WINDER:
 						return Ifc4.Interfaces.IfcStairFlightTypeEnum.WINDER;
-					
 					case IfcStairFlightTypeEnum.SPIRAL:
 						return Ifc4.Interfaces.IfcStairFlightTypeEnum.SPIRAL;
-					
 					case IfcStairFlightTypeEnum.CURVED:
 						return Ifc4.Interfaces.IfcStairFlightTypeEnum.CURVED;
-					
 					case IfcStairFlightTypeEnum.FREEFORM:
 						return Ifc4.Interfaces.IfcStairFlightTypeEnum.FREEFORM;
-					
 					case IfcStairFlightTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcStairFlightTypeEnum.USERDEFINED;
-					
 					case IfcStairFlightTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcStairFlightTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -64,32 +57,24 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					case Ifc4.Interfaces.IfcStairFlightTypeEnum.STRAIGHT:
 						PredefinedType = IfcStairFlightTypeEnum.STRAIGHT;
 						return;
-					
 					case Ifc4.Interfaces.IfcStairFlightTypeEnum.WINDER:
 						PredefinedType = IfcStairFlightTypeEnum.WINDER;
 						return;
-					
 					case Ifc4.Interfaces.IfcStairFlightTypeEnum.SPIRAL:
 						PredefinedType = IfcStairFlightTypeEnum.SPIRAL;
 						return;
-					
 					case Ifc4.Interfaces.IfcStairFlightTypeEnum.CURVED:
 						PredefinedType = IfcStairFlightTypeEnum.CURVED;
 						return;
-					
 					case Ifc4.Interfaces.IfcStairFlightTypeEnum.FREEFORM:
 						PredefinedType = IfcStairFlightTypeEnum.FREEFORM;
 						return;
-					
 					case Ifc4.Interfaces.IfcStairFlightTypeEnum.USERDEFINED:
 						PredefinedType = IfcStairFlightTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcStairFlightTypeEnum.NOTDEFINED:
 						PredefinedType = IfcStairFlightTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

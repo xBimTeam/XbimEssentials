@@ -89,8 +89,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _thickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _thickness;
+				Activate();
 				return _thickness;
 			} 
 			set
@@ -103,8 +103,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _ribHeight;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _ribHeight;
+				Activate();
 				return _ribHeight;
 			} 
 			set
@@ -117,8 +117,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _ribWidth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _ribWidth;
+				Activate();
 				return _ribWidth;
 			} 
 			set
@@ -131,8 +131,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _ribSpacing;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _ribSpacing;
+				Activate();
 				return _ribSpacing;
 			} 
 			set
@@ -145,8 +145,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _direction;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _direction;
+				Activate();
 				return _direction;
 			} 
 			set

@@ -92,8 +92,8 @@ namespace Xbim.Ifc2x3.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _hourComponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _hourComponent;
+				Activate();
 				return _hourComponent;
 			} 
 			set
@@ -106,8 +106,8 @@ namespace Xbim.Ifc2x3.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _minuteComponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _minuteComponent;
+				Activate();
 				return _minuteComponent;
 			} 
 			set
@@ -120,8 +120,8 @@ namespace Xbim.Ifc2x3.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _secondComponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _secondComponent;
+				Activate();
 				return _secondComponent;
 			} 
 			set
@@ -134,8 +134,8 @@ namespace Xbim.Ifc2x3.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _zone;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _zone;
+				Activate();
 				return _zone;
 			} 
 			set
@@ -150,8 +150,8 @@ namespace Xbim.Ifc2x3.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _daylightSavingOffset;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _daylightSavingOffset;
+				Activate();
 				return _daylightSavingOffset;
 			} 
 			set

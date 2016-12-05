@@ -69,8 +69,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _startTime;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _startTime;
+				Activate();
 				return _startTime;
 			} 
 			set
@@ -83,8 +83,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _endTime;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _endTime;
+				Activate();
 				return _endTime;
 			} 
 			set

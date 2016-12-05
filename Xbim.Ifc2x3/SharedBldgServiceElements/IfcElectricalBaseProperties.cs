@@ -110,8 +110,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _electricCurrentType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _electricCurrentType;
+				Activate();
 				return _electricCurrentType;
 			} 
 			set
@@ -124,8 +124,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _inputVoltage;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _inputVoltage;
+				Activate();
 				return _inputVoltage;
 			} 
 			set
@@ -138,8 +138,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _inputFrequency;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _inputFrequency;
+				Activate();
 				return _inputFrequency;
 			} 
 			set
@@ -152,8 +152,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _fullLoadCurrent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _fullLoadCurrent;
+				Activate();
 				return _fullLoadCurrent;
 			} 
 			set
@@ -166,8 +166,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _minimumCircuitCurrent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _minimumCircuitCurrent;
+				Activate();
 				return _minimumCircuitCurrent;
 			} 
 			set
@@ -180,8 +180,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _maximumPowerInput;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _maximumPowerInput;
+				Activate();
 				return _maximumPowerInput;
 			} 
 			set
@@ -194,8 +194,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _ratedPowerInput;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _ratedPowerInput;
+				Activate();
 				return _ratedPowerInput;
 			} 
 			set
@@ -208,8 +208,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _inputPhase;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _inputPhase;
+				Activate();
 				return _inputPhase;
 			} 
 			set

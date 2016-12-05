@@ -94,8 +94,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingSpace;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingSpace;
+				Activate();
 				return _relatingSpace;
 			} 
 			set
@@ -111,8 +111,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedBuildingElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedBuildingElement;
+				Activate();
 				return _relatedBuildingElement;
 			} 
 			set
@@ -127,8 +127,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _connectionGeometry;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _connectionGeometry;
+				Activate();
 				return _connectionGeometry;
 			} 
 			set
@@ -143,8 +143,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _physicalOrVirtualBoundary;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _physicalOrVirtualBoundary;
+				Activate();
 				return _physicalOrVirtualBoundary;
 			} 
 			set
@@ -157,8 +157,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _internalOrExternalBoundary;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _internalOrExternalBoundary;
+				Activate();
 				return _internalOrExternalBoundary;
 			} 
 			set

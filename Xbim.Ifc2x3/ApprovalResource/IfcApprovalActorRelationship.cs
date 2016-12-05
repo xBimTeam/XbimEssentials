@@ -80,8 +80,8 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _actor;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _actor;
+				Activate();
 				return _actor;
 			} 
 			set
@@ -97,8 +97,8 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _approval;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _approval;
+				Activate();
 				return _approval;
 			} 
 			set
@@ -113,8 +113,8 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _role;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _role;
+				Activate();
 				return _role;
 			} 
 			set

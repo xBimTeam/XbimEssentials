@@ -119,8 +119,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
@@ -133,8 +133,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
@@ -147,8 +147,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _documentType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _documentType;
+				Activate();
 				return _documentType;
 			} 
 			set
@@ -163,8 +163,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _approvalType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _approvalType;
+				Activate();
 				return _approvalType;
 			} 
 			set
@@ -179,8 +179,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _stage;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _stage;
+				Activate();
 				return _stage;
 			} 
 			set
@@ -195,8 +195,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _uRL;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _uRL;
+				Activate();
 				return _uRL;
 			} 
 			set
@@ -209,8 +209,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _reference;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _reference;
+				Activate();
 				return _reference;
 			} 
 			set
@@ -223,8 +223,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _directory;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _directory;
+				Activate();
 				return _directory;
 			} 
 			set
@@ -237,8 +237,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _file;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _file;
+				Activate();
 				return _file;
 			} 
 			set

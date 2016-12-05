@@ -29,43 +29,34 @@ namespace Xbim.Ifc2x3.HVACDomain
 				{
 					case IfcAirTerminalTypeEnum.GRILLE:
 						return Ifc4.Interfaces.IfcAirTerminalTypeEnum.GRILLE;
-					
 					case IfcAirTerminalTypeEnum.REGISTER:
 						return Ifc4.Interfaces.IfcAirTerminalTypeEnum.REGISTER;
-					
 					case IfcAirTerminalTypeEnum.DIFFUSER:
 						return Ifc4.Interfaces.IfcAirTerminalTypeEnum.DIFFUSER;
-					
 					case IfcAirTerminalTypeEnum.EYEBALL:
 						//## Handle translation of EYEBALL member from IfcAirTerminalTypeEnum in property PredefinedType
 						return Ifc4.Interfaces.IfcAirTerminalTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcAirTerminalTypeEnum.IRIS:
 						//## Handle translation of IRIS member from IfcAirTerminalTypeEnum in property PredefinedType
 						return Ifc4.Interfaces.IfcAirTerminalTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcAirTerminalTypeEnum.LINEARGRILLE:
 						//## Handle translation of LINEARGRILLE member from IfcAirTerminalTypeEnum in property PredefinedType
 						return Ifc4.Interfaces.IfcAirTerminalTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcAirTerminalTypeEnum.LINEARDIFFUSER:
 						//## Handle translation of LINEARDIFFUSER member from IfcAirTerminalTypeEnum in property PredefinedType
 						return Ifc4.Interfaces.IfcAirTerminalTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcAirTerminalTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
                         if (ElementType == "LOUVRE")
                             return Ifc4.Interfaces.IfcAirTerminalTypeEnum.LOUVRE;
 						//##
 						return Ifc4.Interfaces.IfcAirTerminalTypeEnum.USERDEFINED;
-					
 					case IfcAirTerminalTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcAirTerminalTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -80,31 +71,24 @@ namespace Xbim.Ifc2x3.HVACDomain
 					case Ifc4.Interfaces.IfcAirTerminalTypeEnum.DIFFUSER:
 						PredefinedType = IfcAirTerminalTypeEnum.DIFFUSER;
 						return;
-					
 					case Ifc4.Interfaces.IfcAirTerminalTypeEnum.GRILLE:
 						PredefinedType = IfcAirTerminalTypeEnum.GRILLE;
 						return;
-					
 					case Ifc4.Interfaces.IfcAirTerminalTypeEnum.LOUVRE:
 						//## Handle setting of LOUVRE member from IfcAirTerminalTypeEnum in property PredefinedType
 						PredefinedType = IfcAirTerminalTypeEnum.USERDEFINED;
 				        ElementType = "LOUVRE";
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcAirTerminalTypeEnum.REGISTER:
+										case Ifc4.Interfaces.IfcAirTerminalTypeEnum.REGISTER:
 						PredefinedType = IfcAirTerminalTypeEnum.REGISTER;
 						return;
-					
 					case Ifc4.Interfaces.IfcAirTerminalTypeEnum.USERDEFINED:
 						PredefinedType = IfcAirTerminalTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcAirTerminalTypeEnum.NOTDEFINED:
 						PredefinedType = IfcAirTerminalTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

@@ -70,8 +70,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _extrudedDirection;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _extrudedDirection;
+				Activate();
 				return _extrudedDirection;
 			} 
 			set
@@ -86,8 +86,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _depth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _depth;
+				Activate();
 				return _depth;
 			} 
 			set

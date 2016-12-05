@@ -29,23 +29,8 @@ namespace Xbim.Ifc2x3.Interfaces.Conversions
         /// <summary>
         /// Transient objects are only for reading.
         /// </summary>
-        public ActivationStatus ActivationStatus { get { return ActivationStatus.ActivatedRead; } }
+        public bool Activated { get { return true; } }
 
-        /// <summary>
-        /// Activation doesn't do anything to transient classes
-        /// </summary>
-        /// <param name="write"></param>
-        public void Activate(bool write)
-        {
-        }
-
-        /// <summary>
-        /// Activation doesn't do anything to transient classes
-        /// </summary>
-        /// <param name="activation"></param>
-        public void Activate(Action activation)
-        {
-        }
 
         /// <summary>
         /// This property will always return null if 'Model' property is not overwritten in derived class

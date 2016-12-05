@@ -86,8 +86,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
@@ -100,8 +100,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _upperValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _upperValue;
+				Activate();
 				return _upperValue;
 			} 
 			set
@@ -114,8 +114,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _mostUsedValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _mostUsedValue;
+				Activate();
 				return _mostUsedValue;
 			} 
 			set
@@ -128,8 +128,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _lowerValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _lowerValue;
+				Activate();
 				return _lowerValue;
 			} 
 			set

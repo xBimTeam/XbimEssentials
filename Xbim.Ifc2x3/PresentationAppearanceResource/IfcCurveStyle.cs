@@ -78,8 +78,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _curveFont;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _curveFont;
+				Activate();
 				return _curveFont;
 			} 
 			set
@@ -94,8 +94,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _curveWidth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _curveWidth;
+				Activate();
 				return _curveWidth;
 			} 
 			set
@@ -108,8 +108,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _curveColour;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _curveColour;
+				Activate();
 				return _curveColour;
 			} 
 			set

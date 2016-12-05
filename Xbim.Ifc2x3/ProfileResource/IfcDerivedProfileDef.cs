@@ -78,8 +78,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _parentProfile;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _parentProfile;
+				Activate();
 				return _parentProfile;
 			} 
 			set
@@ -94,8 +94,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _operator;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _operator;
+				Activate();
 				return _operator;
 			} 
 			set
@@ -110,8 +110,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _label;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _label;
+				Activate();
 				return _label;
 			} 
 			set

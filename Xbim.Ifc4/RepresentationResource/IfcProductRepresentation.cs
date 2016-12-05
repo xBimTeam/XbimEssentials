@@ -76,8 +76,8 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
@@ -90,8 +90,8 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
@@ -105,8 +105,8 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _representations;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _representations;
+				Activate();
 				return _representations;
 			} 
 		}	

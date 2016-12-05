@@ -81,8 +81,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _actualDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _actualDate;
+				Activate();
 				return _actualDate;
 			} 
 			set
@@ -95,8 +95,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _earlyDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _earlyDate;
+				Activate();
 				return _earlyDate;
 			} 
 			set
@@ -109,8 +109,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _lateDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _lateDate;
+				Activate();
 				return _lateDate;
 			} 
 			set
@@ -123,8 +123,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _scheduleDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _scheduleDate;
+				Activate();
 				return _scheduleDate;
 			} 
 			set

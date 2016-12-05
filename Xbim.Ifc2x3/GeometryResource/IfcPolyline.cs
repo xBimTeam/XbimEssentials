@@ -59,8 +59,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _points;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _points;
+				Activate();
 				return _points;
 			} 
 		}	

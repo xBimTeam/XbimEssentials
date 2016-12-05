@@ -37,10 +37,8 @@ namespace Xbim.Ifc2x3.ProductExtension
                         }
 						//##
 						return Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.USERDEFINED;
-					
 					case IfcBuildingElementProxyTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -58,37 +56,30 @@ namespace Xbim.Ifc2x3.ProductExtension
                         PredefinedType = IfcBuildingElementProxyTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.ELEMENT:
+										case Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.ELEMENT:
 						//## Handle setting of ELEMENT member from IfcBuildingElementProxyTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcBuildingElementProxyTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.PARTIAL:
+										case Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.PARTIAL:
 						//## Handle setting of PARTIAL member from IfcBuildingElementProxyTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcBuildingElementProxyTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.PROVISIONFORVOID:
+										case Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.PROVISIONFORVOID:
 						//## Handle setting of PROVISIONFORVOID member from IfcBuildingElementProxyTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcBuildingElementProxyTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.USERDEFINED:
+										case Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.USERDEFINED:
 						PredefinedType = IfcBuildingElementProxyTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.NOTDEFINED:
 						PredefinedType = IfcBuildingElementProxyTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

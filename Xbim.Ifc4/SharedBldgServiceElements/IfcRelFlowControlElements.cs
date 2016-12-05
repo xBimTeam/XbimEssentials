@@ -69,8 +69,8 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedControlElements;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedControlElements;
+				Activate();
 				return _relatedControlElements;
 			} 
 		}	
@@ -80,8 +80,8 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingFlowElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingFlowElement;
+				Activate();
 				return _relatingFlowElement;
 			} 
 			set

@@ -29,21 +29,16 @@ namespace Xbim.Ifc2x3.HVACDomain
 				{
 					case IfcDuctSilencerTypeEnum.FLATOVAL:
 						return Ifc4.Interfaces.IfcDuctSilencerTypeEnum.FLATOVAL;
-					
 					case IfcDuctSilencerTypeEnum.RECTANGULAR:
 						return Ifc4.Interfaces.IfcDuctSilencerTypeEnum.RECTANGULAR;
-					
 					case IfcDuctSilencerTypeEnum.ROUND:
 						return Ifc4.Interfaces.IfcDuctSilencerTypeEnum.ROUND;
-					
 					case IfcDuctSilencerTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcDuctSilencerTypeEnum.USERDEFINED;
-					
 					case IfcDuctSilencerTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcDuctSilencerTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -58,24 +53,18 @@ namespace Xbim.Ifc2x3.HVACDomain
 					case Ifc4.Interfaces.IfcDuctSilencerTypeEnum.FLATOVAL:
 						PredefinedType = IfcDuctSilencerTypeEnum.FLATOVAL;
 						return;
-					
 					case Ifc4.Interfaces.IfcDuctSilencerTypeEnum.RECTANGULAR:
 						PredefinedType = IfcDuctSilencerTypeEnum.RECTANGULAR;
 						return;
-					
 					case Ifc4.Interfaces.IfcDuctSilencerTypeEnum.ROUND:
 						PredefinedType = IfcDuctSilencerTypeEnum.ROUND;
 						return;
-					
 					case Ifc4.Interfaces.IfcDuctSilencerTypeEnum.USERDEFINED:
 						PredefinedType = IfcDuctSilencerTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcDuctSilencerTypeEnum.NOTDEFINED:
 						PredefinedType = IfcDuctSilencerTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

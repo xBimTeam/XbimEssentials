@@ -29,30 +29,22 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 				{
 					case IfcAlarmTypeEnum.BELL:
 						return Ifc4.Interfaces.IfcAlarmTypeEnum.BELL;
-					
 					case IfcAlarmTypeEnum.BREAKGLASSBUTTON:
 						return Ifc4.Interfaces.IfcAlarmTypeEnum.BREAKGLASSBUTTON;
-					
 					case IfcAlarmTypeEnum.LIGHT:
 						return Ifc4.Interfaces.IfcAlarmTypeEnum.LIGHT;
-					
 					case IfcAlarmTypeEnum.MANUALPULLBOX:
 						return Ifc4.Interfaces.IfcAlarmTypeEnum.MANUALPULLBOX;
-					
 					case IfcAlarmTypeEnum.SIREN:
 						return Ifc4.Interfaces.IfcAlarmTypeEnum.SIREN;
-					
 					case IfcAlarmTypeEnum.WHISTLE:
 						return Ifc4.Interfaces.IfcAlarmTypeEnum.WHISTLE;
-					
 					case IfcAlarmTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcAlarmTypeEnum.USERDEFINED;
-					
 					case IfcAlarmTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcAlarmTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -67,36 +59,27 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 					case Ifc4.Interfaces.IfcAlarmTypeEnum.BELL:
 						PredefinedType = IfcAlarmTypeEnum.BELL;
 						return;
-					
 					case Ifc4.Interfaces.IfcAlarmTypeEnum.BREAKGLASSBUTTON:
 						PredefinedType = IfcAlarmTypeEnum.BREAKGLASSBUTTON;
 						return;
-					
 					case Ifc4.Interfaces.IfcAlarmTypeEnum.LIGHT:
 						PredefinedType = IfcAlarmTypeEnum.LIGHT;
 						return;
-					
 					case Ifc4.Interfaces.IfcAlarmTypeEnum.MANUALPULLBOX:
 						PredefinedType = IfcAlarmTypeEnum.MANUALPULLBOX;
 						return;
-					
 					case Ifc4.Interfaces.IfcAlarmTypeEnum.SIREN:
 						PredefinedType = IfcAlarmTypeEnum.SIREN;
 						return;
-					
 					case Ifc4.Interfaces.IfcAlarmTypeEnum.WHISTLE:
 						PredefinedType = IfcAlarmTypeEnum.WHISTLE;
 						return;
-					
 					case Ifc4.Interfaces.IfcAlarmTypeEnum.USERDEFINED:
 						PredefinedType = IfcAlarmTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcAlarmTypeEnum.NOTDEFINED:
 						PredefinedType = IfcAlarmTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

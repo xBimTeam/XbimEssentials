@@ -29,13 +29,10 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 				{
 					case IfcOutletTypeEnum.AUDIOVISUALOUTLET:
 						return Ifc4.Interfaces.IfcOutletTypeEnum.AUDIOVISUALOUTLET;
-					
 					case IfcOutletTypeEnum.COMMUNICATIONSOUTLET:
 						return Ifc4.Interfaces.IfcOutletTypeEnum.COMMUNICATIONSOUTLET;
-					
 					case IfcOutletTypeEnum.POWEROUTLET:
 						return Ifc4.Interfaces.IfcOutletTypeEnum.POWEROUTLET;
-					
 					case IfcOutletTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
                         if (ElementType.HasValue)
@@ -46,10 +43,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
                         }
 						//##
 						return Ifc4.Interfaces.IfcOutletTypeEnum.USERDEFINED;
-					
 					case IfcOutletTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcOutletTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -64,38 +59,30 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 					case Ifc4.Interfaces.IfcOutletTypeEnum.AUDIOVISUALOUTLET:
 						PredefinedType = IfcOutletTypeEnum.AUDIOVISUALOUTLET;
 						return;
-					
 					case Ifc4.Interfaces.IfcOutletTypeEnum.COMMUNICATIONSOUTLET:
 						PredefinedType = IfcOutletTypeEnum.COMMUNICATIONSOUTLET;
 						return;
-					
 					case Ifc4.Interfaces.IfcOutletTypeEnum.POWEROUTLET:
 						PredefinedType = IfcOutletTypeEnum.POWEROUTLET;
 						return;
-					
 					case Ifc4.Interfaces.IfcOutletTypeEnum.DATAOUTLET:
 						//## Handle setting of DATAOUTLET member from IfcOutletTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcOutletTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcOutletTypeEnum.TELEPHONEOUTLET:
+										case Ifc4.Interfaces.IfcOutletTypeEnum.TELEPHONEOUTLET:
 						//## Handle setting of TELEPHONEOUTLET member from IfcOutletTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcOutletTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcOutletTypeEnum.USERDEFINED:
+										case Ifc4.Interfaces.IfcOutletTypeEnum.USERDEFINED:
 						PredefinedType = IfcOutletTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcOutletTypeEnum.NOTDEFINED:
 						PredefinedType = IfcOutletTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

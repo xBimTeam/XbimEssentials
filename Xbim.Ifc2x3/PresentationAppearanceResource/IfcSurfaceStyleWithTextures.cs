@@ -61,8 +61,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _textures;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _textures;
+				Activate();
 				return _textures;
 			} 
 		}	

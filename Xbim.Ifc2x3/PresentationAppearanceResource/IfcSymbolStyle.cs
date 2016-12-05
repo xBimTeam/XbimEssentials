@@ -61,8 +61,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _styleOfSymbol;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _styleOfSymbol;
+				Activate();
 				return _styleOfSymbol;
 			} 
 			set

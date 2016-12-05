@@ -62,8 +62,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _endSweptArea;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _endSweptArea;
+				Activate();
 				return _endSweptArea;
 			} 
 			set

@@ -85,8 +85,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _directrix;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _directrix;
+				Activate();
 				return _directrix;
 			} 
 			set
@@ -101,8 +101,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _startParam;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _startParam;
+				Activate();
 				return _startParam;
 			} 
 			set
@@ -115,8 +115,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _endParam;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _endParam;
+				Activate();
 				return _endParam;
 			} 
 			set
@@ -129,8 +129,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _referenceSurface;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _referenceSurface;
+				Activate();
 				return _referenceSurface;
 			} 
 			set

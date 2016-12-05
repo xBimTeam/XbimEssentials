@@ -60,33 +60,24 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				{
 					case IfcGeometricProjectionEnum.GRAPH_VIEW:
 						return Ifc4.Interfaces.IfcGeometricProjectionEnum.GRAPH_VIEW;
-					
 					case IfcGeometricProjectionEnum.SKETCH_VIEW:
 						return Ifc4.Interfaces.IfcGeometricProjectionEnum.SKETCH_VIEW;
-					
 					case IfcGeometricProjectionEnum.MODEL_VIEW:
 						return Ifc4.Interfaces.IfcGeometricProjectionEnum.MODEL_VIEW;
-					
 					case IfcGeometricProjectionEnum.PLAN_VIEW:
 						return Ifc4.Interfaces.IfcGeometricProjectionEnum.PLAN_VIEW;
-					
 					case IfcGeometricProjectionEnum.REFLECTED_PLAN_VIEW:
 						return Ifc4.Interfaces.IfcGeometricProjectionEnum.REFLECTED_PLAN_VIEW;
-					
 					case IfcGeometricProjectionEnum.SECTION_VIEW:
 						return Ifc4.Interfaces.IfcGeometricProjectionEnum.SECTION_VIEW;
-					
 					case IfcGeometricProjectionEnum.ELEVATION_VIEW:
 						return Ifc4.Interfaces.IfcGeometricProjectionEnum.ELEVATION_VIEW;
-					
 					case IfcGeometricProjectionEnum.USERDEFINED:
 						//## Optional custom handling of TargetView == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcGeometricProjectionEnum.USERDEFINED;
-					
 					case IfcGeometricProjectionEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcGeometricProjectionEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -101,40 +92,30 @@ namespace Xbim.Ifc2x3.RepresentationResource
 					case Ifc4.Interfaces.IfcGeometricProjectionEnum.GRAPH_VIEW:
 						TargetView = IfcGeometricProjectionEnum.GRAPH_VIEW;
 						return;
-					
 					case Ifc4.Interfaces.IfcGeometricProjectionEnum.SKETCH_VIEW:
 						TargetView = IfcGeometricProjectionEnum.SKETCH_VIEW;
 						return;
-					
 					case Ifc4.Interfaces.IfcGeometricProjectionEnum.MODEL_VIEW:
 						TargetView = IfcGeometricProjectionEnum.MODEL_VIEW;
 						return;
-					
 					case Ifc4.Interfaces.IfcGeometricProjectionEnum.PLAN_VIEW:
 						TargetView = IfcGeometricProjectionEnum.PLAN_VIEW;
 						return;
-					
 					case Ifc4.Interfaces.IfcGeometricProjectionEnum.REFLECTED_PLAN_VIEW:
 						TargetView = IfcGeometricProjectionEnum.REFLECTED_PLAN_VIEW;
 						return;
-					
 					case Ifc4.Interfaces.IfcGeometricProjectionEnum.SECTION_VIEW:
 						TargetView = IfcGeometricProjectionEnum.SECTION_VIEW;
 						return;
-					
 					case Ifc4.Interfaces.IfcGeometricProjectionEnum.ELEVATION_VIEW:
 						TargetView = IfcGeometricProjectionEnum.ELEVATION_VIEW;
 						return;
-					
 					case Ifc4.Interfaces.IfcGeometricProjectionEnum.USERDEFINED:
 						TargetView = IfcGeometricProjectionEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcGeometricProjectionEnum.NOTDEFINED:
 						TargetView = IfcGeometricProjectionEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

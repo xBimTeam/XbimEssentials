@@ -127,8 +127,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _applicableValueRatio;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _applicableValueRatio;
+				Activate();
 				return _applicableValueRatio;
 			} 
 			set
@@ -141,8 +141,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _thermalLoadSource;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _thermalLoadSource;
+				Activate();
 				return _thermalLoadSource;
 			} 
 			set
@@ -155,8 +155,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _propertySource;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _propertySource;
+				Activate();
 				return _propertySource;
 			} 
 			set
@@ -169,8 +169,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _sourceDescription;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _sourceDescription;
+				Activate();
 				return _sourceDescription;
 			} 
 			set
@@ -183,8 +183,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _maximumValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _maximumValue;
+				Activate();
 				return _maximumValue;
 			} 
 			set
@@ -197,8 +197,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _minimumValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _minimumValue;
+				Activate();
 				return _minimumValue;
 			} 
 			set
@@ -211,8 +211,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _thermalLoadTimeSeriesValues;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _thermalLoadTimeSeriesValues;
+				Activate();
 				return _thermalLoadTimeSeriesValues;
 			} 
 			set
@@ -227,8 +227,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _userDefinedThermalLoadSource;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _userDefinedThermalLoadSource;
+				Activate();
 				return _userDefinedThermalLoadSource;
 			} 
 			set
@@ -241,8 +241,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _userDefinedPropertySource;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _userDefinedPropertySource;
+				Activate();
 				return _userDefinedPropertySource;
 			} 
 			set
@@ -255,8 +255,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _thermalLoadType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _thermalLoadType;
+				Activate();
 				return _thermalLoadType;
 			} 
 			set

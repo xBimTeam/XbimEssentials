@@ -63,8 +63,8 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _profileDefinition;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _profileDefinition;
+				Activate();
 				return _profileDefinition;
 			} 
 			set

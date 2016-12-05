@@ -70,8 +70,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _colour;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _colour;
+				Activate();
 				return _colour;
 			} 
 			set
@@ -86,8 +86,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _backgroundColour;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _backgroundColour;
+				Activate();
 				return _backgroundColour;
 			} 
 			set

@@ -71,8 +71,8 @@ namespace Xbim.Ifc2x3.ControlExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _intent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _intent;
+				Activate();
 				return _intent;
 			} 
 			set
@@ -85,8 +85,8 @@ namespace Xbim.Ifc2x3.ControlExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingConstraint;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingConstraint;
+				Activate();
 				return _relatingConstraint;
 			} 
 			set

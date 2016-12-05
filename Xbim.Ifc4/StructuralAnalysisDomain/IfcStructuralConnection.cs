@@ -64,8 +64,8 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _appliedCondition;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _appliedCondition;
+				Activate();
 				return _appliedCondition;
 			} 
 			set

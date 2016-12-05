@@ -77,19 +77,14 @@ namespace Xbim.Ifc2x3.Kernel
 				{
 					case IfcSequenceEnum.START_START:
 						return Ifc4.Interfaces.IfcSequenceEnum.START_START;
-					
 					case IfcSequenceEnum.START_FINISH:
 						return Ifc4.Interfaces.IfcSequenceEnum.START_FINISH;
-					
 					case IfcSequenceEnum.FINISH_START:
 						return Ifc4.Interfaces.IfcSequenceEnum.FINISH_START;
-					
 					case IfcSequenceEnum.FINISH_FINISH:
 						return Ifc4.Interfaces.IfcSequenceEnum.FINISH_FINISH;
-					
 					case IfcSequenceEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcSequenceEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -108,31 +103,27 @@ namespace Xbim.Ifc2x3.Kernel
 					case Ifc4.Interfaces.IfcSequenceEnum.START_START:
 						SequenceType = IfcSequenceEnum.START_START;
 						return;
-					
 					case Ifc4.Interfaces.IfcSequenceEnum.START_FINISH:
 						SequenceType = IfcSequenceEnum.START_FINISH;
 						return;
-					
 					case Ifc4.Interfaces.IfcSequenceEnum.FINISH_START:
 						SequenceType = IfcSequenceEnum.FINISH_START;
 						return;
-					
 					case Ifc4.Interfaces.IfcSequenceEnum.FINISH_FINISH:
 						SequenceType = IfcSequenceEnum.FINISH_FINISH;
 						return;
-					
 					case Ifc4.Interfaces.IfcSequenceEnum.USERDEFINED:
 						//## Handle setting of USERDEFINED member from IfcSequenceEnum in property SequenceType
                         SequenceType = IfcSequenceEnum.NOTDEFINED;
 						SetValue(v => _sequenceType4 = v, _sequenceType4, value, "SequenceType", -8);
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcSequenceEnum.NOTDEFINED:
+										case Ifc4.Interfaces.IfcSequenceEnum.NOTDEFINED:
 						SequenceType = IfcSequenceEnum.NOTDEFINED;
 						return;
-					
-					
+					case null:
+						SequenceType = IfcSequenceEnum.NOTDEFINED;
+						return;
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

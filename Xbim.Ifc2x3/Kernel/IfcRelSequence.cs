@@ -85,8 +85,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingProcess;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingProcess;
+				Activate();
 				return _relatingProcess;
 			} 
 			set
@@ -102,8 +102,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedProcess;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedProcess;
+				Activate();
 				return _relatedProcess;
 			} 
 			set
@@ -118,8 +118,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _timeLag;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _timeLag;
+				Activate();
 				return _timeLag;
 			} 
 			set
@@ -132,8 +132,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _sequenceType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _sequenceType;
+				Activate();
 				return _sequenceType;
 			} 
 			set

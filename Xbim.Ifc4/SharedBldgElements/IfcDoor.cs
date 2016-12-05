@@ -90,8 +90,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _overallHeight;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _overallHeight;
+				Activate();
 				return _overallHeight;
 			} 
 			set
@@ -104,8 +104,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _overallWidth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _overallWidth;
+				Activate();
 				return _overallWidth;
 			} 
 			set
@@ -118,8 +118,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
@@ -132,8 +132,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _operationType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _operationType;
+				Activate();
 				return _operationType;
 			} 
 			set
@@ -146,8 +146,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _userDefinedOperationType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _userDefinedOperationType;
+				Activate();
 				return _userDefinedOperationType;
 			} 
 			set

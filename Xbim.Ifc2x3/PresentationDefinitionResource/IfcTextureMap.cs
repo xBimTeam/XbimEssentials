@@ -59,8 +59,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _textureMaps;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _textureMaps;
+				Activate();
 				return _textureMaps;
 			} 
 		}	

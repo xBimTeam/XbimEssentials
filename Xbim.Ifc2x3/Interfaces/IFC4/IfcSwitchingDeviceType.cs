@@ -29,19 +29,14 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 				{
 					case IfcSwitchingDeviceTypeEnum.CONTACTOR:
 						return Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.CONTACTOR;
-					
 					case IfcSwitchingDeviceTypeEnum.EMERGENCYSTOP:
 						return Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.EMERGENCYSTOP;
-					
 					case IfcSwitchingDeviceTypeEnum.STARTER:
 						return Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.STARTER;
-					
 					case IfcSwitchingDeviceTypeEnum.SWITCHDISCONNECTOR:
 						return Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.SWITCHDISCONNECTOR;
-					
 					case IfcSwitchingDeviceTypeEnum.TOGGLESWITCH:
 						return Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.TOGGLESWITCH;
-					
 					case IfcSwitchingDeviceTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED.
                         if (ElementType.HasValue)
@@ -52,10 +47,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
                         }
 						//##
 						return Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.USERDEFINED;
-					
 					case IfcSwitchingDeviceTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -70,60 +63,48 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 					case Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.CONTACTOR:
 						PredefinedType = IfcSwitchingDeviceTypeEnum.CONTACTOR;
 						return;
-					
 					case Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.DIMMERSWITCH:
 						//## Handle setting of DIMMERSWITCH member from IfcSwitchingDeviceTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcSwitchingDeviceTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.EMERGENCYSTOP:
+										case Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.EMERGENCYSTOP:
 						PredefinedType = IfcSwitchingDeviceTypeEnum.EMERGENCYSTOP;
 						return;
-					
 					case Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.KEYPAD:
 						//## Handle setting of KEYPAD member from IfcSwitchingDeviceTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcSwitchingDeviceTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.MOMENTARYSWITCH:
+										case Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.MOMENTARYSWITCH:
 						//## Handle setting of MOMENTARYSWITCH member from IfcSwitchingDeviceTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcSwitchingDeviceTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.SELECTORSWITCH:
+										case Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.SELECTORSWITCH:
 						//## Handle setting of SELECTORSWITCH member from IfcSwitchingDeviceTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcSwitchingDeviceTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.STARTER:
+										case Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.STARTER:
 						PredefinedType = IfcSwitchingDeviceTypeEnum.STARTER;
 						return;
-					
 					case Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.SWITCHDISCONNECTOR:
 						PredefinedType = IfcSwitchingDeviceTypeEnum.SWITCHDISCONNECTOR;
 						return;
-					
 					case Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.TOGGLESWITCH:
 						PredefinedType = IfcSwitchingDeviceTypeEnum.TOGGLESWITCH;
 						return;
-					
 					case Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.USERDEFINED:
 						PredefinedType = IfcSwitchingDeviceTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.NOTDEFINED:
 						PredefinedType = IfcSwitchingDeviceTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

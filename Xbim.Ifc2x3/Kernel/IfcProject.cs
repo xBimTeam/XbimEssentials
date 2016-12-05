@@ -83,8 +83,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _longName;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _longName;
+				Activate();
 				return _longName;
 			} 
 			set
@@ -97,8 +97,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _phase;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _phase;
+				Activate();
 				return _phase;
 			} 
 			set
@@ -111,8 +111,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _representationContexts;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _representationContexts;
+				Activate();
 				return _representationContexts;
 			} 
 		}	
@@ -121,8 +121,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _unitsInContext;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _unitsInContext;
+				Activate();
 				return _unitsInContext;
 			} 
 			set

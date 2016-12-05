@@ -133,8 +133,8 @@ namespace Xbim.Ifc4.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
@@ -147,8 +147,8 @@ namespace Xbim.Ifc4.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
@@ -161,8 +161,8 @@ namespace Xbim.Ifc4.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _appliedValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _appliedValue;
+				Activate();
 				return _appliedValue;
 			} 
 			set
@@ -178,8 +178,8 @@ namespace Xbim.Ifc4.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _unitBasis;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _unitBasis;
+				Activate();
 				return _unitBasis;
 			} 
 			set
@@ -194,8 +194,8 @@ namespace Xbim.Ifc4.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _applicableDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _applicableDate;
+				Activate();
 				return _applicableDate;
 			} 
 			set
@@ -208,8 +208,8 @@ namespace Xbim.Ifc4.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _fixedUntilDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _fixedUntilDate;
+				Activate();
 				return _fixedUntilDate;
 			} 
 			set
@@ -222,8 +222,8 @@ namespace Xbim.Ifc4.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _category;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _category;
+				Activate();
 				return _category;
 			} 
 			set
@@ -236,8 +236,8 @@ namespace Xbim.Ifc4.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _condition;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _condition;
+				Activate();
 				return _condition;
 			} 
 			set
@@ -250,8 +250,8 @@ namespace Xbim.Ifc4.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _arithmeticOperator;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _arithmeticOperator;
+				Activate();
 				return _arithmeticOperator;
 			} 
 			set
@@ -264,8 +264,8 @@ namespace Xbim.Ifc4.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _components;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _components;
+				Activate();
 				return _components;
 			} 
 		}	

@@ -83,8 +83,8 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _uAxes;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _uAxes;
+				Activate();
 				return _uAxes;
 			} 
 		}	
@@ -94,8 +94,8 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _vAxes;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _vAxes;
+				Activate();
 				return _vAxes;
 			} 
 		}	
@@ -105,8 +105,8 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _wAxes;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _wAxes;
+				Activate();
 				return _wAxes;
 			} 
 		}	
@@ -115,8 +115,8 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set

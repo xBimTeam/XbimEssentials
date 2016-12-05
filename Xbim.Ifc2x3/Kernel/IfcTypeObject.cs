@@ -69,8 +69,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _applicableOccurrence;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _applicableOccurrence;
+				Activate();
 				return _applicableOccurrence;
 			} 
 			set
@@ -84,8 +84,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _hasPropertySets;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _hasPropertySets;
+				Activate();
 				return _hasPropertySets;
 			} 
 		}	

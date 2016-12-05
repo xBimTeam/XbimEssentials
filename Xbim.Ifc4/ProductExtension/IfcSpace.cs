@@ -73,8 +73,8 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
@@ -87,8 +87,8 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _elevationWithFlooring;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _elevationWithFlooring;
+				Activate();
 				return _elevationWithFlooring;
 			} 
 			set

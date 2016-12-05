@@ -75,8 +75,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _recurrencePattern;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _recurrencePattern;
+				Activate();
 				return _recurrencePattern;
 			} 
 			set
@@ -91,8 +91,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _start;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _start;
+				Activate();
 				return _start;
 			} 
 			set
@@ -105,8 +105,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _finish;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _finish;
+				Activate();
 				return _finish;
 			} 
 			set

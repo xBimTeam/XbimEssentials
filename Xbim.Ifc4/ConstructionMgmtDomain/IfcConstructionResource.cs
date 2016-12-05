@@ -79,8 +79,8 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _usage;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _usage;
+				Activate();
 				return _usage;
 			} 
 			set
@@ -95,8 +95,8 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _baseCosts;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _baseCosts;
+				Activate();
 				return _baseCosts;
 			} 
 		}	
@@ -105,8 +105,8 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _baseQuantity;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _baseQuantity;
+				Activate();
 				return _baseQuantity;
 			} 
 			set

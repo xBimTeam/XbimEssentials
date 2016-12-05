@@ -75,8 +75,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _molecularWeight;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _molecularWeight;
+				Activate();
 				return _molecularWeight;
 			} 
 			set
@@ -89,8 +89,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _porosity;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _porosity;
+				Activate();
 				return _porosity;
 			} 
 			set
@@ -103,8 +103,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _massDensity;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _massDensity;
+				Activate();
 				return _massDensity;
 			} 
 			set

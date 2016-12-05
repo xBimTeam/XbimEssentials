@@ -83,8 +83,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _numberOfRiser;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _numberOfRiser;
+				Activate();
 				return _numberOfRiser;
 			} 
 			set
@@ -97,8 +97,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _numberOfTreads;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _numberOfTreads;
+				Activate();
 				return _numberOfTreads;
 			} 
 			set
@@ -111,8 +111,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _riserHeight;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _riserHeight;
+				Activate();
 				return _riserHeight;
 			} 
 			set
@@ -125,8 +125,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _treadLength;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _treadLength;
+				Activate();
 				return _treadLength;
 			} 
 			set

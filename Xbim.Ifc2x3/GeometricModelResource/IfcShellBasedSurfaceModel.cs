@@ -62,8 +62,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _sbsmBoundary;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _sbsmBoundary;
+				Activate();
 				return _sbsmBoundary;
 			} 
 		}	

@@ -69,8 +69,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _basisSurface;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _basisSurface;
+				Activate();
 				return _basisSurface;
 			} 
 			set
@@ -85,8 +85,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _referenceCurve;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _referenceCurve;
+				Activate();
 				return _referenceCurve;
 			} 
 			set

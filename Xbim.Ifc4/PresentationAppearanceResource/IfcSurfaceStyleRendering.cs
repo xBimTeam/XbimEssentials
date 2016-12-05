@@ -108,8 +108,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _diffuseColour;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _diffuseColour;
+				Activate();
 				return _diffuseColour;
 			} 
 			set
@@ -125,8 +125,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _transmissionColour;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _transmissionColour;
+				Activate();
 				return _transmissionColour;
 			} 
 			set
@@ -142,8 +142,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _diffuseTransmissionColour;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _diffuseTransmissionColour;
+				Activate();
 				return _diffuseTransmissionColour;
 			} 
 			set
@@ -159,8 +159,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _reflectionColour;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _reflectionColour;
+				Activate();
 				return _reflectionColour;
 			} 
 			set
@@ -176,8 +176,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _specularColour;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _specularColour;
+				Activate();
 				return _specularColour;
 			} 
 			set
@@ -193,8 +193,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _specularHighlight;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _specularHighlight;
+				Activate();
 				return _specularHighlight;
 			} 
 			set
@@ -207,8 +207,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _reflectanceMethod;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _reflectanceMethod;
+				Activate();
 				return _reflectanceMethod;
 			} 
 			set

@@ -63,8 +63,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _notationValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _notationValue;
+				Activate();
 				return _notationValue;
 			} 
 			set

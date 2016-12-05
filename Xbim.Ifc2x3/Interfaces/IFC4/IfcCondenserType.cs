@@ -29,22 +29,16 @@ namespace Xbim.Ifc2x3.HVACDomain
 				{
 					case IfcCondenserTypeEnum.WATERCOOLEDSHELLTUBE:
 						return Ifc4.Interfaces.IfcCondenserTypeEnum.WATERCOOLEDSHELLTUBE;
-					
 					case IfcCondenserTypeEnum.WATERCOOLEDSHELLCOIL:
 						return Ifc4.Interfaces.IfcCondenserTypeEnum.WATERCOOLEDSHELLCOIL;
-					
 					case IfcCondenserTypeEnum.WATERCOOLEDTUBEINTUBE:
 						return Ifc4.Interfaces.IfcCondenserTypeEnum.WATERCOOLEDTUBEINTUBE;
-					
 					case IfcCondenserTypeEnum.WATERCOOLEDBRAZEDPLATE:
 						return Ifc4.Interfaces.IfcCondenserTypeEnum.WATERCOOLEDBRAZEDPLATE;
-					
 					case IfcCondenserTypeEnum.AIRCOOLED:
 						return Ifc4.Interfaces.IfcCondenserTypeEnum.AIRCOOLED;
-					
 					case IfcCondenserTypeEnum.EVAPORATIVECOOLED:
 						return Ifc4.Interfaces.IfcCondenserTypeEnum.EVAPORATIVECOOLED;
-					
 					case IfcCondenserTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
                         if (ElementType.HasValue)
@@ -55,10 +49,8 @@ namespace Xbim.Ifc2x3.HVACDomain
                         }
 						//##
 						return Ifc4.Interfaces.IfcCondenserTypeEnum.USERDEFINED;
-					
 					case IfcCondenserTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcCondenserTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -73,43 +65,33 @@ namespace Xbim.Ifc2x3.HVACDomain
 					case Ifc4.Interfaces.IfcCondenserTypeEnum.AIRCOOLED:
 						PredefinedType = IfcCondenserTypeEnum.AIRCOOLED;
 						return;
-					
 					case Ifc4.Interfaces.IfcCondenserTypeEnum.EVAPORATIVECOOLED:
 						PredefinedType = IfcCondenserTypeEnum.EVAPORATIVECOOLED;
 						return;
-					
 					case Ifc4.Interfaces.IfcCondenserTypeEnum.WATERCOOLED:
 						//## Handle setting of WATERCOOLED member from IfcCondenserTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcCondenserTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcCondenserTypeEnum.WATERCOOLEDBRAZEDPLATE:
+										case Ifc4.Interfaces.IfcCondenserTypeEnum.WATERCOOLEDBRAZEDPLATE:
 						PredefinedType = IfcCondenserTypeEnum.WATERCOOLEDBRAZEDPLATE;
 						return;
-					
 					case Ifc4.Interfaces.IfcCondenserTypeEnum.WATERCOOLEDSHELLCOIL:
 						PredefinedType = IfcCondenserTypeEnum.WATERCOOLEDSHELLCOIL;
 						return;
-					
 					case Ifc4.Interfaces.IfcCondenserTypeEnum.WATERCOOLEDSHELLTUBE:
 						PredefinedType = IfcCondenserTypeEnum.WATERCOOLEDSHELLTUBE;
 						return;
-					
 					case Ifc4.Interfaces.IfcCondenserTypeEnum.WATERCOOLEDTUBEINTUBE:
 						PredefinedType = IfcCondenserTypeEnum.WATERCOOLEDTUBEINTUBE;
 						return;
-					
 					case Ifc4.Interfaces.IfcCondenserTypeEnum.USERDEFINED:
 						PredefinedType = IfcCondenserTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcCondenserTypeEnum.NOTDEFINED:
 						PredefinedType = IfcCondenserTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

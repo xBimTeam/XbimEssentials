@@ -67,8 +67,8 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _offsetDirection;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _offsetDirection;
+				Activate();
 				return _offsetDirection;
 			} 
 			set
@@ -81,8 +81,8 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _offsetValues;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _offsetValues;
+				Activate();
 				return _offsetValues;
 			} 
 		}	

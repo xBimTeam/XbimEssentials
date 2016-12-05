@@ -61,8 +61,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _refDirection;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _refDirection;
+				Activate();
 				return _refDirection;
 			} 
 			set

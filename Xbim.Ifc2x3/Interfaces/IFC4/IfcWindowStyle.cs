@@ -29,28 +29,20 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				{
 					case IfcWindowStyleConstructionEnum.ALUMINIUM:
 						return Ifc4.Interfaces.IfcWindowStyleConstructionEnum.ALUMINIUM;
-					
 					case IfcWindowStyleConstructionEnum.HIGH_GRADE_STEEL:
 						return Ifc4.Interfaces.IfcWindowStyleConstructionEnum.HIGH_GRADE_STEEL;
-					
 					case IfcWindowStyleConstructionEnum.STEEL:
 						return Ifc4.Interfaces.IfcWindowStyleConstructionEnum.STEEL;
-					
 					case IfcWindowStyleConstructionEnum.WOOD:
 						return Ifc4.Interfaces.IfcWindowStyleConstructionEnum.WOOD;
-					
 					case IfcWindowStyleConstructionEnum.ALUMINIUM_WOOD:
 						return Ifc4.Interfaces.IfcWindowStyleConstructionEnum.ALUMINIUM_WOOD;
-					
 					case IfcWindowStyleConstructionEnum.PLASTIC:
 						return Ifc4.Interfaces.IfcWindowStyleConstructionEnum.PLASTIC;
-					
 					case IfcWindowStyleConstructionEnum.OTHER_CONSTRUCTION:
 						return Ifc4.Interfaces.IfcWindowStyleConstructionEnum.OTHER_CONSTRUCTION;
-					
 					case IfcWindowStyleConstructionEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcWindowStyleConstructionEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -65,36 +57,27 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					case Ifc4.Interfaces.IfcWindowStyleConstructionEnum.ALUMINIUM:
 						ConstructionType = IfcWindowStyleConstructionEnum.ALUMINIUM;
 						return;
-					
 					case Ifc4.Interfaces.IfcWindowStyleConstructionEnum.HIGH_GRADE_STEEL:
 						ConstructionType = IfcWindowStyleConstructionEnum.HIGH_GRADE_STEEL;
 						return;
-					
 					case Ifc4.Interfaces.IfcWindowStyleConstructionEnum.STEEL:
 						ConstructionType = IfcWindowStyleConstructionEnum.STEEL;
 						return;
-					
 					case Ifc4.Interfaces.IfcWindowStyleConstructionEnum.WOOD:
 						ConstructionType = IfcWindowStyleConstructionEnum.WOOD;
 						return;
-					
 					case Ifc4.Interfaces.IfcWindowStyleConstructionEnum.ALUMINIUM_WOOD:
 						ConstructionType = IfcWindowStyleConstructionEnum.ALUMINIUM_WOOD;
 						return;
-					
 					case Ifc4.Interfaces.IfcWindowStyleConstructionEnum.PLASTIC:
 						ConstructionType = IfcWindowStyleConstructionEnum.PLASTIC;
 						return;
-					
 					case Ifc4.Interfaces.IfcWindowStyleConstructionEnum.OTHER_CONSTRUCTION:
 						ConstructionType = IfcWindowStyleConstructionEnum.OTHER_CONSTRUCTION;
 						return;
-					
 					case Ifc4.Interfaces.IfcWindowStyleConstructionEnum.NOTDEFINED:
 						ConstructionType = IfcWindowStyleConstructionEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}
@@ -113,39 +96,28 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				{
 					case IfcWindowStyleOperationEnum.SINGLE_PANEL:
 						return Ifc4.Interfaces.IfcWindowStyleOperationEnum.SINGLE_PANEL;
-					
 					case IfcWindowStyleOperationEnum.DOUBLE_PANEL_VERTICAL:
 						return Ifc4.Interfaces.IfcWindowStyleOperationEnum.DOUBLE_PANEL_VERTICAL;
-					
 					case IfcWindowStyleOperationEnum.DOUBLE_PANEL_HORIZONTAL:
 						return Ifc4.Interfaces.IfcWindowStyleOperationEnum.DOUBLE_PANEL_HORIZONTAL;
-					
 					case IfcWindowStyleOperationEnum.TRIPLE_PANEL_VERTICAL:
 						return Ifc4.Interfaces.IfcWindowStyleOperationEnum.TRIPLE_PANEL_VERTICAL;
-					
 					case IfcWindowStyleOperationEnum.TRIPLE_PANEL_BOTTOM:
 						return Ifc4.Interfaces.IfcWindowStyleOperationEnum.TRIPLE_PANEL_BOTTOM;
-					
 					case IfcWindowStyleOperationEnum.TRIPLE_PANEL_TOP:
 						return Ifc4.Interfaces.IfcWindowStyleOperationEnum.TRIPLE_PANEL_TOP;
-					
 					case IfcWindowStyleOperationEnum.TRIPLE_PANEL_LEFT:
 						return Ifc4.Interfaces.IfcWindowStyleOperationEnum.TRIPLE_PANEL_LEFT;
-					
 					case IfcWindowStyleOperationEnum.TRIPLE_PANEL_RIGHT:
 						return Ifc4.Interfaces.IfcWindowStyleOperationEnum.TRIPLE_PANEL_RIGHT;
-					
 					case IfcWindowStyleOperationEnum.TRIPLE_PANEL_HORIZONTAL:
 						return Ifc4.Interfaces.IfcWindowStyleOperationEnum.TRIPLE_PANEL_HORIZONTAL;
-					
 					case IfcWindowStyleOperationEnum.USERDEFINED:
 						//## Optional custom handling of OperationType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcWindowStyleOperationEnum.USERDEFINED;
-					
 					case IfcWindowStyleOperationEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcWindowStyleOperationEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -160,48 +132,36 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					case Ifc4.Interfaces.IfcWindowStyleOperationEnum.SINGLE_PANEL:
 						OperationType = IfcWindowStyleOperationEnum.SINGLE_PANEL;
 						return;
-					
 					case Ifc4.Interfaces.IfcWindowStyleOperationEnum.DOUBLE_PANEL_VERTICAL:
 						OperationType = IfcWindowStyleOperationEnum.DOUBLE_PANEL_VERTICAL;
 						return;
-					
 					case Ifc4.Interfaces.IfcWindowStyleOperationEnum.DOUBLE_PANEL_HORIZONTAL:
 						OperationType = IfcWindowStyleOperationEnum.DOUBLE_PANEL_HORIZONTAL;
 						return;
-					
 					case Ifc4.Interfaces.IfcWindowStyleOperationEnum.TRIPLE_PANEL_VERTICAL:
 						OperationType = IfcWindowStyleOperationEnum.TRIPLE_PANEL_VERTICAL;
 						return;
-					
 					case Ifc4.Interfaces.IfcWindowStyleOperationEnum.TRIPLE_PANEL_BOTTOM:
 						OperationType = IfcWindowStyleOperationEnum.TRIPLE_PANEL_BOTTOM;
 						return;
-					
 					case Ifc4.Interfaces.IfcWindowStyleOperationEnum.TRIPLE_PANEL_TOP:
 						OperationType = IfcWindowStyleOperationEnum.TRIPLE_PANEL_TOP;
 						return;
-					
 					case Ifc4.Interfaces.IfcWindowStyleOperationEnum.TRIPLE_PANEL_LEFT:
 						OperationType = IfcWindowStyleOperationEnum.TRIPLE_PANEL_LEFT;
 						return;
-					
 					case Ifc4.Interfaces.IfcWindowStyleOperationEnum.TRIPLE_PANEL_RIGHT:
 						OperationType = IfcWindowStyleOperationEnum.TRIPLE_PANEL_RIGHT;
 						return;
-					
 					case Ifc4.Interfaces.IfcWindowStyleOperationEnum.TRIPLE_PANEL_HORIZONTAL:
 						OperationType = IfcWindowStyleOperationEnum.TRIPLE_PANEL_HORIZONTAL;
 						return;
-					
 					case Ifc4.Interfaces.IfcWindowStyleOperationEnum.USERDEFINED:
 						OperationType = IfcWindowStyleOperationEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcWindowStyleOperationEnum.NOTDEFINED:
 						OperationType = IfcWindowStyleOperationEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

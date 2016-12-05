@@ -98,8 +98,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _totalCrossSectionArea;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _totalCrossSectionArea;
+				Activate();
 				return _totalCrossSectionArea;
 			} 
 			set
@@ -112,8 +112,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _steelGrade;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _steelGrade;
+				Activate();
 				return _steelGrade;
 			} 
 			set
@@ -126,8 +126,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _barSurface;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _barSurface;
+				Activate();
 				return _barSurface;
 			} 
 			set
@@ -140,8 +140,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _effectiveDepth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _effectiveDepth;
+				Activate();
 				return _effectiveDepth;
 			} 
 			set
@@ -154,8 +154,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _nominalBarDiameter;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _nominalBarDiameter;
+				Activate();
 				return _nominalBarDiameter;
 			} 
 			set
@@ -168,8 +168,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _barCount;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _barCount;
+				Activate();
 				return _barCount;
 			} 
 			set

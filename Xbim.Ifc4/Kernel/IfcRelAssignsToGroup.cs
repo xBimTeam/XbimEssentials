@@ -62,8 +62,8 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingGroup;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingGroup;
+				Activate();
 				return _relatingGroup;
 			} 
 			set

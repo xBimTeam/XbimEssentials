@@ -93,8 +93,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _roomTag;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _roomTag;
+				Activate();
 				return _roomTag;
 			} 
 			set
@@ -107,8 +107,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _usableHeight;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _usableHeight;
+				Activate();
 				return _usableHeight;
 			} 
 			set
@@ -121,8 +121,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _grossArea;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _grossArea;
+				Activate();
 				return _grossArea;
 			} 
 			set
@@ -135,8 +135,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _netArea;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _netArea;
+				Activate();
 				return _netArea;
 			} 
 			set
@@ -150,8 +150,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _floor;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _floor;
+				Activate();
 				return _floor;
 			} 
 			set

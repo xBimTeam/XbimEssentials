@@ -29,27 +29,20 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 				{
 					case IfcActuatorTypeEnum.ELECTRICACTUATOR:
 						return Ifc4.Interfaces.IfcActuatorTypeEnum.ELECTRICACTUATOR;
-					
 					case IfcActuatorTypeEnum.HANDOPERATEDACTUATOR:
 						return Ifc4.Interfaces.IfcActuatorTypeEnum.HANDOPERATEDACTUATOR;
-					
 					case IfcActuatorTypeEnum.HYDRAULICACTUATOR:
 						return Ifc4.Interfaces.IfcActuatorTypeEnum.HYDRAULICACTUATOR;
-					
 					case IfcActuatorTypeEnum.PNEUMATICACTUATOR:
 						return Ifc4.Interfaces.IfcActuatorTypeEnum.PNEUMATICACTUATOR;
-					
 					case IfcActuatorTypeEnum.THERMOSTATICACTUATOR:
 						return Ifc4.Interfaces.IfcActuatorTypeEnum.THERMOSTATICACTUATOR;
-					
 					case IfcActuatorTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcActuatorTypeEnum.USERDEFINED;
-					
 					case IfcActuatorTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcActuatorTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -64,32 +57,24 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 					case Ifc4.Interfaces.IfcActuatorTypeEnum.ELECTRICACTUATOR:
 						PredefinedType = IfcActuatorTypeEnum.ELECTRICACTUATOR;
 						return;
-					
 					case Ifc4.Interfaces.IfcActuatorTypeEnum.HANDOPERATEDACTUATOR:
 						PredefinedType = IfcActuatorTypeEnum.HANDOPERATEDACTUATOR;
 						return;
-					
 					case Ifc4.Interfaces.IfcActuatorTypeEnum.HYDRAULICACTUATOR:
 						PredefinedType = IfcActuatorTypeEnum.HYDRAULICACTUATOR;
 						return;
-					
 					case Ifc4.Interfaces.IfcActuatorTypeEnum.PNEUMATICACTUATOR:
 						PredefinedType = IfcActuatorTypeEnum.PNEUMATICACTUATOR;
 						return;
-					
 					case Ifc4.Interfaces.IfcActuatorTypeEnum.THERMOSTATICACTUATOR:
 						PredefinedType = IfcActuatorTypeEnum.THERMOSTATICACTUATOR;
 						return;
-					
 					case Ifc4.Interfaces.IfcActuatorTypeEnum.USERDEFINED:
 						PredefinedType = IfcActuatorTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcActuatorTypeEnum.NOTDEFINED:
 						PredefinedType = IfcActuatorTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

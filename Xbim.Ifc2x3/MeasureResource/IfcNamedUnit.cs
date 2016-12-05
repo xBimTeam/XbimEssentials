@@ -70,8 +70,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _dimensions;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _dimensions;
+				Activate();
 				return _dimensions;
 			} 
 			set
@@ -86,8 +86,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _unitType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _unitType;
+				Activate();
 				return _unitType;
 			} 
 			set

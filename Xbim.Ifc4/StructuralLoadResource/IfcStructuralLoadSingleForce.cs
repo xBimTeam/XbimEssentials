@@ -96,8 +96,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _forceX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _forceX;
+				Activate();
 				return _forceX;
 			} 
 			set
@@ -110,8 +110,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _forceY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _forceY;
+				Activate();
 				return _forceY;
 			} 
 			set
@@ -124,8 +124,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _forceZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _forceZ;
+				Activate();
 				return _forceZ;
 			} 
 			set
@@ -138,8 +138,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _momentX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _momentX;
+				Activate();
 				return _momentX;
 			} 
 			set
@@ -152,8 +152,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _momentY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _momentY;
+				Activate();
 				return _momentY;
 			} 
 			set
@@ -166,8 +166,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _momentZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _momentZ;
+				Activate();
 				return _momentZ;
 			} 
 			set

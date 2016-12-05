@@ -93,8 +93,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _contextOfItems;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _contextOfItems;
+				Activate();
 				return _contextOfItems;
 			} 
 			set
@@ -109,8 +109,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _representationIdentifier;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _representationIdentifier;
+				Activate();
 				return _representationIdentifier;
 			} 
 			set
@@ -123,8 +123,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _representationType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _representationType;
+				Activate();
 				return _representationType;
 			} 
 			set
@@ -137,8 +137,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _items;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _items;
+				Activate();
 				return _items;
 			} 
 		}	

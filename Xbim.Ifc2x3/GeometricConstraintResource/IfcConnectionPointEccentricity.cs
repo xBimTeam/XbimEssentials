@@ -75,8 +75,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _eccentricityInX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _eccentricityInX;
+				Activate();
 				return _eccentricityInX;
 			} 
 			set
@@ -89,8 +89,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _eccentricityInY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _eccentricityInY;
+				Activate();
 				return _eccentricityInY;
 			} 
 			set
@@ -103,8 +103,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _eccentricityInZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _eccentricityInZ;
+				Activate();
 				return _eccentricityInZ;
 			} 
 			set

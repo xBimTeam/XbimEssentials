@@ -76,8 +76,8 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _templateType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _templateType;
+				Activate();
 				return _templateType;
 			} 
 			set
@@ -90,8 +90,8 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _applicableEntity;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _applicableEntity;
+				Activate();
 				return _applicableEntity;
 			} 
 			set
@@ -105,8 +105,8 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _hasPropertyTemplates;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _hasPropertyTemplates;
+				Activate();
 				return _hasPropertyTemplates;
 			} 
 		}	

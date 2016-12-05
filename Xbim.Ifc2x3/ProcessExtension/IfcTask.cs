@@ -90,8 +90,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _taskId;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _taskId;
+				Activate();
 				return _taskId;
 			} 
 			set
@@ -104,8 +104,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _status;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _status;
+				Activate();
 				return _status;
 			} 
 			set
@@ -118,8 +118,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _workMethod;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _workMethod;
+				Activate();
 				return _workMethod;
 			} 
 			set
@@ -132,8 +132,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _isMilestone;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _isMilestone;
+				Activate();
 				return _isMilestone;
 			} 
 			set
@@ -146,8 +146,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _priority;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _priority;
+				Activate();
 				return _priority;
 			} 
 			set

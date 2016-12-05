@@ -70,8 +70,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _materialClassifications;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _materialClassifications;
+				Activate();
 				return _materialClassifications;
 			} 
 		}	
@@ -81,8 +81,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _classifiedMaterial;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _classifiedMaterial;
+				Activate();
 				return _classifiedMaterial;
 			} 
 			set

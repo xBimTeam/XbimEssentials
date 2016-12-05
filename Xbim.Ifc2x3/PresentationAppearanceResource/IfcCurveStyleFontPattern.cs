@@ -70,8 +70,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _visibleSegmentLength;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _visibleSegmentLength;
+				Activate();
 				return _visibleSegmentLength;
 			} 
 			set
@@ -84,8 +84,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _invisibleSegmentLength;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _invisibleSegmentLength;
+				Activate();
 				return _invisibleSegmentLength;
 			} 
 			set

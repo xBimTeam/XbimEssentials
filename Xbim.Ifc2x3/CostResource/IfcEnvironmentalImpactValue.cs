@@ -75,8 +75,8 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _impactType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _impactType;
+				Activate();
 				return _impactType;
 			} 
 			set
@@ -89,8 +89,8 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _category;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _category;
+				Activate();
 				return _category;
 			} 
 			set
@@ -103,8 +103,8 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _userDefinedCategory;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _userDefinedCategory;
+				Activate();
 				return _userDefinedCategory;
 			} 
 			set

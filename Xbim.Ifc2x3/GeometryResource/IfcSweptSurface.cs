@@ -70,8 +70,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _sweptCurve;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _sweptCurve;
+				Activate();
 				return _sweptCurve;
 			} 
 			set
@@ -86,8 +86,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _position;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _position;
+				Activate();
 				return _position;
 			} 
 			set

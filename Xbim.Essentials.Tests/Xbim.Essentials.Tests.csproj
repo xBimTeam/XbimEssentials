@@ -48,7 +48,9 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
@@ -78,6 +80,8 @@
     <Compile Include="EditableInterfaces.cs" />
     <Compile Include="Pure4Tests.cs" />
     <Compile Include="UnitNameTest.cs" />
+    <Compile Include="OwnerHistoryTests.cs" />
+    <Compile Include="NullableInterfaceEnumMemberTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj">

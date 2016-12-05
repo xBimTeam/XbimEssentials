@@ -82,8 +82,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _shearAreaZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _shearAreaZ;
+				Activate();
 				return _shearAreaZ;
 			} 
 			set
@@ -96,8 +96,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _shearAreaY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _shearAreaY;
+				Activate();
 				return _shearAreaY;
 			} 
 			set
@@ -110,8 +110,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _plasticShapeFactorY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _plasticShapeFactorY;
+				Activate();
 				return _plasticShapeFactorY;
 			} 
 			set
@@ -124,8 +124,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _plasticShapeFactorZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _plasticShapeFactorZ;
+				Activate();
 				return _plasticShapeFactorZ;
 			} 
 			set

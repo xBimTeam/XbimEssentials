@@ -60,8 +60,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _coordinates;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _coordinates;
+				Activate();
 				return _coordinates;
 			} 
 		}	

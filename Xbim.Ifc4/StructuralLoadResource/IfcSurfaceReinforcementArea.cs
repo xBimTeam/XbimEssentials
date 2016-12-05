@@ -73,8 +73,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _surfaceReinforcement1;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _surfaceReinforcement1;
+				Activate();
 				return _surfaceReinforcement1;
 			} 
 		}	
@@ -83,8 +83,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _surfaceReinforcement2;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _surfaceReinforcement2;
+				Activate();
 				return _surfaceReinforcement2;
 			} 
 		}	
@@ -93,8 +93,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _shearReinforcement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _shearReinforcement;
+				Activate();
 				return _shearReinforcement;
 			} 
 			set

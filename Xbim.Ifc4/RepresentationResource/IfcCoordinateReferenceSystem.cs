@@ -86,8 +86,8 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
@@ -100,8 +100,8 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
@@ -114,8 +114,8 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _geodeticDatum;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _geodeticDatum;
+				Activate();
 				return _geodeticDatum;
 			} 
 			set
@@ -128,8 +128,8 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _verticalDatum;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _verticalDatum;
+				Activate();
 				return _verticalDatum;
 			} 
 			set

@@ -69,8 +69,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _baseSurface;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _baseSurface;
+				Activate();
 				return _baseSurface;
 			} 
 			set
@@ -85,8 +85,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _agreementFlag;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _agreementFlag;
+				Activate();
 				return _agreementFlag;
 			} 
 			set

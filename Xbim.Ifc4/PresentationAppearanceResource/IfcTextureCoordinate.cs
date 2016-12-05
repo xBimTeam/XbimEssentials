@@ -61,8 +61,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _maps;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _maps;
+				Activate();
 				return _maps;
 			} 
 		}	

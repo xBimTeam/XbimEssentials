@@ -102,8 +102,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _yieldStress;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _yieldStress;
+				Activate();
 				return _yieldStress;
 			} 
 			set
@@ -116,8 +116,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _ultimateStress;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _ultimateStress;
+				Activate();
 				return _ultimateStress;
 			} 
 			set
@@ -130,8 +130,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _ultimateStrain;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _ultimateStrain;
+				Activate();
 				return _ultimateStrain;
 			} 
 			set
@@ -144,8 +144,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _hardeningModule;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _hardeningModule;
+				Activate();
 				return _hardeningModule;
 			} 
 			set
@@ -158,8 +158,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _proportionalStress;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _proportionalStress;
+				Activate();
 				return _proportionalStress;
 			} 
 			set
@@ -172,8 +172,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _plasticStrain;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _plasticStrain;
+				Activate();
 				return _plasticStrain;
 			} 
 			set
@@ -186,8 +186,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relaxations;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relaxations;
+				Activate();
 				return _relaxations;
 			} 
 		}	

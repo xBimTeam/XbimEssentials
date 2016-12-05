@@ -62,8 +62,8 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _requestID;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _requestID;
+				Activate();
 				return _requestID;
 			} 
 			set

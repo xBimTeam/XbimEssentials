@@ -29,27 +29,20 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				{
 					case IfcProjectOrderTypeEnum.CHANGEORDER:
 						return Ifc4.Interfaces.IfcProjectOrderTypeEnum.CHANGEORDER;
-					
 					case IfcProjectOrderTypeEnum.MAINTENANCEWORKORDER:
 						return Ifc4.Interfaces.IfcProjectOrderTypeEnum.MAINTENANCEWORKORDER;
-					
 					case IfcProjectOrderTypeEnum.MOVEORDER:
 						return Ifc4.Interfaces.IfcProjectOrderTypeEnum.MOVEORDER;
-					
 					case IfcProjectOrderTypeEnum.PURCHASEORDER:
 						return Ifc4.Interfaces.IfcProjectOrderTypeEnum.PURCHASEORDER;
-					
 					case IfcProjectOrderTypeEnum.WORKORDER:
 						return Ifc4.Interfaces.IfcProjectOrderTypeEnum.WORKORDER;
-					
 					case IfcProjectOrderTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcProjectOrderTypeEnum.USERDEFINED;
-					
 					case IfcProjectOrderTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcProjectOrderTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -64,32 +57,27 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 					case Ifc4.Interfaces.IfcProjectOrderTypeEnum.CHANGEORDER:
 						PredefinedType = IfcProjectOrderTypeEnum.CHANGEORDER;
 						return;
-					
 					case Ifc4.Interfaces.IfcProjectOrderTypeEnum.MAINTENANCEWORKORDER:
 						PredefinedType = IfcProjectOrderTypeEnum.MAINTENANCEWORKORDER;
 						return;
-					
 					case Ifc4.Interfaces.IfcProjectOrderTypeEnum.MOVEORDER:
 						PredefinedType = IfcProjectOrderTypeEnum.MOVEORDER;
 						return;
-					
 					case Ifc4.Interfaces.IfcProjectOrderTypeEnum.PURCHASEORDER:
 						PredefinedType = IfcProjectOrderTypeEnum.PURCHASEORDER;
 						return;
-					
 					case Ifc4.Interfaces.IfcProjectOrderTypeEnum.WORKORDER:
 						PredefinedType = IfcProjectOrderTypeEnum.WORKORDER;
 						return;
-					
 					case Ifc4.Interfaces.IfcProjectOrderTypeEnum.USERDEFINED:
 						PredefinedType = IfcProjectOrderTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcProjectOrderTypeEnum.NOTDEFINED:
 						PredefinedType = IfcProjectOrderTypeEnum.NOTDEFINED;
 						return;
-					
-					
+					case null:
+						PredefinedType = IfcProjectOrderTypeEnum.NOTDEFINED;
+						return;
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

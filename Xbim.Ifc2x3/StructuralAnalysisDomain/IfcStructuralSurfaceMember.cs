@@ -68,8 +68,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
@@ -82,8 +82,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _thickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _thickness;
+				Activate();
 				return _thickness;
 			} 
 			set

@@ -31,10 +31,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcCurtainWallTypeEnum.USERDEFINED;
-					
 					case IfcCurtainWallTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcCurtainWallTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -49,12 +47,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					case Ifc4.Interfaces.IfcCurtainWallTypeEnum.USERDEFINED:
 						PredefinedType = IfcCurtainWallTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcCurtainWallTypeEnum.NOTDEFINED:
 						PredefinedType = IfcCurtainWallTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

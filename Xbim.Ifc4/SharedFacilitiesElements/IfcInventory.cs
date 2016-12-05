@@ -101,8 +101,8 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
@@ -115,8 +115,8 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _jurisdiction;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _jurisdiction;
+				Activate();
 				return _jurisdiction;
 			} 
 			set
@@ -131,8 +131,8 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _responsiblePersons;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _responsiblePersons;
+				Activate();
 				return _responsiblePersons;
 			} 
 		}	
@@ -141,8 +141,8 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _lastUpdateDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _lastUpdateDate;
+				Activate();
 				return _lastUpdateDate;
 			} 
 			set
@@ -155,8 +155,8 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _currentValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _currentValue;
+				Activate();
 				return _currentValue;
 			} 
 			set
@@ -171,8 +171,8 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _originalValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _originalValue;
+				Activate();
 				return _originalValue;
 			} 
 			set

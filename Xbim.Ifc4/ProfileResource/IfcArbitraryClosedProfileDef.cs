@@ -62,8 +62,8 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _outerCurve;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _outerCurve;
+				Activate();
 				return _outerCurve;
 			} 
 			set

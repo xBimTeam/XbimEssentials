@@ -90,8 +90,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _numberOfRisers;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _numberOfRisers;
+				Activate();
 				return _numberOfRisers;
 			} 
 			set
@@ -104,8 +104,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _numberOfTreads;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _numberOfTreads;
+				Activate();
 				return _numberOfTreads;
 			} 
 			set
@@ -118,8 +118,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _riserHeight;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _riserHeight;
+				Activate();
 				return _riserHeight;
 			} 
 			set
@@ -132,8 +132,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _treadLength;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _treadLength;
+				Activate();
 				return _treadLength;
 			} 
 			set
@@ -146,8 +146,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set

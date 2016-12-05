@@ -79,8 +79,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _locationAtRelatingElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _locationAtRelatingElement;
+				Activate();
 				return _locationAtRelatingElement;
 			} 
 			set
@@ -95,8 +95,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _locationAtRelatedElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _locationAtRelatedElement;
+				Activate();
 				return _locationAtRelatedElement;
 			} 
 			set
@@ -111,8 +111,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _profileOfPort;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _profileOfPort;
+				Activate();
 				return _profileOfPort;
 			} 
 			set

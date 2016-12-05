@@ -96,8 +96,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _linearStiffnessX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _linearStiffnessX;
+				Activate();
 				return _linearStiffnessX;
 			} 
 			set
@@ -110,8 +110,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _linearStiffnessY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _linearStiffnessY;
+				Activate();
 				return _linearStiffnessY;
 			} 
 			set
@@ -124,8 +124,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _linearStiffnessZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _linearStiffnessZ;
+				Activate();
 				return _linearStiffnessZ;
 			} 
 			set
@@ -138,8 +138,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rotationalStiffnessX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rotationalStiffnessX;
+				Activate();
 				return _rotationalStiffnessX;
 			} 
 			set
@@ -152,8 +152,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rotationalStiffnessY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rotationalStiffnessY;
+				Activate();
 				return _rotationalStiffnessY;
 			} 
 			set
@@ -166,8 +166,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rotationalStiffnessZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rotationalStiffnessZ;
+				Activate();
 				return _rotationalStiffnessZ;
 			} 
 			set

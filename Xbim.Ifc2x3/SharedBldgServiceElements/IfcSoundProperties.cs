@@ -75,8 +75,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _isAttenuating;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _isAttenuating;
+				Activate();
 				return _isAttenuating;
 			} 
 			set
@@ -89,8 +89,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _soundScale;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _soundScale;
+				Activate();
 				return _soundScale;
 			} 
 			set
@@ -103,8 +103,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _soundValues;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _soundValues;
+				Activate();
 				return _soundValues;
 			} 
 		}	

@@ -85,8 +85,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _corner;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _corner;
+				Activate();
 				return _corner;
 			} 
 			set
@@ -101,8 +101,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _xDim;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _xDim;
+				Activate();
 				return _xDim;
 			} 
 			set
@@ -115,8 +115,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _yDim;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _yDim;
+				Activate();
 				return _yDim;
 			} 
 			set
@@ -129,8 +129,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _zDim;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _zDim;
+				Activate();
 				return _zDim;
 			} 
 			set

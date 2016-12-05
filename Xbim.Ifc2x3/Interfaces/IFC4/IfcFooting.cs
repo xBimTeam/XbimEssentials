@@ -29,26 +29,20 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				{
 					case IfcFootingTypeEnum.FOOTING_BEAM:
 						return Ifc4.Interfaces.IfcFootingTypeEnum.FOOTING_BEAM;
-					
 					case IfcFootingTypeEnum.PAD_FOOTING:
 						return Ifc4.Interfaces.IfcFootingTypeEnum.PAD_FOOTING;
-					
 					case IfcFootingTypeEnum.PILE_CAP:
 						return Ifc4.Interfaces.IfcFootingTypeEnum.PILE_CAP;
-					
 					case IfcFootingTypeEnum.STRIP_FOOTING:
 						return Ifc4.Interfaces.IfcFootingTypeEnum.STRIP_FOOTING;
-					
 					case IfcFootingTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
                         if (ObjectType == "CAISSON_FOUNDATION")
                             return Ifc4.Interfaces.IfcFootingTypeEnum.CAISSON_FOUNDATION;
 						//##
 						return Ifc4.Interfaces.IfcFootingTypeEnum.USERDEFINED;
-					
 					case IfcFootingTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcFootingTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -66,32 +60,27 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
                         PredefinedType = IfcFootingTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcFootingTypeEnum.FOOTING_BEAM:
+										case Ifc4.Interfaces.IfcFootingTypeEnum.FOOTING_BEAM:
 						PredefinedType = IfcFootingTypeEnum.FOOTING_BEAM;
 						return;
-					
 					case Ifc4.Interfaces.IfcFootingTypeEnum.PAD_FOOTING:
 						PredefinedType = IfcFootingTypeEnum.PAD_FOOTING;
 						return;
-					
 					case Ifc4.Interfaces.IfcFootingTypeEnum.PILE_CAP:
 						PredefinedType = IfcFootingTypeEnum.PILE_CAP;
 						return;
-					
 					case Ifc4.Interfaces.IfcFootingTypeEnum.STRIP_FOOTING:
 						PredefinedType = IfcFootingTypeEnum.STRIP_FOOTING;
 						return;
-					
 					case Ifc4.Interfaces.IfcFootingTypeEnum.USERDEFINED:
 						PredefinedType = IfcFootingTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcFootingTypeEnum.NOTDEFINED:
 						PredefinedType = IfcFootingTypeEnum.NOTDEFINED;
 						return;
-					
-					
+					case null:
+						PredefinedType = IfcFootingTypeEnum.NOTDEFINED;
+						return;
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

@@ -63,8 +63,8 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _representedMaterial;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _representedMaterial;
+				Activate();
 				return _representedMaterial;
 			} 
 			set

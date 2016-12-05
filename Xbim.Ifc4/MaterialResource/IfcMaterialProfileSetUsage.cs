@@ -76,8 +76,8 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _forProfileSet;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _forProfileSet;
+				Activate();
 				return _forProfileSet;
 			} 
 			set
@@ -92,8 +92,8 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _cardinalPoint;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _cardinalPoint;
+				Activate();
 				return _cardinalPoint;
 			} 
 			set
@@ -106,8 +106,8 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _referenceExtent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _referenceExtent;
+				Activate();
 				return _referenceExtent;
 			} 
 			set

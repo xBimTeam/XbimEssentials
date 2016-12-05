@@ -69,8 +69,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _refractionIndex;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _refractionIndex;
+				Activate();
 				return _refractionIndex;
 			} 
 			set
@@ -83,8 +83,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _dispersionFactor;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _dispersionFactor;
+				Activate();
 				return _dispersionFactor;
 			} 
 			set

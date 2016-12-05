@@ -113,8 +113,8 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
@@ -127,8 +127,8 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _approvalDateTime;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _approvalDateTime;
+				Activate();
 				return _approvalDateTime;
 			} 
 			set
@@ -143,8 +143,8 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _approvalStatus;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _approvalStatus;
+				Activate();
 				return _approvalStatus;
 			} 
 			set
@@ -157,8 +157,8 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _approvalLevel;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _approvalLevel;
+				Activate();
 				return _approvalLevel;
 			} 
 			set
@@ -171,8 +171,8 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _approvalQualifier;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _approvalQualifier;
+				Activate();
 				return _approvalQualifier;
 			} 
 			set
@@ -185,8 +185,8 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
@@ -199,8 +199,8 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _identifier;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _identifier;
+				Activate();
 				return _identifier;
 			} 
 			set

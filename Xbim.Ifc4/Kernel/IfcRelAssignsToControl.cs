@@ -62,8 +62,8 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingControl;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingControl;
+				Activate();
 				return _relatingControl;
 			} 
 			set

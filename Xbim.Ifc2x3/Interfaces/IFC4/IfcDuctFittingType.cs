@@ -29,33 +29,24 @@ namespace Xbim.Ifc2x3.HVACDomain
 				{
 					case IfcDuctFittingTypeEnum.BEND:
 						return Ifc4.Interfaces.IfcDuctFittingTypeEnum.BEND;
-					
 					case IfcDuctFittingTypeEnum.CONNECTOR:
 						return Ifc4.Interfaces.IfcDuctFittingTypeEnum.CONNECTOR;
-					
 					case IfcDuctFittingTypeEnum.ENTRY:
 						return Ifc4.Interfaces.IfcDuctFittingTypeEnum.ENTRY;
-					
 					case IfcDuctFittingTypeEnum.EXIT:
 						return Ifc4.Interfaces.IfcDuctFittingTypeEnum.EXIT;
-					
 					case IfcDuctFittingTypeEnum.JUNCTION:
 						return Ifc4.Interfaces.IfcDuctFittingTypeEnum.JUNCTION;
-					
 					case IfcDuctFittingTypeEnum.OBSTRUCTION:
 						return Ifc4.Interfaces.IfcDuctFittingTypeEnum.OBSTRUCTION;
-					
 					case IfcDuctFittingTypeEnum.TRANSITION:
 						return Ifc4.Interfaces.IfcDuctFittingTypeEnum.TRANSITION;
-					
 					case IfcDuctFittingTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcDuctFittingTypeEnum.USERDEFINED;
-					
 					case IfcDuctFittingTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcDuctFittingTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -70,40 +61,30 @@ namespace Xbim.Ifc2x3.HVACDomain
 					case Ifc4.Interfaces.IfcDuctFittingTypeEnum.BEND:
 						PredefinedType = IfcDuctFittingTypeEnum.BEND;
 						return;
-					
 					case Ifc4.Interfaces.IfcDuctFittingTypeEnum.CONNECTOR:
 						PredefinedType = IfcDuctFittingTypeEnum.CONNECTOR;
 						return;
-					
 					case Ifc4.Interfaces.IfcDuctFittingTypeEnum.ENTRY:
 						PredefinedType = IfcDuctFittingTypeEnum.ENTRY;
 						return;
-					
 					case Ifc4.Interfaces.IfcDuctFittingTypeEnum.EXIT:
 						PredefinedType = IfcDuctFittingTypeEnum.EXIT;
 						return;
-					
 					case Ifc4.Interfaces.IfcDuctFittingTypeEnum.JUNCTION:
 						PredefinedType = IfcDuctFittingTypeEnum.JUNCTION;
 						return;
-					
 					case Ifc4.Interfaces.IfcDuctFittingTypeEnum.OBSTRUCTION:
 						PredefinedType = IfcDuctFittingTypeEnum.OBSTRUCTION;
 						return;
-					
 					case Ifc4.Interfaces.IfcDuctFittingTypeEnum.TRANSITION:
 						PredefinedType = IfcDuctFittingTypeEnum.TRANSITION;
 						return;
-					
 					case Ifc4.Interfaces.IfcDuctFittingTypeEnum.USERDEFINED:
 						PredefinedType = IfcDuctFittingTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcDuctFittingTypeEnum.NOTDEFINED:
 						PredefinedType = IfcDuctFittingTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

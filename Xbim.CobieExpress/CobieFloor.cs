@@ -77,8 +77,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _elevation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _elevation;
+				Activate();
 				return _elevation;
 			} 
 			set
@@ -91,8 +91,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _height;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _height;
+				Activate();
 				return _height;
 			} 
 			set
@@ -106,8 +106,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _facility;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _facility;
+				Activate();
 				return _facility;
 			} 
 			set

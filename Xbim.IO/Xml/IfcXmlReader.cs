@@ -789,7 +789,11 @@ namespace Xbim.IO.Xml
                 _entitiesParsed = 0;
                 var foundHeader = false;
                 var header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
+
+                //IFC2x3 was the first IFC mapped to XML so IFC version wasn't explicit. So we need to put it in to keep the data complete
+                header.FileSchema.Schemas.Add("IFC2X3");
                 var headerId = "";               
+
                 while (_currentNode == null && input.Read()) //read through to UOS
                 {
 

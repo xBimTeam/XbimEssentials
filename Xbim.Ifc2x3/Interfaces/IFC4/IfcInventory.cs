@@ -29,21 +29,16 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				{
 					case IfcInventoryTypeEnum.ASSETINVENTORY:
 						return Ifc4.Interfaces.IfcInventoryTypeEnum.ASSETINVENTORY;
-					
 					case IfcInventoryTypeEnum.SPACEINVENTORY:
 						return Ifc4.Interfaces.IfcInventoryTypeEnum.SPACEINVENTORY;
-					
 					case IfcInventoryTypeEnum.FURNITUREINVENTORY:
 						return Ifc4.Interfaces.IfcInventoryTypeEnum.FURNITUREINVENTORY;
-					
 					case IfcInventoryTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcInventoryTypeEnum.USERDEFINED;
-					
 					case IfcInventoryTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcInventoryTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -58,24 +53,21 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 					case Ifc4.Interfaces.IfcInventoryTypeEnum.ASSETINVENTORY:
 						InventoryType = IfcInventoryTypeEnum.ASSETINVENTORY;
 						return;
-					
 					case Ifc4.Interfaces.IfcInventoryTypeEnum.SPACEINVENTORY:
 						InventoryType = IfcInventoryTypeEnum.SPACEINVENTORY;
 						return;
-					
 					case Ifc4.Interfaces.IfcInventoryTypeEnum.FURNITUREINVENTORY:
 						InventoryType = IfcInventoryTypeEnum.FURNITUREINVENTORY;
 						return;
-					
 					case Ifc4.Interfaces.IfcInventoryTypeEnum.USERDEFINED:
 						InventoryType = IfcInventoryTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcInventoryTypeEnum.NOTDEFINED:
 						InventoryType = IfcInventoryTypeEnum.NOTDEFINED;
 						return;
-					
-					
+					case null:
+						InventoryType = IfcInventoryTypeEnum.NOTDEFINED;
+						return;
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

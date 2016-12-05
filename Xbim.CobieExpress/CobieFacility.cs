@@ -120,8 +120,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _linearUnits;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _linearUnits;
+				Activate();
 				return _linearUnits;
 			} 
 			set
@@ -136,8 +136,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _areaUnits;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _areaUnits;
+				Activate();
 				return _areaUnits;
 			} 
 			set
@@ -152,8 +152,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _volumeUnits;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _volumeUnits;
+				Activate();
 				return _volumeUnits;
 			} 
 			set
@@ -168,8 +168,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _currencyUnit;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _currencyUnit;
+				Activate();
 				return _currencyUnit;
 			} 
 			set
@@ -184,8 +184,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _areaMeasurement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _areaMeasurement;
+				Activate();
 				return _areaMeasurement;
 			} 
 			set
@@ -199,8 +199,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _project;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _project;
+				Activate();
 				return _project;
 			} 
 			set
@@ -216,8 +216,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _site;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _site;
+				Activate();
 				return _site;
 			} 
 			set
@@ -232,8 +232,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _phase;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _phase;
+				Activate();
 				return _phase;
 			} 
 			set

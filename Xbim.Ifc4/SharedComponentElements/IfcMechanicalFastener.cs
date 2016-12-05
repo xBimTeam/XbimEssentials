@@ -75,8 +75,8 @@ namespace Xbim.Ifc4.SharedComponentElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _nominalDiameter;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _nominalDiameter;
+				Activate();
 				return _nominalDiameter;
 			} 
 			set
@@ -89,8 +89,8 @@ namespace Xbim.Ifc4.SharedComponentElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _nominalLength;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _nominalLength;
+				Activate();
 				return _nominalLength;
 			} 
 			set
@@ -103,8 +103,8 @@ namespace Xbim.Ifc4.SharedComponentElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set

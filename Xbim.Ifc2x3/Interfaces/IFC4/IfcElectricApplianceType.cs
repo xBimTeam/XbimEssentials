@@ -31,98 +31,74 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 						//## Handle translation of COMPUTER member from IfcElectricApplianceTypeEnum in property PredefinedType
                         return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcElectricApplianceTypeEnum.DIRECTWATERHEATER:
 						//## Handle translation of DIRECTWATERHEATER member from IfcElectricApplianceTypeEnum in property PredefinedType
                         return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcElectricApplianceTypeEnum.DISHWASHER:
 						return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.DISHWASHER;
-					
 					case IfcElectricApplianceTypeEnum.ELECTRICCOOKER:
 						return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.ELECTRICCOOKER;
-					
 					case IfcElectricApplianceTypeEnum.ELECTRICHEATER:
 						//## Handle translation of ELECTRICHEATER member from IfcElectricApplianceTypeEnum in property PredefinedType
                         return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcElectricApplianceTypeEnum.FACSIMILE:
 						//## Handle translation of FACSIMILE member from IfcElectricApplianceTypeEnum in property PredefinedType
                         return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcElectricApplianceTypeEnum.FREESTANDINGFAN:
 						return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FREESTANDINGFAN;
-					
 					case IfcElectricApplianceTypeEnum.FREEZER:
 						return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FREEZER;
-					
 					case IfcElectricApplianceTypeEnum.FRIDGE_FREEZER:
 						return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FRIDGE_FREEZER;
-					
 					case IfcElectricApplianceTypeEnum.HANDDRYER:
 						return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.HANDDRYER;
-					
 					case IfcElectricApplianceTypeEnum.INDIRECTWATERHEATER:
 						//## Handle translation of INDIRECTWATERHEATER member from IfcElectricApplianceTypeEnum in property PredefinedType
                         return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcElectricApplianceTypeEnum.MICROWAVE:
 						return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.MICROWAVE;
-					
 					case IfcElectricApplianceTypeEnum.PHOTOCOPIER:
 						return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.PHOTOCOPIER;
-					
 					case IfcElectricApplianceTypeEnum.PRINTER:
 						//## Handle translation of PRINTER member from IfcElectricApplianceTypeEnum in property PredefinedType
                         return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcElectricApplianceTypeEnum.REFRIGERATOR:
 						return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.REFRIGERATOR;
-					
 					case IfcElectricApplianceTypeEnum.RADIANTHEATER:
 						//## Handle translation of RADIANTHEATER member from IfcElectricApplianceTypeEnum in property PredefinedType
                         return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcElectricApplianceTypeEnum.SCANNER:
 						//## Handle translation of SCANNER member from IfcElectricApplianceTypeEnum in property PredefinedType
                         return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcElectricApplianceTypeEnum.TELEPHONE:
 						//## Handle translation of TELEPHONE member from IfcElectricApplianceTypeEnum in property PredefinedType
                         return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcElectricApplianceTypeEnum.TUMBLEDRYER:
 						return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.TUMBLEDRYER;
-					
 					case IfcElectricApplianceTypeEnum.TV:
 						//## Handle translation of TV member from IfcElectricApplianceTypeEnum in property PredefinedType
                         return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcElectricApplianceTypeEnum.VENDINGMACHINE:
 						return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.VENDINGMACHINE;
-					
 					case IfcElectricApplianceTypeEnum.WASHINGMACHINE:
 						return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.WASHINGMACHINE;
-					
 					case IfcElectricApplianceTypeEnum.WATERHEATER:
 						//## Handle translation of WATERHEATER member from IfcElectricApplianceTypeEnum in property PredefinedType
                         return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcElectricApplianceTypeEnum.WATERCOOLER:
 						//## Handle translation of WATERCOOLER member from IfcElectricApplianceTypeEnum in property PredefinedType
                         return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.USERDEFINED;
 						//##
-										
 					case IfcElectricApplianceTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
                         if (ElementType.HasValue)
@@ -133,10 +109,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
                         }
 						//##
 						return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.USERDEFINED;
-					
 					case IfcElectricApplianceTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -151,88 +125,69 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.DISHWASHER:
 						PredefinedType = IfcElectricApplianceTypeEnum.DISHWASHER;
 						return;
-					
 					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.ELECTRICCOOKER:
 						PredefinedType = IfcElectricApplianceTypeEnum.ELECTRICCOOKER;
 						return;
-					
 					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FREESTANDINGELECTRICHEATER:
 						//## Handle setting of FREESTANDINGELECTRICHEATER member from IfcElectricApplianceTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcElectricApplianceTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FREESTANDINGFAN:
+										case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FREESTANDINGFAN:
 						PredefinedType = IfcElectricApplianceTypeEnum.FREESTANDINGFAN;
 						return;
-					
 					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FREESTANDINGWATERHEATER:
 						//## Handle setting of FREESTANDINGWATERHEATER member from IfcElectricApplianceTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcElectricApplianceTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FREESTANDINGWATERCOOLER:
+										case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FREESTANDINGWATERCOOLER:
 						//## Handle setting of FREESTANDINGWATERCOOLER member from IfcElectricApplianceTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcElectricApplianceTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FREEZER:
+										case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FREEZER:
 						PredefinedType = IfcElectricApplianceTypeEnum.FREEZER;
 						return;
-					
 					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FRIDGE_FREEZER:
 						PredefinedType = IfcElectricApplianceTypeEnum.FRIDGE_FREEZER;
 						return;
-					
 					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.HANDDRYER:
 						PredefinedType = IfcElectricApplianceTypeEnum.HANDDRYER;
 						return;
-					
 					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.KITCHENMACHINE:
 						//## Handle setting of KITCHENMACHINE member from IfcElectricApplianceTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcElectricApplianceTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.MICROWAVE:
+										case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.MICROWAVE:
 						PredefinedType = IfcElectricApplianceTypeEnum.MICROWAVE;
 						return;
-					
 					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.PHOTOCOPIER:
 						PredefinedType = IfcElectricApplianceTypeEnum.PHOTOCOPIER;
 						return;
-					
 					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.REFRIGERATOR:
 						PredefinedType = IfcElectricApplianceTypeEnum.REFRIGERATOR;
 						return;
-					
 					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.TUMBLEDRYER:
 						PredefinedType = IfcElectricApplianceTypeEnum.TUMBLEDRYER;
 						return;
-					
 					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.VENDINGMACHINE:
 						PredefinedType = IfcElectricApplianceTypeEnum.VENDINGMACHINE;
 						return;
-					
 					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.WASHINGMACHINE:
 						PredefinedType = IfcElectricApplianceTypeEnum.WASHINGMACHINE;
 						return;
-					
 					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.USERDEFINED:
 						PredefinedType = IfcElectricApplianceTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcElectricApplianceTypeEnum.NOTDEFINED:
 						PredefinedType = IfcElectricApplianceTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

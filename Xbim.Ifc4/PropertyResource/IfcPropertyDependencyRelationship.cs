@@ -79,8 +79,8 @@ namespace Xbim.Ifc4.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _dependingProperty;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _dependingProperty;
+				Activate();
 				return _dependingProperty;
 			} 
 			set
@@ -96,8 +96,8 @@ namespace Xbim.Ifc4.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _dependantProperty;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _dependantProperty;
+				Activate();
 				return _dependantProperty;
 			} 
 			set
@@ -112,8 +112,8 @@ namespace Xbim.Ifc4.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _expression;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _expression;
+				Activate();
 				return _expression;
 			} 
 			set

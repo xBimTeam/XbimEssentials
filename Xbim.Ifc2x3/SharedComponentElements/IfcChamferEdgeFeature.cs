@@ -68,8 +68,8 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _width;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _width;
+				Activate();
 				return _width;
 			} 
 			set
@@ -82,8 +82,8 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _height;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _height;
+				Activate();
 				return _height;
 			} 
 			set

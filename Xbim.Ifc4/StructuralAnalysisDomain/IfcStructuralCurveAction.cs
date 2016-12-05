@@ -67,8 +67,8 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _projectedOrTrue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _projectedOrTrue;
+				Activate();
 				return _projectedOrTrue;
 			} 
 			set
@@ -81,8 +81,8 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set

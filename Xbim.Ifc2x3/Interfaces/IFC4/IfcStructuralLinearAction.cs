@@ -29,10 +29,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				{
 					case IfcProjectedOrTrueLengthEnum.PROJECTED_LENGTH:
 						return Ifc4.Interfaces.IfcProjectedOrTrueLengthEnum.PROJECTED_LENGTH;
-					
 					case IfcProjectedOrTrueLengthEnum.TRUE_LENGTH:
 						return Ifc4.Interfaces.IfcProjectedOrTrueLengthEnum.TRUE_LENGTH;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -47,12 +45,12 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					case Ifc4.Interfaces.IfcProjectedOrTrueLengthEnum.PROJECTED_LENGTH:
 						ProjectedOrTrue = IfcProjectedOrTrueLengthEnum.PROJECTED_LENGTH;
 						return;
-					
 					case Ifc4.Interfaces.IfcProjectedOrTrueLengthEnum.TRUE_LENGTH:
 						ProjectedOrTrue = IfcProjectedOrTrueLengthEnum.TRUE_LENGTH;
 						return;
-					
-					
+					case null:
+						ProjectedOrTrue = IfcProjectedOrTrueLengthEnum.TRUE_LENGTH;
+						return;
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

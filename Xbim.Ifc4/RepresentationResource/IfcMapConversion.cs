@@ -96,8 +96,8 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _eastings;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _eastings;
+				Activate();
 				return _eastings;
 			} 
 			set
@@ -110,8 +110,8 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _northings;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _northings;
+				Activate();
 				return _northings;
 			} 
 			set
@@ -124,8 +124,8 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _orthogonalHeight;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _orthogonalHeight;
+				Activate();
 				return _orthogonalHeight;
 			} 
 			set
@@ -138,8 +138,8 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _xAxisAbscissa;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _xAxisAbscissa;
+				Activate();
 				return _xAxisAbscissa;
 			} 
 			set
@@ -152,8 +152,8 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _xAxisOrdinate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _xAxisOrdinate;
+				Activate();
 				return _xAxisOrdinate;
 			} 
 			set
@@ -166,8 +166,8 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _scale;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _scale;
+				Activate();
 				return _scale;
 			} 
 			set

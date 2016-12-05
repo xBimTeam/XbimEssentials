@@ -43,10 +43,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				{
 					case RepresentationResource.IfcGlobalOrLocalEnum.GLOBAL_COORDS:
 						return Ifc4.Interfaces.IfcGlobalOrLocalEnum.GLOBAL_COORDS;
-					
 					case RepresentationResource.IfcGlobalOrLocalEnum.LOCAL_COORDS:
 						return Ifc4.Interfaces.IfcGlobalOrLocalEnum.LOCAL_COORDS;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -61,12 +59,9 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					case Ifc4.Interfaces.IfcGlobalOrLocalEnum.GLOBAL_COORDS:
 						GlobalOrLocal = RepresentationResource.IfcGlobalOrLocalEnum.GLOBAL_COORDS;
 						return;
-					
 					case Ifc4.Interfaces.IfcGlobalOrLocalEnum.LOCAL_COORDS:
 						GlobalOrLocal = RepresentationResource.IfcGlobalOrLocalEnum.LOCAL_COORDS;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

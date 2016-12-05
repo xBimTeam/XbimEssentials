@@ -155,13 +155,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 				{
 					case IfcTrimmingPreference.CARTESIAN:
 						return Ifc4.Interfaces.IfcTrimmingPreference.CARTESIAN;
-					
 					case IfcTrimmingPreference.PARAMETER:
 						return Ifc4.Interfaces.IfcTrimmingPreference.PARAMETER;
-					
 					case IfcTrimmingPreference.UNSPECIFIED:
 						return Ifc4.Interfaces.IfcTrimmingPreference.UNSPECIFIED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -176,16 +173,12 @@ namespace Xbim.Ifc2x3.GeometryResource
 					case Ifc4.Interfaces.IfcTrimmingPreference.CARTESIAN:
 						MasterRepresentation = IfcTrimmingPreference.CARTESIAN;
 						return;
-					
 					case Ifc4.Interfaces.IfcTrimmingPreference.PARAMETER:
 						MasterRepresentation = IfcTrimmingPreference.PARAMETER;
 						return;
-					
 					case Ifc4.Interfaces.IfcTrimmingPreference.UNSPECIFIED:
 						MasterRepresentation = IfcTrimmingPreference.UNSPECIFIED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

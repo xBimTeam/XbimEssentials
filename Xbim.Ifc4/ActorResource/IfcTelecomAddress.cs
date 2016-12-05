@@ -93,8 +93,8 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _telephoneNumbers;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _telephoneNumbers;
+				Activate();
 				return _telephoneNumbers;
 			} 
 		}	
@@ -103,8 +103,8 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _facsimileNumbers;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _facsimileNumbers;
+				Activate();
 				return _facsimileNumbers;
 			} 
 		}	
@@ -113,8 +113,8 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _pagerNumber;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _pagerNumber;
+				Activate();
 				return _pagerNumber;
 			} 
 			set
@@ -127,8 +127,8 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _electronicMailAddresses;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _electronicMailAddresses;
+				Activate();
 				return _electronicMailAddresses;
 			} 
 		}	
@@ -137,8 +137,8 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _wWWHomePageURL;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _wWWHomePageURL;
+				Activate();
 				return _wWWHomePageURL;
 			} 
 			set
@@ -151,8 +151,8 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _messagingIDs;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _messagingIDs;
+				Activate();
 				return _messagingIDs;
 			} 
 		}	

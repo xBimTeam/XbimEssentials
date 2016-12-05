@@ -68,8 +68,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _destabilizingLoad;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _destabilizingLoad;
+				Activate();
 				return _destabilizingLoad;
 			} 
 			set
@@ -83,8 +83,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _causedBy;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _causedBy;
+				Activate();
 				return _causedBy;
 			} 
 			set

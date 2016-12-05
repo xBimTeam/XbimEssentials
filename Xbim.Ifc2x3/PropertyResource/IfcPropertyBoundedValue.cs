@@ -78,8 +78,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _upperBoundValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _upperBoundValue;
+				Activate();
 				return _upperBoundValue;
 			} 
 			set
@@ -92,8 +92,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _lowerBoundValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _lowerBoundValue;
+				Activate();
 				return _lowerBoundValue;
 			} 
 			set
@@ -106,8 +106,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _unit;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _unit;
+				Activate();
 				return _unit;
 			} 
 			set

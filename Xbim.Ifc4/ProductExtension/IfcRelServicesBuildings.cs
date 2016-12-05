@@ -69,8 +69,8 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingSystem;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingSystem;
+				Activate();
 				return _relatingSystem;
 			} 
 			set
@@ -86,8 +86,8 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedBuildings;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedBuildings;
+				Activate();
 				return _relatedBuildings;
 			} 
 		}	

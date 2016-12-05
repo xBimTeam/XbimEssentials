@@ -95,8 +95,8 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingElement;
+				Activate();
 				return _relatingElement;
 			} 
 			set
@@ -112,8 +112,8 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedElement;
+				Activate();
 				return _relatedElement;
 			} 
 			set
@@ -128,8 +128,8 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _interferenceGeometry;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _interferenceGeometry;
+				Activate();
 				return _interferenceGeometry;
 			} 
 			set
@@ -144,8 +144,8 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _interferenceType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _interferenceType;
+				Activate();
 				return _interferenceType;
 			} 
 			set
@@ -158,8 +158,8 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _impliedOrder;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _impliedOrder;
+				Activate();
 				return _impliedOrder;
 			} 
 			set

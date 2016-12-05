@@ -68,8 +68,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _xDim;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _xDim;
+				Activate();
 				return _xDim;
 			} 
 			set
@@ -82,8 +82,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _yDim;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _yDim;
+				Activate();
 				return _yDim;
 			} 
 			set

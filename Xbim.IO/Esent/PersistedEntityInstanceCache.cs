@@ -80,6 +80,7 @@ namespace Xbim.IO.Esent
             get { return _read; }
 
         }
+        //Entities are only added to this collection in EsentModel.HandleEntityChange which is a single point of access.
         protected ConcurrentDictionary<int, IPersistEntity> ModifiedEntities = new ConcurrentDictionary<int, IPersistEntity>();
         protected ConcurrentDictionary<int, IPersistEntity> CreatedNew = new ConcurrentDictionary<int, IPersistEntity>();
         private BlockingCollection<StepForwardReference> _forwardReferences = new BlockingCollection<StepForwardReference>();
@@ -1244,6 +1245,11 @@ namespace Xbim.IO.Esent
                         {
                             var properties = entityTable.GetProperties();
                             entity = _factory.New(_model, currentIfcTypeId, entityLabel, true);
+                            if (entity == null)
+                            {
+                                // this has been seen to happen when files attempt to instantiate abstract classes.
+                                return null;
+                            }
                             entity.ReadEntityProperties(this, new BinaryReader(new MemoryStream(properties)), unCached);
                         }
                         else
@@ -1269,21 +1275,8 @@ namespace Xbim.IO.Esent
             Debug.WriteLine(HighestLabel);
             Debug.WriteLine(Count);
             Debug.WriteLine(GeometriesCount());
-            // Debug.WriteLine(Any<Xbim.Ifc2x3.SharedBldgElements.IfcWall>());
-            //Debug.WriteLine(Count<Xbim.Ifc2x3.SharedBldgElements.IfcWall>());
-            //IEnumerable<IfcElement> elems = OfType<IfcElement>();
-            //foreach (var elem in elems)
-            //{
-            //    IEnumerable<IfcRelVoidsElement> rels = elem.HasOpenings;
-            //    bool written = false;
-            //    foreach (var rel in rels)
-            //    {
-            //        if (!written) { Debug.Write(elem.EntityLabel + " = "); written = true; }
-            //        Debug.Write(rel.EntityLabel +", ");
-            //    }
-            //    if (written) Debug.WriteLine(";");
-            //}
         }
+
         private IEnumerable<TIfcType> InstancesOf<TIfcType>(IEnumerable<ExpressType> expressTypes, bool activate = false, HashSet<int> read = null) where TIfcType : IPersistEntity
         {
             var types = expressTypes as ExpressType[] ?? expressTypes.ToArray();
@@ -1309,15 +1302,13 @@ namespace Xbim.IO.Esent
                                 IPersistEntity entity;
                                 if (_caching && _read.TryGetValue(ih.EntityLabel, out entity))
                                 {
-                                    if (activate && entity.ActivationStatus == ActivationStatus.NotActivated)
+                                    if (activate && !entity.Activated)
                                         //activate if required and not already done
                                     {
-                                        entity.Activate(() =>
-                                        {
-                                            var properties = entityTable.GetProperties();
-                                            entity.ReadEntityProperties(this,
-                                                new BinaryReader(new MemoryStream(properties)));
-                                        });
+                                        var properties = entityTable.GetProperties();
+                                        entity.ReadEntityProperties(this,
+                                            new BinaryReader(new MemoryStream(properties)));
+                                        FlagSetter.SetActivationFlag(entity, true);
                                     }
                                     entityLabels.Add(entity.EntityLabel);
                                     yield return (TIfcType) entity;
@@ -1387,7 +1378,7 @@ namespace Xbim.IO.Esent
             var unindexedTypes = new HashSet<ExpressType>();
 
             //Set the IndexedClass Attribute of this class to ensure that seeking by index will work, this is a optimisation
-            // Trying to look a class up by index that is not declared as indexeable
+            // Trying to look a class up by index that is not declared as indexable
             var entityLabels = new HashSet<int>();
             var entityTable = GetEntityTable();
             try
@@ -1412,7 +1403,7 @@ namespace Xbim.IO.Esent
                                 IPersistEntity entity;
                                 if (_caching && _read.TryGetValue(ih.EntityLabel, out entity))
                                 {
-                                    if (activate && entity.ActivationStatus == ActivationStatus.NotActivated)
+                                    if (activate && !entity.Activated)
                                     //activate if required and not already done
                                     {
                                         var properties = entityTable.GetProperties();
@@ -1449,7 +1440,7 @@ namespace Xbim.IO.Esent
 
                 // we need to see if there are any objects in the cache that have not been written to the database yet.
                 // 
-                if (_caching) //look in the createnew cache and find the new ones only
+                if (_caching) //look in the create new cache and find the new ones only
                 {
                     foreach (var item in CreatedNew.Where(e => e.Value is TOType))
                     {
@@ -2149,7 +2140,7 @@ namespace Xbim.IO.Esent
         }
 
         /// <summary>
-        /// Writes the content of the modified cache to the table, assumes a transaction is in scope, modified and createnew caches are cleared
+        /// Writes the content of the modified cache to the table, assumes a transaction is in scope, modified and create new caches are cleared
         /// </summary>
         internal void Write(EsentEntityCursor entityTable)
         {

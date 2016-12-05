@@ -68,8 +68,8 @@ namespace Xbim.Ifc4.QuantityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _lengthValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _lengthValue;
+				Activate();
 				return _lengthValue;
 			} 
 			set
@@ -82,8 +82,8 @@ namespace Xbim.Ifc4.QuantityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _formula;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _formula;
+				Activate();
 				return _formula;
 			} 
 			set

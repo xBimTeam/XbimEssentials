@@ -101,8 +101,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _translationalStiffnessByLengthX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _translationalStiffnessByLengthX;
+				Activate();
 				return _translationalStiffnessByLengthX;
 			} 
 			set
@@ -115,8 +115,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _translationalStiffnessByLengthY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _translationalStiffnessByLengthY;
+				Activate();
 				return _translationalStiffnessByLengthY;
 			} 
 			set
@@ -129,8 +129,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _translationalStiffnessByLengthZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _translationalStiffnessByLengthZ;
+				Activate();
 				return _translationalStiffnessByLengthZ;
 			} 
 			set
@@ -143,8 +143,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rotationalStiffnessByLengthX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rotationalStiffnessByLengthX;
+				Activate();
 				return _rotationalStiffnessByLengthX;
 			} 
 			set
@@ -157,8 +157,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rotationalStiffnessByLengthY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rotationalStiffnessByLengthY;
+				Activate();
 				return _rotationalStiffnessByLengthY;
 			} 
 			set
@@ -171,8 +171,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rotationalStiffnessByLengthZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rotationalStiffnessByLengthZ;
+				Activate();
 				return _rotationalStiffnessByLengthZ;
 			} 
 			set

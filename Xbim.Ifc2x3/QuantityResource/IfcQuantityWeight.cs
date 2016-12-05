@@ -61,8 +61,8 @@ namespace Xbim.Ifc2x3.QuantityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _weightValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _weightValue;
+				Activate();
 				return _weightValue;
 			} 
 			set

@@ -29,16 +29,12 @@ namespace Xbim.Ifc2x3.GeometryResource
 				{
 					case IfcTransitionCode.DISCONTINUOUS:
 						return Ifc4.Interfaces.IfcTransitionCode.DISCONTINUOUS;
-					
 					case IfcTransitionCode.CONTINUOUS:
 						return Ifc4.Interfaces.IfcTransitionCode.CONTINUOUS;
-					
 					case IfcTransitionCode.CONTSAMEGRADIENT:
 						return Ifc4.Interfaces.IfcTransitionCode.CONTSAMEGRADIENT;
-					
 					case IfcTransitionCode.CONTSAMEGRADIENTSAMECURVATURE:
 						return Ifc4.Interfaces.IfcTransitionCode.CONTSAMEGRADIENTSAMECURVATURE;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -53,20 +49,15 @@ namespace Xbim.Ifc2x3.GeometryResource
 					case Ifc4.Interfaces.IfcTransitionCode.DISCONTINUOUS:
 						Transition = IfcTransitionCode.DISCONTINUOUS;
 						return;
-					
 					case Ifc4.Interfaces.IfcTransitionCode.CONTINUOUS:
 						Transition = IfcTransitionCode.CONTINUOUS;
 						return;
-					
 					case Ifc4.Interfaces.IfcTransitionCode.CONTSAMEGRADIENT:
 						Transition = IfcTransitionCode.CONTSAMEGRADIENT;
 						return;
-					
 					case Ifc4.Interfaces.IfcTransitionCode.CONTSAMEGRADIENTSAMECURVATURE:
 						Transition = IfcTransitionCode.CONTSAMEGRADIENTSAMECURVATURE;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

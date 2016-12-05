@@ -46,32 +46,24 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				{
 					case IfcDoorPanelOperationEnum.SWINGING:
 						return Ifc4.Interfaces.IfcDoorPanelOperationEnum.SWINGING;
-					
 					case IfcDoorPanelOperationEnum.DOUBLE_ACTING:
 						return Ifc4.Interfaces.IfcDoorPanelOperationEnum.DOUBLE_ACTING;
-					
 					case IfcDoorPanelOperationEnum.SLIDING:
 						return Ifc4.Interfaces.IfcDoorPanelOperationEnum.SLIDING;
-					
 					case IfcDoorPanelOperationEnum.FOLDING:
 						return Ifc4.Interfaces.IfcDoorPanelOperationEnum.FOLDING;
-					
 					case IfcDoorPanelOperationEnum.REVOLVING:
 						return Ifc4.Interfaces.IfcDoorPanelOperationEnum.REVOLVING;
-					
 					case IfcDoorPanelOperationEnum.ROLLINGUP:
 						return Ifc4.Interfaces.IfcDoorPanelOperationEnum.ROLLINGUP;
-					
 					case IfcDoorPanelOperationEnum.USERDEFINED:
 						//## Optional custom handling of PanelOperation == .USERDEFINED. 
 				        if (_panelOperation4.HasValue)
 				            return _panelOperation4.Value;
 						//##
 						return Ifc4.Interfaces.IfcDoorPanelOperationEnum.USERDEFINED;
-					
 					case IfcDoorPanelOperationEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcDoorPanelOperationEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -88,43 +80,33 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					case Ifc4.Interfaces.IfcDoorPanelOperationEnum.SWINGING:
 						PanelOperation = IfcDoorPanelOperationEnum.SWINGING;
 						return;
-					
 					case Ifc4.Interfaces.IfcDoorPanelOperationEnum.DOUBLE_ACTING:
 						PanelOperation = IfcDoorPanelOperationEnum.DOUBLE_ACTING;
 						return;
-					
 					case Ifc4.Interfaces.IfcDoorPanelOperationEnum.SLIDING:
 						PanelOperation = IfcDoorPanelOperationEnum.SLIDING;
 						return;
-					
 					case Ifc4.Interfaces.IfcDoorPanelOperationEnum.FOLDING:
 						PanelOperation = IfcDoorPanelOperationEnum.FOLDING;
 						return;
-					
 					case Ifc4.Interfaces.IfcDoorPanelOperationEnum.REVOLVING:
 						PanelOperation = IfcDoorPanelOperationEnum.REVOLVING;
 						return;
-					
 					case Ifc4.Interfaces.IfcDoorPanelOperationEnum.ROLLINGUP:
 						PanelOperation = IfcDoorPanelOperationEnum.ROLLINGUP;
 						return;
-					
 					case Ifc4.Interfaces.IfcDoorPanelOperationEnum.FIXEDPANEL:
 						//## Handle setting of FIXEDPANEL member from IfcDoorPanelOperationEnum in property PanelOperation
                         PanelOperation = IfcDoorPanelOperationEnum.USERDEFINED;
                         SetValue(v => _panelOperation4 = v, _panelOperation4, value, "PanelOperation", -6);
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcDoorPanelOperationEnum.USERDEFINED:
+										case Ifc4.Interfaces.IfcDoorPanelOperationEnum.USERDEFINED:
 						PanelOperation = IfcDoorPanelOperationEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcDoorPanelOperationEnum.NOTDEFINED:
 						PanelOperation = IfcDoorPanelOperationEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}
@@ -160,16 +142,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				{
 					case IfcDoorPanelPositionEnum.LEFT:
 						return Ifc4.Interfaces.IfcDoorPanelPositionEnum.LEFT;
-					
 					case IfcDoorPanelPositionEnum.MIDDLE:
 						return Ifc4.Interfaces.IfcDoorPanelPositionEnum.MIDDLE;
-					
 					case IfcDoorPanelPositionEnum.RIGHT:
 						return Ifc4.Interfaces.IfcDoorPanelPositionEnum.RIGHT;
-					
 					case IfcDoorPanelPositionEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcDoorPanelPositionEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -184,20 +162,15 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					case Ifc4.Interfaces.IfcDoorPanelPositionEnum.LEFT:
 						PanelPosition = IfcDoorPanelPositionEnum.LEFT;
 						return;
-					
 					case Ifc4.Interfaces.IfcDoorPanelPositionEnum.MIDDLE:
 						PanelPosition = IfcDoorPanelPositionEnum.MIDDLE;
 						return;
-					
 					case Ifc4.Interfaces.IfcDoorPanelPositionEnum.RIGHT:
 						PanelPosition = IfcDoorPanelPositionEnum.RIGHT;
 						return;
-					
 					case Ifc4.Interfaces.IfcDoorPanelPositionEnum.NOTDEFINED:
 						PanelPosition = IfcDoorPanelPositionEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

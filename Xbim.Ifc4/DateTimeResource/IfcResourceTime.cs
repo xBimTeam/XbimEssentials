@@ -159,8 +159,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _scheduleWork;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _scheduleWork;
+				Activate();
 				return _scheduleWork;
 			} 
 			set
@@ -173,8 +173,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _scheduleUsage;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _scheduleUsage;
+				Activate();
 				return _scheduleUsage;
 			} 
 			set
@@ -187,8 +187,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _scheduleStart;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _scheduleStart;
+				Activate();
 				return _scheduleStart;
 			} 
 			set
@@ -201,8 +201,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _scheduleFinish;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _scheduleFinish;
+				Activate();
 				return _scheduleFinish;
 			} 
 			set
@@ -215,8 +215,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _scheduleContour;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _scheduleContour;
+				Activate();
 				return _scheduleContour;
 			} 
 			set
@@ -229,8 +229,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _levelingDelay;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _levelingDelay;
+				Activate();
 				return _levelingDelay;
 			} 
 			set
@@ -243,8 +243,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _isOverAllocated;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _isOverAllocated;
+				Activate();
 				return _isOverAllocated;
 			} 
 			set
@@ -257,8 +257,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _statusTime;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _statusTime;
+				Activate();
 				return _statusTime;
 			} 
 			set
@@ -271,8 +271,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _actualWork;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _actualWork;
+				Activate();
 				return _actualWork;
 			} 
 			set
@@ -285,8 +285,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _actualUsage;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _actualUsage;
+				Activate();
 				return _actualUsage;
 			} 
 			set
@@ -299,8 +299,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _actualStart;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _actualStart;
+				Activate();
 				return _actualStart;
 			} 
 			set
@@ -313,8 +313,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _actualFinish;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _actualFinish;
+				Activate();
 				return _actualFinish;
 			} 
 			set
@@ -327,8 +327,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _remainingWork;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _remainingWork;
+				Activate();
 				return _remainingWork;
 			} 
 			set
@@ -341,8 +341,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _remainingUsage;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _remainingUsage;
+				Activate();
 				return _remainingUsage;
 			} 
 			set
@@ -355,8 +355,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _completion;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _completion;
+				Activate();
 				return _completion;
 			} 
 			set

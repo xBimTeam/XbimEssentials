@@ -60,8 +60,8 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedObjects;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedObjects;
+				Activate();
 				return _relatedObjects;
 			} 
 		}	

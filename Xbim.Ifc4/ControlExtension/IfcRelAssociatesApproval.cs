@@ -64,8 +64,8 @@ namespace Xbim.Ifc4.ControlExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingApproval;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingApproval;
+				Activate();
 				return _relatingApproval;
 			} 
 			set

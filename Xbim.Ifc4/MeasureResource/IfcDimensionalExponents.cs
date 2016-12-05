@@ -104,8 +104,8 @@ namespace Xbim.Ifc4.MeasureResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _lengthExponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _lengthExponent;
+				Activate();
 				return _lengthExponent;
 			} 
 			set
@@ -118,8 +118,8 @@ namespace Xbim.Ifc4.MeasureResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _massExponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _massExponent;
+				Activate();
 				return _massExponent;
 			} 
 			set
@@ -132,8 +132,8 @@ namespace Xbim.Ifc4.MeasureResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _timeExponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _timeExponent;
+				Activate();
 				return _timeExponent;
 			} 
 			set
@@ -146,8 +146,8 @@ namespace Xbim.Ifc4.MeasureResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _electricCurrentExponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _electricCurrentExponent;
+				Activate();
 				return _electricCurrentExponent;
 			} 
 			set
@@ -160,8 +160,8 @@ namespace Xbim.Ifc4.MeasureResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _thermodynamicTemperatureExponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _thermodynamicTemperatureExponent;
+				Activate();
 				return _thermodynamicTemperatureExponent;
 			} 
 			set
@@ -174,8 +174,8 @@ namespace Xbim.Ifc4.MeasureResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _amountOfSubstanceExponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _amountOfSubstanceExponent;
+				Activate();
 				return _amountOfSubstanceExponent;
 			} 
 			set
@@ -188,8 +188,8 @@ namespace Xbim.Ifc4.MeasureResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _luminousIntensityExponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _luminousIntensityExponent;
+				Activate();
 				return _luminousIntensityExponent;
 			} 
 			set

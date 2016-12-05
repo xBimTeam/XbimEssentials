@@ -75,8 +75,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _linearStiffnessByAreaX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _linearStiffnessByAreaX;
+				Activate();
 				return _linearStiffnessByAreaX;
 			} 
 			set
@@ -89,8 +89,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _linearStiffnessByAreaY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _linearStiffnessByAreaY;
+				Activate();
 				return _linearStiffnessByAreaY;
 			} 
 			set
@@ -103,8 +103,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _linearStiffnessByAreaZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _linearStiffnessByAreaZ;
+				Activate();
 				return _linearStiffnessByAreaZ;
 			} 
 			set

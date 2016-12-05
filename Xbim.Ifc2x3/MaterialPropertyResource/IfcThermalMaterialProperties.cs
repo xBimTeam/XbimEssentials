@@ -82,8 +82,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _specificHeatCapacity;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _specificHeatCapacity;
+				Activate();
 				return _specificHeatCapacity;
 			} 
 			set
@@ -96,8 +96,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _boilingPoint;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _boilingPoint;
+				Activate();
 				return _boilingPoint;
 			} 
 			set
@@ -110,8 +110,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _freezingPoint;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _freezingPoint;
+				Activate();
 				return _freezingPoint;
 			} 
 			set
@@ -124,8 +124,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _thermalConductivity;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _thermalConductivity;
+				Activate();
 				return _thermalConductivity;
 			} 
 			set

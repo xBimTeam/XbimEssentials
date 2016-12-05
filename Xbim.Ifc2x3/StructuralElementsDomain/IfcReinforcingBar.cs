@@ -90,8 +90,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _nominalDiameter;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _nominalDiameter;
+				Activate();
 				return _nominalDiameter;
 			} 
 			set
@@ -104,8 +104,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _crossSectionArea;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _crossSectionArea;
+				Activate();
 				return _crossSectionArea;
 			} 
 			set
@@ -118,8 +118,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _barLength;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _barLength;
+				Activate();
 				return _barLength;
 			} 
 			set
@@ -132,8 +132,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _barRole;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _barRole;
+				Activate();
 				return _barRole;
 			} 
 			set
@@ -146,8 +146,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _barSurface;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _barSurface;
+				Activate();
 				return _barSurface;
 			} 
 			set

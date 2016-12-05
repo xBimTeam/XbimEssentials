@@ -79,8 +79,8 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _connectionGeometry;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _connectionGeometry;
+				Activate();
 				return _connectionGeometry;
 			} 
 			set
@@ -96,8 +96,8 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingElement;
+				Activate();
 				return _relatingElement;
 			} 
 			set
@@ -113,8 +113,8 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedElement;
+				Activate();
 				return _relatedElement;
 			} 
 			set

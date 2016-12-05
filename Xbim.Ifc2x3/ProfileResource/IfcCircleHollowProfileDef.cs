@@ -61,8 +61,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _wallThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _wallThickness;
+				Activate();
 				return _wallThickness;
 			} 
 			set

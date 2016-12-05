@@ -69,8 +69,8 @@ namespace Xbim.Ifc4.TopologyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _edgeElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _edgeElement;
+				Activate();
 				return _edgeElement;
 			} 
 			set
@@ -85,8 +85,8 @@ namespace Xbim.Ifc4.TopologyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _orientation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _orientation;
+				Activate();
 				return _orientation;
 			} 
 			set

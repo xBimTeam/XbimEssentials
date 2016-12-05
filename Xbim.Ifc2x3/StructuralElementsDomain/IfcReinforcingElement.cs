@@ -61,8 +61,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _steelGrade;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _steelGrade;
+				Activate();
 				return _steelGrade;
 			} 
 			set

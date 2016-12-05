@@ -63,8 +63,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _timeForTask;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _timeForTask;
+				Activate();
 				return _timeForTask;
 			} 
 			set

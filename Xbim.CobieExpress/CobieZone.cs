@@ -60,8 +60,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _spaces;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _spaces;
+				Activate();
 				return _spaces;
 			} 
 		}	

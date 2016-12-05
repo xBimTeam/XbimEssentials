@@ -14,10 +14,10 @@ namespace Xbim.Ifc4.MeasureResource
             {
                 var components = _value.Count;
                 double measure1 = 0; double measure2 = 0; double measure3 = 0; double millionthsOfaSecond = 0;
-                if (components >= 3) millionthsOfaSecond = _value[3];
-                if (components >= 2) measure3 = _value[2];
-                if (components >= 1) measure2 = _value[1];
-                if (components >= 0) measure1 = _value[0];
+                if (components > 3) millionthsOfaSecond = _value[3];
+                if (components > 2) measure3 = _value[2];
+                if (components > 1) measure2 = _value[1];
+                if (components > 0) measure1 = _value[0];
                 double main = measure1 + (measure2 / 60.0) + (measure3 / 3600.0) + (millionthsOfaSecond / 3600e6);
                 return main;
             }

@@ -96,8 +96,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _linearForceX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _linearForceX;
+				Activate();
 				return _linearForceX;
 			} 
 			set
@@ -110,8 +110,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _linearForceY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _linearForceY;
+				Activate();
 				return _linearForceY;
 			} 
 			set
@@ -124,8 +124,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _linearForceZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _linearForceZ;
+				Activate();
 				return _linearForceZ;
 			} 
 			set
@@ -138,8 +138,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _linearMomentX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _linearMomentX;
+				Activate();
 				return _linearMomentX;
 			} 
 			set
@@ -152,8 +152,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _linearMomentY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _linearMomentY;
+				Activate();
 				return _linearMomentY;
 			} 
 			set
@@ -166,8 +166,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _linearMomentZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _linearMomentZ;
+				Activate();
 				return _linearMomentZ;
 			} 
 			set

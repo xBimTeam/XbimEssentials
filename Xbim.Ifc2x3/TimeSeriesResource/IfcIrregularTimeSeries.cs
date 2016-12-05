@@ -59,8 +59,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _values;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _values;
+				Activate();
 				return _values;
 			} 
 		}	

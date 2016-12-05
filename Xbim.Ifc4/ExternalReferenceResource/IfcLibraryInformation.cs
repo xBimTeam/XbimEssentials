@@ -104,8 +104,8 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
@@ -118,8 +118,8 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _version;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _version;
+				Activate();
 				return _version;
 			} 
 			set
@@ -132,8 +132,8 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _publisher;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _publisher;
+				Activate();
 				return _publisher;
 			} 
 			set
@@ -148,8 +148,8 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _versionDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _versionDate;
+				Activate();
 				return _versionDate;
 			} 
 			set
@@ -162,8 +162,8 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _location;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _location;
+				Activate();
 				return _location;
 			} 
 			set
@@ -176,8 +176,8 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set

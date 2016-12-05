@@ -75,8 +75,8 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _wallThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _wallThickness;
+				Activate();
 				return _wallThickness;
 			} 
 			set
@@ -89,8 +89,8 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _innerFilletRadius;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _innerFilletRadius;
+				Activate();
 				return _innerFilletRadius;
 			} 
 			set
@@ -103,8 +103,8 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _outerFilletRadius;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _outerFilletRadius;
+				Activate();
 				return _outerFilletRadius;
 			} 
 			set

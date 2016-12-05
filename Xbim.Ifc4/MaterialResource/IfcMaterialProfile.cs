@@ -101,8 +101,8 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
@@ -115,8 +115,8 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
@@ -129,8 +129,8 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _material;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _material;
+				Activate();
 				return _material;
 			} 
 			set
@@ -145,8 +145,8 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _profile;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _profile;
+				Activate();
 				return _profile;
 			} 
 			set
@@ -161,8 +161,8 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _priority;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _priority;
+				Activate();
 				return _priority;
 			} 
 			set
@@ -175,8 +175,8 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _category;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _category;
+				Activate();
 				return _category;
 			} 
 			set

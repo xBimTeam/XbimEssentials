@@ -76,8 +76,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _spineCurve;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _spineCurve;
+				Activate();
 				return _spineCurve;
 			} 
 			set
@@ -92,8 +92,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _crossSections;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _crossSections;
+				Activate();
 				return _crossSections;
 			} 
 		}	
@@ -102,8 +102,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _crossSectionPositions;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _crossSectionPositions;
+				Activate();
 				return _crossSectionPositions;
 			} 
 		}	

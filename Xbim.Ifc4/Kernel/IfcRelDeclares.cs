@@ -68,8 +68,8 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingContext;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingContext;
+				Activate();
 				return _relatingContext;
 			} 
 			set
@@ -85,8 +85,8 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedDefinitions;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedDefinitions;
+				Activate();
 				return _relatedDefinitions;
 			} 
 		}	

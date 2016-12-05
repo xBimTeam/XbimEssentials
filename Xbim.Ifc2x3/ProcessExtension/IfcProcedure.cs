@@ -76,8 +76,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _procedureID;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _procedureID;
+				Activate();
 				return _procedureID;
 			} 
 			set
@@ -90,8 +90,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _procedureType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _procedureType;
+				Activate();
 				return _procedureType;
 			} 
 			set
@@ -104,8 +104,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _userDefinedProcedureType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _userDefinedProcedureType;
+				Activate();
 				return _userDefinedProcedureType;
 			} 
 			set

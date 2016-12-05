@@ -29,27 +29,20 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				{
 					case IfcStructuralCurveTypeEnum.RIGID_JOINED_MEMBER:
 						return Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.RIGID_JOINED_MEMBER;
-					
 					case IfcStructuralCurveTypeEnum.PIN_JOINED_MEMBER:
 						return Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.PIN_JOINED_MEMBER;
-					
 					case IfcStructuralCurveTypeEnum.CABLE:
 						return Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.CABLE;
-					
 					case IfcStructuralCurveTypeEnum.TENSION_MEMBER:
 						return Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.TENSION_MEMBER;
-					
 					case IfcStructuralCurveTypeEnum.COMPRESSION_MEMBER:
 						return Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.COMPRESSION_MEMBER;
-					
 					case IfcStructuralCurveTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.USERDEFINED;
-					
 					case IfcStructuralCurveTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -64,32 +57,24 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					case Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.RIGID_JOINED_MEMBER:
 						PredefinedType = IfcStructuralCurveTypeEnum.RIGID_JOINED_MEMBER;
 						return;
-					
 					case Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.PIN_JOINED_MEMBER:
 						PredefinedType = IfcStructuralCurveTypeEnum.PIN_JOINED_MEMBER;
 						return;
-					
 					case Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.CABLE:
 						PredefinedType = IfcStructuralCurveTypeEnum.CABLE;
 						return;
-					
 					case Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.TENSION_MEMBER:
 						PredefinedType = IfcStructuralCurveTypeEnum.TENSION_MEMBER;
 						return;
-					
 					case Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.COMPRESSION_MEMBER:
 						PredefinedType = IfcStructuralCurveTypeEnum.COMPRESSION_MEMBER;
 						return;
-					
 					case Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.USERDEFINED:
 						PredefinedType = IfcStructuralCurveTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.NOTDEFINED:
 						PredefinedType = IfcStructuralCurveTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

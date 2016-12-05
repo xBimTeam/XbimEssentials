@@ -96,8 +96,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _compressiveStrength;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _compressiveStrength;
+				Activate();
 				return _compressiveStrength;
 			} 
 			set
@@ -110,8 +110,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _maxAggregateSize;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _maxAggregateSize;
+				Activate();
 				return _maxAggregateSize;
 			} 
 			set
@@ -124,8 +124,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _admixturesDescription;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _admixturesDescription;
+				Activate();
 				return _admixturesDescription;
 			} 
 			set
@@ -138,8 +138,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _workability;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _workability;
+				Activate();
 				return _workability;
 			} 
 			set
@@ -152,8 +152,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _protectivePoreRatio;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _protectivePoreRatio;
+				Activate();
 				return _protectivePoreRatio;
 			} 
 			set
@@ -166,8 +166,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _waterImpermeability;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _waterImpermeability;
+				Activate();
 				return _waterImpermeability;
 			} 
 			set

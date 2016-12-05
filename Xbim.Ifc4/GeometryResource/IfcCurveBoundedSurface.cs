@@ -75,8 +75,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _basisSurface;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _basisSurface;
+				Activate();
 				return _basisSurface;
 			} 
 			set
@@ -91,8 +91,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _boundaries;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _boundaries;
+				Activate();
 				return _boundaries;
 			} 
 		}	
@@ -101,8 +101,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _implicitOuter;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _implicitOuter;
+				Activate();
 				return _implicitOuter;
 			} 
 			set

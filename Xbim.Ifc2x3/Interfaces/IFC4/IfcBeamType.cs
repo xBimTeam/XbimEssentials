@@ -29,16 +29,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				{
 					case IfcBeamTypeEnum.BEAM:
 						return Ifc4.Interfaces.IfcBeamTypeEnum.BEAM;
-					
 					case IfcBeamTypeEnum.JOIST:
 						return Ifc4.Interfaces.IfcBeamTypeEnum.JOIST;
-					
 					case IfcBeamTypeEnum.LINTEL:
 						return Ifc4.Interfaces.IfcBeamTypeEnum.LINTEL;
-					
 					case IfcBeamTypeEnum.T_BEAM:
 						return Ifc4.Interfaces.IfcBeamTypeEnum.T_BEAM;
-					
 					case IfcBeamTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
                         if (ElementType.HasValue)
@@ -49,10 +45,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
                         }
 						//##
 						return Ifc4.Interfaces.IfcBeamTypeEnum.USERDEFINED;
-					
 					case IfcBeamTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcBeamTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -67,42 +61,33 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					case Ifc4.Interfaces.IfcBeamTypeEnum.BEAM:
 						PredefinedType = IfcBeamTypeEnum.BEAM;
 						return;
-					
 					case Ifc4.Interfaces.IfcBeamTypeEnum.JOIST:
 						PredefinedType = IfcBeamTypeEnum.JOIST;
 						return;
-					
 					case Ifc4.Interfaces.IfcBeamTypeEnum.HOLLOWCORE:
 						//## Handle setting of HOLLOWCORE member from IfcBeamTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcBeamTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcBeamTypeEnum.LINTEL:
+										case Ifc4.Interfaces.IfcBeamTypeEnum.LINTEL:
 						PredefinedType = IfcBeamTypeEnum.LINTEL;
 						return;
-					
 					case Ifc4.Interfaces.IfcBeamTypeEnum.SPANDREL:
 						//## Handle setting of SPANDREL member from IfcBeamTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcBeamTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcBeamTypeEnum.T_BEAM:
+										case Ifc4.Interfaces.IfcBeamTypeEnum.T_BEAM:
 						PredefinedType = IfcBeamTypeEnum.T_BEAM;
 						return;
-					
 					case Ifc4.Interfaces.IfcBeamTypeEnum.USERDEFINED:
 						PredefinedType = IfcBeamTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcBeamTypeEnum.NOTDEFINED:
 						PredefinedType = IfcBeamTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

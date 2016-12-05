@@ -96,8 +96,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _tensionFailureX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _tensionFailureX;
+				Activate();
 				return _tensionFailureX;
 			} 
 			set
@@ -110,8 +110,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _tensionFailureY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _tensionFailureY;
+				Activate();
 				return _tensionFailureY;
 			} 
 			set
@@ -124,8 +124,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _tensionFailureZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _tensionFailureZ;
+				Activate();
 				return _tensionFailureZ;
 			} 
 			set
@@ -138,8 +138,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _compressionFailureX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _compressionFailureX;
+				Activate();
 				return _compressionFailureX;
 			} 
 			set
@@ -152,8 +152,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _compressionFailureY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _compressionFailureY;
+				Activate();
 				return _compressionFailureY;
 			} 
 			set
@@ -166,8 +166,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _compressionFailureZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _compressionFailureZ;
+				Activate();
 				return _compressionFailureZ;
 			} 
 			set

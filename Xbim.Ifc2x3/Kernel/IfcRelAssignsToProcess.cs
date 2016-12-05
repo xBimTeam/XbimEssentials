@@ -71,8 +71,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingProcess;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingProcess;
+				Activate();
 				return _relatingProcess;
 			} 
 			set
@@ -87,8 +87,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _quantityInProcess;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _quantityInProcess;
+				Activate();
 				return _quantityInProcess;
 			} 
 			set

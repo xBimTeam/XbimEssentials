@@ -68,8 +68,8 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _assemblyPlace;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _assemblyPlace;
+				Activate();
 				return _assemblyPlace;
 			} 
 			set
@@ -82,8 +82,8 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set

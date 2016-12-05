@@ -10,6 +10,8 @@ using Xbim.Ifc2x3.PropertyResource;
 using Xbim.Ifc2x3.SharedBldgElements;
 using Xbim.IO.Step21;
 using PersistEntityExtensions = Xbim.IO.PersistEntityExtensions;
+using Xbim.IO.Esent;
+using Xbim.Ifc2x3;
 
 namespace Xbim.Essentials.Tests
 {
@@ -77,6 +79,35 @@ namespace Xbim.Essentials.Tests
                     
                     txn.Commit();
                 }
+            }
+        }
+
+        [TestMethod]
+        public void EsentMultiTransactionTest()
+        {
+            const string file = "test.ifc";
+            using (var model = EsentModel.CreateTemporaryModel(new EntityFactory()))
+            {
+                IfcCurtainWall wall;
+                using (var txn = model.BeginTransaction("New wall"))
+                {
+                    wall = model.Instances.New<IfcCurtainWall>(w => w.Name = "Name");
+                    txn.Commit();
+                }
+                using (var txn = model.BeginTransaction("Edit wall"))
+                {
+                    wall.Description = "Description";
+                    txn.Commit();
+                }
+                model.SaveAs(file);
+            }
+
+            using (var model = EsentModel.CreateTemporaryModel(new EntityFactory()))
+            {
+                model.CreateFrom(file, null, null, true, true);
+                var wall = model.Instances.FirstOrDefault<IfcCurtainWall>();
+                Assert.IsTrue(wall.Name == "Name");
+                Assert.IsTrue(wall.Description == "Description");
             }
         }
     }

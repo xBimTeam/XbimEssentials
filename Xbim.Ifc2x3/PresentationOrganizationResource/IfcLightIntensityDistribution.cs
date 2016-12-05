@@ -68,8 +68,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _lightDistributionCurve;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _lightDistributionCurve;
+				Activate();
 				return _lightDistributionCurve;
 			} 
 			set
@@ -82,8 +82,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _distributionData;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _distributionData;
+				Activate();
 				return _distributionData;
 			} 
 		}	

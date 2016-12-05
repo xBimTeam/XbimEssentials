@@ -71,8 +71,8 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _placementRelTo;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _placementRelTo;
+				Activate();
 				return _placementRelTo;
 			} 
 			set
@@ -87,8 +87,8 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relativePlacement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relativePlacement;
+				Activate();
 				return _relativePlacement;
 			} 
 			set

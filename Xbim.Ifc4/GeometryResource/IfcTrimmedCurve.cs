@@ -88,8 +88,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _basisCurve;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _basisCurve;
+				Activate();
 				return _basisCurve;
 			} 
 			set
@@ -104,8 +104,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _trim1;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _trim1;
+				Activate();
 				return _trim1;
 			} 
 		}	
@@ -114,8 +114,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _trim2;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _trim2;
+				Activate();
 				return _trim2;
 			} 
 		}	
@@ -124,8 +124,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _senseAgreement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _senseAgreement;
+				Activate();
 				return _senseAgreement;
 			} 
 			set
@@ -138,8 +138,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _masterRepresentation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _masterRepresentation;
+				Activate();
 				return _masterRepresentation;
 			} 
 			set

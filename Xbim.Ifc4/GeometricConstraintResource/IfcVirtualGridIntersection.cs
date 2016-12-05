@@ -69,8 +69,8 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _intersectingAxes;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _intersectingAxes;
+				Activate();
 				return _intersectingAxes;
 			} 
 		}	
@@ -79,8 +79,8 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _offsetDistances;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _offsetDistances;
+				Activate();
 				return _offsetDistances;
 			} 
 		}	

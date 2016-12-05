@@ -86,8 +86,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _globalId;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _globalId;
+				Activate();
 				return _globalId;
 			} 
 			set
@@ -100,8 +100,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _ownerHistory;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _ownerHistory;
+				Activate();
 				return _ownerHistory;
 			} 
 			set
@@ -116,8 +116,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
@@ -130,8 +130,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set

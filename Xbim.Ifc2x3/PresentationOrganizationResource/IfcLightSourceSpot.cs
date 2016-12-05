@@ -84,8 +84,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _orientation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _orientation;
+				Activate();
 				return _orientation;
 			} 
 			set
@@ -100,8 +100,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _concentrationExponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _concentrationExponent;
+				Activate();
 				return _concentrationExponent;
 			} 
 			set
@@ -114,8 +114,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _spreadAngle;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _spreadAngle;
+				Activate();
 				return _spreadAngle;
 			} 
 			set
@@ -128,8 +128,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _beamWidthAngle;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _beamWidthAngle;
+				Activate();
 				return _beamWidthAngle;
 			} 
 			set

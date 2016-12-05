@@ -69,8 +69,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _surfaceOnRelatingElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _surfaceOnRelatingElement;
+				Activate();
 				return _surfaceOnRelatingElement;
 			} 
 			set
@@ -85,8 +85,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _surfaceOnRelatedElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _surfaceOnRelatedElement;
+				Activate();
 				return _surfaceOnRelatedElement;
 			} 
 			set

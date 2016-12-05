@@ -62,8 +62,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _listValues;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _listValues;
+				Activate();
 				return _listValues;
 			} 
 		}	

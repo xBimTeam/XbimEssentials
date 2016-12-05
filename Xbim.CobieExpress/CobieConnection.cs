@@ -113,8 +113,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
@@ -127,8 +127,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
@@ -141,8 +141,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _connectionType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _connectionType;
+				Activate();
 				return _connectionType;
 			} 
 			set
@@ -158,8 +158,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _componentA;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _componentA;
+				Activate();
 				return _componentA;
 			} 
 			set
@@ -175,8 +175,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _componentB;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _componentB;
+				Activate();
 				return _componentB;
 			} 
 			set
@@ -192,8 +192,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _realizingComponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _realizingComponent;
+				Activate();
 				return _realizingComponent;
 			} 
 			set
@@ -208,8 +208,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _portNameA;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _portNameA;
+				Activate();
 				return _portNameA;
 			} 
 			set
@@ -222,8 +222,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _portNameB;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _portNameB;
+				Activate();
 				return _portNameB;
 			} 
 			set

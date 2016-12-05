@@ -62,8 +62,8 @@ namespace Xbim.Ifc4.MeasureResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _currency;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _currency;
+				Activate();
 				return _currency;
 			} 
 			set

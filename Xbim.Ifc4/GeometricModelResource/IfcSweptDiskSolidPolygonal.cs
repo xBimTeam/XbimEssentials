@@ -61,8 +61,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _filletRadius;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _filletRadius;
+				Activate();
 				return _filletRadius;
 			} 
 			set

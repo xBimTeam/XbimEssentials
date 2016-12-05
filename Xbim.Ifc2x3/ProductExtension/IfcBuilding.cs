@@ -77,8 +77,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _elevationOfRefHeight;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _elevationOfRefHeight;
+				Activate();
 				return _elevationOfRefHeight;
 			} 
 			set
@@ -91,8 +91,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _elevationOfTerrain;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _elevationOfTerrain;
+				Activate();
 				return _elevationOfTerrain;
 			} 
 			set
@@ -105,8 +105,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _buildingAddress;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _buildingAddress;
+				Activate();
 				return _buildingAddress;
 			} 
 			set

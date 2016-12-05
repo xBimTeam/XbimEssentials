@@ -102,8 +102,8 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _internalLocation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _internalLocation;
+				Activate();
 				return _internalLocation;
 			} 
 			set
@@ -116,8 +116,8 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _addressLines;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _addressLines;
+				Activate();
 				return _addressLines;
 			} 
 		}	
@@ -126,8 +126,8 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _postalBox;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _postalBox;
+				Activate();
 				return _postalBox;
 			} 
 			set
@@ -140,8 +140,8 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _town;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _town;
+				Activate();
 				return _town;
 			} 
 			set
@@ -154,8 +154,8 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _region;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _region;
+				Activate();
 				return _region;
 			} 
 			set
@@ -168,8 +168,8 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _postalCode;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _postalCode;
+				Activate();
 				return _postalCode;
 			} 
 			set
@@ -182,8 +182,8 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _country;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _country;
+				Activate();
 				return _country;
 			} 
 			set

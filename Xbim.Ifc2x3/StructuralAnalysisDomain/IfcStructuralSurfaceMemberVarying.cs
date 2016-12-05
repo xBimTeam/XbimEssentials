@@ -70,8 +70,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _subsequentThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _subsequentThickness;
+				Activate();
 				return _subsequentThickness;
 			} 
 		}	
@@ -80,8 +80,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _varyingThicknessLocation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _varyingThicknessLocation;
+				Activate();
 				return _varyingThicknessLocation;
 			} 
 			set

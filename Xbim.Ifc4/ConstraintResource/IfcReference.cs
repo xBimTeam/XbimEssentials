@@ -92,8 +92,8 @@ namespace Xbim.Ifc4.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _typeIdentifier;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _typeIdentifier;
+				Activate();
 				return _typeIdentifier;
 			} 
 			set
@@ -106,8 +106,8 @@ namespace Xbim.Ifc4.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _attributeIdentifier;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _attributeIdentifier;
+				Activate();
 				return _attributeIdentifier;
 			} 
 			set
@@ -120,8 +120,8 @@ namespace Xbim.Ifc4.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _instanceName;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _instanceName;
+				Activate();
 				return _instanceName;
 			} 
 			set
@@ -134,8 +134,8 @@ namespace Xbim.Ifc4.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _listPositions;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _listPositions;
+				Activate();
 				return _listPositions;
 			} 
 		}	
@@ -144,8 +144,8 @@ namespace Xbim.Ifc4.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _innerReference;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _innerReference;
+				Activate();
 				return _innerReference;
 			} 
 			set

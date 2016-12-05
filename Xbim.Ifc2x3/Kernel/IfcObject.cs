@@ -63,8 +63,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _objectType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _objectType;
+				Activate();
 				return _objectType;
 			} 
 			set

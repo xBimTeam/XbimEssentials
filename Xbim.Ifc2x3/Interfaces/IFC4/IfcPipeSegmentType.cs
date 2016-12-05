@@ -29,16 +29,12 @@ namespace Xbim.Ifc2x3.HVACDomain
 				{
 					case IfcPipeSegmentTypeEnum.FLEXIBLESEGMENT:
 						return Ifc4.Interfaces.IfcPipeSegmentTypeEnum.FLEXIBLESEGMENT;
-					
 					case IfcPipeSegmentTypeEnum.RIGIDSEGMENT:
 						return Ifc4.Interfaces.IfcPipeSegmentTypeEnum.RIGIDSEGMENT;
-					
 					case IfcPipeSegmentTypeEnum.GUTTER:
 						return Ifc4.Interfaces.IfcPipeSegmentTypeEnum.GUTTER;
-					
 					case IfcPipeSegmentTypeEnum.SPOOL:
 						return Ifc4.Interfaces.IfcPipeSegmentTypeEnum.SPOOL;
-					
 					case IfcPipeSegmentTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
                         if (ElementType.HasValue)
@@ -49,10 +45,8 @@ namespace Xbim.Ifc2x3.HVACDomain
                         }
 						//##
 						return Ifc4.Interfaces.IfcPipeSegmentTypeEnum.USERDEFINED;
-					
 					case IfcPipeSegmentTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcPipeSegmentTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -70,32 +64,24 @@ namespace Xbim.Ifc2x3.HVACDomain
                         PredefinedType = IfcPipeSegmentTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcPipeSegmentTypeEnum.FLEXIBLESEGMENT:
+										case Ifc4.Interfaces.IfcPipeSegmentTypeEnum.FLEXIBLESEGMENT:
 						PredefinedType = IfcPipeSegmentTypeEnum.FLEXIBLESEGMENT;
 						return;
-					
 					case Ifc4.Interfaces.IfcPipeSegmentTypeEnum.RIGIDSEGMENT:
 						PredefinedType = IfcPipeSegmentTypeEnum.RIGIDSEGMENT;
 						return;
-					
 					case Ifc4.Interfaces.IfcPipeSegmentTypeEnum.GUTTER:
 						PredefinedType = IfcPipeSegmentTypeEnum.GUTTER;
 						return;
-					
 					case Ifc4.Interfaces.IfcPipeSegmentTypeEnum.SPOOL:
 						PredefinedType = IfcPipeSegmentTypeEnum.SPOOL;
 						return;
-					
 					case Ifc4.Interfaces.IfcPipeSegmentTypeEnum.USERDEFINED:
 						PredefinedType = IfcPipeSegmentTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcPipeSegmentTypeEnum.NOTDEFINED:
 						PredefinedType = IfcPipeSegmentTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

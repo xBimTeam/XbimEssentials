@@ -61,8 +61,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _colourList;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _colourList;
+				Activate();
 				return _colourList;
 			} 
 		}	

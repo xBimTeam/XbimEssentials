@@ -49,7 +49,6 @@ namespace Xbim.IO.Step21
 
         protected readonly ExpressMetaData Metadata;
 
-
         public XbimP21Parser(Stream strm, ExpressMetaData metadata, long streamSize)
             : base(strm)
         {
@@ -83,7 +82,7 @@ namespace Xbim.IO.Step21
 
         protected override void CharacterError()
         {
-            Logger.WarnFormat("Error parsing Ifc File, illegal character found");
+            Logger.WarnFormat("Error parsing IFC File, illegal character found");
         }
 
         protected override void BeginParse()
@@ -182,7 +181,7 @@ namespace Xbim.IO.Step21
                 // instantiates an empty IPersist from the header information
                 var t = EntityCreate(entityTypeName, null, InHeader, out reqParams);
                 // then attaches it to a new Part21Entity, this will be processed later from the _processStack
-                // to debug value initialisation place a breakpoing on the Parse() function of 
+                // to debug value initialisation place a breakpoint on the Parse() function of 
                 // StepFileName, StepFileSchema or StepFileDescription classes.
                 CurrentInstance = new Part21Entity(t)
                 {
@@ -353,11 +352,9 @@ namespace Xbim.IO.Step21
                 var mainEntity = _processStack.Last();
                 if (mainEntity != null)
                 {
-                    if (Metadata != null)
+                    var expressType = Metadata?.ExpressType(mainEntity.Entity);
+                    if (expressType != null)
                     {
-                        var expressType = Metadata.ExpressType(mainEntity.Entity);
-
-
                         var propertyName = mainEntity.CurrentParamIndex + 1 > expressType.Properties.Count
                             ? "[UnknownProperty]"
                             : expressType.Properties[mainEntity.CurrentParamIndex + 1].PropertyInfo.Name;

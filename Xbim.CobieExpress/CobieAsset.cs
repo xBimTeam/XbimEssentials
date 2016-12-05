@@ -101,8 +101,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
@@ -115,8 +115,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
@@ -129,8 +129,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _categories;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _categories;
+				Activate();
 				return _categories;
 			} 
 		}	
@@ -139,8 +139,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _impacts;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _impacts;
+				Activate();
 				return _impacts;
 			} 
 		}	
@@ -149,8 +149,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _documents;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _documents;
+				Activate();
 				return _documents;
 			} 
 		}	
@@ -159,8 +159,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _attributes;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _attributes;
+				Activate();
 				return _attributes;
 			} 
 		}	
@@ -169,8 +169,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _representations;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _representations;
+				Activate();
 				return _representations;
 			} 
 		}	

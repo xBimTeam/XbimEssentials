@@ -39,31 +39,25 @@ namespace Xbim.Ifc2x3.Kernel
 				{
 					case IfcObjectTypeEnum.PRODUCT:
 						return Ifc4.Interfaces.IfcObjectTypeEnum.PRODUCT;
-					
 					case IfcObjectTypeEnum.PROCESS:
 						return Ifc4.Interfaces.IfcObjectTypeEnum.PROCESS;
-					
 					case IfcObjectTypeEnum.CONTROL:
 						return Ifc4.Interfaces.IfcObjectTypeEnum.CONTROL;
-					
 					case IfcObjectTypeEnum.RESOURCE:
 						return Ifc4.Interfaces.IfcObjectTypeEnum.RESOURCE;
-					
 					case IfcObjectTypeEnum.ACTOR:
 						return Ifc4.Interfaces.IfcObjectTypeEnum.ACTOR;
-					
 					case IfcObjectTypeEnum.GROUP:
 						return Ifc4.Interfaces.IfcObjectTypeEnum.GROUP;
-					
 					case IfcObjectTypeEnum.PROJECT:
 						return Ifc4.Interfaces.IfcObjectTypeEnum.PROJECT;
-					
 					case IfcObjectTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcObjectTypeEnum.NOTDEFINED;
-					
+					case null: 
+						return null;
 					
 					default:
-						return null;
+						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
 			set
@@ -75,36 +69,31 @@ namespace Xbim.Ifc2x3.Kernel
 					case Ifc4.Interfaces.IfcObjectTypeEnum.PRODUCT:
 						RelatedObjectsType = IfcObjectTypeEnum.PRODUCT;
 						return;
-					
 					case Ifc4.Interfaces.IfcObjectTypeEnum.PROCESS:
 						RelatedObjectsType = IfcObjectTypeEnum.PROCESS;
 						return;
-					
 					case Ifc4.Interfaces.IfcObjectTypeEnum.CONTROL:
 						RelatedObjectsType = IfcObjectTypeEnum.CONTROL;
 						return;
-					
 					case Ifc4.Interfaces.IfcObjectTypeEnum.RESOURCE:
 						RelatedObjectsType = IfcObjectTypeEnum.RESOURCE;
 						return;
-					
 					case Ifc4.Interfaces.IfcObjectTypeEnum.ACTOR:
 						RelatedObjectsType = IfcObjectTypeEnum.ACTOR;
 						return;
-					
 					case Ifc4.Interfaces.IfcObjectTypeEnum.GROUP:
 						RelatedObjectsType = IfcObjectTypeEnum.GROUP;
 						return;
-					
 					case Ifc4.Interfaces.IfcObjectTypeEnum.PROJECT:
 						RelatedObjectsType = IfcObjectTypeEnum.PROJECT;
 						return;
-					
 					case Ifc4.Interfaces.IfcObjectTypeEnum.NOTDEFINED:
 						RelatedObjectsType = IfcObjectTypeEnum.NOTDEFINED;
 						return;
 					
-					
+					case null:
+						RelatedObjectsType = null;
+						return;
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

@@ -69,8 +69,8 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _pointOnRelatingElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _pointOnRelatingElement;
+				Activate();
 				return _pointOnRelatingElement;
 			} 
 			set
@@ -85,8 +85,8 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _pointOnRelatedElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _pointOnRelatedElement;
+				Activate();
 				return _pointOnRelatedElement;
 			} 
 			set

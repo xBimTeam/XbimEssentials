@@ -90,8 +90,8 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _forLayerSet;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _forLayerSet;
+				Activate();
 				return _forLayerSet;
 			} 
 			set
@@ -106,8 +106,8 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _layerSetDirection;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _layerSetDirection;
+				Activate();
 				return _layerSetDirection;
 			} 
 			set
@@ -120,8 +120,8 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _directionSense;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _directionSense;
+				Activate();
 				return _directionSense;
 			} 
 			set
@@ -134,8 +134,8 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _offsetFromReferenceLine;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _offsetFromReferenceLine;
+				Activate();
 				return _offsetFromReferenceLine;
 			} 
 			set
@@ -148,8 +148,8 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _referenceExtent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _referenceExtent;
+				Activate();
 				return _referenceExtent;
 			} 
 			set

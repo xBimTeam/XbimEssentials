@@ -76,8 +76,8 @@ namespace Xbim.Ifc2x3.PresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _red;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _red;
+				Activate();
 				return _red;
 			} 
 			set
@@ -90,8 +90,8 @@ namespace Xbim.Ifc2x3.PresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _green;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _green;
+				Activate();
 				return _green;
 			} 
 			set
@@ -104,8 +104,8 @@ namespace Xbim.Ifc2x3.PresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _blue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _blue;
+				Activate();
 				return _blue;
 			} 
 			set

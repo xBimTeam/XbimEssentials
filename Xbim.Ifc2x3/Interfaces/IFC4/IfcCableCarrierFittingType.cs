@@ -29,24 +29,18 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 				{
 					case IfcCableCarrierFittingTypeEnum.BEND:
 						return Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.BEND;
-					
 					case IfcCableCarrierFittingTypeEnum.CROSS:
 						return Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.CROSS;
-					
 					case IfcCableCarrierFittingTypeEnum.REDUCER:
 						return Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.REDUCER;
-					
 					case IfcCableCarrierFittingTypeEnum.TEE:
 						return Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.TEE;
-					
 					case IfcCableCarrierFittingTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.USERDEFINED;
-					
 					case IfcCableCarrierFittingTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -61,28 +55,21 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 					case Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.BEND:
 						PredefinedType = IfcCableCarrierFittingTypeEnum.BEND;
 						return;
-					
 					case Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.CROSS:
 						PredefinedType = IfcCableCarrierFittingTypeEnum.CROSS;
 						return;
-					
 					case Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.REDUCER:
 						PredefinedType = IfcCableCarrierFittingTypeEnum.REDUCER;
 						return;
-					
 					case Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.TEE:
 						PredefinedType = IfcCableCarrierFittingTypeEnum.TEE;
 						return;
-					
 					case Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.USERDEFINED:
 						PredefinedType = IfcCableCarrierFittingTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.NOTDEFINED:
 						PredefinedType = IfcCableCarrierFittingTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

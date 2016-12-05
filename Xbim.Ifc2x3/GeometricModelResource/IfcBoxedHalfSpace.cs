@@ -61,8 +61,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _enclosure;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _enclosure;
+				Activate();
 				return _enclosure;
 			} 
 			set

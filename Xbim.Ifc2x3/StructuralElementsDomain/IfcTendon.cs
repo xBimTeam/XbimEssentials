@@ -110,8 +110,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
@@ -124,8 +124,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _nominalDiameter;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _nominalDiameter;
+				Activate();
 				return _nominalDiameter;
 			} 
 			set
@@ -138,8 +138,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _crossSectionArea;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _crossSectionArea;
+				Activate();
 				return _crossSectionArea;
 			} 
 			set
@@ -152,8 +152,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _tensionForce;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _tensionForce;
+				Activate();
 				return _tensionForce;
 			} 
 			set
@@ -166,8 +166,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _preStress;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _preStress;
+				Activate();
 				return _preStress;
 			} 
 			set
@@ -180,8 +180,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _frictionCoefficient;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _frictionCoefficient;
+				Activate();
 				return _frictionCoefficient;
 			} 
 			set
@@ -194,8 +194,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _anchorageSlip;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _anchorageSlip;
+				Activate();
 				return _anchorageSlip;
 			} 
 			set
@@ -208,8 +208,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _minCurvatureRadius;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _minCurvatureRadius;
+				Activate();
 				return _minCurvatureRadius;
 			} 
 			set

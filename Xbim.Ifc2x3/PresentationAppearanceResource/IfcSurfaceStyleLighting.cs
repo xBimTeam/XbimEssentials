@@ -88,8 +88,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _diffuseTransmissionColour;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _diffuseTransmissionColour;
+				Activate();
 				return _diffuseTransmissionColour;
 			} 
 			set
@@ -104,8 +104,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _diffuseReflectionColour;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _diffuseReflectionColour;
+				Activate();
 				return _diffuseReflectionColour;
 			} 
 			set
@@ -120,8 +120,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _transmissionColour;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _transmissionColour;
+				Activate();
 				return _transmissionColour;
 			} 
 			set
@@ -136,8 +136,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _reflectanceColour;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _reflectanceColour;
+				Activate();
 				return _reflectanceColour;
 			} 
 			set

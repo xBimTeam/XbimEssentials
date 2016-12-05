@@ -29,22 +29,16 @@ namespace Xbim.Ifc2x3.HVACDomain
 				{
 					case IfcCoilTypeEnum.DXCOOLINGCOIL:
 						return Ifc4.Interfaces.IfcCoilTypeEnum.DXCOOLINGCOIL;
-					
 					case IfcCoilTypeEnum.WATERCOOLINGCOIL:
 						return Ifc4.Interfaces.IfcCoilTypeEnum.WATERCOOLINGCOIL;
-					
 					case IfcCoilTypeEnum.STEAMHEATINGCOIL:
 						return Ifc4.Interfaces.IfcCoilTypeEnum.STEAMHEATINGCOIL;
-					
 					case IfcCoilTypeEnum.WATERHEATINGCOIL:
 						return Ifc4.Interfaces.IfcCoilTypeEnum.WATERHEATINGCOIL;
-					
 					case IfcCoilTypeEnum.ELECTRICHEATINGCOIL:
 						return Ifc4.Interfaces.IfcCoilTypeEnum.ELECTRICHEATINGCOIL;
-					
 					case IfcCoilTypeEnum.GASHEATINGCOIL:
 						return Ifc4.Interfaces.IfcCoilTypeEnum.GASHEATINGCOIL;
-					
 					case IfcCoilTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
                         if (ElementType.HasValue)
@@ -55,10 +49,8 @@ namespace Xbim.Ifc2x3.HVACDomain
                         }
 						//##
 						return Ifc4.Interfaces.IfcCoilTypeEnum.USERDEFINED;
-					
 					case IfcCoilTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcCoilTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -73,43 +65,33 @@ namespace Xbim.Ifc2x3.HVACDomain
 					case Ifc4.Interfaces.IfcCoilTypeEnum.DXCOOLINGCOIL:
 						PredefinedType = IfcCoilTypeEnum.DXCOOLINGCOIL;
 						return;
-					
 					case Ifc4.Interfaces.IfcCoilTypeEnum.ELECTRICHEATINGCOIL:
 						PredefinedType = IfcCoilTypeEnum.ELECTRICHEATINGCOIL;
 						return;
-					
 					case Ifc4.Interfaces.IfcCoilTypeEnum.GASHEATINGCOIL:
 						PredefinedType = IfcCoilTypeEnum.GASHEATINGCOIL;
 						return;
-					
 					case Ifc4.Interfaces.IfcCoilTypeEnum.HYDRONICCOIL:
 						//## Handle setting of HYDRONICCOIL member from IfcCoilTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcCoilTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcCoilTypeEnum.STEAMHEATINGCOIL:
+										case Ifc4.Interfaces.IfcCoilTypeEnum.STEAMHEATINGCOIL:
 						PredefinedType = IfcCoilTypeEnum.STEAMHEATINGCOIL;
 						return;
-					
 					case Ifc4.Interfaces.IfcCoilTypeEnum.WATERCOOLINGCOIL:
 						PredefinedType = IfcCoilTypeEnum.WATERCOOLINGCOIL;
 						return;
-					
 					case Ifc4.Interfaces.IfcCoilTypeEnum.WATERHEATINGCOIL:
 						PredefinedType = IfcCoilTypeEnum.WATERHEATINGCOIL;
 						return;
-					
 					case Ifc4.Interfaces.IfcCoilTypeEnum.USERDEFINED:
 						PredefinedType = IfcCoilTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcCoilTypeEnum.NOTDEFINED:
 						PredefinedType = IfcCoilTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

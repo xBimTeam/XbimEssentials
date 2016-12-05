@@ -82,8 +82,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _bottomXDim;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _bottomXDim;
+				Activate();
 				return _bottomXDim;
 			} 
 			set
@@ -96,8 +96,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _topXDim;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _topXDim;
+				Activate();
 				return _topXDim;
 			} 
 			set
@@ -110,8 +110,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _yDim;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _yDim;
+				Activate();
 				return _yDim;
 			} 
 			set
@@ -124,8 +124,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _topXOffset;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _topXOffset;
+				Activate();
 				return _topXOffset;
 			} 
 			set

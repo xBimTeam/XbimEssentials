@@ -59,8 +59,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _cfsFaces;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _cfsFaces;
+				Activate();
 				return _cfsFaces;
 			} 
 		}	

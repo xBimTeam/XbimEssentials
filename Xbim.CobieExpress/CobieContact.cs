@@ -152,8 +152,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _email;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _email;
+				Activate();
 				return _email;
 			} 
 			set
@@ -166,8 +166,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _category;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _category;
+				Activate();
 				return _category;
 			} 
 			set
@@ -182,8 +182,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _company;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _company;
+				Activate();
 				return _company;
 			} 
 			set
@@ -196,8 +196,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _phone;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _phone;
+				Activate();
 				return _phone;
 			} 
 			set
@@ -210,8 +210,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _department;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _department;
+				Activate();
 				return _department;
 			} 
 			set
@@ -224,8 +224,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _organizationCode;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _organizationCode;
+				Activate();
 				return _organizationCode;
 			} 
 			set
@@ -238,8 +238,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _givenName;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _givenName;
+				Activate();
 				return _givenName;
 			} 
 			set
@@ -252,8 +252,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _familyName;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _familyName;
+				Activate();
 				return _familyName;
 			} 
 			set
@@ -266,8 +266,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _street;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _street;
+				Activate();
 				return _street;
 			} 
 			set
@@ -280,8 +280,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _postalBox;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _postalBox;
+				Activate();
 				return _postalBox;
 			} 
 			set
@@ -294,8 +294,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _town;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _town;
+				Activate();
 				return _town;
 			} 
 			set
@@ -308,8 +308,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _stateRegion;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _stateRegion;
+				Activate();
 				return _stateRegion;
 			} 
 			set
@@ -322,8 +322,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _postalCode;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _postalCode;
+				Activate();
 				return _postalCode;
 			} 
 			set
@@ -336,8 +336,8 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _country;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _country;
+				Activate();
 				return _country;
 			} 
 			set

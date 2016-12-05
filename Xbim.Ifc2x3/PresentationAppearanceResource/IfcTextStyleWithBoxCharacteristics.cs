@@ -92,8 +92,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _boxHeight;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _boxHeight;
+				Activate();
 				return _boxHeight;
 			} 
 			set
@@ -106,8 +106,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _boxWidth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _boxWidth;
+				Activate();
 				return _boxWidth;
 			} 
 			set
@@ -120,8 +120,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _boxSlantAngle;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _boxSlantAngle;
+				Activate();
 				return _boxSlantAngle;
 			} 
 			set
@@ -134,8 +134,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _boxRotateAngle;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _boxRotateAngle;
+				Activate();
 				return _boxRotateAngle;
 			} 
 			set
@@ -148,8 +148,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _characterSpacing;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _characterSpacing;
+				Activate();
 				return _characterSpacing;
 			} 
 			set

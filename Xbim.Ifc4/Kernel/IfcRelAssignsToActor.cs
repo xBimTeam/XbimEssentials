@@ -71,8 +71,8 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingActor;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingActor;
+				Activate();
 				return _relatingActor;
 			} 
 			set
@@ -87,8 +87,8 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _actingRole;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _actingRole;
+				Activate();
 				return _actingRole;
 			} 
 			set

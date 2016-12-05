@@ -72,8 +72,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _contextIdentifier;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _contextIdentifier;
+				Activate();
 				return _contextIdentifier;
 			} 
 			set
@@ -86,8 +86,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _contextType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _contextType;
+				Activate();
 				return _contextType;
 			} 
 			set

@@ -85,8 +85,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _parentContext;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _parentContext;
+				Activate();
 				return _parentContext;
 			} 
 			set
@@ -101,8 +101,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _targetScale;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _targetScale;
+				Activate();
 				return _targetScale;
 			} 
 			set
@@ -115,8 +115,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _targetView;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _targetView;
+				Activate();
 				return _targetView;
 			} 
 			set
@@ -129,8 +129,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _userDefinedTargetView;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _userDefinedTargetView;
+				Activate();
 				return _userDefinedTargetView;
 			} 
 			set

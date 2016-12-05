@@ -61,8 +61,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _uRLReference;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _uRLReference;
+				Activate();
 				return _uRLReference;
 			} 
 			set

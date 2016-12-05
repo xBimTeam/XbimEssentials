@@ -79,8 +79,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _soundLevelTimeSeries;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _soundLevelTimeSeries;
+				Activate();
 				return _soundLevelTimeSeries;
 			} 
 			set
@@ -95,8 +95,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _frequency;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _frequency;
+				Activate();
 				return _frequency;
 			} 
 			set
@@ -109,8 +109,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _soundLevelSingleValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _soundLevelSingleValue;
+				Activate();
 				return _soundLevelSingleValue;
 			} 
 			set

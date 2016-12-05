@@ -29,13 +29,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				{
 					case IfcSurfaceSide.POSITIVE:
 						return Ifc4.Interfaces.IfcSurfaceSide.POSITIVE;
-					
 					case IfcSurfaceSide.NEGATIVE:
 						return Ifc4.Interfaces.IfcSurfaceSide.NEGATIVE;
-					
 					case IfcSurfaceSide.BOTH:
 						return Ifc4.Interfaces.IfcSurfaceSide.BOTH;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -50,16 +47,12 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					case Ifc4.Interfaces.IfcSurfaceSide.POSITIVE:
 						Side = IfcSurfaceSide.POSITIVE;
 						return;
-					
 					case Ifc4.Interfaces.IfcSurfaceSide.NEGATIVE:
 						Side = IfcSurfaceSide.NEGATIVE;
 						return;
-					
 					case Ifc4.Interfaces.IfcSurfaceSide.BOTH:
 						Side = IfcSurfaceSide.BOTH;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

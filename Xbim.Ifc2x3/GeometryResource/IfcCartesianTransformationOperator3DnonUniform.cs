@@ -69,8 +69,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _scale2;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _scale2;
+				Activate();
 				return _scale2;
 			} 
 			set
@@ -83,8 +83,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _scale3;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _scale3;
+				Activate();
 				return _scale3;
 			} 
 			set

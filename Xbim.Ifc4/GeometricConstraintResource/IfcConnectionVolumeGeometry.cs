@@ -69,8 +69,8 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _volumeOnRelatingElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _volumeOnRelatingElement;
+				Activate();
 				return _volumeOnRelatingElement;
 			} 
 			set
@@ -85,8 +85,8 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _volumeOnRelatedElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _volumeOnRelatedElement;
+				Activate();
 				return _volumeOnRelatedElement;
 			} 
 			set

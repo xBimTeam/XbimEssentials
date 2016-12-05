@@ -135,8 +135,8 @@ namespace Xbim.Ifc4.ApprovalResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _identifier;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _identifier;
+				Activate();
 				return _identifier;
 			} 
 			set
@@ -149,8 +149,8 @@ namespace Xbim.Ifc4.ApprovalResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
@@ -163,8 +163,8 @@ namespace Xbim.Ifc4.ApprovalResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
@@ -177,8 +177,8 @@ namespace Xbim.Ifc4.ApprovalResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _timeOfApproval;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _timeOfApproval;
+				Activate();
 				return _timeOfApproval;
 			} 
 			set
@@ -191,8 +191,8 @@ namespace Xbim.Ifc4.ApprovalResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _status;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _status;
+				Activate();
 				return _status;
 			} 
 			set
@@ -205,8 +205,8 @@ namespace Xbim.Ifc4.ApprovalResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _level;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _level;
+				Activate();
 				return _level;
 			} 
 			set
@@ -219,8 +219,8 @@ namespace Xbim.Ifc4.ApprovalResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _qualifier;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _qualifier;
+				Activate();
 				return _qualifier;
 			} 
 			set
@@ -233,8 +233,8 @@ namespace Xbim.Ifc4.ApprovalResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _requestingApproval;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _requestingApproval;
+				Activate();
 				return _requestingApproval;
 			} 
 			set
@@ -249,8 +249,8 @@ namespace Xbim.Ifc4.ApprovalResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _givingApproval;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _givingApproval;
+				Activate();
 				return _givingApproval;
 			} 
 			set

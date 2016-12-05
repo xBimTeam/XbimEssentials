@@ -90,8 +90,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _overallHeight;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _overallHeight;
+				Activate();
 				return _overallHeight;
 			} 
 			set
@@ -104,8 +104,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _overallWidth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _overallWidth;
+				Activate();
 				return _overallWidth;
 			} 
 			set
@@ -118,8 +118,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
@@ -132,8 +132,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _partitioningType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _partitioningType;
+				Activate();
 				return _partitioningType;
 			} 
 			set
@@ -146,8 +146,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _userDefinedPartitioningType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _userDefinedPartitioningType;
+				Activate();
 				return _userDefinedPartitioningType;
 			} 
 			set

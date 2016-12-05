@@ -61,8 +61,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _units;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _units;
+				Activate();
 				return _units;
 			} 
 		}	

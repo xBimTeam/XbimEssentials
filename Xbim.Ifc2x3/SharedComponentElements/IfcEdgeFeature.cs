@@ -62,8 +62,8 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _featureLength;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _featureLength;
+				Activate();
 				return _featureLength;
 			} 
 			set

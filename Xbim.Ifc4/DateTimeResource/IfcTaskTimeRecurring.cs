@@ -61,8 +61,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _recurrence;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _recurrence;
+				Activate();
 				return _recurrence;
 			} 
 			set

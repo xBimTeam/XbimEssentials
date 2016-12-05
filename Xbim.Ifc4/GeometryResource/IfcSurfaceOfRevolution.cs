@@ -62,8 +62,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _axisPosition;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _axisPosition;
+				Activate();
 				return _axisPosition;
 			} 
 			set

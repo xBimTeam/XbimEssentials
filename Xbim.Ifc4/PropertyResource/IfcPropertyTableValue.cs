@@ -96,8 +96,8 @@ namespace Xbim.Ifc4.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _definingValues;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _definingValues;
+				Activate();
 				return _definingValues;
 			} 
 		}	
@@ -106,8 +106,8 @@ namespace Xbim.Ifc4.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _definedValues;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _definedValues;
+				Activate();
 				return _definedValues;
 			} 
 		}	
@@ -116,8 +116,8 @@ namespace Xbim.Ifc4.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _expression;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _expression;
+				Activate();
 				return _expression;
 			} 
 			set
@@ -130,8 +130,8 @@ namespace Xbim.Ifc4.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _definingUnit;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _definingUnit;
+				Activate();
 				return _definingUnit;
 			} 
 			set
@@ -146,8 +146,8 @@ namespace Xbim.Ifc4.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _definedUnit;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _definedUnit;
+				Activate();
 				return _definedUnit;
 			} 
 			set
@@ -162,8 +162,8 @@ namespace Xbim.Ifc4.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _curveInterpolation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _curveInterpolation;
+				Activate();
 				return _curveInterpolation;
 			} 
 			set

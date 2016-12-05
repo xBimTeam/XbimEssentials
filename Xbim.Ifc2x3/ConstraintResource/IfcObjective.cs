@@ -84,8 +84,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _benchmarkValues;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _benchmarkValues;
+				Activate();
 				return _benchmarkValues;
 			} 
 			set
@@ -100,8 +100,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _resultValues;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _resultValues;
+				Activate();
 				return _resultValues;
 			} 
 			set
@@ -116,8 +116,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _objectiveQualifier;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _objectiveQualifier;
+				Activate();
 				return _objectiveQualifier;
 			} 
 			set
@@ -130,8 +130,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _userDefinedQualifier;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _userDefinedQualifier;
+				Activate();
 				return _userDefinedQualifier;
 			} 
 			set

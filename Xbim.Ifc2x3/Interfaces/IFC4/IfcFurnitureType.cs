@@ -29,13 +29,10 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				{
 					case ProductExtension.IfcAssemblyPlaceEnum.SITE:
 						return Ifc4.Interfaces.IfcAssemblyPlaceEnum.SITE;
-					
 					case ProductExtension.IfcAssemblyPlaceEnum.FACTORY:
 						return Ifc4.Interfaces.IfcAssemblyPlaceEnum.FACTORY;
-					
 					case ProductExtension.IfcAssemblyPlaceEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcAssemblyPlaceEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -50,16 +47,12 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 					case Ifc4.Interfaces.IfcAssemblyPlaceEnum.SITE:
 						AssemblyPlace = ProductExtension.IfcAssemblyPlaceEnum.SITE;
 						return;
-					
 					case Ifc4.Interfaces.IfcAssemblyPlaceEnum.FACTORY:
 						AssemblyPlace = ProductExtension.IfcAssemblyPlaceEnum.FACTORY;
 						return;
-					
 					case Ifc4.Interfaces.IfcAssemblyPlaceEnum.NOTDEFINED:
 						AssemblyPlace = ProductExtension.IfcAssemblyPlaceEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

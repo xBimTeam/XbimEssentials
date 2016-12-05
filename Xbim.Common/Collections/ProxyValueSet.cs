@@ -8,7 +8,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Common.Collections
 {
-    public class ProxyValueSet<TInner, TOuter> : IItemSet<TOuter>, IDisposable, IList 
+    public class ProxyValueSet<TInner, TOuter> : IItemSet<TOuter>, IList 
         where TInner : struct
         where TOuter : struct
     {
@@ -26,19 +26,6 @@ namespace Xbim.Common.Collections
             _toIn = toIn;
             if(List == null)
                 throw new XbimException("Inner list has to implement IList");
-
-            _inner.PropertyChanged += InnerOnPropertyChanged;
-            _inner.CollectionChanged += InnerOnCollectionChanged;
-        }
-
-        private void InnerOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
-        {
-            OnCollectionChanged(notifyCollectionChangedEventArgs);
-        }
-
-        private void InnerOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
-        {
-            OnPropertyChanged(propertyChangedEventArgs.PropertyName);
         }
 
         public IEnumerator<TOuter> GetEnumerator()
@@ -184,8 +171,29 @@ namespace Xbim.Common.Collections
             }
         }
 
-        public event NotifyCollectionChangedEventHandler CollectionChanged;
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event NotifyCollectionChangedEventHandler CollectionChanged
+        {
+            add
+            {
+                _inner.CollectionChanged += value;
+            }
+            remove
+            {
+                _inner.CollectionChanged -= value;
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged
+        {
+            add
+            {
+                _inner.PropertyChanged += value;
+            }
+            remove
+            {
+                _inner.PropertyChanged -= value;
+            }
+        }
 
         public IPersistEntity OwningEntity
         {
@@ -230,31 +238,6 @@ namespace Xbim.Common.Collections
         public IEnumerable<TO> OfType<TO>()
         {
             return _inner.OfType<TO>();
-        }
-
-        private bool _disposed;
-
-        public void Dispose()
-        {
-            if (_disposed)
-                return;
-
-            _inner.PropertyChanged -= InnerOnPropertyChanged;
-            _inner.CollectionChanged -= InnerOnCollectionChanged;
-            _disposed = true;
-        }
-
-
-        protected virtual void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
-        {
-            var handler = CollectionChanged;
-            if (handler != null) handler(this, e);
-        }
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            var handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private class ProxyEnumerator : IEnumerator<TOuter>

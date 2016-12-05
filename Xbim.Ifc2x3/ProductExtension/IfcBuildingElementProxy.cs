@@ -60,8 +60,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _compositionType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _compositionType;
+				Activate();
 				return _compositionType;
 			} 
 			set

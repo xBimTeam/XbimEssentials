@@ -70,8 +70,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _position;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _position;
+				Activate();
 				return _position;
 			} 
 			set
@@ -86,8 +86,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _polygonalBoundary;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _polygonalBoundary;
+				Activate();
 				return _polygonalBoundary;
 			} 
 			set

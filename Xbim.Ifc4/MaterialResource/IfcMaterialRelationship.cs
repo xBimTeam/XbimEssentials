@@ -77,8 +77,8 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingMaterial;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingMaterial;
+				Activate();
 				return _relatingMaterial;
 			} 
 			set
@@ -94,8 +94,8 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedMaterials;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedMaterials;
+				Activate();
 				return _relatedMaterials;
 			} 
 		}	
@@ -104,8 +104,8 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _expression;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _expression;
+				Activate();
 				return _expression;
 			} 
 			set

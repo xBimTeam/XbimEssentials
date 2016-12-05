@@ -29,19 +29,14 @@ namespace Xbim.Ifc2x3.HVACDomain
 				{
 					case IfcPumpTypeEnum.CIRCULATOR:
 						return Ifc4.Interfaces.IfcPumpTypeEnum.CIRCULATOR;
-					
 					case IfcPumpTypeEnum.ENDSUCTION:
 						return Ifc4.Interfaces.IfcPumpTypeEnum.ENDSUCTION;
-					
 					case IfcPumpTypeEnum.SPLITCASE:
 						return Ifc4.Interfaces.IfcPumpTypeEnum.SPLITCASE;
-					
 					case IfcPumpTypeEnum.VERTICALINLINE:
 						return Ifc4.Interfaces.IfcPumpTypeEnum.VERTICALINLINE;
-					
 					case IfcPumpTypeEnum.VERTICALTURBINE:
 						return Ifc4.Interfaces.IfcPumpTypeEnum.VERTICALTURBINE;
-					
 					case IfcPumpTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
                         if (ElementType.HasValue)
@@ -52,10 +47,8 @@ namespace Xbim.Ifc2x3.HVACDomain
                         }
 						//##
 						return Ifc4.Interfaces.IfcPumpTypeEnum.USERDEFINED;
-					
 					case IfcPumpTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcPumpTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -70,46 +63,36 @@ namespace Xbim.Ifc2x3.HVACDomain
 					case Ifc4.Interfaces.IfcPumpTypeEnum.CIRCULATOR:
 						PredefinedType = IfcPumpTypeEnum.CIRCULATOR;
 						return;
-					
 					case Ifc4.Interfaces.IfcPumpTypeEnum.ENDSUCTION:
 						PredefinedType = IfcPumpTypeEnum.ENDSUCTION;
 						return;
-					
 					case Ifc4.Interfaces.IfcPumpTypeEnum.SPLITCASE:
 						PredefinedType = IfcPumpTypeEnum.SPLITCASE;
 						return;
-					
 					case Ifc4.Interfaces.IfcPumpTypeEnum.SUBMERSIBLEPUMP:
 						//## Handle setting of SUBMERSIBLEPUMP member from IfcPumpTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcPumpTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcPumpTypeEnum.SUMPPUMP:
+										case Ifc4.Interfaces.IfcPumpTypeEnum.SUMPPUMP:
 						//## Handle setting of SUMPPUMP member from IfcPumpTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcPumpTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcPumpTypeEnum.VERTICALINLINE:
+										case Ifc4.Interfaces.IfcPumpTypeEnum.VERTICALINLINE:
 						PredefinedType = IfcPumpTypeEnum.VERTICALINLINE;
 						return;
-					
 					case Ifc4.Interfaces.IfcPumpTypeEnum.VERTICALTURBINE:
 						PredefinedType = IfcPumpTypeEnum.VERTICALTURBINE;
 						return;
-					
 					case Ifc4.Interfaces.IfcPumpTypeEnum.USERDEFINED:
 						PredefinedType = IfcPumpTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcPumpTypeEnum.NOTDEFINED:
 						PredefinedType = IfcPumpTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

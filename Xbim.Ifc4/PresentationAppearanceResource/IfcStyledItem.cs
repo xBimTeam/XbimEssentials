@@ -77,8 +77,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _item;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _item;
+				Activate();
 				return _item;
 			} 
 			set
@@ -93,8 +93,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _styles;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _styles;
+				Activate();
 				return _styles;
 			} 
 		}	
@@ -103,8 +103,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set

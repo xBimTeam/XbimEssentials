@@ -29,10 +29,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 				{
 					case IfcCableSegmentTypeEnum.CABLESEGMENT:
 						return Ifc4.Interfaces.IfcCableSegmentTypeEnum.CABLESEGMENT;
-					
 					case IfcCableSegmentTypeEnum.CONDUCTORSEGMENT:
 						return Ifc4.Interfaces.IfcCableSegmentTypeEnum.CONDUCTORSEGMENT;
-					
 					case IfcCableSegmentTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
                         if (ElementType.HasValue)
@@ -45,10 +43,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
                             }
 						//##
 						return Ifc4.Interfaces.IfcCableSegmentTypeEnum.USERDEFINED;
-					
 					case IfcCableSegmentTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcCableSegmentTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -66,31 +62,24 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 				        ElementType = value.ToString();
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcCableSegmentTypeEnum.CABLESEGMENT:
+										case Ifc4.Interfaces.IfcCableSegmentTypeEnum.CABLESEGMENT:
 						PredefinedType = IfcCableSegmentTypeEnum.CABLESEGMENT;
 						return;
-					
 					case Ifc4.Interfaces.IfcCableSegmentTypeEnum.CONDUCTORSEGMENT:
 						PredefinedType = IfcCableSegmentTypeEnum.CONDUCTORSEGMENT;
 						return;
-					
 					case Ifc4.Interfaces.IfcCableSegmentTypeEnum.CORESEGMENT:
 						//## Handle setting of CORESEGMENT member from IfcCableSegmentTypeEnum in property PredefinedType
 						PredefinedType = IfcCableSegmentTypeEnum.USERDEFINED;
 				        ElementType = value.ToString();
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcCableSegmentTypeEnum.USERDEFINED:
+										case Ifc4.Interfaces.IfcCableSegmentTypeEnum.USERDEFINED:
 						PredefinedType = IfcCableSegmentTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcCableSegmentTypeEnum.NOTDEFINED:
 						PredefinedType = IfcCableSegmentTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

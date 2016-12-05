@@ -29,18 +29,14 @@ namespace Xbim.Ifc2x3.HVACDomain
 				{
 					case IfcBoilerTypeEnum.WATER:
 						return Ifc4.Interfaces.IfcBoilerTypeEnum.WATER;
-					
 					case IfcBoilerTypeEnum.STEAM:
 						return Ifc4.Interfaces.IfcBoilerTypeEnum.STEAM;
-					
 					case IfcBoilerTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcBoilerTypeEnum.USERDEFINED;
-					
 					case IfcBoilerTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcBoilerTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -55,20 +51,15 @@ namespace Xbim.Ifc2x3.HVACDomain
 					case Ifc4.Interfaces.IfcBoilerTypeEnum.WATER:
 						PredefinedType = IfcBoilerTypeEnum.WATER;
 						return;
-					
 					case Ifc4.Interfaces.IfcBoilerTypeEnum.STEAM:
 						PredefinedType = IfcBoilerTypeEnum.STEAM;
 						return;
-					
 					case Ifc4.Interfaces.IfcBoilerTypeEnum.USERDEFINED:
 						PredefinedType = IfcBoilerTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcBoilerTypeEnum.NOTDEFINED:
 						PredefinedType = IfcBoilerTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

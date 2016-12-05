@@ -82,8 +82,8 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
@@ -96,8 +96,8 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _nominalDiameter;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _nominalDiameter;
+				Activate();
 				return _nominalDiameter;
 			} 
 			set
@@ -110,8 +110,8 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _crossSectionArea;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _crossSectionArea;
+				Activate();
 				return _crossSectionArea;
 			} 
 			set
@@ -124,8 +124,8 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _sheethDiameter;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _sheethDiameter;
+				Activate();
 				return _sheethDiameter;
 			} 
 			set

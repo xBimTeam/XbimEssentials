@@ -77,8 +77,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
@@ -91,8 +91,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _dataOrigin;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _dataOrigin;
+				Activate();
 				return _dataOrigin;
 			} 
 			set
@@ -105,8 +105,8 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _userDefinedDataOrigin;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _userDefinedDataOrigin;
+				Activate();
 				return _userDefinedDataOrigin;
 			} 
 			set

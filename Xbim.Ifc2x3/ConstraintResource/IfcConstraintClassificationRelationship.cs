@@ -71,8 +71,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _classifiedConstraint;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _classifiedConstraint;
+				Activate();
 				return _classifiedConstraint;
 			} 
 			set
@@ -87,8 +87,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedClassifications;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedClassifications;
+				Activate();
 				return _relatedClassifications;
 			} 
 		}	

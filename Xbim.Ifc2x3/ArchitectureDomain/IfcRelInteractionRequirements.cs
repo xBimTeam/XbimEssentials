@@ -94,8 +94,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _dailyInteraction;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _dailyInteraction;
+				Activate();
 				return _dailyInteraction;
 			} 
 			set
@@ -108,8 +108,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _importanceRating;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _importanceRating;
+				Activate();
 				return _importanceRating;
 			} 
 			set
@@ -122,8 +122,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _locationOfInteraction;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _locationOfInteraction;
+				Activate();
 				return _locationOfInteraction;
 			} 
 			set
@@ -139,8 +139,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedSpaceProgram;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedSpaceProgram;
+				Activate();
 				return _relatedSpaceProgram;
 			} 
 			set
@@ -156,8 +156,8 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingSpaceProgram;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingSpaceProgram;
+				Activate();
 				return _relatingSpaceProgram;
 			} 
 			set

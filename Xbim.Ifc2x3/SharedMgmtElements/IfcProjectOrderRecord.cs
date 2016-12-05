@@ -67,8 +67,8 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _records;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _records;
+				Activate();
 				return _records;
 			} 
 		}	
@@ -77,8 +77,8 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set

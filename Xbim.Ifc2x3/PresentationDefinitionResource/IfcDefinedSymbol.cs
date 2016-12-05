@@ -70,8 +70,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _definition;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _definition;
+				Activate();
 				return _definition;
 			} 
 			set
@@ -86,8 +86,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _target;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _target;
+				Activate();
 				return _target;
 			} 
 			set

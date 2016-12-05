@@ -62,8 +62,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingResource;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingResource;
+				Activate();
 				return _relatingResource;
 			} 
 			set

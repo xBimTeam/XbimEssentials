@@ -72,8 +72,8 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _sourceCRS;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _sourceCRS;
+				Activate();
 				return _sourceCRS;
 			} 
 			set
@@ -88,8 +88,8 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _targetCRS;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _targetCRS;
+				Activate();
 				return _targetCRS;
 			} 
 			set

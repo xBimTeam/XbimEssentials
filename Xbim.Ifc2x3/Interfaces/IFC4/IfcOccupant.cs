@@ -29,33 +29,24 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				{
 					case IfcOccupantTypeEnum.ASSIGNEE:
 						return Ifc4.Interfaces.IfcOccupantTypeEnum.ASSIGNEE;
-					
 					case IfcOccupantTypeEnum.ASSIGNOR:
 						return Ifc4.Interfaces.IfcOccupantTypeEnum.ASSIGNOR;
-					
 					case IfcOccupantTypeEnum.LESSEE:
 						return Ifc4.Interfaces.IfcOccupantTypeEnum.LESSEE;
-					
 					case IfcOccupantTypeEnum.LESSOR:
 						return Ifc4.Interfaces.IfcOccupantTypeEnum.LESSOR;
-					
 					case IfcOccupantTypeEnum.LETTINGAGENT:
 						return Ifc4.Interfaces.IfcOccupantTypeEnum.LETTINGAGENT;
-					
 					case IfcOccupantTypeEnum.OWNER:
 						return Ifc4.Interfaces.IfcOccupantTypeEnum.OWNER;
-					
 					case IfcOccupantTypeEnum.TENANT:
 						return Ifc4.Interfaces.IfcOccupantTypeEnum.TENANT;
-					
 					case IfcOccupantTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcOccupantTypeEnum.USERDEFINED;
-					
 					case IfcOccupantTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcOccupantTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -70,40 +61,33 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 					case Ifc4.Interfaces.IfcOccupantTypeEnum.ASSIGNEE:
 						PredefinedType = IfcOccupantTypeEnum.ASSIGNEE;
 						return;
-					
 					case Ifc4.Interfaces.IfcOccupantTypeEnum.ASSIGNOR:
 						PredefinedType = IfcOccupantTypeEnum.ASSIGNOR;
 						return;
-					
 					case Ifc4.Interfaces.IfcOccupantTypeEnum.LESSEE:
 						PredefinedType = IfcOccupantTypeEnum.LESSEE;
 						return;
-					
 					case Ifc4.Interfaces.IfcOccupantTypeEnum.LESSOR:
 						PredefinedType = IfcOccupantTypeEnum.LESSOR;
 						return;
-					
 					case Ifc4.Interfaces.IfcOccupantTypeEnum.LETTINGAGENT:
 						PredefinedType = IfcOccupantTypeEnum.LETTINGAGENT;
 						return;
-					
 					case Ifc4.Interfaces.IfcOccupantTypeEnum.OWNER:
 						PredefinedType = IfcOccupantTypeEnum.OWNER;
 						return;
-					
 					case Ifc4.Interfaces.IfcOccupantTypeEnum.TENANT:
 						PredefinedType = IfcOccupantTypeEnum.TENANT;
 						return;
-					
 					case Ifc4.Interfaces.IfcOccupantTypeEnum.USERDEFINED:
 						PredefinedType = IfcOccupantTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcOccupantTypeEnum.NOTDEFINED:
 						PredefinedType = IfcOccupantTypeEnum.NOTDEFINED;
 						return;
-					
-					
+					case null:
+						PredefinedType = IfcOccupantTypeEnum.NOTDEFINED;
+						return;
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

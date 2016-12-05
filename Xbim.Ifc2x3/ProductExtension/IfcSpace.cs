@@ -72,8 +72,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _interiorOrExteriorSpace;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _interiorOrExteriorSpace;
+				Activate();
 				return _interiorOrExteriorSpace;
 			} 
 			set
@@ -86,8 +86,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _elevationWithFlooring;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _elevationWithFlooring;
+				Activate();
 				return _elevationWithFlooring;
 			} 
 			set

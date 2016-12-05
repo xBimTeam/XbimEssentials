@@ -30,7 +30,7 @@ namespace Xbim.IO.Step21
         /// <param name="model">Model to be serialized</param>
         /// <param name="output">Output writer</param>
         /// <param name="metadata">Metadata to be used for serialization</param>
-        /// <param name="map">Optional map canbe used to map occurances in the file</param>
+        /// <param name="map">Optional map can be used to map occurrences in the file</param>
         public static void Write(IModel model, TextWriter output, ExpressMetaData metadata, IDictionary<int, int> map = null)
         {
             var header = model.Header ?? new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults);
@@ -41,7 +41,7 @@ namespace Xbim.IO.Step21
                 var instance = model.Instances.FirstOrDefault();
                 if (instance != null)
                 {
-                    var eft = instance.GetType().Assembly.GetType("EntityFactory");
+                    var eft = instance.GetType().Assembly.GetTypes().Where(t => typeof(IEntityFactory).IsAssignableFrom(t)).FirstOrDefault();
                     if (eft == null)
                         throw new XbimException("It wasn't possible to find valid schema definition");
                     var ef = Activator.CreateInstance(eft) as IEntityFactory;
@@ -74,7 +74,7 @@ namespace Xbim.IO.Step21
         /// <param name="header">Header</param>
         /// <param name="output">Writer</param>
         /// <param name="overridingSchema">Schema to be written to the header instead of the schema defined in the header. 
-        /// This is usefull if the schema is not defined in the header.</param>
+        /// This is useful if the schema is not defined in the header.</param>
         public static void WriteHeader(IStepFileHeader header, TextWriter output, string overridingSchema = null)
         {
             output.WriteLine("ISO-10303-21;");
@@ -244,7 +244,7 @@ namespace Xbim.IO.Step21
             {
                 var realType = propVal.GetType();
                 if (realType != propType)
-                //we have a type but it is a select type use the actual value but write out explricitly
+                //we have a type but it is a select type use the actual value but write out explicitly
                 {
                     output.Write(realType.Name.ToUpper());
                     output.Write('(');
@@ -259,7 +259,7 @@ namespace Xbim.IO.Step21
             }
             else if (typeof(IExpressEnumerable).IsAssignableFrom(propType) &&
                      (itemType = propType.GetItemTypeFromGenericType()) != null)
-            //only process lists that are real lists, see cartesianpoint
+            //only process lists that are real lists, see Cartesian point
             {
                 output.Write('(');
                 var first = true;
@@ -282,7 +282,7 @@ namespace Xbim.IO.Step21
                     label = mapLabel;
                 output.Write(label);
             }
-            else if (propType.IsValueType || propVal is string) //it might be an in-built value type double, string etc
+            else if (propType.IsValueType || propVal is string) //it might be an in-built value type double, string etc.
             {
                 WriteValueType(propVal.GetType(), propVal, output);
             }

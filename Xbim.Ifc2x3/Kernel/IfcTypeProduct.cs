@@ -68,8 +68,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _representationMaps;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _representationMaps;
+				Activate();
 				return _representationMaps;
 			} 
 		}	
@@ -78,8 +78,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _tag;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _tag;
+				Activate();
 				return _tag;
 			} 
 			set

@@ -69,8 +69,8 @@ namespace Xbim.Ifc4.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingConstraint;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingConstraint;
+				Activate();
 				return _relatingConstraint;
 			} 
 			set
@@ -86,8 +86,8 @@ namespace Xbim.Ifc4.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedResourceObjects;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedResourceObjects;
+				Activate();
 				return _relatedResourceObjects;
 			} 
 		}	

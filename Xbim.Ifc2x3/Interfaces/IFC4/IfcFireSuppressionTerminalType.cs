@@ -29,27 +29,20 @@ namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 				{
 					case IfcFireSuppressionTerminalTypeEnum.BREECHINGINLET:
 						return Ifc4.Interfaces.IfcFireSuppressionTerminalTypeEnum.BREECHINGINLET;
-					
 					case IfcFireSuppressionTerminalTypeEnum.FIREHYDRANT:
 						return Ifc4.Interfaces.IfcFireSuppressionTerminalTypeEnum.FIREHYDRANT;
-					
 					case IfcFireSuppressionTerminalTypeEnum.HOSEREEL:
 						return Ifc4.Interfaces.IfcFireSuppressionTerminalTypeEnum.HOSEREEL;
-					
 					case IfcFireSuppressionTerminalTypeEnum.SPRINKLER:
 						return Ifc4.Interfaces.IfcFireSuppressionTerminalTypeEnum.SPRINKLER;
-					
 					case IfcFireSuppressionTerminalTypeEnum.SPRINKLERDEFLECTOR:
 						return Ifc4.Interfaces.IfcFireSuppressionTerminalTypeEnum.SPRINKLERDEFLECTOR;
-					
 					case IfcFireSuppressionTerminalTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcFireSuppressionTerminalTypeEnum.USERDEFINED;
-					
 					case IfcFireSuppressionTerminalTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcFireSuppressionTerminalTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -64,32 +57,24 @@ namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 					case Ifc4.Interfaces.IfcFireSuppressionTerminalTypeEnum.BREECHINGINLET:
 						PredefinedType = IfcFireSuppressionTerminalTypeEnum.BREECHINGINLET;
 						return;
-					
 					case Ifc4.Interfaces.IfcFireSuppressionTerminalTypeEnum.FIREHYDRANT:
 						PredefinedType = IfcFireSuppressionTerminalTypeEnum.FIREHYDRANT;
 						return;
-					
 					case Ifc4.Interfaces.IfcFireSuppressionTerminalTypeEnum.HOSEREEL:
 						PredefinedType = IfcFireSuppressionTerminalTypeEnum.HOSEREEL;
 						return;
-					
 					case Ifc4.Interfaces.IfcFireSuppressionTerminalTypeEnum.SPRINKLER:
 						PredefinedType = IfcFireSuppressionTerminalTypeEnum.SPRINKLER;
 						return;
-					
 					case Ifc4.Interfaces.IfcFireSuppressionTerminalTypeEnum.SPRINKLERDEFLECTOR:
 						PredefinedType = IfcFireSuppressionTerminalTypeEnum.SPRINKLERDEFLECTOR;
 						return;
-					
 					case Ifc4.Interfaces.IfcFireSuppressionTerminalTypeEnum.USERDEFINED:
 						PredefinedType = IfcFireSuppressionTerminalTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcFireSuppressionTerminalTypeEnum.NOTDEFINED:
 						PredefinedType = IfcFireSuppressionTerminalTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

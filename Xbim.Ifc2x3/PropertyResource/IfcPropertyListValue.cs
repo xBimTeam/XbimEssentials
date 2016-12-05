@@ -68,8 +68,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _listValues;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _listValues;
+				Activate();
 				return _listValues;
 			} 
 		}	
@@ -78,8 +78,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _unit;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _unit;
+				Activate();
 				return _unit;
 			} 
 			set

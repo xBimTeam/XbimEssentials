@@ -60,8 +60,8 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _role;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _role;
+				Activate();
 				return _role;
 			} 
 			set

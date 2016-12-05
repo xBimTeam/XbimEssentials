@@ -61,8 +61,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _shapeType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _shapeType;
+				Activate();
 				return _shapeType;
 			} 
 			set

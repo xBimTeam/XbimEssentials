@@ -37,10 +37,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 				        }
 						//##
 						return Ifc4.Interfaces.IfcElectricGeneratorTypeEnum.USERDEFINED;
-					
 					case IfcElectricGeneratorTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcElectricGeneratorTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -58,30 +56,24 @@ namespace Xbim.Ifc2x3.ElectricalDomain
                         PredefinedType = IfcElectricGeneratorTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcElectricGeneratorTypeEnum.ENGINEGENERATOR:
+										case Ifc4.Interfaces.IfcElectricGeneratorTypeEnum.ENGINEGENERATOR:
 						//## Handle setting of ENGINEGENERATOR member from IfcElectricGeneratorTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcElectricGeneratorTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcElectricGeneratorTypeEnum.STANDALONE:
+										case Ifc4.Interfaces.IfcElectricGeneratorTypeEnum.STANDALONE:
 						//## Handle setting of STANDALONE member from IfcElectricGeneratorTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcElectricGeneratorTypeEnum.USERDEFINED;
 				        return;
 						//##
-										
-					case Ifc4.Interfaces.IfcElectricGeneratorTypeEnum.USERDEFINED:
+										case Ifc4.Interfaces.IfcElectricGeneratorTypeEnum.USERDEFINED:
 						PredefinedType = IfcElectricGeneratorTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcElectricGeneratorTypeEnum.NOTDEFINED:
 						PredefinedType = IfcElectricGeneratorTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

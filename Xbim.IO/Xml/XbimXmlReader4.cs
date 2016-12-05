@@ -71,7 +71,7 @@ namespace Xbim.IO.Xml
 
         public StepFileHeader Read(Stream xmlStream, bool onlyHeader = false)
         {
-          //   using (var xmlInStream = new StreamReader(inputStream, Encoding.GetEncoding("ISO-8859-9"))) //this is a work around to ensure latin character sets are read
+          //   using (var xmlInStream = new StreamReader(inputStream, Encoding.GetEncoding("ISO-8859-9"))) //this is a work around to ensure Latin character sets are read
                    
             using (var input = XmlReader.Create(xmlStream))
             {

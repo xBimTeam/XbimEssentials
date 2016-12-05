@@ -29,21 +29,16 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 				{
 					case IfcMotorConnectionTypeEnum.BELTDRIVE:
 						return Ifc4.Interfaces.IfcMotorConnectionTypeEnum.BELTDRIVE;
-					
 					case IfcMotorConnectionTypeEnum.COUPLING:
 						return Ifc4.Interfaces.IfcMotorConnectionTypeEnum.COUPLING;
-					
 					case IfcMotorConnectionTypeEnum.DIRECTDRIVE:
 						return Ifc4.Interfaces.IfcMotorConnectionTypeEnum.DIRECTDRIVE;
-					
 					case IfcMotorConnectionTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcMotorConnectionTypeEnum.USERDEFINED;
-					
 					case IfcMotorConnectionTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcMotorConnectionTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -58,24 +53,18 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 					case Ifc4.Interfaces.IfcMotorConnectionTypeEnum.BELTDRIVE:
 						PredefinedType = IfcMotorConnectionTypeEnum.BELTDRIVE;
 						return;
-					
 					case Ifc4.Interfaces.IfcMotorConnectionTypeEnum.COUPLING:
 						PredefinedType = IfcMotorConnectionTypeEnum.COUPLING;
 						return;
-					
 					case Ifc4.Interfaces.IfcMotorConnectionTypeEnum.DIRECTDRIVE:
 						PredefinedType = IfcMotorConnectionTypeEnum.DIRECTDRIVE;
 						return;
-					
 					case Ifc4.Interfaces.IfcMotorConnectionTypeEnum.USERDEFINED:
 						PredefinedType = IfcMotorConnectionTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcMotorConnectionTypeEnum.NOTDEFINED:
 						PredefinedType = IfcMotorConnectionTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}

@@ -29,18 +29,14 @@ namespace Xbim.Ifc2x3.HVACDomain
 				{
 					case IfcVibrationIsolatorTypeEnum.COMPRESSION:
 						return Ifc4.Interfaces.IfcVibrationIsolatorTypeEnum.COMPRESSION;
-					
 					case IfcVibrationIsolatorTypeEnum.SPRING:
 						return Ifc4.Interfaces.IfcVibrationIsolatorTypeEnum.SPRING;
-					
 					case IfcVibrationIsolatorTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcVibrationIsolatorTypeEnum.USERDEFINED;
-					
 					case IfcVibrationIsolatorTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcVibrationIsolatorTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
@@ -55,20 +51,15 @@ namespace Xbim.Ifc2x3.HVACDomain
 					case Ifc4.Interfaces.IfcVibrationIsolatorTypeEnum.COMPRESSION:
 						PredefinedType = IfcVibrationIsolatorTypeEnum.COMPRESSION;
 						return;
-					
 					case Ifc4.Interfaces.IfcVibrationIsolatorTypeEnum.SPRING:
 						PredefinedType = IfcVibrationIsolatorTypeEnum.SPRING;
 						return;
-					
 					case Ifc4.Interfaces.IfcVibrationIsolatorTypeEnum.USERDEFINED:
 						PredefinedType = IfcVibrationIsolatorTypeEnum.USERDEFINED;
 						return;
-					
 					case Ifc4.Interfaces.IfcVibrationIsolatorTypeEnum.NOTDEFINED:
 						PredefinedType = IfcVibrationIsolatorTypeEnum.NOTDEFINED;
 						return;
-					
-					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}
