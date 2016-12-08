@@ -218,7 +218,16 @@ namespace Xbim.IO.TableStore
             List<string> multiValues = null;
             PropertyMapping multiMapping = null;
             var row = GetRow(sheet);
-            RowNoToEntityLabelLookup[sheet.SheetName].Add(row.RowNum, entity.EntityLabel);
+
+            //fix on "Special Case" Assembly Row to Entity mapping
+            if ((context?.RootEntity != null) && (expType?.ExpressNameUpper == "TYPEORCOMPONENT") ) //without CobieExpress reference and not using reflection this is as good as it gets to ID Assembly
+            {
+                RowNoToEntityLabelLookup[sheet.SheetName].Add(row.RowNum, context.RootEntity.EntityLabel);
+            }
+            else
+            {
+                RowNoToEntityLabelLookup[sheet.SheetName].Add(row.RowNum, entity.EntityLabel);
+            }
 
             foreach (var propertyMapping in mapping.PropertyMappings)
             {
