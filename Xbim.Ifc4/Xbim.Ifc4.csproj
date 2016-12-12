@@ -207,6 +207,12 @@
     <Compile Include="ExternalReferenceResource\IfcResourceLevelRelationship.cs" />
     <Compile Include="ExternalReferenceResource\IfcResourceObjectSelect.cs" />
     <Compile Include="ExternalReferenceResource\IfcURIReference.cs" />
+    <Compile Include="Functions\DimensionalExponents.cs" />
+    <Compile Include="Functions\Direction.cs" />
+    <Compile Include="Functions\Functions.cs" />
+    <Compile Include="Functions\New.cs" />
+    <Compile Include="Functions\Vector.cs" />
+    <Compile Include="Functions\VectorOrDirection.cs" />
     <Compile Include="GeometricConstraintResource\IfcConnectionCurveGeometry.cs" />
     <Compile Include="GeometricConstraintResource\IfcConnectionGeometry.cs" />
     <Compile Include="GeometricConstraintResource\IfcConnectionPointEccentricity.cs" />
