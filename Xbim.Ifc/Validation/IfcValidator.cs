@@ -120,12 +120,11 @@ namespace Xbim.Ifc.Validation
             var propVal = prop.PropertyInfo.GetValue(instance, null);
             var propName = prop.PropertyInfo.Name;
 
-            if (propVal is ExpressType)
+            if (propVal is IExpressValueType)
             {
                 var err = "";
-                // todo: test if this behaves like toPart21
-                var val = propVal.ToString(); // topart21
-                if (ifcAttr.State == EntityAttributeState.Mandatory && val == "$")
+                var val = ((IExpressValueType) propVal).Value;
+                if (ifcAttr.State == EntityAttributeState.Mandatory && val == null)
                     err += $"{instance.GetType().Name}.{propName} is not optional";
                 if (propVal is IPersistValidatable)
                     err += ((IPersistValidatable)propVal).WhereRule();
