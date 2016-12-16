@@ -20,7 +20,7 @@ namespace Xbim.CobieExpress.IO
         private EsentModel EsentModel { get { return _model as EsentModel; } }
         private MemoryModel MemoryModel { get { return _model as MemoryModel; } }
 
-        private CobieModel(IModel model)
+        public CobieModel(IModel model)
         {
             _model = model;
 
@@ -32,6 +32,7 @@ namespace Xbim.CobieExpress.IO
 
         public CobieModel()
         {
+            _esentDB = false;
             _model = new MemoryModel(new EntityFactory());
             InitEvents();
         }
@@ -40,7 +41,7 @@ namespace Xbim.CobieExpress.IO
         {
             _esentDB = esentDB;
             if(esentDB)
-                _model = new EsentModel(new EntityFactory());
+                _model = EsentModel.CreateTemporaryModel(new EntityFactory());
             else
                 _model = new MemoryModel(new EntityFactory());
             
@@ -103,6 +104,29 @@ namespace Xbim.CobieExpress.IO
             {
                 MemoryModel.SaveAsStep21(stream);
                 stream.Close();
+            }
+        }
+
+        public static CobieModel OpenEsent(string esentDB)
+        {
+            var model = new EsentModel(new EntityFactory());
+            model.Open(esentDB, XbimDBAccess.ReadWrite);
+            return new CobieModel(model);
+        }
+
+        public void SaveAsEsent(string dbName)
+        {
+            if (EsentModel != null && string.Equals(EsentModel.DatabaseName, dbName, StringComparison.OrdinalIgnoreCase))
+            {
+                //it is ESENT model already and all changes are persisted automatically.
+            }
+            else
+            {
+                using (var esent = new EsentModel(new EntityFactory()))
+                {
+                    esent.CreateFrom(_model, dbName);
+                    esent.Close();
+                }
             }
         }
 

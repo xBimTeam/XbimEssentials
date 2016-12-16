@@ -9,7 +9,7 @@ using Xbim.Ifc4;
 using Xbim.Ifc4.SharedBldgElements;
 using Xbim.IO;
 
-namespace Xbim.EsentModel.Tests
+namespace Xbim.IO.Tests
 {
     [TestClass]
     public class GeometryStoreTests

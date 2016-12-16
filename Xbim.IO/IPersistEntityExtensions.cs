@@ -236,7 +236,7 @@ namespace Xbim.IO
                 else
                     throw new Exception("Entity Label exceeds maximim value for a an int32 long number");
             }
-            else if (propType.IsValueType) //it might be an in-built value type double, string etc
+            else if (propType.IsValueType || propType == typeof(string)) //it might be an in-built value type double, string etc
             {
                 WriteValueType(propVal.GetType(), propVal, entityWriter);
             }
