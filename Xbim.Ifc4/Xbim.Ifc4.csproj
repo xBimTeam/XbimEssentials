@@ -47,6 +47,8 @@
     <Compile Include="..\SharedFileVersionInfo.cs">
       <Link>Properties\SharedFileVersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Validation\IfcActorRole.cs" />
+    <Compile Include="Validation\IfcActuator.cs" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
