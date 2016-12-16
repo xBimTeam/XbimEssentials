@@ -9,25 +9,16 @@ namespace Xbim.Ifc4.Functions
 {
     internal class Vector
     {
-        private double _mag;
-        private Direction _orientation;
-
         public Vector(Direction orientation, double mod)
         {
-            _orientation = orientation;
-            _mag = mod;
+            Orientation = orientation;
+            Magnitude = mod;
         }
 
-        internal double Magnitude
-        {
-            get { return _mag; }
-            set { _mag = value; }
-        }
+        internal double Magnitude { get; set; }
 
-        internal Direction Orientation
-        {
-            get { return _orientation; }
-            set { _orientation = value; }
-        }
+        internal Direction Orientation { get; set; }
+
+        public int Dim => Orientation.Dim;
     }
 }

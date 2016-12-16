@@ -12,23 +12,7 @@ using Xbim.Ifc4.TopologyResource;
 
 namespace Xbim.Ifc4.Functions
 {
-    internal static class Extentions
-    {
-        internal static IfcDimensionCount Dim(this IfcVectorOrDirection vectorOrDirection)
-        {
-            if (vectorOrDirection is IIfcVector)
-            {
-                return (vectorOrDirection as IIfcVector).Dim;
-            }
-            else
-            {
-                // ReSharper disable once PossibleNullReferenceException
-                return (vectorOrDirection as IIfcDirection).Dim;
-            }
-        }
-    }
-
-    internal class Functions
+    internal class Function
     {
         // ReSharper disable once InconsistentNaming
         internal static T NVL<T>(T obj1, T obj2) where T : class
@@ -81,19 +65,19 @@ namespace Xbim.Ifc4.Functions
         }
 
         // ========================================== IfcBaseAxis
-        List<IfcDirection> IfcBaseAxis(int Dim, IfcDirection Axis1, IfcDirection Axis2, IfcDirection Axis3)
+        List<Direction> IfcBaseAxis(int Dim, Direction Axis1, Direction Axis2, Direction Axis3)
         {
             // local variables
-            List<IfcDirection> U;
+            List<Direction> U;
             double Factor;
             Direction D1;
             Direction D2;
 
             if ((Dim == 3))
             {
-                D1 = NVL(IfcNormalise(Axis3), New.IfcDirection(0.0, 0.0, 1.0));
+                D1 = NVL<Direction>(IfcNormalise(Axis3.ToVectorOrDirection()), New.Direction(0.0, 0.0, 1.0));
                 D2 = IfcFirstProjAxis(D1, Axis1);
-                U = new List<IfcDirection>()
+                U = new List<Direction>()
                 {
                     D2,
                     IfcSecondProjAxis(D1, D2, Axis2),
@@ -104,8 +88,8 @@ namespace Xbim.Ifc4.Functions
             {
                 if (EXISTS(Axis1))
                 {
-                    D1 = (IfcDirection)IfcNormalise(Axis1);
-                    U = new List<IfcDirection>()
+                    D1 = IfcNormalise(Axis1.ToVectorOrDirection());
+                    U = new List<Direction>()
                     {
                         D1,
                         IfcOrthogonalComplement(D1)
@@ -115,8 +99,9 @@ namespace Xbim.Ifc4.Functions
                         Factor = (double)IfcDotProduct(Axis2, U[2]);
                         if (Factor < 0.0)
                         {
-                            U[2].DirectionRatios[1] = -U[2].DirectionRatios[1];
-                            U[2].DirectionRatios[2] = -U[2].DirectionRatios[2];
+                            // index replaced
+                            U[1].SetDirectionRatios(0, -U[1].GetDirectionRatios(0));
+                            U[1].SetDirectionRatios(1, -U[1].GetDirectionRatios(1));
                         }
                     }
                 }
@@ -124,21 +109,21 @@ namespace Xbim.Ifc4.Functions
                 {
                     if (EXISTS(Axis2))
                     {
-                        D1 = (IfcDirection)IfcNormalise(Axis2);
-                        U = new List<IfcDirection>()
+                        D1 = IfcNormalise(Axis2.ToVectorOrDirection());
+                        U = new List<Direction>()
                         {
                             IfcOrthogonalComplement(D1),
                             D1
                         };
-                        U[1].DirectionRatios[1] = -U[1].DirectionRatios[1];
-                        U[1].DirectionRatios[2] = -U[1].DirectionRatios[2];
+                        U[0].SetDirectionRatios(0, -U[0].GetDirectionRatios(0));
+                        U[0].SetDirectionRatios(1, -U[0].GetDirectionRatios(1));
                     }
                     else
                     {
-                        U = new List<IfcDirection>()
+                        U = new List<Direction>()
                         {
-                            New.IfcDirection(1.0, 0.0),
-                            New.IfcDirection(0.0, 1.0)
+                            New.Direction(1.0, 0.0),
+                            New.Direction(0.0, 1.0)
                         };
                     }
                 }
@@ -161,11 +146,11 @@ namespace Xbim.Ifc4.Functions
 
         // ========================================== IfcBuild2Axes
 
-        List<IfcDirection> IfcBuild2Axes(IfcDirection RefDirection)
+        List<Direction> IfcBuild2Axes(Direction RefDirection)
         {
             // local variables
-            IfcDirection D = NVL((IfcDirection)IfcNormalise(RefDirection), New.IfcDirection(1.0, 0.0));
-            return new List<IfcDirection>()
+            var D = NVL(IfcNormalise(RefDirection.ToVectorOrDirection()), New.Direction(1.0, 0.0));
+            return new List<Direction>()
             {
                 D,
                 IfcOrthogonalComplement(D)
@@ -174,22 +159,22 @@ namespace Xbim.Ifc4.Functions
 
         // ========================================== IfcBuildAxes
 
-        List<IfcDirection> IfcBuildAxes(IIfcDirection Axis, IIfcDirection RefDirection)
+        List<Direction> IfcBuildAxes(Direction Axis, Direction RefDirection)
         {
             throw new NotImplementedException();
 
             // local variables
-            IfcDirection D1;
-            IfcDirection D2;
+            Direction D1;
+            Direction D2;
 
             // todo: restore the \ operation below.
 
-            D1 = NVL((IfcDirection)IfcNormalise(Axis), New.IfcDirection(0.0, 0.0, 1.0));
+            D1 = NVL((Direction)IfcNormalise(Axis), New.Direction(0.0, 0.0, 1.0));
             D2 = IfcFirstProjAxis(D1, RefDirection);
-            return new List<IfcDirection>()
+            return new List<Direction>()
             {
                 D2,
-                // IfcNormalise(IfcCrossProduct(D1, D2)) \ IfcVector.Orientation,
+                // IfcNormalise(IfcCrossProduct(D1, D2)) \ Vector.Orientation,
                 D1
             };
         }
@@ -252,13 +237,14 @@ namespace Xbim.Ifc4.Functions
 
         // ========================================== IfcConvertDirectionInto2D
 
-        IfcDirection IfcConvertDirectionInto2D(IfcDirection Direction)
+        Direction IfcConvertDirectionInto2D(Direction Direction)
         {
             // local variables
-            IfcDirection Direction2D = New.IfcDirection(0.0, 1.0);
-            Direction2D.DirectionRatios[1] = Direction.DirectionRatios[1];
-            Direction2D.DirectionRatios[2] = Direction.DirectionRatios[2];
-            return (Direction2D);
+            var Direction2D = New.Direction(
+                Direction.GetDirectionRatios(0),
+                Direction.GetDirectionRatios(1)
+                );
+            return Direction2D;
         }
 
         // ========================================== IfcCorrectDimensions
@@ -773,14 +759,14 @@ namespace Xbim.Ifc4.Functions
 
         // ========================================== IfcCrossProduct
 
-        IfcVector IfcCrossProduct(IIfcDirection Arg1, IIfcDirection Arg2)
+        Vector IfcCrossProduct(Direction Arg1, Direction Arg2)
         {
             // local variables
             double Mag;
-            IfcDirection Res;
+            Direction Res;
             List<double> V1;
             List<double> V2;
-            IfcVector Result;
+            Vector Result;
 
 
             if ((!EXISTS(Arg1) || (Arg1.Dim == 2)) || (!EXISTS(Arg2) || (Arg2.Dim == 2)))
@@ -789,9 +775,9 @@ namespace Xbim.Ifc4.Functions
             }
             else
             {
-                V1 = (IfcNormalise(Arg1) as IfcDirection).DirectionRatios.Cast<double>().ToList();
-                V2 = (IfcNormalise(Arg2) as IfcDirection).DirectionRatios.Cast<double>().ToList();
-                Res = New.IfcDirection(
+                V1 = IfcNormalise(Arg1.ToVectorOrDirection()).ToDirection().GetDirectionRatios();
+                V2 = IfcNormalise(Arg2.ToVectorOrDirection()).ToDirection().GetDirectionRatios();
+                Res = New.Direction(
                     (V1[2] * V2[3] - V1[3] * V2[2]),
                     (V1[3] * V2[1] - V1[1] * V2[3]),
                     (V1[1] * V2[2] - V1[2] * V2[1])
@@ -799,15 +785,15 @@ namespace Xbim.Ifc4.Functions
                 Mag = 0.0;
                 for (var i = 1; i <= 3; i++)
                 {
-                    Mag = Mag + Res.DirectionRatios[i] * Res.DirectionRatios[i];
+                    Mag = Mag + Res.GetDirectionRatios(i-1) * Res.GetDirectionRatios(i);
                 }
                 if ((Mag > 0.0))
                 {
-                    Result = New.IfcVector(Res, SQRT(Mag));
+                    Result = New.Vector(Res, SQRT(Mag));
                 }
                 else
                 {
-                    Result = New.IfcVector(Arg1, 0.0);
+                    Result = New.Vector(Arg1, 0.0);
                 }
                 return (Result);
             }
@@ -880,10 +866,10 @@ namespace Xbim.Ifc4.Functions
 
         // ========================================== IfcDeriveDimensionalExponents
 
-        IfcDimensionalExponents IfcDeriveDimensionalExponents(List<IfcDerivedUnitElement> UnitElements)
+        DimensionalExponents IfcDeriveDimensionalExponents(List<IfcDerivedUnitElement> UnitElements)
         {
             // local variables
-            IfcDimensionalExponents Result = New.IfcDimensionalExponents(0, 0, 0, 0, 0, 0, 0);
+            var Result = New.DimensionalExponents(0, 0, 0, 0, 0, 0, 0);
 
             for (var i = LOINDEX(UnitElements); i <= HIINDEX(UnitElements); i++)
             {
@@ -915,114 +901,114 @@ namespace Xbim.Ifc4.Functions
 
         // ========================================== IfcDimensionsForSiUnit
 
-        IfcDimensionalExponents IfcDimensionsForSiUnit(IfcSIUnitName n)
+        DimensionalExponents IfcDimensionsForSiUnit(IfcSIUnitName n)
         {
             switch (n)
             {
                 case IfcSIUnitName.METRE:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (1, 0, 0, 0, 0, 0, 0));
                 case IfcSIUnitName.SQUARE_METRE:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (2, 0, 0, 0, 0, 0, 0));
                 case IfcSIUnitName.CUBIC_METRE:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (3, 0, 0, 0, 0, 0, 0));
                 case IfcSIUnitName.GRAM:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (0, 1, 0, 0, 0, 0, 0));
                 case IfcSIUnitName.SECOND:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (0, 0, 1, 0, 0, 0, 0));
                 case IfcSIUnitName.AMPERE:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (0, 0, 0, 1, 0, 0, 0));
                 case IfcSIUnitName.KELVIN:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (0, 0, 0, 0, 1, 0, 0));
                 case IfcSIUnitName.MOLE:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (0, 0, 0, 0, 0, 1, 0));
                 case IfcSIUnitName.CANDELA:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (0, 0, 0, 0, 0, 0, 1));
                 case IfcSIUnitName.RADIAN:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (0, 0, 0, 0, 0, 0, 0));
                 case IfcSIUnitName.STERADIAN:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (0, 0, 0, 0, 0, 0, 0));
                 case IfcSIUnitName.HERTZ:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (0, 0, -1, 0, 0, 0, 0));
                 case IfcSIUnitName.NEWTON:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (1, 1, -2, 0, 0, 0, 0));
                 case IfcSIUnitName.PASCAL:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (-1, 1, -2, 0, 0, 0, 0));
                 case IfcSIUnitName.JOULE:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (2, 1, -2, 0, 0, 0, 0));
                 case IfcSIUnitName.WATT:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (2, 1, -3, 0, 0, 0, 0));
                 case IfcSIUnitName.COULOMB:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (0, 0, 1, 1, 0, 0, 0));
                 case IfcSIUnitName.VOLT:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (2, 1, -3, -1, 0, 0, 0));
                 case IfcSIUnitName.FARAD:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (-2, -1, 4, 2, 0, 0, 0));
                 case IfcSIUnitName.OHM:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (2, 1, -3, -2, 0, 0, 0));
                 case IfcSIUnitName.SIEMENS:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (-2, -1, 3, 2, 0, 0, 0));
                 case IfcSIUnitName.WEBER:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (2, 1, -2, -1, 0, 0, 0));
                 case IfcSIUnitName.TESLA:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (0, 1, -2, -1, 0, 0, 0));
                 case IfcSIUnitName.HENRY:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (2, 1, -2, -2, 0, 0, 0));
                 case IfcSIUnitName.DEGREE_CELSIUS:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (0, 0, 0, 0, 1, 0, 0));
                 case IfcSIUnitName.LUMEN:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (0, 0, 0, 0, 0, 0, 1));
                 case IfcSIUnitName.LUX:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (-2, 0, 0, 0, 0, 0, 1));
                 case IfcSIUnitName.BECQUEREL:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (0, 0, -1, 0, 0, 0, 0));
                 case IfcSIUnitName.GRAY:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (2, 0, -2, 0, 0, 0, 0));
                 case IfcSIUnitName.SIEVERT:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (2, 0, -2, 0, 0, 0, 0));
                 default:
-                    return (New.IfcDimensionalExponents
+                    return (New.DimensionalExponents
                         (0, 0, 0, 0, 0, 0, 0));
             }
         }
 
         // ========================================== IfcDotProduct
 
-        double? IfcDotProduct(IfcDirection Arg1, IfcDirection Arg2)
+        double? IfcDotProduct(Direction Arg1, Direction Arg2)
         {
             // local variables
             double? Scalar;
-            IfcDirection Vec1;
-            IfcDirection Vec2;
+            Direction Vec1;
+            Direction Vec2;
             int Ndim;
 
 
@@ -1038,17 +1024,14 @@ namespace Xbim.Ifc4.Functions
                 }
                 else
                 {
+                    Vec1 = IfcNormalise(Arg1.ToVectorOrDirection());
+                    Vec2 = IfcNormalise(Arg2.ToVectorOrDirection());
+                    Ndim = (int) Arg1.Dim;
+                    Scalar = 0.0;
+                    for (var i = 1; i <= Ndim; i++)
                     {
-                        Vec1 = (IfcDirection)IfcNormalise(Arg1);
-                        Vec2 = (IfcDirection)IfcNormalise(Arg2);
-                        Ndim = (int)Arg1.Dim;
-                        Scalar = 0.0;
-                        for (var i = 1; i <= Ndim; i++)
-                        {
-                            Scalar = Scalar + Vec1.DirectionRatios[i] * Vec2.DirectionRatios[i];
-                        }
+                        Scalar = Scalar + Vec1.GetDirectionRatios(i - 1)*Vec2.GetDirectionRatios(i - 1);
                     }
-                    ;
                 }
             }
             return (Scalar);
@@ -1056,13 +1039,13 @@ namespace Xbim.Ifc4.Functions
 
         // ========================================== IfcFirstProjAxis
 
-        IfcDirection IfcFirstProjAxis(IIfcDirection ZAxis, IIfcDirection Arg)
+        Direction IfcFirstProjAxis(Direction ZAxis, Direction Arg)
         {
             // local variables
-            IfcDirection XAxis;
-            IfcDirection V;
-            IfcDirection Z;
-            IfcVector XVec;
+            Direction XAxis;
+            Direction V;
+            Direction Z;
+            Vector XVec;
 
 
             if ((!EXISTS(ZAxis)))
@@ -1071,19 +1054,20 @@ namespace Xbim.Ifc4.Functions
             }
             else
             {
-                Z = (IfcDirection)IfcNormalise(ZAxis);
+                Z = IfcNormalise(ZAxis.ToVectorOrDirection());
                 if (!EXISTS(Arg))
                 {
                     if (
-                        Z.DirectionRatios[1] != 1.0 ||
-                        Z.DirectionRatios[2] != 0.0 ||
-                        Z.DirectionRatios[3] != 0.0)
+                        // index ok
+                        Math.Abs(Z.GetDirectionRatios(0) - 1.0) > double.Epsilon ||
+                        Math.Abs(Z.GetDirectionRatios(1)) > double.Epsilon ||
+                        Math.Abs(Z.GetDirectionRatios(2)) > double.Epsilon)
                     {
-                        V = New.IfcDirection(1.0, 0.0, 0.0);
+                        V = New.Direction(1.0, 0.0, 0.0);
                     }
                     else
                     {
-                        V = New.IfcDirection(0.0, 1.0, 0.0);
+                        V = New.Direction(0.0, 1.0, 0.0);
                     }
                 }
                 else
@@ -1092,23 +1076,23 @@ namespace Xbim.Ifc4.Functions
                     {
                         return (null);
                     }
-                    if (((IfcCrossProduct(Arg, Z).Magnitude) == 0.0))
+                    if (Math.Abs((IfcCrossProduct(Arg, Z).Magnitude)) < double.Epsilon)
                     {
                         return (null);
                     }
                     else
                     {
-                        V = (IfcDirection)IfcNormalise(Arg);
+                        V = IfcNormalise(Arg.ToVectorOrDirection());
                     }
                 }
-                XVec = IfcScalarTimesVector((double)IfcDotProduct(V, Z), Z);
-                XAxis = IfcVectorDifference(V, XVec).Orientation;
-                XAxis = (IfcDirection)IfcNormalise(XAxis);
+                XVec = IfcScalarTimesVector((double)IfcDotProduct(V, Z), Z.ToVectorOrDirection());
+                XAxis = VectorDifference(V, XVec).Orientation;
+                XAxis = IfcNormalise(XAxis.ToVectorOrDirection());
             }
             return (XAxis);
         }
 
-        internal IfcVector IfcVectorDifference(IfcDirection v, IfcVector xVec)
+        internal Vector VectorDifference(Direction v, Vector xVec)
         {
             // todo: remove, this should be available below
             return null;
@@ -1237,29 +1221,28 @@ namespace Xbim.Ifc4.Functions
 
         // ========================================== IfcNormalise
 
-        IfcVectorOrDirection IfcNormalise(IfcVectorOrDirection Arg)
+        VectorOrDirection IfcNormalise(VectorOrDirection Arg)
         {
             // local variables
             int Ndim;
-            Direction V = New.IfcDirection(1.0, 0.0);
-            Vector Vec = New.IfcVector(New.IfcDirection(1.0, 0.0), 1.0);
+            Direction V = New.Direction(1.0, 0.0);
+            Vector Vec = New.Vector(New.Direction(1.0, 0.0), 1.0);
             double Mag;
             VectorOrDirection Result = New.VectorOrDirection(V);
-
-
+            
             if (!EXISTS(Arg))
             {
                 return (null);
             }
             else
             {
-                if ((INTYPEOF(Arg, "IFC4.IFCVECTOR")))
+                if (INTYPEOF(Arg, "IFC4.Vector"))
                 {
-                    Ndim = (int)(Arg as IfcVector).Dim;
-                    V.DirectionRatios = (Arg as IfcVector).Orientation.DirectionRatios;
-                    Vec.Magnitude = (Arg as IfcVector).Magnitude;
+                    Ndim = Arg.Dim;
+                    V.DirectionRatios = Arg.ToVector().Orientation.DirectionRatios;
+                    Vec.Magnitude = (Arg as Vector).Magnitude;
                     Vec.Orientation = V;
-                    if ((Arg as IfcVector).Magnitude == 0.0)
+                    if ((Arg as Vector).Magnitude == 0.0)
                     {
                         return null;
                     }
@@ -1271,10 +1254,10 @@ namespace Xbim.Ifc4.Functions
                 else
                 {
                     {
-                        Ndim = (int)(Arg as IfcDirection).Dim;
+                        Ndim = (int)(Arg as Direction).Dim;
                         throw new NotImplementedException();
                         // todo: restore
-                        // V.DirectionRatios = (Arg as IfcDirection).DirectionRatios;
+                        // V.DirectionRatios = (Arg as Direction).DirectionRatios;
                     }
                     ;
                 }
@@ -1282,7 +1265,7 @@ namespace Xbim.Ifc4.Functions
                 Mag = 0.0;
                 for (var i = 1; i <= Ndim; i++)
                 {
-                    Mag = Mag + V.DirectionRatios[i] * V.DirectionRatios[i];
+                    Mag = Mag + V.GetDirectionRatios(i-1) * V.GetDirectionRatios(i-1);
                 }
                 if (Mag > 0.0)
                 {
@@ -1291,7 +1274,7 @@ namespace Xbim.Ifc4.Functions
                     {
                         V.DirectionRatios[i] = V.DirectionRatios[i] / Mag;
                     }
-                    if ((INTYPEOF(Arg, "IFC4.IFCVECTOR")))
+                    if ((INTYPEOF(Arg, "IFC4.Vector")))
                     {
                         Vec.Orientation = V;
                         Result = Vec;
@@ -1311,10 +1294,10 @@ namespace Xbim.Ifc4.Functions
 
         // ========================================== IfcOrthogonalComplement
 
-        IfcDirection IfcOrthogonalComplement(IfcDirection Vec)
+        Direction IfcOrthogonalComplement(Direction Vec)
         {
             // local variables
-            IfcDirection Result;
+            Direction Result;
 
             if (!EXISTS(Vec) || (Vec.Dim != 2))
             {
@@ -1322,7 +1305,7 @@ namespace Xbim.Ifc4.Functions
             }
             else
             {
-                Result = New.IfcDirection(-Vec.DirectionRatios[2], Vec.DirectionRatios[1]);
+                Result = New.Direction(-Vec.GetDirectionRatios(1), Vec.GetDirectionRatios(0));
                 return (Result);
             }
         }
@@ -1390,7 +1373,7 @@ namespace Xbim.Ifc4.Functions
 
         // ========================================== IfcSameDirection
 
-        bool IfcSameDirection(IfcDirection dir1, IfcDirection dir2, double Epsilon)
+        bool IfcSameDirection(Direction dir1, Direction dir2, double Epsilon)
         {
             // local variables
             double dir1x = dir1.DirectionRatios[1];
@@ -1459,12 +1442,17 @@ namespace Xbim.Ifc4.Functions
 
         // ========================================== IfcScalarTimesVector
 
-        IfcVector IfcScalarTimesVector(double Scalar, IfcVectorOrDirection Vec)
+        Vector IfcScalarTimesVector(double Scalar, VectorOrDirection Vec)
+        {
+            return IfcScalarTimesVector(Scalar, Vec.ToVector());
+        }
+
+        Vector IfcScalarTimesVector(double Scalar, Vector Vec)
         {
             // local variables
-            IfcDirection V;
+            Direction V;
             double Mag;
-            IfcVector Result;
+            Vector Result;
 
 
             if (!EXISTS(Scalar) || !EXISTS(Vec))
@@ -1473,14 +1461,14 @@ namespace Xbim.Ifc4.Functions
             }
             else
             {
-                if (INTYPEOF(Vec, "IFC4.IFCVECTOR"))
+                if (INTYPEOF(Vec, "IFC4.Vector"))
                 {
-                    V = (Vec as IfcVector).Orientation;
-                    Mag = Scalar * (Vec as IfcVector).Magnitude;
+                    V = (Vec as Vector).Orientation;
+                    Mag = Scalar * (Vec as Vector).Magnitude;
                 }
                 else
                 {
-                    V = (IfcDirection)Vec;
+                    V = (Direction)Vec;
                     Mag = Scalar;
                 }
                 if ((Mag < 0.0))
@@ -1491,36 +1479,36 @@ namespace Xbim.Ifc4.Functions
                     }
                     Mag = -Mag;
                 }
-                Result = New.IfcVector((IfcDirection)IfcNormalise(V), Mag);
+                Result = New.Vector(IfcNormalise(V), Mag);
             }
             return (Result);
         }
 
         // ========================================== IfcSecondProjAxis
-        IfcDirection IfcSecondProjAxis(IfcDirection ZAxis, IfcDirection XAxis, IfcDirection Arg)
+        Direction IfcSecondProjAxis(Direction ZAxis, Direction XAxis, Direction Arg)
         {
             // local variables
-            IfcVector YAxis;
-            IfcDirection V;
-            IfcVector Temp;
+            Vector YAxis;
+            Direction V;
+            Vector Temp;
 
             if (!EXISTS(Arg))
             {
-                V = New.IfcDirection(0.0, 1.0, 0.0);
+                V = New.Direction(0.0, 1.0, 0.0);
             }
             else
             {
                 V = Arg;
             }
             Temp = IfcScalarTimesVector((double)IfcDotProduct(V, ZAxis), ZAxis);
-            YAxis = IfcVectorDifference(V, Temp);
+            YAxis = VectorDifference(V, Temp);
             Temp = IfcScalarTimesVector((double)IfcDotProduct(V, XAxis), XAxis);
 
             //todo: whats the right function signature?
             throw new NotImplementedException();
             // todo: restore lines
-            // YAxis = IfcVectorDifference(YAxis, Temp);
-            YAxis = (IfcVector)IfcNormalise(YAxis);
+            // YAxis = VectorDifference(YAxis, Temp);
+            YAxis = (Vector)IfcNormalise(YAxis);
             return (YAxis.Orientation);
         }
 
@@ -1817,15 +1805,15 @@ namespace Xbim.Ifc4.Functions
             return isUnique;
         }
 
-        // ========================================== IfcVectorDifference
+        // ========================================== VectorDifference
 
-        IfcVector IfcVectorDifference(IfcVectorOrDirection Arg1, IfcVectorOrDirection Arg2)
+        Vector VectorDifference(VectorOrDirection Arg1, VectorOrDirection Arg2)
         {
             // local variables
-            IfcVector Result;
-            IfcDirection Res;
-            IfcDirection Vec1;
-            IfcDirection Vec2;
+            Vector Result;
+            Direction Res;
+            Direction Vec1;
+            Direction Vec2;
             double Mag;
             double Mag1;
             double Mag2;
@@ -1838,33 +1826,33 @@ namespace Xbim.Ifc4.Functions
             else
             {
                 {
-                    if (INTYPEOF(Arg1, "IFC4.IFCVECTOR"))
+                    if (INTYPEOF(Arg1, "IFC4.Vector"))
                     {
-                        Mag1 = (Arg1 as IfcVector).Magnitude;
-                        Vec1 = (Arg1 as IfcVector).Orientation;
+                        Mag1 = (Arg1 as Vector).Magnitude;
+                        Vec1 = (Arg1 as Vector).Orientation;
                     }
                     else
                     {
                         Mag1 = 1.0;
-                        Vec1 = (IfcDirection)Arg1;
+                        Vec1 = (Direction)Arg1;
                     }
-                    if ((INTYPEOF(Arg2, "IFC4.IFCVECTOR")))
+                    if ((INTYPEOF(Arg2, "IFC4.Vector")))
                     {
-                        Mag2 = (Arg2 as IfcVector).Magnitude;
-                        Vec2 = (Arg2 as IfcVector).Orientation;
+                        Mag2 = (Arg2 as Vector).Magnitude;
+                        Vec2 = (Arg2 as Vector).Orientation;
                     }
                     else
                     {
                         Mag2 = 1.0;
-                        Vec2 = (IfcDirection)Arg2;
+                        Vec2 = (Direction)Arg2;
                     }
-                    Vec1 = (IfcDirection)IfcNormalise(Vec1);
-                    Vec2 = (IfcDirection)IfcNormalise(Vec2);
+                    Vec1 = (Direction)IfcNormalise(Vec1);
+                    Vec2 = (Direction)IfcNormalise(Vec2);
                     Ndim = SIZEOF(Vec1.DirectionRatios);
                     Mag = 0.0;
                     // todo: does this mean that it needs to repeat 0.0 for Ndim times?
                     throw new NotImplementedException();
-                    // Res =  IfcDirection([0.0: Ndim]);
+                    // Res =  Direction([0.0: Ndim]);
 
                     for (var i = 1; i <= Ndim; i++)
                     {
@@ -1873,11 +1861,11 @@ namespace Xbim.Ifc4.Functions
                     }
                     if ((Mag > 0.0))
                     {
-                        Result = New.IfcVector(Res, SQRT(Mag));
+                        Result = New.Vector(Res, SQRT(Mag));
                     }
                     else
                     {
-                        Result = New.IfcVector(Vec1, 0.0);
+                        Result = New.Vector(Vec1, 0.0);
                     }
                 }
 
@@ -1885,15 +1873,15 @@ namespace Xbim.Ifc4.Functions
             return (Result);
         }
 
-        // ========================================== IfcVectorSum
+        // ========================================== VectorSum
 
-        IfcVector IfcVectorSum(IfcVectorOrDirection Arg1, IfcVectorOrDirection Arg2)
+        Vector VectorSum(VectorOrDirection Arg1, VectorOrDirection Arg2)
         {
             // local variables
-            IfcVector Result;
-            IfcDirection Res;
-            IfcDirection Vec1;
-            IfcDirection Vec2;
+            Vector Result;
+            Direction Res;
+            Direction Vec1;
+            Direction Vec2;
             double Mag;
             double Mag1;
             double Mag2;
@@ -1907,34 +1895,34 @@ namespace Xbim.Ifc4.Functions
             else
             {
                 {
-                    if ((INTYPEOF(Arg1, "IFC4.IFCVECTOR")))
+                    if ((INTYPEOF(Arg1, "IFC4.Vector")))
                     {
-                        Mag1 = (Arg1 as IfcVector).Magnitude;
-                        Vec1 = (Arg1 as IfcVector).Orientation;
+                        Mag1 = (Arg1 as Vector).Magnitude;
+                        Vec1 = (Arg1 as Vector).Orientation;
                     }
                     else
                     {
                         Mag1 = 1.0;
-                        Vec1 = (IfcDirection)Arg1;
+                        Vec1 = (Direction)Arg1;
                     }
-                    if ((INTYPEOF(Arg2, "IFC4.IFCVECTOR")))
+                    if ((INTYPEOF(Arg2, "IFC4.Vector")))
                     {
-                        Mag2 = (Arg2 as IfcVector).Magnitude;
-                        Vec2 = (Arg2 as IfcVector).Orientation;
+                        Mag2 = (Arg2 as Vector).Magnitude;
+                        Vec2 = (Arg2 as Vector).Orientation;
                     }
                     else
                     {
                         Mag2 = 1.0;
-                        Vec2 = (IfcDirection)Arg2;
+                        Vec2 = (Direction)Arg2;
                     }
-                    Vec1 = (IfcDirection)IfcNormalise(Vec1);
-                    Vec2 = (IfcDirection)IfcNormalise(Vec2);
+                    Vec1 = (Direction)IfcNormalise(Vec1);
+                    Vec2 = (Direction)IfcNormalise(Vec2);
                     Ndim = SIZEOF(Vec1.DirectionRatios);
                     Mag = 0.0;
 
                     Res = (Ndim == 2)
-                        ? New.IfcDirection(0.0, 0.0)
-                        : New.IfcDirection(0.0, 0.0, 0.0);
+                        ? New.Direction(0.0, 0.0)
+                        : New.Direction(0.0, 0.0, 0.0);
 
 
                     for (var i = 1; i <= Ndim; i++)
@@ -1943,8 +1931,8 @@ namespace Xbim.Ifc4.Functions
                         Mag = Mag + (Res.DirectionRatios[i] * Res.DirectionRatios[i]);
                     }
                     Result = (Mag > 0.0)
-                        ? New.IfcVector(Res, SQRT(Mag))
-                        : New.IfcVector(Vec1, 0.0);
+                        ? New.Vector(Res, SQRT(Mag))
+                        : New.Vector(Vec1, 0.0);
                 }
 
             }

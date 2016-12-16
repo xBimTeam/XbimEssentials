@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Ifc4.GeometryResource;
 using Xbim.Ifc4.Interfaces;
@@ -28,6 +29,8 @@ namespace Xbim.Ifc4.Functions
             _dim = 3;
         }
 
+        internal int Dim => _dim;
+
         internal Direction(IIfcDirection source)
         {
             if (source.Dim == 2)
@@ -50,7 +53,8 @@ namespace Xbim.Ifc4.Functions
         {
             return new Direction(d);
         }
-        
+       
+
         public IItemSet<IfcReal> DirectionRatios
         {
             set
@@ -73,5 +77,48 @@ namespace Xbim.Ifc4.Functions
                 throw new Exception("Invalid number of directionratios.");
             }
         }
+
+        public VectorOrDirection ToVectorOrDirection()
+        {
+            return  new VectorOrDirection(this);
+        }
+
+        public void SetDirectionRatios(int index, double value)
+        {
+            switch (index)
+            {
+                case 0:
+                    _x = value;
+                    break;
+                case 1:
+                    _y = value;
+                    break;
+                case 2:
+                    _z = value;
+                    break;
+            }
+        }
+
+        public double GetDirectionRatios(int index)
+        {
+            // ReSharper disable once SwitchStatementMissingSomeCases
+            switch (index)
+            {
+                case 0:
+                    return _x;
+                case 1:
+                    return _y;
+                case 2:
+                    return _z;
+            }
+            throw new Exception($"Unexpected index {index}.");
+        }
+
+        internal List<double> GetDirectionRatios()
+        {
+            return Dim == 2 
+                ? new List<double>() { _x, _y } 
+                : new List<double>() { _x, _y, _z };
+        }   
     }
 }
