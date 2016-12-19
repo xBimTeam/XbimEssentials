@@ -67,9 +67,9 @@ namespace Xbim.CobieExpress.IO
         {
             if (esentDB)
             {
-                var db = Path.ChangeExtension(input, ".xcobie");
+                var db = Path.ChangeExtension(input, ".xbim");
                 var esent = new EsentModel(new EntityFactory());
-                esent.CreateFrom(input, db, null, true);
+                esent.CreateFrom(input, db, null, true, true, IfcStorageType.Stp);
                 return new CobieModel(esent);
             }
 
@@ -209,7 +209,7 @@ namespace Xbim.CobieExpress.IO
             {
                 var db = Path.ChangeExtension(input, ".xcobie");
                 var esent = new EsentModel(new EntityFactory());
-                esent.CreateFrom(input, db, null, true);
+                esent.CreateFrom(input, db, null, true, true, IfcStorageType.StpZip);
                 return new CobieModel(esent);
             }
 

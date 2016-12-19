@@ -1558,9 +1558,12 @@ namespace Xbim.IO.Esent
                     SaveAsIfcXml(storageFileName);
                     break;
                 case IfcStorageType.Ifc:
+                case IfcStorageType.Stp:
                     SaveAsIfc(storageFileName, map);
                     break;
                 case IfcStorageType.IfcZip:
+                case IfcStorageType.StpZip:
+                case IfcStorageType.Zip:
                     SaveAsIfcZip(storageFileName);
                     break;
                 case IfcStorageType.Xbim:
@@ -1574,7 +1577,11 @@ namespace Xbim.IO.Esent
         {
             if (string.IsNullOrWhiteSpace(Path.GetExtension(storageFileName))) //make sure we have an extension
                 storageFileName = Path.ChangeExtension(storageFileName, "IfcZip");
-            var fileBody = Path.ChangeExtension(Path.GetFileName(storageFileName), "ifc");
+
+            var ext = Path.GetExtension(storageFileName).ToLowerInvariant();
+            var fileBody = ext.Contains("ifc") ?  
+                Path.ChangeExtension(Path.GetFileName(storageFileName), "ifc") :
+                Path.ChangeExtension(Path.GetFileName(storageFileName), "stp");
             var entityTable = GetEntityTable();
             FileStream fs = null;
             ZipOutputStream zipStream = null;
