@@ -151,7 +151,7 @@
         <PropertyMapping Header="CreatedBy" Column="B" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Created.CreatedBy.Email" DataType ="Email" />
         <PropertyMapping Header="CreatedOn" Column="C" Status="Required" MultiRow="None" DefaultValue="1900-12-31T23:59:59" Paths="Created.CreatedOn" DataType ="ISODateTime" />
         <PropertyMapping Header="TypeName" Column="D" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Type.Name" DataType ="AlphaNumeric" />
-        <PropertyMapping Header="Space" Column="E" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Spaces.Name" DataType ="AlphaNumeric" />
+        <PropertyMapping Header="Space" Column="E" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Spaces.Name" DataType ="Text" />
         <PropertyMapping Header="Description" Column="F" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Description" DataType ="Text" />
         <PropertyMapping Header="ExtSystem" Column="G" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalSystem.Name"  Hidden="true" DataType ="Text"/>
         <PropertyMapping Header="ExtObject" Column="H" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalObject.Name"  Hidden="true" DataType ="Text"/>
