@@ -17,12 +17,12 @@ namespace Xbim.MemoryModel.Tests
     public class ParsingTests
     {
         [TestMethod]
-        [DeploymentItem("TestFiles\fileWithAbstractClass.ifc")]
+        [DeploymentItem("TestFiles\\fileWithAbstractClass.ifc")]
         public void ToleratesFileWithAbstractClass()
         {
             // should survive parsing file with abstract class
             // (and use null for offending instances).
-            using (var store = IfcStore.Open(@"TestFiles\fileWithAbstractClass.ifc"))
+            using (var store = IfcStore.Open(@"fileWithAbstractClass.ifc"))
             {
                 var inst = store.Instances[1240086];
                 Assert.IsNotNull(inst, "Instance should exist.");
@@ -34,7 +34,7 @@ namespace Xbim.MemoryModel.Tests
             }
 
             // try loading it in esent
-            using (var store = IfcStore.Open(@"TestFiles\fileWithAbstractClass.ifc", null, 0.001))
+            using (var store = IfcStore.Open(@"fileWithAbstractClass.ifc", null, 0.001))
             {
                 var inst = store.Instances[1240086];
                 Assert.IsNotNull(inst, "Instance should exist.");
