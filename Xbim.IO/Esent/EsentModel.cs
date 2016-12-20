@@ -411,7 +411,7 @@ namespace Xbim.IO.Esent
         /// <param name="keepOpen"></param>
         /// <param name="cacheEntities"></param>
         /// <returns></returns>
-        public virtual bool CreateFrom(string importFrom, string xbimDbName = null, ReportProgressDelegate progDelegate = null, bool keepOpen = false, bool cacheEntities = false)
+        public virtual bool CreateFrom(string importFrom, string xbimDbName = null, ReportProgressDelegate progDelegate = null, bool keepOpen = false, bool cacheEntities = false, IfcStorageType? storageType = null)
         {
             Close();
             _importFilePath = Path.GetFullPath(importFrom);
@@ -422,7 +422,7 @@ namespace Xbim.IO.Esent
             if (string.IsNullOrWhiteSpace(xbimDbName))
                 xbimDbName = Path.ChangeExtension(importFrom, "xBIM");
 
-            var toImportStorageType = importFrom.StorageType();
+            var toImportStorageType =  storageType ?? importFrom.StorageType();
 
             switch (toImportStorageType)
             {
@@ -450,9 +450,12 @@ namespace Xbim.IO.Esent
         public virtual bool CreateFrom(Stream inputStream, long streamSize, IfcStorageType streamType, string xbimDbName, ReportProgressDelegate progDelegate = null, bool keepOpen = false, bool cacheEntities = false)
         {
             Close();
-            if (streamType.HasFlag(IfcStorageType.IfcZip))
+            if (streamType.HasFlag(IfcStorageType.IfcZip) ||
+                streamType.HasFlag(IfcStorageType.StpZip) ||
+                streamType.HasFlag(IfcStorageType.Zip))
                 Cache.ImportStepZip(xbimDbName, inputStream, progDelegate, keepOpen, cacheEntities, _codePageOverrideForStepFiles);
-            else if (streamType.HasFlag(IfcStorageType.Ifc))
+            else if (streamType.HasFlag(IfcStorageType.Ifc) ||
+                streamType.HasFlag(IfcStorageType.Stp))
                 Cache.ImportStep(xbimDbName, inputStream, streamSize, progDelegate, keepOpen, cacheEntities, _codePageOverrideForStepFiles);
             else if (streamType.HasFlag(IfcStorageType.IfcXml))
                 Cache.ImportIfcXml(xbimDbName, inputStream, progDelegate, keepOpen, cacheEntities);

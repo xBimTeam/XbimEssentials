@@ -874,8 +874,12 @@ namespace Xbim.Ifc
         {
             if (actualFormat.HasFlag(IfcStorageType.Xbim)) //special case for xbim
             {
-                var esentDb = _schema == IfcSchemaVersion.Ifc4 ? new EsentModel(new Ifc4.EntityFactory()) : new EsentModel(new Ifc2x3.EntityFactory());
-                esentDb.CreateFrom(_model, actualFileName, progDelegate);
+
+                using (var esentDb = _schema == IfcSchemaVersion.Ifc4 ? new EsentModel(new Ifc4.EntityFactory()) : new EsentModel(new Ifc2x3.EntityFactory()))
+                {
+                    esentDb.CreateFrom(_model, actualFileName, progDelegate);
+                    esentDb.Close();
+                }
             }
             else
             {

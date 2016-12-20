@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Ifc;
 using System.IO;
 using Xbim.IO;
@@ -15,9 +14,9 @@ namespace Xbim.MemoryModel.Tests
         public void OpenStreamTest()
         {
             const string ifcPath = "4walls1floorSite.ifc";
-            const string xmlPath = "4walls1floorSite.ifcxml";
-            const string zipPath = "4walls1floorSite.ifczip";
-            const string xbimPath = "4walls1floorSite.xbim";
+            const string xmlPath = "OpenStreamTest.ifcxml";
+            const string zipPath = "OpenStreamTest.ifczip";
+            const string xbimPath = "OpenStreamTest.xbim";
 
             var instCount = 0L;
             //create file types
