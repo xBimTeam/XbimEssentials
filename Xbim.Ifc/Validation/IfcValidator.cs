@@ -7,112 +7,84 @@ using System.Linq;
 using System.Text;
 using Xbim.Common;
 using Xbim.Common.Enumerations;
+using Xbim.Common.ExpressValidation;
 using Xbim.Common.Metadata;
 
 namespace Xbim.Ifc.Validation
 {
+    /// <summary>
+    /// This class provides basic POCO access to validation errors.
+    /// Validation reporting should build upon this.
+    /// </summary>
     public class IfcValidator
     {
-        private IfcStore _store;
-
-        public IfcValidator(IfcStore store)
-        {
-            _store = store;
-        }
-
-        #region Validation
-
         /// <summary>
         /// Validates all entities in the model
         /// </summary>
-        /// <param name="tw"></param>
-        /// <param name="validateLevel"></param>
         /// <returns></returns>
-        public int Validate(TextWriter tw, ValidationFlags validateLevel = ValidationFlags.Properties)
+        public IEnumerable<ValidationResult> Validate(IfcStore store, ValidationFlags validateLevel = ValidationFlags.Properties)
         {
-            int errors = 0;
-            foreach (var entity in _store.Instances)
+            foreach (var entity in store.Instances)
             {
-                errors += Validate(entity, tw, validateLevel);
-            }
-            return errors;
+                foreach (var result in Validate(entity, validateLevel))
+                {
+                    yield return result;
+                }
+            }            
         }
 
-        public int Validate(IEnumerable<IPersistEntity> entities, TextWriter tw, ValidationFlags validateLevel = ValidationFlags.Properties)
+        public IEnumerable<ValidationResult> Validate(IEnumerable<IPersistEntity> entities, ValidationFlags validateLevel = ValidationFlags.Properties)
         {
-            int errors = 0;
             foreach (var entity in entities)
             {
-                errors += Validate(entity, tw, validateLevel);
+                foreach (var result in Validate(entity, validateLevel))
+                {
+                    yield return result;
+                }
             }
-            return errors;
         }
 
-        public int Validate(IPersistEntity ent, TextWriter tw, ValidationFlags validateLevel = ValidationFlags.Properties)
+        public IEnumerable<ValidationResult> Validate(IPersistEntity ent, ValidationFlags validateLevel = ValidationFlags.Properties)
         {
-            var itw = new IndentedTextWriter(tw);
-            if (validateLevel == ValidationFlags.None) return 0; //nothing to do
+            if (validateLevel == ValidationFlags.None)
+                yield break; //nothing to do
             var ifcType = ent.ExpressType;
             var notIndented = true;
-            var errors = 0;
-            if (validateLevel == ValidationFlags.Properties || validateLevel == ValidationFlags.All)
+            
+            if (validateLevel.HasFlag(ValidationFlags.Properties))
             {
                 foreach (var ifcProp in ifcType.Properties.Values)
                 {
-                    var err = GetIfcSchemaError(ent, ifcProp);
-                    if (string.IsNullOrEmpty(err))
-                        continue;
-                    if (notIndented)
+                    var errs = GetIfcSchemaError(ent, ifcProp, validateLevel);
+                    foreach (var validationResult in errs)
                     {
-                        itw.WriteLine($"#{ent.EntityLabel} - {ifcType.Type.Name}");
-                        itw.Indent++;
-                        notIndented = false;
+                        yield return validationResult;
                     }
-                    itw.WriteLine(err.Trim('\n'));
-                    errors++;
                 }
             }
-            if (validateLevel == ValidationFlags.Inverses || validateLevel == ValidationFlags.All)
+            if (validateLevel.HasFlag(ValidationFlags.Inverses))
             {
                 foreach (var ifcInv in ifcType.Inverses)
                 {
-                    var err = GetIfcSchemaError(ent, ifcInv);
-                    if (string.IsNullOrEmpty(err))
-                        continue;
-                    if (notIndented)
+                    var errs = GetIfcSchemaError(ent, ifcInv, validateLevel);
+                    foreach (var validationResult in errs)
                     {
-                        itw.WriteLine($"#{ent.EntityLabel} - {ifcType.Type.Name}");
-                        itw.Indent++;
-                        notIndented = false;
+                        yield return validationResult;
                     }
-                    itw.WriteLine(err.Trim('\n'));
-                    errors++;
                 }
             }
 
-            if (ent is IPersistValidatable)
+            if (ent is IExpressValidatable)
             {
-                var str = ((IPersistValidatable)ent).WhereRule();
-                if (!string.IsNullOrEmpty(str))
+                var errs = ((IExpressValidatable)ent).Validate();
+                foreach (var validationResult in errs)
                 {
-                    if (notIndented)
-                    {
-                        itw.WriteLine($"#{ent.EntityLabel} - {ifcType.Type.Name}");
-                        itw.Indent++;
-                        notIndented = false;
-                    }
-                    itw.WriteLine(str.Trim('\n'));
-                    errors++;
+                    yield return validationResult;
                 }
             }
-
-            
-            if (!notIndented)
-                itw.Indent--;
-            return errors;
         }
 
-        private static string GetIfcSchemaError(IPersistEntity instance, ExpressMetaProperty prop)
+        private static IEnumerable<ValidationResult> GetIfcSchemaError(IPersistEntity instance, ExpressMetaProperty prop, ValidationFlags validateLevel)
         {
             //IfcAttribute ifcAttr, object instance, object propVal, string propName
 
@@ -122,27 +94,44 @@ namespace Xbim.Ifc.Validation
 
             if (propVal is IExpressValueType)
             {
-                var err = "";
                 var val = ((IExpressValueType) propVal).Value;
                 if (ifcAttr.State == EntityAttributeState.Mandatory && val == null)
-                    err += $"{instance.GetType().Name}.{propName} is not optional";
-                if (propVal is IPersistValidatable)
-                    err += ((IPersistValidatable)propVal).WhereRule();
-                if (!string.IsNullOrEmpty(err))
-                    return err;
+                {
+                    yield return new ValidationResult()
+                    {
+                        Item = instance,
+                        IssueSource = propName,
+                        Message = $"{instance.GetType().Name}.{propName} is not optional"
+                    };
+                }
+
+                if (validateLevel.HasFlag(ValidationFlags.TypeWhereClauses) && propVal is IExpressValidatable)
+                {
+                    foreach (var issue in ((IExpressValidatable)propVal).Validate())
+                    {
+                        // this should become hierarchical
+                        issue.Item = instance;
+                    }                    
+                }
+                yield break;
             }
 
             if (ifcAttr.State == EntityAttributeState.Mandatory && propVal == null)
-                return $"{instance.GetType().Name}.{propName} is not optional";
+                yield return new ValidationResult()
+                    {
+                        Item = instance,
+                        IssueSource = propName,
+                        Message = $"{instance.GetType().Name}.{propName} is not optional"
+                };
             if (ifcAttr.State == EntityAttributeState.Optional && propVal == null)
                 //if it is null and optional then it is ok
-                return null;
+                yield break;
             if (ifcAttr.EntityType == EntityAttributeType.Set 
                 || ifcAttr.EntityType == EntityAttributeType.List 
                 || ifcAttr.EntityType == EntityAttributeType.ListUnique)
             {
                 if (ifcAttr.MinCardinality < 1 && ifcAttr.MaxCardinality < 0) //we don't care how many so don't check
-                    return null;
+                    yield break;
                 var coll = propVal as ICollection;
                 var count = 0;
                 if (coll != null)
@@ -163,19 +152,28 @@ namespace Xbim.Ifc.Validation
 
                 if (count < ifcAttr.MinCardinality)
                 {
-                    return
-                        $"{instance.GetType().Name}.{propName} must have at least {ifcAttr.MinCardinality} item(s). " +
-                        $"It has {count}";
+                    yield return new ValidationResult()
+                    {
+                        Item = instance,
+                        IssueSource = propName,
+                        Message = $"{instance.GetType().Name}.{propName} must have at least {ifcAttr.MinCardinality} item(s). " +
+                                  $"It has {count}."
+                    };
+                    
                 }
                 if (ifcAttr.MaxCardinality > -1 && count > ifcAttr.MaxCardinality)
                 {
-                    return
-                        $"{instance.GetType().Name}.{propName} must have no more than {ifcAttr.MaxCardinality} item(s). " +
-                        $"It has at least {count}";
+                    yield return new ValidationResult()
+                    {
+                        Item = instance,
+                        IssueSource = propName,
+                        Message = $"{instance.GetType().Name}.{propName} must have no more than {ifcAttr.MaxCardinality} item(s). " +
+                                  $"It has at least {count}"
+                    };
+                    
+                       
                 }
             }
-            return null;
         }
-        #endregion
     }
 }

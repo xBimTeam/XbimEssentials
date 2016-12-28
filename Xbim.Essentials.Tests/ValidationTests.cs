@@ -17,19 +17,20 @@ namespace Xbim.Essentials.Tests
     {
         [TestMethod]
         [DeploymentItem("TestSourceFiles")]
-        public void ReadListOfListFromIfcFile()
+        public void ValidatesFile()
         {
-            TextWriter t = new StringWriter();
             using (var model = IfcStore.Open("InvalidContentFC4.ifc", null, 0))
             {
                 //var v2 = model.Metadata.Types()
                 //    .Where(x => x.Properties.Any(pr => pr.Value.EntityAttribute.State == EntityAttributeState.Mandatory
                 //    && typeof(IExpressValueType).IsAssignableFrom(pr.Value.PropertyInfo.PropertyType)
                 //    ));
-                var v = new IfcValidator(model);
-                var cntError = v.Validate(t, ValidationFlags.All);
-                Debug.WriteLine($"Validation error count: {cntError}");
-                Debug.Write(t.ToString());
+                var v = new IfcValidator();
+                var errors = v.Validate(model, ValidationFlags.All);
+                foreach (var validationResult in errors)
+                {
+                    Debug.WriteLine(validationResult.IssueSource);
+                }
             }
         }
     }
