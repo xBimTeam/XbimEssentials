@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common;
@@ -25,11 +23,16 @@ namespace Xbim.Essentials.Tests
                 //    .Where(x => x.Properties.Any(pr => pr.Value.EntityAttribute.State == EntityAttributeState.Mandatory
                 //    && typeof(IExpressValueType).IsAssignableFrom(pr.Value.PropertyInfo.PropertyType)
                 //    ));
-                var v = new IfcValidator();
-                var errors = v.Validate(model, ValidationFlags.All);
-                foreach (var validationResult in errors)
+                var v = new IfcValidator
                 {
-                    Debug.WriteLine(validationResult.IssueSource);
+                    ValidateLevel = ValidationFlags.All,
+                    CreateEntityHierarchy = true
+                };
+                var errors = v.Validate(model);
+                foreach (var validationResult in new ValidationReporter(errors))
+                // foreach (var validationResult in errors)
+                {
+                    Debug.WriteLine(validationResult);
                 }
             }
         }

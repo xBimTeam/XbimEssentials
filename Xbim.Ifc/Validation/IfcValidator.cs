@@ -1,55 +1,83 @@
-﻿using System;
-using System.CodeDom.Compiler;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 using Xbim.Common;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Common.Metadata;
+using Xbim.Essentials.Tests;
 
 namespace Xbim.Ifc.Validation
 {
     /// <summary>
     /// This class provides basic POCO access to validation errors.
-    /// Validation reporting should build upon this.
+    /// Validation reporting should build upon this. For an example see <see cref="ValidationReporter"/>
     /// </summary>
     public class IfcValidator
     {
+        public bool CreateEntityHierarchy { get; set; } = false;
+
+        private int _entityCount;
+
+        private int _resultCount;
+
+        public int EntityCountLimit { get; set; } = -1;
+
+        public int ResultCountLimit { get; set; } = -1;
+        
+        public ValidationFlags ValidateLevel = ValidationFlags.Properties;
+
+        public bool LimitReached => (EntityCountLimit >= 0 && _entityCount >= EntityCountLimit)
+                                    || 
+                                    (ResultCountLimit >= 0 && _resultCount >= ResultCountLimit);
+
         /// <summary>
-        /// Validates all entities in the model
+        /// Validates all entities in the model, unless count limits are reached
         /// </summary>
-        /// <returns></returns>
-        public IEnumerable<ValidationResult> Validate(IfcStore store, ValidationFlags validateLevel = ValidationFlags.Properties)
+        /// <returns>An enumerable of results</returns>
+        public IEnumerable<ValidationResult> Validate(IfcStore store)
         {
-            foreach (var entity in store.Instances)
-            {
-                foreach (var result in Validate(entity, validateLevel))
-                {
-                    yield return result;
-                }
-            }            
+            return Validate(store.Instances);
         }
 
-        public IEnumerable<ValidationResult> Validate(IEnumerable<IPersistEntity> entities, ValidationFlags validateLevel = ValidationFlags.Properties)
+        /// <summary>
+        /// Validates all provided entities, unless count limits are reached
+        /// </summary>
+        /// <returns>An enumerable of results</returns>
+        public IEnumerable<ValidationResult> Validate(IEnumerable<IPersistEntity> entities)
         {
             foreach (var entity in entities)
             {
-                foreach (var result in Validate(entity, validateLevel))
+                foreach (var result in Validate(entity))
                 {
                     yield return result;
+                    if (LimitReached)
+                        yield break;
                 }
             }
         }
 
-        public IEnumerable<ValidationResult> Validate(IPersistEntity ent, ValidationFlags validateLevel = ValidationFlags.Properties)
+        /// <summary>
+        /// Validates the entities, unless count limits are reached 
+        /// </summary>
+        /// <returns>An enumerable of results</returns>
+        public IEnumerable<ValidationResult> Validate(IPersistEntity entity)
         {
+            foreach (var result in PerformValidation(entity, CreateEntityHierarchy, ValidateLevel))
+            {
+                yield return result;
+                if (LimitReached)
+                    yield break;
+            }           
+        }
+
+        private IEnumerable<ValidationResult> PerformValidation(IPersistEntity ent, bool hierarchical, ValidationFlags validateLevel = ValidationFlags.Properties)
+        {
+            var thisEntAdded = false;
+            var hierResult = new ValidationResult() {Item = ent, IssueType = ValidationFlags.None};
             if (validateLevel == ValidationFlags.None)
                 yield break; //nothing to do
             var ifcType = ent.ExpressType;
-
+            
             if (validateLevel.HasFlag(ValidationFlags.Properties))
             {
                 foreach (var ifcProp in ifcType.Properties.Values)
@@ -57,7 +85,18 @@ namespace Xbim.Ifc.Validation
                     var errs = GetIfcSchemaErrors(ent, ifcProp, validateLevel);
                     foreach (var validationResult in errs)
                     {
-                        yield return validationResult;
+                        validationResult.IssueType |= ValidationFlags.Properties;
+                        thisEntAdded = UpdateCount(thisEntAdded);
+
+                        if (hierarchical)
+                        {
+                            hierResult.AddDetail(validationResult);
+                        }
+                        else
+                        {
+                            validationResult.Item = ent;
+                            yield return validationResult;
+                        }
                     }
                 }
             }
@@ -68,7 +107,17 @@ namespace Xbim.Ifc.Validation
                     var errs = GetIfcSchemaErrors(ent, ifcInv, validateLevel);
                     foreach (var validationResult in errs)
                     {
-                        yield return validationResult;
+                        validationResult.IssueType |= ValidationFlags.Inverses;
+                        thisEntAdded = UpdateCount(thisEntAdded);
+                        if (hierarchical)
+                        {
+                            hierResult.AddDetail(validationResult);
+                        }
+                        else
+                        {
+                            validationResult.Item = ent;
+                            yield return validationResult;
+                        }
                     }
                 }
             }
@@ -77,15 +126,38 @@ namespace Xbim.Ifc.Validation
                 var errs = ((IExpressValidatable)ent).Validate();
                 foreach (var validationResult in errs)
                 {
-                    yield return validationResult;
+                    thisEntAdded = UpdateCount(thisEntAdded);
+                    if (hierarchical)
+                    {
+                        hierResult.AddDetail(validationResult);
+                    }
+                    else
+                    {
+                        yield return validationResult;
+                    }
                 }
             }
+
+            if (hierarchical && hierResult.IssueType != ValidationFlags.None)
+            {
+                // the IssueType is populated if any children have been added.
+                hierResult.Message = $"Entity #{ent.EntityLabel} ({ifcType.Name}) has validation failures.";
+                yield return hierResult;
+            }
+        }
+
+        private bool UpdateCount(bool thisEntAdded)
+        {
+            if (!thisEntAdded)
+            {
+                _entityCount++;
+            }
+            _resultCount++;
+            return true;
         }
 
         private static IEnumerable<ValidationResult> GetIfcSchemaErrors(IPersist instance, ExpressMetaProperty prop, ValidationFlags validateLevel)
         {
-            //IfcAttribute ifcAttr, object instance, object propVal, string propName
-
             var ifcAttr = prop.EntityAttribute;
             var propVal = prop.PropertyInfo.GetValue(instance, null);
             var propName = prop.PropertyInfo.Name;
@@ -98,17 +170,16 @@ namespace Xbim.Ifc.Validation
                     yield return new ValidationResult()
                     {
                         Item = instance,
+                        IssueType = ValidationFlags.TypeWhereClauses,
                         IssueSource = propName,
-                        Message = $"{instance.GetType().Name}.{propName} is not optional"
+                        Message = $"{instance.GetType().Name}.{propName} is not optional."
                     };
                 }
-
                 if (validateLevel.HasFlag(ValidationFlags.TypeWhereClauses) && propVal is IExpressValidatable)
                 {
                     foreach (var issue in ((IExpressValidatable)propVal).Validate())
                     {
-                        // this should become hierarchical
-                        issue.Item = instance;
+                        yield return issue;
                     }                    
                 }
                 yield break;
@@ -119,7 +190,7 @@ namespace Xbim.Ifc.Validation
                     {
                         Item = instance,
                         IssueSource = propName,
-                        Message = $"{instance.GetType().Name}.{propName} is not optional"
+                        Message = $"{instance.GetType().Name}.{propName} is not optional."
                 };
             if (ifcAttr.State == EntityAttributeState.Optional && propVal == null)
                 //if it is null and optional then it is ok
@@ -166,7 +237,7 @@ namespace Xbim.Ifc.Validation
                         Item = instance,
                         IssueSource = propName,
                         Message = $"{instance.GetType().Name}.{propName} must have no more than {ifcAttr.MaxCardinality} item(s). " +
-                                  $"It has at least {count}"
+                                  $"It has at least {count}."
                     };
                 }
             }

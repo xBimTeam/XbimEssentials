@@ -12,5 +12,30 @@ namespace Xbim.Common.ExpressValidation
         public ValidationFlags IssueType;
         public string IssueSource;
         public string Message;
+        private List<ValidationResult> _details;
+        public ValidationResult Context;
+
+        public void AddDetail(ValidationResult detail)
+        {
+            detail.Context = this;
+            EnsureDetails();
+            IssueType |= detail.IssueType; // adds the values of the detail
+            _details.Add(detail);
+        }
+
+        public IEnumerable<ValidationResult> Details
+        {
+            get
+            {
+                EnsureDetails();
+                return _details;
+            }
+        }
+
+        private void EnsureDetails()
+        {
+            if (_details == null)
+                _details = new List<ValidationResult>();
+        }
     }
 }
