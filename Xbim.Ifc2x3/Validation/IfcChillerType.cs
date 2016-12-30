@@ -23,7 +23,7 @@ namespace Xbim.Ifc2x3.HVACDomain
 		/// Tests the express where clause WR1
 		/// </summary>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR1() {
+		public new bool WR1() {
 			var retVal = false;
 			try {
 				retVal = (PredefinedType != IfcChillerTypeEnum.USERDEFINED) || ((PredefinedType == IfcChillerTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
