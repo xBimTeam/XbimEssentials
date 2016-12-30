@@ -49,13 +49,12 @@ namespace Xbim.Ifc.Validation
             if (validateLevel == ValidationFlags.None)
                 yield break; //nothing to do
             var ifcType = ent.ExpressType;
-            var notIndented = true;
-            
+
             if (validateLevel.HasFlag(ValidationFlags.Properties))
             {
                 foreach (var ifcProp in ifcType.Properties.Values)
                 {
-                    var errs = GetIfcSchemaError(ent, ifcProp, validateLevel);
+                    var errs = GetIfcSchemaErrors(ent, ifcProp, validateLevel);
                     foreach (var validationResult in errs)
                     {
                         yield return validationResult;
@@ -66,15 +65,14 @@ namespace Xbim.Ifc.Validation
             {
                 foreach (var ifcInv in ifcType.Inverses)
                 {
-                    var errs = GetIfcSchemaError(ent, ifcInv, validateLevel);
+                    var errs = GetIfcSchemaErrors(ent, ifcInv, validateLevel);
                     foreach (var validationResult in errs)
                     {
                         yield return validationResult;
                     }
                 }
             }
-
-            if (ent is IExpressValidatable)
+            if (validateLevel.HasFlag(ValidationFlags.EntityWhereClauses) && ent is IExpressValidatable)
             {
                 var errs = ((IExpressValidatable)ent).Validate();
                 foreach (var validationResult in errs)
@@ -84,7 +82,7 @@ namespace Xbim.Ifc.Validation
             }
         }
 
-        private static IEnumerable<ValidationResult> GetIfcSchemaError(IPersistEntity instance, ExpressMetaProperty prop, ValidationFlags validateLevel)
+        private static IEnumerable<ValidationResult> GetIfcSchemaErrors(IPersist instance, ExpressMetaProperty prop, ValidationFlags validateLevel)
         {
             //IfcAttribute ifcAttr, object instance, object propVal, string propName
 
@@ -159,8 +157,8 @@ namespace Xbim.Ifc.Validation
                         Message = $"{instance.GetType().Name}.{propName} must have at least {ifcAttr.MinCardinality} item(s). " +
                                   $"It has {count}."
                     };
-                    
                 }
+
                 if (ifcAttr.MaxCardinality > -1 && count > ifcAttr.MaxCardinality)
                 {
                     yield return new ValidationResult()
@@ -170,8 +168,6 @@ namespace Xbim.Ifc.Validation
                         Message = $"{instance.GetType().Name}.{propName} must have no more than {ifcAttr.MaxCardinality} item(s). " +
                                   $"It has at least {count}"
                     };
-                    
-                       
                 }
             }
         }
