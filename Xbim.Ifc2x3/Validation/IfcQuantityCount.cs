@@ -20,23 +20,37 @@ namespace Xbim.Ifc2x3.QuantityResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.QuantityResource.IfcQuantityCount");
 
 		/// <summary>
-		/// Tests the express where clause WR21
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR21() {
+		public bool ValidateClause(Where.IfcQuantityCount clause) {
 			var retVal = false;
-			try {
-				retVal = CountValue >= 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR21' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcQuantityCount.WR21) {
+				try {
+					retVal = CountValue >= 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcQuantityCount.WR21' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR21())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR21", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcQuantityCount.WR21))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcQuantityCount.WR21", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcQuantityCount
+	{
+		public static readonly IfcQuantityCount WR21 = new IfcQuantityCount();
+		protected IfcQuantityCount() {}
 	}
 }

@@ -20,23 +20,37 @@ namespace Xbim.Ifc2x3.ProfileResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfileResource.IfcRoundedRectangleProfileDef");
 
 		/// <summary>
-		/// Tests the express where clause WR31
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR31() {
+		public bool ValidateClause(Where.IfcRoundedRectangleProfileDef clause) {
 			var retVal = false;
-			try {
-				retVal = ((RoundingRadius <= (this/* as IfcRectangleProfileDef*/.XDim / 2)) && (RoundingRadius <= (this/* as IfcRectangleProfileDef*/.YDim / 2)));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR31' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcRoundedRectangleProfileDef.WR31) {
+				try {
+					retVal = ((RoundingRadius <= (this/* as IfcRectangleProfileDef*/.XDim / 2)) && (RoundingRadius <= (this/* as IfcRectangleProfileDef*/.YDim / 2)));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcRoundedRectangleProfileDef.WR31' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR31())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR31", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcRoundedRectangleProfileDef.WR31))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcRoundedRectangleProfileDef.WR31", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcRoundedRectangleProfileDef
+	{
+		public static readonly IfcRoundedRectangleProfileDef WR31 = new IfcRoundedRectangleProfileDef();
+		protected IfcRoundedRectangleProfileDef() {}
 	}
 }

@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcCurveStyleFontPattern");
 
 		/// <summary>
-		/// Tests the express where clause VisibleLengthGreaterEqualZero
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool VisibleLengthGreaterEqualZero() {
+		public bool ValidateClause(Where.IfcCurveStyleFontPattern clause) {
 			var retVal = false;
-			try {
-				retVal = VisibleSegmentLength >= 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'VisibleLengthGreaterEqualZero' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcCurveStyleFontPattern.VisibleLengthGreaterEqualZero) {
+				try {
+					retVal = VisibleSegmentLength >= 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcCurveStyleFontPattern.VisibleLengthGreaterEqualZero' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!VisibleLengthGreaterEqualZero())
-				yield return new ValidationResult() { Item = this, IssueSource = "VisibleLengthGreaterEqualZero", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcCurveStyleFontPattern.VisibleLengthGreaterEqualZero))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcCurveStyleFontPattern.VisibleLengthGreaterEqualZero", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcCurveStyleFontPattern
+	{
+		public static readonly IfcCurveStyleFontPattern VisibleLengthGreaterEqualZero = new IfcCurveStyleFontPattern();
+		protected IfcCurveStyleFontPattern() {}
 	}
 }

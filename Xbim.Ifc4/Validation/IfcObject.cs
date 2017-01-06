@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.Kernel
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcObject");
 
 		/// <summary>
-		/// Tests the express where clause UniquePropertySetNames
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool UniquePropertySetNames() {
+		public bool ValidateClause(Where.IfcObject clause) {
 			var retVal = false;
-			try {
-				retVal = ((SIZEOF(IsDefinedBy) == 0) || IfcUniqueDefinitionNames(IsDefinedBy));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'UniquePropertySetNames' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcObject.UniquePropertySetNames) {
+				try {
+					retVal = ((SIZEOF(IsDefinedBy) == 0) || IfcUniqueDefinitionNames(IsDefinedBy));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcObject.UniquePropertySetNames' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!UniquePropertySetNames())
-				yield return new ValidationResult() { Item = this, IssueSource = "UniquePropertySetNames", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcObject.UniquePropertySetNames))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcObject.UniquePropertySetNames", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcObject
+	{
+		public static readonly IfcObject UniquePropertySetNames = new IfcObject();
+		protected IfcObject() {}
 	}
 }

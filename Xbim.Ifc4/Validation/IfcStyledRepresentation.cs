@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.RepresentationResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.RepresentationResource.IfcStyledRepresentation");
 
 		/// <summary>
-		/// Tests the express where clause OnlyStyledItems
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool OnlyStyledItems() {
+		public bool ValidateClause(Where.IfcStyledRepresentation clause) {
 			var retVal = false;
-			try {
-				retVal = SIZEOF(this/* as IfcRepresentation*/.Items.Where(temp => (!(TYPEOF(temp).Contains("IFC4.IFCSTYLEDITEM"))))) == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'OnlyStyledItems' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcStyledRepresentation.OnlyStyledItems) {
+				try {
+					retVal = SIZEOF(this/* as IfcRepresentation*/.Items.Where(temp => (!(TYPEOF(temp).Contains("IFC4.IFCSTYLEDITEM"))))) == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcStyledRepresentation.OnlyStyledItems' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!OnlyStyledItems())
-				yield return new ValidationResult() { Item = this, IssueSource = "OnlyStyledItems", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcStyledRepresentation.OnlyStyledItems))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcStyledRepresentation.OnlyStyledItems", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcStyledRepresentation
+	{
+		public static readonly IfcStyledRepresentation OnlyStyledItems = new IfcStyledRepresentation();
+		protected IfcStyledRepresentation() {}
 	}
 }

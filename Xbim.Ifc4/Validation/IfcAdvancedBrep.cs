@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.GeometricModelResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcAdvancedBrep");
 
 		/// <summary>
-		/// Tests the express where clause HasAdvancedFaces
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool HasAdvancedFaces() {
+		public bool ValidateClause(Where.IfcAdvancedBrep clause) {
 			var retVal = false;
-			try {
-				retVal = SIZEOF(this/* as IfcManifoldSolidBrep*/.Outer.CfsFaces.Where(Afs => (!(TYPEOF(Afs).Contains("IFC4.IFCADVANCEDFACE"))))) == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'HasAdvancedFaces' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcAdvancedBrep.HasAdvancedFaces) {
+				try {
+					retVal = SIZEOF(this/* as IfcManifoldSolidBrep*/.Outer.CfsFaces.Where(Afs => (!(TYPEOF(Afs).Contains("IFC4.IFCADVANCEDFACE"))))) == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcAdvancedBrep.HasAdvancedFaces' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!HasAdvancedFaces())
-				yield return new ValidationResult() { Item = this, IssueSource = "HasAdvancedFaces", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcAdvancedBrep.HasAdvancedFaces))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcAdvancedBrep.HasAdvancedFaces", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcAdvancedBrep
+	{
+		public static readonly IfcAdvancedBrep HasAdvancedFaces = new IfcAdvancedBrep();
+		protected IfcAdvancedBrep() {}
 	}
 }

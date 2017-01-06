@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.TopologyResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.TopologyResource.IfcPolyLoop");
 
 		/// <summary>
-		/// Tests the express where clause AllPointsSameDim
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool AllPointsSameDim() {
+		public bool ValidateClause(Where.IfcPolyLoop clause) {
 			var retVal = false;
-			try {
-				retVal = SIZEOF(Polygon.Where(Temp => Temp.Dim != Polygon.ToArray()[0].Dim)) == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'AllPointsSameDim' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcPolyLoop.AllPointsSameDim) {
+				try {
+					retVal = SIZEOF(Polygon.Where(Temp => Temp.Dim != Polygon.ToArray()[0].Dim)) == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcPolyLoop.AllPointsSameDim' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!AllPointsSameDim())
-				yield return new ValidationResult() { Item = this, IssueSource = "AllPointsSameDim", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcPolyLoop.AllPointsSameDim))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcPolyLoop.AllPointsSameDim", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcPolyLoop
+	{
+		public static readonly IfcPolyLoop AllPointsSameDim = new IfcPolyLoop();
+		protected IfcPolyLoop() {}
 	}
 }

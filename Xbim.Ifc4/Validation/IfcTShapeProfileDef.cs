@@ -16,39 +16,48 @@ namespace Xbim.Ifc4.ProfileResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcTShapeProfileDef");
 
 		/// <summary>
-		/// Tests the express where clause ValidFlangeThickness
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidFlangeThickness() {
+		public bool ValidateClause(Where.IfcTShapeProfileDef clause) {
 			var retVal = false;
-			try {
-				retVal = FlangeThickness < Depth;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ValidFlangeThickness' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcTShapeProfileDef.ValidFlangeThickness) {
+				try {
+					retVal = FlangeThickness < Depth;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcTShapeProfileDef.ValidFlangeThickness' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause ValidWebThickness
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidWebThickness() {
-			var retVal = false;
-			try {
-				retVal = WebThickness < FlangeWidth;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ValidWebThickness' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcTShapeProfileDef.ValidWebThickness) {
+				try {
+					retVal = WebThickness < FlangeWidth;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcTShapeProfileDef.ValidWebThickness' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidFlangeThickness())
-				yield return new ValidationResult() { Item = this, IssueSource = "ValidFlangeThickness", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidWebThickness())
-				yield return new ValidationResult() { Item = this, IssueSource = "ValidWebThickness", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcTShapeProfileDef.ValidFlangeThickness))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcTShapeProfileDef.ValidFlangeThickness", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcTShapeProfileDef.ValidWebThickness))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcTShapeProfileDef.ValidWebThickness", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcTShapeProfileDef
+	{
+		public static readonly IfcTShapeProfileDef ValidFlangeThickness = new IfcTShapeProfileDef();
+		public static readonly IfcTShapeProfileDef ValidWebThickness = new IfcTShapeProfileDef();
+		protected IfcTShapeProfileDef() {}
 	}
 }

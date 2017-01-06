@@ -20,39 +20,48 @@ namespace Xbim.Ifc2x3.ProfileResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfileResource.IfcLShapeProfileDef");
 
 		/// <summary>
-		/// Tests the express where clause WR21
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR21() {
+		public bool ValidateClause(Where.IfcLShapeProfileDef clause) {
 			var retVal = false;
-			try {
-				retVal = Thickness < Depth;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR21' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcLShapeProfileDef.WR21) {
+				try {
+					retVal = Thickness < Depth;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcLShapeProfileDef.WR21' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR22
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR22() {
-			var retVal = false;
-			try {
-				retVal = !(EXISTS(Width)) || (Thickness < Width);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR22' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcLShapeProfileDef.WR22) {
+				try {
+					retVal = !(EXISTS(Width)) || (Thickness < Width);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcLShapeProfileDef.WR22' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR21())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR21", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR22())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR22", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcLShapeProfileDef.WR21))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcLShapeProfileDef.WR21", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcLShapeProfileDef.WR22))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcLShapeProfileDef.WR22", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcLShapeProfileDef
+	{
+		public static readonly IfcLShapeProfileDef WR21 = new IfcLShapeProfileDef();
+		public static readonly IfcLShapeProfileDef WR22 = new IfcLShapeProfileDef();
+		protected IfcLShapeProfileDef() {}
 	}
 }

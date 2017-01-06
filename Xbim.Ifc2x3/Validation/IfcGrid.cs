@@ -20,17 +20,21 @@ namespace Xbim.Ifc2x3.ProductExtension
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProductExtension.IfcGrid");
 
 		/// <summary>
-		/// Tests the express where clause WR41
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR41() {
+		public bool ValidateClause(Where.IfcGrid clause) {
 			var retVal = false;
-			try {
-				retVal = EXISTS(this/* as IfcProduct*/.ObjectPlacement);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR41' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcGrid.WR41) {
+				try {
+					retVal = EXISTS(this/* as IfcProduct*/.ObjectPlacement);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcGrid.WR41' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcProduct)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -39,8 +43,18 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				yield return value;
 			}
-			if (!WR41())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR41", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcGrid.WR41))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcGrid.WR41", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcGrid : IfcProduct
+	{
+		public static readonly IfcGrid WR41 = new IfcGrid();
+		protected IfcGrid() {}
 	}
 }

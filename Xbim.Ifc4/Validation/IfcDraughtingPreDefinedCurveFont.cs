@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcDraughtingPreDefinedCurveFont");
 
 		/// <summary>
-		/// Tests the express where clause PreDefinedCurveFontNames
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool PreDefinedCurveFontNames() {
+		public bool ValidateClause(Where.IfcDraughtingPreDefinedCurveFont clause) {
 			var retVal = false;
-			try {
-				retVal = NewArray("continuous", "chain", "chain double dash", "dashed", "dotted", "by layer").Contains(this/* as IfcPredefinedItem*/.Name);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'PreDefinedCurveFontNames' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcDraughtingPreDefinedCurveFont.PreDefinedCurveFontNames) {
+				try {
+					retVal = NewArray("continuous", "chain", "chain double dash", "dashed", "dotted", "by layer").Contains(this/* as IfcPredefinedItem*/.Name);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcDraughtingPreDefinedCurveFont.PreDefinedCurveFontNames' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!PreDefinedCurveFontNames())
-				yield return new ValidationResult() { Item = this, IssueSource = "PreDefinedCurveFontNames", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcDraughtingPreDefinedCurveFont.PreDefinedCurveFontNames))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcDraughtingPreDefinedCurveFont.PreDefinedCurveFontNames", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcDraughtingPreDefinedCurveFont
+	{
+		public static readonly IfcDraughtingPreDefinedCurveFont PreDefinedCurveFontNames = new IfcDraughtingPreDefinedCurveFont();
+		protected IfcDraughtingPreDefinedCurveFont() {}
 	}
 }

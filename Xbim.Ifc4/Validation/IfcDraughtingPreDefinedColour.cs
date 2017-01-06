@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcDraughtingPreDefinedColour");
 
 		/// <summary>
-		/// Tests the express where clause PreDefinedColourNames
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool PreDefinedColourNames() {
+		public bool ValidateClause(Where.IfcDraughtingPreDefinedColour clause) {
 			var retVal = false;
-			try {
-				retVal = NewArray("black", "red", "green", "blue", "yellow", "magenta", "cyan", "white", "by layer").Contains(this/* as IfcPreDefinedItem*/.Name);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'PreDefinedColourNames' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcDraughtingPreDefinedColour.PreDefinedColourNames) {
+				try {
+					retVal = NewArray("black", "red", "green", "blue", "yellow", "magenta", "cyan", "white", "by layer").Contains(this/* as IfcPreDefinedItem*/.Name);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcDraughtingPreDefinedColour.PreDefinedColourNames' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!PreDefinedColourNames())
-				yield return new ValidationResult() { Item = this, IssueSource = "PreDefinedColourNames", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcDraughtingPreDefinedColour.PreDefinedColourNames))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcDraughtingPreDefinedColour.PreDefinedColourNames", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcDraughtingPreDefinedColour
+	{
+		public static readonly IfcDraughtingPreDefinedColour PreDefinedColourNames = new IfcDraughtingPreDefinedColour();
+		protected IfcDraughtingPreDefinedColour() {}
 	}
 }

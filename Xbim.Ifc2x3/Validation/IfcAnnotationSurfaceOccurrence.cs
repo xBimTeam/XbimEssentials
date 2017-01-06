@@ -20,17 +20,21 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDefinitionResource.IfcAnnotationSurfaceOccurrence");
 
 		/// <summary>
-		/// Tests the express where clause WR31
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR31() {
+		public bool ValidateClause(Where.IfcAnnotationSurfaceOccurrence clause) {
 			var retVal = false;
-			try {
-				retVal = !(EXISTS(this/* as IfcStyledItem*/.Item)) || (SIZEOF(NewArray("IFC2X3.IFCSURFACE", "IFC2X3.IFCFACEBASEDSURFACEMODEL", "IFC2X3.IFCSHELLBASEDSURFACEMODEL", "IFC2X3.IFCSOLIDMODEL") * TYPEOF(this/* as IfcStyledItem*/.Item)) > 0);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR31' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcAnnotationSurfaceOccurrence.WR31) {
+				try {
+					retVal = !(EXISTS(this/* as IfcStyledItem*/.Item)) || (SIZEOF(NewArray("IFC2X3.IFCSURFACE", "IFC2X3.IFCFACEBASEDSURFACEMODEL", "IFC2X3.IFCSHELLBASEDSURFACEMODEL", "IFC2X3.IFCSOLIDMODEL") * TYPEOF(this/* as IfcStyledItem*/.Item)) > 0);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcAnnotationSurfaceOccurrence.WR31' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcStyledItem)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -39,8 +43,18 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			{
 				yield return value;
 			}
-			if (!WR31())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR31", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcAnnotationSurfaceOccurrence.WR31))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcAnnotationSurfaceOccurrence.WR31", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcAnnotationSurfaceOccurrence : IfcStyledItem
+	{
+		public static readonly IfcAnnotationSurfaceOccurrence WR31 = new IfcAnnotationSurfaceOccurrence();
+		protected IfcAnnotationSurfaceOccurrence() {}
 	}
 }

@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.GeometryResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcVector");
 
 		/// <summary>
-		/// Tests the express where clause MagGreaterOrEqualZero
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool MagGreaterOrEqualZero() {
+		public bool ValidateClause(Where.IfcVector clause) {
 			var retVal = false;
-			try {
-				retVal = Magnitude >= 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'MagGreaterOrEqualZero' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcVector.MagGreaterOrEqualZero) {
+				try {
+					retVal = Magnitude >= 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcVector.MagGreaterOrEqualZero' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!MagGreaterOrEqualZero())
-				yield return new ValidationResult() { Item = this, IssueSource = "MagGreaterOrEqualZero", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcVector.MagGreaterOrEqualZero))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcVector.MagGreaterOrEqualZero", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcVector
+	{
+		public static readonly IfcVector MagGreaterOrEqualZero = new IfcVector();
+		protected IfcVector() {}
 	}
 }

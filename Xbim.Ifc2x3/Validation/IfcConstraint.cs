@@ -20,23 +20,37 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ConstraintResource.IfcConstraint");
 
 		/// <summary>
-		/// Tests the express where clause WR11
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR11() {
+		public bool ValidateClause(Where.IfcConstraint clause) {
 			var retVal = false;
-			try {
-				retVal = (ConstraintGrade != IfcConstraintEnum.USERDEFINED) || ((ConstraintGrade == IfcConstraintEnum.USERDEFINED) && EXISTS(this/* as IfcConstraint*/.UserDefinedGrade));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR11' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcConstraint.WR11) {
+				try {
+					retVal = (ConstraintGrade != IfcConstraintEnum.USERDEFINED) || ((ConstraintGrade == IfcConstraintEnum.USERDEFINED) && EXISTS(this/* as IfcConstraint*/.UserDefinedGrade));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcConstraint.WR11' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR11())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR11", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcConstraint.WR11))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcConstraint.WR11", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcConstraint
+	{
+		public static readonly IfcConstraint WR11 = new IfcConstraint();
+		protected IfcConstraint() {}
 	}
 }

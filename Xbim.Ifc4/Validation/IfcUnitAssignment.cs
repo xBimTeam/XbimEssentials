@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.MeasureResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.MeasureResource.IfcUnitAssignment");
 
 		/// <summary>
-		/// Tests the express where clause WR01
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR01() {
+		public bool ValidateClause(Where.IfcUnitAssignment clause) {
 			var retVal = false;
-			try {
-				retVal = IfcCorrectUnitAssignment(Units);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR01' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcUnitAssignment.WR01) {
+				try {
+					retVal = IfcCorrectUnitAssignment(Units);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcUnitAssignment.WR01' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR01())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR01", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcUnitAssignment.WR01))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcUnitAssignment.WR01", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcUnitAssignment
+	{
+		public static readonly IfcUnitAssignment WR01 = new IfcUnitAssignment();
+		protected IfcUnitAssignment() {}
 	}
 }

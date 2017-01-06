@@ -16,17 +16,21 @@ namespace Xbim.Ifc4.Kernel
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcProxy");
 
 		/// <summary>
-		/// Tests the express where clause WR1
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR1() {
+		public bool ValidateClause(Where.IfcProxy clause) {
 			var retVal = false;
-			try {
-				retVal = EXISTS(this/* as IfcRoot*/.Name);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR1' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcProxy.WR1) {
+				try {
+					retVal = EXISTS(this/* as IfcRoot*/.Name);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcProxy.WR1' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcProduct)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -35,8 +39,18 @@ namespace Xbim.Ifc4.Kernel
 			{
 				yield return value;
 			}
-			if (!WR1())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR1", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcProxy.WR1))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcProxy.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcProxy : IfcProduct
+	{
+		public static readonly IfcProxy WR1 = new IfcProxy();
+		protected IfcProxy() {}
 	}
 }

@@ -16,39 +16,48 @@ namespace Xbim.Ifc4.GeometryResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcAxis1Placement");
 
 		/// <summary>
-		/// Tests the express where clause AxisIs3D
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool AxisIs3D() {
+		public bool ValidateClause(Where.IfcAxis1Placement clause) {
 			var retVal = false;
-			try {
-				retVal = (!(EXISTS(Axis))) || (Axis.Dim == 3);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'AxisIs3D' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcAxis1Placement.AxisIs3D) {
+				try {
+					retVal = (!(EXISTS(Axis))) || (Axis.Dim == 3);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcAxis1Placement.AxisIs3D' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause LocationIs3D
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool LocationIs3D() {
-			var retVal = false;
-			try {
-				retVal = this/* as IfcPlacement*/.Location.Dim == 3;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'LocationIs3D' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcAxis1Placement.LocationIs3D) {
+				try {
+					retVal = this/* as IfcPlacement*/.Location.Dim == 3;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcAxis1Placement.LocationIs3D' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!AxisIs3D())
-				yield return new ValidationResult() { Item = this, IssueSource = "AxisIs3D", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!LocationIs3D())
-				yield return new ValidationResult() { Item = this, IssueSource = "LocationIs3D", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcAxis1Placement.AxisIs3D))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcAxis1Placement.AxisIs3D", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcAxis1Placement.LocationIs3D))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcAxis1Placement.LocationIs3D", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcAxis1Placement
+	{
+		public static readonly IfcAxis1Placement AxisIs3D = new IfcAxis1Placement();
+		public static readonly IfcAxis1Placement LocationIs3D = new IfcAxis1Placement();
+		protected IfcAxis1Placement() {}
 	}
 }

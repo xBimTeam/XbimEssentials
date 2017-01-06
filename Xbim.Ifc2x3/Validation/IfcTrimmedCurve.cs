@@ -20,55 +20,59 @@ namespace Xbim.Ifc2x3.GeometryResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcTrimmedCurve");
 
 		/// <summary>
-		/// Tests the express where clause WR41
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR41() {
+		public bool ValidateClause(Where.IfcTrimmedCurve clause) {
 			var retVal = false;
-			try {
-				retVal = (HIINDEX(Trim1) == 1) || (TYPEOF(Trim1.ToArray()[0]) != TYPEOF(Trim1.ToArray()[1]));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR41' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcTrimmedCurve.WR41) {
+				try {
+					retVal = (HIINDEX(Trim1) == 1) || (TYPEOF(Trim1.ToArray()[0]) != TYPEOF(Trim1.ToArray()[1]));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcTrimmedCurve.WR41' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR42
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR42() {
-			var retVal = false;
-			try {
-				retVal = (HIINDEX(Trim2) == 1) || (TYPEOF(Trim2.ToArray()[0]) != TYPEOF(Trim2.ToArray()[1]));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR42' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcTrimmedCurve.WR42) {
+				try {
+					retVal = (HIINDEX(Trim2) == 1) || (TYPEOF(Trim2.ToArray()[0]) != TYPEOF(Trim2.ToArray()[1]));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcTrimmedCurve.WR42' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR43
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR43() {
-			var retVal = false;
-			try {
-				retVal = !(TYPEOF(BasisCurve).Contains("IFC2X3.IFCBOUNDEDCURVE"));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR43' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcTrimmedCurve.WR43) {
+				try {
+					retVal = !(TYPEOF(BasisCurve).Contains("IFC2X3.IFCBOUNDEDCURVE"));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcTrimmedCurve.WR43' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR41())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR41", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR42())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR42", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR43())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR43", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcTrimmedCurve.WR41))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcTrimmedCurve.WR41", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcTrimmedCurve.WR42))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcTrimmedCurve.WR42", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcTrimmedCurve.WR43))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcTrimmedCurve.WR43", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcTrimmedCurve
+	{
+		public static readonly IfcTrimmedCurve WR41 = new IfcTrimmedCurve();
+		public static readonly IfcTrimmedCurve WR42 = new IfcTrimmedCurve();
+		public static readonly IfcTrimmedCurve WR43 = new IfcTrimmedCurve();
+		protected IfcTrimmedCurve() {}
 	}
 }

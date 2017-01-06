@@ -16,31 +16,29 @@ namespace Xbim.Ifc4.ProductExtension
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcFeatureElementSubtraction");
 
 		/// <summary>
-		/// Tests the express where clause HasNoSubtraction
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool HasNoSubtraction() {
+		public bool ValidateClause(Where.IfcFeatureElementSubtraction clause) {
 			var retVal = false;
-			try {
-				retVal = SIZEOF(this/* as IfcElement*/.HasOpenings) == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'HasNoSubtraction' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcFeatureElementSubtraction.HasNoSubtraction) {
+				try {
+					retVal = SIZEOF(this/* as IfcElement*/.HasOpenings) == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcFeatureElementSubtraction.HasNoSubtraction' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause IsNotFilling
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool IsNotFilling() {
-			var retVal = false;
-			try {
-				retVal = SIZEOF(this/* as IfcElement*/.FillsVoids) == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'IsNotFilling' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcFeatureElementSubtraction.IsNotFilling) {
+				try {
+					retVal = SIZEOF(this/* as IfcElement*/.FillsVoids) == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcFeatureElementSubtraction.IsNotFilling' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcProduct)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -49,10 +47,21 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				yield return value;
 			}
-			if (!HasNoSubtraction())
-				yield return new ValidationResult() { Item = this, IssueSource = "HasNoSubtraction", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!IsNotFilling())
-				yield return new ValidationResult() { Item = this, IssueSource = "IsNotFilling", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcFeatureElementSubtraction.HasNoSubtraction))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcFeatureElementSubtraction.HasNoSubtraction", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcFeatureElementSubtraction.IsNotFilling))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcFeatureElementSubtraction.IsNotFilling", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcFeatureElementSubtraction : IfcProduct
+	{
+		public static readonly IfcFeatureElementSubtraction HasNoSubtraction = new IfcFeatureElementSubtraction();
+		public static readonly IfcFeatureElementSubtraction IsNotFilling = new IfcFeatureElementSubtraction();
+		protected IfcFeatureElementSubtraction() {}
 	}
 }

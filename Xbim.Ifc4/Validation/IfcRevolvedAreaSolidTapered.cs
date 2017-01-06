@@ -16,17 +16,21 @@ namespace Xbim.Ifc4.GeometricModelResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcRevolvedAreaSolidTapered");
 
 		/// <summary>
-		/// Tests the express where clause CorrectProfileAssignment
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool CorrectProfileAssignment() {
+		public bool ValidateClause(Where.IfcRevolvedAreaSolidTapered clause) {
 			var retVal = false;
-			try {
-				retVal = IfcTaperedSweptAreaProfiles(this/* as IfcSweptAreaSolid*/.SweptArea, this.EndSweptArea);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'CorrectProfileAssignment' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcRevolvedAreaSolidTapered.CorrectProfileAssignment) {
+				try {
+					retVal = IfcTaperedSweptAreaProfiles(this/* as IfcSweptAreaSolid*/.SweptArea, this.EndSweptArea);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcRevolvedAreaSolidTapered.CorrectProfileAssignment' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcRevolvedAreaSolid)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -35,8 +39,18 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				yield return value;
 			}
-			if (!CorrectProfileAssignment())
-				yield return new ValidationResult() { Item = this, IssueSource = "CorrectProfileAssignment", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcRevolvedAreaSolidTapered.CorrectProfileAssignment))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcRevolvedAreaSolidTapered.CorrectProfileAssignment", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcRevolvedAreaSolidTapered : IfcRevolvedAreaSolid
+	{
+		public static readonly IfcRevolvedAreaSolidTapered CorrectProfileAssignment = new IfcRevolvedAreaSolidTapered();
+		protected IfcRevolvedAreaSolidTapered() {}
 	}
 }

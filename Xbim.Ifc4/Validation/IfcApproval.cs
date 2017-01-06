@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.ApprovalResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ApprovalResource.IfcApproval");
 
 		/// <summary>
-		/// Tests the express where clause HasIdentifierOrName
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool HasIdentifierOrName() {
+		public bool ValidateClause(Where.IfcApproval clause) {
 			var retVal = false;
-			try {
-				retVal = EXISTS(Identifier) || EXISTS(Name);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'HasIdentifierOrName' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcApproval.HasIdentifierOrName) {
+				try {
+					retVal = EXISTS(Identifier) || EXISTS(Name);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcApproval.HasIdentifierOrName' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!HasIdentifierOrName())
-				yield return new ValidationResult() { Item = this, IssueSource = "HasIdentifierOrName", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcApproval.HasIdentifierOrName))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcApproval.HasIdentifierOrName", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcApproval
+	{
+		public static readonly IfcApproval HasIdentifierOrName = new IfcApproval();
+		protected IfcApproval() {}
 	}
 }

@@ -16,45 +16,37 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralCurveAction");
 
 		/// <summary>
-		/// Tests the express where clause ProjectedIsGlobal
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ProjectedIsGlobal() {
+		public bool ValidateClause(Where.IfcStructuralCurveAction clause) {
 			var retVal = false;
-			try {
-				retVal = (!EXISTS(ProjectedOrTrue)) || ((ProjectedOrTrue != IfcProjectedOrTrueLengthEnum.PROJECTED_LENGTH) || (this/* as IfcStructuralActivity*/.GlobalOrLocal == IfcGlobalOrLocalEnum.GLOBAL_COORDS));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ProjectedIsGlobal' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcStructuralCurveAction.ProjectedIsGlobal) {
+				try {
+					retVal = (!EXISTS(ProjectedOrTrue)) || ((ProjectedOrTrue != IfcProjectedOrTrueLengthEnum.PROJECTED_LENGTH) || (this/* as IfcStructuralActivity*/.GlobalOrLocal == IfcGlobalOrLocalEnum.GLOBAL_COORDS));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcStructuralCurveAction.ProjectedIsGlobal' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause HasObjectType
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool HasObjectType() {
-			var retVal = false;
-			try {
-				retVal = (PredefinedType != IfcStructuralCurveActivityTypeEnum.USERDEFINED) || EXISTS(this/* as IfcObject*/.ObjectType);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'HasObjectType' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcStructuralCurveAction.HasObjectType) {
+				try {
+					retVal = (PredefinedType != IfcStructuralCurveActivityTypeEnum.USERDEFINED) || EXISTS(this/* as IfcObject*/.ObjectType);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcStructuralCurveAction.HasObjectType' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause SuitablePredefinedType
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool SuitablePredefinedType() {
-			var retVal = false;
-			try {
-				retVal = PredefinedType != IfcStructuralCurveActivityTypeEnum.EQUIDISTANT;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'SuitablePredefinedType' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcStructuralCurveAction.SuitablePredefinedType) {
+				try {
+					retVal = PredefinedType != IfcStructuralCurveActivityTypeEnum.EQUIDISTANT;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcStructuralCurveAction.SuitablePredefinedType' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcProduct)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -63,12 +55,24 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				yield return value;
 			}
-			if (!ProjectedIsGlobal())
-				yield return new ValidationResult() { Item = this, IssueSource = "ProjectedIsGlobal", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!HasObjectType())
-				yield return new ValidationResult() { Item = this, IssueSource = "HasObjectType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!SuitablePredefinedType())
-				yield return new ValidationResult() { Item = this, IssueSource = "SuitablePredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcStructuralCurveAction.ProjectedIsGlobal))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcStructuralCurveAction.ProjectedIsGlobal", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcStructuralCurveAction.HasObjectType))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcStructuralCurveAction.HasObjectType", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcStructuralCurveAction.SuitablePredefinedType))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcStructuralCurveAction.SuitablePredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcStructuralCurveAction : IfcProduct
+	{
+		public static readonly IfcStructuralCurveAction ProjectedIsGlobal = new IfcStructuralCurveAction();
+		public static readonly IfcStructuralCurveAction HasObjectType = new IfcStructuralCurveAction();
+		public static readonly IfcStructuralCurveAction SuitablePredefinedType = new IfcStructuralCurveAction();
+		protected IfcStructuralCurveAction() {}
 	}
 }

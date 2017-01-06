@@ -16,17 +16,21 @@ namespace Xbim.Ifc4.HvacDomain
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcFanType");
 
 		/// <summary>
-		/// Tests the express where clause CorrectPredefinedType
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool CorrectPredefinedType() {
+		public bool ValidateClause(Where.IfcFanType clause) {
 			var retVal = false;
-			try {
-				retVal = (PredefinedType != IfcFanTypeEnum.USERDEFINED) || ((PredefinedType == IfcFanTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'CorrectPredefinedType' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcFanType.CorrectPredefinedType) {
+				try {
+					retVal = (PredefinedType != IfcFanTypeEnum.USERDEFINED) || ((PredefinedType == IfcFanTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcFanType.CorrectPredefinedType' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcTypeProduct)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -35,8 +39,18 @@ namespace Xbim.Ifc4.HvacDomain
 			{
 				yield return value;
 			}
-			if (!CorrectPredefinedType())
-				yield return new ValidationResult() { Item = this, IssueSource = "CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcFanType.CorrectPredefinedType))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcFanType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcFanType : IfcTypeProduct
+	{
+		public static readonly IfcFanType CorrectPredefinedType = new IfcFanType();
+		protected IfcFanType() {}
 	}
 }

@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.RepresentationResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.RepresentationResource.IfcProjectedCRS");
 
 		/// <summary>
-		/// Tests the express where clause IsLengthUnit
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool IsLengthUnit() {
+		public bool ValidateClause(Where.IfcProjectedCRS clause) {
 			var retVal = false;
-			try {
-				retVal = !(EXISTS(MapUnit)) || (MapUnit.UnitType == IfcUnitEnum.LENGTHUNIT);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'IsLengthUnit' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcProjectedCRS.IsLengthUnit) {
+				try {
+					retVal = !(EXISTS(MapUnit)) || (MapUnit.UnitType == IfcUnitEnum.LENGTHUNIT);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcProjectedCRS.IsLengthUnit' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!IsLengthUnit())
-				yield return new ValidationResult() { Item = this, IssueSource = "IsLengthUnit", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcProjectedCRS.IsLengthUnit))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcProjectedCRS.IsLengthUnit", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcProjectedCRS
+	{
+		public static readonly IfcProjectedCRS IsLengthUnit = new IfcProjectedCRS();
+		protected IfcProjectedCRS() {}
 	}
 }

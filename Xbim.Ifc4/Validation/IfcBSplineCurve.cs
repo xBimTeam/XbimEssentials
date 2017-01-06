@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.GeometryResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcBSplineCurve");
 
 		/// <summary>
-		/// Tests the express where clause SameDim
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool SameDim() {
+		public bool ValidateClause(Where.IfcBSplineCurve clause) {
 			var retVal = false;
-			try {
-				retVal = SIZEOF(ControlPointsList.Where(Temp => Temp.Dim != ControlPointsList.ToArray()[0].Dim)) == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'SameDim' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcBSplineCurve.SameDim) {
+				try {
+					retVal = SIZEOF(ControlPointsList.Where(Temp => Temp.Dim != ControlPointsList.ToArray()[0].Dim)) == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcBSplineCurve.SameDim' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!SameDim())
-				yield return new ValidationResult() { Item = this, IssueSource = "SameDim", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcBSplineCurve.SameDim))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcBSplineCurve.SameDim", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcBSplineCurve
+	{
+		public static readonly IfcBSplineCurve SameDim = new IfcBSplineCurve();
+		protected IfcBSplineCurve() {}
 	}
 }

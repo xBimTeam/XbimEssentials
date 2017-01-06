@@ -16,17 +16,21 @@ namespace Xbim.Ifc4.SharedComponentElements
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedComponentElements.IfcMechanicalFastenerType");
 
 		/// <summary>
-		/// Tests the express where clause CorrectPredefinedType
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool CorrectPredefinedType() {
+		public bool ValidateClause(Where.IfcMechanicalFastenerType clause) {
 			var retVal = false;
-			try {
-				retVal = (PredefinedType != IfcMechanicalFastenerTypeEnum.USERDEFINED) || ((PredefinedType == IfcMechanicalFastenerTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'CorrectPredefinedType' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcMechanicalFastenerType.CorrectPredefinedType) {
+				try {
+					retVal = (PredefinedType != IfcMechanicalFastenerTypeEnum.USERDEFINED) || ((PredefinedType == IfcMechanicalFastenerTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcMechanicalFastenerType.CorrectPredefinedType' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcTypeProduct)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -35,8 +39,18 @@ namespace Xbim.Ifc4.SharedComponentElements
 			{
 				yield return value;
 			}
-			if (!CorrectPredefinedType())
-				yield return new ValidationResult() { Item = this, IssueSource = "CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcMechanicalFastenerType.CorrectPredefinedType))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcMechanicalFastenerType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcMechanicalFastenerType : IfcTypeProduct
+	{
+		public static readonly IfcMechanicalFastenerType CorrectPredefinedType = new IfcMechanicalFastenerType();
+		protected IfcMechanicalFastenerType() {}
 	}
 }

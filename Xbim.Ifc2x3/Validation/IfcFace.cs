@@ -20,23 +20,37 @@ namespace Xbim.Ifc2x3.TopologyResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.TopologyResource.IfcFace");
 
 		/// <summary>
-		/// Tests the express where clause WR1
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR1() {
+		public bool ValidateClause(Where.IfcFace clause) {
 			var retVal = false;
-			try {
-				retVal = SIZEOF(Bounds.Where(temp => TYPEOF(temp).Contains("IFC2X3.IFCFACEOUTERBOUND"))) <= 1;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR1' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcFace.WR1) {
+				try {
+					retVal = SIZEOF(Bounds.Where(temp => TYPEOF(temp).Contains("IFC2X3.IFCFACEOUTERBOUND"))) <= 1;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcFace.WR1' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR1())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR1", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcFace.WR1))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcFace.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcFace
+	{
+		public static readonly IfcFace WR1 = new IfcFace();
+		protected IfcFace() {}
 	}
 }

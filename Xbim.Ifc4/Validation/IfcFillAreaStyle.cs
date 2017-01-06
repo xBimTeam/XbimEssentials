@@ -16,55 +16,59 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcFillAreaStyle");
 
 		/// <summary>
-		/// Tests the express where clause MaxOneColour
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool MaxOneColour() {
+		public bool ValidateClause(Where.IfcFillAreaStyle clause) {
 			var retVal = false;
-			try {
-				retVal = SIZEOF(this.FillStyles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCCOLOUR"))) <= 1;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'MaxOneColour' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcFillAreaStyle.MaxOneColour) {
+				try {
+					retVal = SIZEOF(this.FillStyles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCCOLOUR"))) <= 1;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcFillAreaStyle.MaxOneColour' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause MaxOneExtHatchStyle
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool MaxOneExtHatchStyle() {
-			var retVal = false;
-			try {
-				retVal = SIZEOF(this.FillStyles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCEXTERNALLYDEFINEDHATCHSTYLE"))) <= 1;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'MaxOneExtHatchStyle' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcFillAreaStyle.MaxOneExtHatchStyle) {
+				try {
+					retVal = SIZEOF(this.FillStyles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCEXTERNALLYDEFINEDHATCHSTYLE"))) <= 1;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcFillAreaStyle.MaxOneExtHatchStyle' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause ConsistentHatchStyleDef
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool ConsistentHatchStyleDef() {
-			var retVal = false;
-			try {
-				retVal = IfcCorrectFillAreaStyle(this.FillStyles);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ConsistentHatchStyleDef' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcFillAreaStyle.ConsistentHatchStyleDef) {
+				try {
+					retVal = IfcCorrectFillAreaStyle(this.FillStyles);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcFillAreaStyle.ConsistentHatchStyleDef' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!MaxOneColour())
-				yield return new ValidationResult() { Item = this, IssueSource = "MaxOneColour", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!MaxOneExtHatchStyle())
-				yield return new ValidationResult() { Item = this, IssueSource = "MaxOneExtHatchStyle", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ConsistentHatchStyleDef())
-				yield return new ValidationResult() { Item = this, IssueSource = "ConsistentHatchStyleDef", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcFillAreaStyle.MaxOneColour))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcFillAreaStyle.MaxOneColour", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcFillAreaStyle.MaxOneExtHatchStyle))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcFillAreaStyle.MaxOneExtHatchStyle", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcFillAreaStyle.ConsistentHatchStyleDef))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcFillAreaStyle.ConsistentHatchStyleDef", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcFillAreaStyle
+	{
+		public static readonly IfcFillAreaStyle MaxOneColour = new IfcFillAreaStyle();
+		public static readonly IfcFillAreaStyle MaxOneExtHatchStyle = new IfcFillAreaStyle();
+		public static readonly IfcFillAreaStyle ConsistentHatchStyleDef = new IfcFillAreaStyle();
+		protected IfcFillAreaStyle() {}
 	}
 }

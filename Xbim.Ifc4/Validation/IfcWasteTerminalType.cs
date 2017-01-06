@@ -16,17 +16,21 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.PlumbingFireProtectionDomain.IfcWasteTerminalType");
 
 		/// <summary>
-		/// Tests the express where clause CorrectPredefinedType
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool CorrectPredefinedType() {
+		public bool ValidateClause(Where.IfcWasteTerminalType clause) {
 			var retVal = false;
-			try {
-				retVal = (PredefinedType != IfcWasteTerminalTypeEnum.USERDEFINED) || ((PredefinedType == IfcWasteTerminalTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'CorrectPredefinedType' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcWasteTerminalType.CorrectPredefinedType) {
+				try {
+					retVal = (PredefinedType != IfcWasteTerminalTypeEnum.USERDEFINED) || ((PredefinedType == IfcWasteTerminalTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcWasteTerminalType.CorrectPredefinedType' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcTypeProduct)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -35,8 +39,18 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 			{
 				yield return value;
 			}
-			if (!CorrectPredefinedType())
-				yield return new ValidationResult() { Item = this, IssueSource = "CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcWasteTerminalType.CorrectPredefinedType))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcWasteTerminalType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcWasteTerminalType : IfcTypeProduct
+	{
+		public static readonly IfcWasteTerminalType CorrectPredefinedType = new IfcWasteTerminalType();
+		protected IfcWasteTerminalType() {}
 	}
 }

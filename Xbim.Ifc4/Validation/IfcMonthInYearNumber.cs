@@ -11,28 +11,42 @@ using static Xbim.Ifc4.Functions;
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.DateTimeResource
 {
-	public partial struct IfcMonthInYearNumber 
+	public partial struct IfcMonthInYearNumber : IExpressValidatable
 	{
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.DateTimeResource.IfcMonthInYearNumber");
 
 		/// <summary>
-		/// Tests the express where clause ValidRange
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidRange() {
+		public bool ValidateClause(Where.IfcMonthInYearNumber clause) {
 			var retVal = false;
-			try {
-				retVal = ((1 <= this) && (this <= 12) );
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ValidRange'.", ex);
+			if (clause == Where.IfcMonthInYearNumber.ValidRange) {
+				try {
+					retVal = ((1 <= this) && (this <= 12) );
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcMonthInYearNumber.ValidRange'.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidRange())
-				yield return new ValidationResult() { Item = this, IssueSource = "ValidRange", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcMonthInYearNumber.ValidRange))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcMonthInYearNumber.ValidRange", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcMonthInYearNumber
+	{
+		public static readonly IfcMonthInYearNumber ValidRange = new IfcMonthInYearNumber();
+		protected IfcMonthInYearNumber() {}
 	}
 }

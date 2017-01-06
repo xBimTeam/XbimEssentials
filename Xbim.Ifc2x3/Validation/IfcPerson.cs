@@ -20,23 +20,37 @@ namespace Xbim.Ifc2x3.ActorResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ActorResource.IfcPerson");
 
 		/// <summary>
-		/// Tests the express where clause WR1
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR1() {
+		public bool ValidateClause(Where.IfcPerson clause) {
 			var retVal = false;
-			try {
-				retVal = EXISTS(FamilyName) || EXISTS(GivenName);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR1' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcPerson.WR1) {
+				try {
+					retVal = EXISTS(FamilyName) || EXISTS(GivenName);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcPerson.WR1' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR1())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR1", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcPerson.WR1))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcPerson.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcPerson
+	{
+		public static readonly IfcPerson WR1 = new IfcPerson();
+		protected IfcPerson() {}
 	}
 }

@@ -16,39 +16,48 @@ namespace Xbim.Ifc4.Kernel
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcComplexPropertyTemplate");
 
 		/// <summary>
-		/// Tests the express where clause UniquePropertyNames
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool UniquePropertyNames() {
+		public bool ValidateClause(Where.IfcComplexPropertyTemplate clause) {
 			var retVal = false;
-			try {
-				retVal = IfcUniquePropertyTemplateNames(HasPropertyTemplates);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'UniquePropertyNames' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcComplexPropertyTemplate.UniquePropertyNames) {
+				try {
+					retVal = IfcUniquePropertyTemplateNames(HasPropertyTemplates);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcComplexPropertyTemplate.UniquePropertyNames' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause NoSelfReference
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool NoSelfReference() {
-			var retVal = false;
-			try {
-				retVal = SIZEOF(HasPropertyTemplates.Where(temp => Object.ReferenceEquals(this, temp))) == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'NoSelfReference' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcComplexPropertyTemplate.NoSelfReference) {
+				try {
+					retVal = SIZEOF(HasPropertyTemplates.Where(temp => Object.ReferenceEquals(this, temp))) == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcComplexPropertyTemplate.NoSelfReference' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!UniquePropertyNames())
-				yield return new ValidationResult() { Item = this, IssueSource = "UniquePropertyNames", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!NoSelfReference())
-				yield return new ValidationResult() { Item = this, IssueSource = "NoSelfReference", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcComplexPropertyTemplate.UniquePropertyNames))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcComplexPropertyTemplate.UniquePropertyNames", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcComplexPropertyTemplate.NoSelfReference))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcComplexPropertyTemplate.NoSelfReference", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcComplexPropertyTemplate
+	{
+		public static readonly IfcComplexPropertyTemplate UniquePropertyNames = new IfcComplexPropertyTemplate();
+		public static readonly IfcComplexPropertyTemplate NoSelfReference = new IfcComplexPropertyTemplate();
+		protected IfcComplexPropertyTemplate() {}
 	}
 }

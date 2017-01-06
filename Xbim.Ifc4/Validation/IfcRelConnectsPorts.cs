@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.ProductExtension
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcRelConnectsPorts");
 
 		/// <summary>
-		/// Tests the express where clause NoSelfReference
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool NoSelfReference() {
+		public bool ValidateClause(Where.IfcRelConnectsPorts clause) {
 			var retVal = false;
-			try {
-				retVal = !Object.ReferenceEquals(RelatingPort, RelatedPort);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'NoSelfReference' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcRelConnectsPorts.NoSelfReference) {
+				try {
+					retVal = !Object.ReferenceEquals(RelatingPort, RelatedPort);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcRelConnectsPorts.NoSelfReference' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!NoSelfReference())
-				yield return new ValidationResult() { Item = this, IssueSource = "NoSelfReference", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcRelConnectsPorts.NoSelfReference))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelConnectsPorts.NoSelfReference", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcRelConnectsPorts
+	{
+		public static readonly IfcRelConnectsPorts NoSelfReference = new IfcRelConnectsPorts();
+		protected IfcRelConnectsPorts() {}
 	}
 }

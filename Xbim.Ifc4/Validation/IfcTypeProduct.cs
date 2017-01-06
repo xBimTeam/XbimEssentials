@@ -16,17 +16,21 @@ namespace Xbim.Ifc4.Kernel
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcTypeProduct");
 
 		/// <summary>
-		/// Tests the express where clause ApplicableOccurrence
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ApplicableOccurrence() {
+		public bool ValidateClause(Where.IfcTypeProduct clause) {
 			var retVal = false;
-			try {
-				retVal = !(EXISTS(this/* as IfcTypeObject*/.Types.ToArray()[0])) || (SIZEOF(this/* as IfcTypeObject*/.Types.ToArray()[0].RelatedObjects.Where(temp => !(TYPEOF(temp).Contains("IFC4.IFCPRODUCT")))) == 0);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ApplicableOccurrence' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcTypeProduct.ApplicableOccurrence) {
+				try {
+					retVal = !(EXISTS(this/* as IfcTypeObject*/.Types.ToArray()[0])) || (SIZEOF(this/* as IfcTypeObject*/.Types.ToArray()[0].RelatedObjects.Where(temp => !(TYPEOF(temp).Contains("IFC4.IFCPRODUCT")))) == 0);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcTypeProduct.ApplicableOccurrence' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcTypeObject)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -35,8 +39,18 @@ namespace Xbim.Ifc4.Kernel
 			{
 				yield return value;
 			}
-			if (!ApplicableOccurrence())
-				yield return new ValidationResult() { Item = this, IssueSource = "ApplicableOccurrence", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcTypeProduct.ApplicableOccurrence))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcTypeProduct.ApplicableOccurrence", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcTypeProduct : IfcTypeObject
+	{
+		public static readonly IfcTypeProduct ApplicableOccurrence = new IfcTypeProduct();
+		protected IfcTypeProduct() {}
 	}
 }

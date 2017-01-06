@@ -20,55 +20,59 @@ namespace Xbim.Ifc2x3.ProfileResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfileResource.IfcCShapeProfileDef");
 
 		/// <summary>
-		/// Tests the express where clause WR1
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR1() {
+		public bool ValidateClause(Where.IfcCShapeProfileDef clause) {
 			var retVal = false;
-			try {
-				retVal = Girth < (Depth / 2);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR1' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcCShapeProfileDef.WR1) {
+				try {
+					retVal = Girth < (Depth / 2);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcCShapeProfileDef.WR1' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR2
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR2() {
-			var retVal = false;
-			try {
-				retVal = !(EXISTS(InternalFilletRadius)) || ((InternalFilletRadius <= Width / 2) && (InternalFilletRadius <= Depth / 2));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR2' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcCShapeProfileDef.WR2) {
+				try {
+					retVal = !(EXISTS(InternalFilletRadius)) || ((InternalFilletRadius <= Width / 2) && (InternalFilletRadius <= Depth / 2));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcCShapeProfileDef.WR2' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR3
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR3() {
-			var retVal = false;
-			try {
-				retVal = (WallThickness < Width / 2) && (WallThickness < Depth / 2);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR3' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcCShapeProfileDef.WR3) {
+				try {
+					retVal = (WallThickness < Width / 2) && (WallThickness < Depth / 2);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcCShapeProfileDef.WR3' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR1())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR1", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR2())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR2", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR3())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR3", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcCShapeProfileDef.WR1))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcCShapeProfileDef.WR1", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcCShapeProfileDef.WR2))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcCShapeProfileDef.WR2", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcCShapeProfileDef.WR3))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcCShapeProfileDef.WR3", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcCShapeProfileDef
+	{
+		public static readonly IfcCShapeProfileDef WR1 = new IfcCShapeProfileDef();
+		public static readonly IfcCShapeProfileDef WR2 = new IfcCShapeProfileDef();
+		public static readonly IfcCShapeProfileDef WR3 = new IfcCShapeProfileDef();
+		protected IfcCShapeProfileDef() {}
 	}
 }

@@ -20,23 +20,37 @@ namespace Xbim.Ifc2x3.Kernel
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcRelDecomposes");
 
 		/// <summary>
-		/// Tests the express where clause WR31
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR31() {
+		public bool ValidateClause(Where.IfcRelDecomposes clause) {
 			var retVal = false;
-			try {
-				retVal = SIZEOF(RelatedObjects.Where(Temp => Object.ReferenceEquals(RelatingObject, Temp))) == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR31' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcRelDecomposes.WR31) {
+				try {
+					retVal = SIZEOF(RelatedObjects.Where(Temp => Object.ReferenceEquals(RelatingObject, Temp))) == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcRelDecomposes.WR31' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR31())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR31", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcRelDecomposes.WR31))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelDecomposes.WR31", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcRelDecomposes
+	{
+		public static readonly IfcRelDecomposes WR31 = new IfcRelDecomposes();
+		protected IfcRelDecomposes() {}
 	}
 }

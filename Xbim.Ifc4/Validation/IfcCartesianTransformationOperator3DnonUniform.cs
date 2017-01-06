@@ -16,31 +16,29 @@ namespace Xbim.Ifc4.GeometryResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcCartesianTransformationOperator3DnonUniform");
 
 		/// <summary>
-		/// Tests the express where clause Scale2GreaterZero
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool Scale2GreaterZero() {
+		public bool ValidateClause(Where.IfcCartesianTransformationOperator3DnonUniform clause) {
 			var retVal = false;
-			try {
-				retVal = Scl2 > 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'Scale2GreaterZero' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcCartesianTransformationOperator3DnonUniform.Scale2GreaterZero) {
+				try {
+					retVal = Scl2 > 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator3DnonUniform.Scale2GreaterZero' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause Scale3GreaterZero
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool Scale3GreaterZero() {
-			var retVal = false;
-			try {
-				retVal = Scl3 > 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'Scale3GreaterZero' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcCartesianTransformationOperator3DnonUniform.Scale3GreaterZero) {
+				try {
+					retVal = Scl3 > 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator3DnonUniform.Scale3GreaterZero' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcCartesianTransformationOperator3D)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -49,10 +47,21 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				yield return value;
 			}
-			if (!Scale2GreaterZero())
-				yield return new ValidationResult() { Item = this, IssueSource = "Scale2GreaterZero", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!Scale3GreaterZero())
-				yield return new ValidationResult() { Item = this, IssueSource = "Scale3GreaterZero", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcCartesianTransformationOperator3DnonUniform.Scale2GreaterZero))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcCartesianTransformationOperator3DnonUniform.Scale2GreaterZero", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcCartesianTransformationOperator3DnonUniform.Scale3GreaterZero))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcCartesianTransformationOperator3DnonUniform.Scale3GreaterZero", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcCartesianTransformationOperator3DnonUniform : IfcCartesianTransformationOperator3D
+	{
+		public static readonly IfcCartesianTransformationOperator3DnonUniform Scale2GreaterZero = new IfcCartesianTransformationOperator3DnonUniform();
+		public static readonly IfcCartesianTransformationOperator3DnonUniform Scale3GreaterZero = new IfcCartesianTransformationOperator3DnonUniform();
+		protected IfcCartesianTransformationOperator3DnonUniform() {}
 	}
 }

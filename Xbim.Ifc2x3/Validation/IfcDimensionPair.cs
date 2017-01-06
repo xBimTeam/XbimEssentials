@@ -20,55 +20,59 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDimensioningResource.IfcDimensionPair");
 
 		/// <summary>
-		/// Tests the express where clause WR11
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR11() {
+		public bool ValidateClause(Where.IfcDimensionPair clause) {
 			var retVal = false;
-			try {
-				retVal = NewArray("chained", "parallel").Contains(this.Name);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR11' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcDimensionPair.WR11) {
+				try {
+					retVal = NewArray("chained", "parallel").Contains(this.Name);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcDimensionPair.WR11' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR12
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR12() {
-			var retVal = false;
-			try {
-				retVal = SIZEOF(TYPEOF(this.RelatingDraughtingCallout) * NewArray("IFC2X3.IFCANGULARDIMENSION", "IFC2X3.IFCDIAMETERDIMENSION", "IFC2X3.IFCLINEARDIMENSION", "IFC2X3.IFCRADIUSDIMENSION")) == 1;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR12' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcDimensionPair.WR12) {
+				try {
+					retVal = SIZEOF(TYPEOF(this.RelatingDraughtingCallout) * NewArray("IFC2X3.IFCANGULARDIMENSION", "IFC2X3.IFCDIAMETERDIMENSION", "IFC2X3.IFCLINEARDIMENSION", "IFC2X3.IFCRADIUSDIMENSION")) == 1;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcDimensionPair.WR12' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR13
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR13() {
-			var retVal = false;
-			try {
-				retVal = SIZEOF(TYPEOF(this.RelatedDraughtingCallout) * NewArray("IFC2X3.IFCANGULARDIMENSION", "IFC2X3.IFCDIAMETERDIMENSION", "IFC2X3.IFCLINEARDIMENSION", "IFC2X3.IFCRADIUSDIMENSION")) == 1;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR13' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcDimensionPair.WR13) {
+				try {
+					retVal = SIZEOF(TYPEOF(this.RelatedDraughtingCallout) * NewArray("IFC2X3.IFCANGULARDIMENSION", "IFC2X3.IFCDIAMETERDIMENSION", "IFC2X3.IFCLINEARDIMENSION", "IFC2X3.IFCRADIUSDIMENSION")) == 1;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcDimensionPair.WR13' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR11())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR11", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR12())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR12", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR13())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR13", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcDimensionPair.WR11))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcDimensionPair.WR11", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcDimensionPair.WR12))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcDimensionPair.WR12", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcDimensionPair.WR13))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcDimensionPair.WR13", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcDimensionPair
+	{
+		public static readonly IfcDimensionPair WR11 = new IfcDimensionPair();
+		public static readonly IfcDimensionPair WR12 = new IfcDimensionPair();
+		public static readonly IfcDimensionPair WR13 = new IfcDimensionPair();
+		protected IfcDimensionPair() {}
 	}
 }

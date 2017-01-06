@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.GeometricModelResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcGeometricSet");
 
 		/// <summary>
-		/// Tests the express where clause ConsistentDim
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ConsistentDim() {
+		public bool ValidateClause(Where.IfcGeometricSet clause) {
 			var retVal = false;
-			try {
-				retVal = SIZEOF(Elements.Where(Temp => Temp.Dim != Elements.ToArray()[0].Dim)) == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ConsistentDim' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcGeometricSet.ConsistentDim) {
+				try {
+					retVal = SIZEOF(Elements.Where(Temp => Temp.Dim != Elements.ToArray()[0].Dim)) == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcGeometricSet.ConsistentDim' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!ConsistentDim())
-				yield return new ValidationResult() { Item = this, IssueSource = "ConsistentDim", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcGeometricSet.ConsistentDim))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcGeometricSet.ConsistentDim", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcGeometricSet
+	{
+		public static readonly IfcGeometricSet ConsistentDim = new IfcGeometricSet();
+		protected IfcGeometricSet() {}
 	}
 }

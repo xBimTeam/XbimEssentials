@@ -20,17 +20,21 @@ namespace Xbim.Ifc2x3.HVACDomain
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.HVACDomain.IfcDuctSegmentType");
 
 		/// <summary>
-		/// Tests the express where clause WR1
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR1() {
+		public bool ValidateClause(Where.IfcDuctSegmentType clause) {
 			var retVal = false;
-			try {
-				retVal = (PredefinedType != IfcDuctSegmentTypeEnum.USERDEFINED) || ((PredefinedType == IfcDuctSegmentTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR1' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcDuctSegmentType.WR1) {
+				try {
+					retVal = (PredefinedType != IfcDuctSegmentTypeEnum.USERDEFINED) || ((PredefinedType == IfcDuctSegmentTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcDuctSegmentType.WR1' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcTypeProduct)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -39,8 +43,18 @@ namespace Xbim.Ifc2x3.HVACDomain
 			{
 				yield return value;
 			}
-			if (!WR1())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR1", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcDuctSegmentType.WR1))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcDuctSegmentType.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcDuctSegmentType : IfcTypeProduct
+	{
+		public new static readonly IfcDuctSegmentType WR1 = new IfcDuctSegmentType();
+		protected IfcDuctSegmentType() {}
 	}
 }

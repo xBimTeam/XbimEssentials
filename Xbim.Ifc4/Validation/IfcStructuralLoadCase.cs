@@ -16,17 +16,21 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralLoadCase");
 
 		/// <summary>
-		/// Tests the express where clause IsLoadCasePredefinedType
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool IsLoadCasePredefinedType() {
+		public bool ValidateClause(Where.IfcStructuralLoadCase clause) {
 			var retVal = false;
-			try {
-				retVal = this/* as IfcStructuralLoadGroup*/.PredefinedType == IfcLoadGroupTypeEnum.LOAD_CASE;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'IsLoadCasePredefinedType' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcStructuralLoadCase.IsLoadCasePredefinedType) {
+				try {
+					retVal = this/* as IfcStructuralLoadGroup*/.PredefinedType == IfcLoadGroupTypeEnum.LOAD_CASE;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcStructuralLoadCase.IsLoadCasePredefinedType' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcStructuralLoadGroup)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -35,8 +39,18 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				yield return value;
 			}
-			if (!IsLoadCasePredefinedType())
-				yield return new ValidationResult() { Item = this, IssueSource = "IsLoadCasePredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcStructuralLoadCase.IsLoadCasePredefinedType))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcStructuralLoadCase.IsLoadCasePredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcStructuralLoadCase : IfcStructuralLoadGroup
+	{
+		public static readonly IfcStructuralLoadCase IsLoadCasePredefinedType = new IfcStructuralLoadCase();
+		protected IfcStructuralLoadCase() {}
 	}
 }

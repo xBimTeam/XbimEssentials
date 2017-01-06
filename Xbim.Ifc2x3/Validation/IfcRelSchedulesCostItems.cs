@@ -20,31 +20,29 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.SharedMgmtElements.IfcRelSchedulesCostItems");
 
 		/// <summary>
-		/// Tests the express where clause WR11
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR11() {
+		public bool ValidateClause(Where.IfcRelSchedulesCostItems clause) {
 			var retVal = false;
-			try {
-				retVal = SIZEOF(this/* as IfcRelAssigns*/.RelatedObjects.Where(temp => !(TYPEOF(temp).Contains("IFC2X3.IFCCOSTITEM")))) == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR11' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcRelSchedulesCostItems.WR11) {
+				try {
+					retVal = SIZEOF(this/* as IfcRelAssigns*/.RelatedObjects.Where(temp => !(TYPEOF(temp).Contains("IFC2X3.IFCCOSTITEM")))) == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcRelSchedulesCostItems.WR11' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR12
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR12() {
-			var retVal = false;
-			try {
-				retVal = TYPEOF(this/* as IfcRelAssignsToControl*/.RelatingControl).Contains("IFC2X3.IFCCOSTSCHEDULE");
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR12' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcRelSchedulesCostItems.WR12) {
+				try {
+					retVal = TYPEOF(this/* as IfcRelAssignsToControl*/.RelatingControl).Contains("IFC2X3.IFCCOSTSCHEDULE");
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcRelSchedulesCostItems.WR12' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcRelAssignsToControl)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -53,10 +51,21 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			{
 				yield return value;
 			}
-			if (!WR11())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR11", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR12())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR12", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcRelSchedulesCostItems.WR11))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelSchedulesCostItems.WR11", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcRelSchedulesCostItems.WR12))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelSchedulesCostItems.WR12", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcRelSchedulesCostItems : IfcRelAssignsToControl
+	{
+		public static readonly IfcRelSchedulesCostItems WR11 = new IfcRelSchedulesCostItems();
+		public static readonly IfcRelSchedulesCostItems WR12 = new IfcRelSchedulesCostItems();
+		protected IfcRelSchedulesCostItems() {}
 	}
 }

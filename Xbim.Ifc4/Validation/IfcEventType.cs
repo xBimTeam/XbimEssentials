@@ -16,31 +16,29 @@ namespace Xbim.Ifc4.ProcessExtension
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProcessExtension.IfcEventType");
 
 		/// <summary>
-		/// Tests the express where clause CorrectPredefinedType
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool CorrectPredefinedType() {
+		public bool ValidateClause(Where.IfcEventType clause) {
 			var retVal = false;
-			try {
-				retVal = (PredefinedType != IfcEventTypeEnum.USERDEFINED) || ((PredefinedType == IfcEventTypeEnum.USERDEFINED) && EXISTS(this/* as IfcTypeProcess*/.ProcessType));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'CorrectPredefinedType' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcEventType.CorrectPredefinedType) {
+				try {
+					retVal = (PredefinedType != IfcEventTypeEnum.USERDEFINED) || ((PredefinedType == IfcEventTypeEnum.USERDEFINED) && EXISTS(this/* as IfcTypeProcess*/.ProcessType));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcEventType.CorrectPredefinedType' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause CorrectEventTriggerType
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool CorrectEventTriggerType() {
-			var retVal = false;
-			try {
-				retVal = (EventTriggerType != IfcEventTriggerTypeEnum.USERDEFINED) || ((EventTriggerType == IfcEventTriggerTypeEnum.USERDEFINED) && EXISTS(UserDefinedEventTriggerType));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'CorrectEventTriggerType' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcEventType.CorrectEventTriggerType) {
+				try {
+					retVal = (EventTriggerType != IfcEventTriggerTypeEnum.USERDEFINED) || ((EventTriggerType == IfcEventTriggerTypeEnum.USERDEFINED) && EXISTS(UserDefinedEventTriggerType));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcEventType.CorrectEventTriggerType' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcTypeObject)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -49,10 +47,21 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				yield return value;
 			}
-			if (!CorrectPredefinedType())
-				yield return new ValidationResult() { Item = this, IssueSource = "CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!CorrectEventTriggerType())
-				yield return new ValidationResult() { Item = this, IssueSource = "CorrectEventTriggerType", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcEventType.CorrectPredefinedType))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcEventType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcEventType.CorrectEventTriggerType))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcEventType.CorrectEventTriggerType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcEventType : IfcTypeObject
+	{
+		public static readonly IfcEventType CorrectPredefinedType = new IfcEventType();
+		public static readonly IfcEventType CorrectEventTriggerType = new IfcEventType();
+		protected IfcEventType() {}
 	}
 }

@@ -20,17 +20,21 @@ namespace Xbim.Ifc2x3.GeometryResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcSurfaceOfLinearExtrusion");
 
 		/// <summary>
-		/// Tests the express where clause WR41
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR41() {
+		public bool ValidateClause(Where.IfcSurfaceOfLinearExtrusion clause) {
 			var retVal = false;
-			try {
-				retVal = Depth > 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR41' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcSurfaceOfLinearExtrusion.WR41) {
+				try {
+					retVal = Depth > 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcSurfaceOfLinearExtrusion.WR41' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcSweptSurface)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -39,8 +43,18 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				yield return value;
 			}
-			if (!WR41())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR41", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcSurfaceOfLinearExtrusion.WR41))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcSurfaceOfLinearExtrusion.WR41", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcSurfaceOfLinearExtrusion : IfcSweptSurface
+	{
+		public static readonly IfcSurfaceOfLinearExtrusion WR41 = new IfcSurfaceOfLinearExtrusion();
+		protected IfcSurfaceOfLinearExtrusion() {}
 	}
 }

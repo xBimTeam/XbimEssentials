@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.GeometryResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcCartesianTransformationOperator");
 
 		/// <summary>
-		/// Tests the express where clause ScaleGreaterZero
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ScaleGreaterZero() {
+		public bool ValidateClause(Where.IfcCartesianTransformationOperator clause) {
 			var retVal = false;
-			try {
-				retVal = Scl > 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ScaleGreaterZero' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcCartesianTransformationOperator.ScaleGreaterZero) {
+				try {
+					retVal = Scl > 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator.ScaleGreaterZero' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!ScaleGreaterZero())
-				yield return new ValidationResult() { Item = this, IssueSource = "ScaleGreaterZero", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcCartesianTransformationOperator.ScaleGreaterZero))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcCartesianTransformationOperator.ScaleGreaterZero", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcCartesianTransformationOperator
+	{
+		public static readonly IfcCartesianTransformationOperator ScaleGreaterZero = new IfcCartesianTransformationOperator();
+		protected IfcCartesianTransformationOperator() {}
 	}
 }

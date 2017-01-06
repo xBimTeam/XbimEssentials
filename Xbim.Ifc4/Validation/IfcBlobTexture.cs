@@ -16,39 +16,48 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcBlobTexture");
 
 		/// <summary>
-		/// Tests the express where clause SupportedRasterFormat
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool SupportedRasterFormat() {
+		public bool ValidateClause(Where.IfcBlobTexture clause) {
 			var retVal = false;
-			try {
-				retVal = NewArray("BMP", "JPG", "GIF", "PNG").Contains(this.RasterFormat);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'SupportedRasterFormat' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcBlobTexture.SupportedRasterFormat) {
+				try {
+					retVal = NewArray("BMP", "JPG", "GIF", "PNG").Contains(this.RasterFormat);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcBlobTexture.SupportedRasterFormat' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause RasterCodeByteStream
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool RasterCodeByteStream() {
-			var retVal = false;
-			try {
-				retVal = BLENGTH(RasterCode) % 8 == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'RasterCodeByteStream' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcBlobTexture.RasterCodeByteStream) {
+				try {
+					retVal = BLENGTH(RasterCode) % 8 == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcBlobTexture.RasterCodeByteStream' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!SupportedRasterFormat())
-				yield return new ValidationResult() { Item = this, IssueSource = "SupportedRasterFormat", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!RasterCodeByteStream())
-				yield return new ValidationResult() { Item = this, IssueSource = "RasterCodeByteStream", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcBlobTexture.SupportedRasterFormat))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcBlobTexture.SupportedRasterFormat", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcBlobTexture.RasterCodeByteStream))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcBlobTexture.RasterCodeByteStream", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcBlobTexture
+	{
+		public static readonly IfcBlobTexture SupportedRasterFormat = new IfcBlobTexture();
+		public static readonly IfcBlobTexture RasterCodeByteStream = new IfcBlobTexture();
+		protected IfcBlobTexture() {}
 	}
 }

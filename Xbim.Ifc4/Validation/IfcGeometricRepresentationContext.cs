@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.RepresentationResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.RepresentationResource.IfcGeometricRepresentationContext");
 
 		/// <summary>
-		/// Tests the express where clause North2D
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool North2D() {
+		public bool ValidateClause(Where.IfcGeometricRepresentationContext clause) {
 			var retVal = false;
-			try {
-				retVal = !(EXISTS(TrueNorth)) || (HIINDEX(TrueNorth.DirectionRatios) == 2);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'North2D' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcGeometricRepresentationContext.North2D) {
+				try {
+					retVal = !(EXISTS(TrueNorth)) || (HIINDEX(TrueNorth.DirectionRatios) == 2);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcGeometricRepresentationContext.North2D' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!North2D())
-				yield return new ValidationResult() { Item = this, IssueSource = "North2D", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcGeometricRepresentationContext.North2D))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcGeometricRepresentationContext.North2D", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcGeometricRepresentationContext
+	{
+		public static readonly IfcGeometricRepresentationContext North2D = new IfcGeometricRepresentationContext();
+		protected IfcGeometricRepresentationContext() {}
 	}
 }

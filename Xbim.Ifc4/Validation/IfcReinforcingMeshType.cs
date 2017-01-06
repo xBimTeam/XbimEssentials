@@ -16,31 +16,29 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralElementsDomain.IfcReinforcingMeshType");
 
 		/// <summary>
-		/// Tests the express where clause CorrectPredefinedType
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool CorrectPredefinedType() {
+		public bool ValidateClause(Where.IfcReinforcingMeshType clause) {
 			var retVal = false;
-			try {
-				retVal = (PredefinedType != IfcReinforcingMeshTypeEnum.USERDEFINED) || ((PredefinedType == IfcReinforcingMeshTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'CorrectPredefinedType' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcReinforcingMeshType.CorrectPredefinedType) {
+				try {
+					retVal = (PredefinedType != IfcReinforcingMeshTypeEnum.USERDEFINED) || ((PredefinedType == IfcReinforcingMeshTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcReinforcingMeshType.CorrectPredefinedType' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause BendingShapeCodeProvided
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool BendingShapeCodeProvided() {
-			var retVal = false;
-			try {
-				retVal = !EXISTS(BendingParameters) || EXISTS(BendingShapeCode);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'BendingShapeCodeProvided' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcReinforcingMeshType.BendingShapeCodeProvided) {
+				try {
+					retVal = !EXISTS(BendingParameters) || EXISTS(BendingShapeCode);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcReinforcingMeshType.BendingShapeCodeProvided' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcTypeProduct)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -49,10 +47,21 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				yield return value;
 			}
-			if (!CorrectPredefinedType())
-				yield return new ValidationResult() { Item = this, IssueSource = "CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!BendingShapeCodeProvided())
-				yield return new ValidationResult() { Item = this, IssueSource = "BendingShapeCodeProvided", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcReinforcingMeshType.CorrectPredefinedType))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcReinforcingMeshType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcReinforcingMeshType.BendingShapeCodeProvided))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcReinforcingMeshType.BendingShapeCodeProvided", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcReinforcingMeshType : IfcTypeProduct
+	{
+		public static readonly IfcReinforcingMeshType CorrectPredefinedType = new IfcReinforcingMeshType();
+		public static readonly IfcReinforcingMeshType BendingShapeCodeProvided = new IfcReinforcingMeshType();
+		protected IfcReinforcingMeshType() {}
 	}
 }

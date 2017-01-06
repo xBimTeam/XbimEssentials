@@ -16,39 +16,48 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcCurveStyle");
 
 		/// <summary>
-		/// Tests the express where clause MeasureOfWidth
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool MeasureOfWidth() {
+		public bool ValidateClause(Where.IfcCurveStyle clause) {
 			var retVal = false;
-			try {
-				retVal = (!(EXISTS(CurveWidth))) || (TYPEOF(CurveWidth).Contains("IFC4.IFCPOSITIVELENGTHMEASURE")) || ((TYPEOF(CurveWidth).Contains("IFC4.IFCDESCRIPTIVEMEASURE")) && (CurveWidth.AsIfcDescriptiveMeasure() == "by layer"));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'MeasureOfWidth' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcCurveStyle.MeasureOfWidth) {
+				try {
+					retVal = (!(EXISTS(CurveWidth))) || (TYPEOF(CurveWidth).Contains("IFC4.IFCPOSITIVELENGTHMEASURE")) || ((TYPEOF(CurveWidth).Contains("IFC4.IFCDESCRIPTIVEMEASURE")) && (CurveWidth.AsIfcDescriptiveMeasure() == "by layer"));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcCurveStyle.MeasureOfWidth' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause IdentifiableCurveStyle
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool IdentifiableCurveStyle() {
-			var retVal = false;
-			try {
-				retVal = EXISTS(CurveFont) || EXISTS(CurveWidth) || EXISTS(CurveColour);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'IdentifiableCurveStyle' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcCurveStyle.IdentifiableCurveStyle) {
+				try {
+					retVal = EXISTS(CurveFont) || EXISTS(CurveWidth) || EXISTS(CurveColour);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcCurveStyle.IdentifiableCurveStyle' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!MeasureOfWidth())
-				yield return new ValidationResult() { Item = this, IssueSource = "MeasureOfWidth", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!IdentifiableCurveStyle())
-				yield return new ValidationResult() { Item = this, IssueSource = "IdentifiableCurveStyle", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcCurveStyle.MeasureOfWidth))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcCurveStyle.MeasureOfWidth", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcCurveStyle.IdentifiableCurveStyle))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcCurveStyle.IdentifiableCurveStyle", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcCurveStyle
+	{
+		public static readonly IfcCurveStyle MeasureOfWidth = new IfcCurveStyle();
+		public static readonly IfcCurveStyle IdentifiableCurveStyle = new IfcCurveStyle();
+		protected IfcCurveStyle() {}
 	}
 }

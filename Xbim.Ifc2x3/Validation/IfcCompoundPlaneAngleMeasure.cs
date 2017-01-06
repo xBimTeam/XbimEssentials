@@ -15,76 +15,75 @@ using static Xbim.Ifc2x3.Functions;
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.MeasureResource
 {
-	public partial struct IfcCompoundPlaneAngleMeasure 
+	public partial struct IfcCompoundPlaneAngleMeasure : IExpressValidatable
 	{
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.MeasureResource.IfcCompoundPlaneAngleMeasure");
 
 		/// <summary>
-		/// Tests the express where clause WR1
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR1() {
+		public bool ValidateClause(Where.IfcCompoundPlaneAngleMeasure clause) {
 			var retVal = false;
-			try {
-				retVal = ((-360 <= this.ToArray()[0]) && (this.ToArray()[0] < 360) );
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR1'.", ex);
+			if (clause == Where.IfcCompoundPlaneAngleMeasure.WR1) {
+				try {
+					retVal = ((-360 <= this.ToArray()[0]) && (this.ToArray()[0] < 360) );
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcCompoundPlaneAngleMeasure.WR1'.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR2
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR2() {
-			var retVal = false;
-			try {
-				retVal = ((-60 <= this.ToArray()[1]) && (this.ToArray()[1] < 60) );
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR2'.", ex);
+			if (clause == Where.IfcCompoundPlaneAngleMeasure.WR2) {
+				try {
+					retVal = ((-60 <= this.ToArray()[1]) && (this.ToArray()[1] < 60) );
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcCompoundPlaneAngleMeasure.WR2'.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR3
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR3() {
-			var retVal = false;
-			try {
-				retVal = ((-60 <= this.ToArray()[2]) && (this.ToArray()[2] < 60) );
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR3'.", ex);
+			if (clause == Where.IfcCompoundPlaneAngleMeasure.WR3) {
+				try {
+					retVal = ((-60 <= this.ToArray()[2]) && (this.ToArray()[2] < 60) );
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcCompoundPlaneAngleMeasure.WR3'.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR4
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR4() {
-			var retVal = false;
-			try {
-				retVal = ((this.ToArray()[0] >= 0) && (this.ToArray()[1] >= 0) && (this.ToArray()[2] >= 0)) || ((this.ToArray()[0] <= 0) && (this.ToArray()[1] <= 0) && (this.ToArray()[2] <= 0));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR4'.", ex);
+			if (clause == Where.IfcCompoundPlaneAngleMeasure.WR4) {
+				try {
+					retVal = ((this.ToArray()[0] >= 0) && (this.ToArray()[1] >= 0) && (this.ToArray()[2] >= 0)) || ((this.ToArray()[0] <= 0) && (this.ToArray()[1] <= 0) && (this.ToArray()[2] <= 0));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcCompoundPlaneAngleMeasure.WR4'.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR1())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR1", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR2())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR2", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR3())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR3", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR4())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR4", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcCompoundPlaneAngleMeasure.WR1))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcCompoundPlaneAngleMeasure.WR1", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcCompoundPlaneAngleMeasure.WR2))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcCompoundPlaneAngleMeasure.WR2", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcCompoundPlaneAngleMeasure.WR3))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcCompoundPlaneAngleMeasure.WR3", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcCompoundPlaneAngleMeasure.WR4))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcCompoundPlaneAngleMeasure.WR4", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcCompoundPlaneAngleMeasure
+	{
+		public static readonly IfcCompoundPlaneAngleMeasure WR1 = new IfcCompoundPlaneAngleMeasure();
+		public static readonly IfcCompoundPlaneAngleMeasure WR2 = new IfcCompoundPlaneAngleMeasure();
+		public static readonly IfcCompoundPlaneAngleMeasure WR3 = new IfcCompoundPlaneAngleMeasure();
+		public static readonly IfcCompoundPlaneAngleMeasure WR4 = new IfcCompoundPlaneAngleMeasure();
+		protected IfcCompoundPlaneAngleMeasure() {}
 	}
 }

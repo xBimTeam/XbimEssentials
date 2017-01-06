@@ -16,31 +16,29 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralCurveReaction");
 
 		/// <summary>
-		/// Tests the express where clause HasObjectType
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool HasObjectType() {
+		public bool ValidateClause(Where.IfcStructuralCurveReaction clause) {
 			var retVal = false;
-			try {
-				retVal = (PredefinedType != IfcStructuralCurveActivityTypeEnum.USERDEFINED) || EXISTS(this/* as IfcObject*/.ObjectType);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'HasObjectType' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcStructuralCurveReaction.HasObjectType) {
+				try {
+					retVal = (PredefinedType != IfcStructuralCurveActivityTypeEnum.USERDEFINED) || EXISTS(this/* as IfcObject*/.ObjectType);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcStructuralCurveReaction.HasObjectType' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause SuitablePredefinedType
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool SuitablePredefinedType() {
-			var retVal = false;
-			try {
-				retVal = (PredefinedType != IfcStructuralCurveActivityTypeEnum.SINUS) && (PredefinedType != IfcStructuralCurveActivityTypeEnum.PARABOLA);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'SuitablePredefinedType' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcStructuralCurveReaction.SuitablePredefinedType) {
+				try {
+					retVal = (PredefinedType != IfcStructuralCurveActivityTypeEnum.SINUS) && (PredefinedType != IfcStructuralCurveActivityTypeEnum.PARABOLA);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcStructuralCurveReaction.SuitablePredefinedType' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcProduct)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -49,10 +47,21 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				yield return value;
 			}
-			if (!HasObjectType())
-				yield return new ValidationResult() { Item = this, IssueSource = "HasObjectType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!SuitablePredefinedType())
-				yield return new ValidationResult() { Item = this, IssueSource = "SuitablePredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcStructuralCurveReaction.HasObjectType))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcStructuralCurveReaction.HasObjectType", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcStructuralCurveReaction.SuitablePredefinedType))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcStructuralCurveReaction.SuitablePredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcStructuralCurveReaction : IfcProduct
+	{
+		public static readonly IfcStructuralCurveReaction HasObjectType = new IfcStructuralCurveReaction();
+		public static readonly IfcStructuralCurveReaction SuitablePredefinedType = new IfcStructuralCurveReaction();
+		protected IfcStructuralCurveReaction() {}
 	}
 }

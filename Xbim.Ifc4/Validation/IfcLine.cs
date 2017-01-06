@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.GeometryResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcLine");
 
 		/// <summary>
-		/// Tests the express where clause SameDim
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool SameDim() {
+		public bool ValidateClause(Where.IfcLine clause) {
 			var retVal = false;
-			try {
-				retVal = Dir.Dim == Pnt.Dim;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'SameDim' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcLine.SameDim) {
+				try {
+					retVal = Dir.Dim == Pnt.Dim;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcLine.SameDim' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!SameDim())
-				yield return new ValidationResult() { Item = this, IssueSource = "SameDim", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcLine.SameDim))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcLine.SameDim", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcLine
+	{
+		public static readonly IfcLine SameDim = new IfcLine();
+		protected IfcLine() {}
 	}
 }

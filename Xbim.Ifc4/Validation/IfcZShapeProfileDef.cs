@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.ProfileResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcZShapeProfileDef");
 
 		/// <summary>
-		/// Tests the express where clause ValidFlangeThickness
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidFlangeThickness() {
+		public bool ValidateClause(Where.IfcZShapeProfileDef clause) {
 			var retVal = false;
-			try {
-				retVal = FlangeThickness < (Depth / 2);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ValidFlangeThickness' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcZShapeProfileDef.ValidFlangeThickness) {
+				try {
+					retVal = FlangeThickness < (Depth / 2);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcZShapeProfileDef.ValidFlangeThickness' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidFlangeThickness())
-				yield return new ValidationResult() { Item = this, IssueSource = "ValidFlangeThickness", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcZShapeProfileDef.ValidFlangeThickness))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcZShapeProfileDef.ValidFlangeThickness", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcZShapeProfileDef
+	{
+		public static readonly IfcZShapeProfileDef ValidFlangeThickness = new IfcZShapeProfileDef();
+		protected IfcZShapeProfileDef() {}
 	}
 }

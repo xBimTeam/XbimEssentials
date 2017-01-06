@@ -20,17 +20,21 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.StructuralElementsDomain.IfcReinforcingBar");
 
 		/// <summary>
-		/// Tests the express where clause WR1
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR1() {
+		public bool ValidateClause(Where.IfcReinforcingBar clause) {
 			var retVal = false;
-			try {
-				retVal = (BarRole != IfcReinforcingBarRoleEnum.USERDEFINED) || ((BarRole == IfcReinforcingBarRoleEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR1' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcReinforcingBar.WR1) {
+				try {
+					retVal = (BarRole != IfcReinforcingBarRoleEnum.USERDEFINED) || ((BarRole == IfcReinforcingBarRoleEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcReinforcingBar.WR1' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcProduct)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -39,8 +43,18 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			{
 				yield return value;
 			}
-			if (!WR1())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR1", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcReinforcingBar.WR1))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcReinforcingBar.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcReinforcingBar : IfcProduct
+	{
+		public new static readonly IfcReinforcingBar WR1 = new IfcReinforcingBar();
+		protected IfcReinforcingBar() {}
 	}
 }

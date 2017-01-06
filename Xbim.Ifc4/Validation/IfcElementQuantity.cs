@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.ProductExtension
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcElementQuantity");
 
 		/// <summary>
-		/// Tests the express where clause UniqueQuantityNames
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool UniqueQuantityNames() {
+		public bool ValidateClause(Where.IfcElementQuantity clause) {
 			var retVal = false;
-			try {
-				retVal = IfcUniqueQuantityNames(Quantities);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'UniqueQuantityNames' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcElementQuantity.UniqueQuantityNames) {
+				try {
+					retVal = IfcUniqueQuantityNames(Quantities);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcElementQuantity.UniqueQuantityNames' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!UniqueQuantityNames())
-				yield return new ValidationResult() { Item = this, IssueSource = "UniqueQuantityNames", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcElementQuantity.UniqueQuantityNames))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcElementQuantity.UniqueQuantityNames", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcElementQuantity
+	{
+		public static readonly IfcElementQuantity UniqueQuantityNames = new IfcElementQuantity();
+		protected IfcElementQuantity() {}
 	}
 }

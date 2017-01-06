@@ -20,17 +20,21 @@ namespace Xbim.Ifc2x3.ProductExtension
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProductExtension.IfcCovering");
 
 		/// <summary>
-		/// Tests the express where clause WR61
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR61() {
+		public bool ValidateClause(Where.IfcCovering clause) {
 			var retVal = false;
-			try {
-				retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcCoveringTypeEnum.USERDEFINED) || ((PredefinedType == IfcCoveringTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR61' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcCovering.WR61) {
+				try {
+					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcCoveringTypeEnum.USERDEFINED) || ((PredefinedType == IfcCoveringTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcCovering.WR61' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcProduct)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -39,8 +43,18 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				yield return value;
 			}
-			if (!WR61())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR61", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcCovering.WR61))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcCovering.WR61", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcCovering : IfcProduct
+	{
+		public static readonly IfcCovering WR61 = new IfcCovering();
+		protected IfcCovering() {}
 	}
 }

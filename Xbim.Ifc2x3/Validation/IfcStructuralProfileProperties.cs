@@ -20,31 +20,29 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfilePropertyResource.IfcStructuralProfileProperties");
 
 		/// <summary>
-		/// Tests the express where clause WR21
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR21() {
+		public bool ValidateClause(Where.IfcStructuralProfileProperties clause) {
 			var retVal = false;
-			try {
-				retVal = !(EXISTS(ShearDeformationAreaY)) || (ShearDeformationAreaY >= 0);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR21' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcStructuralProfileProperties.WR21) {
+				try {
+					retVal = !(EXISTS(ShearDeformationAreaY)) || (ShearDeformationAreaY >= 0);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcStructuralProfileProperties.WR21' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR22
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR22() {
-			var retVal = false;
-			try {
-				retVal = !(EXISTS(ShearDeformationAreaZ)) || (ShearDeformationAreaZ >= 0);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR22' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcStructuralProfileProperties.WR22) {
+				try {
+					retVal = !(EXISTS(ShearDeformationAreaZ)) || (ShearDeformationAreaZ >= 0);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcStructuralProfileProperties.WR22' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcGeneralProfileProperties)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -53,10 +51,21 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				yield return value;
 			}
-			if (!WR21())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR21", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR22())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR22", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcStructuralProfileProperties.WR21))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcStructuralProfileProperties.WR21", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcStructuralProfileProperties.WR22))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcStructuralProfileProperties.WR22", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcStructuralProfileProperties : IfcGeneralProfileProperties
+	{
+		public static readonly IfcStructuralProfileProperties WR21 = new IfcStructuralProfileProperties();
+		public static readonly IfcStructuralProfileProperties WR22 = new IfcStructuralProfileProperties();
+		protected IfcStructuralProfileProperties() {}
 	}
 }

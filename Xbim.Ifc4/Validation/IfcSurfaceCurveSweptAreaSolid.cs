@@ -16,17 +16,21 @@ namespace Xbim.Ifc4.GeometricModelResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcSurfaceCurveSweptAreaSolid");
 
 		/// <summary>
-		/// Tests the express where clause DirectrixBounded
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool DirectrixBounded() {
+		public bool ValidateClause(Where.IfcSurfaceCurveSweptAreaSolid clause) {
 			var retVal = false;
-			try {
-				retVal = (EXISTS(StartParam) && EXISTS(EndParam)) || (SIZEOF(NewArray("IFC4.IFCCONIC", "IFC4.IFCBOUNDEDCURVE") * TYPEOF(Directrix)) == 1);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'DirectrixBounded' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcSurfaceCurveSweptAreaSolid.DirectrixBounded) {
+				try {
+					retVal = (EXISTS(StartParam) && EXISTS(EndParam)) || (SIZEOF(NewArray("IFC4.IFCCONIC", "IFC4.IFCBOUNDEDCURVE") * TYPEOF(Directrix)) == 1);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcSurfaceCurveSweptAreaSolid.DirectrixBounded' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcSweptAreaSolid)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -35,8 +39,18 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				yield return value;
 			}
-			if (!DirectrixBounded())
-				yield return new ValidationResult() { Item = this, IssueSource = "DirectrixBounded", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcSurfaceCurveSweptAreaSolid.DirectrixBounded))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcSurfaceCurveSweptAreaSolid.DirectrixBounded", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcSurfaceCurveSweptAreaSolid : IfcSweptAreaSolid
+	{
+		public static readonly IfcSurfaceCurveSweptAreaSolid DirectrixBounded = new IfcSurfaceCurveSweptAreaSolid();
+		protected IfcSurfaceCurveSweptAreaSolid() {}
 	}
 }

@@ -16,39 +16,48 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricConstraintResource.IfcGridAxis");
 
 		/// <summary>
-		/// Tests the express where clause WR1
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR1() {
+		public bool ValidateClause(Where.IfcGridAxis clause) {
 			var retVal = false;
-			try {
-				retVal = AxisCurve.Dim == 2;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR1' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcGridAxis.WR1) {
+				try {
+					retVal = AxisCurve.Dim == 2;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcGridAxis.WR1' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR2
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR2() {
-			var retVal = false;
-			try {
-				retVal = (SIZEOF(PartOfU) == 1) ^ (SIZEOF(PartOfV) == 1) ^ (SIZEOF(PartOfW) == 1);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR2' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcGridAxis.WR2) {
+				try {
+					retVal = (SIZEOF(PartOfU) == 1) ^ (SIZEOF(PartOfV) == 1) ^ (SIZEOF(PartOfW) == 1);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcGridAxis.WR2' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR1())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR1", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR2())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR2", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcGridAxis.WR1))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcGridAxis.WR1", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcGridAxis.WR2))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcGridAxis.WR2", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcGridAxis
+	{
+		public static readonly IfcGridAxis WR1 = new IfcGridAxis();
+		public static readonly IfcGridAxis WR2 = new IfcGridAxis();
+		protected IfcGridAxis() {}
 	}
 }

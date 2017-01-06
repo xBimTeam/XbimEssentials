@@ -16,17 +16,21 @@ namespace Xbim.Ifc4.GeometryResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcBoundaryCurve");
 
 		/// <summary>
-		/// Tests the express where clause IsClosed
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool IsClosed() {
+		public bool ValidateClause(Where.IfcBoundaryCurve clause) {
 			var retVal = false;
-			try {
-				retVal = this/* as IfcCompositeCurve*/.ClosedCurve.AsBool();
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'IsClosed' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcBoundaryCurve.IsClosed) {
+				try {
+					retVal = this/* as IfcCompositeCurve*/.ClosedCurve.AsBool();
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcBoundaryCurve.IsClosed' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcCompositeCurveOnSurface)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -35,8 +39,18 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				yield return value;
 			}
-			if (!IsClosed())
-				yield return new ValidationResult() { Item = this, IssueSource = "IsClosed", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcBoundaryCurve.IsClosed))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcBoundaryCurve.IsClosed", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcBoundaryCurve : IfcCompositeCurveOnSurface
+	{
+		public static readonly IfcBoundaryCurve IsClosed = new IfcBoundaryCurve();
+		protected IfcBoundaryCurve() {}
 	}
 }

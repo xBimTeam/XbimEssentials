@@ -16,55 +16,59 @@ namespace Xbim.Ifc4.ProfileResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcRectangleHollowProfileDef");
 
 		/// <summary>
-		/// Tests the express where clause ValidWallThickness
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidWallThickness() {
+		public bool ValidateClause(Where.IfcRectangleHollowProfileDef clause) {
 			var retVal = false;
-			try {
-				retVal = (WallThickness < (this/* as IfcRectangleProfileDef*/.XDim / 2)) && (WallThickness < (this/* as IfcRectangleProfileDef*/.YDim / 2));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ValidWallThickness' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcRectangleHollowProfileDef.ValidWallThickness) {
+				try {
+					retVal = (WallThickness < (this/* as IfcRectangleProfileDef*/.XDim / 2)) && (WallThickness < (this/* as IfcRectangleProfileDef*/.YDim / 2));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcRectangleHollowProfileDef.ValidWallThickness' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause ValidInnerRadius
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidInnerRadius() {
-			var retVal = false;
-			try {
-				retVal = !(EXISTS(InnerFilletRadius)) || ((InnerFilletRadius <= (this/* as IfcRectangleProfileDef*/.XDim / 2 - WallThickness)) && (InnerFilletRadius <= (this/* as IfcRectangleProfileDef*/.YDim / 2 - WallThickness)));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ValidInnerRadius' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcRectangleHollowProfileDef.ValidInnerRadius) {
+				try {
+					retVal = !(EXISTS(InnerFilletRadius)) || ((InnerFilletRadius <= (this/* as IfcRectangleProfileDef*/.XDim / 2 - WallThickness)) && (InnerFilletRadius <= (this/* as IfcRectangleProfileDef*/.YDim / 2 - WallThickness)));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcRectangleHollowProfileDef.ValidInnerRadius' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause ValidOuterRadius
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidOuterRadius() {
-			var retVal = false;
-			try {
-				retVal = !(EXISTS(OuterFilletRadius)) || ((OuterFilletRadius <= (this/* as IfcRectangleProfileDef*/.XDim / 2)) && (OuterFilletRadius <= (this/* as IfcRectangleProfileDef*/.YDim / 2)));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ValidOuterRadius' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcRectangleHollowProfileDef.ValidOuterRadius) {
+				try {
+					retVal = !(EXISTS(OuterFilletRadius)) || ((OuterFilletRadius <= (this/* as IfcRectangleProfileDef*/.XDim / 2)) && (OuterFilletRadius <= (this/* as IfcRectangleProfileDef*/.YDim / 2)));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcRectangleHollowProfileDef.ValidOuterRadius' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidWallThickness())
-				yield return new ValidationResult() { Item = this, IssueSource = "ValidWallThickness", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidInnerRadius())
-				yield return new ValidationResult() { Item = this, IssueSource = "ValidInnerRadius", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidOuterRadius())
-				yield return new ValidationResult() { Item = this, IssueSource = "ValidOuterRadius", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcRectangleHollowProfileDef.ValidWallThickness))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcRectangleHollowProfileDef.ValidWallThickness", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcRectangleHollowProfileDef.ValidInnerRadius))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcRectangleHollowProfileDef.ValidInnerRadius", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcRectangleHollowProfileDef.ValidOuterRadius))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcRectangleHollowProfileDef.ValidOuterRadius", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcRectangleHollowProfileDef
+	{
+		public static readonly IfcRectangleHollowProfileDef ValidWallThickness = new IfcRectangleHollowProfileDef();
+		public static readonly IfcRectangleHollowProfileDef ValidInnerRadius = new IfcRectangleHollowProfileDef();
+		public static readonly IfcRectangleHollowProfileDef ValidOuterRadius = new IfcRectangleHollowProfileDef();
+		protected IfcRectangleHollowProfileDef() {}
 	}
 }

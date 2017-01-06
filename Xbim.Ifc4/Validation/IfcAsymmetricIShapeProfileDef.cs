@@ -16,71 +16,70 @@ namespace Xbim.Ifc4.ProfileResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcAsymmetricIShapeProfileDef");
 
 		/// <summary>
-		/// Tests the express where clause ValidFlangeThickness
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidFlangeThickness() {
+		public bool ValidateClause(Where.IfcAsymmetricIShapeProfileDef clause) {
 			var retVal = false;
-			try {
-				retVal = !(EXISTS(TopFlangeThickness)) || ((BottomFlangeThickness + TopFlangeThickness) < OverallDepth);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ValidFlangeThickness' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcAsymmetricIShapeProfileDef.ValidFlangeThickness) {
+				try {
+					retVal = !(EXISTS(TopFlangeThickness)) || ((BottomFlangeThickness + TopFlangeThickness) < OverallDepth);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcAsymmetricIShapeProfileDef.ValidFlangeThickness' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause ValidWebThickness
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidWebThickness() {
-			var retVal = false;
-			try {
-				retVal = (WebThickness < BottomFlangeWidth) && (WebThickness < TopFlangeWidth);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ValidWebThickness' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcAsymmetricIShapeProfileDef.ValidWebThickness) {
+				try {
+					retVal = (WebThickness < BottomFlangeWidth) && (WebThickness < TopFlangeWidth);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcAsymmetricIShapeProfileDef.ValidWebThickness' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause ValidBottomFilletRadius
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidBottomFilletRadius() {
-			var retVal = false;
-			try {
-				retVal = (!(EXISTS(BottomFlangeFilletRadius))) || (BottomFlangeFilletRadius <= (BottomFlangeWidth - WebThickness) / 2);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ValidBottomFilletRadius' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcAsymmetricIShapeProfileDef.ValidBottomFilletRadius) {
+				try {
+					retVal = (!(EXISTS(BottomFlangeFilletRadius))) || (BottomFlangeFilletRadius <= (BottomFlangeWidth - WebThickness) / 2);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcAsymmetricIShapeProfileDef.ValidBottomFilletRadius' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause ValidTopFilletRadius
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidTopFilletRadius() {
-			var retVal = false;
-			try {
-				retVal = (!(EXISTS(TopFlangeFilletRadius))) || (TopFlangeFilletRadius <= (TopFlangeWidth - WebThickness) / 2);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ValidTopFilletRadius' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcAsymmetricIShapeProfileDef.ValidTopFilletRadius) {
+				try {
+					retVal = (!(EXISTS(TopFlangeFilletRadius))) || (TopFlangeFilletRadius <= (TopFlangeWidth - WebThickness) / 2);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcAsymmetricIShapeProfileDef.ValidTopFilletRadius' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidFlangeThickness())
-				yield return new ValidationResult() { Item = this, IssueSource = "ValidFlangeThickness", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidWebThickness())
-				yield return new ValidationResult() { Item = this, IssueSource = "ValidWebThickness", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidBottomFilletRadius())
-				yield return new ValidationResult() { Item = this, IssueSource = "ValidBottomFilletRadius", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidTopFilletRadius())
-				yield return new ValidationResult() { Item = this, IssueSource = "ValidTopFilletRadius", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcAsymmetricIShapeProfileDef.ValidFlangeThickness))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcAsymmetricIShapeProfileDef.ValidFlangeThickness", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcAsymmetricIShapeProfileDef.ValidWebThickness))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcAsymmetricIShapeProfileDef.ValidWebThickness", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcAsymmetricIShapeProfileDef.ValidBottomFilletRadius))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcAsymmetricIShapeProfileDef.ValidBottomFilletRadius", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcAsymmetricIShapeProfileDef.ValidTopFilletRadius))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcAsymmetricIShapeProfileDef.ValidTopFilletRadius", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcAsymmetricIShapeProfileDef
+	{
+		public static readonly IfcAsymmetricIShapeProfileDef ValidFlangeThickness = new IfcAsymmetricIShapeProfileDef();
+		public static readonly IfcAsymmetricIShapeProfileDef ValidWebThickness = new IfcAsymmetricIShapeProfileDef();
+		public static readonly IfcAsymmetricIShapeProfileDef ValidBottomFilletRadius = new IfcAsymmetricIShapeProfileDef();
+		public static readonly IfcAsymmetricIShapeProfileDef ValidTopFilletRadius = new IfcAsymmetricIShapeProfileDef();
+		protected IfcAsymmetricIShapeProfileDef() {}
 	}
 }

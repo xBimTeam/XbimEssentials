@@ -11,28 +11,42 @@ using static Xbim.Ifc4.Functions;
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.MeasureResource
 {
-	public partial struct IfcPositiveInteger 
+	public partial struct IfcPositiveInteger : IExpressValidatable
 	{
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.MeasureResource.IfcPositiveInteger");
 
 		/// <summary>
-		/// Tests the express where clause WR1
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR1() {
+		public bool ValidateClause(Where.IfcPositiveInteger clause) {
 			var retVal = false;
-			try {
-				retVal = this > 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR1'.", ex);
+			if (clause == Where.IfcPositiveInteger.WR1) {
+				try {
+					retVal = this > 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcPositiveInteger.WR1'.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR1())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR1", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcPositiveInteger.WR1))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcPositiveInteger.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcPositiveInteger
+	{
+		public static readonly IfcPositiveInteger WR1 = new IfcPositiveInteger();
+		protected IfcPositiveInteger() {}
 	}
 }

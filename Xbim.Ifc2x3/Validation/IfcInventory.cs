@@ -20,17 +20,21 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.SharedFacilitiesElements.IfcInventory");
 
 		/// <summary>
-		/// Tests the express where clause WR41
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR41() {
+		public bool ValidateClause(Where.IfcInventory clause) {
 			var retVal = false;
-			try {
-				retVal = SIZEOF(this/* as IfcGroup*/.IsGroupedBy.RelatedObjects.Where(temp => !((TYPEOF(temp).Contains("IFC2X3.IFCSPACE")) || (TYPEOF(temp).Contains("IFC2X3.IFCASSET")) || (TYPEOF(temp).Contains("IFC2X3.IFCFURNISHINGELEMENT"))))) == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR41' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcInventory.WR41) {
+				try {
+					retVal = SIZEOF(this/* as IfcGroup*/.IsGroupedBy.RelatedObjects.Where(temp => !((TYPEOF(temp).Contains("IFC2X3.IFCSPACE")) || (TYPEOF(temp).Contains("IFC2X3.IFCASSET")) || (TYPEOF(temp).Contains("IFC2X3.IFCFURNISHINGELEMENT"))))) == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcInventory.WR41' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcObject)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -39,8 +43,18 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				yield return value;
 			}
-			if (!WR41())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR41", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcInventory.WR41))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcInventory.WR41", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcInventory : IfcObject
+	{
+		public static readonly IfcInventory WR41 = new IfcInventory();
+		protected IfcInventory() {}
 	}
 }

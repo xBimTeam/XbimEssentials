@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.UtilityResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.UtilityResource.IfcOwnerHistory");
 
 		/// <summary>
-		/// Tests the express where clause CorrectChangeAction
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool CorrectChangeAction() {
+		public bool ValidateClause(Where.IfcOwnerHistory clause) {
 			var retVal = false;
-			try {
-				retVal = (EXISTS(LastModifiedDate)) || (!(EXISTS(LastModifiedDate)) && !(EXISTS(ChangeAction))) || (!(EXISTS(LastModifiedDate)) && EXISTS(ChangeAction) && ((ChangeAction == IfcChangeActionEnum.NOTDEFINED) || (ChangeAction == IfcChangeActionEnum.NOCHANGE)));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'CorrectChangeAction' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcOwnerHistory.CorrectChangeAction) {
+				try {
+					retVal = (EXISTS(LastModifiedDate)) || (!(EXISTS(LastModifiedDate)) && !(EXISTS(ChangeAction))) || (!(EXISTS(LastModifiedDate)) && EXISTS(ChangeAction) && ((ChangeAction == IfcChangeActionEnum.NOTDEFINED) || (ChangeAction == IfcChangeActionEnum.NOCHANGE)));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcOwnerHistory.CorrectChangeAction' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!CorrectChangeAction())
-				yield return new ValidationResult() { Item = this, IssueSource = "CorrectChangeAction", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcOwnerHistory.CorrectChangeAction))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcOwnerHistory.CorrectChangeAction", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcOwnerHistory
+	{
+		public static readonly IfcOwnerHistory CorrectChangeAction = new IfcOwnerHistory();
+		protected IfcOwnerHistory() {}
 	}
 }

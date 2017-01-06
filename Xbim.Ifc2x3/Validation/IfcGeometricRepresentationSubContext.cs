@@ -20,39 +20,48 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.RepresentationResource.IfcGeometricRepresentationSubContext");
 
 		/// <summary>
-		/// Tests the express where clause WR31
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR31() {
+		public bool ValidateClause(Where.IfcGeometricRepresentationSubContext clause) {
 			var retVal = false;
-			try {
-				retVal = !(TYPEOF(ParentContext).Contains("IFC2X3.IFCGEOMETRICREPRESENTATIONSUBCONTEXT"));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR31' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcGeometricRepresentationSubContext.WR31) {
+				try {
+					retVal = !(TYPEOF(ParentContext).Contains("IFC2X3.IFCGEOMETRICREPRESENTATIONSUBCONTEXT"));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcGeometricRepresentationSubContext.WR31' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR32
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR32() {
-			var retVal = false;
-			try {
-				retVal = (TargetView != IfcGeometricProjectionEnum.USERDEFINED) || ((TargetView == IfcGeometricProjectionEnum.USERDEFINED) && EXISTS(UserDefinedTargetView));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR32' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcGeometricRepresentationSubContext.WR32) {
+				try {
+					retVal = (TargetView != IfcGeometricProjectionEnum.USERDEFINED) || ((TargetView == IfcGeometricProjectionEnum.USERDEFINED) && EXISTS(UserDefinedTargetView));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcGeometricRepresentationSubContext.WR32' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR31())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR31", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR32())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR32", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcGeometricRepresentationSubContext.WR31))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcGeometricRepresentationSubContext.WR31", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcGeometricRepresentationSubContext.WR32))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcGeometricRepresentationSubContext.WR32", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcGeometricRepresentationSubContext
+	{
+		public static readonly IfcGeometricRepresentationSubContext WR31 = new IfcGeometricRepresentationSubContext();
+		public static readonly IfcGeometricRepresentationSubContext WR32 = new IfcGeometricRepresentationSubContext();
+		protected IfcGeometricRepresentationSubContext() {}
 	}
 }

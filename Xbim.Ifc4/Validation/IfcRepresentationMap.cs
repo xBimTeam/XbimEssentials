@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.GeometryResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcRepresentationMap");
 
 		/// <summary>
-		/// Tests the express where clause ApplicableMappedRepr
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ApplicableMappedRepr() {
+		public bool ValidateClause(Where.IfcRepresentationMap clause) {
 			var retVal = false;
-			try {
-				retVal = TYPEOF(MappedRepresentation).Contains("IFC4.IFCSHAPEMODEL");
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ApplicableMappedRepr' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcRepresentationMap.ApplicableMappedRepr) {
+				try {
+					retVal = TYPEOF(MappedRepresentation).Contains("IFC4.IFCSHAPEMODEL");
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcRepresentationMap.ApplicableMappedRepr' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!ApplicableMappedRepr())
-				yield return new ValidationResult() { Item = this, IssueSource = "ApplicableMappedRepr", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcRepresentationMap.ApplicableMappedRepr))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcRepresentationMap.ApplicableMappedRepr", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcRepresentationMap
+	{
+		public static readonly IfcRepresentationMap ApplicableMappedRepr = new IfcRepresentationMap();
+		protected IfcRepresentationMap() {}
 	}
 }

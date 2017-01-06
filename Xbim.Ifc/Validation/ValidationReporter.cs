@@ -24,7 +24,12 @@ namespace Xbim.Essentials.Tests
                 if (mn)
                 {
                     // current exists
-                    yield return new string('\t', _indent) + _currentEnum.Current.Message;
+                    var msg = _currentEnum.Current.Message;
+                    if (string.IsNullOrEmpty(msg))
+                    {
+                        msg = _currentEnum.Current.Report();
+                    }
+                    yield return new string('\t', _indent) + msg;
                     // steps into a child
                     if (_currentEnum.Current.Details.Any())
                     {

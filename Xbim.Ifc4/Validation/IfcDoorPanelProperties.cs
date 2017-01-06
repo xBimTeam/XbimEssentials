@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.ArchitectureDomain
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelProperties");
 
 		/// <summary>
-		/// Tests the express where clause ApplicableToType
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ApplicableToType() {
+		public bool ValidateClause(Where.IfcDoorPanelProperties clause) {
 			var retVal = false;
-			try {
-				retVal = (EXISTS(this/* as IfcPropertySetDefinition*/.DefinesType.ToArray()[0])) && ((TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ToArray()[0]).Contains("IFC4.IFCDOORTYPE")) || (TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ToArray()[0]).Contains("IFC4.IFCDOORSTYLE")));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ApplicableToType' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcDoorPanelProperties.ApplicableToType) {
+				try {
+					retVal = (EXISTS(this/* as IfcPropertySetDefinition*/.DefinesType.ToArray()[0])) && ((TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ToArray()[0]).Contains("IFC4.IFCDOORTYPE")) || (TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ToArray()[0]).Contains("IFC4.IFCDOORSTYLE")));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcDoorPanelProperties.ApplicableToType' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!ApplicableToType())
-				yield return new ValidationResult() { Item = this, IssueSource = "ApplicableToType", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcDoorPanelProperties.ApplicableToType))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcDoorPanelProperties.ApplicableToType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcDoorPanelProperties
+	{
+		public static readonly IfcDoorPanelProperties ApplicableToType = new IfcDoorPanelProperties();
+		protected IfcDoorPanelProperties() {}
 	}
 }

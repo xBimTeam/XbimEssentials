@@ -20,23 +20,37 @@ namespace Xbim.Ifc2x3.GeometryResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcPolyline");
 
 		/// <summary>
-		/// Tests the express where clause WR41
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR41() {
+		public bool ValidateClause(Where.IfcPolyline clause) {
 			var retVal = false;
-			try {
-				retVal = SIZEOF(Points.Where(Temp => Temp.Dim != Points.ToArray()[0].Dim)) == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR41' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcPolyline.WR41) {
+				try {
+					retVal = SIZEOF(Points.Where(Temp => Temp.Dim != Points.ToArray()[0].Dim)) == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcPolyline.WR41' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR41())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR41", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcPolyline.WR41))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcPolyline.WR41", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcPolyline
+	{
+		public static readonly IfcPolyline WR41 = new IfcPolyline();
+		protected IfcPolyline() {}
 	}
 }

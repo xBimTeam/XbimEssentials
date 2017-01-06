@@ -20,23 +20,37 @@ namespace Xbim.Ifc2x3.PresentationResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationResource.IfcTextStyleFontModel");
 
 		/// <summary>
-		/// Tests the express where clause WR31
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR31() {
+		public bool ValidateClause(Where.IfcTextStyleFontModel clause) {
 			var retVal = false;
-			try {
-				retVal = (TYPEOF(this.FontSize).Contains("IFC2X3.IFCLENGTHMEASURE")) && (this.FontSize.AsIfcLengthMeasure() > 0);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR31' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcTextStyleFontModel.WR31) {
+				try {
+					retVal = (TYPEOF(this.FontSize).Contains("IFC2X3.IFCLENGTHMEASURE")) && (this.FontSize.AsIfcLengthMeasure() > 0);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcTextStyleFontModel.WR31' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR31())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR31", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcTextStyleFontModel.WR31))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcTextStyleFontModel.WR31", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcTextStyleFontModel
+	{
+		public static readonly IfcTextStyleFontModel WR31 = new IfcTextStyleFontModel();
+		protected IfcTextStyleFontModel() {}
 	}
 }

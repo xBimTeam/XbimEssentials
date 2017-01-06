@@ -16,39 +16,48 @@ namespace Xbim.Ifc4.TopologyResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.TopologyResource.IfcEdgeLoop");
 
 		/// <summary>
-		/// Tests the express where clause IsClosed
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool IsClosed() {
+		public bool ValidateClause(Where.IfcEdgeLoop clause) {
 			var retVal = false;
-			try {
-				retVal = Object.ReferenceEquals((EdgeList.ToArray()[0].EdgeStart), (EdgeList.ToArray()[Ne-1].EdgeEnd));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'IsClosed' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcEdgeLoop.IsClosed) {
+				try {
+					retVal = Object.ReferenceEquals((EdgeList.ToArray()[0].EdgeStart), (EdgeList.ToArray()[Ne-1].EdgeEnd));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcEdgeLoop.IsClosed' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause IsContinuous
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool IsContinuous() {
-			var retVal = false;
-			try {
-				retVal = IfcLoopHeadToTail(this);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'IsContinuous' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcEdgeLoop.IsContinuous) {
+				try {
+					retVal = IfcLoopHeadToTail(this);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcEdgeLoop.IsContinuous' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!IsClosed())
-				yield return new ValidationResult() { Item = this, IssueSource = "IsClosed", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!IsContinuous())
-				yield return new ValidationResult() { Item = this, IssueSource = "IsContinuous", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcEdgeLoop.IsClosed))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcEdgeLoop.IsClosed", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcEdgeLoop.IsContinuous))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcEdgeLoop.IsContinuous", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcEdgeLoop
+	{
+		public static readonly IfcEdgeLoop IsClosed = new IfcEdgeLoop();
+		public static readonly IfcEdgeLoop IsContinuous = new IfcEdgeLoop();
+		protected IfcEdgeLoop() {}
 	}
 }

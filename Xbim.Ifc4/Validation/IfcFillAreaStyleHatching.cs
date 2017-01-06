@@ -16,39 +16,48 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcFillAreaStyleHatching");
 
 		/// <summary>
-		/// Tests the express where clause PatternStart2D
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool PatternStart2D() {
+		public bool ValidateClause(Where.IfcFillAreaStyleHatching clause) {
 			var retVal = false;
-			try {
-				retVal = !(EXISTS(PatternStart)) || (PatternStart.Dim == 2);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'PatternStart2D' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcFillAreaStyleHatching.PatternStart2D) {
+				try {
+					retVal = !(EXISTS(PatternStart)) || (PatternStart.Dim == 2);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcFillAreaStyleHatching.PatternStart2D' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause RefHatchLine2D
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool RefHatchLine2D() {
-			var retVal = false;
-			try {
-				retVal = !(EXISTS(PointOfReferenceHatchLine)) || (PointOfReferenceHatchLine.Dim == 2);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'RefHatchLine2D' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcFillAreaStyleHatching.RefHatchLine2D) {
+				try {
+					retVal = !(EXISTS(PointOfReferenceHatchLine)) || (PointOfReferenceHatchLine.Dim == 2);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcFillAreaStyleHatching.RefHatchLine2D' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!PatternStart2D())
-				yield return new ValidationResult() { Item = this, IssueSource = "PatternStart2D", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!RefHatchLine2D())
-				yield return new ValidationResult() { Item = this, IssueSource = "RefHatchLine2D", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcFillAreaStyleHatching.PatternStart2D))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcFillAreaStyleHatching.PatternStart2D", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcFillAreaStyleHatching.RefHatchLine2D))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcFillAreaStyleHatching.RefHatchLine2D", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcFillAreaStyleHatching
+	{
+		public static readonly IfcFillAreaStyleHatching PatternStart2D = new IfcFillAreaStyleHatching();
+		public static readonly IfcFillAreaStyleHatching RefHatchLine2D = new IfcFillAreaStyleHatching();
+		protected IfcFillAreaStyleHatching() {}
 	}
 }

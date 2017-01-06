@@ -16,55 +16,59 @@ namespace Xbim.Ifc4.Kernel
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcProject");
 
 		/// <summary>
-		/// Tests the express where clause HasName
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool HasName() {
+		public bool ValidateClause(Where.IfcProject clause) {
 			var retVal = false;
-			try {
-				retVal = EXISTS(this/* as IfcRoot*/.Name);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'HasName' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcProject.HasName) {
+				try {
+					retVal = EXISTS(this/* as IfcRoot*/.Name);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcProject.HasName' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause CorrectContext
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool CorrectContext() {
-			var retVal = false;
-			try {
-				retVal = !(EXISTS(this/* as IfcContext*/.RepresentationContexts)) || (SIZEOF(this/* as IfcContext*/.RepresentationContexts.Where(Temp => TYPEOF(Temp).Contains("IFC4.IFCGEOMETRICREPRESENTATIONSUBCONTEXT"))) == 0);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'CorrectContext' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcProject.CorrectContext) {
+				try {
+					retVal = !(EXISTS(this/* as IfcContext*/.RepresentationContexts)) || (SIZEOF(this/* as IfcContext*/.RepresentationContexts.Where(Temp => TYPEOF(Temp).Contains("IFC4.IFCGEOMETRICREPRESENTATIONSUBCONTEXT"))) == 0);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcProject.CorrectContext' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause NoDecomposition
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool NoDecomposition() {
-			var retVal = false;
-			try {
-				retVal = SIZEOF(this/* as IfcObjectDefinition*/.Decomposes) == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'NoDecomposition' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcProject.NoDecomposition) {
+				try {
+					retVal = SIZEOF(this/* as IfcObjectDefinition*/.Decomposes) == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcProject.NoDecomposition' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!HasName())
-				yield return new ValidationResult() { Item = this, IssueSource = "HasName", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!CorrectContext())
-				yield return new ValidationResult() { Item = this, IssueSource = "CorrectContext", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!NoDecomposition())
-				yield return new ValidationResult() { Item = this, IssueSource = "NoDecomposition", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcProject.HasName))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcProject.HasName", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcProject.CorrectContext))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcProject.CorrectContext", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcProject.NoDecomposition))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcProject.NoDecomposition", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcProject
+	{
+		public static readonly IfcProject HasName = new IfcProject();
+		public static readonly IfcProject CorrectContext = new IfcProject();
+		public static readonly IfcProject NoDecomposition = new IfcProject();
+		protected IfcProject() {}
 	}
 }

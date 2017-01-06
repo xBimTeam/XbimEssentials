@@ -16,17 +16,21 @@ namespace Xbim.Ifc4.GeometryResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcCompositeCurveOnSurface");
 
 		/// <summary>
-		/// Tests the express where clause SameSurface
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool SameSurface() {
+		public bool ValidateClause(Where.IfcCompositeCurveOnSurface clause) {
 			var retVal = false;
-			try {
-				retVal = SIZEOF(BasisSurface) > 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'SameSurface' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcCompositeCurveOnSurface.SameSurface) {
+				try {
+					retVal = SIZEOF(BasisSurface) > 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcCompositeCurveOnSurface.SameSurface' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcCompositeCurve)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -35,8 +39,18 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				yield return value;
 			}
-			if (!SameSurface())
-				yield return new ValidationResult() { Item = this, IssueSource = "SameSurface", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcCompositeCurveOnSurface.SameSurface))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcCompositeCurveOnSurface.SameSurface", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcCompositeCurveOnSurface : IfcCompositeCurve
+	{
+		public static readonly IfcCompositeCurveOnSurface SameSurface = new IfcCompositeCurveOnSurface();
+		protected IfcCompositeCurveOnSurface() {}
 	}
 }

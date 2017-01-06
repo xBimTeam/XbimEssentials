@@ -16,17 +16,21 @@ namespace Xbim.Ifc4.GeometryResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcCartesianTransformationOperator2DnonUniform");
 
 		/// <summary>
-		/// Tests the express where clause Scale2GreaterZero
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool Scale2GreaterZero() {
+		public bool ValidateClause(Where.IfcCartesianTransformationOperator2DnonUniform clause) {
 			var retVal = false;
-			try {
-				retVal = Scl2 > 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'Scale2GreaterZero' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcCartesianTransformationOperator2DnonUniform.Scale2GreaterZero) {
+				try {
+					retVal = Scl2 > 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator2DnonUniform.Scale2GreaterZero' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcCartesianTransformationOperator2D)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -35,8 +39,18 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				yield return value;
 			}
-			if (!Scale2GreaterZero())
-				yield return new ValidationResult() { Item = this, IssueSource = "Scale2GreaterZero", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcCartesianTransformationOperator2DnonUniform.Scale2GreaterZero))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcCartesianTransformationOperator2DnonUniform.Scale2GreaterZero", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcCartesianTransformationOperator2DnonUniform : IfcCartesianTransformationOperator2D
+	{
+		public static readonly IfcCartesianTransformationOperator2DnonUniform Scale2GreaterZero = new IfcCartesianTransformationOperator2DnonUniform();
+		protected IfcCartesianTransformationOperator2DnonUniform() {}
 	}
 }

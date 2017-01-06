@@ -16,55 +16,59 @@ namespace Xbim.Ifc4.PropertyResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.PropertyResource.IfcPropertyBoundedValue");
 
 		/// <summary>
-		/// Tests the express where clause SameUnitUpperLower
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool SameUnitUpperLower() {
+		public bool ValidateClause(Where.IfcPropertyBoundedValue clause) {
 			var retVal = false;
-			try {
-				retVal = !(EXISTS(UpperBoundValue)) || !(EXISTS(LowerBoundValue)) || (TYPEOF(UpperBoundValue) == TYPEOF(LowerBoundValue));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'SameUnitUpperLower' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcPropertyBoundedValue.SameUnitUpperLower) {
+				try {
+					retVal = !(EXISTS(UpperBoundValue)) || !(EXISTS(LowerBoundValue)) || (TYPEOF(UpperBoundValue) == TYPEOF(LowerBoundValue));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcPropertyBoundedValue.SameUnitUpperLower' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause SameUnitUpperSet
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool SameUnitUpperSet() {
-			var retVal = false;
-			try {
-				retVal = !(EXISTS(UpperBoundValue)) || !(EXISTS(SetPointValue)) || (TYPEOF(UpperBoundValue) == TYPEOF(SetPointValue));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'SameUnitUpperSet' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcPropertyBoundedValue.SameUnitUpperSet) {
+				try {
+					retVal = !(EXISTS(UpperBoundValue)) || !(EXISTS(SetPointValue)) || (TYPEOF(UpperBoundValue) == TYPEOF(SetPointValue));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcPropertyBoundedValue.SameUnitUpperSet' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause SameUnitLowerSet
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool SameUnitLowerSet() {
-			var retVal = false;
-			try {
-				retVal = !(EXISTS(LowerBoundValue)) || !(EXISTS(SetPointValue)) || (TYPEOF(LowerBoundValue) == TYPEOF(SetPointValue));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'SameUnitLowerSet' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcPropertyBoundedValue.SameUnitLowerSet) {
+				try {
+					retVal = !(EXISTS(LowerBoundValue)) || !(EXISTS(SetPointValue)) || (TYPEOF(LowerBoundValue) == TYPEOF(SetPointValue));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcPropertyBoundedValue.SameUnitLowerSet' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!SameUnitUpperLower())
-				yield return new ValidationResult() { Item = this, IssueSource = "SameUnitUpperLower", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!SameUnitUpperSet())
-				yield return new ValidationResult() { Item = this, IssueSource = "SameUnitUpperSet", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!SameUnitLowerSet())
-				yield return new ValidationResult() { Item = this, IssueSource = "SameUnitLowerSet", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcPropertyBoundedValue.SameUnitUpperLower))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcPropertyBoundedValue.SameUnitUpperLower", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcPropertyBoundedValue.SameUnitUpperSet))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcPropertyBoundedValue.SameUnitUpperSet", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcPropertyBoundedValue.SameUnitLowerSet))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcPropertyBoundedValue.SameUnitLowerSet", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcPropertyBoundedValue
+	{
+		public static readonly IfcPropertyBoundedValue SameUnitUpperLower = new IfcPropertyBoundedValue();
+		public static readonly IfcPropertyBoundedValue SameUnitUpperSet = new IfcPropertyBoundedValue();
+		public static readonly IfcPropertyBoundedValue SameUnitLowerSet = new IfcPropertyBoundedValue();
+		protected IfcPropertyBoundedValue() {}
 	}
 }

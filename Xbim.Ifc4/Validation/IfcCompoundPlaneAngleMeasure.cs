@@ -11,76 +11,75 @@ using static Xbim.Ifc4.Functions;
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.MeasureResource
 {
-	public partial struct IfcCompoundPlaneAngleMeasure 
+	public partial struct IfcCompoundPlaneAngleMeasure : IExpressValidatable
 	{
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure");
 
 		/// <summary>
-		/// Tests the express where clause MinutesInRange
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool MinutesInRange() {
+		public bool ValidateClause(Where.IfcCompoundPlaneAngleMeasure clause) {
 			var retVal = false;
-			try {
-				retVal = ABS(this.ToArray()[1]) < 60;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'MinutesInRange'.", ex);
+			if (clause == Where.IfcCompoundPlaneAngleMeasure.MinutesInRange) {
+				try {
+					retVal = ABS(this.ToArray()[1]) < 60;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcCompoundPlaneAngleMeasure.MinutesInRange'.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause SecondsInRange
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool SecondsInRange() {
-			var retVal = false;
-			try {
-				retVal = ABS(this.ToArray()[2]) < 60;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'SecondsInRange'.", ex);
+			if (clause == Where.IfcCompoundPlaneAngleMeasure.SecondsInRange) {
+				try {
+					retVal = ABS(this.ToArray()[2]) < 60;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcCompoundPlaneAngleMeasure.SecondsInRange'.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause MicrosecondsInRange
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool MicrosecondsInRange() {
-			var retVal = false;
-			try {
-				retVal = (SIZEOF(this) == 3) || (ABS(this.ToArray()[3]) < 1000000);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'MicrosecondsInRange'.", ex);
+			if (clause == Where.IfcCompoundPlaneAngleMeasure.MicrosecondsInRange) {
+				try {
+					retVal = (SIZEOF(this) == 3) || (ABS(this.ToArray()[3]) < 1000000);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcCompoundPlaneAngleMeasure.MicrosecondsInRange'.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause ConsistentSign
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool ConsistentSign() {
-			var retVal = false;
-			try {
-				retVal = ((this.ToArray()[0] >= 0) && (this.ToArray()[1] >= 0) && (this.ToArray()[2] >= 0) && ((SIZEOF(this) == 3) || (this.ToArray()[3] >= 0))) || ((this.ToArray()[0] <= 0) && (this.ToArray()[1] <= 0) && (this.ToArray()[2] <= 0) && ((SIZEOF(this) == 3) || (this.ToArray()[3] <= 0)));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ConsistentSign'.", ex);
+			if (clause == Where.IfcCompoundPlaneAngleMeasure.ConsistentSign) {
+				try {
+					retVal = ((this.ToArray()[0] >= 0) && (this.ToArray()[1] >= 0) && (this.ToArray()[2] >= 0) && ((SIZEOF(this) == 3) || (this.ToArray()[3] >= 0))) || ((this.ToArray()[0] <= 0) && (this.ToArray()[1] <= 0) && (this.ToArray()[2] <= 0) && ((SIZEOF(this) == 3) || (this.ToArray()[3] <= 0)));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcCompoundPlaneAngleMeasure.ConsistentSign'.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!MinutesInRange())
-				yield return new ValidationResult() { Item = this, IssueSource = "MinutesInRange", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!SecondsInRange())
-				yield return new ValidationResult() { Item = this, IssueSource = "SecondsInRange", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!MicrosecondsInRange())
-				yield return new ValidationResult() { Item = this, IssueSource = "MicrosecondsInRange", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ConsistentSign())
-				yield return new ValidationResult() { Item = this, IssueSource = "ConsistentSign", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcCompoundPlaneAngleMeasure.MinutesInRange))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcCompoundPlaneAngleMeasure.MinutesInRange", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcCompoundPlaneAngleMeasure.SecondsInRange))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcCompoundPlaneAngleMeasure.SecondsInRange", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcCompoundPlaneAngleMeasure.MicrosecondsInRange))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcCompoundPlaneAngleMeasure.MicrosecondsInRange", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcCompoundPlaneAngleMeasure.ConsistentSign))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcCompoundPlaneAngleMeasure.ConsistentSign", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcCompoundPlaneAngleMeasure
+	{
+		public static readonly IfcCompoundPlaneAngleMeasure MinutesInRange = new IfcCompoundPlaneAngleMeasure();
+		public static readonly IfcCompoundPlaneAngleMeasure SecondsInRange = new IfcCompoundPlaneAngleMeasure();
+		public static readonly IfcCompoundPlaneAngleMeasure MicrosecondsInRange = new IfcCompoundPlaneAngleMeasure();
+		public static readonly IfcCompoundPlaneAngleMeasure ConsistentSign = new IfcCompoundPlaneAngleMeasure();
+		protected IfcCompoundPlaneAngleMeasure() {}
 	}
 }

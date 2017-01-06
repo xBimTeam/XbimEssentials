@@ -16,17 +16,21 @@ namespace Xbim.Ifc4.ProductExtension
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcGrid");
 
 		/// <summary>
-		/// Tests the express where clause HasPlacement
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool HasPlacement() {
+		public bool ValidateClause(Where.IfcGrid clause) {
 			var retVal = false;
-			try {
-				retVal = EXISTS(this/* as IfcProduct*/.ObjectPlacement);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'HasPlacement' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcGrid.HasPlacement) {
+				try {
+					retVal = EXISTS(this/* as IfcProduct*/.ObjectPlacement);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcGrid.HasPlacement' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcProduct)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -35,8 +39,18 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				yield return value;
 			}
-			if (!HasPlacement())
-				yield return new ValidationResult() { Item = this, IssueSource = "HasPlacement", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcGrid.HasPlacement))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcGrid.HasPlacement", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcGrid : IfcProduct
+	{
+		public static readonly IfcGrid HasPlacement = new IfcGrid();
+		protected IfcGrid() {}
 	}
 }

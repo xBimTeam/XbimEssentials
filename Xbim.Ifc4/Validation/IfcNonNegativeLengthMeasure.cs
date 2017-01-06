@@ -11,28 +11,42 @@ using static Xbim.Ifc4.Functions;
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.MeasureResource
 {
-	public partial struct IfcNonNegativeLengthMeasure 
+	public partial struct IfcNonNegativeLengthMeasure : IExpressValidatable
 	{
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure");
 
 		/// <summary>
-		/// Tests the express where clause NotNegative
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool NotNegative() {
+		public bool ValidateClause(Where.IfcNonNegativeLengthMeasure clause) {
 			var retVal = false;
-			try {
-				retVal = this >= 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'NotNegative'.", ex);
+			if (clause == Where.IfcNonNegativeLengthMeasure.NotNegative) {
+				try {
+					retVal = this >= 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcNonNegativeLengthMeasure.NotNegative'.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!NotNegative())
-				yield return new ValidationResult() { Item = this, IssueSource = "NotNegative", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcNonNegativeLengthMeasure.NotNegative))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcNonNegativeLengthMeasure.NotNegative", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcNonNegativeLengthMeasure
+	{
+		public static readonly IfcNonNegativeLengthMeasure NotNegative = new IfcNonNegativeLengthMeasure();
+		protected IfcNonNegativeLengthMeasure() {}
 	}
 }

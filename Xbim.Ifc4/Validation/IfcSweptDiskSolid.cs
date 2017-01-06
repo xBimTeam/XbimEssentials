@@ -16,55 +16,59 @@ namespace Xbim.Ifc4.GeometricModelResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcSweptDiskSolid");
 
 		/// <summary>
-		/// Tests the express where clause DirectrixDim
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool DirectrixDim() {
+		public bool ValidateClause(Where.IfcSweptDiskSolid clause) {
 			var retVal = false;
-			try {
-				retVal = Directrix.Dim == 3;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'DirectrixDim' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcSweptDiskSolid.DirectrixDim) {
+				try {
+					retVal = Directrix.Dim == 3;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcSweptDiskSolid.DirectrixDim' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause InnerRadiusSize
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool InnerRadiusSize() {
-			var retVal = false;
-			try {
-				retVal = (!EXISTS(InnerRadius)) || (Radius > InnerRadius);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'InnerRadiusSize' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcSweptDiskSolid.InnerRadiusSize) {
+				try {
+					retVal = (!EXISTS(InnerRadius)) || (Radius > InnerRadius);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcSweptDiskSolid.InnerRadiusSize' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause DirectrixBounded
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool DirectrixBounded() {
-			var retVal = false;
-			try {
-				retVal = (EXISTS(StartParam) && EXISTS(EndParam)) || (SIZEOF(NewArray("IFC4.IFCCONIC", "IFC4.IFCBOUNDEDCURVE") * TYPEOF(Directrix)) == 1);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'DirectrixBounded' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcSweptDiskSolid.DirectrixBounded) {
+				try {
+					retVal = (EXISTS(StartParam) && EXISTS(EndParam)) || (SIZEOF(NewArray("IFC4.IFCCONIC", "IFC4.IFCBOUNDEDCURVE") * TYPEOF(Directrix)) == 1);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcSweptDiskSolid.DirectrixBounded' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!DirectrixDim())
-				yield return new ValidationResult() { Item = this, IssueSource = "DirectrixDim", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!InnerRadiusSize())
-				yield return new ValidationResult() { Item = this, IssueSource = "InnerRadiusSize", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!DirectrixBounded())
-				yield return new ValidationResult() { Item = this, IssueSource = "DirectrixBounded", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcSweptDiskSolid.DirectrixDim))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcSweptDiskSolid.DirectrixDim", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcSweptDiskSolid.InnerRadiusSize))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcSweptDiskSolid.InnerRadiusSize", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcSweptDiskSolid.DirectrixBounded))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcSweptDiskSolid.DirectrixBounded", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcSweptDiskSolid
+	{
+		public static readonly IfcSweptDiskSolid DirectrixDim = new IfcSweptDiskSolid();
+		public static readonly IfcSweptDiskSolid InnerRadiusSize = new IfcSweptDiskSolid();
+		public static readonly IfcSweptDiskSolid DirectrixBounded = new IfcSweptDiskSolid();
+		protected IfcSweptDiskSolid() {}
 	}
 }

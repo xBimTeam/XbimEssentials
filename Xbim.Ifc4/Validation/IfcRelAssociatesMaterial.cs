@@ -16,39 +16,48 @@ namespace Xbim.Ifc4.ProductExtension
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcRelAssociatesMaterial");
 
 		/// <summary>
-		/// Tests the express where clause NoVoidElement
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool NoVoidElement() {
+		public bool ValidateClause(Where.IfcRelAssociatesMaterial clause) {
 			var retVal = false;
-			try {
-				retVal = SIZEOF(this/* as IfcRelAssociates*/.RelatedObjects.Where(temp => (TYPEOF(temp).Contains("IFC4.IFCFEATUREELEMENTSUBTRACTION")) || (TYPEOF(temp).Contains("IFC4.IFCVIRTUALELEMENT")))) == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'NoVoidElement' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcRelAssociatesMaterial.NoVoidElement) {
+				try {
+					retVal = SIZEOF(this/* as IfcRelAssociates*/.RelatedObjects.Where(temp => (TYPEOF(temp).Contains("IFC4.IFCFEATUREELEMENTSUBTRACTION")) || (TYPEOF(temp).Contains("IFC4.IFCVIRTUALELEMENT")))) == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcRelAssociatesMaterial.NoVoidElement' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause AllowedElements
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool AllowedElements() {
-			var retVal = false;
-			try {
-				retVal = SIZEOF(this/* as IfcRelAssociates*/.RelatedObjects.Where(temp => (SIZEOF(TYPEOF(temp) * NewArray("IFC4.IFCELEMENT", "IFC4.IFCELEMENTTYPE", "IFC4.IFCWINDOWSTYLE", "IFC4.IFCDOORSTYLE", "IFC4.IFCSTRUCTURALMEMBER", "IFC4.IFCPORT")) == 0))) == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'AllowedElements' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcRelAssociatesMaterial.AllowedElements) {
+				try {
+					retVal = SIZEOF(this/* as IfcRelAssociates*/.RelatedObjects.Where(temp => (SIZEOF(TYPEOF(temp) * NewArray("IFC4.IFCELEMENT", "IFC4.IFCELEMENTTYPE", "IFC4.IFCWINDOWSTYLE", "IFC4.IFCDOORSTYLE", "IFC4.IFCSTRUCTURALMEMBER", "IFC4.IFCPORT")) == 0))) == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcRelAssociatesMaterial.AllowedElements' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!NoVoidElement())
-				yield return new ValidationResult() { Item = this, IssueSource = "NoVoidElement", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!AllowedElements())
-				yield return new ValidationResult() { Item = this, IssueSource = "AllowedElements", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcRelAssociatesMaterial.NoVoidElement))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelAssociatesMaterial.NoVoidElement", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcRelAssociatesMaterial.AllowedElements))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelAssociatesMaterial.AllowedElements", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcRelAssociatesMaterial
+	{
+		public static readonly IfcRelAssociatesMaterial NoVoidElement = new IfcRelAssociatesMaterial();
+		public static readonly IfcRelAssociatesMaterial AllowedElements = new IfcRelAssociatesMaterial();
+		protected IfcRelAssociatesMaterial() {}
 	}
 }

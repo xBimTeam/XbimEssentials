@@ -16,31 +16,29 @@ namespace Xbim.Ifc4.HvacDomain
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcAirTerminalBox");
 
 		/// <summary>
-		/// Tests the express where clause CorrectPredefinedType
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool CorrectPredefinedType() {
+		public bool ValidateClause(Where.IfcAirTerminalBox clause) {
 			var retVal = false;
-			try {
-				retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcAirTerminalBoxTypeEnum.USERDEFINED) || ((PredefinedType == IfcAirTerminalBoxTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'CorrectPredefinedType' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcAirTerminalBox.CorrectPredefinedType) {
+				try {
+					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcAirTerminalBoxTypeEnum.USERDEFINED) || ((PredefinedType == IfcAirTerminalBoxTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcAirTerminalBox.CorrectPredefinedType' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause CorrectTypeAssigned
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool CorrectTypeAssigned() {
-			var retVal = false;
-			try {
-				retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ToArray()[0].RelatingType).Contains("IFC4.IFCAIRTERMINALBOXTYPE"));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'CorrectTypeAssigned' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcAirTerminalBox.CorrectTypeAssigned) {
+				try {
+					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ToArray()[0].RelatingType).Contains("IFC4.IFCAIRTERMINALBOXTYPE"));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcAirTerminalBox.CorrectTypeAssigned' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcProduct)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -49,10 +47,21 @@ namespace Xbim.Ifc4.HvacDomain
 			{
 				yield return value;
 			}
-			if (!CorrectPredefinedType())
-				yield return new ValidationResult() { Item = this, IssueSource = "CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!CorrectTypeAssigned())
-				yield return new ValidationResult() { Item = this, IssueSource = "CorrectTypeAssigned", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcAirTerminalBox.CorrectPredefinedType))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcAirTerminalBox.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcAirTerminalBox.CorrectTypeAssigned))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcAirTerminalBox.CorrectTypeAssigned", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcAirTerminalBox : IfcProduct
+	{
+		public static readonly IfcAirTerminalBox CorrectPredefinedType = new IfcAirTerminalBox();
+		public static readonly IfcAirTerminalBox CorrectTypeAssigned = new IfcAirTerminalBox();
+		protected IfcAirTerminalBox() {}
 	}
 }

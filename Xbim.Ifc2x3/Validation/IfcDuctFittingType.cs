@@ -20,17 +20,21 @@ namespace Xbim.Ifc2x3.HVACDomain
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.HVACDomain.IfcDuctFittingType");
 
 		/// <summary>
-		/// Tests the express where clause WR2
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR2() {
+		public bool ValidateClause(Where.IfcDuctFittingType clause) {
 			var retVal = false;
-			try {
-				retVal = (PredefinedType != IfcDuctFittingTypeEnum.USERDEFINED) || ((PredefinedType == IfcDuctFittingTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR2' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcDuctFittingType.WR2) {
+				try {
+					retVal = (PredefinedType != IfcDuctFittingTypeEnum.USERDEFINED) || ((PredefinedType == IfcDuctFittingTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcDuctFittingType.WR2' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcTypeProduct)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -39,8 +43,18 @@ namespace Xbim.Ifc2x3.HVACDomain
 			{
 				yield return value;
 			}
-			if (!WR2())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR2", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcDuctFittingType.WR2))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcDuctFittingType.WR2", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcDuctFittingType : IfcTypeProduct
+	{
+		public static readonly IfcDuctFittingType WR2 = new IfcDuctFittingType();
+		protected IfcDuctFittingType() {}
 	}
 }

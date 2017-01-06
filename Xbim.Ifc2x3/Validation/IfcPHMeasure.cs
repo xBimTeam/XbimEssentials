@@ -15,28 +15,42 @@ using static Xbim.Ifc2x3.Functions;
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.MeasureResource
 {
-	public partial struct IfcPHMeasure 
+	public partial struct IfcPHMeasure : IExpressValidatable
 	{
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.MeasureResource.IfcPHMeasure");
 
 		/// <summary>
-		/// Tests the express where clause WR21
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR21() {
+		public bool ValidateClause(Where.IfcPHMeasure clause) {
 			var retVal = false;
-			try {
-				retVal = ((0 <= this) && (this <= 14) );
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR21'.", ex);
+			if (clause == Where.IfcPHMeasure.WR21) {
+				try {
+					retVal = ((0 <= this) && (this <= 14) );
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcPHMeasure.WR21'.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR21())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR21", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcPHMeasure.WR21))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcPHMeasure.WR21", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcPHMeasure
+	{
+		public static readonly IfcPHMeasure WR21 = new IfcPHMeasure();
+		protected IfcPHMeasure() {}
 	}
 }

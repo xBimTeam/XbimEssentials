@@ -16,31 +16,29 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralElementsDomain.IfcReinforcingBarType");
 
 		/// <summary>
-		/// Tests the express where clause CorrectPredefinedType
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool CorrectPredefinedType() {
+		public bool ValidateClause(Where.IfcReinforcingBarType clause) {
 			var retVal = false;
-			try {
-				retVal = (PredefinedType != IfcReinforcingBarTypeEnum.USERDEFINED) || ((PredefinedType == IfcReinforcingBarTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'CorrectPredefinedType' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcReinforcingBarType.CorrectPredefinedType) {
+				try {
+					retVal = (PredefinedType != IfcReinforcingBarTypeEnum.USERDEFINED) || ((PredefinedType == IfcReinforcingBarTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcReinforcingBarType.CorrectPredefinedType' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause BendingShapeCodeProvided
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool BendingShapeCodeProvided() {
-			var retVal = false;
-			try {
-				retVal = !EXISTS(BendingParameters) || EXISTS(BendingShapeCode);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'BendingShapeCodeProvided' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcReinforcingBarType.BendingShapeCodeProvided) {
+				try {
+					retVal = !EXISTS(BendingParameters) || EXISTS(BendingShapeCode);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcReinforcingBarType.BendingShapeCodeProvided' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcTypeProduct)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -49,10 +47,21 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				yield return value;
 			}
-			if (!CorrectPredefinedType())
-				yield return new ValidationResult() { Item = this, IssueSource = "CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!BendingShapeCodeProvided())
-				yield return new ValidationResult() { Item = this, IssueSource = "BendingShapeCodeProvided", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcReinforcingBarType.CorrectPredefinedType))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcReinforcingBarType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcReinforcingBarType.BendingShapeCodeProvided))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcReinforcingBarType.BendingShapeCodeProvided", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcReinforcingBarType : IfcTypeProduct
+	{
+		public static readonly IfcReinforcingBarType CorrectPredefinedType = new IfcReinforcingBarType();
+		public static readonly IfcReinforcingBarType BendingShapeCodeProvided = new IfcReinforcingBarType();
+		protected IfcReinforcingBarType() {}
 	}
 }

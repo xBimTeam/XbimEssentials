@@ -16,39 +16,48 @@ namespace Xbim.Ifc4.GeometryResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcAxis2Placement2D");
 
 		/// <summary>
-		/// Tests the express where clause RefDirIs2D
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool RefDirIs2D() {
+		public bool ValidateClause(Where.IfcAxis2Placement2D clause) {
 			var retVal = false;
-			try {
-				retVal = (!(EXISTS(RefDirection))) || (RefDirection.Dim == 2);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'RefDirIs2D' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcAxis2Placement2D.RefDirIs2D) {
+				try {
+					retVal = (!(EXISTS(RefDirection))) || (RefDirection.Dim == 2);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcAxis2Placement2D.RefDirIs2D' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause LocationIs2D
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool LocationIs2D() {
-			var retVal = false;
-			try {
-				retVal = this/* as IfcPlacement*/.Location.Dim == 2;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'LocationIs2D' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcAxis2Placement2D.LocationIs2D) {
+				try {
+					retVal = this/* as IfcPlacement*/.Location.Dim == 2;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcAxis2Placement2D.LocationIs2D' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!RefDirIs2D())
-				yield return new ValidationResult() { Item = this, IssueSource = "RefDirIs2D", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!LocationIs2D())
-				yield return new ValidationResult() { Item = this, IssueSource = "LocationIs2D", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcAxis2Placement2D.RefDirIs2D))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcAxis2Placement2D.RefDirIs2D", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcAxis2Placement2D.LocationIs2D))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcAxis2Placement2D.LocationIs2D", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcAxis2Placement2D
+	{
+		public static readonly IfcAxis2Placement2D RefDirIs2D = new IfcAxis2Placement2D();
+		public static readonly IfcAxis2Placement2D LocationIs2D = new IfcAxis2Placement2D();
+		protected IfcAxis2Placement2D() {}
 	}
 }

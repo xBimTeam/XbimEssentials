@@ -20,59 +20,45 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.RepresentationResource.IfcShapeRepresentation");
 
 		/// <summary>
-		/// Tests the express where clause WR21
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR21() {
+		public bool ValidateClause(Where.IfcShapeRepresentation clause) {
 			var retVal = false;
-			try {
-				retVal = TYPEOF(this/* as IfcRepresentation*/.ContextOfItems).Contains("IFC2X3.IFCGEOMETRICREPRESENTATIONCONTEXT");
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR21' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcShapeRepresentation.WR21) {
+				try {
+					retVal = TYPEOF(this/* as IfcRepresentation*/.ContextOfItems).Contains("IFC2X3.IFCGEOMETRICREPRESENTATIONCONTEXT");
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcShapeRepresentation.WR21' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR22
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR22() {
-			var retVal = false;
-			try {
-				retVal = SIZEOF(Items.Where(temp => (TYPEOF(temp).Contains("IFC2X3.IFCTOPOLOGICALREPRESENTATIONITEM")) && (!(SIZEOF(NewArray("IFC2X3.IFCVERTEXPOINT", "IFC2X3.IFCEDGECURVE", "IFC2X3.IFCFACESURFACE") * TYPEOF(temp)) == 1)))) == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR22' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcShapeRepresentation.WR22) {
+				try {
+					retVal = SIZEOF(Items.Where(temp => (TYPEOF(temp).Contains("IFC2X3.IFCTOPOLOGICALREPRESENTATIONITEM")) && (!(SIZEOF(NewArray("IFC2X3.IFCVERTEXPOINT", "IFC2X3.IFCEDGECURVE", "IFC2X3.IFCFACESURFACE") * TYPEOF(temp)) == 1)))) == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcShapeRepresentation.WR22' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR23
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR23() {
-			var retVal = false;
-			try {
-				retVal = EXISTS(this/* as IfcRepresentation*/.RepresentationType);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR23' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcShapeRepresentation.WR23) {
+				try {
+					retVal = EXISTS(this/* as IfcRepresentation*/.RepresentationType);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcShapeRepresentation.WR23' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR24
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR24() {
-			var retVal = false;
-			try {
-				retVal = IfcShapeRepresentationTypes(this/* as IfcRepresentation*/.RepresentationType, this/* as IfcRepresentation*/.Items);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR24' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcShapeRepresentation.WR24) {
+				try {
+					retVal = IfcShapeRepresentationTypes(this/* as IfcRepresentation*/.RepresentationType, this/* as IfcRepresentation*/.Items);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcShapeRepresentation.WR24' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcShapeModel)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -81,14 +67,27 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			{
 				yield return value;
 			}
-			if (!WR21())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR21", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR22())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR22", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR23())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR23", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR24())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR24", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcShapeRepresentation.WR21))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcShapeRepresentation.WR21", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcShapeRepresentation.WR22))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcShapeRepresentation.WR22", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcShapeRepresentation.WR23))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcShapeRepresentation.WR23", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcShapeRepresentation.WR24))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcShapeRepresentation.WR24", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcShapeRepresentation : IfcShapeModel
+	{
+		public static readonly IfcShapeRepresentation WR21 = new IfcShapeRepresentation();
+		public static readonly IfcShapeRepresentation WR22 = new IfcShapeRepresentation();
+		public static readonly IfcShapeRepresentation WR23 = new IfcShapeRepresentation();
+		public static readonly IfcShapeRepresentation WR24 = new IfcShapeRepresentation();
+		protected IfcShapeRepresentation() {}
 	}
 }

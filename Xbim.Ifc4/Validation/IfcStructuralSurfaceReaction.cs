@@ -16,17 +16,21 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralSurfaceReaction");
 
 		/// <summary>
-		/// Tests the express where clause HasPredefinedType
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool HasPredefinedType() {
+		public bool ValidateClause(Where.IfcStructuralSurfaceReaction clause) {
 			var retVal = false;
-			try {
-				retVal = (PredefinedType != IfcStructuralSurfaceActivityTypeEnum.USERDEFINED) || EXISTS(this/* as IfcObject*/.ObjectType);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'HasPredefinedType' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcStructuralSurfaceReaction.HasPredefinedType) {
+				try {
+					retVal = (PredefinedType != IfcStructuralSurfaceActivityTypeEnum.USERDEFINED) || EXISTS(this/* as IfcObject*/.ObjectType);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcStructuralSurfaceReaction.HasPredefinedType' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcProduct)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -35,8 +39,18 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				yield return value;
 			}
-			if (!HasPredefinedType())
-				yield return new ValidationResult() { Item = this, IssueSource = "HasPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcStructuralSurfaceReaction.HasPredefinedType))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcStructuralSurfaceReaction.HasPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcStructuralSurfaceReaction : IfcProduct
+	{
+		public static readonly IfcStructuralSurfaceReaction HasPredefinedType = new IfcStructuralSurfaceReaction();
+		protected IfcStructuralSurfaceReaction() {}
 	}
 }

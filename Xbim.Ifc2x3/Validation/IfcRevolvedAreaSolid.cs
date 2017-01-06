@@ -20,31 +20,29 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricModelResource.IfcRevolvedAreaSolid");
 
 		/// <summary>
-		/// Tests the express where clause WR31
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR31() {
+		public bool ValidateClause(Where.IfcRevolvedAreaSolid clause) {
 			var retVal = false;
-			try {
-				retVal = Axis.Location.Coordinates.ToArray()[2] == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR31' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcRevolvedAreaSolid.WR31) {
+				try {
+					retVal = Axis.Location.Coordinates.ToArray()[2] == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcRevolvedAreaSolid.WR31' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR32
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR32() {
-			var retVal = false;
-			try {
-				retVal = Axis.Z.DirectionRatios().ToArray()[2] == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR32' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcRevolvedAreaSolid.WR32) {
+				try {
+					retVal = Axis.Z.DirectionRatios().ToArray()[2] == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcRevolvedAreaSolid.WR32' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcSweptAreaSolid)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -53,10 +51,21 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				yield return value;
 			}
-			if (!WR31())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR31", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR32())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR32", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcRevolvedAreaSolid.WR31))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcRevolvedAreaSolid.WR31", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcRevolvedAreaSolid.WR32))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcRevolvedAreaSolid.WR32", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcRevolvedAreaSolid : IfcSweptAreaSolid
+	{
+		public static readonly IfcRevolvedAreaSolid WR31 = new IfcRevolvedAreaSolid();
+		public static readonly IfcRevolvedAreaSolid WR32 = new IfcRevolvedAreaSolid();
+		protected IfcRevolvedAreaSolid() {}
 	}
 }

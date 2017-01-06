@@ -20,23 +20,37 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricModelResource.IfcGeometricSet");
 
 		/// <summary>
-		/// Tests the express where clause WR21
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR21() {
+		public bool ValidateClause(Where.IfcGeometricSet clause) {
 			var retVal = false;
-			try {
-				retVal = SIZEOF(Elements.Where(Temp => Temp.Dim != Elements.ToArray()[0].Dim)) == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR21' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcGeometricSet.WR21) {
+				try {
+					retVal = SIZEOF(Elements.Where(Temp => Temp.Dim != Elements.ToArray()[0].Dim)) == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcGeometricSet.WR21' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR21())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR21", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcGeometricSet.WR21))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcGeometricSet.WR21", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcGeometricSet
+	{
+		public static readonly IfcGeometricSet WR21 = new IfcGeometricSet();
+		protected IfcGeometricSet() {}
 	}
 }

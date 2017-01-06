@@ -16,17 +16,21 @@ namespace Xbim.Ifc4.SharedBldgElements
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcSlabStandardCase");
 
 		/// <summary>
-		/// Tests the express where clause HasMaterialLayerSetusage
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool HasMaterialLayerSetusage() {
+		public bool ValidateClause(Where.IfcSlabStandardCase clause) {
 			var retVal = false;
-			try {
-				retVal = SIZEOF(USEDIN(this, "IFC4.IFCRELASSOCIATES.RELATEDOBJECTS").Where(temp => (TYPEOF(temp).Contains("IFC4.IFCRELASSOCIATESMATERIAL")) && (TYPEOF(temp.AsIfcRelAssociatesMaterial().RelatingMaterial).Contains("IFC4.IFCMATERIALLAYERSETUSAGE")))) == 1;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'HasMaterialLayerSetusage' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcSlabStandardCase.HasMaterialLayerSetusage) {
+				try {
+					retVal = SIZEOF(USEDIN(this, "IFC4.IFCRELASSOCIATES.RELATEDOBJECTS").Where(temp => (TYPEOF(temp).Contains("IFC4.IFCRELASSOCIATESMATERIAL")) && (TYPEOF(temp.AsIfcRelAssociatesMaterial().RelatingMaterial).Contains("IFC4.IFCMATERIALLAYERSETUSAGE")))) == 1;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcSlabStandardCase.HasMaterialLayerSetusage' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcSlab)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -35,8 +39,18 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				yield return value;
 			}
-			if (!HasMaterialLayerSetusage())
-				yield return new ValidationResult() { Item = this, IssueSource = "HasMaterialLayerSetusage", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcSlabStandardCase.HasMaterialLayerSetusage))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcSlabStandardCase.HasMaterialLayerSetusage", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcSlabStandardCase : IfcSlab
+	{
+		public static readonly IfcSlabStandardCase HasMaterialLayerSetusage = new IfcSlabStandardCase();
+		protected IfcSlabStandardCase() {}
 	}
 }

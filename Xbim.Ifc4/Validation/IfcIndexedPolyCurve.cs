@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.GeometryResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcIndexedPolyCurve");
 
 		/// <summary>
-		/// Tests the express where clause Consecutive
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool Consecutive() {
+		public bool ValidateClause(Where.IfcIndexedPolyCurve clause) {
 			var retVal = false;
-			try {
-				retVal = (SIZEOF(Segments) == 0) || IfcConsecutiveSegments(Segments);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'Consecutive' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcIndexedPolyCurve.Consecutive) {
+				try {
+					retVal = (SIZEOF(Segments) == 0) || IfcConsecutiveSegments(Segments);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcIndexedPolyCurve.Consecutive' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!Consecutive())
-				yield return new ValidationResult() { Item = this, IssueSource = "Consecutive", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcIndexedPolyCurve.Consecutive))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcIndexedPolyCurve.Consecutive", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcIndexedPolyCurve
+	{
+		public static readonly IfcIndexedPolyCurve Consecutive = new IfcIndexedPolyCurve();
+		protected IfcIndexedPolyCurve() {}
 	}
 }

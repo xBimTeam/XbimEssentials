@@ -16,39 +16,48 @@ namespace Xbim.Ifc4.QuantityResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.QuantityResource.IfcPhysicalComplexQuantity");
 
 		/// <summary>
-		/// Tests the express where clause NoSelfReference
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool NoSelfReference() {
+		public bool ValidateClause(Where.IfcPhysicalComplexQuantity clause) {
 			var retVal = false;
-			try {
-				retVal = SIZEOF(HasQuantities.Where(temp => Object.ReferenceEquals(this, temp))) == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'NoSelfReference' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcPhysicalComplexQuantity.NoSelfReference) {
+				try {
+					retVal = SIZEOF(HasQuantities.Where(temp => Object.ReferenceEquals(this, temp))) == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcPhysicalComplexQuantity.NoSelfReference' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause UniqueQuantityNames
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool UniqueQuantityNames() {
-			var retVal = false;
-			try {
-				retVal = IfcUniqueQuantityNames(HasQuantities);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'UniqueQuantityNames' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcPhysicalComplexQuantity.UniqueQuantityNames) {
+				try {
+					retVal = IfcUniqueQuantityNames(HasQuantities);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcPhysicalComplexQuantity.UniqueQuantityNames' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!NoSelfReference())
-				yield return new ValidationResult() { Item = this, IssueSource = "NoSelfReference", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!UniqueQuantityNames())
-				yield return new ValidationResult() { Item = this, IssueSource = "UniqueQuantityNames", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcPhysicalComplexQuantity.NoSelfReference))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcPhysicalComplexQuantity.NoSelfReference", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcPhysicalComplexQuantity.UniqueQuantityNames))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcPhysicalComplexQuantity.UniqueQuantityNames", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcPhysicalComplexQuantity
+	{
+		public static readonly IfcPhysicalComplexQuantity NoSelfReference = new IfcPhysicalComplexQuantity();
+		public static readonly IfcPhysicalComplexQuantity UniqueQuantityNames = new IfcPhysicalComplexQuantity();
+		protected IfcPhysicalComplexQuantity() {}
 	}
 }

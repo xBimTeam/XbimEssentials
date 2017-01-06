@@ -20,31 +20,29 @@ namespace Xbim.Ifc2x3.GeometryResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcCartesianTransformationOperator3DnonUniform");
 
 		/// <summary>
-		/// Tests the express where clause WR1
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR1() {
+		public bool ValidateClause(Where.IfcCartesianTransformationOperator3DnonUniform clause) {
 			var retVal = false;
-			try {
-				retVal = Scl2 > 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR1' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcCartesianTransformationOperator3DnonUniform.WR1) {
+				try {
+					retVal = Scl2 > 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator3DnonUniform.WR1' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR2
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR2() {
-			var retVal = false;
-			try {
-				retVal = Scl3 > 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR2' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcCartesianTransformationOperator3DnonUniform.WR2) {
+				try {
+					retVal = Scl3 > 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator3DnonUniform.WR2' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcCartesianTransformationOperator3D)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -53,10 +51,21 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				yield return value;
 			}
-			if (!WR1())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR1", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR2())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR2", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcCartesianTransformationOperator3DnonUniform.WR1))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcCartesianTransformationOperator3DnonUniform.WR1", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcCartesianTransformationOperator3DnonUniform.WR2))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcCartesianTransformationOperator3DnonUniform.WR2", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcCartesianTransformationOperator3DnonUniform : IfcCartesianTransformationOperator3D
+	{
+		public new static readonly IfcCartesianTransformationOperator3DnonUniform WR1 = new IfcCartesianTransformationOperator3DnonUniform();
+		public new static readonly IfcCartesianTransformationOperator3DnonUniform WR2 = new IfcCartesianTransformationOperator3DnonUniform();
+		protected IfcCartesianTransformationOperator3DnonUniform() {}
 	}
 }

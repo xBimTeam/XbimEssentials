@@ -16,17 +16,21 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralCurveMember");
 
 		/// <summary>
-		/// Tests the express where clause HasObjectType
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool HasObjectType() {
+		public bool ValidateClause(Where.IfcStructuralCurveMember clause) {
 			var retVal = false;
-			try {
-				retVal = (PredefinedType != IfcStructuralCurveMemberTypeEnum.USERDEFINED) || EXISTS(this/* as IfcObject*/.ObjectType);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'HasObjectType' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcStructuralCurveMember.HasObjectType) {
+				try {
+					retVal = (PredefinedType != IfcStructuralCurveMemberTypeEnum.USERDEFINED) || EXISTS(this/* as IfcObject*/.ObjectType);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcStructuralCurveMember.HasObjectType' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcProduct)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -35,8 +39,18 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				yield return value;
 			}
-			if (!HasObjectType())
-				yield return new ValidationResult() { Item = this, IssueSource = "HasObjectType", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcStructuralCurveMember.HasObjectType))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcStructuralCurveMember.HasObjectType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcStructuralCurveMember : IfcProduct
+	{
+		public static readonly IfcStructuralCurveMember HasObjectType = new IfcStructuralCurveMember();
+		protected IfcStructuralCurveMember() {}
 	}
 }

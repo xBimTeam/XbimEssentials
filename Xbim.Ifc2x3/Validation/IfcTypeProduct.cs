@@ -20,17 +20,21 @@ namespace Xbim.Ifc2x3.Kernel
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcTypeProduct");
 
 		/// <summary>
-		/// Tests the express where clause WR41
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR41() {
+		public bool ValidateClause(Where.IfcTypeProduct clause) {
 			var retVal = false;
-			try {
-				retVal = !(EXISTS(this/* as IfcTypeObject*/.ObjectTypeOf.ToArray()[0])) || (SIZEOF(this/* as IfcTypeObject*/.ObjectTypeOf.ToArray()[0].RelatedObjects.Where(temp => !(TYPEOF(temp).Contains("IFC2X3.IFCPRODUCT")))) == 0);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR41' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcTypeProduct.WR41) {
+				try {
+					retVal = !(EXISTS(this/* as IfcTypeObject*/.ObjectTypeOf.ToArray()[0])) || (SIZEOF(this/* as IfcTypeObject*/.ObjectTypeOf.ToArray()[0].RelatedObjects.Where(temp => !(TYPEOF(temp).Contains("IFC2X3.IFCPRODUCT")))) == 0);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcTypeProduct.WR41' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcTypeObject)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -39,8 +43,18 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				yield return value;
 			}
-			if (!WR41())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR41", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcTypeProduct.WR41))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcTypeProduct.WR41", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcTypeProduct : IfcTypeObject
+	{
+		public static readonly IfcTypeProduct WR41 = new IfcTypeProduct();
+		protected IfcTypeProduct() {}
 	}
 }

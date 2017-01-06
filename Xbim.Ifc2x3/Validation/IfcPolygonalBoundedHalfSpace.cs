@@ -20,39 +20,48 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricModelResource.IfcPolygonalBoundedHalfSpace");
 
 		/// <summary>
-		/// Tests the express where clause WR41
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR41() {
+		public bool ValidateClause(Where.IfcPolygonalBoundedHalfSpace clause) {
 			var retVal = false;
-			try {
-				retVal = PolygonalBoundary.Dim == 2;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR41' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcPolygonalBoundedHalfSpace.WR41) {
+				try {
+					retVal = PolygonalBoundary.Dim == 2;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcPolygonalBoundedHalfSpace.WR41' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR42
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR42() {
-			var retVal = false;
-			try {
-				retVal = SIZEOF(TYPEOF(PolygonalBoundary) * NewArray("IFC2X3.IFCPOLYLINE", "IFC2X3.IFCCOMPOSITECURVE")) == 1;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR42' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcPolygonalBoundedHalfSpace.WR42) {
+				try {
+					retVal = SIZEOF(TYPEOF(PolygonalBoundary) * NewArray("IFC2X3.IFCPOLYLINE", "IFC2X3.IFCCOMPOSITECURVE")) == 1;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcPolygonalBoundedHalfSpace.WR42' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR41())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR41", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR42())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR42", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcPolygonalBoundedHalfSpace.WR41))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcPolygonalBoundedHalfSpace.WR41", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcPolygonalBoundedHalfSpace.WR42))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcPolygonalBoundedHalfSpace.WR42", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcPolygonalBoundedHalfSpace
+	{
+		public static readonly IfcPolygonalBoundedHalfSpace WR41 = new IfcPolygonalBoundedHalfSpace();
+		public static readonly IfcPolygonalBoundedHalfSpace WR42 = new IfcPolygonalBoundedHalfSpace();
+		protected IfcPolygonalBoundedHalfSpace() {}
 	}
 }

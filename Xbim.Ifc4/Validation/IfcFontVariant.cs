@@ -11,28 +11,42 @@ using static Xbim.Ifc4.Functions;
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	public partial struct IfcFontVariant 
+	public partial struct IfcFontVariant : IExpressValidatable
 	{
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcFontVariant");
 
 		/// <summary>
-		/// Tests the express where clause WR1
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR1() {
+		public bool ValidateClause(Where.IfcFontVariant clause) {
 			var retVal = false;
-			try {
-				retVal = NewArray("normal", "small-caps").Contains(this);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR1'.", ex);
+			if (clause == Where.IfcFontVariant.WR1) {
+				try {
+					retVal = NewArray("normal", "small-caps").Contains(this);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcFontVariant.WR1'.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR1())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR1", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcFontVariant.WR1))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcFontVariant.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcFontVariant
+	{
+		public static readonly IfcFontVariant WR1 = new IfcFontVariant();
+		protected IfcFontVariant() {}
 	}
 }

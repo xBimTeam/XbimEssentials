@@ -16,17 +16,21 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralPointAction");
 
 		/// <summary>
-		/// Tests the express where clause SuitableLoadType
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool SuitableLoadType() {
+		public bool ValidateClause(Where.IfcStructuralPointAction clause) {
 			var retVal = false;
-			try {
-				retVal = SIZEOF(NewArray("IFC4.IFCSTRUCTURALLOADSINGLEFORCE", "IFC4.IFCSTRUCTURALLOADSINGLEDISPLACEMENT") * TYPEOF(this/* as IfcStructuralActivity*/.AppliedLoad)) == 1;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'SuitableLoadType' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcStructuralPointAction.SuitableLoadType) {
+				try {
+					retVal = SIZEOF(NewArray("IFC4.IFCSTRUCTURALLOADSINGLEFORCE", "IFC4.IFCSTRUCTURALLOADSINGLEDISPLACEMENT") * TYPEOF(this/* as IfcStructuralActivity*/.AppliedLoad)) == 1;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcStructuralPointAction.SuitableLoadType' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcProduct)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -35,8 +39,18 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				yield return value;
 			}
-			if (!SuitableLoadType())
-				yield return new ValidationResult() { Item = this, IssueSource = "SuitableLoadType", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcStructuralPointAction.SuitableLoadType))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcStructuralPointAction.SuitableLoadType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcStructuralPointAction : IfcProduct
+	{
+		public static readonly IfcStructuralPointAction SuitableLoadType = new IfcStructuralPointAction();
+		protected IfcStructuralPointAction() {}
 	}
 }

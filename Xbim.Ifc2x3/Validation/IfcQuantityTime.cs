@@ -20,39 +20,48 @@ namespace Xbim.Ifc2x3.QuantityResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.QuantityResource.IfcQuantityTime");
 
 		/// <summary>
-		/// Tests the express where clause WR21
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR21() {
+		public bool ValidateClause(Where.IfcQuantityTime clause) {
 			var retVal = false;
-			try {
-				retVal = !(EXISTS(this/* as IfcPhysicalSimpleQuantity*/.Unit)) || (this/* as IfcPhysicalSimpleQuantity*/.Unit.UnitType == IfcUnitEnum.TIMEUNIT);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR21' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcQuantityTime.WR21) {
+				try {
+					retVal = !(EXISTS(this/* as IfcPhysicalSimpleQuantity*/.Unit)) || (this/* as IfcPhysicalSimpleQuantity*/.Unit.UnitType == IfcUnitEnum.TIMEUNIT);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcQuantityTime.WR21' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR22
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR22() {
-			var retVal = false;
-			try {
-				retVal = TimeValue >= 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR22' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcQuantityTime.WR22) {
+				try {
+					retVal = TimeValue >= 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcQuantityTime.WR22' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR21())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR21", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR22())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR22", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcQuantityTime.WR21))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcQuantityTime.WR21", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcQuantityTime.WR22))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcQuantityTime.WR22", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcQuantityTime
+	{
+		public static readonly IfcQuantityTime WR21 = new IfcQuantityTime();
+		public static readonly IfcQuantityTime WR22 = new IfcQuantityTime();
+		protected IfcQuantityTime() {}
 	}
 }

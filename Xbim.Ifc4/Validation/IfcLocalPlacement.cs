@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricConstraintResource.IfcLocalPlacement");
 
 		/// <summary>
-		/// Tests the express where clause WR21
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR21() {
+		public bool ValidateClause(Where.IfcLocalPlacement clause) {
 			var retVal = false;
-			try {
-				retVal = IfcCorrectLocalPlacement(RelativePlacement, PlacementRelTo);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR21' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcLocalPlacement.WR21) {
+				try {
+					retVal = IfcCorrectLocalPlacement(RelativePlacement, PlacementRelTo);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcLocalPlacement.WR21' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR21())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR21", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcLocalPlacement.WR21))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcLocalPlacement.WR21", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcLocalPlacement
+	{
+		public static readonly IfcLocalPlacement WR21 = new IfcLocalPlacement();
+		protected IfcLocalPlacement() {}
 	}
 }

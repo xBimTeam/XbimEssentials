@@ -20,23 +20,37 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricModelResource.IfcSweptAreaSolid");
 
 		/// <summary>
-		/// Tests the express where clause WR22
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR22() {
+		public bool ValidateClause(Where.IfcSweptAreaSolid clause) {
 			var retVal = false;
-			try {
-				retVal = SweptArea.ProfileType == IfcProfileTypeEnum.AREA;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR22' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcSweptAreaSolid.WR22) {
+				try {
+					retVal = SweptArea.ProfileType == IfcProfileTypeEnum.AREA;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcSweptAreaSolid.WR22' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR22())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR22", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcSweptAreaSolid.WR22))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcSweptAreaSolid.WR22", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcSweptAreaSolid
+	{
+		public static readonly IfcSweptAreaSolid WR22 = new IfcSweptAreaSolid();
+		protected IfcSweptAreaSolid() {}
 	}
 }

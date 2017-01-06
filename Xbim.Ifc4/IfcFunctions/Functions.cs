@@ -30,7 +30,7 @@ namespace Xbim.Ifc4
         {
             return new ValuesArray<T>(args);
         }
-
+        
         internal static IfcEdgeLoop AsIfcEdgeLoop(this IfcLoop toCast)
         {
             return toCast as IfcEdgeLoop;
@@ -42,6 +42,18 @@ namespace Xbim.Ifc4
             if (!val.HasValue)
                 throw new InvalidEnumArgumentException("IfcLogical value not defined attempting bool conversion.");
             return val.Value;
+        }
+        internal static Direction IfcDirection(double x, double y, double z)
+        {
+            return new Direction(x, y, z);
+        }
+
+        internal static double IfcDotProduct(Direction dir1, IfcDirection dir2)
+        {
+            return
+                dir1.X*dir2.X +
+                dir1.Y*dir2.Y +
+                dir1.Z*dir2.Z;
         }
 
         internal static bool AsBool(this IfcLogical toCast)
@@ -88,9 +100,15 @@ namespace Xbim.Ifc4
             return obj1 ?? obj2;
         }
         
-        internal static IEnumerable<IPersistEntity> USEDIN(IfcObject ifcObject, string v)
+        internal static IEnumerable<IPersistEntity> USEDIN(IPersistEntity ifcObject, string v)
         {
-            throw new NotImplementedException();
+            // ReSharper disable once SwitchStatementMissingSomeCases
+            switch (v)
+            {
+                case "IFC4.IFCRELASSOCIATES.RELATEDOBJECTS":
+                    return ifcObject.Model.Instances.OfType<IfcRelAssociates>().Where(x => x.RelatedObjects.Contains(ifcObject));
+            }
+            throw new Exception($"NotImplemented: USEDIN does not support role {v}.");
         }
         
         internal static bool EXISTS(object o)
@@ -116,7 +134,11 @@ namespace Xbim.Ifc4
 
         internal static bool INTYPEOF(IVectorOrDirection obj, string typeString)
         {
-            throw new NotImplementedException();
+            if (obj is Vector && typeString.ToLowerInvariant().Contains("vector"))
+                return true;
+            if (obj is Direction && typeString.ToLowerInvariant().Contains("direction"))
+                return true;
+            return false;
         }
 
         internal static double SQRT(double mag)
@@ -1241,5 +1263,7 @@ namespace Xbim.Ifc4
         }
 
         #endregion
+
+        
     }
 }

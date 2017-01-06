@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcTextStyleFontModel");
 
 		/// <summary>
-		/// Tests the express where clause MeasureOfFontSize
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool MeasureOfFontSize() {
+		public bool ValidateClause(Where.IfcTextStyleFontModel clause) {
 			var retVal = false;
-			try {
-				retVal = (TYPEOF(this.FontSize).Contains("IFC4.IFCLENGTHMEASURE")) && (this.FontSize.AsIfcLengthMeasure() > 0);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'MeasureOfFontSize' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcTextStyleFontModel.MeasureOfFontSize) {
+				try {
+					retVal = (TYPEOF(this.FontSize).Contains("IFC4.IFCLENGTHMEASURE")) && (this.FontSize.AsIfcLengthMeasure() > 0);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcTextStyleFontModel.MeasureOfFontSize' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!MeasureOfFontSize())
-				yield return new ValidationResult() { Item = this, IssueSource = "MeasureOfFontSize", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcTextStyleFontModel.MeasureOfFontSize))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcTextStyleFontModel.MeasureOfFontSize", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcTextStyleFontModel
+	{
+		public static readonly IfcTextStyleFontModel MeasureOfFontSize = new IfcTextStyleFontModel();
+		protected IfcTextStyleFontModel() {}
 	}
 }

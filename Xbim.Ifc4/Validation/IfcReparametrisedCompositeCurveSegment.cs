@@ -16,17 +16,21 @@ namespace Xbim.Ifc4.GeometryResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcReparametrisedCompositeCurveSegment");
 
 		/// <summary>
-		/// Tests the express where clause PositiveLengthParameter
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool PositiveLengthParameter() {
+		public bool ValidateClause(Where.IfcReparametrisedCompositeCurveSegment clause) {
 			var retVal = false;
-			try {
-				retVal = ParamLength > 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'PositiveLengthParameter' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcReparametrisedCompositeCurveSegment.PositiveLengthParameter) {
+				try {
+					retVal = ParamLength > 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcReparametrisedCompositeCurveSegment.PositiveLengthParameter' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcCompositeCurveSegment)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -35,8 +39,18 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				yield return value;
 			}
-			if (!PositiveLengthParameter())
-				yield return new ValidationResult() { Item = this, IssueSource = "PositiveLengthParameter", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcReparametrisedCompositeCurveSegment.PositiveLengthParameter))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcReparametrisedCompositeCurveSegment.PositiveLengthParameter", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcReparametrisedCompositeCurveSegment : IfcCompositeCurveSegment
+	{
+		public static readonly IfcReparametrisedCompositeCurveSegment PositiveLengthParameter = new IfcReparametrisedCompositeCurveSegment();
+		protected IfcReparametrisedCompositeCurveSegment() {}
 	}
 }

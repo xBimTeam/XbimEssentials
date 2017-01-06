@@ -16,39 +16,48 @@ namespace Xbim.Ifc4.Kernel
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcTypeObject");
 
 		/// <summary>
-		/// Tests the express where clause NameRequired
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool NameRequired() {
+		public bool ValidateClause(Where.IfcTypeObject clause) {
 			var retVal = false;
-			try {
-				retVal = EXISTS(this/* as IfcRoot*/.Name);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'NameRequired' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcTypeObject.NameRequired) {
+				try {
+					retVal = EXISTS(this/* as IfcRoot*/.Name);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcTypeObject.NameRequired' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause UniquePropertySetNames
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool UniquePropertySetNames() {
-			var retVal = false;
-			try {
-				retVal = (!(EXISTS(HasPropertySets))) || IfcUniquePropertySetNames(HasPropertySets);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'UniquePropertySetNames' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcTypeObject.UniquePropertySetNames) {
+				try {
+					retVal = (!(EXISTS(HasPropertySets))) || IfcUniquePropertySetNames(HasPropertySets);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcTypeObject.UniquePropertySetNames' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!NameRequired())
-				yield return new ValidationResult() { Item = this, IssueSource = "NameRequired", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!UniquePropertySetNames())
-				yield return new ValidationResult() { Item = this, IssueSource = "UniquePropertySetNames", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcTypeObject.NameRequired))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcTypeObject.NameRequired", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcTypeObject.UniquePropertySetNames))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcTypeObject.UniquePropertySetNames", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcTypeObject
+	{
+		public static readonly IfcTypeObject NameRequired = new IfcTypeObject();
+		public static readonly IfcTypeObject UniquePropertySetNames = new IfcTypeObject();
+		protected IfcTypeObject() {}
 	}
 }

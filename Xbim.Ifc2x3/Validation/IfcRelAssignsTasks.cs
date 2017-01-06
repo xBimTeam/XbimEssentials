@@ -20,45 +20,37 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProcessExtension.IfcRelAssignsTasks");
 
 		/// <summary>
-		/// Tests the express where clause WR1
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR1() {
+		public bool ValidateClause(Where.IfcRelAssignsTasks clause) {
 			var retVal = false;
-			try {
-				retVal = HIINDEX(this/* as IfcRelAssigns*/.RelatedObjects) == 1;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR1' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcRelAssignsTasks.WR1) {
+				try {
+					retVal = HIINDEX(this/* as IfcRelAssigns*/.RelatedObjects) == 1;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcRelAssignsTasks.WR1' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR2
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR2() {
-			var retVal = false;
-			try {
-				retVal = TYPEOF(this/* as IfcRelAssigns*/.RelatedObjects.ToArray()[0]).Contains("IFC2X3.IFCTASK");
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR2' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcRelAssignsTasks.WR2) {
+				try {
+					retVal = TYPEOF(this/* as IfcRelAssigns*/.RelatedObjects.ToArray()[0]).Contains("IFC2X3.IFCTASK");
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcRelAssignsTasks.WR2' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR3
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR3() {
-			var retVal = false;
-			try {
-				retVal = TYPEOF(this/* as IfcRelAssignsToControl*/.RelatingControl).Contains("IFC2X3.IFCWORKCONTROL");
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR3' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcRelAssignsTasks.WR3) {
+				try {
+					retVal = TYPEOF(this/* as IfcRelAssignsToControl*/.RelatingControl).Contains("IFC2X3.IFCWORKCONTROL");
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcRelAssignsTasks.WR3' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcRelAssignsToControl)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -67,12 +59,24 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			{
 				yield return value;
 			}
-			if (!WR1())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR1", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR2())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR2", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR3())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR3", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcRelAssignsTasks.WR1))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelAssignsTasks.WR1", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcRelAssignsTasks.WR2))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelAssignsTasks.WR2", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcRelAssignsTasks.WR3))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelAssignsTasks.WR3", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcRelAssignsTasks : IfcRelAssignsToControl
+	{
+		public new static readonly IfcRelAssignsTasks WR1 = new IfcRelAssignsTasks();
+		public static readonly IfcRelAssignsTasks WR2 = new IfcRelAssignsTasks();
+		public static readonly IfcRelAssignsTasks WR3 = new IfcRelAssignsTasks();
+		protected IfcRelAssignsTasks() {}
 	}
 }

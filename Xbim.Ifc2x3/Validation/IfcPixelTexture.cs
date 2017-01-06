@@ -20,71 +20,70 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcPixelTexture");
 
 		/// <summary>
-		/// Tests the express where clause WR21
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR21() {
+		public bool ValidateClause(Where.IfcPixelTexture clause) {
 			var retVal = false;
-			try {
-				retVal = Width >= 1;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR21' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcPixelTexture.WR21) {
+				try {
+					retVal = Width >= 1;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcPixelTexture.WR21' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR22
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR22() {
-			var retVal = false;
-			try {
-				retVal = Height >= 1;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR22' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcPixelTexture.WR22) {
+				try {
+					retVal = Height >= 1;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcPixelTexture.WR22' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR23
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR23() {
-			var retVal = false;
-			try {
-				retVal = ((1 <= ColourComponents) && (ColourComponents <= 4) );
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR23' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcPixelTexture.WR23) {
+				try {
+					retVal = ((1 <= ColourComponents) && (ColourComponents <= 4) );
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcPixelTexture.WR23' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR24
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR24() {
-			var retVal = false;
-			try {
-				retVal = SIZEOF(Pixel) == (Width * Height);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR24' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcPixelTexture.WR24) {
+				try {
+					retVal = SIZEOF(Pixel) == (Width * Height);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcPixelTexture.WR24' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR21())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR21", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR22())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR22", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR23())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR23", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR24())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR24", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcPixelTexture.WR21))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcPixelTexture.WR21", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcPixelTexture.WR22))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcPixelTexture.WR22", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcPixelTexture.WR23))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcPixelTexture.WR23", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcPixelTexture.WR24))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcPixelTexture.WR24", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcPixelTexture
+	{
+		public static readonly IfcPixelTexture WR21 = new IfcPixelTexture();
+		public static readonly IfcPixelTexture WR22 = new IfcPixelTexture();
+		public static readonly IfcPixelTexture WR23 = new IfcPixelTexture();
+		public static readonly IfcPixelTexture WR24 = new IfcPixelTexture();
+		protected IfcPixelTexture() {}
 	}
 }

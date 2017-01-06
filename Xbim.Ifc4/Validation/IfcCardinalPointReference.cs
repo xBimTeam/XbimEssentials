@@ -11,28 +11,42 @@ using static Xbim.Ifc4.Functions;
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.MaterialResource
 {
-	public partial struct IfcCardinalPointReference 
+	public partial struct IfcCardinalPointReference : IExpressValidatable
 	{
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.MaterialResource.IfcCardinalPointReference");
 
 		/// <summary>
-		/// Tests the express where clause GreaterThanZero
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool GreaterThanZero() {
+		public bool ValidateClause(Where.IfcCardinalPointReference clause) {
 			var retVal = false;
-			try {
-				retVal = this > 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'GreaterThanZero'.", ex);
+			if (clause == Where.IfcCardinalPointReference.GreaterThanZero) {
+				try {
+					retVal = this > 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcCardinalPointReference.GreaterThanZero'.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!GreaterThanZero())
-				yield return new ValidationResult() { Item = this, IssueSource = "GreaterThanZero", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcCardinalPointReference.GreaterThanZero))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcCardinalPointReference.GreaterThanZero", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcCardinalPointReference
+	{
+		public static readonly IfcCardinalPointReference GreaterThanZero = new IfcCardinalPointReference();
+		protected IfcCardinalPointReference() {}
 	}
 }

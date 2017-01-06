@@ -33,9 +33,9 @@ namespace Xbim.Ifc2x3
     {
         #region "Implementation hacks"
 
-        internal static ValuesArray<T> NewArray<T>(params T[] args)
+        internal static ValuesArray<T> NewArray<T>(params T[] args) where T : class 
         {
-            return null;
+            return new ValuesArray<T>(args);
         }
 
         internal static IfcEdgeLoop AsIfcEdgeLoop(this IfcLoop toCast)
@@ -51,9 +51,22 @@ namespace Xbim.Ifc2x3
             return val.Value;
         }
 
+        internal static Direction IfcDirection(double x, double y, double z)
+        {
+            return new Direction(x, y, z);
+        }
+
+        internal static double IfcDotProduct(Direction dir1, IfcDirection dir2)
+        {
+            return
+                dir1.X * dir2.X +
+                dir1.Y * dir2.Y +
+                dir1.Z * dir2.Z;
+        }
+
         internal static IfcAnnotationTextOccurrence AsIfcAnnotationTextOccurrence(this IfcDraughtingCalloutElement toCast)
         {
-            throw  new NotImplementedException();
+            return toCast as IfcAnnotationTextOccurrence;
         }
 
         internal static IfcRelAssociatesMaterial AsIfcRelAssociatesMaterial(this IPersistEntity toCast)
@@ -96,9 +109,19 @@ namespace Xbim.Ifc2x3
             return obj1 ?? obj2;
         }
         
-        internal static IEnumerable<IPersistEntity> USEDIN(object ifcObject, string v)
+        internal static IEnumerable<IPersistEntity> USEDIN(IPersistEntity ifcObject, string v)
         {
-            throw new NotImplementedException();
+            // ReSharper disable once SwitchStatementMissingSomeCases
+            switch (v)
+            {
+                case "IFC2X3.IFCRELASSOCIATES.RELATEDOBJECTS":
+                    return ifcObject.Model.Instances.OfType<IfcRelAssociates>().Where(x => x.RelatedObjects.Contains(ifcObject));
+                case "IFC2X3.IFCTERMINATORSYMBOL.ANNOTATEDCURVE":
+                    return ifcObject.Model.Instances.OfType<IfcTerminatorSymbol>().Where(x => x.AnnotatedCurve == ifcObject);
+                case "IFC2X3.IFCDRAUGHTINGCALLOUT.CONTENTS":
+                    return ifcObject.Model.Instances.OfType<IfcDraughtingCallout>().Where(x => x.Contents.Contains(ifcObject));
+            }
+            throw new Exception($"NotImplemented: USEDIN does not support role {v}.");
         }
 
         
@@ -113,7 +136,7 @@ namespace Xbim.Ifc2x3
         }
         
         
-        internal static int SIZEOF<T>(ValuesArray<T> array)
+        internal static int SIZEOF<T>(ValuesArray<T> array) where T: class 
         {
             return array.Count();
         }
@@ -125,7 +148,11 @@ namespace Xbim.Ifc2x3
 
         internal static bool INTYPEOF(IVectorOrDirection obj, string typeString)
         {
-            throw new NotImplementedException();
+            if (obj is Vector && typeString.ToLowerInvariant().Contains("vector"))
+                return true;
+            if (obj is Direction && typeString.ToLowerInvariant().Contains("direction"))
+                return true;
+            return false;
         }
 
         internal static double SQRT(double mag)
@@ -140,7 +167,8 @@ namespace Xbim.Ifc2x3
 
         //internal static int BLENGTH(IfcBinary value)
         //{
-        //    // todo: blenght is the size in bits of the ifcbinary value provided
+        //    blenght is the size in bits of the ifcbinary value provided
+        //    never used in functions 2x3
         //    throw new NotImplementedException();
         //}
 
@@ -156,7 +184,7 @@ namespace Xbim.Ifc2x3
 
         internal static int HIINDEX<T>(IEnumerable<T> source)
         {
-            return source.Count() - 1;
+            return source.Count();
         }
 
         #endregion
@@ -184,25 +212,25 @@ namespace Xbim.Ifc2x3
                 SIZEOF(
                     Units.Where(
                         temp =>
-                            ((INTYPEOF(temp, "IFC4.IFCNAMEDUNIT"))) &&
+                            ((INTYPEOF(temp, "IFC2X3.IFCNAMEDUNIT"))) &&
                             !((temp as IfcNamedUnit).UnitType == IfcUnitEnum.USERDEFINED)));
             DerivedUnitNumber =
                 SIZEOF(
                     Units.Where(
                         temp =>
-                            ((INTYPEOF(temp, "IFC4.IFCDERIVEDUNIT"))) &&
+                            ((INTYPEOF(temp, "IFC2X3.IFCDERIVEDUNIT"))) &&
                             !((temp as IfcDerivedUnit).UnitType == IfcDerivedUnitEnum.USERDEFINED)));
-            MonetaryUnitNumber = SIZEOF(Units.Where(temp => (INTYPEOF(temp, "IFC4.IFCMONETARYUNIT"))));
+            MonetaryUnitNumber = SIZEOF(Units.Where(temp => (INTYPEOF(temp, "IFC2X3.IFCMONETARYUNIT"))));
 
             // index ok
             for (var i = 0; i < SIZEOF(Units); i++)
             {
-                if ((((INTYPEOF(Units[i], "IFC4.IFCNAMEDUNIT"))) &&
+                if ((((INTYPEOF(Units[i], "IFC2X3.IFCNAMEDUNIT"))) &&
                      !((Units[i] as IfcNamedUnit).UnitType == IfcUnitEnum.USERDEFINED)))
                 {
                     NamedUnitNames.Add((Units[i] as IfcNamedUnit).UnitType);
                 }
-                if ((((INTYPEOF(Units[i], "IFC4.IFCDERIVEDUNIT"))) &&
+                if ((((INTYPEOF(Units[i], "IFC2X3.IFCDERIVEDUNIT"))) &&
                      !((Units[i] as IfcDerivedUnit).UnitType == IfcDerivedUnitEnum.USERDEFINED)))
                 {
                     DerivedUnitNames.Add((Units[i] as IfcDerivedUnit).UnitType);
@@ -300,9 +328,9 @@ namespace Xbim.Ifc2x3
             bool Result = false;
 
 
-            if (INTYPEOF(StartArea, "IFC4.IFCPARAMETERIZEDPROFILEDEF"))
+            if (INTYPEOF(StartArea, "IFC2X3.IFCPARAMETERIZEDPROFILEDEF"))
             {
-                if (INTYPEOF(EndArea, "IFC4.IFCDERIVEDPROFILEDEF"))
+                if (INTYPEOF(EndArea, "IFC2X3.IFCDERIVEDPROFILEDEF"))
                 {
                     var end = EndArea as IIfcDerivedProfileDef;
                     Result = StartArea == end?.ParentProfile;
@@ -314,7 +342,7 @@ namespace Xbim.Ifc2x3
             }
             else
             {
-                if (INTYPEOF(EndArea, "IFC4.IFCDERIVEDPROFILEDEF"))
+                if (INTYPEOF(EndArea, "IFC2X3.IFCDERIVEDPROFILEDEF"))
                 {
                     var end = EndArea as IIfcDerivedProfileDef;
                     Result = StartArea == end?.ParentProfile;
@@ -503,24 +531,7 @@ namespace Xbim.Ifc2x3
             return isUnique;
         }
 
-        //internal static bool IfcCurveWeightsPositive(IfcRationalBSplineCurveWithKnots B)
-        //{
-            
-        //    // local variables
-        //    bool Result = true;
-
-
-        //    // todo: check indices range from specs ... possible bug in express
-        //    for (var i = 0; i <= B.UpperIndexOnControlPoints; i++)
-        //    {
-        //        if (B.Weights[i] <= 0.0)
-        //        {
-        //            Result = false;
-        //            return (Result);
-        //        }
-        //    }
-        //    return (Result);
-        //}
+      
 
         internal static bool IfcCorrectObjectAssignment(IfcObjectTypeEnum? Constraint, IItemSet<IfcObjectDefinition> Objects)
         {
@@ -550,42 +561,42 @@ namespace Xbim.Ifc2x3
                     return (true);
                 case IfcObjectTypeEnum.PRODUCT:
                     {
-                        Count = SIZEOF(Objects.Where(temp => !((INTYPEOF(temp, "IFC4.IFCPRODUCT")))));
+                        Count = SIZEOF(Objects.Where(temp => !((INTYPEOF(temp, "IFC2X3.IFCPRODUCT")))));
                         return (Count == 0);
                     }
                 case IfcObjectTypeEnum.PROCESS:
                     {
-                        Count = SIZEOF(Objects.Where(temp => !((INTYPEOF(temp, "IFC4.IFCPROCESS")))));
+                        Count = SIZEOF(Objects.Where(temp => !((INTYPEOF(temp, "IFC2X3.IFCPROCESS")))));
                         return (Count == 0);
                     }
                     ;
                 case IfcObjectTypeEnum.CONTROL:
                     {
-                        Count = SIZEOF(Objects.Where(temp => !((INTYPEOF(temp, "IFC4.IFCCONTROL")))));
+                        Count = SIZEOF(Objects.Where(temp => !((INTYPEOF(temp, "IFC2X3.IFCCONTROL")))));
                         return (Count == 0);
                     }
                     ;
                 case IfcObjectTypeEnum.RESOURCE:
                     {
-                        Count = SIZEOF(Objects.Where(temp => !((INTYPEOF(temp, "IFC4.IFCRESOURCE")))));
+                        Count = SIZEOF(Objects.Where(temp => !((INTYPEOF(temp, "IFC2X3.IFCRESOURCE")))));
                         return (Count == 0);
                     }
                     ;
                 case IfcObjectTypeEnum.ACTOR:
                     {
-                        Count = SIZEOF(Objects.Where(temp => !((INTYPEOF(temp, "IFC4.IFCACTOR")))));
+                        Count = SIZEOF(Objects.Where(temp => !((INTYPEOF(temp, "IFC2X3.IFCACTOR")))));
                         return (Count == 0);
                     }
                     ;
                 case IfcObjectTypeEnum.GROUP:
                     {
-                        Count = SIZEOF(Objects.Where(temp => !((INTYPEOF(temp, "IFC4.IFCGROUP")))));
+                        Count = SIZEOF(Objects.Where(temp => !((INTYPEOF(temp, "IFC2X3.IFCGROUP")))));
                         return (Count == 0);
                     }
                     ;
                 case IfcObjectTypeEnum.PROJECT:
                     {
-                        Count = SIZEOF(Objects.Where(temp => !((INTYPEOF(temp, "IFC4.IFCPROJECT")))));
+                        Count = SIZEOF(Objects.Where(temp => !((INTYPEOF(temp, "IFC2X3.IFCPROJECT")))));
                         return (Count == 0);
                     }
                     ;
@@ -603,7 +614,7 @@ namespace Xbim.Ifc2x3
         }
 
 
-        static internal bool IfcCurveWeightsPositive(IfcRationalBezierCurve B)
+        internal static bool IfcCurveWeightsPositive(IfcRationalBezierCurve B)
         {
             bool Result = true;
             for (var i = 0; i < B.UpperIndexOnControlPoints; i++)
@@ -1061,17 +1072,17 @@ namespace Xbim.Ifc2x3
 
             if ((EXISTS(RelPlacement)))
             {
-                if (((INTYPEOF(RelPlacement, "IFC4.IFCGRIDPLACEMENT"))))
+                if (((INTYPEOF(RelPlacement, "IFC2X3.IFCGRIDPLACEMENT"))))
                 {
                     return null;
                 }
-                if (((INTYPEOF(RelPlacement, "IFC4.IFCLOCALPLACEMENT"))))
+                if (((INTYPEOF(RelPlacement, "IFC2X3.IFCLOCALPLACEMENT"))))
                 {
-                    if (((INTYPEOF(AxisPlacement, "IFC4.IFCAXIS2PLACEMENT2D"))))
+                    if (((INTYPEOF(AxisPlacement, "IFC2X3.IFCAXIS2PLACEMENT2D"))))
                     {
                         return (true);
                     }
-                    if (((INTYPEOF(AxisPlacement, "IFC4.IFCAXIS2PLACEMENT3D"))))
+                    if (((INTYPEOF(AxisPlacement, "IFC2X3.IFCAXIS2PLACEMENT3D"))))
                     {
                         if (((RelPlacement as IfcLocalPlacement).RelativePlacement.Dim == 3))
                         {
@@ -1138,10 +1149,10 @@ namespace Xbim.Ifc2x3
             int Tiles = 0;
             int Colour = 0;
             int External = 0;
-            External = SIZEOF(Styles.Where(Style => INTYPEOF(Style, "IFC4.IFCEXTERNALLYDEFINEDHATCHSTYLE")));
-            Hatching = SIZEOF(Styles.Where(Style => INTYPEOF(Style, "IFC4.IFCFILLAREASTYLEHATCHING")));
-            Tiles = SIZEOF(Styles.Where(Style => INTYPEOF(Style, "IFC4.IFCFILLAREASTYLETILES")));
-            Colour = SIZEOF(Styles.Where(Style => INTYPEOF(Style, "IFC4.IFCCOLOUR")));
+            External = SIZEOF(Styles.Where(Style => INTYPEOF(Style, "IFC2X3.IFCEXTERNALLYDEFINEDHATCHSTYLE")));
+            Hatching = SIZEOF(Styles.Where(Style => INTYPEOF(Style, "IFC2X3.IFCFILLAREASTYLEHATCHING")));
+            Tiles = SIZEOF(Styles.Where(Style => INTYPEOF(Style, "IFC2X3.IFCFILLAREASTYLETILES")));
+            Colour = SIZEOF(Styles.Where(Style => INTYPEOF(Style, "IFC2X3.IFCCOLOUR")));
             if ((External > 1))
             {
                 return (false);
@@ -1182,7 +1193,7 @@ namespace Xbim.Ifc2x3
             }
             else
             {
-                if ((INTYPEOF(Arg, "IFC4.IFCVECTOR")))
+                if ((INTYPEOF(Arg, "IFC2X3.IFCVECTOR")))
                 {
                     Ndim = Arg.Dim;
                     var vArg = (Arg as Vector);
@@ -1217,7 +1228,7 @@ namespace Xbim.Ifc2x3
                     {
                         V.DirectionRatios[i] = V.DirectionRatios[i] / Mag;
                     }
-                    if ((INTYPEOF(Arg, "IFC4.IFCVECTOR")))
+                    if ((INTYPEOF(Arg, "IFC2X3.IFCVECTOR")))
                     {
                         Vec.Orientation = V;
                         Result = Vec;

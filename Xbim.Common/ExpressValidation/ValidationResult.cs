@@ -37,5 +37,11 @@ namespace Xbim.Common.ExpressValidation
             if (_details == null)
                 _details = new List<ValidationResult>();
         }
+
+        public string Report()
+        {
+            var msg = $"Issue of type {IssueType} on {IssueSource}.";
+            return msg;
+        }
     }
 }

@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.MaterialResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.MaterialResource.IfcMaterialLayer");
 
 		/// <summary>
-		/// Tests the express where clause NormalizedPriority
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool NormalizedPriority() {
+		public bool ValidateClause(Where.IfcMaterialLayer clause) {
 			var retVal = false;
-			try {
-				retVal = !(EXISTS(Priority)) || ((0 <= Priority) && (Priority <= 100) );
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'NormalizedPriority' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcMaterialLayer.NormalizedPriority) {
+				try {
+					retVal = !(EXISTS(Priority)) || ((0 <= Priority) && (Priority <= 100) );
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcMaterialLayer.NormalizedPriority' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!NormalizedPriority())
-				yield return new ValidationResult() { Item = this, IssueSource = "NormalizedPriority", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcMaterialLayer.NormalizedPriority))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcMaterialLayer.NormalizedPriority", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcMaterialLayer
+	{
+		public static readonly IfcMaterialLayer NormalizedPriority = new IfcMaterialLayer();
+		protected IfcMaterialLayer() {}
 	}
 }

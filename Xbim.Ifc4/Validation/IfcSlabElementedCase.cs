@@ -16,17 +16,21 @@ namespace Xbim.Ifc4.SharedBldgElements
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcSlabElementedCase");
 
 		/// <summary>
-		/// Tests the express where clause HasDecomposition
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool HasDecomposition() {
+		public bool ValidateClause(Where.IfcSlabElementedCase clause) {
 			var retVal = false;
-			try {
-				retVal = HIINDEX(this/* as IfcObjectDefinition*/.IsDecomposedBy) > 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'HasDecomposition' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcSlabElementedCase.HasDecomposition) {
+				try {
+					retVal = HIINDEX(this/* as IfcObjectDefinition*/.IsDecomposedBy) > 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcSlabElementedCase.HasDecomposition' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcSlab)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -35,8 +39,18 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				yield return value;
 			}
-			if (!HasDecomposition())
-				yield return new ValidationResult() { Item = this, IssueSource = "HasDecomposition", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcSlabElementedCase.HasDecomposition))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcSlabElementedCase.HasDecomposition", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcSlabElementedCase : IfcSlab
+	{
+		public static readonly IfcSlabElementedCase HasDecomposition = new IfcSlabElementedCase();
+		protected IfcSlabElementedCase() {}
 	}
 }

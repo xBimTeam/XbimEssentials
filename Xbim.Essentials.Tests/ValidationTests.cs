@@ -30,7 +30,29 @@ namespace Xbim.Essentials.Tests
                 };
                 var errors = v.Validate(model);
                 foreach (var validationResult in new ValidationReporter(errors))
-                // foreach (var validationResult in errors)
+                {
+                    Debug.WriteLine(validationResult);
+                }
+            }
+        }
+
+        [TestMethod]
+        [DeploymentItem("TestSourceFiles")]
+        public void ValidatesEntity()
+        {
+            using (var model = IfcStore.Open("InvalidContentFC4.ifc", null, 0))
+            {
+                //var v2 = model.Metadata.Types()
+                //    .Where(x => x.Properties.Any(pr => pr.Value.EntityAttribute.State == EntityAttributeState.Mandatory
+                //    && typeof(IExpressValueType).IsAssignableFrom(pr.Value.PropertyInfo.PropertyType)
+                //    ));
+                var v = new IfcValidator
+                {
+                    ValidateLevel = ValidationFlags.All,
+                    CreateEntityHierarchy = true
+                };
+                var e2 = v.Validate(model.Instances[202]);
+                foreach (var validationResult in new ValidationReporter(e2))
                 {
                     Debug.WriteLine(validationResult);
                 }

@@ -20,45 +20,37 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricModelResource.IfcBooleanClippingResult");
 
 		/// <summary>
-		/// Tests the express where clause WR1
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR1() {
+		public bool ValidateClause(Where.IfcBooleanClippingResult clause) {
 			var retVal = false;
-			try {
-				retVal = (TYPEOF(FirstOperand).Contains("IFC2X3.IFCSWEPTAREASOLID")) || (TYPEOF(FirstOperand).Contains("IFC2X3.IFCBOOLEANCLIPPINGRESULT"));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR1' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcBooleanClippingResult.WR1) {
+				try {
+					retVal = (TYPEOF(FirstOperand).Contains("IFC2X3.IFCSWEPTAREASOLID")) || (TYPEOF(FirstOperand).Contains("IFC2X3.IFCBOOLEANCLIPPINGRESULT"));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcBooleanClippingResult.WR1' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR2
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR2() {
-			var retVal = false;
-			try {
-				retVal = (TYPEOF(SecondOperand).Contains("IFC2X3.IFCHALFSPACESOLID"));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR2' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcBooleanClippingResult.WR2) {
+				try {
+					retVal = (TYPEOF(SecondOperand).Contains("IFC2X3.IFCHALFSPACESOLID"));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcBooleanClippingResult.WR2' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR3
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR3() {
-			var retVal = false;
-			try {
-				retVal = Operator == IfcBooleanOperator.DIFFERENCE;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR3' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcBooleanClippingResult.WR3) {
+				try {
+					retVal = Operator == IfcBooleanOperator.DIFFERENCE;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcBooleanClippingResult.WR3' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcBooleanResult)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -67,12 +59,24 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				yield return value;
 			}
-			if (!WR1())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR1", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR2())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR2", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR3())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR3", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcBooleanClippingResult.WR1))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcBooleanClippingResult.WR1", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcBooleanClippingResult.WR2))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcBooleanClippingResult.WR2", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcBooleanClippingResult.WR3))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcBooleanClippingResult.WR3", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcBooleanClippingResult : IfcBooleanResult
+	{
+		public new static readonly IfcBooleanClippingResult WR1 = new IfcBooleanClippingResult();
+		public static readonly IfcBooleanClippingResult WR2 = new IfcBooleanClippingResult();
+		public static readonly IfcBooleanClippingResult WR3 = new IfcBooleanClippingResult();
+		protected IfcBooleanClippingResult() {}
 	}
 }

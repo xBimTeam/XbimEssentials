@@ -20,23 +20,37 @@ namespace Xbim.Ifc2x3.Kernel
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcRelAssociates");
 
 		/// <summary>
-		/// Tests the express where clause WR21
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR21() {
+		public bool ValidateClause(Where.IfcRelAssociates clause) {
 			var retVal = false;
-			try {
-				retVal = SIZEOF(RelatedObjects.Where(temp => !((TYPEOF(temp).Contains("IFC2X3.IFCOBJECTDEFINITION")) || (TYPEOF(temp).Contains("IFC2X3.IFCPROPERTYDEFINITION"))))) == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR21' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcRelAssociates.WR21) {
+				try {
+					retVal = SIZEOF(RelatedObjects.Where(temp => !((TYPEOF(temp).Contains("IFC2X3.IFCOBJECTDEFINITION")) || (TYPEOF(temp).Contains("IFC2X3.IFCPROPERTYDEFINITION"))))) == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcRelAssociates.WR21' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR21())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR21", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcRelAssociates.WR21))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelAssociates.WR21", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcRelAssociates
+	{
+		public static readonly IfcRelAssociates WR21 = new IfcRelAssociates();
+		protected IfcRelAssociates() {}
 	}
 }

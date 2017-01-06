@@ -16,55 +16,59 @@ namespace Xbim.Ifc4.ProfileResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcIShapeProfileDef");
 
 		/// <summary>
-		/// Tests the express where clause ValidFlangeThickness
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidFlangeThickness() {
+		public bool ValidateClause(Where.IfcIShapeProfileDef clause) {
 			var retVal = false;
-			try {
-				retVal = (2 * FlangeThickness) < OverallDepth;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ValidFlangeThickness' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcIShapeProfileDef.ValidFlangeThickness) {
+				try {
+					retVal = (2 * FlangeThickness) < OverallDepth;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcIShapeProfileDef.ValidFlangeThickness' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause ValidWebThickness
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidWebThickness() {
-			var retVal = false;
-			try {
-				retVal = WebThickness < OverallWidth;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ValidWebThickness' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcIShapeProfileDef.ValidWebThickness) {
+				try {
+					retVal = WebThickness < OverallWidth;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcIShapeProfileDef.ValidWebThickness' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause ValidFilletRadius
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidFilletRadius() {
-			var retVal = false;
-			try {
-				retVal = !(EXISTS(FilletRadius)) || ((FilletRadius <= (OverallWidth - WebThickness) / 2) && (FilletRadius <= (OverallDepth - (2 * FlangeThickness)) / 2));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ValidFilletRadius' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcIShapeProfileDef.ValidFilletRadius) {
+				try {
+					retVal = !(EXISTS(FilletRadius)) || ((FilletRadius <= (OverallWidth - WebThickness) / 2) && (FilletRadius <= (OverallDepth - (2 * FlangeThickness)) / 2));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcIShapeProfileDef.ValidFilletRadius' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidFlangeThickness())
-				yield return new ValidationResult() { Item = this, IssueSource = "ValidFlangeThickness", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidWebThickness())
-				yield return new ValidationResult() { Item = this, IssueSource = "ValidWebThickness", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidFilletRadius())
-				yield return new ValidationResult() { Item = this, IssueSource = "ValidFilletRadius", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcIShapeProfileDef.ValidFlangeThickness))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcIShapeProfileDef.ValidFlangeThickness", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcIShapeProfileDef.ValidWebThickness))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcIShapeProfileDef.ValidWebThickness", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcIShapeProfileDef.ValidFilletRadius))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcIShapeProfileDef.ValidFilletRadius", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcIShapeProfileDef
+	{
+		public static readonly IfcIShapeProfileDef ValidFlangeThickness = new IfcIShapeProfileDef();
+		public static readonly IfcIShapeProfileDef ValidWebThickness = new IfcIShapeProfileDef();
+		public static readonly IfcIShapeProfileDef ValidFilletRadius = new IfcIShapeProfileDef();
+		protected IfcIShapeProfileDef() {}
 	}
 }

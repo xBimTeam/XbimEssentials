@@ -16,87 +16,81 @@ namespace Xbim.Ifc4.GeometryResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcAxis2Placement3D");
 
 		/// <summary>
-		/// Tests the express where clause LocationIs3D
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool LocationIs3D() {
+		public bool ValidateClause(Where.IfcAxis2Placement3D clause) {
 			var retVal = false;
-			try {
-				retVal = this/* as IfcPlacement*/.Location.Dim == 3;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'LocationIs3D' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcAxis2Placement3D.LocationIs3D) {
+				try {
+					retVal = this/* as IfcPlacement*/.Location.Dim == 3;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcAxis2Placement3D.LocationIs3D' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause AxisIs3D
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool AxisIs3D() {
-			var retVal = false;
-			try {
-				retVal = (!(EXISTS(Axis))) || (Axis.Dim == 3);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'AxisIs3D' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcAxis2Placement3D.AxisIs3D) {
+				try {
+					retVal = (!(EXISTS(Axis))) || (Axis.Dim == 3);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcAxis2Placement3D.AxisIs3D' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause RefDirIs3D
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool RefDirIs3D() {
-			var retVal = false;
-			try {
-				retVal = (!(EXISTS(RefDirection))) || (RefDirection.Dim == 3);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'RefDirIs3D' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcAxis2Placement3D.RefDirIs3D) {
+				try {
+					retVal = (!(EXISTS(RefDirection))) || (RefDirection.Dim == 3);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcAxis2Placement3D.RefDirIs3D' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause AxisToRefDirPosition
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool AxisToRefDirPosition() {
-			var retVal = false;
-			try {
-				retVal = (!(EXISTS(Axis))) || (!(EXISTS(RefDirection))) || (IfcCrossProduct(Axis, RefDirection).Magnitude > 0);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'AxisToRefDirPosition' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcAxis2Placement3D.AxisToRefDirPosition) {
+				try {
+					retVal = (!(EXISTS(Axis))) || (!(EXISTS(RefDirection))) || (IfcCrossProduct(Axis, RefDirection).Magnitude > 0);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcAxis2Placement3D.AxisToRefDirPosition' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause AxisAndRefDirProvision
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool AxisAndRefDirProvision() {
-			var retVal = false;
-			try {
-				retVal = !((EXISTS(Axis)) ^ (EXISTS(RefDirection)));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'AxisAndRefDirProvision' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcAxis2Placement3D.AxisAndRefDirProvision) {
+				try {
+					retVal = !((EXISTS(Axis)) ^ (EXISTS(RefDirection)));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcAxis2Placement3D.AxisAndRefDirProvision' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!LocationIs3D())
-				yield return new ValidationResult() { Item = this, IssueSource = "LocationIs3D", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!AxisIs3D())
-				yield return new ValidationResult() { Item = this, IssueSource = "AxisIs3D", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!RefDirIs3D())
-				yield return new ValidationResult() { Item = this, IssueSource = "RefDirIs3D", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!AxisToRefDirPosition())
-				yield return new ValidationResult() { Item = this, IssueSource = "AxisToRefDirPosition", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!AxisAndRefDirProvision())
-				yield return new ValidationResult() { Item = this, IssueSource = "AxisAndRefDirProvision", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcAxis2Placement3D.LocationIs3D))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcAxis2Placement3D.LocationIs3D", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcAxis2Placement3D.AxisIs3D))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcAxis2Placement3D.AxisIs3D", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcAxis2Placement3D.RefDirIs3D))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcAxis2Placement3D.RefDirIs3D", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcAxis2Placement3D.AxisToRefDirPosition))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcAxis2Placement3D.AxisToRefDirPosition", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcAxis2Placement3D.AxisAndRefDirProvision))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcAxis2Placement3D.AxisAndRefDirProvision", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcAxis2Placement3D
+	{
+		public static readonly IfcAxis2Placement3D LocationIs3D = new IfcAxis2Placement3D();
+		public static readonly IfcAxis2Placement3D AxisIs3D = new IfcAxis2Placement3D();
+		public static readonly IfcAxis2Placement3D RefDirIs3D = new IfcAxis2Placement3D();
+		public static readonly IfcAxis2Placement3D AxisToRefDirPosition = new IfcAxis2Placement3D();
+		public static readonly IfcAxis2Placement3D AxisAndRefDirProvision = new IfcAxis2Placement3D();
+		protected IfcAxis2Placement3D() {}
 	}
 }

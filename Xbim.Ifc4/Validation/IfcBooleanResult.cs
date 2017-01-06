@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.GeometricModelResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcBooleanResult");
 
 		/// <summary>
-		/// Tests the express where clause SameDim
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool SameDim() {
+		public bool ValidateClause(Where.IfcBooleanResult clause) {
 			var retVal = false;
-			try {
-				retVal = FirstOperand.Dim == SecondOperand.Dim;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'SameDim' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcBooleanResult.SameDim) {
+				try {
+					retVal = FirstOperand.Dim == SecondOperand.Dim;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcBooleanResult.SameDim' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!SameDim())
-				yield return new ValidationResult() { Item = this, IssueSource = "SameDim", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcBooleanResult.SameDim))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcBooleanResult.SameDim", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcBooleanResult
+	{
+		public static readonly IfcBooleanResult SameDim = new IfcBooleanResult();
+		protected IfcBooleanResult() {}
 	}
 }

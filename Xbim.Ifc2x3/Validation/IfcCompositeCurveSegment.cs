@@ -20,23 +20,37 @@ namespace Xbim.Ifc2x3.GeometryResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcCompositeCurveSegment");
 
 		/// <summary>
-		/// Tests the express where clause WR1
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR1() {
+		public bool ValidateClause(Where.IfcCompositeCurveSegment clause) {
 			var retVal = false;
-			try {
-				retVal = (TYPEOF(ParentCurve).Contains("IFC2X3.IFCBOUNDEDCURVE"));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR1' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcCompositeCurveSegment.WR1) {
+				try {
+					retVal = (TYPEOF(ParentCurve).Contains("IFC2X3.IFCBOUNDEDCURVE"));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcCompositeCurveSegment.WR1' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR1())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR1", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcCompositeCurveSegment.WR1))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcCompositeCurveSegment.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcCompositeCurveSegment
+	{
+		public static readonly IfcCompositeCurveSegment WR1 = new IfcCompositeCurveSegment();
+		protected IfcCompositeCurveSegment() {}
 	}
 }

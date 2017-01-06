@@ -16,17 +16,21 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationOrganizationResource.IfcPresentationLayerWithStyle");
 
 		/// <summary>
-		/// Tests the express where clause ApplicableOnlyToItems
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ApplicableOnlyToItems() {
+		public bool ValidateClause(Where.IfcPresentationLayerWithStyle clause) {
 			var retVal = false;
-			try {
-				retVal = SIZEOF(AssignedItems.Where(temp => (SIZEOF(TYPEOF(temp) * NewArray("IFC4.IFCGEOMETRICREPRESENTATIONITEM", "IFC4.IFCMAPPEDITEM")) == 1))) == SIZEOF(AssignedItems);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ApplicableOnlyToItems' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcPresentationLayerWithStyle.ApplicableOnlyToItems) {
+				try {
+					retVal = SIZEOF(AssignedItems.Where(temp => (SIZEOF(TYPEOF(temp) * NewArray("IFC4.IFCGEOMETRICREPRESENTATIONITEM", "IFC4.IFCMAPPEDITEM")) == 1))) == SIZEOF(AssignedItems);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcPresentationLayerWithStyle.ApplicableOnlyToItems' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcPresentationLayerAssignment)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -35,8 +39,18 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			{
 				yield return value;
 			}
-			if (!ApplicableOnlyToItems())
-				yield return new ValidationResult() { Item = this, IssueSource = "ApplicableOnlyToItems", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcPresentationLayerWithStyle.ApplicableOnlyToItems))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcPresentationLayerWithStyle.ApplicableOnlyToItems", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcPresentationLayerWithStyle : IfcPresentationLayerAssignment
+	{
+		public static readonly IfcPresentationLayerWithStyle ApplicableOnlyToItems = new IfcPresentationLayerWithStyle();
+		protected IfcPresentationLayerWithStyle() {}
 	}
 }

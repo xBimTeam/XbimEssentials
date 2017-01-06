@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.GeometricModelResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcBoxedHalfSpace");
 
 		/// <summary>
-		/// Tests the express where clause UnboundedSurface
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool UnboundedSurface() {
+		public bool ValidateClause(Where.IfcBoxedHalfSpace clause) {
 			var retVal = false;
-			try {
-				retVal = !(TYPEOF(this/* as IfcHalfSpaceSolid*/.BaseSurface).Contains("IFC4.IFCCURVEBOUNDEDPLANE"));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'UnboundedSurface' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcBoxedHalfSpace.UnboundedSurface) {
+				try {
+					retVal = !(TYPEOF(this/* as IfcHalfSpaceSolid*/.BaseSurface).Contains("IFC4.IFCCURVEBOUNDEDPLANE"));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcBoxedHalfSpace.UnboundedSurface' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!UnboundedSurface())
-				yield return new ValidationResult() { Item = this, IssueSource = "UnboundedSurface", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcBoxedHalfSpace.UnboundedSurface))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcBoxedHalfSpace.UnboundedSurface", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcBoxedHalfSpace
+	{
+		public static readonly IfcBoxedHalfSpace UnboundedSurface = new IfcBoxedHalfSpace();
+		protected IfcBoxedHalfSpace() {}
 	}
 }

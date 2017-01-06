@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.PropertyResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.PropertyResource.IfcPropertyDependencyRelationship");
 
 		/// <summary>
-		/// Tests the express where clause NoSelfReference
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool NoSelfReference() {
+		public bool ValidateClause(Where.IfcPropertyDependencyRelationship clause) {
 			var retVal = false;
-			try {
-				retVal = !Object.ReferenceEquals(DependingProperty, DependantProperty);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'NoSelfReference' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcPropertyDependencyRelationship.NoSelfReference) {
+				try {
+					retVal = !Object.ReferenceEquals(DependingProperty, DependantProperty);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcPropertyDependencyRelationship.NoSelfReference' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!NoSelfReference())
-				yield return new ValidationResult() { Item = this, IssueSource = "NoSelfReference", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcPropertyDependencyRelationship.NoSelfReference))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcPropertyDependencyRelationship.NoSelfReference", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcPropertyDependencyRelationship
+	{
+		public static readonly IfcPropertyDependencyRelationship NoSelfReference = new IfcPropertyDependencyRelationship();
+		protected IfcPropertyDependencyRelationship() {}
 	}
 }

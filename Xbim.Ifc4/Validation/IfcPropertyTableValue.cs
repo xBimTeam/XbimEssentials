@@ -16,55 +16,59 @@ namespace Xbim.Ifc4.PropertyResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.PropertyResource.IfcPropertyTableValue");
 
 		/// <summary>
-		/// Tests the express where clause WR21
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR21() {
+		public bool ValidateClause(Where.IfcPropertyTableValue clause) {
 			var retVal = false;
-			try {
-				retVal = (!(EXISTS(DefiningValues)) && !(EXISTS(DefinedValues))) || (SIZEOF(DefiningValues) == SIZEOF(DefinedValues));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR21' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcPropertyTableValue.WR21) {
+				try {
+					retVal = (!(EXISTS(DefiningValues)) && !(EXISTS(DefinedValues))) || (SIZEOF(DefiningValues) == SIZEOF(DefinedValues));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcPropertyTableValue.WR21' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR22
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR22() {
-			var retVal = false;
-			try {
-				retVal = !(EXISTS(DefiningValues)) || (SIZEOF(this.DefiningValues.Where(temp => TYPEOF(temp) != TYPEOF(this.DefiningValues.ToArray()[0]))) == 0);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR22' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcPropertyTableValue.WR22) {
+				try {
+					retVal = !(EXISTS(DefiningValues)) || (SIZEOF(this.DefiningValues.Where(temp => TYPEOF(temp) != TYPEOF(this.DefiningValues.ToArray()[0]))) == 0);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcPropertyTableValue.WR22' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR23
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR23() {
-			var retVal = false;
-			try {
-				retVal = !(EXISTS(DefinedValues)) || (SIZEOF(this.DefinedValues.Where(temp => TYPEOF(temp) != TYPEOF(this.DefinedValues.ToArray()[0]))) == 0);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR23' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcPropertyTableValue.WR23) {
+				try {
+					retVal = !(EXISTS(DefinedValues)) || (SIZEOF(this.DefinedValues.Where(temp => TYPEOF(temp) != TYPEOF(this.DefinedValues.ToArray()[0]))) == 0);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcPropertyTableValue.WR23' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR21())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR21", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR22())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR22", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR23())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR23", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcPropertyTableValue.WR21))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcPropertyTableValue.WR21", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcPropertyTableValue.WR22))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcPropertyTableValue.WR22", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcPropertyTableValue.WR23))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcPropertyTableValue.WR23", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcPropertyTableValue
+	{
+		public static readonly IfcPropertyTableValue WR21 = new IfcPropertyTableValue();
+		public static readonly IfcPropertyTableValue WR22 = new IfcPropertyTableValue();
+		public static readonly IfcPropertyTableValue WR23 = new IfcPropertyTableValue();
+		protected IfcPropertyTableValue() {}
 	}
 }

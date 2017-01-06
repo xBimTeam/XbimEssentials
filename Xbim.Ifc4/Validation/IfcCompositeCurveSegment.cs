@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.GeometryResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcCompositeCurveSegment");
 
 		/// <summary>
-		/// Tests the express where clause ParentIsBoundedCurve
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ParentIsBoundedCurve() {
+		public bool ValidateClause(Where.IfcCompositeCurveSegment clause) {
 			var retVal = false;
-			try {
-				retVal = (TYPEOF(ParentCurve).Contains("IFC4.IFCBOUNDEDCURVE"));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ParentIsBoundedCurve' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcCompositeCurveSegment.ParentIsBoundedCurve) {
+				try {
+					retVal = (TYPEOF(ParentCurve).Contains("IFC4.IFCBOUNDEDCURVE"));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcCompositeCurveSegment.ParentIsBoundedCurve' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!ParentIsBoundedCurve())
-				yield return new ValidationResult() { Item = this, IssueSource = "ParentIsBoundedCurve", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcCompositeCurveSegment.ParentIsBoundedCurve))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcCompositeCurveSegment.ParentIsBoundedCurve", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcCompositeCurveSegment
+	{
+		public static readonly IfcCompositeCurveSegment ParentIsBoundedCurve = new IfcCompositeCurveSegment();
+		protected IfcCompositeCurveSegment() {}
 	}
 }

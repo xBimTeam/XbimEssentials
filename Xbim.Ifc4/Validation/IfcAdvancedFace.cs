@@ -16,45 +16,37 @@ namespace Xbim.Ifc4.TopologyResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.TopologyResource.IfcAdvancedFace");
 
 		/// <summary>
-		/// Tests the express where clause ApplicableSurface
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ApplicableSurface() {
+		public bool ValidateClause(Where.IfcAdvancedFace clause) {
 			var retVal = false;
-			try {
-				retVal = SIZEOF(NewArray("IFC4.IFCELEMENTARYSURFACE", "IFC4.IFCSWEPTSURFACE", "IFC4.IFCBSPLINESURFACE") * TYPEOF(this/* as IfcFaceSurface*/.FaceSurface)) == 1;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ApplicableSurface' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcAdvancedFace.ApplicableSurface) {
+				try {
+					retVal = SIZEOF(NewArray("IFC4.IFCELEMENTARYSURFACE", "IFC4.IFCSWEPTSURFACE", "IFC4.IFCBSPLINESURFACE") * TYPEOF(this/* as IfcFaceSurface*/.FaceSurface)) == 1;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcAdvancedFace.ApplicableSurface' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause RequiresEdgeCurve
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool RequiresEdgeCurve() {
-			var retVal = false;
-			try {
-				retVal = SIZEOF(this/* as IfcFace*/.Bounds.Where(Bnds => TYPEOF(Bnds.Bound).Contains("IFC4.IFCEDGELOOP")).Where(ElpFbnds => !(SIZEOF(ElpFbnds.Bound.AsIfcEdgeLoop().EdgeList.Where(Oe => !(TYPEOF(Oe/* as IfcOrientedEdge*/.EdgeElement).Contains("IFC4.IFCEDGECURVE")))) == 0))) == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'RequiresEdgeCurve' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcAdvancedFace.RequiresEdgeCurve) {
+				try {
+					retVal = SIZEOF(this/* as IfcFace*/.Bounds.Where(Bnds => TYPEOF(Bnds.Bound).Contains("IFC4.IFCEDGELOOP")).Where(ElpFbnds => !(SIZEOF(ElpFbnds.Bound.AsIfcEdgeLoop().EdgeList.Where(Oe => !(TYPEOF(Oe/* as IfcOrientedEdge*/.EdgeElement).Contains("IFC4.IFCEDGECURVE")))) == 0))) == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcAdvancedFace.RequiresEdgeCurve' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause ApplicableEdgeCurves
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool ApplicableEdgeCurves() {
-			var retVal = false;
-			try {
-				retVal = SIZEOF(this/* as IfcFace*/.Bounds.Where(Bnds => TYPEOF(Bnds.Bound).Contains("IFC4.IFCEDGELOOP")).Where(ElpFbnds => !(SIZEOF(ElpFbnds.Bound.AsIfcEdgeLoop().EdgeList.Where(Oe => !(SIZEOF(NewArray("IFC4.IFCLINE", "IFC4.IFCCONIC", "IFC4.IFCPOLYLINE", "IFC4.IFCBSPLINECURVE") * TYPEOF(Oe/* as IfcOrientedEdge*/.EdgeElement.AsIfcEdgeCurve().EdgeGeometry)) == 1))) == 0))) == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ApplicableEdgeCurves' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcAdvancedFace.ApplicableEdgeCurves) {
+				try {
+					retVal = SIZEOF(this/* as IfcFace*/.Bounds.Where(Bnds => TYPEOF(Bnds.Bound).Contains("IFC4.IFCEDGELOOP")).Where(ElpFbnds => !(SIZEOF(ElpFbnds.Bound.AsIfcEdgeLoop().EdgeList.Where(Oe => !(SIZEOF(NewArray("IFC4.IFCLINE", "IFC4.IFCCONIC", "IFC4.IFCPOLYLINE", "IFC4.IFCBSPLINECURVE") * TYPEOF(Oe/* as IfcOrientedEdge*/.EdgeElement.AsIfcEdgeCurve().EdgeGeometry)) == 1))) == 0))) == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcAdvancedFace.ApplicableEdgeCurves' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcFace)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -63,12 +55,24 @@ namespace Xbim.Ifc4.TopologyResource
 			{
 				yield return value;
 			}
-			if (!ApplicableSurface())
-				yield return new ValidationResult() { Item = this, IssueSource = "ApplicableSurface", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!RequiresEdgeCurve())
-				yield return new ValidationResult() { Item = this, IssueSource = "RequiresEdgeCurve", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ApplicableEdgeCurves())
-				yield return new ValidationResult() { Item = this, IssueSource = "ApplicableEdgeCurves", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcAdvancedFace.ApplicableSurface))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcAdvancedFace.ApplicableSurface", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcAdvancedFace.RequiresEdgeCurve))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcAdvancedFace.RequiresEdgeCurve", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcAdvancedFace.ApplicableEdgeCurves))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcAdvancedFace.ApplicableEdgeCurves", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcAdvancedFace : IfcFace
+	{
+		public static readonly IfcAdvancedFace ApplicableSurface = new IfcAdvancedFace();
+		public static readonly IfcAdvancedFace RequiresEdgeCurve = new IfcAdvancedFace();
+		public static readonly IfcAdvancedFace ApplicableEdgeCurves = new IfcAdvancedFace();
+		protected IfcAdvancedFace() {}
 	}
 }

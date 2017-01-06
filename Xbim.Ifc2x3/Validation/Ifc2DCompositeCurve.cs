@@ -20,31 +20,29 @@ namespace Xbim.Ifc2x3.GeometryResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.Ifc2DCompositeCurve");
 
 		/// <summary>
-		/// Tests the express where clause WR1
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR1() {
+		public bool ValidateClause(Where.Ifc2DCompositeCurve clause) {
 			var retVal = false;
-			try {
-				retVal = this/* as IfcCompositeCurve*/.ClosedCurve.Value;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR1' for #{EntityLabel}.", ex);
+			if (clause == Where.Ifc2DCompositeCurve.WR1) {
+				try {
+					retVal = this/* as IfcCompositeCurve*/.ClosedCurve.Value;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'Ifc2DCompositeCurve.WR1' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR2
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR2() {
-			var retVal = false;
-			try {
-				retVal = this/* as IfcCurve*/.Dim == 2;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR2' for #{EntityLabel}.", ex);
+			if (clause == Where.Ifc2DCompositeCurve.WR2) {
+				try {
+					retVal = this/* as IfcCurve*/.Dim == 2;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'Ifc2DCompositeCurve.WR2' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcCompositeCurve)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -53,10 +51,21 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				yield return value;
 			}
-			if (!WR1())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR1", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR2())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR2", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.Ifc2DCompositeCurve.WR1))
+				yield return new ValidationResult() { Item = this, IssueSource = "Ifc2DCompositeCurve.WR1", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.Ifc2DCompositeCurve.WR2))
+				yield return new ValidationResult() { Item = this, IssueSource = "Ifc2DCompositeCurve.WR2", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class Ifc2DCompositeCurve : IfcCompositeCurve
+	{
+		public static readonly Ifc2DCompositeCurve WR1 = new Ifc2DCompositeCurve();
+		public static readonly Ifc2DCompositeCurve WR2 = new Ifc2DCompositeCurve();
+		protected Ifc2DCompositeCurve() {}
 	}
 }

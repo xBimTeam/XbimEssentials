@@ -16,87 +16,81 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcSurfaceStyle");
 
 		/// <summary>
-		/// Tests the express where clause MaxOneShading
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool MaxOneShading() {
+		public bool ValidateClause(Where.IfcSurfaceStyle clause) {
 			var retVal = false;
-			try {
-				retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCSURFACESTYLESHADING"))) <= 1;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'MaxOneShading' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcSurfaceStyle.MaxOneShading) {
+				try {
+					retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCSURFACESTYLESHADING"))) <= 1;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcSurfaceStyle.MaxOneShading' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause MaxOneLighting
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool MaxOneLighting() {
-			var retVal = false;
-			try {
-				retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCSURFACESTYLELIGHTING"))) <= 1;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'MaxOneLighting' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcSurfaceStyle.MaxOneLighting) {
+				try {
+					retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCSURFACESTYLELIGHTING"))) <= 1;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcSurfaceStyle.MaxOneLighting' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause MaxOneRefraction
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool MaxOneRefraction() {
-			var retVal = false;
-			try {
-				retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCSURFACESTYLEREFRACTION"))) <= 1;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'MaxOneRefraction' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcSurfaceStyle.MaxOneRefraction) {
+				try {
+					retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCSURFACESTYLEREFRACTION"))) <= 1;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcSurfaceStyle.MaxOneRefraction' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause MaxOneTextures
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool MaxOneTextures() {
-			var retVal = false;
-			try {
-				retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCSURFACESTYLEWITHTEXTURES"))) <= 1;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'MaxOneTextures' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcSurfaceStyle.MaxOneTextures) {
+				try {
+					retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCSURFACESTYLEWITHTEXTURES"))) <= 1;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcSurfaceStyle.MaxOneTextures' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause MaxOneExtDefined
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool MaxOneExtDefined() {
-			var retVal = false;
-			try {
-				retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCEXTERNALLYDEFINEDSURFACESTYLE"))) <= 1;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'MaxOneExtDefined' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcSurfaceStyle.MaxOneExtDefined) {
+				try {
+					retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCEXTERNALLYDEFINEDSURFACESTYLE"))) <= 1;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcSurfaceStyle.MaxOneExtDefined' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!MaxOneShading())
-				yield return new ValidationResult() { Item = this, IssueSource = "MaxOneShading", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!MaxOneLighting())
-				yield return new ValidationResult() { Item = this, IssueSource = "MaxOneLighting", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!MaxOneRefraction())
-				yield return new ValidationResult() { Item = this, IssueSource = "MaxOneRefraction", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!MaxOneTextures())
-				yield return new ValidationResult() { Item = this, IssueSource = "MaxOneTextures", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!MaxOneExtDefined())
-				yield return new ValidationResult() { Item = this, IssueSource = "MaxOneExtDefined", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcSurfaceStyle.MaxOneShading))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcSurfaceStyle.MaxOneShading", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcSurfaceStyle.MaxOneLighting))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcSurfaceStyle.MaxOneLighting", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcSurfaceStyle.MaxOneRefraction))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcSurfaceStyle.MaxOneRefraction", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcSurfaceStyle.MaxOneTextures))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcSurfaceStyle.MaxOneTextures", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcSurfaceStyle.MaxOneExtDefined))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcSurfaceStyle.MaxOneExtDefined", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcSurfaceStyle
+	{
+		public static readonly IfcSurfaceStyle MaxOneShading = new IfcSurfaceStyle();
+		public static readonly IfcSurfaceStyle MaxOneLighting = new IfcSurfaceStyle();
+		public static readonly IfcSurfaceStyle MaxOneRefraction = new IfcSurfaceStyle();
+		public static readonly IfcSurfaceStyle MaxOneTextures = new IfcSurfaceStyle();
+		public static readonly IfcSurfaceStyle MaxOneExtDefined = new IfcSurfaceStyle();
+		protected IfcSurfaceStyle() {}
 	}
 }

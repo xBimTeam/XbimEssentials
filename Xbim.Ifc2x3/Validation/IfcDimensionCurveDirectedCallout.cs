@@ -20,39 +20,48 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDimensioningResource.IfcDimensionCurveDirectedCallout");
 
 		/// <summary>
-		/// Tests the express where clause WR41
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR41() {
+		public bool ValidateClause(Where.IfcDimensionCurveDirectedCallout clause) {
 			var retVal = false;
-			try {
-				retVal = SIZEOF(this/* as IfcDraughtingCallout*/.Contents.Where(Dc => (TYPEOF(Dc).Contains("IFC2X3.IFCDIMENSIONCURVE")))) == 1;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR41' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcDimensionCurveDirectedCallout.WR41) {
+				try {
+					retVal = SIZEOF(this/* as IfcDraughtingCallout*/.Contents.Where(Dc => (TYPEOF(Dc).Contains("IFC2X3.IFCDIMENSIONCURVE")))) == 1;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcDimensionCurveDirectedCallout.WR41' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WR42
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR42() {
-			var retVal = false;
-			try {
-				retVal = SIZEOF(this.Contents.Where(Dc => (TYPEOF(Dc).Contains("IFC2X3.IFCPROJECTIONCURVE")))) <= 2;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR42' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcDimensionCurveDirectedCallout.WR42) {
+				try {
+					retVal = SIZEOF(this.Contents.Where(Dc => (TYPEOF(Dc).Contains("IFC2X3.IFCPROJECTIONCURVE")))) <= 2;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcDimensionCurveDirectedCallout.WR42' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR41())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR41", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WR42())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR42", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcDimensionCurveDirectedCallout.WR41))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcDimensionCurveDirectedCallout.WR41", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcDimensionCurveDirectedCallout.WR42))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcDimensionCurveDirectedCallout.WR42", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcDimensionCurveDirectedCallout
+	{
+		public static readonly IfcDimensionCurveDirectedCallout WR41 = new IfcDimensionCurveDirectedCallout();
+		public static readonly IfcDimensionCurveDirectedCallout WR42 = new IfcDimensionCurveDirectedCallout();
+		protected IfcDimensionCurveDirectedCallout() {}
 	}
 }

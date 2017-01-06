@@ -16,17 +16,21 @@ namespace Xbim.Ifc4.SharedBldgElements
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcBeamStandardCase");
 
 		/// <summary>
-		/// Tests the express where clause HasMaterialProfileSetUsage
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool HasMaterialProfileSetUsage() {
+		public bool ValidateClause(Where.IfcBeamStandardCase clause) {
 			var retVal = false;
-			try {
-				retVal = SIZEOF(USEDIN(this, "IFC4.IFCRELASSOCIATES.RELATEDOBJECTS").Where(temp => (TYPEOF(temp).Contains("IFC4.IFCRELASSOCIATESMATERIAL")) && (TYPEOF(temp.AsIfcRelAssociatesMaterial().RelatingMaterial).Contains("IFC4.IFCMATERIALPROFILESETUSAGE")))) == 1;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'HasMaterialProfileSetUsage' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcBeamStandardCase.HasMaterialProfileSetUsage) {
+				try {
+					retVal = SIZEOF(USEDIN(this, "IFC4.IFCRELASSOCIATES.RELATEDOBJECTS").Where(temp => (TYPEOF(temp).Contains("IFC4.IFCRELASSOCIATESMATERIAL")) && (TYPEOF(temp.AsIfcRelAssociatesMaterial().RelatingMaterial).Contains("IFC4.IFCMATERIALPROFILESETUSAGE")))) == 1;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcBeamStandardCase.HasMaterialProfileSetUsage' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcBeam)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -35,8 +39,18 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				yield return value;
 			}
-			if (!HasMaterialProfileSetUsage())
-				yield return new ValidationResult() { Item = this, IssueSource = "HasMaterialProfileSetUsage", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcBeamStandardCase.HasMaterialProfileSetUsage))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcBeamStandardCase.HasMaterialProfileSetUsage", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcBeamStandardCase : IfcBeam
+	{
+		public static readonly IfcBeamStandardCase HasMaterialProfileSetUsage = new IfcBeamStandardCase();
+		protected IfcBeamStandardCase() {}
 	}
 }

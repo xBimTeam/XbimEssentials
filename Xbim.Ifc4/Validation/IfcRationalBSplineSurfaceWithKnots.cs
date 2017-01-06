@@ -16,31 +16,29 @@ namespace Xbim.Ifc4.GeometryResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcRationalBSplineSurfaceWithKnots");
 
 		/// <summary>
-		/// Tests the express where clause CorrespondingWeightsDataLists
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool CorrespondingWeightsDataLists() {
+		public bool ValidateClause(Where.IfcRationalBSplineSurfaceWithKnots clause) {
 			var retVal = false;
-			try {
-				retVal = (SIZEOF(WeightsData) == SIZEOF(this/* as IfcBSplineSurface*/.ControlPointsList)) && (SIZEOF(WeightsData.ToArray()[0]) == SIZEOF(this/* as IfcBSplineSurface*/.ControlPointsList.ToArray()[0]));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'CorrespondingWeightsDataLists' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcRationalBSplineSurfaceWithKnots.CorrespondingWeightsDataLists) {
+				try {
+					retVal = (SIZEOF(WeightsData) == SIZEOF(this/* as IfcBSplineSurface*/.ControlPointsList)) && (SIZEOF(WeightsData.ToArray()[0]) == SIZEOF(this/* as IfcBSplineSurface*/.ControlPointsList.ToArray()[0]));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcRationalBSplineSurfaceWithKnots.CorrespondingWeightsDataLists' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause WeightValuesGreaterZero
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool WeightValuesGreaterZero() {
-			var retVal = false;
-			try {
-				retVal = IfcSurfaceWeightsPositive(this);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WeightValuesGreaterZero' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcRationalBSplineSurfaceWithKnots.WeightValuesGreaterZero) {
+				try {
+					retVal = IfcSurfaceWeightsPositive(this);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcRationalBSplineSurfaceWithKnots.WeightValuesGreaterZero' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcBSplineSurfaceWithKnots)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -49,10 +47,21 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				yield return value;
 			}
-			if (!CorrespondingWeightsDataLists())
-				yield return new ValidationResult() { Item = this, IssueSource = "CorrespondingWeightsDataLists", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!WeightValuesGreaterZero())
-				yield return new ValidationResult() { Item = this, IssueSource = "WeightValuesGreaterZero", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcRationalBSplineSurfaceWithKnots.CorrespondingWeightsDataLists))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcRationalBSplineSurfaceWithKnots.CorrespondingWeightsDataLists", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcRationalBSplineSurfaceWithKnots.WeightValuesGreaterZero))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcRationalBSplineSurfaceWithKnots.WeightValuesGreaterZero", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcRationalBSplineSurfaceWithKnots : IfcBSplineSurfaceWithKnots
+	{
+		public static readonly IfcRationalBSplineSurfaceWithKnots CorrespondingWeightsDataLists = new IfcRationalBSplineSurfaceWithKnots();
+		public static readonly IfcRationalBSplineSurfaceWithKnots WeightValuesGreaterZero = new IfcRationalBSplineSurfaceWithKnots();
+		protected IfcRationalBSplineSurfaceWithKnots() {}
 	}
 }

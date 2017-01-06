@@ -20,17 +20,21 @@ namespace Xbim.Ifc2x3.Kernel
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcRelNests");
 
 		/// <summary>
-		/// Tests the express where clause WR1
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR1() {
+		public bool ValidateClause(Where.IfcRelNests clause) {
 			var retVal = false;
-			try {
-				retVal = SIZEOF(this/* as IfcRelDecomposes*/.RelatedObjects.Where(Temp => !(TYPEOF(this/* as IfcRelDecomposes*/.RelatingObject) == TYPEOF(Temp)))) == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR1' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcRelNests.WR1) {
+				try {
+					retVal = SIZEOF(this/* as IfcRelDecomposes*/.RelatedObjects.Where(Temp => !(TYPEOF(this/* as IfcRelDecomposes*/.RelatingObject) == TYPEOF(Temp)))) == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcRelNests.WR1' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcRelDecomposes)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -39,8 +43,18 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				yield return value;
 			}
-			if (!WR1())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR1", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcRelNests.WR1))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelNests.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcRelNests : IfcRelDecomposes
+	{
+		public static readonly IfcRelNests WR1 = new IfcRelNests();
+		protected IfcRelNests() {}
 	}
 }

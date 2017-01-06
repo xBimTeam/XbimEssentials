@@ -1865,7 +1865,6 @@
     <Compile Include="Validation\IfcRoundedRectangleProfileDef.cs" />
     <Compile Include="Validation\IfcSecondInMinute.cs" />
     <Compile Include="Validation\IfcSectionedSpine.cs" />
-    <Compile Include="Validation\IfcServiceLifeFactor.cs" />
     <Compile Include="Validation\IfcShapeModel.cs" />
     <Compile Include="Validation\IfcShapeRepresentation.cs" />
     <Compile Include="Validation\IfcSlab.cs" />

@@ -16,17 +16,21 @@ namespace Xbim.Ifc4.ProductExtension
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcSpatialStructureElement");
 
 		/// <summary>
-		/// Tests the express where clause WR41
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR41() {
+		public bool ValidateClause(Where.IfcSpatialStructureElement clause) {
 			var retVal = false;
-			try {
-				retVal = (HIINDEX(this/* as IfcObjectDefinition*/.Decomposes) == 1) && (TYPEOF(this/* as IfcObjectDefinition*/.Decomposes.ToArray()[0]).Contains("IFC4.IFCRELAGGREGATES")) && ((TYPEOF(this/* as IfcObjectDefinition*/.Decomposes.ToArray()[0].RelatingObject).Contains("IFC4.IFCPROJECT")) || (TYPEOF(this/* as IfcObjectDefinition*/.Decomposes.ToArray()[0].RelatingObject).Contains("IFC4.IFCSPATIALSTRUCTUREELEMENT")));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR41' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcSpatialStructureElement.WR41) {
+				try {
+					retVal = (HIINDEX(this/* as IfcObjectDefinition*/.Decomposes) == 1) && (TYPEOF(this/* as IfcObjectDefinition*/.Decomposes.ToArray()[0]).Contains("IFC4.IFCRELAGGREGATES")) && ((TYPEOF(this/* as IfcObjectDefinition*/.Decomposes.ToArray()[0].RelatingObject).Contains("IFC4.IFCPROJECT")) || (TYPEOF(this/* as IfcObjectDefinition*/.Decomposes.ToArray()[0].RelatingObject).Contains("IFC4.IFCSPATIALSTRUCTUREELEMENT")));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcSpatialStructureElement.WR41' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcProduct)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -35,8 +39,18 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				yield return value;
 			}
-			if (!WR41())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR41", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcSpatialStructureElement.WR41))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcSpatialStructureElement.WR41", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcSpatialStructureElement : IfcProduct
+	{
+		public static readonly IfcSpatialStructureElement WR41 = new IfcSpatialStructureElement();
+		protected IfcSpatialStructureElement() {}
 	}
 }

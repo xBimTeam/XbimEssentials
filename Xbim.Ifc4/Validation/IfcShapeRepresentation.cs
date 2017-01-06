@@ -16,73 +16,53 @@ namespace Xbim.Ifc4.RepresentationResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.RepresentationResource.IfcShapeRepresentation");
 
 		/// <summary>
-		/// Tests the express where clause CorrectContext
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool CorrectContext() {
+		public bool ValidateClause(Where.IfcShapeRepresentation clause) {
 			var retVal = false;
-			try {
-				retVal = TYPEOF(this/* as IfcRepresentation*/.ContextOfItems).Contains("IFC4.IFCGEOMETRICREPRESENTATIONCONTEXT");
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'CorrectContext' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcShapeRepresentation.CorrectContext) {
+				try {
+					retVal = TYPEOF(this/* as IfcRepresentation*/.ContextOfItems).Contains("IFC4.IFCGEOMETRICREPRESENTATIONCONTEXT");
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcShapeRepresentation.CorrectContext' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause NoTopologicalItem
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool NoTopologicalItem() {
-			var retVal = false;
-			try {
-				retVal = SIZEOF(Items.Where(temp => (TYPEOF(temp).Contains("IFC4.IFCTOPOLOGICALREPRESENTATIONITEM")) && (!(SIZEOF(NewArray("IFC4.IFCVERTEXPOINT", "IFC4.IFCEDGECURVE", "IFC4.IFCFACESURFACE") * TYPEOF(temp)) == 1)))) == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'NoTopologicalItem' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcShapeRepresentation.NoTopologicalItem) {
+				try {
+					retVal = SIZEOF(Items.Where(temp => (TYPEOF(temp).Contains("IFC4.IFCTOPOLOGICALREPRESENTATIONITEM")) && (!(SIZEOF(NewArray("IFC4.IFCVERTEXPOINT", "IFC4.IFCEDGECURVE", "IFC4.IFCFACESURFACE") * TYPEOF(temp)) == 1)))) == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcShapeRepresentation.NoTopologicalItem' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause HasRepresentationType
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool HasRepresentationType() {
-			var retVal = false;
-			try {
-				retVal = EXISTS(this/* as IfcRepresentation*/.RepresentationType);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'HasRepresentationType' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcShapeRepresentation.HasRepresentationType) {
+				try {
+					retVal = EXISTS(this/* as IfcRepresentation*/.RepresentationType);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcShapeRepresentation.HasRepresentationType' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause CorrectItemsForType
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool CorrectItemsForType() {
-			var retVal = false;
-			try {
-				retVal = IfcShapeRepresentationTypes(this/* as IfcRepresentation*/.RepresentationType, this/* as IfcRepresentation*/.Items);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'CorrectItemsForType' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcShapeRepresentation.CorrectItemsForType) {
+				try {
+					retVal = IfcShapeRepresentationTypes(this/* as IfcRepresentation*/.RepresentationType, this/* as IfcRepresentation*/.Items);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcShapeRepresentation.CorrectItemsForType' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause HasRepresentationIdentifier
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool HasRepresentationIdentifier() {
-			var retVal = false;
-			try {
-				retVal = EXISTS(this/* as IfcRepresentation*/.RepresentationIdentifier);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'HasRepresentationIdentifier' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcShapeRepresentation.HasRepresentationIdentifier) {
+				try {
+					retVal = EXISTS(this/* as IfcRepresentation*/.RepresentationIdentifier);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcShapeRepresentation.HasRepresentationIdentifier' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcShapeModel)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -91,16 +71,30 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				yield return value;
 			}
-			if (!CorrectContext())
-				yield return new ValidationResult() { Item = this, IssueSource = "CorrectContext", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!NoTopologicalItem())
-				yield return new ValidationResult() { Item = this, IssueSource = "NoTopologicalItem", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!HasRepresentationType())
-				yield return new ValidationResult() { Item = this, IssueSource = "HasRepresentationType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!CorrectItemsForType())
-				yield return new ValidationResult() { Item = this, IssueSource = "CorrectItemsForType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!HasRepresentationIdentifier())
-				yield return new ValidationResult() { Item = this, IssueSource = "HasRepresentationIdentifier", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcShapeRepresentation.CorrectContext))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcShapeRepresentation.CorrectContext", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcShapeRepresentation.NoTopologicalItem))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcShapeRepresentation.NoTopologicalItem", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcShapeRepresentation.HasRepresentationType))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcShapeRepresentation.HasRepresentationType", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcShapeRepresentation.CorrectItemsForType))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcShapeRepresentation.CorrectItemsForType", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcShapeRepresentation.HasRepresentationIdentifier))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcShapeRepresentation.HasRepresentationIdentifier", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcShapeRepresentation : IfcShapeModel
+	{
+		public static readonly IfcShapeRepresentation CorrectContext = new IfcShapeRepresentation();
+		public static readonly IfcShapeRepresentation NoTopologicalItem = new IfcShapeRepresentation();
+		public static readonly IfcShapeRepresentation HasRepresentationType = new IfcShapeRepresentation();
+		public static readonly IfcShapeRepresentation CorrectItemsForType = new IfcShapeRepresentation();
+		public static readonly IfcShapeRepresentation HasRepresentationIdentifier = new IfcShapeRepresentation();
+		protected IfcShapeRepresentation() {}
 	}
 }

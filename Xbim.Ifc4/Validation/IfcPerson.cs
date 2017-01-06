@@ -16,39 +16,48 @@ namespace Xbim.Ifc4.ActorResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ActorResource.IfcPerson");
 
 		/// <summary>
-		/// Tests the express where clause IdentifiablePerson
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool IdentifiablePerson() {
+		public bool ValidateClause(Where.IfcPerson clause) {
 			var retVal = false;
-			try {
-				retVal = EXISTS(Identification) || EXISTS(FamilyName) || EXISTS(GivenName);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'IdentifiablePerson' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcPerson.IdentifiablePerson) {
+				try {
+					retVal = EXISTS(Identification) || EXISTS(FamilyName) || EXISTS(GivenName);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcPerson.IdentifiablePerson' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
-		}
-
-		/// <summary>
-		/// Tests the express where clause ValidSetOfNames
-		/// </summary>
-		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidSetOfNames() {
-			var retVal = false;
-			try {
-				retVal = !EXISTS(MiddleNames) || EXISTS(FamilyName) || EXISTS(GivenName);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ValidSetOfNames' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcPerson.ValidSetOfNames) {
+				try {
+					retVal = !EXISTS(MiddleNames) || EXISTS(FamilyName) || EXISTS(GivenName);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcPerson.ValidSetOfNames' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!IdentifiablePerson())
-				yield return new ValidationResult() { Item = this, IssueSource = "IdentifiablePerson", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidSetOfNames())
-				yield return new ValidationResult() { Item = this, IssueSource = "ValidSetOfNames", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcPerson.IdentifiablePerson))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcPerson.IdentifiablePerson", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcPerson.ValidSetOfNames))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcPerson.ValidSetOfNames", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcPerson
+	{
+		public static readonly IfcPerson IdentifiablePerson = new IfcPerson();
+		public static readonly IfcPerson ValidSetOfNames = new IfcPerson();
+		protected IfcPerson() {}
 	}
 }

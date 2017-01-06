@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.GeometryResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcSweptSurface");
 
 		/// <summary>
-		/// Tests the express where clause SweptCurveType
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool SweptCurveType() {
+		public bool ValidateClause(Where.IfcSweptSurface clause) {
 			var retVal = false;
-			try {
-				retVal = SweptCurve.ProfileType == IfcProfileTypeEnum.CURVE;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'SweptCurveType' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcSweptSurface.SweptCurveType) {
+				try {
+					retVal = SweptCurve.ProfileType == IfcProfileTypeEnum.CURVE;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcSweptSurface.SweptCurveType' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!SweptCurveType())
-				yield return new ValidationResult() { Item = this, IssueSource = "SweptCurveType", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcSweptSurface.SweptCurveType))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcSweptSurface.SweptCurveType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcSweptSurface
+	{
+		public static readonly IfcSweptSurface SweptCurveType = new IfcSweptSurface();
+		protected IfcSweptSurface() {}
 	}
 }

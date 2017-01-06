@@ -16,17 +16,21 @@ namespace Xbim.Ifc4.GeometricModelResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcExtrudedAreaSolidTapered");
 
 		/// <summary>
-		/// Tests the express where clause CorrectProfileAssignment
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool CorrectProfileAssignment() {
+		public bool ValidateClause(Where.IfcExtrudedAreaSolidTapered clause) {
 			var retVal = false;
-			try {
-				retVal = IfcTaperedSweptAreaProfiles(this/* as IfcSweptAreaSolid*/.SweptArea, this.EndSweptArea);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'CorrectProfileAssignment' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcExtrudedAreaSolidTapered.CorrectProfileAssignment) {
+				try {
+					retVal = IfcTaperedSweptAreaProfiles(this/* as IfcSweptAreaSolid*/.SweptArea, this.EndSweptArea);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcExtrudedAreaSolidTapered.CorrectProfileAssignment' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcExtrudedAreaSolid)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -35,8 +39,18 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				yield return value;
 			}
-			if (!CorrectProfileAssignment())
-				yield return new ValidationResult() { Item = this, IssueSource = "CorrectProfileAssignment", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcExtrudedAreaSolidTapered.CorrectProfileAssignment))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcExtrudedAreaSolidTapered.CorrectProfileAssignment", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcExtrudedAreaSolidTapered : IfcExtrudedAreaSolid
+	{
+		public static readonly IfcExtrudedAreaSolidTapered CorrectProfileAssignment = new IfcExtrudedAreaSolidTapered();
+		protected IfcExtrudedAreaSolidTapered() {}
 	}
 }

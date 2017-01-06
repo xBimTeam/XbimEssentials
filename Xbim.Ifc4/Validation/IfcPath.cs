@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.TopologyResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.TopologyResource.IfcPath");
 
 		/// <summary>
-		/// Tests the express where clause IsContinuous
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool IsContinuous() {
+		public bool ValidateClause(Where.IfcPath clause) {
 			var retVal = false;
-			try {
-				retVal = IfcPathHeadToTail(this);
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'IsContinuous' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcPath.IsContinuous) {
+				try {
+					retVal = IfcPathHeadToTail(this);
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcPath.IsContinuous' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!IsContinuous())
-				yield return new ValidationResult() { Item = this, IssueSource = "IsContinuous", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcPath.IsContinuous))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcPath.IsContinuous", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcPath
+	{
+		public static readonly IfcPath IsContinuous = new IfcPath();
+		protected IfcPath() {}
 	}
 }

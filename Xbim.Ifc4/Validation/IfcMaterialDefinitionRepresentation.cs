@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.RepresentationResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.RepresentationResource.IfcMaterialDefinitionRepresentation");
 
 		/// <summary>
-		/// Tests the express where clause OnlyStyledRepresentations
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool OnlyStyledRepresentations() {
+		public bool ValidateClause(Where.IfcMaterialDefinitionRepresentation clause) {
 			var retVal = false;
-			try {
-				retVal = SIZEOF(Representations.Where(temp => (!(TYPEOF(temp).Contains("IFC4.IFCSTYLEDREPRESENTATION"))))) == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'OnlyStyledRepresentations' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcMaterialDefinitionRepresentation.OnlyStyledRepresentations) {
+				try {
+					retVal = SIZEOF(Representations.Where(temp => (!(TYPEOF(temp).Contains("IFC4.IFCSTYLEDREPRESENTATION"))))) == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcMaterialDefinitionRepresentation.OnlyStyledRepresentations' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!OnlyStyledRepresentations())
-				yield return new ValidationResult() { Item = this, IssueSource = "OnlyStyledRepresentations", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcMaterialDefinitionRepresentation.OnlyStyledRepresentations))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcMaterialDefinitionRepresentation.OnlyStyledRepresentations", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcMaterialDefinitionRepresentation
+	{
+		public static readonly IfcMaterialDefinitionRepresentation OnlyStyledRepresentations = new IfcMaterialDefinitionRepresentation();
+		protected IfcMaterialDefinitionRepresentation() {}
 	}
 }

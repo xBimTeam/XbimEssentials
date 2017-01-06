@@ -16,17 +16,21 @@ namespace Xbim.Ifc4.GeometricModelResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcGeometricCurveSet");
 
 		/// <summary>
-		/// Tests the express where clause NoSurfaces
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool NoSurfaces() {
+		public bool ValidateClause(Where.IfcGeometricCurveSet clause) {
 			var retVal = false;
-			try {
-				retVal = SIZEOF(this/* as IfcGeometricSet*/.Elements.Where(Temp => TYPEOF(Temp).Contains("IFC4.IFCSURFACE"))) == 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'NoSurfaces' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcGeometricCurveSet.NoSurfaces) {
+				try {
+					retVal = SIZEOF(this/* as IfcGeometricSet*/.Elements.Where(Temp => TYPEOF(Temp).Contains("IFC4.IFCSURFACE"))) == 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcGeometricCurveSet.NoSurfaces' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcGeometricSet)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -35,8 +39,18 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				yield return value;
 			}
-			if (!NoSurfaces())
-				yield return new ValidationResult() { Item = this, IssueSource = "NoSurfaces", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcGeometricCurveSet.NoSurfaces))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcGeometricCurveSet.NoSurfaces", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcGeometricCurveSet : IfcGeometricSet
+	{
+		public static readonly IfcGeometricCurveSet NoSurfaces = new IfcGeometricCurveSet();
+		protected IfcGeometricCurveSet() {}
 	}
 }

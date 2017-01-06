@@ -16,23 +16,37 @@ namespace Xbim.Ifc4.TopologyResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.TopologyResource.IfcOrientedEdge");
 
 		/// <summary>
-		/// Tests the express where clause EdgeElementNotOriented
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool EdgeElementNotOriented() {
+		public bool ValidateClause(Where.IfcOrientedEdge clause) {
 			var retVal = false;
-			try {
-				retVal = !(TYPEOF(EdgeElement).Contains("IFC4.IFCORIENTEDEDGE"));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'EdgeElementNotOriented' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcOrientedEdge.EdgeElementNotOriented) {
+				try {
+					retVal = !(TYPEOF(EdgeElement).Contains("IFC4.IFCORIENTEDEDGE"));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcOrientedEdge.EdgeElementNotOriented' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!EdgeElementNotOriented())
-				yield return new ValidationResult() { Item = this, IssueSource = "EdgeElementNotOriented", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcOrientedEdge.EdgeElementNotOriented))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcOrientedEdge.EdgeElementNotOriented", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcOrientedEdge
+	{
+		public static readonly IfcOrientedEdge EdgeElementNotOriented = new IfcOrientedEdge();
+		protected IfcOrientedEdge() {}
 	}
 }

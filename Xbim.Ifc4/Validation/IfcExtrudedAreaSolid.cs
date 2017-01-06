@@ -16,17 +16,21 @@ namespace Xbim.Ifc4.GeometricModelResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcExtrudedAreaSolid");
 
 		/// <summary>
-		/// Tests the express where clause ValidExtrusionDirection
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidExtrusionDirection() {
+		public bool ValidateClause(Where.IfcExtrudedAreaSolid clause) {
 			var retVal = false;
-			try {
-				//retVal = IfcDotProduct(IfcDirection(NewArray(0, 0, 1)), this.ExtrudedDirection) != 0;
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'ValidExtrusionDirection' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcExtrudedAreaSolid.ValidExtrusionDirection) {
+				try {
+					retVal = IfcDotProduct(IfcDirection(0, 0, 1), this.ExtrudedDirection) != 0;
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcExtrudedAreaSolid.ValidExtrusionDirection' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			return base.ValidateClause((Where.IfcSweptAreaSolid)clause);
 		}
 
 		public new IEnumerable<ValidationResult> Validate()
@@ -35,8 +39,18 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				yield return value;
 			}
-			if (!ValidExtrusionDirection())
-				yield return new ValidationResult() { Item = this, IssueSource = "ValidExtrusionDirection", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcExtrudedAreaSolid.ValidExtrusionDirection))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcExtrudedAreaSolid.ValidExtrusionDirection", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc4.Where
+{
+	public class IfcExtrudedAreaSolid : IfcSweptAreaSolid
+	{
+		public static readonly IfcExtrudedAreaSolid ValidExtrusionDirection = new IfcExtrudedAreaSolid();
+		protected IfcExtrudedAreaSolid() {}
 	}
 }

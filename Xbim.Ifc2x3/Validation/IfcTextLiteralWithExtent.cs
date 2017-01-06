@@ -20,23 +20,37 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDefinitionResource.IfcTextLiteralWithExtent");
 
 		/// <summary>
-		/// Tests the express where clause WR31
+		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
+		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool WR31() {
+		public bool ValidateClause(Where.IfcTextLiteralWithExtent clause) {
 			var retVal = false;
-			try {
-				retVal = !(TYPEOF(Extent).Contains("IFC2X3.IFCPLANARBOX"));
-			} catch (Exception ex) {
-				Log.Error($"Exception thrown evaluating where-clause 'WR31' for #{EntityLabel}.", ex);
+			if (clause == Where.IfcTextLiteralWithExtent.WR31) {
+				try {
+					retVal = !(TYPEOF(Extent).Contains("IFC2X3.IFCPLANARBOX"));
+				} catch (Exception ex) {
+					Log.Error($"Exception thrown evaluating where-clause 'IfcTextLiteralWithExtent.WR31' for #{EntityLabel}.", ex);
+				}
+				return retVal;
 			}
-			return retVal;
+			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
 		}
 
 		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!WR31())
-				yield return new ValidationResult() { Item = this, IssueSource = "WR31", IssueType = ValidationFlags.EntityWhereClauses };
+			if (!ValidateClause(Where.IfcTextLiteralWithExtent.WR31))
+				yield return new ValidationResult() { Item = this, IssueSource = "IfcTextLiteralWithExtent.WR31", IssueType = ValidationFlags.EntityWhereClauses };
 		}
+	}
+}
+// ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
+namespace Xbim.Ifc2x3.Where
+{
+	public class IfcTextLiteralWithExtent
+	{
+		public static readonly IfcTextLiteralWithExtent WR31 = new IfcTextLiteralWithExtent();
+		protected IfcTextLiteralWithExtent() {}
 	}
 }
