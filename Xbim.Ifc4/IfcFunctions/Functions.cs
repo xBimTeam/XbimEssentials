@@ -108,7 +108,7 @@ namespace Xbim.Ifc4
                 case "IFC4.IFCRELASSOCIATES.RELATEDOBJECTS":
                     return ifcObject.Model.Instances.OfType<IfcRelAssociates>().Where(x => x.RelatedObjects.Contains(ifcObject));
             }
-            throw new Exception($"NotImplemented: USEDIN does not support role {v}.");
+            throw new Exception(string.Format("NotImplemented: USEDIN does not support role {0}.", v));
         }
         
         internal static bool EXISTS(object o)
@@ -313,7 +313,8 @@ namespace Xbim.Ifc4
                 if (INTYPEOF(EndArea, "IFC4.IFCDERIVEDPROFILEDEF"))
                 {
                     var end = EndArea as IIfcDerivedProfileDef;
-                    Result = StartArea == end?.ParentProfile;
+                    // todo: handle null case?
+                    Result = StartArea == end.ParentProfile;
                 }
                 else
                 {
@@ -325,7 +326,8 @@ namespace Xbim.Ifc4
                 if (INTYPEOF(EndArea, "IFC4.IFCDERIVEDPROFILEDEF"))
                 {
                     var end = EndArea as IIfcDerivedProfileDef;
-                    Result = StartArea == end?.ParentProfile;
+                    // todo: handle null case?
+                    Result = StartArea == end.ParentProfile;
                 }
                 else
                 {

@@ -40,7 +40,7 @@ namespace Xbim.Common.ExpressValidation
 
         public string Report()
         {
-            var msg = $"Issue of type {IssueType} on {IssueSource}.";
+            var msg = string.Format("Issue of type {0} on {1}.", IssueType, IssueSource);
             return msg;
         }
     }

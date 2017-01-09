@@ -48,7 +48,7 @@ namespace Xbim.Ifc2x3.IfcFunctions
                 schema = asArr[1];               
                 while (tp != null)
                 {
-                    yield return  $"{schema}.{tp.Name}".ToUpperInvariant() as T;
+                    yield return string.Format("{0}.{1}", schema, tp.Name).ToUpperInvariant() as T;
                     tp = tp.BaseType;
                 }
             }

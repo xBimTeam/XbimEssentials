@@ -11,9 +11,9 @@ namespace Xbim.Ifc4
         public int Dim { get; set; }
         public double[] DirectionRatios { get; set; }
 
-        public double X => DirectionRatios[0];
-        public double Y => DirectionRatios[1];
-        public double Z => DirectionRatios[2];
+        public double X { get { return DirectionRatios[0]; } }
+        public double Y { get { return DirectionRatios[1]; } }
+        public double Z { get { return DirectionRatios[2]; } }
 
         public Direction(double x, double y)
         {
