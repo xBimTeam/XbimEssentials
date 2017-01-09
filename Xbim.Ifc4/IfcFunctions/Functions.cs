@@ -514,12 +514,17 @@ namespace Xbim.Ifc4
 
         internal static bool IfcUniquePropertySetNames(IOptionalItemSet<IfcPropertySetDefinition> hasPropertySets)
         {
-            throw new NotImplementedException();
+            var asList = hasPropertySets.ToList();
+            var values = asList.Select(x => x.Name).ToList();
+            var isUnique = values.Distinct().Count() == asList.Count();
+            return isUnique;
         }
 
-        internal static bool IfcUniqueDefinitionNames(IEnumerable<IfcRelDefinesByProperties> isDefinedBy)
+        internal static bool IfcUniqueDefinitionNames(IEnumerable<IfcRelDefinesByProperties> RelDefinesByProperties)
         {
-            throw new NotImplementedException();
+            var values = RelDefinesByProperties.Select(x => x.Name).ToList();
+            var isUnique = values.Distinct().Count() == RelDefinesByProperties.Count();
+            return isUnique; 
         }
 
         internal static bool IfcUniquePropertyName(IItemSet<IfcProperty> Properties)
