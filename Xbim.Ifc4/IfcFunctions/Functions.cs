@@ -90,10 +90,19 @@ namespace Xbim.Ifc4
             yield return vector3D.Y;
             yield return vector3D.Z;
         }
-
-
-        #endregion
         
+        internal static T ItemAt<T>(this IEnumerable<T> enumerable, long index) // where T : class
+        {
+            if (enumerable == null)
+                return default(T);
+            var asArr = enumerable.ToArray();
+            if (index < asArr.Length)
+                return asArr[index];
+            return default(T); 
+        }
+        
+        #endregion
+
         #region "Express Built-in functions"
         internal static T NVL<T>(T obj1, T obj2) where T : class
         {

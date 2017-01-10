@@ -64,6 +64,16 @@ namespace Xbim.Ifc2x3
                 dir1.Z * dir2.Z;
         }
 
+        internal static T ItemAt<T>(this IEnumerable<T> enumerable, long index) 
+        {
+            if (enumerable == null)
+                return default(T);
+            var asArr = enumerable.ToArray();
+            if (index < asArr.Length)
+                return asArr[index];
+            return default(T);
+        }
+        
         internal static IfcAnnotationTextOccurrence AsIfcAnnotationTextOccurrence(this IfcDraughtingCalloutElement toCast)
         {
             return toCast as IfcAnnotationTextOccurrence;

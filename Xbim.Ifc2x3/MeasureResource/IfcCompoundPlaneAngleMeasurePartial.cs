@@ -33,6 +33,11 @@ namespace Xbim.Ifc2x3.MeasureResource
             return new IfcCompoundPlaneAngleMeasure(vals);
         }
 
+        public long ItemAt(int index)
+        {
+            return ToArray().ItemAt(index);
+        }
+
         public long[] ToArray()
         {
             return _value.ToArray();
