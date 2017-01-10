@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	public partial class IfcBlobTexture : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcBlobTexture");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,7 +25,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				try {
 					retVal = NewArray("BMP", "JPG", "GIF", "PNG").Contains(this.RasterFormat);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcBlobTexture.SupportedRasterFormat' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcBlobTexture");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBlobTexture.SupportedRasterFormat' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,14 +34,15 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				try {
 					retVal = BLENGTH(RasterCode) % 8 == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcBlobTexture.RasterCodeByteStream' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcBlobTexture");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBlobTexture.RasterCodeByteStream' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcBlobTexture.SupportedRasterFormat))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcBlobTexture.SupportedRasterFormat", IssueType = ValidationFlags.EntityWhereClauses };

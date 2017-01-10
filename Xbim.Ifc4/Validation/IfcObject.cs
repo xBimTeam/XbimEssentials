@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.Kernel
 {
 	public partial class IfcObject : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcObject");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,14 +25,15 @@ namespace Xbim.Ifc4.Kernel
 				try {
 					retVal = ((SIZEOF(IsDefinedBy) == 0) || IfcUniqueDefinitionNames(IsDefinedBy));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcObject.UniquePropertySetNames' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcObject");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcObject.UniquePropertySetNames' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcObject.UniquePropertySetNames))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcObject.UniquePropertySetNames", IssueType = ValidationFlags.EntityWhereClauses };

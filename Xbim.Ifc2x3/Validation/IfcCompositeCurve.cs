@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class IfcCompositeCurve : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcCompositeCurve");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,22 +29,24 @@ namespace Xbim.Ifc2x3.GeometryResource
 				try {
 					retVal = ((!ClosedCurve.Value) && (SIZEOF(Segments.Where(Temp => Temp.Transition == IfcTransitionCode.DISCONTINUOUS)) == 1)) || ((ClosedCurve.Value) && (SIZEOF(Segments.Where(Temp => Temp.Transition == IfcTransitionCode.DISCONTINUOUS)) == 0));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcCompositeCurve.WR41' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcCompositeCurve");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCompositeCurve.WR41' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			if (clause == Where.IfcCompositeCurve.WR42) {
 				try {
-					retVal = SIZEOF(Segments.Where(Temp => Temp.Dim != Segments.ToArray()[0].Dim)) == 0;
+					retVal = SIZEOF(Segments.Where(Temp => Temp.Dim != Segments.ItemAt(0).Dim)) == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcCompositeCurve.WR42' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcCompositeCurve");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCompositeCurve.WR42' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcCompositeCurve.WR41))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCompositeCurve.WR41", IssueType = ValidationFlags.EntityWhereClauses };

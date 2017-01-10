@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class IfcRelNests : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcRelNests");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,14 +29,15 @@ namespace Xbim.Ifc2x3.Kernel
 				try {
 					retVal = SIZEOF(this/* as IfcRelDecomposes*/.RelatedObjects.Where(Temp => !(TYPEOF(this/* as IfcRelDecomposes*/.RelatingObject) == TYPEOF(Temp)))) == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcRelNests.WR1' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcRelNests");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelNests.WR1' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcRelDecomposes)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

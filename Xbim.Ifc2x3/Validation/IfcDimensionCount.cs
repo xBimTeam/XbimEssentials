@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial struct IfcDimensionCount : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcDimensionCount");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,14 +29,15 @@ namespace Xbim.Ifc2x3.GeometryResource
 				try {
 					retVal = ((0 < this) && (this <= 3) );
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcDimensionCount.WR1'.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcDimensionCount");
+					Log.Error("Exception thrown evaluating where-clause 'IfcDimensionCount.WR1'.", ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public  IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcDimensionCount.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcDimensionCount.WR1", IssueType = ValidationFlags.EntityWhereClauses };

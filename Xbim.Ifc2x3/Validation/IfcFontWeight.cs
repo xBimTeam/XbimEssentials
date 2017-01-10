@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.PresentationResource
 {
 	public partial struct IfcFontWeight : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationResource.IfcFontWeight");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,14 +29,15 @@ namespace Xbim.Ifc2x3.PresentationResource
 				try {
 					retVal = NewArray("normal", "small-caps", "100", "200", "300", "400", "500", "600", "700", "800", "900").Contains(this);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcFontWeight.WR1'.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationResource.IfcFontWeight");
+					Log.Error("Exception thrown evaluating where-clause 'IfcFontWeight.WR1'.", ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public  IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcFontWeight.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcFontWeight.WR1", IssueType = ValidationFlags.EntityWhereClauses };

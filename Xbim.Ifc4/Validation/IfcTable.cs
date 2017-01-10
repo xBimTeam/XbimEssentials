@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.UtilityResource
 {
 	public partial class IfcTable : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.UtilityResource.IfcTable");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -24,9 +23,10 @@ namespace Xbim.Ifc4.UtilityResource
 			var retVal = false;
 			if (clause == Where.IfcTable.WR1) {
 				try {
-					retVal = SIZEOF(Rows.Where(Temp => HIINDEX(Temp.RowCells) != HIINDEX(Rows.ToArray()[0].RowCells))) == 0;
+					retVal = SIZEOF(Rows.Where(Temp => HIINDEX(Temp.RowCells) != HIINDEX(Rows.ItemAt(0).RowCells))) == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcTable.WR1' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.UtilityResource.IfcTable");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTable.WR1' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,14 +34,15 @@ namespace Xbim.Ifc4.UtilityResource
 				try {
 					retVal = ((0 <= NumberOfHeadings) && (NumberOfHeadings <= 1) );
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcTable.WR2' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.UtilityResource.IfcTable");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTable.WR2' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcTable.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcTable.WR1", IssueType = ValidationFlags.EntityWhereClauses };

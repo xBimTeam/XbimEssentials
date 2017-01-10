@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	public partial class IfcSlabStandardCase : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcSlabStandardCase");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,14 +25,15 @@ namespace Xbim.Ifc4.SharedBldgElements
 				try {
 					retVal = SIZEOF(USEDIN(this, "IFC4.IFCRELASSOCIATES.RELATEDOBJECTS").Where(temp => (TYPEOF(temp).Contains("IFC4.IFCRELASSOCIATESMATERIAL")) && (TYPEOF(temp.AsIfcRelAssociatesMaterial().RelatingMaterial).Contains("IFC4.IFCMATERIALLAYERSETUSAGE")))) == 1;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcSlabStandardCase.HasMaterialLayerSetusage' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcSlabStandardCase");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSlabStandardCase.HasMaterialLayerSetusage' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcSlab)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

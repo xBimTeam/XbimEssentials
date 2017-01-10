@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	public partial class IfcRelConnectsPorts : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcRelConnectsPorts");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,14 +25,15 @@ namespace Xbim.Ifc4.ProductExtension
 				try {
 					retVal = !Object.ReferenceEquals(RelatingPort, RelatedPort);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcRelConnectsPorts.NoSelfReference' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcRelConnectsPorts");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelConnectsPorts.NoSelfReference' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcRelConnectsPorts.NoSelfReference))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelConnectsPorts.NoSelfReference", IssueType = ValidationFlags.EntityWhereClauses };

@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.ProcessExtension
 {
 	public partial class IfcRelAssignsTasks : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProcessExtension.IfcRelAssignsTasks");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,15 +29,17 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				try {
 					retVal = HIINDEX(this/* as IfcRelAssigns*/.RelatedObjects) == 1;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcRelAssignsTasks.WR1' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProcessExtension.IfcRelAssignsTasks");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelAssignsTasks.WR1' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			if (clause == Where.IfcRelAssignsTasks.WR2) {
 				try {
-					retVal = TYPEOF(this/* as IfcRelAssigns*/.RelatedObjects.ToArray()[0]).Contains("IFC2X3.IFCTASK");
+					retVal = TYPEOF(this/* as IfcRelAssigns*/.RelatedObjects.ItemAt(0)).Contains("IFC2X3.IFCTASK");
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcRelAssignsTasks.WR2' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProcessExtension.IfcRelAssignsTasks");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelAssignsTasks.WR2' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -46,14 +47,15 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				try {
 					retVal = TYPEOF(this/* as IfcRelAssignsToControl*/.RelatingControl).Contains("IFC2X3.IFCWORKCONTROL");
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcRelAssignsTasks.WR3' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProcessExtension.IfcRelAssignsTasks");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelAssignsTasks.WR3' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcRelAssignsToControl)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

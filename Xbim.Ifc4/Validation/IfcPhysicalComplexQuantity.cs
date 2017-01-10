@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.QuantityResource
 {
 	public partial class IfcPhysicalComplexQuantity : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.QuantityResource.IfcPhysicalComplexQuantity");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,7 +25,8 @@ namespace Xbim.Ifc4.QuantityResource
 				try {
 					retVal = SIZEOF(HasQuantities.Where(temp => Object.ReferenceEquals(this, temp))) == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcPhysicalComplexQuantity.NoSelfReference' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.QuantityResource.IfcPhysicalComplexQuantity");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPhysicalComplexQuantity.NoSelfReference' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,14 +34,15 @@ namespace Xbim.Ifc4.QuantityResource
 				try {
 					retVal = IfcUniqueQuantityNames(HasQuantities);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcPhysicalComplexQuantity.UniqueQuantityNames' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.QuantityResource.IfcPhysicalComplexQuantity");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPhysicalComplexQuantity.UniqueQuantityNames' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcPhysicalComplexQuantity.NoSelfReference))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPhysicalComplexQuantity.NoSelfReference", IssueType = ValidationFlags.EntityWhereClauses };

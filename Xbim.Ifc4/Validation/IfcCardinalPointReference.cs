@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.MaterialResource
 {
 	public partial struct IfcCardinalPointReference : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.MaterialResource.IfcCardinalPointReference");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,14 +25,15 @@ namespace Xbim.Ifc4.MaterialResource
 				try {
 					retVal = this > 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcCardinalPointReference.GreaterThanZero'.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.MaterialResource.IfcCardinalPointReference");
+					Log.Error("Exception thrown evaluating where-clause 'IfcCardinalPointReference.GreaterThanZero'.", ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public  IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcCardinalPointReference.GreaterThanZero))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCardinalPointReference.GreaterThanZero", IssueType = ValidationFlags.EntityWhereClauses };

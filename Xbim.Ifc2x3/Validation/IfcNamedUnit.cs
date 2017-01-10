@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	public partial class IfcNamedUnit : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.MeasureResource.IfcNamedUnit");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,14 +29,15 @@ namespace Xbim.Ifc2x3.MeasureResource
 				try {
 					retVal = IfcCorrectDimensions(this.UnitType, this.Dimensions);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcNamedUnit.WR1' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.MeasureResource.IfcNamedUnit");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcNamedUnit.WR1' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcNamedUnit.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcNamedUnit.WR1", IssueType = ValidationFlags.EntityWhereClauses };

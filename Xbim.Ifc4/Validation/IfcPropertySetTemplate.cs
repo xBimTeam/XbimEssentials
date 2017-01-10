@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.Kernel
 {
 	public partial class IfcPropertySetTemplate : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcPropertySetTemplate");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,7 +25,8 @@ namespace Xbim.Ifc4.Kernel
 				try {
 					retVal = EXISTS(this/* as IfcRoot*/.Name);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcPropertySetTemplate.ExistsName' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcPropertySetTemplate");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPropertySetTemplate.ExistsName' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,14 +34,15 @@ namespace Xbim.Ifc4.Kernel
 				try {
 					retVal = IfcUniquePropertyTemplateNames(HasPropertyTemplates);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcPropertySetTemplate.UniquePropertyNames' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcPropertySetTemplate");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPropertySetTemplate.UniquePropertyNames' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcPropertySetTemplate.ExistsName))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPropertySetTemplate.ExistsName", IssueType = ValidationFlags.EntityWhereClauses };

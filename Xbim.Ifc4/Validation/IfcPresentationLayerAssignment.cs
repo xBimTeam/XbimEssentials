@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 {
 	public partial class IfcPresentationLayerAssignment : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationOrganizationResource.IfcPresentationLayerAssignment");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,14 +25,15 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 				try {
 					retVal = SIZEOF(AssignedItems.Where(temp => (SIZEOF(TYPEOF(temp) * NewArray("IFC4.IFCSHAPEREPRESENTATION", "IFC4.IFCGEOMETRICREPRESENTATIONITEM", "IFC4.IFCMAPPEDITEM")) == 1))) == SIZEOF(AssignedItems);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcPresentationLayerAssignment.ApplicableItems' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationOrganizationResource.IfcPresentationLayerAssignment");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPresentationLayerAssignment.ApplicableItems' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcPresentationLayerAssignment.ApplicableItems))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPresentationLayerAssignment.ApplicableItems", IssueType = ValidationFlags.EntityWhereClauses };

@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
 {
 	public partial class IfcSurfaceReinforcementArea : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralLoadResource.IfcSurfaceReinforcementArea");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,23 +25,26 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				try {
 					retVal = EXISTS(SurfaceReinforcement1) || EXISTS(SurfaceReinforcement2) || EXISTS(ShearReinforcement);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcSurfaceReinforcementArea.SurfaceAndOrShearAreaSpecified' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralLoadResource.IfcSurfaceReinforcementArea");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceReinforcementArea.SurfaceAndOrShearAreaSpecified' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			if (clause == Where.IfcSurfaceReinforcementArea.NonnegativeArea1) {
 				try {
-					retVal = (!EXISTS(SurfaceReinforcement1)) || ((SurfaceReinforcement1.ToArray()[0] >= 0) && (SurfaceReinforcement1.ToArray()[1] >= 0) && ((SIZEOF(SurfaceReinforcement1) == 1) || (SurfaceReinforcement1.ToArray()[0] >= 0)));
+					retVal = (!EXISTS(SurfaceReinforcement1)) || ((SurfaceReinforcement1.ItemAt(0) >= 0) && (SurfaceReinforcement1.ItemAt(1) >= 0) && ((SIZEOF(SurfaceReinforcement1) == 1) || (SurfaceReinforcement1.ItemAt(0) >= 0)));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcSurfaceReinforcementArea.NonnegativeArea1' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralLoadResource.IfcSurfaceReinforcementArea");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceReinforcementArea.NonnegativeArea1' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			if (clause == Where.IfcSurfaceReinforcementArea.NonnegativeArea2) {
 				try {
-					retVal = (!EXISTS(SurfaceReinforcement2)) || ((SurfaceReinforcement2.ToArray()[0] >= 0) && (SurfaceReinforcement2.ToArray()[1] >= 0) && ((SIZEOF(SurfaceReinforcement2) == 1) || (SurfaceReinforcement2.ToArray()[0] >= 0)));
+					retVal = (!EXISTS(SurfaceReinforcement2)) || ((SurfaceReinforcement2.ItemAt(0) >= 0) && (SurfaceReinforcement2.ItemAt(1) >= 0) && ((SIZEOF(SurfaceReinforcement2) == 1) || (SurfaceReinforcement2.ItemAt(0) >= 0)));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcSurfaceReinforcementArea.NonnegativeArea2' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralLoadResource.IfcSurfaceReinforcementArea");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceReinforcementArea.NonnegativeArea2' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -50,14 +52,15 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				try {
 					retVal = (!EXISTS(ShearReinforcement)) || (ShearReinforcement >= 0);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcSurfaceReinforcementArea.NonnegativeArea3' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralLoadResource.IfcSurfaceReinforcementArea");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceReinforcementArea.NonnegativeArea3' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcSurfaceReinforcementArea.SurfaceAndOrShearAreaSpecified))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSurfaceReinforcementArea.SurfaceAndOrShearAreaSpecified", IssueType = ValidationFlags.EntityWhereClauses };

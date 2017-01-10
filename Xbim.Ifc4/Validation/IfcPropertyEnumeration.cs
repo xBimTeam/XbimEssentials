@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.PropertyResource
 {
 	public partial class IfcPropertyEnumeration : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.PropertyResource.IfcPropertyEnumeration");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -24,16 +23,17 @@ namespace Xbim.Ifc4.PropertyResource
 			var retVal = false;
 			if (clause == Where.IfcPropertyEnumeration.WR01) {
 				try {
-					retVal = SIZEOF(this.EnumerationValues.Where(temp => !(TYPEOF(this.EnumerationValues.ToArray()[0]) == TYPEOF(temp)))) == 0;
+					retVal = SIZEOF(this.EnumerationValues.Where(temp => !(TYPEOF(this.EnumerationValues.ItemAt(0)) == TYPEOF(temp)))) == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcPropertyEnumeration.WR01' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PropertyResource.IfcPropertyEnumeration");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPropertyEnumeration.WR01' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcPropertyEnumeration.WR01))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPropertyEnumeration.WR01", IssueType = ValidationFlags.EntityWhereClauses };

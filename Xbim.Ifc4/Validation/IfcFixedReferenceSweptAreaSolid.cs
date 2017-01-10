@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	public partial class IfcFixedReferenceSweptAreaSolid : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcFixedReferenceSweptAreaSolid");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,14 +25,15 @@ namespace Xbim.Ifc4.GeometricModelResource
 				try {
 					retVal = (EXISTS(StartParam) && EXISTS(EndParam)) || (SIZEOF(NewArray("IFC4.IFCCONIC", "IFC4.IFCBOUNDEDCURVE") * TYPEOF(Directrix)) == 1);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcFixedReferenceSweptAreaSolid.DirectrixBounded' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcFixedReferenceSweptAreaSolid");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFixedReferenceSweptAreaSolid.DirectrixBounded' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcSweptAreaSolid)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

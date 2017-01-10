@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	public partial class IfcRelSchedulesCostItems : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.SharedMgmtElements.IfcRelSchedulesCostItems");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,7 +29,8 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				try {
 					retVal = SIZEOF(this/* as IfcRelAssigns*/.RelatedObjects.Where(temp => !(TYPEOF(temp).Contains("IFC2X3.IFCCOSTITEM")))) == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcRelSchedulesCostItems.WR11' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.SharedMgmtElements.IfcRelSchedulesCostItems");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelSchedulesCostItems.WR11' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -38,14 +38,15 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				try {
 					retVal = TYPEOF(this/* as IfcRelAssignsToControl*/.RelatingControl).Contains("IFC2X3.IFCCOSTSCHEDULE");
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcRelSchedulesCostItems.WR12' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.SharedMgmtElements.IfcRelSchedulesCostItems");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelSchedulesCostItems.WR12' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcRelAssignsToControl)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

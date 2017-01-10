@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.ArchitectureDomain
 {
 	public partial class IfcWindowLiningProperties : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ArchitectureDomain.IfcWindowLiningProperties");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,7 +25,8 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				try {
 					retVal = !(EXISTS(LiningDepth) && !(EXISTS(LiningThickness)));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcWindowLiningProperties.WR31' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ArchitectureDomain.IfcWindowLiningProperties");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcWindowLiningProperties.WR31' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,7 +34,8 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				try {
 					retVal = !(!(EXISTS(FirstTransomOffset)) && EXISTS(SecondTransomOffset));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcWindowLiningProperties.WR32' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ArchitectureDomain.IfcWindowLiningProperties");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcWindowLiningProperties.WR32' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -42,22 +43,24 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				try {
 					retVal = !(!(EXISTS(FirstMullionOffset)) && EXISTS(SecondMullionOffset));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcWindowLiningProperties.WR33' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ArchitectureDomain.IfcWindowLiningProperties");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcWindowLiningProperties.WR33' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			if (clause == Where.IfcWindowLiningProperties.WR34) {
 				try {
-					retVal = (EXISTS(this/* as IfcPropertySetDefinition*/.DefinesType.ToArray()[0])) && ((TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ToArray()[0]).Contains("IFC4.IFCWINDOWTYPE")) || (TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ToArray()[0]).Contains("IFC4.IFCWINDOWSTYLE")));
+					retVal = (EXISTS(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0))) && ((TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)).Contains("IFC4.IFCWINDOWTYPE")) || (TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)).Contains("IFC4.IFCWINDOWSTYLE")));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcWindowLiningProperties.WR34' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ArchitectureDomain.IfcWindowLiningProperties");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcWindowLiningProperties.WR34' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcWindowLiningProperties.WR31))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcWindowLiningProperties.WR31", IssueType = ValidationFlags.EntityWhereClauses };

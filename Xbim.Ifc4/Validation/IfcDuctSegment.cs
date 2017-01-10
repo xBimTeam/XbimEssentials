@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	public partial class IfcDuctSegment : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcDuctSegment");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,22 +25,24 @@ namespace Xbim.Ifc4.HvacDomain
 				try {
 					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcDuctSegmentTypeEnum.USERDEFINED) || ((PredefinedType == IfcDuctSegmentTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcDuctSegment.CorrectPredefinedType' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcDuctSegment");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDuctSegment.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			if (clause == Where.IfcDuctSegment.CorrectTypeAssigned) {
 				try {
-					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ToArray()[0].RelatingType).Contains("IFC4.IFCDUCTSEGMENTTYPE"));
+					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCDUCTSEGMENTTYPE"));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcDuctSegment.CorrectTypeAssigned' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcDuctSegment");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDuctSegment.CorrectTypeAssigned' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcProduct)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

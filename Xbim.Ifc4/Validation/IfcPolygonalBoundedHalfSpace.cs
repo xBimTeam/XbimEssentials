@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	public partial class IfcPolygonalBoundedHalfSpace : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcPolygonalBoundedHalfSpace");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,7 +25,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 				try {
 					retVal = PolygonalBoundary.Dim == 2;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcPolygonalBoundedHalfSpace.BoundaryDim' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcPolygonalBoundedHalfSpace");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPolygonalBoundedHalfSpace.BoundaryDim' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,14 +34,15 @@ namespace Xbim.Ifc4.GeometricModelResource
 				try {
 					retVal = SIZEOF(TYPEOF(PolygonalBoundary) * NewArray("IFC4.IFCPOLYLINE", "IFC4.IFCCOMPOSITECURVE")) == 1;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcPolygonalBoundedHalfSpace.BoundaryType' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcPolygonalBoundedHalfSpace");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPolygonalBoundedHalfSpace.BoundaryType' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcPolygonalBoundedHalfSpace.BoundaryDim))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPolygonalBoundedHalfSpace.BoundaryDim", IssueType = ValidationFlags.EntityWhereClauses };

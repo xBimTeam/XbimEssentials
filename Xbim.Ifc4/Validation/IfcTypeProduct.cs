@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.Kernel
 {
 	public partial class IfcTypeProduct : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcTypeProduct");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -24,16 +23,17 @@ namespace Xbim.Ifc4.Kernel
 			var retVal = false;
 			if (clause == Where.IfcTypeProduct.ApplicableOccurrence) {
 				try {
-					retVal = !(EXISTS(this/* as IfcTypeObject*/.Types.ToArray()[0])) || (SIZEOF(this/* as IfcTypeObject*/.Types.ToArray()[0].RelatedObjects.Where(temp => !(TYPEOF(temp).Contains("IFC4.IFCPRODUCT")))) == 0);
+					retVal = !(EXISTS(this/* as IfcTypeObject*/.Types.ItemAt(0))) || (SIZEOF(this/* as IfcTypeObject*/.Types.ItemAt(0).RelatedObjects.Where(temp => !(TYPEOF(temp).Contains("IFC4.IFCPRODUCT")))) == 0);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcTypeProduct.ApplicableOccurrence' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcTypeProduct");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTypeProduct.ApplicableOccurrence' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcTypeObject)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	public partial class IfcStructuralSteelProfileProperties : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfilePropertyResource.IfcStructuralSteelProfileProperties");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,7 +29,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				try {
 					retVal = !(EXISTS(ShearAreaY)) || (ShearAreaY >= 0);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcStructuralSteelProfileProperties.WR31' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfilePropertyResource.IfcStructuralSteelProfileProperties");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralSteelProfileProperties.WR31' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -38,14 +38,15 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				try {
 					retVal = !(EXISTS(ShearAreaZ)) || (ShearAreaZ >= 0);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcStructuralSteelProfileProperties.WR32' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfilePropertyResource.IfcStructuralSteelProfileProperties");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralSteelProfileProperties.WR32' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcStructuralProfileProperties)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class IfcPropertySet : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcPropertySet");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,7 +29,8 @@ namespace Xbim.Ifc2x3.Kernel
 				try {
 					retVal = EXISTS(this/* as IfcRoot*/.Name);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcPropertySet.WR31' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcPropertySet");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPropertySet.WR31' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -38,14 +38,15 @@ namespace Xbim.Ifc2x3.Kernel
 				try {
 					retVal = IfcUniquePropertyName(HasProperties);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcPropertySet.WR32' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcPropertySet");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPropertySet.WR32' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcPropertySet.WR31))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPropertySet.WR31", IssueType = ValidationFlags.EntityWhereClauses };

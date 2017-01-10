@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.ConstraintResource
 {
 	public partial class IfcObjective : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ConstraintResource.IfcObjective");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,14 +25,15 @@ namespace Xbim.Ifc4.ConstraintResource
 				try {
 					retVal = (ObjectiveQualifier != IfcObjectiveEnum.USERDEFINED) || ((ObjectiveQualifier == IfcObjectiveEnum.USERDEFINED) && EXISTS(this/* as IfcObjective*/.UserDefinedQualifier));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcObjective.WR21' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ConstraintResource.IfcObjective");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcObjective.WR21' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcConstraint)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

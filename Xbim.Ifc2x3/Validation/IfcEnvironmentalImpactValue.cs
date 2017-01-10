@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.CostResource
 {
 	public partial class IfcEnvironmentalImpactValue : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.CostResource.IfcEnvironmentalImpactValue");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,14 +29,15 @@ namespace Xbim.Ifc2x3.CostResource
 				try {
 					retVal = (Category != IfcEnvironmentalImpactCategoryEnum.USERDEFINED) || ((Category == IfcEnvironmentalImpactCategoryEnum.USERDEFINED) && EXISTS(this/* as IfcEnvironmentalImpactValue*/.UserDefinedCategory));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcEnvironmentalImpactValue.WR1' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.CostResource.IfcEnvironmentalImpactValue");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcEnvironmentalImpactValue.WR1' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcAppliedValue)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	public partial class IfcAxis2Placement2D : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcAxis2Placement2D");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,7 +25,8 @@ namespace Xbim.Ifc4.GeometryResource
 				try {
 					retVal = (!(EXISTS(RefDirection))) || (RefDirection.Dim == 2);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcAxis2Placement2D.RefDirIs2D' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcAxis2Placement2D");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAxis2Placement2D.RefDirIs2D' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,14 +34,15 @@ namespace Xbim.Ifc4.GeometryResource
 				try {
 					retVal = this/* as IfcPlacement*/.Location.Dim == 2;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcAxis2Placement2D.LocationIs2D' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcAxis2Placement2D");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAxis2Placement2D.LocationIs2D' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcAxis2Placement2D.RefDirIs2D))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcAxis2Placement2D.RefDirIs2D", IssueType = ValidationFlags.EntityWhereClauses };

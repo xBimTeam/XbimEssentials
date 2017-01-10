@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class IfcStructuralLinearAction : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.StructuralAnalysisDomain.IfcStructuralLinearAction");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,14 +29,15 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				try {
 					retVal = SIZEOF(NewArray("IFC2X3.IFCSTRUCTURALLOADLINEARFORCE", "IFC2X3.IFCSTRUCTURALLOADTEMPERATURE") * TYPEOF(this/* as IfcStructuralActivity*/.AppliedLoad)) == 1;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcStructuralLinearAction.WR61' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.StructuralAnalysisDomain.IfcStructuralLinearAction");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralLinearAction.WR61' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcProduct)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

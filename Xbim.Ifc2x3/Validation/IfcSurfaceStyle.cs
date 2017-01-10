@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class IfcSurfaceStyle : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyle");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,7 +29,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				try {
 					retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC2X3.IFCSURFACESTYLESHADING"))) <= 1;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcSurfaceStyle.WR11' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyle");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceStyle.WR11' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -38,7 +38,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				try {
 					retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC2X3.IFCSURFACESTYLELIGHTING"))) <= 1;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcSurfaceStyle.WR12' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyle");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceStyle.WR12' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -46,7 +47,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				try {
 					retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC2X3.IFCSURFACESTYLEREFRACTION"))) <= 1;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcSurfaceStyle.WR13' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyle");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceStyle.WR13' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -54,7 +56,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				try {
 					retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC2X3.IFCSURFACESTYLEWITHTEXTURES"))) <= 1;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcSurfaceStyle.WR14' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyle");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceStyle.WR14' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -62,14 +65,15 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				try {
 					retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC2X3.IFCEXTERNALLYDEFINEDSURFACESTYLE"))) <= 1;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcSurfaceStyle.WR15' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyle");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceStyle.WR15' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcSurfaceStyle.WR11))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSurfaceStyle.WR11", IssueType = ValidationFlags.EntityWhereClauses };

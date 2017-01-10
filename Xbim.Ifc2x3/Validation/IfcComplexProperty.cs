@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.PropertyResource
 {
 	public partial class IfcComplexProperty : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PropertyResource.IfcComplexProperty");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,7 +29,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 				try {
 					retVal = SIZEOF(HasProperties.Where(temp => Object.ReferenceEquals(this, temp))) == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcComplexProperty.WR21' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PropertyResource.IfcComplexProperty");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcComplexProperty.WR21' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -38,14 +38,15 @@ namespace Xbim.Ifc2x3.PropertyResource
 				try {
 					retVal = IfcUniquePropertyName(HasProperties);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcComplexProperty.WR22' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PropertyResource.IfcComplexProperty");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcComplexProperty.WR22' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcComplexProperty.WR21))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcComplexProperty.WR21", IssueType = ValidationFlags.EntityWhereClauses };

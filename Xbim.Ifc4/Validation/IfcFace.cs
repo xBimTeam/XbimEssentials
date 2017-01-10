@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.TopologyResource
 {
 	public partial class IfcFace : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.TopologyResource.IfcFace");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,14 +25,15 @@ namespace Xbim.Ifc4.TopologyResource
 				try {
 					retVal = SIZEOF(Bounds.Where(temp => TYPEOF(temp).Contains("IFC4.IFCFACEOUTERBOUND"))) <= 1;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcFace.HasOuterBound' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.TopologyResource.IfcFace");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFace.HasOuterBound' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcFace.HasOuterBound))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcFace.HasOuterBound", IssueType = ValidationFlags.EntityWhereClauses };

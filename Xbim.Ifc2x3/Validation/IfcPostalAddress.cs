@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.ActorResource
 {
 	public partial class IfcPostalAddress : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ActorResource.IfcPostalAddress");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,14 +29,15 @@ namespace Xbim.Ifc2x3.ActorResource
 				try {
 					retVal = EXISTS(InternalLocation) || EXISTS(AddressLines) || EXISTS(PostalBox) || EXISTS(PostalCode) || EXISTS(Town) || EXISTS(Region) || EXISTS(Country);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcPostalAddress.WR1' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ActorResource.IfcPostalAddress");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPostalAddress.WR1' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcAddress)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	public partial class IfcSweptDiskSolidPolygonal : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcSweptDiskSolidPolygonal");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,7 +25,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 				try {
 					retVal = !(EXISTS(FilletRadius)) || (FilletRadius >= this/* as IfcSweptDiskSolid*/.Radius);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcSweptDiskSolidPolygonal.CorrectRadii' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcSweptDiskSolidPolygonal");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSweptDiskSolidPolygonal.CorrectRadii' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,14 +34,15 @@ namespace Xbim.Ifc4.GeometricModelResource
 				try {
 					retVal = TYPEOF(this/* as IfcSweptDiskSolid*/.Directrix).Contains("IFC4.IFCPOLYLINE");
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcSweptDiskSolidPolygonal.DirectrixIsPolyline' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcSweptDiskSolidPolygonal");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSweptDiskSolidPolygonal.DirectrixIsPolyline' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcSweptDiskSolid)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

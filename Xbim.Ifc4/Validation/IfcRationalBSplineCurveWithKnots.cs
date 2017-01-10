@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	public partial class IfcRationalBSplineCurveWithKnots : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcRationalBSplineCurveWithKnots");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,7 +25,8 @@ namespace Xbim.Ifc4.GeometryResource
 				try {
 					retVal = SIZEOF(WeightsData) == SIZEOF(this/* as IfcBSplineCurve*/.ControlPointsList);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcRationalBSplineCurveWithKnots.SameNumOfWeightsAndPoints' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcRationalBSplineCurveWithKnots");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRationalBSplineCurveWithKnots.SameNumOfWeightsAndPoints' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,14 +34,15 @@ namespace Xbim.Ifc4.GeometryResource
 				try {
 					retVal = IfcCurveWeightsPositive(this);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcRationalBSplineCurveWithKnots.WeightsGreaterZero' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcRationalBSplineCurveWithKnots");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRationalBSplineCurveWithKnots.WeightsGreaterZero' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcBSplineCurveWithKnots)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

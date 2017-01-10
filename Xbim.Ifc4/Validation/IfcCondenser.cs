@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	public partial class IfcCondenser : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcCondenser");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,22 +25,24 @@ namespace Xbim.Ifc4.HvacDomain
 				try {
 					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcCondenserTypeEnum.USERDEFINED) || ((PredefinedType == IfcCondenserTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcCondenser.CorrectPredefinedType' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcCondenser");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCondenser.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			if (clause == Where.IfcCondenser.CorrectTypeAssigned) {
 				try {
-					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ToArray()[0].RelatingType).Contains("IFC4.IFCCONDENSERTYPE"));
+					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCCONDENSERTYPE"));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcCondenser.CorrectTypeAssigned' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcCondenser");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCondenser.CorrectTypeAssigned' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcProduct)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

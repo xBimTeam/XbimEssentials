@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	public partial class IfcConstructionProductResource : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ConstructionMgmtDomain.IfcConstructionProductResource");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,22 +29,24 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 				try {
 					retVal = SIZEOF(this/* as IfcResource*/.ResourceOf) <= 1;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcConstructionProductResource.WR1' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ConstructionMgmtDomain.IfcConstructionProductResource");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcConstructionProductResource.WR1' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			if (clause == Where.IfcConstructionProductResource.WR2) {
 				try {
-					retVal = !(EXISTS(this/* as IfcResource*/.ResourceOf.ToArray()[0])) || (this/* as IfcResource*/.ResourceOf.ToArray()[0].RelatedObjectsType == IfcObjectTypeEnum.PRODUCT);
+					retVal = !(EXISTS(this/* as IfcResource*/.ResourceOf.ItemAt(0))) || (this/* as IfcResource*/.ResourceOf.ItemAt(0).RelatedObjectsType == IfcObjectTypeEnum.PRODUCT);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcConstructionProductResource.WR2' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ConstructionMgmtDomain.IfcConstructionProductResource");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcConstructionProductResource.WR2' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcObject)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

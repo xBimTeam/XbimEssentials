@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	public partial class IfcSurfaceStyle : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcSurfaceStyle");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,7 +25,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				try {
 					retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCSURFACESTYLESHADING"))) <= 1;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcSurfaceStyle.MaxOneShading' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcSurfaceStyle");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceStyle.MaxOneShading' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,7 +34,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				try {
 					retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCSURFACESTYLELIGHTING"))) <= 1;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcSurfaceStyle.MaxOneLighting' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcSurfaceStyle");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceStyle.MaxOneLighting' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -42,7 +43,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				try {
 					retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCSURFACESTYLEREFRACTION"))) <= 1;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcSurfaceStyle.MaxOneRefraction' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcSurfaceStyle");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceStyle.MaxOneRefraction' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -50,7 +52,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				try {
 					retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCSURFACESTYLEWITHTEXTURES"))) <= 1;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcSurfaceStyle.MaxOneTextures' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcSurfaceStyle");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceStyle.MaxOneTextures' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -58,14 +61,15 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				try {
 					retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCEXTERNALLYDEFINEDSURFACESTYLE"))) <= 1;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcSurfaceStyle.MaxOneExtDefined' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcSurfaceStyle");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceStyle.MaxOneExtDefined' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcSurfaceStyle.MaxOneShading))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSurfaceStyle.MaxOneShading", IssueType = ValidationFlags.EntityWhereClauses };

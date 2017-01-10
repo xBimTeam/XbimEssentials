@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.PropertyResource
 {
 	public partial class IfcPropertyDependencyRelationship : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.PropertyResource.IfcPropertyDependencyRelationship");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,14 +25,15 @@ namespace Xbim.Ifc4.PropertyResource
 				try {
 					retVal = !Object.ReferenceEquals(DependingProperty, DependantProperty);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcPropertyDependencyRelationship.NoSelfReference' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PropertyResource.IfcPropertyDependencyRelationship");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPropertyDependencyRelationship.NoSelfReference' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcPropertyDependencyRelationship.NoSelfReference))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPropertyDependencyRelationship.NoSelfReference", IssueType = ValidationFlags.EntityWhereClauses };

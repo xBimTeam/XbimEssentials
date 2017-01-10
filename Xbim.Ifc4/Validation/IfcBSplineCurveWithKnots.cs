@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	public partial class IfcBSplineCurveWithKnots : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcBSplineCurveWithKnots");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,7 +25,8 @@ namespace Xbim.Ifc4.GeometryResource
 				try {
 					retVal = IfcConstraintsParamBSpline(Degree, UpperIndexOnKnots, UpperIndexOnControlPoints, KnotMultiplicities, Knots);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcBSplineCurveWithKnots.ConsistentBSpline' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcBSplineCurveWithKnots");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBSplineCurveWithKnots.ConsistentBSpline' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,14 +34,15 @@ namespace Xbim.Ifc4.GeometryResource
 				try {
 					retVal = SIZEOF(KnotMultiplicities) == UpperIndexOnKnots;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcBSplineCurveWithKnots.CorrespondingKnotLists' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcBSplineCurveWithKnots");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBSplineCurveWithKnots.CorrespondingKnotLists' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcBSplineCurve)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class IfcCartesianTransformationOperator3D : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcCartesianTransformationOperator3D");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,7 +29,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				try {
 					retVal = this/* as IfcCartesianTransformationOperator*/.Dim == 3;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator3D.WR1' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcCartesianTransformationOperator3D");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator3D.WR1' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -38,7 +38,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				try {
 					retVal = !(EXISTS(this/* as IfcCartesianTransformationOperator*/.Axis1)) || (this/* as IfcCartesianTransformationOperator*/.Axis1.Dim == 3);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator3D.WR2' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcCartesianTransformationOperator3D");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator3D.WR2' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -46,7 +47,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				try {
 					retVal = !(EXISTS(this/* as IfcCartesianTransformationOperator*/.Axis2)) || (this/* as IfcCartesianTransformationOperator*/.Axis2.Dim == 3);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator3D.WR3' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcCartesianTransformationOperator3D");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator3D.WR3' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -54,14 +56,15 @@ namespace Xbim.Ifc2x3.GeometryResource
 				try {
 					retVal = !(EXISTS(Axis3)) || (Axis3.Dim == 3);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator3D.WR4' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcCartesianTransformationOperator3D");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator3D.WR4' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcCartesianTransformationOperator)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

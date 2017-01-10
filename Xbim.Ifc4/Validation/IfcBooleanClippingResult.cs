@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	public partial class IfcBooleanClippingResult : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcBooleanClippingResult");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,7 +25,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 				try {
 					retVal = (TYPEOF(FirstOperand).Contains("IFC4.IFCSWEPTAREASOLID")) || (TYPEOF(FirstOperand).Contains("IFC4.IFCSWEPTDISCSOLID")) || (TYPEOF(FirstOperand).Contains("IFC4.IFCBOOLEANCLIPPINGRESULT"));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcBooleanClippingResult.FirstOperandType' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcBooleanClippingResult");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBooleanClippingResult.FirstOperandType' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,7 +34,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 				try {
 					retVal = (TYPEOF(SecondOperand).Contains("IFC4.IFCHALFSPACESOLID"));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcBooleanClippingResult.SecondOperandType' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcBooleanClippingResult");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBooleanClippingResult.SecondOperandType' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -42,14 +43,15 @@ namespace Xbim.Ifc4.GeometricModelResource
 				try {
 					retVal = Operator == IfcBooleanOperator.DIFFERENCE;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcBooleanClippingResult.OperatorType' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcBooleanClippingResult");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBooleanClippingResult.OperatorType' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcBooleanResult)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

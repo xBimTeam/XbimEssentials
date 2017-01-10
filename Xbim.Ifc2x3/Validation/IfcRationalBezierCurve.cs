@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class IfcRationalBezierCurve : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcRationalBezierCurve");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,7 +29,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				try {
 					retVal = SIZEOF(WeightsData) == SIZEOF(this/* as IfcBSplineCurve*/.ControlPointsList);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcRationalBezierCurve.WR1' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcRationalBezierCurve");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRationalBezierCurve.WR1' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -38,14 +38,15 @@ namespace Xbim.Ifc2x3.GeometryResource
 				try {
 					retVal = IfcCurveWeightsPositive(this);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcRationalBezierCurve.WR2' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcRationalBezierCurve");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRationalBezierCurve.WR2' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcBSplineCurve)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

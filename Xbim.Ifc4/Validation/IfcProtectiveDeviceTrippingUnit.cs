@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	public partial class IfcProtectiveDeviceTrippingUnit : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ElectricalDomain.IfcProtectiveDeviceTrippingUnit");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,22 +25,24 @@ namespace Xbim.Ifc4.ElectricalDomain
 				try {
 					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcProtectiveDeviceTrippingUnitTypeEnum.USERDEFINED) || ((PredefinedType == IfcProtectiveDeviceTrippingUnitTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcProtectiveDeviceTrippingUnit.CorrectPredefinedType' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ElectricalDomain.IfcProtectiveDeviceTrippingUnit");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcProtectiveDeviceTrippingUnit.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			if (clause == Where.IfcProtectiveDeviceTrippingUnit.CorrectTypeAssigned) {
 				try {
-					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ToArray()[0].RelatingType).Contains("IFC4.IFCPROTECTIVEDEVICETRIPPINGUNITTYPE"));
+					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCPROTECTIVEDEVICETRIPPINGUNITTYPE"));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcProtectiveDeviceTrippingUnit.CorrectTypeAssigned' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ElectricalDomain.IfcProtectiveDeviceTrippingUnit");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcProtectiveDeviceTrippingUnit.CorrectTypeAssigned' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcProduct)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

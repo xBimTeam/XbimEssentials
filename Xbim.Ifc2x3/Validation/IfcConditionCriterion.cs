@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	public partial class IfcConditionCriterion : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.FacilitiesMgmtDomain.IfcConditionCriterion");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,14 +29,15 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 				try {
 					retVal = EXISTS(this/* as IfcRoot*/.Name);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcConditionCriterion.WR1' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.FacilitiesMgmtDomain.IfcConditionCriterion");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcConditionCriterion.WR1' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcObject)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

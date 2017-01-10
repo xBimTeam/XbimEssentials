@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class IfcBoxedHalfSpace : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricModelResource.IfcBoxedHalfSpace");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,14 +29,15 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				try {
 					retVal = !(TYPEOF(this/* as IfcHalfSpaceSolid*/.BaseSurface).Contains("IFC2X3.IFCCURVEBOUNDEDPLANE"));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcBoxedHalfSpace.WR1' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricModelResource.IfcBoxedHalfSpace");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBoxedHalfSpace.WR1' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcBoxedHalfSpace.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcBoxedHalfSpace.WR1", IssueType = ValidationFlags.EntityWhereClauses };

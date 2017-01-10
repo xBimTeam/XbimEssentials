@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.MeasureResource
 {
 	public partial struct IfcHeatingValueMeasure : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.MeasureResource.IfcHeatingValueMeasure");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,14 +25,15 @@ namespace Xbim.Ifc4.MeasureResource
 				try {
 					retVal = this > 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcHeatingValueMeasure.WR1'.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.MeasureResource.IfcHeatingValueMeasure");
+					Log.Error("Exception thrown evaluating where-clause 'IfcHeatingValueMeasure.WR1'.", ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public  IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcHeatingValueMeasure.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcHeatingValueMeasure.WR1", IssueType = ValidationFlags.EntityWhereClauses };

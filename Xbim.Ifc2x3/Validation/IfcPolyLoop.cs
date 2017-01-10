@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	public partial class IfcPolyLoop : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.TopologyResource.IfcPolyLoop");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -28,16 +27,17 @@ namespace Xbim.Ifc2x3.TopologyResource
 			var retVal = false;
 			if (clause == Where.IfcPolyLoop.WR21) {
 				try {
-					retVal = SIZEOF(Polygon.Where(Temp => Temp.Dim != Polygon.ToArray()[0].Dim)) == 0;
+					retVal = SIZEOF(Polygon.Where(Temp => Temp.Dim != Polygon.ItemAt(0).Dim)) == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcPolyLoop.WR21' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.TopologyResource.IfcPolyLoop");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPolyLoop.WR21' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcPolyLoop.WR21))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPolyLoop.WR21", IssueType = ValidationFlags.EntityWhereClauses };

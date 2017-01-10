@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class IfcFillAreaStyle : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcFillAreaStyle");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,7 +29,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				try {
 					retVal = SIZEOF(this.FillStyles.Where(Style => TYPEOF(Style).Contains("IFC2X3.IFCCOLOUR"))) <= 1;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcFillAreaStyle.WR11' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcFillAreaStyle");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFillAreaStyle.WR11' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -38,7 +38,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				try {
 					retVal = SIZEOF(this.FillStyles.Where(Style => TYPEOF(Style).Contains("IFC2X3.IFCEXTERNALLYDEFINEDHATCHSTYLE"))) <= 1;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcFillAreaStyle.WR12' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcFillAreaStyle");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFillAreaStyle.WR12' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -46,14 +47,15 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				try {
 					retVal = IfcCorrectFillAreaStyle(this.FillStyles);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcFillAreaStyle.WR13' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcFillAreaStyle");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFillAreaStyle.WR13' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcFillAreaStyle.WR11))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcFillAreaStyle.WR11", IssueType = ValidationFlags.EntityWhereClauses };

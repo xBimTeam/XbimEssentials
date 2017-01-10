@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class IfcArbitraryClosedProfileDef : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfileResource.IfcArbitraryClosedProfileDef");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,7 +29,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				try {
 					retVal = OuterCurve.Dim == 2;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcArbitraryClosedProfileDef.WR1' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfileResource.IfcArbitraryClosedProfileDef");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcArbitraryClosedProfileDef.WR1' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -38,7 +38,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				try {
 					retVal = !(TYPEOF(OuterCurve).Contains("IFC2X3.IFCLINE"));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcArbitraryClosedProfileDef.WR2' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfileResource.IfcArbitraryClosedProfileDef");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcArbitraryClosedProfileDef.WR2' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -46,14 +47,15 @@ namespace Xbim.Ifc2x3.ProfileResource
 				try {
 					retVal = !(TYPEOF(OuterCurve).Contains("IFC2X3.IFCOFFSETCURVE2D"));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcArbitraryClosedProfileDef.WR3' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfileResource.IfcArbitraryClosedProfileDef");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcArbitraryClosedProfileDef.WR3' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcArbitraryClosedProfileDef.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcArbitraryClosedProfileDef.WR1", IssueType = ValidationFlags.EntityWhereClauses };

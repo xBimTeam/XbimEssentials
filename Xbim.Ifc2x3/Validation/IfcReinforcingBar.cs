@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	public partial class IfcReinforcingBar : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.StructuralElementsDomain.IfcReinforcingBar");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,14 +29,15 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				try {
 					retVal = (BarRole != IfcReinforcingBarRoleEnum.USERDEFINED) || ((BarRole == IfcReinforcingBarRoleEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcReinforcingBar.WR1' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.StructuralElementsDomain.IfcReinforcingBar");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcReinforcingBar.WR1' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcProduct)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

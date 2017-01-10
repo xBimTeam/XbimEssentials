@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class IfcPolyline : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcPolyline");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -28,16 +27,17 @@ namespace Xbim.Ifc2x3.GeometryResource
 			var retVal = false;
 			if (clause == Where.IfcPolyline.WR41) {
 				try {
-					retVal = SIZEOF(Points.Where(Temp => Temp.Dim != Points.ToArray()[0].Dim)) == 0;
+					retVal = SIZEOF(Points.Where(Temp => Temp.Dim != Points.ItemAt(0).Dim)) == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcPolyline.WR41' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcPolyline");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPolyline.WR41' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcPolyline.WR41))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPolyline.WR41", IssueType = ValidationFlags.EntityWhereClauses };

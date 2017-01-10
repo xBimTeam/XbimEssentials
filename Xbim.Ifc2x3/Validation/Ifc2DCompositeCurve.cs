@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class Ifc2DCompositeCurve : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.Ifc2DCompositeCurve");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,7 +29,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				try {
 					retVal = this/* as IfcCompositeCurve*/.ClosedCurve.Value;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'Ifc2DCompositeCurve.WR1' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.Ifc2DCompositeCurve");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'Ifc2DCompositeCurve.WR1' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -38,14 +38,15 @@ namespace Xbim.Ifc2x3.GeometryResource
 				try {
 					retVal = this/* as IfcCurve*/.Dim == 2;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'Ifc2DCompositeCurve.WR2' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.Ifc2DCompositeCurve");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'Ifc2DCompositeCurve.WR2' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcCompositeCurve)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

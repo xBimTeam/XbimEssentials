@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	public partial class IfcIShapeProfileDef : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcIShapeProfileDef");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,7 +25,8 @@ namespace Xbim.Ifc4.ProfileResource
 				try {
 					retVal = (2 * FlangeThickness) < OverallDepth;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcIShapeProfileDef.ValidFlangeThickness' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcIShapeProfileDef");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcIShapeProfileDef.ValidFlangeThickness' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,7 +34,8 @@ namespace Xbim.Ifc4.ProfileResource
 				try {
 					retVal = WebThickness < OverallWidth;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcIShapeProfileDef.ValidWebThickness' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcIShapeProfileDef");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcIShapeProfileDef.ValidWebThickness' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -42,14 +43,15 @@ namespace Xbim.Ifc4.ProfileResource
 				try {
 					retVal = !(EXISTS(FilletRadius)) || ((FilletRadius <= (OverallWidth - WebThickness) / 2) && (FilletRadius <= (OverallDepth - (2 * FlangeThickness)) / 2));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcIShapeProfileDef.ValidFilletRadius' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcIShapeProfileDef");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcIShapeProfileDef.ValidFilletRadius' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcIShapeProfileDef.ValidFlangeThickness))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcIShapeProfileDef.ValidFlangeThickness", IssueType = ValidationFlags.EntityWhereClauses };

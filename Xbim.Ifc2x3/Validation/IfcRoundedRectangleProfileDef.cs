@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class IfcRoundedRectangleProfileDef : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfileResource.IfcRoundedRectangleProfileDef");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,14 +29,15 @@ namespace Xbim.Ifc2x3.ProfileResource
 				try {
 					retVal = ((RoundingRadius <= (this/* as IfcRectangleProfileDef*/.XDim / 2)) && (RoundingRadius <= (this/* as IfcRectangleProfileDef*/.YDim / 2)));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcRoundedRectangleProfileDef.WR31' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfileResource.IfcRoundedRectangleProfileDef");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRoundedRectangleProfileDef.WR31' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcRoundedRectangleProfileDef.WR31))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRoundedRectangleProfileDef.WR31", IssueType = ValidationFlags.EntityWhereClauses };

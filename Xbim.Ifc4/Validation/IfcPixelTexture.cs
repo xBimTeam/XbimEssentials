@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	public partial class IfcPixelTexture : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcPixelTexture");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,7 +25,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				try {
 					retVal = Width >= 1;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcPixelTexture.MinPixelInS' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcPixelTexture");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPixelTexture.MinPixelInS' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,7 +34,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				try {
 					retVal = Height >= 1;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcPixelTexture.MinPixelInT' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcPixelTexture");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPixelTexture.MinPixelInT' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -42,7 +43,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				try {
 					retVal = ((1 <= ColourComponents) && (ColourComponents <= 4) );
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcPixelTexture.NumberOfColours' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcPixelTexture");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPixelTexture.NumberOfColours' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -50,22 +52,24 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				try {
 					retVal = SIZEOF(Pixel) == (Width * Height);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcPixelTexture.SizeOfPixelList' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcPixelTexture");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPixelTexture.SizeOfPixelList' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			if (clause == Where.IfcPixelTexture.PixelAsByteAndSameLength) {
 				try {
-					retVal = SIZEOF(Pixel.Where(temp => (BLENGTH(temp) % 8 == 0) && (BLENGTH(temp) == BLENGTH(Pixel.ToArray()[0])))) == SIZEOF(Pixel);
+					retVal = SIZEOF(Pixel.Where(temp => (BLENGTH(temp) % 8 == 0) && (BLENGTH(temp) == BLENGTH(Pixel.ItemAt(0))))) == SIZEOF(Pixel);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcPixelTexture.PixelAsByteAndSameLength' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcPixelTexture");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPixelTexture.PixelAsByteAndSameLength' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcPixelTexture.MinPixelInS))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPixelTexture.MinPixelInS", IssueType = ValidationFlags.EntityWhereClauses };

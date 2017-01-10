@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class IfcTypeProduct : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcTypeProduct");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -28,16 +27,17 @@ namespace Xbim.Ifc2x3.Kernel
 			var retVal = false;
 			if (clause == Where.IfcTypeProduct.WR41) {
 				try {
-					retVal = !(EXISTS(this/* as IfcTypeObject*/.ObjectTypeOf.ToArray()[0])) || (SIZEOF(this/* as IfcTypeObject*/.ObjectTypeOf.ToArray()[0].RelatedObjects.Where(temp => !(TYPEOF(temp).Contains("IFC2X3.IFCPRODUCT")))) == 0);
+					retVal = !(EXISTS(this/* as IfcTypeObject*/.ObjectTypeOf.ItemAt(0))) || (SIZEOF(this/* as IfcTypeObject*/.ObjectTypeOf.ItemAt(0).RelatedObjects.Where(temp => !(TYPEOF(temp).Contains("IFC2X3.IFCPRODUCT")))) == 0);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcTypeProduct.WR41' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcTypeProduct");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTypeProduct.WR41' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcTypeObject)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

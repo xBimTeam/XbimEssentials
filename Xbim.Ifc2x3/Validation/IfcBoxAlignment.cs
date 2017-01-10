@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	public partial struct IfcBoxAlignment : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDefinitionResource.IfcBoxAlignment");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,14 +29,15 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				try {
 					retVal = NewArray("top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right").Contains(this);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcBoxAlignment.WR1'.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDefinitionResource.IfcBoxAlignment");
+					Log.Error("Exception thrown evaluating where-clause 'IfcBoxAlignment.WR1'.", ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public  IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcBoxAlignment.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcBoxAlignment.WR1", IssueType = ValidationFlags.EntityWhereClauses };

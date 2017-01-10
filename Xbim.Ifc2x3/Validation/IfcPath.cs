@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	public partial class IfcPath : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.TopologyResource.IfcPath");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,14 +29,15 @@ namespace Xbim.Ifc2x3.TopologyResource
 				try {
 					retVal = IfcPathHeadToTail(this);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcPath.WR1' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.TopologyResource.IfcPath");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPath.WR1' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcPath.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPath.WR1", IssueType = ValidationFlags.EntityWhereClauses };

@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class IfcRelDecomposes : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcRelDecomposes");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,14 +29,15 @@ namespace Xbim.Ifc2x3.Kernel
 				try {
 					retVal = SIZEOF(RelatedObjects.Where(Temp => Object.ReferenceEquals(RelatingObject, Temp))) == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcRelDecomposes.WR31' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcRelDecomposes");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelDecomposes.WR31' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcRelDecomposes.WR31))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelDecomposes.WR31", IssueType = ValidationFlags.EntityWhereClauses };

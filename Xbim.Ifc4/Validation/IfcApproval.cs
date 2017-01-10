@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.ApprovalResource
 {
 	public partial class IfcApproval : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ApprovalResource.IfcApproval");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,14 +25,15 @@ namespace Xbim.Ifc4.ApprovalResource
 				try {
 					retVal = EXISTS(Identifier) || EXISTS(Name);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcApproval.HasIdentifierOrName' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ApprovalResource.IfcApproval");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcApproval.HasIdentifierOrName' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcApproval.HasIdentifierOrName))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcApproval.HasIdentifierOrName", IssueType = ValidationFlags.EntityWhereClauses };

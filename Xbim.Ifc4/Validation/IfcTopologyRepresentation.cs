@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.RepresentationResource
 {
 	public partial class IfcTopologyRepresentation : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.RepresentationResource.IfcTopologyRepresentation");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,7 +25,8 @@ namespace Xbim.Ifc4.RepresentationResource
 				try {
 					retVal = SIZEOF(this/* as IfcRepresentation*/.Items.Where(temp => !(TYPEOF(temp).Contains("IFC4.IFCTOPOLOGICALREPRESENTATIONITEM")))) == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcTopologyRepresentation.WR21' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.RepresentationResource.IfcTopologyRepresentation");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTopologyRepresentation.WR21' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,7 +34,8 @@ namespace Xbim.Ifc4.RepresentationResource
 				try {
 					retVal = EXISTS(this/* as IfcRepresentation*/.RepresentationType);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcTopologyRepresentation.WR22' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.RepresentationResource.IfcTopologyRepresentation");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTopologyRepresentation.WR22' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -42,14 +43,15 @@ namespace Xbim.Ifc4.RepresentationResource
 				try {
 					retVal = IfcTopologyRepresentationTypes(this/* as IfcRepresentation*/.RepresentationType, this/* as IfcRepresentation*/.Items);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcTopologyRepresentation.WR23' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.RepresentationResource.IfcTopologyRepresentation");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTopologyRepresentation.WR23' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcShapeModel)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

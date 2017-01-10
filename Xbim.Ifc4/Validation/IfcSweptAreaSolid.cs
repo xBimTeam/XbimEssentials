@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	public partial class IfcSweptAreaSolid : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcSweptAreaSolid");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,14 +25,15 @@ namespace Xbim.Ifc4.GeometricModelResource
 				try {
 					retVal = SweptArea.ProfileType == IfcProfileTypeEnum.AREA;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcSweptAreaSolid.SweptAreaType' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcSweptAreaSolid");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSweptAreaSolid.SweptAreaType' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcSweptAreaSolid.SweptAreaType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSweptAreaSolid.SweptAreaType", IssueType = ValidationFlags.EntityWhereClauses };

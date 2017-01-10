@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	public partial class IfcCartesianTransformationOperator2D : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcCartesianTransformationOperator2D");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,7 +25,8 @@ namespace Xbim.Ifc4.GeometryResource
 				try {
 					retVal = this/* as IfcCartesianTransformationOperator*/.Dim == 2;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator2D.DimEqual2' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcCartesianTransformationOperator2D");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator2D.DimEqual2' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,7 +34,8 @@ namespace Xbim.Ifc4.GeometryResource
 				try {
 					retVal = !(EXISTS(this/* as IfcCartesianTransformationOperator*/.Axis1)) || (this/* as IfcCartesianTransformationOperator*/.Axis1.Dim == 2);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator2D.Axis1Is2D' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcCartesianTransformationOperator2D");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator2D.Axis1Is2D' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -42,14 +43,15 @@ namespace Xbim.Ifc4.GeometryResource
 				try {
 					retVal = !(EXISTS(this/* as IfcCartesianTransformationOperator*/.Axis2)) || (this/* as IfcCartesianTransformationOperator*/.Axis2.Dim == 2);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator2D.Axis2Is2D' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcCartesianTransformationOperator2D");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator2D.Axis2Is2D' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcCartesianTransformationOperator)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

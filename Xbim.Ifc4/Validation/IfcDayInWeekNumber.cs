@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.DateTimeResource
 {
 	public partial struct IfcDayInWeekNumber : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.DateTimeResource.IfcDayInWeekNumber");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,14 +25,15 @@ namespace Xbim.Ifc4.DateTimeResource
 				try {
 					retVal = ((1 <= this) && (this <= 7) );
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcDayInWeekNumber.ValidRange'.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.DateTimeResource.IfcDayInWeekNumber");
+					Log.Error("Exception thrown evaluating where-clause 'IfcDayInWeekNumber.ValidRange'.", ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public  IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcDayInWeekNumber.ValidRange))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcDayInWeekNumber.ValidRange", IssueType = ValidationFlags.EntityWhereClauses };

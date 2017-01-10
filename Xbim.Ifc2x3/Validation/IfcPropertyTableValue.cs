@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.PropertyResource
 {
 	public partial class IfcPropertyTableValue : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PropertyResource.IfcPropertyTableValue");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,30 +29,33 @@ namespace Xbim.Ifc2x3.PropertyResource
 				try {
 					retVal = SIZEOF(DefiningValues) == SIZEOF(DefinedValues);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcPropertyTableValue.WR1' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PropertyResource.IfcPropertyTableValue");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPropertyTableValue.WR1' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			if (clause == Where.IfcPropertyTableValue.WR2) {
 				try {
-					retVal = SIZEOF(this.DefiningValues.Where(temp => TYPEOF(temp) != TYPEOF(this.DefiningValues.ToArray()[0]))) == 0;
+					retVal = SIZEOF(this.DefiningValues.Where(temp => TYPEOF(temp) != TYPEOF(this.DefiningValues.ItemAt(0)))) == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcPropertyTableValue.WR2' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PropertyResource.IfcPropertyTableValue");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPropertyTableValue.WR2' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			if (clause == Where.IfcPropertyTableValue.WR3) {
 				try {
-					retVal = SIZEOF(this.DefinedValues.Where(temp => TYPEOF(temp) != TYPEOF(this.DefinedValues.ToArray()[0]))) == 0;
+					retVal = SIZEOF(this.DefinedValues.Where(temp => TYPEOF(temp) != TYPEOF(this.DefinedValues.ItemAt(0)))) == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcPropertyTableValue.WR3' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PropertyResource.IfcPropertyTableValue");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPropertyTableValue.WR3' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcPropertyTableValue.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPropertyTableValue.WR1", IssueType = ValidationFlags.EntityWhereClauses };

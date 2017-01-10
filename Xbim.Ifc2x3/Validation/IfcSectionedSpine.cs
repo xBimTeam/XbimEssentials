@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class IfcSectionedSpine : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricModelResource.IfcSectionedSpine");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,15 +29,17 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				try {
 					retVal = SIZEOF(CrossSections) == SIZEOF(CrossSectionPositions);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcSectionedSpine.WR1' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricModelResource.IfcSectionedSpine");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSectionedSpine.WR1' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			if (clause == Where.IfcSectionedSpine.WR2) {
 				try {
-					retVal = SIZEOF(CrossSections.Where(temp => CrossSections.ToArray()[0].ProfileType != temp.ProfileType)) == 0;
+					retVal = SIZEOF(CrossSections.Where(temp => CrossSections.ItemAt(0).ProfileType != temp.ProfileType)) == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcSectionedSpine.WR2' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricModelResource.IfcSectionedSpine");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSectionedSpine.WR2' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -46,14 +47,15 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				try {
 					retVal = SpineCurve.Dim == 3;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcSectionedSpine.WR3' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricModelResource.IfcSectionedSpine");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSectionedSpine.WR3' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcSectionedSpine.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSectionedSpine.WR1", IssueType = ValidationFlags.EntityWhereClauses };

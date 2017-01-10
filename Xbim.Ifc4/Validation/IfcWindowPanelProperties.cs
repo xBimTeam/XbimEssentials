@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.ArchitectureDomain
 {
 	public partial class IfcWindowPanelProperties : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelProperties");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -24,16 +23,17 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			var retVal = false;
 			if (clause == Where.IfcWindowPanelProperties.ApplicableToType) {
 				try {
-					retVal = (EXISTS(this/* as IfcPropertySetDefinition*/.DefinesType.ToArray()[0])) && ((TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ToArray()[0]).Contains("IFC4.IFCWINDOWTYPE")) || (TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ToArray()[0]).Contains("IFC4.IFCWINDOWSTYLE")));
+					retVal = (EXISTS(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0))) && ((TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)).Contains("IFC4.IFCWINDOWTYPE")) || (TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)).Contains("IFC4.IFCWINDOWSTYLE")));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcWindowPanelProperties.ApplicableToType' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelProperties");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcWindowPanelProperties.ApplicableToType' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcWindowPanelProperties.ApplicableToType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcWindowPanelProperties.ApplicableToType", IssueType = ValidationFlags.EntityWhereClauses };

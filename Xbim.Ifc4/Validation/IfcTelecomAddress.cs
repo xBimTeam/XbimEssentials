@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.ActorResource
 {
 	public partial class IfcTelecomAddress : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ActorResource.IfcTelecomAddress");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,14 +25,15 @@ namespace Xbim.Ifc4.ActorResource
 				try {
 					retVal = EXISTS(TelephoneNumbers) || EXISTS(FacsimileNumbers) || EXISTS(PagerNumber) || EXISTS(ElectronicMailAddresses) || EXISTS(WWWHomePageURL) || EXISTS(MessagingIDs);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcTelecomAddress.MinimumDataProvided' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ActorResource.IfcTelecomAddress");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTelecomAddress.MinimumDataProvided' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcAddress)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

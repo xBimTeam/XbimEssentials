@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	public partial class IfcEdgeLoop : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.TopologyResource.IfcEdgeLoop");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -28,9 +27,10 @@ namespace Xbim.Ifc2x3.TopologyResource
 			var retVal = false;
 			if (clause == Where.IfcEdgeLoop.WR1) {
 				try {
-					retVal = Object.ReferenceEquals((EdgeList.ToArray()[0].EdgeStart), (EdgeList.ToArray()[Ne-1].EdgeEnd));
+					retVal = Object.ReferenceEquals((EdgeList.ItemAt(0).EdgeStart), (EdgeList.ItemAt(Ne-1).EdgeEnd));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcEdgeLoop.WR1' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.TopologyResource.IfcEdgeLoop");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcEdgeLoop.WR1' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -38,14 +38,15 @@ namespace Xbim.Ifc2x3.TopologyResource
 				try {
 					retVal = IfcLoopHeadToTail(this);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcEdgeLoop.WR2' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.TopologyResource.IfcEdgeLoop");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcEdgeLoop.WR2' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcEdgeLoop.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcEdgeLoop.WR1", IssueType = ValidationFlags.EntityWhereClauses };

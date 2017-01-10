@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.MaterialResource
 {
 	public partial class IfcMaterialLayer : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.MaterialResource.IfcMaterialLayer");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,14 +25,15 @@ namespace Xbim.Ifc4.MaterialResource
 				try {
 					retVal = !(EXISTS(Priority)) || ((0 <= Priority) && (Priority <= 100) );
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcMaterialLayer.NormalizedPriority' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.MaterialResource.IfcMaterialLayer");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcMaterialLayer.NormalizedPriority' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcMaterialLayer.NormalizedPriority))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcMaterialLayer.NormalizedPriority", IssueType = ValidationFlags.EntityWhereClauses };

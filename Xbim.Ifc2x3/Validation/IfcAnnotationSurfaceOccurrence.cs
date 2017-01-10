@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	public partial class IfcAnnotationSurfaceOccurrence : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDefinitionResource.IfcAnnotationSurfaceOccurrence");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,14 +29,15 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				try {
 					retVal = !(EXISTS(this/* as IfcStyledItem*/.Item)) || (SIZEOF(NewArray("IFC2X3.IFCSURFACE", "IFC2X3.IFCFACEBASEDSURFACEMODEL", "IFC2X3.IFCSHELLBASEDSURFACEMODEL", "IFC2X3.IFCSOLIDMODEL") * TYPEOF(this/* as IfcStyledItem*/.Item)) > 0);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcAnnotationSurfaceOccurrence.WR31' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDefinitionResource.IfcAnnotationSurfaceOccurrence");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAnnotationSurfaceOccurrence.WR31' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcStyledItem)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

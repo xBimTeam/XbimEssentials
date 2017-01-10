@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial struct IfcSpecularRoughness : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcSpecularRoughness");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,14 +29,15 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				try {
 					retVal = ((0 <= this) && (this <= 1) );
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcSpecularRoughness.WR1'.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcSpecularRoughness");
+					Log.Error("Exception thrown evaluating where-clause 'IfcSpecularRoughness.WR1'.", ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public  IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcSpecularRoughness.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSpecularRoughness.WR1", IssueType = ValidationFlags.EntityWhereClauses };

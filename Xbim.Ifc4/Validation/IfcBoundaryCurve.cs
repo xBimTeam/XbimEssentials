@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	public partial class IfcBoundaryCurve : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcBoundaryCurve");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,14 +25,15 @@ namespace Xbim.Ifc4.GeometryResource
 				try {
 					retVal = this/* as IfcCompositeCurve*/.ClosedCurve.AsBool();
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcBoundaryCurve.IsClosed' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcBoundaryCurve");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBoundaryCurve.IsClosed' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcCompositeCurveOnSurface)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	public partial class IfcRectangleHollowProfileDef : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcRectangleHollowProfileDef");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,7 +25,8 @@ namespace Xbim.Ifc4.ProfileResource
 				try {
 					retVal = (WallThickness < (this/* as IfcRectangleProfileDef*/.XDim / 2)) && (WallThickness < (this/* as IfcRectangleProfileDef*/.YDim / 2));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcRectangleHollowProfileDef.ValidWallThickness' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcRectangleHollowProfileDef");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRectangleHollowProfileDef.ValidWallThickness' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,7 +34,8 @@ namespace Xbim.Ifc4.ProfileResource
 				try {
 					retVal = !(EXISTS(InnerFilletRadius)) || ((InnerFilletRadius <= (this/* as IfcRectangleProfileDef*/.XDim / 2 - WallThickness)) && (InnerFilletRadius <= (this/* as IfcRectangleProfileDef*/.YDim / 2 - WallThickness)));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcRectangleHollowProfileDef.ValidInnerRadius' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcRectangleHollowProfileDef");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRectangleHollowProfileDef.ValidInnerRadius' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -42,14 +43,15 @@ namespace Xbim.Ifc4.ProfileResource
 				try {
 					retVal = !(EXISTS(OuterFilletRadius)) || ((OuterFilletRadius <= (this/* as IfcRectangleProfileDef*/.XDim / 2)) && (OuterFilletRadius <= (this/* as IfcRectangleProfileDef*/.YDim / 2)));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcRectangleHollowProfileDef.ValidOuterRadius' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcRectangleHollowProfileDef");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRectangleHollowProfileDef.ValidOuterRadius' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcRectangleHollowProfileDef.ValidWallThickness))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRectangleHollowProfileDef.ValidWallThickness", IssueType = ValidationFlags.EntityWhereClauses };

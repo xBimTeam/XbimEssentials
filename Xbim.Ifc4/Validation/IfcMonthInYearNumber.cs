@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.DateTimeResource
 {
 	public partial struct IfcMonthInYearNumber : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.DateTimeResource.IfcMonthInYearNumber");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,14 +25,15 @@ namespace Xbim.Ifc4.DateTimeResource
 				try {
 					retVal = ((1 <= this) && (this <= 12) );
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcMonthInYearNumber.ValidRange'.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.DateTimeResource.IfcMonthInYearNumber");
+					Log.Error("Exception thrown evaluating where-clause 'IfcMonthInYearNumber.ValidRange'.", ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public  IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcMonthInYearNumber.ValidRange))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcMonthInYearNumber.ValidRange", IssueType = ValidationFlags.EntityWhereClauses };

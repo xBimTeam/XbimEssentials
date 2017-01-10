@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.RepresentationResource
 {
 	public partial class IfcShapeRepresentation : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.RepresentationResource.IfcShapeRepresentation");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,7 +25,8 @@ namespace Xbim.Ifc4.RepresentationResource
 				try {
 					retVal = TYPEOF(this/* as IfcRepresentation*/.ContextOfItems).Contains("IFC4.IFCGEOMETRICREPRESENTATIONCONTEXT");
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcShapeRepresentation.CorrectContext' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.RepresentationResource.IfcShapeRepresentation");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcShapeRepresentation.CorrectContext' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,7 +34,8 @@ namespace Xbim.Ifc4.RepresentationResource
 				try {
 					retVal = SIZEOF(Items.Where(temp => (TYPEOF(temp).Contains("IFC4.IFCTOPOLOGICALREPRESENTATIONITEM")) && (!(SIZEOF(NewArray("IFC4.IFCVERTEXPOINT", "IFC4.IFCEDGECURVE", "IFC4.IFCFACESURFACE") * TYPEOF(temp)) == 1)))) == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcShapeRepresentation.NoTopologicalItem' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.RepresentationResource.IfcShapeRepresentation");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcShapeRepresentation.NoTopologicalItem' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -42,7 +43,8 @@ namespace Xbim.Ifc4.RepresentationResource
 				try {
 					retVal = EXISTS(this/* as IfcRepresentation*/.RepresentationType);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcShapeRepresentation.HasRepresentationType' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.RepresentationResource.IfcShapeRepresentation");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcShapeRepresentation.HasRepresentationType' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -50,7 +52,8 @@ namespace Xbim.Ifc4.RepresentationResource
 				try {
 					retVal = IfcShapeRepresentationTypes(this/* as IfcRepresentation*/.RepresentationType, this/* as IfcRepresentation*/.Items);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcShapeRepresentation.CorrectItemsForType' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.RepresentationResource.IfcShapeRepresentation");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcShapeRepresentation.CorrectItemsForType' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -58,14 +61,15 @@ namespace Xbim.Ifc4.RepresentationResource
 				try {
 					retVal = EXISTS(this/* as IfcRepresentation*/.RepresentationIdentifier);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcShapeRepresentation.HasRepresentationIdentifier' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.RepresentationResource.IfcShapeRepresentation");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcShapeRepresentation.HasRepresentationIdentifier' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcShapeModel)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

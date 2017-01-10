@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class IfcCompositeProfileDef : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfileResource.IfcCompositeProfileDef");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -28,9 +27,10 @@ namespace Xbim.Ifc2x3.ProfileResource
 			var retVal = false;
 			if (clause == Where.IfcCompositeProfileDef.WR1) {
 				try {
-					retVal = SIZEOF(Profiles.Where(temp => temp.ProfileType != Profiles.ToArray()[0].ProfileType)) == 0;
+					retVal = SIZEOF(Profiles.Where(temp => temp.ProfileType != Profiles.ItemAt(0).ProfileType)) == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcCompositeProfileDef.WR1' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfileResource.IfcCompositeProfileDef");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCompositeProfileDef.WR1' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -38,14 +38,15 @@ namespace Xbim.Ifc2x3.ProfileResource
 				try {
 					retVal = SIZEOF(Profiles.Where(temp => TYPEOF(temp).Contains("IFC2X3.IFCCOMPOSITEPROFILEDEF"))) == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcCompositeProfileDef.WR2' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfileResource.IfcCompositeProfileDef");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCompositeProfileDef.WR2' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcCompositeProfileDef.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCompositeProfileDef.WR1", IssueType = ValidationFlags.EntityWhereClauses };

@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	public partial class IfcSectionedSpine : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcSectionedSpine");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,15 +25,17 @@ namespace Xbim.Ifc4.GeometricModelResource
 				try {
 					retVal = SIZEOF(CrossSections) == SIZEOF(CrossSectionPositions);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcSectionedSpine.CorrespondingSectionPositions' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcSectionedSpine");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSectionedSpine.CorrespondingSectionPositions' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			if (clause == Where.IfcSectionedSpine.ConsistentProfileTypes) {
 				try {
-					retVal = SIZEOF(CrossSections.Where(temp => CrossSections.ToArray()[0].ProfileType != temp.ProfileType)) == 0;
+					retVal = SIZEOF(CrossSections.Where(temp => CrossSections.ItemAt(0).ProfileType != temp.ProfileType)) == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcSectionedSpine.ConsistentProfileTypes' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcSectionedSpine");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSectionedSpine.ConsistentProfileTypes' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -42,14 +43,15 @@ namespace Xbim.Ifc4.GeometricModelResource
 				try {
 					retVal = SpineCurve.Dim == 3;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcSectionedSpine.SpineCurveDim' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcSectionedSpine");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSectionedSpine.SpineCurveDim' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcSectionedSpine.CorrespondingSectionPositions))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSectionedSpine.CorrespondingSectionPositions", IssueType = ValidationFlags.EntityWhereClauses };

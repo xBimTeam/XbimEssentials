@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class IfcArbitraryProfileDefWithVoids : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfileResource.IfcArbitraryProfileDefWithVoids");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,7 +29,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				try {
 					retVal = this/* as IfcProfileDef*/.ProfileType == IfcProfileTypeEnum.AREA;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcArbitraryProfileDefWithVoids.WR1' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfileResource.IfcArbitraryProfileDefWithVoids");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcArbitraryProfileDefWithVoids.WR1' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -38,7 +38,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				try {
 					retVal = SIZEOF(InnerCurves.Where(temp => temp.Dim != 2)) == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcArbitraryProfileDefWithVoids.WR2' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfileResource.IfcArbitraryProfileDefWithVoids");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcArbitraryProfileDefWithVoids.WR2' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -46,14 +47,15 @@ namespace Xbim.Ifc2x3.ProfileResource
 				try {
 					retVal = SIZEOF(InnerCurves.Where(temp => TYPEOF(temp).Contains("IFC2X3.IFCLINE"))) == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcArbitraryProfileDefWithVoids.WR3' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfileResource.IfcArbitraryProfileDefWithVoids");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcArbitraryProfileDefWithVoids.WR3' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcArbitraryClosedProfileDef)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

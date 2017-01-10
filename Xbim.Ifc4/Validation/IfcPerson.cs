@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.ActorResource
 {
 	public partial class IfcPerson : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ActorResource.IfcPerson");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,7 +25,8 @@ namespace Xbim.Ifc4.ActorResource
 				try {
 					retVal = EXISTS(Identification) || EXISTS(FamilyName) || EXISTS(GivenName);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcPerson.IdentifiablePerson' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ActorResource.IfcPerson");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPerson.IdentifiablePerson' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,14 +34,15 @@ namespace Xbim.Ifc4.ActorResource
 				try {
 					retVal = !EXISTS(MiddleNames) || EXISTS(FamilyName) || EXISTS(GivenName);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcPerson.ValidSetOfNames' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ActorResource.IfcPerson");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPerson.ValidSetOfNames' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcPerson.IdentifiablePerson))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPerson.IdentifiablePerson", IssueType = ValidationFlags.EntityWhereClauses };

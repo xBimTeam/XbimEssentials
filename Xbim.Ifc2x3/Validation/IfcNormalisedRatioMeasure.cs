@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	public partial struct IfcNormalisedRatioMeasure : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,14 +29,15 @@ namespace Xbim.Ifc2x3.MeasureResource
 				try {
 					retVal = ((0 <= this) && (this <= 1) );
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcNormalisedRatioMeasure.WR1'.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure");
+					Log.Error("Exception thrown evaluating where-clause 'IfcNormalisedRatioMeasure.WR1'.", ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public  IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcNormalisedRatioMeasure.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcNormalisedRatioMeasure.WR1", IssueType = ValidationFlags.EntityWhereClauses };

@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.ProcessExtension
 {
 	public partial class IfcRelSequence : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProcessExtension.IfcRelSequence");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,7 +25,8 @@ namespace Xbim.Ifc4.ProcessExtension
 				try {
 					retVal = !Object.ReferenceEquals(RelatingProcess, RelatedProcess);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcRelSequence.AvoidInconsistentSequence' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProcessExtension.IfcRelSequence");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelSequence.AvoidInconsistentSequence' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,14 +34,15 @@ namespace Xbim.Ifc4.ProcessExtension
 				try {
 					retVal = (SequenceType != IfcSequenceEnum.USERDEFINED) || ((SequenceType == IfcSequenceEnum.USERDEFINED) && EXISTS(UserDefinedSequenceType));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcRelSequence.CorrectSequenceType' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProcessExtension.IfcRelSequence");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelSequence.CorrectSequenceType' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcRelSequence.AvoidInconsistentSequence))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelSequence.AvoidInconsistentSequence", IssueType = ValidationFlags.EntityWhereClauses };

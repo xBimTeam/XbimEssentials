@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	public partial class IfcFeatureElementSubtraction : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcFeatureElementSubtraction");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,7 +25,8 @@ namespace Xbim.Ifc4.ProductExtension
 				try {
 					retVal = SIZEOF(this/* as IfcElement*/.HasOpenings) == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcFeatureElementSubtraction.HasNoSubtraction' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcFeatureElementSubtraction");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFeatureElementSubtraction.HasNoSubtraction' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,14 +34,15 @@ namespace Xbim.Ifc4.ProductExtension
 				try {
 					retVal = SIZEOF(this/* as IfcElement*/.FillsVoids) == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcFeatureElementSubtraction.IsNotFilling' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcFeatureElementSubtraction");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFeatureElementSubtraction.IsNotFilling' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcProduct)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

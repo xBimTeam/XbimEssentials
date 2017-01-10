@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	public partial class IfcAsymmetricIShapeProfileDef : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcAsymmetricIShapeProfileDef");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,7 +25,8 @@ namespace Xbim.Ifc4.ProfileResource
 				try {
 					retVal = !(EXISTS(TopFlangeThickness)) || ((BottomFlangeThickness + TopFlangeThickness) < OverallDepth);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcAsymmetricIShapeProfileDef.ValidFlangeThickness' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcAsymmetricIShapeProfileDef");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAsymmetricIShapeProfileDef.ValidFlangeThickness' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,7 +34,8 @@ namespace Xbim.Ifc4.ProfileResource
 				try {
 					retVal = (WebThickness < BottomFlangeWidth) && (WebThickness < TopFlangeWidth);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcAsymmetricIShapeProfileDef.ValidWebThickness' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcAsymmetricIShapeProfileDef");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAsymmetricIShapeProfileDef.ValidWebThickness' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -42,7 +43,8 @@ namespace Xbim.Ifc4.ProfileResource
 				try {
 					retVal = (!(EXISTS(BottomFlangeFilletRadius))) || (BottomFlangeFilletRadius <= (BottomFlangeWidth - WebThickness) / 2);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcAsymmetricIShapeProfileDef.ValidBottomFilletRadius' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcAsymmetricIShapeProfileDef");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAsymmetricIShapeProfileDef.ValidBottomFilletRadius' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -50,14 +52,15 @@ namespace Xbim.Ifc4.ProfileResource
 				try {
 					retVal = (!(EXISTS(TopFlangeFilletRadius))) || (TopFlangeFilletRadius <= (TopFlangeWidth - WebThickness) / 2);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcAsymmetricIShapeProfileDef.ValidTopFilletRadius' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcAsymmetricIShapeProfileDef");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAsymmetricIShapeProfileDef.ValidTopFilletRadius' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcAsymmetricIShapeProfileDef.ValidFlangeThickness))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcAsymmetricIShapeProfileDef.ValidFlangeThickness", IssueType = ValidationFlags.EntityWhereClauses };

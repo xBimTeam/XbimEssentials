@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class IfcRelAssociatesMaterial : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProductExtension.IfcRelAssociatesMaterial");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,7 +29,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				try {
 					retVal = SIZEOF(this/* as IfcRelAssociates*/.RelatedObjects.Where(temp => (TYPEOF(temp).Contains("IFC2X3.IFCFEATUREELEMENTSUBTRACTION")) || (TYPEOF(temp).Contains("IFC2X3.IFCVIRTUALELEMENT")))) == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcRelAssociatesMaterial.WR21' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProductExtension.IfcRelAssociatesMaterial");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelAssociatesMaterial.WR21' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -38,14 +38,15 @@ namespace Xbim.Ifc2x3.ProductExtension
 				try {
 					retVal = SIZEOF(this/* as IfcRelAssociates*/.RelatedObjects.Where(temp => (!(TYPEOF(temp).Contains("IFC2X3.IFCPRODUCT")) && !(TYPEOF(temp).Contains("IFC2X3.IFCTYPEPRODUCT"))))) == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcRelAssociatesMaterial.WR22' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProductExtension.IfcRelAssociatesMaterial");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelAssociatesMaterial.WR22' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcRelAssociates)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class IfcStructuralSurfaceMemberVarying : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.StructuralAnalysisDomain.IfcStructuralSurfaceMemberVarying");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,7 +29,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				try {
 					retVal = EXISTS(this/* as IfcStructuralSurfaceMember*/.Thickness);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcStructuralSurfaceMemberVarying.WR61' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.StructuralAnalysisDomain.IfcStructuralSurfaceMemberVarying");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralSurfaceMemberVarying.WR61' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -38,22 +38,24 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				try {
 					retVal = SIZEOF(this.VaryingThicknessLocation.ShapeRepresentations.Where(temp => !(SIZEOF(temp/* as IfcRepresentation*/.Items) == 1))) == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcStructuralSurfaceMemberVarying.WR62' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.StructuralAnalysisDomain.IfcStructuralSurfaceMemberVarying");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralSurfaceMemberVarying.WR62' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			if (clause == Where.IfcStructuralSurfaceMemberVarying.WR63) {
 				try {
-					retVal = SIZEOF(this.VaryingThicknessLocation.ShapeRepresentations.Where(temp => !((TYPEOF(temp/* as IfcRepresentation*/.Items.ToArray()[0]).Contains("IFC2X3.IFCCARTESIANPOINT")) || (TYPEOF(temp/* as IfcRepresentation*/.Items.ToArray()[0]).Contains("IFC2X3.IFCPOINTONSURFACE"))))) == 0;
+					retVal = SIZEOF(this.VaryingThicknessLocation.ShapeRepresentations.Where(temp => !((TYPEOF(temp/* as IfcRepresentation*/.Items.ItemAt(0)).Contains("IFC2X3.IFCCARTESIANPOINT")) || (TYPEOF(temp/* as IfcRepresentation*/.Items.ItemAt(0)).Contains("IFC2X3.IFCPOINTONSURFACE"))))) == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcStructuralSurfaceMemberVarying.WR63' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.StructuralAnalysisDomain.IfcStructuralSurfaceMemberVarying");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralSurfaceMemberVarying.WR63' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcProduct)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

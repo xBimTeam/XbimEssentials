@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.ArchitectureDomain
 {
 	public partial class IfcDoorPanelProperties : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelProperties");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -24,16 +23,17 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			var retVal = false;
 			if (clause == Where.IfcDoorPanelProperties.ApplicableToType) {
 				try {
-					retVal = (EXISTS(this/* as IfcPropertySetDefinition*/.DefinesType.ToArray()[0])) && ((TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ToArray()[0]).Contains("IFC4.IFCDOORTYPE")) || (TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ToArray()[0]).Contains("IFC4.IFCDOORSTYLE")));
+					retVal = (EXISTS(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0))) && ((TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)).Contains("IFC4.IFCDOORTYPE")) || (TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)).Contains("IFC4.IFCDOORSTYLE")));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcDoorPanelProperties.ApplicableToType' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelProperties");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDoorPanelProperties.ApplicableToType' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcDoorPanelProperties.ApplicableToType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcDoorPanelProperties.ApplicableToType", IssueType = ValidationFlags.EntityWhereClauses };

@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class IfcBlobTexture : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcBlobTexture");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,14 +29,15 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				try {
 					retVal = NewArray("BMP", "JPG", "GIF", "PNG").Contains(this.RasterFormat);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcBlobTexture.WR11' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcBlobTexture");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBlobTexture.WR11' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcBlobTexture.WR11))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcBlobTexture.WR11", IssueType = ValidationFlags.EntityWhereClauses };

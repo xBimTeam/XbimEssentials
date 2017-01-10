@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	public partial class IfcFillAreaStyleHatching : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcFillAreaStyleHatching");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,7 +25,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				try {
 					retVal = !(EXISTS(PatternStart)) || (PatternStart.Dim == 2);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcFillAreaStyleHatching.PatternStart2D' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcFillAreaStyleHatching");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFillAreaStyleHatching.PatternStart2D' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,14 +34,15 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				try {
 					retVal = !(EXISTS(PointOfReferenceHatchLine)) || (PointOfReferenceHatchLine.Dim == 2);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcFillAreaStyleHatching.RefHatchLine2D' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcFillAreaStyleHatching");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFillAreaStyleHatching.RefHatchLine2D' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcFillAreaStyleHatching.PatternStart2D))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcFillAreaStyleHatching.PatternStart2D", IssueType = ValidationFlags.EntityWhereClauses };

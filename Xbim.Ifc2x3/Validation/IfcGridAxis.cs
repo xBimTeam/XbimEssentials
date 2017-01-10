@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	public partial class IfcGridAxis : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricConstraintResource.IfcGridAxis");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,7 +29,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				try {
 					retVal = AxisCurve.Dim == 2;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcGridAxis.WR1' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricConstraintResource.IfcGridAxis");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcGridAxis.WR1' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -38,14 +38,15 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				try {
 					retVal = (SIZEOF(PartOfU) == 1) ^ (SIZEOF(PartOfV) == 1) ^ (SIZEOF(PartOfW) == 1);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcGridAxis.WR2' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricConstraintResource.IfcGridAxis");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcGridAxis.WR2' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcGridAxis.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcGridAxis.WR1", IssueType = ValidationFlags.EntityWhereClauses };

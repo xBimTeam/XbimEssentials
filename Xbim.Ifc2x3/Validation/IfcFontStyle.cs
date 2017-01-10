@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.PresentationResource
 {
 	public partial struct IfcFontStyle : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationResource.IfcFontStyle");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -30,14 +29,15 @@ namespace Xbim.Ifc2x3.PresentationResource
 				try {
 					retVal = NewArray("normal", "italic", "oblique").Contains(this);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcFontStyle.WR1'.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationResource.IfcFontStyle");
+					Log.Error("Exception thrown evaluating where-clause 'IfcFontStyle.WR1'.", ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public  IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcFontStyle.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcFontStyle.WR1", IssueType = ValidationFlags.EntityWhereClauses };

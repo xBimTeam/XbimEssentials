@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.TopologyResource
 {
 	public partial class IfcEdgeLoop : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.TopologyResource.IfcEdgeLoop");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -24,9 +23,10 @@ namespace Xbim.Ifc4.TopologyResource
 			var retVal = false;
 			if (clause == Where.IfcEdgeLoop.IsClosed) {
 				try {
-					retVal = Object.ReferenceEquals((EdgeList.ToArray()[0].EdgeStart), (EdgeList.ToArray()[Ne-1].EdgeEnd));
+					retVal = Object.ReferenceEquals((EdgeList.ItemAt(0).EdgeStart), (EdgeList.ItemAt(Ne-1).EdgeEnd));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcEdgeLoop.IsClosed' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.TopologyResource.IfcEdgeLoop");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcEdgeLoop.IsClosed' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,14 +34,15 @@ namespace Xbim.Ifc4.TopologyResource
 				try {
 					retVal = IfcLoopHeadToTail(this);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcEdgeLoop.IsContinuous' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.TopologyResource.IfcEdgeLoop");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcEdgeLoop.IsContinuous' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcEdgeLoop.IsClosed))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcEdgeLoop.IsClosed", IssueType = ValidationFlags.EntityWhereClauses };

@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.MeasureResource
 {
 	public partial class IfcDerivedUnit : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.MeasureResource.IfcDerivedUnit");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -24,9 +23,10 @@ namespace Xbim.Ifc4.MeasureResource
 			var retVal = false;
 			if (clause == Where.IfcDerivedUnit.WR1) {
 				try {
-					retVal = (SIZEOF(Elements) > 1) || ((SIZEOF(Elements) == 1) && (Elements.ToArray()[0].Exponent != 1));
+					retVal = (SIZEOF(Elements) > 1) || ((SIZEOF(Elements) == 1) && (Elements.ItemAt(0).Exponent != 1));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcDerivedUnit.WR1' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.MeasureResource.IfcDerivedUnit");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDerivedUnit.WR1' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,14 +34,15 @@ namespace Xbim.Ifc4.MeasureResource
 				try {
 					retVal = (UnitType != IfcDerivedUnitEnum.USERDEFINED) || ((UnitType == IfcDerivedUnitEnum.USERDEFINED) && (EXISTS(this.UserDefinedType)));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcDerivedUnit.WR2' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.MeasureResource.IfcDerivedUnit");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDerivedUnit.WR2' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcDerivedUnit.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcDerivedUnit.WR1", IssueType = ValidationFlags.EntityWhereClauses };

@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	public partial class IfcRationalBSplineSurfaceWithKnots : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcRationalBSplineSurfaceWithKnots");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -24,9 +23,10 @@ namespace Xbim.Ifc4.GeometryResource
 			var retVal = false;
 			if (clause == Where.IfcRationalBSplineSurfaceWithKnots.CorrespondingWeightsDataLists) {
 				try {
-					retVal = (SIZEOF(WeightsData) == SIZEOF(this/* as IfcBSplineSurface*/.ControlPointsList)) && (SIZEOF(WeightsData.ToArray()[0]) == SIZEOF(this/* as IfcBSplineSurface*/.ControlPointsList.ToArray()[0]));
+					retVal = (SIZEOF(WeightsData) == SIZEOF(this/* as IfcBSplineSurface*/.ControlPointsList)) && (SIZEOF(WeightsData.ItemAt(0)) == SIZEOF(this/* as IfcBSplineSurface*/.ControlPointsList.ItemAt(0)));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcRationalBSplineSurfaceWithKnots.CorrespondingWeightsDataLists' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcRationalBSplineSurfaceWithKnots");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRationalBSplineSurfaceWithKnots.CorrespondingWeightsDataLists' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,14 +34,15 @@ namespace Xbim.Ifc4.GeometryResource
 				try {
 					retVal = IfcSurfaceWeightsPositive(this);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcRationalBSplineSurfaceWithKnots.WeightValuesGreaterZero' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcRationalBSplineSurfaceWithKnots");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRationalBSplineSurfaceWithKnots.WeightValuesGreaterZero' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcBSplineSurfaceWithKnots)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	public partial class IfcUShapeProfileDef : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcUShapeProfileDef");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,7 +25,8 @@ namespace Xbim.Ifc4.ProfileResource
 				try {
 					retVal = FlangeThickness < (Depth / 2);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcUShapeProfileDef.ValidFlangeThickness' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcUShapeProfileDef");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcUShapeProfileDef.ValidFlangeThickness' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,14 +34,15 @@ namespace Xbim.Ifc4.ProfileResource
 				try {
 					retVal = WebThickness < FlangeWidth;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcUShapeProfileDef.ValidWebThickness' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcUShapeProfileDef");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcUShapeProfileDef.ValidWebThickness' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcUShapeProfileDef.ValidFlangeThickness))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcUShapeProfileDef.ValidFlangeThickness", IssueType = ValidationFlags.EntityWhereClauses };

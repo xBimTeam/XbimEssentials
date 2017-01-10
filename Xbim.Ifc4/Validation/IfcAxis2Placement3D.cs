@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	public partial class IfcAxis2Placement3D : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcAxis2Placement3D");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,7 +25,8 @@ namespace Xbim.Ifc4.GeometryResource
 				try {
 					retVal = this/* as IfcPlacement*/.Location.Dim == 3;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcAxis2Placement3D.LocationIs3D' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcAxis2Placement3D");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAxis2Placement3D.LocationIs3D' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,7 +34,8 @@ namespace Xbim.Ifc4.GeometryResource
 				try {
 					retVal = (!(EXISTS(Axis))) || (Axis.Dim == 3);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcAxis2Placement3D.AxisIs3D' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcAxis2Placement3D");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAxis2Placement3D.AxisIs3D' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -42,7 +43,8 @@ namespace Xbim.Ifc4.GeometryResource
 				try {
 					retVal = (!(EXISTS(RefDirection))) || (RefDirection.Dim == 3);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcAxis2Placement3D.RefDirIs3D' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcAxis2Placement3D");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAxis2Placement3D.RefDirIs3D' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -50,7 +52,8 @@ namespace Xbim.Ifc4.GeometryResource
 				try {
 					retVal = (!(EXISTS(Axis))) || (!(EXISTS(RefDirection))) || (IfcCrossProduct(Axis, RefDirection).Magnitude > 0);
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcAxis2Placement3D.AxisToRefDirPosition' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcAxis2Placement3D");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAxis2Placement3D.AxisToRefDirPosition' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -58,14 +61,15 @@ namespace Xbim.Ifc4.GeometryResource
 				try {
 					retVal = !((EXISTS(Axis)) ^ (EXISTS(RefDirection)));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcAxis2Placement3D.AxisAndRefDirProvision' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcAxis2Placement3D");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAxis2Placement3D.AxisAndRefDirProvision' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
-			throw new ArgumentException($"Invalid clause specifier: '{clause}'", nameof(clause));
+			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
 		}
 
-		public IEnumerable<ValidationResult> Validate()
+		public virtual IEnumerable<ValidationResult> Validate()
 		{
 			if (!ValidateClause(Where.IfcAxis2Placement3D.LocationIs3D))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcAxis2Placement3D.LocationIs3D", IssueType = ValidationFlags.EntityWhereClauses };

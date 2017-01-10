@@ -17,7 +17,6 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	public partial class IfcDocumentReference : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentReference");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -28,16 +27,17 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			var retVal = false;
 			if (clause == Where.IfcDocumentReference.WR1) {
 				try {
-					retVal = EXISTS(Name) ^ EXISTS(ReferenceToDocument.ToArray()[0]);
+					retVal = EXISTS(Name) ^ EXISTS(ReferenceToDocument.ItemAt(0));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcDocumentReference.WR1' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentReference");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDocumentReference.WR1' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcExternalReference)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{

@@ -13,7 +13,6 @@ namespace Xbim.Ifc4.RepresentationResource
 {
 	public partial class IfcGeometricRepresentationSubContext : IExpressValidatable
 	{
-		private static readonly ILog Log = LogManager.GetLogger("Xbim.Ifc4.RepresentationResource.IfcGeometricRepresentationSubContext");
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
@@ -26,7 +25,8 @@ namespace Xbim.Ifc4.RepresentationResource
 				try {
 					retVal = !(TYPEOF(ParentContext).Contains("IFC4.IFCGEOMETRICREPRESENTATIONSUBCONTEXT"));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcGeometricRepresentationSubContext.ParentNoSub' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.RepresentationResource.IfcGeometricRepresentationSubContext");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcGeometricRepresentationSubContext.ParentNoSub' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -34,7 +34,8 @@ namespace Xbim.Ifc4.RepresentationResource
 				try {
 					retVal = (TargetView != IfcGeometricProjectionEnum.USERDEFINED) || ((TargetView == IfcGeometricProjectionEnum.USERDEFINED) && EXISTS(UserDefinedTargetView));
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcGeometricRepresentationSubContext.UserTargetProvided' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.RepresentationResource.IfcGeometricRepresentationSubContext");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcGeometricRepresentationSubContext.UserTargetProvided' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
@@ -42,14 +43,15 @@ namespace Xbim.Ifc4.RepresentationResource
 				try {
 					retVal = SIZEOF(this/* as IfcGeometricRepresentationContext*/.HasCoordinateOperation) == 0;
 				} catch (Exception ex) {
-					Log.Error($"Exception thrown evaluating where-clause 'IfcGeometricRepresentationSubContext.NoCoordOperation' for #{EntityLabel}.", ex);
+					ILog Log = LogManager.GetLogger("Xbim.Ifc4.RepresentationResource.IfcGeometricRepresentationSubContext");
+					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcGeometricRepresentationSubContext.NoCoordOperation' for #{0}.",EntityLabel), ex);
 				}
 				return retVal;
 			}
 			return base.ValidateClause((Where.IfcGeometricRepresentationContext)clause);
 		}
 
-		public new IEnumerable<ValidationResult> Validate()
+		public override IEnumerable<ValidationResult> Validate()
 		{
 			foreach (var value in base.Validate())
 			{
