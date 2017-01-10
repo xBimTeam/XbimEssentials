@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	public partial class IfcTransportElement : IExpressValidatable
 	{
+		public enum IfcTransportElementClause
+		{
+			CorrectPredefinedType,
+			CorrectTypeAssigned,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcTransportElement clause) {
+		public bool ValidateClause(IfcTransportElementClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcTransportElement.CorrectPredefinedType) {
-				try {
-					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcTransportElementTypeEnum.USERDEFINED) || ((PredefinedType == IfcTransportElementTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcTransportElement");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTransportElement.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcTransportElementClause.CorrectPredefinedType:
+						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcTransportElementTypeEnum.USERDEFINED) || ((PredefinedType == IfcTransportElementTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
+					case IfcTransportElementClause.CorrectTypeAssigned:
+						retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCTRANSPORTELEMENTTYPE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcTransportElement");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTransportElement.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcTransportElement.CorrectTypeAssigned) {
-				try {
-					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCTRANSPORTELEMENTTYPE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcTransportElement");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTransportElement.CorrectTypeAssigned' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcTransportElement.CorrectPredefinedType))
+			if (!ValidateClause(IfcTransportElementClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcTransportElement.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcTransportElement.CorrectTypeAssigned))
+			if (!ValidateClause(IfcTransportElementClause.CorrectTypeAssigned))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcTransportElement.CorrectTypeAssigned", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcTransportElement : IfcProduct
-	{
-		public static readonly IfcTransportElement CorrectPredefinedType = new IfcTransportElement();
-		public static readonly IfcTransportElement CorrectTypeAssigned = new IfcTransportElement();
-		protected IfcTransportElement() {}
 	}
 }

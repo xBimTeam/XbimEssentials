@@ -17,52 +17,43 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class IfcAxis1Placement : IExpressValidatable
 	{
+		public enum IfcAxis1PlacementClause
+		{
+			WR1,
+			WR2,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcAxis1Placement clause) {
+		public bool ValidateClause(IfcAxis1PlacementClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcAxis1Placement.WR1) {
-				try {
-					retVal = (!(EXISTS(Axis))) || (Axis.Dim == 3);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcAxis1Placement");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAxis1Placement.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcAxis1PlacementClause.WR1:
+						retVal = (!(EXISTS(Axis))) || (Axis.Dim == 3);
+						break;
+					case IfcAxis1PlacementClause.WR2:
+						retVal = this/* as IfcPlacement*/.Location.Dim == 3;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcAxis1Placement");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAxis1Placement.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcAxis1Placement.WR2) {
-				try {
-					retVal = this/* as IfcPlacement*/.Location.Dim == 3;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcAxis1Placement");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAxis1Placement.WR2' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcAxis1Placement.WR1))
+			if (!ValidateClause(IfcAxis1PlacementClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcAxis1Placement.WR1", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcAxis1Placement.WR2))
+			if (!ValidateClause(IfcAxis1PlacementClause.WR2))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcAxis1Placement.WR2", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcAxis1Placement
-	{
-		public static readonly IfcAxis1Placement WR1 = new IfcAxis1Placement();
-		public static readonly IfcAxis1Placement WR2 = new IfcAxis1Placement();
-		protected IfcAxis1Placement() {}
 	}
 }

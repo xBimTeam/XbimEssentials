@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	public partial class IfcSwitchingDeviceType : IExpressValidatable
 	{
+		public enum IfcSwitchingDeviceTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcSwitchingDeviceType clause) {
+		public bool ValidateClause(IfcSwitchingDeviceTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcSwitchingDeviceType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcSwitchingDeviceTypeEnum.USERDEFINED) || ((PredefinedType == IfcSwitchingDeviceTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ElectricalDomain.IfcSwitchingDeviceType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSwitchingDeviceType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcSwitchingDeviceTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcSwitchingDeviceTypeEnum.USERDEFINED) || ((PredefinedType == IfcSwitchingDeviceTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ElectricalDomain.IfcSwitchingDeviceType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSwitchingDeviceType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.ElectricalDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcSwitchingDeviceType.CorrectPredefinedType))
+			if (!ValidateClause(IfcSwitchingDeviceTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSwitchingDeviceType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcSwitchingDeviceType : IfcTypeProduct
-	{
-		public static readonly IfcSwitchingDeviceType CorrectPredefinedType = new IfcSwitchingDeviceType();
-		protected IfcSwitchingDeviceType() {}
 	}
 }

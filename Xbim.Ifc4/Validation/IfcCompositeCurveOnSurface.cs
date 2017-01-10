@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	public partial class IfcCompositeCurveOnSurface : IExpressValidatable
 	{
+		public enum IfcCompositeCurveOnSurfaceClause
+		{
+			SameSurface,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcCompositeCurveOnSurface clause) {
+		public bool ValidateClause(IfcCompositeCurveOnSurfaceClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcCompositeCurveOnSurface.SameSurface) {
-				try {
-					retVal = SIZEOF(BasisSurface) > 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcCompositeCurveOnSurface");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCompositeCurveOnSurface.SameSurface' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcCompositeCurveOnSurfaceClause.SameSurface:
+						retVal = SIZEOF(BasisSurface) > 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcCompositeCurveOnSurface");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCompositeCurveOnSurface.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcCompositeCurve)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcCompositeCurveOnSurface.SameSurface))
+			if (!ValidateClause(IfcCompositeCurveOnSurfaceClause.SameSurface))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCompositeCurveOnSurface.SameSurface", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcCompositeCurveOnSurface : IfcCompositeCurve
-	{
-		public static readonly IfcCompositeCurveOnSurface SameSurface = new IfcCompositeCurveOnSurface();
-		protected IfcCompositeCurveOnSurface() {}
 	}
 }

@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	public partial class IfcStructuralLoadCase : IExpressValidatable
 	{
+		public enum IfcStructuralLoadCaseClause
+		{
+			IsLoadCasePredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcStructuralLoadCase clause) {
+		public bool ValidateClause(IfcStructuralLoadCaseClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcStructuralLoadCase.IsLoadCasePredefinedType) {
-				try {
-					retVal = this/* as IfcStructuralLoadGroup*/.PredefinedType == IfcLoadGroupTypeEnum.LOAD_CASE;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralLoadCase");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralLoadCase.IsLoadCasePredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcStructuralLoadCaseClause.IsLoadCasePredefinedType:
+						retVal = this/* as IfcStructuralLoadGroup*/.PredefinedType == IfcLoadGroupTypeEnum.LOAD_CASE;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralLoadCase");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralLoadCase.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcStructuralLoadGroup)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcStructuralLoadCase.IsLoadCasePredefinedType))
+			if (!ValidateClause(IfcStructuralLoadCaseClause.IsLoadCasePredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcStructuralLoadCase.IsLoadCasePredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcStructuralLoadCase : IfcStructuralLoadGroup
-	{
-		public static readonly IfcStructuralLoadCase IsLoadCasePredefinedType = new IfcStructuralLoadCase();
-		protected IfcStructuralLoadCase() {}
 	}
 }

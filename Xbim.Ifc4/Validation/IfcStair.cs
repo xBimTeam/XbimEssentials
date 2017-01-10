@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	public partial class IfcStair : IExpressValidatable
 	{
+		public enum IfcStairClause
+		{
+			CorrectPredefinedType,
+			CorrectTypeAssigned,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcStair clause) {
+		public bool ValidateClause(IfcStairClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcStair.CorrectPredefinedType) {
-				try {
-					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcStairTypeEnum.USERDEFINED) || ((PredefinedType == IfcStairTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcStair");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStair.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcStairClause.CorrectPredefinedType:
+						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcStairTypeEnum.USERDEFINED) || ((PredefinedType == IfcStairTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
+					case IfcStairClause.CorrectTypeAssigned:
+						retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCSTAIRTYPE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcStair");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStair.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcStair.CorrectTypeAssigned) {
-				try {
-					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCSTAIRTYPE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcStair");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStair.CorrectTypeAssigned' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcBuildingElement)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcStair.CorrectPredefinedType))
+			if (!ValidateClause(IfcStairClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcStair.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcStair.CorrectTypeAssigned))
+			if (!ValidateClause(IfcStairClause.CorrectTypeAssigned))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcStair.CorrectTypeAssigned", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcStair : IfcBuildingElement
-	{
-		public static readonly IfcStair CorrectPredefinedType = new IfcStair();
-		public static readonly IfcStair CorrectTypeAssigned = new IfcStair();
-		protected IfcStair() {}
 	}
 }

@@ -13,52 +13,43 @@ namespace Xbim.Ifc4.QuantityResource
 {
 	public partial class IfcQuantityWeight : IExpressValidatable
 	{
+		public enum IfcQuantityWeightClause
+		{
+			WR21,
+			WR22,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcQuantityWeight clause) {
+		public bool ValidateClause(IfcQuantityWeightClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcQuantityWeight.WR21) {
-				try {
-					retVal = !(EXISTS(this/* as IfcPhysicalSimpleQuantity*/.Unit)) || (this/* as IfcPhysicalSimpleQuantity*/.Unit.UnitType == IfcUnitEnum.MASSUNIT);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.QuantityResource.IfcQuantityWeight");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcQuantityWeight.WR21' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcQuantityWeightClause.WR21:
+						retVal = !(EXISTS(this/* as IfcPhysicalSimpleQuantity*/.Unit)) || (this/* as IfcPhysicalSimpleQuantity*/.Unit.UnitType == IfcUnitEnum.MASSUNIT);
+						break;
+					case IfcQuantityWeightClause.WR22:
+						retVal = WeightValue >= 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.QuantityResource.IfcQuantityWeight");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcQuantityWeight.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcQuantityWeight.WR22) {
-				try {
-					retVal = WeightValue >= 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.QuantityResource.IfcQuantityWeight");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcQuantityWeight.WR22' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcQuantityWeight.WR21))
+			if (!ValidateClause(IfcQuantityWeightClause.WR21))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcQuantityWeight.WR21", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcQuantityWeight.WR22))
+			if (!ValidateClause(IfcQuantityWeightClause.WR22))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcQuantityWeight.WR22", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcQuantityWeight
-	{
-		public static readonly IfcQuantityWeight WR21 = new IfcQuantityWeight();
-		public static readonly IfcQuantityWeight WR22 = new IfcQuantityWeight();
-		protected IfcQuantityWeight() {}
 	}
 }

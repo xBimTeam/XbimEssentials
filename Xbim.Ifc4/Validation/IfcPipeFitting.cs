@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	public partial class IfcPipeFitting : IExpressValidatable
 	{
+		public enum IfcPipeFittingClause
+		{
+			CorrectPredefinedType,
+			CorrectTypeAssigned,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcPipeFitting clause) {
+		public bool ValidateClause(IfcPipeFittingClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcPipeFitting.CorrectPredefinedType) {
-				try {
-					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcPipeFittingTypeEnum.USERDEFINED) || ((PredefinedType == IfcPipeFittingTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcPipeFitting");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPipeFitting.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcPipeFittingClause.CorrectPredefinedType:
+						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcPipeFittingTypeEnum.USERDEFINED) || ((PredefinedType == IfcPipeFittingTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
+					case IfcPipeFittingClause.CorrectTypeAssigned:
+						retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCPIPEFITTINGTYPE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcPipeFitting");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPipeFitting.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcPipeFitting.CorrectTypeAssigned) {
-				try {
-					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCPIPEFITTINGTYPE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcPipeFitting");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPipeFitting.CorrectTypeAssigned' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.HvacDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcPipeFitting.CorrectPredefinedType))
+			if (!ValidateClause(IfcPipeFittingClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPipeFitting.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcPipeFitting.CorrectTypeAssigned))
+			if (!ValidateClause(IfcPipeFittingClause.CorrectTypeAssigned))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPipeFitting.CorrectTypeAssigned", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcPipeFitting : IfcProduct
-	{
-		public static readonly IfcPipeFitting CorrectPredefinedType = new IfcPipeFitting();
-		public static readonly IfcPipeFitting CorrectTypeAssigned = new IfcPipeFitting();
-		protected IfcPipeFitting() {}
 	}
 }

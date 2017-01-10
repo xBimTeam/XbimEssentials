@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	public partial class IfcStructuralLoadGroup : IExpressValidatable
 	{
+		public enum IfcStructuralLoadGroupClause
+		{
+			HasObjectType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcStructuralLoadGroup clause) {
+		public bool ValidateClause(IfcStructuralLoadGroupClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcStructuralLoadGroup.HasObjectType) {
-				try {
-					retVal = ((PredefinedType != IfcLoadGroupTypeEnum.USERDEFINED) && (ActionType != IfcActionTypeEnum.USERDEFINED) && (ActionSource != IfcActionSourceTypeEnum.USERDEFINED)) || EXISTS(this/* as IfcObject*/.ObjectType);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralLoadGroup");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralLoadGroup.HasObjectType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcStructuralLoadGroupClause.HasObjectType:
+						retVal = ((PredefinedType != IfcLoadGroupTypeEnum.USERDEFINED) && (ActionType != IfcActionTypeEnum.USERDEFINED) && (ActionSource != IfcActionSourceTypeEnum.USERDEFINED)) || EXISTS(this/* as IfcObject*/.ObjectType);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralLoadGroup");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralLoadGroup.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcObject)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcStructuralLoadGroup.HasObjectType))
+			if (!ValidateClause(IfcStructuralLoadGroupClause.HasObjectType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcStructuralLoadGroup.HasObjectType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcStructuralLoadGroup : IfcObject
-	{
-		public static readonly IfcStructuralLoadGroup HasObjectType = new IfcStructuralLoadGroup();
-		protected IfcStructuralLoadGroup() {}
 	}
 }

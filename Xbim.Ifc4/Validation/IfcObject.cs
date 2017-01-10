@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.Kernel
 {
 	public partial class IfcObject : IExpressValidatable
 	{
+		public enum IfcObjectClause
+		{
+			UniquePropertySetNames,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcObject clause) {
+		public bool ValidateClause(IfcObjectClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcObject.UniquePropertySetNames) {
-				try {
-					retVal = ((SIZEOF(IsDefinedBy) == 0) || IfcUniqueDefinitionNames(IsDefinedBy));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcObject");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcObject.UniquePropertySetNames' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcObjectClause.UniquePropertySetNames:
+						retVal = ((SIZEOF(IsDefinedBy) == 0) || IfcUniqueDefinitionNames(IsDefinedBy));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcObject");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcObject.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcObject.UniquePropertySetNames))
+			if (!ValidateClause(IfcObjectClause.UniquePropertySetNames))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcObject.UniquePropertySetNames", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcObject
-	{
-		public static readonly IfcObject UniquePropertySetNames = new IfcObject();
-		protected IfcObject() {}
 	}
 }

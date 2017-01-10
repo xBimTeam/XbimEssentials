@@ -17,42 +17,39 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class IfcCartesianTransformationOperator2D : IExpressValidatable
 	{
+		public enum IfcCartesianTransformationOperator2DClause
+		{
+			WR1,
+			WR2,
+			WR3,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcCartesianTransformationOperator2D clause) {
+		public bool ValidateClause(IfcCartesianTransformationOperator2DClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcCartesianTransformationOperator2D.WR1) {
-				try {
-					retVal = this/* as IfcCartesianTransformationOperator*/.Dim == 2;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcCartesianTransformationOperator2D");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator2D.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcCartesianTransformationOperator2DClause.WR1:
+						retVal = this/* as IfcCartesianTransformationOperator*/.Dim == 2;
+						break;
+					case IfcCartesianTransformationOperator2DClause.WR2:
+						retVal = !(EXISTS(this/* as IfcCartesianTransformationOperator*/.Axis1)) || (this/* as IfcCartesianTransformationOperator*/.Axis1.Dim == 2);
+						break;
+					case IfcCartesianTransformationOperator2DClause.WR3:
+						retVal = !(EXISTS(this/* as IfcCartesianTransformationOperator*/.Axis2)) || (this/* as IfcCartesianTransformationOperator*/.Axis2.Dim == 2);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcCartesianTransformationOperator2D");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator2D.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcCartesianTransformationOperator2D.WR2) {
-				try {
-					retVal = !(EXISTS(this/* as IfcCartesianTransformationOperator*/.Axis1)) || (this/* as IfcCartesianTransformationOperator*/.Axis1.Dim == 2);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcCartesianTransformationOperator2D");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator2D.WR2' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcCartesianTransformationOperator2D.WR3) {
-				try {
-					retVal = !(EXISTS(this/* as IfcCartesianTransformationOperator*/.Axis2)) || (this/* as IfcCartesianTransformationOperator*/.Axis2.Dim == 2);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcCartesianTransformationOperator2D");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator2D.WR3' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcCartesianTransformationOperator)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -61,24 +58,12 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcCartesianTransformationOperator2D.WR1))
+			if (!ValidateClause(IfcCartesianTransformationOperator2DClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCartesianTransformationOperator2D.WR1", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcCartesianTransformationOperator2D.WR2))
+			if (!ValidateClause(IfcCartesianTransformationOperator2DClause.WR2))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCartesianTransformationOperator2D.WR2", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcCartesianTransformationOperator2D.WR3))
+			if (!ValidateClause(IfcCartesianTransformationOperator2DClause.WR3))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCartesianTransformationOperator2D.WR3", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcCartesianTransformationOperator2D : IfcCartesianTransformationOperator
-	{
-		public new static readonly IfcCartesianTransformationOperator2D WR1 = new IfcCartesianTransformationOperator2D();
-		public static readonly IfcCartesianTransformationOperator2D WR2 = new IfcCartesianTransformationOperator2D();
-		public static readonly IfcCartesianTransformationOperator2D WR3 = new IfcCartesianTransformationOperator2D();
-		protected IfcCartesianTransformationOperator2D() {}
 	}
 }

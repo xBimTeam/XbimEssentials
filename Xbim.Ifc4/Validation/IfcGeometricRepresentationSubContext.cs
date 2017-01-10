@@ -13,42 +13,39 @@ namespace Xbim.Ifc4.RepresentationResource
 {
 	public partial class IfcGeometricRepresentationSubContext : IExpressValidatable
 	{
+		public enum IfcGeometricRepresentationSubContextClause
+		{
+			ParentNoSub,
+			UserTargetProvided,
+			NoCoordOperation,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcGeometricRepresentationSubContext clause) {
+		public bool ValidateClause(IfcGeometricRepresentationSubContextClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcGeometricRepresentationSubContext.ParentNoSub) {
-				try {
-					retVal = !(TYPEOF(ParentContext).Contains("IFC4.IFCGEOMETRICREPRESENTATIONSUBCONTEXT"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.RepresentationResource.IfcGeometricRepresentationSubContext");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcGeometricRepresentationSubContext.ParentNoSub' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcGeometricRepresentationSubContextClause.ParentNoSub:
+						retVal = !(TYPEOF(ParentContext).Contains("IFC4.IFCGEOMETRICREPRESENTATIONSUBCONTEXT"));
+						break;
+					case IfcGeometricRepresentationSubContextClause.UserTargetProvided:
+						retVal = (TargetView != IfcGeometricProjectionEnum.USERDEFINED) || ((TargetView == IfcGeometricProjectionEnum.USERDEFINED) && EXISTS(UserDefinedTargetView));
+						break;
+					case IfcGeometricRepresentationSubContextClause.NoCoordOperation:
+						retVal = SIZEOF(this/* as IfcGeometricRepresentationContext*/.HasCoordinateOperation) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.RepresentationResource.IfcGeometricRepresentationSubContext");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcGeometricRepresentationSubContext.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcGeometricRepresentationSubContext.UserTargetProvided) {
-				try {
-					retVal = (TargetView != IfcGeometricProjectionEnum.USERDEFINED) || ((TargetView == IfcGeometricProjectionEnum.USERDEFINED) && EXISTS(UserDefinedTargetView));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.RepresentationResource.IfcGeometricRepresentationSubContext");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcGeometricRepresentationSubContext.UserTargetProvided' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcGeometricRepresentationSubContext.NoCoordOperation) {
-				try {
-					retVal = SIZEOF(this/* as IfcGeometricRepresentationContext*/.HasCoordinateOperation) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.RepresentationResource.IfcGeometricRepresentationSubContext");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcGeometricRepresentationSubContext.NoCoordOperation' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcGeometricRepresentationContext)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -57,24 +54,12 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcGeometricRepresentationSubContext.ParentNoSub))
+			if (!ValidateClause(IfcGeometricRepresentationSubContextClause.ParentNoSub))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcGeometricRepresentationSubContext.ParentNoSub", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcGeometricRepresentationSubContext.UserTargetProvided))
+			if (!ValidateClause(IfcGeometricRepresentationSubContextClause.UserTargetProvided))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcGeometricRepresentationSubContext.UserTargetProvided", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcGeometricRepresentationSubContext.NoCoordOperation))
+			if (!ValidateClause(IfcGeometricRepresentationSubContextClause.NoCoordOperation))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcGeometricRepresentationSubContext.NoCoordOperation", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcGeometricRepresentationSubContext : IfcGeometricRepresentationContext
-	{
-		public static readonly IfcGeometricRepresentationSubContext ParentNoSub = new IfcGeometricRepresentationSubContext();
-		public static readonly IfcGeometricRepresentationSubContext UserTargetProvided = new IfcGeometricRepresentationSubContext();
-		public static readonly IfcGeometricRepresentationSubContext NoCoordOperation = new IfcGeometricRepresentationSubContext();
-		protected IfcGeometricRepresentationSubContext() {}
 	}
 }

@@ -17,64 +17,49 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class IfcTrimmedCurve : IExpressValidatable
 	{
+		public enum IfcTrimmedCurveClause
+		{
+			WR41,
+			WR42,
+			WR43,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcTrimmedCurve clause) {
+		public bool ValidateClause(IfcTrimmedCurveClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcTrimmedCurve.WR41) {
-				try {
-					retVal = (HIINDEX(Trim1) == 1) || (TYPEOF(Trim1.ItemAt(0)) != TYPEOF(Trim1.ItemAt(1)));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcTrimmedCurve");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTrimmedCurve.WR41' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcTrimmedCurveClause.WR41:
+						retVal = (HIINDEX(Trim1) == 1) || (TYPEOF(Trim1.ItemAt(0)) != TYPEOF(Trim1.ItemAt(1)));
+						break;
+					case IfcTrimmedCurveClause.WR42:
+						retVal = (HIINDEX(Trim2) == 1) || (TYPEOF(Trim2.ItemAt(0)) != TYPEOF(Trim2.ItemAt(1)));
+						break;
+					case IfcTrimmedCurveClause.WR43:
+						retVal = !(TYPEOF(BasisCurve).Contains("IFC2X3.IFCBOUNDEDCURVE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcTrimmedCurve");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTrimmedCurve.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcTrimmedCurve.WR42) {
-				try {
-					retVal = (HIINDEX(Trim2) == 1) || (TYPEOF(Trim2.ItemAt(0)) != TYPEOF(Trim2.ItemAt(1)));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcTrimmedCurve");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTrimmedCurve.WR42' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcTrimmedCurve.WR43) {
-				try {
-					retVal = !(TYPEOF(BasisCurve).Contains("IFC2X3.IFCBOUNDEDCURVE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcTrimmedCurve");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTrimmedCurve.WR43' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcTrimmedCurve.WR41))
+			if (!ValidateClause(IfcTrimmedCurveClause.WR41))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcTrimmedCurve.WR41", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcTrimmedCurve.WR42))
+			if (!ValidateClause(IfcTrimmedCurveClause.WR42))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcTrimmedCurve.WR42", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcTrimmedCurve.WR43))
+			if (!ValidateClause(IfcTrimmedCurveClause.WR43))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcTrimmedCurve.WR43", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcTrimmedCurve
-	{
-		public static readonly IfcTrimmedCurve WR41 = new IfcTrimmedCurve();
-		public static readonly IfcTrimmedCurve WR42 = new IfcTrimmedCurve();
-		public static readonly IfcTrimmedCurve WR43 = new IfcTrimmedCurve();
-		protected IfcTrimmedCurve() {}
 	}
 }

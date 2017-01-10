@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	public partial class IfcBoundaryCurve : IExpressValidatable
 	{
+		public enum IfcBoundaryCurveClause
+		{
+			IsClosed,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcBoundaryCurve clause) {
+		public bool ValidateClause(IfcBoundaryCurveClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcBoundaryCurve.IsClosed) {
-				try {
-					retVal = this/* as IfcCompositeCurve*/.ClosedCurve.AsBool();
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcBoundaryCurve");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBoundaryCurve.IsClosed' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcBoundaryCurveClause.IsClosed:
+						retVal = this/* as IfcCompositeCurve*/.ClosedCurve.AsBool();
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcBoundaryCurve");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBoundaryCurve.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcCompositeCurveOnSurface)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcBoundaryCurve.IsClosed))
+			if (!ValidateClause(IfcBoundaryCurveClause.IsClosed))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcBoundaryCurve.IsClosed", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcBoundaryCurve : IfcCompositeCurveOnSurface
-	{
-		public static readonly IfcBoundaryCurve IsClosed = new IfcBoundaryCurve();
-		protected IfcBoundaryCurve() {}
 	}
 }

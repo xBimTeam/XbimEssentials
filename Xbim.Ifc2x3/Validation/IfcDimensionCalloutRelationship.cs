@@ -17,64 +17,49 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	public partial class IfcDimensionCalloutRelationship : IExpressValidatable
 	{
+		public enum IfcDimensionCalloutRelationshipClause
+		{
+			WR11,
+			WR12,
+			WR13,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcDimensionCalloutRelationship clause) {
+		public bool ValidateClause(IfcDimensionCalloutRelationshipClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcDimensionCalloutRelationship.WR11) {
-				try {
-					retVal = NewArray("primary", "secondary").Contains(this/* as IfcDraughtingCalloutRelationship*/.Name);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDimensioningResource.IfcDimensionCalloutRelationship");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDimensionCalloutRelationship.WR11' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcDimensionCalloutRelationshipClause.WR11:
+						retVal = NewArray("primary", "secondary").Contains(this/* as IfcDraughtingCalloutRelationship*/.Name);
+						break;
+					case IfcDimensionCalloutRelationshipClause.WR12:
+						retVal = SIZEOF(TYPEOF(this/* as IfcDraughtingCalloutRelationship*/.RelatingDraughtingCallout) * NewArray("IFC2X3.IFCANGULARDIMENSION", "IFC2X3.IFCDIAMETERDIMENSION", "IFC2X3.IFCLINEARDIMENSION", "IFC2X3.IFCRADIUSDIMENSION")) == 1;
+						break;
+					case IfcDimensionCalloutRelationshipClause.WR13:
+						retVal = !(TYPEOF(this/* as IfcDraughtingCalloutRelationship*/.RelatedDraughtingCallout).Contains("IFC2X3.IFCDIMENSIONCURVEDIRECTEDCALLOUT"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDimensioningResource.IfcDimensionCalloutRelationship");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDimensionCalloutRelationship.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcDimensionCalloutRelationship.WR12) {
-				try {
-					retVal = SIZEOF(TYPEOF(this/* as IfcDraughtingCalloutRelationship*/.RelatingDraughtingCallout) * NewArray("IFC2X3.IFCANGULARDIMENSION", "IFC2X3.IFCDIAMETERDIMENSION", "IFC2X3.IFCLINEARDIMENSION", "IFC2X3.IFCRADIUSDIMENSION")) == 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDimensioningResource.IfcDimensionCalloutRelationship");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDimensionCalloutRelationship.WR12' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcDimensionCalloutRelationship.WR13) {
-				try {
-					retVal = !(TYPEOF(this/* as IfcDraughtingCalloutRelationship*/.RelatedDraughtingCallout).Contains("IFC2X3.IFCDIMENSIONCURVEDIRECTEDCALLOUT"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDimensioningResource.IfcDimensionCalloutRelationship");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDimensionCalloutRelationship.WR13' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcDimensionCalloutRelationship.WR11))
+			if (!ValidateClause(IfcDimensionCalloutRelationshipClause.WR11))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcDimensionCalloutRelationship.WR11", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcDimensionCalloutRelationship.WR12))
+			if (!ValidateClause(IfcDimensionCalloutRelationshipClause.WR12))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcDimensionCalloutRelationship.WR12", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcDimensionCalloutRelationship.WR13))
+			if (!ValidateClause(IfcDimensionCalloutRelationshipClause.WR13))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcDimensionCalloutRelationship.WR13", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcDimensionCalloutRelationship
-	{
-		public static readonly IfcDimensionCalloutRelationship WR11 = new IfcDimensionCalloutRelationship();
-		public static readonly IfcDimensionCalloutRelationship WR12 = new IfcDimensionCalloutRelationship();
-		public static readonly IfcDimensionCalloutRelationship WR13 = new IfcDimensionCalloutRelationship();
-		protected IfcDimensionCalloutRelationship() {}
 	}
 }

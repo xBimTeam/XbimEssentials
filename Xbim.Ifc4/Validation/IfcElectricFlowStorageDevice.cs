@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	public partial class IfcElectricFlowStorageDevice : IExpressValidatable
 	{
+		public enum IfcElectricFlowStorageDeviceClause
+		{
+			CorrectPredefinedType,
+			CorrectTypeAssigned,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcElectricFlowStorageDevice clause) {
+		public bool ValidateClause(IfcElectricFlowStorageDeviceClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcElectricFlowStorageDevice.CorrectPredefinedType) {
-				try {
-					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcElectricFlowStorageDeviceTypeEnum.USERDEFINED) || ((PredefinedType == IfcElectricFlowStorageDeviceTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ElectricalDomain.IfcElectricFlowStorageDevice");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcElectricFlowStorageDevice.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcElectricFlowStorageDeviceClause.CorrectPredefinedType:
+						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcElectricFlowStorageDeviceTypeEnum.USERDEFINED) || ((PredefinedType == IfcElectricFlowStorageDeviceTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
+					case IfcElectricFlowStorageDeviceClause.CorrectTypeAssigned:
+						retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCELECTRICFLOWSTORAGEDEVICETYPE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ElectricalDomain.IfcElectricFlowStorageDevice");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcElectricFlowStorageDevice.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcElectricFlowStorageDevice.CorrectTypeAssigned) {
-				try {
-					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCELECTRICFLOWSTORAGEDEVICETYPE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ElectricalDomain.IfcElectricFlowStorageDevice");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcElectricFlowStorageDevice.CorrectTypeAssigned' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.ElectricalDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcElectricFlowStorageDevice.CorrectPredefinedType))
+			if (!ValidateClause(IfcElectricFlowStorageDeviceClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcElectricFlowStorageDevice.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcElectricFlowStorageDevice.CorrectTypeAssigned))
+			if (!ValidateClause(IfcElectricFlowStorageDeviceClause.CorrectTypeAssigned))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcElectricFlowStorageDevice.CorrectTypeAssigned", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcElectricFlowStorageDevice : IfcProduct
-	{
-		public static readonly IfcElectricFlowStorageDevice CorrectPredefinedType = new IfcElectricFlowStorageDevice();
-		public static readonly IfcElectricFlowStorageDevice CorrectTypeAssigned = new IfcElectricFlowStorageDevice();
-		protected IfcElectricFlowStorageDevice() {}
 	}
 }

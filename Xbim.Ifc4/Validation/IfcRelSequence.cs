@@ -13,52 +13,43 @@ namespace Xbim.Ifc4.ProcessExtension
 {
 	public partial class IfcRelSequence : IExpressValidatable
 	{
+		public enum IfcRelSequenceClause
+		{
+			AvoidInconsistentSequence,
+			CorrectSequenceType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRelSequence clause) {
+		public bool ValidateClause(IfcRelSequenceClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRelSequence.AvoidInconsistentSequence) {
-				try {
-					retVal = !Object.ReferenceEquals(RelatingProcess, RelatedProcess);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProcessExtension.IfcRelSequence");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelSequence.AvoidInconsistentSequence' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRelSequenceClause.AvoidInconsistentSequence:
+						retVal = !Object.ReferenceEquals(RelatingProcess, RelatedProcess);
+						break;
+					case IfcRelSequenceClause.CorrectSequenceType:
+						retVal = (SequenceType != IfcSequenceEnum.USERDEFINED) || ((SequenceType == IfcSequenceEnum.USERDEFINED) && EXISTS(UserDefinedSequenceType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ProcessExtension.IfcRelSequence");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelSequence.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcRelSequence.CorrectSequenceType) {
-				try {
-					retVal = (SequenceType != IfcSequenceEnum.USERDEFINED) || ((SequenceType == IfcSequenceEnum.USERDEFINED) && EXISTS(UserDefinedSequenceType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProcessExtension.IfcRelSequence");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelSequence.CorrectSequenceType' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcRelSequence.AvoidInconsistentSequence))
+			if (!ValidateClause(IfcRelSequenceClause.AvoidInconsistentSequence))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelSequence.AvoidInconsistentSequence", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcRelSequence.CorrectSequenceType))
+			if (!ValidateClause(IfcRelSequenceClause.CorrectSequenceType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelSequence.CorrectSequenceType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcRelSequence
-	{
-		public static readonly IfcRelSequence AvoidInconsistentSequence = new IfcRelSequence();
-		public static readonly IfcRelSequence CorrectSequenceType = new IfcRelSequence();
-		protected IfcRelSequence() {}
 	}
 }

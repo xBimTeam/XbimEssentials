@@ -13,51 +13,43 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	public partial class IfcCartesianTransformationOperator3D : IExpressValidatable
 	{
+		public enum IfcCartesianTransformationOperator3DClause
+		{
+			DimIs3D,
+			Axis1Is3D,
+			Axis2Is3D,
+			Axis3Is3D,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcCartesianTransformationOperator3D clause) {
+		public bool ValidateClause(IfcCartesianTransformationOperator3DClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcCartesianTransformationOperator3D.DimIs3D) {
-				try {
-					retVal = this/* as IfcCartesianTransformationOperator*/.Dim == 3;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcCartesianTransformationOperator3D");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator3D.DimIs3D' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcCartesianTransformationOperator3DClause.DimIs3D:
+						retVal = this/* as IfcCartesianTransformationOperator*/.Dim == 3;
+						break;
+					case IfcCartesianTransformationOperator3DClause.Axis1Is3D:
+						retVal = !(EXISTS(this/* as IfcCartesianTransformationOperator*/.Axis1)) || (this/* as IfcCartesianTransformationOperator*/.Axis1.Dim == 3);
+						break;
+					case IfcCartesianTransformationOperator3DClause.Axis2Is3D:
+						retVal = !(EXISTS(this/* as IfcCartesianTransformationOperator*/.Axis2)) || (this/* as IfcCartesianTransformationOperator*/.Axis2.Dim == 3);
+						break;
+					case IfcCartesianTransformationOperator3DClause.Axis3Is3D:
+						retVal = !(EXISTS(Axis3)) || (Axis3.Dim == 3);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcCartesianTransformationOperator3D");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator3D.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcCartesianTransformationOperator3D.Axis1Is3D) {
-				try {
-					retVal = !(EXISTS(this/* as IfcCartesianTransformationOperator*/.Axis1)) || (this/* as IfcCartesianTransformationOperator*/.Axis1.Dim == 3);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcCartesianTransformationOperator3D");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator3D.Axis1Is3D' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcCartesianTransformationOperator3D.Axis2Is3D) {
-				try {
-					retVal = !(EXISTS(this/* as IfcCartesianTransformationOperator*/.Axis2)) || (this/* as IfcCartesianTransformationOperator*/.Axis2.Dim == 3);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcCartesianTransformationOperator3D");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator3D.Axis2Is3D' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcCartesianTransformationOperator3D.Axis3Is3D) {
-				try {
-					retVal = !(EXISTS(Axis3)) || (Axis3.Dim == 3);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcCartesianTransformationOperator3D");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator3D.Axis3Is3D' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcCartesianTransformationOperator)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -66,27 +58,14 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcCartesianTransformationOperator3D.DimIs3D))
+			if (!ValidateClause(IfcCartesianTransformationOperator3DClause.DimIs3D))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCartesianTransformationOperator3D.DimIs3D", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcCartesianTransformationOperator3D.Axis1Is3D))
+			if (!ValidateClause(IfcCartesianTransformationOperator3DClause.Axis1Is3D))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCartesianTransformationOperator3D.Axis1Is3D", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcCartesianTransformationOperator3D.Axis2Is3D))
+			if (!ValidateClause(IfcCartesianTransformationOperator3DClause.Axis2Is3D))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCartesianTransformationOperator3D.Axis2Is3D", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcCartesianTransformationOperator3D.Axis3Is3D))
+			if (!ValidateClause(IfcCartesianTransformationOperator3DClause.Axis3Is3D))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCartesianTransformationOperator3D.Axis3Is3D", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcCartesianTransformationOperator3D : IfcCartesianTransformationOperator
-	{
-		public static readonly IfcCartesianTransformationOperator3D DimIs3D = new IfcCartesianTransformationOperator3D();
-		public static readonly IfcCartesianTransformationOperator3D Axis1Is3D = new IfcCartesianTransformationOperator3D();
-		public static readonly IfcCartesianTransformationOperator3D Axis2Is3D = new IfcCartesianTransformationOperator3D();
-		public static readonly IfcCartesianTransformationOperator3D Axis3Is3D = new IfcCartesianTransformationOperator3D();
-		protected IfcCartesianTransformationOperator3D() {}
 	}
 }

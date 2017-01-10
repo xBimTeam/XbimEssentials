@@ -13,52 +13,43 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	public partial class IfcCompositeCurve : IExpressValidatable
 	{
+		public enum IfcCompositeCurveClause
+		{
+			CurveContinuous,
+			SameDim,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcCompositeCurve clause) {
+		public bool ValidateClause(IfcCompositeCurveClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcCompositeCurve.CurveContinuous) {
-				try {
-					retVal = ((!ClosedCurve.AsBool()) && (SIZEOF(Segments.Where(Temp => Temp.Transition == IfcTransitionCode.DISCONTINUOUS)) == 1)) || ((ClosedCurve.AsBool()) && (SIZEOF(Segments.Where(Temp => Temp.Transition == IfcTransitionCode.DISCONTINUOUS)) == 0));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcCompositeCurve");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCompositeCurve.CurveContinuous' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcCompositeCurveClause.CurveContinuous:
+						retVal = ((!ClosedCurve.AsBool()) && (SIZEOF(Segments.Where(Temp => Temp.Transition == IfcTransitionCode.DISCONTINUOUS)) == 1)) || ((ClosedCurve.AsBool()) && (SIZEOF(Segments.Where(Temp => Temp.Transition == IfcTransitionCode.DISCONTINUOUS)) == 0));
+						break;
+					case IfcCompositeCurveClause.SameDim:
+						retVal = SIZEOF(Segments.Where(Temp => Temp.Dim != Segments.ItemAt(0).Dim)) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcCompositeCurve");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCompositeCurve.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcCompositeCurve.SameDim) {
-				try {
-					retVal = SIZEOF(Segments.Where(Temp => Temp.Dim != Segments.ItemAt(0).Dim)) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcCompositeCurve");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCompositeCurve.SameDim' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcCompositeCurve.CurveContinuous))
+			if (!ValidateClause(IfcCompositeCurveClause.CurveContinuous))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCompositeCurve.CurveContinuous", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcCompositeCurve.SameDim))
+			if (!ValidateClause(IfcCompositeCurveClause.SameDim))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCompositeCurve.SameDim", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcCompositeCurve
-	{
-		public static readonly IfcCompositeCurve CurveContinuous = new IfcCompositeCurve();
-		public static readonly IfcCompositeCurve SameDim = new IfcCompositeCurve();
-		protected IfcCompositeCurve() {}
 	}
 }

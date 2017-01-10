@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.DateTimeResource
 {
 	public partial struct IfcDaylightSavingHour : IExpressValidatable
 	{
+		public enum IfcDaylightSavingHourClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcDaylightSavingHour clause) {
+		public bool ValidateClause(IfcDaylightSavingHourClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcDaylightSavingHour.WR1) {
-				try {
-					retVal = ((0 <= this) && (this <= 2) );
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.DateTimeResource.IfcDaylightSavingHour");
-					Log.Error("Exception thrown evaluating where-clause 'IfcDaylightSavingHour.WR1'.", ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcDaylightSavingHourClause.WR1:
+						retVal = ((0 <= this) && (this <= 2) );
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.DateTimeResource.IfcDaylightSavingHour");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDaylightSavingHour.{0}'.", clause), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
-		public  IEnumerable<ValidationResult> Validate()
+		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcDaylightSavingHour.WR1))
+			if (!ValidateClause(IfcDaylightSavingHourClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcDaylightSavingHour.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcDaylightSavingHour
-	{
-		public static readonly IfcDaylightSavingHour WR1 = new IfcDaylightSavingHour();
-		protected IfcDaylightSavingHour() {}
 	}
 }

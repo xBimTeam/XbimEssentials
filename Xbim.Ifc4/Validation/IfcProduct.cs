@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.Kernel
 {
 	public partial class IfcProduct : IExpressValidatable
 	{
+		public enum IfcProductClause
+		{
+			PlacementForShapeRepresentation,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcProduct clause) {
+		public bool ValidateClause(IfcProductClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcProduct.PlacementForShapeRepresentation) {
-				try {
-					retVal = (EXISTS(Representation) && EXISTS(ObjectPlacement)) || (EXISTS(Representation) && (SIZEOF(Representation.Representations.Where(temp => TYPEOF(temp).Contains("IFC4.IFCSHAPEREPRESENTATION"))) == 0)) || (!(EXISTS(Representation)));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcProduct");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcProduct.PlacementForShapeRepresentation' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcProductClause.PlacementForShapeRepresentation:
+						retVal = (EXISTS(Representation) && EXISTS(ObjectPlacement)) || (EXISTS(Representation) && (SIZEOF(Representation.Representations.Where(temp => TYPEOF(temp).Contains("IFC4.IFCSHAPEREPRESENTATION"))) == 0)) || (!(EXISTS(Representation)));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcProduct");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcProduct.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcObject)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.Kernel
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcProduct.PlacementForShapeRepresentation))
+			if (!ValidateClause(IfcProductClause.PlacementForShapeRepresentation))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcProduct.PlacementForShapeRepresentation", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcProduct : IfcObject
-	{
-		public static readonly IfcProduct PlacementForShapeRepresentation = new IfcProduct();
-		protected IfcProduct() {}
 	}
 }

@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	public partial class IfcBoilerType : IExpressValidatable
 	{
+		public enum IfcBoilerTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcBoilerType clause) {
+		public bool ValidateClause(IfcBoilerTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcBoilerType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcBoilerTypeEnum.USERDEFINED) || ((PredefinedType == IfcBoilerTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcBoilerType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBoilerType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcBoilerTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcBoilerTypeEnum.USERDEFINED) || ((PredefinedType == IfcBoilerTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcBoilerType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBoilerType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.HvacDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcBoilerType.CorrectPredefinedType))
+			if (!ValidateClause(IfcBoilerTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcBoilerType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcBoilerType : IfcTypeProduct
-	{
-		public static readonly IfcBoilerType CorrectPredefinedType = new IfcBoilerType();
-		protected IfcBoilerType() {}
 	}
 }

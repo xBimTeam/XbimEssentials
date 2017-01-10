@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	public partial class IfcPcurve : IExpressValidatable
 	{
+		public enum IfcPcurveClause
+		{
+			DimIs2D,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcPcurve clause) {
+		public bool ValidateClause(IfcPcurveClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcPcurve.DimIs2D) {
-				try {
-					retVal = ReferenceCurve.Dim == 2;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcPcurve");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPcurve.DimIs2D' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcPcurveClause.DimIs2D:
+						retVal = ReferenceCurve.Dim == 2;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcPcurve");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPcurve.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcPcurve.DimIs2D))
+			if (!ValidateClause(IfcPcurveClause.DimIs2D))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPcurve.DimIs2D", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcPcurve
-	{
-		public static readonly IfcPcurve DimIs2D = new IfcPcurve();
-		protected IfcPcurve() {}
 	}
 }

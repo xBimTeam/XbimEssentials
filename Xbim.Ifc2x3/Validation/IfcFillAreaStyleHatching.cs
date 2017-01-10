@@ -17,64 +17,49 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class IfcFillAreaStyleHatching : IExpressValidatable
 	{
+		public enum IfcFillAreaStyleHatchingClause
+		{
+			WR21,
+			WR22,
+			WR23,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcFillAreaStyleHatching clause) {
+		public bool ValidateClause(IfcFillAreaStyleHatchingClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcFillAreaStyleHatching.WR21) {
-				try {
-					retVal = !(TYPEOF(StartOfNextHatchLine).Contains("IFC2X3.IFCTWODIRECTIONREPEATFACTOR"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcFillAreaStyleHatching");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFillAreaStyleHatching.WR21' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcFillAreaStyleHatchingClause.WR21:
+						retVal = !(TYPEOF(StartOfNextHatchLine).Contains("IFC2X3.IFCTWODIRECTIONREPEATFACTOR"));
+						break;
+					case IfcFillAreaStyleHatchingClause.WR22:
+						retVal = !(EXISTS(PatternStart)) || (PatternStart.Dim == 2);
+						break;
+					case IfcFillAreaStyleHatchingClause.WR23:
+						retVal = !(EXISTS(PointOfReferenceHatchLine)) || (PointOfReferenceHatchLine.Dim == 2);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcFillAreaStyleHatching");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFillAreaStyleHatching.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcFillAreaStyleHatching.WR22) {
-				try {
-					retVal = !(EXISTS(PatternStart)) || (PatternStart.Dim == 2);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcFillAreaStyleHatching");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFillAreaStyleHatching.WR22' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcFillAreaStyleHatching.WR23) {
-				try {
-					retVal = !(EXISTS(PointOfReferenceHatchLine)) || (PointOfReferenceHatchLine.Dim == 2);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcFillAreaStyleHatching");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFillAreaStyleHatching.WR23' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcFillAreaStyleHatching.WR21))
+			if (!ValidateClause(IfcFillAreaStyleHatchingClause.WR21))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcFillAreaStyleHatching.WR21", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcFillAreaStyleHatching.WR22))
+			if (!ValidateClause(IfcFillAreaStyleHatchingClause.WR22))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcFillAreaStyleHatching.WR22", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcFillAreaStyleHatching.WR23))
+			if (!ValidateClause(IfcFillAreaStyleHatchingClause.WR23))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcFillAreaStyleHatching.WR23", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcFillAreaStyleHatching
-	{
-		public static readonly IfcFillAreaStyleHatching WR21 = new IfcFillAreaStyleHatching();
-		public static readonly IfcFillAreaStyleHatching WR22 = new IfcFillAreaStyleHatching();
-		public static readonly IfcFillAreaStyleHatching WR23 = new IfcFillAreaStyleHatching();
-		protected IfcFillAreaStyleHatching() {}
 	}
 }

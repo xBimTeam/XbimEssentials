@@ -17,33 +17,35 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	public partial class IfcConstructionMaterialResource : IExpressValidatable
 	{
+		public enum IfcConstructionMaterialResourceClause
+		{
+			WR1,
+			WR2,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcConstructionMaterialResource clause) {
+		public bool ValidateClause(IfcConstructionMaterialResourceClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcConstructionMaterialResource.WR1) {
-				try {
-					retVal = SIZEOF(this/* as IfcResource*/.ResourceOf) <= 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ConstructionMgmtDomain.IfcConstructionMaterialResource");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcConstructionMaterialResource.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcConstructionMaterialResourceClause.WR1:
+						retVal = SIZEOF(this/* as IfcResource*/.ResourceOf) <= 1;
+						break;
+					case IfcConstructionMaterialResourceClause.WR2:
+						retVal = !(EXISTS(this/* as IfcResource*/.ResourceOf.ItemAt(0))) || (this/* as IfcResource*/.ResourceOf.ItemAt(0).RelatedObjectsType == IfcObjectTypeEnum.PRODUCT);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.ConstructionMgmtDomain.IfcConstructionMaterialResource");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcConstructionMaterialResource.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcConstructionMaterialResource.WR2) {
-				try {
-					retVal = !(EXISTS(this/* as IfcResource*/.ResourceOf.ItemAt(0))) || (this/* as IfcResource*/.ResourceOf.ItemAt(0).RelatedObjectsType == IfcObjectTypeEnum.PRODUCT);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ConstructionMgmtDomain.IfcConstructionMaterialResource");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcConstructionMaterialResource.WR2' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcObject)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -52,21 +54,10 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcConstructionMaterialResource.WR1))
+			if (!ValidateClause(IfcConstructionMaterialResourceClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcConstructionMaterialResource.WR1", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcConstructionMaterialResource.WR2))
+			if (!ValidateClause(IfcConstructionMaterialResourceClause.WR2))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcConstructionMaterialResource.WR2", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcConstructionMaterialResource : IfcObject
-	{
-		public new static readonly IfcConstructionMaterialResource WR1 = new IfcConstructionMaterialResource();
-		public static readonly IfcConstructionMaterialResource WR2 = new IfcConstructionMaterialResource();
-		protected IfcConstructionMaterialResource() {}
 	}
 }

@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	public partial class IfcRevolvedAreaSolid : IExpressValidatable
 	{
+		public enum IfcRevolvedAreaSolidClause
+		{
+			AxisStartInXY,
+			AxisDirectionInXY,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRevolvedAreaSolid clause) {
+		public bool ValidateClause(IfcRevolvedAreaSolidClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRevolvedAreaSolid.AxisStartInXY) {
-				try {
-					retVal = Axis.Location.Coordinates.ItemAt(2) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcRevolvedAreaSolid");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRevolvedAreaSolid.AxisStartInXY' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRevolvedAreaSolidClause.AxisStartInXY:
+						retVal = Axis.Location.Coordinates.ItemAt(2) == 0;
+						break;
+					case IfcRevolvedAreaSolidClause.AxisDirectionInXY:
+						retVal = Axis.Z.DirectionRatios().ItemAt(2) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcRevolvedAreaSolid");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRevolvedAreaSolid.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcRevolvedAreaSolid.AxisDirectionInXY) {
-				try {
-					retVal = Axis.Z.DirectionRatios().ItemAt(2) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcRevolvedAreaSolid");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRevolvedAreaSolid.AxisDirectionInXY' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcSweptAreaSolid)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcRevolvedAreaSolid.AxisStartInXY))
+			if (!ValidateClause(IfcRevolvedAreaSolidClause.AxisStartInXY))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRevolvedAreaSolid.AxisStartInXY", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcRevolvedAreaSolid.AxisDirectionInXY))
+			if (!ValidateClause(IfcRevolvedAreaSolidClause.AxisDirectionInXY))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRevolvedAreaSolid.AxisDirectionInXY", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcRevolvedAreaSolid : IfcSweptAreaSolid
-	{
-		public static readonly IfcRevolvedAreaSolid AxisStartInXY = new IfcRevolvedAreaSolid();
-		public static readonly IfcRevolvedAreaSolid AxisDirectionInXY = new IfcRevolvedAreaSolid();
-		protected IfcRevolvedAreaSolid() {}
 	}
 }

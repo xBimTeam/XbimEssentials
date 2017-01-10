@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	public partial class IfcSlabType : IExpressValidatable
 	{
+		public enum IfcSlabTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcSlabType clause) {
+		public bool ValidateClause(IfcSlabTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcSlabType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcSlabTypeEnum.USERDEFINED) || ((PredefinedType == IfcSlabTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcSlabType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSlabType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcSlabTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcSlabTypeEnum.USERDEFINED) || ((PredefinedType == IfcSlabTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcSlabType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSlabType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcSlabType.CorrectPredefinedType))
+			if (!ValidateClause(IfcSlabTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSlabType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcSlabType : IfcTypeProduct
-	{
-		public static readonly IfcSlabType CorrectPredefinedType = new IfcSlabType();
-		protected IfcSlabType() {}
 	}
 }

@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	public partial struct IfcFontVariant : IExpressValidatable
 	{
+		public enum IfcFontVariantClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcFontVariant clause) {
+		public bool ValidateClause(IfcFontVariantClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcFontVariant.WR1) {
-				try {
-					retVal = NewArray("normal", "small-caps").Contains(this);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcFontVariant");
-					Log.Error("Exception thrown evaluating where-clause 'IfcFontVariant.WR1'.", ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcFontVariantClause.WR1:
+						retVal = NewArray("normal", "small-caps").Contains(this);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcFontVariant");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFontVariant.{0}'.", clause), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
-		public  IEnumerable<ValidationResult> Validate()
+		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcFontVariant.WR1))
+			if (!ValidateClause(IfcFontVariantClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcFontVariant.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcFontVariant
-	{
-		public static readonly IfcFontVariant WR1 = new IfcFontVariant();
-		protected IfcFontVariant() {}
 	}
 }

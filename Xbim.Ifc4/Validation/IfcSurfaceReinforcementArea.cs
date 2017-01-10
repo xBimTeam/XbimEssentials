@@ -13,76 +13,55 @@ namespace Xbim.Ifc4.StructuralLoadResource
 {
 	public partial class IfcSurfaceReinforcementArea : IExpressValidatable
 	{
+		public enum IfcSurfaceReinforcementAreaClause
+		{
+			SurfaceAndOrShearAreaSpecified,
+			NonnegativeArea1,
+			NonnegativeArea2,
+			NonnegativeArea3,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcSurfaceReinforcementArea clause) {
+		public bool ValidateClause(IfcSurfaceReinforcementAreaClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcSurfaceReinforcementArea.SurfaceAndOrShearAreaSpecified) {
-				try {
-					retVal = EXISTS(SurfaceReinforcement1) || EXISTS(SurfaceReinforcement2) || EXISTS(ShearReinforcement);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralLoadResource.IfcSurfaceReinforcementArea");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceReinforcementArea.SurfaceAndOrShearAreaSpecified' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcSurfaceReinforcementAreaClause.SurfaceAndOrShearAreaSpecified:
+						retVal = EXISTS(SurfaceReinforcement1) || EXISTS(SurfaceReinforcement2) || EXISTS(ShearReinforcement);
+						break;
+					case IfcSurfaceReinforcementAreaClause.NonnegativeArea1:
+						retVal = (!EXISTS(SurfaceReinforcement1)) || ((SurfaceReinforcement1.ItemAt(0) >= 0) && (SurfaceReinforcement1.ItemAt(1) >= 0) && ((SIZEOF(SurfaceReinforcement1) == 1) || (SurfaceReinforcement1.ItemAt(0) >= 0)));
+						break;
+					case IfcSurfaceReinforcementAreaClause.NonnegativeArea2:
+						retVal = (!EXISTS(SurfaceReinforcement2)) || ((SurfaceReinforcement2.ItemAt(0) >= 0) && (SurfaceReinforcement2.ItemAt(1) >= 0) && ((SIZEOF(SurfaceReinforcement2) == 1) || (SurfaceReinforcement2.ItemAt(0) >= 0)));
+						break;
+					case IfcSurfaceReinforcementAreaClause.NonnegativeArea3:
+						retVal = (!EXISTS(ShearReinforcement)) || (ShearReinforcement >= 0);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.StructuralLoadResource.IfcSurfaceReinforcementArea");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceReinforcementArea.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcSurfaceReinforcementArea.NonnegativeArea1) {
-				try {
-					retVal = (!EXISTS(SurfaceReinforcement1)) || ((SurfaceReinforcement1.ItemAt(0) >= 0) && (SurfaceReinforcement1.ItemAt(1) >= 0) && ((SIZEOF(SurfaceReinforcement1) == 1) || (SurfaceReinforcement1.ItemAt(0) >= 0)));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralLoadResource.IfcSurfaceReinforcementArea");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceReinforcementArea.NonnegativeArea1' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcSurfaceReinforcementArea.NonnegativeArea2) {
-				try {
-					retVal = (!EXISTS(SurfaceReinforcement2)) || ((SurfaceReinforcement2.ItemAt(0) >= 0) && (SurfaceReinforcement2.ItemAt(1) >= 0) && ((SIZEOF(SurfaceReinforcement2) == 1) || (SurfaceReinforcement2.ItemAt(0) >= 0)));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralLoadResource.IfcSurfaceReinforcementArea");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceReinforcementArea.NonnegativeArea2' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcSurfaceReinforcementArea.NonnegativeArea3) {
-				try {
-					retVal = (!EXISTS(ShearReinforcement)) || (ShearReinforcement >= 0);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralLoadResource.IfcSurfaceReinforcementArea");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceReinforcementArea.NonnegativeArea3' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcSurfaceReinforcementArea.SurfaceAndOrShearAreaSpecified))
+			if (!ValidateClause(IfcSurfaceReinforcementAreaClause.SurfaceAndOrShearAreaSpecified))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSurfaceReinforcementArea.SurfaceAndOrShearAreaSpecified", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcSurfaceReinforcementArea.NonnegativeArea1))
+			if (!ValidateClause(IfcSurfaceReinforcementAreaClause.NonnegativeArea1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSurfaceReinforcementArea.NonnegativeArea1", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcSurfaceReinforcementArea.NonnegativeArea2))
+			if (!ValidateClause(IfcSurfaceReinforcementAreaClause.NonnegativeArea2))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSurfaceReinforcementArea.NonnegativeArea2", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcSurfaceReinforcementArea.NonnegativeArea3))
+			if (!ValidateClause(IfcSurfaceReinforcementAreaClause.NonnegativeArea3))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSurfaceReinforcementArea.NonnegativeArea3", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcSurfaceReinforcementArea
-	{
-		public static readonly IfcSurfaceReinforcementArea SurfaceAndOrShearAreaSpecified = new IfcSurfaceReinforcementArea();
-		public static readonly IfcSurfaceReinforcementArea NonnegativeArea1 = new IfcSurfaceReinforcementArea();
-		public static readonly IfcSurfaceReinforcementArea NonnegativeArea2 = new IfcSurfaceReinforcementArea();
-		public static readonly IfcSurfaceReinforcementArea NonnegativeArea3 = new IfcSurfaceReinforcementArea();
-		protected IfcSurfaceReinforcementArea() {}
 	}
 }

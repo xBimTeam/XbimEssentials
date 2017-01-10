@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	public partial class IfcSurfaceOfLinearExtrusion : IExpressValidatable
 	{
+		public enum IfcSurfaceOfLinearExtrusionClause
+		{
+			DepthGreaterZero,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcSurfaceOfLinearExtrusion clause) {
+		public bool ValidateClause(IfcSurfaceOfLinearExtrusionClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcSurfaceOfLinearExtrusion.DepthGreaterZero) {
-				try {
-					retVal = Depth > 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcSurfaceOfLinearExtrusion");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceOfLinearExtrusion.DepthGreaterZero' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcSurfaceOfLinearExtrusionClause.DepthGreaterZero:
+						retVal = Depth > 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcSurfaceOfLinearExtrusion");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceOfLinearExtrusion.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcSweptSurface)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcSurfaceOfLinearExtrusion.DepthGreaterZero))
+			if (!ValidateClause(IfcSurfaceOfLinearExtrusionClause.DepthGreaterZero))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSurfaceOfLinearExtrusion.DepthGreaterZero", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcSurfaceOfLinearExtrusion : IfcSweptSurface
-	{
-		public static readonly IfcSurfaceOfLinearExtrusion DepthGreaterZero = new IfcSurfaceOfLinearExtrusion();
-		protected IfcSurfaceOfLinearExtrusion() {}
 	}
 }

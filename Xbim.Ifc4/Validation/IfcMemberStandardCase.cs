@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	public partial class IfcMemberStandardCase : IExpressValidatable
 	{
+		public enum IfcMemberStandardCaseClause
+		{
+			HasMaterialProfileSetUsage,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcMemberStandardCase clause) {
+		public bool ValidateClause(IfcMemberStandardCaseClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcMemberStandardCase.HasMaterialProfileSetUsage) {
-				try {
-					retVal = SIZEOF(USEDIN(this, "IFC4.IFCRELASSOCIATES.RELATEDOBJECTS").Where(temp => (TYPEOF(temp).Contains("IFC4.IFCRELASSOCIATESMATERIAL")) && (TYPEOF(temp.AsIfcRelAssociatesMaterial().RelatingMaterial).Contains("IFC4.IFCMATERIALPROFILESETUSAGE")))) == 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcMemberStandardCase");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcMemberStandardCase.HasMaterialProfileSetUsage' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcMemberStandardCaseClause.HasMaterialProfileSetUsage:
+						retVal = SIZEOF(USEDIN(this, "IFC4.IFCRELASSOCIATES.RELATEDOBJECTS").Where(temp => (TYPEOF(temp).Contains("IFC4.IFCRELASSOCIATESMATERIAL")) && (TYPEOF(temp.AsIfcRelAssociatesMaterial().RelatingMaterial).Contains("IFC4.IFCMATERIALPROFILESETUSAGE")))) == 1;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcMemberStandardCase");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcMemberStandardCase.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcMember)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcMemberStandardCase.HasMaterialProfileSetUsage))
+			if (!ValidateClause(IfcMemberStandardCaseClause.HasMaterialProfileSetUsage))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcMemberStandardCase.HasMaterialProfileSetUsage", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcMemberStandardCase : IfcMember
-	{
-		public static readonly IfcMemberStandardCase HasMaterialProfileSetUsage = new IfcMemberStandardCase();
-		protected IfcMemberStandardCase() {}
 	}
 }

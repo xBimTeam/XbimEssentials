@@ -17,24 +17,31 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	public partial class IfcInventory : IExpressValidatable
 	{
+		public enum IfcInventoryClause
+		{
+			WR41,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcInventory clause) {
+		public bool ValidateClause(IfcInventoryClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcInventory.WR41) {
-				try {
-					retVal = SIZEOF(this/* as IfcGroup*/.IsGroupedBy.RelatedObjects.Where(temp => !((TYPEOF(temp).Contains("IFC2X3.IFCSPACE")) || (TYPEOF(temp).Contains("IFC2X3.IFCASSET")) || (TYPEOF(temp).Contains("IFC2X3.IFCFURNISHINGELEMENT"))))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.SharedFacilitiesElements.IfcInventory");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcInventory.WR41' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcInventoryClause.WR41:
+						retVal = SIZEOF(this/* as IfcGroup*/.IsGroupedBy.RelatedObjects.Where(temp => !((TYPEOF(temp).Contains("IFC2X3.IFCSPACE")) || (TYPEOF(temp).Contains("IFC2X3.IFCASSET")) || (TYPEOF(temp).Contains("IFC2X3.IFCFURNISHINGELEMENT"))))) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.SharedFacilitiesElements.IfcInventory");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcInventory.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcObject)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -43,18 +50,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcInventory.WR41))
+			if (!ValidateClause(IfcInventoryClause.WR41))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcInventory.WR41", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcInventory : IfcObject
-	{
-		public static readonly IfcInventory WR41 = new IfcInventory();
-		protected IfcInventory() {}
 	}
 }

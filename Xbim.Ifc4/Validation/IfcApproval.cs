@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.ApprovalResource
 {
 	public partial class IfcApproval : IExpressValidatable
 	{
+		public enum IfcApprovalClause
+		{
+			HasIdentifierOrName,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcApproval clause) {
+		public bool ValidateClause(IfcApprovalClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcApproval.HasIdentifierOrName) {
-				try {
-					retVal = EXISTS(Identifier) || EXISTS(Name);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ApprovalResource.IfcApproval");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcApproval.HasIdentifierOrName' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcApprovalClause.HasIdentifierOrName:
+						retVal = EXISTS(Identifier) || EXISTS(Name);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ApprovalResource.IfcApproval");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcApproval.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcApproval.HasIdentifierOrName))
+			if (!ValidateClause(IfcApprovalClause.HasIdentifierOrName))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcApproval.HasIdentifierOrName", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcApproval
-	{
-		public static readonly IfcApproval HasIdentifierOrName = new IfcApproval();
-		protected IfcApproval() {}
 	}
 }

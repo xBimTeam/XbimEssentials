@@ -17,42 +17,39 @@ namespace Xbim.Ifc2x3.ProcessExtension
 {
 	public partial class IfcTask : IExpressValidatable
 	{
+		public enum IfcTaskClause
+		{
+			WR1,
+			WR2,
+			WR3,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcTask clause) {
+		public bool ValidateClause(IfcTaskClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcTask.WR1) {
-				try {
-					retVal = SIZEOF(this/* as IfcObjectDefinition*/.Decomposes.Where(temp => !(TYPEOF(temp).Contains("IFC2X3.IFCRELNESTS")))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProcessExtension.IfcTask");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTask.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcTaskClause.WR1:
+						retVal = SIZEOF(this/* as IfcObjectDefinition*/.Decomposes.Where(temp => !(TYPEOF(temp).Contains("IFC2X3.IFCRELNESTS")))) == 0;
+						break;
+					case IfcTaskClause.WR2:
+						retVal = SIZEOF(this/* as IfcObjectDefinition*/.IsDecomposedBy.Where(temp => !(TYPEOF(temp).Contains("IFC2X3.IFCRELNESTS")))) == 0;
+						break;
+					case IfcTaskClause.WR3:
+						retVal = EXISTS(this/* as IfcRoot*/.Name);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.ProcessExtension.IfcTask");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTask.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcTask.WR2) {
-				try {
-					retVal = SIZEOF(this/* as IfcObjectDefinition*/.IsDecomposedBy.Where(temp => !(TYPEOF(temp).Contains("IFC2X3.IFCRELNESTS")))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProcessExtension.IfcTask");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTask.WR2' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcTask.WR3) {
-				try {
-					retVal = EXISTS(this/* as IfcRoot*/.Name);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProcessExtension.IfcTask");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTask.WR3' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcObject)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -61,24 +58,12 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcTask.WR1))
+			if (!ValidateClause(IfcTaskClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcTask.WR1", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcTask.WR2))
+			if (!ValidateClause(IfcTaskClause.WR2))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcTask.WR2", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcTask.WR3))
+			if (!ValidateClause(IfcTaskClause.WR3))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcTask.WR3", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcTask : IfcObject
-	{
-		public new static readonly IfcTask WR1 = new IfcTask();
-		public static readonly IfcTask WR2 = new IfcTask();
-		public static readonly IfcTask WR3 = new IfcTask();
-		protected IfcTask() {}
 	}
 }

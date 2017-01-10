@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class IfcRelConnectsElements : IExpressValidatable
 	{
+		public enum IfcRelConnectsElementsClause
+		{
+			WR31,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRelConnectsElements clause) {
+		public bool ValidateClause(IfcRelConnectsElementsClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRelConnectsElements.WR31) {
-				try {
-					retVal = !Object.ReferenceEquals(RelatingElement, RelatedElement);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProductExtension.IfcRelConnectsElements");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelConnectsElements.WR31' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRelConnectsElementsClause.WR31:
+						retVal = !Object.ReferenceEquals(RelatingElement, RelatedElement);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.ProductExtension.IfcRelConnectsElements");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelConnectsElements.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcRelConnectsElements.WR31))
+			if (!ValidateClause(IfcRelConnectsElementsClause.WR31))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelConnectsElements.WR31", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcRelConnectsElements
-	{
-		public static readonly IfcRelConnectsElements WR31 = new IfcRelConnectsElements();
-		protected IfcRelConnectsElements() {}
 	}
 }

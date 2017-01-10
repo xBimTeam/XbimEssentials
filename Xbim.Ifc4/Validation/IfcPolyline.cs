@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	public partial class IfcPolyline : IExpressValidatable
 	{
+		public enum IfcPolylineClause
+		{
+			SameDim,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcPolyline clause) {
+		public bool ValidateClause(IfcPolylineClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcPolyline.SameDim) {
-				try {
-					retVal = SIZEOF(Points.Where(Temp => Temp.Dim != Points.ItemAt(0).Dim)) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcPolyline");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPolyline.SameDim' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcPolylineClause.SameDim:
+						retVal = SIZEOF(Points.Where(Temp => Temp.Dim != Points.ItemAt(0).Dim)) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcPolyline");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPolyline.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcPolyline.SameDim))
+			if (!ValidateClause(IfcPolylineClause.SameDim))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPolyline.SameDim", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcPolyline
-	{
-		public static readonly IfcPolyline SameDim = new IfcPolyline();
-		protected IfcPolyline() {}
 	}
 }

@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class IfcCurveStyleFontPattern : IExpressValidatable
 	{
+		public enum IfcCurveStyleFontPatternClause
+		{
+			WR01,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcCurveStyleFontPattern clause) {
+		public bool ValidateClause(IfcCurveStyleFontPatternClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcCurveStyleFontPattern.WR01) {
-				try {
-					retVal = VisibleSegmentLength >= 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcCurveStyleFontPattern");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCurveStyleFontPattern.WR01' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcCurveStyleFontPatternClause.WR01:
+						retVal = VisibleSegmentLength >= 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcCurveStyleFontPattern");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCurveStyleFontPattern.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcCurveStyleFontPattern.WR01))
+			if (!ValidateClause(IfcCurveStyleFontPatternClause.WR01))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCurveStyleFontPattern.WR01", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcCurveStyleFontPattern
-	{
-		public static readonly IfcCurveStyleFontPattern WR01 = new IfcCurveStyleFontPattern();
-		protected IfcCurveStyleFontPattern() {}
 	}
 }

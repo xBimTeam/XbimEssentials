@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	public partial class IfcBSplineCurveWithKnots : IExpressValidatable
 	{
+		public enum IfcBSplineCurveWithKnotsClause
+		{
+			ConsistentBSpline,
+			CorrespondingKnotLists,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcBSplineCurveWithKnots clause) {
+		public bool ValidateClause(IfcBSplineCurveWithKnotsClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcBSplineCurveWithKnots.ConsistentBSpline) {
-				try {
-					retVal = IfcConstraintsParamBSpline(Degree, UpperIndexOnKnots, UpperIndexOnControlPoints, KnotMultiplicities, Knots);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcBSplineCurveWithKnots");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBSplineCurveWithKnots.ConsistentBSpline' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcBSplineCurveWithKnotsClause.ConsistentBSpline:
+						retVal = IfcConstraintsParamBSpline(Degree, UpperIndexOnKnots, UpperIndexOnControlPoints, KnotMultiplicities, Knots);
+						break;
+					case IfcBSplineCurveWithKnotsClause.CorrespondingKnotLists:
+						retVal = SIZEOF(KnotMultiplicities) == UpperIndexOnKnots;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcBSplineCurveWithKnots");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBSplineCurveWithKnots.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcBSplineCurveWithKnots.CorrespondingKnotLists) {
-				try {
-					retVal = SIZEOF(KnotMultiplicities) == UpperIndexOnKnots;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcBSplineCurveWithKnots");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBSplineCurveWithKnots.CorrespondingKnotLists' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcBSplineCurve)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcBSplineCurveWithKnots.ConsistentBSpline))
+			if (!ValidateClause(IfcBSplineCurveWithKnotsClause.ConsistentBSpline))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcBSplineCurveWithKnots.ConsistentBSpline", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcBSplineCurveWithKnots.CorrespondingKnotLists))
+			if (!ValidateClause(IfcBSplineCurveWithKnotsClause.CorrespondingKnotLists))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcBSplineCurveWithKnots.CorrespondingKnotLists", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcBSplineCurveWithKnots : IfcBSplineCurve
-	{
-		public static readonly IfcBSplineCurveWithKnots ConsistentBSpline = new IfcBSplineCurveWithKnots();
-		public static readonly IfcBSplineCurveWithKnots CorrespondingKnotLists = new IfcBSplineCurveWithKnots();
-		protected IfcBSplineCurveWithKnots() {}
 	}
 }

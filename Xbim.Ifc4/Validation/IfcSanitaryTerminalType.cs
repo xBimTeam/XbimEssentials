@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 {
 	public partial class IfcSanitaryTerminalType : IExpressValidatable
 	{
+		public enum IfcSanitaryTerminalTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcSanitaryTerminalType clause) {
+		public bool ValidateClause(IfcSanitaryTerminalTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcSanitaryTerminalType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcSanitaryTerminalTypeEnum.USERDEFINED) || ((PredefinedType == IfcSanitaryTerminalTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PlumbingFireProtectionDomain.IfcSanitaryTerminalType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSanitaryTerminalType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcSanitaryTerminalTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcSanitaryTerminalTypeEnum.USERDEFINED) || ((PredefinedType == IfcSanitaryTerminalTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.PlumbingFireProtectionDomain.IfcSanitaryTerminalType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSanitaryTerminalType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcSanitaryTerminalType.CorrectPredefinedType))
+			if (!ValidateClause(IfcSanitaryTerminalTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSanitaryTerminalType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcSanitaryTerminalType : IfcTypeProduct
-	{
-		public static readonly IfcSanitaryTerminalType CorrectPredefinedType = new IfcSanitaryTerminalType();
-		protected IfcSanitaryTerminalType() {}
 	}
 }

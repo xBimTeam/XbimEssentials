@@ -17,52 +17,43 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class IfcSweptDiskSolid : IExpressValidatable
 	{
+		public enum IfcSweptDiskSolidClause
+		{
+			WR1,
+			WR2,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcSweptDiskSolid clause) {
+		public bool ValidateClause(IfcSweptDiskSolidClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcSweptDiskSolid.WR1) {
-				try {
-					retVal = Directrix.Dim == 3;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricModelResource.IfcSweptDiskSolid");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSweptDiskSolid.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcSweptDiskSolidClause.WR1:
+						retVal = Directrix.Dim == 3;
+						break;
+					case IfcSweptDiskSolidClause.WR2:
+						retVal = (!EXISTS(InnerRadius)) || (Radius > InnerRadius);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricModelResource.IfcSweptDiskSolid");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSweptDiskSolid.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcSweptDiskSolid.WR2) {
-				try {
-					retVal = (!EXISTS(InnerRadius)) || (Radius > InnerRadius);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricModelResource.IfcSweptDiskSolid");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSweptDiskSolid.WR2' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcSweptDiskSolid.WR1))
+			if (!ValidateClause(IfcSweptDiskSolidClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSweptDiskSolid.WR1", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcSweptDiskSolid.WR2))
+			if (!ValidateClause(IfcSweptDiskSolidClause.WR2))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSweptDiskSolid.WR2", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcSweptDiskSolid
-	{
-		public static readonly IfcSweptDiskSolid WR1 = new IfcSweptDiskSolid();
-		public static readonly IfcSweptDiskSolid WR2 = new IfcSweptDiskSolid();
-		protected IfcSweptDiskSolid() {}
 	}
 }

@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	public partial class IfcCartesianPoint : IExpressValidatable
 	{
+		public enum IfcCartesianPointClause
+		{
+			CP2Dor3D,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcCartesianPoint clause) {
+		public bool ValidateClause(IfcCartesianPointClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcCartesianPoint.CP2Dor3D) {
-				try {
-					retVal = HIINDEX(Coordinates) >= 2;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcCartesianPoint");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCartesianPoint.CP2Dor3D' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcCartesianPointClause.CP2Dor3D:
+						retVal = HIINDEX(Coordinates) >= 2;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcCartesianPoint");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCartesianPoint.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcCartesianPoint.CP2Dor3D))
+			if (!ValidateClause(IfcCartesianPointClause.CP2Dor3D))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCartesianPoint.CP2Dor3D", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcCartesianPoint
-	{
-		public static readonly IfcCartesianPoint CP2Dor3D = new IfcCartesianPoint();
-		protected IfcCartesianPoint() {}
 	}
 }

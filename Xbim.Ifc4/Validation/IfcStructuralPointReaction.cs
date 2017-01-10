@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	public partial class IfcStructuralPointReaction : IExpressValidatable
 	{
+		public enum IfcStructuralPointReactionClause
+		{
+			SuitableLoadType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcStructuralPointReaction clause) {
+		public bool ValidateClause(IfcStructuralPointReactionClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcStructuralPointReaction.SuitableLoadType) {
-				try {
-					retVal = SIZEOF(NewArray("IFC4.IFCSTRUCTURALLOADSINGLEFORCE", "IFC4.IFCSTRUCTURALLOADSINGLEDISPLACEMENT") * TYPEOF(this/* as IfcStructuralActivity*/.AppliedLoad)) == 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralPointReaction");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralPointReaction.SuitableLoadType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcStructuralPointReactionClause.SuitableLoadType:
+						retVal = SIZEOF(NewArray("IFC4.IFCSTRUCTURALLOADSINGLEFORCE", "IFC4.IFCSTRUCTURALLOADSINGLEDISPLACEMENT") * TYPEOF(this/* as IfcStructuralActivity*/.AppliedLoad)) == 1;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralPointReaction");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralPointReaction.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcStructuralPointReaction.SuitableLoadType))
+			if (!ValidateClause(IfcStructuralPointReactionClause.SuitableLoadType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcStructuralPointReaction.SuitableLoadType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcStructuralPointReaction : IfcProduct
-	{
-		public static readonly IfcStructuralPointReaction SuitableLoadType = new IfcStructuralPointReaction();
-		protected IfcStructuralPointReaction() {}
 	}
 }

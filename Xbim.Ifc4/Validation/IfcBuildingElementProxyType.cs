@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	public partial class IfcBuildingElementProxyType : IExpressValidatable
 	{
+		public enum IfcBuildingElementProxyTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcBuildingElementProxyType clause) {
+		public bool ValidateClause(IfcBuildingElementProxyTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcBuildingElementProxyType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcBuildingElementProxyTypeEnum.USERDEFINED) || ((PredefinedType == IfcBuildingElementProxyTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcBuildingElementProxyType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBuildingElementProxyType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcBuildingElementProxyTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcBuildingElementProxyTypeEnum.USERDEFINED) || ((PredefinedType == IfcBuildingElementProxyTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcBuildingElementProxyType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBuildingElementProxyType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcBuildingElementProxyType.CorrectPredefinedType))
+			if (!ValidateClause(IfcBuildingElementProxyTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcBuildingElementProxyType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcBuildingElementProxyType : IfcTypeProduct
-	{
-		public static readonly IfcBuildingElementProxyType CorrectPredefinedType = new IfcBuildingElementProxyType();
-		protected IfcBuildingElementProxyType() {}
 	}
 }

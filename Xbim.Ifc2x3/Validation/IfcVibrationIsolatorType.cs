@@ -17,24 +17,31 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class IfcVibrationIsolatorType : IExpressValidatable
 	{
+		public enum IfcVibrationIsolatorTypeClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcVibrationIsolatorType clause) {
+		public bool ValidateClause(IfcVibrationIsolatorTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcVibrationIsolatorType.WR1) {
-				try {
-					retVal = (PredefinedType != IfcVibrationIsolatorTypeEnum.USERDEFINED) || ((PredefinedType == IfcVibrationIsolatorTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.HVACDomain.IfcVibrationIsolatorType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcVibrationIsolatorType.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcVibrationIsolatorTypeClause.WR1:
+						retVal = (PredefinedType != IfcVibrationIsolatorTypeEnum.USERDEFINED) || ((PredefinedType == IfcVibrationIsolatorTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.HVACDomain.IfcVibrationIsolatorType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcVibrationIsolatorType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -43,18 +50,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcVibrationIsolatorType.WR1))
+			if (!ValidateClause(IfcVibrationIsolatorTypeClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcVibrationIsolatorType.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcVibrationIsolatorType : IfcTypeProduct
-	{
-		public new static readonly IfcVibrationIsolatorType WR1 = new IfcVibrationIsolatorType();
-		protected IfcVibrationIsolatorType() {}
 	}
 }

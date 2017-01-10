@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	public partial class IfcSweptSurface : IExpressValidatable
 	{
+		public enum IfcSweptSurfaceClause
+		{
+			SweptCurveType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcSweptSurface clause) {
+		public bool ValidateClause(IfcSweptSurfaceClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcSweptSurface.SweptCurveType) {
-				try {
-					retVal = SweptCurve.ProfileType == IfcProfileTypeEnum.CURVE;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcSweptSurface");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSweptSurface.SweptCurveType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcSweptSurfaceClause.SweptCurveType:
+						retVal = SweptCurve.ProfileType == IfcProfileTypeEnum.CURVE;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcSweptSurface");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSweptSurface.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcSweptSurface.SweptCurveType))
+			if (!ValidateClause(IfcSweptSurfaceClause.SweptCurveType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSweptSurface.SweptCurveType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcSweptSurface
-	{
-		public static readonly IfcSweptSurface SweptCurveType = new IfcSweptSurface();
-		protected IfcSweptSurface() {}
 	}
 }

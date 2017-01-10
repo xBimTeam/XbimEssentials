@@ -17,76 +17,55 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class IfcWindowLiningProperties : IExpressValidatable
 	{
+		public enum IfcWindowLiningPropertiesClause
+		{
+			WR31,
+			WR32,
+			WR33,
+			WR34,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcWindowLiningProperties clause) {
+		public bool ValidateClause(IfcWindowLiningPropertiesClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcWindowLiningProperties.WR31) {
-				try {
-					retVal = !(!(EXISTS(LiningDepth)) && EXISTS(LiningThickness));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.SharedBldgElements.IfcWindowLiningProperties");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcWindowLiningProperties.WR31' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcWindowLiningPropertiesClause.WR31:
+						retVal = !(!(EXISTS(LiningDepth)) && EXISTS(LiningThickness));
+						break;
+					case IfcWindowLiningPropertiesClause.WR32:
+						retVal = !(!(EXISTS(FirstTransomOffset)) && EXISTS(SecondTransomOffset));
+						break;
+					case IfcWindowLiningPropertiesClause.WR33:
+						retVal = !(!(EXISTS(FirstMullionOffset)) && EXISTS(SecondMullionOffset));
+						break;
+					case IfcWindowLiningPropertiesClause.WR34:
+						retVal = EXISTS(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)) && (TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)).Contains("IFC2X3.IFCWINDOWSTYLE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.SharedBldgElements.IfcWindowLiningProperties");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcWindowLiningProperties.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcWindowLiningProperties.WR32) {
-				try {
-					retVal = !(!(EXISTS(FirstTransomOffset)) && EXISTS(SecondTransomOffset));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.SharedBldgElements.IfcWindowLiningProperties");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcWindowLiningProperties.WR32' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcWindowLiningProperties.WR33) {
-				try {
-					retVal = !(!(EXISTS(FirstMullionOffset)) && EXISTS(SecondMullionOffset));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.SharedBldgElements.IfcWindowLiningProperties");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcWindowLiningProperties.WR33' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcWindowLiningProperties.WR34) {
-				try {
-					retVal = EXISTS(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)) && (TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)).Contains("IFC2X3.IFCWINDOWSTYLE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.SharedBldgElements.IfcWindowLiningProperties");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcWindowLiningProperties.WR34' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcWindowLiningProperties.WR31))
+			if (!ValidateClause(IfcWindowLiningPropertiesClause.WR31))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcWindowLiningProperties.WR31", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcWindowLiningProperties.WR32))
+			if (!ValidateClause(IfcWindowLiningPropertiesClause.WR32))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcWindowLiningProperties.WR32", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcWindowLiningProperties.WR33))
+			if (!ValidateClause(IfcWindowLiningPropertiesClause.WR33))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcWindowLiningProperties.WR33", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcWindowLiningProperties.WR34))
+			if (!ValidateClause(IfcWindowLiningPropertiesClause.WR34))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcWindowLiningProperties.WR34", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcWindowLiningProperties
-	{
-		public static readonly IfcWindowLiningProperties WR31 = new IfcWindowLiningProperties();
-		public static readonly IfcWindowLiningProperties WR32 = new IfcWindowLiningProperties();
-		public static readonly IfcWindowLiningProperties WR33 = new IfcWindowLiningProperties();
-		public static readonly IfcWindowLiningProperties WR34 = new IfcWindowLiningProperties();
-		protected IfcWindowLiningProperties() {}
 	}
 }

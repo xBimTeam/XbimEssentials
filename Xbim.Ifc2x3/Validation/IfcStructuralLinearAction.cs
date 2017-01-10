@@ -17,24 +17,31 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class IfcStructuralLinearAction : IExpressValidatable
 	{
+		public enum IfcStructuralLinearActionClause
+		{
+			WR61,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcStructuralLinearAction clause) {
+		public bool ValidateClause(IfcStructuralLinearActionClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcStructuralLinearAction.WR61) {
-				try {
-					retVal = SIZEOF(NewArray("IFC2X3.IFCSTRUCTURALLOADLINEARFORCE", "IFC2X3.IFCSTRUCTURALLOADTEMPERATURE") * TYPEOF(this/* as IfcStructuralActivity*/.AppliedLoad)) == 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.StructuralAnalysisDomain.IfcStructuralLinearAction");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralLinearAction.WR61' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcStructuralLinearActionClause.WR61:
+						retVal = SIZEOF(NewArray("IFC2X3.IFCSTRUCTURALLOADLINEARFORCE", "IFC2X3.IFCSTRUCTURALLOADTEMPERATURE") * TYPEOF(this/* as IfcStructuralActivity*/.AppliedLoad)) == 1;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.StructuralAnalysisDomain.IfcStructuralLinearAction");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralLinearAction.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -43,18 +50,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcStructuralLinearAction.WR61))
+			if (!ValidateClause(IfcStructuralLinearActionClause.WR61))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcStructuralLinearAction.WR61", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcStructuralLinearAction : IfcProduct
-	{
-		public static readonly IfcStructuralLinearAction WR61 = new IfcStructuralLinearAction();
-		protected IfcStructuralLinearAction() {}
 	}
 }

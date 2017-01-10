@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.RepresentationResource
 {
 	public partial class IfcMaterialDefinitionRepresentation : IExpressValidatable
 	{
+		public enum IfcMaterialDefinitionRepresentationClause
+		{
+			OnlyStyledRepresentations,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcMaterialDefinitionRepresentation clause) {
+		public bool ValidateClause(IfcMaterialDefinitionRepresentationClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcMaterialDefinitionRepresentation.OnlyStyledRepresentations) {
-				try {
-					retVal = SIZEOF(Representations.Where(temp => (!(TYPEOF(temp).Contains("IFC4.IFCSTYLEDREPRESENTATION"))))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.RepresentationResource.IfcMaterialDefinitionRepresentation");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcMaterialDefinitionRepresentation.OnlyStyledRepresentations' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcMaterialDefinitionRepresentationClause.OnlyStyledRepresentations:
+						retVal = SIZEOF(Representations.Where(temp => (!(TYPEOF(temp).Contains("IFC4.IFCSTYLEDREPRESENTATION"))))) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.RepresentationResource.IfcMaterialDefinitionRepresentation");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcMaterialDefinitionRepresentation.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcMaterialDefinitionRepresentation.OnlyStyledRepresentations))
+			if (!ValidateClause(IfcMaterialDefinitionRepresentationClause.OnlyStyledRepresentations))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcMaterialDefinitionRepresentation.OnlyStyledRepresentations", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcMaterialDefinitionRepresentation
-	{
-		public static readonly IfcMaterialDefinitionRepresentation OnlyStyledRepresentations = new IfcMaterialDefinitionRepresentation();
-		protected IfcMaterialDefinitionRepresentation() {}
 	}
 }

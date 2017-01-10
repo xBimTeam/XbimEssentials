@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.DateTimeResource
 {
 	public partial struct IfcSecondInMinute : IExpressValidatable
 	{
+		public enum IfcSecondInMinuteClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcSecondInMinute clause) {
+		public bool ValidateClause(IfcSecondInMinuteClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcSecondInMinute.WR1) {
-				try {
-					retVal = ((0 <= this) && (this < 60) );
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.DateTimeResource.IfcSecondInMinute");
-					Log.Error("Exception thrown evaluating where-clause 'IfcSecondInMinute.WR1'.", ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcSecondInMinuteClause.WR1:
+						retVal = ((0 <= this) && (this < 60) );
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.DateTimeResource.IfcSecondInMinute");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSecondInMinute.{0}'.", clause), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
-		public  IEnumerable<ValidationResult> Validate()
+		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcSecondInMinute.WR1))
+			if (!ValidateClause(IfcSecondInMinuteClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSecondInMinute.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcSecondInMinute
-	{
-		public static readonly IfcSecondInMinute WR1 = new IfcSecondInMinute();
-		protected IfcSecondInMinute() {}
 	}
 }

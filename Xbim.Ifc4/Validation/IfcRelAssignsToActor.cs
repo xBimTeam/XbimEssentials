@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.Kernel
 {
 	public partial class IfcRelAssignsToActor : IExpressValidatable
 	{
+		public enum IfcRelAssignsToActorClause
+		{
+			NoSelfReference,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRelAssignsToActor clause) {
+		public bool ValidateClause(IfcRelAssignsToActorClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRelAssignsToActor.NoSelfReference) {
-				try {
-					retVal = SIZEOF(this/* as IfcRelAssigns*/.RelatedObjects.Where(Temp => Object.ReferenceEquals(RelatingActor, Temp))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcRelAssignsToActor");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelAssignsToActor.NoSelfReference' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRelAssignsToActorClause.NoSelfReference:
+						retVal = SIZEOF(this/* as IfcRelAssigns*/.RelatedObjects.Where(Temp => Object.ReferenceEquals(RelatingActor, Temp))) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcRelAssignsToActor");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelAssignsToActor.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcRelAssigns)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.Kernel
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcRelAssignsToActor.NoSelfReference))
+			if (!ValidateClause(IfcRelAssignsToActorClause.NoSelfReference))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelAssignsToActor.NoSelfReference", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcRelAssignsToActor : IfcRelAssigns
-	{
-		public static readonly IfcRelAssignsToActor NoSelfReference = new IfcRelAssignsToActor();
-		protected IfcRelAssignsToActor() {}
 	}
 }

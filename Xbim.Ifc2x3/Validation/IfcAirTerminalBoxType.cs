@@ -17,24 +17,31 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class IfcAirTerminalBoxType : IExpressValidatable
 	{
+		public enum IfcAirTerminalBoxTypeClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcAirTerminalBoxType clause) {
+		public bool ValidateClause(IfcAirTerminalBoxTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcAirTerminalBoxType.WR1) {
-				try {
-					retVal = (PredefinedType != IfcAirTerminalBoxTypeEnum.USERDEFINED) || ((PredefinedType == IfcAirTerminalBoxTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.HVACDomain.IfcAirTerminalBoxType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAirTerminalBoxType.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcAirTerminalBoxTypeClause.WR1:
+						retVal = (PredefinedType != IfcAirTerminalBoxTypeEnum.USERDEFINED) || ((PredefinedType == IfcAirTerminalBoxTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.HVACDomain.IfcAirTerminalBoxType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAirTerminalBoxType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -43,18 +50,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcAirTerminalBoxType.WR1))
+			if (!ValidateClause(IfcAirTerminalBoxTypeClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcAirTerminalBoxType.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcAirTerminalBoxType : IfcTypeProduct
-	{
-		public new static readonly IfcAirTerminalBoxType WR1 = new IfcAirTerminalBoxType();
-		protected IfcAirTerminalBoxType() {}
 	}
 }

@@ -13,52 +13,43 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	public partial class IfcCompositeProfileDef : IExpressValidatable
 	{
+		public enum IfcCompositeProfileDefClause
+		{
+			InvariantProfileType,
+			NoRecursion,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcCompositeProfileDef clause) {
+		public bool ValidateClause(IfcCompositeProfileDefClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcCompositeProfileDef.InvariantProfileType) {
-				try {
-					retVal = SIZEOF(Profiles.Where(temp => temp.ProfileType != Profiles.ItemAt(0).ProfileType)) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcCompositeProfileDef");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCompositeProfileDef.InvariantProfileType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcCompositeProfileDefClause.InvariantProfileType:
+						retVal = SIZEOF(Profiles.Where(temp => temp.ProfileType != Profiles.ItemAt(0).ProfileType)) == 0;
+						break;
+					case IfcCompositeProfileDefClause.NoRecursion:
+						retVal = SIZEOF(Profiles.Where(temp => TYPEOF(temp).Contains("IFC4.IFCCOMPOSITEPROFILEDEF"))) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcCompositeProfileDef");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCompositeProfileDef.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcCompositeProfileDef.NoRecursion) {
-				try {
-					retVal = SIZEOF(Profiles.Where(temp => TYPEOF(temp).Contains("IFC4.IFCCOMPOSITEPROFILEDEF"))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcCompositeProfileDef");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCompositeProfileDef.NoRecursion' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcCompositeProfileDef.InvariantProfileType))
+			if (!ValidateClause(IfcCompositeProfileDefClause.InvariantProfileType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCompositeProfileDef.InvariantProfileType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcCompositeProfileDef.NoRecursion))
+			if (!ValidateClause(IfcCompositeProfileDefClause.NoRecursion))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCompositeProfileDef.NoRecursion", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcCompositeProfileDef
-	{
-		public static readonly IfcCompositeProfileDef InvariantProfileType = new IfcCompositeProfileDef();
-		public static readonly IfcCompositeProfileDef NoRecursion = new IfcCompositeProfileDef();
-		protected IfcCompositeProfileDef() {}
 	}
 }

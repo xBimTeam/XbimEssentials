@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 {
 	public partial class IfcSensor : IExpressValidatable
 	{
+		public enum IfcSensorClause
+		{
+			CorrectPredefinedType,
+			CorrectTypeAssigned,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcSensor clause) {
+		public bool ValidateClause(IfcSensorClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcSensor.CorrectPredefinedType) {
-				try {
-					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcSensorTypeEnum.USERDEFINED) || ((PredefinedType == IfcSensorTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.BuildingControlsDomain.IfcSensor");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSensor.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcSensorClause.CorrectPredefinedType:
+						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcSensorTypeEnum.USERDEFINED) || ((PredefinedType == IfcSensorTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
+					case IfcSensorClause.CorrectTypeAssigned:
+						retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCSENSORTYPE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.BuildingControlsDomain.IfcSensor");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSensor.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcSensor.CorrectTypeAssigned) {
-				try {
-					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCSENSORTYPE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.BuildingControlsDomain.IfcSensor");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSensor.CorrectTypeAssigned' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcSensor.CorrectPredefinedType))
+			if (!ValidateClause(IfcSensorClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSensor.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcSensor.CorrectTypeAssigned))
+			if (!ValidateClause(IfcSensorClause.CorrectTypeAssigned))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSensor.CorrectTypeAssigned", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcSensor : IfcProduct
-	{
-		public static readonly IfcSensor CorrectPredefinedType = new IfcSensor();
-		public static readonly IfcSensor CorrectTypeAssigned = new IfcSensor();
-		protected IfcSensor() {}
 	}
 }

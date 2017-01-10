@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.Kernel
 {
 	public partial class IfcRelAssignsToResource : IExpressValidatable
 	{
+		public enum IfcRelAssignsToResourceClause
+		{
+			NoSelfReference,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRelAssignsToResource clause) {
+		public bool ValidateClause(IfcRelAssignsToResourceClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRelAssignsToResource.NoSelfReference) {
-				try {
-					retVal = SIZEOF(this/* as IfcRelAssigns*/.RelatedObjects.Where(Temp => Object.ReferenceEquals(RelatingResource, Temp))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcRelAssignsToResource");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelAssignsToResource.NoSelfReference' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRelAssignsToResourceClause.NoSelfReference:
+						retVal = SIZEOF(this/* as IfcRelAssigns*/.RelatedObjects.Where(Temp => Object.ReferenceEquals(RelatingResource, Temp))) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcRelAssignsToResource");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelAssignsToResource.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcRelAssigns)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.Kernel
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcRelAssignsToResource.NoSelfReference))
+			if (!ValidateClause(IfcRelAssignsToResourceClause.NoSelfReference))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelAssignsToResource.NoSelfReference", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcRelAssignsToResource : IfcRelAssigns
-	{
-		public static readonly IfcRelAssignsToResource NoSelfReference = new IfcRelAssignsToResource();
-		protected IfcRelAssignsToResource() {}
 	}
 }

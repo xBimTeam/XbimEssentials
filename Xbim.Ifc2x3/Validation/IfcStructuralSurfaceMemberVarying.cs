@@ -17,42 +17,39 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class IfcStructuralSurfaceMemberVarying : IExpressValidatable
 	{
+		public enum IfcStructuralSurfaceMemberVaryingClause
+		{
+			WR61,
+			WR62,
+			WR63,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcStructuralSurfaceMemberVarying clause) {
+		public bool ValidateClause(IfcStructuralSurfaceMemberVaryingClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcStructuralSurfaceMemberVarying.WR61) {
-				try {
-					retVal = EXISTS(this/* as IfcStructuralSurfaceMember*/.Thickness);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.StructuralAnalysisDomain.IfcStructuralSurfaceMemberVarying");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralSurfaceMemberVarying.WR61' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcStructuralSurfaceMemberVaryingClause.WR61:
+						retVal = EXISTS(this/* as IfcStructuralSurfaceMember*/.Thickness);
+						break;
+					case IfcStructuralSurfaceMemberVaryingClause.WR62:
+						retVal = SIZEOF(this.VaryingThicknessLocation.ShapeRepresentations.Where(temp => !(SIZEOF(temp/* as IfcRepresentation*/.Items) == 1))) == 0;
+						break;
+					case IfcStructuralSurfaceMemberVaryingClause.WR63:
+						retVal = SIZEOF(this.VaryingThicknessLocation.ShapeRepresentations.Where(temp => !((TYPEOF(temp/* as IfcRepresentation*/.Items.ItemAt(0)).Contains("IFC2X3.IFCCARTESIANPOINT")) || (TYPEOF(temp/* as IfcRepresentation*/.Items.ItemAt(0)).Contains("IFC2X3.IFCPOINTONSURFACE"))))) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.StructuralAnalysisDomain.IfcStructuralSurfaceMemberVarying");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralSurfaceMemberVarying.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcStructuralSurfaceMemberVarying.WR62) {
-				try {
-					retVal = SIZEOF(this.VaryingThicknessLocation.ShapeRepresentations.Where(temp => !(SIZEOF(temp/* as IfcRepresentation*/.Items) == 1))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.StructuralAnalysisDomain.IfcStructuralSurfaceMemberVarying");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralSurfaceMemberVarying.WR62' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcStructuralSurfaceMemberVarying.WR63) {
-				try {
-					retVal = SIZEOF(this.VaryingThicknessLocation.ShapeRepresentations.Where(temp => !((TYPEOF(temp/* as IfcRepresentation*/.Items.ItemAt(0)).Contains("IFC2X3.IFCCARTESIANPOINT")) || (TYPEOF(temp/* as IfcRepresentation*/.Items.ItemAt(0)).Contains("IFC2X3.IFCPOINTONSURFACE"))))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.StructuralAnalysisDomain.IfcStructuralSurfaceMemberVarying");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralSurfaceMemberVarying.WR63' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -61,24 +58,12 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcStructuralSurfaceMemberVarying.WR61))
+			if (!ValidateClause(IfcStructuralSurfaceMemberVaryingClause.WR61))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcStructuralSurfaceMemberVarying.WR61", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcStructuralSurfaceMemberVarying.WR62))
+			if (!ValidateClause(IfcStructuralSurfaceMemberVaryingClause.WR62))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcStructuralSurfaceMemberVarying.WR62", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcStructuralSurfaceMemberVarying.WR63))
+			if (!ValidateClause(IfcStructuralSurfaceMemberVaryingClause.WR63))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcStructuralSurfaceMemberVarying.WR63", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcStructuralSurfaceMemberVarying : IfcProduct
-	{
-		public static readonly IfcStructuralSurfaceMemberVarying WR61 = new IfcStructuralSurfaceMemberVarying();
-		public static readonly IfcStructuralSurfaceMemberVarying WR62 = new IfcStructuralSurfaceMemberVarying();
-		public static readonly IfcStructuralSurfaceMemberVarying WR63 = new IfcStructuralSurfaceMemberVarying();
-		protected IfcStructuralSurfaceMemberVarying() {}
 	}
 }

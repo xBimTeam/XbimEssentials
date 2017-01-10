@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	public partial class IfcTextureMap : IExpressValidatable
 	{
+		public enum IfcTextureMapClause
+		{
+			WR11,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcTextureMap clause) {
+		public bool ValidateClause(IfcTextureMapClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcTextureMap.WR11) {
-				try {
-					retVal = SIZEOF(NewArray("IFC2X3.IFCSHELLBASEDSURFACEMODEL", "IFC2X3.IFCFACEBASEDSURFACEMODEL", "IFC2X3.IFCFACETEDBREP", "IFC2X3.IFCFACETEDBREPWITHVOIDS") * TYPEOF(this/* as IfcTextureCoordinate*/.AnnotatedSurface.ItemAt(0).Item)) >= 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDefinitionResource.IfcTextureMap");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTextureMap.WR11' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcTextureMapClause.WR11:
+						retVal = SIZEOF(NewArray("IFC2X3.IFCSHELLBASEDSURFACEMODEL", "IFC2X3.IFCFACEBASEDSURFACEMODEL", "IFC2X3.IFCFACETEDBREP", "IFC2X3.IFCFACETEDBREPWITHVOIDS") * TYPEOF(this/* as IfcTextureCoordinate*/.AnnotatedSurface.ItemAt(0).Item)) >= 1;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDefinitionResource.IfcTextureMap");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTextureMap.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcTextureMap.WR11))
+			if (!ValidateClause(IfcTextureMapClause.WR11))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcTextureMap.WR11", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcTextureMap
-	{
-		public static readonly IfcTextureMap WR11 = new IfcTextureMap();
-		protected IfcTextureMap() {}
 	}
 }

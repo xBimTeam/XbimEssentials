@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	public partial class IfcRelConnectsPathElements : IExpressValidatable
 	{
+		public enum IfcRelConnectsPathElementsClause
+		{
+			NormalizedRelatingPriorities,
+			NormalizedRelatedPriorities,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRelConnectsPathElements clause) {
+		public bool ValidateClause(IfcRelConnectsPathElementsClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRelConnectsPathElements.NormalizedRelatingPriorities) {
-				try {
-					retVal = (SIZEOF(RelatingPriorities) == 0) || (SIZEOF(RelatingPriorities.Where(temp => ((0 <= temp) && (temp <= 100) ))) == SIZEOF(RelatingPriorities));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcRelConnectsPathElements");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelConnectsPathElements.NormalizedRelatingPriorities' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRelConnectsPathElementsClause.NormalizedRelatingPriorities:
+						retVal = (SIZEOF(RelatingPriorities) == 0) || (SIZEOF(RelatingPriorities.Where(temp => ((0 <= temp) && (temp <= 100) ))) == SIZEOF(RelatingPriorities));
+						break;
+					case IfcRelConnectsPathElementsClause.NormalizedRelatedPriorities:
+						retVal = (SIZEOF(RelatedPriorities) == 0) || (SIZEOF(RelatedPriorities.Where(temp => ((0 <= temp) && (temp <= 100) ))) == SIZEOF(RelatedPriorities));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcRelConnectsPathElements");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelConnectsPathElements.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcRelConnectsPathElements.NormalizedRelatedPriorities) {
-				try {
-					retVal = (SIZEOF(RelatedPriorities) == 0) || (SIZEOF(RelatedPriorities.Where(temp => ((0 <= temp) && (temp <= 100) ))) == SIZEOF(RelatedPriorities));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcRelConnectsPathElements");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelConnectsPathElements.NormalizedRelatedPriorities' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcRelConnectsElements)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcRelConnectsPathElements.NormalizedRelatingPriorities))
+			if (!ValidateClause(IfcRelConnectsPathElementsClause.NormalizedRelatingPriorities))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelConnectsPathElements.NormalizedRelatingPriorities", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcRelConnectsPathElements.NormalizedRelatedPriorities))
+			if (!ValidateClause(IfcRelConnectsPathElementsClause.NormalizedRelatedPriorities))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelConnectsPathElements.NormalizedRelatedPriorities", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcRelConnectsPathElements : IfcRelConnectsElements
-	{
-		public static readonly IfcRelConnectsPathElements NormalizedRelatingPriorities = new IfcRelConnectsPathElements();
-		public static readonly IfcRelConnectsPathElements NormalizedRelatedPriorities = new IfcRelConnectsPathElements();
-		protected IfcRelConnectsPathElements() {}
 	}
 }

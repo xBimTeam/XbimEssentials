@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	public partial class IfcCompositeCurveSegment : IExpressValidatable
 	{
+		public enum IfcCompositeCurveSegmentClause
+		{
+			ParentIsBoundedCurve,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcCompositeCurveSegment clause) {
+		public bool ValidateClause(IfcCompositeCurveSegmentClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcCompositeCurveSegment.ParentIsBoundedCurve) {
-				try {
-					retVal = (TYPEOF(ParentCurve).Contains("IFC4.IFCBOUNDEDCURVE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcCompositeCurveSegment");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCompositeCurveSegment.ParentIsBoundedCurve' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcCompositeCurveSegmentClause.ParentIsBoundedCurve:
+						retVal = (TYPEOF(ParentCurve).Contains("IFC4.IFCBOUNDEDCURVE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcCompositeCurveSegment");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCompositeCurveSegment.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcCompositeCurveSegment.ParentIsBoundedCurve))
+			if (!ValidateClause(IfcCompositeCurveSegmentClause.ParentIsBoundedCurve))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCompositeCurveSegment.ParentIsBoundedCurve", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcCompositeCurveSegment
-	{
-		public static readonly IfcCompositeCurveSegment ParentIsBoundedCurve = new IfcCompositeCurveSegment();
-		protected IfcCompositeCurveSegment() {}
 	}
 }

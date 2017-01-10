@@ -17,24 +17,31 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class IfcBuildingElementProxy : IExpressValidatable
 	{
+		public enum IfcBuildingElementProxyClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcBuildingElementProxy clause) {
+		public bool ValidateClause(IfcBuildingElementProxyClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcBuildingElementProxy.WR1) {
-				try {
-					retVal = EXISTS(this/* as IfcRoot*/.Name);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProductExtension.IfcBuildingElementProxy");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBuildingElementProxy.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcBuildingElementProxyClause.WR1:
+						retVal = EXISTS(this/* as IfcRoot*/.Name);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.ProductExtension.IfcBuildingElementProxy");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBuildingElementProxy.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -43,18 +50,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcBuildingElementProxy.WR1))
+			if (!ValidateClause(IfcBuildingElementProxyClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcBuildingElementProxy.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcBuildingElementProxy : IfcProduct
-	{
-		public new static readonly IfcBuildingElementProxy WR1 = new IfcBuildingElementProxy();
-		protected IfcBuildingElementProxy() {}
 	}
 }

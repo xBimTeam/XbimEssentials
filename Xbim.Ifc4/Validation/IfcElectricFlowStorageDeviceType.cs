@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	public partial class IfcElectricFlowStorageDeviceType : IExpressValidatable
 	{
+		public enum IfcElectricFlowStorageDeviceTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcElectricFlowStorageDeviceType clause) {
+		public bool ValidateClause(IfcElectricFlowStorageDeviceTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcElectricFlowStorageDeviceType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcElectricFlowStorageDeviceTypeEnum.USERDEFINED) || ((PredefinedType == IfcElectricFlowStorageDeviceTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ElectricalDomain.IfcElectricFlowStorageDeviceType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcElectricFlowStorageDeviceType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcElectricFlowStorageDeviceTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcElectricFlowStorageDeviceTypeEnum.USERDEFINED) || ((PredefinedType == IfcElectricFlowStorageDeviceTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ElectricalDomain.IfcElectricFlowStorageDeviceType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcElectricFlowStorageDeviceType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.ElectricalDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcElectricFlowStorageDeviceType.CorrectPredefinedType))
+			if (!ValidateClause(IfcElectricFlowStorageDeviceTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcElectricFlowStorageDeviceType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcElectricFlowStorageDeviceType : IfcTypeProduct
-	{
-		public static readonly IfcElectricFlowStorageDeviceType CorrectPredefinedType = new IfcElectricFlowStorageDeviceType();
-		protected IfcElectricFlowStorageDeviceType() {}
 	}
 }

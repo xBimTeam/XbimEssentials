@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	public partial class IfcValve : IExpressValidatable
 	{
+		public enum IfcValveClause
+		{
+			CorrectPredefinedType,
+			CorrectTypeAssigned,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcValve clause) {
+		public bool ValidateClause(IfcValveClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcValve.CorrectPredefinedType) {
-				try {
-					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcValveTypeEnum.USERDEFINED) || ((PredefinedType == IfcValveTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcValve");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcValve.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcValveClause.CorrectPredefinedType:
+						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcValveTypeEnum.USERDEFINED) || ((PredefinedType == IfcValveTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
+					case IfcValveClause.CorrectTypeAssigned:
+						retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCVALVETYPE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcValve");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcValve.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcValve.CorrectTypeAssigned) {
-				try {
-					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCVALVETYPE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcValve");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcValve.CorrectTypeAssigned' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.HvacDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcValve.CorrectPredefinedType))
+			if (!ValidateClause(IfcValveClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcValve.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcValve.CorrectTypeAssigned))
+			if (!ValidateClause(IfcValveClause.CorrectTypeAssigned))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcValve.CorrectTypeAssigned", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcValve : IfcProduct
-	{
-		public static readonly IfcValve CorrectPredefinedType = new IfcValve();
-		public static readonly IfcValve CorrectTypeAssigned = new IfcValve();
-		protected IfcValve() {}
 	}
 }

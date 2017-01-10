@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 {
 	public partial class IfcActuatorType : IExpressValidatable
 	{
+		public enum IfcActuatorTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcActuatorType clause) {
+		public bool ValidateClause(IfcActuatorTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcActuatorType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcActuatorTypeEnum.USERDEFINED) || ((PredefinedType == IfcActuatorTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.BuildingControlsDomain.IfcActuatorType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcActuatorType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcActuatorTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcActuatorTypeEnum.USERDEFINED) || ((PredefinedType == IfcActuatorTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.BuildingControlsDomain.IfcActuatorType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcActuatorType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcActuatorType.CorrectPredefinedType))
+			if (!ValidateClause(IfcActuatorTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcActuatorType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcActuatorType : IfcTypeProduct
-	{
-		public static readonly IfcActuatorType CorrectPredefinedType = new IfcActuatorType();
-		protected IfcActuatorType() {}
 	}
 }

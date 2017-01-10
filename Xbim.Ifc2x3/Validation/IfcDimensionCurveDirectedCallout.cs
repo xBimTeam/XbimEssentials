@@ -17,52 +17,43 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	public partial class IfcDimensionCurveDirectedCallout : IExpressValidatable
 	{
+		public enum IfcDimensionCurveDirectedCalloutClause
+		{
+			WR41,
+			WR42,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcDimensionCurveDirectedCallout clause) {
+		public bool ValidateClause(IfcDimensionCurveDirectedCalloutClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcDimensionCurveDirectedCallout.WR41) {
-				try {
-					retVal = SIZEOF(this/* as IfcDraughtingCallout*/.Contents.Where(Dc => (TYPEOF(Dc).Contains("IFC2X3.IFCDIMENSIONCURVE")))) == 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDimensioningResource.IfcDimensionCurveDirectedCallout");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDimensionCurveDirectedCallout.WR41' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcDimensionCurveDirectedCalloutClause.WR41:
+						retVal = SIZEOF(this/* as IfcDraughtingCallout*/.Contents.Where(Dc => (TYPEOF(Dc).Contains("IFC2X3.IFCDIMENSIONCURVE")))) == 1;
+						break;
+					case IfcDimensionCurveDirectedCalloutClause.WR42:
+						retVal = SIZEOF(this.Contents.Where(Dc => (TYPEOF(Dc).Contains("IFC2X3.IFCPROJECTIONCURVE")))) <= 2;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDimensioningResource.IfcDimensionCurveDirectedCallout");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDimensionCurveDirectedCallout.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcDimensionCurveDirectedCallout.WR42) {
-				try {
-					retVal = SIZEOF(this.Contents.Where(Dc => (TYPEOF(Dc).Contains("IFC2X3.IFCPROJECTIONCURVE")))) <= 2;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDimensioningResource.IfcDimensionCurveDirectedCallout");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDimensionCurveDirectedCallout.WR42' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcDimensionCurveDirectedCallout.WR41))
+			if (!ValidateClause(IfcDimensionCurveDirectedCalloutClause.WR41))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcDimensionCurveDirectedCallout.WR41", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcDimensionCurveDirectedCallout.WR42))
+			if (!ValidateClause(IfcDimensionCurveDirectedCalloutClause.WR42))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcDimensionCurveDirectedCallout.WR42", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcDimensionCurveDirectedCallout
-	{
-		public static readonly IfcDimensionCurveDirectedCallout WR41 = new IfcDimensionCurveDirectedCallout();
-		public static readonly IfcDimensionCurveDirectedCallout WR42 = new IfcDimensionCurveDirectedCallout();
-		protected IfcDimensionCurveDirectedCallout() {}
 	}
 }

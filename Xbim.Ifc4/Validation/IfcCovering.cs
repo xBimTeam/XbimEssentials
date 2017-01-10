@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	public partial class IfcCovering : IExpressValidatable
 	{
+		public enum IfcCoveringClause
+		{
+			CorrectPredefinedType,
+			CorrectTypeAssigned,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcCovering clause) {
+		public bool ValidateClause(IfcCoveringClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcCovering.CorrectPredefinedType) {
-				try {
-					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcCoveringTypeEnum.USERDEFINED) || ((PredefinedType == IfcCoveringTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcCovering");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCovering.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcCoveringClause.CorrectPredefinedType:
+						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcCoveringTypeEnum.USERDEFINED) || ((PredefinedType == IfcCoveringTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
+					case IfcCoveringClause.CorrectTypeAssigned:
+						retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCCOVERINGTYPE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcCovering");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCovering.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcCovering.CorrectTypeAssigned) {
-				try {
-					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCCOVERINGTYPE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcCovering");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCovering.CorrectTypeAssigned' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcBuildingElement)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcCovering.CorrectPredefinedType))
+			if (!ValidateClause(IfcCoveringClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCovering.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcCovering.CorrectTypeAssigned))
+			if (!ValidateClause(IfcCoveringClause.CorrectTypeAssigned))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCovering.CorrectTypeAssigned", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcCovering : IfcBuildingElement
-	{
-		public static readonly IfcCovering CorrectPredefinedType = new IfcCovering();
-		public static readonly IfcCovering CorrectTypeAssigned = new IfcCovering();
-		protected IfcCovering() {}
 	}
 }

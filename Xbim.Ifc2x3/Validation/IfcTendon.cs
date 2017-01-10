@@ -17,24 +17,31 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	public partial class IfcTendon : IExpressValidatable
 	{
+		public enum IfcTendonClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcTendon clause) {
+		public bool ValidateClause(IfcTendonClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcTendon.WR1) {
-				try {
-					retVal = (PredefinedType != IfcTendonTypeEnum.USERDEFINED) || ((PredefinedType == IfcTendonTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.StructuralElementsDomain.IfcTendon");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTendon.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcTendonClause.WR1:
+						retVal = (PredefinedType != IfcTendonTypeEnum.USERDEFINED) || ((PredefinedType == IfcTendonTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.StructuralElementsDomain.IfcTendon");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTendon.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -43,18 +50,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcTendon.WR1))
+			if (!ValidateClause(IfcTendonClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcTendon.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcTendon : IfcProduct
-	{
-		public new static readonly IfcTendon WR1 = new IfcTendon();
-		protected IfcTendon() {}
 	}
 }

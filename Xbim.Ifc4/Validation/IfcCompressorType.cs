@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	public partial class IfcCompressorType : IExpressValidatable
 	{
+		public enum IfcCompressorTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcCompressorType clause) {
+		public bool ValidateClause(IfcCompressorTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcCompressorType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcCompressorTypeEnum.USERDEFINED) || ((PredefinedType == IfcCompressorTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcCompressorType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCompressorType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcCompressorTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcCompressorTypeEnum.USERDEFINED) || ((PredefinedType == IfcCompressorTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcCompressorType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCompressorType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.HvacDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcCompressorType.CorrectPredefinedType))
+			if (!ValidateClause(IfcCompressorTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCompressorType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcCompressorType : IfcTypeProduct
-	{
-		public static readonly IfcCompressorType CorrectPredefinedType = new IfcCompressorType();
-		protected IfcCompressorType() {}
 	}
 }

@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.ActorResource
 {
 	public partial class IfcActorRole : IExpressValidatable
 	{
+		public enum IfcActorRoleClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcActorRole clause) {
+		public bool ValidateClause(IfcActorRoleClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcActorRole.WR1) {
-				try {
-					retVal = (Role != IfcRoleEnum.USERDEFINED) || ((Role == IfcRoleEnum.USERDEFINED) && EXISTS(this.UserDefinedRole));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ActorResource.IfcActorRole");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcActorRole.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcActorRoleClause.WR1:
+						retVal = (Role != IfcRoleEnum.USERDEFINED) || ((Role == IfcRoleEnum.USERDEFINED) && EXISTS(this.UserDefinedRole));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ActorResource.IfcActorRole");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcActorRole.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcActorRole.WR1))
+			if (!ValidateClause(IfcActorRoleClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcActorRole.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcActorRole
-	{
-		public static readonly IfcActorRole WR1 = new IfcActorRole();
-		protected IfcActorRole() {}
 	}
 }

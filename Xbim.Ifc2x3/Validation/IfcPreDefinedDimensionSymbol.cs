@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	public partial class IfcPreDefinedDimensionSymbol : IExpressValidatable
 	{
+		public enum IfcPreDefinedDimensionSymbolClause
+		{
+			WR31,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcPreDefinedDimensionSymbol clause) {
+		public bool ValidateClause(IfcPreDefinedDimensionSymbolClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcPreDefinedDimensionSymbol.WR31) {
-				try {
-					retVal = NewArray("arc length", "conical taper", "counterbore", "countersink", "depth", "diameter", "plus minus", "radius", "slope", "spherical diameter", "spherical radius", "square").Contains(this/* as IfcPreDefinedItem*/.Name);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDimensioningResource.IfcPreDefinedDimensionSymbol");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPreDefinedDimensionSymbol.WR31' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcPreDefinedDimensionSymbolClause.WR31:
+						retVal = NewArray("arc length", "conical taper", "counterbore", "countersink", "depth", "diameter", "plus minus", "radius", "slope", "spherical diameter", "spherical radius", "square").Contains(this/* as IfcPreDefinedItem*/.Name);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDimensioningResource.IfcPreDefinedDimensionSymbol");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPreDefinedDimensionSymbol.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcPreDefinedDimensionSymbol.WR31))
+			if (!ValidateClause(IfcPreDefinedDimensionSymbolClause.WR31))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPreDefinedDimensionSymbol.WR31", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcPreDefinedDimensionSymbol
-	{
-		public static readonly IfcPreDefinedDimensionSymbol WR31 = new IfcPreDefinedDimensionSymbol();
-		protected IfcPreDefinedDimensionSymbol() {}
 	}
 }

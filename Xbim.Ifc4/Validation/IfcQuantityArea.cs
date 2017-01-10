@@ -13,52 +13,43 @@ namespace Xbim.Ifc4.QuantityResource
 {
 	public partial class IfcQuantityArea : IExpressValidatable
 	{
+		public enum IfcQuantityAreaClause
+		{
+			WR21,
+			WR22,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcQuantityArea clause) {
+		public bool ValidateClause(IfcQuantityAreaClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcQuantityArea.WR21) {
-				try {
-					retVal = !(EXISTS(this/* as IfcPhysicalSimpleQuantity*/.Unit)) || (this/* as IfcPhysicalSimpleQuantity*/.Unit.UnitType == IfcUnitEnum.AREAUNIT);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.QuantityResource.IfcQuantityArea");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcQuantityArea.WR21' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcQuantityAreaClause.WR21:
+						retVal = !(EXISTS(this/* as IfcPhysicalSimpleQuantity*/.Unit)) || (this/* as IfcPhysicalSimpleQuantity*/.Unit.UnitType == IfcUnitEnum.AREAUNIT);
+						break;
+					case IfcQuantityAreaClause.WR22:
+						retVal = AreaValue >= 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.QuantityResource.IfcQuantityArea");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcQuantityArea.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcQuantityArea.WR22) {
-				try {
-					retVal = AreaValue >= 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.QuantityResource.IfcQuantityArea");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcQuantityArea.WR22' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcQuantityArea.WR21))
+			if (!ValidateClause(IfcQuantityAreaClause.WR21))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcQuantityArea.WR21", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcQuantityArea.WR22))
+			if (!ValidateClause(IfcQuantityAreaClause.WR22))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcQuantityArea.WR22", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcQuantityArea
-	{
-		public static readonly IfcQuantityArea WR21 = new IfcQuantityArea();
-		public static readonly IfcQuantityArea WR22 = new IfcQuantityArea();
-		protected IfcQuantityArea() {}
 	}
 }

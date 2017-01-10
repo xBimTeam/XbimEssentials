@@ -17,24 +17,31 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class IfcTankType : IExpressValidatable
 	{
+		public enum IfcTankTypeClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcTankType clause) {
+		public bool ValidateClause(IfcTankTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcTankType.WR1) {
-				try {
-					retVal = (PredefinedType != IfcTankTypeEnum.USERDEFINED) || ((PredefinedType == IfcTankTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.HVACDomain.IfcTankType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTankType.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcTankTypeClause.WR1:
+						retVal = (PredefinedType != IfcTankTypeEnum.USERDEFINED) || ((PredefinedType == IfcTankTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.HVACDomain.IfcTankType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTankType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -43,18 +50,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcTankType.WR1))
+			if (!ValidateClause(IfcTankTypeClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcTankType.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcTankType : IfcTypeProduct
-	{
-		public new static readonly IfcTankType WR1 = new IfcTankType();
-		protected IfcTankType() {}
 	}
 }

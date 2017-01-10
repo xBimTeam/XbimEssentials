@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	public partial class IfcAirToAirHeatRecoveryType : IExpressValidatable
 	{
+		public enum IfcAirToAirHeatRecoveryTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcAirToAirHeatRecoveryType clause) {
+		public bool ValidateClause(IfcAirToAirHeatRecoveryTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcAirToAirHeatRecoveryType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcAirToAirHeatRecoveryTypeEnum.USERDEFINED) || ((PredefinedType == IfcAirToAirHeatRecoveryTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcAirToAirHeatRecoveryType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAirToAirHeatRecoveryType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcAirToAirHeatRecoveryTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcAirToAirHeatRecoveryTypeEnum.USERDEFINED) || ((PredefinedType == IfcAirToAirHeatRecoveryTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcAirToAirHeatRecoveryType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAirToAirHeatRecoveryType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.HvacDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcAirToAirHeatRecoveryType.CorrectPredefinedType))
+			if (!ValidateClause(IfcAirToAirHeatRecoveryTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcAirToAirHeatRecoveryType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcAirToAirHeatRecoveryType : IfcTypeProduct
-	{
-		public static readonly IfcAirToAirHeatRecoveryType CorrectPredefinedType = new IfcAirToAirHeatRecoveryType();
-		protected IfcAirToAirHeatRecoveryType() {}
 	}
 }

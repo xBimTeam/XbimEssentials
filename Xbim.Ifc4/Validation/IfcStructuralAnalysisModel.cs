@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	public partial class IfcStructuralAnalysisModel : IExpressValidatable
 	{
+		public enum IfcStructuralAnalysisModelClause
+		{
+			HasObjectType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcStructuralAnalysisModel clause) {
+		public bool ValidateClause(IfcStructuralAnalysisModelClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcStructuralAnalysisModel.HasObjectType) {
-				try {
-					retVal = (PredefinedType != IfcAnalysisModelTypeEnum.USERDEFINED) || EXISTS(this/* as IfcObject*/.ObjectType);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralAnalysisModel");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralAnalysisModel.HasObjectType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcStructuralAnalysisModelClause.HasObjectType:
+						retVal = (PredefinedType != IfcAnalysisModelTypeEnum.USERDEFINED) || EXISTS(this/* as IfcObject*/.ObjectType);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralAnalysisModel");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralAnalysisModel.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcObject)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcStructuralAnalysisModel.HasObjectType))
+			if (!ValidateClause(IfcStructuralAnalysisModelClause.HasObjectType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcStructuralAnalysisModel.HasObjectType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcStructuralAnalysisModel : IfcObject
-	{
-		public static readonly IfcStructuralAnalysisModel HasObjectType = new IfcStructuralAnalysisModel();
-		protected IfcStructuralAnalysisModel() {}
 	}
 }

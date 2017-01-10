@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	public partial class IfcPreDefinedPointMarkerSymbol : IExpressValidatable
 	{
+		public enum IfcPreDefinedPointMarkerSymbolClause
+		{
+			WR31,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcPreDefinedPointMarkerSymbol clause) {
+		public bool ValidateClause(IfcPreDefinedPointMarkerSymbolClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcPreDefinedPointMarkerSymbol.WR31) {
-				try {
-					retVal = NewArray("asterisk", "circle", "dot", "plus", "square", "triangle", "x").Contains(this/* as IfcPreDefinedItem*/.Name);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDimensioningResource.IfcPreDefinedPointMarkerSymbol");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPreDefinedPointMarkerSymbol.WR31' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcPreDefinedPointMarkerSymbolClause.WR31:
+						retVal = NewArray("asterisk", "circle", "dot", "plus", "square", "triangle", "x").Contains(this/* as IfcPreDefinedItem*/.Name);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDimensioningResource.IfcPreDefinedPointMarkerSymbol");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPreDefinedPointMarkerSymbol.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcPreDefinedPointMarkerSymbol.WR31))
+			if (!ValidateClause(IfcPreDefinedPointMarkerSymbolClause.WR31))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPreDefinedPointMarkerSymbol.WR31", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcPreDefinedPointMarkerSymbol
-	{
-		public static readonly IfcPreDefinedPointMarkerSymbol WR31 = new IfcPreDefinedPointMarkerSymbol();
-		protected IfcPreDefinedPointMarkerSymbol() {}
 	}
 }

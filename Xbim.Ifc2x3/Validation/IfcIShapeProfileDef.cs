@@ -17,64 +17,49 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class IfcIShapeProfileDef : IExpressValidatable
 	{
+		public enum IfcIShapeProfileDefClause
+		{
+			WR1,
+			WR2,
+			WR3,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcIShapeProfileDef clause) {
+		public bool ValidateClause(IfcIShapeProfileDefClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcIShapeProfileDef.WR1) {
-				try {
-					retVal = FlangeThickness < (OverallDepth / 2);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfileResource.IfcIShapeProfileDef");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcIShapeProfileDef.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcIShapeProfileDefClause.WR1:
+						retVal = FlangeThickness < (OverallDepth / 2);
+						break;
+					case IfcIShapeProfileDefClause.WR2:
+						retVal = WebThickness < OverallWidth;
+						break;
+					case IfcIShapeProfileDefClause.WR3:
+						retVal = !(EXISTS(FilletRadius)) || ((FilletRadius <= (OverallWidth - WebThickness) / 2) && (FilletRadius <= (OverallDepth - (2 * FlangeThickness)) / 2));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfileResource.IfcIShapeProfileDef");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcIShapeProfileDef.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcIShapeProfileDef.WR2) {
-				try {
-					retVal = WebThickness < OverallWidth;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfileResource.IfcIShapeProfileDef");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcIShapeProfileDef.WR2' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcIShapeProfileDef.WR3) {
-				try {
-					retVal = !(EXISTS(FilletRadius)) || ((FilletRadius <= (OverallWidth - WebThickness) / 2) && (FilletRadius <= (OverallDepth - (2 * FlangeThickness)) / 2));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfileResource.IfcIShapeProfileDef");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcIShapeProfileDef.WR3' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcIShapeProfileDef.WR1))
+			if (!ValidateClause(IfcIShapeProfileDefClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcIShapeProfileDef.WR1", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcIShapeProfileDef.WR2))
+			if (!ValidateClause(IfcIShapeProfileDefClause.WR2))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcIShapeProfileDef.WR2", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcIShapeProfileDef.WR3))
+			if (!ValidateClause(IfcIShapeProfileDefClause.WR3))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcIShapeProfileDef.WR3", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcIShapeProfileDef
-	{
-		public static readonly IfcIShapeProfileDef WR1 = new IfcIShapeProfileDef();
-		public static readonly IfcIShapeProfileDef WR2 = new IfcIShapeProfileDef();
-		public static readonly IfcIShapeProfileDef WR3 = new IfcIShapeProfileDef();
-		protected IfcIShapeProfileDef() {}
 	}
 }

@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 {
 	public partial class IfcFooting : IExpressValidatable
 	{
+		public enum IfcFootingClause
+		{
+			CorrectPredefinedType,
+			CorrectTypeAssigned,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcFooting clause) {
+		public bool ValidateClause(IfcFootingClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcFooting.CorrectPredefinedType) {
-				try {
-					retVal = !EXISTS(PredefinedType) || (PredefinedType != IfcFootingTypeEnum.USERDEFINED) || ((PredefinedType == IfcFootingTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralElementsDomain.IfcFooting");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFooting.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcFootingClause.CorrectPredefinedType:
+						retVal = !EXISTS(PredefinedType) || (PredefinedType != IfcFootingTypeEnum.USERDEFINED) || ((PredefinedType == IfcFootingTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
+					case IfcFootingClause.CorrectTypeAssigned:
+						retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCFOOTINGTYPE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.StructuralElementsDomain.IfcFooting");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFooting.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcFooting.CorrectTypeAssigned) {
-				try {
-					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCFOOTINGTYPE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralElementsDomain.IfcFooting");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFooting.CorrectTypeAssigned' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcBuildingElement)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcFooting.CorrectPredefinedType))
+			if (!ValidateClause(IfcFootingClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcFooting.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcFooting.CorrectTypeAssigned))
+			if (!ValidateClause(IfcFootingClause.CorrectTypeAssigned))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcFooting.CorrectTypeAssigned", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcFooting : IfcBuildingElement
-	{
-		public static readonly IfcFooting CorrectPredefinedType = new IfcFooting();
-		public static readonly IfcFooting CorrectTypeAssigned = new IfcFooting();
-		protected IfcFooting() {}
 	}
 }

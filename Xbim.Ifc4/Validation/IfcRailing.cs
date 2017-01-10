@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	public partial class IfcRailing : IExpressValidatable
 	{
+		public enum IfcRailingClause
+		{
+			CorrectPredefinedType,
+			CorrectTypeAssigned,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRailing clause) {
+		public bool ValidateClause(IfcRailingClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRailing.CorrectPredefinedType) {
-				try {
-					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcRailingTypeEnum.USERDEFINED) || ((PredefinedType == IfcRailingTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcRailing");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRailing.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRailingClause.CorrectPredefinedType:
+						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcRailingTypeEnum.USERDEFINED) || ((PredefinedType == IfcRailingTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
+					case IfcRailingClause.CorrectTypeAssigned:
+						retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCRAILINGTYPE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcRailing");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRailing.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcRailing.CorrectTypeAssigned) {
-				try {
-					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCRAILINGTYPE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcRailing");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRailing.CorrectTypeAssigned' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcBuildingElement)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcRailing.CorrectPredefinedType))
+			if (!ValidateClause(IfcRailingClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRailing.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcRailing.CorrectTypeAssigned))
+			if (!ValidateClause(IfcRailingClause.CorrectTypeAssigned))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRailing.CorrectTypeAssigned", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcRailing : IfcBuildingElement
-	{
-		public static readonly IfcRailing CorrectPredefinedType = new IfcRailing();
-		public static readonly IfcRailing CorrectTypeAssigned = new IfcRailing();
-		protected IfcRailing() {}
 	}
 }

@@ -17,33 +17,35 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class IfcRevolvedAreaSolid : IExpressValidatable
 	{
+		public enum IfcRevolvedAreaSolidClause
+		{
+			WR31,
+			WR32,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRevolvedAreaSolid clause) {
+		public bool ValidateClause(IfcRevolvedAreaSolidClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRevolvedAreaSolid.WR31) {
-				try {
-					retVal = Axis.Location.Coordinates.ItemAt(2) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricModelResource.IfcRevolvedAreaSolid");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRevolvedAreaSolid.WR31' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRevolvedAreaSolidClause.WR31:
+						retVal = Axis.Location.Coordinates.ItemAt(2) == 0;
+						break;
+					case IfcRevolvedAreaSolidClause.WR32:
+						retVal = Axis.Z.DirectionRatios().ItemAt(2) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricModelResource.IfcRevolvedAreaSolid");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRevolvedAreaSolid.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcRevolvedAreaSolid.WR32) {
-				try {
-					retVal = Axis.Z.DirectionRatios().ItemAt(2) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricModelResource.IfcRevolvedAreaSolid");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRevolvedAreaSolid.WR32' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcSweptAreaSolid)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -52,21 +54,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcRevolvedAreaSolid.WR31))
+			if (!ValidateClause(IfcRevolvedAreaSolidClause.WR31))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRevolvedAreaSolid.WR31", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcRevolvedAreaSolid.WR32))
+			if (!ValidateClause(IfcRevolvedAreaSolidClause.WR32))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRevolvedAreaSolid.WR32", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcRevolvedAreaSolid : IfcSweptAreaSolid
-	{
-		public static readonly IfcRevolvedAreaSolid WR31 = new IfcRevolvedAreaSolid();
-		public static readonly IfcRevolvedAreaSolid WR32 = new IfcRevolvedAreaSolid();
-		protected IfcRevolvedAreaSolid() {}
 	}
 }

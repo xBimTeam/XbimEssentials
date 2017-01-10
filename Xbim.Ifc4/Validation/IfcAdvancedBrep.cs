@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	public partial class IfcAdvancedBrep : IExpressValidatable
 	{
+		public enum IfcAdvancedBrepClause
+		{
+			HasAdvancedFaces,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcAdvancedBrep clause) {
+		public bool ValidateClause(IfcAdvancedBrepClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcAdvancedBrep.HasAdvancedFaces) {
-				try {
-					retVal = SIZEOF(this/* as IfcManifoldSolidBrep*/.Outer.CfsFaces.Where(Afs => (!(TYPEOF(Afs).Contains("IFC4.IFCADVANCEDFACE"))))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcAdvancedBrep");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAdvancedBrep.HasAdvancedFaces' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcAdvancedBrepClause.HasAdvancedFaces:
+						retVal = SIZEOF(this/* as IfcManifoldSolidBrep*/.Outer.CfsFaces.Where(Afs => (!(TYPEOF(Afs).Contains("IFC4.IFCADVANCEDFACE"))))) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcAdvancedBrep");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAdvancedBrep.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcAdvancedBrep.HasAdvancedFaces))
+			if (!ValidateClause(IfcAdvancedBrepClause.HasAdvancedFaces))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcAdvancedBrep.HasAdvancedFaces", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcAdvancedBrep
-	{
-		public static readonly IfcAdvancedBrep HasAdvancedFaces = new IfcAdvancedBrep();
-		protected IfcAdvancedBrep() {}
 	}
 }

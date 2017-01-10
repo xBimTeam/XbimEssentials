@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.DateTimeResource
 {
 	public partial struct IfcMonthInYearNumber : IExpressValidatable
 	{
+		public enum IfcMonthInYearNumberClause
+		{
+			ValidRange,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcMonthInYearNumber clause) {
+		public bool ValidateClause(IfcMonthInYearNumberClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcMonthInYearNumber.ValidRange) {
-				try {
-					retVal = ((1 <= this) && (this <= 12) );
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.DateTimeResource.IfcMonthInYearNumber");
-					Log.Error("Exception thrown evaluating where-clause 'IfcMonthInYearNumber.ValidRange'.", ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcMonthInYearNumberClause.ValidRange:
+						retVal = ((1 <= this) && (this <= 12) );
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.DateTimeResource.IfcMonthInYearNumber");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcMonthInYearNumber.{0}'.", clause), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
-		public  IEnumerable<ValidationResult> Validate()
+		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcMonthInYearNumber.ValidRange))
+			if (!ValidateClause(IfcMonthInYearNumberClause.ValidRange))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcMonthInYearNumber.ValidRange", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcMonthInYearNumber
-	{
-		public static readonly IfcMonthInYearNumber ValidRange = new IfcMonthInYearNumber();
-		protected IfcMonthInYearNumber() {}
 	}
 }

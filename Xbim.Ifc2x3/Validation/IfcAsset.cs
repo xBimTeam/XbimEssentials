@@ -17,24 +17,31 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	public partial class IfcAsset : IExpressValidatable
 	{
+		public enum IfcAssetClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcAsset clause) {
+		public bool ValidateClause(IfcAssetClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcAsset.WR1) {
-				try {
-					retVal = SIZEOF(this/* as IfcGroup*/.IsGroupedBy.RelatedObjects.Where(Temp => !(TYPEOF(Temp).Contains("IFC2X3.IFCELEMENT")))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.SharedFacilitiesElements.IfcAsset");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAsset.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcAssetClause.WR1:
+						retVal = SIZEOF(this/* as IfcGroup*/.IsGroupedBy.RelatedObjects.Where(Temp => !(TYPEOF(Temp).Contains("IFC2X3.IFCELEMENT")))) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.SharedFacilitiesElements.IfcAsset");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAsset.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcObject)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -43,18 +50,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcAsset.WR1))
+			if (!ValidateClause(IfcAssetClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcAsset.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcAsset : IfcObject
-	{
-		public new static readonly IfcAsset WR1 = new IfcAsset();
-		protected IfcAsset() {}
 	}
 }

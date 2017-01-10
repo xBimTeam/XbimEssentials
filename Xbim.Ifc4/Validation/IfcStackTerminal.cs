@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 {
 	public partial class IfcStackTerminal : IExpressValidatable
 	{
+		public enum IfcStackTerminalClause
+		{
+			CorrectPredefinedType,
+			CorrectTypeAssigned,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcStackTerminal clause) {
+		public bool ValidateClause(IfcStackTerminalClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcStackTerminal.CorrectPredefinedType) {
-				try {
-					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcStackTerminalTypeEnum.USERDEFINED) || ((PredefinedType == IfcStackTerminalTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PlumbingFireProtectionDomain.IfcStackTerminal");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStackTerminal.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcStackTerminalClause.CorrectPredefinedType:
+						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcStackTerminalTypeEnum.USERDEFINED) || ((PredefinedType == IfcStackTerminalTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
+					case IfcStackTerminalClause.CorrectTypeAssigned:
+						retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCSTACKTERMINALTYPE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.PlumbingFireProtectionDomain.IfcStackTerminal");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStackTerminal.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcStackTerminal.CorrectTypeAssigned) {
-				try {
-					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCSTACKTERMINALTYPE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PlumbingFireProtectionDomain.IfcStackTerminal");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStackTerminal.CorrectTypeAssigned' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcStackTerminal.CorrectPredefinedType))
+			if (!ValidateClause(IfcStackTerminalClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcStackTerminal.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcStackTerminal.CorrectTypeAssigned))
+			if (!ValidateClause(IfcStackTerminalClause.CorrectTypeAssigned))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcStackTerminal.CorrectTypeAssigned", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcStackTerminal : IfcProduct
-	{
-		public static readonly IfcStackTerminal CorrectPredefinedType = new IfcStackTerminal();
-		public static readonly IfcStackTerminal CorrectTypeAssigned = new IfcStackTerminal();
-		protected IfcStackTerminal() {}
 	}
 }

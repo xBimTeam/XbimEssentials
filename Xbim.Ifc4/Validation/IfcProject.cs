@@ -13,64 +13,49 @@ namespace Xbim.Ifc4.Kernel
 {
 	public partial class IfcProject : IExpressValidatable
 	{
+		public enum IfcProjectClause
+		{
+			HasName,
+			CorrectContext,
+			NoDecomposition,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcProject clause) {
+		public bool ValidateClause(IfcProjectClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcProject.HasName) {
-				try {
-					retVal = EXISTS(this/* as IfcRoot*/.Name);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcProject");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcProject.HasName' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcProjectClause.HasName:
+						retVal = EXISTS(this/* as IfcRoot*/.Name);
+						break;
+					case IfcProjectClause.CorrectContext:
+						retVal = !(EXISTS(this/* as IfcContext*/.RepresentationContexts)) || (SIZEOF(this/* as IfcContext*/.RepresentationContexts.Where(Temp => TYPEOF(Temp).Contains("IFC4.IFCGEOMETRICREPRESENTATIONSUBCONTEXT"))) == 0);
+						break;
+					case IfcProjectClause.NoDecomposition:
+						retVal = SIZEOF(this/* as IfcObjectDefinition*/.Decomposes) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcProject");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcProject.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcProject.CorrectContext) {
-				try {
-					retVal = !(EXISTS(this/* as IfcContext*/.RepresentationContexts)) || (SIZEOF(this/* as IfcContext*/.RepresentationContexts.Where(Temp => TYPEOF(Temp).Contains("IFC4.IFCGEOMETRICREPRESENTATIONSUBCONTEXT"))) == 0);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcProject");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcProject.CorrectContext' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcProject.NoDecomposition) {
-				try {
-					retVal = SIZEOF(this/* as IfcObjectDefinition*/.Decomposes) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcProject");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcProject.NoDecomposition' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcProject.HasName))
+			if (!ValidateClause(IfcProjectClause.HasName))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcProject.HasName", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcProject.CorrectContext))
+			if (!ValidateClause(IfcProjectClause.CorrectContext))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcProject.CorrectContext", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcProject.NoDecomposition))
+			if (!ValidateClause(IfcProjectClause.NoDecomposition))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcProject.NoDecomposition", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcProject
-	{
-		public static readonly IfcProject HasName = new IfcProject();
-		public static readonly IfcProject CorrectContext = new IfcProject();
-		public static readonly IfcProject NoDecomposition = new IfcProject();
-		protected IfcProject() {}
 	}
 }

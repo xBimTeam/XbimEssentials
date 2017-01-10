@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 {
 	public partial class IfcSubContractResourceType : IExpressValidatable
 	{
+		public enum IfcSubContractResourceTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcSubContractResourceType clause) {
+		public bool ValidateClause(IfcSubContractResourceTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcSubContractResourceType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcSubContractResourceTypeEnum.USERDEFINED) || ((PredefinedType == IfcSubContractResourceTypeEnum.USERDEFINED) && EXISTS(this/* as IfcTypeResource*/.ResourceType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ConstructionMgmtDomain.IfcSubContractResourceType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSubContractResourceType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcSubContractResourceTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcSubContractResourceTypeEnum.USERDEFINED) || ((PredefinedType == IfcSubContractResourceTypeEnum.USERDEFINED) && EXISTS(this/* as IfcTypeResource*/.ResourceType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ConstructionMgmtDomain.IfcSubContractResourceType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSubContractResourceType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeObject)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcSubContractResourceType.CorrectPredefinedType))
+			if (!ValidateClause(IfcSubContractResourceTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSubContractResourceType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcSubContractResourceType : IfcTypeObject
-	{
-		public static readonly IfcSubContractResourceType CorrectPredefinedType = new IfcSubContractResourceType();
-		protected IfcSubContractResourceType() {}
 	}
 }

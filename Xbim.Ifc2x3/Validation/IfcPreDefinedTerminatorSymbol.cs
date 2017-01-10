@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	public partial class IfcPreDefinedTerminatorSymbol : IExpressValidatable
 	{
+		public enum IfcPreDefinedTerminatorSymbolClause
+		{
+			WR31,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcPreDefinedTerminatorSymbol clause) {
+		public bool ValidateClause(IfcPreDefinedTerminatorSymbolClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcPreDefinedTerminatorSymbol.WR31) {
-				try {
-					retVal = NewArray("blanked arrow", "blanked box", "blanked dot", "dimension origin", "filled arrow", "filled box", "filled dot", "integral symbol", "open arrow", "slash", "unfilled arrow").Contains(this/* as IfcPreDefinedItem*/.Name);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDimensioningResource.IfcPreDefinedTerminatorSymbol");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPreDefinedTerminatorSymbol.WR31' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcPreDefinedTerminatorSymbolClause.WR31:
+						retVal = NewArray("blanked arrow", "blanked box", "blanked dot", "dimension origin", "filled arrow", "filled box", "filled dot", "integral symbol", "open arrow", "slash", "unfilled arrow").Contains(this/* as IfcPreDefinedItem*/.Name);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDimensioningResource.IfcPreDefinedTerminatorSymbol");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPreDefinedTerminatorSymbol.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcPreDefinedTerminatorSymbol.WR31))
+			if (!ValidateClause(IfcPreDefinedTerminatorSymbolClause.WR31))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPreDefinedTerminatorSymbol.WR31", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcPreDefinedTerminatorSymbol
-	{
-		public static readonly IfcPreDefinedTerminatorSymbol WR31 = new IfcPreDefinedTerminatorSymbol();
-		protected IfcPreDefinedTerminatorSymbol() {}
 	}
 }

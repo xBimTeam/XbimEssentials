@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	public partial class IfcCoolingTowerType : IExpressValidatable
 	{
+		public enum IfcCoolingTowerTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcCoolingTowerType clause) {
+		public bool ValidateClause(IfcCoolingTowerTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcCoolingTowerType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcCoolingTowerTypeEnum.USERDEFINED) || ((PredefinedType == IfcCoolingTowerTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcCoolingTowerType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCoolingTowerType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcCoolingTowerTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcCoolingTowerTypeEnum.USERDEFINED) || ((PredefinedType == IfcCoolingTowerTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcCoolingTowerType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCoolingTowerType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.HvacDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcCoolingTowerType.CorrectPredefinedType))
+			if (!ValidateClause(IfcCoolingTowerTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCoolingTowerType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcCoolingTowerType : IfcTypeProduct
-	{
-		public static readonly IfcCoolingTowerType CorrectPredefinedType = new IfcCoolingTowerType();
-		protected IfcCoolingTowerType() {}
 	}
 }

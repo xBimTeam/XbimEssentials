@@ -17,42 +17,39 @@ namespace Xbim.Ifc2x3.RepresentationResource
 {
 	public partial class IfcTopologyRepresentation : IExpressValidatable
 	{
+		public enum IfcTopologyRepresentationClause
+		{
+			WR21,
+			WR22,
+			WR23,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcTopologyRepresentation clause) {
+		public bool ValidateClause(IfcTopologyRepresentationClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcTopologyRepresentation.WR21) {
-				try {
-					retVal = SIZEOF(this/* as IfcRepresentation*/.Items.Where(temp => !(TYPEOF(temp).Contains("IFC2X3.IFCTOPOLOGICALREPRESENTATIONITEM")))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.RepresentationResource.IfcTopologyRepresentation");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTopologyRepresentation.WR21' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcTopologyRepresentationClause.WR21:
+						retVal = SIZEOF(this/* as IfcRepresentation*/.Items.Where(temp => !(TYPEOF(temp).Contains("IFC2X3.IFCTOPOLOGICALREPRESENTATIONITEM")))) == 0;
+						break;
+					case IfcTopologyRepresentationClause.WR22:
+						retVal = EXISTS(this/* as IfcRepresentation*/.RepresentationType);
+						break;
+					case IfcTopologyRepresentationClause.WR23:
+						retVal = IfcTopologyRepresentationTypes(this/* as IfcRepresentation*/.RepresentationType, this/* as IfcRepresentation*/.Items);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.RepresentationResource.IfcTopologyRepresentation");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTopologyRepresentation.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcTopologyRepresentation.WR22) {
-				try {
-					retVal = EXISTS(this/* as IfcRepresentation*/.RepresentationType);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.RepresentationResource.IfcTopologyRepresentation");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTopologyRepresentation.WR22' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcTopologyRepresentation.WR23) {
-				try {
-					retVal = IfcTopologyRepresentationTypes(this/* as IfcRepresentation*/.RepresentationType, this/* as IfcRepresentation*/.Items);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.RepresentationResource.IfcTopologyRepresentation");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTopologyRepresentation.WR23' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcShapeModel)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -61,24 +58,12 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcTopologyRepresentation.WR21))
+			if (!ValidateClause(IfcTopologyRepresentationClause.WR21))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcTopologyRepresentation.WR21", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcTopologyRepresentation.WR22))
+			if (!ValidateClause(IfcTopologyRepresentationClause.WR22))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcTopologyRepresentation.WR22", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcTopologyRepresentation.WR23))
+			if (!ValidateClause(IfcTopologyRepresentationClause.WR23))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcTopologyRepresentation.WR23", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcTopologyRepresentation : IfcShapeModel
-	{
-		public static readonly IfcTopologyRepresentation WR21 = new IfcTopologyRepresentation();
-		public static readonly IfcTopologyRepresentation WR22 = new IfcTopologyRepresentation();
-		public static readonly IfcTopologyRepresentation WR23 = new IfcTopologyRepresentation();
-		protected IfcTopologyRepresentation() {}
 	}
 }

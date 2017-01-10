@@ -17,24 +17,31 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class IfcWall : IExpressValidatable
 	{
+		public enum IfcWallClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcWall clause) {
+		public bool ValidateClause(IfcWallClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcWall.WR1) {
-				try {
-					retVal = SIZEOF(this/* as IfcObjectDefinition*/.HasAssociations.Where(temp => TYPEOF(temp).Contains("IFC2X3.IFCRELASSOCIATESMATERIAL"))) <= 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.SharedBldgElements.IfcWall");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcWall.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcWallClause.WR1:
+						retVal = SIZEOF(this/* as IfcObjectDefinition*/.HasAssociations.Where(temp => TYPEOF(temp).Contains("IFC2X3.IFCRELASSOCIATESMATERIAL"))) <= 1;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.SharedBldgElements.IfcWall");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcWall.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -43,18 +50,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcWall.WR1))
+			if (!ValidateClause(IfcWallClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcWall.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcWall : IfcProduct
-	{
-		public new static readonly IfcWall WR1 = new IfcWall();
-		protected IfcWall() {}
 	}
 }

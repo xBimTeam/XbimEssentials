@@ -13,64 +13,49 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	public partial class IfcCShapeProfileDef : IExpressValidatable
 	{
+		public enum IfcCShapeProfileDefClause
+		{
+			ValidGirth,
+			ValidInternalFilletRadius,
+			ValidWallThickness,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcCShapeProfileDef clause) {
+		public bool ValidateClause(IfcCShapeProfileDefClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcCShapeProfileDef.ValidGirth) {
-				try {
-					retVal = Girth < (Depth / 2);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcCShapeProfileDef");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCShapeProfileDef.ValidGirth' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcCShapeProfileDefClause.ValidGirth:
+						retVal = Girth < (Depth / 2);
+						break;
+					case IfcCShapeProfileDefClause.ValidInternalFilletRadius:
+						retVal = !(EXISTS(InternalFilletRadius)) || ((InternalFilletRadius <= Width / 2 - WallThickness) && (InternalFilletRadius <= Depth / 2 - WallThickness));
+						break;
+					case IfcCShapeProfileDefClause.ValidWallThickness:
+						retVal = (WallThickness < Width / 2) && (WallThickness < Depth / 2);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcCShapeProfileDef");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCShapeProfileDef.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcCShapeProfileDef.ValidInternalFilletRadius) {
-				try {
-					retVal = !(EXISTS(InternalFilletRadius)) || ((InternalFilletRadius <= Width / 2 - WallThickness) && (InternalFilletRadius <= Depth / 2 - WallThickness));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcCShapeProfileDef");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCShapeProfileDef.ValidInternalFilletRadius' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcCShapeProfileDef.ValidWallThickness) {
-				try {
-					retVal = (WallThickness < Width / 2) && (WallThickness < Depth / 2);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcCShapeProfileDef");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCShapeProfileDef.ValidWallThickness' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcCShapeProfileDef.ValidGirth))
+			if (!ValidateClause(IfcCShapeProfileDefClause.ValidGirth))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCShapeProfileDef.ValidGirth", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcCShapeProfileDef.ValidInternalFilletRadius))
+			if (!ValidateClause(IfcCShapeProfileDefClause.ValidInternalFilletRadius))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCShapeProfileDef.ValidInternalFilletRadius", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcCShapeProfileDef.ValidWallThickness))
+			if (!ValidateClause(IfcCShapeProfileDefClause.ValidWallThickness))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCShapeProfileDef.ValidWallThickness", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcCShapeProfileDef
-	{
-		public static readonly IfcCShapeProfileDef ValidGirth = new IfcCShapeProfileDef();
-		public static readonly IfcCShapeProfileDef ValidInternalFilletRadius = new IfcCShapeProfileDef();
-		public static readonly IfcCShapeProfileDef ValidWallThickness = new IfcCShapeProfileDef();
-		protected IfcCShapeProfileDef() {}
 	}
 }

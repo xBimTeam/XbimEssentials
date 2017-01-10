@@ -13,76 +13,55 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	public partial class IfcRectangularTrimmedSurface : IExpressValidatable
 	{
+		public enum IfcRectangularTrimmedSurfaceClause
+		{
+			U1AndU2Different,
+			V1AndV2Different,
+			UsenseCompatible,
+			VsenseCompatible,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRectangularTrimmedSurface clause) {
+		public bool ValidateClause(IfcRectangularTrimmedSurfaceClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRectangularTrimmedSurface.U1AndU2Different) {
-				try {
-					retVal = U1 != U2;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcRectangularTrimmedSurface");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRectangularTrimmedSurface.U1AndU2Different' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRectangularTrimmedSurfaceClause.U1AndU2Different:
+						retVal = U1 != U2;
+						break;
+					case IfcRectangularTrimmedSurfaceClause.V1AndV2Different:
+						retVal = V1 != V2;
+						break;
+					case IfcRectangularTrimmedSurfaceClause.UsenseCompatible:
+						retVal = ((TYPEOF(BasisSurface).Contains("IFC4.IFCELEMENTARYSURFACE")) && (!(TYPEOF(BasisSurface).Contains("IFC4.IFCPLANE")))) || (TYPEOF(BasisSurface).Contains("IFC4.IFCSURFACEOFREVOLUTION")) || (Usense == (U2 > U1));
+						break;
+					case IfcRectangularTrimmedSurfaceClause.VsenseCompatible:
+						retVal = Vsense == (V2 > V1);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcRectangularTrimmedSurface");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRectangularTrimmedSurface.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcRectangularTrimmedSurface.V1AndV2Different) {
-				try {
-					retVal = V1 != V2;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcRectangularTrimmedSurface");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRectangularTrimmedSurface.V1AndV2Different' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcRectangularTrimmedSurface.UsenseCompatible) {
-				try {
-					retVal = ((TYPEOF(BasisSurface).Contains("IFC4.IFCELEMENTARYSURFACE")) && (!(TYPEOF(BasisSurface).Contains("IFC4.IFCPLANE")))) || (TYPEOF(BasisSurface).Contains("IFC4.IFCSURFACEOFREVOLUTION")) || (Usense == (U2 > U1));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcRectangularTrimmedSurface");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRectangularTrimmedSurface.UsenseCompatible' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcRectangularTrimmedSurface.VsenseCompatible) {
-				try {
-					retVal = Vsense == (V2 > V1);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcRectangularTrimmedSurface");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRectangularTrimmedSurface.VsenseCompatible' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcRectangularTrimmedSurface.U1AndU2Different))
+			if (!ValidateClause(IfcRectangularTrimmedSurfaceClause.U1AndU2Different))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRectangularTrimmedSurface.U1AndU2Different", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcRectangularTrimmedSurface.V1AndV2Different))
+			if (!ValidateClause(IfcRectangularTrimmedSurfaceClause.V1AndV2Different))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRectangularTrimmedSurface.V1AndV2Different", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcRectangularTrimmedSurface.UsenseCompatible))
+			if (!ValidateClause(IfcRectangularTrimmedSurfaceClause.UsenseCompatible))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRectangularTrimmedSurface.UsenseCompatible", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcRectangularTrimmedSurface.VsenseCompatible))
+			if (!ValidateClause(IfcRectangularTrimmedSurfaceClause.VsenseCompatible))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRectangularTrimmedSurface.VsenseCompatible", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcRectangularTrimmedSurface
-	{
-		public static readonly IfcRectangularTrimmedSurface U1AndU2Different = new IfcRectangularTrimmedSurface();
-		public static readonly IfcRectangularTrimmedSurface V1AndV2Different = new IfcRectangularTrimmedSurface();
-		public static readonly IfcRectangularTrimmedSurface UsenseCompatible = new IfcRectangularTrimmedSurface();
-		public static readonly IfcRectangularTrimmedSurface VsenseCompatible = new IfcRectangularTrimmedSurface();
-		protected IfcRectangularTrimmedSurface() {}
 	}
 }

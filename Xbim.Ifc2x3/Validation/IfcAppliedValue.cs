@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.CostResource
 {
 	public partial class IfcAppliedValue : IExpressValidatable
 	{
+		public enum IfcAppliedValueClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcAppliedValue clause) {
+		public bool ValidateClause(IfcAppliedValueClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcAppliedValue.WR1) {
-				try {
-					retVal = EXISTS(AppliedValue) || EXISTS(ValueOfComponents);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.CostResource.IfcAppliedValue");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAppliedValue.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcAppliedValueClause.WR1:
+						retVal = EXISTS(AppliedValue) || EXISTS(ValueOfComponents);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.CostResource.IfcAppliedValue");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAppliedValue.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcAppliedValue.WR1))
+			if (!ValidateClause(IfcAppliedValueClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcAppliedValue.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcAppliedValue
-	{
-		public static readonly IfcAppliedValue WR1 = new IfcAppliedValue();
-		protected IfcAppliedValue() {}
 	}
 }

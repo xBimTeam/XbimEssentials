@@ -17,24 +17,31 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class IfcRelNests : IExpressValidatable
 	{
+		public enum IfcRelNestsClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRelNests clause) {
+		public bool ValidateClause(IfcRelNestsClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRelNests.WR1) {
-				try {
-					retVal = SIZEOF(this/* as IfcRelDecomposes*/.RelatedObjects.Where(Temp => !(TYPEOF(this/* as IfcRelDecomposes*/.RelatingObject) == TYPEOF(Temp)))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcRelNests");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelNests.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRelNestsClause.WR1:
+						retVal = SIZEOF(this/* as IfcRelDecomposes*/.RelatedObjects.Where(Temp => !(TYPEOF(this/* as IfcRelDecomposes*/.RelatingObject) == TYPEOF(Temp)))) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcRelNests");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelNests.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcRelDecomposes)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -43,18 +50,8 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcRelNests.WR1))
+			if (!ValidateClause(IfcRelNestsClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelNests.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcRelNests : IfcRelDecomposes
-	{
-		public static readonly IfcRelNests WR1 = new IfcRelNests();
-		protected IfcRelNests() {}
 	}
 }

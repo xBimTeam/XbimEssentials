@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.ProcessExtension
 {
 	public partial class IfcWorkPlan : IExpressValidatable
 	{
+		public enum IfcWorkPlanClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcWorkPlan clause) {
+		public bool ValidateClause(IfcWorkPlanClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcWorkPlan.CorrectPredefinedType) {
-				try {
-					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcWorkPlanTypeEnum.USERDEFINED) || ((PredefinedType == IfcWorkPlanTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProcessExtension.IfcWorkPlan");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcWorkPlan.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcWorkPlanClause.CorrectPredefinedType:
+						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcWorkPlanTypeEnum.USERDEFINED) || ((PredefinedType == IfcWorkPlanTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ProcessExtension.IfcWorkPlan");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcWorkPlan.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcObject)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcWorkPlan.CorrectPredefinedType))
+			if (!ValidateClause(IfcWorkPlanClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcWorkPlan.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcWorkPlan : IfcObject
-	{
-		public static readonly IfcWorkPlan CorrectPredefinedType = new IfcWorkPlan();
-		protected IfcWorkPlan() {}
 	}
 }

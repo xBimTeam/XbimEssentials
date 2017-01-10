@@ -13,64 +13,49 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	public partial class IfcFillAreaStyle : IExpressValidatable
 	{
+		public enum IfcFillAreaStyleClause
+		{
+			MaxOneColour,
+			MaxOneExtHatchStyle,
+			ConsistentHatchStyleDef,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcFillAreaStyle clause) {
+		public bool ValidateClause(IfcFillAreaStyleClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcFillAreaStyle.MaxOneColour) {
-				try {
-					retVal = SIZEOF(this.FillStyles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCCOLOUR"))) <= 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcFillAreaStyle");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFillAreaStyle.MaxOneColour' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcFillAreaStyleClause.MaxOneColour:
+						retVal = SIZEOF(this.FillStyles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCCOLOUR"))) <= 1;
+						break;
+					case IfcFillAreaStyleClause.MaxOneExtHatchStyle:
+						retVal = SIZEOF(this.FillStyles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCEXTERNALLYDEFINEDHATCHSTYLE"))) <= 1;
+						break;
+					case IfcFillAreaStyleClause.ConsistentHatchStyleDef:
+						retVal = IfcCorrectFillAreaStyle(this.FillStyles);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcFillAreaStyle");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFillAreaStyle.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcFillAreaStyle.MaxOneExtHatchStyle) {
-				try {
-					retVal = SIZEOF(this.FillStyles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCEXTERNALLYDEFINEDHATCHSTYLE"))) <= 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcFillAreaStyle");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFillAreaStyle.MaxOneExtHatchStyle' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcFillAreaStyle.ConsistentHatchStyleDef) {
-				try {
-					retVal = IfcCorrectFillAreaStyle(this.FillStyles);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcFillAreaStyle");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFillAreaStyle.ConsistentHatchStyleDef' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcFillAreaStyle.MaxOneColour))
+			if (!ValidateClause(IfcFillAreaStyleClause.MaxOneColour))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcFillAreaStyle.MaxOneColour", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcFillAreaStyle.MaxOneExtHatchStyle))
+			if (!ValidateClause(IfcFillAreaStyleClause.MaxOneExtHatchStyle))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcFillAreaStyle.MaxOneExtHatchStyle", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcFillAreaStyle.ConsistentHatchStyleDef))
+			if (!ValidateClause(IfcFillAreaStyleClause.ConsistentHatchStyleDef))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcFillAreaStyle.ConsistentHatchStyleDef", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcFillAreaStyle
-	{
-		public static readonly IfcFillAreaStyle MaxOneColour = new IfcFillAreaStyle();
-		public static readonly IfcFillAreaStyle MaxOneExtHatchStyle = new IfcFillAreaStyle();
-		public static readonly IfcFillAreaStyle ConsistentHatchStyleDef = new IfcFillAreaStyle();
-		protected IfcFillAreaStyle() {}
 	}
 }

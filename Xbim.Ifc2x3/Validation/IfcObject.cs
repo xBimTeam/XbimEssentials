@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class IfcObject : IExpressValidatable
 	{
+		public enum IfcObjectClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcObject clause) {
+		public bool ValidateClause(IfcObjectClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcObject.WR1) {
-				try {
-					retVal = SIZEOF(IsDefinedBy.Where(temp => TYPEOF(temp).Contains("IFC2X3.IFCRELDEFINESBYTYPE"))) <= 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcObject");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcObject.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcObjectClause.WR1:
+						retVal = SIZEOF(IsDefinedBy.Where(temp => TYPEOF(temp).Contains("IFC2X3.IFCRELDEFINESBYTYPE"))) <= 1;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcObject");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcObject.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcObject.WR1))
+			if (!ValidateClause(IfcObjectClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcObject.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcObject
-	{
-		public static readonly IfcObject WR1 = new IfcObject();
-		protected IfcObject() {}
 	}
 }

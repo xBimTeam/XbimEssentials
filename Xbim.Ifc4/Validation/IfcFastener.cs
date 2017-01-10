@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.SharedComponentElements
 {
 	public partial class IfcFastener : IExpressValidatable
 	{
+		public enum IfcFastenerClause
+		{
+			CorrectPredefinedType,
+			CorrectTypeAssigned,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcFastener clause) {
+		public bool ValidateClause(IfcFastenerClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcFastener.CorrectPredefinedType) {
-				try {
-					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcFastenerTypeEnum.USERDEFINED) || ((PredefinedType == IfcFastenerTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedComponentElements.IfcFastener");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFastener.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcFastenerClause.CorrectPredefinedType:
+						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcFastenerTypeEnum.USERDEFINED) || ((PredefinedType == IfcFastenerTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
+					case IfcFastenerClause.CorrectTypeAssigned:
+						retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCFASTENERTYPE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.SharedComponentElements.IfcFastener");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFastener.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcFastener.CorrectTypeAssigned) {
-				try {
-					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCFASTENERTYPE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedComponentElements.IfcFastener");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFastener.CorrectTypeAssigned' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.SharedComponentElements
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcFastener.CorrectPredefinedType))
+			if (!ValidateClause(IfcFastenerClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcFastener.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcFastener.CorrectTypeAssigned))
+			if (!ValidateClause(IfcFastenerClause.CorrectTypeAssigned))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcFastener.CorrectTypeAssigned", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcFastener : IfcProduct
-	{
-		public static readonly IfcFastener CorrectPredefinedType = new IfcFastener();
-		public static readonly IfcFastener CorrectTypeAssigned = new IfcFastener();
-		protected IfcFastener() {}
 	}
 }

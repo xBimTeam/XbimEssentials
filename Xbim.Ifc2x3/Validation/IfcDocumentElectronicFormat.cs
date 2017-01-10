@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	public partial class IfcDocumentElectronicFormat : IExpressValidatable
 	{
+		public enum IfcDocumentElectronicFormatClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcDocumentElectronicFormat clause) {
+		public bool ValidateClause(IfcDocumentElectronicFormatClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcDocumentElectronicFormat.WR1) {
-				try {
-					retVal = EXISTS(FileExtension) || EXISTS(MimeContentType);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentElectronicFormat");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDocumentElectronicFormat.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcDocumentElectronicFormatClause.WR1:
+						retVal = EXISTS(FileExtension) || EXISTS(MimeContentType);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentElectronicFormat");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDocumentElectronicFormat.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcDocumentElectronicFormat.WR1))
+			if (!ValidateClause(IfcDocumentElectronicFormatClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcDocumentElectronicFormat.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcDocumentElectronicFormat
-	{
-		public static readonly IfcDocumentElectronicFormat WR1 = new IfcDocumentElectronicFormat();
-		protected IfcDocumentElectronicFormat() {}
 	}
 }

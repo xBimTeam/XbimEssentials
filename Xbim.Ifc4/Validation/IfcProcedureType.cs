@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.ProcessExtension
 {
 	public partial class IfcProcedureType : IExpressValidatable
 	{
+		public enum IfcProcedureTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcProcedureType clause) {
+		public bool ValidateClause(IfcProcedureTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcProcedureType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcProcedureTypeEnum.USERDEFINED) || ((PredefinedType == IfcProcedureTypeEnum.USERDEFINED) && EXISTS(this/* as IfcTypeProcess*/.ProcessType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProcessExtension.IfcProcedureType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcProcedureType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcProcedureTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcProcedureTypeEnum.USERDEFINED) || ((PredefinedType == IfcProcedureTypeEnum.USERDEFINED) && EXISTS(this/* as IfcTypeProcess*/.ProcessType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ProcessExtension.IfcProcedureType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcProcedureType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeObject)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcProcedureType.CorrectPredefinedType))
+			if (!ValidateClause(IfcProcedureTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcProcedureType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcProcedureType : IfcTypeObject
-	{
-		public static readonly IfcProcedureType CorrectPredefinedType = new IfcProcedureType();
-		protected IfcProcedureType() {}
 	}
 }

@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	public partial class IfcRelConnectsElements : IExpressValidatable
 	{
+		public enum IfcRelConnectsElementsClause
+		{
+			NoSelfReference,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRelConnectsElements clause) {
+		public bool ValidateClause(IfcRelConnectsElementsClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRelConnectsElements.NoSelfReference) {
-				try {
-					retVal = !Object.ReferenceEquals(RelatingElement, RelatedElement);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcRelConnectsElements");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelConnectsElements.NoSelfReference' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRelConnectsElementsClause.NoSelfReference:
+						retVal = !Object.ReferenceEquals(RelatingElement, RelatedElement);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcRelConnectsElements");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelConnectsElements.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcRelConnectsElements.NoSelfReference))
+			if (!ValidateClause(IfcRelConnectsElementsClause.NoSelfReference))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelConnectsElements.NoSelfReference", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcRelConnectsElements
-	{
-		public static readonly IfcRelConnectsElements NoSelfReference = new IfcRelConnectsElements();
-		protected IfcRelConnectsElements() {}
 	}
 }

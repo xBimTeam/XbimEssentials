@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.MeasureResource
 {
 	public partial struct IfcPositiveInteger : IExpressValidatable
 	{
+		public enum IfcPositiveIntegerClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcPositiveInteger clause) {
+		public bool ValidateClause(IfcPositiveIntegerClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcPositiveInteger.WR1) {
-				try {
-					retVal = this > 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.MeasureResource.IfcPositiveInteger");
-					Log.Error("Exception thrown evaluating where-clause 'IfcPositiveInteger.WR1'.", ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcPositiveIntegerClause.WR1:
+						retVal = this > 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.MeasureResource.IfcPositiveInteger");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPositiveInteger.{0}'.", clause), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
-		public  IEnumerable<ValidationResult> Validate()
+		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcPositiveInteger.WR1))
+			if (!ValidateClause(IfcPositiveIntegerClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPositiveInteger.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcPositiveInteger
-	{
-		public static readonly IfcPositiveInteger WR1 = new IfcPositiveInteger();
-		protected IfcPositiveInteger() {}
 	}
 }

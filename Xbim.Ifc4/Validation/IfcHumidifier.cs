@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	public partial class IfcHumidifier : IExpressValidatable
 	{
+		public enum IfcHumidifierClause
+		{
+			CorrectPredefinedType,
+			CorrectTypeAssigned,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcHumidifier clause) {
+		public bool ValidateClause(IfcHumidifierClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcHumidifier.CorrectPredefinedType) {
-				try {
-					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcHumidifierTypeEnum.USERDEFINED) || ((PredefinedType == IfcHumidifierTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcHumidifier");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcHumidifier.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcHumidifierClause.CorrectPredefinedType:
+						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcHumidifierTypeEnum.USERDEFINED) || ((PredefinedType == IfcHumidifierTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
+					case IfcHumidifierClause.CorrectTypeAssigned:
+						retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCHUMIDIFIERTYPE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcHumidifier");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcHumidifier.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcHumidifier.CorrectTypeAssigned) {
-				try {
-					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCHUMIDIFIERTYPE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcHumidifier");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcHumidifier.CorrectTypeAssigned' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.HvacDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcHumidifier.CorrectPredefinedType))
+			if (!ValidateClause(IfcHumidifierClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcHumidifier.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcHumidifier.CorrectTypeAssigned))
+			if (!ValidateClause(IfcHumidifierClause.CorrectTypeAssigned))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcHumidifier.CorrectTypeAssigned", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcHumidifier : IfcProduct
-	{
-		public static readonly IfcHumidifier CorrectPredefinedType = new IfcHumidifier();
-		public static readonly IfcHumidifier CorrectTypeAssigned = new IfcHumidifier();
-		protected IfcHumidifier() {}
 	}
 }

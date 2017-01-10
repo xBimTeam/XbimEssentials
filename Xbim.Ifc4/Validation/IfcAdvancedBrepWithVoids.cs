@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	public partial class IfcAdvancedBrepWithVoids : IExpressValidatable
 	{
+		public enum IfcAdvancedBrepWithVoidsClause
+		{
+			VoidsHaveAdvancedFaces,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcAdvancedBrepWithVoids clause) {
+		public bool ValidateClause(IfcAdvancedBrepWithVoidsClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcAdvancedBrepWithVoids.VoidsHaveAdvancedFaces) {
-				try {
-					retVal = SIZEOF(Voids.Where(Vsh => SIZEOF(Vsh.CfsFaces.Where(Afs => (!(TYPEOF(Afs).Contains("IFC4.IFCADVANCEDFACE"))))) == 0)) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcAdvancedBrepWithVoids");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAdvancedBrepWithVoids.VoidsHaveAdvancedFaces' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcAdvancedBrepWithVoidsClause.VoidsHaveAdvancedFaces:
+						retVal = SIZEOF(Voids.Where(Vsh => SIZEOF(Vsh.CfsFaces.Where(Afs => (!(TYPEOF(Afs).Contains("IFC4.IFCADVANCEDFACE"))))) == 0)) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcAdvancedBrepWithVoids");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAdvancedBrepWithVoids.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcAdvancedBrep)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcAdvancedBrepWithVoids.VoidsHaveAdvancedFaces))
+			if (!ValidateClause(IfcAdvancedBrepWithVoidsClause.VoidsHaveAdvancedFaces))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcAdvancedBrepWithVoids.VoidsHaveAdvancedFaces", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcAdvancedBrepWithVoids : IfcAdvancedBrep
-	{
-		public static readonly IfcAdvancedBrepWithVoids VoidsHaveAdvancedFaces = new IfcAdvancedBrepWithVoids();
-		protected IfcAdvancedBrepWithVoids() {}
 	}
 }

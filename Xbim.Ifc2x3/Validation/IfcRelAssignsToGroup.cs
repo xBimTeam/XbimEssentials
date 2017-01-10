@@ -17,24 +17,31 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class IfcRelAssignsToGroup : IExpressValidatable
 	{
+		public enum IfcRelAssignsToGroupClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRelAssignsToGroup clause) {
+		public bool ValidateClause(IfcRelAssignsToGroupClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRelAssignsToGroup.WR1) {
-				try {
-					retVal = SIZEOF(this/* as IfcRelAssigns*/.RelatedObjects.Where(Temp => Object.ReferenceEquals(RelatingGroup, Temp))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcRelAssignsToGroup");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelAssignsToGroup.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRelAssignsToGroupClause.WR1:
+						retVal = SIZEOF(this/* as IfcRelAssigns*/.RelatedObjects.Where(Temp => Object.ReferenceEquals(RelatingGroup, Temp))) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcRelAssignsToGroup");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelAssignsToGroup.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcRelAssigns)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -43,18 +50,8 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcRelAssignsToGroup.WR1))
+			if (!ValidateClause(IfcRelAssignsToGroupClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelAssignsToGroup.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcRelAssignsToGroup : IfcRelAssigns
-	{
-		public new static readonly IfcRelAssignsToGroup WR1 = new IfcRelAssignsToGroup();
-		protected IfcRelAssignsToGroup() {}
 	}
 }

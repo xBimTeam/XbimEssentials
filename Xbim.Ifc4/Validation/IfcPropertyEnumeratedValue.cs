@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.PropertyResource
 {
 	public partial class IfcPropertyEnumeratedValue : IExpressValidatable
 	{
+		public enum IfcPropertyEnumeratedValueClause
+		{
+			WR21,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcPropertyEnumeratedValue clause) {
+		public bool ValidateClause(IfcPropertyEnumeratedValueClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcPropertyEnumeratedValue.WR21) {
-				try {
-					retVal = !(EXISTS(EnumerationReference)) || !(EXISTS(EnumerationValues)) || (SIZEOF(EnumerationValues.Where(temp => EnumerationReference.EnumerationValues.Contains(temp))) == SIZEOF(EnumerationValues));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PropertyResource.IfcPropertyEnumeratedValue");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPropertyEnumeratedValue.WR21' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcPropertyEnumeratedValueClause.WR21:
+						retVal = !(EXISTS(EnumerationReference)) || !(EXISTS(EnumerationValues)) || (SIZEOF(EnumerationValues.Where(temp => EnumerationReference.EnumerationValues.Contains(temp))) == SIZEOF(EnumerationValues));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.PropertyResource.IfcPropertyEnumeratedValue");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPropertyEnumeratedValue.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcPropertyEnumeratedValue.WR21))
+			if (!ValidateClause(IfcPropertyEnumeratedValueClause.WR21))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPropertyEnumeratedValue.WR21", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcPropertyEnumeratedValue
-	{
-		public static readonly IfcPropertyEnumeratedValue WR21 = new IfcPropertyEnumeratedValue();
-		protected IfcPropertyEnumeratedValue() {}
 	}
 }

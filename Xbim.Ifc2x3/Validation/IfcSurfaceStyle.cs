@@ -17,88 +17,61 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class IfcSurfaceStyle : IExpressValidatable
 	{
+		public enum IfcSurfaceStyleClause
+		{
+			WR11,
+			WR12,
+			WR13,
+			WR14,
+			WR15,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcSurfaceStyle clause) {
+		public bool ValidateClause(IfcSurfaceStyleClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcSurfaceStyle.WR11) {
-				try {
-					retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC2X3.IFCSURFACESTYLESHADING"))) <= 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyle");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceStyle.WR11' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcSurfaceStyleClause.WR11:
+						retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC2X3.IFCSURFACESTYLESHADING"))) <= 1;
+						break;
+					case IfcSurfaceStyleClause.WR12:
+						retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC2X3.IFCSURFACESTYLELIGHTING"))) <= 1;
+						break;
+					case IfcSurfaceStyleClause.WR13:
+						retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC2X3.IFCSURFACESTYLEREFRACTION"))) <= 1;
+						break;
+					case IfcSurfaceStyleClause.WR14:
+						retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC2X3.IFCSURFACESTYLEWITHTEXTURES"))) <= 1;
+						break;
+					case IfcSurfaceStyleClause.WR15:
+						retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC2X3.IFCEXTERNALLYDEFINEDSURFACESTYLE"))) <= 1;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyle");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceStyle.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcSurfaceStyle.WR12) {
-				try {
-					retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC2X3.IFCSURFACESTYLELIGHTING"))) <= 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyle");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceStyle.WR12' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcSurfaceStyle.WR13) {
-				try {
-					retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC2X3.IFCSURFACESTYLEREFRACTION"))) <= 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyle");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceStyle.WR13' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcSurfaceStyle.WR14) {
-				try {
-					retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC2X3.IFCSURFACESTYLEWITHTEXTURES"))) <= 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyle");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceStyle.WR14' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcSurfaceStyle.WR15) {
-				try {
-					retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC2X3.IFCEXTERNALLYDEFINEDSURFACESTYLE"))) <= 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyle");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceStyle.WR15' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcSurfaceStyle.WR11))
+			if (!ValidateClause(IfcSurfaceStyleClause.WR11))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSurfaceStyle.WR11", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcSurfaceStyle.WR12))
+			if (!ValidateClause(IfcSurfaceStyleClause.WR12))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSurfaceStyle.WR12", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcSurfaceStyle.WR13))
+			if (!ValidateClause(IfcSurfaceStyleClause.WR13))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSurfaceStyle.WR13", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcSurfaceStyle.WR14))
+			if (!ValidateClause(IfcSurfaceStyleClause.WR14))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSurfaceStyle.WR14", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcSurfaceStyle.WR15))
+			if (!ValidateClause(IfcSurfaceStyleClause.WR15))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSurfaceStyle.WR15", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcSurfaceStyle
-	{
-		public static readonly IfcSurfaceStyle WR11 = new IfcSurfaceStyle();
-		public static readonly IfcSurfaceStyle WR12 = new IfcSurfaceStyle();
-		public static readonly IfcSurfaceStyle WR13 = new IfcSurfaceStyle();
-		public static readonly IfcSurfaceStyle WR14 = new IfcSurfaceStyle();
-		public static readonly IfcSurfaceStyle WR15 = new IfcSurfaceStyle();
-		protected IfcSurfaceStyle() {}
 	}
 }

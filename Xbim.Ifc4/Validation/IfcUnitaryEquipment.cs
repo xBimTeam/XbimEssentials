@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	public partial class IfcUnitaryEquipment : IExpressValidatable
 	{
+		public enum IfcUnitaryEquipmentClause
+		{
+			CorrectPredefinedType,
+			CorrectTypeAssigned,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcUnitaryEquipment clause) {
+		public bool ValidateClause(IfcUnitaryEquipmentClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcUnitaryEquipment.CorrectPredefinedType) {
-				try {
-					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcUnitaryEquipmentTypeEnum.USERDEFINED) || ((PredefinedType == IfcUnitaryEquipmentTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcUnitaryEquipment");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcUnitaryEquipment.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcUnitaryEquipmentClause.CorrectPredefinedType:
+						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcUnitaryEquipmentTypeEnum.USERDEFINED) || ((PredefinedType == IfcUnitaryEquipmentTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
+					case IfcUnitaryEquipmentClause.CorrectTypeAssigned:
+						retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCUNITARYEQUIPMENTTYPE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcUnitaryEquipment");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcUnitaryEquipment.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcUnitaryEquipment.CorrectTypeAssigned) {
-				try {
-					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCUNITARYEQUIPMENTTYPE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcUnitaryEquipment");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcUnitaryEquipment.CorrectTypeAssigned' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.HvacDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcUnitaryEquipment.CorrectPredefinedType))
+			if (!ValidateClause(IfcUnitaryEquipmentClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcUnitaryEquipment.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcUnitaryEquipment.CorrectTypeAssigned))
+			if (!ValidateClause(IfcUnitaryEquipmentClause.CorrectTypeAssigned))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcUnitaryEquipment.CorrectTypeAssigned", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcUnitaryEquipment : IfcProduct
-	{
-		public static readonly IfcUnitaryEquipment CorrectPredefinedType = new IfcUnitaryEquipment();
-		public static readonly IfcUnitaryEquipment CorrectTypeAssigned = new IfcUnitaryEquipment();
-		protected IfcUnitaryEquipment() {}
 	}
 }

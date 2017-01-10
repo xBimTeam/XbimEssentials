@@ -17,24 +17,31 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class IfcStructuralPlanarAction : IExpressValidatable
 	{
+		public enum IfcStructuralPlanarActionClause
+		{
+			WR61,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcStructuralPlanarAction clause) {
+		public bool ValidateClause(IfcStructuralPlanarActionClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcStructuralPlanarAction.WR61) {
-				try {
-					retVal = SIZEOF(NewArray("IFC2X3.IFCSTRUCTURALLOADPLANARFORCE", "IFC2X3.IFCSTRUCTURALLOADTEMPERATURE") * TYPEOF(this/* as IfcStructuralActivity*/.AppliedLoad)) == 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.StructuralAnalysisDomain.IfcStructuralPlanarAction");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralPlanarAction.WR61' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcStructuralPlanarActionClause.WR61:
+						retVal = SIZEOF(NewArray("IFC2X3.IFCSTRUCTURALLOADPLANARFORCE", "IFC2X3.IFCSTRUCTURALLOADTEMPERATURE") * TYPEOF(this/* as IfcStructuralActivity*/.AppliedLoad)) == 1;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.StructuralAnalysisDomain.IfcStructuralPlanarAction");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralPlanarAction.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -43,18 +50,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcStructuralPlanarAction.WR61))
+			if (!ValidateClause(IfcStructuralPlanarActionClause.WR61))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcStructuralPlanarAction.WR61", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcStructuralPlanarAction : IfcProduct
-	{
-		public static readonly IfcStructuralPlanarAction WR61 = new IfcStructuralPlanarAction();
-		protected IfcStructuralPlanarAction() {}
 	}
 }

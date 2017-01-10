@@ -17,24 +17,31 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class IfcFanType : IExpressValidatable
 	{
+		public enum IfcFanTypeClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcFanType clause) {
+		public bool ValidateClause(IfcFanTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcFanType.WR1) {
-				try {
-					retVal = (PredefinedType != IfcFanTypeEnum.USERDEFINED) || ((PredefinedType == IfcFanTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.HVACDomain.IfcFanType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFanType.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcFanTypeClause.WR1:
+						retVal = (PredefinedType != IfcFanTypeEnum.USERDEFINED) || ((PredefinedType == IfcFanTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.HVACDomain.IfcFanType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFanType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -43,18 +50,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcFanType.WR1))
+			if (!ValidateClause(IfcFanTypeClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcFanType.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcFanType : IfcTypeProduct
-	{
-		public new static readonly IfcFanType WR1 = new IfcFanType();
-		protected IfcFanType() {}
 	}
 }

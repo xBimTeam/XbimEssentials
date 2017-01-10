@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	public partial class IfcShadingDeviceType : IExpressValidatable
 	{
+		public enum IfcShadingDeviceTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcShadingDeviceType clause) {
+		public bool ValidateClause(IfcShadingDeviceTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcShadingDeviceType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcShadingDeviceTypeEnum.USERDEFINED) || ((PredefinedType == IfcShadingDeviceTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcShadingDeviceType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcShadingDeviceType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcShadingDeviceTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcShadingDeviceTypeEnum.USERDEFINED) || ((PredefinedType == IfcShadingDeviceTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcShadingDeviceType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcShadingDeviceType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcShadingDeviceType.CorrectPredefinedType))
+			if (!ValidateClause(IfcShadingDeviceTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcShadingDeviceType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcShadingDeviceType : IfcTypeProduct
-	{
-		public static readonly IfcShadingDeviceType CorrectPredefinedType = new IfcShadingDeviceType();
-		protected IfcShadingDeviceType() {}
 	}
 }

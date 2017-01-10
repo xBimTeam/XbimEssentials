@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.DateTimeResource
 {
 	public partial struct IfcDayInMonthNumber : IExpressValidatable
 	{
+		public enum IfcDayInMonthNumberClause
+		{
+			ValidRange,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcDayInMonthNumber clause) {
+		public bool ValidateClause(IfcDayInMonthNumberClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcDayInMonthNumber.ValidRange) {
-				try {
-					retVal = ((1 <= this) && (this <= 31) );
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.DateTimeResource.IfcDayInMonthNumber");
-					Log.Error("Exception thrown evaluating where-clause 'IfcDayInMonthNumber.ValidRange'.", ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcDayInMonthNumberClause.ValidRange:
+						retVal = ((1 <= this) && (this <= 31) );
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.DateTimeResource.IfcDayInMonthNumber");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDayInMonthNumber.{0}'.", clause), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
-		public  IEnumerable<ValidationResult> Validate()
+		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcDayInMonthNumber.ValidRange))
+			if (!ValidateClause(IfcDayInMonthNumberClause.ValidRange))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcDayInMonthNumber.ValidRange", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcDayInMonthNumber
-	{
-		public static readonly IfcDayInMonthNumber ValidRange = new IfcDayInMonthNumber();
-		protected IfcDayInMonthNumber() {}
 	}
 }

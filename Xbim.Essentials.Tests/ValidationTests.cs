@@ -7,6 +7,8 @@ using Xbim.Common;
 using Xbim.Common.Enumerations;
 using Xbim.Ifc;
 using Xbim.Ifc.Validation;
+using Xbim.Ifc2x3.HVACDomain;
+using Xbim.Ifc2x3.Kernel;
 
 namespace Xbim.Essentials.Tests
 {
@@ -74,12 +76,13 @@ namespace Xbim.Essentials.Tests
                     ValidateLevel = ValidationFlags.All,
                     CreateEntityHierarchy = true
                 };
-                var item = model.Instances[100];
-                var e2 = v.Validate(item);
-                foreach (var validationResult in new ValidationReporter(e2))
-                {
-                    Debug.WriteLine(validationResult);
-                }
+                var item = model.Instances[100] as IfcCoilType;
+                if (item == null)
+                    throw  new Exception();
+
+                var res = item.ValidateClause(IfcCoilType.IfcCoilTypeClause.WR1);
+                res = item.ValidateClause(IfcTypeObject.IfcTypeObjectClause.WR1);
+                res = item.ValidateClause(IfcTypeProduct.IfcTypeProductClause.WR41);
             }
         }
     }

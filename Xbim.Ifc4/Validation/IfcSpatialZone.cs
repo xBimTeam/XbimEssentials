@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	public partial class IfcSpatialZone : IExpressValidatable
 	{
+		public enum IfcSpatialZoneClause
+		{
+			CorrectPredefinedType,
+			CorrectTypeAssigned,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcSpatialZone clause) {
+		public bool ValidateClause(IfcSpatialZoneClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcSpatialZone.CorrectPredefinedType) {
-				try {
-					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcSpatialZoneTypeEnum.USERDEFINED) || ((PredefinedType == IfcSpatialZoneTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcSpatialZone");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSpatialZone.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcSpatialZoneClause.CorrectPredefinedType:
+						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcSpatialZoneTypeEnum.USERDEFINED) || ((PredefinedType == IfcSpatialZoneTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
+					case IfcSpatialZoneClause.CorrectTypeAssigned:
+						retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCSPATIALZONETYPE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcSpatialZone");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSpatialZone.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcSpatialZone.CorrectTypeAssigned) {
-				try {
-					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCSPATIALZONETYPE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcSpatialZone");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSpatialZone.CorrectTypeAssigned' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcSpatialZone.CorrectPredefinedType))
+			if (!ValidateClause(IfcSpatialZoneClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSpatialZone.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcSpatialZone.CorrectTypeAssigned))
+			if (!ValidateClause(IfcSpatialZoneClause.CorrectTypeAssigned))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSpatialZone.CorrectTypeAssigned", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcSpatialZone : IfcProduct
-	{
-		public static readonly IfcSpatialZone CorrectPredefinedType = new IfcSpatialZone();
-		public static readonly IfcSpatialZone CorrectTypeAssigned = new IfcSpatialZone();
-		protected IfcSpatialZone() {}
 	}
 }

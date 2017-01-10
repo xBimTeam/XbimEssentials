@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	public partial class IfcStructuralLinearAction : IExpressValidatable
 	{
+		public enum IfcStructuralLinearActionClause
+		{
+			SuitableLoadType,
+			ConstPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcStructuralLinearAction clause) {
+		public bool ValidateClause(IfcStructuralLinearActionClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcStructuralLinearAction.SuitableLoadType) {
-				try {
-					retVal = SIZEOF(NewArray("IFC4.IFCSTRUCTURALLOADLINEARFORCE", "IFC4.IFCSTRUCTURALLOADTEMPERATURE") * TYPEOF(this/* as IfcStructuralActivity*/.AppliedLoad)) == 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralLinearAction");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralLinearAction.SuitableLoadType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcStructuralLinearActionClause.SuitableLoadType:
+						retVal = SIZEOF(NewArray("IFC4.IFCSTRUCTURALLOADLINEARFORCE", "IFC4.IFCSTRUCTURALLOADTEMPERATURE") * TYPEOF(this/* as IfcStructuralActivity*/.AppliedLoad)) == 1;
+						break;
+					case IfcStructuralLinearActionClause.ConstPredefinedType:
+						retVal = this/* as IfcStructuralCurveAction*/.PredefinedType == IfcStructuralCurveActivityTypeEnum.CONST;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralLinearAction");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralLinearAction.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcStructuralLinearAction.ConstPredefinedType) {
-				try {
-					retVal = this/* as IfcStructuralCurveAction*/.PredefinedType == IfcStructuralCurveActivityTypeEnum.CONST;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralLinearAction");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralLinearAction.ConstPredefinedType' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcStructuralCurveAction)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcStructuralLinearAction.SuitableLoadType))
+			if (!ValidateClause(IfcStructuralLinearActionClause.SuitableLoadType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcStructuralLinearAction.SuitableLoadType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcStructuralLinearAction.ConstPredefinedType))
+			if (!ValidateClause(IfcStructuralLinearActionClause.ConstPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcStructuralLinearAction.ConstPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcStructuralLinearAction : IfcStructuralCurveAction
-	{
-		public static readonly IfcStructuralLinearAction SuitableLoadType = new IfcStructuralLinearAction();
-		public static readonly IfcStructuralLinearAction ConstPredefinedType = new IfcStructuralLinearAction();
-		protected IfcStructuralLinearAction() {}
 	}
 }

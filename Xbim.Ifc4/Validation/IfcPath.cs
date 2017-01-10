@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.TopologyResource
 {
 	public partial class IfcPath : IExpressValidatable
 	{
+		public enum IfcPathClause
+		{
+			IsContinuous,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcPath clause) {
+		public bool ValidateClause(IfcPathClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcPath.IsContinuous) {
-				try {
-					retVal = IfcPathHeadToTail(this);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.TopologyResource.IfcPath");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPath.IsContinuous' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcPathClause.IsContinuous:
+						retVal = IfcPathHeadToTail(this);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.TopologyResource.IfcPath");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPath.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcPath.IsContinuous))
+			if (!ValidateClause(IfcPathClause.IsContinuous))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPath.IsContinuous", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcPath
-	{
-		public static readonly IfcPath IsContinuous = new IfcPath();
-		protected IfcPath() {}
 	}
 }

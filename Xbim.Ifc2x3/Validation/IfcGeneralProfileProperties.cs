@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	public partial class IfcGeneralProfileProperties : IExpressValidatable
 	{
+		public enum IfcGeneralProfilePropertiesClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcGeneralProfileProperties clause) {
+		public bool ValidateClause(IfcGeneralProfilePropertiesClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcGeneralProfileProperties.WR1) {
-				try {
-					retVal = !(EXISTS(CrossSectionArea)) || (CrossSectionArea > 0);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfilePropertyResource.IfcGeneralProfileProperties");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcGeneralProfileProperties.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcGeneralProfilePropertiesClause.WR1:
+						retVal = !(EXISTS(CrossSectionArea)) || (CrossSectionArea > 0);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfilePropertyResource.IfcGeneralProfileProperties");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcGeneralProfileProperties.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcGeneralProfileProperties.WR1))
+			if (!ValidateClause(IfcGeneralProfilePropertiesClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcGeneralProfileProperties.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcGeneralProfileProperties
-	{
-		public static readonly IfcGeneralProfileProperties WR1 = new IfcGeneralProfileProperties();
-		protected IfcGeneralProfileProperties() {}
 	}
 }

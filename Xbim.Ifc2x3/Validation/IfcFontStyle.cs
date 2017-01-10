@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.PresentationResource
 {
 	public partial struct IfcFontStyle : IExpressValidatable
 	{
+		public enum IfcFontStyleClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcFontStyle clause) {
+		public bool ValidateClause(IfcFontStyleClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcFontStyle.WR1) {
-				try {
-					retVal = NewArray("normal", "italic", "oblique").Contains(this);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationResource.IfcFontStyle");
-					Log.Error("Exception thrown evaluating where-clause 'IfcFontStyle.WR1'.", ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcFontStyleClause.WR1:
+						retVal = NewArray("normal", "italic", "oblique").Contains(this);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationResource.IfcFontStyle");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFontStyle.{0}'.", clause), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
-		public  IEnumerable<ValidationResult> Validate()
+		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcFontStyle.WR1))
+			if (!ValidateClause(IfcFontStyleClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcFontStyle.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcFontStyle
-	{
-		public static readonly IfcFontStyle WR1 = new IfcFontStyle();
-		protected IfcFontStyle() {}
 	}
 }

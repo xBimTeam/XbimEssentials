@@ -13,64 +13,49 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	public partial class IfcSectionedSpine : IExpressValidatable
 	{
+		public enum IfcSectionedSpineClause
+		{
+			CorrespondingSectionPositions,
+			ConsistentProfileTypes,
+			SpineCurveDim,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcSectionedSpine clause) {
+		public bool ValidateClause(IfcSectionedSpineClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcSectionedSpine.CorrespondingSectionPositions) {
-				try {
-					retVal = SIZEOF(CrossSections) == SIZEOF(CrossSectionPositions);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcSectionedSpine");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSectionedSpine.CorrespondingSectionPositions' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcSectionedSpineClause.CorrespondingSectionPositions:
+						retVal = SIZEOF(CrossSections) == SIZEOF(CrossSectionPositions);
+						break;
+					case IfcSectionedSpineClause.ConsistentProfileTypes:
+						retVal = SIZEOF(CrossSections.Where(temp => CrossSections.ItemAt(0).ProfileType != temp.ProfileType)) == 0;
+						break;
+					case IfcSectionedSpineClause.SpineCurveDim:
+						retVal = SpineCurve.Dim == 3;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcSectionedSpine");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSectionedSpine.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcSectionedSpine.ConsistentProfileTypes) {
-				try {
-					retVal = SIZEOF(CrossSections.Where(temp => CrossSections.ItemAt(0).ProfileType != temp.ProfileType)) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcSectionedSpine");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSectionedSpine.ConsistentProfileTypes' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcSectionedSpine.SpineCurveDim) {
-				try {
-					retVal = SpineCurve.Dim == 3;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcSectionedSpine");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSectionedSpine.SpineCurveDim' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcSectionedSpine.CorrespondingSectionPositions))
+			if (!ValidateClause(IfcSectionedSpineClause.CorrespondingSectionPositions))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSectionedSpine.CorrespondingSectionPositions", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcSectionedSpine.ConsistentProfileTypes))
+			if (!ValidateClause(IfcSectionedSpineClause.ConsistentProfileTypes))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSectionedSpine.ConsistentProfileTypes", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcSectionedSpine.SpineCurveDim))
+			if (!ValidateClause(IfcSectionedSpineClause.SpineCurveDim))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSectionedSpine.SpineCurveDim", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcSectionedSpine
-	{
-		public static readonly IfcSectionedSpine CorrespondingSectionPositions = new IfcSectionedSpine();
-		public static readonly IfcSectionedSpine ConsistentProfileTypes = new IfcSectionedSpine();
-		public static readonly IfcSectionedSpine SpineCurveDim = new IfcSectionedSpine();
-		protected IfcSectionedSpine() {}
 	}
 }

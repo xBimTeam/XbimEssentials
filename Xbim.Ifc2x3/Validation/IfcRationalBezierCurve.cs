@@ -17,33 +17,35 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class IfcRationalBezierCurve : IExpressValidatable
 	{
+		public enum IfcRationalBezierCurveClause
+		{
+			WR1,
+			WR2,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRationalBezierCurve clause) {
+		public bool ValidateClause(IfcRationalBezierCurveClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRationalBezierCurve.WR1) {
-				try {
-					retVal = SIZEOF(WeightsData) == SIZEOF(this/* as IfcBSplineCurve*/.ControlPointsList);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcRationalBezierCurve");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRationalBezierCurve.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRationalBezierCurveClause.WR1:
+						retVal = SIZEOF(WeightsData) == SIZEOF(this/* as IfcBSplineCurve*/.ControlPointsList);
+						break;
+					case IfcRationalBezierCurveClause.WR2:
+						retVal = IfcCurveWeightsPositive(this);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcRationalBezierCurve");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRationalBezierCurve.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcRationalBezierCurve.WR2) {
-				try {
-					retVal = IfcCurveWeightsPositive(this);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcRationalBezierCurve");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRationalBezierCurve.WR2' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcBSplineCurve)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -52,21 +54,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcRationalBezierCurve.WR1))
+			if (!ValidateClause(IfcRationalBezierCurveClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRationalBezierCurve.WR1", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcRationalBezierCurve.WR2))
+			if (!ValidateClause(IfcRationalBezierCurveClause.WR2))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRationalBezierCurve.WR2", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcRationalBezierCurve : IfcBSplineCurve
-	{
-		public static readonly IfcRationalBezierCurve WR1 = new IfcRationalBezierCurve();
-		public static readonly IfcRationalBezierCurve WR2 = new IfcRationalBezierCurve();
-		protected IfcRationalBezierCurve() {}
 	}
 }

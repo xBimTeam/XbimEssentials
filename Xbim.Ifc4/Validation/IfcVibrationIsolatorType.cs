@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	public partial class IfcVibrationIsolatorType : IExpressValidatable
 	{
+		public enum IfcVibrationIsolatorTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcVibrationIsolatorType clause) {
+		public bool ValidateClause(IfcVibrationIsolatorTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcVibrationIsolatorType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcVibrationIsolatorTypeEnum.USERDEFINED) || ((PredefinedType == IfcVibrationIsolatorTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcVibrationIsolatorType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcVibrationIsolatorType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcVibrationIsolatorTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcVibrationIsolatorTypeEnum.USERDEFINED) || ((PredefinedType == IfcVibrationIsolatorTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcVibrationIsolatorType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcVibrationIsolatorType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.HvacDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcVibrationIsolatorType.CorrectPredefinedType))
+			if (!ValidateClause(IfcVibrationIsolatorTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcVibrationIsolatorType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcVibrationIsolatorType : IfcTypeProduct
-	{
-		public static readonly IfcVibrationIsolatorType CorrectPredefinedType = new IfcVibrationIsolatorType();
-		protected IfcVibrationIsolatorType() {}
 	}
 }

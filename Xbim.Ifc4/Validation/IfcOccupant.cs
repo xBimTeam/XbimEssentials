@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 {
 	public partial class IfcOccupant : IExpressValidatable
 	{
+		public enum IfcOccupantClause
+		{
+			WR31,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcOccupant clause) {
+		public bool ValidateClause(IfcOccupantClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcOccupant.WR31) {
-				try {
-					retVal = !(PredefinedType == IfcOccupantTypeEnum.USERDEFINED) || EXISTS(this/* as IfcObject*/.ObjectType);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedFacilitiesElements.IfcOccupant");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcOccupant.WR31' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcOccupantClause.WR31:
+						retVal = !(PredefinedType == IfcOccupantTypeEnum.USERDEFINED) || EXISTS(this/* as IfcObject*/.ObjectType);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.SharedFacilitiesElements.IfcOccupant");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcOccupant.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcObject)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcOccupant.WR31))
+			if (!ValidateClause(IfcOccupantClause.WR31))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcOccupant.WR31", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcOccupant : IfcObject
-	{
-		public static readonly IfcOccupant WR31 = new IfcOccupant();
-		protected IfcOccupant() {}
 	}
 }

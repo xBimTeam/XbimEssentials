@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	public partial class IfcCurtainWall : IExpressValidatable
 	{
+		public enum IfcCurtainWallClause
+		{
+			CorrectPredefinedType,
+			CorrectTypeAssigned,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcCurtainWall clause) {
+		public bool ValidateClause(IfcCurtainWallClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcCurtainWall.CorrectPredefinedType) {
-				try {
-					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcCurtainWallTypeEnum.USERDEFINED) || ((PredefinedType == IfcCurtainWallTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcCurtainWall");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCurtainWall.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcCurtainWallClause.CorrectPredefinedType:
+						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcCurtainWallTypeEnum.USERDEFINED) || ((PredefinedType == IfcCurtainWallTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
+					case IfcCurtainWallClause.CorrectTypeAssigned:
+						retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCCURTAINWALLTYPE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcCurtainWall");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCurtainWall.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcCurtainWall.CorrectTypeAssigned) {
-				try {
-					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCCURTAINWALLTYPE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcCurtainWall");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCurtainWall.CorrectTypeAssigned' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcBuildingElement)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcCurtainWall.CorrectPredefinedType))
+			if (!ValidateClause(IfcCurtainWallClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCurtainWall.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcCurtainWall.CorrectTypeAssigned))
+			if (!ValidateClause(IfcCurtainWallClause.CorrectTypeAssigned))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCurtainWall.CorrectTypeAssigned", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcCurtainWall : IfcBuildingElement
-	{
-		public static readonly IfcCurtainWall CorrectPredefinedType = new IfcCurtainWall();
-		public static readonly IfcCurtainWall CorrectTypeAssigned = new IfcCurtainWall();
-		protected IfcCurtainWall() {}
 	}
 }

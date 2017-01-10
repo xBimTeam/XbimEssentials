@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	public partial class IfcElectricGenerator : IExpressValidatable
 	{
+		public enum IfcElectricGeneratorClause
+		{
+			CorrectPredefinedType,
+			CorrectTypeAssigned,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcElectricGenerator clause) {
+		public bool ValidateClause(IfcElectricGeneratorClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcElectricGenerator.CorrectPredefinedType) {
-				try {
-					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcElectricGeneratorTypeEnum.USERDEFINED) || ((PredefinedType == IfcElectricGeneratorTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ElectricalDomain.IfcElectricGenerator");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcElectricGenerator.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcElectricGeneratorClause.CorrectPredefinedType:
+						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcElectricGeneratorTypeEnum.USERDEFINED) || ((PredefinedType == IfcElectricGeneratorTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
+					case IfcElectricGeneratorClause.CorrectTypeAssigned:
+						retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCELECTRICGENERATORTYPE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ElectricalDomain.IfcElectricGenerator");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcElectricGenerator.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcElectricGenerator.CorrectTypeAssigned) {
-				try {
-					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCELECTRICGENERATORTYPE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ElectricalDomain.IfcElectricGenerator");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcElectricGenerator.CorrectTypeAssigned' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.ElectricalDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcElectricGenerator.CorrectPredefinedType))
+			if (!ValidateClause(IfcElectricGeneratorClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcElectricGenerator.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcElectricGenerator.CorrectTypeAssigned))
+			if (!ValidateClause(IfcElectricGeneratorClause.CorrectTypeAssigned))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcElectricGenerator.CorrectTypeAssigned", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcElectricGenerator : IfcProduct
-	{
-		public static readonly IfcElectricGenerator CorrectPredefinedType = new IfcElectricGenerator();
-		public static readonly IfcElectricGenerator CorrectTypeAssigned = new IfcElectricGenerator();
-		protected IfcElectricGenerator() {}
 	}
 }

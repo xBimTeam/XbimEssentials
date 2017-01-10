@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	public partial class IfcEvaporator : IExpressValidatable
 	{
+		public enum IfcEvaporatorClause
+		{
+			CorrectPredefinedType,
+			CorrectTypeAssigned,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcEvaporator clause) {
+		public bool ValidateClause(IfcEvaporatorClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcEvaporator.CorrectPredefinedType) {
-				try {
-					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcEvaporatorTypeEnum.USERDEFINED) || ((PredefinedType == IfcEvaporatorTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcEvaporator");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcEvaporator.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcEvaporatorClause.CorrectPredefinedType:
+						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcEvaporatorTypeEnum.USERDEFINED) || ((PredefinedType == IfcEvaporatorTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
+					case IfcEvaporatorClause.CorrectTypeAssigned:
+						retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCEVAPORATORTYPE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcEvaporator");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcEvaporator.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcEvaporator.CorrectTypeAssigned) {
-				try {
-					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCEVAPORATORTYPE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcEvaporator");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcEvaporator.CorrectTypeAssigned' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.HvacDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcEvaporator.CorrectPredefinedType))
+			if (!ValidateClause(IfcEvaporatorClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcEvaporator.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcEvaporator.CorrectTypeAssigned))
+			if (!ValidateClause(IfcEvaporatorClause.CorrectTypeAssigned))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcEvaporator.CorrectTypeAssigned", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcEvaporator : IfcProduct
-	{
-		public static readonly IfcEvaporator CorrectPredefinedType = new IfcEvaporator();
-		public static readonly IfcEvaporator CorrectTypeAssigned = new IfcEvaporator();
-		protected IfcEvaporator() {}
 	}
 }

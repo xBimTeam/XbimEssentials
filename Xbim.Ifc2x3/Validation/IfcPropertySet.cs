@@ -17,52 +17,43 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class IfcPropertySet : IExpressValidatable
 	{
+		public enum IfcPropertySetClause
+		{
+			WR31,
+			WR32,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcPropertySet clause) {
+		public bool ValidateClause(IfcPropertySetClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcPropertySet.WR31) {
-				try {
-					retVal = EXISTS(this/* as IfcRoot*/.Name);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcPropertySet");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPropertySet.WR31' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcPropertySetClause.WR31:
+						retVal = EXISTS(this/* as IfcRoot*/.Name);
+						break;
+					case IfcPropertySetClause.WR32:
+						retVal = IfcUniquePropertyName(HasProperties);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcPropertySet");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPropertySet.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcPropertySet.WR32) {
-				try {
-					retVal = IfcUniquePropertyName(HasProperties);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcPropertySet");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPropertySet.WR32' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcPropertySet.WR31))
+			if (!ValidateClause(IfcPropertySetClause.WR31))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPropertySet.WR31", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcPropertySet.WR32))
+			if (!ValidateClause(IfcPropertySetClause.WR32))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPropertySet.WR32", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcPropertySet
-	{
-		public static readonly IfcPropertySet WR31 = new IfcPropertySet();
-		public static readonly IfcPropertySet WR32 = new IfcPropertySet();
-		protected IfcPropertySet() {}
 	}
 }

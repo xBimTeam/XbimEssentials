@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class IfcBoxedHalfSpace : IExpressValidatable
 	{
+		public enum IfcBoxedHalfSpaceClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcBoxedHalfSpace clause) {
+		public bool ValidateClause(IfcBoxedHalfSpaceClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcBoxedHalfSpace.WR1) {
-				try {
-					retVal = !(TYPEOF(this/* as IfcHalfSpaceSolid*/.BaseSurface).Contains("IFC2X3.IFCCURVEBOUNDEDPLANE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricModelResource.IfcBoxedHalfSpace");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBoxedHalfSpace.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcBoxedHalfSpaceClause.WR1:
+						retVal = !(TYPEOF(this/* as IfcHalfSpaceSolid*/.BaseSurface).Contains("IFC2X3.IFCCURVEBOUNDEDPLANE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricModelResource.IfcBoxedHalfSpace");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBoxedHalfSpace.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcBoxedHalfSpace.WR1))
+			if (!ValidateClause(IfcBoxedHalfSpaceClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcBoxedHalfSpace.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcBoxedHalfSpace
-	{
-		public static readonly IfcBoxedHalfSpace WR1 = new IfcBoxedHalfSpace();
-		protected IfcBoxedHalfSpace() {}
 	}
 }

@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class IfcDraughtingPreDefinedCurveFont : IExpressValidatable
 	{
+		public enum IfcDraughtingPreDefinedCurveFontClause
+		{
+			WR31,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcDraughtingPreDefinedCurveFont clause) {
+		public bool ValidateClause(IfcDraughtingPreDefinedCurveFontClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcDraughtingPreDefinedCurveFont.WR31) {
-				try {
-					retVal = NewArray("continuous", "chain", "chain double dash", "dashed", "dotted", "by layer").Contains(this/* as IfcPredefinedItem*/.Name);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcDraughtingPreDefinedCurveFont");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDraughtingPreDefinedCurveFont.WR31' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcDraughtingPreDefinedCurveFontClause.WR31:
+						retVal = NewArray("continuous", "chain", "chain double dash", "dashed", "dotted", "by layer").Contains(this/* as IfcPredefinedItem*/.Name);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcDraughtingPreDefinedCurveFont");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDraughtingPreDefinedCurveFont.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcDraughtingPreDefinedCurveFont.WR31))
+			if (!ValidateClause(IfcDraughtingPreDefinedCurveFontClause.WR31))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcDraughtingPreDefinedCurveFont.WR31", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcDraughtingPreDefinedCurveFont
-	{
-		public static readonly IfcDraughtingPreDefinedCurveFont WR31 = new IfcDraughtingPreDefinedCurveFont();
-		protected IfcDraughtingPreDefinedCurveFont() {}
 	}
 }

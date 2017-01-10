@@ -17,24 +17,31 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class IfcPipeFittingType : IExpressValidatable
 	{
+		public enum IfcPipeFittingTypeClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcPipeFittingType clause) {
+		public bool ValidateClause(IfcPipeFittingTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcPipeFittingType.WR1) {
-				try {
-					retVal = (PredefinedType != IfcPipeFittingTypeEnum.USERDEFINED) || ((PredefinedType == IfcPipeFittingTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.HVACDomain.IfcPipeFittingType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPipeFittingType.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcPipeFittingTypeClause.WR1:
+						retVal = (PredefinedType != IfcPipeFittingTypeEnum.USERDEFINED) || ((PredefinedType == IfcPipeFittingTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.HVACDomain.IfcPipeFittingType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPipeFittingType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -43,18 +50,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcPipeFittingType.WR1))
+			if (!ValidateClause(IfcPipeFittingTypeClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPipeFittingType.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcPipeFittingType : IfcTypeProduct
-	{
-		public new static readonly IfcPipeFittingType WR1 = new IfcPipeFittingType();
-		protected IfcPipeFittingType() {}
 	}
 }

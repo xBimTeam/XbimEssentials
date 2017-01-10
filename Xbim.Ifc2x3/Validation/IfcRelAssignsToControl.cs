@@ -17,24 +17,31 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class IfcRelAssignsToControl : IExpressValidatable
 	{
+		public enum IfcRelAssignsToControlClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRelAssignsToControl clause) {
+		public bool ValidateClause(IfcRelAssignsToControlClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRelAssignsToControl.WR1) {
-				try {
-					retVal = SIZEOF(this/* as IfcRelAssigns*/.RelatedObjects.Where(Temp => Object.ReferenceEquals(RelatingControl, Temp))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcRelAssignsToControl");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelAssignsToControl.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRelAssignsToControlClause.WR1:
+						retVal = SIZEOF(this/* as IfcRelAssigns*/.RelatedObjects.Where(Temp => Object.ReferenceEquals(RelatingControl, Temp))) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcRelAssignsToControl");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelAssignsToControl.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcRelAssigns)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -43,18 +50,8 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcRelAssignsToControl.WR1))
+			if (!ValidateClause(IfcRelAssignsToControlClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelAssignsToControl.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcRelAssignsToControl : IfcRelAssigns
-	{
-		public new static readonly IfcRelAssignsToControl WR1 = new IfcRelAssignsToControl();
-		protected IfcRelAssignsToControl() {}
 	}
 }

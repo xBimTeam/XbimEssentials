@@ -17,24 +17,31 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class IfcExtrudedAreaSolid : IExpressValidatable
 	{
+		public enum IfcExtrudedAreaSolidClause
+		{
+			WR31,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcExtrudedAreaSolid clause) {
+		public bool ValidateClause(IfcExtrudedAreaSolidClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcExtrudedAreaSolid.WR31) {
-				try {
-					retVal = IfcDotProduct(IfcDirection(0, 0, 1), this.ExtrudedDirection) != 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricModelResource.IfcExtrudedAreaSolid");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcExtrudedAreaSolid.WR31' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcExtrudedAreaSolidClause.WR31:
+						retVal = IfcDotProduct(IfcDirection(0, 0, 1), this.ExtrudedDirection) != 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricModelResource.IfcExtrudedAreaSolid");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcExtrudedAreaSolid.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcSweptAreaSolid)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -43,18 +50,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcExtrudedAreaSolid.WR31))
+			if (!ValidateClause(IfcExtrudedAreaSolidClause.WR31))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcExtrudedAreaSolid.WR31", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcExtrudedAreaSolid : IfcSweptAreaSolid
-	{
-		public static readonly IfcExtrudedAreaSolid WR31 = new IfcExtrudedAreaSolid();
-		protected IfcExtrudedAreaSolid() {}
 	}
 }

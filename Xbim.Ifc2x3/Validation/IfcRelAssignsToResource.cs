@@ -17,24 +17,31 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class IfcRelAssignsToResource : IExpressValidatable
 	{
+		public enum IfcRelAssignsToResourceClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRelAssignsToResource clause) {
+		public bool ValidateClause(IfcRelAssignsToResourceClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRelAssignsToResource.WR1) {
-				try {
-					retVal = SIZEOF(this/* as IfcRelAssigns*/.RelatedObjects.Where(Temp => Object.ReferenceEquals(RelatingResource, Temp))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcRelAssignsToResource");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelAssignsToResource.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRelAssignsToResourceClause.WR1:
+						retVal = SIZEOF(this/* as IfcRelAssigns*/.RelatedObjects.Where(Temp => Object.ReferenceEquals(RelatingResource, Temp))) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcRelAssignsToResource");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelAssignsToResource.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcRelAssigns)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -43,18 +50,8 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcRelAssignsToResource.WR1))
+			if (!ValidateClause(IfcRelAssignsToResourceClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelAssignsToResource.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcRelAssignsToResource : IfcRelAssigns
-	{
-		public new static readonly IfcRelAssignsToResource WR1 = new IfcRelAssignsToResource();
-		protected IfcRelAssignsToResource() {}
 	}
 }

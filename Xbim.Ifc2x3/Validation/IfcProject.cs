@@ -17,42 +17,39 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class IfcProject : IExpressValidatable
 	{
+		public enum IfcProjectClause
+		{
+			WR31,
+			WR32,
+			WR33,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcProject clause) {
+		public bool ValidateClause(IfcProjectClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcProject.WR31) {
-				try {
-					retVal = EXISTS(this/* as IfcRoot*/.Name);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcProject");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcProject.WR31' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcProjectClause.WR31:
+						retVal = EXISTS(this/* as IfcRoot*/.Name);
+						break;
+					case IfcProjectClause.WR32:
+						retVal = SIZEOF(RepresentationContexts.Where(Temp => TYPEOF(Temp).Contains("IFC2X3.IFCGEOMETRICREPRESENTATIONSUBCONTEXT"))) == 0;
+						break;
+					case IfcProjectClause.WR33:
+						retVal = SIZEOF(this/* as IfcObjectDefinition*/.Decomposes) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcProject");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcProject.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcProject.WR32) {
-				try {
-					retVal = SIZEOF(RepresentationContexts.Where(Temp => TYPEOF(Temp).Contains("IFC2X3.IFCGEOMETRICREPRESENTATIONSUBCONTEXT"))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcProject");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcProject.WR32' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcProject.WR33) {
-				try {
-					retVal = SIZEOF(this/* as IfcObjectDefinition*/.Decomposes) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcProject");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcProject.WR33' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcObject)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -61,24 +58,12 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcProject.WR31))
+			if (!ValidateClause(IfcProjectClause.WR31))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcProject.WR31", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcProject.WR32))
+			if (!ValidateClause(IfcProjectClause.WR32))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcProject.WR32", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcProject.WR33))
+			if (!ValidateClause(IfcProjectClause.WR33))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcProject.WR33", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcProject : IfcObject
-	{
-		public static readonly IfcProject WR31 = new IfcProject();
-		public static readonly IfcProject WR32 = new IfcProject();
-		public static readonly IfcProject WR33 = new IfcProject();
-		protected IfcProject() {}
 	}
 }

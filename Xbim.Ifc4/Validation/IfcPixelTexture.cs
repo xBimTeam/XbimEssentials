@@ -13,88 +13,61 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	public partial class IfcPixelTexture : IExpressValidatable
 	{
+		public enum IfcPixelTextureClause
+		{
+			MinPixelInS,
+			MinPixelInT,
+			NumberOfColours,
+			SizeOfPixelList,
+			PixelAsByteAndSameLength,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcPixelTexture clause) {
+		public bool ValidateClause(IfcPixelTextureClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcPixelTexture.MinPixelInS) {
-				try {
-					retVal = Width >= 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcPixelTexture");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPixelTexture.MinPixelInS' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcPixelTextureClause.MinPixelInS:
+						retVal = Width >= 1;
+						break;
+					case IfcPixelTextureClause.MinPixelInT:
+						retVal = Height >= 1;
+						break;
+					case IfcPixelTextureClause.NumberOfColours:
+						retVal = ((1 <= ColourComponents) && (ColourComponents <= 4) );
+						break;
+					case IfcPixelTextureClause.SizeOfPixelList:
+						retVal = SIZEOF(Pixel) == (Width * Height);
+						break;
+					case IfcPixelTextureClause.PixelAsByteAndSameLength:
+						retVal = SIZEOF(Pixel.Where(temp => (BLENGTH(temp) % 8 == 0) && (BLENGTH(temp) == BLENGTH(Pixel.ItemAt(0))))) == SIZEOF(Pixel);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcPixelTexture");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPixelTexture.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcPixelTexture.MinPixelInT) {
-				try {
-					retVal = Height >= 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcPixelTexture");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPixelTexture.MinPixelInT' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcPixelTexture.NumberOfColours) {
-				try {
-					retVal = ((1 <= ColourComponents) && (ColourComponents <= 4) );
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcPixelTexture");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPixelTexture.NumberOfColours' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcPixelTexture.SizeOfPixelList) {
-				try {
-					retVal = SIZEOF(Pixel) == (Width * Height);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcPixelTexture");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPixelTexture.SizeOfPixelList' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcPixelTexture.PixelAsByteAndSameLength) {
-				try {
-					retVal = SIZEOF(Pixel.Where(temp => (BLENGTH(temp) % 8 == 0) && (BLENGTH(temp) == BLENGTH(Pixel.ItemAt(0))))) == SIZEOF(Pixel);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcPixelTexture");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPixelTexture.PixelAsByteAndSameLength' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcPixelTexture.MinPixelInS))
+			if (!ValidateClause(IfcPixelTextureClause.MinPixelInS))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPixelTexture.MinPixelInS", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcPixelTexture.MinPixelInT))
+			if (!ValidateClause(IfcPixelTextureClause.MinPixelInT))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPixelTexture.MinPixelInT", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcPixelTexture.NumberOfColours))
+			if (!ValidateClause(IfcPixelTextureClause.NumberOfColours))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPixelTexture.NumberOfColours", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcPixelTexture.SizeOfPixelList))
+			if (!ValidateClause(IfcPixelTextureClause.SizeOfPixelList))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPixelTexture.SizeOfPixelList", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcPixelTexture.PixelAsByteAndSameLength))
+			if (!ValidateClause(IfcPixelTextureClause.PixelAsByteAndSameLength))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPixelTexture.PixelAsByteAndSameLength", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcPixelTexture
-	{
-		public static readonly IfcPixelTexture MinPixelInS = new IfcPixelTexture();
-		public static readonly IfcPixelTexture MinPixelInT = new IfcPixelTexture();
-		public static readonly IfcPixelTexture NumberOfColours = new IfcPixelTexture();
-		public static readonly IfcPixelTexture SizeOfPixelList = new IfcPixelTexture();
-		public static readonly IfcPixelTexture PixelAsByteAndSameLength = new IfcPixelTexture();
-		protected IfcPixelTexture() {}
 	}
 }

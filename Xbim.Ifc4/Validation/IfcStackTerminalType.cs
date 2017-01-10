@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 {
 	public partial class IfcStackTerminalType : IExpressValidatable
 	{
+		public enum IfcStackTerminalTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcStackTerminalType clause) {
+		public bool ValidateClause(IfcStackTerminalTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcStackTerminalType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcStackTerminalTypeEnum.USERDEFINED) || ((PredefinedType == IfcStackTerminalTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PlumbingFireProtectionDomain.IfcStackTerminalType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStackTerminalType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcStackTerminalTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcStackTerminalTypeEnum.USERDEFINED) || ((PredefinedType == IfcStackTerminalTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.PlumbingFireProtectionDomain.IfcStackTerminalType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStackTerminalType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcStackTerminalType.CorrectPredefinedType))
+			if (!ValidateClause(IfcStackTerminalTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcStackTerminalType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcStackTerminalType : IfcTypeProduct
-	{
-		public static readonly IfcStackTerminalType CorrectPredefinedType = new IfcStackTerminalType();
-		protected IfcStackTerminalType() {}
 	}
 }

@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class IfcRoundedRectangleProfileDef : IExpressValidatable
 	{
+		public enum IfcRoundedRectangleProfileDefClause
+		{
+			WR31,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRoundedRectangleProfileDef clause) {
+		public bool ValidateClause(IfcRoundedRectangleProfileDefClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRoundedRectangleProfileDef.WR31) {
-				try {
-					retVal = ((RoundingRadius <= (this/* as IfcRectangleProfileDef*/.XDim / 2)) && (RoundingRadius <= (this/* as IfcRectangleProfileDef*/.YDim / 2)));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfileResource.IfcRoundedRectangleProfileDef");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRoundedRectangleProfileDef.WR31' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRoundedRectangleProfileDefClause.WR31:
+						retVal = ((RoundingRadius <= (this/* as IfcRectangleProfileDef*/.XDim / 2)) && (RoundingRadius <= (this/* as IfcRectangleProfileDef*/.YDim / 2)));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfileResource.IfcRoundedRectangleProfileDef");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRoundedRectangleProfileDef.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcRoundedRectangleProfileDef.WR31))
+			if (!ValidateClause(IfcRoundedRectangleProfileDefClause.WR31))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRoundedRectangleProfileDef.WR31", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcRoundedRectangleProfileDef
-	{
-		public static readonly IfcRoundedRectangleProfileDef WR31 = new IfcRoundedRectangleProfileDef();
-		protected IfcRoundedRectangleProfileDef() {}
 	}
 }

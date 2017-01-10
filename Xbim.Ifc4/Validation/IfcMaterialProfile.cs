@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.MaterialResource
 {
 	public partial class IfcMaterialProfile : IExpressValidatable
 	{
+		public enum IfcMaterialProfileClause
+		{
+			NormalizedPriority,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcMaterialProfile clause) {
+		public bool ValidateClause(IfcMaterialProfileClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcMaterialProfile.NormalizedPriority) {
-				try {
-					retVal = !(EXISTS(Priority)) || ((0 <= Priority) && (Priority <= 100) );
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.MaterialResource.IfcMaterialProfile");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcMaterialProfile.NormalizedPriority' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcMaterialProfileClause.NormalizedPriority:
+						retVal = !(EXISTS(Priority)) || ((0 <= Priority) && (Priority <= 100) );
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.MaterialResource.IfcMaterialProfile");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcMaterialProfile.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcMaterialProfile.NormalizedPriority))
+			if (!ValidateClause(IfcMaterialProfileClause.NormalizedPriority))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcMaterialProfile.NormalizedPriority", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcMaterialProfile
-	{
-		public static readonly IfcMaterialProfile NormalizedPriority = new IfcMaterialProfile();
-		protected IfcMaterialProfile() {}
 	}
 }

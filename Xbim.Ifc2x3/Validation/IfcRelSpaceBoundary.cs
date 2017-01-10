@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class IfcRelSpaceBoundary : IExpressValidatable
 	{
+		public enum IfcRelSpaceBoundaryClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRelSpaceBoundary clause) {
+		public bool ValidateClause(IfcRelSpaceBoundaryClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRelSpaceBoundary.WR1) {
-				try {
-					retVal = ((PhysicalOrVirtualBoundary == IfcPhysicalOrVirtualEnum.PHYSICAL) && (EXISTS(RelatedBuildingElement) && !(TYPEOF(RelatedBuildingElement).Contains("IFC2X3.IFCVIRTUALELEMENT")))) || ((PhysicalOrVirtualBoundary == IfcPhysicalOrVirtualEnum.VIRTUAL) && (!(EXISTS(RelatedBuildingElement)) || (TYPEOF(RelatedBuildingElement).Contains("IFC2X3.IFCVIRTUALELEMENT")))) || (PhysicalOrVirtualBoundary == IfcPhysicalOrVirtualEnum.NOTDEFINED);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProductExtension.IfcRelSpaceBoundary");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelSpaceBoundary.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRelSpaceBoundaryClause.WR1:
+						retVal = ((PhysicalOrVirtualBoundary == IfcPhysicalOrVirtualEnum.PHYSICAL) && (EXISTS(RelatedBuildingElement) && !(TYPEOF(RelatedBuildingElement).Contains("IFC2X3.IFCVIRTUALELEMENT")))) || ((PhysicalOrVirtualBoundary == IfcPhysicalOrVirtualEnum.VIRTUAL) && (!(EXISTS(RelatedBuildingElement)) || (TYPEOF(RelatedBuildingElement).Contains("IFC2X3.IFCVIRTUALELEMENT")))) || (PhysicalOrVirtualBoundary == IfcPhysicalOrVirtualEnum.NOTDEFINED);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.ProductExtension.IfcRelSpaceBoundary");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelSpaceBoundary.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcRelSpaceBoundary.WR1))
+			if (!ValidateClause(IfcRelSpaceBoundaryClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelSpaceBoundary.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcRelSpaceBoundary
-	{
-		public static readonly IfcRelSpaceBoundary WR1 = new IfcRelSpaceBoundary();
-		protected IfcRelSpaceBoundary() {}
 	}
 }

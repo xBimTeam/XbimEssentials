@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class IfcCartesianPoint : IExpressValidatable
 	{
+		public enum IfcCartesianPointClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcCartesianPoint clause) {
+		public bool ValidateClause(IfcCartesianPointClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcCartesianPoint.WR1) {
-				try {
-					retVal = HIINDEX(Coordinates) >= 2;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcCartesianPoint");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCartesianPoint.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcCartesianPointClause.WR1:
+						retVal = HIINDEX(Coordinates) >= 2;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcCartesianPoint");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCartesianPoint.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcCartesianPoint.WR1))
+			if (!ValidateClause(IfcCartesianPointClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCartesianPoint.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcCartesianPoint
-	{
-		public static readonly IfcCartesianPoint WR1 = new IfcCartesianPoint();
-		protected IfcCartesianPoint() {}
 	}
 }

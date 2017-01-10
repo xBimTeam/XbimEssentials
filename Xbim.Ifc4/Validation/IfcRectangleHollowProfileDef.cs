@@ -13,64 +13,49 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	public partial class IfcRectangleHollowProfileDef : IExpressValidatable
 	{
+		public enum IfcRectangleHollowProfileDefClause
+		{
+			ValidWallThickness,
+			ValidInnerRadius,
+			ValidOuterRadius,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRectangleHollowProfileDef clause) {
+		public bool ValidateClause(IfcRectangleHollowProfileDefClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRectangleHollowProfileDef.ValidWallThickness) {
-				try {
-					retVal = (WallThickness < (this/* as IfcRectangleProfileDef*/.XDim / 2)) && (WallThickness < (this/* as IfcRectangleProfileDef*/.YDim / 2));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcRectangleHollowProfileDef");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRectangleHollowProfileDef.ValidWallThickness' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRectangleHollowProfileDefClause.ValidWallThickness:
+						retVal = (WallThickness < (this/* as IfcRectangleProfileDef*/.XDim / 2)) && (WallThickness < (this/* as IfcRectangleProfileDef*/.YDim / 2));
+						break;
+					case IfcRectangleHollowProfileDefClause.ValidInnerRadius:
+						retVal = !(EXISTS(InnerFilletRadius)) || ((InnerFilletRadius <= (this/* as IfcRectangleProfileDef*/.XDim / 2 - WallThickness)) && (InnerFilletRadius <= (this/* as IfcRectangleProfileDef*/.YDim / 2 - WallThickness)));
+						break;
+					case IfcRectangleHollowProfileDefClause.ValidOuterRadius:
+						retVal = !(EXISTS(OuterFilletRadius)) || ((OuterFilletRadius <= (this/* as IfcRectangleProfileDef*/.XDim / 2)) && (OuterFilletRadius <= (this/* as IfcRectangleProfileDef*/.YDim / 2)));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcRectangleHollowProfileDef");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRectangleHollowProfileDef.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcRectangleHollowProfileDef.ValidInnerRadius) {
-				try {
-					retVal = !(EXISTS(InnerFilletRadius)) || ((InnerFilletRadius <= (this/* as IfcRectangleProfileDef*/.XDim / 2 - WallThickness)) && (InnerFilletRadius <= (this/* as IfcRectangleProfileDef*/.YDim / 2 - WallThickness)));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcRectangleHollowProfileDef");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRectangleHollowProfileDef.ValidInnerRadius' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcRectangleHollowProfileDef.ValidOuterRadius) {
-				try {
-					retVal = !(EXISTS(OuterFilletRadius)) || ((OuterFilletRadius <= (this/* as IfcRectangleProfileDef*/.XDim / 2)) && (OuterFilletRadius <= (this/* as IfcRectangleProfileDef*/.YDim / 2)));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcRectangleHollowProfileDef");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRectangleHollowProfileDef.ValidOuterRadius' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcRectangleHollowProfileDef.ValidWallThickness))
+			if (!ValidateClause(IfcRectangleHollowProfileDefClause.ValidWallThickness))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRectangleHollowProfileDef.ValidWallThickness", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcRectangleHollowProfileDef.ValidInnerRadius))
+			if (!ValidateClause(IfcRectangleHollowProfileDefClause.ValidInnerRadius))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRectangleHollowProfileDef.ValidInnerRadius", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcRectangleHollowProfileDef.ValidOuterRadius))
+			if (!ValidateClause(IfcRectangleHollowProfileDefClause.ValidOuterRadius))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRectangleHollowProfileDef.ValidOuterRadius", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcRectangleHollowProfileDef
-	{
-		public static readonly IfcRectangleHollowProfileDef ValidWallThickness = new IfcRectangleHollowProfileDef();
-		public static readonly IfcRectangleHollowProfileDef ValidInnerRadius = new IfcRectangleHollowProfileDef();
-		public static readonly IfcRectangleHollowProfileDef ValidOuterRadius = new IfcRectangleHollowProfileDef();
-		protected IfcRectangleHollowProfileDef() {}
 	}
 }

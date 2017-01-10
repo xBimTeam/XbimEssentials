@@ -17,24 +17,31 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class IfcDuctSegmentType : IExpressValidatable
 	{
+		public enum IfcDuctSegmentTypeClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcDuctSegmentType clause) {
+		public bool ValidateClause(IfcDuctSegmentTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcDuctSegmentType.WR1) {
-				try {
-					retVal = (PredefinedType != IfcDuctSegmentTypeEnum.USERDEFINED) || ((PredefinedType == IfcDuctSegmentTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.HVACDomain.IfcDuctSegmentType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDuctSegmentType.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcDuctSegmentTypeClause.WR1:
+						retVal = (PredefinedType != IfcDuctSegmentTypeEnum.USERDEFINED) || ((PredefinedType == IfcDuctSegmentTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.HVACDomain.IfcDuctSegmentType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDuctSegmentType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -43,18 +50,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcDuctSegmentType.WR1))
+			if (!ValidateClause(IfcDuctSegmentTypeClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcDuctSegmentType.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcDuctSegmentType : IfcTypeProduct
-	{
-		public new static readonly IfcDuctSegmentType WR1 = new IfcDuctSegmentType();
-		protected IfcDuctSegmentType() {}
 	}
 }

@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 {
 	public partial class IfcInterceptorType : IExpressValidatable
 	{
+		public enum IfcInterceptorTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcInterceptorType clause) {
+		public bool ValidateClause(IfcInterceptorTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcInterceptorType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcInterceptorTypeEnum.USERDEFINED) || ((PredefinedType == IfcInterceptorTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PlumbingFireProtectionDomain.IfcInterceptorType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcInterceptorType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcInterceptorTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcInterceptorTypeEnum.USERDEFINED) || ((PredefinedType == IfcInterceptorTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.PlumbingFireProtectionDomain.IfcInterceptorType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcInterceptorType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcInterceptorType.CorrectPredefinedType))
+			if (!ValidateClause(IfcInterceptorTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcInterceptorType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcInterceptorType : IfcTypeProduct
-	{
-		public static readonly IfcInterceptorType CorrectPredefinedType = new IfcInterceptorType();
-		protected IfcInterceptorType() {}
 	}
 }

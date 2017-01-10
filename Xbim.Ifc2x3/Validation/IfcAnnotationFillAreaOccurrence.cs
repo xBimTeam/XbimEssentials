@@ -17,24 +17,31 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	public partial class IfcAnnotationFillAreaOccurrence : IExpressValidatable
 	{
+		public enum IfcAnnotationFillAreaOccurrenceClause
+		{
+			WR31,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcAnnotationFillAreaOccurrence clause) {
+		public bool ValidateClause(IfcAnnotationFillAreaOccurrenceClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcAnnotationFillAreaOccurrence.WR31) {
-				try {
-					retVal = !(EXISTS(this/* as IfcStyledItem*/.Item)) || (TYPEOF(this/* as IfcStyledItem*/.Item).Contains("IFC2X3.IFCANNOTATIONFILLAREA"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDefinitionResource.IfcAnnotationFillAreaOccurrence");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAnnotationFillAreaOccurrence.WR31' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcAnnotationFillAreaOccurrenceClause.WR31:
+						retVal = !(EXISTS(this/* as IfcStyledItem*/.Item)) || (TYPEOF(this/* as IfcStyledItem*/.Item).Contains("IFC2X3.IFCANNOTATIONFILLAREA"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDefinitionResource.IfcAnnotationFillAreaOccurrence");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAnnotationFillAreaOccurrence.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcStyledItem)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -43,18 +50,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcAnnotationFillAreaOccurrence.WR31))
+			if (!ValidateClause(IfcAnnotationFillAreaOccurrenceClause.WR31))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcAnnotationFillAreaOccurrence.WR31", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcAnnotationFillAreaOccurrence : IfcStyledItem
-	{
-		public static readonly IfcAnnotationFillAreaOccurrence WR31 = new IfcAnnotationFillAreaOccurrence();
-		protected IfcAnnotationFillAreaOccurrence() {}
 	}
 }

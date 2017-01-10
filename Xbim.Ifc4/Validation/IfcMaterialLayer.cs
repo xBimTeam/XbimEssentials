@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.MaterialResource
 {
 	public partial class IfcMaterialLayer : IExpressValidatable
 	{
+		public enum IfcMaterialLayerClause
+		{
+			NormalizedPriority,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcMaterialLayer clause) {
+		public bool ValidateClause(IfcMaterialLayerClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcMaterialLayer.NormalizedPriority) {
-				try {
-					retVal = !(EXISTS(Priority)) || ((0 <= Priority) && (Priority <= 100) );
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.MaterialResource.IfcMaterialLayer");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcMaterialLayer.NormalizedPriority' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcMaterialLayerClause.NormalizedPriority:
+						retVal = !(EXISTS(Priority)) || ((0 <= Priority) && (Priority <= 100) );
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.MaterialResource.IfcMaterialLayer");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcMaterialLayer.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcMaterialLayer.NormalizedPriority))
+			if (!ValidateClause(IfcMaterialLayerClause.NormalizedPriority))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcMaterialLayer.NormalizedPriority", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcMaterialLayer
-	{
-		public static readonly IfcMaterialLayer NormalizedPriority = new IfcMaterialLayer();
-		protected IfcMaterialLayer() {}
 	}
 }

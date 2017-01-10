@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class IfcCurveStyle : IExpressValidatable
 	{
+		public enum IfcCurveStyleClause
+		{
+			WR11,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcCurveStyle clause) {
+		public bool ValidateClause(IfcCurveStyleClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcCurveStyle.WR11) {
-				try {
-					retVal = (!(EXISTS(CurveWidth))) || (TYPEOF(CurveWidth).Contains("IFC2X3.IFCPOSITIVELENGTHMEASURE")) || ((TYPEOF(CurveWidth).Contains("IFC2X3.IFCDESCRIPTIVEMEASURE")) && (CurveWidth.AsIfcDescriptiveMeasure() == "by layer"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcCurveStyle");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCurveStyle.WR11' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcCurveStyleClause.WR11:
+						retVal = (!(EXISTS(CurveWidth))) || (TYPEOF(CurveWidth).Contains("IFC2X3.IFCPOSITIVELENGTHMEASURE")) || ((TYPEOF(CurveWidth).Contains("IFC2X3.IFCDESCRIPTIVEMEASURE")) && (CurveWidth.AsIfcDescriptiveMeasure() == "by layer"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcCurveStyle");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCurveStyle.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcCurveStyle.WR11))
+			if (!ValidateClause(IfcCurveStyleClause.WR11))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCurveStyle.WR11", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcCurveStyle
-	{
-		public static readonly IfcCurveStyle WR11 = new IfcCurveStyle();
-		protected IfcCurveStyle() {}
 	}
 }

@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.Kernel
 {
 	public partial class IfcTypeProduct : IExpressValidatable
 	{
+		public enum IfcTypeProductClause
+		{
+			ApplicableOccurrence,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcTypeProduct clause) {
+		public bool ValidateClause(IfcTypeProductClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcTypeProduct.ApplicableOccurrence) {
-				try {
-					retVal = !(EXISTS(this/* as IfcTypeObject*/.Types.ItemAt(0))) || (SIZEOF(this/* as IfcTypeObject*/.Types.ItemAt(0).RelatedObjects.Where(temp => !(TYPEOF(temp).Contains("IFC4.IFCPRODUCT")))) == 0);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcTypeProduct");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTypeProduct.ApplicableOccurrence' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcTypeProductClause.ApplicableOccurrence:
+						retVal = !(EXISTS(this/* as IfcTypeObject*/.Types.ItemAt(0))) || (SIZEOF(this/* as IfcTypeObject*/.Types.ItemAt(0).RelatedObjects.Where(temp => !(TYPEOF(temp).Contains("IFC4.IFCPRODUCT")))) == 0);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcTypeProduct");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTypeProduct.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeObject)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.Kernel
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcTypeProduct.ApplicableOccurrence))
+			if (!ValidateClause(IfcTypeProductClause.ApplicableOccurrence))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcTypeProduct.ApplicableOccurrence", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcTypeProduct : IfcTypeObject
-	{
-		public static readonly IfcTypeProduct ApplicableOccurrence = new IfcTypeProduct();
-		protected IfcTypeProduct() {}
 	}
 }

@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	public partial class IfcStyledItem : IExpressValidatable
 	{
+		public enum IfcStyledItemClause
+		{
+			ApplicableItem,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcStyledItem clause) {
+		public bool ValidateClause(IfcStyledItemClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcStyledItem.ApplicableItem) {
-				try {
-					retVal = !(TYPEOF(Item).Contains("IFC4.IFCSTYLEDITEM"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcStyledItem");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStyledItem.ApplicableItem' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcStyledItemClause.ApplicableItem:
+						retVal = !(TYPEOF(Item).Contains("IFC4.IFCSTYLEDITEM"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcStyledItem");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStyledItem.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcStyledItem.ApplicableItem))
+			if (!ValidateClause(IfcStyledItemClause.ApplicableItem))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcStyledItem.ApplicableItem", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcStyledItem
-	{
-		public static readonly IfcStyledItem ApplicableItem = new IfcStyledItem();
-		protected IfcStyledItem() {}
 	}
 }

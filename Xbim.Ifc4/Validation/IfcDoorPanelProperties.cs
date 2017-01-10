@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.ArchitectureDomain
 {
 	public partial class IfcDoorPanelProperties : IExpressValidatable
 	{
+		public enum IfcDoorPanelPropertiesClause
+		{
+			ApplicableToType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcDoorPanelProperties clause) {
+		public bool ValidateClause(IfcDoorPanelPropertiesClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcDoorPanelProperties.ApplicableToType) {
-				try {
-					retVal = (EXISTS(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0))) && ((TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)).Contains("IFC4.IFCDOORTYPE")) || (TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)).Contains("IFC4.IFCDOORSTYLE")));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelProperties");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDoorPanelProperties.ApplicableToType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcDoorPanelPropertiesClause.ApplicableToType:
+						retVal = (EXISTS(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0))) && ((TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)).Contains("IFC4.IFCDOORTYPE")) || (TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)).Contains("IFC4.IFCDOORSTYLE")));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelProperties");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDoorPanelProperties.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcDoorPanelProperties.ApplicableToType))
+			if (!ValidateClause(IfcDoorPanelPropertiesClause.ApplicableToType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcDoorPanelProperties.ApplicableToType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcDoorPanelProperties
-	{
-		public static readonly IfcDoorPanelProperties ApplicableToType = new IfcDoorPanelProperties();
-		protected IfcDoorPanelProperties() {}
 	}
 }

@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	public partial class IfcCableSegmentType : IExpressValidatable
 	{
+		public enum IfcCableSegmentTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcCableSegmentType clause) {
+		public bool ValidateClause(IfcCableSegmentTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcCableSegmentType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcCableSegmentTypeEnum.USERDEFINED) || ((PredefinedType == IfcCableSegmentTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ElectricalDomain.IfcCableSegmentType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCableSegmentType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcCableSegmentTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcCableSegmentTypeEnum.USERDEFINED) || ((PredefinedType == IfcCableSegmentTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ElectricalDomain.IfcCableSegmentType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCableSegmentType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.ElectricalDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcCableSegmentType.CorrectPredefinedType))
+			if (!ValidateClause(IfcCableSegmentTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCableSegmentType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcCableSegmentType : IfcTypeProduct
-	{
-		public static readonly IfcCableSegmentType CorrectPredefinedType = new IfcCableSegmentType();
-		protected IfcCableSegmentType() {}
 	}
 }

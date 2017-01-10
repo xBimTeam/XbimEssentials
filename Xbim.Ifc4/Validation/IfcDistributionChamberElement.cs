@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 {
 	public partial class IfcDistributionChamberElement : IExpressValidatable
 	{
+		public enum IfcDistributionChamberElementClause
+		{
+			CorrectPredefinedType,
+			CorrectTypeAssigned,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcDistributionChamberElement clause) {
+		public bool ValidateClause(IfcDistributionChamberElementClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcDistributionChamberElement.CorrectPredefinedType) {
-				try {
-					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcDistributionChamberElementTypeEnum.USERDEFINED) || ((PredefinedType == IfcDistributionChamberElementTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgServiceElements.IfcDistributionChamberElement");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDistributionChamberElement.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcDistributionChamberElementClause.CorrectPredefinedType:
+						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcDistributionChamberElementTypeEnum.USERDEFINED) || ((PredefinedType == IfcDistributionChamberElementTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
+					case IfcDistributionChamberElementClause.CorrectTypeAssigned:
+						retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCDISTRIBUTIONCHAMBERELEMENTTYPE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgServiceElements.IfcDistributionChamberElement");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDistributionChamberElement.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcDistributionChamberElement.CorrectTypeAssigned) {
-				try {
-					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCDISTRIBUTIONCHAMBERELEMENTTYPE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgServiceElements.IfcDistributionChamberElement");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDistributionChamberElement.CorrectTypeAssigned' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcDistributionChamberElement.CorrectPredefinedType))
+			if (!ValidateClause(IfcDistributionChamberElementClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcDistributionChamberElement.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcDistributionChamberElement.CorrectTypeAssigned))
+			if (!ValidateClause(IfcDistributionChamberElementClause.CorrectTypeAssigned))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcDistributionChamberElement.CorrectTypeAssigned", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcDistributionChamberElement : IfcProduct
-	{
-		public static readonly IfcDistributionChamberElement CorrectPredefinedType = new IfcDistributionChamberElement();
-		public static readonly IfcDistributionChamberElement CorrectTypeAssigned = new IfcDistributionChamberElement();
-		protected IfcDistributionChamberElement() {}
 	}
 }

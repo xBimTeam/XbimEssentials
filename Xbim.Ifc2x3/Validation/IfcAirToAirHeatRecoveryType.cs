@@ -17,24 +17,31 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class IfcAirToAirHeatRecoveryType : IExpressValidatable
 	{
+		public enum IfcAirToAirHeatRecoveryTypeClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcAirToAirHeatRecoveryType clause) {
+		public bool ValidateClause(IfcAirToAirHeatRecoveryTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcAirToAirHeatRecoveryType.WR1) {
-				try {
-					retVal = (PredefinedType != IfcAirToAirHeatRecoveryTypeEnum.USERDEFINED) || ((PredefinedType == IfcAirToAirHeatRecoveryTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.HVACDomain.IfcAirToAirHeatRecoveryType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAirToAirHeatRecoveryType.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcAirToAirHeatRecoveryTypeClause.WR1:
+						retVal = (PredefinedType != IfcAirToAirHeatRecoveryTypeEnum.USERDEFINED) || ((PredefinedType == IfcAirToAirHeatRecoveryTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.HVACDomain.IfcAirToAirHeatRecoveryType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAirToAirHeatRecoveryType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -43,18 +50,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcAirToAirHeatRecoveryType.WR1))
+			if (!ValidateClause(IfcAirToAirHeatRecoveryTypeClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcAirToAirHeatRecoveryType.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcAirToAirHeatRecoveryType : IfcTypeProduct
-	{
-		public new static readonly IfcAirToAirHeatRecoveryType WR1 = new IfcAirToAirHeatRecoveryType();
-		protected IfcAirToAirHeatRecoveryType() {}
 	}
 }

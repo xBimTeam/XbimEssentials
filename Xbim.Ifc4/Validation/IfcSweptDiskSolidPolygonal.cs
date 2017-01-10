@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	public partial class IfcSweptDiskSolidPolygonal : IExpressValidatable
 	{
+		public enum IfcSweptDiskSolidPolygonalClause
+		{
+			CorrectRadii,
+			DirectrixIsPolyline,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcSweptDiskSolidPolygonal clause) {
+		public bool ValidateClause(IfcSweptDiskSolidPolygonalClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcSweptDiskSolidPolygonal.CorrectRadii) {
-				try {
-					retVal = !(EXISTS(FilletRadius)) || (FilletRadius >= this/* as IfcSweptDiskSolid*/.Radius);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcSweptDiskSolidPolygonal");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSweptDiskSolidPolygonal.CorrectRadii' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcSweptDiskSolidPolygonalClause.CorrectRadii:
+						retVal = !(EXISTS(FilletRadius)) || (FilletRadius >= this/* as IfcSweptDiskSolid*/.Radius);
+						break;
+					case IfcSweptDiskSolidPolygonalClause.DirectrixIsPolyline:
+						retVal = TYPEOF(this/* as IfcSweptDiskSolid*/.Directrix).Contains("IFC4.IFCPOLYLINE");
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcSweptDiskSolidPolygonal");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSweptDiskSolidPolygonal.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcSweptDiskSolidPolygonal.DirectrixIsPolyline) {
-				try {
-					retVal = TYPEOF(this/* as IfcSweptDiskSolid*/.Directrix).Contains("IFC4.IFCPOLYLINE");
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcSweptDiskSolidPolygonal");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSweptDiskSolidPolygonal.DirectrixIsPolyline' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcSweptDiskSolid)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcSweptDiskSolidPolygonal.CorrectRadii))
+			if (!ValidateClause(IfcSweptDiskSolidPolygonalClause.CorrectRadii))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSweptDiskSolidPolygonal.CorrectRadii", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcSweptDiskSolidPolygonal.DirectrixIsPolyline))
+			if (!ValidateClause(IfcSweptDiskSolidPolygonalClause.DirectrixIsPolyline))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSweptDiskSolidPolygonal.DirectrixIsPolyline", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcSweptDiskSolidPolygonal : IfcSweptDiskSolid
-	{
-		public static readonly IfcSweptDiskSolidPolygonal CorrectRadii = new IfcSweptDiskSolidPolygonal();
-		public static readonly IfcSweptDiskSolidPolygonal DirectrixIsPolyline = new IfcSweptDiskSolidPolygonal();
-		protected IfcSweptDiskSolidPolygonal() {}
 	}
 }

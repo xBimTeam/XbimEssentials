@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 {
 	public partial class IfcActuator : IExpressValidatable
 	{
+		public enum IfcActuatorClause
+		{
+			CorrectPredefinedType,
+			CorrectTypeAssigned,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcActuator clause) {
+		public bool ValidateClause(IfcActuatorClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcActuator.CorrectPredefinedType) {
-				try {
-					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcActuatorTypeEnum.USERDEFINED) || ((PredefinedType == IfcActuatorTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.BuildingControlsDomain.IfcActuator");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcActuator.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcActuatorClause.CorrectPredefinedType:
+						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcActuatorTypeEnum.USERDEFINED) || ((PredefinedType == IfcActuatorTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
+					case IfcActuatorClause.CorrectTypeAssigned:
+						retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCACTUATORTYPE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.BuildingControlsDomain.IfcActuator");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcActuator.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcActuator.CorrectTypeAssigned) {
-				try {
-					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCACTUATORTYPE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.BuildingControlsDomain.IfcActuator");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcActuator.CorrectTypeAssigned' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcActuator.CorrectPredefinedType))
+			if (!ValidateClause(IfcActuatorClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcActuator.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcActuator.CorrectTypeAssigned))
+			if (!ValidateClause(IfcActuatorClause.CorrectTypeAssigned))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcActuator.CorrectTypeAssigned", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcActuator : IfcProduct
-	{
-		public static readonly IfcActuator CorrectPredefinedType = new IfcActuator();
-		public static readonly IfcActuator CorrectTypeAssigned = new IfcActuator();
-		protected IfcActuator() {}
 	}
 }

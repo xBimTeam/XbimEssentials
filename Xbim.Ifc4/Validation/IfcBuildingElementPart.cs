@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.SharedComponentElements
 {
 	public partial class IfcBuildingElementPart : IExpressValidatable
 	{
+		public enum IfcBuildingElementPartClause
+		{
+			CorrectPredefinedType,
+			CorrectTypeAssigned,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcBuildingElementPart clause) {
+		public bool ValidateClause(IfcBuildingElementPartClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcBuildingElementPart.CorrectPredefinedType) {
-				try {
-					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcBuildingElementPartTypeEnum.USERDEFINED) || ((PredefinedType == IfcBuildingElementPartTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedComponentElements.IfcBuildingElementPart");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBuildingElementPart.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcBuildingElementPartClause.CorrectPredefinedType:
+						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcBuildingElementPartTypeEnum.USERDEFINED) || ((PredefinedType == IfcBuildingElementPartTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
+					case IfcBuildingElementPartClause.CorrectTypeAssigned:
+						retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCBUILDINGELEMENTPARTTYPE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.SharedComponentElements.IfcBuildingElementPart");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBuildingElementPart.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcBuildingElementPart.CorrectTypeAssigned) {
-				try {
-					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCBUILDINGELEMENTPARTTYPE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedComponentElements.IfcBuildingElementPart");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBuildingElementPart.CorrectTypeAssigned' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.SharedComponentElements
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcBuildingElementPart.CorrectPredefinedType))
+			if (!ValidateClause(IfcBuildingElementPartClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcBuildingElementPart.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcBuildingElementPart.CorrectTypeAssigned))
+			if (!ValidateClause(IfcBuildingElementPartClause.CorrectTypeAssigned))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcBuildingElementPart.CorrectTypeAssigned", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcBuildingElementPart : IfcProduct
-	{
-		public static readonly IfcBuildingElementPart CorrectPredefinedType = new IfcBuildingElementPart();
-		public static readonly IfcBuildingElementPart CorrectTypeAssigned = new IfcBuildingElementPart();
-		protected IfcBuildingElementPart() {}
 	}
 }

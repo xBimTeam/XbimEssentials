@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	public partial class IfcSolarDevice : IExpressValidatable
 	{
+		public enum IfcSolarDeviceClause
+		{
+			CorrectPredefinedType,
+			CorrectTypeAssigned,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcSolarDevice clause) {
+		public bool ValidateClause(IfcSolarDeviceClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcSolarDevice.CorrectPredefinedType) {
-				try {
-					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcSolarDeviceTypeEnum.USERDEFINED) || ((PredefinedType == IfcSolarDeviceTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ElectricalDomain.IfcSolarDevice");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSolarDevice.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcSolarDeviceClause.CorrectPredefinedType:
+						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcSolarDeviceTypeEnum.USERDEFINED) || ((PredefinedType == IfcSolarDeviceTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
+					case IfcSolarDeviceClause.CorrectTypeAssigned:
+						retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCSOLARDEVICETYPE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ElectricalDomain.IfcSolarDevice");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSolarDevice.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcSolarDevice.CorrectTypeAssigned) {
-				try {
-					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCSOLARDEVICETYPE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ElectricalDomain.IfcSolarDevice");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSolarDevice.CorrectTypeAssigned' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.ElectricalDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcSolarDevice.CorrectPredefinedType))
+			if (!ValidateClause(IfcSolarDeviceClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSolarDevice.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcSolarDevice.CorrectTypeAssigned))
+			if (!ValidateClause(IfcSolarDeviceClause.CorrectTypeAssigned))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSolarDevice.CorrectTypeAssigned", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcSolarDevice : IfcProduct
-	{
-		public static readonly IfcSolarDevice CorrectPredefinedType = new IfcSolarDevice();
-		public static readonly IfcSolarDevice CorrectTypeAssigned = new IfcSolarDevice();
-		protected IfcSolarDevice() {}
 	}
 }

@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class IfcRelAssociates : IExpressValidatable
 	{
+		public enum IfcRelAssociatesClause
+		{
+			WR21,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRelAssociates clause) {
+		public bool ValidateClause(IfcRelAssociatesClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRelAssociates.WR21) {
-				try {
-					retVal = SIZEOF(RelatedObjects.Where(temp => !((TYPEOF(temp).Contains("IFC2X3.IFCOBJECTDEFINITION")) || (TYPEOF(temp).Contains("IFC2X3.IFCPROPERTYDEFINITION"))))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcRelAssociates");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelAssociates.WR21' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRelAssociatesClause.WR21:
+						retVal = SIZEOF(RelatedObjects.Where(temp => !((TYPEOF(temp).Contains("IFC2X3.IFCOBJECTDEFINITION")) || (TYPEOF(temp).Contains("IFC2X3.IFCPROPERTYDEFINITION"))))) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcRelAssociates");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelAssociates.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcRelAssociates.WR21))
+			if (!ValidateClause(IfcRelAssociatesClause.WR21))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelAssociates.WR21", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcRelAssociates
-	{
-		public static readonly IfcRelAssociates WR21 = new IfcRelAssociates();
-		protected IfcRelAssociates() {}
 	}
 }

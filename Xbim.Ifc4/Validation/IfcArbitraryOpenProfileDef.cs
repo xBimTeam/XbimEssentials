@@ -13,52 +13,43 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	public partial class IfcArbitraryOpenProfileDef : IExpressValidatable
 	{
+		public enum IfcArbitraryOpenProfileDefClause
+		{
+			WR11,
+			WR12,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcArbitraryOpenProfileDef clause) {
+		public bool ValidateClause(IfcArbitraryOpenProfileDefClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcArbitraryOpenProfileDef.WR11) {
-				try {
-					retVal = (TYPEOF(this).Contains("IFC4.IFCCENTERLINEPROFILEDEF")) || (this/* as IfcProfileDef*/.ProfileType == IfcProfileTypeEnum.CURVE);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcArbitraryOpenProfileDef");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcArbitraryOpenProfileDef.WR11' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcArbitraryOpenProfileDefClause.WR11:
+						retVal = (TYPEOF(this).Contains("IFC4.IFCCENTERLINEPROFILEDEF")) || (this/* as IfcProfileDef*/.ProfileType == IfcProfileTypeEnum.CURVE);
+						break;
+					case IfcArbitraryOpenProfileDefClause.WR12:
+						retVal = Curve.Dim == 2;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcArbitraryOpenProfileDef");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcArbitraryOpenProfileDef.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcArbitraryOpenProfileDef.WR12) {
-				try {
-					retVal = Curve.Dim == 2;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcArbitraryOpenProfileDef");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcArbitraryOpenProfileDef.WR12' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcArbitraryOpenProfileDef.WR11))
+			if (!ValidateClause(IfcArbitraryOpenProfileDefClause.WR11))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcArbitraryOpenProfileDef.WR11", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcArbitraryOpenProfileDef.WR12))
+			if (!ValidateClause(IfcArbitraryOpenProfileDefClause.WR12))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcArbitraryOpenProfileDef.WR12", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcArbitraryOpenProfileDef
-	{
-		public static readonly IfcArbitraryOpenProfileDef WR11 = new IfcArbitraryOpenProfileDef();
-		public static readonly IfcArbitraryOpenProfileDef WR12 = new IfcArbitraryOpenProfileDef();
-		protected IfcArbitraryOpenProfileDef() {}
 	}
 }

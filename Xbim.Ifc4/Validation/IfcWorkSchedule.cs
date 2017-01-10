@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.ProcessExtension
 {
 	public partial class IfcWorkSchedule : IExpressValidatable
 	{
+		public enum IfcWorkScheduleClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcWorkSchedule clause) {
+		public bool ValidateClause(IfcWorkScheduleClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcWorkSchedule.CorrectPredefinedType) {
-				try {
-					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcWorkScheduleTypeEnum.USERDEFINED) || ((PredefinedType == IfcWorkScheduleTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProcessExtension.IfcWorkSchedule");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcWorkSchedule.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcWorkScheduleClause.CorrectPredefinedType:
+						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcWorkScheduleTypeEnum.USERDEFINED) || ((PredefinedType == IfcWorkScheduleTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ProcessExtension.IfcWorkSchedule");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcWorkSchedule.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcObject)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcWorkSchedule.CorrectPredefinedType))
+			if (!ValidateClause(IfcWorkScheduleClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcWorkSchedule.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcWorkSchedule : IfcObject
-	{
-		public static readonly IfcWorkSchedule CorrectPredefinedType = new IfcWorkSchedule();
-		protected IfcWorkSchedule() {}
 	}
 }

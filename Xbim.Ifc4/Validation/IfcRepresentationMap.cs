@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	public partial class IfcRepresentationMap : IExpressValidatable
 	{
+		public enum IfcRepresentationMapClause
+		{
+			ApplicableMappedRepr,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRepresentationMap clause) {
+		public bool ValidateClause(IfcRepresentationMapClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRepresentationMap.ApplicableMappedRepr) {
-				try {
-					retVal = TYPEOF(MappedRepresentation).Contains("IFC4.IFCSHAPEMODEL");
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcRepresentationMap");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRepresentationMap.ApplicableMappedRepr' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRepresentationMapClause.ApplicableMappedRepr:
+						retVal = TYPEOF(MappedRepresentation).Contains("IFC4.IFCSHAPEMODEL");
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcRepresentationMap");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRepresentationMap.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcRepresentationMap.ApplicableMappedRepr))
+			if (!ValidateClause(IfcRepresentationMapClause.ApplicableMappedRepr))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRepresentationMap.ApplicableMappedRepr", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcRepresentationMap
-	{
-		public static readonly IfcRepresentationMap ApplicableMappedRepr = new IfcRepresentationMap();
-		protected IfcRepresentationMap() {}
 	}
 }

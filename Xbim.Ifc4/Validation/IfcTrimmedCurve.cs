@@ -13,64 +13,49 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	public partial class IfcTrimmedCurve : IExpressValidatable
 	{
+		public enum IfcTrimmedCurveClause
+		{
+			Trim1ValuesConsistent,
+			Trim2ValuesConsistent,
+			NoTrimOfBoundedCurves,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcTrimmedCurve clause) {
+		public bool ValidateClause(IfcTrimmedCurveClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcTrimmedCurve.Trim1ValuesConsistent) {
-				try {
-					retVal = (HIINDEX(Trim1) == 1) || (TYPEOF(Trim1.ItemAt(0)) != TYPEOF(Trim1.ItemAt(1)));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcTrimmedCurve");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTrimmedCurve.Trim1ValuesConsistent' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcTrimmedCurveClause.Trim1ValuesConsistent:
+						retVal = (HIINDEX(Trim1) == 1) || (TYPEOF(Trim1.ItemAt(0)) != TYPEOF(Trim1.ItemAt(1)));
+						break;
+					case IfcTrimmedCurveClause.Trim2ValuesConsistent:
+						retVal = (HIINDEX(Trim2) == 1) || (TYPEOF(Trim2.ItemAt(0)) != TYPEOF(Trim2.ItemAt(1)));
+						break;
+					case IfcTrimmedCurveClause.NoTrimOfBoundedCurves:
+						retVal = !(TYPEOF(BasisCurve).Contains("IFC4.IFCBOUNDEDCURVE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcTrimmedCurve");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTrimmedCurve.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcTrimmedCurve.Trim2ValuesConsistent) {
-				try {
-					retVal = (HIINDEX(Trim2) == 1) || (TYPEOF(Trim2.ItemAt(0)) != TYPEOF(Trim2.ItemAt(1)));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcTrimmedCurve");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTrimmedCurve.Trim2ValuesConsistent' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcTrimmedCurve.NoTrimOfBoundedCurves) {
-				try {
-					retVal = !(TYPEOF(BasisCurve).Contains("IFC4.IFCBOUNDEDCURVE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcTrimmedCurve");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTrimmedCurve.NoTrimOfBoundedCurves' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcTrimmedCurve.Trim1ValuesConsistent))
+			if (!ValidateClause(IfcTrimmedCurveClause.Trim1ValuesConsistent))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcTrimmedCurve.Trim1ValuesConsistent", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcTrimmedCurve.Trim2ValuesConsistent))
+			if (!ValidateClause(IfcTrimmedCurveClause.Trim2ValuesConsistent))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcTrimmedCurve.Trim2ValuesConsistent", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcTrimmedCurve.NoTrimOfBoundedCurves))
+			if (!ValidateClause(IfcTrimmedCurveClause.NoTrimOfBoundedCurves))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcTrimmedCurve.NoTrimOfBoundedCurves", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcTrimmedCurve
-	{
-		public static readonly IfcTrimmedCurve Trim1ValuesConsistent = new IfcTrimmedCurve();
-		public static readonly IfcTrimmedCurve Trim2ValuesConsistent = new IfcTrimmedCurve();
-		public static readonly IfcTrimmedCurve NoTrimOfBoundedCurves = new IfcTrimmedCurve();
-		protected IfcTrimmedCurve() {}
 	}
 }

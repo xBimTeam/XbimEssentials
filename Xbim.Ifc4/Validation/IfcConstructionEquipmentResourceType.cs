@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 {
 	public partial class IfcConstructionEquipmentResourceType : IExpressValidatable
 	{
+		public enum IfcConstructionEquipmentResourceTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcConstructionEquipmentResourceType clause) {
+		public bool ValidateClause(IfcConstructionEquipmentResourceTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcConstructionEquipmentResourceType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcConstructionEquipmentResourceTypeEnum.USERDEFINED) || ((PredefinedType == IfcConstructionEquipmentResourceTypeEnum.USERDEFINED) && EXISTS(this/* as IfcTypeResource*/.ResourceType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ConstructionMgmtDomain.IfcConstructionEquipmentResourceType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcConstructionEquipmentResourceType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcConstructionEquipmentResourceTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcConstructionEquipmentResourceTypeEnum.USERDEFINED) || ((PredefinedType == IfcConstructionEquipmentResourceTypeEnum.USERDEFINED) && EXISTS(this/* as IfcTypeResource*/.ResourceType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ConstructionMgmtDomain.IfcConstructionEquipmentResourceType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcConstructionEquipmentResourceType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeObject)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcConstructionEquipmentResourceType.CorrectPredefinedType))
+			if (!ValidateClause(IfcConstructionEquipmentResourceTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcConstructionEquipmentResourceType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcConstructionEquipmentResourceType : IfcTypeObject
-	{
-		public static readonly IfcConstructionEquipmentResourceType CorrectPredefinedType = new IfcConstructionEquipmentResourceType();
-		protected IfcConstructionEquipmentResourceType() {}
 	}
 }

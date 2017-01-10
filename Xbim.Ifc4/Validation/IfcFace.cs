@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.TopologyResource
 {
 	public partial class IfcFace : IExpressValidatable
 	{
+		public enum IfcFaceClause
+		{
+			HasOuterBound,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcFace clause) {
+		public bool ValidateClause(IfcFaceClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcFace.HasOuterBound) {
-				try {
-					retVal = SIZEOF(Bounds.Where(temp => TYPEOF(temp).Contains("IFC4.IFCFACEOUTERBOUND"))) <= 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.TopologyResource.IfcFace");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFace.HasOuterBound' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcFaceClause.HasOuterBound:
+						retVal = SIZEOF(Bounds.Where(temp => TYPEOF(temp).Contains("IFC4.IFCFACEOUTERBOUND"))) <= 1;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.TopologyResource.IfcFace");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFace.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcFace.HasOuterBound))
+			if (!ValidateClause(IfcFaceClause.HasOuterBound))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcFace.HasOuterBound", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcFace
-	{
-		public static readonly IfcFace HasOuterBound = new IfcFace();
-		protected IfcFace() {}
 	}
 }

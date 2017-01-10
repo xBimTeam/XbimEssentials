@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 {
 	public partial class IfcUnitaryControlElementType : IExpressValidatable
 	{
+		public enum IfcUnitaryControlElementTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcUnitaryControlElementType clause) {
+		public bool ValidateClause(IfcUnitaryControlElementTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcUnitaryControlElementType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcUnitaryControlElementTypeEnum.USERDEFINED) || ((PredefinedType == IfcUnitaryControlElementTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.BuildingControlsDomain.IfcUnitaryControlElementType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcUnitaryControlElementType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcUnitaryControlElementTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcUnitaryControlElementTypeEnum.USERDEFINED) || ((PredefinedType == IfcUnitaryControlElementTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.BuildingControlsDomain.IfcUnitaryControlElementType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcUnitaryControlElementType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcUnitaryControlElementType.CorrectPredefinedType))
+			if (!ValidateClause(IfcUnitaryControlElementTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcUnitaryControlElementType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcUnitaryControlElementType : IfcTypeProduct
-	{
-		public static readonly IfcUnitaryControlElementType CorrectPredefinedType = new IfcUnitaryControlElementType();
-		protected IfcUnitaryControlElementType() {}
 	}
 }

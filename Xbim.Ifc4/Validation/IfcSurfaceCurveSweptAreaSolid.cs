@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	public partial class IfcSurfaceCurveSweptAreaSolid : IExpressValidatable
 	{
+		public enum IfcSurfaceCurveSweptAreaSolidClause
+		{
+			DirectrixBounded,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcSurfaceCurveSweptAreaSolid clause) {
+		public bool ValidateClause(IfcSurfaceCurveSweptAreaSolidClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcSurfaceCurveSweptAreaSolid.DirectrixBounded) {
-				try {
-					retVal = (EXISTS(StartParam) && EXISTS(EndParam)) || (SIZEOF(NewArray("IFC4.IFCCONIC", "IFC4.IFCBOUNDEDCURVE") * TYPEOF(Directrix)) == 1);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcSurfaceCurveSweptAreaSolid");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceCurveSweptAreaSolid.DirectrixBounded' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcSurfaceCurveSweptAreaSolidClause.DirectrixBounded:
+						retVal = (EXISTS(StartParam) && EXISTS(EndParam)) || (SIZEOF(NewArray("IFC4.IFCCONIC", "IFC4.IFCBOUNDEDCURVE") * TYPEOF(Directrix)) == 1);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcSurfaceCurveSweptAreaSolid");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceCurveSweptAreaSolid.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcSweptAreaSolid)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcSurfaceCurveSweptAreaSolid.DirectrixBounded))
+			if (!ValidateClause(IfcSurfaceCurveSweptAreaSolidClause.DirectrixBounded))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSurfaceCurveSweptAreaSolid.DirectrixBounded", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcSurfaceCurveSweptAreaSolid : IfcSweptAreaSolid
-	{
-		public static readonly IfcSurfaceCurveSweptAreaSolid DirectrixBounded = new IfcSurfaceCurveSweptAreaSolid();
-		protected IfcSurfaceCurveSweptAreaSolid() {}
 	}
 }

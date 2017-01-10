@@ -13,64 +13,49 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	public partial class IfcIShapeProfileDef : IExpressValidatable
 	{
+		public enum IfcIShapeProfileDefClause
+		{
+			ValidFlangeThickness,
+			ValidWebThickness,
+			ValidFilletRadius,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcIShapeProfileDef clause) {
+		public bool ValidateClause(IfcIShapeProfileDefClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcIShapeProfileDef.ValidFlangeThickness) {
-				try {
-					retVal = (2 * FlangeThickness) < OverallDepth;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcIShapeProfileDef");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcIShapeProfileDef.ValidFlangeThickness' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcIShapeProfileDefClause.ValidFlangeThickness:
+						retVal = (2 * FlangeThickness) < OverallDepth;
+						break;
+					case IfcIShapeProfileDefClause.ValidWebThickness:
+						retVal = WebThickness < OverallWidth;
+						break;
+					case IfcIShapeProfileDefClause.ValidFilletRadius:
+						retVal = !(EXISTS(FilletRadius)) || ((FilletRadius <= (OverallWidth - WebThickness) / 2) && (FilletRadius <= (OverallDepth - (2 * FlangeThickness)) / 2));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcIShapeProfileDef");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcIShapeProfileDef.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcIShapeProfileDef.ValidWebThickness) {
-				try {
-					retVal = WebThickness < OverallWidth;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcIShapeProfileDef");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcIShapeProfileDef.ValidWebThickness' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcIShapeProfileDef.ValidFilletRadius) {
-				try {
-					retVal = !(EXISTS(FilletRadius)) || ((FilletRadius <= (OverallWidth - WebThickness) / 2) && (FilletRadius <= (OverallDepth - (2 * FlangeThickness)) / 2));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcIShapeProfileDef");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcIShapeProfileDef.ValidFilletRadius' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcIShapeProfileDef.ValidFlangeThickness))
+			if (!ValidateClause(IfcIShapeProfileDefClause.ValidFlangeThickness))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcIShapeProfileDef.ValidFlangeThickness", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcIShapeProfileDef.ValidWebThickness))
+			if (!ValidateClause(IfcIShapeProfileDefClause.ValidWebThickness))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcIShapeProfileDef.ValidWebThickness", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcIShapeProfileDef.ValidFilletRadius))
+			if (!ValidateClause(IfcIShapeProfileDefClause.ValidFilletRadius))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcIShapeProfileDef.ValidFilletRadius", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcIShapeProfileDef
-	{
-		public static readonly IfcIShapeProfileDef ValidFlangeThickness = new IfcIShapeProfileDef();
-		public static readonly IfcIShapeProfileDef ValidWebThickness = new IfcIShapeProfileDef();
-		public static readonly IfcIShapeProfileDef ValidFilletRadius = new IfcIShapeProfileDef();
-		protected IfcIShapeProfileDef() {}
 	}
 }

@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class IfcGeometricSet : IExpressValidatable
 	{
+		public enum IfcGeometricSetClause
+		{
+			WR21,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcGeometricSet clause) {
+		public bool ValidateClause(IfcGeometricSetClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcGeometricSet.WR21) {
-				try {
-					retVal = SIZEOF(Elements.Where(Temp => Temp.Dim != Elements.ItemAt(0).Dim)) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricModelResource.IfcGeometricSet");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcGeometricSet.WR21' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcGeometricSetClause.WR21:
+						retVal = SIZEOF(Elements.Where(Temp => Temp.Dim != Elements.ItemAt(0).Dim)) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricModelResource.IfcGeometricSet");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcGeometricSet.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcGeometricSet.WR21))
+			if (!ValidateClause(IfcGeometricSetClause.WR21))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcGeometricSet.WR21", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcGeometricSet
-	{
-		public static readonly IfcGeometricSet WR21 = new IfcGeometricSet();
-		protected IfcGeometricSet() {}
 	}
 }

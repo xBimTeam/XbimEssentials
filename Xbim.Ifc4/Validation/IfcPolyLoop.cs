@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.TopologyResource
 {
 	public partial class IfcPolyLoop : IExpressValidatable
 	{
+		public enum IfcPolyLoopClause
+		{
+			AllPointsSameDim,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcPolyLoop clause) {
+		public bool ValidateClause(IfcPolyLoopClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcPolyLoop.AllPointsSameDim) {
-				try {
-					retVal = SIZEOF(Polygon.Where(Temp => Temp.Dim != Polygon.ItemAt(0).Dim)) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.TopologyResource.IfcPolyLoop");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPolyLoop.AllPointsSameDim' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcPolyLoopClause.AllPointsSameDim:
+						retVal = SIZEOF(Polygon.Where(Temp => Temp.Dim != Polygon.ItemAt(0).Dim)) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.TopologyResource.IfcPolyLoop");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPolyLoop.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcPolyLoop.AllPointsSameDim))
+			if (!ValidateClause(IfcPolyLoopClause.AllPointsSameDim))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPolyLoop.AllPointsSameDim", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcPolyLoop
-	{
-		public static readonly IfcPolyLoop AllPointsSameDim = new IfcPolyLoop();
-		protected IfcPolyLoop() {}
 	}
 }

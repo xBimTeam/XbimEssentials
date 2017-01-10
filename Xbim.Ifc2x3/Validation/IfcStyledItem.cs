@@ -17,52 +17,43 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class IfcStyledItem : IExpressValidatable
 	{
+		public enum IfcStyledItemClause
+		{
+			WR11,
+			WR12,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcStyledItem clause) {
+		public bool ValidateClause(IfcStyledItemClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcStyledItem.WR11) {
-				try {
-					retVal = SIZEOF(Styles) == 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcStyledItem");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStyledItem.WR11' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcStyledItemClause.WR11:
+						retVal = SIZEOF(Styles) == 1;
+						break;
+					case IfcStyledItemClause.WR12:
+						retVal = !(TYPEOF(Item).Contains("IFC2X3.IFCSTYLEDITEM"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcStyledItem");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStyledItem.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcStyledItem.WR12) {
-				try {
-					retVal = !(TYPEOF(Item).Contains("IFC2X3.IFCSTYLEDITEM"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcStyledItem");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStyledItem.WR12' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcStyledItem.WR11))
+			if (!ValidateClause(IfcStyledItemClause.WR11))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcStyledItem.WR11", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcStyledItem.WR12))
+			if (!ValidateClause(IfcStyledItemClause.WR12))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcStyledItem.WR12", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcStyledItem
-	{
-		public static readonly IfcStyledItem WR11 = new IfcStyledItem();
-		public static readonly IfcStyledItem WR12 = new IfcStyledItem();
-		protected IfcStyledItem() {}
 	}
 }

@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	public partial class IfcSpaceType : IExpressValidatable
 	{
+		public enum IfcSpaceTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcSpaceType clause) {
+		public bool ValidateClause(IfcSpaceTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcSpaceType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcSpaceTypeEnum.USERDEFINED) || ((PredefinedType == IfcSpaceTypeEnum.USERDEFINED) && EXISTS(this/* as IfcSpatialElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcSpaceType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSpaceType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcSpaceTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcSpaceTypeEnum.USERDEFINED) || ((PredefinedType == IfcSpaceTypeEnum.USERDEFINED) && EXISTS(this/* as IfcSpatialElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcSpaceType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSpaceType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcSpaceType.CorrectPredefinedType))
+			if (!ValidateClause(IfcSpaceTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSpaceType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcSpaceType : IfcTypeProduct
-	{
-		public static readonly IfcSpaceType CorrectPredefinedType = new IfcSpaceType();
-		protected IfcSpaceType() {}
 	}
 }

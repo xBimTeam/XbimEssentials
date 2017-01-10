@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	public partial class IfcTransformerType : IExpressValidatable
 	{
+		public enum IfcTransformerTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcTransformerType clause) {
+		public bool ValidateClause(IfcTransformerTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcTransformerType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcTransformerTypeEnum.USERDEFINED) || ((PredefinedType == IfcTransformerTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ElectricalDomain.IfcTransformerType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTransformerType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcTransformerTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcTransformerTypeEnum.USERDEFINED) || ((PredefinedType == IfcTransformerTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ElectricalDomain.IfcTransformerType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTransformerType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.ElectricalDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcTransformerType.CorrectPredefinedType))
+			if (!ValidateClause(IfcTransformerTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcTransformerType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcTransformerType : IfcTypeProduct
-	{
-		public static readonly IfcTransformerType CorrectPredefinedType = new IfcTransformerType();
-		protected IfcTransformerType() {}
 	}
 }

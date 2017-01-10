@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.RepresentationResource
 {
 	public partial class IfcStyledRepresentation : IExpressValidatable
 	{
+		public enum IfcStyledRepresentationClause
+		{
+			WR21,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcStyledRepresentation clause) {
+		public bool ValidateClause(IfcStyledRepresentationClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcStyledRepresentation.WR21) {
-				try {
-					retVal = SIZEOF(this/* as IfcRepresentation*/.Items.Where(temp => (!(TYPEOF(temp).Contains("IFC2X3.IFCSTYLEDITEM"))))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.RepresentationResource.IfcStyledRepresentation");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStyledRepresentation.WR21' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcStyledRepresentationClause.WR21:
+						retVal = SIZEOF(this/* as IfcRepresentation*/.Items.Where(temp => (!(TYPEOF(temp).Contains("IFC2X3.IFCSTYLEDITEM"))))) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.RepresentationResource.IfcStyledRepresentation");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStyledRepresentation.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcStyledRepresentation.WR21))
+			if (!ValidateClause(IfcStyledRepresentationClause.WR21))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcStyledRepresentation.WR21", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcStyledRepresentation
-	{
-		public static readonly IfcStyledRepresentation WR21 = new IfcStyledRepresentation();
-		protected IfcStyledRepresentation() {}
 	}
 }

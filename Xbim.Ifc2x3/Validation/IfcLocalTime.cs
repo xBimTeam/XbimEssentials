@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.DateTimeResource
 {
 	public partial class IfcLocalTime : IExpressValidatable
 	{
+		public enum IfcLocalTimeClause
+		{
+			WR21,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcLocalTime clause) {
+		public bool ValidateClause(IfcLocalTimeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcLocalTime.WR21) {
-				try {
-					retVal = IfcValidTime(this);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.DateTimeResource.IfcLocalTime");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcLocalTime.WR21' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcLocalTimeClause.WR21:
+						retVal = IfcValidTime(this);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.DateTimeResource.IfcLocalTime");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcLocalTime.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcLocalTime.WR21))
+			if (!ValidateClause(IfcLocalTimeClause.WR21))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcLocalTime.WR21", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcLocalTime
-	{
-		public static readonly IfcLocalTime WR21 = new IfcLocalTime();
-		protected IfcLocalTime() {}
 	}
 }

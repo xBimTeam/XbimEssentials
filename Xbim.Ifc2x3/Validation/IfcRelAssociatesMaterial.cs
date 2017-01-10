@@ -17,33 +17,35 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class IfcRelAssociatesMaterial : IExpressValidatable
 	{
+		public enum IfcRelAssociatesMaterialClause
+		{
+			WR21,
+			WR22,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRelAssociatesMaterial clause) {
+		public bool ValidateClause(IfcRelAssociatesMaterialClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRelAssociatesMaterial.WR21) {
-				try {
-					retVal = SIZEOF(this/* as IfcRelAssociates*/.RelatedObjects.Where(temp => (TYPEOF(temp).Contains("IFC2X3.IFCFEATUREELEMENTSUBTRACTION")) || (TYPEOF(temp).Contains("IFC2X3.IFCVIRTUALELEMENT")))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProductExtension.IfcRelAssociatesMaterial");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelAssociatesMaterial.WR21' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRelAssociatesMaterialClause.WR21:
+						retVal = SIZEOF(this/* as IfcRelAssociates*/.RelatedObjects.Where(temp => (TYPEOF(temp).Contains("IFC2X3.IFCFEATUREELEMENTSUBTRACTION")) || (TYPEOF(temp).Contains("IFC2X3.IFCVIRTUALELEMENT")))) == 0;
+						break;
+					case IfcRelAssociatesMaterialClause.WR22:
+						retVal = SIZEOF(this/* as IfcRelAssociates*/.RelatedObjects.Where(temp => (!(TYPEOF(temp).Contains("IFC2X3.IFCPRODUCT")) && !(TYPEOF(temp).Contains("IFC2X3.IFCTYPEPRODUCT"))))) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.ProductExtension.IfcRelAssociatesMaterial");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelAssociatesMaterial.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcRelAssociatesMaterial.WR22) {
-				try {
-					retVal = SIZEOF(this/* as IfcRelAssociates*/.RelatedObjects.Where(temp => (!(TYPEOF(temp).Contains("IFC2X3.IFCPRODUCT")) && !(TYPEOF(temp).Contains("IFC2X3.IFCTYPEPRODUCT"))))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProductExtension.IfcRelAssociatesMaterial");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelAssociatesMaterial.WR22' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcRelAssociates)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -52,21 +54,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcRelAssociatesMaterial.WR21))
+			if (!ValidateClause(IfcRelAssociatesMaterialClause.WR21))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelAssociatesMaterial.WR21", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcRelAssociatesMaterial.WR22))
+			if (!ValidateClause(IfcRelAssociatesMaterialClause.WR22))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelAssociatesMaterial.WR22", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcRelAssociatesMaterial : IfcRelAssociates
-	{
-		public new static readonly IfcRelAssociatesMaterial WR21 = new IfcRelAssociatesMaterial();
-		public static readonly IfcRelAssociatesMaterial WR22 = new IfcRelAssociatesMaterial();
-		protected IfcRelAssociatesMaterial() {}
 	}
 }

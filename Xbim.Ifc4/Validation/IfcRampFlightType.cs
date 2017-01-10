@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	public partial class IfcRampFlightType : IExpressValidatable
 	{
+		public enum IfcRampFlightTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRampFlightType clause) {
+		public bool ValidateClause(IfcRampFlightTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRampFlightType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcRampFlightTypeEnum.USERDEFINED) || ((PredefinedType == IfcRampFlightTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcRampFlightType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRampFlightType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRampFlightTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcRampFlightTypeEnum.USERDEFINED) || ((PredefinedType == IfcRampFlightTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcRampFlightType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRampFlightType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcRampFlightType.CorrectPredefinedType))
+			if (!ValidateClause(IfcRampFlightTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRampFlightType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcRampFlightType : IfcTypeProduct
-	{
-		public static readonly IfcRampFlightType CorrectPredefinedType = new IfcRampFlightType();
-		protected IfcRampFlightType() {}
 	}
 }

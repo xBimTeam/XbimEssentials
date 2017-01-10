@@ -17,24 +17,31 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	public partial class IfcFooting : IExpressValidatable
 	{
+		public enum IfcFootingClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcFooting clause) {
+		public bool ValidateClause(IfcFootingClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcFooting.WR1) {
-				try {
-					retVal = (PredefinedType != IfcFootingTypeEnum.USERDEFINED) || ((PredefinedType == IfcFootingTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.StructuralElementsDomain.IfcFooting");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFooting.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcFootingClause.WR1:
+						retVal = (PredefinedType != IfcFootingTypeEnum.USERDEFINED) || ((PredefinedType == IfcFootingTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.StructuralElementsDomain.IfcFooting");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFooting.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -43,18 +50,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcFooting.WR1))
+			if (!ValidateClause(IfcFootingClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcFooting.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcFooting : IfcProduct
-	{
-		public new static readonly IfcFooting WR1 = new IfcFooting();
-		protected IfcFooting() {}
 	}
 }

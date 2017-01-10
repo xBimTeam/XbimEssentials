@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.Kernel
 {
 	public partial class IfcRelDeclares : IExpressValidatable
 	{
+		public enum IfcRelDeclaresClause
+		{
+			NoSelfReference,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRelDeclares clause) {
+		public bool ValidateClause(IfcRelDeclaresClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRelDeclares.NoSelfReference) {
-				try {
-					retVal = SIZEOF(RelatedDefinitions.Where(Temp => Object.ReferenceEquals(RelatingContext, Temp))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcRelDeclares");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelDeclares.NoSelfReference' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRelDeclaresClause.NoSelfReference:
+						retVal = SIZEOF(RelatedDefinitions.Where(Temp => Object.ReferenceEquals(RelatingContext, Temp))) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcRelDeclares");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelDeclares.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcRelDeclares.NoSelfReference))
+			if (!ValidateClause(IfcRelDeclaresClause.NoSelfReference))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelDeclares.NoSelfReference", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcRelDeclares
-	{
-		public static readonly IfcRelDeclares NoSelfReference = new IfcRelDeclares();
-		protected IfcRelDeclares() {}
 	}
 }

@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	public partial class IfcWallElementedCase : IExpressValidatable
 	{
+		public enum IfcWallElementedCaseClause
+		{
+			HasDecomposition,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcWallElementedCase clause) {
+		public bool ValidateClause(IfcWallElementedCaseClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcWallElementedCase.HasDecomposition) {
-				try {
-					retVal = HIINDEX(this/* as IfcObjectDefinition*/.IsDecomposedBy) > 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcWallElementedCase");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcWallElementedCase.HasDecomposition' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcWallElementedCaseClause.HasDecomposition:
+						retVal = HIINDEX(this/* as IfcObjectDefinition*/.IsDecomposedBy) > 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcWallElementedCase");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcWallElementedCase.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcWall)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcWallElementedCase.HasDecomposition))
+			if (!ValidateClause(IfcWallElementedCaseClause.HasDecomposition))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcWallElementedCase.HasDecomposition", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcWallElementedCase : IfcWall
-	{
-		public static readonly IfcWallElementedCase HasDecomposition = new IfcWallElementedCase();
-		protected IfcWallElementedCase() {}
 	}
 }

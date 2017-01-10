@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	public partial class IfcGeographicElementType : IExpressValidatable
 	{
+		public enum IfcGeographicElementTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcGeographicElementType clause) {
+		public bool ValidateClause(IfcGeographicElementTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcGeographicElementType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcGeographicElementTypeEnum.USERDEFINED) || ((PredefinedType == IfcGeographicElementTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcGeographicElementType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcGeographicElementType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcGeographicElementTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcGeographicElementTypeEnum.USERDEFINED) || ((PredefinedType == IfcGeographicElementTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcGeographicElementType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcGeographicElementType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcGeographicElementType.CorrectPredefinedType))
+			if (!ValidateClause(IfcGeographicElementTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcGeographicElementType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcGeographicElementType : IfcTypeProduct
-	{
-		public static readonly IfcGeographicElementType CorrectPredefinedType = new IfcGeographicElementType();
-		protected IfcGeographicElementType() {}
 	}
 }

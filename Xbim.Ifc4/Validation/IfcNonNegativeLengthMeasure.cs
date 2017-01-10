@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.MeasureResource
 {
 	public partial struct IfcNonNegativeLengthMeasure : IExpressValidatable
 	{
+		public enum IfcNonNegativeLengthMeasureClause
+		{
+			NotNegative,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcNonNegativeLengthMeasure clause) {
+		public bool ValidateClause(IfcNonNegativeLengthMeasureClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcNonNegativeLengthMeasure.NotNegative) {
-				try {
-					retVal = this >= 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure");
-					Log.Error("Exception thrown evaluating where-clause 'IfcNonNegativeLengthMeasure.NotNegative'.", ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcNonNegativeLengthMeasureClause.NotNegative:
+						retVal = this >= 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcNonNegativeLengthMeasure.{0}'.", clause), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
-		public  IEnumerable<ValidationResult> Validate()
+		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcNonNegativeLengthMeasure.NotNegative))
+			if (!ValidateClause(IfcNonNegativeLengthMeasureClause.NotNegative))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcNonNegativeLengthMeasure.NotNegative", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcNonNegativeLengthMeasure
-	{
-		public static readonly IfcNonNegativeLengthMeasure NotNegative = new IfcNonNegativeLengthMeasure();
-		protected IfcNonNegativeLengthMeasure() {}
 	}
 }

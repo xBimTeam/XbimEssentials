@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	public partial class IfcDuctFittingType : IExpressValidatable
 	{
+		public enum IfcDuctFittingTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcDuctFittingType clause) {
+		public bool ValidateClause(IfcDuctFittingTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcDuctFittingType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcDuctFittingTypeEnum.USERDEFINED) || ((PredefinedType == IfcDuctFittingTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcDuctFittingType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDuctFittingType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcDuctFittingTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcDuctFittingTypeEnum.USERDEFINED) || ((PredefinedType == IfcDuctFittingTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcDuctFittingType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDuctFittingType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.HvacDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcDuctFittingType.CorrectPredefinedType))
+			if (!ValidateClause(IfcDuctFittingTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcDuctFittingType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcDuctFittingType : IfcTypeProduct
-	{
-		public static readonly IfcDuctFittingType CorrectPredefinedType = new IfcDuctFittingType();
-		protected IfcDuctFittingType() {}
 	}
 }

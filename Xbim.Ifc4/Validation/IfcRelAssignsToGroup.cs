@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.Kernel
 {
 	public partial class IfcRelAssignsToGroup : IExpressValidatable
 	{
+		public enum IfcRelAssignsToGroupClause
+		{
+			NoSelfReference,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRelAssignsToGroup clause) {
+		public bool ValidateClause(IfcRelAssignsToGroupClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRelAssignsToGroup.NoSelfReference) {
-				try {
-					retVal = SIZEOF(this/* as IfcRelAssigns*/.RelatedObjects.Where(Temp => Object.ReferenceEquals(RelatingGroup, Temp))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcRelAssignsToGroup");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelAssignsToGroup.NoSelfReference' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRelAssignsToGroupClause.NoSelfReference:
+						retVal = SIZEOF(this/* as IfcRelAssigns*/.RelatedObjects.Where(Temp => Object.ReferenceEquals(RelatingGroup, Temp))) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcRelAssignsToGroup");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelAssignsToGroup.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcRelAssigns)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.Kernel
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcRelAssignsToGroup.NoSelfReference))
+			if (!ValidateClause(IfcRelAssignsToGroupClause.NoSelfReference))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelAssignsToGroup.NoSelfReference", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcRelAssignsToGroup : IfcRelAssigns
-	{
-		public static readonly IfcRelAssignsToGroup NoSelfReference = new IfcRelAssignsToGroup();
-		protected IfcRelAssignsToGroup() {}
 	}
 }

@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class IfcSweptAreaSolid : IExpressValidatable
 	{
+		public enum IfcSweptAreaSolidClause
+		{
+			WR22,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcSweptAreaSolid clause) {
+		public bool ValidateClause(IfcSweptAreaSolidClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcSweptAreaSolid.WR22) {
-				try {
-					retVal = SweptArea.ProfileType == IfcProfileTypeEnum.AREA;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricModelResource.IfcSweptAreaSolid");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSweptAreaSolid.WR22' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcSweptAreaSolidClause.WR22:
+						retVal = SweptArea.ProfileType == IfcProfileTypeEnum.AREA;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometricModelResource.IfcSweptAreaSolid");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSweptAreaSolid.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcSweptAreaSolid.WR22))
+			if (!ValidateClause(IfcSweptAreaSolidClause.WR22))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSweptAreaSolid.WR22", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcSweptAreaSolid
-	{
-		public static readonly IfcSweptAreaSolid WR22 = new IfcSweptAreaSolid();
-		protected IfcSweptAreaSolid() {}
 	}
 }

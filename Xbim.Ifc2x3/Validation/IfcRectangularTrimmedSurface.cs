@@ -17,76 +17,55 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class IfcRectangularTrimmedSurface : IExpressValidatable
 	{
+		public enum IfcRectangularTrimmedSurfaceClause
+		{
+			WR1,
+			WR2,
+			WR3,
+			WR4,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRectangularTrimmedSurface clause) {
+		public bool ValidateClause(IfcRectangularTrimmedSurfaceClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRectangularTrimmedSurface.WR1) {
-				try {
-					retVal = U1 != U2;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcRectangularTrimmedSurface");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRectangularTrimmedSurface.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRectangularTrimmedSurfaceClause.WR1:
+						retVal = U1 != U2;
+						break;
+					case IfcRectangularTrimmedSurfaceClause.WR2:
+						retVal = V1 != V2;
+						break;
+					case IfcRectangularTrimmedSurfaceClause.WR3:
+						retVal = ((TYPEOF(BasisSurface).Contains("IFC2X3.IFCELEMENTARYSURFACE")) && (!(TYPEOF(BasisSurface).Contains("IFC2X3.IFCPLANE")))) || (TYPEOF(BasisSurface).Contains("IFC2X3.IFCSURFACEOFREVOLUTION")) || (Usense == (U2 > U1));
+						break;
+					case IfcRectangularTrimmedSurfaceClause.WR4:
+						retVal = Vsense == (V2 > V1);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcRectangularTrimmedSurface");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRectangularTrimmedSurface.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcRectangularTrimmedSurface.WR2) {
-				try {
-					retVal = V1 != V2;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcRectangularTrimmedSurface");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRectangularTrimmedSurface.WR2' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcRectangularTrimmedSurface.WR3) {
-				try {
-					retVal = ((TYPEOF(BasisSurface).Contains("IFC2X3.IFCELEMENTARYSURFACE")) && (!(TYPEOF(BasisSurface).Contains("IFC2X3.IFCPLANE")))) || (TYPEOF(BasisSurface).Contains("IFC2X3.IFCSURFACEOFREVOLUTION")) || (Usense == (U2 > U1));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcRectangularTrimmedSurface");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRectangularTrimmedSurface.WR3' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcRectangularTrimmedSurface.WR4) {
-				try {
-					retVal = Vsense == (V2 > V1);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcRectangularTrimmedSurface");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRectangularTrimmedSurface.WR4' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcRectangularTrimmedSurface.WR1))
+			if (!ValidateClause(IfcRectangularTrimmedSurfaceClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRectangularTrimmedSurface.WR1", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcRectangularTrimmedSurface.WR2))
+			if (!ValidateClause(IfcRectangularTrimmedSurfaceClause.WR2))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRectangularTrimmedSurface.WR2", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcRectangularTrimmedSurface.WR3))
+			if (!ValidateClause(IfcRectangularTrimmedSurfaceClause.WR3))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRectangularTrimmedSurface.WR3", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcRectangularTrimmedSurface.WR4))
+			if (!ValidateClause(IfcRectangularTrimmedSurfaceClause.WR4))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRectangularTrimmedSurface.WR4", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcRectangularTrimmedSurface
-	{
-		public static readonly IfcRectangularTrimmedSurface WR1 = new IfcRectangularTrimmedSurface();
-		public static readonly IfcRectangularTrimmedSurface WR2 = new IfcRectangularTrimmedSurface();
-		public static readonly IfcRectangularTrimmedSurface WR3 = new IfcRectangularTrimmedSurface();
-		public static readonly IfcRectangularTrimmedSurface WR4 = new IfcRectangularTrimmedSurface();
-		protected IfcRectangularTrimmedSurface() {}
 	}
 }

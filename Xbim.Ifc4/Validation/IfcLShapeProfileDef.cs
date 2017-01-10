@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	public partial class IfcLShapeProfileDef : IExpressValidatable
 	{
+		public enum IfcLShapeProfileDefClause
+		{
+			ValidThickness,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcLShapeProfileDef clause) {
+		public bool ValidateClause(IfcLShapeProfileDefClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcLShapeProfileDef.ValidThickness) {
-				try {
-					retVal = (Thickness < Depth) && (!(EXISTS(Width)) || (Thickness < Width));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcLShapeProfileDef");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcLShapeProfileDef.ValidThickness' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcLShapeProfileDefClause.ValidThickness:
+						retVal = (Thickness < Depth) && (!(EXISTS(Width)) || (Thickness < Width));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ProfileResource.IfcLShapeProfileDef");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcLShapeProfileDef.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcLShapeProfileDef.ValidThickness))
+			if (!ValidateClause(IfcLShapeProfileDefClause.ValidThickness))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcLShapeProfileDef.ValidThickness", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcLShapeProfileDef
-	{
-		public static readonly IfcLShapeProfileDef ValidThickness = new IfcLShapeProfileDef();
-		protected IfcLShapeProfileDef() {}
 	}
 }

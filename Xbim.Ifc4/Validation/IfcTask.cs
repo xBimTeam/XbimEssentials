@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.ProcessExtension
 {
 	public partial class IfcTask : IExpressValidatable
 	{
+		public enum IfcTaskClause
+		{
+			HasName,
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcTask clause) {
+		public bool ValidateClause(IfcTaskClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcTask.HasName) {
-				try {
-					retVal = EXISTS(this/* as IfcRoot*/.Name);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProcessExtension.IfcTask");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTask.HasName' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcTaskClause.HasName:
+						retVal = EXISTS(this/* as IfcRoot*/.Name);
+						break;
+					case IfcTaskClause.CorrectPredefinedType:
+						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcTaskTypeEnum.USERDEFINED) || ((PredefinedType == IfcTaskTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ProcessExtension.IfcTask");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTask.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcTask.CorrectPredefinedType) {
-				try {
-					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcTaskTypeEnum.USERDEFINED) || ((PredefinedType == IfcTaskTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProcessExtension.IfcTask");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTask.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcObject)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcTask.HasName))
+			if (!ValidateClause(IfcTaskClause.HasName))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcTask.HasName", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcTask.CorrectPredefinedType))
+			if (!ValidateClause(IfcTaskClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcTask.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcTask : IfcObject
-	{
-		public static readonly IfcTask HasName = new IfcTask();
-		public static readonly IfcTask CorrectPredefinedType = new IfcTask();
-		protected IfcTask() {}
 	}
 }

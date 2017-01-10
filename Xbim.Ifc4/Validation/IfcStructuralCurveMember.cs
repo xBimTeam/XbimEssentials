@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	public partial class IfcStructuralCurveMember : IExpressValidatable
 	{
+		public enum IfcStructuralCurveMemberClause
+		{
+			HasObjectType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcStructuralCurveMember clause) {
+		public bool ValidateClause(IfcStructuralCurveMemberClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcStructuralCurveMember.HasObjectType) {
-				try {
-					retVal = (PredefinedType != IfcStructuralCurveMemberTypeEnum.USERDEFINED) || EXISTS(this/* as IfcObject*/.ObjectType);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralCurveMember");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralCurveMember.HasObjectType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcStructuralCurveMemberClause.HasObjectType:
+						retVal = (PredefinedType != IfcStructuralCurveMemberTypeEnum.USERDEFINED) || EXISTS(this/* as IfcObject*/.ObjectType);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralCurveMember");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralCurveMember.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcStructuralCurveMember.HasObjectType))
+			if (!ValidateClause(IfcStructuralCurveMemberClause.HasObjectType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcStructuralCurveMember.HasObjectType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcStructuralCurveMember : IfcProduct
-	{
-		public static readonly IfcStructuralCurveMember HasObjectType = new IfcStructuralCurveMember();
-		protected IfcStructuralCurveMember() {}
 	}
 }

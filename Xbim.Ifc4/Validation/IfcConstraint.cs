@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.ConstraintResource
 {
 	public partial class IfcConstraint : IExpressValidatable
 	{
+		public enum IfcConstraintClause
+		{
+			WR11,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcConstraint clause) {
+		public bool ValidateClause(IfcConstraintClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcConstraint.WR11) {
-				try {
-					retVal = (ConstraintGrade != IfcConstraintEnum.USERDEFINED) || ((ConstraintGrade == IfcConstraintEnum.USERDEFINED) && EXISTS(this/* as IfcConstraint*/.UserDefinedGrade));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ConstraintResource.IfcConstraint");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcConstraint.WR11' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcConstraintClause.WR11:
+						retVal = (ConstraintGrade != IfcConstraintEnum.USERDEFINED) || ((ConstraintGrade == IfcConstraintEnum.USERDEFINED) && EXISTS(this/* as IfcConstraint*/.UserDefinedGrade));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ConstraintResource.IfcConstraint");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcConstraint.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcConstraint.WR11))
+			if (!ValidateClause(IfcConstraintClause.WR11))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcConstraint.WR11", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcConstraint
-	{
-		public static readonly IfcConstraint WR11 = new IfcConstraint();
-		protected IfcConstraint() {}
 	}
 }

@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.DateTimeResource
 {
 	public partial class IfcCalendarDate : IExpressValidatable
 	{
+		public enum IfcCalendarDateClause
+		{
+			WR21,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcCalendarDate clause) {
+		public bool ValidateClause(IfcCalendarDateClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcCalendarDate.WR21) {
-				try {
-					retVal = IfcValidCalendarDate(this);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.DateTimeResource.IfcCalendarDate");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCalendarDate.WR21' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcCalendarDateClause.WR21:
+						retVal = IfcValidCalendarDate(this);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.DateTimeResource.IfcCalendarDate");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCalendarDate.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcCalendarDate.WR21))
+			if (!ValidateClause(IfcCalendarDateClause.WR21))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCalendarDate.WR21", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcCalendarDate
-	{
-		public static readonly IfcCalendarDate WR21 = new IfcCalendarDate();
-		protected IfcCalendarDate() {}
 	}
 }

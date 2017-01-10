@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.PropertyResource
 {
 	public partial class IfcPropertyDependencyRelationship : IExpressValidatable
 	{
+		public enum IfcPropertyDependencyRelationshipClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcPropertyDependencyRelationship clause) {
+		public bool ValidateClause(IfcPropertyDependencyRelationshipClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcPropertyDependencyRelationship.WR1) {
-				try {
-					retVal = !Object.ReferenceEquals(DependingProperty, DependantProperty);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PropertyResource.IfcPropertyDependencyRelationship");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPropertyDependencyRelationship.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcPropertyDependencyRelationshipClause.WR1:
+						retVal = !Object.ReferenceEquals(DependingProperty, DependantProperty);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.PropertyResource.IfcPropertyDependencyRelationship");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPropertyDependencyRelationship.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcPropertyDependencyRelationship.WR1))
+			if (!ValidateClause(IfcPropertyDependencyRelationshipClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPropertyDependencyRelationship.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcPropertyDependencyRelationship
-	{
-		public static readonly IfcPropertyDependencyRelationship WR1 = new IfcPropertyDependencyRelationship();
-		protected IfcPropertyDependencyRelationship() {}
 	}
 }

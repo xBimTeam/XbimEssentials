@@ -17,64 +17,49 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	public partial class IfcDimensionPair : IExpressValidatable
 	{
+		public enum IfcDimensionPairClause
+		{
+			WR11,
+			WR12,
+			WR13,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcDimensionPair clause) {
+		public bool ValidateClause(IfcDimensionPairClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcDimensionPair.WR11) {
-				try {
-					retVal = NewArray("chained", "parallel").Contains(this.Name);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDimensioningResource.IfcDimensionPair");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDimensionPair.WR11' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcDimensionPairClause.WR11:
+						retVal = NewArray("chained", "parallel").Contains(this.Name);
+						break;
+					case IfcDimensionPairClause.WR12:
+						retVal = SIZEOF(TYPEOF(this.RelatingDraughtingCallout) * NewArray("IFC2X3.IFCANGULARDIMENSION", "IFC2X3.IFCDIAMETERDIMENSION", "IFC2X3.IFCLINEARDIMENSION", "IFC2X3.IFCRADIUSDIMENSION")) == 1;
+						break;
+					case IfcDimensionPairClause.WR13:
+						retVal = SIZEOF(TYPEOF(this.RelatedDraughtingCallout) * NewArray("IFC2X3.IFCANGULARDIMENSION", "IFC2X3.IFCDIAMETERDIMENSION", "IFC2X3.IFCLINEARDIMENSION", "IFC2X3.IFCRADIUSDIMENSION")) == 1;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDimensioningResource.IfcDimensionPair");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDimensionPair.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcDimensionPair.WR12) {
-				try {
-					retVal = SIZEOF(TYPEOF(this.RelatingDraughtingCallout) * NewArray("IFC2X3.IFCANGULARDIMENSION", "IFC2X3.IFCDIAMETERDIMENSION", "IFC2X3.IFCLINEARDIMENSION", "IFC2X3.IFCRADIUSDIMENSION")) == 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDimensioningResource.IfcDimensionPair");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDimensionPair.WR12' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcDimensionPair.WR13) {
-				try {
-					retVal = SIZEOF(TYPEOF(this.RelatedDraughtingCallout) * NewArray("IFC2X3.IFCANGULARDIMENSION", "IFC2X3.IFCDIAMETERDIMENSION", "IFC2X3.IFCLINEARDIMENSION", "IFC2X3.IFCRADIUSDIMENSION")) == 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDimensioningResource.IfcDimensionPair");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDimensionPair.WR13' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcDimensionPair.WR11))
+			if (!ValidateClause(IfcDimensionPairClause.WR11))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcDimensionPair.WR11", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcDimensionPair.WR12))
+			if (!ValidateClause(IfcDimensionPairClause.WR12))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcDimensionPair.WR12", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcDimensionPair.WR13))
+			if (!ValidateClause(IfcDimensionPairClause.WR13))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcDimensionPair.WR13", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcDimensionPair
-	{
-		public static readonly IfcDimensionPair WR11 = new IfcDimensionPair();
-		public static readonly IfcDimensionPair WR12 = new IfcDimensionPair();
-		public static readonly IfcDimensionPair WR13 = new IfcDimensionPair();
-		protected IfcDimensionPair() {}
 	}
 }

@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	public partial class IfcGeometricSet : IExpressValidatable
 	{
+		public enum IfcGeometricSetClause
+		{
+			ConsistentDim,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcGeometricSet clause) {
+		public bool ValidateClause(IfcGeometricSetClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcGeometricSet.ConsistentDim) {
-				try {
-					retVal = SIZEOF(Elements.Where(Temp => Temp.Dim != Elements.ItemAt(0).Dim)) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcGeometricSet");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcGeometricSet.ConsistentDim' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcGeometricSetClause.ConsistentDim:
+						retVal = SIZEOF(Elements.Where(Temp => Temp.Dim != Elements.ItemAt(0).Dim)) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcGeometricSet");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcGeometricSet.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcGeometricSet.ConsistentDim))
+			if (!ValidateClause(IfcGeometricSetClause.ConsistentDim))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcGeometricSet.ConsistentDim", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcGeometricSet
-	{
-		public static readonly IfcGeometricSet ConsistentDim = new IfcGeometricSet();
-		protected IfcGeometricSet() {}
 	}
 }

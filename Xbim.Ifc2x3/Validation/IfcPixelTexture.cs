@@ -17,76 +17,55 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class IfcPixelTexture : IExpressValidatable
 	{
+		public enum IfcPixelTextureClause
+		{
+			WR21,
+			WR22,
+			WR23,
+			WR24,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcPixelTexture clause) {
+		public bool ValidateClause(IfcPixelTextureClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcPixelTexture.WR21) {
-				try {
-					retVal = Width >= 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcPixelTexture");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPixelTexture.WR21' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcPixelTextureClause.WR21:
+						retVal = Width >= 1;
+						break;
+					case IfcPixelTextureClause.WR22:
+						retVal = Height >= 1;
+						break;
+					case IfcPixelTextureClause.WR23:
+						retVal = ((1 <= ColourComponents) && (ColourComponents <= 4) );
+						break;
+					case IfcPixelTextureClause.WR24:
+						retVal = SIZEOF(Pixel) == (Width * Height);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcPixelTexture");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPixelTexture.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcPixelTexture.WR22) {
-				try {
-					retVal = Height >= 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcPixelTexture");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPixelTexture.WR22' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcPixelTexture.WR23) {
-				try {
-					retVal = ((1 <= ColourComponents) && (ColourComponents <= 4) );
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcPixelTexture");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPixelTexture.WR23' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcPixelTexture.WR24) {
-				try {
-					retVal = SIZEOF(Pixel) == (Width * Height);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcPixelTexture");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPixelTexture.WR24' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcPixelTexture.WR21))
+			if (!ValidateClause(IfcPixelTextureClause.WR21))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPixelTexture.WR21", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcPixelTexture.WR22))
+			if (!ValidateClause(IfcPixelTextureClause.WR22))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPixelTexture.WR22", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcPixelTexture.WR23))
+			if (!ValidateClause(IfcPixelTextureClause.WR23))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPixelTexture.WR23", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcPixelTexture.WR24))
+			if (!ValidateClause(IfcPixelTextureClause.WR24))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPixelTexture.WR24", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcPixelTexture
-	{
-		public static readonly IfcPixelTexture WR21 = new IfcPixelTexture();
-		public static readonly IfcPixelTexture WR22 = new IfcPixelTexture();
-		public static readonly IfcPixelTexture WR23 = new IfcPixelTexture();
-		public static readonly IfcPixelTexture WR24 = new IfcPixelTexture();
-		protected IfcPixelTexture() {}
 	}
 }

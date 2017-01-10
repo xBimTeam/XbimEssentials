@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.SharedComponentElements
 {
 	public partial class IfcMechanicalFastener : IExpressValidatable
 	{
+		public enum IfcMechanicalFastenerClause
+		{
+			CorrectPredefinedType,
+			CorrectTypeAssigned,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcMechanicalFastener clause) {
+		public bool ValidateClause(IfcMechanicalFastenerClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcMechanicalFastener.CorrectPredefinedType) {
-				try {
-					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcMechanicalFastenerTypeEnum.USERDEFINED) || ((PredefinedType == IfcMechanicalFastenerTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedComponentElements.IfcMechanicalFastener");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcMechanicalFastener.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcMechanicalFastenerClause.CorrectPredefinedType:
+						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcMechanicalFastenerTypeEnum.USERDEFINED) || ((PredefinedType == IfcMechanicalFastenerTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
+					case IfcMechanicalFastenerClause.CorrectTypeAssigned:
+						retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCMECHANICALFASTENERTYPE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.SharedComponentElements.IfcMechanicalFastener");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcMechanicalFastener.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcMechanicalFastener.CorrectTypeAssigned) {
-				try {
-					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCMECHANICALFASTENERTYPE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedComponentElements.IfcMechanicalFastener");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcMechanicalFastener.CorrectTypeAssigned' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.SharedComponentElements
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcMechanicalFastener.CorrectPredefinedType))
+			if (!ValidateClause(IfcMechanicalFastenerClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcMechanicalFastener.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcMechanicalFastener.CorrectTypeAssigned))
+			if (!ValidateClause(IfcMechanicalFastenerClause.CorrectTypeAssigned))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcMechanicalFastener.CorrectTypeAssigned", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcMechanicalFastener : IfcProduct
-	{
-		public static readonly IfcMechanicalFastener CorrectPredefinedType = new IfcMechanicalFastener();
-		public static readonly IfcMechanicalFastener CorrectTypeAssigned = new IfcMechanicalFastener();
-		protected IfcMechanicalFastener() {}
 	}
 }

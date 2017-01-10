@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 {
 	public partial class IfcLocalPlacement : IExpressValidatable
 	{
+		public enum IfcLocalPlacementClause
+		{
+			WR21,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcLocalPlacement clause) {
+		public bool ValidateClause(IfcLocalPlacementClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcLocalPlacement.WR21) {
-				try {
-					retVal = IfcCorrectLocalPlacement(RelativePlacement, PlacementRelTo);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricConstraintResource.IfcLocalPlacement");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcLocalPlacement.WR21' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcLocalPlacementClause.WR21:
+						retVal = IfcCorrectLocalPlacement(RelativePlacement, PlacementRelTo);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometricConstraintResource.IfcLocalPlacement");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcLocalPlacement.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcLocalPlacement.WR21))
+			if (!ValidateClause(IfcLocalPlacementClause.WR21))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcLocalPlacement.WR21", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcLocalPlacement
-	{
-		public static readonly IfcLocalPlacement WR21 = new IfcLocalPlacement();
-		protected IfcLocalPlacement() {}
 	}
 }

@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class IfcCompositeCurveSegment : IExpressValidatable
 	{
+		public enum IfcCompositeCurveSegmentClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcCompositeCurveSegment clause) {
+		public bool ValidateClause(IfcCompositeCurveSegmentClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcCompositeCurveSegment.WR1) {
-				try {
-					retVal = (TYPEOF(ParentCurve).Contains("IFC2X3.IFCBOUNDEDCURVE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcCompositeCurveSegment");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCompositeCurveSegment.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcCompositeCurveSegmentClause.WR1:
+						retVal = (TYPEOF(ParentCurve).Contains("IFC2X3.IFCBOUNDEDCURVE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcCompositeCurveSegment");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCompositeCurveSegment.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcCompositeCurveSegment.WR1))
+			if (!ValidateClause(IfcCompositeCurveSegmentClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCompositeCurveSegment.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcCompositeCurveSegment
-	{
-		public static readonly IfcCompositeCurveSegment WR1 = new IfcCompositeCurveSegment();
-		protected IfcCompositeCurveSegment() {}
 	}
 }

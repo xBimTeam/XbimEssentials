@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	public partial class IfcCartesianTransformationOperator2DnonUniform : IExpressValidatable
 	{
+		public enum IfcCartesianTransformationOperator2DnonUniformClause
+		{
+			Scale2GreaterZero,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcCartesianTransformationOperator2DnonUniform clause) {
+		public bool ValidateClause(IfcCartesianTransformationOperator2DnonUniformClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcCartesianTransformationOperator2DnonUniform.Scale2GreaterZero) {
-				try {
-					retVal = Scl2 > 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcCartesianTransformationOperator2DnonUniform");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator2DnonUniform.Scale2GreaterZero' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcCartesianTransformationOperator2DnonUniformClause.Scale2GreaterZero:
+						retVal = Scl2 > 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcCartesianTransformationOperator2DnonUniform");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator2DnonUniform.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcCartesianTransformationOperator2D)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcCartesianTransformationOperator2DnonUniform.Scale2GreaterZero))
+			if (!ValidateClause(IfcCartesianTransformationOperator2DnonUniformClause.Scale2GreaterZero))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCartesianTransformationOperator2DnonUniform.Scale2GreaterZero", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcCartesianTransformationOperator2DnonUniform : IfcCartesianTransformationOperator2D
-	{
-		public static readonly IfcCartesianTransformationOperator2DnonUniform Scale2GreaterZero = new IfcCartesianTransformationOperator2DnonUniform();
-		protected IfcCartesianTransformationOperator2DnonUniform() {}
 	}
 }

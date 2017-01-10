@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	public partial class IfcElementQuantity : IExpressValidatable
 	{
+		public enum IfcElementQuantityClause
+		{
+			UniqueQuantityNames,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcElementQuantity clause) {
+		public bool ValidateClause(IfcElementQuantityClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcElementQuantity.UniqueQuantityNames) {
-				try {
-					retVal = IfcUniqueQuantityNames(Quantities);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcElementQuantity");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcElementQuantity.UniqueQuantityNames' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcElementQuantityClause.UniqueQuantityNames:
+						retVal = IfcUniqueQuantityNames(Quantities);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcElementQuantity");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcElementQuantity.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcElementQuantity.UniqueQuantityNames))
+			if (!ValidateClause(IfcElementQuantityClause.UniqueQuantityNames))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcElementQuantity.UniqueQuantityNames", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcElementQuantity
-	{
-		public static readonly IfcElementQuantity UniqueQuantityNames = new IfcElementQuantity();
-		protected IfcElementQuantity() {}
 	}
 }

@@ -13,76 +13,55 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	public partial class IfcBSplineSurfaceWithKnots : IExpressValidatable
 	{
+		public enum IfcBSplineSurfaceWithKnotsClause
+		{
+			UDirectionConstraints,
+			VDirectionConstraints,
+			CorrespondingULists,
+			CorrespondingVLists,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcBSplineSurfaceWithKnots clause) {
+		public bool ValidateClause(IfcBSplineSurfaceWithKnotsClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcBSplineSurfaceWithKnots.UDirectionConstraints) {
-				try {
-					retVal = IfcConstraintsParamBSpline(this/* as IfcBSplineSurface*/.UDegree, KnotUUpper, this/* as IfcBSplineSurface*/.UUpper, UMultiplicities, UKnots);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcBSplineSurfaceWithKnots");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBSplineSurfaceWithKnots.UDirectionConstraints' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcBSplineSurfaceWithKnotsClause.UDirectionConstraints:
+						retVal = IfcConstraintsParamBSpline(this/* as IfcBSplineSurface*/.UDegree, KnotUUpper, this/* as IfcBSplineSurface*/.UUpper, UMultiplicities, UKnots);
+						break;
+					case IfcBSplineSurfaceWithKnotsClause.VDirectionConstraints:
+						retVal = IfcConstraintsParamBSpline(this/* as IfcBSplineSurface*/.VDegree, KnotVUpper, this/* as IfcBSplineSurface*/.VUpper, VMultiplicities, VKnots);
+						break;
+					case IfcBSplineSurfaceWithKnotsClause.CorrespondingULists:
+						retVal = SIZEOF(UMultiplicities) == KnotUUpper;
+						break;
+					case IfcBSplineSurfaceWithKnotsClause.CorrespondingVLists:
+						retVal = SIZEOF(VMultiplicities) == KnotVUpper;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcBSplineSurfaceWithKnots");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBSplineSurfaceWithKnots.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcBSplineSurfaceWithKnots.VDirectionConstraints) {
-				try {
-					retVal = IfcConstraintsParamBSpline(this/* as IfcBSplineSurface*/.VDegree, KnotVUpper, this/* as IfcBSplineSurface*/.VUpper, VMultiplicities, VKnots);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcBSplineSurfaceWithKnots");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBSplineSurfaceWithKnots.VDirectionConstraints' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcBSplineSurfaceWithKnots.CorrespondingULists) {
-				try {
-					retVal = SIZEOF(UMultiplicities) == KnotUUpper;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcBSplineSurfaceWithKnots");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBSplineSurfaceWithKnots.CorrespondingULists' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcBSplineSurfaceWithKnots.CorrespondingVLists) {
-				try {
-					retVal = SIZEOF(VMultiplicities) == KnotVUpper;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcBSplineSurfaceWithKnots");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBSplineSurfaceWithKnots.CorrespondingVLists' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcBSplineSurfaceWithKnots.UDirectionConstraints))
+			if (!ValidateClause(IfcBSplineSurfaceWithKnotsClause.UDirectionConstraints))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcBSplineSurfaceWithKnots.UDirectionConstraints", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcBSplineSurfaceWithKnots.VDirectionConstraints))
+			if (!ValidateClause(IfcBSplineSurfaceWithKnotsClause.VDirectionConstraints))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcBSplineSurfaceWithKnots.VDirectionConstraints", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcBSplineSurfaceWithKnots.CorrespondingULists))
+			if (!ValidateClause(IfcBSplineSurfaceWithKnotsClause.CorrespondingULists))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcBSplineSurfaceWithKnots.CorrespondingULists", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcBSplineSurfaceWithKnots.CorrespondingVLists))
+			if (!ValidateClause(IfcBSplineSurfaceWithKnotsClause.CorrespondingVLists))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcBSplineSurfaceWithKnots.CorrespondingVLists", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcBSplineSurfaceWithKnots
-	{
-		public static readonly IfcBSplineSurfaceWithKnots UDirectionConstraints = new IfcBSplineSurfaceWithKnots();
-		public static readonly IfcBSplineSurfaceWithKnots VDirectionConstraints = new IfcBSplineSurfaceWithKnots();
-		public static readonly IfcBSplineSurfaceWithKnots CorrespondingULists = new IfcBSplineSurfaceWithKnots();
-		public static readonly IfcBSplineSurfaceWithKnots CorrespondingVLists = new IfcBSplineSurfaceWithKnots();
-		protected IfcBSplineSurfaceWithKnots() {}
 	}
 }

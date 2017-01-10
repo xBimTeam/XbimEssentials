@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	public partial class IfcStructuralSurfaceAction : IExpressValidatable
 	{
+		public enum IfcStructuralSurfaceActionClause
+		{
+			ProjectedIsGlobal,
+			HasObjectType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcStructuralSurfaceAction clause) {
+		public bool ValidateClause(IfcStructuralSurfaceActionClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcStructuralSurfaceAction.ProjectedIsGlobal) {
-				try {
-					retVal = (!EXISTS(ProjectedOrTrue)) || ((ProjectedOrTrue != IfcProjectedOrTrueLengthEnum.PROJECTED_LENGTH) || (this/* as IfcStructuralActivity*/.GlobalOrLocal == IfcGlobalOrLocalEnum.GLOBAL_COORDS));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralSurfaceAction");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralSurfaceAction.ProjectedIsGlobal' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcStructuralSurfaceActionClause.ProjectedIsGlobal:
+						retVal = (!EXISTS(ProjectedOrTrue)) || ((ProjectedOrTrue != IfcProjectedOrTrueLengthEnum.PROJECTED_LENGTH) || (this/* as IfcStructuralActivity*/.GlobalOrLocal == IfcGlobalOrLocalEnum.GLOBAL_COORDS));
+						break;
+					case IfcStructuralSurfaceActionClause.HasObjectType:
+						retVal = (PredefinedType != IfcStructuralSurfaceActivityTypeEnum.USERDEFINED) || EXISTS(this/* as IfcObject*/.ObjectType);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralSurfaceAction");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralSurfaceAction.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcStructuralSurfaceAction.HasObjectType) {
-				try {
-					retVal = (PredefinedType != IfcStructuralSurfaceActivityTypeEnum.USERDEFINED) || EXISTS(this/* as IfcObject*/.ObjectType);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralSurfaceAction");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuralSurfaceAction.HasObjectType' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcStructuralSurfaceAction.ProjectedIsGlobal))
+			if (!ValidateClause(IfcStructuralSurfaceActionClause.ProjectedIsGlobal))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcStructuralSurfaceAction.ProjectedIsGlobal", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcStructuralSurfaceAction.HasObjectType))
+			if (!ValidateClause(IfcStructuralSurfaceActionClause.HasObjectType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcStructuralSurfaceAction.HasObjectType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcStructuralSurfaceAction : IfcProduct
-	{
-		public static readonly IfcStructuralSurfaceAction ProjectedIsGlobal = new IfcStructuralSurfaceAction();
-		public static readonly IfcStructuralSurfaceAction HasObjectType = new IfcStructuralSurfaceAction();
-		protected IfcStructuralSurfaceAction() {}
 	}
 }

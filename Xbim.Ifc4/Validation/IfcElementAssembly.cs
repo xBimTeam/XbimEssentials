@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	public partial class IfcElementAssembly : IExpressValidatable
 	{
+		public enum IfcElementAssemblyClause
+		{
+			CorrectPredefinedType,
+			CorrectTypeAssigned,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcElementAssembly clause) {
+		public bool ValidateClause(IfcElementAssemblyClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcElementAssembly.CorrectPredefinedType) {
-				try {
-					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcElementAssemblyTypeEnum.USERDEFINED) || ((PredefinedType == IfcElementAssemblyTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcElementAssembly");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcElementAssembly.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcElementAssemblyClause.CorrectPredefinedType:
+						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcElementAssemblyTypeEnum.USERDEFINED) || ((PredefinedType == IfcElementAssemblyTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
+					case IfcElementAssemblyClause.CorrectTypeAssigned:
+						retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCELEMENTASSEMBLYTYPE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcElementAssembly");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcElementAssembly.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcElementAssembly.CorrectTypeAssigned) {
-				try {
-					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCELEMENTASSEMBLYTYPE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcElementAssembly");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcElementAssembly.CorrectTypeAssigned' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcElementAssembly.CorrectPredefinedType))
+			if (!ValidateClause(IfcElementAssemblyClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcElementAssembly.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcElementAssembly.CorrectTypeAssigned))
+			if (!ValidateClause(IfcElementAssemblyClause.CorrectTypeAssigned))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcElementAssembly.CorrectTypeAssigned", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcElementAssembly : IfcProduct
-	{
-		public static readonly IfcElementAssembly CorrectPredefinedType = new IfcElementAssembly();
-		public static readonly IfcElementAssembly CorrectTypeAssigned = new IfcElementAssembly();
-		protected IfcElementAssembly() {}
 	}
 }

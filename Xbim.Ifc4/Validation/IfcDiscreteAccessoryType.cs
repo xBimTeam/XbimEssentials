@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.SharedComponentElements
 {
 	public partial class IfcDiscreteAccessoryType : IExpressValidatable
 	{
+		public enum IfcDiscreteAccessoryTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcDiscreteAccessoryType clause) {
+		public bool ValidateClause(IfcDiscreteAccessoryTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcDiscreteAccessoryType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcDiscreteAccessoryTypeEnum.USERDEFINED) || ((PredefinedType == IfcDiscreteAccessoryTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedComponentElements.IfcDiscreteAccessoryType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDiscreteAccessoryType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcDiscreteAccessoryTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcDiscreteAccessoryTypeEnum.USERDEFINED) || ((PredefinedType == IfcDiscreteAccessoryTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.SharedComponentElements.IfcDiscreteAccessoryType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDiscreteAccessoryType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.SharedComponentElements
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcDiscreteAccessoryType.CorrectPredefinedType))
+			if (!ValidateClause(IfcDiscreteAccessoryTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcDiscreteAccessoryType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcDiscreteAccessoryType : IfcTypeProduct
-	{
-		public static readonly IfcDiscreteAccessoryType CorrectPredefinedType = new IfcDiscreteAccessoryType();
-		protected IfcDiscreteAccessoryType() {}
 	}
 }

@@ -17,52 +17,43 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class IfcSweptSurface : IExpressValidatable
 	{
+		public enum IfcSweptSurfaceClause
+		{
+			WR1,
+			WR2,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcSweptSurface clause) {
+		public bool ValidateClause(IfcSweptSurfaceClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcSweptSurface.WR1) {
-				try {
-					retVal = !(TYPEOF(SweptCurve).Contains("IFC2X3.IFCDERIVEDPROFILEDEF"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcSweptSurface");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSweptSurface.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcSweptSurfaceClause.WR1:
+						retVal = !(TYPEOF(SweptCurve).Contains("IFC2X3.IFCDERIVEDPROFILEDEF"));
+						break;
+					case IfcSweptSurfaceClause.WR2:
+						retVal = SweptCurve.ProfileType == IfcProfileTypeEnum.CURVE;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcSweptSurface");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSweptSurface.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcSweptSurface.WR2) {
-				try {
-					retVal = SweptCurve.ProfileType == IfcProfileTypeEnum.CURVE;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcSweptSurface");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSweptSurface.WR2' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcSweptSurface.WR1))
+			if (!ValidateClause(IfcSweptSurfaceClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSweptSurface.WR1", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcSweptSurface.WR2))
+			if (!ValidateClause(IfcSweptSurfaceClause.WR2))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSweptSurface.WR2", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcSweptSurface
-	{
-		public static readonly IfcSweptSurface WR1 = new IfcSweptSurface();
-		public static readonly IfcSweptSurface WR2 = new IfcSweptSurface();
-		protected IfcSweptSurface() {}
 	}
 }

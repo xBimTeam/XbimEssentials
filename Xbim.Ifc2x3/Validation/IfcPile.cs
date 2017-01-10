@@ -17,24 +17,31 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	public partial class IfcPile : IExpressValidatable
 	{
+		public enum IfcPileClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcPile clause) {
+		public bool ValidateClause(IfcPileClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcPile.WR1) {
-				try {
-					retVal = (PredefinedType != IfcPileTypeEnum.USERDEFINED) || ((PredefinedType == IfcPileTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.StructuralElementsDomain.IfcPile");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPile.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcPileClause.WR1:
+						retVal = (PredefinedType != IfcPileTypeEnum.USERDEFINED) || ((PredefinedType == IfcPileTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.StructuralElementsDomain.IfcPile");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPile.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -43,18 +50,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcPile.WR1))
+			if (!ValidateClause(IfcPileClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPile.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcPile : IfcProduct
-	{
-		public new static readonly IfcPile WR1 = new IfcPile();
-		protected IfcPile() {}
 	}
 }

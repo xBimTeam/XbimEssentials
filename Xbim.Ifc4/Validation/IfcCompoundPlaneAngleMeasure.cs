@@ -13,76 +13,55 @@ namespace Xbim.Ifc4.MeasureResource
 {
 	public partial struct IfcCompoundPlaneAngleMeasure : IExpressValidatable
 	{
+		public enum IfcCompoundPlaneAngleMeasureClause
+		{
+			MinutesInRange,
+			SecondsInRange,
+			MicrosecondsInRange,
+			ConsistentSign,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcCompoundPlaneAngleMeasure clause) {
+		public bool ValidateClause(IfcCompoundPlaneAngleMeasureClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcCompoundPlaneAngleMeasure.MinutesInRange) {
-				try {
-					retVal = ABS(this.ItemAt(1)) < 60;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure");
-					Log.Error("Exception thrown evaluating where-clause 'IfcCompoundPlaneAngleMeasure.MinutesInRange'.", ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcCompoundPlaneAngleMeasureClause.MinutesInRange:
+						retVal = ABS(this.ItemAt(1)) < 60;
+						break;
+					case IfcCompoundPlaneAngleMeasureClause.SecondsInRange:
+						retVal = ABS(this.ItemAt(2)) < 60;
+						break;
+					case IfcCompoundPlaneAngleMeasureClause.MicrosecondsInRange:
+						retVal = (SIZEOF(this) == 3) || (ABS(this.ItemAt(3)) < 1000000);
+						break;
+					case IfcCompoundPlaneAngleMeasureClause.ConsistentSign:
+						retVal = ((this.ItemAt(0) >= 0) && (this.ItemAt(1) >= 0) && (this.ItemAt(2) >= 0) && ((SIZEOF(this) == 3) || (this.ItemAt(3) >= 0))) || ((this.ItemAt(0) <= 0) && (this.ItemAt(1) <= 0) && (this.ItemAt(2) <= 0) && ((SIZEOF(this) == 3) || (this.ItemAt(3) <= 0)));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCompoundPlaneAngleMeasure.{0}'.", clause), ex);
 			}
-			if (clause == Where.IfcCompoundPlaneAngleMeasure.SecondsInRange) {
-				try {
-					retVal = ABS(this.ItemAt(2)) < 60;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure");
-					Log.Error("Exception thrown evaluating where-clause 'IfcCompoundPlaneAngleMeasure.SecondsInRange'.", ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcCompoundPlaneAngleMeasure.MicrosecondsInRange) {
-				try {
-					retVal = (SIZEOF(this) == 3) || (ABS(this.ItemAt(3)) < 1000000);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure");
-					Log.Error("Exception thrown evaluating where-clause 'IfcCompoundPlaneAngleMeasure.MicrosecondsInRange'.", ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcCompoundPlaneAngleMeasure.ConsistentSign) {
-				try {
-					retVal = ((this.ItemAt(0) >= 0) && (this.ItemAt(1) >= 0) && (this.ItemAt(2) >= 0) && ((SIZEOF(this) == 3) || (this.ItemAt(3) >= 0))) || ((this.ItemAt(0) <= 0) && (this.ItemAt(1) <= 0) && (this.ItemAt(2) <= 0) && ((SIZEOF(this) == 3) || (this.ItemAt(3) <= 0)));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure");
-					Log.Error("Exception thrown evaluating where-clause 'IfcCompoundPlaneAngleMeasure.ConsistentSign'.", ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
-		public  IEnumerable<ValidationResult> Validate()
+		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcCompoundPlaneAngleMeasure.MinutesInRange))
+			if (!ValidateClause(IfcCompoundPlaneAngleMeasureClause.MinutesInRange))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCompoundPlaneAngleMeasure.MinutesInRange", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcCompoundPlaneAngleMeasure.SecondsInRange))
+			if (!ValidateClause(IfcCompoundPlaneAngleMeasureClause.SecondsInRange))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCompoundPlaneAngleMeasure.SecondsInRange", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcCompoundPlaneAngleMeasure.MicrosecondsInRange))
+			if (!ValidateClause(IfcCompoundPlaneAngleMeasureClause.MicrosecondsInRange))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCompoundPlaneAngleMeasure.MicrosecondsInRange", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcCompoundPlaneAngleMeasure.ConsistentSign))
+			if (!ValidateClause(IfcCompoundPlaneAngleMeasureClause.ConsistentSign))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCompoundPlaneAngleMeasure.ConsistentSign", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcCompoundPlaneAngleMeasure
-	{
-		public static readonly IfcCompoundPlaneAngleMeasure MinutesInRange = new IfcCompoundPlaneAngleMeasure();
-		public static readonly IfcCompoundPlaneAngleMeasure SecondsInRange = new IfcCompoundPlaneAngleMeasure();
-		public static readonly IfcCompoundPlaneAngleMeasure MicrosecondsInRange = new IfcCompoundPlaneAngleMeasure();
-		public static readonly IfcCompoundPlaneAngleMeasure ConsistentSign = new IfcCompoundPlaneAngleMeasure();
-		protected IfcCompoundPlaneAngleMeasure() {}
 	}
 }

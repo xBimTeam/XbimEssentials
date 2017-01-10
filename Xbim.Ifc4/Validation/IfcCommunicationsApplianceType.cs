@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	public partial class IfcCommunicationsApplianceType : IExpressValidatable
 	{
+		public enum IfcCommunicationsApplianceTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcCommunicationsApplianceType clause) {
+		public bool ValidateClause(IfcCommunicationsApplianceTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcCommunicationsApplianceType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcCommunicationsApplianceTypeEnum.USERDEFINED) || ((PredefinedType == IfcCommunicationsApplianceTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ElectricalDomain.IfcCommunicationsApplianceType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCommunicationsApplianceType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcCommunicationsApplianceTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcCommunicationsApplianceTypeEnum.USERDEFINED) || ((PredefinedType == IfcCommunicationsApplianceTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ElectricalDomain.IfcCommunicationsApplianceType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCommunicationsApplianceType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.ElectricalDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcCommunicationsApplianceType.CorrectPredefinedType))
+			if (!ValidateClause(IfcCommunicationsApplianceTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCommunicationsApplianceType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcCommunicationsApplianceType : IfcTypeProduct
-	{
-		public static readonly IfcCommunicationsApplianceType CorrectPredefinedType = new IfcCommunicationsApplianceType();
-		protected IfcCommunicationsApplianceType() {}
 	}
 }

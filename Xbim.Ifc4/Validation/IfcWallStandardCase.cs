@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	public partial class IfcWallStandardCase : IExpressValidatable
 	{
+		public enum IfcWallStandardCaseClause
+		{
+			HasMaterialLayerSetUsage,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcWallStandardCase clause) {
+		public bool ValidateClause(IfcWallStandardCaseClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcWallStandardCase.HasMaterialLayerSetUsage) {
-				try {
-					retVal = SIZEOF(USEDIN(this, "IFC4.IFCRELASSOCIATES.RELATEDOBJECTS").Where(temp => (TYPEOF(temp).Contains("IFC4.IFCRELASSOCIATESMATERIAL")) && (TYPEOF(temp.AsIfcRelAssociatesMaterial().RelatingMaterial).Contains("IFC4.IFCMATERIALLAYERSETUSAGE")))) == 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcWallStandardCase");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcWallStandardCase.HasMaterialLayerSetUsage' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcWallStandardCaseClause.HasMaterialLayerSetUsage:
+						retVal = SIZEOF(USEDIN(this, "IFC4.IFCRELASSOCIATES.RELATEDOBJECTS").Where(temp => (TYPEOF(temp).Contains("IFC4.IFCRELASSOCIATESMATERIAL")) && (TYPEOF(temp.AsIfcRelAssociatesMaterial().RelatingMaterial).Contains("IFC4.IFCMATERIALLAYERSETUSAGE")))) == 1;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcWallStandardCase");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcWallStandardCase.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcWall)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcWallStandardCase.HasMaterialLayerSetUsage))
+			if (!ValidateClause(IfcWallStandardCaseClause.HasMaterialLayerSetUsage))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcWallStandardCase.HasMaterialLayerSetUsage", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcWallStandardCase : IfcWall
-	{
-		public static readonly IfcWallStandardCase HasMaterialLayerSetUsage = new IfcWallStandardCase();
-		protected IfcWallStandardCase() {}
 	}
 }

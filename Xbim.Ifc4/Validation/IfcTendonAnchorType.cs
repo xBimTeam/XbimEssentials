@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 {
 	public partial class IfcTendonAnchorType : IExpressValidatable
 	{
+		public enum IfcTendonAnchorTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcTendonAnchorType clause) {
+		public bool ValidateClause(IfcTendonAnchorTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcTendonAnchorType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcTendonAnchorTypeEnum.USERDEFINED) || ((PredefinedType == IfcTendonAnchorTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralElementsDomain.IfcTendonAnchorType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTendonAnchorType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcTendonAnchorTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcTendonAnchorTypeEnum.USERDEFINED) || ((PredefinedType == IfcTendonAnchorTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.StructuralElementsDomain.IfcTendonAnchorType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTendonAnchorType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcTendonAnchorType.CorrectPredefinedType))
+			if (!ValidateClause(IfcTendonAnchorTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcTendonAnchorType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcTendonAnchorType : IfcTypeProduct
-	{
-		public static readonly IfcTendonAnchorType CorrectPredefinedType = new IfcTendonAnchorType();
-		protected IfcTendonAnchorType() {}
 	}
 }

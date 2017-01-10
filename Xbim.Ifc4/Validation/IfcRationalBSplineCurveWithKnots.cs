@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	public partial class IfcRationalBSplineCurveWithKnots : IExpressValidatable
 	{
+		public enum IfcRationalBSplineCurveWithKnotsClause
+		{
+			SameNumOfWeightsAndPoints,
+			WeightsGreaterZero,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRationalBSplineCurveWithKnots clause) {
+		public bool ValidateClause(IfcRationalBSplineCurveWithKnotsClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRationalBSplineCurveWithKnots.SameNumOfWeightsAndPoints) {
-				try {
-					retVal = SIZEOF(WeightsData) == SIZEOF(this/* as IfcBSplineCurve*/.ControlPointsList);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcRationalBSplineCurveWithKnots");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRationalBSplineCurveWithKnots.SameNumOfWeightsAndPoints' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRationalBSplineCurveWithKnotsClause.SameNumOfWeightsAndPoints:
+						retVal = SIZEOF(WeightsData) == SIZEOF(this/* as IfcBSplineCurve*/.ControlPointsList);
+						break;
+					case IfcRationalBSplineCurveWithKnotsClause.WeightsGreaterZero:
+						retVal = IfcCurveWeightsPositive(this);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcRationalBSplineCurveWithKnots");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRationalBSplineCurveWithKnots.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcRationalBSplineCurveWithKnots.WeightsGreaterZero) {
-				try {
-					retVal = IfcCurveWeightsPositive(this);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometryResource.IfcRationalBSplineCurveWithKnots");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRationalBSplineCurveWithKnots.WeightsGreaterZero' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcBSplineCurveWithKnots)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcRationalBSplineCurveWithKnots.SameNumOfWeightsAndPoints))
+			if (!ValidateClause(IfcRationalBSplineCurveWithKnotsClause.SameNumOfWeightsAndPoints))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRationalBSplineCurveWithKnots.SameNumOfWeightsAndPoints", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcRationalBSplineCurveWithKnots.WeightsGreaterZero))
+			if (!ValidateClause(IfcRationalBSplineCurveWithKnotsClause.WeightsGreaterZero))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRationalBSplineCurveWithKnots.WeightsGreaterZero", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcRationalBSplineCurveWithKnots : IfcBSplineCurveWithKnots
-	{
-		public static readonly IfcRationalBSplineCurveWithKnots SameNumOfWeightsAndPoints = new IfcRationalBSplineCurveWithKnots();
-		public static readonly IfcRationalBSplineCurveWithKnots WeightsGreaterZero = new IfcRationalBSplineCurveWithKnots();
-		protected IfcRationalBSplineCurveWithKnots() {}
 	}
 }

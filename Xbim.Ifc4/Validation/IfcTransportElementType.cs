@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	public partial class IfcTransportElementType : IExpressValidatable
 	{
+		public enum IfcTransportElementTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcTransportElementType clause) {
+		public bool ValidateClause(IfcTransportElementTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcTransportElementType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcTransportElementTypeEnum.USERDEFINED) || ((PredefinedType == IfcTransportElementTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcTransportElementType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTransportElementType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcTransportElementTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcTransportElementTypeEnum.USERDEFINED) || ((PredefinedType == IfcTransportElementTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcTransportElementType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTransportElementType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcTransportElementType.CorrectPredefinedType))
+			if (!ValidateClause(IfcTransportElementTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcTransportElementType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcTransportElementType : IfcTypeProduct
-	{
-		public static readonly IfcTransportElementType CorrectPredefinedType = new IfcTransportElementType();
-		protected IfcTransportElementType() {}
 	}
 }

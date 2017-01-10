@@ -13,52 +13,43 @@ namespace Xbim.Ifc4.PropertyResource
 {
 	public partial class IfcComplexProperty : IExpressValidatable
 	{
+		public enum IfcComplexPropertyClause
+		{
+			WR21,
+			WR22,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcComplexProperty clause) {
+		public bool ValidateClause(IfcComplexPropertyClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcComplexProperty.WR21) {
-				try {
-					retVal = SIZEOF(HasProperties.Where(temp => Object.ReferenceEquals(this, temp))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PropertyResource.IfcComplexProperty");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcComplexProperty.WR21' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcComplexPropertyClause.WR21:
+						retVal = SIZEOF(HasProperties.Where(temp => Object.ReferenceEquals(this, temp))) == 0;
+						break;
+					case IfcComplexPropertyClause.WR22:
+						retVal = IfcUniquePropertyName(HasProperties);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.PropertyResource.IfcComplexProperty");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcComplexProperty.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcComplexProperty.WR22) {
-				try {
-					retVal = IfcUniquePropertyName(HasProperties);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PropertyResource.IfcComplexProperty");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcComplexProperty.WR22' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcComplexProperty.WR21))
+			if (!ValidateClause(IfcComplexPropertyClause.WR21))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcComplexProperty.WR21", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcComplexProperty.WR22))
+			if (!ValidateClause(IfcComplexPropertyClause.WR22))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcComplexProperty.WR22", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcComplexProperty
-	{
-		public static readonly IfcComplexProperty WR21 = new IfcComplexProperty();
-		public static readonly IfcComplexProperty WR22 = new IfcComplexProperty();
-		protected IfcComplexProperty() {}
 	}
 }

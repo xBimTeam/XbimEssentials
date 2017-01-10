@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	public partial class IfcDraughtingPreDefinedColour : IExpressValidatable
 	{
+		public enum IfcDraughtingPreDefinedColourClause
+		{
+			PreDefinedColourNames,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcDraughtingPreDefinedColour clause) {
+		public bool ValidateClause(IfcDraughtingPreDefinedColourClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcDraughtingPreDefinedColour.PreDefinedColourNames) {
-				try {
-					retVal = NewArray("black", "red", "green", "blue", "yellow", "magenta", "cyan", "white", "by layer").Contains(this/* as IfcPreDefinedItem*/.Name);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcDraughtingPreDefinedColour");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDraughtingPreDefinedColour.PreDefinedColourNames' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcDraughtingPreDefinedColourClause.PreDefinedColourNames:
+						retVal = NewArray("black", "red", "green", "blue", "yellow", "magenta", "cyan", "white", "by layer").Contains(this/* as IfcPreDefinedItem*/.Name);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcDraughtingPreDefinedColour");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDraughtingPreDefinedColour.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcDraughtingPreDefinedColour.PreDefinedColourNames))
+			if (!ValidateClause(IfcDraughtingPreDefinedColourClause.PreDefinedColourNames))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcDraughtingPreDefinedColour.PreDefinedColourNames", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcDraughtingPreDefinedColour
-	{
-		public static readonly IfcDraughtingPreDefinedColour PreDefinedColourNames = new IfcDraughtingPreDefinedColour();
-		protected IfcDraughtingPreDefinedColour() {}
 	}
 }

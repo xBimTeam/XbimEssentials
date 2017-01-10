@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.ActorResource
 {
 	public partial class IfcTelecomAddress : IExpressValidatable
 	{
+		public enum IfcTelecomAddressClause
+		{
+			MinimumDataProvided,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcTelecomAddress clause) {
+		public bool ValidateClause(IfcTelecomAddressClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcTelecomAddress.MinimumDataProvided) {
-				try {
-					retVal = EXISTS(TelephoneNumbers) || EXISTS(FacsimileNumbers) || EXISTS(PagerNumber) || EXISTS(ElectronicMailAddresses) || EXISTS(WWWHomePageURL) || EXISTS(MessagingIDs);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ActorResource.IfcTelecomAddress");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTelecomAddress.MinimumDataProvided' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcTelecomAddressClause.MinimumDataProvided:
+						retVal = EXISTS(TelephoneNumbers) || EXISTS(FacsimileNumbers) || EXISTS(PagerNumber) || EXISTS(ElectronicMailAddresses) || EXISTS(WWWHomePageURL) || EXISTS(MessagingIDs);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ActorResource.IfcTelecomAddress");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTelecomAddress.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcAddress)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.ActorResource
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcTelecomAddress.MinimumDataProvided))
+			if (!ValidateClause(IfcTelecomAddressClause.MinimumDataProvided))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcTelecomAddress.MinimumDataProvided", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcTelecomAddress : IfcAddress
-	{
-		public static readonly IfcTelecomAddress MinimumDataProvided = new IfcTelecomAddress();
-		protected IfcTelecomAddress() {}
 	}
 }

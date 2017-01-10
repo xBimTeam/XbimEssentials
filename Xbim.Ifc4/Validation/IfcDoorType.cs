@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	public partial class IfcDoorType : IExpressValidatable
 	{
+		public enum IfcDoorTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcDoorType clause) {
+		public bool ValidateClause(IfcDoorTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcDoorType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcDoorTypeEnum.USERDEFINED) || ((PredefinedType == IfcDoorTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcDoorType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDoorType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcDoorTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcDoorTypeEnum.USERDEFINED) || ((PredefinedType == IfcDoorTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.SharedBldgElements.IfcDoorType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDoorType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcDoorType.CorrectPredefinedType))
+			if (!ValidateClause(IfcDoorTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcDoorType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcDoorType : IfcTypeProduct
-	{
-		public static readonly IfcDoorType CorrectPredefinedType = new IfcDoorType();
-		protected IfcDoorType() {}
 	}
 }

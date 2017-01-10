@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.Kernel
 {
 	public partial class IfcRelNests : IExpressValidatable
 	{
+		public enum IfcRelNestsClause
+		{
+			NoSelfReference,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRelNests clause) {
+		public bool ValidateClause(IfcRelNestsClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRelNests.NoSelfReference) {
-				try {
-					retVal = SIZEOF(RelatedObjects.Where(Temp => Object.ReferenceEquals(RelatingObject, Temp))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcRelNests");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelNests.NoSelfReference' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRelNestsClause.NoSelfReference:
+						retVal = SIZEOF(RelatedObjects.Where(Temp => Object.ReferenceEquals(RelatingObject, Temp))) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcRelNests");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelNests.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcRelNests.NoSelfReference))
+			if (!ValidateClause(IfcRelNestsClause.NoSelfReference))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelNests.NoSelfReference", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcRelNests
-	{
-		public static readonly IfcRelNests NoSelfReference = new IfcRelNests();
-		protected IfcRelNests() {}
 	}
 }

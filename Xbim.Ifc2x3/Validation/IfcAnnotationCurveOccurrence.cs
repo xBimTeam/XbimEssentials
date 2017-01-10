@@ -17,24 +17,31 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	public partial class IfcAnnotationCurveOccurrence : IExpressValidatable
 	{
+		public enum IfcAnnotationCurveOccurrenceClause
+		{
+			WR31,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcAnnotationCurveOccurrence clause) {
+		public bool ValidateClause(IfcAnnotationCurveOccurrenceClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcAnnotationCurveOccurrence.WR31) {
-				try {
-					retVal = !(EXISTS(this/* as IfcStyledItem*/.Item)) || (TYPEOF(this/* as IfcStyledItem*/.Item).Contains("IFC2X3.IFCCURVE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDefinitionResource.IfcAnnotationCurveOccurrence");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAnnotationCurveOccurrence.WR31' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcAnnotationCurveOccurrenceClause.WR31:
+						retVal = !(EXISTS(this/* as IfcStyledItem*/.Item)) || (TYPEOF(this/* as IfcStyledItem*/.Item).Contains("IFC2X3.IFCCURVE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDefinitionResource.IfcAnnotationCurveOccurrence");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAnnotationCurveOccurrence.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcStyledItem)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -43,18 +50,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcAnnotationCurveOccurrence.WR31))
+			if (!ValidateClause(IfcAnnotationCurveOccurrenceClause.WR31))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcAnnotationCurveOccurrence.WR31", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcAnnotationCurveOccurrence : IfcStyledItem
-	{
-		public static readonly IfcAnnotationCurveOccurrence WR31 = new IfcAnnotationCurveOccurrence();
-		protected IfcAnnotationCurveOccurrence() {}
 	}
 }

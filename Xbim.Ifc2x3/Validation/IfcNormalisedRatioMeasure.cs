@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	public partial struct IfcNormalisedRatioMeasure : IExpressValidatable
 	{
+		public enum IfcNormalisedRatioMeasureClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcNormalisedRatioMeasure clause) {
+		public bool ValidateClause(IfcNormalisedRatioMeasureClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcNormalisedRatioMeasure.WR1) {
-				try {
-					retVal = ((0 <= this) && (this <= 1) );
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure");
-					Log.Error("Exception thrown evaluating where-clause 'IfcNormalisedRatioMeasure.WR1'.", ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcNormalisedRatioMeasureClause.WR1:
+						retVal = ((0 <= this) && (this <= 1) );
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcNormalisedRatioMeasure.{0}'.", clause), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
-		public  IEnumerable<ValidationResult> Validate()
+		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcNormalisedRatioMeasure.WR1))
+			if (!ValidateClause(IfcNormalisedRatioMeasureClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcNormalisedRatioMeasure.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcNormalisedRatioMeasure
-	{
-		public static readonly IfcNormalisedRatioMeasure WR1 = new IfcNormalisedRatioMeasure();
-		protected IfcNormalisedRatioMeasure() {}
 	}
 }

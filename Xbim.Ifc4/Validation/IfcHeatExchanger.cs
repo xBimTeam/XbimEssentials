@@ -13,33 +13,35 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	public partial class IfcHeatExchanger : IExpressValidatable
 	{
+		public enum IfcHeatExchangerClause
+		{
+			CorrectPredefinedType,
+			CorrectTypeAssigned,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcHeatExchanger clause) {
+		public bool ValidateClause(IfcHeatExchangerClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcHeatExchanger.CorrectPredefinedType) {
-				try {
-					retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcHeatExchangerTypeEnum.USERDEFINED) || ((PredefinedType == IfcHeatExchangerTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcHeatExchanger");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcHeatExchanger.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcHeatExchangerClause.CorrectPredefinedType:
+						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcHeatExchangerTypeEnum.USERDEFINED) || ((PredefinedType == IfcHeatExchangerTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						break;
+					case IfcHeatExchangerClause.CorrectTypeAssigned:
+						retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCHEATEXCHANGERTYPE"));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcHeatExchanger");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcHeatExchanger.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcHeatExchanger.CorrectTypeAssigned) {
-				try {
-					retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCHEATEXCHANGERTYPE"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.HvacDomain.IfcHeatExchanger");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcHeatExchanger.CorrectTypeAssigned' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -48,21 +50,10 @@ namespace Xbim.Ifc4.HvacDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcHeatExchanger.CorrectPredefinedType))
+			if (!ValidateClause(IfcHeatExchangerClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcHeatExchanger.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcHeatExchanger.CorrectTypeAssigned))
+			if (!ValidateClause(IfcHeatExchangerClause.CorrectTypeAssigned))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcHeatExchanger.CorrectTypeAssigned", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcHeatExchanger : IfcProduct
-	{
-		public static readonly IfcHeatExchanger CorrectPredefinedType = new IfcHeatExchanger();
-		public static readonly IfcHeatExchanger CorrectTypeAssigned = new IfcHeatExchanger();
-		protected IfcHeatExchanger() {}
 	}
 }

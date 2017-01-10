@@ -13,64 +13,49 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	public partial class IfcSweptDiskSolid : IExpressValidatable
 	{
+		public enum IfcSweptDiskSolidClause
+		{
+			DirectrixDim,
+			InnerRadiusSize,
+			DirectrixBounded,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcSweptDiskSolid clause) {
+		public bool ValidateClause(IfcSweptDiskSolidClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcSweptDiskSolid.DirectrixDim) {
-				try {
-					retVal = Directrix.Dim == 3;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcSweptDiskSolid");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSweptDiskSolid.DirectrixDim' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcSweptDiskSolidClause.DirectrixDim:
+						retVal = Directrix.Dim == 3;
+						break;
+					case IfcSweptDiskSolidClause.InnerRadiusSize:
+						retVal = (!EXISTS(InnerRadius)) || (Radius > InnerRadius);
+						break;
+					case IfcSweptDiskSolidClause.DirectrixBounded:
+						retVal = (EXISTS(StartParam) && EXISTS(EndParam)) || (SIZEOF(NewArray("IFC4.IFCCONIC", "IFC4.IFCBOUNDEDCURVE") * TYPEOF(Directrix)) == 1);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcSweptDiskSolid");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSweptDiskSolid.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcSweptDiskSolid.InnerRadiusSize) {
-				try {
-					retVal = (!EXISTS(InnerRadius)) || (Radius > InnerRadius);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcSweptDiskSolid");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSweptDiskSolid.InnerRadiusSize' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcSweptDiskSolid.DirectrixBounded) {
-				try {
-					retVal = (EXISTS(StartParam) && EXISTS(EndParam)) || (SIZEOF(NewArray("IFC4.IFCCONIC", "IFC4.IFCBOUNDEDCURVE") * TYPEOF(Directrix)) == 1);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcSweptDiskSolid");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSweptDiskSolid.DirectrixBounded' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcSweptDiskSolid.DirectrixDim))
+			if (!ValidateClause(IfcSweptDiskSolidClause.DirectrixDim))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSweptDiskSolid.DirectrixDim", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcSweptDiskSolid.InnerRadiusSize))
+			if (!ValidateClause(IfcSweptDiskSolidClause.InnerRadiusSize))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSweptDiskSolid.InnerRadiusSize", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcSweptDiskSolid.DirectrixBounded))
+			if (!ValidateClause(IfcSweptDiskSolidClause.DirectrixBounded))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcSweptDiskSolid.DirectrixBounded", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcSweptDiskSolid
-	{
-		public static readonly IfcSweptDiskSolid DirectrixDim = new IfcSweptDiskSolid();
-		public static readonly IfcSweptDiskSolid InnerRadiusSize = new IfcSweptDiskSolid();
-		public static readonly IfcSweptDiskSolid DirectrixBounded = new IfcSweptDiskSolid();
-		protected IfcSweptDiskSolid() {}
 	}
 }

@@ -17,42 +17,39 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class IfcArbitraryProfileDefWithVoids : IExpressValidatable
 	{
+		public enum IfcArbitraryProfileDefWithVoidsClause
+		{
+			WR1,
+			WR2,
+			WR3,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcArbitraryProfileDefWithVoids clause) {
+		public bool ValidateClause(IfcArbitraryProfileDefWithVoidsClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcArbitraryProfileDefWithVoids.WR1) {
-				try {
-					retVal = this/* as IfcProfileDef*/.ProfileType == IfcProfileTypeEnum.AREA;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfileResource.IfcArbitraryProfileDefWithVoids");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcArbitraryProfileDefWithVoids.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcArbitraryProfileDefWithVoidsClause.WR1:
+						retVal = this/* as IfcProfileDef*/.ProfileType == IfcProfileTypeEnum.AREA;
+						break;
+					case IfcArbitraryProfileDefWithVoidsClause.WR2:
+						retVal = SIZEOF(InnerCurves.Where(temp => temp.Dim != 2)) == 0;
+						break;
+					case IfcArbitraryProfileDefWithVoidsClause.WR3:
+						retVal = SIZEOF(InnerCurves.Where(temp => TYPEOF(temp).Contains("IFC2X3.IFCLINE"))) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfileResource.IfcArbitraryProfileDefWithVoids");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcArbitraryProfileDefWithVoids.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcArbitraryProfileDefWithVoids.WR2) {
-				try {
-					retVal = SIZEOF(InnerCurves.Where(temp => temp.Dim != 2)) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfileResource.IfcArbitraryProfileDefWithVoids");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcArbitraryProfileDefWithVoids.WR2' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcArbitraryProfileDefWithVoids.WR3) {
-				try {
-					retVal = SIZEOF(InnerCurves.Where(temp => TYPEOF(temp).Contains("IFC2X3.IFCLINE"))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProfileResource.IfcArbitraryProfileDefWithVoids");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcArbitraryProfileDefWithVoids.WR3' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcArbitraryClosedProfileDef)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -61,24 +58,12 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcArbitraryProfileDefWithVoids.WR1))
+			if (!ValidateClause(IfcArbitraryProfileDefWithVoidsClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcArbitraryProfileDefWithVoids.WR1", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcArbitraryProfileDefWithVoids.WR2))
+			if (!ValidateClause(IfcArbitraryProfileDefWithVoidsClause.WR2))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcArbitraryProfileDefWithVoids.WR2", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcArbitraryProfileDefWithVoids.WR3))
+			if (!ValidateClause(IfcArbitraryProfileDefWithVoidsClause.WR3))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcArbitraryProfileDefWithVoids.WR3", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcArbitraryProfileDefWithVoids : IfcArbitraryClosedProfileDef
-	{
-		public new static readonly IfcArbitraryProfileDefWithVoids WR1 = new IfcArbitraryProfileDefWithVoids();
-		public new static readonly IfcArbitraryProfileDefWithVoids WR2 = new IfcArbitraryProfileDefWithVoids();
-		public new static readonly IfcArbitraryProfileDefWithVoids WR3 = new IfcArbitraryProfileDefWithVoids();
-		protected IfcArbitraryProfileDefWithVoids() {}
 	}
 }

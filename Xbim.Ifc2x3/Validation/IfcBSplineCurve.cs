@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class IfcBSplineCurve : IExpressValidatable
 	{
+		public enum IfcBSplineCurveClause
+		{
+			WR41,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcBSplineCurve clause) {
+		public bool ValidateClause(IfcBSplineCurveClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcBSplineCurve.WR41) {
-				try {
-					retVal = SIZEOF(ControlPointsList.Where(Temp => Temp.Dim != ControlPointsList.ItemAt(0).Dim)) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcBSplineCurve");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBSplineCurve.WR41' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcBSplineCurveClause.WR41:
+						retVal = SIZEOF(ControlPointsList.Where(Temp => Temp.Dim != ControlPointsList.ItemAt(0).Dim)) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.IfcBSplineCurve");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBSplineCurve.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcBSplineCurve.WR41))
+			if (!ValidateClause(IfcBSplineCurveClause.WR41))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcBSplineCurve.WR41", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcBSplineCurve
-	{
-		public static readonly IfcBSplineCurve WR41 = new IfcBSplineCurve();
-		protected IfcBSplineCurve() {}
 	}
 }

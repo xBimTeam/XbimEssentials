@@ -13,42 +13,39 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	public partial class IfcBooleanClippingResult : IExpressValidatable
 	{
+		public enum IfcBooleanClippingResultClause
+		{
+			FirstOperandType,
+			SecondOperandType,
+			OperatorType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcBooleanClippingResult clause) {
+		public bool ValidateClause(IfcBooleanClippingResultClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcBooleanClippingResult.FirstOperandType) {
-				try {
-					retVal = (TYPEOF(FirstOperand).Contains("IFC4.IFCSWEPTAREASOLID")) || (TYPEOF(FirstOperand).Contains("IFC4.IFCSWEPTDISCSOLID")) || (TYPEOF(FirstOperand).Contains("IFC4.IFCBOOLEANCLIPPINGRESULT"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcBooleanClippingResult");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBooleanClippingResult.FirstOperandType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcBooleanClippingResultClause.FirstOperandType:
+						retVal = (TYPEOF(FirstOperand).Contains("IFC4.IFCSWEPTAREASOLID")) || (TYPEOF(FirstOperand).Contains("IFC4.IFCSWEPTDISCSOLID")) || (TYPEOF(FirstOperand).Contains("IFC4.IFCBOOLEANCLIPPINGRESULT"));
+						break;
+					case IfcBooleanClippingResultClause.SecondOperandType:
+						retVal = (TYPEOF(SecondOperand).Contains("IFC4.IFCHALFSPACESOLID"));
+						break;
+					case IfcBooleanClippingResultClause.OperatorType:
+						retVal = Operator == IfcBooleanOperator.DIFFERENCE;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcBooleanClippingResult");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBooleanClippingResult.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.IfcBooleanClippingResult.SecondOperandType) {
-				try {
-					retVal = (TYPEOF(SecondOperand).Contains("IFC4.IFCHALFSPACESOLID"));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcBooleanClippingResult");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBooleanClippingResult.SecondOperandType' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			if (clause == Where.IfcBooleanClippingResult.OperatorType) {
-				try {
-					retVal = Operator == IfcBooleanOperator.DIFFERENCE;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcBooleanClippingResult");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcBooleanClippingResult.OperatorType' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcBooleanResult)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -57,24 +54,12 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcBooleanClippingResult.FirstOperandType))
+			if (!ValidateClause(IfcBooleanClippingResultClause.FirstOperandType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcBooleanClippingResult.FirstOperandType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcBooleanClippingResult.SecondOperandType))
+			if (!ValidateClause(IfcBooleanClippingResultClause.SecondOperandType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcBooleanClippingResult.SecondOperandType", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.IfcBooleanClippingResult.OperatorType))
+			if (!ValidateClause(IfcBooleanClippingResultClause.OperatorType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcBooleanClippingResult.OperatorType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcBooleanClippingResult : IfcBooleanResult
-	{
-		public static readonly IfcBooleanClippingResult FirstOperandType = new IfcBooleanClippingResult();
-		public static readonly IfcBooleanClippingResult SecondOperandType = new IfcBooleanClippingResult();
-		public static readonly IfcBooleanClippingResult OperatorType = new IfcBooleanClippingResult();
-		protected IfcBooleanClippingResult() {}
 	}
 }

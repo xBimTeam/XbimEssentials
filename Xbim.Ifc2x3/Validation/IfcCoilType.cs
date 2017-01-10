@@ -17,24 +17,31 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class IfcCoilType : IExpressValidatable
 	{
+		public enum IfcCoilTypeClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcCoilType clause) {
+		public bool ValidateClause(IfcCoilTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcCoilType.WR1) {
-				try {
-					retVal = (PredefinedType != IfcCoilTypeEnum.USERDEFINED) || ((PredefinedType == IfcCoilTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.HVACDomain.IfcCoilType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCoilType.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcCoilTypeClause.WR1:
+						retVal = (PredefinedType != IfcCoilTypeEnum.USERDEFINED) || ((PredefinedType == IfcCoilTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.HVACDomain.IfcCoilType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcCoilType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -43,18 +50,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcCoilType.WR1))
+			if (!ValidateClause(IfcCoilTypeClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcCoilType.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcCoilType : IfcTypeProduct
-	{
-		public new static readonly IfcCoilType WR1 = new IfcCoilType();
-		protected IfcCoilType() {}
 	}
 }

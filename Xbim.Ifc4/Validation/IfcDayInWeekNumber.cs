@@ -13,40 +13,37 @@ namespace Xbim.Ifc4.DateTimeResource
 {
 	public partial struct IfcDayInWeekNumber : IExpressValidatable
 	{
+		public enum IfcDayInWeekNumberClause
+		{
+			ValidRange,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcDayInWeekNumber clause) {
+		public bool ValidateClause(IfcDayInWeekNumberClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcDayInWeekNumber.ValidRange) {
-				try {
-					retVal = ((1 <= this) && (this <= 7) );
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.DateTimeResource.IfcDayInWeekNumber");
-					Log.Error("Exception thrown evaluating where-clause 'IfcDayInWeekNumber.ValidRange'.", ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcDayInWeekNumberClause.ValidRange:
+						retVal = ((1 <= this) && (this <= 7) );
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.DateTimeResource.IfcDayInWeekNumber");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDayInWeekNumber.{0}'.", clause), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
-		public  IEnumerable<ValidationResult> Validate()
+		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcDayInWeekNumber.ValidRange))
+			if (!ValidateClause(IfcDayInWeekNumberClause.ValidRange))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcDayInWeekNumber.ValidRange", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcDayInWeekNumber
-	{
-		public static readonly IfcDayInWeekNumber ValidRange = new IfcDayInWeekNumber();
-		protected IfcDayInWeekNumber() {}
 	}
 }

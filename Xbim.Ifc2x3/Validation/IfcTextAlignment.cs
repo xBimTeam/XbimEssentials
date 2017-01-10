@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial struct IfcTextAlignment : IExpressValidatable
 	{
+		public enum IfcTextAlignmentClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcTextAlignment clause) {
+		public bool ValidateClause(IfcTextAlignmentClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcTextAlignment.WR1) {
-				try {
-					retVal = NewArray("left", "right", "center", "justify").Contains(this);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcTextAlignment");
-					Log.Error("Exception thrown evaluating where-clause 'IfcTextAlignment.WR1'.", ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcTextAlignmentClause.WR1:
+						retVal = NewArray("left", "right", "center", "justify").Contains(this);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcTextAlignment");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTextAlignment.{0}'.", clause), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
-		public  IEnumerable<ValidationResult> Validate()
+		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcTextAlignment.WR1))
+			if (!ValidateClause(IfcTextAlignmentClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcTextAlignment.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcTextAlignment
-	{
-		public static readonly IfcTextAlignment WR1 = new IfcTextAlignment();
-		protected IfcTextAlignment() {}
 	}
 }

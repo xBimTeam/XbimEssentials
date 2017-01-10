@@ -17,33 +17,35 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class Ifc2DCompositeCurve : IExpressValidatable
 	{
+		public enum Ifc2DCompositeCurveClause
+		{
+			WR1,
+			WR2,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.Ifc2DCompositeCurve clause) {
+		public bool ValidateClause(Ifc2DCompositeCurveClause clause) {
 			var retVal = false;
-			if (clause == Where.Ifc2DCompositeCurve.WR1) {
-				try {
-					retVal = this/* as IfcCompositeCurve*/.ClosedCurve.Value;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.Ifc2DCompositeCurve");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'Ifc2DCompositeCurve.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case Ifc2DCompositeCurveClause.WR1:
+						retVal = this/* as IfcCompositeCurve*/.ClosedCurve.Value;
+						break;
+					case Ifc2DCompositeCurveClause.WR2:
+						retVal = this/* as IfcCurve*/.Dim == 2;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.Ifc2DCompositeCurve");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'Ifc2DCompositeCurve.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			if (clause == Where.Ifc2DCompositeCurve.WR2) {
-				try {
-					retVal = this/* as IfcCurve*/.Dim == 2;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.GeometryResource.Ifc2DCompositeCurve");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'Ifc2DCompositeCurve.WR2' for #{0}.",EntityLabel), ex);
-				}
-				return retVal;
-			}
-			return base.ValidateClause((Where.IfcCompositeCurve)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -52,21 +54,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.Ifc2DCompositeCurve.WR1))
+			if (!ValidateClause(Ifc2DCompositeCurveClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "Ifc2DCompositeCurve.WR1", IssueType = ValidationFlags.EntityWhereClauses };
-			if (!ValidateClause(Where.Ifc2DCompositeCurve.WR2))
+			if (!ValidateClause(Ifc2DCompositeCurveClause.WR2))
 				yield return new ValidationResult() { Item = this, IssueSource = "Ifc2DCompositeCurve.WR2", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class Ifc2DCompositeCurve : IfcCompositeCurve
-	{
-		public static readonly Ifc2DCompositeCurve WR1 = new Ifc2DCompositeCurve();
-		public static readonly Ifc2DCompositeCurve WR2 = new Ifc2DCompositeCurve();
-		protected Ifc2DCompositeCurve() {}
 	}
 }

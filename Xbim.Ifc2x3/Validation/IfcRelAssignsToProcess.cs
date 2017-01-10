@@ -17,24 +17,31 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class IfcRelAssignsToProcess : IExpressValidatable
 	{
+		public enum IfcRelAssignsToProcessClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRelAssignsToProcess clause) {
+		public bool ValidateClause(IfcRelAssignsToProcessClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRelAssignsToProcess.WR1) {
-				try {
-					retVal = SIZEOF(this/* as IfcRelAssigns*/.RelatedObjects.Where(Temp => Object.ReferenceEquals(RelatingProcess, Temp))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcRelAssignsToProcess");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelAssignsToProcess.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRelAssignsToProcessClause.WR1:
+						retVal = SIZEOF(this/* as IfcRelAssigns*/.RelatedObjects.Where(Temp => Object.ReferenceEquals(RelatingProcess, Temp))) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcRelAssignsToProcess");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelAssignsToProcess.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcRelAssigns)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -43,18 +50,8 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcRelAssignsToProcess.WR1))
+			if (!ValidateClause(IfcRelAssignsToProcessClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelAssignsToProcess.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcRelAssignsToProcess : IfcRelAssigns
-	{
-		public new static readonly IfcRelAssignsToProcess WR1 = new IfcRelAssignsToProcess();
-		protected IfcRelAssignsToProcess() {}
 	}
 }

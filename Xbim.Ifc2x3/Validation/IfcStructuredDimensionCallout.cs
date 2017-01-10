@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	public partial class IfcStructuredDimensionCallout : IExpressValidatable
 	{
+		public enum IfcStructuredDimensionCalloutClause
+		{
+			WR31,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcStructuredDimensionCallout clause) {
+		public bool ValidateClause(IfcStructuredDimensionCalloutClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcStructuredDimensionCallout.WR31) {
-				try {
-					retVal = SIZEOF(this.Contents.Where(Con => (TYPEOF(Con).Contains("IFC2X3.IFCANNOTATIONTEXTOCCURRENCE"))).Where(Ato => (!(NewArray("dimension value", "tolerance value", "unit text", "prefix text", "suffix text").Contains(Ato.AsIfcAnnotationTextOccurrence().Name))))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDimensioningResource.IfcStructuredDimensionCallout");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuredDimensionCallout.WR31' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcStructuredDimensionCalloutClause.WR31:
+						retVal = SIZEOF(this.Contents.Where(Con => (TYPEOF(Con).Contains("IFC2X3.IFCANNOTATIONTEXTOCCURRENCE"))).Where(Ato => (!(NewArray("dimension value", "tolerance value", "unit text", "prefix text", "suffix text").Contains(Ato.AsIfcAnnotationTextOccurrence().Name))))) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationDimensioningResource.IfcStructuredDimensionCallout");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcStructuredDimensionCallout.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcStructuredDimensionCallout.WR31))
+			if (!ValidateClause(IfcStructuredDimensionCalloutClause.WR31))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcStructuredDimensionCallout.WR31", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcStructuredDimensionCallout
-	{
-		public static readonly IfcStructuredDimensionCallout WR31 = new IfcStructuredDimensionCallout();
-		protected IfcStructuredDimensionCallout() {}
 	}
 }

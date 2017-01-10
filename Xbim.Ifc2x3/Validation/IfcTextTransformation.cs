@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial struct IfcTextTransformation : IExpressValidatable
 	{
+		public enum IfcTextTransformationClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcTextTransformation clause) {
+		public bool ValidateClause(IfcTextTransformationClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcTextTransformation.WR1) {
-				try {
-					retVal = NewArray("capitalize", "uppercase", "lowercase", "none").Contains(this);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcTextTransformation");
-					Log.Error("Exception thrown evaluating where-clause 'IfcTextTransformation.WR1'.", ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcTextTransformationClause.WR1:
+						retVal = NewArray("capitalize", "uppercase", "lowercase", "none").Contains(this);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcTextTransformation");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTextTransformation.{0}'.", clause), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
-		public  IEnumerable<ValidationResult> Validate()
+		public IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcTextTransformation.WR1))
+			if (!ValidateClause(IfcTextTransformationClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcTextTransformation.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcTextTransformation
-	{
-		public static readonly IfcTextTransformation WR1 = new IfcTextTransformation();
-		protected IfcTextTransformation() {}
 	}
 }

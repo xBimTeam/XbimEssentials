@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.PresentationResource
 {
 	public partial class IfcDraughtingPreDefinedTextFont : IExpressValidatable
 	{
+		public enum IfcDraughtingPreDefinedTextFontClause
+		{
+			WR31,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcDraughtingPreDefinedTextFont clause) {
+		public bool ValidateClause(IfcDraughtingPreDefinedTextFontClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcDraughtingPreDefinedTextFont.WR31) {
-				try {
-					retVal = NewArray("ISO 3098-1 font A", "ISO 3098-1 font B").Contains(this/* as IfcPreDefinedItem*/.Name);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationResource.IfcDraughtingPreDefinedTextFont");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDraughtingPreDefinedTextFont.WR31' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcDraughtingPreDefinedTextFontClause.WR31:
+						retVal = NewArray("ISO 3098-1 font A", "ISO 3098-1 font B").Contains(this/* as IfcPreDefinedItem*/.Name);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationResource.IfcDraughtingPreDefinedTextFont");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcDraughtingPreDefinedTextFont.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcDraughtingPreDefinedTextFont.WR31))
+			if (!ValidateClause(IfcDraughtingPreDefinedTextFontClause.WR31))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcDraughtingPreDefinedTextFont.WR31", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcDraughtingPreDefinedTextFont
-	{
-		public static readonly IfcDraughtingPreDefinedTextFont WR31 = new IfcDraughtingPreDefinedTextFont();
-		protected IfcDraughtingPreDefinedTextFont() {}
 	}
 }

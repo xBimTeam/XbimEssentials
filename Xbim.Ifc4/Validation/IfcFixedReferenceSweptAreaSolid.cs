@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	public partial class IfcFixedReferenceSweptAreaSolid : IExpressValidatable
 	{
+		public enum IfcFixedReferenceSweptAreaSolidClause
+		{
+			DirectrixBounded,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcFixedReferenceSweptAreaSolid clause) {
+		public bool ValidateClause(IfcFixedReferenceSweptAreaSolidClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcFixedReferenceSweptAreaSolid.DirectrixBounded) {
-				try {
-					retVal = (EXISTS(StartParam) && EXISTS(EndParam)) || (SIZEOF(NewArray("IFC4.IFCCONIC", "IFC4.IFCBOUNDEDCURVE") * TYPEOF(Directrix)) == 1);
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcFixedReferenceSweptAreaSolid");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFixedReferenceSweptAreaSolid.DirectrixBounded' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcFixedReferenceSweptAreaSolidClause.DirectrixBounded:
+						retVal = (EXISTS(StartParam) && EXISTS(EndParam)) || (SIZEOF(NewArray("IFC4.IFCCONIC", "IFC4.IFCBOUNDEDCURVE") * TYPEOF(Directrix)) == 1);
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcFixedReferenceSweptAreaSolid");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFixedReferenceSweptAreaSolid.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcSweptAreaSolid)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcFixedReferenceSweptAreaSolid.DirectrixBounded))
+			if (!ValidateClause(IfcFixedReferenceSweptAreaSolidClause.DirectrixBounded))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcFixedReferenceSweptAreaSolid.DirectrixBounded", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcFixedReferenceSweptAreaSolid : IfcSweptAreaSolid
-	{
-		public static readonly IfcFixedReferenceSweptAreaSolid DirectrixBounded = new IfcFixedReferenceSweptAreaSolid();
-		protected IfcFixedReferenceSweptAreaSolid() {}
 	}
 }

@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	public partial class IfcGeometricCurveSet : IExpressValidatable
 	{
+		public enum IfcGeometricCurveSetClause
+		{
+			NoSurfaces,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcGeometricCurveSet clause) {
+		public bool ValidateClause(IfcGeometricCurveSetClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcGeometricCurveSet.NoSurfaces) {
-				try {
-					retVal = SIZEOF(this/* as IfcGeometricSet*/.Elements.Where(Temp => TYPEOF(Temp).Contains("IFC4.IFCSURFACE"))) == 0;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcGeometricCurveSet");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcGeometricCurveSet.NoSurfaces' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcGeometricCurveSetClause.NoSurfaces:
+						retVal = SIZEOF(this/* as IfcGeometricSet*/.Elements.Where(Temp => TYPEOF(Temp).Contains("IFC4.IFCSURFACE"))) == 0;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcGeometricCurveSet");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcGeometricCurveSet.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcGeometricSet)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcGeometricCurveSet.NoSurfaces))
+			if (!ValidateClause(IfcGeometricCurveSetClause.NoSurfaces))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcGeometricCurveSet.NoSurfaces", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcGeometricCurveSet : IfcGeometricSet
-	{
-		public static readonly IfcGeometricCurveSet NoSurfaces = new IfcGeometricCurveSet();
-		protected IfcGeometricCurveSet() {}
 	}
 }

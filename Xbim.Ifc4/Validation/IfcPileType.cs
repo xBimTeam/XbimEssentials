@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 {
 	public partial class IfcPileType : IExpressValidatable
 	{
+		public enum IfcPileTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcPileType clause) {
+		public bool ValidateClause(IfcPileTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcPileType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcPileTypeEnum.USERDEFINED) || ((PredefinedType == IfcPileTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.StructuralElementsDomain.IfcPileType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPileType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcPileTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcPileTypeEnum.USERDEFINED) || ((PredefinedType == IfcPileTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.StructuralElementsDomain.IfcPileType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPileType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcPileType.CorrectPredefinedType))
+			if (!ValidateClause(IfcPileTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcPileType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcPileType : IfcTypeProduct
-	{
-		public static readonly IfcPileType CorrectPredefinedType = new IfcPileType();
-		protected IfcPileType() {}
 	}
 }

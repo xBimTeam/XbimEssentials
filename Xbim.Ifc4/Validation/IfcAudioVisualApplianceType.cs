@@ -13,24 +13,31 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	public partial class IfcAudioVisualApplianceType : IExpressValidatable
 	{
+		public enum IfcAudioVisualApplianceTypeClause
+		{
+			CorrectPredefinedType,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcAudioVisualApplianceType clause) {
+		public bool ValidateClause(IfcAudioVisualApplianceTypeClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcAudioVisualApplianceType.CorrectPredefinedType) {
-				try {
-					retVal = (PredefinedType != IfcAudioVisualApplianceTypeEnum.USERDEFINED) || ((PredefinedType == IfcAudioVisualApplianceTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc4.ElectricalDomain.IfcAudioVisualApplianceType");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAudioVisualApplianceType.CorrectPredefinedType' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcAudioVisualApplianceTypeClause.CorrectPredefinedType:
+						retVal = (PredefinedType != IfcAudioVisualApplianceTypeEnum.USERDEFINED) || ((PredefinedType == IfcAudioVisualApplianceTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc4.ElectricalDomain.IfcAudioVisualApplianceType");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAudioVisualApplianceType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcTypeProduct)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -39,18 +46,8 @@ namespace Xbim.Ifc4.ElectricalDomain
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcAudioVisualApplianceType.CorrectPredefinedType))
+			if (!ValidateClause(IfcAudioVisualApplianceTypeClause.CorrectPredefinedType))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcAudioVisualApplianceType.CorrectPredefinedType", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc4.Where
-{
-	public class IfcAudioVisualApplianceType : IfcTypeProduct
-	{
-		public static readonly IfcAudioVisualApplianceType CorrectPredefinedType = new IfcAudioVisualApplianceType();
-		protected IfcAudioVisualApplianceType() {}
 	}
 }

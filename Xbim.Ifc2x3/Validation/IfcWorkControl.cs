@@ -17,24 +17,31 @@ namespace Xbim.Ifc2x3.ProcessExtension
 {
 	public partial class IfcWorkControl : IExpressValidatable
 	{
+		public enum IfcWorkControlClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcWorkControl clause) {
+		public bool ValidateClause(IfcWorkControlClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcWorkControl.WR1) {
-				try {
-					retVal = (WorkControlType != IfcWorkControlTypeEnum.USERDEFINED) || ((WorkControlType == IfcWorkControlTypeEnum.USERDEFINED) && EXISTS(this/* as IfcWorkControl*/.UserDefinedControlType));
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.ProcessExtension.IfcWorkControl");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcWorkControl.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcWorkControlClause.WR1:
+						retVal = (WorkControlType != IfcWorkControlTypeEnum.USERDEFINED) || ((WorkControlType == IfcWorkControlTypeEnum.USERDEFINED) && EXISTS(this/* as IfcWorkControl*/.UserDefinedControlType));
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.ProcessExtension.IfcWorkControl");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcWorkControl.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			return base.ValidateClause((Where.IfcObject)clause);
+			return retVal;
 		}
 
 		public override IEnumerable<ValidationResult> Validate()
@@ -43,18 +50,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			{
 				yield return value;
 			}
-			if (!ValidateClause(Where.IfcWorkControl.WR1))
+			if (!ValidateClause(IfcWorkControlClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcWorkControl.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcWorkControl : IfcObject
-	{
-		public new static readonly IfcWorkControl WR1 = new IfcWorkControl();
-		protected IfcWorkControl() {}
 	}
 }

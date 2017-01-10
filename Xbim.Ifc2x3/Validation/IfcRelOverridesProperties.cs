@@ -17,40 +17,37 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class IfcRelOverridesProperties : IExpressValidatable
 	{
+		public enum IfcRelOverridesPropertiesClause
+		{
+			WR1,
+		}
 
 		/// <summary>
 		/// Tests the express where-clause specified in param 'clause'
 		/// </summary>
 		/// <param name="clause">The express clause to test</param>
 		/// <returns>true if the clause is satisfied.</returns>
-		public bool ValidateClause(Where.IfcRelOverridesProperties clause) {
+		public bool ValidateClause(IfcRelOverridesPropertiesClause clause) {
 			var retVal = false;
-			if (clause == Where.IfcRelOverridesProperties.WR1) {
-				try {
-					retVal = SIZEOF(this/* as IfcRelDefines*/.RelatedObjects) == 1;
-				} catch (Exception ex) {
-					ILog Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcRelOverridesProperties");
-					Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelOverridesProperties.WR1' for #{0}.",EntityLabel), ex);
+			try
+			{
+				switch (clause)
+				{
+					case IfcRelOverridesPropertiesClause.WR1:
+						retVal = SIZEOF(this/* as IfcRelDefines*/.RelatedObjects) == 1;
+						break;
 				}
-				return retVal;
+			} catch (Exception ex) {
+				var Log = LogManager.GetLogger("Xbim.Ifc2x3.Kernel.IfcRelOverridesProperties");
+				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelOverridesProperties.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
-			throw new ArgumentException(string.Format("Invalid clause specifier: '{0}'", clause));
+			return retVal;
 		}
 
 		public virtual IEnumerable<ValidationResult> Validate()
 		{
-			if (!ValidateClause(Where.IfcRelOverridesProperties.WR1))
+			if (!ValidateClause(IfcRelOverridesPropertiesClause.WR1))
 				yield return new ValidationResult() { Item = this, IssueSource = "IfcRelOverridesProperties.WR1", IssueType = ValidationFlags.EntityWhereClauses };
 		}
-	}
-}
-// ReSharper disable once CheckNamespace
-// ReSharper disable InconsistentNaming
-namespace Xbim.Ifc2x3.Where
-{
-	public class IfcRelOverridesProperties
-	{
-		public static readonly IfcRelOverridesProperties WR1 = new IfcRelOverridesProperties();
-		protected IfcRelOverridesProperties() {}
 	}
 }
