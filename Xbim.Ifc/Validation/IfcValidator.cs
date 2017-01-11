@@ -209,6 +209,9 @@ namespace Xbim.Ifc.Validation
             if (ifcAttr.State == EntityAttributeState.Optional && propVal == null)
                 //if it is null and optional then it is ok
                 yield break;
+            if (ifcAttr.State == EntityAttributeState.Optional && propVal is IOptionalItemSet && !((IOptionalItemSet)propVal).Initialized)
+                //if it is non-initialized list and optional then it is ok
+                yield break;
             if (ifcAttr.EntityType == EntityAttributeType.Set 
                 || ifcAttr.EntityType == EntityAttributeType.List 
                 || ifcAttr.EntityType == EntityAttributeType.ListUnique)
