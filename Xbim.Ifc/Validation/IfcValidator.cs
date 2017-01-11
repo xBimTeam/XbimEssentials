@@ -82,7 +82,7 @@ namespace Xbim.Ifc.Validation
             {
                 foreach (var ifcProp in ifcType.Properties.Values)
                 {
-                    var errs = GetIfcSchemaErrors(ent, ifcProp, validateLevel);
+                    var errs = GetIfcSchemaErrors(ent, ifcProp, validateLevel, hierarchical);
                     foreach (var validationResult in errs)
                     {
                         validationResult.IssueType |= ValidationFlags.Properties;
@@ -104,7 +104,7 @@ namespace Xbim.Ifc.Validation
             {
                 foreach (var ifcInv in ifcType.Inverses)
                 {
-                    var errs = GetIfcSchemaErrors(ent, ifcInv, validateLevel);
+                    var errs = GetIfcSchemaErrors(ent, ifcInv, validateLevel, hierarchical);
                     foreach (var validationResult in errs)
                     {
                         validationResult.IssueType |= ValidationFlags.Inverses;
@@ -156,7 +156,7 @@ namespace Xbim.Ifc.Validation
             return true;
         }
 
-        private static IEnumerable<ValidationResult> GetIfcSchemaErrors(IPersist instance, ExpressMetaProperty prop, ValidationFlags validateLevel)
+        private static IEnumerable<ValidationResult> GetIfcSchemaErrors(IPersist instance, ExpressMetaProperty prop, ValidationFlags validateLevel, bool hierarchical)
         {
             var ifcAttr = prop.EntityAttribute;
             var propVal = prop.PropertyInfo.GetValue(instance, null);
@@ -177,10 +177,24 @@ namespace Xbim.Ifc.Validation
                 }
                 if (validateLevel.HasFlag(ValidationFlags.TypeWhereClauses) && propVal is IExpressValidatable)
                 {
+                    var hierResult = new ValidationResult() { Item = instance, IssueType = ValidationFlags.None };
                     foreach (var issue in ((IExpressValidatable)propVal).Validate())
                     {
-                        yield return issue;
-                    }                    
+                        if (hierarchical)
+                        {
+                            hierResult.AddDetail(issue);  
+                        }
+                        else
+                        {
+                            yield return issue;
+                        }
+                    }
+                    if (hierarchical && hierResult.IssueType != ValidationFlags.None)
+                    {
+                        // the IssueType is populated if any children have been added.
+                        hierResult.Message = $"Property {prop.Name} has validation failures.";
+                        yield return hierResult;
+                    }
                 }
                 yield break;
             }

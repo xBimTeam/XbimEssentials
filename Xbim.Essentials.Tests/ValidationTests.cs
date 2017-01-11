@@ -67,10 +67,6 @@ namespace Xbim.Essentials.Tests
         {
             using (var model = IfcStore.Open("ValidationTests2x3.ifc", null, 0))
             {
-                //var v2 = model.Metadata.Types()
-                //    .Where(x => x.Properties.Any(pr => pr.Value.EntityAttribute.State == EntityAttributeState.Mandatory
-                //    && typeof(IExpressValueType).IsAssignableFrom(pr.Value.PropertyInfo.PropertyType)
-                //    ));
                 var v = new IfcValidator
                 {
                     ValidateLevel = ValidationFlags.All,
@@ -80,9 +76,16 @@ namespace Xbim.Essentials.Tests
                 if (item == null)
                     throw  new Exception();
 
-                var res = item.ValidateClause(IfcCoilType.IfcCoilTypeClause.WR1);
-                res = item.ValidateClause(IfcTypeObject.IfcTypeObjectClause.WR1);
-                res = item.ValidateClause(IfcTypeProduct.IfcTypeProductClause.WR41);
+                var e2 = v.Validate(item);
+                foreach (var validationResult in new ValidationReporter(e2))
+                {
+                    Debug.WriteLine(validationResult);
+                }
+
+                //bool res;
+                //Debug.WriteLine("fcCoilTypeClause.WR1" + item.ValidateClause(IfcCoilType.IfcCoilTypeClause.WR1));
+                //Debug.WriteLine("fcCoilTypeClause.WR1" + item.ValidateClause(IfcTypeObject.IfcTypeObjectClause.WR1));
+                //Debug.WriteLine("fcCoilTypeClause.WR1" + item.ValidateClause(IfcTypeProduct.IfcTypeProductClause.WR41));
             }
         }
     }
