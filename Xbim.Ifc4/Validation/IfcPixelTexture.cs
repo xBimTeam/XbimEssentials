@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.PresentationAppearanceResource
@@ -43,10 +42,10 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 						retVal = ((1 <= ColourComponents) && (ColourComponents <= 4) );
 						break;
 					case IfcPixelTextureClause.SizeOfPixelList:
-						retVal = SIZEOF(Pixel) == (Width * Height);
+						retVal = Functions.SIZEOF(Pixel) == (Width * Height);
 						break;
 					case IfcPixelTextureClause.PixelAsByteAndSameLength:
-						retVal = SIZEOF(Pixel.Where(temp => (BLENGTH(temp) % 8 == 0) && (BLENGTH(temp) == BLENGTH(Pixel.ItemAt(0))))) == SIZEOF(Pixel);
+						retVal = Functions.SIZEOF(Pixel.Where(temp => (Functions.BLENGTH(temp) % 8 == 0) && (Functions.BLENGTH(temp) == Functions.BLENGTH(Pixel.ItemAt(0))))) == Functions.SIZEOF(Pixel);
 						break;
 				}
 			} catch (Exception ex) {

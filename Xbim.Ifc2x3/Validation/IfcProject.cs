@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.Kernel
@@ -36,13 +35,13 @@ namespace Xbim.Ifc2x3.Kernel
 				switch (clause)
 				{
 					case IfcProjectClause.WR31:
-						retVal = EXISTS(this/* as IfcRoot*/.Name);
+						retVal = Functions.EXISTS(this/* as IfcRoot*/.Name);
 						break;
 					case IfcProjectClause.WR32:
-						retVal = SIZEOF(RepresentationContexts.Where(Temp => TYPEOF(Temp).Contains("IFC2X3.IFCGEOMETRICREPRESENTATIONSUBCONTEXT"))) == 0;
+						retVal = Functions.SIZEOF(RepresentationContexts.Where(Temp => Functions.TYPEOF(Temp).Contains("IFC2X3.IFCGEOMETRICREPRESENTATIONSUBCONTEXT"))) == 0;
 						break;
 					case IfcProjectClause.WR33:
-						retVal = SIZEOF(this/* as IfcObjectDefinition*/.Decomposes) == 0;
+						retVal = Functions.SIZEOF(this/* as IfcObjectDefinition*/.Decomposes) == 0;
 						break;
 				}
 			} catch (Exception ex) {

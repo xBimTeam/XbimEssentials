@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.GeometryResource
@@ -31,10 +30,10 @@ namespace Xbim.Ifc4.GeometryResource
 				switch (clause)
 				{
 					case IfcRationalBSplineSurfaceWithKnotsClause.CorrespondingWeightsDataLists:
-						retVal = (SIZEOF(WeightsData) == SIZEOF(this/* as IfcBSplineSurface*/.ControlPointsList)) && (SIZEOF(WeightsData.ItemAt(0)) == SIZEOF(this/* as IfcBSplineSurface*/.ControlPointsList.ItemAt(0)));
+						retVal = (Functions.SIZEOF(WeightsData) == Functions.SIZEOF(this/* as IfcBSplineSurface*/.ControlPointsList)) && (Functions.SIZEOF(WeightsData.ItemAt(0)) == Functions.SIZEOF(this/* as IfcBSplineSurface*/.ControlPointsList.ItemAt(0)));
 						break;
 					case IfcRationalBSplineSurfaceWithKnotsClause.WeightValuesGreaterZero:
-						retVal = IfcSurfaceWeightsPositive(this);
+						retVal = Functions.IfcSurfaceWeightsPositive(this);
 						break;
 				}
 			} catch (Exception ex) {

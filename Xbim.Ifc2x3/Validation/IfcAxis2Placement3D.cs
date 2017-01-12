@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.GeometryResource
@@ -41,16 +40,16 @@ namespace Xbim.Ifc2x3.GeometryResource
 						retVal = this/* as IfcPlacement*/.Location.Dim == 3;
 						break;
 					case IfcAxis2Placement3DClause.WR2:
-						retVal = (!(EXISTS(Axis))) || (Axis.Dim == 3);
+						retVal = (!(Functions.EXISTS(Axis))) || (Axis.Dim == 3);
 						break;
 					case IfcAxis2Placement3DClause.WR3:
-						retVal = (!(EXISTS(RefDirection))) || (RefDirection.Dim == 3);
+						retVal = (!(Functions.EXISTS(RefDirection))) || (RefDirection.Dim == 3);
 						break;
 					case IfcAxis2Placement3DClause.WR4:
-						retVal = (!(EXISTS(Axis))) || (!(EXISTS(RefDirection))) || (IfcCrossProduct(Axis, RefDirection).Magnitude > 0);
+						retVal = (!(Functions.EXISTS(Axis))) || (!(Functions.EXISTS(RefDirection))) || (Functions.IfcCrossProduct(Axis, RefDirection).Magnitude > 0);
 						break;
 					case IfcAxis2Placement3DClause.WR5:
-						retVal = !((EXISTS(Axis)) ^ (EXISTS(RefDirection)));
+						retVal = !((Functions.EXISTS(Axis)) ^ (Functions.EXISTS(RefDirection)));
 						break;
 				}
 			} catch (Exception ex) {

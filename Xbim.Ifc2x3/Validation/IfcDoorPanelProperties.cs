@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.SharedBldgElements
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				switch (clause)
 				{
 					case IfcDoorPanelPropertiesClause.WR31:
-						retVal = EXISTS(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)) && (TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)).Contains("IFC2X3.IFCDOORSTYLE"));
+						retVal = Functions.EXISTS(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)) && (Functions.TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)).Contains("IFC2X3.IFCDOORSTYLE"));
 						break;
 				}
 			} catch (Exception ex) {

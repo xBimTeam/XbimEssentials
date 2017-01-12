@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.GeometryResource
@@ -31,7 +30,7 @@ namespace Xbim.Ifc4.GeometryResource
 				switch (clause)
 				{
 					case IfcAxis2Placement2DClause.RefDirIs2D:
-						retVal = (!(EXISTS(RefDirection))) || (RefDirection.Dim == 2);
+						retVal = (!(Functions.EXISTS(RefDirection))) || (RefDirection.Dim == 2);
 						break;
 					case IfcAxis2Placement2DClause.LocationIs2D:
 						retVal = this/* as IfcPlacement*/.Location.Dim == 2;

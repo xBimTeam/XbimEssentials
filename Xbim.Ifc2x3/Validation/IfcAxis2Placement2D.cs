@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.GeometryResource
@@ -35,7 +34,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 				switch (clause)
 				{
 					case IfcAxis2Placement2DClause.WR1:
-						retVal = (!(EXISTS(RefDirection))) || (RefDirection.Dim == 2);
+						retVal = (!(Functions.EXISTS(RefDirection))) || (RefDirection.Dim == 2);
 						break;
 					case IfcAxis2Placement2DClause.WR2:
 						retVal = this/* as IfcPlacement*/.Location.Dim == 2;

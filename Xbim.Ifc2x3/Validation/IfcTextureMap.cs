@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				switch (clause)
 				{
 					case IfcTextureMapClause.WR11:
-						retVal = SIZEOF(NewArray("IFC2X3.IFCSHELLBASEDSURFACEMODEL", "IFC2X3.IFCFACEBASEDSURFACEMODEL", "IFC2X3.IFCFACETEDBREP", "IFC2X3.IFCFACETEDBREPWITHVOIDS") * TYPEOF(this/* as IfcTextureCoordinate*/.AnnotatedSurface.ItemAt(0).Item)) >= 1;
+						retVal = Functions.SIZEOF(Functions.NewArray("IFC2X3.IFCSHELLBASEDSURFACEMODEL", "IFC2X3.IFCFACEBASEDSURFACEMODEL", "IFC2X3.IFCFACETEDBREP", "IFC2X3.IFCFACETEDBREPWITHVOIDS") * Functions.TYPEOF(this/* as IfcTextureCoordinate*/.AnnotatedSurface.ItemAt(0).Item)) >= 1;
 						break;
 				}
 			} catch (Exception ex) {

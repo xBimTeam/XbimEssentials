@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.GeometricModelResource
@@ -36,10 +35,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				switch (clause)
 				{
 					case IfcSectionedSpineClause.WR1:
-						retVal = SIZEOF(CrossSections) == SIZEOF(CrossSectionPositions);
+						retVal = Functions.SIZEOF(CrossSections) == Functions.SIZEOF(CrossSectionPositions);
 						break;
 					case IfcSectionedSpineClause.WR2:
-						retVal = SIZEOF(CrossSections.Where(temp => CrossSections.ItemAt(0).ProfileType != temp.ProfileType)) == 0;
+						retVal = Functions.SIZEOF(CrossSections.Where(temp => CrossSections.ItemAt(0).ProfileType != temp.ProfileType)) == 0;
 						break;
 					case IfcSectionedSpineClause.WR3:
 						retVal = SpineCurve.Dim == 3;

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.ActorResource
@@ -31,10 +30,10 @@ namespace Xbim.Ifc4.ActorResource
 				switch (clause)
 				{
 					case IfcPersonClause.IdentifiablePerson:
-						retVal = EXISTS(Identification) || EXISTS(FamilyName) || EXISTS(GivenName);
+						retVal = Functions.EXISTS(Identification) || Functions.EXISTS(FamilyName) || Functions.EXISTS(GivenName);
 						break;
 					case IfcPersonClause.ValidSetOfNames:
-						retVal = !EXISTS(MiddleNames) || EXISTS(FamilyName) || EXISTS(GivenName);
+						retVal = !Functions.EXISTS(MiddleNames) || Functions.EXISTS(FamilyName) || Functions.EXISTS(GivenName);
 						break;
 				}
 			} catch (Exception ex) {

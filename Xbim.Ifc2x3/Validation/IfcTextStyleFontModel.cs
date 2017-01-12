@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.PresentationResource
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 				switch (clause)
 				{
 					case IfcTextStyleFontModelClause.WR31:
-						retVal = (TYPEOF(this.FontSize).Contains("IFC2X3.IFCLENGTHMEASURE")) && (this.FontSize.AsIfcLengthMeasure() > 0);
+						retVal = (Functions.TYPEOF(this.FontSize).Contains("IFC2X3.IFCLENGTHMEASURE")) && (this.FontSize.AsIfcLengthMeasure() > 0);
 						break;
 				}
 			} catch (Exception ex) {

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.SharedBldgElements
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 				switch (clause)
 				{
 					case IfcSlabElementedCaseClause.HasDecomposition:
-						retVal = HIINDEX(this/* as IfcObjectDefinition*/.IsDecomposedBy) > 0;
+						retVal = Functions.HIINDEX(this/* as IfcObjectDefinition*/.IsDecomposedBy) > 0;
 						break;
 				}
 			} catch (Exception ex) {

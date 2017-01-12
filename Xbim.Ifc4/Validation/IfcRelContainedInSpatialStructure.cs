@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.ProductExtension
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.ProductExtension
 				switch (clause)
 				{
 					case IfcRelContainedInSpatialStructureClause.WR31:
-						retVal = SIZEOF(RelatedElements.Where(temp => TYPEOF(temp).Contains("IFC4.IFCSPATIALSTRUCTUREELEMENT"))) == 0;
+						retVal = Functions.SIZEOF(RelatedElements.Where(temp => Functions.TYPEOF(temp).Contains("IFC4.IFCSPATIALSTRUCTUREELEMENT"))) == 0;
 						break;
 				}
 			} catch (Exception ex) {

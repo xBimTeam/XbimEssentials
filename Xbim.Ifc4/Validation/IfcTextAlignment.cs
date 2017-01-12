@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.PresentationAppearanceResource
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				switch (clause)
 				{
 					case IfcTextAlignmentClause.WR1:
-						retVal = NewArray("left", "right", "center", "justify").Contains(this);
+						retVal = Functions.NewArray("left", "right", "center", "justify").Contains(this);
 						break;
 				}
 			} catch (Exception ex) {

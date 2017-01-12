@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.MeasureResource
@@ -33,16 +32,16 @@ namespace Xbim.Ifc4.MeasureResource
 				switch (clause)
 				{
 					case IfcCompoundPlaneAngleMeasureClause.MinutesInRange:
-						retVal = ABS(this.ItemAt(1)) < 60;
+						retVal = Functions.ABS(this.ItemAt(1)) < 60;
 						break;
 					case IfcCompoundPlaneAngleMeasureClause.SecondsInRange:
-						retVal = ABS(this.ItemAt(2)) < 60;
+						retVal = Functions.ABS(this.ItemAt(2)) < 60;
 						break;
 					case IfcCompoundPlaneAngleMeasureClause.MicrosecondsInRange:
-						retVal = (SIZEOF(this) == 3) || (ABS(this.ItemAt(3)) < 1000000);
+						retVal = (Functions.SIZEOF(this) == 3) || (Functions.ABS(this.ItemAt(3)) < 1000000);
 						break;
 					case IfcCompoundPlaneAngleMeasureClause.ConsistentSign:
-						retVal = ((this.ItemAt(0) >= 0) && (this.ItemAt(1) >= 0) && (this.ItemAt(2) >= 0) && ((SIZEOF(this) == 3) || (this.ItemAt(3) >= 0))) || ((this.ItemAt(0) <= 0) && (this.ItemAt(1) <= 0) && (this.ItemAt(2) <= 0) && ((SIZEOF(this) == 3) || (this.ItemAt(3) <= 0)));
+						retVal = ((this.ItemAt(0) >= 0) && (this.ItemAt(1) >= 0) && (this.ItemAt(2) >= 0) && ((Functions.SIZEOF(this) == 3) || (this.ItemAt(3) >= 0))) || ((this.ItemAt(0) <= 0) && (this.ItemAt(1) <= 0) && (this.ItemAt(2) <= 0) && ((Functions.SIZEOF(this) == 3) || (this.ItemAt(3) <= 0)));
 						break;
 				}
 			} catch (Exception ex) {

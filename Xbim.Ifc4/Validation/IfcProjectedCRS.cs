@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.RepresentationResource
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				switch (clause)
 				{
 					case IfcProjectedCRSClause.IsLengthUnit:
-						retVal = !(EXISTS(MapUnit)) || (MapUnit.UnitType == IfcUnitEnum.LENGTHUNIT);
+						retVal = !(Functions.EXISTS(MapUnit)) || (MapUnit.UnitType == IfcUnitEnum.LENGTHUNIT);
 						break;
 				}
 			} catch (Exception ex) {

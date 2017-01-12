@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.RepresentationResource
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				switch (clause)
 				{
 					case IfcStyledRepresentationClause.OnlyStyledItems:
-						retVal = SIZEOF(this/* as IfcRepresentation*/.Items.Where(temp => (!(TYPEOF(temp).Contains("IFC4.IFCSTYLEDITEM"))))) == 0;
+						retVal = Functions.SIZEOF(this/* as IfcRepresentation*/.Items.Where(temp => (!(Functions.TYPEOF(temp).Contains("IFC4.IFCSTYLEDITEM"))))) == 0;
 						break;
 				}
 			} catch (Exception ex) {

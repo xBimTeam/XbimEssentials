@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.Kernel
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.Kernel
 				switch (clause)
 				{
 					case IfcTypeProductClause.ApplicableOccurrence:
-						retVal = !(EXISTS(this/* as IfcTypeObject*/.Types.ItemAt(0))) || (SIZEOF(this/* as IfcTypeObject*/.Types.ItemAt(0).RelatedObjects.Where(temp => !(TYPEOF(temp).Contains("IFC4.IFCPRODUCT")))) == 0);
+						retVal = !(Functions.EXISTS(this/* as IfcTypeObject*/.Types.ItemAt(0))) || (Functions.SIZEOF(this/* as IfcTypeObject*/.Types.ItemAt(0).RelatedObjects.Where(temp => !(Functions.TYPEOF(temp).Contains("IFC4.IFCPRODUCT")))) == 0);
 						break;
 				}
 			} catch (Exception ex) {

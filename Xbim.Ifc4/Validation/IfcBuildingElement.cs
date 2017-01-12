@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.ProductExtension
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.ProductExtension
 				switch (clause)
 				{
 					case IfcBuildingElementClause.MaxOneMaterialAssociation:
-						retVal = SIZEOF(this/* as IfcObjectDefinition*/.HasAssociations.Where(temp => TYPEOF(temp).Contains("IFC4.IFCRELASSOCIATESMATERIAL"))) <= 1;
+						retVal = Functions.SIZEOF(this/* as IfcObjectDefinition*/.HasAssociations.Where(temp => Functions.TYPEOF(temp).Contains("IFC4.IFCRELASSOCIATESMATERIAL"))) <= 1;
 						break;
 				}
 			} catch (Exception ex) {

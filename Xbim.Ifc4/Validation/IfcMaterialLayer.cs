@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.MaterialResource
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.MaterialResource
 				switch (clause)
 				{
 					case IfcMaterialLayerClause.NormalizedPriority:
-						retVal = !(EXISTS(Priority)) || ((0 <= Priority) && (Priority <= 100) );
+						retVal = !(Functions.EXISTS(Priority)) || ((0 <= Priority) && (Priority <= 100) );
 						break;
 				}
 			} catch (Exception ex) {

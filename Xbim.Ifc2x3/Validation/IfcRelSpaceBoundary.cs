@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.ProductExtension
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 				switch (clause)
 				{
 					case IfcRelSpaceBoundaryClause.WR1:
-						retVal = ((PhysicalOrVirtualBoundary == IfcPhysicalOrVirtualEnum.PHYSICAL) && (EXISTS(RelatedBuildingElement) && !(TYPEOF(RelatedBuildingElement).Contains("IFC2X3.IFCVIRTUALELEMENT")))) || ((PhysicalOrVirtualBoundary == IfcPhysicalOrVirtualEnum.VIRTUAL) && (!(EXISTS(RelatedBuildingElement)) || (TYPEOF(RelatedBuildingElement).Contains("IFC2X3.IFCVIRTUALELEMENT")))) || (PhysicalOrVirtualBoundary == IfcPhysicalOrVirtualEnum.NOTDEFINED);
+						retVal = ((PhysicalOrVirtualBoundary == IfcPhysicalOrVirtualEnum.PHYSICAL) && (Functions.EXISTS(RelatedBuildingElement) && !(Functions.TYPEOF(RelatedBuildingElement).Contains("IFC2X3.IFCVIRTUALELEMENT")))) || ((PhysicalOrVirtualBoundary == IfcPhysicalOrVirtualEnum.VIRTUAL) && (!(Functions.EXISTS(RelatedBuildingElement)) || (Functions.TYPEOF(RelatedBuildingElement).Contains("IFC2X3.IFCVIRTUALELEMENT")))) || (PhysicalOrVirtualBoundary == IfcPhysicalOrVirtualEnum.NOTDEFINED);
 						break;
 				}
 			} catch (Exception ex) {

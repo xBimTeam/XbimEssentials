@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.ProductExtension
@@ -31,10 +30,10 @@ namespace Xbim.Ifc4.ProductExtension
 				switch (clause)
 				{
 					case IfcRelAssociatesMaterialClause.NoVoidElement:
-						retVal = SIZEOF(this/* as IfcRelAssociates*/.RelatedObjects.Where(temp => (TYPEOF(temp).Contains("IFC4.IFCFEATUREELEMENTSUBTRACTION")) || (TYPEOF(temp).Contains("IFC4.IFCVIRTUALELEMENT")))) == 0;
+						retVal = Functions.SIZEOF(this/* as IfcRelAssociates*/.RelatedObjects.Where(temp => (Functions.TYPEOF(temp).Contains("IFC4.IFCFEATUREELEMENTSUBTRACTION")) || (Functions.TYPEOF(temp).Contains("IFC4.IFCVIRTUALELEMENT")))) == 0;
 						break;
 					case IfcRelAssociatesMaterialClause.AllowedElements:
-						retVal = SIZEOF(this/* as IfcRelAssociates*/.RelatedObjects.Where(temp => (SIZEOF(TYPEOF(temp) * NewArray("IFC4.IFCELEMENT", "IFC4.IFCELEMENTTYPE", "IFC4.IFCWINDOWSTYLE", "IFC4.IFCDOORSTYLE", "IFC4.IFCSTRUCTURALMEMBER", "IFC4.IFCPORT")) == 0))) == 0;
+						retVal = Functions.SIZEOF(this/* as IfcRelAssociates*/.RelatedObjects.Where(temp => (Functions.SIZEOF(Functions.TYPEOF(temp) * Functions.NewArray("IFC4.IFCELEMENT", "IFC4.IFCELEMENTTYPE", "IFC4.IFCWINDOWSTYLE", "IFC4.IFCDOORSTYLE", "IFC4.IFCSTRUCTURALMEMBER", "IFC4.IFCPORT")) == 0))) == 0;
 						break;
 				}
 			} catch (Exception ex) {

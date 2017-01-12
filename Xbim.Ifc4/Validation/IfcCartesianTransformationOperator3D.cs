@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.GeometryResource
@@ -36,13 +35,13 @@ namespace Xbim.Ifc4.GeometryResource
 						retVal = this/* as IfcCartesianTransformationOperator*/.Dim == 3;
 						break;
 					case IfcCartesianTransformationOperator3DClause.Axis1Is3D:
-						retVal = !(EXISTS(this/* as IfcCartesianTransformationOperator*/.Axis1)) || (this/* as IfcCartesianTransformationOperator*/.Axis1.Dim == 3);
+						retVal = !(Functions.EXISTS(this/* as IfcCartesianTransformationOperator*/.Axis1)) || (this/* as IfcCartesianTransformationOperator*/.Axis1.Dim == 3);
 						break;
 					case IfcCartesianTransformationOperator3DClause.Axis2Is3D:
-						retVal = !(EXISTS(this/* as IfcCartesianTransformationOperator*/.Axis2)) || (this/* as IfcCartesianTransformationOperator*/.Axis2.Dim == 3);
+						retVal = !(Functions.EXISTS(this/* as IfcCartesianTransformationOperator*/.Axis2)) || (this/* as IfcCartesianTransformationOperator*/.Axis2.Dim == 3);
 						break;
 					case IfcCartesianTransformationOperator3DClause.Axis3Is3D:
-						retVal = !(EXISTS(Axis3)) || (Axis3.Dim == 3);
+						retVal = !(Functions.EXISTS(Axis3)) || (Axis3.Dim == 3);
 						break;
 				}
 			} catch (Exception ex) {

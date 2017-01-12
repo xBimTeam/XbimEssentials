@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.CostResource
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.CostResource
 				switch (clause)
 				{
 					case IfcEnvironmentalImpactValueClause.WR1:
-						retVal = (Category != IfcEnvironmentalImpactCategoryEnum.USERDEFINED) || ((Category == IfcEnvironmentalImpactCategoryEnum.USERDEFINED) && EXISTS(this/* as IfcEnvironmentalImpactValue*/.UserDefinedCategory));
+						retVal = (Category != IfcEnvironmentalImpactCategoryEnum.USERDEFINED) || ((Category == IfcEnvironmentalImpactCategoryEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcEnvironmentalImpactValue*/.UserDefinedCategory));
 						break;
 				}
 			} catch (Exception ex) {

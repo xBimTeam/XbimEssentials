@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.PropertyResource
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.PropertyResource
 				switch (clause)
 				{
 					case IfcPropertyEnumerationClause.WR01:
-						retVal = SIZEOF(this.EnumerationValues.Where(temp => !(TYPEOF(this.EnumerationValues.ItemAt(0)) == TYPEOF(temp)))) == 0;
+						retVal = Functions.SIZEOF(this.EnumerationValues.Where(temp => !(Functions.TYPEOF(this.EnumerationValues.ItemAt(0)) == Functions.TYPEOF(temp)))) == 0;
 						break;
 				}
 			} catch (Exception ex) {

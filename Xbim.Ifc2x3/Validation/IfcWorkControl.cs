@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.ProcessExtension
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				switch (clause)
 				{
 					case IfcWorkControlClause.WR1:
-						retVal = (WorkControlType != IfcWorkControlTypeEnum.USERDEFINED) || ((WorkControlType == IfcWorkControlTypeEnum.USERDEFINED) && EXISTS(this/* as IfcWorkControl*/.UserDefinedControlType));
+						retVal = (WorkControlType != IfcWorkControlTypeEnum.USERDEFINED) || ((WorkControlType == IfcWorkControlTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcWorkControl*/.UserDefinedControlType));
 						break;
 				}
 			} catch (Exception ex) {

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.ProductExtension
@@ -31,10 +30,10 @@ namespace Xbim.Ifc4.ProductExtension
 				switch (clause)
 				{
 					case IfcTransportElementClause.CorrectPredefinedType:
-						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcTransportElementTypeEnum.USERDEFINED) || ((PredefinedType == IfcTransportElementTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						retVal = !(Functions.EXISTS(PredefinedType)) || (PredefinedType != IfcTransportElementTypeEnum.USERDEFINED) || ((PredefinedType == IfcTransportElementTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcObject*/.ObjectType));
 						break;
 					case IfcTransportElementClause.CorrectTypeAssigned:
-						retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCTRANSPORTELEMENTTYPE"));
+						retVal = (Functions.SIZEOF(IsTypedBy) == 0) || (Functions.TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCTRANSPORTELEMENTTYPE"));
 						break;
 				}
 			} catch (Exception ex) {

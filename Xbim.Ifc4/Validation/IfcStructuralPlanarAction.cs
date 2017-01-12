@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.StructuralAnalysisDomain
@@ -31,7 +30,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 				switch (clause)
 				{
 					case IfcStructuralPlanarActionClause.SuitableLoadType:
-						retVal = SIZEOF(NewArray("IFC4.IFCSTRUCTURALLOADPLANARFORCE", "IFC4.IFCSTRUCTURALLOADTEMPERATURE") * TYPEOF(this/* as IfcStructuralActivity*/.AppliedLoad)) == 1;
+						retVal = Functions.SIZEOF(Functions.NewArray("IFC4.IFCSTRUCTURALLOADPLANARFORCE", "IFC4.IFCSTRUCTURALLOADTEMPERATURE") * Functions.TYPEOF(this/* as IfcStructuralActivity*/.AppliedLoad)) == 1;
 						break;
 					case IfcStructuralPlanarActionClause.ConstPredefinedType:
 						retVal = this/* as IfcStructuralSurfaceAction*/.PredefinedType == IfcStructuralSurfaceActivityTypeEnum.CONST;

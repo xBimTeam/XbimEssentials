@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.SharedBldgServiceElements
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 				switch (clause)
 				{
 					case IfcDistributionChamberElementTypeClause.CorrectPredefinedType:
-						retVal = (PredefinedType != IfcDistributionChamberElementTypeEnum.USERDEFINED) || ((PredefinedType == IfcDistributionChamberElementTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						retVal = (PredefinedType != IfcDistributionChamberElementTypeEnum.USERDEFINED) || ((PredefinedType == IfcDistributionChamberElementTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcElementType*/.ElementType));
 						break;
 				}
 			} catch (Exception ex) {

@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.GeometricConstraintResource
@@ -38,7 +37,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 						retVal = AxisCurve.Dim == 2;
 						break;
 					case IfcGridAxisClause.WR2:
-						retVal = (SIZEOF(PartOfU) == 1) ^ (SIZEOF(PartOfV) == 1) ^ (SIZEOF(PartOfW) == 1);
+						retVal = (Functions.SIZEOF(PartOfU) == 1) ^ (Functions.SIZEOF(PartOfV) == 1) ^ (Functions.SIZEOF(PartOfW) == 1);
 						break;
 				}
 			} catch (Exception ex) {

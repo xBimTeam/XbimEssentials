@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.PropertyResource
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 				switch (clause)
 				{
 					case IfcPropertyListValueClause.WR31:
-						retVal = SIZEOF(this.ListValues.Where(temp => !(TYPEOF(this.ListValues.ItemAt(0)) == TYPEOF(temp)))) == 0;
+						retVal = Functions.SIZEOF(this.ListValues.Where(temp => !(Functions.TYPEOF(this.ListValues.ItemAt(0)) == Functions.TYPEOF(temp)))) == 0;
 						break;
 				}
 			} catch (Exception ex) {

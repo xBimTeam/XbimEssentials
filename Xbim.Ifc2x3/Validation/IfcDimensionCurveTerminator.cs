@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 				switch (clause)
 				{
 					case IfcDimensionCurveTerminatorClause.WR61:
-						retVal = TYPEOF(this/* as IfcTerminatorSymbol*/.AnnotatedCurve).Contains("IFC2X3.IFCDIMENSIONCURVE");
+						retVal = Functions.TYPEOF(this/* as IfcTerminatorSymbol*/.AnnotatedCurve).Contains("IFC2X3.IFCDIMENSIONCURVE");
 						break;
 				}
 			} catch (Exception ex) {

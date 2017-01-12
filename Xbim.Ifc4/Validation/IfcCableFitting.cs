@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.ElectricalDomain
@@ -31,10 +30,10 @@ namespace Xbim.Ifc4.ElectricalDomain
 				switch (clause)
 				{
 					case IfcCableFittingClause.CorrectPredefinedType:
-						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcCableFittingTypeEnum.USERDEFINED) || ((PredefinedType == IfcCableFittingTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						retVal = !(Functions.EXISTS(PredefinedType)) || (PredefinedType != IfcCableFittingTypeEnum.USERDEFINED) || ((PredefinedType == IfcCableFittingTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcObject*/.ObjectType));
 						break;
 					case IfcCableFittingClause.CorrectTypeAssigned:
-						retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCCABLEFITTINGTYPE"));
+						retVal = (Functions.SIZEOF(IsTypedBy) == 0) || (Functions.TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCCABLEFITTINGTYPE"));
 						break;
 				}
 			} catch (Exception ex) {

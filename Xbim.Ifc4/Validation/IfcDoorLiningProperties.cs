@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.ArchitectureDomain
@@ -34,19 +33,19 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				switch (clause)
 				{
 					case IfcDoorLiningPropertiesClause.WR31:
-						retVal = !(EXISTS(LiningDepth) && !(EXISTS(LiningThickness)));
+						retVal = !(Functions.EXISTS(LiningDepth) && !(Functions.EXISTS(LiningThickness)));
 						break;
 					case IfcDoorLiningPropertiesClause.WR32:
-						retVal = !(EXISTS(ThresholdDepth) && !(EXISTS(ThresholdThickness)));
+						retVal = !(Functions.EXISTS(ThresholdDepth) && !(Functions.EXISTS(ThresholdThickness)));
 						break;
 					case IfcDoorLiningPropertiesClause.WR33:
-						retVal = (EXISTS(TransomOffset) && EXISTS(TransomThickness)) ^ (!(EXISTS(TransomOffset)) && !(EXISTS(TransomThickness)));
+						retVal = (Functions.EXISTS(TransomOffset) && Functions.EXISTS(TransomThickness)) ^ (!(Functions.EXISTS(TransomOffset)) && !(Functions.EXISTS(TransomThickness)));
 						break;
 					case IfcDoorLiningPropertiesClause.WR34:
-						retVal = (EXISTS(CasingDepth) && EXISTS(CasingThickness)) ^ (!(EXISTS(CasingDepth)) && !(EXISTS(CasingThickness)));
+						retVal = (Functions.EXISTS(CasingDepth) && Functions.EXISTS(CasingThickness)) ^ (!(Functions.EXISTS(CasingDepth)) && !(Functions.EXISTS(CasingThickness)));
 						break;
 					case IfcDoorLiningPropertiesClause.WR35:
-						retVal = (EXISTS(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0))) && ((TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)).Contains("IFC4.IFCDOORTYPE")) || (TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)).Contains("IFC4.IFCDOORSTYLE")));
+						retVal = (Functions.EXISTS(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0))) && ((Functions.TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)).Contains("IFC4.IFCDOORTYPE")) || (Functions.TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)).Contains("IFC4.IFCDOORSTYLE")));
 						break;
 				}
 			} catch (Exception ex) {

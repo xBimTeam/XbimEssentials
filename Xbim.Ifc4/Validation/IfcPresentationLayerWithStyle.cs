@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.PresentationOrganizationResource
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 				switch (clause)
 				{
 					case IfcPresentationLayerWithStyleClause.ApplicableOnlyToItems:
-						retVal = SIZEOF(AssignedItems.Where(temp => (SIZEOF(TYPEOF(temp) * NewArray("IFC4.IFCGEOMETRICREPRESENTATIONITEM", "IFC4.IFCMAPPEDITEM")) == 1))) == SIZEOF(AssignedItems);
+						retVal = Functions.SIZEOF(AssignedItems.Where(temp => (Functions.SIZEOF(Functions.TYPEOF(temp) * Functions.NewArray("IFC4.IFCGEOMETRICREPRESENTATIONITEM", "IFC4.IFCMAPPEDITEM")) == 1))) == Functions.SIZEOF(AssignedItems);
 						break;
 				}
 			} catch (Exception ex) {

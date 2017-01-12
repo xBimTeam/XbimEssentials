@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.TopologyResource
@@ -32,13 +31,13 @@ namespace Xbim.Ifc4.TopologyResource
 				switch (clause)
 				{
 					case IfcAdvancedFaceClause.ApplicableSurface:
-						retVal = SIZEOF(NewArray("IFC4.IFCELEMENTARYSURFACE", "IFC4.IFCSWEPTSURFACE", "IFC4.IFCBSPLINESURFACE") * TYPEOF(this/* as IfcFaceSurface*/.FaceSurface)) == 1;
+						retVal = Functions.SIZEOF(Functions.NewArray("IFC4.IFCELEMENTARYSURFACE", "IFC4.IFCSWEPTSURFACE", "IFC4.IFCBSPLINESURFACE") * Functions.TYPEOF(this/* as IfcFaceSurface*/.FaceSurface)) == 1;
 						break;
 					case IfcAdvancedFaceClause.RequiresEdgeCurve:
-						retVal = SIZEOF(this/* as IfcFace*/.Bounds.Where(Bnds => TYPEOF(Bnds.Bound).Contains("IFC4.IFCEDGELOOP")).Where(ElpFbnds => !(SIZEOF(ElpFbnds.Bound.AsIfcEdgeLoop().EdgeList.Where(Oe => !(TYPEOF(Oe/* as IfcOrientedEdge*/.EdgeElement).Contains("IFC4.IFCEDGECURVE")))) == 0))) == 0;
+						retVal = Functions.SIZEOF(this/* as IfcFace*/.Bounds.Where(Bnds => Functions.TYPEOF(Bnds.Bound).Contains("IFC4.IFCEDGELOOP")).Where(ElpFbnds => !(Functions.SIZEOF(ElpFbnds.Bound.AsIfcEdgeLoop().EdgeList.Where(Oe => !(Functions.TYPEOF(Oe/* as IfcOrientedEdge*/.EdgeElement).Contains("IFC4.IFCEDGECURVE")))) == 0))) == 0;
 						break;
 					case IfcAdvancedFaceClause.ApplicableEdgeCurves:
-						retVal = SIZEOF(this/* as IfcFace*/.Bounds.Where(Bnds => TYPEOF(Bnds.Bound).Contains("IFC4.IFCEDGELOOP")).Where(ElpFbnds => !(SIZEOF(ElpFbnds.Bound.AsIfcEdgeLoop().EdgeList.Where(Oe => !(SIZEOF(NewArray("IFC4.IFCLINE", "IFC4.IFCCONIC", "IFC4.IFCPOLYLINE", "IFC4.IFCBSPLINECURVE") * TYPEOF(Oe/* as IfcOrientedEdge*/.EdgeElement.AsIfcEdgeCurve().EdgeGeometry)) == 1))) == 0))) == 0;
+						retVal = Functions.SIZEOF(this/* as IfcFace*/.Bounds.Where(Bnds => Functions.TYPEOF(Bnds.Bound).Contains("IFC4.IFCEDGELOOP")).Where(ElpFbnds => !(Functions.SIZEOF(ElpFbnds.Bound.AsIfcEdgeLoop().EdgeList.Where(Oe => !(Functions.SIZEOF(Functions.NewArray("IFC4.IFCLINE", "IFC4.IFCCONIC", "IFC4.IFCPOLYLINE", "IFC4.IFCBSPLINECURVE") * Functions.TYPEOF(Oe/* as IfcOrientedEdge*/.EdgeElement.AsIfcEdgeCurve().EdgeGeometry)) == 1))) == 0))) == 0;
 						break;
 				}
 			} catch (Exception ex) {

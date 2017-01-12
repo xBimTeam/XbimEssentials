@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.GeometricModelResource
@@ -34,7 +33,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 						retVal = PolygonalBoundary.Dim == 2;
 						break;
 					case IfcPolygonalBoundedHalfSpaceClause.BoundaryType:
-						retVal = SIZEOF(TYPEOF(PolygonalBoundary) * NewArray("IFC4.IFCPOLYLINE", "IFC4.IFCCOMPOSITECURVE")) == 1;
+						retVal = Functions.SIZEOF(Functions.TYPEOF(PolygonalBoundary) * Functions.NewArray("IFC4.IFCPOLYLINE", "IFC4.IFCCOMPOSITECURVE")) == 1;
 						break;
 				}
 			} catch (Exception ex) {

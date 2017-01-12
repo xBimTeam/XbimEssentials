@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.UtilityResource
@@ -36,10 +35,10 @@ namespace Xbim.Ifc2x3.UtilityResource
 				switch (clause)
 				{
 					case IfcTableClause.WR1:
-						retVal = SIZEOF(Rows.Where(Temp => HIINDEX(Temp.RowCells) != HIINDEX(Rows.ItemAt(0).RowCells))) == 0;
+						retVal = Functions.SIZEOF(Rows.Where(Temp => Functions.HIINDEX(Temp.RowCells) != Functions.HIINDEX(Rows.ItemAt(0).RowCells))) == 0;
 						break;
 					case IfcTableClause.WR2:
-						retVal = SIZEOF(Rows.Where(Temp => HIINDEX(Temp.RowCells) != HIINDEX(Rows.ItemAt(0).RowCells))) == 0;
+						retVal = Functions.SIZEOF(Rows.Where(Temp => Functions.HIINDEX(Temp.RowCells) != Functions.HIINDEX(Rows.ItemAt(0).RowCells))) == 0;
 						break;
 					case IfcTableClause.WR3:
 						retVal = ((0 <= NumberOfHeadings) && (NumberOfHeadings <= 1) );

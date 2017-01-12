@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.GeometricModelResource
@@ -31,10 +30,10 @@ namespace Xbim.Ifc4.GeometricModelResource
 				switch (clause)
 				{
 					case IfcSweptDiskSolidPolygonalClause.CorrectRadii:
-						retVal = !(EXISTS(FilletRadius)) || (FilletRadius >= this/* as IfcSweptDiskSolid*/.Radius);
+						retVal = !(Functions.EXISTS(FilletRadius)) || (FilletRadius >= this/* as IfcSweptDiskSolid*/.Radius);
 						break;
 					case IfcSweptDiskSolidPolygonalClause.DirectrixIsPolyline:
-						retVal = TYPEOF(this/* as IfcSweptDiskSolid*/.Directrix).Contains("IFC4.IFCPOLYLINE");
+						retVal = Functions.TYPEOF(this/* as IfcSweptDiskSolid*/.Directrix).Contains("IFC4.IFCPOLYLINE");
 						break;
 				}
 			} catch (Exception ex) {

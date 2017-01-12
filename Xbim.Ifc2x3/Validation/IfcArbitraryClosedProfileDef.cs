@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.ProfileResource
@@ -39,10 +38,10 @@ namespace Xbim.Ifc2x3.ProfileResource
 						retVal = OuterCurve.Dim == 2;
 						break;
 					case IfcArbitraryClosedProfileDefClause.WR2:
-						retVal = !(TYPEOF(OuterCurve).Contains("IFC2X3.IFCLINE"));
+						retVal = !(Functions.TYPEOF(OuterCurve).Contains("IFC2X3.IFCLINE"));
 						break;
 					case IfcArbitraryClosedProfileDefClause.WR3:
-						retVal = !(TYPEOF(OuterCurve).Contains("IFC2X3.IFCOFFSETCURVE2D"));
+						retVal = !(Functions.TYPEOF(OuterCurve).Contains("IFC2X3.IFCOFFSETCURVE2D"));
 						break;
 				}
 			} catch (Exception ex) {

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.RepresentationResource
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				switch (clause)
 				{
 					case IfcGeometricRepresentationContextClause.North2D:
-						retVal = !(EXISTS(TrueNorth)) || (HIINDEX(TrueNorth.DirectionRatios) == 2);
+						retVal = !(Functions.EXISTS(TrueNorth)) || (Functions.HIINDEX(TrueNorth.DirectionRatios) == 2);
 						break;
 				}
 			} catch (Exception ex) {

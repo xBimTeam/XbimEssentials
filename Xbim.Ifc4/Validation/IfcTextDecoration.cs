@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.PresentationAppearanceResource
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				switch (clause)
 				{
 					case IfcTextDecorationClause.WR1:
-						retVal = NewArray("none", "underline", "overline", "line-through", "blink").Contains(this);
+						retVal = Functions.NewArray("none", "underline", "overline", "line-through", "blink").Contains(this);
 						break;
 				}
 			} catch (Exception ex) {

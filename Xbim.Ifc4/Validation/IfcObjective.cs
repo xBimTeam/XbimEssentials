@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.ConstraintResource
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.ConstraintResource
 				switch (clause)
 				{
 					case IfcObjectiveClause.WR21:
-						retVal = (ObjectiveQualifier != IfcObjectiveEnum.USERDEFINED) || ((ObjectiveQualifier == IfcObjectiveEnum.USERDEFINED) && EXISTS(this/* as IfcObjective*/.UserDefinedQualifier));
+						retVal = (ObjectiveQualifier != IfcObjectiveEnum.USERDEFINED) || ((ObjectiveQualifier == IfcObjectiveEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcObjective*/.UserDefinedQualifier));
 						break;
 				}
 			} catch (Exception ex) {

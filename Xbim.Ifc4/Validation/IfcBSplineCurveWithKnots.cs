@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.GeometryResource
@@ -31,10 +30,10 @@ namespace Xbim.Ifc4.GeometryResource
 				switch (clause)
 				{
 					case IfcBSplineCurveWithKnotsClause.ConsistentBSpline:
-						retVal = IfcConstraintsParamBSpline(Degree, UpperIndexOnKnots, UpperIndexOnControlPoints, KnotMultiplicities, Knots);
+						retVal = Functions.IfcConstraintsParamBSpline(Degree, UpperIndexOnKnots, UpperIndexOnControlPoints, KnotMultiplicities, Knots);
 						break;
 					case IfcBSplineCurveWithKnotsClause.CorrespondingKnotLists:
-						retVal = SIZEOF(KnotMultiplicities) == UpperIndexOnKnots;
+						retVal = Functions.SIZEOF(KnotMultiplicities) == UpperIndexOnKnots;
 						break;
 				}
 			} catch (Exception ex) {

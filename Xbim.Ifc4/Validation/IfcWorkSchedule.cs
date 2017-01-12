@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.ProcessExtension
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				switch (clause)
 				{
 					case IfcWorkScheduleClause.CorrectPredefinedType:
-						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcWorkScheduleTypeEnum.USERDEFINED) || ((PredefinedType == IfcWorkScheduleTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						retVal = !(Functions.EXISTS(PredefinedType)) || (PredefinedType != IfcWorkScheduleTypeEnum.USERDEFINED) || ((PredefinedType == IfcWorkScheduleTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcObject*/.ObjectType));
 						break;
 				}
 			} catch (Exception ex) {

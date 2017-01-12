@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.ActorResource
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.ActorResource
 				switch (clause)
 				{
 					case IfcPersonClause.WR1:
-						retVal = EXISTS(FamilyName) || EXISTS(GivenName);
+						retVal = Functions.EXISTS(FamilyName) || Functions.EXISTS(GivenName);
 						break;
 				}
 			} catch (Exception ex) {

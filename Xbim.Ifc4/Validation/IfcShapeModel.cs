@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.RepresentationResource
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				switch (clause)
 				{
 					case IfcShapeModelClause.WR11:
-						retVal = (SIZEOF(this/* as IfcRepresentation*/.OfProductRepresentation) == 1) ^ (SIZEOF(this/* as IfcRepresentation*/.RepresentationMap) == 1) ^ (SIZEOF(OfShapeAspect) == 1);
+						retVal = (Functions.SIZEOF(this/* as IfcRepresentation*/.OfProductRepresentation) == 1) ^ (Functions.SIZEOF(this/* as IfcRepresentation*/.RepresentationMap) == 1) ^ (Functions.SIZEOF(OfShapeAspect) == 1);
 						break;
 				}
 			} catch (Exception ex) {

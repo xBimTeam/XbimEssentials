@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.ControlExtension
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.ControlExtension
 				switch (clause)
 				{
 					case IfcTimeSeriesScheduleClause.WR41:
-						retVal = !(TimeSeriesScheduleType == IfcTimeSeriesScheduleTypeEnum.USERDEFINED) || EXISTS(this/* as IfcObject*/.ObjectType);
+						retVal = !(TimeSeriesScheduleType == IfcTimeSeriesScheduleTypeEnum.USERDEFINED) || Functions.EXISTS(this/* as IfcObject*/.ObjectType);
 						break;
 				}
 			} catch (Exception ex) {

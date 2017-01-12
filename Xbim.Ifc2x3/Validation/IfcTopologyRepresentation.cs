@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.RepresentationResource
@@ -36,13 +35,13 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				switch (clause)
 				{
 					case IfcTopologyRepresentationClause.WR21:
-						retVal = SIZEOF(this/* as IfcRepresentation*/.Items.Where(temp => !(TYPEOF(temp).Contains("IFC2X3.IFCTOPOLOGICALREPRESENTATIONITEM")))) == 0;
+						retVal = Functions.SIZEOF(this/* as IfcRepresentation*/.Items.Where(temp => !(Functions.TYPEOF(temp).Contains("IFC2X3.IFCTOPOLOGICALREPRESENTATIONITEM")))) == 0;
 						break;
 					case IfcTopologyRepresentationClause.WR22:
-						retVal = EXISTS(this/* as IfcRepresentation*/.RepresentationType);
+						retVal = Functions.EXISTS(this/* as IfcRepresentation*/.RepresentationType);
 						break;
 					case IfcTopologyRepresentationClause.WR23:
-						retVal = IfcTopologyRepresentationTypes(this/* as IfcRepresentation*/.RepresentationType, this/* as IfcRepresentation*/.Items);
+						retVal = Functions.IfcTopologyRepresentationTypes(this/* as IfcRepresentation*/.RepresentationType, this/* as IfcRepresentation*/.Items);
 						break;
 				}
 			} catch (Exception ex) {

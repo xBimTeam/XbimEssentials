@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.Kernel
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.Kernel
 				switch (clause)
 				{
 					case IfcTypeProductClause.WR41:
-						retVal = !(EXISTS(this/* as IfcTypeObject*/.ObjectTypeOf.ItemAt(0))) || (SIZEOF(this/* as IfcTypeObject*/.ObjectTypeOf.ItemAt(0).RelatedObjects.Where(temp => !(TYPEOF(temp).Contains("IFC2X3.IFCPRODUCT")))) == 0);
+						retVal = !(Functions.EXISTS(this/* as IfcTypeObject*/.ObjectTypeOf.ItemAt(0))) || (Functions.SIZEOF(this/* as IfcTypeObject*/.ObjectTypeOf.ItemAt(0).RelatedObjects.Where(temp => !(Functions.TYPEOF(temp).Contains("IFC2X3.IFCPRODUCT")))) == 0);
 						break;
 				}
 			} catch (Exception ex) {

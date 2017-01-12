@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.PropertyResource
@@ -35,10 +34,10 @@ namespace Xbim.Ifc2x3.PropertyResource
 				switch (clause)
 				{
 					case IfcPropertyBoundedValueClause.WR21:
-						retVal = !(EXISTS(UpperBoundValue)) || !(EXISTS(LowerBoundValue)) || (TYPEOF(UpperBoundValue) == TYPEOF(LowerBoundValue));
+						retVal = !(Functions.EXISTS(UpperBoundValue)) || !(Functions.EXISTS(LowerBoundValue)) || (Functions.TYPEOF(UpperBoundValue) == Functions.TYPEOF(LowerBoundValue));
 						break;
 					case IfcPropertyBoundedValueClause.WR22:
-						retVal = EXISTS(UpperBoundValue) || EXISTS(LowerBoundValue);
+						retVal = Functions.EXISTS(UpperBoundValue) || Functions.EXISTS(LowerBoundValue);
 						break;
 				}
 			} catch (Exception ex) {

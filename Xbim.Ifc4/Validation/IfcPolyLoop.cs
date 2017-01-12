@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.TopologyResource
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.TopologyResource
 				switch (clause)
 				{
 					case IfcPolyLoopClause.AllPointsSameDim:
-						retVal = SIZEOF(Polygon.Where(Temp => Temp.Dim != Polygon.ItemAt(0).Dim)) == 0;
+						retVal = Functions.SIZEOF(Polygon.Where(Temp => Temp.Dim != Polygon.ItemAt(0).Dim)) == 0;
 						break;
 				}
 			} catch (Exception ex) {

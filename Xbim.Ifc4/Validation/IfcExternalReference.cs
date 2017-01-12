@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.ExternalReferenceResource
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 				switch (clause)
 				{
 					case IfcExternalReferenceClause.WR1:
-						retVal = EXISTS(Identification) || EXISTS(Location) || EXISTS(Name);
+						retVal = Functions.EXISTS(Identification) || Functions.EXISTS(Location) || Functions.EXISTS(Name);
 						break;
 				}
 			} catch (Exception ex) {

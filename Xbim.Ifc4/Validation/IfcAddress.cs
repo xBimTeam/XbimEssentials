@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.ActorResource
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.ActorResource
 				switch (clause)
 				{
 					case IfcAddressClause.WR1:
-						retVal = (!(EXISTS(Purpose))) || ((Purpose != IfcAddressTypeEnum.USERDEFINED) || ((Purpose == IfcAddressTypeEnum.USERDEFINED) && EXISTS(this.UserDefinedPurpose)));
+						retVal = (!(Functions.EXISTS(Purpose))) || ((Purpose != IfcAddressTypeEnum.USERDEFINED) || ((Purpose == IfcAddressTypeEnum.USERDEFINED) && Functions.EXISTS(this.UserDefinedPurpose)));
 						break;
 				}
 			} catch (Exception ex) {

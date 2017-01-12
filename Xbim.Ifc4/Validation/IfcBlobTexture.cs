@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.PresentationAppearanceResource
@@ -31,10 +30,10 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				switch (clause)
 				{
 					case IfcBlobTextureClause.SupportedRasterFormat:
-						retVal = NewArray("BMP", "JPG", "GIF", "PNG").Contains(this.RasterFormat);
+						retVal = Functions.NewArray("BMP", "JPG", "GIF", "PNG").Contains(this.RasterFormat);
 						break;
 					case IfcBlobTextureClause.RasterCodeByteStream:
-						retVal = BLENGTH(RasterCode) % 8 == 0;
+						retVal = Functions.BLENGTH(RasterCode) % 8 == 0;
 						break;
 				}
 			} catch (Exception ex) {

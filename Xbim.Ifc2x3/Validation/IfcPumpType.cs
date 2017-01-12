@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.HVACDomain
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.HVACDomain
 				switch (clause)
 				{
 					case IfcPumpTypeClause.WR1:
-						retVal = (PredefinedType != IfcPumpTypeEnum.USERDEFINED) || ((PredefinedType == IfcPumpTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						retVal = (PredefinedType != IfcPumpTypeEnum.USERDEFINED) || ((PredefinedType == IfcPumpTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcElementType*/.ElementType));
 						break;
 				}
 			} catch (Exception ex) {

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.ProcessExtension
@@ -31,10 +30,10 @@ namespace Xbim.Ifc4.ProcessExtension
 				switch (clause)
 				{
 					case IfcEventTypeClause.CorrectPredefinedType:
-						retVal = (PredefinedType != IfcEventTypeEnum.USERDEFINED) || ((PredefinedType == IfcEventTypeEnum.USERDEFINED) && EXISTS(this/* as IfcTypeProcess*/.ProcessType));
+						retVal = (PredefinedType != IfcEventTypeEnum.USERDEFINED) || ((PredefinedType == IfcEventTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcTypeProcess*/.ProcessType));
 						break;
 					case IfcEventTypeClause.CorrectEventTriggerType:
-						retVal = (EventTriggerType != IfcEventTriggerTypeEnum.USERDEFINED) || ((EventTriggerType == IfcEventTriggerTypeEnum.USERDEFINED) && EXISTS(UserDefinedEventTriggerType));
+						retVal = (EventTriggerType != IfcEventTriggerTypeEnum.USERDEFINED) || ((EventTriggerType == IfcEventTriggerTypeEnum.USERDEFINED) && Functions.EXISTS(UserDefinedEventTriggerType));
 						break;
 				}
 			} catch (Exception ex) {

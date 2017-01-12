@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
@@ -36,13 +35,13 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				switch (clause)
 				{
 					case IfcFillAreaStyleClause.WR11:
-						retVal = SIZEOF(this.FillStyles.Where(Style => TYPEOF(Style).Contains("IFC2X3.IFCCOLOUR"))) <= 1;
+						retVal = Functions.SIZEOF(this.FillStyles.Where(Style => Functions.TYPEOF(Style).Contains("IFC2X3.IFCCOLOUR"))) <= 1;
 						break;
 					case IfcFillAreaStyleClause.WR12:
-						retVal = SIZEOF(this.FillStyles.Where(Style => TYPEOF(Style).Contains("IFC2X3.IFCEXTERNALLYDEFINEDHATCHSTYLE"))) <= 1;
+						retVal = Functions.SIZEOF(this.FillStyles.Where(Style => Functions.TYPEOF(Style).Contains("IFC2X3.IFCEXTERNALLYDEFINEDHATCHSTYLE"))) <= 1;
 						break;
 					case IfcFillAreaStyleClause.WR13:
-						retVal = IfcCorrectFillAreaStyle(this.FillStyles);
+						retVal = Functions.IfcCorrectFillAreaStyle(this.FillStyles);
 						break;
 				}
 			} catch (Exception ex) {

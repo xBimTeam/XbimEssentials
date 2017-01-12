@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.StructuralLoadResource
@@ -33,16 +32,16 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				switch (clause)
 				{
 					case IfcSurfaceReinforcementAreaClause.SurfaceAndOrShearAreaSpecified:
-						retVal = EXISTS(SurfaceReinforcement1) || EXISTS(SurfaceReinforcement2) || EXISTS(ShearReinforcement);
+						retVal = Functions.EXISTS(SurfaceReinforcement1) || Functions.EXISTS(SurfaceReinforcement2) || Functions.EXISTS(ShearReinforcement);
 						break;
 					case IfcSurfaceReinforcementAreaClause.NonnegativeArea1:
-						retVal = (!EXISTS(SurfaceReinforcement1)) || ((SurfaceReinforcement1.ItemAt(0) >= 0) && (SurfaceReinforcement1.ItemAt(1) >= 0) && ((SIZEOF(SurfaceReinforcement1) == 1) || (SurfaceReinforcement1.ItemAt(0) >= 0)));
+						retVal = (!Functions.EXISTS(SurfaceReinforcement1)) || ((SurfaceReinforcement1.ItemAt(0) >= 0) && (SurfaceReinforcement1.ItemAt(1) >= 0) && ((Functions.SIZEOF(SurfaceReinforcement1) == 1) || (SurfaceReinforcement1.ItemAt(0) >= 0)));
 						break;
 					case IfcSurfaceReinforcementAreaClause.NonnegativeArea2:
-						retVal = (!EXISTS(SurfaceReinforcement2)) || ((SurfaceReinforcement2.ItemAt(0) >= 0) && (SurfaceReinforcement2.ItemAt(1) >= 0) && ((SIZEOF(SurfaceReinforcement2) == 1) || (SurfaceReinforcement2.ItemAt(0) >= 0)));
+						retVal = (!Functions.EXISTS(SurfaceReinforcement2)) || ((SurfaceReinforcement2.ItemAt(0) >= 0) && (SurfaceReinforcement2.ItemAt(1) >= 0) && ((Functions.SIZEOF(SurfaceReinforcement2) == 1) || (SurfaceReinforcement2.ItemAt(0) >= 0)));
 						break;
 					case IfcSurfaceReinforcementAreaClause.NonnegativeArea3:
-						retVal = (!EXISTS(ShearReinforcement)) || (ShearReinforcement >= 0);
+						retVal = (!Functions.EXISTS(ShearReinforcement)) || (ShearReinforcement >= 0);
 						break;
 				}
 			} catch (Exception ex) {

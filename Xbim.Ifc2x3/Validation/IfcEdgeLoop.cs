@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.TopologyResource
@@ -38,7 +37,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 						retVal = Object.ReferenceEquals((EdgeList.ItemAt(0).EdgeStart), (EdgeList.ItemAt(Ne-1).EdgeEnd));
 						break;
 					case IfcEdgeLoopClause.WR2:
-						retVal = IfcLoopHeadToTail(this);
+						retVal = Functions.IfcLoopHeadToTail(this);
 						break;
 				}
 			} catch (Exception ex) {

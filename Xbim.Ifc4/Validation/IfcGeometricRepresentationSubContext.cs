@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.RepresentationResource
@@ -32,13 +31,13 @@ namespace Xbim.Ifc4.RepresentationResource
 				switch (clause)
 				{
 					case IfcGeometricRepresentationSubContextClause.ParentNoSub:
-						retVal = !(TYPEOF(ParentContext).Contains("IFC4.IFCGEOMETRICREPRESENTATIONSUBCONTEXT"));
+						retVal = !(Functions.TYPEOF(ParentContext).Contains("IFC4.IFCGEOMETRICREPRESENTATIONSUBCONTEXT"));
 						break;
 					case IfcGeometricRepresentationSubContextClause.UserTargetProvided:
-						retVal = (TargetView != IfcGeometricProjectionEnum.USERDEFINED) || ((TargetView == IfcGeometricProjectionEnum.USERDEFINED) && EXISTS(UserDefinedTargetView));
+						retVal = (TargetView != IfcGeometricProjectionEnum.USERDEFINED) || ((TargetView == IfcGeometricProjectionEnum.USERDEFINED) && Functions.EXISTS(UserDefinedTargetView));
 						break;
 					case IfcGeometricRepresentationSubContextClause.NoCoordOperation:
-						retVal = SIZEOF(this/* as IfcGeometricRepresentationContext*/.HasCoordinateOperation) == 0;
+						retVal = Functions.SIZEOF(this/* as IfcGeometricRepresentationContext*/.HasCoordinateOperation) == 0;
 						break;
 				}
 			} catch (Exception ex) {

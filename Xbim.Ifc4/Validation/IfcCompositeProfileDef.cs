@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.ProfileResource
@@ -31,10 +30,10 @@ namespace Xbim.Ifc4.ProfileResource
 				switch (clause)
 				{
 					case IfcCompositeProfileDefClause.InvariantProfileType:
-						retVal = SIZEOF(Profiles.Where(temp => temp.ProfileType != Profiles.ItemAt(0).ProfileType)) == 0;
+						retVal = Functions.SIZEOF(Profiles.Where(temp => temp.ProfileType != Profiles.ItemAt(0).ProfileType)) == 0;
 						break;
 					case IfcCompositeProfileDefClause.NoRecursion:
-						retVal = SIZEOF(Profiles.Where(temp => TYPEOF(temp).Contains("IFC4.IFCCOMPOSITEPROFILEDEF"))) == 0;
+						retVal = Functions.SIZEOF(Profiles.Where(temp => Functions.TYPEOF(temp).Contains("IFC4.IFCCOMPOSITEPROFILEDEF"))) == 0;
 						break;
 				}
 			} catch (Exception ex) {

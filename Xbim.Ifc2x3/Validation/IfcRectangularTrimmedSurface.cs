@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.GeometryResource
@@ -43,7 +42,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 						retVal = V1 != V2;
 						break;
 					case IfcRectangularTrimmedSurfaceClause.WR3:
-						retVal = ((TYPEOF(BasisSurface).Contains("IFC2X3.IFCELEMENTARYSURFACE")) && (!(TYPEOF(BasisSurface).Contains("IFC2X3.IFCPLANE")))) || (TYPEOF(BasisSurface).Contains("IFC2X3.IFCSURFACEOFREVOLUTION")) || (Usense == (U2 > U1));
+						retVal = ((Functions.TYPEOF(BasisSurface).Contains("IFC2X3.IFCELEMENTARYSURFACE")) && (!(Functions.TYPEOF(BasisSurface).Contains("IFC2X3.IFCPLANE")))) || (Functions.TYPEOF(BasisSurface).Contains("IFC2X3.IFCSURFACEOFREVOLUTION")) || (Usense == (U2 > U1));
 						break;
 					case IfcRectangularTrimmedSurfaceClause.WR4:
 						retVal = Vsense == (V2 > V1);

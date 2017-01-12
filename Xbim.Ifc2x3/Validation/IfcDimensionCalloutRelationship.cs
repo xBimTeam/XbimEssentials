@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
@@ -36,13 +35,13 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 				switch (clause)
 				{
 					case IfcDimensionCalloutRelationshipClause.WR11:
-						retVal = NewArray("primary", "secondary").Contains(this/* as IfcDraughtingCalloutRelationship*/.Name);
+						retVal = Functions.NewArray("primary", "secondary").Contains(this/* as IfcDraughtingCalloutRelationship*/.Name);
 						break;
 					case IfcDimensionCalloutRelationshipClause.WR12:
-						retVal = SIZEOF(TYPEOF(this/* as IfcDraughtingCalloutRelationship*/.RelatingDraughtingCallout) * NewArray("IFC2X3.IFCANGULARDIMENSION", "IFC2X3.IFCDIAMETERDIMENSION", "IFC2X3.IFCLINEARDIMENSION", "IFC2X3.IFCRADIUSDIMENSION")) == 1;
+						retVal = Functions.SIZEOF(Functions.TYPEOF(this/* as IfcDraughtingCalloutRelationship*/.RelatingDraughtingCallout) * Functions.NewArray("IFC2X3.IFCANGULARDIMENSION", "IFC2X3.IFCDIAMETERDIMENSION", "IFC2X3.IFCLINEARDIMENSION", "IFC2X3.IFCRADIUSDIMENSION")) == 1;
 						break;
 					case IfcDimensionCalloutRelationshipClause.WR13:
-						retVal = !(TYPEOF(this/* as IfcDraughtingCalloutRelationship*/.RelatedDraughtingCallout).Contains("IFC2X3.IFCDIMENSIONCURVEDIRECTEDCALLOUT"));
+						retVal = !(Functions.TYPEOF(this/* as IfcDraughtingCalloutRelationship*/.RelatedDraughtingCallout).Contains("IFC2X3.IFCDIMENSIONCURVEDIRECTEDCALLOUT"));
 						break;
 				}
 			} catch (Exception ex) {

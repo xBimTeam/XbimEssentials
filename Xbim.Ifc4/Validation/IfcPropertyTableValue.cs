@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.PropertyResource
@@ -32,13 +31,13 @@ namespace Xbim.Ifc4.PropertyResource
 				switch (clause)
 				{
 					case IfcPropertyTableValueClause.WR21:
-						retVal = (!(EXISTS(DefiningValues)) && !(EXISTS(DefinedValues))) || (SIZEOF(DefiningValues) == SIZEOF(DefinedValues));
+						retVal = (!(Functions.EXISTS(DefiningValues)) && !(Functions.EXISTS(DefinedValues))) || (Functions.SIZEOF(DefiningValues) == Functions.SIZEOF(DefinedValues));
 						break;
 					case IfcPropertyTableValueClause.WR22:
-						retVal = !(EXISTS(DefiningValues)) || (SIZEOF(this.DefiningValues.Where(temp => TYPEOF(temp) != TYPEOF(this.DefiningValues.ItemAt(0)))) == 0);
+						retVal = !(Functions.EXISTS(DefiningValues)) || (Functions.SIZEOF(this.DefiningValues.Where(temp => Functions.TYPEOF(temp) != Functions.TYPEOF(this.DefiningValues.ItemAt(0)))) == 0);
 						break;
 					case IfcPropertyTableValueClause.WR23:
-						retVal = !(EXISTS(DefinedValues)) || (SIZEOF(this.DefinedValues.Where(temp => TYPEOF(temp) != TYPEOF(this.DefinedValues.ItemAt(0)))) == 0);
+						retVal = !(Functions.EXISTS(DefinedValues)) || (Functions.SIZEOF(this.DefinedValues.Where(temp => Functions.TYPEOF(temp) != Functions.TYPEOF(this.DefinedValues.ItemAt(0)))) == 0);
 						break;
 				}
 			} catch (Exception ex) {

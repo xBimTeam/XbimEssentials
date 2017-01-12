@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.StructuralAnalysisDomain
@@ -31,7 +30,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 				switch (clause)
 				{
 					case IfcStructuralCurveReactionClause.HasObjectType:
-						retVal = (PredefinedType != IfcStructuralCurveActivityTypeEnum.USERDEFINED) || EXISTS(this/* as IfcObject*/.ObjectType);
+						retVal = (PredefinedType != IfcStructuralCurveActivityTypeEnum.USERDEFINED) || Functions.EXISTS(this/* as IfcObject*/.ObjectType);
 						break;
 					case IfcStructuralCurveReactionClause.SuitablePredefinedType:
 						retVal = (PredefinedType != IfcStructuralCurveActivityTypeEnum.SINUS) && (PredefinedType != IfcStructuralCurveActivityTypeEnum.PARABOLA);

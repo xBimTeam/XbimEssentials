@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.GeometryResource
@@ -39,7 +38,7 @@ namespace Xbim.Ifc4.GeometryResource
 						retVal = V1 != V2;
 						break;
 					case IfcRectangularTrimmedSurfaceClause.UsenseCompatible:
-						retVal = ((TYPEOF(BasisSurface).Contains("IFC4.IFCELEMENTARYSURFACE")) && (!(TYPEOF(BasisSurface).Contains("IFC4.IFCPLANE")))) || (TYPEOF(BasisSurface).Contains("IFC4.IFCSURFACEOFREVOLUTION")) || (Usense == (U2 > U1));
+						retVal = ((Functions.TYPEOF(BasisSurface).Contains("IFC4.IFCELEMENTARYSURFACE")) && (!(Functions.TYPEOF(BasisSurface).Contains("IFC4.IFCPLANE")))) || (Functions.TYPEOF(BasisSurface).Contains("IFC4.IFCSURFACEOFREVOLUTION")) || (Usense == (U2 > U1));
 						break;
 					case IfcRectangularTrimmedSurfaceClause.VsenseCompatible:
 						retVal = Vsense == (V2 > V1);

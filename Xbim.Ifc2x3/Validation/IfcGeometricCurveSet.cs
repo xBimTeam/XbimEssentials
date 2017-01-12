@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.GeometricModelResource
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				switch (clause)
 				{
 					case IfcGeometricCurveSetClause.WR1:
-						retVal = SIZEOF(this/* as IfcGeometricSet*/.Elements.Where(Temp => TYPEOF(Temp).Contains("IFC2X3.IFCSURFACE"))) == 0;
+						retVal = Functions.SIZEOF(this/* as IfcGeometricSet*/.Elements.Where(Temp => Functions.TYPEOF(Temp).Contains("IFC2X3.IFCSURFACE"))) == 0;
 						break;
 				}
 			} catch (Exception ex) {

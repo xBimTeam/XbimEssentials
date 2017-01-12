@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.ConstraintResource
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				switch (clause)
 				{
 					case IfcConstraintAggregationRelationshipClause.WR11:
-						retVal = SIZEOF(RelatedConstraints.Where(temp => Object.ReferenceEquals(temp, RelatingConstraint))) == 0;
+						retVal = Functions.SIZEOF(RelatedConstraints.Where(temp => Object.ReferenceEquals(temp, RelatingConstraint))) == 0;
 						break;
 				}
 			} catch (Exception ex) {

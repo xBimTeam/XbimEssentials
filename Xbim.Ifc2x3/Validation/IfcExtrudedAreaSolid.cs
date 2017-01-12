@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.GeometricModelResource
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				switch (clause)
 				{
 					case IfcExtrudedAreaSolidClause.WR31:
-						retVal = IfcDotProduct(IfcDirection(0, 0, 1), this.ExtrudedDirection) != 0;
+						retVal = Functions.IfcDotProduct(Functions.IfcDirection(0, 0, 1), this.ExtrudedDirection) != 0;
 						break;
 				}
 			} catch (Exception ex) {

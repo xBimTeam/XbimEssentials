@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 				switch (clause)
 				{
 					case IfcPreDefinedTerminatorSymbolClause.WR31:
-						retVal = NewArray("blanked arrow", "blanked box", "blanked dot", "dimension origin", "filled arrow", "filled box", "filled dot", "integral symbol", "open arrow", "slash", "unfilled arrow").Contains(this/* as IfcPreDefinedItem*/.Name);
+						retVal = Functions.NewArray("blanked arrow", "blanked box", "blanked dot", "dimension origin", "filled arrow", "filled box", "filled dot", "integral symbol", "open arrow", "slash", "unfilled arrow").Contains(this/* as IfcPreDefinedItem*/.Name);
 						break;
 				}
 			} catch (Exception ex) {

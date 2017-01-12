@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.TopologyResource
@@ -34,7 +33,7 @@ namespace Xbim.Ifc4.TopologyResource
 						retVal = Object.ReferenceEquals((EdgeList.ItemAt(0).EdgeStart), (EdgeList.ItemAt(Ne-1).EdgeEnd));
 						break;
 					case IfcEdgeLoopClause.IsContinuous:
-						retVal = IfcLoopHeadToTail(this);
+						retVal = Functions.IfcLoopHeadToTail(this);
 						break;
 				}
 			} catch (Exception ex) {

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.GeometricConstraintResource
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 				switch (clause)
 				{
 					case IfcLocalPlacementClause.WR21:
-						retVal = IfcCorrectLocalPlacement(RelativePlacement, PlacementRelTo);
+						retVal = Functions.IfcCorrectLocalPlacement(RelativePlacement, PlacementRelTo);
 						break;
 				}
 			} catch (Exception ex) {

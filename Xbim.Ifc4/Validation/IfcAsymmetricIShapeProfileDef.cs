@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.ProfileResource
@@ -33,16 +32,16 @@ namespace Xbim.Ifc4.ProfileResource
 				switch (clause)
 				{
 					case IfcAsymmetricIShapeProfileDefClause.ValidFlangeThickness:
-						retVal = !(EXISTS(TopFlangeThickness)) || ((BottomFlangeThickness + TopFlangeThickness) < OverallDepth);
+						retVal = !(Functions.EXISTS(TopFlangeThickness)) || ((BottomFlangeThickness + TopFlangeThickness) < OverallDepth);
 						break;
 					case IfcAsymmetricIShapeProfileDefClause.ValidWebThickness:
 						retVal = (WebThickness < BottomFlangeWidth) && (WebThickness < TopFlangeWidth);
 						break;
 					case IfcAsymmetricIShapeProfileDefClause.ValidBottomFilletRadius:
-						retVal = (!(EXISTS(BottomFlangeFilletRadius))) || (BottomFlangeFilletRadius <= (BottomFlangeWidth - WebThickness) / 2);
+						retVal = (!(Functions.EXISTS(BottomFlangeFilletRadius))) || (BottomFlangeFilletRadius <= (BottomFlangeWidth - WebThickness) / 2);
 						break;
 					case IfcAsymmetricIShapeProfileDefClause.ValidTopFilletRadius:
-						retVal = (!(EXISTS(TopFlangeFilletRadius))) || (TopFlangeFilletRadius <= (TopFlangeWidth - WebThickness) / 2);
+						retVal = (!(Functions.EXISTS(TopFlangeFilletRadius))) || (TopFlangeFilletRadius <= (TopFlangeWidth - WebThickness) / 2);
 						break;
 				}
 			} catch (Exception ex) {

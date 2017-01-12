@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
@@ -36,13 +35,13 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				switch (clause)
 				{
 					case IfcStructuralSurfaceMemberVaryingClause.WR61:
-						retVal = EXISTS(this/* as IfcStructuralSurfaceMember*/.Thickness);
+						retVal = Functions.EXISTS(this/* as IfcStructuralSurfaceMember*/.Thickness);
 						break;
 					case IfcStructuralSurfaceMemberVaryingClause.WR62:
-						retVal = SIZEOF(this.VaryingThicknessLocation.ShapeRepresentations.Where(temp => !(SIZEOF(temp/* as IfcRepresentation*/.Items) == 1))) == 0;
+						retVal = Functions.SIZEOF(this.VaryingThicknessLocation.ShapeRepresentations.Where(temp => !(Functions.SIZEOF(temp/* as IfcRepresentation*/.Items) == 1))) == 0;
 						break;
 					case IfcStructuralSurfaceMemberVaryingClause.WR63:
-						retVal = SIZEOF(this.VaryingThicknessLocation.ShapeRepresentations.Where(temp => !((TYPEOF(temp/* as IfcRepresentation*/.Items.ItemAt(0)).Contains("IFC2X3.IFCCARTESIANPOINT")) || (TYPEOF(temp/* as IfcRepresentation*/.Items.ItemAt(0)).Contains("IFC2X3.IFCPOINTONSURFACE"))))) == 0;
+						retVal = Functions.SIZEOF(this.VaryingThicknessLocation.ShapeRepresentations.Where(temp => !((Functions.TYPEOF(temp/* as IfcRepresentation*/.Items.ItemAt(0)).Contains("IFC2X3.IFCCARTESIANPOINT")) || (Functions.TYPEOF(temp/* as IfcRepresentation*/.Items.ItemAt(0)).Contains("IFC2X3.IFCPOINTONSURFACE"))))) == 0;
 						break;
 				}
 			} catch (Exception ex) {

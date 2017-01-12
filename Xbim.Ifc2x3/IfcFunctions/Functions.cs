@@ -131,7 +131,7 @@ namespace Xbim.Ifc2x3
                 case "IFC2X3.IFCDRAUGHTINGCALLOUT.CONTENTS":
                     return ifcObject.Model.Instances.OfType<IfcDraughtingCallout>().Where(x => x.Contents.Contains(ifcObject));
             }
-            throw new Exception($"NotImplemented: USEDIN does not support role {v}.");
+            throw new Exception(string.Format("NotImplemented: USEDIN does not support role {0}.", v));
         }
 
         
@@ -343,7 +343,7 @@ namespace Xbim.Ifc2x3
                 if (INTYPEOF(EndArea, "IFC2X3.IFCDERIVEDPROFILEDEF"))
                 {
                     var end = EndArea as IIfcDerivedProfileDef;
-                    Result = StartArea == end?.ParentProfile;
+                    Result = end != null && StartArea == end.ParentProfile;
                 }
                 else
                 {
@@ -355,7 +355,7 @@ namespace Xbim.Ifc2x3
                 if (INTYPEOF(EndArea, "IFC2X3.IFCDERIVEDPROFILEDEF"))
                 {
                     var end = EndArea as IIfcDerivedProfileDef;
-                    Result = StartArea == end?.ParentProfile;
+                    Result = end != null && StartArea == end.ParentProfile;
                 }
                 else
                 {

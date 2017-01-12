@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.GeometricModelResource
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				switch (clause)
 				{
 					case IfcBoxedHalfSpaceClause.UnboundedSurface:
-						retVal = !(TYPEOF(this/* as IfcHalfSpaceSolid*/.BaseSurface).Contains("IFC4.IFCCURVEBOUNDEDPLANE"));
+						retVal = !(Functions.TYPEOF(this/* as IfcHalfSpaceSolid*/.BaseSurface).Contains("IFC4.IFCCURVEBOUNDEDPLANE"));
 						break;
 				}
 			} catch (Exception ex) {

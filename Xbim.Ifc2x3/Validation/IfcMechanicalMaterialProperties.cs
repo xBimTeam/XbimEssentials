@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.MaterialPropertyResource
@@ -35,10 +34,10 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 				switch (clause)
 				{
 					case IfcMechanicalMaterialPropertiesClause.WR21:
-						retVal = !(EXISTS(YoungModulus)) || (YoungModulus >= 0);
+						retVal = !(Functions.EXISTS(YoungModulus)) || (YoungModulus >= 0);
 						break;
 					case IfcMechanicalMaterialPropertiesClause.WR22:
-						retVal = !(EXISTS(ShearModulus)) || (ShearModulus >= 0);
+						retVal = !(Functions.EXISTS(ShearModulus)) || (ShearModulus >= 0);
 						break;
 				}
 			} catch (Exception ex) {

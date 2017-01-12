@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.Kernel
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.Kernel
 				switch (clause)
 				{
 					case IfcRelAssignsClause.WR1:
-						retVal = IfcCorrectObjectAssignment(RelatedObjectsType, RelatedObjects);
+						retVal = Functions.IfcCorrectObjectAssignment(RelatedObjectsType, RelatedObjects);
 						break;
 				}
 			} catch (Exception ex) {

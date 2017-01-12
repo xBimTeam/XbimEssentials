@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
@@ -36,13 +35,13 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 				switch (clause)
 				{
 					case IfcMoveClause.WR1:
-						retVal = SIZEOF(this/* as IfcProcess*/.OperatesOn) >= 1;
+						retVal = Functions.SIZEOF(this/* as IfcProcess*/.OperatesOn) >= 1;
 						break;
 					case IfcMoveClause.WR2:
-						retVal = SIZEOF(OperatesOn.Where(temp => SIZEOF(temp.RelatedObjects.Where(temp2 => (TYPEOF(temp2).Contains("IFC2X3.IFCACTOR")) || (TYPEOF(temp2).Contains("IFC2X3.IFCEQUIPMENTELEMENT")) || (TYPEOF(temp2).Contains("IFC2X3.IFCFURNISHINGELEMENT")))) >= 1)) >= 1;
+						retVal = Functions.SIZEOF(OperatesOn.Where(temp => Functions.SIZEOF(temp.RelatedObjects.Where(temp2 => (Functions.TYPEOF(temp2).Contains("IFC2X3.IFCACTOR")) || (Functions.TYPEOF(temp2).Contains("IFC2X3.IFCEQUIPMENTELEMENT")) || (Functions.TYPEOF(temp2).Contains("IFC2X3.IFCFURNISHINGELEMENT")))) >= 1)) >= 1;
 						break;
 					case IfcMoveClause.WR3:
-						retVal = EXISTS(this/* as IfcRoot*/.Name);
+						retVal = Functions.EXISTS(this/* as IfcRoot*/.Name);
 						break;
 				}
 			} catch (Exception ex) {

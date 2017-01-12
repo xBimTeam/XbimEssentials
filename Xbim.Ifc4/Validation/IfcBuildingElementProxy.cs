@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.SharedBldgElements
@@ -32,13 +31,13 @@ namespace Xbim.Ifc4.SharedBldgElements
 				switch (clause)
 				{
 					case IfcBuildingElementProxyClause.HasObjectName:
-						retVal = EXISTS(this/* as IfcRoot*/.Name);
+						retVal = Functions.EXISTS(this/* as IfcRoot*/.Name);
 						break;
 					case IfcBuildingElementProxyClause.CorrectPredefinedType:
-						retVal = !(EXISTS(PredefinedType)) || (PredefinedType != IfcBuildingElementProxyTypeEnum.USERDEFINED) || ((PredefinedType == IfcBuildingElementProxyTypeEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						retVal = !(Functions.EXISTS(PredefinedType)) || (PredefinedType != IfcBuildingElementProxyTypeEnum.USERDEFINED) || ((PredefinedType == IfcBuildingElementProxyTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcObject*/.ObjectType));
 						break;
 					case IfcBuildingElementProxyClause.CorrectTypeAssigned:
-						retVal = (SIZEOF(IsTypedBy) == 0) || (TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCBUILDINGELEMENTPROXYTYPE"));
+						retVal = (Functions.SIZEOF(IsTypedBy) == 0) || (Functions.TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCBUILDINGELEMENTPROXYTYPE"));
 						break;
 				}
 			} catch (Exception ex) {

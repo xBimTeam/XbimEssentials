@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.SharedFacilitiesElements
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				switch (clause)
 				{
 					case IfcInventoryClause.WR41:
-						retVal = SIZEOF(this/* as IfcGroup*/.IsGroupedBy.RelatedObjects.Where(temp => !((TYPEOF(temp).Contains("IFC2X3.IFCSPACE")) || (TYPEOF(temp).Contains("IFC2X3.IFCASSET")) || (TYPEOF(temp).Contains("IFC2X3.IFCFURNISHINGELEMENT"))))) == 0;
+						retVal = Functions.SIZEOF(this/* as IfcGroup*/.IsGroupedBy.RelatedObjects.Where(temp => !((Functions.TYPEOF(temp).Contains("IFC2X3.IFCSPACE")) || (Functions.TYPEOF(temp).Contains("IFC2X3.IFCASSET")) || (Functions.TYPEOF(temp).Contains("IFC2X3.IFCFURNISHINGELEMENT"))))) == 0;
 						break;
 				}
 			} catch (Exception ex) {

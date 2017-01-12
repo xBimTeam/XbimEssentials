@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.RepresentationResource
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				switch (clause)
 				{
 					case IfcProductDefinitionShapeClause.WR11:
-						retVal = SIZEOF(Representations.Where(temp => (!(TYPEOF(temp).Contains("IFC2X3.IFCSHAPEMODEL"))))) == 0;
+						retVal = Functions.SIZEOF(Representations.Where(temp => (!(Functions.TYPEOF(temp).Contains("IFC2X3.IFCSHAPEMODEL"))))) == 0;
 						break;
 				}
 			} catch (Exception ex) {

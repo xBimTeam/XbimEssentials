@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.MeasureResource
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.MeasureResource
 				switch (clause)
 				{
 					case IfcNamedUnitClause.WR1:
-						retVal = IfcCorrectDimensions(this.UnitType, this.Dimensions);
+						retVal = Functions.IfcCorrectDimensions(this.UnitType, this.Dimensions);
 						break;
 				}
 			} catch (Exception ex) {

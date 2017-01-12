@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.ProfileResource
@@ -35,7 +34,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 				switch (clause)
 				{
 					case IfcArbitraryOpenProfileDefClause.WR11:
-						retVal = (TYPEOF(this).Contains("IFC2X3.IFCCENTERLINEPROFILEDEF")) || (this/* as IfcProfileDef*/.ProfileType == IfcProfileTypeEnum.CURVE);
+						retVal = (Functions.TYPEOF(this).Contains("IFC2X3.IFCCENTERLINEPROFILEDEF")) || (this/* as IfcProfileDef*/.ProfileType == IfcProfileTypeEnum.CURVE);
 						break;
 					case IfcArbitraryOpenProfileDefClause.WR12:
 						retVal = Curve.Dim == 2;

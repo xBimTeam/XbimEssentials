@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.PropertyResource
@@ -31,10 +30,10 @@ namespace Xbim.Ifc4.PropertyResource
 				switch (clause)
 				{
 					case IfcComplexPropertyClause.WR21:
-						retVal = SIZEOF(HasProperties.Where(temp => Object.ReferenceEquals(this, temp))) == 0;
+						retVal = Functions.SIZEOF(HasProperties.Where(temp => Object.ReferenceEquals(this, temp))) == 0;
 						break;
 					case IfcComplexPropertyClause.WR22:
-						retVal = IfcUniquePropertyName(HasProperties);
+						retVal = Functions.IfcUniquePropertyName(HasProperties);
 						break;
 				}
 			} catch (Exception ex) {

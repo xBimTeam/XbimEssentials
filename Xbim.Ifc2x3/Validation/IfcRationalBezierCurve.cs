@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.GeometryResource
@@ -35,10 +34,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 				switch (clause)
 				{
 					case IfcRationalBezierCurveClause.WR1:
-						retVal = SIZEOF(WeightsData) == SIZEOF(this/* as IfcBSplineCurve*/.ControlPointsList);
+						retVal = Functions.SIZEOF(WeightsData) == Functions.SIZEOF(this/* as IfcBSplineCurve*/.ControlPointsList);
 						break;
 					case IfcRationalBezierCurveClause.WR2:
-						retVal = IfcCurveWeightsPositive(this);
+						retVal = Functions.IfcCurveWeightsPositive(this);
 						break;
 				}
 			} catch (Exception ex) {

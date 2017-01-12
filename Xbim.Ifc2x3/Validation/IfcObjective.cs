@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.ConstraintResource
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				switch (clause)
 				{
 					case IfcObjectiveClause.WR21:
-						retVal = (ObjectiveQualifier != IfcObjectiveEnum.USERDEFINED) || ((ObjectiveQualifier == IfcObjectiveEnum.USERDEFINED) && EXISTS(this/* as IfcObjective*/.UserDefinedQualifier));
+						retVal = (ObjectiveQualifier != IfcObjectiveEnum.USERDEFINED) || ((ObjectiveQualifier == IfcObjectiveEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcObjective*/.UserDefinedQualifier));
 						break;
 				}
 			} catch (Exception ex) {

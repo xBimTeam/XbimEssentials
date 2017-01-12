@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.MeasureResource
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 				switch (clause)
 				{
 					case IfcNamedUnitClause.WR1:
-						retVal = IfcCorrectDimensions(this.UnitType, this.Dimensions);
+						retVal = Functions.IfcCorrectDimensions(this.UnitType, this.Dimensions);
 						break;
 				}
 			} catch (Exception ex) {

@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.SharedBldgElements
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				switch (clause)
 				{
 					case IfcWallStandardCaseClause.WR1:
-						retVal = SIZEOF(USEDIN(this, "IFC2X3.IFCRELASSOCIATES.RELATEDOBJECTS").Where(temp => (TYPEOF(temp).Contains("IFC2X3.IFCRELASSOCIATESMATERIAL")) && (TYPEOF(temp.AsIfcRelAssociatesMaterial().RelatingMaterial).Contains("IFC2X3.IFCMATERIALLAYERSETUSAGE")))) == 1;
+						retVal = Functions.SIZEOF(Functions.USEDIN(this, "IFC2X3.IFCRELASSOCIATES.RELATEDOBJECTS").Where(temp => (Functions.TYPEOF(temp).Contains("IFC2X3.IFCRELASSOCIATESMATERIAL")) && (Functions.TYPEOF(temp.AsIfcRelAssociatesMaterial().RelatingMaterial).Contains("IFC2X3.IFCMATERIALLAYERSETUSAGE")))) == 1;
 						break;
 				}
 			} catch (Exception ex) {

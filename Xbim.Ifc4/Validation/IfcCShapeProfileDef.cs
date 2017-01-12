@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.ProfileResource
@@ -35,7 +34,7 @@ namespace Xbim.Ifc4.ProfileResource
 						retVal = Girth < (Depth / 2);
 						break;
 					case IfcCShapeProfileDefClause.ValidInternalFilletRadius:
-						retVal = !(EXISTS(InternalFilletRadius)) || ((InternalFilletRadius <= Width / 2 - WallThickness) && (InternalFilletRadius <= Depth / 2 - WallThickness));
+						retVal = !(Functions.EXISTS(InternalFilletRadius)) || ((InternalFilletRadius <= Width / 2 - WallThickness) && (InternalFilletRadius <= Depth / 2 - WallThickness));
 						break;
 					case IfcCShapeProfileDefClause.ValidWallThickness:
 						retVal = (WallThickness < Width / 2) && (WallThickness < Depth / 2);

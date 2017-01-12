@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.ProfileResource
@@ -38,7 +37,7 @@ namespace Xbim.Ifc4.ProfileResource
 						retVal = WebThickness < OverallWidth;
 						break;
 					case IfcIShapeProfileDefClause.ValidFilletRadius:
-						retVal = !(EXISTS(FilletRadius)) || ((FilletRadius <= (OverallWidth - WebThickness) / 2) && (FilletRadius <= (OverallDepth - (2 * FlangeThickness)) / 2));
+						retVal = !(Functions.EXISTS(FilletRadius)) || ((FilletRadius <= (OverallWidth - WebThickness) / 2) && (FilletRadius <= (OverallDepth - (2 * FlangeThickness)) / 2));
 						break;
 				}
 			} catch (Exception ex) {

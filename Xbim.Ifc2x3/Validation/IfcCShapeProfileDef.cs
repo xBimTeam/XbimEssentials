@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.ProfileResource
@@ -39,7 +38,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 						retVal = Girth < (Depth / 2);
 						break;
 					case IfcCShapeProfileDefClause.WR2:
-						retVal = !(EXISTS(InternalFilletRadius)) || ((InternalFilletRadius <= Width / 2) && (InternalFilletRadius <= Depth / 2));
+						retVal = !(Functions.EXISTS(InternalFilletRadius)) || ((InternalFilletRadius <= Width / 2) && (InternalFilletRadius <= Depth / 2));
 						break;
 					case IfcCShapeProfileDefClause.WR3:
 						retVal = (WallThickness < Width / 2) && (WallThickness < Depth / 2);

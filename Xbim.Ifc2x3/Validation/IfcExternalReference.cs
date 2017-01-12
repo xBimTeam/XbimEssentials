@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.ExternalReferenceResource
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				switch (clause)
 				{
 					case IfcExternalReferenceClause.WR1:
-						retVal = EXISTS(ItemReference) || EXISTS(Location) || EXISTS(Name);
+						retVal = Functions.EXISTS(ItemReference) || Functions.EXISTS(Location) || Functions.EXISTS(Name);
 						break;
 				}
 			} catch (Exception ex) {

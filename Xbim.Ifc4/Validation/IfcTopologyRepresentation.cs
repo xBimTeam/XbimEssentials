@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.RepresentationResource
@@ -32,13 +31,13 @@ namespace Xbim.Ifc4.RepresentationResource
 				switch (clause)
 				{
 					case IfcTopologyRepresentationClause.WR21:
-						retVal = SIZEOF(this/* as IfcRepresentation*/.Items.Where(temp => !(TYPEOF(temp).Contains("IFC4.IFCTOPOLOGICALREPRESENTATIONITEM")))) == 0;
+						retVal = Functions.SIZEOF(this/* as IfcRepresentation*/.Items.Where(temp => !(Functions.TYPEOF(temp).Contains("IFC4.IFCTOPOLOGICALREPRESENTATIONITEM")))) == 0;
 						break;
 					case IfcTopologyRepresentationClause.WR22:
-						retVal = EXISTS(this/* as IfcRepresentation*/.RepresentationType);
+						retVal = Functions.EXISTS(this/* as IfcRepresentation*/.RepresentationType);
 						break;
 					case IfcTopologyRepresentationClause.WR23:
-						retVal = IfcTopologyRepresentationTypes(this/* as IfcRepresentation*/.RepresentationType, this/* as IfcRepresentation*/.Items);
+						retVal = Functions.IfcTopologyRepresentationTypes(this/* as IfcRepresentation*/.RepresentationType, this/* as IfcRepresentation*/.Items);
 						break;
 				}
 			} catch (Exception ex) {

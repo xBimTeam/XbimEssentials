@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.SharedBldgElements
@@ -31,10 +30,10 @@ namespace Xbim.Ifc4.SharedBldgElements
 				switch (clause)
 				{
 					case IfcRelConnectsPathElementsClause.NormalizedRelatingPriorities:
-						retVal = (SIZEOF(RelatingPriorities) == 0) || (SIZEOF(RelatingPriorities.Where(temp => ((0 <= temp) && (temp <= 100) ))) == SIZEOF(RelatingPriorities));
+						retVal = (Functions.SIZEOF(RelatingPriorities) == 0) || (Functions.SIZEOF(RelatingPriorities.Where(temp => ((0 <= temp) && (temp <= 100) ))) == Functions.SIZEOF(RelatingPriorities));
 						break;
 					case IfcRelConnectsPathElementsClause.NormalizedRelatedPriorities:
-						retVal = (SIZEOF(RelatedPriorities) == 0) || (SIZEOF(RelatedPriorities.Where(temp => ((0 <= temp) && (temp <= 100) ))) == SIZEOF(RelatedPriorities));
+						retVal = (Functions.SIZEOF(RelatedPriorities) == 0) || (Functions.SIZEOF(RelatedPriorities.Where(temp => ((0 <= temp) && (temp <= 100) ))) == Functions.SIZEOF(RelatedPriorities));
 						break;
 				}
 			} catch (Exception ex) {

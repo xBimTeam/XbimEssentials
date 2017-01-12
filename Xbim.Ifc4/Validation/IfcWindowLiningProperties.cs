@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.ArchitectureDomain
@@ -33,16 +32,16 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				switch (clause)
 				{
 					case IfcWindowLiningPropertiesClause.WR31:
-						retVal = !(EXISTS(LiningDepth) && !(EXISTS(LiningThickness)));
+						retVal = !(Functions.EXISTS(LiningDepth) && !(Functions.EXISTS(LiningThickness)));
 						break;
 					case IfcWindowLiningPropertiesClause.WR32:
-						retVal = !(!(EXISTS(FirstTransomOffset)) && EXISTS(SecondTransomOffset));
+						retVal = !(!(Functions.EXISTS(FirstTransomOffset)) && Functions.EXISTS(SecondTransomOffset));
 						break;
 					case IfcWindowLiningPropertiesClause.WR33:
-						retVal = !(!(EXISTS(FirstMullionOffset)) && EXISTS(SecondMullionOffset));
+						retVal = !(!(Functions.EXISTS(FirstMullionOffset)) && Functions.EXISTS(SecondMullionOffset));
 						break;
 					case IfcWindowLiningPropertiesClause.WR34:
-						retVal = (EXISTS(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0))) && ((TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)).Contains("IFC4.IFCWINDOWTYPE")) || (TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)).Contains("IFC4.IFCWINDOWSTYLE")));
+						retVal = (Functions.EXISTS(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0))) && ((Functions.TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)).Contains("IFC4.IFCWINDOWTYPE")) || (Functions.TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)).Contains("IFC4.IFCWINDOWSTYLE")));
 						break;
 				}
 			} catch (Exception ex) {

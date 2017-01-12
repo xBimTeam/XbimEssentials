@@ -1,10 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Common.Metadata;
 using Xbim.Essentials.Tests;
+// once c#6 is accepted to the solution these configurations should be removed.
+// ReSharper disable ConvertToAutoProperty
+// ReSharper disable UseStringInterpolation
 
 namespace Xbim.Ifc.Validation
 {
@@ -14,21 +18,44 @@ namespace Xbim.Ifc.Validation
     /// </summary>
     public class IfcValidator
     {
-        public bool CreateEntityHierarchy { get; set; } = false;
+        private bool _createEntityHierarchy = false;
+        public bool CreateEntityHierarchy
+        {
+            get { return _createEntityHierarchy; }
+            set { _createEntityHierarchy = value; }
+        }
 
         private int _entityCount;
 
         private int _resultCount;
 
-        public int EntityCountLimit { get; set; } = -1;
+        private int _entityCountLimit = -1;
+        public int EntityCountLimit
+        {
+            get { return _entityCountLimit; }
+            set { _entityCountLimit = value; }
+        }
 
-        public int ResultCountLimit { get; set; } = -1;
-        
+        private int _resultCountLimit = -1;
+        public int ResultCountLimit
+        {
+            get { return _resultCountLimit; }
+            set { _resultCountLimit = value; }
+        }
+
         public ValidationFlags ValidateLevel = ValidationFlags.Properties;
+        
 
-        public bool LimitReached => (EntityCountLimit >= 0 && _entityCount >= EntityCountLimit)
-                                    || 
-                                    (ResultCountLimit >= 0 && _resultCount >= ResultCountLimit);
+
+        public bool LimitReached
+        {
+            get
+            {
+                return (EntityCountLimit >= 0 && _entityCount >= EntityCountLimit)
+                       ||
+                       (ResultCountLimit >= 0 && _resultCount >= ResultCountLimit);
+            }
+        }
 
         /// <summary>
         /// Validates all entities in the model, unless count limits are reached
@@ -141,7 +168,8 @@ namespace Xbim.Ifc.Validation
             if (hierarchical && hierResult.IssueType != ValidationFlags.None)
             {
                 // the IssueType is populated if any children have been added.
-                hierResult.Message = $"Entity #{ent.EntityLabel} ({ifcType.Name}) has validation failures.";
+                hierResult.Message = string.Format("Entity #{0} ({1}) has validation failures.", ent.EntityLabel,
+                    ifcType.Name);
                 yield return hierResult;
             }
         }
@@ -172,7 +200,7 @@ namespace Xbim.Ifc.Validation
                         Item = instance,
                         IssueType = ValidationFlags.TypeWhereClauses,
                         IssueSource = propName,
-                        Message = $"{instance.GetType().Name}.{propName} is not optional."
+                        Message = string.Format("{0}.{1} is not optional.", instance.GetType().Name, propName)
                     };
                 }
                 if (validateLevel.HasFlag(ValidationFlags.TypeWhereClauses) && propVal is IExpressValidatable)
@@ -192,7 +220,7 @@ namespace Xbim.Ifc.Validation
                     if (hierarchical && hierResult.IssueType != ValidationFlags.None)
                     {
                         // the IssueType is populated if any children have been added.
-                        hierResult.Message = $"Property {prop.Name} has validation failures.";
+                        hierResult.Message = string.Format("Property {0} has validation failures.", prop.Name);
                         yield return hierResult;
                     }
                 }
@@ -204,8 +232,8 @@ namespace Xbim.Ifc.Validation
                     {
                         Item = instance,
                         IssueSource = propName,
-                        Message = $"{instance.GetType().Name}.{propName} is not optional."
-                };
+                        Message = string.Format("{0}.{1} is not optional.", instance.GetType().Name, propName)
+                    };
             if (ifcAttr.State == EntityAttributeState.Optional && propVal == null)
                 //if it is null and optional then it is ok
                 yield break;
@@ -242,8 +270,9 @@ namespace Xbim.Ifc.Validation
                     {
                         Item = instance,
                         IssueSource = propName,
-                        Message = $"{instance.GetType().Name}.{propName} must have at least {ifcAttr.MinCardinality} item(s). " +
-                                  $"It has {count}."
+                        Message =
+                            string.Format("{0}.{1} must have at least {2} item(s). It has {3}.", instance.GetType().Name,
+                                propName, ifcAttr.MinCardinality, count)
                     };
                 }
 
@@ -253,8 +282,9 @@ namespace Xbim.Ifc.Validation
                     {
                         Item = instance,
                         IssueSource = propName,
-                        Message = $"{instance.GetType().Name}.{propName} must have no more than {ifcAttr.MaxCardinality} item(s). " +
-                                  $"It has at least {count}."
+                        Message =
+                            string.Format("{0}.{1} must have no more than {2} item(s). It has at least {3}.",
+                                instance.GetType().Name, propName, ifcAttr.MaxCardinality, count)
                     };
                 }
             }

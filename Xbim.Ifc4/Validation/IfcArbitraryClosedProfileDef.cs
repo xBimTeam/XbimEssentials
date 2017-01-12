@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.ProfileResource
@@ -35,10 +34,10 @@ namespace Xbim.Ifc4.ProfileResource
 						retVal = OuterCurve.Dim == 2;
 						break;
 					case IfcArbitraryClosedProfileDefClause.WR2:
-						retVal = !(TYPEOF(OuterCurve).Contains("IFC4.IFCLINE"));
+						retVal = !(Functions.TYPEOF(OuterCurve).Contains("IFC4.IFCLINE"));
 						break;
 					case IfcArbitraryClosedProfileDefClause.WR3:
-						retVal = !(TYPEOF(OuterCurve).Contains("IFC4.IFCOFFSETCURVE2D"));
+						retVal = !(Functions.TYPEOF(OuterCurve).Contains("IFC4.IFCOFFSETCURVE2D"));
 						break;
 				}
 			} catch (Exception ex) {

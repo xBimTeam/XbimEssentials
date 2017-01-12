@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.ElectricalDomain
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 				switch (clause)
 				{
 					case IfcElectricDistributionPointClause.WR31:
-						retVal = (DistributionPointFunction != IfcElectricDistributionPointFunctionEnum.USERDEFINED) || ((DistributionPointFunction == IfcElectricDistributionPointFunctionEnum.USERDEFINED) && EXISTS(this/* as IfcElectricDistributionPoint*/.UserDefinedFunction));
+						retVal = (DistributionPointFunction != IfcElectricDistributionPointFunctionEnum.USERDEFINED) || ((DistributionPointFunction == IfcElectricDistributionPointFunctionEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcElectricDistributionPoint*/.UserDefinedFunction));
 						break;
 				}
 			} catch (Exception ex) {

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.PropertyResource
@@ -32,13 +31,13 @@ namespace Xbim.Ifc4.PropertyResource
 				switch (clause)
 				{
 					case IfcPropertyBoundedValueClause.SameUnitUpperLower:
-						retVal = !(EXISTS(UpperBoundValue)) || !(EXISTS(LowerBoundValue)) || (TYPEOF(UpperBoundValue) == TYPEOF(LowerBoundValue));
+						retVal = !(Functions.EXISTS(UpperBoundValue)) || !(Functions.EXISTS(LowerBoundValue)) || (Functions.TYPEOF(UpperBoundValue) == Functions.TYPEOF(LowerBoundValue));
 						break;
 					case IfcPropertyBoundedValueClause.SameUnitUpperSet:
-						retVal = !(EXISTS(UpperBoundValue)) || !(EXISTS(SetPointValue)) || (TYPEOF(UpperBoundValue) == TYPEOF(SetPointValue));
+						retVal = !(Functions.EXISTS(UpperBoundValue)) || !(Functions.EXISTS(SetPointValue)) || (Functions.TYPEOF(UpperBoundValue) == Functions.TYPEOF(SetPointValue));
 						break;
 					case IfcPropertyBoundedValueClause.SameUnitLowerSet:
-						retVal = !(EXISTS(LowerBoundValue)) || !(EXISTS(SetPointValue)) || (TYPEOF(LowerBoundValue) == TYPEOF(SetPointValue));
+						retVal = !(Functions.EXISTS(LowerBoundValue)) || !(Functions.EXISTS(SetPointValue)) || (Functions.TYPEOF(LowerBoundValue) == Functions.TYPEOF(SetPointValue));
 						break;
 				}
 			} catch (Exception ex) {

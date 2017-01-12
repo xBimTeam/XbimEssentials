@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.StructuralElementsDomain
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				switch (clause)
 				{
 					case IfcReinforcingBarClause.WR1:
-						retVal = (BarRole != IfcReinforcingBarRoleEnum.USERDEFINED) || ((BarRole == IfcReinforcingBarRoleEnum.USERDEFINED) && EXISTS(this/* as IfcObject*/.ObjectType));
+						retVal = (BarRole != IfcReinforcingBarRoleEnum.USERDEFINED) || ((BarRole == IfcReinforcingBarRoleEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcObject*/.ObjectType));
 						break;
 				}
 			} catch (Exception ex) {

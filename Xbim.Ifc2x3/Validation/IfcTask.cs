@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.ProcessExtension
@@ -36,13 +35,13 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				switch (clause)
 				{
 					case IfcTaskClause.WR1:
-						retVal = SIZEOF(this/* as IfcObjectDefinition*/.Decomposes.Where(temp => !(TYPEOF(temp).Contains("IFC2X3.IFCRELNESTS")))) == 0;
+						retVal = Functions.SIZEOF(this/* as IfcObjectDefinition*/.Decomposes.Where(temp => !(Functions.TYPEOF(temp).Contains("IFC2X3.IFCRELNESTS")))) == 0;
 						break;
 					case IfcTaskClause.WR2:
-						retVal = SIZEOF(this/* as IfcObjectDefinition*/.IsDecomposedBy.Where(temp => !(TYPEOF(temp).Contains("IFC2X3.IFCRELNESTS")))) == 0;
+						retVal = Functions.SIZEOF(this/* as IfcObjectDefinition*/.IsDecomposedBy.Where(temp => !(Functions.TYPEOF(temp).Contains("IFC2X3.IFCRELNESTS")))) == 0;
 						break;
 					case IfcTaskClause.WR3:
-						retVal = EXISTS(this/* as IfcRoot*/.Name);
+						retVal = Functions.EXISTS(this/* as IfcRoot*/.Name);
 						break;
 				}
 			} catch (Exception ex) {

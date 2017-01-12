@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.Kernel
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.Kernel
 				switch (clause)
 				{
 					case IfcObjectClause.UniquePropertySetNames:
-						retVal = ((SIZEOF(IsDefinedBy) == 0) || IfcUniqueDefinitionNames(IsDefinedBy));
+						retVal = ((Functions.SIZEOF(IsDefinedBy) == 0) || Functions.IfcUniqueDefinitionNames(IsDefinedBy));
 						break;
 				}
 			} catch (Exception ex) {

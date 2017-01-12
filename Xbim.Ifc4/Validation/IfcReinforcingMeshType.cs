@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.StructuralElementsDomain
@@ -31,10 +30,10 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 				switch (clause)
 				{
 					case IfcReinforcingMeshTypeClause.CorrectPredefinedType:
-						retVal = (PredefinedType != IfcReinforcingMeshTypeEnum.USERDEFINED) || ((PredefinedType == IfcReinforcingMeshTypeEnum.USERDEFINED) && EXISTS(this/* as IfcElementType*/.ElementType));
+						retVal = (PredefinedType != IfcReinforcingMeshTypeEnum.USERDEFINED) || ((PredefinedType == IfcReinforcingMeshTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcElementType*/.ElementType));
 						break;
 					case IfcReinforcingMeshTypeClause.BendingShapeCodeProvided:
-						retVal = !EXISTS(BendingParameters) || EXISTS(BendingShapeCode);
+						retVal = !Functions.EXISTS(BendingParameters) || Functions.EXISTS(BendingShapeCode);
 						break;
 				}
 			} catch (Exception ex) {

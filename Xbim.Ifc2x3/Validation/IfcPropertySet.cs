@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.Kernel
@@ -35,10 +34,10 @@ namespace Xbim.Ifc2x3.Kernel
 				switch (clause)
 				{
 					case IfcPropertySetClause.WR31:
-						retVal = EXISTS(this/* as IfcRoot*/.Name);
+						retVal = Functions.EXISTS(this/* as IfcRoot*/.Name);
 						break;
 					case IfcPropertySetClause.WR32:
-						retVal = IfcUniquePropertyName(HasProperties);
+						retVal = Functions.IfcUniquePropertyName(HasProperties);
 						break;
 				}
 			} catch (Exception ex) {

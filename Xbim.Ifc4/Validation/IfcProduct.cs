@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.Kernel
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.Kernel
 				switch (clause)
 				{
 					case IfcProductClause.PlacementForShapeRepresentation:
-						retVal = (EXISTS(Representation) && EXISTS(ObjectPlacement)) || (EXISTS(Representation) && (SIZEOF(Representation.Representations.Where(temp => TYPEOF(temp).Contains("IFC4.IFCSHAPEREPRESENTATION"))) == 0)) || (!(EXISTS(Representation)));
+						retVal = (Functions.EXISTS(Representation) && Functions.EXISTS(ObjectPlacement)) || (Functions.EXISTS(Representation) && (Functions.SIZEOF(Representation.Representations.Where(temp => Functions.TYPEOF(temp).Contains("IFC4.IFCSHAPEREPRESENTATION"))) == 0)) || (!(Functions.EXISTS(Representation)));
 						break;
 				}
 			} catch (Exception ex) {

@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.PresentationResource
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 				switch (clause)
 				{
 					case IfcDraughtingPreDefinedTextFontClause.WR31:
-						retVal = NewArray("ISO 3098-1 font A", "ISO 3098-1 font B").Contains(this/* as IfcPreDefinedItem*/.Name);
+						retVal = Functions.NewArray("ISO 3098-1 font A", "ISO 3098-1 font B").Contains(this/* as IfcPreDefinedItem*/.Name);
 						break;
 				}
 			} catch (Exception ex) {

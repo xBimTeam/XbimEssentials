@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.MeasureResource
@@ -31,10 +30,10 @@ namespace Xbim.Ifc4.MeasureResource
 				switch (clause)
 				{
 					case IfcDerivedUnitClause.WR1:
-						retVal = (SIZEOF(Elements) > 1) || ((SIZEOF(Elements) == 1) && (Elements.ItemAt(0).Exponent != 1));
+						retVal = (Functions.SIZEOF(Elements) > 1) || ((Functions.SIZEOF(Elements) == 1) && (Elements.ItemAt(0).Exponent != 1));
 						break;
 					case IfcDerivedUnitClause.WR2:
-						retVal = (UnitType != IfcDerivedUnitEnum.USERDEFINED) || ((UnitType == IfcDerivedUnitEnum.USERDEFINED) && (EXISTS(this.UserDefinedType)));
+						retVal = (UnitType != IfcDerivedUnitEnum.USERDEFINED) || ((UnitType == IfcDerivedUnitEnum.USERDEFINED) && (Functions.EXISTS(this.UserDefinedType)));
 						break;
 				}
 			} catch (Exception ex) {

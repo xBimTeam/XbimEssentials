@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.GeometryResource
@@ -32,13 +31,13 @@ namespace Xbim.Ifc4.GeometryResource
 				switch (clause)
 				{
 					case IfcTrimmedCurveClause.Trim1ValuesConsistent:
-						retVal = (HIINDEX(Trim1) == 1) || (TYPEOF(Trim1.ItemAt(0)) != TYPEOF(Trim1.ItemAt(1)));
+						retVal = (Functions.HIINDEX(Trim1) == 1) || (Functions.TYPEOF(Trim1.ItemAt(0)) != Functions.TYPEOF(Trim1.ItemAt(1)));
 						break;
 					case IfcTrimmedCurveClause.Trim2ValuesConsistent:
-						retVal = (HIINDEX(Trim2) == 1) || (TYPEOF(Trim2.ItemAt(0)) != TYPEOF(Trim2.ItemAt(1)));
+						retVal = (Functions.HIINDEX(Trim2) == 1) || (Functions.TYPEOF(Trim2.ItemAt(0)) != Functions.TYPEOF(Trim2.ItemAt(1)));
 						break;
 					case IfcTrimmedCurveClause.NoTrimOfBoundedCurves:
-						retVal = !(TYPEOF(BasisCurve).Contains("IFC4.IFCBOUNDEDCURVE"));
+						retVal = !(Functions.TYPEOF(BasisCurve).Contains("IFC4.IFCBOUNDEDCURVE"));
 						break;
 				}
 			} catch (Exception ex) {

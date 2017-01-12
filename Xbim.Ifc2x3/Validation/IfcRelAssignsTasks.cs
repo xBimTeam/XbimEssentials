@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.ProcessExtension
@@ -36,13 +35,13 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				switch (clause)
 				{
 					case IfcRelAssignsTasksClause.WR1:
-						retVal = HIINDEX(this/* as IfcRelAssigns*/.RelatedObjects) == 1;
+						retVal = Functions.HIINDEX(this/* as IfcRelAssigns*/.RelatedObjects) == 1;
 						break;
 					case IfcRelAssignsTasksClause.WR2:
-						retVal = TYPEOF(this/* as IfcRelAssigns*/.RelatedObjects.ItemAt(0)).Contains("IFC2X3.IFCTASK");
+						retVal = Functions.TYPEOF(this/* as IfcRelAssigns*/.RelatedObjects.ItemAt(0)).Contains("IFC2X3.IFCTASK");
 						break;
 					case IfcRelAssignsTasksClause.WR3:
-						retVal = TYPEOF(this/* as IfcRelAssignsToControl*/.RelatingControl).Contains("IFC2X3.IFCWORKCONTROL");
+						retVal = Functions.TYPEOF(this/* as IfcRelAssignsToControl*/.RelatingControl).Contains("IFC2X3.IFCWORKCONTROL");
 						break;
 				}
 			} catch (Exception ex) {

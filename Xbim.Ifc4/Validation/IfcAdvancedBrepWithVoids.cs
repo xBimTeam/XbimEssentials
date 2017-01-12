@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.GeometricModelResource
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				switch (clause)
 				{
 					case IfcAdvancedBrepWithVoidsClause.VoidsHaveAdvancedFaces:
-						retVal = SIZEOF(Voids.Where(Vsh => SIZEOF(Vsh.CfsFaces.Where(Afs => (!(TYPEOF(Afs).Contains("IFC4.IFCADVANCEDFACE"))))) == 0)) == 0;
+						retVal = Functions.SIZEOF(Voids.Where(Vsh => Functions.SIZEOF(Vsh.CfsFaces.Where(Afs => (!(Functions.TYPEOF(Afs).Contains("IFC4.IFCADVANCEDFACE"))))) == 0)) == 0;
 						break;
 				}
 			} catch (Exception ex) {

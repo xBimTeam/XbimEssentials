@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.ApprovalResource
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.ApprovalResource
 				switch (clause)
 				{
 					case IfcApprovalClause.HasIdentifierOrName:
-						retVal = EXISTS(Identifier) || EXISTS(Name);
+						retVal = Functions.EXISTS(Identifier) || Functions.EXISTS(Name);
 						break;
 				}
 			} catch (Exception ex) {

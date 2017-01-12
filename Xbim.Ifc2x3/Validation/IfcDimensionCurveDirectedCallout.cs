@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
@@ -35,10 +34,10 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 				switch (clause)
 				{
 					case IfcDimensionCurveDirectedCalloutClause.WR41:
-						retVal = SIZEOF(this/* as IfcDraughtingCallout*/.Contents.Where(Dc => (TYPEOF(Dc).Contains("IFC2X3.IFCDIMENSIONCURVE")))) == 1;
+						retVal = Functions.SIZEOF(this/* as IfcDraughtingCallout*/.Contents.Where(Dc => (Functions.TYPEOF(Dc).Contains("IFC2X3.IFCDIMENSIONCURVE")))) == 1;
 						break;
 					case IfcDimensionCurveDirectedCalloutClause.WR42:
-						retVal = SIZEOF(this.Contents.Where(Dc => (TYPEOF(Dc).Contains("IFC2X3.IFCPROJECTIONCURVE")))) <= 2;
+						retVal = Functions.SIZEOF(this.Contents.Where(Dc => (Functions.TYPEOF(Dc).Contains("IFC2X3.IFCPROJECTIONCURVE")))) <= 2;
 						break;
 				}
 			} catch (Exception ex) {

@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.RepresentationResource
@@ -35,10 +34,10 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				switch (clause)
 				{
 					case IfcGeometricRepresentationSubContextClause.WR31:
-						retVal = !(TYPEOF(ParentContext).Contains("IFC2X3.IFCGEOMETRICREPRESENTATIONSUBCONTEXT"));
+						retVal = !(Functions.TYPEOF(ParentContext).Contains("IFC2X3.IFCGEOMETRICREPRESENTATIONSUBCONTEXT"));
 						break;
 					case IfcGeometricRepresentationSubContextClause.WR32:
-						retVal = (TargetView != IfcGeometricProjectionEnum.USERDEFINED) || ((TargetView == IfcGeometricProjectionEnum.USERDEFINED) && EXISTS(UserDefinedTargetView));
+						retVal = (TargetView != IfcGeometricProjectionEnum.USERDEFINED) || ((TargetView == IfcGeometricProjectionEnum.USERDEFINED) && Functions.EXISTS(UserDefinedTargetView));
 						break;
 				}
 			} catch (Exception ex) {

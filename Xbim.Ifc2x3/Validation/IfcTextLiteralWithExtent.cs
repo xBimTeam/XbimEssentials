@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				switch (clause)
 				{
 					case IfcTextLiteralWithExtentClause.WR31:
-						retVal = !(TYPEOF(Extent).Contains("IFC2X3.IFCPLANARBOX"));
+						retVal = !(Functions.TYPEOF(Extent).Contains("IFC2X3.IFCPLANARBOX"));
 						break;
 				}
 			} catch (Exception ex) {

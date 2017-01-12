@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.PropertyResource
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 				switch (clause)
 				{
 					case IfcPropertyEnumeratedValueClause.WR1:
-						retVal = !(EXISTS(EnumerationReference)) || (SIZEOF(EnumerationValues.Where(temp => EnumerationReference.EnumerationValues.Contains(temp))) == SIZEOF(EnumerationValues));
+						retVal = !(Functions.EXISTS(EnumerationReference)) || (Functions.SIZEOF(EnumerationValues.Where(temp => EnumerationReference.EnumerationValues.Contains(temp))) == Functions.SIZEOF(EnumerationValues));
 						break;
 				}
 			} catch (Exception ex) {

@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.MaterialPropertyResource
@@ -37,16 +36,16 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 				switch (clause)
 				{
 					case IfcMechanicalSteelMaterialPropertiesClause.WR31:
-						retVal = !(EXISTS(YieldStress)) || (YieldStress >= 0);
+						retVal = !(Functions.EXISTS(YieldStress)) || (YieldStress >= 0);
 						break;
 					case IfcMechanicalSteelMaterialPropertiesClause.WR32:
-						retVal = !(EXISTS(UltimateStress)) || (UltimateStress >= 0);
+						retVal = !(Functions.EXISTS(UltimateStress)) || (UltimateStress >= 0);
 						break;
 					case IfcMechanicalSteelMaterialPropertiesClause.WR33:
-						retVal = !(EXISTS(HardeningModule)) || (HardeningModule >= 0);
+						retVal = !(Functions.EXISTS(HardeningModule)) || (HardeningModule >= 0);
 						break;
 					case IfcMechanicalSteelMaterialPropertiesClause.WR34:
-						retVal = !(EXISTS(ProportionalStress)) || (ProportionalStress >= 0);
+						retVal = !(Functions.EXISTS(ProportionalStress)) || (ProportionalStress >= 0);
 						break;
 				}
 			} catch (Exception ex) {

@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
@@ -46,7 +45,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 						retVal = ((1 <= ColourComponents) && (ColourComponents <= 4) );
 						break;
 					case IfcPixelTextureClause.WR24:
-						retVal = SIZEOF(Pixel) == (Width * Height);
+						retVal = Functions.SIZEOF(Pixel) == (Width * Height);
 						break;
 				}
 			} catch (Exception ex) {

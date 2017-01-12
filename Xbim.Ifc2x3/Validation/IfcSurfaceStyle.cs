@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
@@ -38,19 +37,19 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				switch (clause)
 				{
 					case IfcSurfaceStyleClause.WR11:
-						retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC2X3.IFCSURFACESTYLESHADING"))) <= 1;
+						retVal = Functions.SIZEOF(this.Styles.Where(Style => Functions.TYPEOF(Style).Contains("IFC2X3.IFCSURFACESTYLESHADING"))) <= 1;
 						break;
 					case IfcSurfaceStyleClause.WR12:
-						retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC2X3.IFCSURFACESTYLELIGHTING"))) <= 1;
+						retVal = Functions.SIZEOF(this.Styles.Where(Style => Functions.TYPEOF(Style).Contains("IFC2X3.IFCSURFACESTYLELIGHTING"))) <= 1;
 						break;
 					case IfcSurfaceStyleClause.WR13:
-						retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC2X3.IFCSURFACESTYLEREFRACTION"))) <= 1;
+						retVal = Functions.SIZEOF(this.Styles.Where(Style => Functions.TYPEOF(Style).Contains("IFC2X3.IFCSURFACESTYLEREFRACTION"))) <= 1;
 						break;
 					case IfcSurfaceStyleClause.WR14:
-						retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC2X3.IFCSURFACESTYLEWITHTEXTURES"))) <= 1;
+						retVal = Functions.SIZEOF(this.Styles.Where(Style => Functions.TYPEOF(Style).Contains("IFC2X3.IFCSURFACESTYLEWITHTEXTURES"))) <= 1;
 						break;
 					case IfcSurfaceStyleClause.WR15:
-						retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC2X3.IFCEXTERNALLYDEFINEDSURFACESTYLE"))) <= 1;
+						retVal = Functions.SIZEOF(this.Styles.Where(Style => Functions.TYPEOF(Style).Contains("IFC2X3.IFCEXTERNALLYDEFINEDSURFACESTYLE"))) <= 1;
 						break;
 				}
 			} catch (Exception ex) {

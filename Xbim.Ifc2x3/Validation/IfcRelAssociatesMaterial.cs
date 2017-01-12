@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.ProductExtension
@@ -35,10 +34,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 				switch (clause)
 				{
 					case IfcRelAssociatesMaterialClause.WR21:
-						retVal = SIZEOF(this/* as IfcRelAssociates*/.RelatedObjects.Where(temp => (TYPEOF(temp).Contains("IFC2X3.IFCFEATUREELEMENTSUBTRACTION")) || (TYPEOF(temp).Contains("IFC2X3.IFCVIRTUALELEMENT")))) == 0;
+						retVal = Functions.SIZEOF(this/* as IfcRelAssociates*/.RelatedObjects.Where(temp => (Functions.TYPEOF(temp).Contains("IFC2X3.IFCFEATUREELEMENTSUBTRACTION")) || (Functions.TYPEOF(temp).Contains("IFC2X3.IFCVIRTUALELEMENT")))) == 0;
 						break;
 					case IfcRelAssociatesMaterialClause.WR22:
-						retVal = SIZEOF(this/* as IfcRelAssociates*/.RelatedObjects.Where(temp => (!(TYPEOF(temp).Contains("IFC2X3.IFCPRODUCT")) && !(TYPEOF(temp).Contains("IFC2X3.IFCTYPEPRODUCT"))))) == 0;
+						retVal = Functions.SIZEOF(this/* as IfcRelAssociates*/.RelatedObjects.Where(temp => (!(Functions.TYPEOF(temp).Contains("IFC2X3.IFCPRODUCT")) && !(Functions.TYPEOF(temp).Contains("IFC2X3.IFCTYPEPRODUCT"))))) == 0;
 						break;
 				}
 			} catch (Exception ex) {

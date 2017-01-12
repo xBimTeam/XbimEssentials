@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.SharedBldgElements
@@ -37,16 +36,16 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				switch (clause)
 				{
 					case IfcWindowLiningPropertiesClause.WR31:
-						retVal = !(!(EXISTS(LiningDepth)) && EXISTS(LiningThickness));
+						retVal = !(!(Functions.EXISTS(LiningDepth)) && Functions.EXISTS(LiningThickness));
 						break;
 					case IfcWindowLiningPropertiesClause.WR32:
-						retVal = !(!(EXISTS(FirstTransomOffset)) && EXISTS(SecondTransomOffset));
+						retVal = !(!(Functions.EXISTS(FirstTransomOffset)) && Functions.EXISTS(SecondTransomOffset));
 						break;
 					case IfcWindowLiningPropertiesClause.WR33:
-						retVal = !(!(EXISTS(FirstMullionOffset)) && EXISTS(SecondMullionOffset));
+						retVal = !(!(Functions.EXISTS(FirstMullionOffset)) && Functions.EXISTS(SecondMullionOffset));
 						break;
 					case IfcWindowLiningPropertiesClause.WR34:
-						retVal = EXISTS(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)) && (TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)).Contains("IFC2X3.IFCWINDOWSTYLE"));
+						retVal = Functions.EXISTS(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)) && (Functions.TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)).Contains("IFC2X3.IFCWINDOWSTYLE"));
 						break;
 				}
 			} catch (Exception ex) {

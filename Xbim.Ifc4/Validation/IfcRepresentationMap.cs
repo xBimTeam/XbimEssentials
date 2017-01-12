@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.GeometryResource
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.GeometryResource
 				switch (clause)
 				{
 					case IfcRepresentationMapClause.ApplicableMappedRepr:
-						retVal = TYPEOF(MappedRepresentation).Contains("IFC4.IFCSHAPEMODEL");
+						retVal = Functions.TYPEOF(MappedRepresentation).Contains("IFC4.IFCSHAPEMODEL");
 						break;
 				}
 			} catch (Exception ex) {

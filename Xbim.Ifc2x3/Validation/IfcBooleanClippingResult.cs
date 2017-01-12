@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.GeometricModelResource
@@ -36,10 +35,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				switch (clause)
 				{
 					case IfcBooleanClippingResultClause.WR1:
-						retVal = (TYPEOF(FirstOperand).Contains("IFC2X3.IFCSWEPTAREASOLID")) || (TYPEOF(FirstOperand).Contains("IFC2X3.IFCBOOLEANCLIPPINGRESULT"));
+						retVal = (Functions.TYPEOF(FirstOperand).Contains("IFC2X3.IFCSWEPTAREASOLID")) || (Functions.TYPEOF(FirstOperand).Contains("IFC2X3.IFCBOOLEANCLIPPINGRESULT"));
 						break;
 					case IfcBooleanClippingResultClause.WR2:
-						retVal = (TYPEOF(SecondOperand).Contains("IFC2X3.IFCHALFSPACESOLID"));
+						retVal = (Functions.TYPEOF(SecondOperand).Contains("IFC2X3.IFCHALFSPACESOLID"));
 						break;
 					case IfcBooleanClippingResultClause.WR3:
 						retVal = Operator == IfcBooleanOperator.DIFFERENCE;

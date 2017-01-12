@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.RepresentationResource
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				switch (clause)
 				{
 					case IfcStyledRepresentationClause.WR21:
-						retVal = SIZEOF(this/* as IfcRepresentation*/.Items.Where(temp => (!(TYPEOF(temp).Contains("IFC2X3.IFCSTYLEDITEM"))))) == 0;
+						retVal = Functions.SIZEOF(this/* as IfcRepresentation*/.Items.Where(temp => (!(Functions.TYPEOF(temp).Contains("IFC2X3.IFCSTYLEDITEM"))))) == 0;
 						break;
 				}
 			} catch (Exception ex) {

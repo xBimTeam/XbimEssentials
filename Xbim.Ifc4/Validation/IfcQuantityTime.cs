@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.QuantityResource
@@ -31,7 +30,7 @@ namespace Xbim.Ifc4.QuantityResource
 				switch (clause)
 				{
 					case IfcQuantityTimeClause.WR21:
-						retVal = !(EXISTS(this/* as IfcPhysicalSimpleQuantity*/.Unit)) || (this/* as IfcPhysicalSimpleQuantity*/.Unit.UnitType == IfcUnitEnum.TIMEUNIT);
+						retVal = !(Functions.EXISTS(this/* as IfcPhysicalSimpleQuantity*/.Unit)) || (this/* as IfcPhysicalSimpleQuantity*/.Unit.UnitType == IfcUnitEnum.TIMEUNIT);
 						break;
 					case IfcQuantityTimeClause.WR22:
 						retVal = TimeValue >= 0;

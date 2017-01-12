@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.GeometryResource
@@ -36,13 +35,13 @@ namespace Xbim.Ifc2x3.GeometryResource
 				switch (clause)
 				{
 					case IfcTrimmedCurveClause.WR41:
-						retVal = (HIINDEX(Trim1) == 1) || (TYPEOF(Trim1.ItemAt(0)) != TYPEOF(Trim1.ItemAt(1)));
+						retVal = (Functions.HIINDEX(Trim1) == 1) || (Functions.TYPEOF(Trim1.ItemAt(0)) != Functions.TYPEOF(Trim1.ItemAt(1)));
 						break;
 					case IfcTrimmedCurveClause.WR42:
-						retVal = (HIINDEX(Trim2) == 1) || (TYPEOF(Trim2.ItemAt(0)) != TYPEOF(Trim2.ItemAt(1)));
+						retVal = (Functions.HIINDEX(Trim2) == 1) || (Functions.TYPEOF(Trim2.ItemAt(0)) != Functions.TYPEOF(Trim2.ItemAt(1)));
 						break;
 					case IfcTrimmedCurveClause.WR43:
-						retVal = !(TYPEOF(BasisCurve).Contains("IFC2X3.IFCBOUNDEDCURVE"));
+						retVal = !(Functions.TYPEOF(BasisCurve).Contains("IFC2X3.IFCBOUNDEDCURVE"));
 						break;
 				}
 			} catch (Exception ex) {

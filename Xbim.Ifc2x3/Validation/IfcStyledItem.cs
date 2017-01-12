@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
@@ -35,10 +34,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				switch (clause)
 				{
 					case IfcStyledItemClause.WR11:
-						retVal = SIZEOF(Styles) == 1;
+						retVal = Functions.SIZEOF(Styles) == 1;
 						break;
 					case IfcStyledItemClause.WR12:
-						retVal = !(TYPEOF(Item).Contains("IFC2X3.IFCSTYLEDITEM"));
+						retVal = !(Functions.TYPEOF(Item).Contains("IFC2X3.IFCSTYLEDITEM"));
 						break;
 				}
 			} catch (Exception ex) {

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.UtilityResource
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.UtilityResource
 				switch (clause)
 				{
 					case IfcOwnerHistoryClause.CorrectChangeAction:
-						retVal = (EXISTS(LastModifiedDate)) || (!(EXISTS(LastModifiedDate)) && !(EXISTS(ChangeAction))) || (!(EXISTS(LastModifiedDate)) && EXISTS(ChangeAction) && ((ChangeAction == IfcChangeActionEnum.NOTDEFINED) || (ChangeAction == IfcChangeActionEnum.NOCHANGE)));
+						retVal = (Functions.EXISTS(LastModifiedDate)) || (!(Functions.EXISTS(LastModifiedDate)) && !(Functions.EXISTS(ChangeAction))) || (!(Functions.EXISTS(LastModifiedDate)) && Functions.EXISTS(ChangeAction) && ((ChangeAction == IfcChangeActionEnum.NOTDEFINED) || (ChangeAction == IfcChangeActionEnum.NOCHANGE)));
 						break;
 				}
 			} catch (Exception ex) {

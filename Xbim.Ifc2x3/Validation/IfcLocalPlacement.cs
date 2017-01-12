@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.GeometricConstraintResource
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				switch (clause)
 				{
 					case IfcLocalPlacementClause.WR21:
-						retVal = IfcCorrectLocalPlacement(RelativePlacement, PlacementRelTo);
+						retVal = Functions.IfcCorrectLocalPlacement(RelativePlacement, PlacementRelTo);
 						break;
 				}
 			} catch (Exception ex) {

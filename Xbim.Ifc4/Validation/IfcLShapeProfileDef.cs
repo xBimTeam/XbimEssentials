@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.ProfileResource
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.ProfileResource
 				switch (clause)
 				{
 					case IfcLShapeProfileDefClause.ValidThickness:
-						retVal = (Thickness < Depth) && (!(EXISTS(Width)) || (Thickness < Width));
+						retVal = (Thickness < Depth) && (!(Functions.EXISTS(Width)) || (Thickness < Width));
 						break;
 				}
 			} catch (Exception ex) {

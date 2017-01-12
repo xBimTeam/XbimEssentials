@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.PresentationAppearanceResource
@@ -34,19 +33,19 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				switch (clause)
 				{
 					case IfcSurfaceStyleClause.MaxOneShading:
-						retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCSURFACESTYLESHADING"))) <= 1;
+						retVal = Functions.SIZEOF(this.Styles.Where(Style => Functions.TYPEOF(Style).Contains("IFC4.IFCSURFACESTYLESHADING"))) <= 1;
 						break;
 					case IfcSurfaceStyleClause.MaxOneLighting:
-						retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCSURFACESTYLELIGHTING"))) <= 1;
+						retVal = Functions.SIZEOF(this.Styles.Where(Style => Functions.TYPEOF(Style).Contains("IFC4.IFCSURFACESTYLELIGHTING"))) <= 1;
 						break;
 					case IfcSurfaceStyleClause.MaxOneRefraction:
-						retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCSURFACESTYLEREFRACTION"))) <= 1;
+						retVal = Functions.SIZEOF(this.Styles.Where(Style => Functions.TYPEOF(Style).Contains("IFC4.IFCSURFACESTYLEREFRACTION"))) <= 1;
 						break;
 					case IfcSurfaceStyleClause.MaxOneTextures:
-						retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCSURFACESTYLEWITHTEXTURES"))) <= 1;
+						retVal = Functions.SIZEOF(this.Styles.Where(Style => Functions.TYPEOF(Style).Contains("IFC4.IFCSURFACESTYLEWITHTEXTURES"))) <= 1;
 						break;
 					case IfcSurfaceStyleClause.MaxOneExtDefined:
-						retVal = SIZEOF(this.Styles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCEXTERNALLYDEFINEDSURFACESTYLE"))) <= 1;
+						retVal = Functions.SIZEOF(this.Styles.Where(Style => Functions.TYPEOF(Style).Contains("IFC4.IFCEXTERNALLYDEFINEDSURFACESTYLE"))) <= 1;
 						break;
 				}
 			} catch (Exception ex) {

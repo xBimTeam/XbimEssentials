@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.PresentationAppearanceResource
@@ -32,13 +31,13 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				switch (clause)
 				{
 					case IfcFillAreaStyleClause.MaxOneColour:
-						retVal = SIZEOF(this.FillStyles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCCOLOUR"))) <= 1;
+						retVal = Functions.SIZEOF(this.FillStyles.Where(Style => Functions.TYPEOF(Style).Contains("IFC4.IFCCOLOUR"))) <= 1;
 						break;
 					case IfcFillAreaStyleClause.MaxOneExtHatchStyle:
-						retVal = SIZEOF(this.FillStyles.Where(Style => TYPEOF(Style).Contains("IFC4.IFCEXTERNALLYDEFINEDHATCHSTYLE"))) <= 1;
+						retVal = Functions.SIZEOF(this.FillStyles.Where(Style => Functions.TYPEOF(Style).Contains("IFC4.IFCEXTERNALLYDEFINEDHATCHSTYLE"))) <= 1;
 						break;
 					case IfcFillAreaStyleClause.ConsistentHatchStyleDef:
-						retVal = IfcCorrectFillAreaStyle(this.FillStyles);
+						retVal = Functions.IfcCorrectFillAreaStyle(this.FillStyles);
 						break;
 				}
 			} catch (Exception ex) {

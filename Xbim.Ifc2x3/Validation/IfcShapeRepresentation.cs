@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.RepresentationResource
@@ -37,16 +36,16 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				switch (clause)
 				{
 					case IfcShapeRepresentationClause.WR21:
-						retVal = TYPEOF(this/* as IfcRepresentation*/.ContextOfItems).Contains("IFC2X3.IFCGEOMETRICREPRESENTATIONCONTEXT");
+						retVal = Functions.TYPEOF(this/* as IfcRepresentation*/.ContextOfItems).Contains("IFC2X3.IFCGEOMETRICREPRESENTATIONCONTEXT");
 						break;
 					case IfcShapeRepresentationClause.WR22:
-						retVal = SIZEOF(Items.Where(temp => (TYPEOF(temp).Contains("IFC2X3.IFCTOPOLOGICALREPRESENTATIONITEM")) && (!(SIZEOF(NewArray("IFC2X3.IFCVERTEXPOINT", "IFC2X3.IFCEDGECURVE", "IFC2X3.IFCFACESURFACE") * TYPEOF(temp)) == 1)))) == 0;
+						retVal = Functions.SIZEOF(Items.Where(temp => (Functions.TYPEOF(temp).Contains("IFC2X3.IFCTOPOLOGICALREPRESENTATIONITEM")) && (!(Functions.SIZEOF(Functions.NewArray("IFC2X3.IFCVERTEXPOINT", "IFC2X3.IFCEDGECURVE", "IFC2X3.IFCFACESURFACE") * Functions.TYPEOF(temp)) == 1)))) == 0;
 						break;
 					case IfcShapeRepresentationClause.WR23:
-						retVal = EXISTS(this/* as IfcRepresentation*/.RepresentationType);
+						retVal = Functions.EXISTS(this/* as IfcRepresentation*/.RepresentationType);
 						break;
 					case IfcShapeRepresentationClause.WR24:
-						retVal = IfcShapeRepresentationTypes(this/* as IfcRepresentation*/.RepresentationType, this/* as IfcRepresentation*/.Items);
+						retVal = Functions.IfcShapeRepresentationTypes(this/* as IfcRepresentation*/.RepresentationType, this/* as IfcRepresentation*/.Items);
 						break;
 				}
 			} catch (Exception ex) {

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.ProfileResource
@@ -31,7 +30,7 @@ namespace Xbim.Ifc4.ProfileResource
 				switch (clause)
 				{
 					case IfcArbitraryOpenProfileDefClause.WR11:
-						retVal = (TYPEOF(this).Contains("IFC4.IFCCENTERLINEPROFILEDEF")) || (this/* as IfcProfileDef*/.ProfileType == IfcProfileTypeEnum.CURVE);
+						retVal = (Functions.TYPEOF(this).Contains("IFC4.IFCCENTERLINEPROFILEDEF")) || (this/* as IfcProfileDef*/.ProfileType == IfcProfileTypeEnum.CURVE);
 						break;
 					case IfcArbitraryOpenProfileDefClause.WR12:
 						retVal = Curve.Dim == 2;

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.SharedFacilitiesElements
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 				switch (clause)
 				{
 					case IfcOccupantClause.WR31:
-						retVal = !(PredefinedType == IfcOccupantTypeEnum.USERDEFINED) || EXISTS(this/* as IfcObject*/.ObjectType);
+						retVal = !(PredefinedType == IfcOccupantTypeEnum.USERDEFINED) || Functions.EXISTS(this/* as IfcObject*/.ObjectType);
 						break;
 				}
 			} catch (Exception ex) {

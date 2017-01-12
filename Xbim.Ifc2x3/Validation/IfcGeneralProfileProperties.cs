@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.ProfilePropertyResource
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				switch (clause)
 				{
 					case IfcGeneralProfilePropertiesClause.WR1:
-						retVal = !(EXISTS(CrossSectionArea)) || (CrossSectionArea > 0);
+						retVal = !(Functions.EXISTS(CrossSectionArea)) || (CrossSectionArea > 0);
 						break;
 				}
 			} catch (Exception ex) {

@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				switch (clause)
 				{
 					case IfcTextAlignmentClause.WR1:
-						retVal = NewArray("left", "right", "center", "justify").Contains(this);
+						retVal = Functions.NewArray("left", "right", "center", "justify").Contains(this);
 						break;
 				}
 			} catch (Exception ex) {

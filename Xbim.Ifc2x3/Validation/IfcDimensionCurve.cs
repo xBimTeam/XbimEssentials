@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
@@ -36,13 +35,13 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 				switch (clause)
 				{
 					case IfcDimensionCurveClause.WR51:
-						retVal = SIZEOF(USEDIN(this, "IFC2X3.IFCDRAUGHTINGCALLOUT.CONTENTS")) >= 1;
+						retVal = Functions.SIZEOF(Functions.USEDIN(this, "IFC2X3.IFCDRAUGHTINGCALLOUT.CONTENTS")) >= 1;
 						break;
 					case IfcDimensionCurveClause.WR52:
-						retVal = (SIZEOF(USEDIN(this, "IFC2X3." + "IFCTERMINATORSYMBOL.ANNOTATEDCURVE").Where(Dct1 => (Dct1.AsIfcDimensionCurveTerminator().Role == IfcDimensionExtentUsage.ORIGIN))) <= 1) && (SIZEOF(USEDIN(this, "IFC2X3." + "IFCTERMINATORSYMBOL.ANNOTATEDCURVE").Where(Dct2 => (Dct2.AsIfcDimensionCurveTerminator().Role == IfcDimensionExtentUsage.TARGET))) <= 1);
+						retVal = (Functions.SIZEOF(Functions.USEDIN(this, "IFC2X3." + "IFCTERMINATORSYMBOL.ANNOTATEDCURVE").Where(Dct1 => (Dct1.AsIfcDimensionCurveTerminator().Role == IfcDimensionExtentUsage.ORIGIN))) <= 1) && (Functions.SIZEOF(Functions.USEDIN(this, "IFC2X3." + "IFCTERMINATORSYMBOL.ANNOTATEDCURVE").Where(Dct2 => (Dct2.AsIfcDimensionCurveTerminator().Role == IfcDimensionExtentUsage.TARGET))) <= 1);
 						break;
 					case IfcDimensionCurveClause.WR53:
-						retVal = SIZEOF(AnnotatedBySymbols.Where(Dct => !(TYPEOF(Dct).Contains("IFC2X3.IFCDIMENSIONCURVETERMINATOR")))) == 0;
+						retVal = Functions.SIZEOF(AnnotatedBySymbols.Where(Dct => !(Functions.TYPEOF(Dct).Contains("IFC2X3.IFCDIMENSIONCURVETERMINATOR")))) == 0;
 						break;
 				}
 			} catch (Exception ex) {

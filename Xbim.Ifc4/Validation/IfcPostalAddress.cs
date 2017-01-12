@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.ActorResource
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.ActorResource
 				switch (clause)
 				{
 					case IfcPostalAddressClause.WR1:
-						retVal = EXISTS(InternalLocation) || EXISTS(AddressLines) || EXISTS(PostalBox) || EXISTS(PostalCode) || EXISTS(Town) || EXISTS(Region) || EXISTS(Country);
+						retVal = Functions.EXISTS(InternalLocation) || Functions.EXISTS(AddressLines) || Functions.EXISTS(PostalBox) || Functions.EXISTS(PostalCode) || Functions.EXISTS(Town) || Functions.EXISTS(Region) || Functions.EXISTS(Country);
 						break;
 				}
 			} catch (Exception ex) {

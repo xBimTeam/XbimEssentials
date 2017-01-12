@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.UtilityResource
@@ -31,7 +30,7 @@ namespace Xbim.Ifc4.UtilityResource
 				switch (clause)
 				{
 					case IfcTableClause.WR1:
-						retVal = SIZEOF(Rows.Where(Temp => HIINDEX(Temp.RowCells) != HIINDEX(Rows.ItemAt(0).RowCells))) == 0;
+						retVal = Functions.SIZEOF(Rows.Where(Temp => Functions.HIINDEX(Temp.RowCells) != Functions.HIINDEX(Rows.ItemAt(0).RowCells))) == 0;
 						break;
 					case IfcTableClause.WR2:
 						retVal = ((0 <= NumberOfHeadings) && (NumberOfHeadings <= 1) );

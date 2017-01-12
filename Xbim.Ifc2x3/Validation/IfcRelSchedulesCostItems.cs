@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.SharedMgmtElements
@@ -35,10 +34,10 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				switch (clause)
 				{
 					case IfcRelSchedulesCostItemsClause.WR11:
-						retVal = SIZEOF(this/* as IfcRelAssigns*/.RelatedObjects.Where(temp => !(TYPEOF(temp).Contains("IFC2X3.IFCCOSTITEM")))) == 0;
+						retVal = Functions.SIZEOF(this/* as IfcRelAssigns*/.RelatedObjects.Where(temp => !(Functions.TYPEOF(temp).Contains("IFC2X3.IFCCOSTITEM")))) == 0;
 						break;
 					case IfcRelSchedulesCostItemsClause.WR12:
-						retVal = TYPEOF(this/* as IfcRelAssignsToControl*/.RelatingControl).Contains("IFC2X3.IFCCOSTSCHEDULE");
+						retVal = Functions.TYPEOF(this/* as IfcRelAssignsToControl*/.RelatingControl).Contains("IFC2X3.IFCCOSTSCHEDULE");
 						break;
 				}
 			} catch (Exception ex) {

@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.ConstructionMgmtDomain
@@ -35,10 +34,10 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 				switch (clause)
 				{
 					case IfcConstructionProductResourceClause.WR1:
-						retVal = SIZEOF(this/* as IfcResource*/.ResourceOf) <= 1;
+						retVal = Functions.SIZEOF(this/* as IfcResource*/.ResourceOf) <= 1;
 						break;
 					case IfcConstructionProductResourceClause.WR2:
-						retVal = !(EXISTS(this/* as IfcResource*/.ResourceOf.ItemAt(0))) || (this/* as IfcResource*/.ResourceOf.ItemAt(0).RelatedObjectsType == IfcObjectTypeEnum.PRODUCT);
+						retVal = !(Functions.EXISTS(this/* as IfcResource*/.ResourceOf.ItemAt(0))) || (this/* as IfcResource*/.ResourceOf.ItemAt(0).RelatedObjectsType == IfcObjectTypeEnum.PRODUCT);
 						break;
 				}
 			} catch (Exception ex) {

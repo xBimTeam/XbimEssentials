@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.GeometricModelResource
@@ -32,10 +31,10 @@ namespace Xbim.Ifc4.GeometricModelResource
 				switch (clause)
 				{
 					case IfcSectionedSpineClause.CorrespondingSectionPositions:
-						retVal = SIZEOF(CrossSections) == SIZEOF(CrossSectionPositions);
+						retVal = Functions.SIZEOF(CrossSections) == Functions.SIZEOF(CrossSectionPositions);
 						break;
 					case IfcSectionedSpineClause.ConsistentProfileTypes:
-						retVal = SIZEOF(CrossSections.Where(temp => CrossSections.ItemAt(0).ProfileType != temp.ProfileType)) == 0;
+						retVal = Functions.SIZEOF(CrossSections.Where(temp => CrossSections.ItemAt(0).ProfileType != temp.ProfileType)) == 0;
 						break;
 					case IfcSectionedSpineClause.SpineCurveDim:
 						retVal = SpineCurve.Dim == 3;

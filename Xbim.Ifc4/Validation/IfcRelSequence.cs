@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.ProcessExtension
@@ -34,7 +33,7 @@ namespace Xbim.Ifc4.ProcessExtension
 						retVal = !Object.ReferenceEquals(RelatingProcess, RelatedProcess);
 						break;
 					case IfcRelSequenceClause.CorrectSequenceType:
-						retVal = (SequenceType != IfcSequenceEnum.USERDEFINED) || ((SequenceType == IfcSequenceEnum.USERDEFINED) && EXISTS(UserDefinedSequenceType));
+						retVal = (SequenceType != IfcSequenceEnum.USERDEFINED) || ((SequenceType == IfcSequenceEnum.USERDEFINED) && Functions.EXISTS(UserDefinedSequenceType));
 						break;
 				}
 			} catch (Exception ex) {

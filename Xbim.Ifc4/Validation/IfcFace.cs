@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.TopologyResource
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.TopologyResource
 				switch (clause)
 				{
 					case IfcFaceClause.HasOuterBound:
-						retVal = SIZEOF(Bounds.Where(temp => TYPEOF(temp).Contains("IFC4.IFCFACEOUTERBOUND"))) <= 1;
+						retVal = Functions.SIZEOF(Bounds.Where(temp => Functions.TYPEOF(temp).Contains("IFC4.IFCFACEOUTERBOUND"))) <= 1;
 						break;
 				}
 			} catch (Exception ex) {

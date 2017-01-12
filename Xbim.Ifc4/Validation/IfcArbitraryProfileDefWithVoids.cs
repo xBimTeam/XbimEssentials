@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.ProfileResource
@@ -35,10 +34,10 @@ namespace Xbim.Ifc4.ProfileResource
 						retVal = this/* as IfcProfileDef*/.ProfileType == IfcProfileTypeEnum.AREA;
 						break;
 					case IfcArbitraryProfileDefWithVoidsClause.WR2:
-						retVal = SIZEOF(InnerCurves.Where(temp => temp.Dim != 2)) == 0;
+						retVal = Functions.SIZEOF(InnerCurves.Where(temp => temp.Dim != 2)) == 0;
 						break;
 					case IfcArbitraryProfileDefWithVoidsClause.WR3:
-						retVal = SIZEOF(InnerCurves.Where(temp => TYPEOF(temp).Contains("IFC4.IFCLINE"))) == 0;
+						retVal = Functions.SIZEOF(InnerCurves.Where(temp => Functions.TYPEOF(temp).Contains("IFC4.IFCLINE"))) == 0;
 						break;
 				}
 			} catch (Exception ex) {

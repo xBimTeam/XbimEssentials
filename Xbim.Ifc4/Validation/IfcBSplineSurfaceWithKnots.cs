@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.GeometryResource
@@ -33,16 +32,16 @@ namespace Xbim.Ifc4.GeometryResource
 				switch (clause)
 				{
 					case IfcBSplineSurfaceWithKnotsClause.UDirectionConstraints:
-						retVal = IfcConstraintsParamBSpline(this/* as IfcBSplineSurface*/.UDegree, KnotUUpper, this/* as IfcBSplineSurface*/.UUpper, UMultiplicities, UKnots);
+						retVal = Functions.IfcConstraintsParamBSpline(this/* as IfcBSplineSurface*/.UDegree, KnotUUpper, this/* as IfcBSplineSurface*/.UUpper, UMultiplicities, UKnots);
 						break;
 					case IfcBSplineSurfaceWithKnotsClause.VDirectionConstraints:
-						retVal = IfcConstraintsParamBSpline(this/* as IfcBSplineSurface*/.VDegree, KnotVUpper, this/* as IfcBSplineSurface*/.VUpper, VMultiplicities, VKnots);
+						retVal = Functions.IfcConstraintsParamBSpline(this/* as IfcBSplineSurface*/.VDegree, KnotVUpper, this/* as IfcBSplineSurface*/.VUpper, VMultiplicities, VKnots);
 						break;
 					case IfcBSplineSurfaceWithKnotsClause.CorrespondingULists:
-						retVal = SIZEOF(UMultiplicities) == KnotUUpper;
+						retVal = Functions.SIZEOF(UMultiplicities) == KnotUUpper;
 						break;
 					case IfcBSplineSurfaceWithKnotsClause.CorrespondingVLists:
-						retVal = SIZEOF(VMultiplicities) == KnotVUpper;
+						retVal = Functions.SIZEOF(VMultiplicities) == KnotVUpper;
 						break;
 				}
 			} catch (Exception ex) {

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.PresentationDefinitionResource
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 				switch (clause)
 				{
 					case IfcTextLiteralWithExtentClause.WR31:
-						retVal = !(TYPEOF(Extent).Contains("IFC4.IFCPLANARBOX"));
+						retVal = !(Functions.TYPEOF(Extent).Contains("IFC4.IFCPLANARBOX"));
 						break;
 				}
 			} catch (Exception ex) {

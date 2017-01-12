@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.PresentationAppearanceResource
@@ -31,10 +30,10 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				switch (clause)
 				{
 					case IfcFillAreaStyleHatchingClause.PatternStart2D:
-						retVal = !(EXISTS(PatternStart)) || (PatternStart.Dim == 2);
+						retVal = !(Functions.EXISTS(PatternStart)) || (PatternStart.Dim == 2);
 						break;
 					case IfcFillAreaStyleHatchingClause.RefHatchLine2D:
-						retVal = !(EXISTS(PointOfReferenceHatchLine)) || (PointOfReferenceHatchLine.Dim == 2);
+						retVal = !(Functions.EXISTS(PointOfReferenceHatchLine)) || (PointOfReferenceHatchLine.Dim == 2);
 						break;
 				}
 			} catch (Exception ex) {

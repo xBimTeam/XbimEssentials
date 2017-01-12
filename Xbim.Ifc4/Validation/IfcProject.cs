@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.Kernel
@@ -32,13 +31,13 @@ namespace Xbim.Ifc4.Kernel
 				switch (clause)
 				{
 					case IfcProjectClause.HasName:
-						retVal = EXISTS(this/* as IfcRoot*/.Name);
+						retVal = Functions.EXISTS(this/* as IfcRoot*/.Name);
 						break;
 					case IfcProjectClause.CorrectContext:
-						retVal = !(EXISTS(this/* as IfcContext*/.RepresentationContexts)) || (SIZEOF(this/* as IfcContext*/.RepresentationContexts.Where(Temp => TYPEOF(Temp).Contains("IFC4.IFCGEOMETRICREPRESENTATIONSUBCONTEXT"))) == 0);
+						retVal = !(Functions.EXISTS(this/* as IfcContext*/.RepresentationContexts)) || (Functions.SIZEOF(this/* as IfcContext*/.RepresentationContexts.Where(Temp => Functions.TYPEOF(Temp).Contains("IFC4.IFCGEOMETRICREPRESENTATIONSUBCONTEXT"))) == 0);
 						break;
 					case IfcProjectClause.NoDecomposition:
-						retVal = SIZEOF(this/* as IfcObjectDefinition*/.Decomposes) == 0;
+						retVal = Functions.SIZEOF(this/* as IfcObjectDefinition*/.Decomposes) == 0;
 						break;
 				}
 			} catch (Exception ex) {

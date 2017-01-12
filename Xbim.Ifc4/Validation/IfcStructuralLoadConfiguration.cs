@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.StructuralLoadResource
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				switch (clause)
 				{
 					case IfcStructuralLoadConfigurationClause.ValidListSize:
-						retVal = !EXISTS(Locations) || (SIZEOF(Locations) == SIZEOF(Values));
+						retVal = !Functions.EXISTS(Locations) || (Functions.SIZEOF(Locations) == Functions.SIZEOF(Values));
 						break;
 				}
 			} catch (Exception ex) {

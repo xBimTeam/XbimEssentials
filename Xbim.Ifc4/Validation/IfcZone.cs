@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.ProductExtension
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.ProductExtension
 				switch (clause)
 				{
 					case IfcZoneClause.WR1:
-						retVal = (SIZEOF(this/* as IfcGroup*/.IsGroupedBy) == 0) || (SIZEOF(this/* as IfcGroup*/.IsGroupedBy.ItemAt(0).RelatedObjects.Where(temp => !((TYPEOF(temp).Contains("IFC4.IFCZONE")) || (TYPEOF(temp).Contains("IFC4.IFCSPACE")) || (TYPEOF(temp).Contains("IFC4.IFCSPATIALZONE"))))) == 0);
+						retVal = (Functions.SIZEOF(this/* as IfcGroup*/.IsGroupedBy) == 0) || (Functions.SIZEOF(this/* as IfcGroup*/.IsGroupedBy.ItemAt(0).RelatedObjects.Where(temp => !((Functions.TYPEOF(temp).Contains("IFC4.IFCZONE")) || (Functions.TYPEOF(temp).Contains("IFC4.IFCSPACE")) || (Functions.TYPEOF(temp).Contains("IFC4.IFCSPATIALZONE"))))) == 0);
 						break;
 				}
 			} catch (Exception ex) {

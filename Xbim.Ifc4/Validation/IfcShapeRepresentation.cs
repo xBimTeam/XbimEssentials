@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.RepresentationResource
@@ -34,19 +33,19 @@ namespace Xbim.Ifc4.RepresentationResource
 				switch (clause)
 				{
 					case IfcShapeRepresentationClause.CorrectContext:
-						retVal = TYPEOF(this/* as IfcRepresentation*/.ContextOfItems).Contains("IFC4.IFCGEOMETRICREPRESENTATIONCONTEXT");
+						retVal = Functions.TYPEOF(this/* as IfcRepresentation*/.ContextOfItems).Contains("IFC4.IFCGEOMETRICREPRESENTATIONCONTEXT");
 						break;
 					case IfcShapeRepresentationClause.NoTopologicalItem:
-						retVal = SIZEOF(Items.Where(temp => (TYPEOF(temp).Contains("IFC4.IFCTOPOLOGICALREPRESENTATIONITEM")) && (!(SIZEOF(NewArray("IFC4.IFCVERTEXPOINT", "IFC4.IFCEDGECURVE", "IFC4.IFCFACESURFACE") * TYPEOF(temp)) == 1)))) == 0;
+						retVal = Functions.SIZEOF(Items.Where(temp => (Functions.TYPEOF(temp).Contains("IFC4.IFCTOPOLOGICALREPRESENTATIONITEM")) && (!(Functions.SIZEOF(Functions.NewArray("IFC4.IFCVERTEXPOINT", "IFC4.IFCEDGECURVE", "IFC4.IFCFACESURFACE") * Functions.TYPEOF(temp)) == 1)))) == 0;
 						break;
 					case IfcShapeRepresentationClause.HasRepresentationType:
-						retVal = EXISTS(this/* as IfcRepresentation*/.RepresentationType);
+						retVal = Functions.EXISTS(this/* as IfcRepresentation*/.RepresentationType);
 						break;
 					case IfcShapeRepresentationClause.CorrectItemsForType:
-						retVal = IfcShapeRepresentationTypes(this/* as IfcRepresentation*/.RepresentationType, this/* as IfcRepresentation*/.Items);
+						retVal = Functions.IfcShapeRepresentationTypes(this/* as IfcRepresentation*/.RepresentationType, this/* as IfcRepresentation*/.Items);
 						break;
 					case IfcShapeRepresentationClause.HasRepresentationIdentifier:
-						retVal = EXISTS(this/* as IfcRepresentation*/.RepresentationIdentifier);
+						retVal = Functions.EXISTS(this/* as IfcRepresentation*/.RepresentationIdentifier);
 						break;
 				}
 			} catch (Exception ex) {

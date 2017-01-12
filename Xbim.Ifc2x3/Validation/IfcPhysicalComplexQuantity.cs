@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.QuantityResource
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 				switch (clause)
 				{
 					case IfcPhysicalComplexQuantityClause.WR21:
-						retVal = SIZEOF(HasQuantities.Where(temp => Object.ReferenceEquals(this, temp))) == 0;
+						retVal = Functions.SIZEOF(HasQuantities.Where(temp => Object.ReferenceEquals(this, temp))) == 0;
 						break;
 				}
 			} catch (Exception ex) {

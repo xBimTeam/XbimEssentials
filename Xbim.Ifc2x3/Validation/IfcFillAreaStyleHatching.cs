@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
@@ -36,13 +35,13 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				switch (clause)
 				{
 					case IfcFillAreaStyleHatchingClause.WR21:
-						retVal = !(TYPEOF(StartOfNextHatchLine).Contains("IFC2X3.IFCTWODIRECTIONREPEATFACTOR"));
+						retVal = !(Functions.TYPEOF(StartOfNextHatchLine).Contains("IFC2X3.IFCTWODIRECTIONREPEATFACTOR"));
 						break;
 					case IfcFillAreaStyleHatchingClause.WR22:
-						retVal = !(EXISTS(PatternStart)) || (PatternStart.Dim == 2);
+						retVal = !(Functions.EXISTS(PatternStart)) || (PatternStart.Dim == 2);
 						break;
 					case IfcFillAreaStyleHatchingClause.WR23:
-						retVal = !(EXISTS(PointOfReferenceHatchLine)) || (PointOfReferenceHatchLine.Dim == 2);
+						retVal = !(Functions.EXISTS(PointOfReferenceHatchLine)) || (PointOfReferenceHatchLine.Dim == 2);
 						break;
 				}
 			} catch (Exception ex) {

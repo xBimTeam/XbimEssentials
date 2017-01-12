@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				switch (clause)
 				{
 					case IfcAnnotationSurfaceOccurrenceClause.WR31:
-						retVal = !(EXISTS(this/* as IfcStyledItem*/.Item)) || (SIZEOF(NewArray("IFC2X3.IFCSURFACE", "IFC2X3.IFCFACEBASEDSURFACEMODEL", "IFC2X3.IFCSHELLBASEDSURFACEMODEL", "IFC2X3.IFCSOLIDMODEL") * TYPEOF(this/* as IfcStyledItem*/.Item)) > 0);
+						retVal = !(Functions.EXISTS(this/* as IfcStyledItem*/.Item)) || (Functions.SIZEOF(Functions.NewArray("IFC2X3.IFCSURFACE", "IFC2X3.IFCFACEBASEDSURFACEMODEL", "IFC2X3.IFCSHELLBASEDSURFACEMODEL", "IFC2X3.IFCSOLIDMODEL") * Functions.TYPEOF(this/* as IfcStyledItem*/.Item)) > 0);
 						break;
 				}
 			} catch (Exception ex) {

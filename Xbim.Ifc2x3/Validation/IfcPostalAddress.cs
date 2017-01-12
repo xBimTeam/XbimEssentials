@@ -10,7 +10,6 @@ using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.ProfilePropertyResource;
-using static Xbim.Ifc2x3.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc2x3.ActorResource
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3.ActorResource
 				switch (clause)
 				{
 					case IfcPostalAddressClause.WR1:
-						retVal = EXISTS(InternalLocation) || EXISTS(AddressLines) || EXISTS(PostalBox) || EXISTS(PostalCode) || EXISTS(Town) || EXISTS(Region) || EXISTS(Country);
+						retVal = Functions.EXISTS(InternalLocation) || Functions.EXISTS(AddressLines) || Functions.EXISTS(PostalBox) || Functions.EXISTS(PostalCode) || Functions.EXISTS(Town) || Functions.EXISTS(Region) || Functions.EXISTS(Country);
 						break;
 				}
 			} catch (Exception ex) {

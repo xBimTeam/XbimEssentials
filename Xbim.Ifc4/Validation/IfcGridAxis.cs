@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc4.Interfaces;
-using static Xbim.Ifc4.Functions;
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.Ifc4.GeometricConstraintResource
@@ -34,7 +33,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 						retVal = AxisCurve.Dim == 2;
 						break;
 					case IfcGridAxisClause.WR2:
-						retVal = (SIZEOF(PartOfU) == 1) ^ (SIZEOF(PartOfV) == 1) ^ (SIZEOF(PartOfW) == 1);
+						retVal = (Functions.SIZEOF(PartOfU) == 1) ^ (Functions.SIZEOF(PartOfV) == 1) ^ (Functions.SIZEOF(PartOfW) == 1);
 						break;
 				}
 			} catch (Exception ex) {
