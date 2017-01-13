@@ -109,6 +109,24 @@ namespace Xbim.MemoryModel.Tests
         }
 
         [TestMethod]
+        [DeploymentItem("TestFiles\\NewlinesInStrings.ifc")]
+        public void CanParseNewlinesInStrings()
+        {
+            using (var model = new Xbim.IO.Memory.MemoryModel(new Ifc2x3.EntityFactory()))
+            {
+                var errCount = model.LoadStep21("NewlinesInStrings.ifc");
+                Assert.AreEqual(0, errCount);
+            }
+
+            using (var model = new Xbim.IO.Esent.EsentModel(new Ifc2x3.EntityFactory()))
+            {
+                var errCount = model.CreateFrom("NewlinesInStrings.ifc");
+                Assert.AreEqual(true, errCount);
+            }
+        }
+
+
+        [TestMethod]
         [DeploymentItem("TestFiles")]
         public void IfcOpenIfcZipTest()
         {
