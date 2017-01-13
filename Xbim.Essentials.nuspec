@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
     <id>Xbim.Essentials</id>
-    <version>4.0.25</version>
+    <version>4.0.26</version>
     <title>xBIM Essentials</title>
     <authors>xBIM Team</authors>
     <owners>Steve Lockley, Martin Cerny</owners>
@@ -55,6 +55,6 @@
     <file src="Output\Release\Xbim.Ifc.XML"            	target="lib\net40\Xbim.Ifc.XML" />
     <file src="Output\Release\Xbim.IO.XML"              target="lib\net40\Xbim.IO.XML" />
     <file src="Output\Release\Xbim.Tessellator.XML"     target="lib\net40\Xbim.Tessellator.XML" />
-	<file src="Install.ps1" 							target="tools\Install.ps1" />
+    <file src="Install.ps1"                             target="tools\Install.ps1" />
   </files>
 </package>

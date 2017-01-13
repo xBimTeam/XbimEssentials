@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
     <id>Xbim.Cobie</id>
-    <version>4.0.25</version>
+    <version>4.0.26</version>
     <title>xBIM Cobie</title>
     <authors>xBIM team</authors>
     <owners>Steve Lockley, Martin Cerny</owners>
@@ -20,7 +20,7 @@
     <tags>COBie, BIM, IFC, IfcXml, IfcZip, COBie, Ifc4, .Net, C#, BuildingSmart</tags>
     <dependencies>
       <dependency id="NPOI" version="2.2.1" />
-      <dependency id="Xbim.Essentials" version="4.0.25" />
+      <dependency id="Xbim.Essentials" version="4.0.26" />
     </dependencies>
   </metadata>
   <files>
@@ -30,6 +30,6 @@
     <file src="Output\Release\Xbim.IO.TableStore.pdb"   target="lib\net40\Xbim.IO.TableStore.pdb" />
     <file src="Output\Release\Xbim.CobieExpress.IO.XML" target="lib\net40\Xbim.CobieExpress.IO.XML" />
     <file src="Output\Release\Xbim.IO.TableStore.XML"   target="lib\net40\Xbim.IO.TableStore.XML" />
-	<file src="Install.ps1" 							target="tools\Install.ps1" />
+	  <file src="Install.ps1"                             target="tools\Install.ps1" />
   </files>
 </package>
