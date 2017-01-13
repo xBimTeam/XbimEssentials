@@ -84,7 +84,7 @@ namespace Xbim.MemoryModel.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestFiles")]
+        [DeploymentItem("TestFiles\\DoubleBackSlashName.ifc")]
         public void DoubleBackSlashName()
         {
             // I've come across a file that has an ifclabel specified as 'TextEndingInEscapedBackslash\\'
@@ -93,13 +93,13 @@ namespace Xbim.MemoryModel.Tests
             using (var store = IfcStore.Open("DoubleBackSlashName.ifc"))
             {
                 var mat1 = (Ifc2x3.MaterialResource.IfcMaterial)store.Instances[417];
-                Assert.AreEqual(mat1.Name.ToString(), "TextEndingInEscapedBackslash\\MoreText", "String containing double backslash is not parsed correctly");
+                Assert.AreEqual(mat1.Name.ToString(), @"TextWithEscapedBackslash\MoreText", "String containing escaped backslash is not parsed correctly");
 
                 var mat2 = (Ifc2x3.MaterialResource.IfcMaterial)store.Instances[418];
-                Assert.IsTrue(mat2.Name.ToString().EndsWith("\\"), "String ending in double backslash is not parsed correctly");
+                Assert.IsTrue(mat2.Name.ToString().EndsWith(@"\"), "String ending in escaped backslash is not parsed correctly");
 
                 var mat3 = (Ifc2x3.MaterialResource.IfcMaterial)store.Instances[419];
-                Assert.IsTrue(mat3.Name.ToString().EndsWith("à"), "String ending in double backslash is not parsed correctly");
+                Assert.IsTrue(mat3.Name.ToString().EndsWith("à"), "Text with accented character is not parsed correctly");
 
                 var beam = (IfcBeam)store.Instances[432];
                 Assert.IsNotNull(beam, "element after double backslash is not read correctly");

@@ -58,7 +58,7 @@ DATA;
 #404= IFCAXIS2PLACEMENT3D(#405,#402,#400);
 #405= IFCCARTESIANPOINT((0.,0.,0.));
 #407= IFCDIRECTION((0.,0.,1.));
-#417= IFCMATERIAL('TextEndingInEscapedBackslash\\MoreText');
+#417= IFCMATERIAL('TextWithEscapedBackslash\\MoreText');
 #418= IFCMATERIAL('TextEndingInEscapedBackslash\\');
 #419= IFCMATERIAL('Text with accented character \X2\00E0\X0\');
 #432= IFCBEAM('2EwMOfb1L9d84$$JK2vlm$',#4,'<Unnamed Element>',$,$,#379,#380,$);
