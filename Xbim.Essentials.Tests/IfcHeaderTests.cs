@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -17,6 +19,10 @@ namespace Xbim.Essentials.Tests
         {
             const string path = @"x:\path1\path2\filename.ifc";
             const string umlaut = "name with umlaut ü";
+
+            var testFile = new FileInfo("testOutput.ifc");
+            Debug.WriteLine("testing file: " + testFile.FullName);
+
             using (var model = Ifc2x3.IO.XbimModel.CreateTemporaryModel())
             {
 
@@ -29,11 +35,11 @@ namespace Xbim.Essentials.Tests
 
                 model.Header.FileName.Name = path;
                 model.Header.FileName.Organization.Add(umlaut); 
-                model.SaveAs("testOutput.ifc");
+                model.SaveAs(testFile.FullName);
             }
             using (var model = new Ifc2x3.IO.XbimModel())
             {
-                model.CreateFrom("testOutput.ifc", null, null, true);
+                model.CreateFrom(testFile.FullName, null, null, true);
                 Assert.IsTrue(model.Header.FileName.Name == path);
                 Assert.IsTrue(model.Header.FileName.Organization.FirstOrDefault() == umlaut);
                 model.Close();

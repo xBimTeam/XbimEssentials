@@ -98,8 +98,12 @@ namespace Xbim.MemoryModel.Tests
                 var mat2 = (Ifc2x3.MaterialResource.IfcMaterial)store.Instances[418];
                 Assert.IsTrue(mat2.Name.ToString().EndsWith(@"\"), "String ending in escaped backslash is not parsed correctly");
 
-                var mat3 = (Ifc2x3.MaterialResource.IfcMaterial)store.Instances[419];
-                Assert.IsTrue(mat3.Name.ToString().EndsWith("à"), "Text with accented character is not parsed correctly");
+                var acc = (Ifc2x3.MaterialResource.IfcMaterial)store.Instances[419];
+                Assert.IsTrue(acc.Name.ToString().EndsWith("à"), "Text with accented character is not parsed correctly");
+                acc = (Ifc2x3.MaterialResource.IfcMaterial)store.Instances[420];
+                Assert.IsTrue(acc.Name.ToString().EndsWith("à"), "Text with accented character is not parsed correctly");
+                acc = (Ifc2x3.MaterialResource.IfcMaterial)store.Instances[421];
+                Assert.IsTrue(acc.Name.ToString().EndsWith("à"), "Text with accented character is not parsed correctly");
 
                 var beam = (IfcBeam)store.Instances[432];
                 Assert.IsNotNull(beam, "element after double backslash is not read correctly");

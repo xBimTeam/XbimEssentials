@@ -60,7 +60,9 @@ DATA;
 #407= IFCDIRECTION((0.,0.,1.));
 #417= IFCMATERIAL('TextWithEscapedBackslash\\MoreText');
 #418= IFCMATERIAL('TextEndingInEscapedBackslash\\');
-#419= IFCMATERIAL('Text with accented character \X2\00E0\X0\');
+#419= IFCMATERIAL('Text with accented character \X\E0');
+#420= IFCMATERIAL('Text with accented character \X2\00E0\X0\');
+#421= IFCMATERIAL('Text with accented character \X4\000000E0\X0\');
 #432= IFCBEAM('2EwMOfb1L9d84$$JK2vlm$',#4,'<Unnamed Element>',$,$,#379,#380,$);
 ENDSEC;
 
