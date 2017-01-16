@@ -9,7 +9,7 @@ DATA;
 /*
 entity 1 has a text with an illegal diameter character
 */
-#1=IFCPROPERTYSINGLEVALUE('Comments','Comments relating to 1016',IFCDESCRIPTIVEMEASURE('Upper Precast Unit 1016 from {L38}, COMMENT: White staining to channel edge, 15mm Ã˜ hole depth not known'),$);
+#1=IFCPROPERTYSINGLEVALUE('Comments','Comments relating to 1016',IFCDESCRIPTIVEMEASURE('Upper Precast Unit 1016 from {L38}, COMMENT: White staining to channel edge, 15mm Ø hole depth not known'),$);
 /*
 entity 2 has numerical values with results of bugs in the producing software.
 
@@ -19,6 +19,8 @@ entity 2 has numerical values with results of bugs in the producing software.
 
 */
 #2 = IFCCARTESIANPOINT((-1.#INF,-1.#IND,1.#INF));
+#3 = IFCCARTESIANPOINT((1.6E10,3.,1.));
+
 
 ENDSEC;
 

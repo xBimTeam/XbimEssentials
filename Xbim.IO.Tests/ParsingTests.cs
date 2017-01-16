@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common;
 using Xbim.Common.Step21;
@@ -54,28 +55,29 @@ namespace Xbim.MemoryModel.Tests
         /// </summary>
         [TestMethod]
         [DeploymentItem("TestFiles\\FormallyIllegalFile.ifc")]
-        public void ShouldWeAcceptAFormallyIllegalFileQuestionMark()
+        public void AcceptAFormallyIllegalFile()
         {
+            // todo: should some notification when the file is malformed be available?
             using (var store = IfcStore.Open("FormallyIllegalFile.ifc"))
             {
-                // The file is formally illegal, we need to decide what level of tolerance we wish to establish.
-                // see inside the file for comments on the ways the file is illegal.
+                // The file is formally illegal, 
+                // see inside the file for comments on details.
                 
                 // illegal diameter string
                 var st = store.Instances[1] as IIfcPropertySingleValue;
                 var val = (Ifc4.MeasureResource.IfcDescriptiveMeasure)st.NominalValue;
-                Debug.WriteLine(val.Value.ToString());
+                var valString = val.Value.ToString();
+                Debug.WriteLine(valString);
                 if (!val.Value.ToString().Contains("Ø"))
                 {
                     throw new Exception("Diameter character misread from file.");
-                    // todo: some notification when the file is malformed should be available
                 }
 
-                // illegal diameter string
+                // illegal double numbers
                 var point = store.Instances[2] as IIfcCartesianPoint;
-                Debug.Assert(double.IsNegativeInfinity(point.X), "coordinate should be negative infinity.");
-                Debug.Assert(double.IsNaN(point.Y), "coordinate should be NaN.");
-                Debug.Assert(double.IsNegativeInfinity(point.Z), "coordinate should be positive infinity.");
+                Assert.IsTrue(double.IsNegativeInfinity(point.X), "coordinate should be negative infinity.");
+                Assert.IsTrue(double.IsNaN(point.Y), "coordinate should be NaN.");
+                Assert.IsTrue(double.IsPositiveInfinity(point.Z), "coordinate should be positive infinity.");
 
                 store.Close();
             }
