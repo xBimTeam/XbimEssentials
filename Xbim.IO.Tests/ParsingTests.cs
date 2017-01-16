@@ -10,6 +10,7 @@ using Xbim.Ifc2x3.SharedBldgElements;
 using Xbim.IO;
 using Xbim.IO.Parser;
 using Xbim.IO.Step21;
+using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.MemoryModel.Tests
 {
@@ -41,6 +42,40 @@ namespace Xbim.MemoryModel.Tests
 
                 var inst2 = store.Instances[1240084];
                 Assert.IsNull(inst2, "Instance should not exist.");
+
+                store.Close();
+            }
+        }
+
+
+
+        /// <summary>
+        /// This is only provided as a remainder of possible improvements in the tolerance of incorrect files.
+        /// </summary>
+        [TestMethod]
+        [DeploymentItem("TestFiles\\FormallyIllegalFile.ifc")]
+        public void ShouldWeAcceptAFormallyIllegalFileQuestionMark()
+        {
+            using (var store = IfcStore.Open("FormallyIllegalFile.ifc"))
+            {
+                // The file is formally illegal, we need to decide what level of tolerance we wish to establish.
+                // see inside the file for comments on the ways the file is illegal.
+                
+                // illegal diameter string
+                var st = store.Instances[1] as IIfcPropertySingleValue;
+                var val = (Ifc4.MeasureResource.IfcDescriptiveMeasure)st.NominalValue;
+                Debug.WriteLine(val.Value.ToString());
+                if (!val.Value.ToString().Contains("Ø"))
+                {
+                    throw new Exception("Diameter character misread from file.");
+                    // todo: some notification when the file is malformed should be available
+                }
+
+                // illegal diameter string
+                var point = store.Instances[2] as IIfcCartesianPoint;
+                Debug.Assert(double.IsNegativeInfinity(point.X), "coordinate should be negative infinity.");
+                Debug.Assert(double.IsNaN(point.Y), "coordinate should be NaN.");
+                Debug.Assert(double.IsNegativeInfinity(point.Z), "coordinate should be positive infinity.");
 
                 store.Close();
             }
