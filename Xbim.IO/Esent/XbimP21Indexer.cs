@@ -385,8 +385,23 @@ namespace Xbim.IO.Esent
             else
             {
                 _binaryWriter.Write((byte)P21ParseAction.SetHexValue);
-                _binaryWriter.Write(Convert.ToInt64(value, 16));
+                var data = value.Substring(1, value.Length - 2);
+                if (string.IsNullOrWhiteSpace(data))
+                {
+                    _binaryWriter.Write((Int32)0);
+                }
+                else
+                {
+                    //decode data into byte array and write it
+                    var hex = data.Substring(1);
+                    int numChars = hex.Length;
+                    byte[] bytes = new byte[numChars / 2];
+                    for (int i = 0; i < numChars; i += 2)
+                        bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
 
+                   _binaryWriter.Write(bytes.Length);
+                   _binaryWriter.Write(bytes);
+                }
             }
             if (_listNestLevel == 0) _currentInstance.CurrentParamIndex++;
         }

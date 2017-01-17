@@ -588,12 +588,15 @@ namespace Xbim.IO.Xml
 
                     if (pt != StepParserType.Undefined)
                     {
-                        switch (pt.ToString().ToLower())
+                        switch (pt)
                         {
-                            case "string":
+                            case StepParserType.String:
                                 propVal.Init("'" + input.Value + "'", pt);
                                 break;
-                            case "boolean":
+                            case StepParserType.HexaDecimal:
+                                propVal.Init("\"0" + input.Value + "\"", pt);
+                                break;
+                            case StepParserType.Boolean:
                                 propVal.Init(Convert.ToBoolean(input.Value) ? ".T." : ".F", pt);
                                 break;
                             default:

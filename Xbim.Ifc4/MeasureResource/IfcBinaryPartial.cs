@@ -8,38 +8,27 @@ namespace Xbim.Ifc4.MeasureResource
 {
     public partial struct IfcBinary
     {
-        public IfcBinary(byte[] val)
-        {
-            _value = "0" + ByteArrayToString(val);
-        }
-
-
-        public static implicit operator IfcBinary(byte[] value)
-        {
-            return new IfcBinary(value);
-        }
-
-        public static implicit operator byte[] (IfcBinary obj)
-        {
-            return obj.Bytes;
-        }
-
+        //public IfcBinary(byte[] val)
+        //{
+        //    _value = "0" + ByteArrayToString(val);
+        //}
+        //
+        //
+        //public static implicit operator IfcBinary(byte[] value)
+        //{
+        //    return new IfcBinary(value);
+        //}
+        //
+        //public static implicit operator byte[] (IfcBinary obj)
+        //{
+        //    return obj.Bytes;
+        //}
+        //
         public byte[] Bytes
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(_value) || _value.Equals("0"))
-                    return new byte[0];
-                var n = _value[0]; //addition to 4. Anything else than 0 means that it can't be converted to bytes
-                if (n != '0')
-                {
-                    var log = LoggerFactory.GetLogger(GetType());
-                    log.Warn("Binary data encoded in the string is not byte aligned so it can't be converted into byte array.");
-                    return new byte[0];
-                }
-
-                var data = _value.Substring(1);
-                return StringToByteArray(data);
+                return _value;
             }
         }
 

@@ -207,7 +207,7 @@ namespace Xbim.Common.Collections
 
         public void AddRange(IEnumerable<TOuter> values)
         {
-            _inner.AddRange(values.Cast<TInner>());
+            _inner.AddRange(values.Select(v => _toIn(v)));
         }
 
         public TOuter First

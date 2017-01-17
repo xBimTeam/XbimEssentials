@@ -219,11 +219,11 @@ namespace Xbim.IO.Step21
                 else if ((propVal is IExpressValueType))
                 {
                     var expressVal = (IExpressValueType)propVal;
-                    WriteValueType(expressVal.UnderlyingSystemType, expressVal.Value, output, expressVal is IExpressBinaryType);
+                    WriteValueType(expressVal.UnderlyingSystemType, expressVal.Value, output);
                 }
                 else // if (propVal.GetType().IsEnum)
                 {
-                    WriteValueType(propVal.GetType(), propVal, output, false);
+                    WriteValueType(propVal.GetType(), propVal, output);
                 }
             }
             else if (typeof(IExpressComplexType).IsAssignableFrom(propType))
@@ -254,7 +254,7 @@ namespace Xbim.IO.Step21
                 else //need to write out underlying property value
                 {
                     var expressVal = (IExpressValueType)propVal;
-                    WriteValueType(expressVal.UnderlyingSystemType, expressVal.Value, output, expressVal is IExpressBinaryType);
+                    WriteValueType(expressVal.UnderlyingSystemType, expressVal.Value, output);
                 }
             }
             else if (typeof(IExpressEnumerable).IsAssignableFrom(propType) &&
@@ -282,9 +282,9 @@ namespace Xbim.IO.Step21
                     label = mapLabel;
                 output.Write(label);
             }
-            else if (propType.IsValueType || propVal is string) //it might be an in-built value type double, string etc.
+            else if (propType.IsValueType || propVal is string || propVal is byte[]) //it might be an in-built value type double, string etc.
             {
-                WriteValueType(propVal.GetType(), propVal, output, false);
+                WriteValueType(propVal.GetType(), propVal, output);
             }
             else if (typeof(IExpressSelectType).IsAssignableFrom(propType))
             // a select type get the type of the actual value
@@ -315,7 +315,7 @@ namespace Xbim.IO.Step21
         /// <param name="pInfoType"></param>
         /// <param name="pVal"></param>
         /// <param name="output"></param>
-        private static void WriteValueType(Type pInfoType, object pVal, TextWriter output, bool isHexaValue)
+        private static void WriteValueType(Type pInfoType, object pVal, TextWriter output)
         {
             if (pInfoType == typeof(Double))
                 output.Write(string.Format(_p21Provider, "{0:R}", pVal));
@@ -325,10 +325,18 @@ namespace Xbim.IO.Step21
                     output.Write('$');
                 else
                 {
-                    output.Write(isHexaValue ? '"' : '\'');
+                    output.Write('\'');
                     output.Write(((string)pVal).ToPart21());
-                    output.Write(isHexaValue ? '"' : '\'');
+                    output.Write('\'');
                 }
+            }
+            else if (pInfoType == typeof(byte[])) //convert  string
+            {
+                output.Write("\"0");
+                var bytes = (byte[])pVal;
+                foreach (byte b in bytes)
+                    output.Write("{0:X2}", b);
+                output.Write('"');
             }
             else if (pInfoType == typeof(Int16) || pInfoType == typeof(Int32) || pInfoType == typeof(Int64))
                 output.Write(pVal.ToString());
