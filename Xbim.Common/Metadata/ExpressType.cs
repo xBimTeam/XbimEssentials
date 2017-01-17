@@ -218,12 +218,15 @@ namespace Xbim.Common.Metadata
                     var h = entity.EntityLabel;
                     keys.Add(h); //normally there are only one or two keys so don't worry about performance of contains on a list
                 }
-                else if (o is IExpressEnumerable)
+                else if (o is IExpressEnumerable && o!=null) //null checking has been added for models that contain missing entities
                 {
-                    foreach (var obj in (IExpressEnumerable)o)
+                    foreach (var obj in (IExpressEnumerable)o) 
                     {
-                        var h =((IPersistEntity)obj).EntityLabel;
-                        keys.Add(h); //normally there are only one or two keys so don't worry about performance of contains on a list
+                        if (obj != null)
+                        {
+                            var h = ((IPersistEntity)obj).EntityLabel;
+                            keys.Add(h); //normally there are only one or two keys so don't worry about performance of contains on a list
+                        }
                     }                    
                 }
             }
