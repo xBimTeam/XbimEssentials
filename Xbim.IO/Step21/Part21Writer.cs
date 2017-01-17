@@ -219,11 +219,11 @@ namespace Xbim.IO.Step21
                 else if ((propVal is IExpressValueType))
                 {
                     var expressVal = (IExpressValueType)propVal;
-                    WriteValueType(expressVal.UnderlyingSystemType, expressVal.Value, output);
+                    WriteValueType(expressVal.UnderlyingSystemType, expressVal.Value, output, expressVal is IExpressBinaryType);
                 }
                 else // if (propVal.GetType().IsEnum)
                 {
-                    WriteValueType(propVal.GetType(), propVal, output);
+                    WriteValueType(propVal.GetType(), propVal, output, false);
                 }
             }
             else if (typeof(IExpressComplexType).IsAssignableFrom(propType))
@@ -254,7 +254,7 @@ namespace Xbim.IO.Step21
                 else //need to write out underlying property value
                 {
                     var expressVal = (IExpressValueType)propVal;
-                    WriteValueType(expressVal.UnderlyingSystemType, expressVal.Value, output);
+                    WriteValueType(expressVal.UnderlyingSystemType, expressVal.Value, output, expressVal is IExpressBinaryType);
                 }
             }
             else if (typeof(IExpressEnumerable).IsAssignableFrom(propType) &&
@@ -284,7 +284,7 @@ namespace Xbim.IO.Step21
             }
             else if (propType.IsValueType || propVal is string) //it might be an in-built value type double, string etc.
             {
-                WriteValueType(propVal.GetType(), propVal, output);
+                WriteValueType(propVal.GetType(), propVal, output, false);
             }
             else if (typeof(IExpressSelectType).IsAssignableFrom(propType))
             // a select type get the type of the actual value
@@ -307,25 +307,27 @@ namespace Xbim.IO.Step21
                                                   propType.Name, propType.Name));
         }
 
+        private static readonly IFormatProvider _p21Provider = new Part21Formatter();
+
         /// <summary>
         /// Writes the value of a property to the TextWriter in the Part 21 format
         /// </summary>
         /// <param name="pInfoType"></param>
         /// <param name="pVal"></param>
         /// <param name="output"></param>
-        private static void WriteValueType(Type pInfoType, object pVal, TextWriter output)
+        private static void WriteValueType(Type pInfoType, object pVal, TextWriter output, bool isHexaValue)
         {
             if (pInfoType == typeof(Double))
-                output.Write(string.Format(new Part21Formatter(), "{0:R}", pVal));
+                output.Write(string.Format(_p21Provider, "{0:R}", pVal));
             else if (pInfoType == typeof(String)) //convert  string
             {
                 if (pVal == null)
                     output.Write('$');
                 else
                 {
-                    output.Write('\'');
+                    output.Write(isHexaValue ? '"' : '\'');
                     output.Write(((string)pVal).ToPart21());
-                    output.Write('\'');
+                    output.Write(isHexaValue ? '"' : '\'');
                 }
             }
             else if (pInfoType == typeof(Int16) || pInfoType == typeof(Int32) || pInfoType == typeof(Int64))
@@ -341,13 +343,13 @@ namespace Xbim.IO.Step21
                 }
             }
             else if (pInfoType == typeof(DateTime)) //convert  TimeStamp
-                output.Write(string.Format(new Part21Formatter(), "{0:T}", pVal));
+                output.Write(string.Format(_p21Provider, "{0:T}", pVal));
             else if (pInfoType == typeof(Guid)) //convert  Guid string
             {
                 if (pVal == null)
                     output.Write('$');
                 else
-                    output.Write(string.Format(new Part21Formatter(), "{0:G}", pVal));
+                    output.Write(string.Format(_p21Provider, "{0:G}", pVal));
             }
             else if (pInfoType == typeof(bool?)) //convert  logical
             {

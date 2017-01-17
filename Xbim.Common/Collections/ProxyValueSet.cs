@@ -9,8 +9,8 @@ using Xbim.Common.Exceptions;
 namespace Xbim.Common.Collections
 {
     public class ProxyValueSet<TInner, TOuter> : IItemSet<TOuter>, IList 
-        where TInner : struct
-        where TOuter : struct
+        //where TInner : struct
+        //where TOuter : struct
     {
         private readonly IItemSet<TInner> _inner;
         private readonly Func<TInner, TOuter> _toOut;
@@ -217,7 +217,7 @@ namespace Xbim.Common.Collections
 
         public TOuter FirstOrDefault()
         {
-            return _inner.Count == 0 ? new TOuter() : _toOut(_inner.FirstOrDefault());
+            return _inner.Count == 0 ? default(TOuter) : _toOut(_inner.FirstOrDefault());
         }
 
         public TOuter FirstOrDefault(Func<TOuter, bool> predicate)

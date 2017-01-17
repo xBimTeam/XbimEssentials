@@ -77,11 +77,11 @@ namespace Xbim.IO.Step21.Parser
             }
         }
 
-        public long HexadecimalVal
+        public string HexadecimalVal
         {
             get
             {
-                if (_stepParserType == StepParserType.HexaDecimal) return Convert.ToInt64(_strVal, 16);
+                if (_stepParserType == StepParserType.HexaDecimal) return _strVal;
                 else
                     throw new Exception(string.Format("Wrong parameter type, found {0}, expected {1}",
                                                       _stepParserType.ToString(), "HexaDecimal"));

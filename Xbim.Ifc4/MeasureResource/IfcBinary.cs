@@ -13,11 +13,11 @@ using Xbim.Common.Exceptions;
 namespace Xbim.Ifc4.MeasureResource
 {
 	[ExpressType("IfcBinary", 986)]
-	[DefinedType(typeof(long))]
+	[DefinedType(typeof(string))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcBinary : IExpressValueType, IExpressBinaryType, System.IEquatable<long>
+	public partial struct IfcBinary : IExpressValueType, IExpressBinaryType, System.IEquatable<string>
 	{ 
-		private long _value;
+		private string _value;
         
 		public object Value
         {
@@ -25,28 +25,24 @@ namespace Xbim.Ifc4.MeasureResource
         }
 
  
-		long IExpressBinaryType.Value { get { return _value; } }
+		string IExpressBinaryType.Value { get { return _value; } }
 
 		public override string ToString()
         {
-			return _value.ToString();
+			return _value ?? "";
         }
-        public IfcBinary(long val)
+        public IfcBinary(string val)
         {
             _value = val;
         }
 
-		public IfcBinary(string val)
-        {
-			_value = System.Convert.ToInt64(val);
-        }
 
-        public static implicit operator IfcBinary(long value)
+        public static implicit operator IfcBinary(string value)
         {
             return new IfcBinary(value);
         }
 
-        public static implicit operator long(IfcBinary obj)
+        public static implicit operator string(IfcBinary obj)
         {
             return obj._value;
 
@@ -67,7 +63,7 @@ namespace Xbim.Ifc4.MeasureResource
             return ((IfcBinary) obj)._value == _value;
         }
 
-		public bool Equals(long other)
+		public bool Equals(string other)
 	    {
 	        return this == other;
 	    }
@@ -101,7 +97,7 @@ namespace Xbim.Ifc4.MeasureResource
         System.Type IExpressValueType.UnderlyingSystemType { 
 			get 
 			{
-				return typeof(long);
+				return typeof(string);
 			}
 		}
 		#endregion

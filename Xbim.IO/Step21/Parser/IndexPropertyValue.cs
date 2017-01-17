@@ -51,11 +51,11 @@ namespace Xbim.IO.Parser
             }
         }
 
-        public long HexadecimalVal
+        public string HexadecimalVal
         {
             get
             {
-                if (_parserType == StepParserType.HexaDecimal) return _long;
+                if (_parserType == StepParserType.HexaDecimal) return _string;
                 throw new Exception(string.Format("Wrong parameter type, found {0}, expected {1}",
                                                   _parserType.ToString(), "HexaDecimal"));
             }

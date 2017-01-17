@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcInteger @Width { get;  set; }
 		IfcInteger @Height { get;  set; }
 		IfcInteger @ColourComponents { get;  set; }
-		IItemSet<long> @Pixel { get; }
+		IItemSet<string> @Pixel { get; }
 	
 	}
 }
@@ -56,7 +56,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			get { return @ColourComponents; } 
 			set { ColourComponents = value;}
 		}	
-		IItemSet<long> IIfcPixelTexture.Pixel { 
+		IItemSet<string> IIfcPixelTexture.Pixel { 
 			get { return @Pixel; } 
 		}	
 		 
@@ -65,14 +65,14 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPixelTexture(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
-			_pixel = new ItemSet<long>( this, 0,  8);
+			_pixel = new ItemSet<string>( this, 0,  8);
 		}
 
 		#region Explicit attribute fields
 		private IfcInteger _width;
 		private IfcInteger _height;
 		private IfcInteger _colourComponents;
-		private readonly ItemSet<long> _pixel;
+		private readonly ItemSet<string> _pixel;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -119,7 +119,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 8)]
-		public IItemSet<long> @Pixel 
+		public IItemSet<string> @Pixel 
 		{ 
 			get 
 			{

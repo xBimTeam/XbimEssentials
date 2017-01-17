@@ -98,7 +98,7 @@ namespace Xbim.Ifc4.MeasureResource
             public bool BooleanVal { get; private set; }
             public string EnumVal { get; private set; }
             public object EntityVal { get; private set; }
-            public long HexadecimalVal { get; private set; }
+            public string HexadecimalVal { get; private set; }
             public long IntegerVal { get; private set; }
             public double NumberVal { get; private set; }
             public double RealVal { get; private set; }
