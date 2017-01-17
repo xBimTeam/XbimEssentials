@@ -9,6 +9,15 @@ namespace Xbim.IO.Step21
         private static readonly CultureInfo DoubleCulture = CultureInfo.CreateSpecificCulture("en-US");
         public static double ToDouble(this string val)
         {
+            switch (val)
+            {
+                case "-1.#INF":
+                    return double.NegativeInfinity;
+                case "1.#INF":
+                    return double.PositiveInfinity;
+                case "-1.#IND":
+                    return double.NaN;
+            }
             return Convert.ToDouble(val, DoubleCulture);
         }
 
