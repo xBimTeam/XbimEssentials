@@ -559,5 +559,36 @@ namespace Xbim.MemoryModel.Tests
             }
         }
 
+        [TestMethod]
+        public void EncodeBackslash()
+        {
+            const string path = "C:\\Data\\Martin\\document.txt";
+            const string encodedPath = "C:\\\\Data\\\\Martin\\\\document.txt";
+            const string test = "BackslashEncoding.ifc";
+            using (var store = IfcStore.Create(IfcSchemaVersion.Ifc2X3, XbimStoreType.EsentDatabase))
+            {
+                using (var txn = store.BeginTransaction())
+                {
+                    store.Instances.New<Ifc2x3.ExternalReferenceResource.IfcDocumentInformation>(i => i.Description = path);
+                    txn.Commit();
+                }
+                store.SaveAs(test);
+                store.Close();
+            }
+
+            var file = File.ReadAllText(test);
+            Assert.IsTrue(file.Contains(encodedPath));
+
+            //replace with inescaped backslashes. This is illegal Step21 but we should process it anyway.
+            file = file.Replace(encodedPath, path);
+            File.WriteAllText(test, file);
+
+            using (var model = IfcStore.Open(test))
+            {
+                var info = model.Instances.FirstOrDefault<Ifc2x3.ExternalReferenceResource.IfcDocumentInformation>();
+                Assert.IsTrue(info.Description == path);
+            }
+        }
+
     }
 }
