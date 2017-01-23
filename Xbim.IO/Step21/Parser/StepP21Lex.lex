@@ -31,7 +31,7 @@
 [\"][0-9A-Fa-f]+[\"] 	{SetValue(); return((int)Tokens.HEXA); } 
 [\.][TF][\.]	    {SetValue(); return((int)Tokens.BOOLEAN); } 
 [\.][U][\.]	        {return((int)Tokens.NONDEF); } 
-[\.][A-Z0-9_]+[\.]	{SetValue(); return((int)Tokens.ENUM); } 
+[\.][a-zA-Z0-9_ ]+[\.]	{SetValue(); return((int)Tokens.ENUM); } 
 [$]		            {return((int)Tokens.NONDEF); } 
 [(]		{ return ('('); }
 [)]		{ return (')'); }

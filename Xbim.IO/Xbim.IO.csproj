@@ -191,7 +191,6 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Step21\Parser\MAKEPARSER.BAT" />
-    <None Include="Step21\Parser\StepP21IndexerLex.lex" />
     <None Include="Step21\Parser\StepP21Lex.lex" />
     <None Include="Step21\Parser\StepP21Parser.y" />
     <None Include="XbimOpenSourceKeyFile.snk" />
