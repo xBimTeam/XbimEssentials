@@ -37,11 +37,11 @@
 [\-\+0-9][0-9]*	    { if (!comment) {SetValue();  return((int)Tokens.INTEGER); } }
 [\-\+\.0-9][\.0-9]+	{ if (!comment) {SetValue(); return((int)Tokens.FLOAT); } }
 [\-\+\.0-9][\.0-9]+E[\-\+0-9][0-9]* {if (!comment) { SetValue(); return((int)Tokens.FLOAT); } }
-[\']([\n]|[\000\011-\046\050-\176\201-\237\240-\377]|[\047][\047])*[\']	{ if (!comment) { SetValue();  return((int)Tokens.STRING); } }
-[\"][0-9A-F]+[\"] 	{if (!comment) {SetValue(); return((int)Tokens.HEXA); } }
+[\']([\001-\046\050-\377]|(\'\')|(\\S\\.))*[\']	{ if (!comment) { SetValue();  return((int)Tokens.STRING); } }
+[\"][0-9A-Fa-f]+[\"] 	{if (!comment) {SetValue(); return((int)Tokens.HEXA); } }
 [\.][TF][\.]	    {if (!comment) {SetValue(); return((int)Tokens.BOOLEAN); } }
 [\.][U][\.]	        {if (!comment) {return((int)Tokens.NONDEF); } }
-[\.][A-Z0-9_]+[\.]	{if (!comment) {SetValue(); return((int)Tokens.ENUM); } }
+[\.][A-Z0-9_a-z ]+[\.]	{if (!comment) {SetValue(); return((int)Tokens.ENUM); } }
 [$]		            {if (!comment) {return((int)Tokens.NONDEF); } }
 [(]		{ if (!comment) return ('('); }
 [)]		{ if (!comment) return (')'); }

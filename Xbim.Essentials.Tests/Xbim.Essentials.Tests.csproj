@@ -60,6 +60,7 @@
     <Compile Include="IfcHeaderTests.cs" />
     <Compile Include="ModelFilterTest.cs" />
     <Compile Include="BasicModelTests.cs" />
+    <Compile Include="TolerantToIfcErrorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj">
@@ -102,6 +103,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestSourceFiles\fileWithAbstractClass.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\InvalidType.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestSourceFiles\P1.xBIM">

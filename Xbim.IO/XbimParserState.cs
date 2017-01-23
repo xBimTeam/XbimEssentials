@@ -48,7 +48,7 @@ namespace Xbim.IO
         internal void BeginNestedType(string typeName)
         {
             IfcType ifcType = IfcMetaData.IfcType(typeName);
-            _currentInstance = new Part21Entity((IPersistIfc)Activator.CreateInstance(ifcType.Type));
+            _currentInstance = new Part21Entity((IPersistIfc) Activator.CreateInstance(ifcType.Type));
             _processStack.Push(_currentInstance);
         }
 
@@ -72,12 +72,13 @@ namespace Xbim.IO
                 }
                 catch (Exception e)
                 {
-                    XbimModel.Logger.ErrorFormat("Parser error, the Attribute {0} of {1} is incorrectly specified and has been ignored. {2}",
-                       _currentInstance.CurrentParamIndex,
+                    XbimModel.Logger.ErrorFormat(
+                        "Parser error, the Attribute {0} of {1} is incorrectly specified and has been ignored. {2}",
+                        _currentInstance.CurrentParamIndex,
                         _currentInstance.Entity.GetType().Name,
                         e.Message);
                 }
-               
+
             }
             if (_listNestLevel == 0)
                 _currentInstance.CurrentParamIndex++;
@@ -134,7 +135,20 @@ namespace Xbim.IO
         {
             _propertyValue.Init(value);
             //CurrentInstance.SetPropertyValue(PropertyValue);
-            _currentInstance.Entity.IfcParse(_currentInstance.CurrentParamIndex, _propertyValue);
+            try
+            {
+                _currentInstance.Entity.IfcParse(_currentInstance.CurrentParamIndex, _propertyValue);
+            }
+            catch (Exception e)
+            {
+                var erMessage = string.Format("Error parsing parameter {1} in entity #{0} [{2}].",
+                                    _currentInstance.EntityLabel,
+                                    _currentInstance.CurrentParamIndex,
+                                    _currentInstance.Entity.GetType().Name
+                                )
+                                + e.Message;
+                XbimModel.Logger.Error(erMessage, e);
+            }
             if (_listNestLevel == 0) _currentInstance.CurrentParamIndex++;
         }
 
