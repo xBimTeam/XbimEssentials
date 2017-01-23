@@ -48,8 +48,33 @@ namespace Xbim.MemoryModel.Tests
             }
         }
 
+        [TestMethod]
+        [DeploymentItem(@"TestFiles\InvalidType.ifc")]
+        public void ToleratesFileWithInvalidTypeInList()
+        {
+            // should survive parsing file with invalid type in list
+            using (var store = IfcStore.Open(@"InvalidType.ifc"))
+            {
+                var inst = store.Instances[582800] as IIfcBuildingStorey;
+                Assert.IsNotNull(inst);
+                var items = inst.ContainsElements.SelectMany(container => container.RelatedElements);
+                Assert.AreEqual(items.Count(), 2, "Should find two items");
+            }
+        }
 
-
+        [TestMethod]
+        [DeploymentItem(@"TestFiles\InvalidType.ifc")]
+        public void ToleratesFileWithInvalidEnumString()
+        {
+            // should survive parsing file with invalid type in list
+            using (var store = IfcStore.Open(@"InvalidType.ifc"))
+            {
+                var role = store.Instances[2] as IIfcActorRole;
+                Assert.IsNotNull(role);
+                Assert.AreEqual(role.Role, IfcRoleEnum.ARCHITECT);
+            }
+        }
+        
         /// <summary>
         /// This is only provided as a remainder of possible improvements in the tolerance of incorrect files.
         /// </summary>
