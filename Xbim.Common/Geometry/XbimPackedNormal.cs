@@ -55,7 +55,7 @@ namespace Xbim.Common.Geometry
             //the most basic case when normal points in -Y direction (second singular point)
             if (Math.Abs(y + 1) < tolerance)
             {
-                _packedData = 0 << 8 | (byte)PackSize / 2;
+                _packedData = (byte)PackSize << 8 | (byte)PackSize;
                 return;
             }
             
@@ -133,7 +133,7 @@ namespace Xbim.Common.Geometry
                 var z = Math.Cos(lon) * Math.Sin(lat);
 
                 var v3D = new XbimVector3D(x, y, z);
-                v3D.Normalized();
+                v3D = v3D.Normalized();
                 return v3D;
             }
         }
