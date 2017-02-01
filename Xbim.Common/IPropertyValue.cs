@@ -19,7 +19,7 @@ namespace Xbim.Common
         bool BooleanVal { get; }
         string EnumVal { get; }
         object EntityVal { get; }
-        long HexadecimalVal { get; }
+        byte[] HexadecimalVal { get; }
         long IntegerVal { get; }
         double NumberVal { get; }
         double RealVal { get; }

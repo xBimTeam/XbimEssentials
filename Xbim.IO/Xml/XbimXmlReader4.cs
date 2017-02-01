@@ -262,6 +262,12 @@ namespace Xbim.IO.Xml
                 propertyValue = propVal;
                 return true;
             }
+            if (typeof(byte[]) == type)
+            {
+                propVal.Init("\"0" + value + "\"", StepParserType.HexaDecimal);
+                propertyValue = propVal;
+                return true;
+            }
 
             throw new XbimParserException("Unexpected type: " + type.Name);
         }

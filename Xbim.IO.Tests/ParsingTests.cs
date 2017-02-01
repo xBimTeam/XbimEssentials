@@ -48,8 +48,33 @@ namespace Xbim.MemoryModel.Tests
             }
         }
 
+        [TestMethod]
+        [DeploymentItem(@"TestFiles\InvalidType.ifc")]
+        public void ToleratesFileWithInvalidTypeInList()
+        {
+            // should survive parsing file with invalid type in list
+            using (var store = IfcStore.Open(@"InvalidType.ifc"))
+            {
+                var inst = store.Instances[582800] as IIfcBuildingStorey;
+                Assert.IsNotNull(inst);
+                var items = inst.ContainsElements.SelectMany(container => container.RelatedElements);
+                Assert.AreEqual(items.Count(), 2, "Should find two items");
+            }
+        }
 
-
+        [TestMethod]
+        [DeploymentItem(@"TestFiles\InvalidType.ifc")]
+        public void ToleratesFileWithInvalidEnumString()
+        {
+            // should survive parsing file with invalid type in list
+            using (var store = IfcStore.Open(@"InvalidType.ifc"))
+            {
+                var role = store.Instances[2] as IIfcActorRole;
+                Assert.IsNotNull(role);
+                Assert.AreEqual(role.Role, IfcRoleEnum.ARCHITECT);
+            }
+        }
+        
         /// <summary>
         /// This is only provided as a remainder of possible improvements in the tolerance of incorrect files.
         /// </summary>
@@ -556,6 +581,37 @@ namespace Xbim.MemoryModel.Tests
                 }
                 store.SaveAs("esent2x3.ifc");
                 store.Close();
+            }
+        }
+
+        [TestMethod]
+        public void EncodeBackslash()
+        {
+            const string path = "C:\\Data\\Martin\\document.txt";
+            const string encodedPath = "C:\\\\Data\\\\Martin\\\\document.txt";
+            const string test = "BackslashEncoding.ifc";
+            using (var store = IfcStore.Create(IfcSchemaVersion.Ifc2X3, XbimStoreType.EsentDatabase))
+            {
+                using (var txn = store.BeginTransaction())
+                {
+                    store.Instances.New<Ifc2x3.ExternalReferenceResource.IfcDocumentInformation>(i => i.Description = path);
+                    txn.Commit();
+                }
+                store.SaveAs(test);
+                store.Close();
+            }
+
+            var file = File.ReadAllText(test);
+            Assert.IsTrue(file.Contains(encodedPath));
+
+            //replace with inescaped backslashes. This is illegal Step21 but we should process it anyway.
+            file = file.Replace(encodedPath, path);
+            File.WriteAllText(test, file);
+
+            using (var model = IfcStore.Open(test))
+            {
+                var info = model.Instances.FirstOrDefault<Ifc2x3.ExternalReferenceResource.IfcDocumentInformation>();
+                Assert.IsTrue(info.Description == path);
             }
         }
 

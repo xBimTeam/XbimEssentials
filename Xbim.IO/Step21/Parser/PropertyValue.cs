@@ -77,14 +77,28 @@ namespace Xbim.IO.Step21.Parser
             }
         }
 
-        public long HexadecimalVal
+        public byte[] HexadecimalVal
         {
             get
             {
-                if (_stepParserType == StepParserType.HexaDecimal) return Convert.ToInt64(_strVal, 16);
-                else
+                if (_stepParserType != StepParserType.HexaDecimal)
                     throw new Exception(string.Format("Wrong parameter type, found {0}, expected {1}",
                                                       _stepParserType.ToString(), "HexaDecimal"));
+
+                if (string.IsNullOrWhiteSpace(_strVal))
+                    return new byte[0];
+                var hex = _strVal[0] == '"' ? _strVal.Substring(1, _strVal.Length-2) : _strVal; //trim leading and trailing quotes if present
+                if (hex.Length == 0)
+                    return new byte[0];
+                if (hex == "0")
+                    return new byte[0];
+
+                hex = hex.Length % 2 == 0 ? hex :  hex.Substring(1); //trim leading offset number if present
+                int numChars = hex.Length;
+                var bytes = new byte[numChars / 2];
+                for (int i = 0; i < numChars; i += 2)
+                    bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
+                return bytes;
             }
         }
 
@@ -136,7 +150,7 @@ namespace Xbim.IO.Step21.Parser
         {
             get
             {
-                var ret = _strVal.Substring(1, _strVal.Length - 2); //remove the quotes
+                var ret = _strVal[0] == '\'' ? _strVal.Substring(1, _strVal.Length - 2) : _strVal; //remove the quotes if present
                 if (ret.Contains('\\') || ret.Contains("'")) 
                 {
                     var d = new XbimP21StringDecoder();

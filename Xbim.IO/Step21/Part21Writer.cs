@@ -282,7 +282,7 @@ namespace Xbim.IO.Step21
                     label = mapLabel;
                 output.Write(label);
             }
-            else if (propType.IsValueType || propVal is string) //it might be an in-built value type double, string etc.
+            else if (propType.IsValueType || propVal is string || propVal is byte[]) //it might be an in-built value type double, string etc.
             {
                 WriteValueType(propVal.GetType(), propVal, output);
             }
@@ -307,6 +307,8 @@ namespace Xbim.IO.Step21
                                                   propType.Name, propType.Name));
         }
 
+        private static readonly IFormatProvider _p21Provider = new Part21Formatter();
+
         /// <summary>
         /// Writes the value of a property to the TextWriter in the Part 21 format
         /// </summary>
@@ -316,7 +318,7 @@ namespace Xbim.IO.Step21
         private static void WriteValueType(Type pInfoType, object pVal, TextWriter output)
         {
             if (pInfoType == typeof(Double))
-                output.Write(string.Format(new Part21Formatter(), "{0:R}", pVal));
+                output.Write(string.Format(_p21Provider, "{0:R}", pVal));
             else if (pInfoType == typeof(String)) //convert  string
             {
                 if (pVal == null)
@@ -327,6 +329,14 @@ namespace Xbim.IO.Step21
                     output.Write(((string)pVal).ToPart21());
                     output.Write('\'');
                 }
+            }
+            else if (pInfoType == typeof(byte[])) //convert  string
+            {
+                output.Write("\"0");
+                var bytes = (byte[])pVal;
+                foreach (byte b in bytes)
+                    output.Write("{0:X2}", b);
+                output.Write('"');
             }
             else if (pInfoType == typeof(Int16) || pInfoType == typeof(Int32) || pInfoType == typeof(Int64))
                 output.Write(pVal.ToString());
@@ -341,13 +351,13 @@ namespace Xbim.IO.Step21
                 }
             }
             else if (pInfoType == typeof(DateTime)) //convert  TimeStamp
-                output.Write(string.Format(new Part21Formatter(), "{0:T}", pVal));
+                output.Write(string.Format(_p21Provider, "{0:T}", pVal));
             else if (pInfoType == typeof(Guid)) //convert  Guid string
             {
                 if (pVal == null)
                     output.Write('$');
                 else
-                    output.Write(string.Format(new Part21Formatter(), "{0:G}", pVal));
+                    output.Write(string.Format(_p21Provider, "{0:G}", pVal));
             }
             else if (pInfoType == typeof(bool?)) //convert  logical
             {

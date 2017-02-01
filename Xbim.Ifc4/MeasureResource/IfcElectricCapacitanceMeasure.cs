@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.MeasureResource
 
 		public override string ToString()
         {
-            return _value.ToString("R");
+            return _value.ToString("R", Culture);
         }
         public IfcElectricCapacitanceMeasure(double val)
         {

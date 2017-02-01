@@ -21,6 +21,8 @@ namespace Xbim.IO.Step21
 {
     public class Part21Formatter : IFormatProvider, ICustomFormatter
     {
+        private static readonly CultureInfo _cInfo = CultureInfo.CreateSpecificCulture("en-US");
+
         public object GetFormat(Type formatType)
         {
             return formatType == typeof(ICustomFormatter) ? this : null;
@@ -35,9 +37,9 @@ namespace Xbim.IO.Step21
                 var dArg = (double)arg;
 
                 // if compiler flag, only then do the following 3 lines
-                var rDoubleStr = dArg.ToString("R", CultureInfo.CreateSpecificCulture("en-US"));
-                var fixedDbl = double.Parse(rDoubleStr, CultureInfo.CreateSpecificCulture("en-US"));
-                var result = fixedDbl.ToString("R", CultureInfo.CreateSpecificCulture("en-US"));
+                var rDoubleStr = dArg.ToString("R", _cInfo);
+                var fixedDbl = double.Parse(rDoubleStr, _cInfo);
+                var result = fixedDbl.ToString("R", _cInfo);
 
                 //decimal decArg = new Decimal(dArg);                                
                 // string result = decArg.ToString().ToUpper();
