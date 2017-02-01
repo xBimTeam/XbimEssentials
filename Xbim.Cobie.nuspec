@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
     <id>Xbim.Cobie</id>
-    <version>4.0.27-V005</version>
+    <version>4.0.27-V006</version>
     <title>xBIM Cobie</title>
     <authors>xBIM team</authors>
     <owners>Steve Lockley, Martin Cerny</owners>
