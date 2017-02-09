@@ -86,6 +86,14 @@ namespace Xbim.IO.TableStore
         [XmlAttribute(Namespace = "http://www.openbim.org/mapping/table/1.0")]
         public AllowedType DataType { get; set; }
 
+        /// <summary>
+        /// Path mapping for the lookup columns for UI displays
+        /// [SheetName].Field/ColumnName = will map direct to the sheetname value in the row property
+        /// PickLists.Field/ColumnName = will map the UI picklist values
+        /// </summary>
+        [XmlAttribute(Namespace = "http://www.openbim.org/mapping/table/1.0")]
+        public string LookUp { get; set; }
+
 
         private List<string> _pathsEnumerationCache;
         private string _paths;
