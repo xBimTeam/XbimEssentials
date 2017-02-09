@@ -59,7 +59,7 @@
         <PropertyMapping Header="Description" Column="S" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="Description" DataType ="Text" />
         <PropertyMapping Header="ProjectDescription" Column="T" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="Project.Description" DataType ="Text" />
         <PropertyMapping Header="SiteDescription" Column="U" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="Site.Description" DataType ="Text" />
-        <PropertyMapping Header="Phase" Column="V" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="Phase.Name" DataType ="Text" />
+        <PropertyMapping Header="Phase" Column="V" Status="PickValue" MultiRow="None" DefaultValue="n/a" Paths="Phase.Name" DataType ="Text" />
       </PropertyMappings>
     </ClassMapping>
     <ClassMapping Class="Floor" TableName="Floor" TableOrder="2">
@@ -169,7 +169,7 @@
         <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name"  IsKey="true" IsMultiRowIdentity="true" DataType ="AlphaNumeric"/>
         <PropertyMapping Header="CreatedBy" Column="B" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Created.CreatedBy.Email" DataType ="Email" />
         <PropertyMapping Header="CreatedOn" Column="C" Status="Required" MultiRow="None" DefaultValue="1900-12-31T23:59:59" Paths="Created.CreatedOn" DataType ="ISODateTime" />
-        <PropertyMapping Header="Category" Column="D" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Categories.Value" IsKey="true"  DataType ="Text" />
+        <PropertyMapping Header="Category" Column="D" Status="PickValue" MultiRow="None" DefaultValue="n/a" Paths="Categories.Value" IsKey="true"  DataType ="Text" />
         <PropertyMapping Header="ComponentNames" Column="E" Status="Reference" MultiRow="Always" DefaultValue="n/a" Paths="Components.Name"  IsKey="true" DataType ="Text"/>
         <PropertyMapping Header="ExtSystem" Column="F" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalSystem.Name"  Hidden="true" DataType ="Text"/>
         <PropertyMapping Header="ExtObject" Column="G" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalObject.Name"  Hidden="true" DataType ="Text"/>
@@ -184,7 +184,7 @@
         <PropertyMapping Header="CreatedOn" Column="C" Status="Required" MultiRow="None" DefaultValue="1900-12-31T23:59:59" Paths="parent.Created.CreatedOn" DataType ="ISODateTime" />
         <PropertyMapping Header="SheetName" Column="D" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.[table]"  IsKey="true" DataType ="Text"/>
         <PropertyMapping Header="ParentName" Column="E" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.Name"  IsKey="true" DataType ="AlphaNumeric"/>
-        <PropertyMapping Header="ChildNames" Column="F" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Name"  DataType ="Text"/>
+        <PropertyMapping Header="ChildNames" Column="F" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Name" IsKey="true" DataType ="Text"/>
         <PropertyMapping Header="AssemblyType" Column="G" Status="PickValue" MultiRow="None" DefaultValue="Fixed" Paths="" DataType ="Text" />
         <PropertyMapping Header="ExtSystem" Column="H" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="parent.ExternalSystem.Name"  Hidden="true" DataType ="Text"/>
         <PropertyMapping Header="ExtObject" Column="I" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="parent.ExternalObject.Name"  Hidden="true" DataType ="Text"/>
