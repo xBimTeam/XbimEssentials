@@ -56,15 +56,31 @@ namespace Xbim.IO.Memory
             where T : IPersistEntity
 
         {
-            if (_model.InverseCache == null)
+            var cache = _model.InverseCache as MemoryInverseCache;
+            if (cache == null)
                 return Where(condition);
 
             IEnumerable<T> result;
-            if (_model.InverseCache.TryGet(inverseProperty, inverseArgument, out result))
-                return result;
-            result = Where(condition).ToList();
-            _model.InverseCache.Add(inverseProperty, inverseArgument, result);
-            return result;
+            if (cache.TryGet(inverseProperty, inverseArgument, out result))
+                return result.Where(condition);
+
+            //build cache for this type
+            lock (cache)
+            {
+                var indexed = OfType<T>().OfType<IContainsIndexedReferences>().ToList();
+                foreach (var item in indexed)
+                {
+                    foreach (var reference in item.IndexedReferences)
+                    {
+                        cache.Add(reference.EntityLabel, item);
+                    }
+                }
+            }
+            
+            if (cache.TryGet(inverseProperty, inverseArgument, out result))
+                return result.Where(condition);
+
+            return Enumerable.Empty<T>();
         }
 
         public IEnumerable<T> Where<T>(Func<T, bool> condition) where T : IPersistEntity

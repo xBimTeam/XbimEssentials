@@ -14,7 +14,7 @@ namespace Profiling.InverseCacheImpact
             //6586ms to find 4 objects with speficic type with cache.                 ---> creating cache didn't cost almost any CPU
             //4ms to find 4 objects with speficic type with cache, repeated query.    ---> repeated request is BAZING fast
 
-            using (var model = IfcStore.Open(@"c:\CODE\SampleData\LakesideRestaurant\LakesideRestaurant.ifc"))
+            using (var model = IfcStore.Open(@"c:\Users\Martin\Source\Samples\LakesideRestaurant.ifc"))
             {
                 var w = Stopwatch.StartNew();
                 var objects1 =
