@@ -33,6 +33,7 @@ namespace Xbim.CobieExpress.Interfaces
 		double? @RotationX { get;  set; }
 		double? @RotationY { get;  set; }
 		double? @RotationZ { get;  set; }
+		IEnumerable<ICobieAsset> @RelatedAssets {  get; }
 	
 	}
 }
@@ -85,6 +86,7 @@ namespace Xbim.CobieExpress
 			set { RotationZ = value;}
 		}	
 		 
+		IEnumerable<ICobieAsset> ICobieCoordinate.RelatedAssets {  get { return @RelatedAssets; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -220,6 +222,17 @@ namespace Xbim.CobieExpress
 
 
 
+		#region Inverse attributes
+		[InverseProperty("Representations")]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 14)]
+		public IEnumerable<CobieAsset> @RelatedAssets 
+		{ 
+			get 
+			{
+				return Model.Instances.Where<CobieAsset>(e => e.Representations != null &&  e.Representations.Contains(this), "Representations", this);
+			} 
+		}
+		#endregion
 
 		#region IPersist implementation
 		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)

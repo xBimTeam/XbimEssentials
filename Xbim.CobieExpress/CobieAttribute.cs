@@ -31,6 +31,7 @@ namespace Xbim.CobieExpress.Interfaces
 		IAttributeValue @Value { get;  set; }
 		string @Unit { get;  set; }
 		IItemSet<string> @AllowedValues { get; }
+		IEnumerable<ICobieAsset> @RelatedAssets {  get; }
 		CobieExternalObject @PropertySet  { get ; }
 	
 	}
@@ -74,6 +75,7 @@ namespace Xbim.CobieExpress
 			get { return @AllowedValues; } 
 		}	
 		 
+		IEnumerable<ICobieAsset> ICobieAttribute.RelatedAssets {  get { return @RelatedAssets; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -191,6 +193,17 @@ namespace Xbim.CobieExpress
 
 		#endregion
 
+		#region Inverse attributes
+		[InverseProperty("Attributes")]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 12)]
+		public IEnumerable<CobieAsset> @RelatedAssets 
+		{ 
+			get 
+			{
+				return Model.Instances.Where<CobieAsset>(e => e.Attributes != null &&  e.Attributes.Contains(this), "Attributes", this);
+			} 
+		}
+		#endregion
 
 		#region IPersist implementation
 		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)

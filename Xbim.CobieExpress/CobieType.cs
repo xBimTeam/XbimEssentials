@@ -63,7 +63,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Type", 21)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieType : CobieTypeOrComponent, IInstantiableEntity, ICobieType, IContainsEntityReferences, IEquatable<@CobieType>
+	public  partial class @CobieType : CobieTypeOrComponent, IInstantiableEntity, ICobieType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieType>
 	{
 		#region ICobieType explicit implementation
 		ICobieAssetType ICobieType.AssetType { 
@@ -823,6 +823,25 @@ namespace Xbim.CobieExpress
 				if (@DurationUnit != null)
 					yield return @DurationUnit;
 			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @Impacts)
+					yield return entity;
+				foreach(var entity in @Documents)
+					yield return entity;
+				foreach(var entity in @Attributes)
+					yield return entity;
+				foreach(var entity in @Representations)
+					yield return entity;
+				
+			} 
 		}
 		#endregion
 

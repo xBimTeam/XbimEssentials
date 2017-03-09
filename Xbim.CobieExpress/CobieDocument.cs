@@ -34,6 +34,7 @@ namespace Xbim.CobieExpress.Interfaces
 		string @Reference { get;  set; }
 		string @Directory { get;  set; }
 		string @File { get;  set; }
+		IEnumerable<ICobieAsset> @RelatedAssets {  get; }
 	
 	}
 }
@@ -94,6 +95,7 @@ namespace Xbim.CobieExpress
 			set { File = value;}
 		}	
 		 
+		IEnumerable<ICobieAsset> ICobieDocument.RelatedAssets {  get { return @RelatedAssets; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -250,6 +252,17 @@ namespace Xbim.CobieExpress
 
 
 
+		#region Inverse attributes
+		[InverseProperty("Documents")]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 15)]
+		public IEnumerable<CobieAsset> @RelatedAssets 
+		{ 
+			get 
+			{
+				return Model.Instances.Where<CobieAsset>(e => e.Documents != null &&  e.Documents.Contains(this), "Documents", this);
+			} 
+		}
+		#endregion
 
 		#region IPersist implementation
 		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
