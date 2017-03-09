@@ -61,9 +61,35 @@ namespace Xbim.Essentials.Tests
             }
         }
 
+
         [TestMethod]
         [DeploymentItem("TestSourceFiles")]
-        public void ValidatesSpecificElements()
+        public void ValidatesSpecificElements2X4()
+        {
+            using (var model = IfcStore.Open("AlmostEmptyIFC4.ifc", null, 0))
+            {
+                var v = new IfcValidator
+                {
+                    ValidateLevel = ValidationFlags.All,
+                    CreateEntityHierarchy = true
+                };
+
+                var iCount = 0;
+                var e2 = v.Validate(model.Instances[9]);
+                foreach (var validationResult in new ValidationReporter(e2))
+                {
+                    Debug.WriteLine(validationResult);
+                    iCount++;
+                }
+
+                if (iCount != 0)
+                    throw new Exception("Unexpected validation error.");
+            }
+        }
+
+        [TestMethod]
+        [DeploymentItem("TestSourceFiles")]
+        public void ValidatesSpecificElements2X3()
         {
             using (var model = IfcStore.Open("ValidationTests2x3.ifc", null, 0))
             {
@@ -77,10 +103,22 @@ namespace Xbim.Essentials.Tests
                     throw  new Exception();
 
                 var e2 = v.Validate(item);
+                int iCount = 0;
                 foreach (var validationResult in new ValidationReporter(e2))
                 {
                     Debug.WriteLine(validationResult);
+                    iCount++;
                 }
+
+                e2 = v.Validate(model.Instances[9]);
+                foreach (var validationResult in new ValidationReporter(e2))
+                {
+                    Debug.WriteLine(validationResult);
+                    iCount++;
+                }
+                
+                if (iCount != 0)
+                    throw  new Exception("Unexpected validation error.");
 
                 //bool res;
                 //Debug.WriteLine("fcCoilTypeClause.WR1" + item.ValidateClause(IfcCoilType.IfcCoilTypeClause.WR1));

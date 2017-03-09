@@ -261,8 +261,7 @@ namespace Xbim.Ifc2x3
             double[] V1;
             double[] V2;
             Vector Result;
-
-
+            
             if ((!EXISTS(Arg1) || (Arg1.Dim == 2)) || (!EXISTS(Arg2) || (Arg2.Dim == 2)))
             {
                 return null;
@@ -283,14 +282,9 @@ namespace Xbim.Ifc2x3
             {
                 Mag = Mag + Res.DirectionRatios[i] * Res.DirectionRatios[i];
             }
-            if (Mag > 0.0)
-            {
-                Result = new Vector(Res, SQRT(Mag));
-            }
-            else
-            {
-                Result = new Vector(dArg1, 0.0);
-            }
+            Result = (Mag > 0.0)
+                ? new Vector(Res, SQRT(Mag)) 
+                : new Vector(dArg1, 0.0);
             return (Result);
         }
 
@@ -1203,7 +1197,7 @@ namespace Xbim.Ifc2x3
             }
             else
             {
-                if ((INTYPEOF(Arg, "IFC2X3.IFCVECTOR")))
+                if (Arg is Vector)
                 {
                     Ndim = Arg.Dim;
                     var vArg = (Arg as Vector);
@@ -1234,11 +1228,11 @@ namespace Xbim.Ifc2x3
                 if (Mag > 0.0)
                 {
                     Mag = SQRT(Mag);
-                    for (var i = 1; i <= Ndim; i++)
+                    for (var i = 0; i < Ndim; i++)
                     {
                         V.DirectionRatios[i] = V.DirectionRatios[i] / Mag;
                     }
-                    if ((INTYPEOF(Arg, "IFC2X3.IFCVECTOR")))
+                    if (Arg is Vector)
                     {
                         Vec.Orientation = V;
                         Result = Vec;

@@ -17,7 +17,7 @@ namespace Xbim.Ifc4
 
         public Direction(double x, double y)
         {
-            DirectionRatios = new[] {0.0, 0, 0};
+            DirectionRatios = new[] {0.0, 0.0, 0.0};
             Dim = 2;
             DirectionRatios[0] = x;
             DirectionRatios[1] = y;
@@ -25,16 +25,16 @@ namespace Xbim.Ifc4
 
         public Direction(double x, double y, double z) 
         {
-            DirectionRatios = new[] { 0.0, 0, 0 };
+            DirectionRatios = new[] {0.0, 0.0, 0.0};
             Dim = 3;
             DirectionRatios[0] = x;
             DirectionRatios[1] = y;
-            DirectionRatios[1] = z;
+            DirectionRatios[2] = z;
         }
 
         public Direction(IfcDirection from)
         {
-            DirectionRatios = new[] { 0.0, 0, 0 };
+            DirectionRatios = new[] {0.0, 0.0, 0.0};
             DirectionRatios[0] = from.X;
             DirectionRatios[1] = from.Y;
             DirectionRatios[2] = from.Z;
