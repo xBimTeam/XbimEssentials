@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 
 		public override string ToString()
         {
-            return _value.ToString("R");
+            return _value.ToString("R", Culture);
         }
         public IfcMonetaryMeasure(double val)
         {

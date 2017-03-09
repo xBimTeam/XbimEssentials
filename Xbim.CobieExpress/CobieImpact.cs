@@ -35,6 +35,7 @@ namespace Xbim.CobieExpress.Interfaces
 		double? @Duration { get;  set; }
 		double? @LeadOutTime { get;  set; }
 		ICobieDurationUnit @DurationUnit { get;  set; }
+		IEnumerable<ICobieAsset> @RelatedAssets {  get; }
 	
 	}
 }
@@ -101,6 +102,7 @@ namespace Xbim.CobieExpress
 			set { DurationUnit = value as CobieDurationUnit;}
 		}	
 		 
+		IEnumerable<ICobieAsset> ICobieImpact.RelatedAssets {  get { return @RelatedAssets; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -274,6 +276,17 @@ namespace Xbim.CobieExpress
 
 
 
+		#region Inverse attributes
+		[InverseProperty("Impacts")]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 16)]
+		public IEnumerable<CobieAsset> @RelatedAssets 
+		{ 
+			get 
+			{
+				return Model.Instances.Where<CobieAsset>(e => e.Impacts != null &&  e.Impacts.Contains(this), "Impacts", this);
+			} 
+		}
+		#endregion
 
 		#region IPersist implementation
 		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)

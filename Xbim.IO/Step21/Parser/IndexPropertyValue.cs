@@ -11,6 +11,7 @@ namespace Xbim.IO.Parser
         private string _string;
         private long _long;
         private double _double;
+        private byte[] _bytes;
         private IPersist _object;
         private StepParserType _parserType;
 
@@ -51,13 +52,16 @@ namespace Xbim.IO.Parser
             }
         }
 
-        public long HexadecimalVal
+        public byte[] HexadecimalVal
         {
             get
             {
-                if (_parserType == StepParserType.HexaDecimal) return _long;
-                throw new Exception(string.Format("Wrong parameter type, found {0}, expected {1}",
+                if (_parserType != StepParserType.HexaDecimal)
+                    throw new Exception(string.Format("Wrong parameter type, found {0}, expected {1}",
                                                   _parserType.ToString(), "HexaDecimal"));
+
+                return _bytes;
+
             }
         }
 
@@ -120,6 +124,12 @@ namespace Xbim.IO.Parser
         internal void Init(string value, StepParserType stepParserType)
         {
             _string = value;
+            _parserType = stepParserType;
+        }
+
+        internal void Init(byte[] value, StepParserType stepParserType)
+        {
+            _bytes = value;
             _parserType = stepParserType;
         }
 

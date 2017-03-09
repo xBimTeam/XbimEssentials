@@ -874,8 +874,12 @@ namespace Xbim.Ifc
         {
             if (actualFormat.HasFlag(IfcStorageType.Xbim)) //special case for xbim
             {
-                var esentDb = _schema == IfcSchemaVersion.Ifc4 ? new EsentModel(new Ifc4.EntityFactory()) : new EsentModel(new Ifc2x3.EntityFactory());
-                esentDb.CreateFrom(_model, actualFileName, progDelegate);
+
+                using (var esentDb = _schema == IfcSchemaVersion.Ifc4 ? new EsentModel(new Ifc4.EntityFactory()) : new EsentModel(new Ifc2x3.EntityFactory()))
+                {
+                    esentDb.CreateFrom(_model, actualFileName, progDelegate);
+                    esentDb.Close();
+                }
             }
             else
             {
@@ -1091,19 +1095,19 @@ namespace Xbim.Ifc
                 {
                     if (geometry.ShapeData.Length <= 0) //no geometry to display so don't write out any products for it
                         continue;
-                    if (geometry.ReferenceCount > 1)
+                    var instances = geomRead.ShapeInstancesOfGeometry(geometry.ShapeLabel);
+
+
+
+                    var xbimShapeInstances = instances.Where(si => !toIgnore.Contains(si.IfcTypeId) &&
+                                                                 si.RepresentationType ==
+                                                                 XbimGeometryRepresentationType
+                                                                     .OpeningsAndAdditionsIncluded && prodIds.Contains(si.IfcProductLabel)).ToList();
+                    if (!xbimShapeInstances.Any()) continue;
+                    numberOfGeometries++;
+                    binaryStream.Write(xbimShapeInstances.Count); //the number of repetitions of the geometry
+                    if (xbimShapeInstances.Count > 1)
                     {
-                        var instances = geomRead.ShapeInstancesOfGeometry(geometry.ShapeLabel);
-
-
-
-                        var xbimShapeInstances = instances.Where(si => !toIgnore.Contains(si.IfcTypeId) &&
-                                                                     si.RepresentationType ==
-                                                                     XbimGeometryRepresentationType
-                                                                         .OpeningsAndAdditionsIncluded && prodIds.Contains(si.IfcProductLabel)).ToList();
-                        if (!xbimShapeInstances.Any()) continue;
-                        numberOfGeometries++;
-                        binaryStream.Write(xbimShapeInstances.Count); //the number of repetitions of the geometry
                         foreach (IXbimShapeInstanceData xbimShapeInstance in xbimShapeInstances)
                         //write out each of the ids style and transforms
                         {
@@ -1127,17 +1131,11 @@ namespace Xbim.Ifc
 
                         tr.Write(binaryStream);
                     }
-                    else if (geometry.ReferenceCount == 1)//now do the single instances
+                    else //now do the single instances
                     {
-                        var xbimShapeInstance = geomRead.ShapeInstancesOfGeometry(geometry.ShapeLabel).FirstOrDefault();
-
-                        if (xbimShapeInstance == null || toIgnore.Contains(xbimShapeInstance.IfcTypeId) ||
-                            xbimShapeInstance.RepresentationType != XbimGeometryRepresentationType.OpeningsAndAdditionsIncluded || !prodIds.Contains(xbimShapeInstance.IfcProductLabel))
-                            continue;
-                        numberOfGeometries++;
+                        var xbimShapeInstance = xbimShapeInstances[0];
 
                         // IXbimShapeGeometryData geometry = ShapeGeometry(kv.Key);
-                        binaryStream.Write((Int32)1); //the number of repetitions of the geometry (1)
                         binaryStream.Write((Int32)xbimShapeInstance.IfcProductLabel);
                         binaryStream.Write((UInt16)xbimShapeInstance.IfcTypeId);
                         binaryStream.Write((Int32)xbimShapeInstance.InstanceLabel);

@@ -29,7 +29,7 @@ namespace Xbim.Common
 
     public interface IExpressBinaryType
     {
-        long Value { get; }
+        byte[] Value { get; }
     }
 
     public interface IExpressBooleanType

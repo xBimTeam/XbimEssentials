@@ -107,7 +107,7 @@ namespace Xbim.IO.Esent
             SetEntityParameter();
         }
 
-        internal void SetHexValue(double value)
+        internal void SetHexValue(byte[] value)
         {
             _propertyValue.Init(value, StepParserType.HexaDecimal);
             SetEntityParameter();

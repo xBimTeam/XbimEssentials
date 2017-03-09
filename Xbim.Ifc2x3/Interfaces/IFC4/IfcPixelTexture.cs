@@ -66,8 +66,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			get
 			{
 				//## Handle return of Pixel for which no match was found
-                return new Common.Collections.ProxyValueSet<long, Ifc4.MeasureResource.IfcBinary>(Pixel,
-                    s => new Ifc4.MeasureResource.IfcBinary(s),
+                return new Common.Collections.ProxyValueSet<byte[], Ifc4.MeasureResource.IfcBinary>(Pixel,
+                    s => s,
                     t => t);
 			    //##
 			} 

@@ -213,9 +213,9 @@ namespace Xbim.Ifc2x3.IO
         }
 
         public override bool CreateFrom(string importFrom, string xbimDbName = null, ReportProgressDelegate progDelegate = null,
-            bool keepOpen = false, bool cacheEntities = false)
+            bool keepOpen = false, bool cacheEntities = false, IfcStorageType? storageType = null)
         {
-            var result = base.CreateFrom(importFrom, xbimDbName, progDelegate, keepOpen, cacheEntities);
+            var result = base.CreateFrom(importFrom, xbimDbName, progDelegate, keepOpen, cacheEntities, storageType);
             if (!keepOpen) return result;
             
             LoadReferenceModels();

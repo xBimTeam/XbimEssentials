@@ -1151,6 +1151,7 @@
     <Compile Include="MeasureResource\IfcAreaDensityMeasure.cs" />
     <Compile Include="MeasureResource\IfcAreaMeasure.cs" />
     <Compile Include="MeasureResource\IfcBinary.cs" />
+    <Compile Include="MeasureResource\IfcBinaryPartial.cs" />
     <Compile Include="MeasureResource\IfcBoolean.cs" />
     <Compile Include="MeasureResource\IfcComplexNumber.cs" />
     <Compile Include="MeasureResource\IfcCompoundPlaneAngleMeasure.cs" />
