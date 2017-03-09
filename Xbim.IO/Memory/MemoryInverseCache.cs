@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Xbim.Common;
 
 namespace Xbim.IO.Memory
@@ -47,6 +46,8 @@ namespace Xbim.IO.Memory
         public void Dispose()
         {
             _index.Clear();
+            _index = null;
+            _entities = null;
         }
 
         public bool TryGet<T>(string inverseProperty, IPersistEntity inverseArgument, out IEnumerable<T> entities) where T : IPersistEntity
