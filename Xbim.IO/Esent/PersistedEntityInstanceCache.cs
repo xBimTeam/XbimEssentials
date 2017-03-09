@@ -413,7 +413,7 @@ namespace Xbim.IO.Esent
             {
                 using (entTable.BeginReadOnlyTransaction())
                 {
-                    _model.Header = entTable.ReadHeader();
+                    _model.InitialiseHeader(entTable.ReadHeader());
                 }
             }
             catch (Exception e)
