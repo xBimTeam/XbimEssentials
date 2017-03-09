@@ -138,6 +138,14 @@ namespace Xbim.CobieExpress
 		{ 
 			get
 			{
+				foreach(var entity in @Impacts)
+					yield return entity;
+				foreach(var entity in @Documents)
+					yield return entity;
+				foreach(var entity in @Attributes)
+					yield return entity;
+				foreach(var entity in @Representations)
+					yield return entity;
 				foreach(var entity in @Spaces)
 					yield return entity;
 				

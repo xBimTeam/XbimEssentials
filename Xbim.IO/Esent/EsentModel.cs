@@ -763,6 +763,12 @@ namespace Xbim.IO.Esent
         }
         #endregion
 
+        internal void InitialiseHeader(IStepFileHeader header)
+        {
+            _header = header;
+        }
+
+
         protected void Open(string fileName, XbimDBAccess accessMode, bool deleteOnClose)
         {
             Open(fileName, accessMode);
