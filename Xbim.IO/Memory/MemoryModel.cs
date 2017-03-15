@@ -291,7 +291,7 @@ namespace Xbim.IO.Memory
             var c = InverseCache;
             if (c != null)
                 return c;
-            return InverseCache = new InverseCache();
+            return InverseCache = new MemoryInverseCache(_instances);
         }
 
         public void StopCaching()

@@ -202,7 +202,49 @@ namespace Xbim.IO
             public List<ExpressMetaProperty> SingleReferences;
             public List<ExpressMetaProperty> ListReferences;
         }
- #endregion
+        #endregion
+
+        public static void Expand<IParentEntity, IUniqueEntity>(IModel model, Func<IParentEntity, ICollection<IUniqueEntity>> accessor) where IParentEntity : IPersistEntity where IUniqueEntity : IPersistEntity
+        {
+            //get duplicates in one go to avoid exponential search
+            var candidates = new Dictionary<IUniqueEntity, List<IParentEntity>>();
+            foreach (var entity in model.Instances.OfType<IParentEntity>())
+            {
+                foreach (var val in accessor(entity))
+                {
+                    List<IParentEntity> assets;
+                    if (!candidates.TryGetValue(val, out assets))
+                    {
+                        assets = new List<IParentEntity>();
+                        candidates.Add(val, assets);
+                    }
+                    assets.Add(entity);
+                }
+            }
+
+            var multi = candidates.Where(a => a.Value.Count > 1);
+            var map = new XbimInstanceHandleMap(model, model);
+
+            foreach (var kvp in multi)
+            {
+                var value = kvp.Key;
+                var entities = kvp.Value;
+
+                //skip the first
+                for (int i = 1; i < entities.Count; i++)
+                {
+                    //clear map to create complete copy every time
+                    map.Clear();
+                    var copy = model.InsertCopy(value, map, null, false, false);
+
+                    //remove original and add fresh copy
+                    var entity = entities[i];
+                    var collection = accessor(entity);
+                    collection.Remove(value);
+                    collection.Add(copy);
+                }
+            }
+        }
 
         #region Insert
         /// <summary>

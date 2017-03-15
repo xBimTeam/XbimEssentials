@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using Xbim.Common;
 using Xbim.Ifc;
 using Xbim.Ifc2x3.Kernel;
 
@@ -14,9 +15,13 @@ namespace Profiling.InverseCacheImpact
             //6586ms to find 4 objects with speficic type with cache.                 ---> creating cache didn't cost almost any CPU
             //4ms to find 4 objects with speficic type with cache, repeated query.    ---> repeated request is BAZING fast
 
-            using (var model = IfcStore.Open(@"c:\CODE\SampleData\LakesideRestaurant\LakesideRestaurant.ifc"))
+            var w = Stopwatch.StartNew();
+            //using (var model = IfcStore.Open(@"c:\Users\Martin\Source\Samples\2011-09-14-Clinic-IFC\Clinic_MEP_20110906.ifc", null, -1))
+            using (var model = IfcStore.Open(@"c:\Users\Martin\Source\Samples\LakesideRestaurant.ifc"))
             {
-                var w = Stopwatch.StartNew();
+                w.Stop();
+                Console.WriteLine("{0}ms to open the file", w.ElapsedMilliseconds);
+                w.Restart();
                 var objects1 =
                     model.Instances.Where<IfcObject>(
                         o =>
@@ -24,7 +29,7 @@ namespace Profiling.InverseCacheImpact
                                 .Any(r => r.RelatingType.Name == "Basic Wall:nbl_Int_PlstrbrdGyp-GalvStlStud-PlstrbrdGyp")).ToList();
                 w.Stop();
                 Console.WriteLine(@"{0}ms to find {1} objects with speficic type without cache.", w.ElapsedMilliseconds, objects1.Count);
-                using (model.BeginCaching())
+                using (var cache = model.BeginCaching())
                 {
                     w.Restart();
                     var objects2 =
@@ -42,6 +47,17 @@ namespace Profiling.InverseCacheImpact
                                     .Any(r => r.RelatingType.Name == "Basic Wall:nbl_Int_PlstrbrdGyp-GalvStlStud-PlstrbrdGyp")).ToList();
                     w.Stop();
                     Console.WriteLine(@"{0}ms to find {1} objects with speficic type with cache, repeated query.", w.ElapsedMilliseconds, objects3.Count);
+
+                    w.Restart();
+                    var pSets = model.Instances.
+                        OfType<IfcObject>().
+                        SelectMany(o => o.
+                            IsDefinedBy.
+                            OfType<IfcRelDefinesByProperties>().
+                            Select(r => r.RelatingPropertyDefinition)).
+                        ToList();
+                    w.Stop();
+                    Console.WriteLine(@"{0}ms to get all psets related to all objects.", w.ElapsedMilliseconds);
                 }
             }
         }
