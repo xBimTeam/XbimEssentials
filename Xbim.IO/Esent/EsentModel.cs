@@ -176,7 +176,7 @@ namespace Xbim.IO.Esent
             var c = InverseCache;
             if (c != null)
                 return c;
-            return InverseCache = new InverseCache();
+            return _inverseCache = new InverseCache();
         }
 
         public void StopCaching()
@@ -186,19 +186,19 @@ namespace Xbim.IO.Esent
                 return;
 
             c.Dispose();
-            InverseCache = null;
+            _inverseCache = null;
         }
 
         private WeakReference _cacheReference;
-        public IInverseCache InverseCache
+        internal InverseCache _inverseCache
         {
             get
             {
                 if (_cacheReference == null || !_cacheReference.IsAlive)
                     return null;
-                return _cacheReference.Target as IInverseCache;
+                return _cacheReference.Target as InverseCache;
             }
-            private set
+            set
             {
                 if (value == null)
                 {
@@ -209,6 +209,15 @@ namespace Xbim.IO.Esent
                     _cacheReference = new WeakReference(value);
                 else
                     _cacheReference.Target = value;
+            }
+        }
+        public IInverseCache InverseCache
+        {
+            get
+            {
+                if (_cacheReference == null || !_cacheReference.IsAlive)
+                    return null;
+                return _cacheReference.Target as IInverseCache;
             }
         }
 

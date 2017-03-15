@@ -43,11 +43,16 @@ namespace Xbim.IO.Memory
             throw new NotImplementedException();
         }
 
+        private bool _disposed;
         public void Dispose()
         {
+            if (_disposed)
+                return;
+
             _index.Clear();
             _index = null;
             _entities = null;
+            _disposed = true;
         }
 
         public bool TryGet<T>(string inverseProperty, IPersistEntity inverseArgument, out IEnumerable<T> entities) where T : IPersistEntity

@@ -1755,9 +1755,9 @@ namespace Xbim.IO.Esent
                 return expressTypes.SelectMany(expressType => OfType<T>(true, null, expressType).Where(condition));
 
             //we can use a secondary index to look up
-            var cache = _model.InverseCache;
+            var cache = _model._inverseCache;
             IEnumerable<T> result;
-            if (cache != null && _model.InverseCache.TryGet(inverseProperty, inverseArgument, out result))
+            if (cache != null && cache.TryGet(inverseProperty, inverseArgument, out result))
                 return result;
             result = expressTypes.SelectMany(t => OfType<T>(true, inverseArgument.EntityLabel, t).Where(condition));
             var entities = result as IList<T> ?? result.ToList();

@@ -17,7 +17,7 @@ namespace Profiling.InverseCacheImpact
 
             var w = Stopwatch.StartNew();
             //using (var model = IfcStore.Open(@"c:\Users\Martin\Source\Samples\2011-09-14-Clinic-IFC\Clinic_MEP_20110906.ifc", null, -1))
-            using (var model = IfcStore.Open(@"c:\Users\Martin\Source\Samples\LakesideRestaurant.ifc"))
+            using (var model = IfcStore.Open(@"c:\Users\Martin\Source\Samples\LakesideRestaurant.ifc", null, 1))
             {
                 w.Stop();
                 Console.WriteLine("{0}ms to open the file", w.ElapsedMilliseconds);
