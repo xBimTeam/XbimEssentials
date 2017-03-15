@@ -13,7 +13,6 @@ namespace Xbim.IO
     public static class PersistEntityExtensions
     {
 
-
         #region Write the properties of an IPersistEntity to a stream
         //internal static void WriteEntity(this IPersistEntity entity, TextWriter tw, byte[] propertyData, ExpressMetaData metadata)
         //{

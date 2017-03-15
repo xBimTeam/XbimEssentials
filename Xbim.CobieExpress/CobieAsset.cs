@@ -134,6 +134,7 @@ namespace Xbim.CobieExpress
 				return _categories;
 			} 
 		}	
+		[IndexedProperty]
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 9)]
 		public IOptionalItemSet<CobieImpact> @Impacts 
 		{ 
@@ -144,6 +145,7 @@ namespace Xbim.CobieExpress
 				return _impacts;
 			} 
 		}	
+		[IndexedProperty]
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 10)]
 		public IOptionalItemSet<CobieDocument> @Documents 
 		{ 
@@ -154,6 +156,7 @@ namespace Xbim.CobieExpress
 				return _documents;
 			} 
 		}	
+		[IndexedProperty]
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 11)]
 		public IOptionalItemSet<CobieAttribute> @Attributes 
 		{ 
@@ -164,6 +167,7 @@ namespace Xbim.CobieExpress
 				return _attributes;
 			} 
 		}	
+		[IndexedProperty]
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 12)]
 		public IOptionalItemSet<CobieCoordinate> @Representations 
 		{ 

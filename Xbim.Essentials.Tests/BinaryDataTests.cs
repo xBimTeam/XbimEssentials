@@ -31,10 +31,21 @@ namespace Xbim.Essentials.Tests
                     txn.Commit();
                 }
                 model.SaveAs("XbimBlobTexture.ifc");
+                model.SaveAs("XbimBlobTexture.ifcxml");
             }
 
             //open as memory model
             using (var model = IfcStore.Open("XbimBlobTexture.ifc", null, -1))
+            {
+                var btx = model.Instances.FirstOrDefault<IfcBlobTexture>();
+                Assert.IsNotNull(btx);
+
+                var image = btx.RasterCode.Bytes;
+                Assert.IsTrue(image.SequenceEqual(data));
+            }
+
+            //open as memory model
+            using (var model = IfcStore.Open("XbimBlobTexture.ifcxml", null, -1))
             {
                 var btx = model.Instances.FirstOrDefault<IfcBlobTexture>();
                 Assert.IsNotNull(btx);

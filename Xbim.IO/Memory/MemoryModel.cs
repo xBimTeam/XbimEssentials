@@ -519,10 +519,10 @@ namespace Xbim.IO.Memory
                     _instances.InternalAdd(ent);
                 else
                 {
-                    var msg = $"Error in file at label {label} for type {name}.";
+                    var msg = string.Format("Error in file at label {0} for type {1}.", label, name);
                     if (Metadata.ExpressType(typeId).Type.IsAbstract)
                     {
-                        msg = $"Illegal element in file; cannot instantiate the abstract type {name} at label {label}.";
+                        msg = string.Format("Illegal element in file; cannot instantiate the abstract type {0} at label {1}.", name, label);
                     }
                     Log.Error(msg);
                 }

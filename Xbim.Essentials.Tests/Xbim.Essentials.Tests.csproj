@@ -83,6 +83,7 @@
     <Compile Include="UnitNameTest.cs" />
     <Compile Include="OwnerHistoryTests.cs" />
     <Compile Include="NullableInterfaceEnumMemberTest.cs" />
+    <Compile Include="ValidationTests.cs" />
     <Compile Include="BinaryDataTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +130,9 @@
     <None Include="TestSourceFiles\4walls1floorSite.ifcxml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="TestSourceFiles\InvalidContentFC4.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TestSourceFiles\AlmostEmptyIFC4.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -166,6 +170,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="GeometryCacheTestFiles\Monolith_v20.xBIM">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\ValidationTests2x3.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

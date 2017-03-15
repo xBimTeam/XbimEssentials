@@ -253,7 +253,7 @@ namespace Xbim.Ifc
                     }
                     throw new ArgumentOutOfRangeException("IfcStore only supports EsentModel and MemoryModel");
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(dataType));
+                    throw new ArgumentOutOfRangeException("dataType");
             }
         }
 
@@ -1767,5 +1767,9 @@ namespace Xbim.Ifc
         }
 
         #endregion
+
+
+
+
     }
 }

@@ -62,6 +62,7 @@
     <Compile Include="Collections\ReverseProxyItemSet.cs" />
     <Compile Include="Collections\VolatileProxyItemSet.cs" />
     <Compile Include="Exceptions\XbimInitializationFailedException.cs" />
+    <Compile Include="ExpressValidation\ValidationResult.cs" />
     <Compile Include="Federation\ReferencedModelCollection.cs" />
     <Compile Include="Federation\FederatedModelInstances.cs" />
     <Compile Include="FlagSetter.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="IContainsEntityReferences.cs" />
     <Compile Include="IContainsIndexedReference.cs" />
     <Compile Include="IInverseCache.cs" />
+    <Compile Include="ExpressValidation\IExpressValidatable.cs" />
     <Compile Include="PersistEntity.cs" />
     <Compile Include="PlaceboTransaction.cs" />
     <Compile Include="Collections\MultiValueDictionary.cs" />
