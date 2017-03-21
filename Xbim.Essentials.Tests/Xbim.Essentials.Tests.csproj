@@ -85,6 +85,7 @@
     <Compile Include="NullableInterfaceEnumMemberTest.cs" />
     <Compile Include="ValidationTests.cs" />
     <Compile Include="BinaryDataTests.cs" />
+    <Compile Include="XbimColourTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj">
