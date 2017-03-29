@@ -68,7 +68,7 @@
       <Link>Properties\SharedFileVersionInfo.cs</Link>
     </Compile>
     <Compile Include="Validation\IfcValidator.cs" />
-    <Compile Include="Validation\ValidationReporter.cs" />
+    <Compile Include="Validation\IfcValidationReporter.cs" />
     <Compile Include="ViewModels\ClassificationViewModel.cs" />
     <Compile Include="ViewModels\ContainedElementsViewModel.cs" />
     <Compile Include="ViewModels\GroupViewModel.cs" />

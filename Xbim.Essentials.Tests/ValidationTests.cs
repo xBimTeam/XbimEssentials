@@ -31,7 +31,7 @@ namespace Xbim.Essentials.Tests
                     CreateEntityHierarchy = true
                 };
                 var errors = v.Validate(model);
-                foreach (var validationResult in new ValidationReporter(errors))
+                foreach (var validationResult in new IfcValidationReporter(errors))
                 {
                     Debug.WriteLine(validationResult);
                 }
@@ -54,7 +54,7 @@ namespace Xbim.Essentials.Tests
                     CreateEntityHierarchy = true
                 };
                 var e2 = v.Validate(model.Instances[202]);
-                foreach (var validationResult in new ValidationReporter(e2))
+                foreach (var validationResult in new IfcValidationReporter(e2))
                 {
                     Debug.WriteLine(validationResult);
                 }
@@ -76,7 +76,7 @@ namespace Xbim.Essentials.Tests
 
                 var iCount = 0;
                 var e2 = v.Validate(model.Instances[9]);
-                foreach (var validationResult in new ValidationReporter(e2))
+                foreach (var validationResult in new IfcValidationReporter(e2))
                 {
                     Debug.WriteLine(validationResult);
                     iCount++;
@@ -104,14 +104,14 @@ namespace Xbim.Essentials.Tests
 
                 var e2 = v.Validate(item);
                 int iCount = 0;
-                foreach (var validationResult in new ValidationReporter(e2))
+                foreach (var validationResult in new IfcValidationReporter(e2))
                 {
                     Debug.WriteLine(validationResult);
                     iCount++;
                 }
 
                 e2 = v.Validate(model.Instances[9]);
-                foreach (var validationResult in new ValidationReporter(e2))
+                foreach (var validationResult in new IfcValidationReporter(e2))
                 {
                     Debug.WriteLine(validationResult);
                     iCount++;

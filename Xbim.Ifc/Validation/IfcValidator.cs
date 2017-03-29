@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Common.Metadata;
-using Xbim.Essentials.Tests;
-// once c#6 is accepted to the solution these configurations should be removed.
+
+// todo: once c#6 is accepted to the solution these configurations should be removed.
 // ReSharper disable ConvertToAutoProperty
 // ReSharper disable UseStringInterpolation
 
@@ -14,11 +13,11 @@ namespace Xbim.Ifc.Validation
 {
     /// <summary>
     /// This class provides basic POCO access to validation errors.
-    /// Validation reporting should build upon this. For an example see <see cref="ValidationReporter"/>
+    /// Validation reporting should build upon this. For an example see <see cref="IfcValidationReporter"/>
     /// </summary>
     public class IfcValidator
     {
-        private bool _createEntityHierarchy = false;
+        private bool _createEntityHierarchy;
         public bool CreateEntityHierarchy
         {
             get { return _createEntityHierarchy; }
@@ -45,8 +44,6 @@ namespace Xbim.Ifc.Validation
 
         public ValidationFlags ValidateLevel = ValidationFlags.Properties;
         
-
-
         public bool LimitReached
         {
             get
@@ -253,14 +250,19 @@ namespace Xbim.Ifc.Validation
                 else
                 {
                     var en = (IEnumerable)propVal;
-                    foreach (var item in en)
-                    {
-                        count++;
-                        if (count >= ifcAttr.MinCardinality && ifcAttr.MaxCardinality == -1)
-                            //we have met the requirements
-                            break;
-                        if (ifcAttr.MaxCardinality > -1 && count > ifcAttr.MaxCardinality) //we are out of bounds
-                            break;
+                    if (en != null)
+                    { 
+                        // todo: ensure that this faster than count() given the conditionals in the loop
+                        // ReSharper disable once UnusedVariable // the loop is only executed to count the item if needed.
+                        foreach (var item in en)
+                        {
+                            count++;
+                            if (count >= ifcAttr.MinCardinality && ifcAttr.MaxCardinality == -1)
+                                //we have met the requirements
+                                break;
+                            if (ifcAttr.MaxCardinality > -1 && count > ifcAttr.MaxCardinality) //we are out of bounds
+                                break;
+                        }
                     }
                 }
 

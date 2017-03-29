@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common.ExpressValidation;
 
-namespace Xbim.Essentials.Tests
+namespace Xbim.Ifc.Validation
 {
-    public class ValidationReporter : IEnumerable<string>
+    public class IfcValidationReporter : IEnumerable<string>
     {
         private readonly Stack<IEnumerator<ValidationResult>> _queue = new Stack<IEnumerator<ValidationResult>>();
         private IEnumerator<ValidationResult> _currentEnum;
-        private int _indent = 0;
+        private int _indent;
 
-        public ValidationReporter(IEnumerable<ValidationResult> results)
+        public IfcValidationReporter(IEnumerable<ValidationResult> results)
         {
             _currentEnum = results.GetEnumerator();
         }
