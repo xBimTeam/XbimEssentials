@@ -204,8 +204,8 @@ namespace Xbim.Ifc2x3
         internal static T IfcBooleanChoose<T>(bool B, T Choice1, T Choice2)
         {
             return B 
-                ? (Choice1) 
-                : (Choice2);
+                ? Choice1 
+                : Choice2;
         }
         
         internal static bool IfcCorrectUnitAssignment(IItemSet<IfcUnit> Units)
@@ -220,35 +220,29 @@ namespace Xbim.Ifc2x3
 
             NamedUnitNumber =
                 SIZEOF(
-                    Units.Where(
-                        temp =>
-                            ((INTYPEOF(temp, "IFC2X3.IFCNAMEDUNIT"))) &&
-                            !((temp as IfcNamedUnit).UnitType == IfcUnitEnum.USERDEFINED)));
+                    Units.OfType<IfcNamedUnit>().Where(
+                        temp => temp.UnitType != IfcUnitEnum.USERDEFINED));
             DerivedUnitNumber =
                 SIZEOF(
-                    Units.Where(
-                        temp =>
-                            ((INTYPEOF(temp, "IFC2X3.IFCDERIVEDUNIT"))) &&
-                            !((temp as IfcDerivedUnit).UnitType == IfcDerivedUnitEnum.USERDEFINED)));
-            MonetaryUnitNumber = SIZEOF(Units.Where(temp => (INTYPEOF(temp, "IFC2X3.IFCMONETARYUNIT"))));
+                    Units.OfType<IfcDerivedUnit>().Where(
+                        temp => temp.UnitType != IfcDerivedUnitEnum.USERDEFINED));
+            MonetaryUnitNumber = SIZEOF(Units.OfType<IfcMonetaryUnit>());
 
             // index ok
             for (var i = 0; i < SIZEOF(Units); i++)
             {
-                if ((((INTYPEOF(Units[i], "IFC2X3.IFCNAMEDUNIT"))) &&
-                     !((Units[i] as IfcNamedUnit).UnitType == IfcUnitEnum.USERDEFINED)))
+                if (Units[i] is IfcNamedUnit && !((Units[i] as IfcNamedUnit).UnitType == IfcUnitEnum.USERDEFINED))
                 {
                     NamedUnitNames.Add((Units[i] as IfcNamedUnit).UnitType);
                 }
-                if ((((INTYPEOF(Units[i], "IFC2X3.IFCDERIVEDUNIT"))) &&
-                     !((Units[i] as IfcDerivedUnit).UnitType == IfcDerivedUnitEnum.USERDEFINED)))
+                if (Units[i] is IfcDerivedUnit && !((Units[i] as IfcDerivedUnit).UnitType == IfcDerivedUnitEnum.USERDEFINED))
                 {
                     DerivedUnitNames.Add((Units[i] as IfcDerivedUnit).UnitType);
                 }
             }
 
-            return ((SIZEOF(NamedUnitNames) == NamedUnitNumber) && (SIZEOF(DerivedUnitNames) == DerivedUnitNumber) &&
-                    (MonetaryUnitNumber <= 1));
+            return SIZEOF(NamedUnitNames) == NamedUnitNumber && SIZEOF(DerivedUnitNames) == DerivedUnitNumber &&
+                   MonetaryUnitNumber <= 1;
         }
 
         internal static Vector IfcCrossProduct(IfcDirection Arg1, IfcDirection Arg2)
@@ -262,7 +256,7 @@ namespace Xbim.Ifc2x3
             double[] V2;
             Vector Result;
             
-            if ((!EXISTS(Arg1) || (Arg1.Dim == 2)) || (!EXISTS(Arg2) || (Arg2.Dim == 2)))
+            if (!EXISTS(Arg1) || Arg1.Dim == 2 || !EXISTS(Arg2) || Arg2.Dim == 2)
             {
                 return null;
             }
@@ -273,19 +267,19 @@ namespace Xbim.Ifc2x3
             V1 = IfcNormalise(dArg1).DirectionRatios;
             V2 = IfcNormalise(dArg2).DirectionRatios;
             Res = new Direction(
-                (V1[1] * V2[2] - V1[2] * V2[1]),
-                (V1[2] * V2[0] - V1[0] * V2[2]),
-                (V1[0] * V2[1] - V1[1] * V2[0])
+                V1[1] * V2[2] - V1[2] * V2[1],
+                V1[2] * V2[0] - V1[0] * V2[2],
+                V1[0] * V2[1] - V1[1] * V2[0]
             );
             Mag = 0.0;
             for (var i = 0; i < 3; i++)
             {
                 Mag = Mag + Res.DirectionRatios[i] * Res.DirectionRatios[i];
             }
-            Result = (Mag > 0.0)
+            Result = Mag > 0.0
                 ? new Vector(Res, SQRT(Mag)) 
                 : new Vector(dArg1, 0.0);
-            return (Result);
+            return Result;
         }
 
         internal static bool IfcTopologyRepresentationTypes(IfcLabel? RepType, IItemSet<IfcRepresentationItem> Items)
@@ -319,7 +313,7 @@ namespace Xbim.Ifc2x3
                     );
                     break;
                 case "Undefined":
-                    return (true);
+                    return true;
             }
 
             return Count == Items.Count;
@@ -332,23 +326,23 @@ namespace Xbim.Ifc2x3
             bool Result = false;
 
 
-            if (INTYPEOF(StartArea, "IFC2X3.IFCPARAMETERIZEDPROFILEDEF"))
+            if (StartArea is IfcParameterizedProfileDef)
             {
-                if (INTYPEOF(EndArea, "IFC2X3.IFCDERIVEDPROFILEDEF"))
+                if (EndArea is IfcDerivedProfileDef)
                 {
-                    var end = EndArea as IIfcDerivedProfileDef;
+                    var end = EndArea as IfcDerivedProfileDef;
                     Result = end != null && StartArea == end.ParentProfile;
                 }
                 else
                 {
-                    Result = (StartArea.GetType() == EndArea.GetType());
+                    Result = StartArea.GetType() == EndArea.GetType();
                 }
             }
             else
             {
-                if (INTYPEOF(EndArea, "IFC2X3.IFCDERIVEDPROFILEDEF"))
+                if (EndArea is IfcDerivedProfileDef)
                 {
-                    var end = EndArea as IIfcDerivedProfileDef;
+                    var end = EndArea as IfcDerivedProfileDef;
                     Result = end != null && StartArea == end.ParentProfile;
                 }
                 else
@@ -356,7 +350,7 @@ namespace Xbim.Ifc2x3
                     Result = false;
                 }
             }
-            return (Result);
+            return Result;
         }
         
         internal static bool IfcShapeRepresentationTypes(IfcLabel? RepType, IItemSet<IfcRepresentationItem> Items)
@@ -364,7 +358,7 @@ namespace Xbim.Ifc2x3
             // local variables
             int Count = 0;
             if (!RepType.HasValue)
-                return (Count == Items.Count);
+                return Count == Items.Count;
             switch (RepType.Value)
             {
                 case "Point":
@@ -390,8 +384,6 @@ namespace Xbim.Ifc2x3
                 case "Surface2D":
                     Count = Items.Count(x => x is IIfcSurface && ((IIfcSurface) x).Dim == 2);
                     break;
-
-
                 case "Surface3D":
                     Count = Items.Count(x => x is IIfcSurface && ((IIfcSurface) x).Dim == 3);
                     break;
@@ -467,8 +459,8 @@ namespace Xbim.Ifc2x3
                 case "SweptSolid":
                     // todo: check this, i'm not sure this is how to interpret the clause
                     Count = Items.Count(x =>
-                            (x is IIfcExtrudedAreaSolid
-                             || x is IIfcRevolvedAreaSolid)
+                            x is IIfcExtrudedAreaSolid
+                            || x is IIfcRevolvedAreaSolid
                             
                     );
                     break;
@@ -513,7 +505,7 @@ namespace Xbim.Ifc2x3
                     Count = Items.Count(x => x is IIfcMappedItem);
                     break;
             }
-            return (Count == Items.Count);
+            return Count == Items.Count;
         }
 
         internal static bool IfcUniquePropertyName(IItemSet<IfcProperty> Properties)
@@ -539,7 +531,10 @@ namespace Xbim.Ifc2x3
 
         internal static bool IfcCorrectObjectAssignment(IfcObjectTypeEnum? Constraint, IItemSet<IfcObjectDefinition> Objects)
         {
-            var val = IfcCorrectObjectAssignment((IfcObjectTypeEnum)Constraint, (List<IfcObjectDefinition>)Objects);
+            if (!Constraint.HasValue)
+                return true;
+            
+            var val = IfcCorrectObjectAssignment((IfcObjectTypeEnum)Constraint, Objects.ToList());
             if (!val.HasValue)
             {
                 throw new ArgumentException("Undetermined value in where clause.");
@@ -554,56 +549,51 @@ namespace Xbim.Ifc2x3
             int Count = 0;
 
 
-            if (!(EXISTS(Constraint)))
+            if (!EXISTS(Constraint))
             {
-                return (true);
+                return true;
             }
 
             switch (Constraint)
             {
                 case IfcObjectTypeEnum.NOTDEFINED:
-                    return (true);
+                    return true;
                 case IfcObjectTypeEnum.PRODUCT:
                     {
-                        Count = SIZEOF(Objects.Where(temp => !((INTYPEOF(temp, "IFC2X3.IFCPRODUCT")))));
-                        return (Count == 0);
+                        Count = SIZEOF(Objects.Where(temp => !INTYPEOF(temp, "IFC2X3.IFCPRODUCT")));
+                        return Count == 0;
                     }
                 case IfcObjectTypeEnum.PROCESS:
                     {
-                        Count = SIZEOF(Objects.Where(temp => !((INTYPEOF(temp, "IFC2X3.IFCPROCESS")))));
-                        return (Count == 0);
+                        Count = SIZEOF(Objects.Where(temp => !INTYPEOF(temp, "IFC2X3.IFCPROCESS")));
+                        return Count == 0;
                     }
-                    ;
                 case IfcObjectTypeEnum.CONTROL:
                     {
-                        Count = SIZEOF(Objects.Where(temp => !((INTYPEOF(temp, "IFC2X3.IFCCONTROL")))));
-                        return (Count == 0);
+                        Count = SIZEOF(Objects.Where(temp => !INTYPEOF(temp, "IFC2X3.IFCCONTROL")));
+                        return Count == 0;
                     }
-                    ;
                 case IfcObjectTypeEnum.RESOURCE:
                     {
-                        Count = SIZEOF(Objects.Where(temp => !((INTYPEOF(temp, "IFC2X3.IFCRESOURCE")))));
-                        return (Count == 0);
+                        Count = SIZEOF(Objects.Where(temp => !INTYPEOF(temp, "IFC2X3.IFCRESOURCE")));
+                        return Count == 0;
                     }
-                    ;
-                case IfcObjectTypeEnum.ACTOR:
+                    case IfcObjectTypeEnum.ACTOR:
                     {
-                        Count = SIZEOF(Objects.Where(temp => !((INTYPEOF(temp, "IFC2X3.IFCACTOR")))));
-                        return (Count == 0);
+                        Count = SIZEOF(Objects.Where(temp => !INTYPEOF(temp, "IFC2X3.IFCACTOR")));
+                        return Count == 0;
                     }
-                    ;
                 case IfcObjectTypeEnum.GROUP:
                     {
-                        Count = SIZEOF(Objects.Where(temp => !((INTYPEOF(temp, "IFC2X3.IFCGROUP")))));
-                        return (Count == 0);
+                        Count = SIZEOF(Objects.Where(temp => !INTYPEOF(temp, "IFC2X3.IFCGROUP")));
+                        return Count == 0;
                     }
-                    ;
+                    
                 case IfcObjectTypeEnum.PROJECT:
                     {
-                        Count = SIZEOF(Objects.Where(temp => !((INTYPEOF(temp, "IFC2X3.IFCPROJECT")))));
-                        return (Count == 0);
+                        Count = SIZEOF(Objects.Where(temp => !INTYPEOF(temp, "IFC2X3.IFCPROJECT")));
+                        return Count == 0;
                     }
-                    ;
                 default:
                     return null;
             }
@@ -620,17 +610,14 @@ namespace Xbim.Ifc2x3
 
         internal static bool IfcCurveWeightsPositive(IfcRationalBezierCurve B)
         {
-            bool Result = true;
             for (var i = 0; i < B.UpperIndexOnControlPoints; i++)
             {
                 if (B.Weights[i] < 0.0)
                 {
-                    Result = false;
-                    return Result;
+                    return false;
                 }
-
             }
-            return Result;
+            return true;
         }
 
         internal static bool IfcValidCalendarDate(IfcCalendarDate date)
@@ -660,7 +647,6 @@ namespace Xbim.Ifc2x3
         internal static bool IfcConstraintsParamBSpline(IfcInteger Degree, IfcInteger UpKnots, IfcInteger UpCp, IItemSet<IfcInteger> KnotMult, IItemSet<IfcParameterValue> Knots)
         {
             // local variables
-            bool Result = true;
             int K;
             int Sum;
             
@@ -671,41 +657,36 @@ namespace Xbim.Ifc2x3
             }
 
 
-            if ((Degree < 1) || (UpKnots < 2) || (UpCp < Degree) ||
-                (Sum != (Degree + UpCp + 2)))
+            if (Degree < 1 || UpKnots < 2 || UpCp < Degree ||
+                Sum != Degree + UpCp + 2)
             {
-                Result = false;
-                return (Result);
+                return false;
             }
 
             K = (int) KnotMult[1];
-            if ((K < 1) || (K > Degree + 1))
+            if (K < 1 || K > Degree + 1)
             {
-                Result = false;
-                return (Result);
+                return false;
             }
 
             for (var i = 2; i <= UpKnots; i++)
             {
-                if ((KnotMult[i-1] < 1) || (Knots[i-1] <= Knots[i - 2]))
+                if (KnotMult[i-1] < 1 || Knots[i-1] <= Knots[i - 2])
                 {
-                    Result = false;
-                    return (Result);
+                    return false;
                 }
                 K = (int) KnotMult[i-1];
-                if ((i < UpKnots) && (K > Degree))
+                if (i < UpKnots && K > Degree)
                 {
-                    Result = false;
-                    return (Result);
+                    return false;
                 }
-                if ((i == UpKnots) && (K > Degree + 1))
+                if (i == UpKnots && K > Degree + 1)
                 {
-                    Result = false;
-                    return (Result);
+                    return false;
                 }
             }
 
-            return (Result);
+            return true;
         }
 
         private static bool HasIfcDimensionalExponents(IIfcDimensionalExponents dim, int len, int mass, int time, int elec, int temp, int substance, int lum)
@@ -734,325 +715,324 @@ namespace Xbim.Ifc2x3
         {
             switch (m)
             {
-
                 case IfcUnitEnum.LENGTHUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, 1, 0, 0, 0, 0, 0, 0))
+                        HasIfcDimensionalExponents(Dim, 1, 0, 0, 0, 0, 0, 0)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.MASSUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, 0, 1, 0, 0, 0, 0, 0))
+                        HasIfcDimensionalExponents(Dim, 0, 1, 0, 0, 0, 0, 0)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.TIMEUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, 0, 0, 1, 0, 0, 0, 0))
+                        HasIfcDimensionalExponents(Dim, 0, 0, 1, 0, 0, 0, 0)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.ELECTRICCURRENTUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, 0, 0, 0, 1, 0, 0, 0))
+                        HasIfcDimensionalExponents(Dim, 0, 0, 0, 1, 0, 0, 0)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.THERMODYNAMICTEMPERATUREUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, 0, 0, 0, 0, 1, 0, 0))
+                        HasIfcDimensionalExponents(Dim, 0, 0, 0, 0, 1, 0, 0)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.AMOUNTOFSUBSTANCEUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, 0, 0, 0, 0, 0, 1, 0))
+                        HasIfcDimensionalExponents(Dim, 0, 0, 0, 0, 0, 1, 0)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.LUMINOUSINTENSITYUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, 0, 0, 0, 0, 0, 0, 1))
+                        HasIfcDimensionalExponents(Dim, 0, 0, 0, 0, 0, 0, 1)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.PLANEANGLEUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, 0, 0, 0, 0, 0, 0, 0))
+                        HasIfcDimensionalExponents(Dim, 0, 0, 0, 0, 0, 0, 0)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.SOLIDANGLEUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, 0, 0, 0, 0, 0, 0, 0))
+                        HasIfcDimensionalExponents(Dim, 0, 0, 0, 0, 0, 0, 0)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.AREAUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, 2, 0, 0, 0, 0, 0, 0))
+                        HasIfcDimensionalExponents(Dim, 2, 0, 0, 0, 0, 0, 0)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.VOLUMEUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, 3, 0, 0, 0, 0, 0, 0))
+                        HasIfcDimensionalExponents(Dim, 3, 0, 0, 0, 0, 0, 0)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.ABSORBEDDOSEUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, 2, 0, -2, 0, 0, 0, 0))
+                        HasIfcDimensionalExponents(Dim, 2, 0, -2, 0, 0, 0, 0)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.RADIOACTIVITYUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, 0, 0, -1, 0, 0, 0, 0))
+                        HasIfcDimensionalExponents(Dim, 0, 0, -1, 0, 0, 0, 0)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.ELECTRICCAPACITANCEUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, -2, -1, 4, 2, 0, 0, 0))
+                        HasIfcDimensionalExponents(Dim, -2, -1, 4, 2, 0, 0, 0)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.DOSEEQUIVALENTUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, 2, 0, -2, 0, 0, 0, 0))
+                        HasIfcDimensionalExponents(Dim, 2, 0, -2, 0, 0, 0, 0)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.ELECTRICCHARGEUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, 0, 0, 1, 1, 0, 0, 0))
+                        HasIfcDimensionalExponents(Dim, 0, 0, 1, 1, 0, 0, 0)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.ELECTRICCONDUCTANCEUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, -2, -1, 3, 2, 0, 0, 0))
+                        HasIfcDimensionalExponents(Dim, -2, -1, 3, 2, 0, 0, 0)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.ELECTRICVOLTAGEUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, 2, 1, -3, -1, 0, 0, 0))
+                        HasIfcDimensionalExponents(Dim, 2, 1, -3, -1, 0, 0, 0)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.ELECTRICRESISTANCEUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, 2, 1, -3, -2, 0, 0, 0))
+                        HasIfcDimensionalExponents(Dim, 2, 1, -3, -2, 0, 0, 0)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.ENERGYUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, 2, 1, -2, 0, 0, 0, 0))
+                        HasIfcDimensionalExponents(Dim, 2, 1, -2, 0, 0, 0, 0)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.FORCEUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, 1, 1, -2, 0, 0, 0, 0))
+                        HasIfcDimensionalExponents(Dim, 1, 1, -2, 0, 0, 0, 0)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.FREQUENCYUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, 0, 0, -1, 0, 0, 0, 0))
+                        HasIfcDimensionalExponents(Dim, 0, 0, -1, 0, 0, 0, 0)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.INDUCTANCEUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, 2, 1, -2, -2, 0, 0, 0))
+                        HasIfcDimensionalExponents(Dim, 2, 1, -2, -2, 0, 0, 0)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.ILLUMINANCEUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, -2, 0, 0, 0, 0, 0, 1))
+                        HasIfcDimensionalExponents(Dim, -2, 0, 0, 0, 0, 0, 1)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.LUMINOUSFLUXUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, 0, 0, 0, 0, 0, 0, 1))
+                        HasIfcDimensionalExponents(Dim, 0, 0, 0, 0, 0, 0, 1)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.MAGNETICFLUXUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, 2, 1, -2, -1, 0, 0, 0))
+                        HasIfcDimensionalExponents(Dim, 2, 1, -2, -1, 0, 0, 0)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.MAGNETICFLUXDENSITYUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, 0, 1, -2, -1, 0, 0, 0))
+                        HasIfcDimensionalExponents(Dim, 0, 1, -2, -1, 0, 0, 0)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.POWERUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, 2, 1, -3, 0, 0, 0, 0))
+                        HasIfcDimensionalExponents(Dim, 2, 1, -3, 0, 0, 0, 0)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 case IfcUnitEnum.PRESSUREUNIT:
                     if (
-                        (HasIfcDimensionalExponents(Dim, -1, 1, -2, 0, 0, 0, 0))
+                        HasIfcDimensionalExponents(Dim, -1, 1, -2, 0, 0, 0, 0)
                     )
                     {
-                        return (true);
+                        return true;
                     }
                     else
                     {
-                        return (false);
+                        return false;
                     }
                 default:
                     return null;
@@ -1074,34 +1054,34 @@ namespace Xbim.Ifc2x3
         private static bool? NullableIfcCorrectLocalPlacement(IfcAxis2Placement AxisPlacement, IfcObjectPlacement RelPlacement)
         {
 
-            if ((EXISTS(RelPlacement)))
+            if (EXISTS(RelPlacement))
             {
-                if (((INTYPEOF(RelPlacement, "IFC2X3.IFCGRIDPLACEMENT"))))
+                if (RelPlacement is IfcGridPlacement)
                 {
                     return null;
                 }
-                if (((INTYPEOF(RelPlacement, "IFC2X3.IFCLOCALPLACEMENT"))))
+                if (RelPlacement is IfcLocalPlacement)
                 {
-                    if (((INTYPEOF(AxisPlacement, "IFC2X3.IFCAXIS2PLACEMENT2D"))))
+                    if (AxisPlacement is IfcAxis2Placement2D)
                     {
-                        return (true);
+                        return true;
                     }
-                    if (((INTYPEOF(AxisPlacement, "IFC2X3.IFCAXIS2PLACEMENT3D"))))
+                    if (AxisPlacement is IfcAxis2Placement3D)
                     {
-                        if (((RelPlacement as IfcLocalPlacement).RelativePlacement.Dim == 3))
+                        if ((RelPlacement as IfcLocalPlacement).RelativePlacement.Dim == 3)
                         {
-                            return (true);
+                            return true;
                         }
                         else
                         {
-                            return (false);
+                            return false;
                         }
                     }
                 }
             }
             else
             {
-                return (true);
+                return true;
             }
             return null;
         }
@@ -1127,9 +1107,9 @@ namespace Xbim.Ifc2x3
             {
                 if (!P.HasValue)
                     P = true;
-                P = P.Value && (APath.EdgeList[i - 2].EdgeEnd == APath.EdgeList[i - 1].EdgeStart);
+                P = P.Value && APath.EdgeList[i - 2].EdgeEnd == APath.EdgeList[i - 1].EdgeStart;
             }
-            return (P);
+            return P;
         }
 
         internal static bool IfcLoopHeadToTail(IfcEdgeLoop ALoop)
@@ -1141,9 +1121,9 @@ namespace Xbim.Ifc2x3
             N = SIZEOF(ALoop.EdgeList);
             for (var i = 2; i <= N; i++)
             {
-                P = P && (ALoop.EdgeList[i - 2].EdgeEnd == ALoop.EdgeList[i-1].EdgeStart);
+                P = P && ALoop.EdgeList[i - 2].EdgeEnd == ALoop.EdgeList[i-1].EdgeStart;
             }
-            return (P);
+            return P;
         }
 
         internal static bool IfcCorrectFillAreaStyle(IItemSet<IfcFillStyleSelect> Styles)
@@ -1157,23 +1137,23 @@ namespace Xbim.Ifc2x3
             Hatching = SIZEOF(Styles.Where(Style => INTYPEOF(Style, "IFC2X3.IFCFILLAREASTYLEHATCHING")));
             Tiles = SIZEOF(Styles.Where(Style => INTYPEOF(Style, "IFC2X3.IFCFILLAREASTYLETILES")));
             Colour = SIZEOF(Styles.Where(Style => INTYPEOF(Style, "IFC2X3.IFCCOLOUR")));
-            if ((External > 1))
+            if (External > 1)
             {
-                return (false);
+                return false;
             }
-            if (((External == 1) && ((Hatching > 0) || (Tiles > 0) || (Colour > 0))))
+            if (External == 1 && (Hatching > 0 || Tiles > 0 || Colour > 0))
             {
-                return (false);
+                return false;
             }
-            if ((Colour > 1))
+            if (Colour > 1)
             {
-                return (false);
+                return false;
             }
-            if (((Hatching > 0) && (Tiles > 0)))
+            if (Hatching > 0 && Tiles > 0)
             {
-                return (false);
+                return false;
             }
-            return (true);
+            return true;
         }
 
        
@@ -1193,14 +1173,14 @@ namespace Xbim.Ifc2x3
             
             if (!EXISTS(Arg))
             {
-                return (null);
+                return null;
             }
             else
             {
                 if (Arg is Vector)
                 {
                     Ndim = Arg.Dim;
-                    var vArg = (Arg as Vector);
+                    var vArg = Arg as Vector;
                     V.DirectionRatios = vArg.Orientation.DirectionRatios;
                     Vec.Magnitude = vArg.Magnitude;
                     Vec.Orientation = V;
@@ -1247,7 +1227,7 @@ namespace Xbim.Ifc2x3
                     return null;
                 }
             }
-            return (Result);
+            return Result;
         }
 
         #endregion
