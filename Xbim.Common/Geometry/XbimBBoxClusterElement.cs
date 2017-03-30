@@ -9,18 +9,16 @@ namespace Xbim.Common.Geometry
     {
         public List<int> GeometryIds;
         public XbimRect3D Bound;
-            
-         
+
         public XbimBBoxClusterElement(int geomteryId, XbimRect3D bound)
         {
-            GeometryIds = new List<int>(1);
-            this.GeometryIds.Add(geomteryId);
-            this.Bound = bound;
+            GeometryIds = new List<int>(1) {geomteryId};
+            Bound = bound;
         }
 
         public void Add(XbimBBoxClusterElement otherElement)
         {
-            GeometryIds = new List<int>(otherElement.GeometryIds.Count);
+            // assumes both local variables and others cannot be null
             GeometryIds.AddRange(otherElement.GeometryIds);
             Bound.Union(otherElement.Bound);
         }
