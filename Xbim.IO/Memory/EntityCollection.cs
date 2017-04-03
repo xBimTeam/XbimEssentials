@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using log4net;
 using Xbim.Common;
 
 namespace Xbim.IO.Memory
 {
     public class EntityCollection : IEntityCollection, IDisposable
     {
+        private static readonly ILog Log = LogManager.GetLogger("Xbim.IO.Memory.EntityCollection");
+
         //simpler hasher as all entities will be in this model so no need to use its hash, small performance gain
         private struct EntityLabelComparer : IEqualityComparer<IPersistEntity>
         {
@@ -22,10 +25,14 @@ namespace Xbim.IO.Memory
                 return obj.EntityLabel;
             }
         }
+
         private readonly MemoryModel _model;
         private readonly XbimMultiValueDictionary<Type, IPersistEntity> _internal;
-        private readonly Dictionary<int,IPersistEntity> _collection = new Dictionary<int,IPersistEntity>(0x77777);
-        private readonly List<int> _naturalOrder = new List<int>(0x77777); //about a default of half a million stops too much growing, and 7 is lucky; 
+        private readonly Dictionary<int, IPersistEntity> _collection = new Dictionary<int, IPersistEntity>(0x77777);
+
+        private readonly List<int> _naturalOrder = new List<int>(0x77777);
+            //about a default of half a million stops too much growing, and 7 is lucky; 
+
         internal IEntityFactory Factory
         {
             get { return _model.EntityFactory; }
@@ -37,7 +44,9 @@ namespace Xbim.IO.Memory
         {
             CurrentLabel = Math.Max(CurrentLabel, labelFrom);
             _model = model;
-            _internal = XbimMultiValueDictionary<Type, IPersistEntity>.Create(()=> new HashSet<IPersistEntity>(new EntityLabelComparer()));
+            _internal =
+                XbimMultiValueDictionary<Type, IPersistEntity>.Create(
+                    () => new HashSet<IPersistEntity>(new EntityLabelComparer()));
         }
 
         private IEnumerable<Type> GetQueryTypes(Type type)
@@ -45,8 +54,8 @@ namespace Xbim.IO.Memory
             var expType = _model.Metadata.ExpressType(type);
             if (expType != null)
                 return expType.NonAbstractSubTypes.Select(t => t.Type);
-            
-            if(!type.IsInterface) return new List<Type>();
+
+            if (!type.IsInterface) return new List<Type>();
 
             var implementations = _model.Metadata.ExpressTypesImplementing(type).Where(i => !i.Type.IsAbstract);
             return implementations.Select(e => e.Type);
@@ -76,7 +85,7 @@ namespace Xbim.IO.Memory
                     }
                 }
             }
-            
+
             if (cache.TryGet(inverseProperty, inverseArgument, out result))
                 return result.Where(condition);
 
@@ -95,8 +104,8 @@ namespace Xbim.IO.Memory
                 {
                     ICollection<IPersistEntity> entities;
                     if (!_internal.TryGetValue(type, out entities)) continue;
-                    foreach (var candidate in entities.Where(c => condition((T)c)))
-                        yield return (T)candidate;
+                    foreach (var candidate in entities.Where(c => condition((T) c)))
+                        yield return (T) candidate;
                 }
             }
             else
@@ -106,7 +115,7 @@ namespace Xbim.IO.Memory
                     ICollection<IPersistEntity> entities;
                     if (!_internal.TryGetValue(type, out entities)) continue;
                     foreach (var candidate in entities)
-                        yield return (T)candidate;
+                        yield return (T) candidate;
                 }
             }
         }
@@ -122,7 +131,8 @@ namespace Xbim.IO.Memory
             return Where(condition).FirstOrDefault();
         }
 
-        public T FirstOrDefault<T>(Func<T, bool> condition, string inverseProperty, IPersistEntity inverseArgument) where T : IPersistEntity
+        public T FirstOrDefault<T>(Func<T, bool> condition, string inverseProperty, IPersistEntity inverseArgument)
+            where T : IPersistEntity
         {
             return Where(condition, inverseProperty, inverseArgument).FirstOrDefault();
         }
@@ -136,12 +146,12 @@ namespace Xbim.IO.Memory
                 ICollection<IPersistEntity> entities;
                 if (_internal.TryGetValue(resultType, out entities))
                     foreach (var entity in entities)
-                        yield return (T)entity;
+                        yield return (T) entity;
             }
         }
-    
 
-    public IEnumerable<IPersistEntity> OfType(Type queryType) 
+
+        public IEnumerable<IPersistEntity> OfType(Type queryType)
         {
             var resultTypes = GetQueryTypes(queryType);
             foreach (var resultType in resultTypes)
@@ -162,7 +172,7 @@ namespace Xbim.IO.Memory
         public IEnumerable<IPersistEntity> OfType(string stringType, bool activate)
         {
             var queryType = _model.Metadata.ExpressType(stringType.ToUpperInvariant());
-            if(queryType == null) 
+            if (queryType == null)
                 throw new ArgumentException("StringType must be a name of the existing persist entity type");
             foreach (var entity in OfType(queryType.Type))
             {
@@ -171,8 +181,8 @@ namespace Xbim.IO.Memory
         }
 
         public IPersistEntity New(Type t)
-        {            
-            var entity = Factory.New(_model, t, Interlocked.Increment(ref CurrentLabel), true);           
+        {
+            var entity = Factory.New(_model, t, Interlocked.Increment(ref CurrentLabel), true);
             AddReversible(entity);
             return entity;
         }
@@ -181,7 +191,7 @@ namespace Xbim.IO.Memory
         {
             var entity = Factory.New(_model, t, label, true);
             Interlocked.Exchange(ref CurrentLabel, (label >= CurrentLabel) ? label : CurrentLabel);
-            
+
             AddReversible(entity);
             return entity;
         }
@@ -189,26 +199,26 @@ namespace Xbim.IO.Memory
         public T New<T>(Action<T> initPropertiesFunc) where T : IInstantiableEntity
         {
 
-            var entity = Factory.New(_model, initPropertiesFunc, Interlocked.Increment(ref CurrentLabel), true);           
+            var entity = Factory.New(_model, initPropertiesFunc, Interlocked.Increment(ref CurrentLabel), true);
             AddReversible(entity);
             return entity;
         }
 
         public T New<T>() where T : IInstantiableEntity
         {
-            
-            var entity = Factory.New<T>(_model, Interlocked.Increment(ref CurrentLabel) , true);
-            
+
+            var entity = Factory.New<T>(_model, Interlocked.Increment(ref CurrentLabel), true);
+
             AddReversible(entity);
             return entity;
         }
-        
+
         public IPersistEntity this[int label]
         {
             get
             {
                 IPersistEntity result;
-                
+
                 if (_collection.TryGetValue(label, out result))
                     return result;
                 return null;
@@ -229,8 +239,15 @@ namespace Xbim.IO.Memory
         {
             var key = entity.GetType();
             _internal.Add(key, entity);
-            _collection.Add(entity.EntityLabel,entity);
-            if (_naturalOrder != null) _naturalOrder.Add(entity.EntityLabel);
+            try
+            {
+                _collection.Add(entity.EntityLabel, entity);
+                if (_naturalOrder != null) _naturalOrder.Add(entity.EntityLabel);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(string.Format("Duplicate entity label: #{0}", entity.EntityLabel), ex);
+            }
         }
 
         private void AddReversible(IPersistEntity entity)

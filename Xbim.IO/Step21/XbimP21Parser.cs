@@ -45,7 +45,11 @@ namespace Xbim.IO.Step21
         private bool _deferListItems;
         public bool Cancel = false;
         private readonly List<int> _nestedIndex = new List<int>();
-        public int[] NestedIndex { get { return ListNestLevel > 0 ? _nestedIndex.ToArray() : null; } }
+
+        public int[] NestedIndex
+        {
+            get { return ListNestLevel > 0 ? _nestedIndex.ToArray() : null; }
+        }
 
         protected readonly ExpressMetaData Metadata;
 
@@ -54,7 +58,7 @@ namespace Xbim.IO.Step21
         {
             Metadata = metadata;
             var entityApproxCount = 5000;
-            if (streamSize>0)
+            if (streamSize > 0)
             {
                 _streamSize = streamSize;
                 entityApproxCount = Convert.ToInt32(_streamSize/50); //average 50 bytes per entity.
@@ -70,7 +74,7 @@ namespace Xbim.IO.Step21
             Metadata = metadata;
             const int entityApproxCount = 5000;
             _entities = new Dictionary<long, IPersist>(entityApproxCount);
-            _deferredReferences = new List<DeferredReference>(entityApproxCount / 2); //assume 50% deferred
+            _deferredReferences = new List<DeferredReference>(entityApproxCount/2); //assume 50% deferred
             ErrorCount = 0;
         }
 
@@ -95,7 +99,7 @@ namespace Xbim.IO.Step21
             {
                 if (!TrySetObjectValue(defRef.HostEntity, defRef.ParameterIndex, defRef.ReferenceId, defRef.NestedIndex))
                     Logger.WarnFormat("Entity #{0,-5} is referenced but could not be instantiated",
-                                                      defRef.ReferenceId);
+                        defRef.ReferenceId);
             }
         }
 
@@ -129,7 +133,7 @@ namespace Xbim.IO.Step21
             //  Console.WriteLine("BeginList");
             if (ListNestLevel < 2) return;
 
-            if (ListNestLevel -1 > _nestedIndex.Count)
+            if (ListNestLevel - 1 > _nestedIndex.Count)
                 _nestedIndex.Add(0);
             else
                 _nestedIndex[ListNestLevel - 2]++;
@@ -187,7 +191,7 @@ namespace Xbim.IO.Step21
                 {
                     RequiredParameters = reqParams
                 };
-                if(CurrentInstance != null) _processStack.Push(CurrentInstance);
+                if (CurrentInstance != null) _processStack.Push(CurrentInstance);
             }
             else
             {
@@ -205,9 +209,17 @@ namespace Xbim.IO.Step21
             //Debug.Assert(_processStack.Count == 0);
             CurrentInstance = null;
             if (p21.Entity != null)
-                _entities.Add(p21.EntityLabel, p21.Entity);
-
-
+            {
+                try
+                {
+                    _entities.Add(p21.EntityLabel, p21.Entity);
+                }
+                catch (Exception ex)
+                {
+                    var msg = string.Format("Duplicate entity label: #{0}", p21.EntityLabel);
+                    Logger.Error(msg, ex);
+                }
+            }
             // Console.WriteLine("EndEntity - " + CurrentSemanticValue.strVal);
         }
 
