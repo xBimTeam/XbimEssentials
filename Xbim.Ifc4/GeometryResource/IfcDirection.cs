@@ -121,7 +121,11 @@ namespace Xbim.Ifc4.GeometryResource
             var result = new IfcDirection(null, -1, true);
             result._directionRatios.InternalAdd(vector.X);
             result._directionRatios.InternalAdd(vector.Y);
-            result._directionRatios.InternalAdd(vector.Z);
+
+            //only add Z if it is an actual number
+            if (!double.IsNaN(vector.Z))
+                result._directionRatios.InternalAdd(vector.Z);
+
             return result;
         }
 		//##

@@ -619,7 +619,10 @@ namespace Xbim.Ifc
                 return;
 
             if (root.OwnerHistory != _ownerHistoryModifyObject)
+            {
                 root.OwnerHistory = OwnerHistoryModifyObject;
+                OwnerHistoryModifyObject.LastModifiedDate = DateTime.Now;
+            }
         }
 
         private void IfcRootInit(IPersistEntity entity)
@@ -629,6 +632,7 @@ namespace Xbim.Ifc
             {
                 root.OwnerHistory = OwnerHistoryAddObject;
                 root.GlobalId = Guid.NewGuid().ToPart21();
+                OwnerHistoryAddObject.LastModifiedDate = DateTime.Now;
             }
         }
 
