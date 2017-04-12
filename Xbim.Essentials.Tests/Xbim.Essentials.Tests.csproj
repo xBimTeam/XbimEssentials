@@ -83,6 +83,7 @@
     <Compile Include="UnitNameTest.cs" />
     <Compile Include="OwnerHistoryTests.cs" />
     <Compile Include="NullableInterfaceEnumMemberTest.cs" />
+    <Compile Include="AngleTests.cs" />
     <Compile Include="ValidationTests.cs" />
     <Compile Include="BinaryDataTests.cs" />
     <Compile Include="XbimColourTests.cs" />
