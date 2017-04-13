@@ -26,10 +26,10 @@ namespace Xbim.Common.Exceptions
         /// </summary>
         public static string ErrorStack(this Exception e, string baseError)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.AppendLine(baseError);
-            string indent = "\t";
-            Exception ex = e;
+            var indent = "\t";
+            var ex = e;
             while (ex != null)
             {
                 sb.AppendLine(indent + ex.Message);

@@ -1,22 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Xbim.XbimExtensions.Interfaces;
 
 namespace Xbim.Common.Geometry
 {
     public struct XbimVector3D : IVector3D
     {
-        public readonly static XbimVector3D Zero;
-
+        public static readonly XbimVector3D Zero;
+        const double Tolerance = 1e-9;
         static XbimVector3D()
         {
             Zero = new XbimVector3D(0, 0, 0);
         }
-        public double X;
-        public double Y;
-        public double Z;
+        public readonly double X;
+        public readonly double Y;
+        public readonly double Z;
+
         
         public double Length 
         {
@@ -76,6 +73,7 @@ namespace Xbim.Common.Geometry
             return ang <= angularTolerance;
         }
 
+        // ReSharper disable once InconsistentNaming
         private double length()
         {
             return Math.Sqrt(X * X + Y * Y + Z * Z);
@@ -87,6 +85,7 @@ namespace Xbim.Common.Geometry
             X = vx;
             Y = vy;
             Z = vz;
+            
         }
 
         public XbimVector3D(double v)
@@ -94,6 +93,7 @@ namespace Xbim.Common.Geometry
             X = v;
             Y = v;
             Z = v;
+
         }
 
         static public XbimVector3D Min(XbimVector3D a, XbimVector3D b)
@@ -123,10 +123,9 @@ namespace Xbim.Common.Geometry
             if (ob is XbimVector3D)
             {
                 XbimVector3D v = (XbimVector3D)ob;
-                return (X == v.X && Y == v.Y && Z == v.Z);
+                return (Math.Abs(X - v.X) < Tolerance && Math.Abs(Y - v.Y) < Tolerance && Math.Abs(Z - v.Z) < Tolerance);
             }
-            else
-                return false;
+            return false;
         }
 
         public override string ToString()
@@ -166,17 +165,17 @@ namespace Xbim.Common.Geometry
 
         public static XbimVector3D operator *(double l, XbimVector3D v1)
         {
-            return XbimVector3D.Multiply(l, v1);
+            return Multiply(l, v1);
         }
 
         public static XbimVector3D operator *(XbimVector3D v1, double l)
         {
-            return XbimVector3D.Multiply(l, v1);
+            return Multiply(l, v1);
         }
         
         public static XbimVector3D operator *(XbimVector3D v1, XbimMatrix3D m)
         {
-            return XbimVector3D.Multiply(v1, m);
+            return Multiply(v1, m);
         }
 
         public static XbimVector3D Multiply(double val, XbimVector3D vec)
@@ -195,35 +194,35 @@ namespace Xbim.Common.Geometry
                                     );
         }
 
-        public void Normalize()
+        public XbimVector3D Normalized()
         {
             var x = X;
             var y = Y;
             var z = Z;
             var len = Math.Sqrt(x * x + y * y + z * z);
 
-            if (len == 0)
-            {
-                X = 0; Y = 0; Z = 0;
-                return;
+            if (Math.Abs(len) < Tolerance)
+            {               
+                return new XbimVector3D(0,0,0);
             }
 
             len = 1 / len;
-            X = x * len;
-            Y = y * len;
-            Z = z * len;
+            x = x * len;
+            y = y * len;
+            z = z * len;
 
-            if (Math.Abs(X) == 1)
-                { Y = 0; Z = 0; }
-            else if (Math.Abs(Y) == 1)
-                { X = 0; Z = 0; }
-            else if (Math.Abs(Z) == 1)
-                { X = 0; Y = 0; }
+            if (Math.Abs(x - 1) < Tolerance)
+                return new XbimVector3D(Math.Sign(x), 0, 0);
+            if (Math.Abs(y - 1) < Tolerance)
+                return new XbimVector3D(0, Math.Sign(y), 0);
+            if (Math.Abs(z - 1) < Tolerance)
+                return new XbimVector3D(0, 0, Math.Sign(z));
+            return new XbimVector3D(x, y, z);
         }
 
         public XbimVector3D CrossProduct(XbimVector3D v2)
         {
-            return XbimVector3D.CrossProduct(this, v2);
+            return CrossProduct(this, v2);
         }
 
         public static XbimVector3D CrossProduct(XbimVector3D v1, XbimVector3D v2)
@@ -242,11 +241,9 @@ namespace Xbim.Common.Geometry
         /// <summary>
         /// Makes the vector point in the opposite direction
         /// </summary>
-        public void Negate()
+        public XbimVector3D Negated()
         {
-            X = -X;
-            Y = -Y;
-            Z = -Z;
+            return new XbimVector3D(-X,-Y,-Z);
         }
 
         
@@ -257,7 +254,7 @@ namespace Xbim.Common.Geometry
         }
         public double DotProduct(XbimVector3D v2)
         {
-            return XbimVector3D.DotProduct(this, v2);
+            return DotProduct(this, v2);
         }
         #endregion
 
@@ -282,12 +279,12 @@ namespace Xbim.Common.Geometry
 
         public bool IsInvalid()
         {
-            return (X == 0.0) && (Y == 0.0) && (Z == 0.0);
+            return (Math.Abs(X) < Tolerance) && (Math.Abs(Y) < Tolerance) && (Math.Abs(Z) < Tolerance);
         }
 
         public bool IsEqual(XbimVector3D b, double precision = 1e-9)
         {
-            double p = this.DotProduct(b);
+            double p = DotProduct(b);
             return Math.Abs(p - 1) <= precision;
         }
 

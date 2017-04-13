@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using Xbim.Common.Geometry;
 
-namespace XbimGeometry.Interfaces
+namespace Xbim.Common.Geometry
 {
     public interface IXbimFace : IXbimGeometryObject, IEquatable<IXbimFace>
     {
@@ -15,5 +13,10 @@ namespace XbimGeometry.Interfaces
         /// </summary>
         XbimVector3D Normal { get; }
         bool IsPlanar { get; }
+        void SaveAsBrep(string fileName);
+        /// <summary>
+        /// Converts the object to a string in BRep format
+        /// </summary>
+        String ToBRep { get; }
     }
 }

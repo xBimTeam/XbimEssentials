@@ -13,9 +13,8 @@
 #region Directives
 
 using System.Collections.Generic;
+using Xbim.Common;
 using Xbim.Ifc2x3.ExternalReferenceResource;
-using Xbim.XbimExtensions;
-using Xbim.XbimExtensions.Interfaces;
 
 #endregion
 
@@ -25,7 +24,7 @@ namespace Xbim.Ifc2x3.Extensions
     {
         public static IEnumerable<IfcClassificationItemRelationship> GetHierarchy(this IfcClassification cls)
         {
-            IModel model = cls.ModelOf;
+            IModel model = cls.Model;
             IEnumerable<IfcClassificationItemRelationship> itemRels =
                 model.Instances.Where<IfcClassificationItemRelationship>(r => r.RelatingItem.ItemOf == cls);
             Dictionary<IfcClassificationItem, IfcClassificationItemRelationship> roots =

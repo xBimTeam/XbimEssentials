@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Xbim.Common.Geometry;
 using Xbim.Ifc2x3.GeometryResource;
 
@@ -18,7 +15,7 @@ namespace Xbim.Ifc2x3.Extensions
         {
             if (dir == null) return 0;
 
-            var model = dir.ModelOf;
+            var model = dir.Model;
             Func<double, int> f = model.ModelFactors.GetGeometryDoubleHash;
             switch (dir.Dim)
             {
@@ -44,7 +41,7 @@ namespace Xbim.Ifc2x3.Extensions
             if (a.Equals(b)) return true;
             XbimVector3D va = a.XbimVector3D();
             XbimVector3D vb = b.XbimVector3D();
-            return va.IsEqual(vb,b.ModelOf.ModelFactors.Precision);
+            return va.IsEqual(vb,b.Model.ModelFactors.Precision);
         }
     }
 }

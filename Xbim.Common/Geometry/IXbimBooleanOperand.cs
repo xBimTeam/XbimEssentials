@@ -1,4 +1,4 @@
-﻿namespace XbimGeometry.Interfaces
+﻿namespace Xbim.Common.Geometry
 {
     public interface IXbimBooleanOperand
     {

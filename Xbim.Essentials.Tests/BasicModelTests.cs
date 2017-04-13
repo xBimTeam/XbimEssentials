@@ -1,13 +1,14 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Xbim.IO;
 using System.IO;
-using Xbim.XbimExtensions.Interfaces;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xbim.Common;
+using Xbim.IO;
+using XbimModel = Xbim.Ifc2x3.IO.XbimModel;
 
 namespace Xbim.Essentials.Tests
 {
     [TestClass]
-    [DeploymentItem(@"TestSourceFiles\")]
+    [DeploymentItem(@"TestSourceFiles")]
     public class BasicModelTests
     {
         [TestMethod]
@@ -24,20 +25,37 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void OpenIfcZipFile()
         {
+            int percent = 0;
+            ReportProgressDelegate progDelegate = delegate(int percentProgress, object userState)
+            {
+                percent = percentProgress;
+
+            };
             using (var model = new XbimModel())
             {
-                model.CreateFrom("4walls1floorSite.ifczip");
-                model.Close();
-            }
+                var fileName = Guid.NewGuid() + ".xbim";
 
+                model.CreateFrom("TestZip.ifczip", fileName, progDelegate);
+                model.Close();
+                Console.WriteLine(percent);
+                Assert.IsTrue(percent == 100);
+            }
         }
         [TestMethod]
         public void OpenIfcXmlFile()
         {
+            int percent = 0;
+            ReportProgressDelegate progDelegate = delegate(int percentProgress, object userState)
+            {
+                percent = percentProgress;
+
+            };
             using (var model = new XbimModel())
             {
-                model.CreateFrom("4walls1floorSite.ifcxml");
+
+                model.CreateFrom("4walls1floorSite.ifcxml",null,progDelegate);
                 model.Close();
+                Assert.IsTrue(percent==100);
             }
 
         }
@@ -48,27 +66,15 @@ namespace Xbim.Essentials.Tests
             {
                 using (var model = new XbimModel())
                 {
-                    model.CreateFrom(fileStream, XbimStorageType.IFC, "4walls1floorSite.xbim",null,true);                  
+                    model.CreateFrom(fileStream, fileStream.Length, IfcStorageType.Ifc, "4walls1floorSite.xbim", null, true);                  
                     model.Close();
                 }
                 fileStream.Close();
             }
+
         }
 
-        [TestMethod]
-        public void OpenIfcZipFileFromStream()
-        {
-            using (var fileStream = new FileStream("4walls1floorSite.ifczip", FileMode.Open, FileAccess.Read))
-            {
-                using (var model = new XbimModel())
-                {
-                    model.CreateFrom(fileStream, XbimStorageType.IFC, "4walls1floorSite.xbim");
-                    model.Close();
-                }
-                fileStream.Close();
-            }
-        }
-
+       
         [TestMethod]
         public void OpenIfcXmlFileFromStream()
         {
@@ -76,7 +82,7 @@ namespace Xbim.Essentials.Tests
             {
                 using (var model = new XbimModel())
                 {
-                    model.CreateFrom(fileStream, XbimStorageType.IFC, "4walls1floorSite.xbim");
+                    model.CreateFrom(fileStream, fileStream.Length, IfcStorageType.IfcXml, "4walls1floorSite.xbim");
                     model.Close();
                 }
                 fileStream.Close();

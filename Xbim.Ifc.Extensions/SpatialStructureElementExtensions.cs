@@ -14,10 +14,9 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProductExtension;
-using Xbim.XbimExtensions;
-using Xbim.XbimExtensions.Interfaces;
 
 #endregion
 
@@ -46,7 +45,7 @@ namespace Xbim.Ifc2x3.Extensions
         public static IEnumerable<IfcProduct> GetContainedElements(this IfcSpatialStructureElement se)
         {
             return
-                se.ModelOf.Instances.Where<IfcRelContainedInSpatialStructure>(
+                se.Model.Instances.Where<IfcRelContainedInSpatialStructure>(
                     r => r.RelatingStructure == se).SelectMany(subrel => subrel.RelatedElements);
         }
 
@@ -57,11 +56,11 @@ namespace Xbim.Ifc2x3.Extensions
         /// <returns></returns>
         public static IfcSpatialStructureElement GetContainingStructuralElement(this IfcSpatialStructureElement se)
         {
-            IModel model = se.ModelOf;
+            IModel model = se.Model;
             IEnumerable<IfcRelContainedInSpatialStructure> rels =
                 model.Instances.Where<IfcRelContainedInSpatialStructure>(r => r.RelatedElements.Contains(se));
             return rels.Select(r => r.RelatingStructure).FirstOrDefault();
-            // return  se).Instances.Where<RelContainedInSpatialStructure>(r => r.RelatedElements.Contains(se)).Select(r=>r.RelatingStructure).FirstOrDefault(.ModelOf;
+            // return  se).Instances.Where<RelContainedInSpatialStructure>(r => r.RelatedElements.Contains(se)).Select(r=>r.RelatingStructure).FirstOrDefault(.Model;
         }
 
         /// <summary>
@@ -72,11 +71,11 @@ namespace Xbim.Ifc2x3.Extensions
         public static IEnumerable<IfcSpatialStructureElement> GetContainingStructuralElements(
             this IfcSpatialStructureElement se)
         {
-            IModel model = se.ModelOf;
+            IModel model = se.Model;
             IEnumerable<IfcRelContainedInSpatialStructure> rels =
                 model.Instances.Where<IfcRelContainedInSpatialStructure>(r => r.RelatedElements.Contains(se));
             return rels.Select(r => r.RelatingStructure);
-            // return  se).Instances.Where<RelContainedInSpatialStructure>(r => r.RelatedElements.Contains(se)).Select(r=>r.RelatingStructure).FirstOrDefault(.ModelOf;
+            // return  se).Instances.Where<RelContainedInSpatialStructure>(r => r.RelatedElements.Contains(se)).Select(r=>r.RelatingStructure).FirstOrDefault(.Model;
         }
 
         /// <summary>
@@ -89,16 +88,16 @@ namespace Xbim.Ifc2x3.Extensions
             if (prod == null) return;
 
             IEnumerable<IfcRelContainedInSpatialStructure> relatedElements = se.ContainsElements;
-            if (relatedElements.Count() == 0) //none defined create the relationship
+            var ifcRelContainedInSpatialStructures = relatedElements as IList<IfcRelContainedInSpatialStructure> ?? relatedElements.ToList();
+            if (!ifcRelContainedInSpatialStructures.Any()) //none defined create the relationship
             {
-                IfcRelContainedInSpatialStructure relSe =
-                    se.ModelOf.Instances.New<IfcRelContainedInSpatialStructure>();
+                IfcRelContainedInSpatialStructure relSe = se.Model.Instances.New<IfcRelContainedInSpatialStructure>();
                 relSe.RelatingStructure = se;
                 relSe.RelatedElements.Add(prod);
             }
             else
             {
-                relatedElements.First().RelatedElements.Add(prod);
+                ifcRelContainedInSpatialStructures.First().RelatedElements.Add(prod);
             }
         }
 
@@ -111,15 +110,16 @@ namespace Xbim.Ifc2x3.Extensions
                                                      IfcSpatialStructureElement child)
         {
             IEnumerable<IfcRelDecomposes> decomposition = se.IsDecomposedBy;
-            if (decomposition.Count() == 0) //none defined create the relationship
+            var ifcRelDecomposeses = decomposition as IList<IfcRelDecomposes> ?? decomposition.ToList();
+            if (!ifcRelDecomposeses.Any()) //none defined create the relationship
             {
-                IfcRelAggregates relSub = se.ModelOf.Instances.New<IfcRelAggregates>();
+                IfcRelAggregates relSub = se.Model.Instances.New<IfcRelAggregates>();
                 relSub.RelatingObject = se;
                 relSub.RelatedObjects.Add(child);
             }
             else
             {
-                decomposition.First().RelatedObjects.Add(child);
+                ifcRelDecomposeses.First().RelatedObjects.Add(child);
             }
         }
     }

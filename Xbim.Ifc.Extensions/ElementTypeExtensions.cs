@@ -14,11 +14,9 @@
 
 using System;
 using System.Linq;
+using Xbim.Common;
 using Xbim.Ifc2x3.MaterialResource;
 using Xbim.Ifc2x3.ProductExtension;
-using Xbim.XbimExtensions.SelectTypes;
-using Xbim.XbimExtensions;
-using Xbim.XbimExtensions.Interfaces;
 
 #endregion
 
@@ -50,7 +48,7 @@ namespace Xbim.Ifc2x3.Extensions
                 elemType.HasAssociations.OfType<IfcRelAssociatesMaterial>().FirstOrDefault();
             if (relMat == null)
             {
-                IModel model = elemType.ModelOf;
+                IModel model = elemType.Model;
                 if (model == null)
                     throw new Exception("IfcElementType is not contained in a valid model");
                 else

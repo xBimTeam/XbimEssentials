@@ -2,11 +2,10 @@
 
 using System;
 using System.Collections.Generic;
-using Xbim.Common.Geometry;
 
 #endregion
 
-namespace XbimGeometry.Interfaces
+namespace Xbim.Common.Geometry
 {
     /// <summary>
     ///     A wire is a connected set of one or more edges
@@ -69,5 +68,9 @@ namespace XbimGeometry.Interfaces
         /// <param name="tolerance">The distance at which two points are considered to be the same</param>
         /// <returns></returns>
         IXbimWire Trim(double start, double end, double tolerance);
+        /// <summary>
+        /// Converts the object to a string in BRep format
+        /// </summary>
+        String ToBRep { get; }
     }
 }

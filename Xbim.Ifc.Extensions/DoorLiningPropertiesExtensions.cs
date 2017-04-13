@@ -12,6 +12,7 @@
 
 #region Directives
 
+using Xbim.Common;
 using Xbim.Ifc2x3.RepresentationResource;
 using Xbim.Ifc2x3.SharedBldgElements;
 
@@ -29,10 +30,9 @@ namespace Xbim.Ifc2x3.Extensions
         /// <returns></returns>
         public static IfcShapeModel GetShapeModel(this IfcDoorLiningProperties lProps, string identifier)
         {
-            if (lProps.ShapeAspectStyle == null)
-                return null;
-            else
-                return lProps.ShapeAspectStyle.ShapeRepresentations.Lookup(identifier);
+            return lProps.ShapeAspectStyle == null ? 
+                null : 
+                lProps.ShapeAspectStyle.ShapeRepresentations.Lookup(identifier);
         }
 
         /// <summary>
@@ -40,12 +40,11 @@ namespace Xbim.Ifc2x3.Extensions
         /// </summary>
         /// <param name = "lProps"></param>
         /// <returns></returns>
-        public static ShapeModelList GetShapeModels(this IfcDoorLiningProperties lProps)
+        public static IItemSet<IfcShapeModel> GetShapeModels(this IfcDoorLiningProperties lProps)
         {
-            if (lProps.ShapeAspectStyle == null)
-                return null;
-            else
-                return lProps.ShapeAspectStyle.ShapeRepresentations;
+            return lProps.ShapeAspectStyle == null ? 
+                null : 
+                lProps.ShapeAspectStyle.ShapeRepresentations;
         }
     }
 }
