@@ -23,6 +23,7 @@ namespace Xbim.Essentials.Tests
                 {
                     //setting names to new value
                     var walls = model.Instances.OfType<IIfcWall>().ToList();
+                    Assert.IsTrue(walls.Any());
                     foreach (var wall in walls)
                         wall.Name = "New name";
                     Assert.IsTrue(walls.All(w => w.Name == "New name"));

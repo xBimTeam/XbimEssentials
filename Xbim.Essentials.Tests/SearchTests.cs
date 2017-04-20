@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common;
+using Xbim.Ifc;
 using Xbim.Ifc2x3;
 using Xbim.Ifc2x3.SharedBldgElements;
 using Xbim.Ifc4.Interfaces;
@@ -76,6 +77,18 @@ namespace Xbim.Essentials.Tests
             Assert.AreEqual(5, model.Instances.OfType<IIfcWall>().Count());
             Assert.AreEqual(5, model.Instances.Where<IfcWall>(w => true).Count());
             Assert.AreEqual(5, model.Instances.Where<IIfcWall>(w => true).Count());
+        }
+
+
+        [TestMethod]
+        [DeploymentItem("TestSourceFiles/4walls1floorSite.ifc")]
+        public void CanSearchSite()
+        {
+            using (var model = IfcStore.Open("4walls1floorSite.ifc"))
+            {
+                var sites = model.Instances.OfType<IIfcSite>().ToList();
+                Assert.IsTrue(sites.Any());
+            }
         }
     }
 }
