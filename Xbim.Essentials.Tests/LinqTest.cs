@@ -18,9 +18,8 @@ namespace Tests
         {
             using (var model1 = IfcStore.Open("email.ifc"))
             {
-                var p = model1.Instances[1] as IIfcPerson;
-                Assert.IsNotNull(p);
-                var telecom = p.Addresses.OfType<IIfcTelecomAddress>().FirstOrDefault();
+                
+                var telecom = model1.Instances[28] as IIfcTelecomAddress;
                 Assert.IsNotNull(telecom);
                 Assert.IsNotNull(telecom.ElectronicMailAddresses);
 
@@ -32,8 +31,14 @@ namespace Tests
                 //
                 // the problem goes away if we use "using Xbim.Ifc2x3.Interfaces;" instead of ifc4.
                 //
-                var ml1 = telecom.ElectronicMailAddresses.Where(t => !string.IsNullOrWhiteSpace(t.ToString())).FirstOrDefault();
-                var ml2 = telecom.ElectronicMailAddresses.FirstOrDefault(t => !string.IsNullOrWhiteSpace(t.ToString()));
+                var add = telecom.ElectronicMailAddresses;
+
+                var enum1 = add.Where(t => !string.IsNullOrWhiteSpace(t.ToString()));
+                var enumFrom1 = enum1.FirstOrDefault();
+
+                var ml1 = add.Where(t => !string.IsNullOrWhiteSpace(t.ToString())).FirstOrDefault();
+                var ml2 = add.FirstOrDefault(t => !string.IsNullOrWhiteSpace(t.ToString()));
+                
                 Assert.AreEqual(ml1, ml2);
             }
         }
