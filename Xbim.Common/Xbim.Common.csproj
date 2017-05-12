@@ -173,6 +173,7 @@
     <Compile Include="Logging\Providers\Log4NetProvider.cs" />
     <Compile Include="ReportProgressDelegate.cs" />
     <Compile Include="Step21\StepParserType.cs" />
+    <Compile Include="XbimAssemblyInfo.cs" />
     <Compile Include="XbimExtensions\BinaryReaderExtensions.cs" />
     <Compile Include="Geometry\IVector3D.cs" />
     <Compile Include="Enumerations\ValidationFlags.cs" />
