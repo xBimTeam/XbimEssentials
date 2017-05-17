@@ -8,6 +8,8 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Common.Collections
 {
+    // todo: predicates valid on inner class should be checked in this class
+    //
     public class ProxyValueSet<TInner, TOuter> : IItemSet<TOuter>, IList 
         //where TInner : struct
         //where TOuter : struct
@@ -220,16 +222,22 @@ namespace Xbim.Common.Collections
             return _inner.Count == 0 ? default(TOuter) : _toOut(_inner.FirstOrDefault());
         }
 
+        
         public TOuter FirstOrDefault(Func<TOuter, bool> predicate)
         {
-            return _inner.FirstOrDefault(predicate);
+            // convertedPredicate first converts the inner element to the outer then applies 
+            // the provided predicate
+            Func<TInner, bool> convertedPredicate = inner => predicate(_toOut(inner));
+            return _toOut(_inner.FirstOrDefault(convertedPredicate));
         }
-
+        
+        // todo: document the role of this function and the predicate
         public TF FirstOrDefault<TF>(Func<TF, bool> predicate)
         {
             return _inner.FirstOrDefault(predicate);
         }
 
+        // todo: document the role of this function and the predicate
         public IEnumerable<TW> Where<TW>(Func<TW, bool> predicate)
         {
             return _inner.Where(predicate);
