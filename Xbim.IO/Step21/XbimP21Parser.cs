@@ -12,6 +12,7 @@
 
 #region Directives
 
+using QUT.Gppg;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -79,6 +80,17 @@ namespace Xbim.IO.Step21
         }
 
         public int ErrorCount { get; protected set; }
+
+        /// <summary>
+        /// Returns current position as [line, column] integer array. This is usefull when debuging misformatted files.
+        /// </summary>
+        public LexLocation CurrentPosition
+        {
+            get
+            {
+                return Scanner.yylloc;
+            }
+        }
 
         internal override void SetErrorMessage()
         {
