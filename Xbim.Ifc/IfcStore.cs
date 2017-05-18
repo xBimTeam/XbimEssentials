@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
 using ICSharpCode.SharpZipLib.Zip;
+using log4net;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Federation;
@@ -1422,9 +1423,12 @@ namespace Xbim.Ifc
                     {
                         AddModelReference(new XbimReferencedModel(docInfo));
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        // drop exception in this case
+                        var Log = LogManager.GetLogger("Xbim.Ifc.IfcStore");
+                        Log.Error(
+                            string.Format("Ignored exception on modelreference load for #{0}.", docInfo.EntityLabel),
+                            ex);
                     }
                 }
             }
@@ -1771,9 +1775,5 @@ namespace Xbim.Ifc
         }
 
         #endregion
-
-
-
-
     }
 }

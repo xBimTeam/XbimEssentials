@@ -4,8 +4,12 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Versioning;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xbim.Common;
 using Xbim.Common.Step21;
 using Xbim.Ifc;
+using Xbim.Ifc4.Interfaces;
+
+using Xbim.IO;
 
 namespace Xbim.Essentials.Tests
 {
@@ -24,34 +28,44 @@ namespace Xbim.Essentials.Tests
                 ApplicationDevelopersName = "TestApp",
                 EditorsOrganisationName = "Test"
             };
-            TestFederation(IfcSchemaVersion.Ifc4, credentials);
+            TestFederation<Ifc4.Kernel.IfcProject>(IfcSchemaVersion.Ifc4, credentials);
+            TestFederation<Ifc2x3.Kernel.IfcProject>(IfcSchemaVersion.Ifc2X3, credentials);
         }
 
-        private static void TestFederation(IfcSchemaVersion schema, XbimEditorCredentials credentials)
+        private static void TestFederation<T>(IfcSchemaVersion schema, XbimEditorCredentials credentials) where  T : IInstantiableEntity, IIfcProject
         {
             var models = new List<string>();
             // write the files to disk so that the federation finds them
             //
             for (int i = 1; i < 3; i++)
             {
-                var fName = string.Format("model{0}{1}.ifc", i, schema);
-                using (var tmpFile = IfcStore.Create(fName, credentials, schema))
+                var esentFileName = string.Format("model{0}{1}.xbim", i, schema);
+                var ifcFileName = Path.ChangeExtension(esentFileName, ".ifc");
+               
+                using (var model = IfcStore.Create(esentFileName, credentials, schema))
                 {
-                    // nothing to do; just creates the files.
+                    using (var txn = model.BeginTransaction("Hello Wall"))
+                    {
+                        //there should always be one project in the model
+                        var project = model.Instances.New<T>(p => p.Name = "Basic Creation");
+                        //our shortcut to define basic default units
+                        project.Initialize(ProjectUnits.SIUnitsUK);
+                        txn.Commit();
+                    }
+                    model.SaveAs(ifcFileName, IfcStorageType.Ifc);
                 }
-                models.Add(fName);
+                var d = new DirectoryInfo(".");
+                models.Add(ifcFileName);
+                File.Delete(esentFileName);
             }
-
             var fedName = string.Format(@"federation{0}.xbim", schema);
-
-            using (var ifcStore = IfcStore.Create(fedName, credentials, Common.Step21.IfcSchemaVersion.Ifc4))
+            using (var ifcStore = IfcStore.Create(fedName, credentials, schema))
             {
                 foreach (var modelName in models)
                 {
                     ifcStore.AddModelReference(modelName, "Organisation", "Role");
                 }
             }
-
             using (var ifcStore = IfcStore.Open(fedName))
             {
                 Assert.IsTrue(ifcStore.IsFederation, "Federation not created");
