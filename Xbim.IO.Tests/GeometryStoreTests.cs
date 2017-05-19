@@ -1,9 +1,12 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common.Geometry;
 using Xbim.Common.Step21;
+using Xbim.Common.XbimExtensions;
 using Xbim.Ifc;
 using Xbim.Ifc4;
 using Xbim.Ifc4.SharedBldgElements;
@@ -14,8 +17,36 @@ namespace Xbim.IO.Tests
     [TestClass]
     public class GeometryStoreTests
     {
-        [DeploymentItem("TestFiles")]
         [TestMethod]
+        [DeploymentItem("TestFiles\\OneWall.xBIM")]
+        [DeploymentItem("TestFiles\\ShortRebar.xBIM")]
+        public void GeometryBinaryRead()
+        {
+            ParseGeometry("ShortRebar.xBIM");
+            // ParseGeometry("OneWall.xBIM");
+        }
+
+        private static void ParseGeometry(string name)
+        {
+            using (var model = IfcStore.Open(name))
+            using (var txn = model.GeometryStore.BeginRead())
+            {
+                foreach (IXbimShapeGeometryData geo in txn.ShapeGeometries)
+                {
+                    using (var ms = new MemoryStream(geo.ShapeData))
+                    using (var br = new BinaryReader(ms))
+                    {
+                        var v = br.ReadShapeTriangulation();
+                        List<float[]> pts;
+                        List<int> idxs;
+                        v.ToPointsWithNormalsAndIndices(out pts, out idxs);
+                    }
+                }
+            }
+        }
+
+        [TestMethod]
+        [DeploymentItem("TestFiles")]
         public void IfcStoreGeometryStoreAddTest()
         {
             using (var model = IfcStore.Open("SampleHouse4.ifc"))
