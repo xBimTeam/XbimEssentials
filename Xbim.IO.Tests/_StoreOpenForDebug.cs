@@ -5,14 +5,20 @@ using Xbim.Ifc;
 
 namespace Xbim.MemoryModel.Tests
 {
+    /// <summary>
+    /// this class can be used to debug local files. It's not a stable test.
+    /// </summary>
     [TestClass]
     public class StoreOpenForDebug
     {
+        /// <summary>
+        /// this Method can be used to debug local files. It's not a stable test.
+        /// </summary>
         [TestMethod]
-        public void JustOpenOneFile()
+        public void NotAnUsefulTestJustDirtyWork()
         {
-            // note: this class can be used to debug suspicious local files. It's not a stable test.
-            var filename = "C:\\Users\\Claudio\\OneDrive\\IfcArchive\\Andre\\HaifaBridgeFixed_Classified_WithAxes_WithSystems_WithSpaces.ifc";
+
+            var filename = ""; // "C:\\Users\\Claudio\\OneDrive\\IfcArchive\\Andre\\HaifaBridgeFixed_Classified_WithAxes_WithSystems_WithSpaces.ifc";
             if (!File.Exists(filename))
                 return;
 

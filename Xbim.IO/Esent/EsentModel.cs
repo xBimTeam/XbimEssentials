@@ -823,7 +823,6 @@ namespace Xbim.IO.Esent
             {
                 Close();
                 InstanceCache.Open(fileName, accessMode); //opens the database
-
                 return true;
             }
             catch (Exception e)
