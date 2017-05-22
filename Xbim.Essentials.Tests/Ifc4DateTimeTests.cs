@@ -39,5 +39,26 @@ namespace Xbim.Essentials.Tests
             Assert.AreEqual(span, (TimeSpan)duration);
 
         }
+
+        [TestMethod]
+        public void DurationTest()
+        {
+            var durSpan = new TimeSpan(25, 15, 56, 12);
+            var duration = new IfcDuration("P25DT15H56M12.000S");
+            TimeSpan span = duration;
+            IfcDuration spanDur = span;
+
+            Assert.AreEqual(durSpan, span);
+            Assert.AreEqual(duration, spanDur);
+
+            //test negative
+            durSpan = new TimeSpan(-25, -15, -56, -12);
+            duration = new IfcDuration("-P25DT15H56M12.000S");
+            span = duration;
+            spanDur = span;
+
+            Assert.AreEqual(durSpan, span);
+            Assert.AreEqual(duration, spanDur);
+        }
     }
 }
