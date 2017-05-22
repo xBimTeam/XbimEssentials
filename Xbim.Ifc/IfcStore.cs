@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
 using ICSharpCode.SharpZipLib.Zip;
+using log4net;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Federation;
@@ -258,7 +259,7 @@ namespace Xbim.Ifc
         }
 
         //public static IfcStore Open(string path, XbimEditorCredentials editorDetails,bool writeAccess = true,
-        //    double? ifcDatabaseSizeThreshHold = null, ReportProgressDelegate progDelegate = null)
+        //double? ifcDatabaseSizeThreshHold = null, ReportProgressDelegate progDelegate = null)
         //{
         //    return Open(path, editorDetails, ifcDatabaseSizeThreshHold, progDelegate, writeAccess?XbimDBAccess.ReadWrite : XbimDBAccess.Read);
         //}
@@ -275,24 +276,24 @@ namespace Xbim.Ifc
         /// <param name="accessMode"></param>
         public static IfcStore Open(string path, XbimEditorCredentials editorDetails = null, double? ifcDatabaseSizeThreshHold = null, ReportProgressDelegate progDelegate = null, XbimDBAccess accessMode = XbimDBAccess.Read)
         {
-            var filePath = Path.GetFullPath(path);
-            if (!Directory.Exists(Path.GetDirectoryName(filePath) ?? ""))
-                throw new DirectoryNotFoundException(Path.GetDirectoryName(filePath) + " directory was not found");
-            if (!File.Exists(filePath))
-                throw new FileNotFoundException(filePath + " file was not found");
+            path = Path.GetFullPath(path);
+            
+            if (!Directory.Exists(Path.GetDirectoryName(path) ?? ""))
+                throw new DirectoryNotFoundException(Path.GetDirectoryName(path) + " directory was not found");
+            if (!File.Exists(path))
+                throw new FileNotFoundException(path + " file was not found");
             var storageType = path.StorageType();
             string schemaIdentifier;
             var ifcVersion = GetIfcSchemaVersion(path, out schemaIdentifier);
             if (ifcVersion == IfcSchemaVersion.Unsupported)
             {
                 if (string.IsNullOrWhiteSpace(schemaIdentifier))
-                    throw new FileLoadException(filePath + " is not a valid IFC file format, ifc, ifcxml, ifczip and xBIM are supported.");
-                throw new FileLoadException(filePath + ", is IFC file version " + schemaIdentifier + ". Only IFC2x3 and IFC4 are supported. Check your exporter settings please.");
+                    throw new FileLoadException(path + " is not a valid IFC file format, ifc, ifcxml, ifczip and xBIM are supported.");
+                throw new FileLoadException(path + ", is IFC file version " + schemaIdentifier + ". Only IFC2x3 and IFC4 are supported. Check your exporter settings please.");
             }
 
             if (storageType == IfcStorageType.Xbim) //open the XbimFile
             {
-
                 if (ifcVersion == IfcSchemaVersion.Ifc4)
                 {
                     var model = new EsentModel(new Ifc4.EntityFactory());
@@ -318,14 +319,14 @@ namespace Xbim.Ifc
                         var model = new EsentModel(new Ifc4.EntityFactory());
                         if (model.CreateFrom(path, tmpFileName, progDelegate, true))
                             return new IfcStore(model, ifcVersion, editorDetails, path, tmpFileName, true);
-                        throw new FileLoadException(filePath + " file was not a valid IFC format");
+                        throw new FileLoadException(path + " file was not a valid IFC format");
                     }
                     else //it will be Ifc2x3
                     {
                         var model = new EsentModel(new Ifc2x3.EntityFactory());
                         if (model.CreateFrom(path, tmpFileName, progDelegate, true))
                             return new IfcStore(model, ifcVersion, editorDetails, path, tmpFileName, true);
-                        throw new FileLoadException(filePath + " file was not a valid IFC format");
+                        throw new FileLoadException(path + " file was not a valid IFC format");
                     }
                 }
                 else //we can use a memory model
@@ -474,6 +475,7 @@ namespace Xbim.Ifc
 
         public void Dispose()
         {
+            Close();
             Dispose(true);
             // Take yourself off the Finalization queue 
             // to prevent finalization code for this object
@@ -501,7 +503,8 @@ namespace Xbim.Ifc
 
                         //managed resources
                         var disposeInterface = _model as IDisposable;
-                        if (disposeInterface != null) disposeInterface.Dispose();
+                        if (disposeInterface != null)
+                            disposeInterface.Dispose();
                     }
                     //unmanaged, mostly Esent related                  
                 }
@@ -512,13 +515,19 @@ namespace Xbim.Ifc
             }
             _disposed = true;
         }
+
+
+
         /// <summary>
         /// Closes the store and disposes of all resources, the store is invalid after this call
         /// </summary>
         public void Close()
         {
-            var esent = _model as EsentModel;
-            if (esent != null) esent.Close();
+            foreach (var referencedModel in _referencedModels)
+            {
+                AttemptClose(referencedModel.Model);
+            }
+            AttemptClose(_model);
 
             try //try and tidy up if required
             {
@@ -529,8 +538,19 @@ namespace Xbim.Ifc
             {
                 // ignored
             }
-
         }
+
+        private static void AttemptClose(IModel referencedModel)
+        {
+            var esentSub = referencedModel as EsentModel;
+            if (esentSub != null)
+                esentSub.Close();
+
+            var ifcStoreSub = referencedModel as IfcStore;
+            if (ifcStoreSub != null)
+                ifcStoreSub.Close();
+        }
+
         /// <summary>
         /// Creates an Database store at the specified location
         /// </summary>
@@ -1404,13 +1424,13 @@ namespace Xbim.Ifc
         /// 
         /// Loading referenced models defaults to avoiding Exception on file not found; in this way the federated model can still be opened and the error rectified.
         /// </summary>
-        /// <param name="throwReferenceModelExceptions"></param>
-        private void LoadReferenceModels(bool throwReferenceModelExceptions = false)
+        /// <param name="throwErrorOnReferenceModelExceptions">Set to true to enable your own error handling</param>
+        private void LoadReferenceModels(bool throwErrorOnReferenceModelExceptions = false)
         {
             var docInfos = Instances.OfType<IIfcDocumentInformation>().Where(d => d.IntendedUse == RefDocument);
             foreach (var docInfo in docInfos)
             {
-                if (throwReferenceModelExceptions)
+                if (throwErrorOnReferenceModelExceptions)
                 {
                     // throw exception on referenceModel Creation
                     AddModelReference(new XbimReferencedModel(docInfo));
@@ -1422,9 +1442,12 @@ namespace Xbim.Ifc
                     {
                         AddModelReference(new XbimReferencedModel(docInfo));
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        // drop exception in this case
+                        var Log = LogManager.GetLogger("Xbim.Ifc.IfcStore");
+                        Log.Error(
+                            string.Format("Ignored exception on modelreference load for #{0}.", docInfo.EntityLabel),
+                            ex);
                     }
                 }
             }
@@ -1771,9 +1794,5 @@ namespace Xbim.Ifc
         }
 
         #endregion
-
-
-
-
     }
 }

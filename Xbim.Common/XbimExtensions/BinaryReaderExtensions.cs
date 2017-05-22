@@ -5,7 +5,9 @@ using Xbim.Common.Geometry;
 
 namespace Xbim.Common.XbimExtensions
 {
-   
+    /// <summary>
+    /// This class allow to extract a triangulated geometry from the binary streams in models.
+    /// </summary>
     public static class BinaryReaderExtensions
     {
         public static XbimShapeTriangulation ReadShapeTriangulation(this BinaryReader br)
@@ -83,6 +85,5 @@ namespace Xbim.Common.XbimExtensions
             byte v = br.ReadByte();
             return new XbimPackedNormal(u,v);
         }
-
     }
 }

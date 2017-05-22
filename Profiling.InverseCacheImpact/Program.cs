@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Ifc;
 using Xbim.Ifc2x3.Kernel;
+using Xbim.Ifc4.Interfaces;
 
 namespace Profiling.InverseCacheImpact
 {
@@ -15,9 +17,9 @@ namespace Profiling.InverseCacheImpact
             //6586ms to find 4 objects with speficic type with cache.                 ---> creating cache didn't cost almost any CPU
             //4ms to find 4 objects with speficic type with cache, repeated query.    ---> repeated request is BAZING fast
 
-            var w = Stopwatch.StartNew();
             //using (var model = IfcStore.Open(@"c:\Users\Martin\Source\Samples\2011-09-14-Clinic-IFC\Clinic_MEP_20110906.ifc", null, -1))
-            using (var model = IfcStore.Open(@"c:\Users\Martin\Source\Samples\LakesideRestaurant.ifc", null, 1))
+            var w = Stopwatch.StartNew();
+            using (var model = IfcStore.Open(@"..\..\..\Profiling.Parsing\Lakeside.ifc", null, 1))
             {
                 w.Stop();
                 Console.WriteLine("{0}ms to open the file", w.ElapsedMilliseconds);
