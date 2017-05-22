@@ -207,41 +207,7 @@ namespace Xbim.Common.Collections
             _inner.AddRange(values.Cast<IItemSet<TInner>>());
         }
 
-        public IItemSet<TOuter> First
-        {
-            get { return GetOut(_inner.First); }
-        }
-
-        public IItemSet<TOuter> FirstOrDefault()
-        {
-            return GetOut(_inner.FirstOrDefault());
-        }
-
-        public IItemSet<TOuter> FirstOrDefault(Func<IItemSet<TOuter>, bool> predicate)
-        {
-            var result =_inner.FirstOrDefault(i =>
-            {
-                var o = GetOut(i);
-                return predicate(o);
-            });
-
-            return result != null ? GetOut(result) : null;
-        }
-
-        public TF FirstOrDefault<TF>(Func<TF, bool> predicate)
-        {
-            return _inner.FirstOrDefault(predicate);
-        }
-
-        public IEnumerable<TW> Where<TW>(Func<TW, bool> predicate)
-        {
-            return _inner.Where(predicate);
-        }
-
-        public IEnumerable<TO> OfType<TO>()
-        {
-            return _inner.OfType<TO>();
-        }
+ 
 
         // ReSharper disable once UnusedParameter.Local
         private static void Check(IItemSet<TOuter> items)
@@ -261,6 +227,21 @@ namespace Xbim.Common.Collections
         private static IItemSet<TOuter> GetOut(IItemSet<TInner> inner)
         {
             return new ProxyItemSet<TInner,TOuter>(inner);
+        }
+
+        public IItemSet<TOuter> FirstOrDefault(Func<IItemSet<TOuter>, bool> predicate)
+        {
+            return Enumerable.FirstOrDefault(this, predicate);
+        }
+
+        public TF FirstOrDefault<TF>(Func<TF, bool> predicate) where TF : IItemSet<TOuter>
+        {
+            return this.OfType<TF>().FirstOrDefault(predicate);
+        }
+
+        public IEnumerable<TW> Where<TW>(Func<TW, bool> predicate) where TW : IItemSet<TOuter>
+        {
+            return this.OfType<TW>().Where(predicate);
         }
     }
 

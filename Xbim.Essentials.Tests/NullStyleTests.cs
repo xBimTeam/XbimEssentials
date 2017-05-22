@@ -5,6 +5,7 @@ using Xbim.Ifc2x3;
 using Xbim.Ifc2x3.PresentationAppearanceResource;
 using Xbim.Ifc2x3.PresentationOrganizationResource;
 using Xbim.IO.Memory;
+using System.Linq;
 
 namespace Xbim.Essentials.Tests
 {
