@@ -733,7 +733,18 @@ namespace Xbim.Ifc4
 				case "IFCWORKTIME": return new IfcWorkTime ( model, entityLabel, activated );
 				case "IFCZSHAPEPROFILEDEF": return new IfcZShapeProfileDef ( model, entityLabel, activated );
 				case "IFCZONE": return new IfcZone ( model, entityLabel, activated );
-				default:
+                /* --- IFC ALIGNMENT --- */
+                case "IFCALIGNMENT": return new IfcAlignment( model, entityLabel, activated );
+                case "IFCALIGNMENT2DHORIZONTAL": return new IfcAlignment2DHorizontal(model, entityLabel, activated);
+                case "IFCALIGNMENT2DHORIZONTALSEGMENT": return new IfcAlignment2DHorizontalSegment(model, entityLabel, activated);
+                case "IFCALIGNMENT2DVERSEGCIRCULARARC": return new IfcAlignment2DVerSegCircularArc(model, entityLabel, activated);
+                case "IFCALIGNMENT2DVERSEGLINE": return new IfcAlignment2DVerSegLine(model, entityLabel, activated);
+                case "IFCALIGNMENT2DVERSEGPARABOLICARC": return new IfcAlignment2DVerSegParabolicArc(model, entityLabel, activated);
+                case "IFCALIGNMENT2DVERTICAL": return new IfcAlignment2DVertical(model, entityLabel, activated);
+                case "IFCCIRCULARARCSEGMENT2D": return new IfcCircularArcSegment2D(model, entityLabel, activated);
+                case "IFCCLOTHOIDALARCSEGMENT2D": return new IfcClothoidalArcSegment2D(model, entityLabel, activated);
+                case "IFCLINESEGMENT2D": return new IfcLineSegment2D(model, entityLabel, activated);
+                default:
 					return null;
 			}
 		}
@@ -1389,7 +1400,18 @@ namespace Xbim.Ifc4
 				case 1319: return new IfcWorkTime ( model, entityLabel, activated );
 				case 528: return new IfcZShapeProfileDef ( model, entityLabel, activated );
 				case 669: return new IfcZone ( model, entityLabel, activated );
-				default:
+			    /* --- IFC ALIGNMENT --- */
+			    case 9001: return new IfcAlignment(model, entityLabel, activated);
+                case 9003: return new IfcAlignment2DHorizontal(model, entityLabel, activated);
+                case 9004: return new IfcAlignment2DHorizontalSegment(model, entityLabel, activated);
+                case 9006: return new IfcAlignment2DVerSegCircularArc(model, entityLabel, activated);
+                case 9007: return new IfcAlignment2DVerSegLine(model, entityLabel, activated);
+                case 9008: return new IfcAlignment2DVerSegParabolicArc(model, entityLabel, activated);
+                case 9009: return new IfcAlignment2DVertical(model, entityLabel, activated);
+                case 9011: return new IfcCircularArcSegment2D(model, entityLabel, activated);
+                case 9012: return new IfcClothoidalArcSegment2D(model, entityLabel, activated);
+                case 9014: return new IfcLineSegment2D(model, entityLabel, activated);
+                default:
 					return null;
 			}
 		}
