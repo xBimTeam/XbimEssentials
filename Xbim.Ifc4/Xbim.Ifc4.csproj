@@ -189,6 +189,7 @@
     <Compile Include="ElectricalDomain\IfcTransformer.cs" />
     <Compile Include="ElectricalDomain\IfcTransformerType.cs" />
     <Compile Include="EntityFactory.cs" />
+    <Compile Include="EntityFactory4x1.cs" />
     <Compile Include="ExternalReferenceResource\IfcClassification.cs" />
     <Compile Include="ExternalReferenceResource\IfcClassificationReference.cs" />
     <Compile Include="ExternalReferenceResource\IfcClassificationReferenceSelect.cs" />

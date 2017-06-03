@@ -6,7 +6,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace Xbim.Ifc4.Interfaces
+namespace Xbim.Ifc4x1.Interfaces
 {
     public enum IfcAlignmentTypeEnum : byte
     {

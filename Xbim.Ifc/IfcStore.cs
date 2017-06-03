@@ -132,6 +132,8 @@ namespace Xbim.Ifc
                     return new EsentModel(new Ifc4.EntityFactory());
                 case IfcSchemaVersion.Ifc2X3:
                     return new EsentModel(new Ifc2x3.EntityFactory());
+                case IfcSchemaVersion.Ifc4x1:
+                    return new EsentModel(new Ifc4x1.EntityFactory());
                 default:
                     throw new NotSupportedException("IfcStore only supports IFC schemas");
             }
@@ -145,6 +147,8 @@ namespace Xbim.Ifc
                     return new MemoryModel(new Ifc4.EntityFactory());
                 case IfcSchemaVersion.Ifc2X3:
                     return new MemoryModel(new Ifc2x3.EntityFactory());
+                case IfcSchemaVersion.Ifc4x1:
+                    return new MemoryModel(new Ifc4x1.EntityFactory());
                 default:
                     throw new NotSupportedException("IfcStore only supports IFC schemas");
             }
@@ -299,6 +303,12 @@ namespace Xbim.Ifc
                     model.Open(path, accessMode, progDelegate);
                     return new IfcStore(model, ifcVersion, editorDetails, path);
                 }
+                if (ifcVersion == IfcSchemaVersion.Ifc4x1)
+                {
+                    var model = new EsentModel(new Ifc4x1.EntityFactory());
+                    model.Open(path, accessMode, progDelegate);
+                    return new IfcStore(model, ifcVersion, editorDetails, path);
+                }
                 else //it will be Ifc2x3
                 {
                     var model = new EsentModel(new Ifc2x3.EntityFactory());
@@ -320,6 +330,13 @@ namespace Xbim.Ifc
                             return new IfcStore(model, ifcVersion, editorDetails, path, tmpFileName, true);
                         throw new FileLoadException(filePath + " file was not a valid IFC format");
                     }
+                    if (ifcVersion == IfcSchemaVersion.Ifc4x1)
+                    {
+                        var model = new EsentModel(new Ifc4x1.EntityFactory());
+                        if (model.CreateFrom(path, tmpFileName, progDelegate, true))
+                            return new IfcStore(model, ifcVersion, editorDetails, path, tmpFileName, true);
+                        throw new FileLoadException(filePath + " file was not a valid IFC format");
+                    }
                     else //it will be Ifc2x3
                     {
                         var model = new EsentModel(new Ifc2x3.EntityFactory());
@@ -330,7 +347,7 @@ namespace Xbim.Ifc
                 }
                 else //we can use a memory model
                 {
-                    var model = ifcVersion == IfcSchemaVersion.Ifc4 ? new MemoryModel(new Ifc4.EntityFactory()) : new MemoryModel(new Ifc2x3.EntityFactory());
+                    var model = ifcVersion == IfcSchemaVersion.Ifc4 ? new MemoryModel(new Ifc4.EntityFactory()) : ifcVersion == IfcSchemaVersion.Ifc4x1 ? new MemoryModel(new Ifc4x1.EntityFactory()) : new MemoryModel(new Ifc2x3.EntityFactory());
                     if (storageType.HasFlag(IfcStorageType.IfcZip) || storageType.HasFlag(IfcStorageType.Zip))
                     {
                         using (var zipFileStream = File.OpenRead(path))
@@ -384,6 +401,8 @@ namespace Xbim.Ifc
                     return IfcSchemaVersion.Ifc4;
                 if (string.Compare(schema, "Ifc2x3", StringComparison.OrdinalIgnoreCase) == 0)
                     return IfcSchemaVersion.Ifc2X3;
+                if (string.Compare(schema, "Ifc4x1", StringComparison.OrdinalIgnoreCase) == 0)
+                    return IfcSchemaVersion.Ifc4x1;
                 if (schema.StartsWith("Ifc2x", StringComparison.OrdinalIgnoreCase)) //return this as 2x3
                     return IfcSchemaVersion.Ifc2X3;
 
@@ -545,6 +564,11 @@ namespace Xbim.Ifc
                 var temporaryModel = EsentModel.CreateModel(new Ifc4.EntityFactory(), filePath);
                 return new IfcStore(temporaryModel, ifcVersion, editorDetails, temporaryModel.DatabaseName);
             }
+            if (ifcVersion == IfcSchemaVersion.Ifc4x1)
+            {
+                var temporaryModel = EsentModel.CreateModel(new Ifc4x1.EntityFactory(), filePath);
+                return new IfcStore(temporaryModel, ifcVersion, editorDetails, temporaryModel.DatabaseName);
+            }
             else //it will be Ifc2x3
             {
                 var temporaryModel = EsentModel.CreateModel(new Ifc2x3.EntityFactory(), filePath);
@@ -561,6 +585,11 @@ namespace Xbim.Ifc
                     var temporaryModel = EsentModel.CreateTemporaryModel(new Ifc4.EntityFactory());
                     return new IfcStore(temporaryModel, ifcVersion, editorDetails, temporaryModel.DatabaseName); //it will delete itself anyway
                 }
+                if (ifcVersion == IfcSchemaVersion.Ifc4x1)
+                {
+                    var temporaryModel = EsentModel.CreateTemporaryModel(new Ifc4x1.EntityFactory());
+                    return new IfcStore(temporaryModel, ifcVersion, editorDetails, temporaryModel.DatabaseName); //it will delete itself anyway
+                }
                 else //it will be Ifc2x3
                 {
                     var temporaryModel = EsentModel.CreateTemporaryModel(new Ifc2x3.EntityFactory());
@@ -572,6 +601,11 @@ namespace Xbim.Ifc
             if (ifcVersion == IfcSchemaVersion.Ifc4)
             {
                 var memoryModel = new MemoryModel(new Ifc4.EntityFactory());
+                return new IfcStore(memoryModel, ifcVersion, editorDetails);
+            }
+            if (ifcVersion == IfcSchemaVersion.Ifc4x1)
+            {
+                var memoryModel = new MemoryModel(new Ifc4x1.EntityFactory());
                 return new IfcStore(memoryModel, ifcVersion, editorDetails);
             }
             else //it will be Ifc2x3
@@ -590,6 +624,11 @@ namespace Xbim.Ifc
                     var temporaryModel = EsentModel.CreateTemporaryModel(new Ifc4.EntityFactory());
                     return new IfcStore(temporaryModel, ifcVersion); //it will delete itself anyway
                 }
+                if (ifcVersion == IfcSchemaVersion.Ifc4x1)
+                {
+                    var temporaryModel = EsentModel.CreateTemporaryModel(new Ifc4x1.EntityFactory());
+                    return new IfcStore(temporaryModel, ifcVersion); //it will delete itself anyway
+                }
                 else //it will be Ifc2x3
                 {
                     var temporaryModel = EsentModel.CreateTemporaryModel(new Ifc2x3.EntityFactory());
@@ -601,6 +640,11 @@ namespace Xbim.Ifc
             if (ifcVersion == IfcSchemaVersion.Ifc4)
             {
                 var memoryModel = new MemoryModel(new Ifc4.EntityFactory());
+                return new IfcStore(memoryModel, ifcVersion);
+            }
+            if (ifcVersion == IfcSchemaVersion.Ifc4x1)
+            {
+                var memoryModel = new MemoryModel(new Ifc4x1.EntityFactory());
                 return new IfcStore(memoryModel, ifcVersion);
             }
             else //it will be Ifc2x3
@@ -875,7 +919,7 @@ namespace Xbim.Ifc
             if (actualFormat.HasFlag(IfcStorageType.Xbim)) //special case for xbim
             {
 
-                using (var esentDb = _schema == IfcSchemaVersion.Ifc4 ? new EsentModel(new Ifc4.EntityFactory()) : new EsentModel(new Ifc2x3.EntityFactory()))
+                using (var esentDb = _schema == IfcSchemaVersion.Ifc4 ? new EsentModel(new Ifc4.EntityFactory()) : _schema == IfcSchemaVersion.Ifc4x1 ? new EsentModel(new Ifc4x1.EntityFactory()) : new EsentModel(new Ifc2x3.EntityFactory()))
                 {
                     esentDb.CreateFrom(_model, actualFileName, progDelegate);
                     esentDb.Close();

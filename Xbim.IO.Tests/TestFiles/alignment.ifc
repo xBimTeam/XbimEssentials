@@ -1,8 +1,8 @@
 ISO-10303-21;
 HEADER;
-FILE_DESCRIPTION(('IFC4'),'2;1');
+FILE_DESCRIPTION(('IFC4X1'),'2;1');
 FILE_NAME('alignment.ifc','2017-02-23T17:38:52',(''),('',''),'','IfcAlignment','');
-FILE_SCHEMA(('IFC4'));
+FILE_SCHEMA(('IFC4X1'));
 ENDSEC;
 DATA;
 #1=IFCPERSON($,'User (FamilyName)','User (GivenName)',$,$,$,$,$);

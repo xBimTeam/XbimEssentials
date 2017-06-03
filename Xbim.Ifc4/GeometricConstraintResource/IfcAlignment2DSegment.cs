@@ -15,11 +15,12 @@ using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometricConstraintResource;
 using Xbim.Ifc4.MeasureResource;
+using Xbim.Ifc4x1.Interfaces;
 
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc4.Interfaces
+namespace Xbim.Ifc4x1.Interfaces
 {
     /// <summary>
     /// Readonly interface for IfcAlignment2DSegment
@@ -33,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
     }
 }
 
-namespace Xbim.Ifc4.GeometricConstraintResource
+namespace Xbim.Ifc4x1.GeometricConstraintResource
 {
     [ExpressType("IfcAlignment2DSegment", 9005)]
     // ReSharper disable once PartialTypeWithSinglePart

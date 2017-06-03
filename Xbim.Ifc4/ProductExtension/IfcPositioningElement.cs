@@ -18,10 +18,11 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ProductExtension;
+using Xbim.Ifc4x1.Interfaces;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc4.Interfaces
+namespace Xbim.Ifc4x1.Interfaces
 {
     /// <summary>
     /// Readonly interface for IfcPositioningElement
@@ -32,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
     }
 }
 
-namespace Xbim.Ifc4.ProductExtension
+namespace Xbim.Ifc4x1.ProductExtension
 {
     [ExpressType("IfcPositioningElement", 9002)]
     // ReSharper disable once PartialTypeWithSinglePart

@@ -16,11 +16,12 @@ using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometryResource;
 using Xbim.Ifc4.MeasureResource;
+using Xbim.Ifc4x1.Interfaces;
 
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc4.Interfaces
+namespace Xbim.Ifc4x1.Interfaces
 {
     /// <summary>
     /// Readonly interface for IfcCircularArcSegment2D
@@ -33,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
     }
 }
 
-namespace Xbim.Ifc4.GeometryResource
+namespace Xbim.Ifc4x1.GeometryResource
 {
     [ExpressType("IfcCircularArcSegment2D", 9011)]
     // ReSharper disable once PartialTypeWithSinglePart

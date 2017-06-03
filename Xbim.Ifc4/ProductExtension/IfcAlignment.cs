@@ -15,10 +15,11 @@ using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.ProductExtension;
+using Xbim.Ifc4x1.Interfaces;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc4.Interfaces
+namespace Xbim.Ifc4x1.Interfaces
 {
     /// <summary>
     /// Readonly interface for IfcAlignment
@@ -36,7 +37,7 @@ namespace Xbim.Ifc4.Interfaces
     }
 }
 
-namespace Xbim.Ifc4.ProductExtension
+namespace Xbim.Ifc4x1.ProductExtension
 {
     [ExpressType("IfcAlignment", 9001)]
     // ReSharper disable once PartialTypeWithSinglePart
