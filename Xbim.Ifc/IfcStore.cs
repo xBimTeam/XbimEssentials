@@ -1504,6 +1504,11 @@ namespace Xbim.Ifc
             get { return _model.InstanceHandles.ToList(); }
         }
 
+        public IfcSchemaVersion SchemaVersion
+        {
+            get { return _model.SchemaVersion; }
+        }
+
         #region Insert products with context
 
         private List<IIfcProduct> _primaryElements = new List<IIfcProduct>();

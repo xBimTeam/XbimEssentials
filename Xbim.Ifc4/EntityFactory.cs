@@ -47,6 +47,7 @@ using Xbim.Ifc4.ControlExtension;
 using Xbim.Ifc4.QuantityResource;
 using Xbim.Ifc4.StructuralAnalysisDomain;
 using Xbim.Common;
+using Xbim.Common.Step21;
 
 namespace Xbim.Ifc4
 {
@@ -1542,5 +1543,6 @@ namespace Xbim.Ifc4
 		private static readonly List<string> _schemasIds = new List<string> { "IFC4" };
 		public IEnumerable<string> SchemasIds { get { return _schemasIds; } }
 
-	}
+        public IfcSchemaVersion SchemaVersion { get { return IfcSchemaVersion.Ifc4; } }
+    }
 }

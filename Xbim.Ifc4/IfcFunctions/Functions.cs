@@ -502,19 +502,20 @@ namespace Xbim.Ifc4
 
         internal static bool IfcConsecutiveSegments(IOptionalItemSet<IfcSegmentIndexSelect> Segments)
         {
-            // todo: complete implementation
-            bool Result = true;
-            for (int iSegment = 1; iSegment <= HIINDEX(Segments); iSegment++)
-            {
-                var tSegment = iSegment - 1;
-                throw  new NotImplementedException();
-                //if (Segments[iSegment][HIINDEX(Segments[iSegment])] != Segments[iSegment + 1][1])
-                //{
-                //    Result = false;
-                //    continue;
-                //}
-            }
-            return Result;
+            throw  new NotImplementedException();
+            //// todo: complete implementation
+            //bool Result = true;
+            //for (int iSegment = 1; iSegment <= HIINDEX(Segments); iSegment++)
+            //{
+            //    var tSegment = iSegment - 1;
+               
+            //    //if (Segments[iSegment][HIINDEX(Segments[iSegment])] != Segments[iSegment + 1][1])
+            //    //{
+            //    //    Result = false;
+            //    //    continue;
+            //    //}
+            //}
+            //return Result;
         }
 
         internal static bool IfcUniquePropertySetNames(IOptionalItemSet<IfcPropertySetDefinition> hasPropertySets)

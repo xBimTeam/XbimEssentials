@@ -137,8 +137,10 @@ namespace Xbim.Common
         /// this cache to speed up search for inverse relations.
         /// </summary>
 	    IInverseCache InverseCache { get; }
+        IfcSchemaVersion SchemaVersion { get; }
 
-	}
+
+    }
 
 	public delegate void NewEntityHandler(IPersistEntity entity);
     public delegate void ModifiedEntityHandler(IPersistEntity entity, int property);
