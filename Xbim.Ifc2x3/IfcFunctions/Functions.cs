@@ -542,7 +542,7 @@ namespace Xbim.Ifc2x3
             return val.Value;
         }
 
-        internal static bool? IfcCorrectObjectAssignment(IfcObjectTypeEnum Constraint, List<IfcObjectDefinition> Objects)
+        internal static bool? IfcCorrectObjectAssignment(IfcObjectTypeEnum Constraint, IEnumerable<IfcObjectDefinition> Objects)
         {
 
             // local variables

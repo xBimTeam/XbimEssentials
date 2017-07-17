@@ -19,7 +19,8 @@ namespace Xbim.Essentials.Tests
         [DeploymentItem("TestSourceFiles")]
         public void ValidatesFile()
         {
-            using (var model = IfcStore.Open("InvalidContentFC4.ifc", null, 0))
+            const string file = "InvalidContentFC4.ifc";
+            using (var model = IfcStore.Open(file, null, 0))
             {
                 //var v2 = model.Metadata.Types()
                 //    .Where(x => x.Properties.Any(pr => pr.Value.EntityAttribute.State == EntityAttributeState.Mandatory

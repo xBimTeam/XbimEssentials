@@ -195,8 +195,7 @@ namespace Xbim.Ifc4
             int MonetaryUnitNumber = 0;
             var NamedUnitNames = new List<IfcUnitEnum>();
             var DerivedUnitNames = new List<IfcDerivedUnitEnum>();
-
-
+            
             NamedUnitNumber =
                 SIZEOF(
                     Units.Where(
@@ -583,7 +582,7 @@ namespace Xbim.Ifc4
 
         internal static bool IfcCorrectObjectAssignment(IfcObjectTypeEnum? Constraint, IItemSet<IfcObjectDefinition> Objects)
         {
-            var val = IfcCorrectObjectAssignment((IfcObjectTypeEnum)Constraint, (List<IfcObjectDefinition>)Objects);
+            var val = IfcCorrectObjectAssignment((IfcObjectTypeEnum)Constraint, Objects.ToArray());
             if (!val.HasValue)
             {
                 throw new ArgumentException("Undetermined value in where clause.");
@@ -591,7 +590,7 @@ namespace Xbim.Ifc4
             return val.Value;
         }
 
-        internal static bool? IfcCorrectObjectAssignment(IfcObjectTypeEnum Constraint, List<IfcObjectDefinition> Objects)
+        internal static bool? IfcCorrectObjectAssignment(IfcObjectTypeEnum Constraint, IEnumerable<IfcObjectDefinition> Objects)
         {
 
             // local variables

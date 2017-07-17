@@ -111,34 +111,19 @@ namespace Xbim.Common.Collections
             Model.CurrentTransaction.DoReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified, Property);
         }
 
-        public T First
-        {
-            get { return Internal.First(); }
-        }
-
-        public T FirstOrDefault()
-        {
-            return Internal.FirstOrDefault();
-        }
-
         public T FirstOrDefault(Func<T, bool> predicate)
         {
-            return Internal.FirstOrDefault(predicate);
+            return Enumerable.FirstOrDefault(this, predicate);
         }
 
-        public TF FirstOrDefault<TF>(Func<TF, bool> predicate)
+        public TF FirstOrDefault<TF>(Func<TF, bool> predicate) where TF: T
         {
-            return OfType<TF>().FirstOrDefault(predicate);
+            return Enumerable.OfType<TF>(this).FirstOrDefault(predicate);
         }
 
-        public IEnumerable<TW> Where<TW>(Func<TW, bool> predicate)
+        public IEnumerable<TW> Where<TW>(Func<TW, bool> predicate) where TW: T
         {
-            return OfType<TW>().Where(predicate);
-        }
-
-        public IEnumerable<TO> OfType<TO>()
-        {
-            return Internal.Count == 0 ? Enumerable.Empty<TO>() : Internal.OfType<TO>();
+            return Enumerable.OfType<TW>(this).Where(predicate);
         }
         #endregion
 

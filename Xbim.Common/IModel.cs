@@ -369,7 +369,7 @@ namespace Xbim.Common
             ProfileDefLevelOfDetail = 0;
             SimplifyFaceCountThreshHold = 1000;
 
-          //  WorldCoordinateSystem = wcs;
+            //  WorldCoordinateSystem = wcs;
             AngleToRadiansConversionFactor = angToRads;
             LengthToMetresConversionFactor = lenToMeter;
 

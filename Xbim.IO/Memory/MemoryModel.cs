@@ -532,7 +532,16 @@ namespace Xbim.IO.Memory
                     _instances.CurrentLabel = (int)label;
                 return ent;
             };
-            parser.Parse();
+            try
+            {
+                parser.Parse();
+            }
+            catch (Exception e)
+            {
+                var position = parser.CurrentPosition;
+                throw new XbimParserException(string.Format("Parser failed on line {0}, column {1}", position.EndLine, position.EndColumn), e);
+            }
+            
             if (progDelegate != null) parser.ProgressStatus -= progDelegate;
             return parser.ErrorCount;
         }

@@ -217,8 +217,7 @@ namespace Xbim.IO.Esent
                 {
                     foreach (var cache in OpenInstances)
                     {
-
-                        if (String.Compare(cache.DatabaseName, _databaseName, StringComparison.OrdinalIgnoreCase) == 0)
+                        if (string.Compare(cache.DatabaseName, _databaseName, StringComparison.OrdinalIgnoreCase) == 0)
                         {
                             _jetInstance.Term();
                             _jetInstance = cache.JetInstance;
@@ -233,7 +232,6 @@ namespace Xbim.IO.Esent
                     }
                     catch (EsentDatabaseDirtyShutdownException)
                     {
-
                         // try and fix the problem with the badly shutdown database
                         var startInfo = new ProcessStartInfo("EsentUtl.exe")
                         {
@@ -263,8 +261,6 @@ namespace Xbim.IO.Esent
                                 Api.JetAttachDatabase(_session, _databaseName, openMode == OpenDatabaseGrbit.ReadOnly ? AttachDatabaseGrbit.ReadOnly : AttachDatabaseGrbit.None);
                             }
                         }
-
-
                     }
                     OpenInstances.Add(this);
                     Api.JetOpenDatabase(_session, _databaseName, String.Empty, out _databaseId, openMode);

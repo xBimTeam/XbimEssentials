@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Xbim.Ifc2x3.TopologyResource;
 
 namespace Xbim.Ifc2x3.Extensions
