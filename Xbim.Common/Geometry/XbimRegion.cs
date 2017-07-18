@@ -10,12 +10,13 @@
         public XbimPoint3D Centre;
         public int Population = -1;
 
-        public XbimRegion(string name, XbimRect3D bounds, int population)
+        public XbimRegion(string name, XbimRect3D bounds, int population, XbimMatrix3D worldCoordinateSystem)
         {
             Name = name;
             Size = new XbimVector3D(bounds.SizeX,bounds.SizeY,bounds.SizeZ);
             Centre = bounds.Centroid();
             Population = population;
+            WorldCoordinateSystem = worldCoordinateSystem;
         }
 
         public XbimRegion()
