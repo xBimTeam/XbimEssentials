@@ -81,7 +81,7 @@ namespace Xbim.IO.Tests
                     var regions = new XbimRegionCollection();
                     regions.ContextLabel = 50;
                     var bb = new XbimRect3D(new XbimPoint3D(1,1,1),new XbimVector3D(10,20,30));
-                    regions.Add(new XbimRegion("region1",bb,100));
+                    regions.Add(new XbimRegion("region1",bb,100, XbimMatrix3D.Identity));
                     txn.AddRegions(regions);
 
                     txn.Commit();
@@ -144,7 +144,7 @@ namespace Xbim.IO.Tests
                     var regions = new XbimRegionCollection();
                     regions.ContextLabel = 50;
                     var bb = new XbimRect3D(new XbimPoint3D(1, 1, 1), new XbimVector3D(10, 20, 30));
-                    regions.Add(new XbimRegion("region1", bb, 100));
+                    regions.Add(new XbimRegion("region1", bb, 100, XbimMatrix3D.Identity));
                     txn.AddRegions(regions);
                     txn.Commit();
                 }
@@ -216,7 +216,7 @@ namespace Xbim.IO.Tests
                     }
                     //ADD A REGIONCOLLECTION
                     var regions = new XbimRegionCollection {ContextLabel = 50};
-                    regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100));
+                    regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100, XbimMatrix3D.Identity));
                     txn.AddRegions(regions);
 
                     txn.Commit();
@@ -271,7 +271,7 @@ namespace Xbim.IO.Tests
                    
                     //ADD A REGIONCOLLECTION
                     var regions = new XbimRegionCollection { ContextLabel = 50 };
-                    regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100));
+                    regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100, XbimMatrix3D.Identity));
                     txn.AddRegions(regions);
 
                     txn.Commit();
@@ -321,7 +321,7 @@ namespace Xbim.IO.Tests
 
                     //ADD A REGIONCOLLECTION
                     var regions = new XbimRegionCollection { ContextLabel = 50 };
-                    regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100));
+                    regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100, XbimMatrix3D.Identity));
                     txn.AddRegions(regions);
 
                     txn.Commit();
@@ -365,7 +365,7 @@ namespace Xbim.IO.Tests
 
                     //ADD A REGIONCOLLECTION
                     var regions = new XbimRegionCollection {ContextLabel = 50};
-                    regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100));
+                    regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100, XbimMatrix3D.Identity));
                     txn.AddRegions(regions);
 
                     txn.Commit();
@@ -398,7 +398,7 @@ namespace Xbim.IO.Tests
 
                     //ADD A REGIONCOLLECTION
                     var regions = new XbimRegionCollection {ContextLabel = 50};
-                    regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100));
+                    regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100, XbimMatrix3D.Identity));
                     txn.AddRegions(regions);
 
                     txn.Commit();
@@ -440,10 +440,10 @@ namespace Xbim.IO.Tests
 
                     //ADD 2 REGIONCOLLECTIONS
                     var regions = new XbimRegionCollection {ContextLabel = 50};
-                    regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100));
+                    regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100, XbimMatrix3D.Identity));
                     txn.AddRegions(regions);
                     regions = new XbimRegionCollection {ContextLabel = 51};
-                    regions.Add(new XbimRegion("region2", XbimRect3D.Empty, 100));
+                    regions.Add(new XbimRegion("region2", XbimRect3D.Empty, 100, XbimMatrix3D.Identity));
                     txn.AddRegions(regions);
                     txn.Commit();
                 }
