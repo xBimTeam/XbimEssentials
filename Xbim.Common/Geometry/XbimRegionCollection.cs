@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 
@@ -19,7 +20,7 @@ namespace Xbim.Common.Geometry
         {
             MemoryStream ms = new MemoryStream();
             BinaryWriter bw = new BinaryWriter(ms);
-            bw.Write(Count);
+            bw.Write(-Count); //write out as a negative number to indicate we are using new version which includes the coord data
             
             foreach (var region in this)
             {
@@ -43,6 +44,15 @@ namespace Xbim.Common.Geometry
             var ms = new MemoryStream(bytes);
             var br = new BinaryReader(ms);
             int count = br.ReadInt32();
+
+            //if count is a negative number, we have a new version, and therefore have coord data to retrieve.
+            bool oldVersion = true;
+            if (count < 0)
+            {
+                count = Math.Abs(count);
+                bool oldversion = false;
+            }
+
             for (var i = 0; i < count; i++)
             {
                 var region = new XbimRegion
@@ -58,7 +68,10 @@ namespace Xbim.Common.Geometry
                 y = br.ReadSingle();
                 z = br.ReadSingle();
                 region.Size = new XbimVector3D(x,y,z);
-                region.WorldCoordinateSystem = XbimMatrix3D.FromArray(br.ReadBytes(CoordSize));
+                if (!oldVersion)
+                {
+                    region.WorldCoordinateSystem = XbimMatrix3D.FromArray(br.ReadBytes(CoordSize));
+                }
                 coll.Add(region);
             }
             return coll;
@@ -70,6 +83,15 @@ namespace Xbim.Common.Geometry
             var ms = new MemoryStream(bytes);
             var br = new BinaryReader(ms);
             var count = br.ReadInt32();
+
+            //if count is a negative number, we have a new version, and therefore have coord data to retrieve.
+            bool oldVersion = true;
+            if (count <= 0)
+            {
+                count = Math.Abs(count);
+                bool oldversion = false;
+            }
+
             for (var i = 0; i < count; i++)
             {
                 var region = new XbimRegion
@@ -84,7 +106,10 @@ namespace Xbim.Common.Geometry
                 x = br.ReadSingle();
                 y = br.ReadSingle();
                 z = br.ReadSingle();
-                region.WorldCoordinateSystem = XbimMatrix3D.FromArray(br.ReadBytes(CoordSize));
+                if (!oldVersion)
+                {
+                    region.WorldCoordinateSystem = XbimMatrix3D.FromArray(br.ReadBytes(CoordSize));
+                }
                 region.Size = new XbimVector3D(x, y, z);
                 Add(region);
             }
