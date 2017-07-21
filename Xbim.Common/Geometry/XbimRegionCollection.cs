@@ -14,13 +14,15 @@ namespace Xbim.Common.Geometry
 
         //size of an XbimMatrix3D in order to read back coords
         private const int CoordSize = 16 * sizeof(double);
+        private const int Version = -2;
 
         #region Serialisation
         new public byte[] ToArray()
         {
             MemoryStream ms = new MemoryStream();
             BinaryWriter bw = new BinaryWriter(ms);
-            bw.Write(-Count); //write out as a negative number to indicate we are using new version which includes the coord data
+            bw.Write(Version); //write out a negative version number to indicate we are using new version which includes the coord data
+            bw.Write(Count); 
             
             foreach (var region in this)
             {
@@ -43,14 +45,17 @@ namespace Xbim.Common.Geometry
             var coll = new XbimRegionCollection();
             var ms = new MemoryStream(bytes);
             var br = new BinaryReader(ms);
-            int count = br.ReadInt32();
 
-            //if count is a negative number, we have a new version, and therefore have coord data to retrieve.
             bool oldVersion = true;
-            if (count < 0)
+            int version = br.ReadInt32();//if version is a negative number, we have a new version model, and therefore have coord data to retrieve. Otherwise version is actually the count
+            int count = 0;
+            if (version < 0)
             {
-                count = Math.Abs(count);
+                count = br.ReadInt32();
                 oldVersion = false;
+            }
+            else {
+                count = version;
             }
 
             for (var i = 0; i < count; i++)
@@ -82,14 +87,18 @@ namespace Xbim.Common.Geometry
             Clear();
             var ms = new MemoryStream(bytes);
             var br = new BinaryReader(ms);
-            var count = br.ReadInt32();
 
-            //if count is a negative number, we have a new version, and therefore have coord data to retrieve.
             bool oldVersion = true;
-            if (count <= 0)
+            int version = br.ReadInt32();//if version is a negative number, we have a new version model, and therefore have coord data to retrieve. Otherwise version is actually the count
+            int count = 0;
+            if (version < 0)
             {
-                count = Math.Abs(count);
+                count = br.ReadInt32();
                 oldVersion = false;
+            }
+            else
+            {
+                count = version;
             }
 
             for (var i = 0; i < count; i++)
