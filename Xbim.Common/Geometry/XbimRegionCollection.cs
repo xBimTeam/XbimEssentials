@@ -50,7 +50,7 @@ namespace Xbim.Common.Geometry
             if (count < 0)
             {
                 count = Math.Abs(count);
-                bool oldversion = false;
+                oldVersion = false;
             }
 
             for (var i = 0; i < count; i++)
@@ -89,7 +89,7 @@ namespace Xbim.Common.Geometry
             if (count <= 0)
             {
                 count = Math.Abs(count);
-                bool oldversion = false;
+                oldVersion = false;
             }
 
             for (var i = 0; i < count; i++)
