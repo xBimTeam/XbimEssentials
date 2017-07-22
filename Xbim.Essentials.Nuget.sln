@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26711.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xbim.Ifc2x3", "Xbim.Ifc2x3\Xbim.Ifc2x3.csproj", "{B6668419-D7A4-4736-B4D8-018756CCF134}"
 EndProject
@@ -176,5 +176,8 @@ Global
 		{6AF1A6D7-F7EB-494F-9493-F94A2505D81E} = {2CD5B49F-FB73-4B6D-B570-E51B32905A25}
 		{B9A4BF67-5B1C-4231-96EA-23A510A46943} = {2CD5B49F-FB73-4B6D-B570-E51B32905A25}
 		{748ADC2C-7F2F-456D-90FE-E15F508475A3} = {2CD5B49F-FB73-4B6D-B570-E51B32905A25}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9CEFE405-EFAE-4F92-89EA-60AA4D4F872F}
 	EndGlobalSection
 EndGlobal

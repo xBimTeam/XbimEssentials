@@ -13,11 +13,13 @@ namespace Xbim.Ifc4.MeasureResource
         {
             get
             {
-                string value = CultureInfo.GetCultures(CultureTypes.SpecificCultures)
-                    .Where(c => new RegionInfo(c.LCID).ISOCurrencySymbol == Currency.ToString())
-                    .Select(c => new RegionInfo(c.LCID).CurrencySymbol)
-                    .FirstOrDefault();
-                return string.IsNullOrEmpty(value) ? Currency.ToString() : value;
+                //TODO resolve this, net standard and core do not support culture iteration and it is apparently very slow
+                //string value = CultureInfo.GetCultures(CultureTypes.SpecificCultures)
+                //    .Where(c => new RegionInfo(c.LCID).ISOCurrencySymbol == Currency.ToString())
+                //    .Select(c => new RegionInfo(c.LCID).CurrencySymbol)
+                //    .FirstOrDefault();
+                //return string.IsNullOrEmpty(value) ? Currency.ToString() : value;
+                return Currency.ToString();
             }
         }
 
@@ -29,11 +31,13 @@ namespace Xbim.Ifc4.MeasureResource
         {
             get
             {
-                string value = CultureInfo.GetCultures(CultureTypes.SpecificCultures)
-                    .Where(c => new RegionInfo(c.LCID).ISOCurrencySymbol == Currency.ToString())
-                    .Select(c => new RegionInfo(c.LCID).CurrencyEnglishName)
-                    .FirstOrDefault();
-                return string.IsNullOrEmpty(value) ? Currency.ToString() : value;
+                //TODO resolve this
+                //string value = CultureInfo.GetCultures(CultureTypes.SpecificCultures)
+                //    .Where(c => new RegionInfo(c.LCID).ISOCurrencySymbol == Currency.ToString())
+                //    .Select(c => new RegionInfo(c.LCID).CurrencyEnglishName)
+                //    .FirstOrDefault();
+                //return string.IsNullOrEmpty(value) ? Currency.ToString() : value;
+                return Currency.ToString();
             }
         }
 
@@ -45,11 +49,13 @@ namespace Xbim.Ifc4.MeasureResource
         {
             get
             {
-                string value = CultureInfo.GetCultures(CultureTypes.SpecificCultures)
-                    .Where(c => new RegionInfo(c.LCID).ISOCurrencySymbol == Currency.ToString())
-                    .Select(c => new RegionInfo(c.LCID).CurrencyNativeName)
-                    .FirstOrDefault();
-                return string.IsNullOrEmpty(value) ? Currency.ToString() : value;
+                //TODO resolve this
+                //string value = CultureInfo.GetCultures(CultureTypes.SpecificCultures)
+                //    .Where(c => new RegionInfo(c.LCID).ISOCurrencySymbol == Currency.ToString())
+                //    .Select(c => new RegionInfo(c.LCID).CurrencyNativeName)
+                //    .FirstOrDefault();
+                //return string.IsNullOrEmpty(value) ? Currency.ToString() : value;
+                return Currency.ToString();
             }
         }
 

@@ -4,7 +4,7 @@ using Xbim.Ifc4.MeasureResource;
 
 namespace Xbim.Ifc4
 {
-    [Serializable]
+   
     public struct RgbaColour
     {
        

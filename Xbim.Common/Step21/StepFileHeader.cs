@@ -24,7 +24,7 @@ using System.Reflection;
 
 namespace Xbim.Common.Step21
 {
-    [Serializable]
+   
     public class StepFileDescription : IStepFileDescription
     {
         private void MakeValid()
@@ -169,7 +169,7 @@ namespace Xbim.Common.Step21
         }
     }
 
-    [Serializable]
+   
     public class StepFileName : IStepFileName
     {
         public StepFileName(DateTime time)
@@ -422,7 +422,7 @@ namespace Xbim.Common.Step21
         }
     }
 
-    [Serializable]
+  
     public class StepFileSchema : IStepFileSchema
     {
         private readonly ObservableCollection<string> _schemas = new ObservableCollection<string>();
@@ -524,7 +524,7 @@ namespace Xbim.Common.Step21
         }
     }
 
-    [Serializable]
+   
     public class StepFileHeader : IStepFileHeader
     {
         public enum HeaderCreationMode
@@ -542,10 +542,10 @@ namespace Xbim.Common.Step21
                     {
                         PreprocessorVersion =
                             string.Format("Xbim File Processor version {0}",
-                                          Assembly.GetExecutingAssembly().GetName().Version),
+                                          Assembly.GetEntryAssembly().GetName().Version),
                         OriginatingSystem =
                             string.Format("Xbim version {0}",
-                                          Assembly.GetExecutingAssembly().GetName().Version),
+                                          Assembly.GetEntryAssembly().GetName().Version),
                     };
                 FileSchema = new StepFileSchema();
             }
@@ -689,10 +689,10 @@ namespace Xbim.Common.Step21
             {
                 PreprocessorVersion =
                     string.Format("Xbim File Processor version {0}",
-                                  Assembly.GetExecutingAssembly().GetName().Version),
+                                  Assembly.GetEntryAssembly().GetName().Version),
                 OriginatingSystem =
                     string.Format("Xbim version {0}",
-                                  Assembly.GetExecutingAssembly().GetName().Version),
+                                  Assembly.GetEntryAssembly().GetName().Version),
             };
             FileSchema = new StepFileSchema(schemaVersion);
         }

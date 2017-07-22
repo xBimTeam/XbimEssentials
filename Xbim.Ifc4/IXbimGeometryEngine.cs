@@ -1,14 +1,13 @@
 ﻿using System.IO;
 using Xbim.Common.Geometry;
-using Xbim.Common.Logging;
+
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc4.Interfaces
 {
     public interface IXbimGeometryEngine
     {
-        ILogger Logger { get; }
-
+       
         IXbimGeometryObject Create(IIfcGeometricRepresentationItem ifcRepresentation);
 
 

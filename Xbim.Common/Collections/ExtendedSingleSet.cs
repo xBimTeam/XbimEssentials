@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 
 namespace Xbim.Common.Collections
 {
@@ -107,7 +108,7 @@ namespace Xbim.Common.Collections
             if (item == null)
                 return false;
 
-            if (item.GetType().IsClass)
+            if (item.GetType().GetTypeInfo().IsClass)
             {
                 return item.Equals(Inner) || _extended.Contains(item);
             }

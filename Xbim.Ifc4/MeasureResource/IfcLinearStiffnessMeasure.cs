@@ -37,8 +37,8 @@ namespace Xbim.Ifc4.MeasureResource
             _value = val;
         }
 
-	    private static readonly System.Globalization.CultureInfo Culture =
-	        System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
+	    private static readonly System.Globalization.CultureInfo Culture = new System.Globalization.CultureInfo("en-US");
+	    
 
 		public IfcLinearStiffnessMeasure(string val)
         {
