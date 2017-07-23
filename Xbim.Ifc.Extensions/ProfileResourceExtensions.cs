@@ -11,7 +11,7 @@ namespace Xbim.Ifc2x3.Extensions
     {
         public static double GetAreaInSquareMeters(this IfcProfileDef Profile)
         {
-            var factorSquareMetre = Math.Pow(Profile.ModelOf.ModelFactors.OneMetre, 2);
+            var factorSquareMetre = Math.Pow(Profile.Model.ModelFactors.OneMetre, 2);
             return Profile.GetArea() / factorSquareMetre;
         }
         public static double GetArea(this IfcProfileDef Profile)
@@ -195,7 +195,7 @@ namespace Xbim.Ifc2x3.Extensions
 
         public static double GetPerimeterInMeters(this IfcProfileDef Profile, bool addPerimetersOfVoids = true)
         {
-            return Profile.GetPerimeter(addPerimetersOfVoids) / Profile.ModelOf.ModelFactors.OneMetre;
+            return Profile.GetPerimeter(addPerimetersOfVoids) / Profile.Model.ModelFactors.OneMetre;
         }
         public static double GetPerimeter(this IfcProfileDef Profile, bool addPerimetersOfVoids = true)
         {

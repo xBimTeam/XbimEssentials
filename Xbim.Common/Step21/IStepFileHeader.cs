@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Xbim.Common.Step21
 {
-    public interface IStepFileHeader: INotifyPropertyChanged
+    public interface IStepFileHeader : INotifyPropertyChanged
     {
         IStepFileDescription FileDescription { get; set; }
         IStepFileName FileName { get; set; }
@@ -15,6 +15,7 @@ namespace Xbim.Common.Step21
         string ModelViewDefinition { get; }
         string Name { get; }
         string TimeStamp { get; }
-        void StampXbimApplication(IfcSchemaVersion schemaVersion);
+        void StampXbimApplication(XbimSchemaVersion schemaVersion);
+        XbimSchemaVersion XbimSchemaVersion { get;}
     }
 }

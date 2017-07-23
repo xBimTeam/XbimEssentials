@@ -22,25 +22,6 @@ namespace Xbim.Ifc2x3.Extensions
 {
     public static class LocalTimeExtensions
     {
-        public static void MakeNow(this IfcLocalTime lt)
-        {
-            DateTimeOffset localTime = DateTimeOffset.Now;
-            lt.HourComponent = localTime.Hour;
-            lt.SecondComponent = localTime.Second;
-            lt.MinuteComponent = localTime.Minute;
-
-            IfcCoordinatedUniversalTimeOffset coordinatedUniversalTimeOffset = lt.Model.Instances.New<IfcCoordinatedUniversalTimeOffset>();
-            coordinatedUniversalTimeOffset.HourOffset = new IfcHourInDay(localTime.Offset.Hours);
-            coordinatedUniversalTimeOffset.MinuteOffset = new IfcMinuteInHour(localTime.Offset.Minutes);
-            if (localTime.Offset.Hours < 0 || (localTime.Offset.Hours == 0 && localTime.Offset.Minutes < 0))
-                coordinatedUniversalTimeOffset.Sense = IfcAheadOrBehind.BEHIND;
-            else
-                coordinatedUniversalTimeOffset.Sense = IfcAheadOrBehind.AHEAD;
-            lt.Zone = coordinatedUniversalTimeOffset;
-            TimeZone tz = TimeZone.CurrentTimeZone;
-            DaylightTime dt = tz.GetDaylightChanges(localTime.Year);
-            lt.DaylightSavingOffset = dt.Delta.Hours;
-        }
 
         /// <summary>
         ///   Sets the hours minutes and seconds in the local time and sets the time zone and offsets and daylight saving hours to that of this machine now

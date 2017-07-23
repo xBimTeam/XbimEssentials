@@ -195,7 +195,6 @@ namespace Xbim.Common.Geometry
         /// <summary>
         /// Reinitialises the rectangle 3D from the byte array
         /// </summary>
-        /// <param name="rect"></param>
         /// <param name="array">6 doubles, definine, min and max values of the boudning box</param>
         public static XbimRect3D FromArray(byte[] array)
         {
@@ -546,9 +545,7 @@ namespace Xbim.Common.Geometry
 
         /// <summary>
         /// true if the rect fits inside thsi rectangle when it is either inflated or defalted by the tolerance
-        /// </summary>
-        /// <param name="xbimRect3D"></param>
-        /// <param name="tolerance"></param>
+        /// </summary>            
         /// <returns></returns>
         public bool IsSimilar(XbimRect3D rect, double tolerance)
         {

@@ -439,7 +439,7 @@ namespace Xbim.Common.Step21
             Init();
         }
 
-        public StepFileSchema(IfcSchemaVersion schemaVersion)
+        public StepFileSchema(XbimSchemaVersion schemaVersion)
         {
             _schemas.Add(schemaVersion.ToString().ToUpper());
             Init();
@@ -681,8 +681,24 @@ namespace Xbim.Common.Step21
             }
         }
 
+        public XbimSchemaVersion XbimSchemaVersion
+        {
+            get
+            {                
+                foreach (var schema in FileSchema.Schemas)
+                {
+                    if (string.Compare(schema, "Ifc4", StringComparison.OrdinalIgnoreCase) == 0)
+                        return XbimSchemaVersion.Ifc4;                    
+                    if (schema.StartsWith("Ifc2x", StringComparison.OrdinalIgnoreCase)) //return this as 2x3
+                        return XbimSchemaVersion.Ifc2X3;
+                    if (schema.StartsWith("Cobie2X4", StringComparison.OrdinalIgnoreCase)) //return this as Cobie
+                        return XbimSchemaVersion.Cobie2X4;
+                }
+                return XbimSchemaVersion.Unsupported;
+            }
+        }
 
-        public void StampXbimApplication(IfcSchemaVersion schemaVersion)
+        public void StampXbimApplication(XbimSchemaVersion schemaVersion)
         {
             FileDescription = new StepFileDescription("2;1");
             FileName = new StepFileName(DateTime.Now)
