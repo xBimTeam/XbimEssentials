@@ -17,9 +17,10 @@
     <PackageReleaseNotes>migrated Xbim.Common to .netstandard 1.4</PackageReleaseNotes>
     <AssemblyVersion>4.0</AssemblyVersion>
     <FileVersion>4.0.1707.22434</FileVersion>
+    <PackageIconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;amp;s=240</PackageIconUrl>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj" />
-    <ProjectReference Include="..\Xbim.Ifc4\Xbim.Ifc4.csproj" />
+    <PackageReference Include="Xbim.Ifc4" Version="1.1.0.3" />
   </ItemGroup>
+  
 </Project>
