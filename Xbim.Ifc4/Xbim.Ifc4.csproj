@@ -19,9 +19,7 @@
     <FileVersion>4.0.1707.22434</FileVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <PackageReference Include="Xbim.Common" Version="1.1.0.3" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj" />
-  </ItemGroup>
+ 
 </Project>
