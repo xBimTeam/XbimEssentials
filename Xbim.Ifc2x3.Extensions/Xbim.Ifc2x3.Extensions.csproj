@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.6;net462</TargetFrameworks>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>XbimOpenSourceKeyFile.snk</AssemblyOriginatorKeyFile>
+    <Title>Xbim Ifc2x3</Title>
+    <Version>1.1.0.3</Version>
+    <Copyright>Copyright Xbim Ltd.</Copyright>
+    <Description>.net library that provides extensions to the Ifc2x3 schema.</Description>
+    <Authors>Steve Lockley, Martin Cenry</Authors>
+    <Company>Xbim Ltd.</Company>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/xBimTeam/XbimEssentials/master/LICENCE.md</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/xBimTeam/</PackageProjectUrl>
+    <RepositoryUrl></RepositoryUrl>
+    <PackageTags>BIM, IFC, IfcXml, IfcZip, Ifc4,  COBie, .Net, C#, BuildingSmart</PackageTags>
+    <PackageReleaseNotes>migrated to .netstandard 1.6 and framework 4.6.2</PackageReleaseNotes>
+    <AssemblyVersion>4.0</AssemblyVersion>
+    <FileVersion>4.0.1707.22434</FileVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageIconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;amp;s=240</PackageIconUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Xbim.Ifc2x3" Version="1.1.0.3" />
+  </ItemGroup>
+</Project>
