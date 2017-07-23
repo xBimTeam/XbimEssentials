@@ -12,11 +12,13 @@
     <Company>Xbim Ltd.</Company>
     <PackageLicenseUrl>https://raw.githubusercontent.com/xBimTeam/XbimEssentials/master/LICENCE.md</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/xBimTeam/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/codehollow/AzureBillingApi/</RepositoryUrl>
+    <RepositoryUrl></RepositoryUrl>
     <PackageTags>BIM, IFC, IfcXml, IfcZip, Ifc4,  COBie, .Net, C#, BuildingSmart</PackageTags>
     <PackageReleaseNotes>migrated Xbim.Common to .netstandard 1.6</PackageReleaseNotes>
     <AssemblyVersion>4.0</AssemblyVersion>
     <FileVersion>4.0.1707.22434</FileVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageIconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;amp;s=240</PackageIconUrl>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Xbim.Common" Version="1.1.0.3" />
