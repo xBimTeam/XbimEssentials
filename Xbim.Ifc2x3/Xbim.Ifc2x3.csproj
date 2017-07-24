@@ -5,7 +5,8 @@
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>XbimOpenSourceKeyFile.snk</AssemblyOriginatorKeyFile>
     <Title>Xbim Ifc2x3</Title>
-    <Version>1.1.0.3</Version>
+    <Timestamp>$([System.DateTime]::Now.ToString("yyyyMMdd-HHmmss"))</Timestamp>
+    <Version>2.0.0-ci-$(Timestamp)</Version>
     <Copyright>Copyright Xbim Ltd.</Copyright>
     <Description>.net library that provides supports the Ifc2x3 schema.</Description>
     <Authors>Steve Lockley, Martin Cenry</Authors>
@@ -21,7 +22,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Xbim.Ifc4" Version="1.1.0.3" />
+    <PackageReference Include="Xbim.Ifc4" Version="2.0.0-ci-20170724-151825" />
   </ItemGroup>
   
 </Project>
