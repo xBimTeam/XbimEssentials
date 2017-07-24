@@ -76,6 +76,11 @@ namespace Xbim.Common.Geometry
                 if (!oldVersion)
                 {
                     region.WorldCoordinateSystem = XbimMatrix3D.FromArray(br.ReadBytes(CoordSize));
+                    region.version = version;
+                }
+                else
+                {
+                    region.version = 0;
                 }
                 coll.Add(region);
             }
@@ -118,6 +123,10 @@ namespace Xbim.Common.Geometry
                 if (!oldVersion)
                 {
                     region.WorldCoordinateSystem = XbimMatrix3D.FromArray(br.ReadBytes(CoordSize));
+                    region.version = version;
+                }
+                else {
+                    region.version = 0;
                 }
                 region.Size = new XbimVector3D(x, y, z);
                 Add(region);
