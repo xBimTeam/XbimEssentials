@@ -13,6 +13,8 @@
     <PackageTags>COBie, BIM, IFC, IfcXml, IfcZip, COBie, Ifc4, .Net, C#, BuildingSmart</PackageTags>
     <PackageReleaseNotes>Port to Net Standard 1.6 and Net Framework 4.6.2</PackageReleaseNotes>
     <Version>1.1.0.3</Version>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>XbimOpenSourceKeyFile.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>
