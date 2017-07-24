@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 
@@ -11,12 +12,17 @@ namespace Xbim.Common.Geometry
         /// </summary>
         public int ContextLabel;
 
+        //size of an XbimMatrix3D in order to read back coords
+        private const int CoordSize = 16 * sizeof(double);
+        private const int Version = -2;
+
         #region Serialisation
         new public byte[] ToArray()
         {
             MemoryStream ms = new MemoryStream();
             BinaryWriter bw = new BinaryWriter(ms);
-            bw.Write(Count);
+            bw.Write(Version); //write out a negative version number to indicate we are using new version which includes the coord data
+            bw.Write(Count); 
             
             foreach (var region in this)
             {
@@ -28,6 +34,7 @@ namespace Xbim.Common.Geometry
                 bw.Write((float)region.Size.X);
                 bw.Write((float)region.Size.Y);
                 bw.Write((float)region.Size.Z);
+                bw.Write(region.WorldCoordinateSystem.ToArray(true)); //output in double
             }
             bw.Close();
             return ms.ToArray();
@@ -38,7 +45,19 @@ namespace Xbim.Common.Geometry
             var coll = new XbimRegionCollection();
             var ms = new MemoryStream(bytes);
             var br = new BinaryReader(ms);
-            int count = br.ReadInt32();
+
+            bool oldVersion = true;
+            int version = br.ReadInt32();//if version is a negative number, we have a new version model, and therefore have coord data to retrieve. Otherwise version is actually the count
+            int count = 0;
+            if (version < 0)
+            {
+                count = br.ReadInt32();
+                oldVersion = false;
+            }
+            else {
+                count = version;
+            }
+
             for (var i = 0; i < count; i++)
             {
                 var region = new XbimRegion
@@ -54,6 +73,15 @@ namespace Xbim.Common.Geometry
                 y = br.ReadSingle();
                 z = br.ReadSingle();
                 region.Size = new XbimVector3D(x,y,z);
+                if (!oldVersion)
+                {
+                    region.WorldCoordinateSystem = XbimMatrix3D.FromArray(br.ReadBytes(CoordSize));
+                    region.version = version;
+                }
+                else
+                {
+                    region.version = 0;
+                }
                 coll.Add(region);
             }
             return coll;
@@ -64,7 +92,20 @@ namespace Xbim.Common.Geometry
             Clear();
             var ms = new MemoryStream(bytes);
             var br = new BinaryReader(ms);
-            var count = br.ReadInt32();
+
+            bool oldVersion = true;
+            int version = br.ReadInt32();//if version is a negative number, we have a new version model, and therefore have coord data to retrieve. Otherwise version is actually the count
+            int count = 0;
+            if (version < 0)
+            {
+                count = br.ReadInt32();
+                oldVersion = false;
+            }
+            else
+            {
+                count = version;
+            }
+
             for (var i = 0; i < count; i++)
             {
                 var region = new XbimRegion
@@ -79,6 +120,14 @@ namespace Xbim.Common.Geometry
                 x = br.ReadSingle();
                 y = br.ReadSingle();
                 z = br.ReadSingle();
+                if (!oldVersion)
+                {
+                    region.WorldCoordinateSystem = XbimMatrix3D.FromArray(br.ReadBytes(CoordSize));
+                    region.version = version;
+                }
+                else {
+                    region.version = 0;
+                }
                 region.Size = new XbimVector3D(x, y, z);
                 Add(region);
             }
