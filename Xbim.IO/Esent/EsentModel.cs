@@ -678,9 +678,17 @@ namespace Xbim.IO.Esent
 
             if (entAttr.State == EntityAttributeState.Mandatory && propVal == null)
                 return string.Format("{0}.{1} is not optional", instance.GetType().Name, propName);
-            if (entAttr.State == EntityAttributeState.Optional && propVal == null)
-                //if it is null and optional then it is ok
-                return null;
+            if (entAttr.State == EntityAttributeState.Optional) {
+                if (propVal == null) {
+                    //if it is null and optional then it is ok
+                    return null;
+                }
+                var optionalSetPropVal = propVal as IOptionalItemSet;
+                if (optionalSetPropVal != null && !optionalSetPropVal.Initialized) {
+                    //if it is a not initialized optional set then it is ok
+                    return null;
+                }
+            }
 
             //if it is IPersist (either IPersistEntity or IExpressValueType) check WhereRule() defined in schema. 
             //var persist = propVal as IPersist;

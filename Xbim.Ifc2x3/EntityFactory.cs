@@ -53,17 +53,17 @@ using Xbim.Ifc2x3.QuantityResource;
 using Xbim.Ifc2x3.ProcessExtension;
 using Xbim.Ifc2x3.StructuralAnalysisDomain;
 using Xbim.Common;
-using Xbim.Common.Step21;
+using System.Reflection;
 
 namespace Xbim.Ifc2x3
 {
 	public sealed class EntityFactory : IEntityFactory
 	{
-		private readonly System.Reflection.Assembly _assembly;
+		private readonly Assembly _assembly;
 		
 		public EntityFactory()
 		{
-			_assembly = GetType().Assembly;
+			_assembly = GetType().GetTypeInfo().Assembly;
 		}
 
 		public T New<T>(IModel model, int entityLabel, bool activated) where T: IInstantiableEntity
@@ -81,7 +81,7 @@ namespace Xbim.Ifc2x3
 		public IInstantiableEntity New(IModel model, Type t, int entityLabel, bool activated)
 		{
 			//check that the type is from this assembly
-			if(t.Assembly != _assembly)
+			if(t.GetTypeInfo().Assembly != _assembly)
 				throw new Exception("This factory only creates types from its assembly");
 
 			return New(model, t.Name, entityLabel, activated);

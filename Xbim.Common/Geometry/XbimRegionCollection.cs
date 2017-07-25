@@ -14,23 +14,25 @@ namespace Xbim.Common.Geometry
         #region Serialisation
         new public byte[] ToArray()
         {
-            MemoryStream ms = new MemoryStream();
-            BinaryWriter bw = new BinaryWriter(ms);
-            bw.Write(Count);
-            
-            foreach (var region in this)
+            using (var ms = new MemoryStream())
             {
-                bw.Write(region.Name);
-                bw.Write(region.Population);
-                bw.Write((float)region.Centre.X);
-                bw.Write((float)region.Centre.Y);
-                bw.Write((float)region.Centre.Z);
-                bw.Write((float)region.Size.X);
-                bw.Write((float)region.Size.Y);
-                bw.Write((float)region.Size.Z);
+                using (var bw = new BinaryWriter(ms))
+                {
+                    bw.Write(Count);
+                    foreach (var region in this)
+                    {
+                        bw.Write(region.Name);
+                        bw.Write(region.Population);
+                        bw.Write((float)region.Centre.X);
+                        bw.Write((float)region.Centre.Y);
+                        bw.Write((float)region.Centre.Z);
+                        bw.Write((float)region.Size.X);
+                        bw.Write((float)region.Size.Y);
+                        bw.Write((float)region.Size.Z);
+                    }
+                    return ms.ToArray();
+                }
             }
-            bw.Close();
-            return ms.ToArray();
         }
 
         public static XbimRegionCollection FromArray(byte[] bytes)

@@ -7,6 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using System.Globalization;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 
@@ -36,10 +37,9 @@ namespace Xbim.Ifc4.MeasureResource
             _value = val;
         }
 
-	    private static readonly System.Globalization.CultureInfo Culture =
-	        System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
+        private static readonly System.Globalization.CultureInfo Culture = new System.Globalization.CultureInfo("en-US");
 
-		public IfcTorqueMeasure(string val)
+        public IfcTorqueMeasure(string val)
         {
 			_value = System.Convert.ToDouble(val, Culture);
         }

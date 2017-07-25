@@ -10,7 +10,6 @@ namespace Xbim.Common.Geometry
         /// <summary>
         /// Will add any solids in the geomtry object to the set
         /// </summary>
-        /// <param name="solid"></param>
         void Add(IXbimGeometryObject shape);
         bool IsPolyhedron { get; }
         IXbimSolidSet Cut(IXbimSolidSet toCut, double tolerance);

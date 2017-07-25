@@ -95,7 +95,8 @@ namespace Xbim.Common.Metadata
         public ExpressType(Type type)
         {
             Type = type;
-            var entNameAttr = Type.GetCustomAttributes(typeof(ExpressTypeAttribute), false).FirstOrDefault();
+            var typeInfo = Type.GetTypeInfo();
+            var entNameAttr = typeInfo.GetCustomAttributes(typeof(ExpressTypeAttribute), false).FirstOrDefault();
 #if DEBUG
             if (entNameAttr == null)
                 throw new Exception("Express Type is not defined for " + Type.Name);
@@ -107,20 +108,20 @@ namespace Xbim.Common.Metadata
             //it is not an indexed class by default. If it has any indexed properties it is an indexed class but that is detected later on.
             IndexedClass = false;
 
-            var dta = type.GetCustomAttributes(typeof(DefinedTypeAttribute), false).FirstOrDefault() as DefinedTypeAttribute;
+            var dta = typeInfo.GetCustomAttributes(typeof(DefinedTypeAttribute), false).FirstOrDefault() as DefinedTypeAttribute;
             if (dta != null)
             {
                 _underlyingType = dta.UnderlyingType;
-                if (UnderlyingType.IsGenericType && typeof (IEnumerable).IsAssignableFrom(UnderlyingType))
+                if (UnderlyingType.GetTypeInfo().IsGenericType && typeof (IEnumerable).GetTypeInfo().IsAssignableFrom(UnderlyingType))
                 {
-                    var cplType = UnderlyingType.GetGenericArguments()[0];
+                    var cplType = UnderlyingType.GetTypeInfo().GetGenericArguments()[0];
                     if (cplType != null)
                         _underlyingComplexType = cplType;
                 }
             }
 
             var properties =
-                type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
+                typeInfo.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
             foreach (var propInfo in properties)
             {
                 var attribute =
@@ -139,18 +140,18 @@ namespace Xbim.Common.Metadata
                 }
                 else
                 {
-                    var invAttr = propInfo.GetCustomAttributes(typeof (InverseProperty), false)[0] as InverseProperty;
+                    var invAttr = propInfo.GetCustomAttributes(typeof (InverseProperty), false).First() as InverseProperty;
                     metaProperty.InverseAttributeProperty = invAttr;
                     _inverses.Add(metaProperty);
                 }
 
                 //set up enumerable type
-                if (propInfo.PropertyType.IsGenericType && typeof(IEnumerable).IsAssignableFrom(propInfo.PropertyType))
+                if (propInfo.PropertyType.GetTypeInfo().IsGenericType && typeof(IEnumerable).GetTypeInfo().IsAssignableFrom(propInfo.PropertyType))
                 {
                     var eType = propInfo.PropertyType;
-                    while (typeof(IEnumerable).IsAssignableFrom(eType))
+                    while (typeof(IEnumerable).GetTypeInfo().IsAssignableFrom(eType))
                     {
-                        var genArgs = eType.GetGenericArguments();
+                        var genArgs = eType.GetTypeInfo().GetGenericArguments();
                         if (genArgs.Any())
                             eType = genArgs[0];
                         else
@@ -176,7 +177,7 @@ namespace Xbim.Common.Metadata
             }
 
             //cache enumerable properties
-            foreach (var prop in _properties.Values.Where(prop => typeof(IExpressEnumerable).IsAssignableFrom(prop.PropertyInfo.PropertyType)))
+            foreach (var prop in _properties.Values.Where(prop => typeof(IExpressEnumerable).GetTypeInfo().IsAssignableFrom(prop.PropertyInfo.PropertyType)))
             {
                 _expressEnumerableProperties.Add(prop);
             }
@@ -245,7 +246,7 @@ namespace Xbim.Common.Metadata
 
         private static void AddNonAbstractTypes(ExpressType expressType, ICollection<ExpressType> nonAbstractTypes)
         {
-            if (!expressType.Type.IsAbstract) //this is a concrete type so add it
+            if (!expressType.Type.GetTypeInfo().IsAbstract) //this is a concrete type so add it
                 nonAbstractTypes.Add(expressType);
             foreach (var subType in expressType._subTypes)
                 AddNonAbstractTypes(subType, nonAbstractTypes);
