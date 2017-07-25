@@ -1,5 +1,6 @@
 using System;
-using log4net;
+using Microsoft.Extensions.Logging;
+using Xbim.Common;
 using System.Text;
 using System.Linq;
 using System.Collections.Generic;
@@ -49,8 +50,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 						break;
 				}
 			} catch (Exception ex) {
-				var Log = LogManager.GetLogger("Xbim.Ifc2x3.MaterialPropertyResource.IfcMechanicalSteelMaterialProperties");
-				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcMechanicalSteelMaterialProperties.{0}' for #{1}.", clause,EntityLabel), ex);
+				var log = ApplicationLogging.CreateLogger<Xbim.Ifc2x3.MaterialPropertyResource.IfcMechanicalSteelMaterialProperties>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcMechanicalSteelMaterialProperties.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}
