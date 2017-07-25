@@ -1,5 +1,6 @@
 using System;
-using log4net;
+using Microsoft.Extensions.Logging;
+using Xbim.Common;
 using System.Text;
 using System.Linq;
 using System.Collections.Generic;
@@ -33,8 +34,8 @@ namespace Xbim.Ifc4.DateTimeResource
 						break;
 				}
 			} catch (Exception ex) {
-				var Log = LogManager.GetLogger("Xbim.Ifc4.DateTimeResource.IfcMonthInYearNumber");
-				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcMonthInYearNumber.{0}'.", clause), ex);
+				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.DateTimeResource.IfcMonthInYearNumber>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcMonthInYearNumber.{0}'.", clause), ex);
 			}
 			return retVal;
 		}

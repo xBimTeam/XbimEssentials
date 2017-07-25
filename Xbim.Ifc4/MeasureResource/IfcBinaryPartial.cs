@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using Xbim.Common.Logging;
 
 namespace Xbim.Ifc4.MeasureResource
 {
