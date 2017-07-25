@@ -22,6 +22,6 @@ namespace Xbim.Common
         /// <summary>
         /// Gets the Ifc Schema version of the model
         /// </summary>
-        IfcSchemaVersion SchemaVersion { get; }
+        XbimSchemaVersion SchemaVersion { get; }
     }
 }
