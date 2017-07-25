@@ -54,6 +54,7 @@ using Xbim.Ifc2x3.ProcessExtension;
 using Xbim.Ifc2x3.StructuralAnalysisDomain;
 using Xbim.Common;
 using System.Reflection;
+using Xbim.Common.Step21;
 
 namespace Xbim.Ifc2x3
 {
@@ -1357,6 +1358,6 @@ namespace Xbim.Ifc2x3
 		private static readonly List<string> _schemasIds = new List<string> { "IFC2X3" };
 		public IEnumerable<string> SchemasIds { get { return _schemasIds; } }
 
-        public IfcSchemaVersion SchemaVersion { get { return IfcSchemaVersion.Ifc2X3; } }
+        public XbimSchemaVersion SchemaVersion { get { return XbimSchemaVersion.Ifc2X3; } }
     }
 }

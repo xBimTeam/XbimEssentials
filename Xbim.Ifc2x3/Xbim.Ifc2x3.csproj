@@ -16,13 +16,13 @@
     <RepositoryUrl>https://github.com/codehollow/AzureBillingApi/</RepositoryUrl>
     <PackageTags>BIM, IFC, IfcXml, IfcZip, Ifc4,  COBie, .Net, C#, BuildingSmart</PackageTags>
     <PackageReleaseNotes>migrated Xbim.Common to .netstandard 1.4</PackageReleaseNotes>
-    <AssemblyVersion>4.0</AssemblyVersion>
+    <AssemblyVersion>5.0</AssemblyVersion>
     <FileVersion>4.0.1707.22434</FileVersion>
     <PackageIconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;amp;s=240</PackageIconUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Xbim.Ifc4" Version="2.0.0-ci-20170724-151825" />
+    <PackageReference Include="Xbim.Ifc4" Version="2.0.0-ci-20170725-060551" />
   </ItemGroup>
   
 </Project>

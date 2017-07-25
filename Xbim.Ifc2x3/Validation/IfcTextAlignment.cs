@@ -1,5 +1,6 @@
 using System;
-using log4net;
+using Microsoft.Extensions.Logging;
+using Xbim.Common;
 using System.Text;
 using System.Linq;
 using System.Collections.Generic;
@@ -37,8 +38,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 						break;
 				}
 			} catch (Exception ex) {
-				var Log = LogManager.GetLogger("Xbim.Ifc2x3.PresentationAppearanceResource.IfcTextAlignment");
-				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcTextAlignment.{0}'.", clause), ex);
+				var log = ApplicationLogging.CreateLogger<Xbim.Ifc2x3.PresentationAppearanceResource.IfcTextAlignment>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcTextAlignment.{0}'.", clause), ex);
 			}
 			return retVal;
 		}
