@@ -12,9 +12,12 @@
     <PackageIconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;amp;s=240</PackageIconUrl>
     <PackageTags>COBie, BIM, IFC, IfcXml, IfcZip, COBie, Ifc4, .Net, C#, BuildingSmart</PackageTags>
     <PackageReleaseNotes>Port to Net Standard 1.6 and Net Framework 4.6.2</PackageReleaseNotes>
-    <Version>1.1.0.3</Version>
+    <Timestamp>$([System.DateTime]::Now.ToString("yyyyMMdd-HHmmss"))</Timestamp>
+    <Version>2.0.0-ci-$(Timestamp)</Version>  
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>XbimOpenSourceKeyFile.snk</AssemblyOriginatorKeyFile>
+    <AssemblyVersion>2.0</AssemblyVersion>
+    <FileVersion>2.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,7 +26,7 @@
     <PackageReference Include="System.Runtime.Serialization.Formatters" Version="4.3.0" />
     <PackageReference Include="System.Runtime.Serialization.Xml" Version="4.3.0" />
     <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
-    <PackageReference Include="Xbim.Ifc2x3.Extensions" Version="1.1.0.3" />
+    <PackageReference Include="Xbim.Ifc2x3.Extensions" Version="2.0.0-ci-20170725-062724" />
   </ItemGroup>
 
 
