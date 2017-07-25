@@ -278,7 +278,7 @@ namespace Xbim.IO.Step21
                     label = mapLabel;
                 output.Write(label);
             }
-            else if (propType.IsValueType || propVal is string || propVal is byte[]) //it might be an in-built value type double, string etc.
+            else if (propType.GetTypeInfo().IsValueType || propVal is string || propVal is byte[]) //it might be an in-built value type double, string etc.
             {
                 WriteValueType(propVal.GetType(), propVal, output);
             }

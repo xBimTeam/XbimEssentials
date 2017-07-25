@@ -21,7 +21,7 @@ namespace Xbim.IO.Step21
 {
     public class Part21Formatter : IFormatProvider, ICustomFormatter
     {
-        private static readonly CultureInfo _cInfo = CultureInfo.CreateSpecificCulture("en-US");
+        private static readonly CultureInfo _cInfo = new CultureInfo("en-US");
 
         public object GetFormat(Type formatType)
         {

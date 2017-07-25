@@ -318,7 +318,7 @@ namespace Xbim.IO.Xml
             }
             //this will only be called from within the enumeration
             //as otherwise it will be serialized as XML attribute before
-            if (propType.IsValueType || typeof(string) == propType || typeof(byte[])
+            if (propType.GetTypeInfo().IsValueType || typeof(string) == propType || typeof(byte[]) == propType)
             {
                 var pInfoType = propVal.GetType();
                 string pValue;
@@ -354,7 +354,7 @@ namespace Xbim.IO.Xml
                     output.WriteStartElement("string-wrapper");
                     pValue = string.Format(new Part21Formatter(), "{0}", propVal);
                 }
-                else if (pInfoType.UnderlyingSystemType == typeof(byte[]))
+                else if (pInfoType.GetTypeInfo().UnderlyingSystemType == typeof(byte[]))
                 {
                     output.WriteStartElement("hexBinary-wrapper");
 

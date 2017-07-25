@@ -13,6 +13,7 @@
 #region Directives
 
 using Microsoft.Extensions.Logging;
+using QUT.Gppg;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -228,7 +229,7 @@ namespace Xbim.IO.Step21
                 catch (Exception ex)
                 {
                     var msg = string.Format("Duplicate entity label: #{0}", p21.EntityLabel);
-                    Logger.Error(msg, ex);
+                    Logger.LogError(msg, ex);
                 }
             }
             // Console.WriteLine("EndEntity - " + CurrentSemanticValue.strVal);

@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xbim.Common;
 using Xbim.IO.Memory;
 
 namespace Xbim.IfcCore.UnitTests
@@ -41,6 +42,16 @@ namespace Xbim.IfcCore.UnitTests
             using (var mm = MemoryModel.OpenRead("TestFiles/SmallModelIfc4.ifczip"))
             {
                 Assert.IsTrue(mm.Instances.Count == 52);
+            }
+        }
+        [TestMethod]
+        [DeploymentItem("TestFiles/SmallModelIfc4.ifc")]
+        public void OpenReadSchemaVersionTest()
+        {
+            using (var mm = MemoryModel.OpenRead("TestFiles/SmallModelIfc4.ifc") )
+            {
+                var im = mm as IModel;
+                Assert.IsTrue(im.SchemaVersion==mm.SchemaVersion);
             }
         }
     }

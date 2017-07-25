@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -243,7 +244,8 @@ namespace Xbim.IO.Memory
             }
             catch (Exception ex)
             {
-                Log.Error(string.Format("Duplicate entity label: #{0}", entity.EntityLabel), ex);
+                var log = ApplicationLogging.CreateLogger<EntityCollection>();
+                log.LogError(string.Format("Duplicate entity label: #{0}", entity.EntityLabel), ex);
             }
         }
 
