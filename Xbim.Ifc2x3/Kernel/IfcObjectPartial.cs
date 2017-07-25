@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Xbim.Common;
 using Xbim.Ifc2x3.MeasureResource;
 using Xbim.Ifc2x3.ProductExtension;
@@ -147,10 +148,10 @@ namespace Xbim.Ifc2x3.Kernel
         /// <returns>Property single value with default value of the specified type</returns>
         public IfcPropertySingleValue SetPropertySingleValue(string pSetName, string propertyName, Type type)
         {
-            if (typeof(IfcValue).IsAssignableFrom(type))
+            if (typeof(IfcValue).GetTypeInfo().IsAssignableFrom(type))
             {
                 IfcValue value;
-                if (typeof(IfcPositiveLengthMeasure).IsAssignableFrom(type))
+                if (typeof(IfcPositiveLengthMeasure).GetTypeInfo().IsAssignableFrom(type))
                     value = Activator.CreateInstance(type, 1.0) as IfcValue;
                 else
                     value = Activator.CreateInstance(type) as IfcValue;

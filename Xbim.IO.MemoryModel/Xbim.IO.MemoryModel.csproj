@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.6;net462</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Martin Cerny</Authors>
+    <Company>Xbim Ltd.</Company>
+    <Description>An in memory version of an Ifc or STEP Model</Description>
+    <Copyright>Xbim Ltd</Copyright>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/xBimTeam/XbimEssentials/master/LICENCE.md</PackageLicenseUrl>
+    <PackageProjectUrl>&gt;https://github.com/xBimTeam</PackageProjectUrl>
+    <PackageIconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;amp;s=240</PackageIconUrl>
+    <PackageTags>COBie, BIM, IFC, IfcXml, IfcZip, COBie, Ifc4, .Net, C#, BuildingSmart</PackageTags>
+    <PackageReleaseNotes>Port to Net Standard 1.6 and Net Framework 4.6.2</PackageReleaseNotes>
+    <Version>1.1.0.3</Version>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>XbimOpenSourceKeyFile.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.ComponentModel.Primitives" Version="4.3.0" />
+    <PackageReference Include="System.IO.Compression.ZipFile" Version="4.3.0" />
+    <PackageReference Include="System.Runtime.Serialization.Formatters" Version="4.3.0" />
+    <PackageReference Include="System.Runtime.Serialization.Xml" Version="4.3.0" />
+    <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
+    <PackageReference Include="Xbim.Ifc2x3.Extensions" Version="1.1.0.3" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Compile Update="Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+
+  <ItemGroup>  
+    <EmbeddedResource Update="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
