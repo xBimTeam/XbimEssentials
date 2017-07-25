@@ -6,7 +6,7 @@ using Xbim.Common;
 
 namespace Xbim.IO.Memory
 {
-    internal class MemoryInverseCache : IInverseCache
+    public class MemoryInverseCache : IInverseCache
     {
         private Dictionary<Type, Dictionary<int, HashSet<int>>> _index = new Dictionary<Type, Dictionary<int, HashSet<int>>>();
         private EntityCollection _entities;
