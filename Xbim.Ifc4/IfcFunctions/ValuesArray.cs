@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using Xbim.Common;
 
@@ -49,7 +50,7 @@ namespace Xbim.Ifc4.IfcFunctions
                 while (tp != null)
                 {
                     yield return  string.Format("{0}.{1}", schema, tp.Name).ToUpperInvariant() as T;
-                    tp = tp.BaseType;
+                    tp = tp.GetTypeInfo().BaseType;
                 }
             }
         }

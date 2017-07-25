@@ -22,7 +22,7 @@
     <PackageIconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;amp;s=240</PackageIconUrl>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Xbim.Common" Version="2.0.0-ci-20170724-150931" />
+    <PackageReference Include="Xbim.Common" Version="2.0.0-ci-20170725-055609" />
   </ItemGroup>
  
 </Project>

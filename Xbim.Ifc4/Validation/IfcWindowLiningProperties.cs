@@ -1,5 +1,6 @@
 using System;
-using log4net;
+using Microsoft.Extensions.Logging;
+using Xbim.Common;
 using System.Text;
 using System.Linq;
 using System.Collections.Generic;
@@ -45,8 +46,8 @@ namespace Xbim.Ifc4.ArchitectureDomain
 						break;
 				}
 			} catch (Exception ex) {
-				var Log = LogManager.GetLogger("Xbim.Ifc4.ArchitectureDomain.IfcWindowLiningProperties");
-				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcWindowLiningProperties.{0}' for #{1}.", clause,EntityLabel), ex);
+				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ArchitectureDomain.IfcWindowLiningProperties>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcWindowLiningProperties.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}
