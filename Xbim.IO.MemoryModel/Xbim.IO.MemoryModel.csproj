@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.6;net462</TargetFrameworks>
+    <TargetFramework>netstandard1.6</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Martin Cerny</Authors>
     <Company>Xbim Ltd.</Company>
@@ -26,7 +26,7 @@
     <PackageReference Include="System.Runtime.Serialization.Formatters" Version="4.3.0" />
     <PackageReference Include="System.Runtime.Serialization.Xml" Version="4.3.0" />
     <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
-    <PackageReference Include="Xbim.Ifc2x3.Extensions" Version="2.0.0-ci-20170726-123347" />
+    <PackageReference Include="Xbim.Ifc2x3.Extensions" Version="2.0.0-ci-20170726-154051" />
     
   </ItemGroup>
 
