@@ -1,15 +1,15 @@
-﻿using System;
-using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Diagnostics;
 using Xbim.Common.Geometry;
 
-namespace Xbim.Essentials.Tests
+namespace Xbim.Common.Tests
 {
     [TestClass]
     public class PackedNormalTests
     {
         [TestMethod]
-        public void RoundTripTest()
+        public void PackedNormalRoundTripTest()
         {
             var tests = new[]
             {
@@ -21,21 +21,21 @@ namespace Xbim.Essentials.Tests
 
             foreach (var vec in tests)
             {
-                Debug.WriteLine(vec);
+                Trace.WriteLine(vec);
 
                 var pack = new XbimPackedNormal(vec);
                 var roundVec = pack.Normal;
-                Debug.WriteLine(roundVec);
+                Trace.WriteLine(roundVec);
 
                 var a = vec.CrossProduct(roundVec);
                 var x = Math.Abs(a.Length);
                 var y = vec.DotProduct(roundVec);
                 var angle = Math.Atan2(x, y);
                 if (angle > 0.1)
-                    Debug.WriteLine("vector: {0}, angle: {1:F3}", vec, angle*180.0/Math.PI);
-                Assert.IsTrue(angle < 0.13);    
+                    Trace.WriteLine($"vector: {vec}, angle: { angle * 180.0 / Math.PI:F3}");
+                Assert.IsTrue(angle < 0.13);
             }
-            
+
 
         }
     }
