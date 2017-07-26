@@ -22,6 +22,6 @@
     <PackageIconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;amp;s=240</PackageIconUrl>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Xbim.Ifc2x3" Version="2.0.0-ci-20170725-061804" />
+    <PackageReference Include="Xbim.Ifc2x3" Version="2.0.0-ci-20170726-122800" />
   </ItemGroup>
 </Project>
