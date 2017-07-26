@@ -1,13 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Timestamp>$([System.DateTime]::Now.ToString("yyyyMMdd-HHmmss"))</Timestamp>
-    <TargetFrameworks>netstandard1.6;net462</TargetFrameworks>
+    
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>XbimOpenSourceKeyFile.snk</AssemblyOriginatorKeyFile>
     <Title>XbimCommon</Title>
     <Timestamp>$([System.DateTime]::Now.ToString("yyyyMMdd-HHmmss"))</Timestamp>
-    <Version>2.0.0-ci-$(Timestamp)</Version>   
+    <Version>2.0.0-ci-$(Timestamp)</Version>
     <Copyright>Xbim Ltd.</Copyright>
     <Description>.net library that provides support for the Xbim commonly used behaviours.</Description>
     <Authors>Steve Lockley, Martin Cenry</Authors>
@@ -17,21 +19,10 @@
     <RepositoryUrl>https://github.com/xBimTeam/XbimEssentials/tree/develop</RepositoryUrl>
     <PackageTags>BIM, IFC, IfcXml, IfcZip, Ifc4,  COBie, .Net, C#, BuildingSmart</PackageTags>
     <PackageReleaseNotes>migrated Xbim.Common to .netstandard 1.6 and Framework 4.6.2</PackageReleaseNotes>
-    <AssemblyVersion>5.0.0.0</AssemblyVersion>   
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>   
-    <FileVersion>5.0.0.0</FileVersion>   
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <FileVersion>5.0.0.0</FileVersion>
     <PackageIconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;amp;s=240</PackageIconUrl>
-    
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard1.6|AnyCPU'">
-    <DocumentationFile></DocumentationFile>
-    <NoWarn>1701;1702;1705</NoWarn>
-    
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard1.6|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard1.6\Xbim.Common.xml</DocumentationFile>
-    <NoWarn>1701;1702;1705;CS1591</NoWarn>
-   
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.2" />
