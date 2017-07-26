@@ -54,5 +54,32 @@ namespace Xbim.IfcCore.UnitTests
                 Assert.IsTrue(im.SchemaVersion==mm.SchemaVersion);
             }
         }
+
+        [TestMethod]
+        public void CreateNew()
+        {
+            var ef2x3 = new Ifc2x3.EntityFactory();
+            using (var mm = new MemoryModel(ef2x3))
+            {
+                using (var txn = mm.BeginTransaction("Simple"))
+                {
+                    mm.Instances.New<Ifc2x3.ActorResource.IfcPerson>();
+                    txn.Commit();
+                    Assert.IsTrue(mm.Instances.Count == 1);
+                }
+                
+            }
+            var ef4 = new Ifc4.EntityFactory();
+            using (var mm = new MemoryModel(ef4))
+            {
+                using (var txn = mm.BeginTransaction("Simple"))
+                {
+                    mm.Instances.New<Ifc4.ActorResource.IfcPerson>();
+                    txn.Commit();
+                    Assert.IsTrue(mm.Instances.Count == 1);
+                }
+
+            }
+        }
     }
 }
