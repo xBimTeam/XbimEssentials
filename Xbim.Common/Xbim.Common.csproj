@@ -17,9 +17,9 @@
     <RepositoryUrl>https://github.com/xBimTeam/XbimEssentials/tree/develop</RepositoryUrl>
     <PackageTags>BIM, IFC, IfcXml, IfcZip, Ifc4,  COBie, .Net, C#, BuildingSmart</PackageTags>
     <PackageReleaseNotes>migrated Xbim.Common to .netstandard 1.6 and Framework 4.6.2</PackageReleaseNotes>
-    <AssemblyVersion>5.0</AssemblyVersion>   
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>   
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>   
-    <FileVersion>5.0</FileVersion>   
+    <FileVersion>5.0.0.0</FileVersion>   
     <PackageIconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;amp;s=240</PackageIconUrl>
     
   </PropertyGroup>
