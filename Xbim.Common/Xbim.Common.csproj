@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    
     <TargetFramework>netstandard1.6</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Timestamp>$([System.DateTime]::Now.ToString("yyyyMMdd-HHmmss"))</Timestamp>
-    
+    <Version>5.0.0.0</Version>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <FileVersion>5.0.0.0</FileVersion>
     <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>XbimOpenSourceKeyFile.snk</AssemblyOriginatorKeyFile>
-    <Title>XbimCommon</Title>
-    <Timestamp>$([System.DateTime]::Now.ToString("yyyyMMdd-HHmmss"))</Timestamp>
-    <Version>2.0.0-ci-$(Timestamp)</Version>
+    <AssemblyOriginatorKeyFile>aimkey.snk</AssemblyOriginatorKeyFile>
+    <Title>XbimCommon</Title>   
     <Copyright>Xbim Ltd.</Copyright>
     <Description>.net library that provides support for the Xbim commonly used behaviours.</Description>
     <Authors>Steve Lockley, Martin Cenry</Authors>
@@ -18,10 +18,8 @@
     <PackageProjectUrl>https://github.com/xBimTeam/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/xBimTeam/XbimEssentials/tree/develop</RepositoryUrl>
     <PackageTags>BIM, IFC, IfcXml, IfcZip, Ifc4,  COBie, .Net, C#, BuildingSmart</PackageTags>
-    <PackageReleaseNotes>migrated Xbim.Common to .netstandard 1.6 and Framework 4.6.2</PackageReleaseNotes>
-    <AssemblyVersion>5.0.0.0</AssemblyVersion>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <FileVersion>5.0.0.0</FileVersion>
+    <PackageReleaseNotes>migrated Xbim.Common to .netstandard 1.6 and Framework 4.6.2</PackageReleaseNotes>    
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>   
     <PackageIconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;amp;s=240</PackageIconUrl>
   </PropertyGroup>
   <ItemGroup>
