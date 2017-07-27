@@ -3,10 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
     <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>XbimOpenSourceKeyFile.snk</AssemblyOriginatorKeyFile>
-    <Title>Xbim Ifc2x3</Title>
-    <Timestamp>$([System.DateTime]::Now.ToString("yyyyMMdd-HHmmss"))</Timestamp>
-    <Version>2.0.0-ci-$(Timestamp)</Version>
+    <AssemblyOriginatorKeyFile>aimkey.snk</AssemblyOriginatorKeyFile>
+    <Title>Xbim Ifc2x3</Title>  
+    <Version>5.0.0-Beta</Version>
     <Copyright>Xbim Ltd.</Copyright>
     <Description>.net library that provides extensions to the Ifc2x3 schema.</Description>
     <Authors>Steve Lockley, Martin Cenry</Authors>
@@ -16,12 +15,12 @@
     <RepositoryUrl></RepositoryUrl>
     <PackageTags>BIM, IFC, IfcXml, IfcZip, Ifc4,  COBie, .Net, C#, BuildingSmart</PackageTags>
     <PackageReleaseNotes>migrated to .netstandard 1.6 and framework 4.6.2</PackageReleaseNotes>
-    <AssemblyVersion>5.0</AssemblyVersion>
-    <FileVersion>5.0</FileVersion>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <FileVersion>5.0.0.0</FileVersion>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageIconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;amp;s=240</PackageIconUrl>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Xbim.Ifc2x3" Version="2.0.0-ci-20170726-122800" />
+    <PackageReference Include="Xbim.Ifc2x3" Version="5.0.0-Beta-227" />
   </ItemGroup>
 </Project>
