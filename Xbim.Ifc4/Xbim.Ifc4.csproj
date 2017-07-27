@@ -3,10 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
     <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>XbimOpenSourceKeyFile.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>aimkey.snk</AssemblyOriginatorKeyFile>
     <Title>Xbim Ifc4</Title>
-    <Timestamp>$([System.DateTime]::Now.ToString("yyyyMMdd-HHmmss"))</Timestamp>
-    <Version>2.0.0-ci-$(Timestamp)</Version>
+    <Version>5.0.0-Unreleased</Version>
     <Copyright>Copyright Xbim Ltd.</Copyright>
     <Description>.net library that provides support for the  Ifc4 schema.</Description>
     <Authors>Steve Lockley, Martin Cenry</Authors>
@@ -17,12 +16,12 @@
     <PackageTags>BIM, IFC, IfcXml, IfcZip, Ifc4,  COBie, .Net, C#, BuildingSmart</PackageTags>
     <PackageReleaseNotes>migrated Xbim.Common to .netstandard 1.6</PackageReleaseNotes>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
-    <FileVersion>5.0</FileVersion>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <FileVersion>5.0.0.0</FileVersion>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageIconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;amp;s=240</PackageIconUrl>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Xbim.Common" Version="2.0.0-ci-20170726-151305" />
+    <PackageReference Include="Xbim.Common" Version="5.0.0-Beta-224" />
   </ItemGroup>
  
 </Project>
