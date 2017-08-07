@@ -40,6 +40,7 @@ namespace Xbim.Ifc2x3.Extensions
                     case "solidmodel":
                     case "surfacemodel":
                     case "sweptsolid":
+                    case "sweptareasolid": // known case in consteel
                     case "brep":
                     case "csg":
                     case "clipping":
