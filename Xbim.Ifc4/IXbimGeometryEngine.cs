@@ -8,7 +8,7 @@ namespace Xbim.Ifc4.Interfaces
 {
     public interface IXbimGeometryEngine
     {
-        ILogger Logger { get; }
+        ILogger Logger { get; set; }
 
         IXbimGeometryObject Create(IIfcGeometricRepresentationItem ifcRepresentation);
 
