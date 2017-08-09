@@ -24,7 +24,7 @@
     <PackageReference Include="System.Runtime.Serialization.Formatters" Version="4.3.0" />
     <PackageReference Include="System.Runtime.Serialization.Xml" Version="4.3.0" />
     <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
-    <PackageReference Include="Xbim.Ifc2x3.Extensions" Version="5.0.0-Beta-251" />
+    <PackageReference Include="Xbim.Ifc2x3.Extensions" Version="5.0.0-Beta-288" />
     
   </ItemGroup>
 
