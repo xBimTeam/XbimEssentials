@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using Microsoft.Extensions.Logging;
+using System.IO;
 using Xbim.Common.Geometry;
 
 
@@ -7,7 +8,8 @@ namespace Xbim.Ifc4.Interfaces
 {
     public interface IXbimGeometryEngine
     {
-       
+        ILogger Logger { get; }
+
         IXbimGeometryObject Create(IIfcGeometricRepresentationItem ifcRepresentation);
 
 
