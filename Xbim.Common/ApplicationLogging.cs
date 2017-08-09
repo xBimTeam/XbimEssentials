@@ -5,8 +5,8 @@ namespace Xbim.Common
     public static class ApplicationLogging
     {
         private static ILoggerFactory _factory = null;
+       
 
-        
         public static ILoggerFactory LoggerFactory
         {
             get
@@ -22,5 +22,7 @@ namespace Xbim.Common
         }
         
         public static ILogger CreateLogger<T>() =>  LoggerFactory.CreateLogger<T>();
+
+        
     }
 }
