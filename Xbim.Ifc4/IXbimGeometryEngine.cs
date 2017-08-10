@@ -115,7 +115,7 @@ namespace Xbim.Ifc4.Interfaces
         //IIfcFacetedBrep CreateFacetedBrep(Xbim.Common.IModel model, IXbimSolid solid);
         //Creates collections of objects
         IXbimSolidSet CreateSolidSet();
-        IXbimSolidSet CreateSolidSet(IIfcBooleanResult boolOp);
+        IXbimSolidSet CreateSolidSet(IIfcBooleanResult boolOp, ILogger logger);
         IXbimSolidSet CreateGrid(IIfcGrid grid, ILogger logger = null);
         //converts an object placement to a matrix transform in the WCS
         XbimMatrix3D ToMatrix3D(IIfcObjectPlacement objPlacement);
