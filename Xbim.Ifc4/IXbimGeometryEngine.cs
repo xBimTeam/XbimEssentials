@@ -116,10 +116,10 @@ namespace Xbim.Ifc4.Interfaces
         //IIfcFacetedBrep CreateFacetedBrep(Xbim.Common.IModel model, IXbimSolid solid);
         //Creates collections of objects
         IXbimSolidSet CreateSolidSet();
-        IXbimSolidSet CreateSolidSet(IIfcBooleanResult boolOp, ILogger logger);
+        IXbimSolidSet CreateSolidSet(IIfcBooleanResult boolOp, ILogger logger=null);
         IXbimSolidSet CreateGrid(IIfcGrid grid, ILogger logger = null);
         //converts an object placement to a matrix transform in the WCS
-        XbimMatrix3D ToMatrix3D(IIfcObjectPlacement objPlacement);
+        XbimMatrix3D ToMatrix3D(IIfcObjectPlacement objPlacement, ILogger logger=null);
         //Read and write functions
         void WriteTriangulation(TextWriter tw, IXbimGeometryObject shape, double tolerance, double deflection, double angle);
         void WriteTriangulation(BinaryWriter bw, IXbimGeometryObject shape, double tolerance, double deflection, double angle);
@@ -131,7 +131,7 @@ namespace Xbim.Ifc4.Interfaces
         //Moves an object to the required placement, the original geometry is unchanged a copy is returned. Tags are preserved
         IXbimGeometryObject Moved(IXbimGeometryObject geometryObject, IIfcPlacement placement);
         //Moves an object to the required placement, the original geometry is unchanged a copy is returned. Tags are preserved
-        IXbimGeometryObject Moved(IXbimGeometryObject geometryObject, IIfcObjectPlacement objectPlacement);
+        IXbimGeometryObject Moved(IXbimGeometryObject geometryObject, IIfcObjectPlacement objectPlacement, ILogger logger=null);
         //Moves an object to the required placement, the original geometry is unchanged a copy is returned. Tags are preserved
         IXbimGeometryObject Moved(IXbimGeometryObject geometryObject, IIfcAxis2Placement3D placement);
         IXbimGeometryObject Moved(IXbimGeometryObject geometryObject, IIfcAxis2Placement2D placement);
