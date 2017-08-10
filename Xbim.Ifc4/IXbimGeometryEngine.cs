@@ -46,6 +46,7 @@ namespace Xbim.Ifc4.Interfaces
         IXbimSolid CreateSolid(IIfcPolygonalBoundedHalfSpace ifcSolid, ILogger logger = null);
         IXbimSolid CreateSolid(IIfcBoxedHalfSpace ifcSolid, ILogger logger = null);
 
+        IXbimSolidSet CreateSolidSet(IIfcManifoldSolidBrep ifcSolid, ILogger logger = null);
         IXbimSolidSet CreateSolidSet(IIfcFacetedBrep ifcSolid, ILogger logger = null);
         IXbimSolidSet CreateSolidSet(IIfcFacetedBrepWithVoids ifcSolid, ILogger logger = null);
         IXbimSolidSet CreateSolidSet(IIfcClosedShell ifcSolid, ILogger logger = null);
