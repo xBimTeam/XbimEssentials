@@ -779,7 +779,7 @@ namespace Xbim.IO.Xml
         }
 
 
-        public StepFileHeader Read(Stream xmlStream)
+        public StepFileHeader Read(Stream xmlStream, IModel model)
         {
             //   using (var xmlInStream = new StreamReader(inputStream, Encoding.GetEncoding("ISO-8859-9"))) //this is a work around to ensure latin character sets are read
             using (var input = XmlReader.Create(xmlStream))
@@ -791,7 +791,7 @@ namespace Xbim.IO.Xml
                 _lastId = 0;
                 _entitiesParsed = 0;
                 var foundHeader = false;
-                var header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
+                var header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty, model);
 
                 //IFC2x3 was the first IFC mapped to XML so IFC version wasn't explicit. So we need to put it in to keep the data complete
                 header.FileSchema.Schemas.Add("IFC2X3");
