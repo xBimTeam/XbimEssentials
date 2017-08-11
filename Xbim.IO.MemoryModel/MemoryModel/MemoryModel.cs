@@ -19,8 +19,9 @@ using Xbim.IO.Xml.BsConf;
 namespace Xbim.IO.Memory
 {
     public class MemoryModel : IModel, IDisposable
-    { 
-        private ILogger Log { get; } =  ApplicationLogging.CreateLogger<MemoryModel>();
+    {
+        private ILogger _logger;
+        public ILogger Logger { get { if (_logger == null) _logger = ApplicationLogging.CreateLogger<MemoryModel>(); return _logger; } set { _logger = value; } }
         private static ZipArchiveEntry GetZipEntry(Stream fileStream)
         {
             using (var zipStream = new ZipArchive(fileStream))
@@ -79,6 +80,7 @@ namespace Xbim.IO.Memory
         public static IStepFileHeader GetStepFileHeader(Stream stream, IModel model)
         {
             var parser = new XbimP21Parser(stream, null, -1);
+           
             var stepHeader = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty,model);
             parser.EntityCreate += (string name, long? label, bool header, out int[] ints) =>
             {
@@ -114,7 +116,7 @@ namespace Xbim.IO.Memory
 
         public object Tag { get; set; }
         public int UserDefinedId { get; set; }
-        public MemoryModel(IEntityFactory entityFactory, int labelFrom = 0)
+        public MemoryModel(IEntityFactory entityFactory, int labelFrom)
         {
             if (entityFactory == null) throw new ArgumentNullException("entityFactory");
 
@@ -126,6 +128,13 @@ namespace Xbim.IO.Memory
             ModelFactors = new XbimModelFactors(Math.PI / 180, 1e-3, 1e-5);
             Metadata = ExpressMetaData.GetMetadata(entityFactory.GetType().GetTypeInfo().Module);
             IsTransactional = true;
+        }
+        public MemoryModel(IEntityFactory entityFactory) : this(entityFactory, 0)
+        {
+        }
+        public MemoryModel(IEntityFactory entityFactory, ILogger logger = null, int labelFrom = 0) : this(entityFactory, labelFrom)
+        {
+            Logger = logger;
         }
 
         /// <summary>
@@ -443,6 +452,7 @@ namespace Xbim.IO.Memory
         public virtual int LoadStep21(Stream stream, long streamSize, ReportProgressDelegate progDelegate=null)
         {
             var parser = new XbimP21Parser(stream, Metadata, streamSize);
+            parser.Logger = Logger;
             if (progDelegate != null) parser.ProgressStatus += progDelegate;
             var first = true;
             Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty,this);
@@ -501,7 +511,7 @@ namespace Xbim.IO.Memory
                     {
                         msg = string.Format("Illegal element in file; cannot instantiate the abstract type {0} at label {1}.", name, label);
                     }
-                    Log.LogError(msg);
+                    Logger.LogError(msg);
                 }
                 
                 //make sure that new added entities will have higher labels to avoid any clashes
@@ -537,16 +547,25 @@ namespace Xbim.IO.Memory
                 return result;
             }
         }
-
-        public static MemoryModel OpenRead(string fileName, ReportProgressDelegate progressDel= null)
+        public static MemoryModel OpenRead(string fileName, ReportProgressDelegate progressDel)
         {
+            return OpenRead(fileName, null, progressDel);
+        }
+        public static MemoryModel OpenRead(string fileName)
+        {
+            return OpenRead(fileName, null, null);
+        }
+        public static MemoryModel OpenRead(string fileName, ILogger logger , ReportProgressDelegate progressDel= null)
+        {
+           
             var header = GetFileHeader(fileName); //an exception is thrown if this fails
           
             switch (header.XbimSchemaVersion)
             {
               
                 case XbimSchemaVersion.Ifc4:
-                    var mm4 = new MemoryModel(new Xbim.Ifc4.EntityFactory());
+                    var mm4 = new MemoryModel(new Xbim.Ifc4.EntityFactory(),logger);
+                   
                     if (fileName.IsStepTextFile())
                         mm4.LoadStep21(fileName, progressDel);
                     else if (fileName.IsStepZipFile())
@@ -555,10 +574,11 @@ namespace Xbim.IO.Memory
                         mm4.LoadXml(fileName, progressDel);
                     else
                         throw new FileLoadException($"Unsupported file type extension: {Path.GetExtension(fileName)}");
+                   
                     return mm4;
                    
                 case XbimSchemaVersion.Ifc2X3:
-                    var mm2x3 = new MemoryModel(new Xbim.Ifc2x3.EntityFactory());
+                    var mm2x3 = new MemoryModel(new Xbim.Ifc2x3.EntityFactory(), logger);
                     if (fileName.IsStepTextFile())
                         mm2x3.LoadStep21(fileName, progressDel);
                     else if (fileName.IsStepZipFile())
@@ -567,6 +587,7 @@ namespace Xbim.IO.Memory
                         mm2x3.LoadXml(fileName, progressDel);
                     else
                         throw new FileLoadException($"Unsupported file type extension: {Path.GetExtension(fileName)}");
+                   
                     return mm2x3;
                     
                 case XbimSchemaVersion.Cobie2X4:
