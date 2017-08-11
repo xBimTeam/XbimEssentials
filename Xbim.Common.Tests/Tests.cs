@@ -1,7 +1,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Diagnostics;
+using System.Reflection;
 using Xbim.Common.Geometry;
+using Xbim.Common.Step21;
 
 namespace Xbim.Common.Tests
 {
@@ -38,5 +40,15 @@ namespace Xbim.Common.Tests
 
 
         }
-    }
+    
+    [TestMethod]
+    public void StepFileHeaderVersionTest()
+    {
+            var modelFake = new IModelFake();
+            var header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults, modelFake);
+            var t = typeof(IModelFake);
+            Assert.IsTrue(header.FileName.OriginatingSystem == t.GetTypeInfo().Assembly.GetName().Name);
+            Assert.IsTrue(header.FileName.PreprocessorVersion == string.Format("Processor version {0}", t.GetTypeInfo().Assembly.GetName().Version));
+        }
+}
 }
