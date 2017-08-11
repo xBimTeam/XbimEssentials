@@ -37,7 +37,7 @@ namespace Xbim.IO.Memory
             {
                 using (var fileStream = File.OpenRead(fileName))
                 {
-                    return GetStepFileHeader(fileStream);
+                    return GetStepFileHeader(fileStream, new MemoryModel(new Xbim.Ifc4.EntityFactory())); //using a dummy model to get the assembly correct
                 }
             }
             else if (fileName.IsStepZipFile())
@@ -51,8 +51,8 @@ namespace Xbim.IO.Memory
                         using (var reader = entry.Open())
                         {
                             if(entry.Name.IsStepTextFile())
-                                return GetStepFileHeader(reader);
-                            if(entry.Name.IsStepXmlFile())
+                                return GetStepFileHeader(reader, new MemoryModel(new Xbim.Ifc4.EntityFactory())); //using a dummy model to get the assembly correct
+                            if (entry.Name.IsStepXmlFile())
                                 return XbimXmlReader4.ReadHeader(reader);
                             else
                                 throw new FileLoadException($"File does not contain a valid model: {fileName}");
@@ -76,10 +76,10 @@ namespace Xbim.IO.Memory
                 throw new FileLoadException($"File is an invalid model format: {fileName}");
         }
 
-        public static IStepFileHeader GetStepFileHeader(Stream stream)
+        public static IStepFileHeader GetStepFileHeader(Stream stream, IModel model)
         {
             var parser = new XbimP21Parser(stream, null, -1);
-            var stepHeader = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
+            var stepHeader = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty,model);
             parser.EntityCreate += (string name, long? label, bool header, out int[] ints) =>
             {
                     //allow all attributes to be parsed
@@ -120,7 +120,7 @@ namespace Xbim.IO.Memory
 
             _entityFactory = entityFactory;
             _instances = new EntityCollection(this, labelFrom);
-            Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults);
+            Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults,this);
             foreach (var schemasId in _instances.Factory.SchemasIds)
                 Header.FileSchema.Schemas.Add(schemasId);
             ModelFactors = new XbimModelFactors(Math.PI / 180, 1e-3, 1e-5);
@@ -364,14 +364,14 @@ namespace Xbim.IO.Memory
             {
                 var reader3 = new IfcXmlReader(GetOrCreateXMLEntity, entity => { }, Metadata);
                 if (progDelegate != null) reader3.ProgressStatus += progDelegate;
-                Header = reader3.Read(stream);
+                Header = reader3.Read(stream,this);
                 if (progDelegate != null) reader3.ProgressStatus -= progDelegate;
             }
             else
             {
                 var xmlReader = new XbimXmlReader4(GetOrCreateXMLEntity, entity => { }, Metadata);
                 if (progDelegate != null) xmlReader.ProgressStatus += progDelegate;
-                Header = xmlReader.Read(stream);
+                Header = xmlReader.Read(stream, this);
                 if (progDelegate != null) xmlReader.ProgressStatus -= progDelegate;
             }
 
@@ -445,7 +445,7 @@ namespace Xbim.IO.Memory
             var parser = new XbimP21Parser(stream, Metadata, streamSize);
             if (progDelegate != null) parser.ProgressStatus += progDelegate;
             var first = true;
-            Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
+            Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty,this);
             parser.EntityCreate += (string name, long? label, bool header, out int[] ints) =>
             {
                 //allow all attributes to be parsed

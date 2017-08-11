@@ -34,7 +34,7 @@ namespace Xbim.IO.Step21
         /// <param name="map">Optional map can be used to map occurrences in the file</param>
         public static void Write(IModel model, TextWriter output, ExpressMetaData metadata, IDictionary<int, int> map = null)
         {
-            var header = model.Header ?? new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults);
+            var header = model.Header ?? new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults,model);
             string fallBackSchema = null;
 
             if (header.FileSchema == null || !header.FileSchema.Schemas.Any())

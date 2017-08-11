@@ -70,7 +70,7 @@ namespace Xbim.IO.Xml
 
         }
 
-        public StepFileHeader Read(Stream xmlStream, bool onlyHeader = false)
+        public StepFileHeader Read(Stream xmlStream, IModel model, bool onlyHeader = false)
         {
           //   using (var xmlInStream = new StreamReader(inputStream, Encoding.GetEncoding("ISO-8859-9"))) //this is a work around to ensure Latin character sets are read
                    
@@ -79,7 +79,7 @@ namespace Xbim.IO.Xml
                 _streamSize = xmlStream.Length;
                 _idMap = new Dictionary<string, int>();
 
-                var header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
+                var header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty,model);
                 var rootElement = true;
                 var headerElement = true;
                 while (input.Read())
@@ -652,7 +652,8 @@ namespace Xbim.IO.Xml
         public static IStepFileHeader ReadHeader(Stream input)
         {
             var xReader = new XbimXmlReader4();
-            return xReader.Read(input, true);
+            var fakeModel = new Memory.MemoryModel(new Ifc4.EntityFactory());
+            return xReader.Read(input, fakeModel); //using a dummy model to get the assembly correct
         }
 
         public static XmlSchemaVersion ReadSchemaVersion(XmlReader input)
