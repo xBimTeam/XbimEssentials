@@ -15,7 +15,7 @@ namespace Xbim.Common.Step21
         string ModelViewDefinition { get; }
         string Name { get; }
         string TimeStamp { get; }
-        void StampXbimApplication(XbimSchemaVersion schemaVersion);
+        void StampXbimApplication(XbimSchemaVersion schemaVersion, IModel model);
         XbimSchemaVersion XbimSchemaVersion { get;}
     }
 }

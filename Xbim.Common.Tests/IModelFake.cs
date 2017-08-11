@@ -31,11 +31,11 @@ namespace Xbim.Common.Tests
         public IInverseCache InverseCache => throw new NotImplementedException();
 
         public XbimSchemaVersion SchemaVersion => throw new NotImplementedException();
-
+#pragma warning disable CS0067
         public event NewEntityHandler EntityNew;
         public event ModifiedEntityHandler EntityModified;
         public event DeletedEntityHandler EntityDeleted;
-
+#pragma warning restore CS0067
         public bool Activate(IPersistEntity owningEntity)
         {
             throw new NotImplementedException();

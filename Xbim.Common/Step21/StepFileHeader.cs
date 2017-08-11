@@ -698,17 +698,17 @@ namespace Xbim.Common.Step21
             }
         }
 
-        public void StampXbimApplication(XbimSchemaVersion schemaVersion)
+        public void StampXbimApplication(XbimSchemaVersion schemaVersion, IModel model)
         {
+            var assembly = model.GetType().GetTypeInfo().Assembly; //get the assembly that has created th emodel
             FileDescription = new StepFileDescription("2;1");
             FileName = new StepFileName(DateTime.Now)
             {
                 PreprocessorVersion =
-                    string.Format("Xbim File Processor version {0}",
-                                  Assembly.GetEntryAssembly().GetName().Version),
-                OriginatingSystem =
-                    string.Format("Xbim version {0}",
-                                  Assembly.GetEntryAssembly().GetName().Version),
+                           string.Format("Processor version {0}",
+                                         assembly.GetName().Version),
+                OriginatingSystem = assembly.GetName().Name
+
             };
             FileSchema = new StepFileSchema(schemaVersion);
         }
