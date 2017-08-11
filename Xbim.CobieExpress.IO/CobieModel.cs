@@ -308,6 +308,11 @@ namespace Xbim.CobieExpress.IO
             get { return _model.InverseCache; }
         }
 
+        public IfcSchemaVersion SchemaVersion
+        {
+            get { return _model.SchemaVersion; }
+        }
+
         private void InitEvents()
         {
             _model.EntityNew += OnEntityNew;

@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using Xbim.Common;
+using Xbim.Common.Step21;
 
 namespace Xbim.CobieExpress
 {
@@ -228,5 +229,6 @@ namespace Xbim.CobieExpress
 		private static readonly List<string> _schemasIds = new List<string> { "COBIE_EXPRESS" };
 		public IEnumerable<string> SchemasIds { get { return _schemasIds; } }
 
-	}
+        public IfcSchemaVersion SchemaVersion { get { return IfcSchemaVersion.Cobie2X4; } }
+    }
 }

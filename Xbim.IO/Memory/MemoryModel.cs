@@ -751,7 +751,10 @@ namespace Xbim.IO.Memory
             get { return _instances.Select(e => new XbimInstanceHandle(this, e.EntityLabel)).ToList(); }
         }
 
-       
+        public IfcSchemaVersion SchemaVersion
+        {
+            get { return _entityFactory.SchemaVersion; }
+        }
     }
 
     /// <summary>
