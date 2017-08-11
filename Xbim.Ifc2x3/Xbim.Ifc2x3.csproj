@@ -21,7 +21,7 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Xbim.Ifc4" Version="5.0.0-Beta-299" />
+    <PackageReference Include="Xbim.Ifc4" Version="5.0.0-Beta-307" />
   </ItemGroup>
  
   
