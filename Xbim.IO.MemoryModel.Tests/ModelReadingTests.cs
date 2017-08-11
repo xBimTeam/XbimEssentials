@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common;
 using Xbim.IO.Memory;
@@ -54,7 +55,19 @@ namespace Xbim.IfcCore.UnitTests
                 Assert.IsTrue(im.SchemaVersion==mm.SchemaVersion);
             }
         }
+        [TestMethod]
+        [DeploymentItem("TestFiles/SmallModelIfc4.ifc")]
+        public void LoggingTest()
+        {
+            var loggerFactory = ApplicationLogging.LoggerFactory.AddConsole(LogLevel.Trace);
+              
+            using (var mm = MemoryModel.OpenRead("TestFiles/SmallModelIfc4.ifc",ApplicationLogging.CreateLogger<ModelReadingTests>()))
+            {               
+                var im = mm as IModel;
+                Assert.IsTrue(im.SchemaVersion == mm.SchemaVersion);
 
+            }
+        }
         [TestMethod]
         public void CreateNew()
         {

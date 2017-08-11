@@ -29,7 +29,7 @@ DATA;
 #5= IFCAPPLICATION(#1,'2015','Autodesk Revit 2015 (ENU)','Revit');
 #6= IFCCARTESIANPOINT((0.,0.,0.));
 #36= IFCPERSON($,'Benghi','Claudio',$,$,$,$,$);
-#38= IFCORGANIZATION($,'NG Bailey Ltd','Building Services Engineers',$,$);
+#38= IFCORGANIZATION($,'NG Bailey Ltd','Building Services Engineers',$,$,'Invalid parameter');
 #39= IFCPERSONANDORGANIZATION(#36,#38,$);
 #42= IFCOWNERHISTORY(#39,#5,$,.NOCHANGE.,$,$,$,1461134789);
 #43= IFCSIUNIT(*,.LENGTHUNIT.,.MILLI.,.METRE.);
