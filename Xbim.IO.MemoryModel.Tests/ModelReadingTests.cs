@@ -22,7 +22,7 @@ namespace Xbim.IfcCore.UnitTests
         [DeploymentItem("TestFiles/SmallModelIfc4.ifc")]
         public void OpenReadIfc4StepFormatTest()
         {
-            using (var mm = MemoryModel.OpenRead("TestFiles/SmallModelIfc4.ifc"))
+            using (var mm = MemoryModel.OpenRead($@"TestFiles/{"SmallModelIfc4"}.ifc"))
             {
                 Assert.IsTrue(mm.Instances.Count == 52);
             }
