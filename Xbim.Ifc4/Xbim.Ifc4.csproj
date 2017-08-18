@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.6;Net47</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;Net47</TargetFrameworks>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>aimkey.snk</AssemblyOriginatorKeyFile>
     <Title>Xbim Ifc4</Title>
