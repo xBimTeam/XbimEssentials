@@ -38,8 +38,8 @@ namespace Xbim.Ifc2x3.PresentationResource
 						break;
 				}
 			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc2x3.PresentationResource.IfcFontStyle>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcFontStyle.{0}'.", clause), ex);
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc2x3.PresentationResource.IfcFontStyle>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcFontStyle.{0}'.", clause), ex);
 			}
 			return retVal;
 		}

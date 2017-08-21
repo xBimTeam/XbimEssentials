@@ -38,8 +38,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 						break;
 				}
 			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc2x3.ConstraintResource.IfcObjective>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcObjective.{0}' for #{1}.", clause,EntityLabel), ex);
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc2x3.ConstraintResource.IfcObjective>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcObjective.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

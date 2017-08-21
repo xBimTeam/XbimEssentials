@@ -54,8 +54,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 						break;
 				}
 			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc2x3.SharedBldgElements.IfcDoorLiningProperties>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcDoorLiningProperties.{0}' for #{1}.", clause,EntityLabel), ex);
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc2x3.SharedBldgElements.IfcDoorLiningProperties>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcDoorLiningProperties.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

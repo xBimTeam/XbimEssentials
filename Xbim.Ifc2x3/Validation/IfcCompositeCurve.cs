@@ -42,8 +42,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 						break;
 				}
 			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc2x3.GeometryResource.IfcCompositeCurve>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcCompositeCurve.{0}' for #{1}.", clause,EntityLabel), ex);
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc2x3.GeometryResource.IfcCompositeCurve>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcCompositeCurve.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

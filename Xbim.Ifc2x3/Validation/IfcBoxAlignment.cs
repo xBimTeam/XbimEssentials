@@ -38,8 +38,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 						break;
 				}
 			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc2x3.PresentationDefinitionResource.IfcBoxAlignment>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcBoxAlignment.{0}'.", clause), ex);
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc2x3.PresentationDefinitionResource.IfcBoxAlignment>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcBoxAlignment.{0}'.", clause), ex);
 			}
 			return retVal;
 		}
