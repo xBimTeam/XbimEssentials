@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.SharedBldgElements
 						retVal = (PredefinedType != IfcShadingDeviceTypeEnum.USERDEFINED) || ((PredefinedType == IfcShadingDeviceTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcElementType*/.ElementType));
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.SharedBldgElements.IfcShadingDeviceType>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcShadingDeviceType.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.SharedBldgElements.IfcShadingDeviceType>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcShadingDeviceType.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

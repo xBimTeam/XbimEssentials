@@ -37,9 +37,9 @@ namespace Xbim.Ifc4.MeasureResource
 						retVal = (UnitType != IfcDerivedUnitEnum.USERDEFINED) || ((UnitType == IfcDerivedUnitEnum.USERDEFINED) && (Functions.EXISTS(this.UserDefinedType)));
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.MeasureResource.IfcDerivedUnit>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcDerivedUnit.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.MeasureResource.IfcDerivedUnit>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcDerivedUnit.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

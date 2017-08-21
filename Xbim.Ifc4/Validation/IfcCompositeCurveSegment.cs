@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.GeometryResource
 						retVal = (Functions.TYPEOF(ParentCurve).Contains("IFC4.IFCBOUNDEDCURVE"));
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcCompositeCurveSegment>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcCompositeCurveSegment.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcCompositeCurveSegment>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcCompositeCurveSegment.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

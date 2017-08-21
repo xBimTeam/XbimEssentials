@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 						retVal = Functions.SIZEOF(this/* as IfcGeometricSet*/.Elements.Where(Temp => Functions.TYPEOF(Temp).Contains("IFC4.IFCSURFACE"))) == 0;
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometricModelResource.IfcGeometricCurveSet>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcGeometricCurveSet.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometricModelResource.IfcGeometricCurveSet>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcGeometricCurveSet.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.ProcessExtension
 						retVal = (PredefinedType != IfcTaskTypeEnum.USERDEFINED) || ((PredefinedType == IfcTaskTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcTypeProcess*/.ProcessType));
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ProcessExtension.IfcTaskType>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcTaskType.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ProcessExtension.IfcTaskType>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcTaskType.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

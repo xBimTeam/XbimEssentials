@@ -41,9 +41,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 						retVal = Operator == IfcBooleanOperator.DIFFERENCE;
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometricModelResource.IfcBooleanClippingResult>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcBooleanClippingResult.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometricModelResource.IfcBooleanClippingResult>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcBooleanClippingResult.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

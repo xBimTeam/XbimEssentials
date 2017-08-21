@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.GeometryResource
 						retVal = Depth > 0;
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcSurfaceOfLinearExtrusion>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceOfLinearExtrusion.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcSurfaceOfLinearExtrusion>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceOfLinearExtrusion.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

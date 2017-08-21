@@ -37,9 +37,9 @@ namespace Xbim.Ifc4.GeometryResource
 						retVal = Functions.IfcCurveWeightsPositive(this);
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcRationalBSplineCurveWithKnots>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcRationalBSplineCurveWithKnots.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcRationalBSplineCurveWithKnots>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcRationalBSplineCurveWithKnots.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

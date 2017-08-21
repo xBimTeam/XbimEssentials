@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.MeasureResource
 						retVal = Functions.IfcCorrectUnitAssignment(Units);
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.MeasureResource.IfcUnitAssignment>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcUnitAssignment.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.MeasureResource.IfcUnitAssignment>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcUnitAssignment.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

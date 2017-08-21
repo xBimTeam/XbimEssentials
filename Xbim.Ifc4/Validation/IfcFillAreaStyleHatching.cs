@@ -37,9 +37,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 						retVal = !(Functions.EXISTS(PointOfReferenceHatchLine)) || (PointOfReferenceHatchLine.Dim == 2);
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.PresentationAppearanceResource.IfcFillAreaStyleHatching>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcFillAreaStyleHatching.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.PresentationAppearanceResource.IfcFillAreaStyleHatching>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcFillAreaStyleHatching.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

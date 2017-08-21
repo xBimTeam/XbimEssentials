@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 						retVal = (PredefinedType != IfcCrewResourceTypeEnum.USERDEFINED) || ((PredefinedType == IfcCrewResourceTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcTypeResource*/.ResourceType));
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ConstructionMgmtDomain.IfcCrewResourceType>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcCrewResourceType.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ConstructionMgmtDomain.IfcCrewResourceType>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcCrewResourceType.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

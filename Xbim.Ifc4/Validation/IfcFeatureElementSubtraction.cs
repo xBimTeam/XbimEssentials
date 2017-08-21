@@ -37,9 +37,9 @@ namespace Xbim.Ifc4.ProductExtension
 						retVal = Functions.SIZEOF(this/* as IfcElement*/.FillsVoids) == 0;
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ProductExtension.IfcFeatureElementSubtraction>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcFeatureElementSubtraction.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ProductExtension.IfcFeatureElementSubtraction>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcFeatureElementSubtraction.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

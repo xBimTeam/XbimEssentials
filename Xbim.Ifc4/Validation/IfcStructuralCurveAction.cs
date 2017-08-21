@@ -41,9 +41,9 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 						retVal = PredefinedType != IfcStructuralCurveActivityTypeEnum.EQUIDISTANT;
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralCurveAction>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcStructuralCurveAction.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralCurveAction>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcStructuralCurveAction.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

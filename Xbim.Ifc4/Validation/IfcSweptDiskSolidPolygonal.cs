@@ -37,9 +37,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 						retVal = Functions.TYPEOF(this/* as IfcSweptDiskSolid*/.Directrix).Contains("IFC4.IFCPOLYLINE");
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometricModelResource.IfcSweptDiskSolidPolygonal>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcSweptDiskSolidPolygonal.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometricModelResource.IfcSweptDiskSolidPolygonal>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcSweptDiskSolidPolygonal.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

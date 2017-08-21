@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.GeometryResource
 						retVal = (Functions.SIZEOF(Segments) == 0) || Functions.IfcConsecutiveSegments(Segments);
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcIndexedPolyCurve>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcIndexedPolyCurve.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcIndexedPolyCurve>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcIndexedPolyCurve.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

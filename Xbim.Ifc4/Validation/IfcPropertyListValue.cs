@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.PropertyResource
 						retVal = Functions.SIZEOF(this.ListValues.Where(temp => !(Functions.TYPEOF(this.ListValues.ItemAt(0)) == Functions.TYPEOF(temp)))) == 0;
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.PropertyResource.IfcPropertyListValue>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPropertyListValue.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.PropertyResource.IfcPropertyListValue>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPropertyListValue.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 						retVal = Functions.NewArray("normal", "small-caps", "100", "200", "300", "400", "500", "600", "700", "800", "900").Contains(this);
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.PresentationAppearanceResource.IfcFontWeight>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcFontWeight.{0}'.", clause), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.PresentationAppearanceResource.IfcFontWeight>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcFontWeight.{0}'.", clause), ex);*/
 			}
 			return retVal;
 		}

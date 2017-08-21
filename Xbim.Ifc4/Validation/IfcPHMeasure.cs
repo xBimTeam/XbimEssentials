@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.MeasureResource
 						retVal = ((0 <= this) && (this <= 14) );
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.MeasureResource.IfcPHMeasure>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPHMeasure.{0}'.", clause), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.MeasureResource.IfcPHMeasure>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPHMeasure.{0}'.", clause), ex);*/
 			}
 			return retVal;
 		}

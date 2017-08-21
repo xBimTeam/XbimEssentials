@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.Kernel
 						retVal = Functions.EXISTS(this/* as IfcRoot*/.Name);
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.Kernel.IfcProxy>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcProxy.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.Kernel.IfcProxy>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcProxy.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

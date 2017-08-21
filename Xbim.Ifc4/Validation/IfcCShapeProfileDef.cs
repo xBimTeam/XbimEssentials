@@ -41,9 +41,9 @@ namespace Xbim.Ifc4.ProfileResource
 						retVal = (WallThickness < Width / 2) && (WallThickness < Depth / 2);
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ProfileResource.IfcCShapeProfileDef>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcCShapeProfileDef.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ProfileResource.IfcCShapeProfileDef>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcCShapeProfileDef.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

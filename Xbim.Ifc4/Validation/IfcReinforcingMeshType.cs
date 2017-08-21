@@ -37,9 +37,9 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 						retVal = !Functions.EXISTS(BendingParameters) || Functions.EXISTS(BendingShapeCode);
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.StructuralElementsDomain.IfcReinforcingMeshType>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcReinforcingMeshType.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.StructuralElementsDomain.IfcReinforcingMeshType>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcReinforcingMeshType.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

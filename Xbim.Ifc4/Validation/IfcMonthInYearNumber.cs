@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.DateTimeResource
 						retVal = ((1 <= this) && (this <= 12) );
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.DateTimeResource.IfcMonthInYearNumber>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcMonthInYearNumber.{0}'.", clause), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.DateTimeResource.IfcMonthInYearNumber>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcMonthInYearNumber.{0}'.", clause), ex);*/
 			}
 			return retVal;
 		}

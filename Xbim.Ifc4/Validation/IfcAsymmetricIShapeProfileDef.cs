@@ -45,9 +45,9 @@ namespace Xbim.Ifc4.ProfileResource
 						retVal = (!(Functions.EXISTS(TopFlangeFilletRadius))) || (TopFlangeFilletRadius <= (TopFlangeWidth - WebThickness) / 2);
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ProfileResource.IfcAsymmetricIShapeProfileDef>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcAsymmetricIShapeProfileDef.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ProfileResource.IfcAsymmetricIShapeProfileDef>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcAsymmetricIShapeProfileDef.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

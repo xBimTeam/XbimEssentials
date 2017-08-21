@@ -41,9 +41,9 @@ namespace Xbim.Ifc4.GeometryResource
 						retVal = !(Functions.EXISTS(this/* as IfcCartesianTransformationOperator*/.Axis2)) || (this/* as IfcCartesianTransformationOperator*/.Axis2.Dim == 2);
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcCartesianTransformationOperator2D>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator2D.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcCartesianTransformationOperator2D>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator2D.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

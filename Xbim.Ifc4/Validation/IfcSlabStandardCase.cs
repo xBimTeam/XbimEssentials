@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.SharedBldgElements
 						retVal = Functions.SIZEOF(Functions.USEDIN(this, "IFC4.IFCRELASSOCIATES.RELATEDOBJECTS").Where(temp => (Functions.TYPEOF(temp).Contains("IFC4.IFCRELASSOCIATESMATERIAL")) && (Functions.TYPEOF(temp.AsIfcRelAssociatesMaterial().RelatingMaterial).Contains("IFC4.IFCMATERIALLAYERSETUSAGE")))) == 1;
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.SharedBldgElements.IfcSlabStandardCase>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcSlabStandardCase.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.SharedBldgElements.IfcSlabStandardCase>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcSlabStandardCase.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

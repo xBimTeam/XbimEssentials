@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.ActorResource
 						retVal = Functions.EXISTS(TelephoneNumbers) || Functions.EXISTS(FacsimileNumbers) || Functions.EXISTS(PagerNumber) || Functions.EXISTS(ElectronicMailAddresses) || Functions.EXISTS(WWWHomePageURL) || Functions.EXISTS(MessagingIDs);
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ActorResource.IfcTelecomAddress>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcTelecomAddress.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ActorResource.IfcTelecomAddress>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcTelecomAddress.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

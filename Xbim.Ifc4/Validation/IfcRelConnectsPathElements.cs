@@ -37,9 +37,9 @@ namespace Xbim.Ifc4.SharedBldgElements
 						retVal = (Functions.SIZEOF(RelatedPriorities) == 0) || (Functions.SIZEOF(RelatedPriorities.Where(temp => ((0 <= temp) && (temp <= 100) ))) == Functions.SIZEOF(RelatedPriorities));
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.SharedBldgElements.IfcRelConnectsPathElements>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcRelConnectsPathElements.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.SharedBldgElements.IfcRelConnectsPathElements>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcRelConnectsPathElements.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 						retVal = (PredefinedType != IfcDistributionChamberElementTypeEnum.USERDEFINED) || ((PredefinedType == IfcDistributionChamberElementTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcElementType*/.ElementType));
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.SharedBldgServiceElements.IfcDistributionChamberElementType>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcDistributionChamberElementType.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.SharedBldgServiceElements.IfcDistributionChamberElementType>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcDistributionChamberElementType.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

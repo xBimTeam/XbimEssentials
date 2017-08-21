@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 						retVal = Functions.NewArray("none", "underline", "overline", "line-through", "blink").Contains(this);
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.PresentationAppearanceResource.IfcTextDecoration>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcTextDecoration.{0}'.", clause), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.PresentationAppearanceResource.IfcTextDecoration>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcTextDecoration.{0}'.", clause), ex);*/
 			}
 			return retVal;
 		}

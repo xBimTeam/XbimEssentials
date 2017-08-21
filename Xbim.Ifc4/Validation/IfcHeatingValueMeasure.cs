@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.MeasureResource
 						retVal = this > 0;
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.MeasureResource.IfcHeatingValueMeasure>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcHeatingValueMeasure.{0}'.", clause), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.MeasureResource.IfcHeatingValueMeasure>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcHeatingValueMeasure.{0}'.", clause), ex);*/
 			}
 			return retVal;
 		}

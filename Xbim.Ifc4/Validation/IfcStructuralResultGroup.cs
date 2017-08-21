@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 						retVal = (TheoryType != IfcAnalysisTheoryTypeEnum.USERDEFINED) || Functions.EXISTS(this/* as IfcObject*/.ObjectType);
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralResultGroup>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcStructuralResultGroup.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralResultGroup>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcStructuralResultGroup.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

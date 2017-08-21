@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.MaterialResource
 						retVal = this > 0;
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.MaterialResource.IfcCardinalPointReference>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcCardinalPointReference.{0}'.", clause), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.MaterialResource.IfcCardinalPointReference>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcCardinalPointReference.{0}'.", clause), ex);*/
 			}
 			return retVal;
 		}

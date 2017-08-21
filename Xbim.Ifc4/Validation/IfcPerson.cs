@@ -37,9 +37,9 @@ namespace Xbim.Ifc4.ActorResource
 						retVal = !Functions.EXISTS(MiddleNames) || Functions.EXISTS(FamilyName) || Functions.EXISTS(GivenName);
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ActorResource.IfcPerson>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPerson.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ActorResource.IfcPerson>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPerson.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 						retVal = Functions.NewArray("normal", "italic", "oblique").Contains(this);
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.PresentationAppearanceResource.IfcFontStyle>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcFontStyle.{0}'.", clause), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.PresentationAppearanceResource.IfcFontStyle>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcFontStyle.{0}'.", clause), ex);*/
 			}
 			return retVal;
 		}

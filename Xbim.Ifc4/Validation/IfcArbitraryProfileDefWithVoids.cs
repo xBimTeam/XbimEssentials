@@ -41,9 +41,9 @@ namespace Xbim.Ifc4.ProfileResource
 						retVal = Functions.SIZEOF(InnerCurves.Where(temp => Functions.TYPEOF(temp).Contains("IFC4.IFCLINE"))) == 0;
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ProfileResource.IfcArbitraryProfileDefWithVoids>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcArbitraryProfileDefWithVoids.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ProfileResource.IfcArbitraryProfileDefWithVoids>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcArbitraryProfileDefWithVoids.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

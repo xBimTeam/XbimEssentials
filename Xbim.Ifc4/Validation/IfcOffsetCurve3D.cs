@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.GeometryResource
 						retVal = BasisCurve.Dim == 3;
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcOffsetCurve3D>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcOffsetCurve3D.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcOffsetCurve3D>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcOffsetCurve3D.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

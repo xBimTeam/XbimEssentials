@@ -41,9 +41,9 @@ namespace Xbim.Ifc4.PropertyResource
 						retVal = !(Functions.EXISTS(LowerBoundValue)) || !(Functions.EXISTS(SetPointValue)) || (Functions.TYPEOF(LowerBoundValue) == Functions.TYPEOF(SetPointValue));
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.PropertyResource.IfcPropertyBoundedValue>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPropertyBoundedValue.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.PropertyResource.IfcPropertyBoundedValue>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPropertyBoundedValue.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}
