@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.ProductExtension
 						retVal = (Functions.SIZEOF(this/* as IfcGroup*/.IsGroupedBy) == 0) || (Functions.SIZEOF(this/* as IfcGroup*/.IsGroupedBy.ItemAt(0).RelatedObjects.Where(temp => !((Functions.TYPEOF(temp).Contains("IFC4.IFCZONE")) || (Functions.TYPEOF(temp).Contains("IFC4.IFCSPACE")) || (Functions.TYPEOF(temp).Contains("IFC4.IFCSPATIALZONE"))))) == 0);
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ProductExtension.IfcZone>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcZone.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.ProductExtension.IfcZone>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcZone.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

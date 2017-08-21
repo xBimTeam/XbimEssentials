@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.ActorResource
 						retVal = (!(Functions.EXISTS(Purpose))) || ((Purpose != IfcAddressTypeEnum.USERDEFINED) || ((Purpose == IfcAddressTypeEnum.USERDEFINED) && Functions.EXISTS(this.UserDefinedPurpose)));
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ActorResource.IfcAddress>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcAddress.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.ActorResource.IfcAddress>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcAddress.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

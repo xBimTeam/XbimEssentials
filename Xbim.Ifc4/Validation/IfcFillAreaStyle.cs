@@ -41,9 +41,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 						retVal = Functions.IfcCorrectFillAreaStyle(this.FillStyles);
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.PresentationAppearanceResource.IfcFillAreaStyle>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcFillAreaStyle.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.PresentationAppearanceResource.IfcFillAreaStyle>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcFillAreaStyle.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

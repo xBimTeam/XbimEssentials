@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.ConstraintResource
 						retVal = (ObjectiveQualifier != IfcObjectiveEnum.USERDEFINED) || ((ObjectiveQualifier == IfcObjectiveEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcObjective*/.UserDefinedQualifier));
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ConstraintResource.IfcObjective>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcObjective.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.ConstraintResource.IfcObjective>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcObjective.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

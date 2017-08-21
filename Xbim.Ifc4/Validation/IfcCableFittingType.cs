@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.ElectricalDomain
 						retVal = (PredefinedType != IfcCableFittingTypeEnum.USERDEFINED) || ((PredefinedType == IfcCableFittingTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcElementType*/.ElementType));
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ElectricalDomain.IfcCableFittingType>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcCableFittingType.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.ElectricalDomain.IfcCableFittingType>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcCableFittingType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

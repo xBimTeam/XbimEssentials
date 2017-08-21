@@ -37,9 +37,9 @@ namespace Xbim.Ifc4.GeometryResource
 						retVal = Functions.SIZEOF(KnotMultiplicities) == UpperIndexOnKnots;
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcBSplineCurveWithKnots>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcBSplineCurveWithKnots.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcBSplineCurveWithKnots>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcBSplineCurveWithKnots.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

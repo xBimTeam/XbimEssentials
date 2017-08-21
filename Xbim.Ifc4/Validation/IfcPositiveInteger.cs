@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.MeasureResource
 						retVal = this > 0;
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.MeasureResource.IfcPositiveInteger>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPositiveInteger.{0}'.", clause), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.MeasureResource.IfcPositiveInteger>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPositiveInteger.{0}'.", clause), ex);
 			}
 			return retVal;
 		}

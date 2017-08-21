@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 						retVal = Functions.NewArray("top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right").Contains(this);
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.PresentationDefinitionResource.IfcBoxAlignment>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcBoxAlignment.{0}'.", clause), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.PresentationDefinitionResource.IfcBoxAlignment>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcBoxAlignment.{0}'.", clause), ex);
 			}
 			return retVal;
 		}

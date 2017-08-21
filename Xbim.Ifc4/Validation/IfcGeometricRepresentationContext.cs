@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.RepresentationResource
 						retVal = !(Functions.EXISTS(TrueNorth)) || (Functions.HIINDEX(TrueNorth.DirectionRatios) == 2);
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.RepresentationResource.IfcGeometricRepresentationContext>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcGeometricRepresentationContext.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.RepresentationResource.IfcGeometricRepresentationContext>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcGeometricRepresentationContext.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

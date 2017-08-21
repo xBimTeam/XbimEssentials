@@ -37,9 +37,9 @@ namespace Xbim.Ifc4.GeometryResource
 						retVal = this/* as IfcPlacement*/.Location.Dim == 2;
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcAxis2Placement2D>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcAxis2Placement2D.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcAxis2Placement2D>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcAxis2Placement2D.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

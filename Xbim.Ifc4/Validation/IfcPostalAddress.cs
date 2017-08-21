@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.ActorResource
 						retVal = Functions.EXISTS(InternalLocation) || Functions.EXISTS(AddressLines) || Functions.EXISTS(PostalBox) || Functions.EXISTS(PostalCode) || Functions.EXISTS(Town) || Functions.EXISTS(Region) || Functions.EXISTS(Country);
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ActorResource.IfcPostalAddress>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPostalAddress.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.ActorResource.IfcPostalAddress>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPostalAddress.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

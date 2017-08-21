@@ -45,9 +45,9 @@ namespace Xbim.Ifc4.ArchitectureDomain
 						retVal = (Functions.EXISTS(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0))) && ((Functions.TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)).Contains("IFC4.IFCWINDOWTYPE")) || (Functions.TYPEOF(this/* as IfcPropertySetDefinition*/.DefinesType.ItemAt(0)).Contains("IFC4.IFCWINDOWSTYLE")));
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ArchitectureDomain.IfcWindowLiningProperties>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcWindowLiningProperties.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.ArchitectureDomain.IfcWindowLiningProperties>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcWindowLiningProperties.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

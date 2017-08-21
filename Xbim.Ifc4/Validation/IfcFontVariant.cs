@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 						retVal = Functions.NewArray("normal", "small-caps").Contains(this);
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.PresentationAppearanceResource.IfcFontVariant>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcFontVariant.{0}'.", clause), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.PresentationAppearanceResource.IfcFontVariant>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcFontVariant.{0}'.", clause), ex);
 			}
 			return retVal;
 		}

@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.TopologyResource
 						retVal = Functions.IfcPathHeadToTail(this);
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.TopologyResource.IfcPath>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPath.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.TopologyResource.IfcPath>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPath.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

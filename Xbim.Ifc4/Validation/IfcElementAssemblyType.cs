@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.ProductExtension
 						retVal = (PredefinedType != IfcElementAssemblyTypeEnum.USERDEFINED) || ((PredefinedType == IfcElementAssemblyTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcElementType*/.ElementType));
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ProductExtension.IfcElementAssemblyType>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcElementAssemblyType.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.ProductExtension.IfcElementAssemblyType>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcElementAssemblyType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

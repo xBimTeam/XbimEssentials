@@ -37,9 +37,9 @@ namespace Xbim.Ifc4.HvacDomain
 						retVal = (Functions.SIZEOF(IsTypedBy) == 0) || (Functions.TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCAIRTERMINALBOXTYPE"));
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.HvacDomain.IfcAirTerminalBox>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcAirTerminalBox.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.HvacDomain.IfcAirTerminalBox>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcAirTerminalBox.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

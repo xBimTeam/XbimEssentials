@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.Kernel
 						retVal = !(Functions.EXISTS(this/* as IfcTypeObject*/.Types.ItemAt(0))) || (Functions.SIZEOF(this/* as IfcTypeObject*/.Types.ItemAt(0).RelatedObjects.Where(temp => !(Functions.TYPEOF(temp).Contains("IFC4.IFCPRODUCT")))) == 0);
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.Kernel.IfcTypeProduct>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcTypeProduct.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.Kernel.IfcTypeProduct>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcTypeProduct.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

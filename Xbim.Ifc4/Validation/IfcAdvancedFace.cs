@@ -41,9 +41,9 @@ namespace Xbim.Ifc4.TopologyResource
 						retVal = Functions.SIZEOF(this/* as IfcFace*/.Bounds.Where(Bnds => Functions.TYPEOF(Bnds.Bound).Contains("IFC4.IFCEDGELOOP")).Where(ElpFbnds => !(Functions.SIZEOF(ElpFbnds.Bound.AsIfcEdgeLoop().EdgeList.Where(Oe => !(Functions.SIZEOF(Functions.NewArray("IFC4.IFCLINE", "IFC4.IFCCONIC", "IFC4.IFCPOLYLINE", "IFC4.IFCBSPLINECURVE") * Functions.TYPEOF(Oe/* as IfcOrientedEdge*/.EdgeElement.AsIfcEdgeCurve().EdgeGeometry)) == 1))) == 0))) == 0;
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.TopologyResource.IfcAdvancedFace>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcAdvancedFace.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.TopologyResource.IfcAdvancedFace>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcAdvancedFace.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}
