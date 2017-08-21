@@ -46,8 +46,8 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 						break;
 				}
 			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc2x3.PresentationDimensioningResource.IfcDimensionPair>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcDimensionPair.{0}' for #{1}.", clause,EntityLabel), ex);
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc2x3.PresentationDimensioningResource.IfcDimensionPair>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcDimensionPair.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

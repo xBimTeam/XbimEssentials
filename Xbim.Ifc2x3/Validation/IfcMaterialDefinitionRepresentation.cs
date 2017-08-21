@@ -38,8 +38,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 						break;
 				}
 			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc2x3.RepresentationResource.IfcMaterialDefinitionRepresentation>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcMaterialDefinitionRepresentation.{0}' for #{1}.", clause,EntityLabel), ex);
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc2x3.RepresentationResource.IfcMaterialDefinitionRepresentation>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcMaterialDefinitionRepresentation.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

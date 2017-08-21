@@ -38,8 +38,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 						break;
 				}
 			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc2x3.HVACDomain.IfcAirToAirHeatRecoveryType>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcAirToAirHeatRecoveryType.{0}' for #{1}.", clause,EntityLabel), ex);
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc2x3.HVACDomain.IfcAirToAirHeatRecoveryType>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcAirToAirHeatRecoveryType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

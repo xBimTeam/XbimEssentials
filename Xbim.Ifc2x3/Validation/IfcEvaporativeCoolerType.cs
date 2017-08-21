@@ -38,8 +38,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 						break;
 				}
 			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc2x3.HVACDomain.IfcEvaporativeCoolerType>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcEvaporativeCoolerType.{0}' for #{1}.", clause,EntityLabel), ex);
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc2x3.HVACDomain.IfcEvaporativeCoolerType>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcEvaporativeCoolerType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

@@ -50,8 +50,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 						break;
 				}
 			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc2x3.MaterialPropertyResource.IfcMechanicalSteelMaterialProperties>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcMechanicalSteelMaterialProperties.{0}' for #{1}.", clause,EntityLabel), ex);
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc2x3.MaterialPropertyResource.IfcMechanicalSteelMaterialProperties>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcMechanicalSteelMaterialProperties.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

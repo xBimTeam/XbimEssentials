@@ -38,8 +38,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 						break;
 				}
 			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc2x3.PresentationAppearanceResource.IfcSpecularRoughness>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcSpecularRoughness.{0}'.", clause), ex);
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc2x3.PresentationAppearanceResource.IfcSpecularRoughness>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcSpecularRoughness.{0}'.", clause), ex);
 			}
 			return retVal;
 		}

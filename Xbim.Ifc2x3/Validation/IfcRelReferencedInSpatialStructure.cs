@@ -38,8 +38,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 						break;
 				}
 			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc2x3.ProductExtension.IfcRelReferencedInSpatialStructure>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcRelReferencedInSpatialStructure.{0}' for #{1}.", clause,EntityLabel), ex);
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc2x3.ProductExtension.IfcRelReferencedInSpatialStructure>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcRelReferencedInSpatialStructure.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

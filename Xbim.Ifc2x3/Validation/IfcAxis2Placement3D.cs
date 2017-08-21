@@ -54,8 +54,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 						break;
 				}
 			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc2x3.GeometryResource.IfcAxis2Placement3D>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcAxis2Placement3D.{0}' for #{1}.", clause,EntityLabel), ex);
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc2x3.GeometryResource.IfcAxis2Placement3D>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcAxis2Placement3D.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

@@ -38,8 +38,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 						break;
 				}
 			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc2x3.GeometricModelResource.IfcSweptAreaSolid>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcSweptAreaSolid.{0}' for #{1}.", clause,EntityLabel), ex);
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc2x3.GeometricModelResource.IfcSweptAreaSolid>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcSweptAreaSolid.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}
