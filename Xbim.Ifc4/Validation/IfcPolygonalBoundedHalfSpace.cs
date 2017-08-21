@@ -37,9 +37,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 						retVal = Functions.SIZEOF(Functions.TYPEOF(PolygonalBoundary) * Functions.NewArray("IFC4.IFCPOLYLINE", "IFC4.IFCCOMPOSITECURVE")) == 1;
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometricModelResource.IfcPolygonalBoundedHalfSpace>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPolygonalBoundedHalfSpace.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometricModelResource.IfcPolygonalBoundedHalfSpace>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPolygonalBoundedHalfSpace.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

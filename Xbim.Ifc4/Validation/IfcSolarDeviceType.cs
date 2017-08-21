@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.ElectricalDomain
 						retVal = (PredefinedType != IfcSolarDeviceTypeEnum.USERDEFINED) || ((PredefinedType == IfcSolarDeviceTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcElementType*/.ElementType));
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ElectricalDomain.IfcSolarDeviceType>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcSolarDeviceType.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ElectricalDomain.IfcSolarDeviceType>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcSolarDeviceType.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.ElectricalDomain
 						retVal = (PredefinedType != IfcElectricMotorTypeEnum.USERDEFINED) || ((PredefinedType == IfcElectricMotorTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcElementType*/.ElementType));
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ElectricalDomain.IfcElectricMotorType>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcElectricMotorType.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ElectricalDomain.IfcElectricMotorType>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcElectricMotorType.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

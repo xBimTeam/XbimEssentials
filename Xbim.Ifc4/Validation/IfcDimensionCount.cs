@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.GeometryResource
 						retVal = ((0 < this) && (this <= 3) );
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcDimensionCount>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcDimensionCount.{0}'.", clause), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcDimensionCount>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcDimensionCount.{0}'.", clause), ex);*/
 			}
 			return retVal;
 		}

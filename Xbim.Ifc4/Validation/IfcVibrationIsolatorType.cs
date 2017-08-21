@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.HvacDomain
 						retVal = (PredefinedType != IfcVibrationIsolatorTypeEnum.USERDEFINED) || ((PredefinedType == IfcVibrationIsolatorTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcElementType*/.ElementType));
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.HvacDomain.IfcVibrationIsolatorType>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcVibrationIsolatorType.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.HvacDomain.IfcVibrationIsolatorType>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcVibrationIsolatorType.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

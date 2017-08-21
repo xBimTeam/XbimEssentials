@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 						retVal = Functions.SIZEOF(AssignedItems.Where(temp => (Functions.SIZEOF(Functions.TYPEOF(temp) * Functions.NewArray("IFC4.IFCSHAPEREPRESENTATION", "IFC4.IFCGEOMETRICREPRESENTATIONITEM", "IFC4.IFCMAPPEDITEM")) == 1))) == Functions.SIZEOF(AssignedItems);
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.PresentationOrganizationResource.IfcPresentationLayerAssignment>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPresentationLayerAssignment.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.PresentationOrganizationResource.IfcPresentationLayerAssignment>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPresentationLayerAssignment.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

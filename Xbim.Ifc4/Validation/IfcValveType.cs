@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.HvacDomain
 						retVal = (PredefinedType != IfcValveTypeEnum.USERDEFINED) || ((PredefinedType == IfcValveTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcElementType*/.ElementType));
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.HvacDomain.IfcValveType>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcValveType.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.HvacDomain.IfcValveType>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcValveType.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

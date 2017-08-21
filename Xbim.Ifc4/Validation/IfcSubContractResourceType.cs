@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 						retVal = (PredefinedType != IfcSubContractResourceTypeEnum.USERDEFINED) || ((PredefinedType == IfcSubContractResourceTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcTypeResource*/.ResourceType));
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ConstructionMgmtDomain.IfcSubContractResourceType>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcSubContractResourceType.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ConstructionMgmtDomain.IfcSubContractResourceType>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcSubContractResourceType.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

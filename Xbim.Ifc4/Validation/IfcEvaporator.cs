@@ -37,9 +37,9 @@ namespace Xbim.Ifc4.HvacDomain
 						retVal = (Functions.SIZEOF(IsTypedBy) == 0) || (Functions.TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCEVAPORATORTYPE"));
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.HvacDomain.IfcEvaporator>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcEvaporator.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.HvacDomain.IfcEvaporator>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcEvaporator.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

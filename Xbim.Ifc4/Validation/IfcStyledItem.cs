@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 						retVal = !(Functions.TYPEOF(Item).Contains("IFC4.IFCSTYLEDITEM"));
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.PresentationAppearanceResource.IfcStyledItem>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcStyledItem.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.PresentationAppearanceResource.IfcStyledItem>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcStyledItem.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

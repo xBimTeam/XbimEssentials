@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 						retVal = Functions.SIZEOF(Voids.Where(Vsh => Functions.SIZEOF(Vsh.CfsFaces.Where(Afs => (!(Functions.TYPEOF(Afs).Contains("IFC4.IFCADVANCEDFACE"))))) == 0)) == 0;
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometricModelResource.IfcAdvancedBrepWithVoids>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcAdvancedBrepWithVoids.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometricModelResource.IfcAdvancedBrepWithVoids>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcAdvancedBrepWithVoids.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

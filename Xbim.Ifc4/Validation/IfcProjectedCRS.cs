@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.RepresentationResource
 						retVal = !(Functions.EXISTS(MapUnit)) || (MapUnit.UnitType == IfcUnitEnum.LENGTHUNIT);
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.RepresentationResource.IfcProjectedCRS>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcProjectedCRS.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.RepresentationResource.IfcProjectedCRS>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcProjectedCRS.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

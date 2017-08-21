@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.GeometryResource
 						retVal = ReferenceCurve.Dim == 2;
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcPcurve>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPcurve.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcPcurve>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPcurve.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

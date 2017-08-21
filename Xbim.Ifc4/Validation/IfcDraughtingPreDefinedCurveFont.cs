@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 						retVal = Functions.NewArray("continuous", "chain", "chain double dash", "dashed", "dotted", "by layer").Contains(this/* as IfcPredefinedItem*/.Name);
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.PresentationAppearanceResource.IfcDraughtingPreDefinedCurveFont>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcDraughtingPreDefinedCurveFont.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.PresentationAppearanceResource.IfcDraughtingPreDefinedCurveFont>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcDraughtingPreDefinedCurveFont.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

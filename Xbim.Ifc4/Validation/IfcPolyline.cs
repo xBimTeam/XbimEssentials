@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.GeometryResource
 						retVal = Functions.SIZEOF(Points.Where(Temp => Temp.Dim != Points.ItemAt(0).Dim)) == 0;
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcPolyline>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPolyline.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcPolyline>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPolyline.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

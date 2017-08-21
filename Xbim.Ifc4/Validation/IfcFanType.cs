@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.HvacDomain
 						retVal = (PredefinedType != IfcFanTypeEnum.USERDEFINED) || ((PredefinedType == IfcFanTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcElementType*/.ElementType));
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.HvacDomain.IfcFanType>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcFanType.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.HvacDomain.IfcFanType>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcFanType.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

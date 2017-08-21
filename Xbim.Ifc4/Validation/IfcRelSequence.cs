@@ -37,9 +37,9 @@ namespace Xbim.Ifc4.ProcessExtension
 						retVal = (SequenceType != IfcSequenceEnum.USERDEFINED) || ((SequenceType == IfcSequenceEnum.USERDEFINED) && Functions.EXISTS(UserDefinedSequenceType));
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ProcessExtension.IfcRelSequence>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcRelSequence.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ProcessExtension.IfcRelSequence>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcRelSequence.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

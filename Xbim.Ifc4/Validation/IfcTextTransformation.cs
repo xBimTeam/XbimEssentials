@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 						retVal = Functions.NewArray("capitalize", "uppercase", "lowercase", "none").Contains(this);
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.PresentationAppearanceResource.IfcTextTransformation>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcTextTransformation.{0}'.", clause), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.PresentationAppearanceResource.IfcTextTransformation>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcTextTransformation.{0}'.", clause), ex);*/
 			}
 			return retVal;
 		}

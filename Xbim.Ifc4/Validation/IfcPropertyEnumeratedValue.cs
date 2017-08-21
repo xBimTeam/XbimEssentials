@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.PropertyResource
 						retVal = !(Functions.EXISTS(EnumerationReference)) || !(Functions.EXISTS(EnumerationValues)) || (Functions.SIZEOF(EnumerationValues.Where(temp => EnumerationReference.EnumerationValues.Contains(temp))) == Functions.SIZEOF(EnumerationValues));
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.PropertyResource.IfcPropertyEnumeratedValue>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPropertyEnumeratedValue.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.PropertyResource.IfcPropertyEnumeratedValue>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPropertyEnumeratedValue.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

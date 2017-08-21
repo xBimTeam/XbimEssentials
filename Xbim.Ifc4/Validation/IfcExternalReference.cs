@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 						retVal = Functions.EXISTS(Identification) || Functions.EXISTS(Location) || Functions.EXISTS(Name);
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ExternalReferenceResource.IfcExternalReference>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcExternalReference.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ExternalReferenceResource.IfcExternalReference>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcExternalReference.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

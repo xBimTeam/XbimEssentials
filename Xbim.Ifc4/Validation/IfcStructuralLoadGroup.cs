@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 						retVal = ((PredefinedType != IfcLoadGroupTypeEnum.USERDEFINED) && (ActionType != IfcActionTypeEnum.USERDEFINED) && (ActionSource != IfcActionSourceTypeEnum.USERDEFINED)) || Functions.EXISTS(this/* as IfcObject*/.ObjectType);
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralLoadGroup>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcStructuralLoadGroup.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralLoadGroup>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcStructuralLoadGroup.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

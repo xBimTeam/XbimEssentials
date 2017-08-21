@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.ProductExtension
 						retVal = (PredefinedType != IfcSpatialZoneTypeEnum.USERDEFINED) || ((PredefinedType == IfcSpatialZoneTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcSpatialElementType*/.ElementType));
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ProductExtension.IfcSpatialZoneType>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcSpatialZoneType.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ProductExtension.IfcSpatialZoneType>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcSpatialZoneType.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

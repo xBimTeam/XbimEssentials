@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.ActorResource
 						retVal = (Role != IfcRoleEnum.USERDEFINED) || ((Role == IfcRoleEnum.USERDEFINED) && Functions.EXISTS(this.UserDefinedRole));
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ActorResource.IfcActorRole>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcActorRole.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ActorResource.IfcActorRole>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcActorRole.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

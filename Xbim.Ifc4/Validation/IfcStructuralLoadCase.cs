@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 						retVal = this/* as IfcStructuralLoadGroup*/.PredefinedType == IfcLoadGroupTypeEnum.LOAD_CASE;
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralLoadCase>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcStructuralLoadCase.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralLoadCase>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcStructuralLoadCase.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 						retVal = Functions.IfcDotProduct(Functions.IfcDirection(0, 0, 1), this.ExtrudedDirection) != 0;
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometricModelResource.IfcExtrudedAreaSolid>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcExtrudedAreaSolid.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometricModelResource.IfcExtrudedAreaSolid>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcExtrudedAreaSolid.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

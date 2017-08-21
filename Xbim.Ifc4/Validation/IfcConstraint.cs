@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.ConstraintResource
 						retVal = (ConstraintGrade != IfcConstraintEnum.USERDEFINED) || ((ConstraintGrade == IfcConstraintEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcConstraint*/.UserDefinedGrade));
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ConstraintResource.IfcConstraint>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcConstraint.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ConstraintResource.IfcConstraint>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcConstraint.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

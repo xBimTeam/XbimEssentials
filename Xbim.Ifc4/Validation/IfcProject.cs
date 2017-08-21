@@ -41,9 +41,9 @@ namespace Xbim.Ifc4.Kernel
 						retVal = Functions.SIZEOF(this/* as IfcObjectDefinition*/.Decomposes) == 0;
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.Kernel.IfcProject>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcProject.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.Kernel.IfcProject>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcProject.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}

@@ -37,9 +37,9 @@ namespace Xbim.Ifc4.QuantityResource
 						retVal = TimeValue >= 0;
 						break;
 				}
-			} catch (Exception ex) {
-				var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.QuantityResource.IfcQuantityTime>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcQuantityTime.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception ) {
+				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.QuantityResource.IfcQuantityTime>();
+				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcQuantityTime.{0}' for #{1}.", clause,EntityLabel), ex);*/
 			}
 			return retVal;
 		}
