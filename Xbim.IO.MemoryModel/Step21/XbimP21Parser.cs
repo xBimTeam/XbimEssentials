@@ -32,7 +32,7 @@ namespace Xbim.IO.Step21
     public class XbimP21Parser : P21Parser
     {
         private ILogger _logger;
-        public ILogger Logger { get { if (_logger == null) _logger = ApplicationLogging.CreateLogger<XbimP21Parser>(); return _logger; } set { _logger = value; } }
+        public ILogger Logger { get { return _logger; } set { _logger = value; } }
         public event ReportProgressDelegate ProgressStatus;
         private readonly Stack<Part21Entity> _processStack = new Stack<Part21Entity>();
         protected int ListNestLevel = -1;
