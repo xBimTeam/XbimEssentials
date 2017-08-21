@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.ProductExtension
 						retVal = (PredefinedType != IfcSpaceTypeEnum.USERDEFINED) || ((PredefinedType == IfcSpaceTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcSpatialElementType*/.ElementType));
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ProductExtension.IfcSpaceType>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcSpaceType.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.ProductExtension.IfcSpaceType>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcSpaceType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.GeometryResource
 						retVal = Functions.TYPEOF(MappedRepresentation).Contains("IFC4.IFCSHAPEMODEL");
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcRepresentationMap>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcRepresentationMap.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcRepresentationMap>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcRepresentationMap.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

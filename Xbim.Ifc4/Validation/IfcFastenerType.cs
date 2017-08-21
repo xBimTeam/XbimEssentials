@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.SharedComponentElements
 						retVal = (PredefinedType != IfcFastenerTypeEnum.USERDEFINED) || ((PredefinedType == IfcFastenerTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcElementType*/.ElementType));
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.SharedComponentElements.IfcFastenerType>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcFastenerType.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.SharedComponentElements.IfcFastenerType>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcFastenerType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

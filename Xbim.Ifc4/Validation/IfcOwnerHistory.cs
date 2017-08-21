@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.UtilityResource
 						retVal = (Functions.EXISTS(LastModifiedDate)) || (!(Functions.EXISTS(LastModifiedDate)) && !(Functions.EXISTS(ChangeAction))) || (!(Functions.EXISTS(LastModifiedDate)) && Functions.EXISTS(ChangeAction) && ((ChangeAction == IfcChangeActionEnum.NOTDEFINED) || (ChangeAction == IfcChangeActionEnum.NOCHANGE)));
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.UtilityResource.IfcOwnerHistory>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcOwnerHistory.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.UtilityResource.IfcOwnerHistory>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcOwnerHistory.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

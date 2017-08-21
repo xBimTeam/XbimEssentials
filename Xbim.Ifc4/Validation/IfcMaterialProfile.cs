@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.MaterialResource
 						retVal = !(Functions.EXISTS(Priority)) || ((0 <= Priority) && (Priority <= 100) );
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.MaterialResource.IfcMaterialProfile>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcMaterialProfile.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.MaterialResource.IfcMaterialProfile>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcMaterialProfile.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

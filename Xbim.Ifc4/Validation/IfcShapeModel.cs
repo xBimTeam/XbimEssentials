@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.RepresentationResource
 						retVal = (Functions.SIZEOF(this/* as IfcRepresentation*/.OfProductRepresentation) == 1) ^ (Functions.SIZEOF(this/* as IfcRepresentation*/.RepresentationMap) == 1) ^ (Functions.SIZEOF(OfShapeAspect) == 1);
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.RepresentationResource.IfcShapeModel>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcShapeModel.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.RepresentationResource.IfcShapeModel>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcShapeModel.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

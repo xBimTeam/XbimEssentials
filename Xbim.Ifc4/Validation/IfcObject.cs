@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.Kernel
 						retVal = ((Functions.SIZEOF(IsDefinedBy) == 0) || Functions.IfcUniqueDefinitionNames(IsDefinedBy));
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.Kernel.IfcObject>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcObject.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.Kernel.IfcObject>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcObject.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

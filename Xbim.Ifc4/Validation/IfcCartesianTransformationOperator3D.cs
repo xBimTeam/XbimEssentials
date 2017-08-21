@@ -45,9 +45,9 @@ namespace Xbim.Ifc4.GeometryResource
 						retVal = !(Functions.EXISTS(Axis3)) || (Axis3.Dim == 3);
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcCartesianTransformationOperator3D>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator3D.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcCartesianTransformationOperator3D>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcCartesianTransformationOperator3D.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

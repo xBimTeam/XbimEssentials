@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.SharedBldgElements
 						retVal = (PredefinedType != IfcStairFlightTypeEnum.USERDEFINED) || ((PredefinedType == IfcStairFlightTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcElementType*/.ElementType));
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.SharedBldgElements.IfcStairFlightType>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcStairFlightType.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.SharedBldgElements.IfcStairFlightType>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcStairFlightType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

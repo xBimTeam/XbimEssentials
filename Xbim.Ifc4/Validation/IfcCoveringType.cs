@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.SharedBldgElements
 						retVal = (PredefinedType != IfcCoveringTypeEnum.USERDEFINED) || ((PredefinedType == IfcCoveringTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcElementType*/.ElementType));
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.SharedBldgElements.IfcCoveringType>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcCoveringType.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.SharedBldgElements.IfcCoveringType>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcCoveringType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

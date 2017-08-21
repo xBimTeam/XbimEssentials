@@ -37,9 +37,9 @@ namespace Xbim.Ifc4.ElectricalDomain
 						retVal = (Functions.SIZEOF(IsTypedBy) == 0) || (Functions.TYPEOF(this/* as IfcObject*/.IsTypedBy.ItemAt(0).RelatingType).Contains("IFC4.IFCAUDIOVISUALAPPLIANCETYPE"));
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ElectricalDomain.IfcAudioVisualAppliance>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcAudioVisualAppliance.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.ElectricalDomain.IfcAudioVisualAppliance>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcAudioVisualAppliance.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

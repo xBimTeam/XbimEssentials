@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 						retVal = !(Functions.TYPEOF(this/* as IfcHalfSpaceSolid*/.BaseSurface).Contains("IFC4.IFCCURVEBOUNDEDPLANE"));
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometricModelResource.IfcBoxedHalfSpace>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcBoxedHalfSpace.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.GeometricModelResource.IfcBoxedHalfSpace>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcBoxedHalfSpace.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

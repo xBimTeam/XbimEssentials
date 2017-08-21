@@ -45,9 +45,9 @@ namespace Xbim.Ifc4.GeometryResource
 						retVal = Functions.SIZEOF(VMultiplicities) == KnotVUpper;
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcBSplineSurfaceWithKnots>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcBSplineSurfaceWithKnots.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcBSplineSurfaceWithKnots>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcBSplineSurfaceWithKnots.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

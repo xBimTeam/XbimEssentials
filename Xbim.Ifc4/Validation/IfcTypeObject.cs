@@ -37,9 +37,9 @@ namespace Xbim.Ifc4.Kernel
 						retVal = (!(Functions.EXISTS(HasPropertySets))) || Functions.IfcUniquePropertySetNames(HasPropertySets);
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.Kernel.IfcTypeObject>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcTypeObject.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.Kernel.IfcTypeObject>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcTypeObject.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

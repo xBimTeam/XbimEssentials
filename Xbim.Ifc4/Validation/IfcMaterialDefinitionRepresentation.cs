@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.RepresentationResource
 						retVal = Functions.SIZEOF(Representations.Where(temp => (!(Functions.TYPEOF(temp).Contains("IFC4.IFCSTYLEDREPRESENTATION"))))) == 0;
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.RepresentationResource.IfcMaterialDefinitionRepresentation>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcMaterialDefinitionRepresentation.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.RepresentationResource.IfcMaterialDefinitionRepresentation>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcMaterialDefinitionRepresentation.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

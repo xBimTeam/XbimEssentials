@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 						retVal = (PredefinedType != IfcConstructionEquipmentResourceTypeEnum.USERDEFINED) || ((PredefinedType == IfcConstructionEquipmentResourceTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcTypeResource*/.ResourceType));
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ConstructionMgmtDomain.IfcConstructionEquipmentResourceType>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcConstructionEquipmentResourceType.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.ConstructionMgmtDomain.IfcConstructionEquipmentResourceType>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcConstructionEquipmentResourceType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

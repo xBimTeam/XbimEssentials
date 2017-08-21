@@ -49,9 +49,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 						retVal = Functions.SIZEOF(Pixel.Where(temp => (Functions.BLENGTH(temp) % 8 == 0) && (Functions.BLENGTH(temp) == Functions.BLENGTH(Pixel.ItemAt(0))))) == Functions.SIZEOF(Pixel);
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.PresentationAppearanceResource.IfcPixelTexture>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPixelTexture.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.PresentationAppearanceResource.IfcPixelTexture>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPixelTexture.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

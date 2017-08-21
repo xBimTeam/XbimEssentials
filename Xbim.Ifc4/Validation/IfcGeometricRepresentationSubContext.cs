@@ -41,9 +41,9 @@ namespace Xbim.Ifc4.RepresentationResource
 						retVal = Functions.SIZEOF(this/* as IfcGeometricRepresentationContext*/.HasCoordinateOperation) == 0;
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.RepresentationResource.IfcGeometricRepresentationSubContext>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcGeometricRepresentationSubContext.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.RepresentationResource.IfcGeometricRepresentationSubContext>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcGeometricRepresentationSubContext.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

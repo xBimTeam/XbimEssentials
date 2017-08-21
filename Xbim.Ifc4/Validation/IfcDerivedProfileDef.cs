@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.ProfileResource
 						retVal = this/* as IfcProfileDef*/.ProfileType == ParentProfile.ProfileType;
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.ProfileResource.IfcDerivedProfileDef>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcDerivedProfileDef.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.ProfileResource.IfcDerivedProfileDef>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcDerivedProfileDef.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

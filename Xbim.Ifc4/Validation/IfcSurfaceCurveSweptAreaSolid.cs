@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 						retVal = (Functions.EXISTS(StartParam) && Functions.EXISTS(EndParam)) || (Functions.SIZEOF(Functions.NewArray("IFC4.IFCCONIC", "IFC4.IFCBOUNDEDCURVE") * Functions.TYPEOF(Directrix)) == 1);
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometricModelResource.IfcSurfaceCurveSweptAreaSolid>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceCurveSweptAreaSolid.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.GeometricModelResource.IfcSurfaceCurveSweptAreaSolid>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcSurfaceCurveSweptAreaSolid.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

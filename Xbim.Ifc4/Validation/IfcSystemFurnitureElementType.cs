@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 						retVal = (PredefinedType != IfcSystemFurnitureElementTypeEnum.USERDEFINED) || ((PredefinedType == IfcSystemFurnitureElementTypeEnum.USERDEFINED) && Functions.EXISTS(this/* as IfcElementType*/.ElementType));
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.SharedFacilitiesElements.IfcSystemFurnitureElementType>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcSystemFurnitureElementType.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.SharedFacilitiesElements.IfcSystemFurnitureElementType>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcSystemFurnitureElementType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

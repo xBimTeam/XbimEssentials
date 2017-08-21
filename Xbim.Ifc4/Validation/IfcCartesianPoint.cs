@@ -33,9 +33,9 @@ namespace Xbim.Ifc4.GeometryResource
 						retVal = Functions.HIINDEX(Coordinates) >= 2;
 						break;
 				}
-			} catch (Exception ) {
-				/*var log = ApplicationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcCartesianPoint>();
-				log.LogError(string.Format("Exception thrown evaluating where-clause 'IfcCartesianPoint.{0}' for #{1}.", clause,EntityLabel), ex);*/
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.GeometryResource.IfcCartesianPoint>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcCartesianPoint.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}
