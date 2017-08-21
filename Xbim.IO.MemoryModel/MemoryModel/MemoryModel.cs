@@ -21,7 +21,7 @@ namespace Xbim.IO.Memory
     public class MemoryModel : IModel, IDisposable
     {
         private ILogger _logger;
-        public ILogger Logger { get { if (_logger == null) _logger = ApplicationLogging.CreateLogger<MemoryModel>(); return _logger; } set { _logger = value; } }
+        public ILogger Logger { get { return _logger; } set { _logger = value; } }
         private static ZipArchiveEntry GetZipEntry(Stream fileStream)
         {
             using (var zipStream = new ZipArchive(fileStream))

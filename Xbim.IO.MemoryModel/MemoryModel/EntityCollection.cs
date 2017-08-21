@@ -245,7 +245,7 @@ namespace Xbim.IO.Memory
             catch (Exception ex)
             {
                
-                _model.Logger.LogError(string.Format("Duplicate entity label: #{0}", entity.EntityLabel), ex);
+                _model.Logger?.LogError(string.Format("Duplicate entity label: #{0}", entity.EntityLabel), ex);
             }
         }
 

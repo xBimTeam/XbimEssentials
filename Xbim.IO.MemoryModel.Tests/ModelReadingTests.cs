@@ -59,9 +59,9 @@ namespace Xbim.IfcCore.UnitTests
         [DeploymentItem("TestFiles/SmallModelIfc4.ifc")]
         public void LoggingTest()
         {
-            var loggerFactory = ApplicationLogging.LoggerFactory.AddConsole(LogLevel.Trace);
+            ILoggerFactory loggerFactory = new LoggerFactory().AddConsole(LogLevel.Trace);
               
-            using (var mm = MemoryModel.OpenRead("TestFiles/SmallModelIfc4.ifc",ApplicationLogging.CreateLogger<ModelReadingTests>()))
+            using (var mm = MemoryModel.OpenRead("TestFiles/SmallModelIfc4.ifc", loggerFactory.CreateLogger<ModelReadingTests>()))
             {               
                 var im = mm as IModel;
                 Assert.IsTrue(im.SchemaVersion == mm.SchemaVersion);

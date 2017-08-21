@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.6;net47</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net47</TargetFrameworks>
     <Authors>Martin Cerny</Authors>
     <Company>Xbim Ltd.</Company>
     <Description>An in memory version of an Ifc or STEP Model</Description>
@@ -19,12 +19,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.ComponentModel.Primitives" Version="4.3.0" />
-    <PackageReference Include="System.IO.Compression.ZipFile" Version="4.3.0" />
-    <PackageReference Include="System.Runtime.Serialization.Formatters" Version="4.3.0" />
-    <PackageReference Include="System.Runtime.Serialization.Xml" Version="4.3.0" />
-    <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
-    <PackageReference Include="Xbim.Ifc2x3.Extensions" Version="5.0.0-Beta-309" />
+
+    <PackageReference Include="Xbim.Ifc2x3.Extensions" Version="5.0.0-Beta-328" />
     
   </ItemGroup>
 
