@@ -32,7 +32,7 @@ namespace Xbim.IO.Parser
         public override void yyerror(string format, params object[] args)
         {
             var errmsg = string.Format(format, args);
-            Logger.LogError("Illegal character found at line {0}, column {1}\n{2}", this.yyline, this.yycol, errmsg);
+            Logger?.LogError("Illegal character found at line {0}, column {1}\n{2}", this.yyline, this.yycol, errmsg);
         }
     }
     

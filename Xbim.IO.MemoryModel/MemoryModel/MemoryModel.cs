@@ -511,7 +511,7 @@ namespace Xbim.IO.Memory
                     {
                         msg = string.Format("Illegal element in file; cannot instantiate the abstract type {0} at label {1}.", name, label);
                     }
-                    Logger.LogError(msg);
+                    Logger?.LogError(msg);
                 }
                 
                 //make sure that new added entities will have higher labels to avoid any clashes
