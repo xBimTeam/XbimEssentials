@@ -99,7 +99,7 @@ namespace Xbim.IO.Step21
 
         protected override void CharacterError()
         {
-            Logger.LogWarning("Error parsing IFC File, illegal character found");
+            Logger?.LogWarning("Error parsing IFC File, illegal character found");
         }
 
         protected override void BeginParse()
@@ -111,7 +111,7 @@ namespace Xbim.IO.Step21
             foreach (var defRef in _deferredReferences)
             {
                 if (!TrySetObjectValue(defRef.HostEntity, defRef.ParameterIndex, defRef.ReferenceId, defRef.NestedIndex))
-                    Logger.LogWarning("Entity #{0,-5} is referenced but could not be instantiated",
+                    Logger?.LogWarning("Entity #{0,-5} is referenced but could not be instantiated",
                                                       defRef.ReferenceId);
             }
         }
@@ -230,7 +230,7 @@ namespace Xbim.IO.Step21
                 catch (Exception ex)
                 {
                     var msg = string.Format("Duplicate entity label: #{0}", p21.EntityLabel);
-                    Logger.LogError(msg, ex);
+                    Logger?.LogError(msg, ex);
                 }
             }
             // Console.WriteLine("EndEntity - " + CurrentSemanticValue.strVal);
@@ -332,7 +332,7 @@ namespace Xbim.IO.Step21
                 if (mainEntity != null)
                 {
                     var expressType = Metadata.ExpressType(mainEntity.Entity);
-                    Logger.LogError("Entity #{0,-5} {1}, error at parameter {2}-{3} value = {4}",
+                    Logger?.LogError("Entity #{0,-5} {1}, error at parameter {2}-{3} value = {4}",
                                                mainEntity.EntityLabel, mainEntity.Entity.GetType().Name.ToUpper(),
                                                mainEntity.CurrentParamIndex + 1,
                                                expressType.Properties[mainEntity.CurrentParamIndex + 1].PropertyInfo.Name,
@@ -340,7 +340,7 @@ namespace Xbim.IO.Step21
                 }
                 else
                 {
-                    Logger.LogError("Unhandled Parser error, in Parser.cs EndNestedType");
+                    Logger?.LogError("Unhandled Parser error, in Parser.cs EndNestedType");
                 }
             }
             if (ListNestLevel == 0)
@@ -386,7 +386,7 @@ namespace Xbim.IO.Step21
                             ? "[UnknownProperty]"
                             : expressType.Properties[mainEntity.CurrentParamIndex + 1].PropertyInfo.Name;
 
-                        Logger.LogError("Entity #{0,-5} {1}, error at parameter {2}-{3} value = {4}",
+                        Logger?.LogError("Entity #{0,-5} {1}, error at parameter {2}-{3} value = {4}",
                             mainEntity.EntityLabel,
                             mainEntity.Entity.GetType().Name.ToUpper(),
                             mainEntity.CurrentParamIndex + 1,
@@ -395,7 +395,7 @@ namespace Xbim.IO.Step21
                     }
                     else
                     {
-                        Logger.LogError("Entity #{0,-5} {1}, error at parameter {2} value = {3}",
+                        Logger?.LogError("Entity #{0,-5} {1}, error at parameter {2} value = {3}",
                            mainEntity.EntityLabel,
                            mainEntity.Entity.GetType().Name.ToUpper(),
                            mainEntity.CurrentParamIndex + 1,                          
@@ -405,7 +405,7 @@ namespace Xbim.IO.Step21
                 }
                 else
                 {
-                    Logger.LogError("Unhandled Parser error, in Parser.cs SetEntityParameter");
+                    Logger?.LogError("Unhandled Parser error, in Parser.cs SetEntityParameter");
                 }
             }
             if (ListNestLevel == 0)
@@ -441,7 +441,7 @@ namespace Xbim.IO.Step21
                 var expressType = Metadata.ExpressType(host);
                 var propertyName = paramIndex+1 > expressType.Properties.Count ? "[UnknownProperty]" :
                         expressType.Properties[paramIndex+1].PropertyInfo.Name;
-                Logger.LogError("Entity #{0,-5} {1}, error at parameter {2}-{3}",
+                Logger?.LogError("Entity #{0,-5} {1}, error at parameter {2}-{3}",
                                            refId, expressType.Type.Name.ToUpper(), paramIndex + 1,
                                            propertyName);
                 
