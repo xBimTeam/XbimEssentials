@@ -81,6 +81,9 @@ namespace Xbim.Ifc4.Interfaces
         IXbimSolid CreateSolid(IIfcFaceBasedSurfaceModel ifcSurface, ILogger logger = null);
         IXbimSolid CreateSolid(IIfcShellBasedSurfaceModel ifcSurface, ILogger logger = null);
         IXbimSolid CreateSolid(IIfcTriangulatedFaceSet ifcSurface, ILogger logger = null);
+        IXbimSolidSet CreateSolidSet(IIfcFaceBasedSurfaceModel ifcSurface, ILogger logger = null);
+        IXbimSolidSet CreateSolidSet(IIfcShellBasedSurfaceModel ifcSurface, ILogger logger = null);
+        IXbimSolidSet CreateSolidSet(IIfcTriangulatedFaceSet ifcSurface, ILogger logger = null);
         //Faces
 
         IXbimFace CreateFace(IIfcProfileDef profileDef, ILogger logger = null);
