@@ -49,7 +49,7 @@ namespace Xbim.Ifc4.Interfaces
         IXbimSolidSet CreateSolidSet(IIfcManifoldSolidBrep ifcSolid, ILogger logger = null);
         IXbimSolidSet CreateSolidSet(IIfcFacetedBrep ifcSolid, ILogger logger = null);
         IXbimSolidSet CreateSolidSet(IIfcFacetedBrepWithVoids ifcSolid, ILogger logger = null);
-        
+        IXbimSolidSet CreateSolidSet(IIfcClosedShell ifcSolid, ILogger logger = null);
 
         IXbimSolid CreateSolid(IIfcCsgPrimitive3D ifcSolid, ILogger logger = null);
         IXbimSolid CreateSolid(IIfcCsgSolid ifcSolid, ILogger logger = null);
