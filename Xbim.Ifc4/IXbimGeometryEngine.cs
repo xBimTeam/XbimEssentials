@@ -49,7 +49,7 @@ namespace Xbim.Ifc4.Interfaces
         IXbimSolidSet CreateSolidSet(IIfcManifoldSolidBrep ifcSolid, ILogger logger = null);
         IXbimSolidSet CreateSolidSet(IIfcFacetedBrep ifcSolid, ILogger logger = null);
         IXbimSolidSet CreateSolidSet(IIfcFacetedBrepWithVoids ifcSolid, ILogger logger = null);
-        IXbimSolidSet CreateSolidSet(IIfcClosedShell ifcSolid, ILogger logger = null);
+        
 
         IXbimSolid CreateSolid(IIfcCsgPrimitive3D ifcSolid, ILogger logger = null);
         IXbimSolid CreateSolid(IIfcCsgSolid ifcSolid, ILogger logger = null);
@@ -78,7 +78,9 @@ namespace Xbim.Ifc4.Interfaces
         //Surface Models containing one or more faces, shells or solids
         IXbimGeometryObjectSet CreateSurfaceModel(IIfcShellBasedSurfaceModel ifcSurface, ILogger logger = null);
         IXbimGeometryObjectSet CreateSurfaceModel(IIfcFaceBasedSurfaceModel ifcSurface, ILogger logger = null);
-
+        IXbimSolid CreateSolid(IIfcFaceBasedSurfaceModel ifcSurface, ILogger logger = null);
+        IXbimSolid CreateSolid(IIfcShellBasedSurfaceModel ifcSurface, ILogger logger = null);
+        IXbimSolid CreateSolid(IIfcTriangulatedFaceSet ifcSurface, ILogger logger = null);
         //Faces
 
         IXbimFace CreateFace(IIfcProfileDef profileDef, ILogger logger = null);
