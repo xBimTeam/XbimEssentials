@@ -239,7 +239,7 @@ namespace Xbim.Common.Geometry
         }
 
         /// <summary>
-        /// Makes the vector point in the opposite direction
+        /// Returns a new vector pointing in the opposite direction
         /// </summary>
         public XbimVector3D Negated()
         {
