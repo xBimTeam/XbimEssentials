@@ -339,7 +339,7 @@ namespace Xbim.Tessellator
         /// splits the weight between its org and dst according to the
         /// relative distance to "isect".
         /// </summary>
-        private void VertexWeights(MeshUtils.Vertex isect, MeshUtils.Vertex org, MeshUtils.Vertex dst, out float w0, out float w1)
+        private void VertexWeights(MeshUtils.Vertex isect, MeshUtils.Vertex org, MeshUtils.Vertex dst, out double w0, out double w1)
         {
             var t1 = Geom.VertL1Dist(org, isect);
             var t2 = Geom.VertL1Dist(dst, isect);
@@ -360,7 +360,7 @@ namespace Xbim.Tessellator
         private void GetIntersectData(MeshUtils.Vertex isect, MeshUtils.Vertex orgUp, MeshUtils.Vertex dstUp, MeshUtils.Vertex orgLo, MeshUtils.Vertex dstLo)
         {
             isect._coords = Vec3.Zero;
-            float w0, w1, w2, w3;
+            double w0, w1, w2, w3;
             VertexWeights(isect, orgUp, dstUp, out w0, out w1);
             VertexWeights(isect, orgLo, dstLo, out w2, out w3);
 
@@ -1011,7 +1011,7 @@ namespace Xbim.Tessellator
         /// We add two sentinel edges above and below all other edges,
         /// to avoid special cases at the top and bottom.
         /// </summary>
-        private void AddSentinel(float smin, float smax, float t)
+        private void AddSentinel(double smin, double smax, double t)
         {
             var e = _mesh.MakeEdge();
             e._Org._s = smax;

@@ -78,7 +78,7 @@ namespace Xbim.Tessellator
         }
     }
 
-    public delegate int CombineCallback(Vec3 position, int[] data, float[] weights);
+    public delegate int CombineCallback(Vec3 position, int[] data, double[] weights);
 
     public partial class Tess
     {
@@ -87,7 +87,7 @@ namespace Xbim.Tessellator
         private Vec3 _sUnit;
         private Vec3 _tUnit;
 
-        private float _bminX, _bminY, _bmaxX, _bmaxY;
+        private double _bminX, _bminY, _bmaxX, _bmaxY;
 
         private WindingRule _windingRule;
 
@@ -160,7 +160,7 @@ namespace Xbim.Tessellator
 
             // Look for a third vertex which forms the triangle with maximum area
             // (Length of normal == twice the triangle area)
-            float maxLen2 = 0.0f, tLen2;
+            double maxLen2 = 0.0f, tLen2;
             var v1 = minVert[i];
             var v2 = maxVert[i];
             Vec3 d1, d2, tNorm;
@@ -190,7 +190,7 @@ namespace Xbim.Tessellator
 
         public static void ComputeNewellsNormal(ContourVertex[] vertices, ref Vec3 normal)
         {
-            float x = 0, y = 0, z = 0;
+            double x = 0, y = 0, z = 0;
             ContourVertex current;
             var previous = new ContourVertex();
             int count = 0;
@@ -203,12 +203,12 @@ namespace Xbim.Tessellator
                     current = vertices[0];
                 if (count > 0)
                 {
-                    float xn = previous.Position.X;
-                    float yn = previous.Position.Y;
-                    float zn = previous.Position.Z;
-                    float xn1 = current.Position.X;
-                    float yn1 = current.Position.Y;
-                    float zn1 = current.Position.Z;
+                    double xn = previous.Position.X;
+                    double yn = previous.Position.Y;
+                    double zn = previous.Position.Z;
+                    double xn1 = current.Position.X;
+                    double yn1 = current.Position.Y;
+                    double zn1 = current.Position.Z;
                     x += (yn - yn1) * (zn + zn1);
                     y += (xn + xn1) * (zn - zn1);
                     z += (xn - xn1) * (yn + yn1);
@@ -226,7 +226,7 @@ namespace Xbim.Tessellator
         {
             // When we compute the normal automatically, we choose the orientation
             // so that the the sum of the signed areas of all contours is non-negative.
-            float area = 0.0f;
+            double area = 0.0f;
             for (var f = _mesh._fHead._next; f != _mesh._fHead; f = f._next)
             {
                 var e = f._anEdge;
@@ -636,9 +636,9 @@ namespace Xbim.Tessellator
 
        
 
-        private float SignedArea(ContourVertex[] vertices)
+        private double SignedArea(ContourVertex[] vertices)
         {
-            float area = 0.0f;
+            double area = 0.0f;
 
             for (int i = 0; i < vertices.Length; i++)
             {
@@ -665,10 +665,10 @@ namespace Xbim.Tessellator
             ContourVertex[] outer = contours[0];
             if (contours.Count > 1)
             {
-                float largestArea = Math.Abs(SignedArea(contours[0]));
+                double largestArea = Math.Abs(SignedArea(contours[0]));
                 for (int i = 1; i < contours.Count; i++)
                 {
-                    float area = Math.Abs(SignedArea(contours[i]));
+                    double area = Math.Abs(SignedArea(contours[i]));
                     if (area > largestArea)
                     {
                         largestArea = area;
@@ -699,7 +699,7 @@ namespace Xbim.Tessellator
             bool reverse = false;
             if (forceOrientation != ContourOrientation.Original)
             {
-                float area = SignedArea(vertices);
+                double area = SignedArea(vertices);
                 reverse = (forceOrientation == ContourOrientation.Clockwise && area < 0.0f) || (forceOrientation == ContourOrientation.CounterClockwise && area > 0.0f);
             }
 
