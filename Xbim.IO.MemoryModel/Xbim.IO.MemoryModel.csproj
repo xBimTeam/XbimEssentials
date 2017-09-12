@@ -10,19 +10,21 @@
     <PackageProjectUrl>&gt;https://github.com/xBimTeam</PackageProjectUrl>
     <PackageIconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;amp;s=240</PackageIconUrl>
     <PackageTags>COBie, BIM, IFC, IfcXml, IfcZip, COBie, Ifc4, .Net, C#, BuildingSmart</PackageTags>
-    <PackageReleaseNotes>Port to Net Standard 1.6</PackageReleaseNotes>   
-    <Version>5.0.0-Beta</Version>  
+    <PackageReleaseNotes>Port to Net Standard 1.6</PackageReleaseNotes>
+    <Version>5.0.0-Beta</Version>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>aimkey.snk</AssemblyOriginatorKeyFile>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <FileVersion>5.0.0.0</FileVersion>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
 
   <ItemGroup>
 
     <PackageReference Include="Xbim.Ifc2x3.Extensions" Version="5.0.0-Beta-350" />
-    
+
   </ItemGroup>
 
 
@@ -35,7 +37,7 @@
   </ItemGroup>
 
 
-  <ItemGroup>  
+  <ItemGroup>
     <EmbeddedResource Update="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
