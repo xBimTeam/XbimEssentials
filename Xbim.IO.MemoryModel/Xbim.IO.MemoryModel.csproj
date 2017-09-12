@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net47</TargetFrameworks>
+    <TargetFrameworks>net47;netstandard2.0</TargetFrameworks>
     <Authors>Martin Cerny</Authors>
     <Company>Xbim Ltd.</Company>
     <Description>An in memory version of an Ifc or STEP Model</Description>
@@ -22,6 +22,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+
+    <PackageReference Include="Xbim.Common" Version="5.0.0-Beta-330" />
 
     <PackageReference Include="Xbim.Ifc2x3.Extensions" Version="5.0.0-Beta-350" />
 
