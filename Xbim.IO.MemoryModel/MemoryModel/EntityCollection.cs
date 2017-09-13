@@ -196,8 +196,11 @@ namespace Xbim.IO.Memory
 
         public T New<T>(Action<T> initPropertiesFunc) where T : IInstantiableEntity
         {
-
-            var entity = Factory.New(_model, initPropertiesFunc, Interlocked.Increment(ref CurrentLabel), true);
+            T entity;
+            if (initPropertiesFunc != null)
+                entity = Factory.New(_model, initPropertiesFunc, Interlocked.Increment(ref CurrentLabel), true);
+            else
+                entity = Factory.New<T>(_model, Interlocked.Increment(ref CurrentLabel), true);
             AddReversible(entity);
             return entity;
         }
