@@ -30,7 +30,6 @@ namespace Xbim.IfcCore.UnitTests
                         insModel.InsertCopy(extrusion, new Common.XbimInstanceHandleMap(mm, insModel), null, false, true, true);
                         using (var partModel = new MemoryModel(new EntityFactory()))
                         {
-                            partModel.Header.FileSchema.Schemas.Add("IFC2X3");
                             partModel.LoadStep21Part(part);
                             Assert.IsTrue(insModel.Instances.Count == partModel.Instances.Count);
 
