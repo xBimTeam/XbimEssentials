@@ -1,3 +1,14 @@
+
+// ==========================================================================
+//  GPPG error listing for yacc source file <StepP21Parser.y - 13/09/2017 16:52:22>
+// ==========================================================================
+//  Version:  1.5.2
+//  Machine:  DESKTOP-VAJP4OB
+//  DateTime: 13/09/2017 16:52:25
+//  UserName: Martin
+// ==========================================================================
+
+
 %{
  public bool InHeader = false;
 %}
@@ -52,14 +63,12 @@ startHeader : HEADER
 stepFile1	: beginStep startHeader headerEntities endSec endOfHeader model endSec endStep;
 stepFile2	: beginStep startHeader endSec endOfHeader model endSec endStep ;
 stepFile3	: beginStep startHeader endSec endOfHeader model error ;
-stepFile	
-	: stepFile1 
-	| stepFile2 
-	| stepFile3 
-	| model	{ EndParse(); }
-	;
+stepFile	: stepFile1 | stepFile2 | stepFile3 | model	{ EndParse(); }
 
 endSec	: ENDSEC{EndSec();}
+//^^^^
+// Error: Syntax error, unexpected anchoredSymbol
+// ----------------------------------------------
 	| ENDSEC trailingSpace {EndSec();}	
 	;  
 	
@@ -147,4 +156,6 @@ entityType	: ILLEGALCHAR
 
 %%
 
+
+// ==========================================================================
 

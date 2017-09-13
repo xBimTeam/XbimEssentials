@@ -3,10 +3,10 @@
 // (see accompanying GPPGcopyright.rtf)
 
 // GPPG version 1.5.2
-// Machine:  DESKTOP-S5GEMU1
-// DateTime: 23/01/2017 10:53:26
-// UserName: Claudio
-// Input file <StepP21Parser.y - 24/10/2016 20:53:49>
+// Machine:  DESKTOP-VAJP4OB
+// DateTime: 13/09/2017 16:53:33
+// UserName: Martin
+// Input file <StepP21Parser.y - 13/09/2017 16:53:29>
 
 // options: lines gplex
 
@@ -53,11 +53,11 @@ public class ScanObj {
 [GeneratedCodeAttribute( "Gardens Point Parser Generator", "1.5.2")]
 public partial class P21Parser: ShiftReduceParser<ValueType, LexLocation>
 {
-  // Verbatim content from StepP21Parser.y - 24/10/2016 20:53:49
+  // Verbatim content from StepP21Parser.y - 13/09/2017 16:53:29
 #line 2 "StepP21Parser.y"
  public bool InHeader = false;
 #line default
-  // End verbatim content from StepP21Parser.y - 24/10/2016 20:53:49
+  // End verbatim content from StepP21Parser.y - 13/09/2017 16:53:29
 
 #pragma warning disable 649
   private static Dictionary<int, string> aliases;
@@ -268,138 +268,143 @@ public partial class P21Parser: ShiftReduceParser<ValueType, LexLocation>
     {InHeader=true; BeginHeader();}
 #line default
         break;
+      case 14: // stepFile -> model
+#line 59 "StepP21Parser.y"
+         { EndParse(); }
+#line default
+        break;
       case 15: // endSec -> ENDSEC
-#line 57 "StepP21Parser.y"
+#line 62 "StepP21Parser.y"
                {EndSec();}
 #line default
         break;
       case 16: // endSec -> ENDSEC, trailingSpace
-#line 58 "StepP21Parser.y"
+#line 63 "StepP21Parser.y"
                         {EndSec();}
 #line default
         break;
       case 19: // headerEntity -> entityType, listArgument, ';'
-#line 64 "StepP21Parser.y"
+#line 69 "StepP21Parser.y"
                                            {EndHeaderEntity();}
 #line default
         break;
       case 21: // endOfHeader -> DATA
-#line 68 "StepP21Parser.y"
+#line 73 "StepP21Parser.y"
  {  InHeader=false; EndHeader();  }
 #line default
         break;
       case 22: // argument -> IDENTITY
-#line 71 "StepP21Parser.y"
+#line 76 "StepP21Parser.y"
                             {SetObjectValue(CurrentSemanticValue.strVal);}
 #line default
         break;
       case 23: // argument -> INTEGER
-#line 72 "StepP21Parser.y"
+#line 77 "StepP21Parser.y"
                         {SetIntegerValue(CurrentSemanticValue.strVal);}
 #line default
         break;
       case 24: // argument -> FLOAT
-#line 73 "StepP21Parser.y"
+#line 78 "StepP21Parser.y"
                           {SetFloatValue(CurrentSemanticValue.strVal);}
 #line default
         break;
       case 25: // argument -> STRING
-#line 74 "StepP21Parser.y"
+#line 79 "StepP21Parser.y"
                        {SetStringValue(CurrentSemanticValue.strVal);}
 #line default
         break;
       case 26: // argument -> BOOLEAN
-#line 75 "StepP21Parser.y"
+#line 80 "StepP21Parser.y"
                         {SetBooleanValue(CurrentSemanticValue.strVal);}
 #line default
         break;
       case 27: // argument -> ENUM
-#line 76 "StepP21Parser.y"
+#line 81 "StepP21Parser.y"
                          {SetEnumValue(CurrentSemanticValue.strVal);}
 #line default
         break;
       case 28: // argument -> HEXA
-#line 77 "StepP21Parser.y"
+#line 82 "StepP21Parser.y"
                          {SetHexValue(CurrentSemanticValue.strVal);}
 #line default
         break;
       case 29: // argument -> NONDEF
-#line 78 "StepP21Parser.y"
+#line 83 "StepP21Parser.y"
                        {SetNonDefinedValue();}
 #line default
         break;
       case 30: // argument -> OVERRIDE
-#line 79 "StepP21Parser.y"
+#line 84 "StepP21Parser.y"
                          {SetOverrideValue();}
 #line default
         break;
       case 32: // argument -> listType, listArgument
-#line 81 "StepP21Parser.y"
+#line 86 "StepP21Parser.y"
                           {EndNestedType(CurrentSemanticValue.strVal);}
 #line default
         break;
       case 33: // listType -> TYPE
-#line 85 "StepP21Parser.y"
+#line 90 "StepP21Parser.y"
  {  BeginNestedType(CurrentSemanticValue.strVal);  }
 #line default
         break;
       case 34: // beginList -> '('
-#line 88 "StepP21Parser.y"
+#line 93 "StepP21Parser.y"
  {  BeginList(); }
 #line default
         break;
       case 35: // endList -> ')'
-#line 91 "StepP21Parser.y"
+#line 96 "StepP21Parser.y"
  { EndList(); }
 #line default
         break;
       case 41: // argumentList -> argumentList, error
-#line 99 "StepP21Parser.y"
+#line 104 "StepP21Parser.y"
                       {SetErrorMessage();}
 #line default
         break;
       case 44: // bloc -> entityLabel, '=', entity, ';'
-#line 104 "StepP21Parser.y"
+#line 109 "StepP21Parser.y"
                                   {EndEntity();}
 #line default
         break;
       case 45: // bloc -> entityLabel, '=', beginScope, model, endScope, entity, ';'
-#line 105 "StepP21Parser.y"
+#line 110 "StepP21Parser.y"
                                                        {EndEntity();}
 #line default
         break;
       case 46: // bloc -> entityLabel, '=', beginScope, endScope, entity, ';'
-#line 106 "StepP21Parser.y"
+#line 111 "StepP21Parser.y"
                                                  {EndEntity();}
 #line default
         break;
       case 47: // bloc -> error
-#line 107 "StepP21Parser.y"
+#line 112 "StepP21Parser.y"
           {SetErrorMessage();EndEntity();}
 #line default
         break;
       case 53: // uniqueID -> IDENTITY
-#line 119 "StepP21Parser.y"
+#line 124 "StepP21Parser.y"
  {   SetObjectValue(CurrentSemanticValue.strVal);  }
 #line default
         break;
       case 56: // beginExport -> '/'
-#line 125 "StepP21Parser.y"
+#line 130 "StepP21Parser.y"
  {  BeginList();  }
 #line default
         break;
       case 59: // entityLabel -> ENTITY
-#line 134 "StepP21Parser.y"
+#line 139 "StepP21Parser.y"
  {  NewEntity(CurrentSemanticValue.strVal);  }
 #line default
         break;
       case 60: // entityType -> TYPE
-#line 137 "StepP21Parser.y"
+#line 142 "StepP21Parser.y"
  {  SetType(CurrentSemanticValue.strVal);  }
 #line default
         break;
       case 61: // entityType -> ILLEGALCHAR
-#line 140 "StepP21Parser.y"
+#line 145 "StepP21Parser.y"
  {  CharacterError();  }
 #line default
         break;
@@ -417,7 +422,7 @@ public partial class P21Parser: ShiftReduceParser<ValueType, LexLocation>
         return CharToString((char)terminal);
   }
 
-#line 144 "StepP21Parser.y"
+#line 149 "StepP21Parser.y"
 
 
 #line default
