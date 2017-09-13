@@ -11,6 +11,7 @@ using Xbim.Common.Exceptions;
 using Xbim.Common.Geometry;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
+using Xbim.IO.MemoryModel;
 using Xbim.IO.Step21;
 using Xbim.IO.Xml;
 using Xbim.IO.Xml.BsConf;
@@ -449,10 +450,95 @@ namespace Xbim.IO.Memory
         /// <param name="streamSize"></param>
         /// <param name="progDelegate"></param>
         /// <returns>Number of errors in parsing. Always check this to be null or the model might be incomplete.</returns>
+        public virtual int LoadStep21Part(string data)
+        {
+            var parser = new PartialParser(data, Metadata)
+            {
+                Logger = Logger
+            };
+            if (Header == null)
+                Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty, this);
+
+            parser.EntityCreate += (string name, long? label, bool header, out int[] ints) =>
+            {
+                //allow all attributes to be parsed
+                ints = null;
+
+                if (header)
+                {
+                    switch (name)
+                    {
+                        case "FILE_DESCRIPTION":
+                            return Header.FileDescription;
+                        case "FILE_NAME":
+                            return Header.FileName;
+                        case "FILE_SCHEMA":
+                            return Header.FileSchema;
+                        default:
+                            return null;
+                    }
+                }
+
+                if (label == null)
+                    return _instances.Factory.New(name);
+
+                var typeId = Metadata.ExpressTypeId(name);
+                var ent = _instances.Factory.New(this, typeId, (int)label, true);
+
+                // if entity is null do not add so that the file load operation can survive an illegal entity
+                // e.g. an abstract class instantiation.
+                if (ent != null)
+                    _instances.InternalAdd(ent);
+                else
+                {
+                    var msg = $"Error in file at label {label} for type {name}.";
+                    if (Metadata.ExpressType(typeId).Type.GetTypeInfo().IsAbstract)
+                    {
+                        msg = string.Format("Illegal element in file; cannot instantiate the abstract type {0} at label {1}.", name, label);
+                    }
+                    Logger?.LogError(msg);
+                }
+
+                //make sure that new added entities will have higher labels to avoid any clashes
+                if (label >= _instances.CurrentLabel)
+                    _instances.CurrentLabel = (int)label;
+                return ent;
+            };
+            try
+            {
+                parser.Parse();
+
+                //fix header with the schema if it was not a part of the data
+                if (Header.FileSchema.Schemas.Count == 0)
+                {
+                    foreach (var s in _instances.Factory.SchemasIds)
+                    {
+                        Header.FileSchema.Schemas.Add(s.ToUpperInvariant());
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                var position = parser.CurrentPosition;
+                throw new XbimParserException(string.Format("Parser failed on line {0}, column {1}", position.EndLine, position.EndColumn), e);
+            }
+
+            return parser.ErrorCount;
+        }
+
+        /// <summary>
+        /// Opens the model from STEP21 file. 
+        /// </summary>
+        /// <param name="stream">Path to the file</param>
+        /// <param name="streamSize"></param>
+        /// <param name="progDelegate"></param>
+        /// <returns>Number of errors in parsing. Always check this to be null or the model might be incomplete.</returns>
         public virtual int LoadStep21(Stream stream, long streamSize, ReportProgressDelegate progDelegate=null)
         {
-            var parser = new XbimP21Parser(stream, Metadata, streamSize);
-            parser.Logger = Logger;
+            var parser = new XbimP21Parser(stream, Metadata, streamSize)
+            {
+                Logger = Logger
+            };
             if (progDelegate != null) parser.ProgressStatus += progDelegate;
             var first = true;
             Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty,this);

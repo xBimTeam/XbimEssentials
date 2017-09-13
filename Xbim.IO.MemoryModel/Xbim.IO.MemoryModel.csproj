@@ -23,7 +23,7 @@
 
   <ItemGroup>
 
-    <PackageReference Include="Xbim.Common" Version="5.0.0-Beta-330" />
+    <PackageReference Include="Xbim.Common" Version="5.0.0-Beta-381" />
 
     <PackageReference Include="Xbim.Ifc2x3.Extensions" Version="5.0.0-Beta-350" />
 

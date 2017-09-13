@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using Xbim.Common;
@@ -379,6 +380,39 @@ namespace Xbim.IO
             catch (Exception e)
             {
                 throw new XbimException(string.Format("General failure in InsertCopy ({0})", e.Message), e);
+            }
+        }
+        #endregion
+
+        #region Partial file
+        /// <summary>
+        /// Writes data island of direct references into the writer
+        /// </summary>
+        /// <param name="model">Model to be used</param>
+        /// <param name="root">Entity from the model to be used as the root of data island</param>
+        /// <param name="writer">Writer to be used</param>
+        /// <param name="written">List of entities written. In case multiple calls to this function are attempted using the same
+        /// result stream this will make sure that the same entity gets serialized only once.</param>
+        public static void WritePartialFile(IModel model, IPersistEntity root, TextWriter writer, HashSet<int> written)
+        {
+            WriteEntityRecursive(root, model.Metadata, writer, written);
+        }
+
+        private static void WriteEntityRecursive(IPersistEntity entity, ExpressMetaData metadata, TextWriter writer, HashSet<int> written)
+        {
+            if (written.Contains(entity.EntityLabel))
+                return;
+
+            Step21.Part21Writer.WriteEntity(entity, writer, metadata);
+            written.Add(entity.EntityLabel);
+
+            var references = entity as IContainsEntityReferences;
+            if (references == null)
+                return;
+
+            foreach (var item in references.References)
+            {
+                WriteEntityRecursive(item, metadata, writer, written);
             }
         }
         #endregion
