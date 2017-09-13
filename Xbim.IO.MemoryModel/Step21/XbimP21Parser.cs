@@ -194,9 +194,8 @@ namespace Xbim.IO.Step21
         {
             if (InHeader)
             {
-                int[] reqParams;
                 // instantiates an empty IPersist from the header information
-                var t = EntityCreate(entityTypeName, null, InHeader, out reqParams);
+                var t = EntityCreate(entityTypeName, null, InHeader, out int[] reqParams);
                 // then attaches it to a new Part21Entity, this will be processed later from the _processStack
                 // to debug value initialisation place a breakpoint on the Parse() function of 
                 // StepFileName, StepFileSchema or StepFileDescription classes.
@@ -209,8 +208,7 @@ namespace Xbim.IO.Step21
             else
             {
                 var p21 = _processStack.Peek();
-                int[] reqProps;
-                p21.Entity = EntityCreate(entityTypeName, p21.EntityLabel, InHeader, out reqProps);
+                p21.Entity = EntityCreate(entityTypeName, p21.EntityLabel, InHeader, out int[] reqProps);
                 p21.RequiredParameters = reqProps;
             }
             if (Cancel) YYAccept();
@@ -352,9 +350,8 @@ namespace Xbim.IO.Step21
 
         protected override void BeginNestedType(string value)
         {
-            int[] reqProps;
             if (EntityCreate != null)
-                CurrentInstance = new Part21Entity(EntityCreate(value, null, InHeader, out reqProps))
+                CurrentInstance = new Part21Entity(EntityCreate(value, null, InHeader, out int[] reqProps))
                 {
                     RequiredParameters = reqProps
                 };
@@ -425,8 +422,7 @@ namespace Xbim.IO.Step21
             if (_deferListItems) return false;
             try
             {
-                IPersist refEntity;
-                if (_entities.TryGetValue(refId, out refEntity) && host != null)
+                if (_entities.TryGetValue(refId, out IPersist refEntity) && host != null)
                 {
                     PropertyValue.Init(refEntity);
                     (host).Parse(paramIndex, PropertyValue, listNextLevel);
