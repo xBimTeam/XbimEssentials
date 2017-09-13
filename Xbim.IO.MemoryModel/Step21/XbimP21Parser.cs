@@ -114,6 +114,7 @@ namespace Xbim.IO.Step21
                     Logger?.LogWarning("Entity #{0,-5} is referenced but could not be instantiated",
                                                       defRef.ReferenceId);
             }
+            _deferredReferences.Clear();
         }
 
         protected override void BeginHeader()

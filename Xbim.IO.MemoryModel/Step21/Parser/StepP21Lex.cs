@@ -5,10 +5,10 @@
 //  See accompanying file GPLEXcopyright.rtf.
 //
 //  GPLEX Version:  1.2.2
-//  Machine:  DESKTOP-S5GEMU1
-//  DateTime: 23/01/2017 10:53:26
-//  UserName: Claudio
-//  GPLEX input file <StepP21Lex.LEX - 22/01/2017 19:29:43>
+//  Machine:  DESKTOP-VAJP4OB
+//  DateTime: 13/09/2017 16:53:32
+//  UserName: Martin
+//  GPLEX input file <StepP21Lex.LEX - 13/09/2017 14:44:56>
 //  GPLEX frame file <embedded resource>
 //
 //  Option settings: verbose, parser, minimize
@@ -30,7 +30,7 @@ using System.Globalization;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
+
 
 namespace Xbim.IO.Parser
 {   
@@ -115,7 +115,7 @@ namespace Xbim.IO.Parser
         public ScanBuff Buffer { get { return buffer; } }
         
         private static int GetMaxParseToken() {
-     System.Reflection.FieldInfo f = typeof(Tokens).GetTypeInfo().GetField("maxParseToken");
+     System.Reflection.FieldInfo f = typeof(Tokens).GetField("maxParseToken");
             return (f == null ? int.MaxValue : (int)f.GetValue(null));
         }
         
@@ -1320,8 +1320,8 @@ BEGIN(INITIAL);
         public BufferException(string message) : base(message) { }
         public BufferException(string message, Exception innerException)
             : base(message, innerException) { }
-        //protected BufferException(SerializationInfo info, StreamingContext context)
-        //    : base(info, context) { }
+        protected BufferException(SerializationInfo info, StreamingContext context)
+            : base(info, context) { }
     }
 
     public abstract class ScanBuff
@@ -1641,7 +1641,7 @@ BEGIN(INITIAL);
             get
             {
                 StreamReader rdr = NextBlk.Target as StreamReader;
-                return (rdr == null ? "raw-bytes" : rdr.CurrentEncoding.EncodingName/*BodyName*/);
+                return (rdr == null ? "raw-bytes" : rdr.CurrentEncoding.BodyName);
             }
         }
 

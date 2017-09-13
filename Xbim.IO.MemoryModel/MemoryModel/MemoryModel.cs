@@ -12,6 +12,7 @@ using Xbim.Common.Geometry;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
 using Xbim.IO.MemoryModel;
+using Xbim.IO.Parser;
 using Xbim.IO.Step21;
 using Xbim.IO.Xml;
 using Xbim.IO.Xml.BsConf;
@@ -27,8 +28,8 @@ namespace Xbim.IO.Memory
         {
             using (var zipStream = new ZipArchive(fileStream))
             {
-                return zipStream.Entries.FirstOrDefault(z=>z.Name.IsStepTextFile()); //ignores xbim and zip files
-            }          
+                return zipStream.Entries.FirstOrDefault(z => z.Name.IsStepTextFile()); //ignores xbim and zip files
+            }
         }
 
         public static IStepFileHeader GetFileHeader(string fileName)
@@ -52,7 +53,7 @@ namespace Xbim.IO.Memory
                         if (entry == null) throw new FileLoadException($"File does not contain a valid model: {fileName}");
                         using (var reader = entry.Open())
                         {
-                            if(entry.Name.IsStepTextFile())
+                            if (entry.Name.IsStepTextFile())
                                 return GetStepFileHeader(reader, new MemoryModel(new Xbim.Ifc4.EntityFactory())); //using a dummy model to get the assembly correct
                             if (entry.Name.IsStepXmlFile())
                                 return XbimXmlReader4.ReadHeader(reader);
@@ -66,7 +67,7 @@ namespace Xbim.IO.Memory
                     throw new FileLoadException($"File is an invalid zip format: {fileName}");
                 }
             }
-           
+
             else if (fileName.IsStepXmlFile())
             {
                 using (var fileStream = File.OpenRead(fileName))
@@ -81,12 +82,12 @@ namespace Xbim.IO.Memory
         public static IStepFileHeader GetStepFileHeader(Stream stream, IModel model)
         {
             var parser = new XbimP21Parser(stream, null, -1);
-           
-            var stepHeader = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty,model);
+
+            var stepHeader = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty, model);
             parser.EntityCreate += (string name, long? label, bool header, out int[] ints) =>
             {
-                    //allow all attributes to be parsed
-                    ints = null;
+                //allow all attributes to be parsed
+                ints = null;
                 if (header)
                 {
                     switch (name)
@@ -102,7 +103,7 @@ namespace Xbim.IO.Memory
                     }
                 }
                 parser.Cancel = true; //done enough
-                    return null;
+                return null;
             };
             parser.Parse();
             return stepHeader;
@@ -123,7 +124,7 @@ namespace Xbim.IO.Memory
 
             _entityFactory = entityFactory;
             _instances = new EntityCollection(this, labelFrom);
-            Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults,this);
+            Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults, this);
             foreach (var schemasId in _instances.Factory.SchemasIds)
                 Header.FileSchema.Schemas.Add(schemasId);
             ModelFactors = new XbimModelFactors(Math.PI / 180, 1e-3, 1e-5);
@@ -171,10 +172,10 @@ namespace Xbim.IO.Memory
             return dropped;
         }
 
-        
+
         private void TryDrop(IPersistEntity entity, HashSet<IPersistEntity> dropped)
         {
-            
+
             if (!dropped.Add(entity)) return; //if the entity is in the map do not delete it again
             if (!_instances.Contains(entity)) return; //already gone
             _instances.RemoveReversible(entity);
@@ -186,7 +187,7 @@ namespace Xbim.IO.Memory
                 {
                     var propVal = ifcProperty.PropertyInfo.GetValue(entity, null);
                     var iPersist = propVal as IPersistEntity;
-                    if(iPersist != null)
+                    if (iPersist != null)
                         TryDrop(iPersist, dropped);
                     else if (propVal is IExpressEnumerable)
                     {
@@ -196,9 +197,9 @@ namespace Xbim.IO.Memory
                         if (genType != null && typeof(IPersistEntity).GetTypeInfo().IsAssignableFrom(genType))
                         {
                             foreach (var item in ((IExpressEnumerable)propVal).OfType<IPersistEntity>())
-                                TryDrop(item,  dropped);
+                                TryDrop(item, dropped);
                         }
-                    }  
+                    }
                 }
             }
         }
@@ -214,13 +215,13 @@ namespace Xbim.IO.Memory
         {
             ModelHelper.Delete(this, entity, e => _instances.RemoveReversible(e));
         }
-       
+
 
         public virtual ITransaction BeginTransaction(string name)
         {
             if (CurrentTransaction != null)
                 throw new XbimException("Transaction is opened already.");
-            if(InverseCache != null)
+            if (InverseCache != null)
                 throw new XbimException("Transaction can't be open when cache is in operation.");
 
             var txn = new Transaction(this);
@@ -260,13 +261,13 @@ namespace Xbim.IO.Memory
                     _transactionReference = new WeakReference(value);
                 else
                     _transactionReference.Target = value;
-            } 
+            }
         }
 
         public virtual IModelFactors ModelFactors { get; private set; }
         public ExpressMetaData Metadata { get; private set; }
 
-       
+
         public virtual void ForEach<TSource>(IEnumerable<TSource> source, Action<TSource> body) where TSource : IPersistEntity
         {
             foreach (var entity in source)
@@ -362,7 +363,7 @@ namespace Xbim.IO.Memory
             using (var file = File.OpenRead(path))
             {
                 LoadXml(file, file.Length, progDelegate);
-               
+
             }
         }
 
@@ -374,7 +375,7 @@ namespace Xbim.IO.Memory
             {
                 var reader3 = new IfcXmlReader(GetOrCreateXMLEntity, entity => { }, Metadata);
                 if (progDelegate != null) reader3.ProgressStatus += progDelegate;
-                Header = reader3.Read(stream,this);
+                Header = reader3.Read(stream, this);
                 if (progDelegate != null) reader3.ProgressStatus -= progDelegate;
             }
             else
@@ -385,7 +386,7 @@ namespace Xbim.IO.Memory
                 if (progDelegate != null) xmlReader.ProgressStatus -= progDelegate;
             }
 
-            if(Header.FileSchema.Schemas == null)
+            if (Header.FileSchema.Schemas == null)
                 Header.FileSchema.Schemas = new List<string>();
             if (!Header.FileSchema.Schemas.Any())
                 Header.FileSchema.Schemas.Add(schema);
@@ -394,24 +395,24 @@ namespace Xbim.IO.Memory
             _read.Clear();
         }
 
-        private readonly Dictionary<int, IPersistEntity>  _read = new Dictionary<int, IPersistEntity>();
+        private readonly Dictionary<int, IPersistEntity> _read = new Dictionary<int, IPersistEntity>();
         private IPersistEntity GetOrCreateXMLEntity(int label, Type type)
-                    {
-                        IPersistEntity exist;
+        {
+            IPersistEntity exist;
             if (_read.TryGetValue(label, out exist))
-                            return exist;
+                return exist;
 
-                        var ent = _instances.Factory.New(this, type, label, true);
-                        _instances.InternalAdd(ent);
+            var ent = _instances.Factory.New(this, type, label, true);
+            _instances.InternalAdd(ent);
             _read.Add(label, ent);
-                        return ent;
+            return ent;
         }
 
         public virtual void LoadZip(string file, ReportProgressDelegate progDelegate = null)
         {
             using (var stream = File.OpenRead(file))
             {
-                LoadZip(stream, progDelegate);                
+                LoadZip(stream, progDelegate);
             }
         }
 
@@ -425,15 +426,15 @@ namespace Xbim.IO.Memory
         {
             using (var zipStream = new ZipArchive(stream))
             {
-                var zipContent =  zipStream.Entries.FirstOrDefault(z => z.Name.IsStepTextFile()); //ignores xbim and zip files
-                if(zipContent.Name.IsStepTextFile())
+                var zipContent = zipStream.Entries.FirstOrDefault(z => z.Name.IsStepTextFile()); //ignores xbim and zip files
+                if (zipContent.Name.IsStepTextFile())
                 {
                     using (var reader = zipContent.Open())
                     {
                         LoadStep21(reader, zipContent.Length, progDelegate);
                     }
                 }
-                else if(zipContent.Name.IsStepXmlFile())
+                else if (zipContent.Name.IsStepXmlFile())
                 {
                     using (var reader = zipContent.Open())
                     {
@@ -443,19 +444,27 @@ namespace Xbim.IO.Memory
             }
         }
 
-        /// <summary>
-        /// Opens the model from STEP21 file. 
-        /// </summary>
-        /// <param name="stream">Path to the file</param>
-        /// <param name="streamSize"></param>
-        /// <param name="progDelegate"></param>
-        /// <returns>Number of errors in parsing. Always check this to be null or the model might be incomplete.</returns>
-        public virtual int LoadStep21Part(string data)
+        public int LoadStep21Part(Stream data)
         {
             var parser = new PartialParser(data, Metadata)
             {
                 Logger = Logger
             };
+            return LoadStep21Part(parser);
+        }
+
+        public int LoadStep21Part(string data)
+        {
+            var parser = new PartialParser(data, Metadata)
+            {
+                Logger = Logger
+            };
+            return LoadStep21Part(parser);
+        }
+
+
+        private int LoadStep21Part(PartialParser parser)
+        {
             if (Header == null)
                 Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty, this);
 
@@ -473,6 +482,9 @@ namespace Xbim.IO.Memory
                         case "FILE_NAME":
                             return Header.FileName;
                         case "FILE_SCHEMA":
+                            if (Header.FileSchema != null)
+                                //set to new schema if it was set before from EntityFactory data
+                                Header.FileSchema = new StepFileSchema();
                             return Header.FileSchema;
                         default:
                             return null;
@@ -533,7 +545,7 @@ namespace Xbim.IO.Memory
         /// <param name="streamSize"></param>
         /// <param name="progDelegate"></param>
         /// <returns>Number of errors in parsing. Always check this to be null or the model might be incomplete.</returns>
-        public virtual int LoadStep21(Stream stream, long streamSize, ReportProgressDelegate progDelegate=null)
+        public virtual int LoadStep21(Stream stream, long streamSize, ReportProgressDelegate progDelegate = null)
         {
             var parser = new XbimP21Parser(stream, Metadata, streamSize)
             {
@@ -541,7 +553,7 @@ namespace Xbim.IO.Memory
             };
             if (progDelegate != null) parser.ProgressStatus += progDelegate;
             var first = true;
-            Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty,this);
+            Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty, this);
             parser.EntityCreate += (string name, long? label, bool header, out int[] ints) =>
             {
                 //allow all attributes to be parsed
@@ -561,12 +573,12 @@ namespace Xbim.IO.Memory
                             return null;
                     }
                 }
-                
+
                 if (label == null)
                     return _instances.Factory.New(name);
                 //if this is a first non-header entity header is read completely by now. 
                 //So we should check if the schema declared in the file is the one declared in EntityFactory
-                if (first) 
+                if (first)
                 {
                     first = false;
                     //fix case if necessary
@@ -599,7 +611,7 @@ namespace Xbim.IO.Memory
                     }
                     Logger?.LogError(msg);
                 }
-                
+
                 //make sure that new added entities will have higher labels to avoid any clashes
                 if (label >= _instances.CurrentLabel)
                     _instances.CurrentLabel = (int)label;
@@ -614,7 +626,7 @@ namespace Xbim.IO.Memory
                 var position = parser.CurrentPosition;
                 throw new XbimParserException(string.Format("Parser failed on line {0}, column {1}", position.EndLine, position.EndColumn), e);
             }
-            
+
             if (progDelegate != null) parser.ProgressStatus -= progDelegate;
             return parser.ErrorCount;
         }
@@ -625,11 +637,11 @@ namespace Xbim.IO.Memory
         /// <param name="file">Path to the file</param>
         /// <param name="progDelegate"></param>
         /// <returns>Number of errors in parsing. Always check this to be null or the model might be incomplete.</returns>
-        public virtual int LoadStep21(string file, ReportProgressDelegate progDelegate=null)
+        public virtual int LoadStep21(string file, ReportProgressDelegate progDelegate = null)
         {
             using (var stream = File.OpenRead(file))
             {
-                var result = LoadStep21(stream, stream.Length, progDelegate);               
+                var result = LoadStep21(stream, stream.Length, progDelegate);
                 return result;
             }
         }
@@ -641,17 +653,17 @@ namespace Xbim.IO.Memory
         {
             return OpenRead(fileName, null, null);
         }
-        public static MemoryModel OpenRead(string fileName, ILogger logger , ReportProgressDelegate progressDel= null)
+        public static MemoryModel OpenRead(string fileName, ILogger logger, ReportProgressDelegate progressDel = null)
         {
-           
+
             var header = GetFileHeader(fileName); //an exception is thrown if this fails
-          
+
             switch (header.XbimSchemaVersion)
             {
-              
+
                 case XbimSchemaVersion.Ifc4:
-                    var mm4 = new MemoryModel(new Xbim.Ifc4.EntityFactory(),logger);
-                   
+                    var mm4 = new MemoryModel(new Xbim.Ifc4.EntityFactory(), logger);
+
                     if (fileName.IsStepTextFile())
                         mm4.LoadStep21(fileName, progressDel);
                     else if (fileName.IsStepZipFile())
@@ -660,9 +672,9 @@ namespace Xbim.IO.Memory
                         mm4.LoadXml(fileName, progressDel);
                     else
                         throw new FileLoadException($"Unsupported file type extension: {Path.GetExtension(fileName)}");
-                   
+
                     return mm4;
-                   
+
                 case XbimSchemaVersion.Ifc2X3:
                     var mm2x3 = new MemoryModel(new Xbim.Ifc2x3.EntityFactory(), logger);
                     if (fileName.IsStepTextFile())
@@ -673,11 +685,11 @@ namespace Xbim.IO.Memory
                         mm2x3.LoadXml(fileName, progressDel);
                     else
                         throw new FileLoadException($"Unsupported file type extension: {Path.GetExtension(fileName)}");
-                   
+
                     return mm2x3;
-                    
+
                 case XbimSchemaVersion.Cobie2X4:
-                case XbimSchemaVersion.Unsupported:                  
+                case XbimSchemaVersion.Unsupported:
                 default:
                     throw new FileLoadException($"Unsupported file format: {fileName}");
             }
@@ -707,7 +719,7 @@ namespace Xbim.IO.Memory
                         writer.Write(this, xmlWriter);
                         break;
                 }
-                
+
             }
         }
 
@@ -731,27 +743,27 @@ namespace Xbim.IO.Memory
                 new IPersistEntity[] { }
                 //start from root
                     .Concat(project)
-                //add all products not referenced in the project tree
+                    //add all products not referenced in the project tree
                     .Concat(products)
-                //add all relations which are not inversed
+                    //add all relations which are not inversed
                     .Concat(relations)
-                //make sure all other objects will get written
+                    //make sure all other objects will get written
                     .Concat(Instances);
             return all;
         }
 
         public virtual void SaveAsXMLZip(Stream stream, XmlWriterSettings xmlSettings, XbimXmlSettings xbimSettings = null, configuration configuration = null, ReportProgressDelegate progress = null)
         {
-            using (var zipStream = new ZipArchive(stream,ZipArchiveMode.Update))
+            using (var zipStream = new ZipArchive(stream, ZipArchiveMode.Update))
             {
                 var schema = _entityFactory.SchemasIds.FirstOrDefault();
-                var ext = schema != null && schema.StartsWith("IFC") ? ".ifcxml" : ".xml";             
+                var ext = schema != null && schema.StartsWith("IFC") ? ".ifcxml" : ".xml";
                 var newEntry = zipStream.CreateEntry($"data{ext}");
                 using (var writer = newEntry.Open())
                 {
                     SaveAsXml(writer, xmlSettings, xbimSettings, configuration, progress);
-                }    
-                
+                }
+
             }
         }
 
@@ -767,7 +779,7 @@ namespace Xbim.IO.Memory
                     SaveAsStep21(writer, progress);
                 }
 
-            }         
+            }
         }
 
         /// <summary>
@@ -779,7 +791,7 @@ namespace Xbim.IO.Memory
         {
             using (var writer = new StreamWriter(stream))
             {
-                SaveAsStep21(writer, progress);       
+                SaveAsStep21(writer, progress);
             }
         }
 
@@ -863,7 +875,7 @@ namespace Xbim.IO.Memory
         }
 
 
-       
+
 
 
         /// <summary>

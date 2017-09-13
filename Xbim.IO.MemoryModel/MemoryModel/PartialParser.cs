@@ -1,4 +1,5 @@
-﻿using Xbim.Common.Metadata;
+﻿using System.IO;
+using Xbim.Common.Metadata;
 using Xbim.IO.Parser;
 using Xbim.IO.Step21;
 
@@ -11,6 +12,10 @@ namespace Xbim.IO.MemoryModel
             var scanner = new Scanner();
             scanner.SetSource(data, 0);
             Scanner = scanner;
+        }
+
+        public PartialParser(Stream data, ExpressMetaData metadata) : base(data, metadata, 0)
+        {
         }
     }
 }
