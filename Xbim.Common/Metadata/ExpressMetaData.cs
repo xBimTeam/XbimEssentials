@@ -67,12 +67,14 @@ namespace Xbim.Common.Metadata
         /// <returns>Meta data structure for the schema defined within the module</returns>
         public static ExpressMetaData GetMetadata(Module module)
         {
+
+            ExpressMetaData result;
+            if (Cache.TryGetValue(module, out result))
+                return result;
             lock (_lock)
             {
-                ExpressMetaData result;
                 if (Cache.TryGetValue(module, out result))
                     return result;
-
                 result = new ExpressMetaData(module);
                 Cache.Add(module, result);
                 return result;
