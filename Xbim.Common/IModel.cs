@@ -126,20 +126,31 @@ namespace Xbim.Common
         /// object inside of using statement as IModel should only hold the weak reference to it.
         /// </summary>
         /// <returns></returns>
-        IInverseCache BeginCaching();
+        IInverseCache BeginInverseCaching();
+
         /// <summary>
-        /// Stops caching of inverse relations and forces it to dispose and not to be used anymore
+        /// Inverse cache created with BeginInverseCaching(). This should be a weak reference internally.
         /// </summary>
-        void StopCaching();
+        IInverseCache InverseCache { get; }
+
         /// <summary>
-        /// Implementations of IModel should only keep a weak reference to the caching object so that
-        /// user can use using statement to constrain existence of the cache. Entity collection might use
-        /// this cache to speed up search for inverse relations.
+        /// This will start to cache entities if IModel implementation uses any kind of
+        /// on-demand data loading and entity activation. This will keep entities alive and will
+        /// minimize number of read operations needed to get data. It will also grow in memory
+        /// which might not be desired. Always use this in using statement or dispose the object explicitly.
         /// </summary>
-	    IInverseCache InverseCache { get; }
+        /// <returns></returns>
+        IEntityCache BeginEntityCaching();
+
+        /// <summary>
+        /// Entity cache created with BeginEntityCaching(). This should be a weak reference internally.
+        /// </summary>
+        IEntityCache EntityCache { get; }
+
+        /// <summary>
+        /// Predefined schemas supported by xBIM
+        /// </summary>
         XbimSchemaVersion SchemaVersion { get; }
-
-
     }
 
 	public delegate void NewEntityHandler(IPersistEntity entity);

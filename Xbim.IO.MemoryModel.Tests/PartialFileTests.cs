@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using Xbim.Ifc2x3;
 using Xbim.Ifc2x3.GeometricModelResource;
@@ -43,6 +45,61 @@ namespace Xbim.IfcCore.UnitTests
 
                 }
             }
+        }
+
+        [TestMethod]
+        public void WeakReferenceTest()
+        {
+            var count = 10000000;
+
+            var weakCounter = new Counter();
+            var weak = new ObjectWithWeakReference() { Counter = weakCounter };
+            var strong = new ObjectWithStrongReference();
+
+            var w = Stopwatch.StartNew();
+            for (int i = 0; i < count; i++)
+            {
+                weak.Counter.Count++;
+            }
+            w.Stop();
+            Console.WriteLine($"Weak time: {w.ElapsedMilliseconds}ms");
+
+            w.Restart();
+            for (int i = 0; i < count; i++)
+            {
+                strong.Counter.Count++;
+            }
+            w.Stop();
+            Console.WriteLine($"Strong time: {w.ElapsedMilliseconds}ms");
+
+            Assert.IsTrue(weak.Counter.Count == strong.Counter.Count);
+        }
+
+        private class ObjectWithWeakReference
+        {
+            private WeakReference<Counter> _reference = new WeakReference<Counter>(new Counter());
+            public Counter Counter {
+                get
+                {
+                    if (_reference.TryGetTarget(out Counter c))
+                        return c;
+                    return null;
+                }
+                set
+                {
+                    _reference = new WeakReference<Counter>(value);
+                }
+            }
+        }
+
+        private class ObjectWithStrongReference
+        {
+            public Counter Counter { get; set; } = new Counter();
+        }
+
+            private class Counter
+        {
+            public int Count { get; set; } = 0;
         }
     }
 }
