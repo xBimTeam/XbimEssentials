@@ -19,8 +19,7 @@ namespace Xbim.IO.Memory
         internal void Add(int key, IPersistEntity value)
         {
             var index = GetIndex(value.GetType());
-            HashSet<int> set;
-            if (!index.TryGetValue(key, out set))
+            if (!index.TryGetValue(key, out HashSet<int> set))
             {
                 set = new HashSet<int>();
                 index.Add(key, set);
@@ -30,8 +29,7 @@ namespace Xbim.IO.Memory
 
         private Dictionary<int, HashSet<int>> GetIndex(Type type)
         {
-            Dictionary<int, HashSet<int>> result;
-            if (_index.TryGetValue(type, out result))
+            if (_index.TryGetValue(type, out Dictionary<int, HashSet<int>> result))
                 return result;
 
             result = new Dictionary<int, HashSet<int>>();
@@ -39,12 +37,23 @@ namespace Xbim.IO.Memory
             return result;
         }
 
-        public void Add<T>(string inverseProperty, IPersistEntity inverseArgument, IEnumerable<T> entities) where T : IPersistEntity
-        {
-            throw new NotImplementedException();
+        private bool _disposed;
+
+        public int Size {
+            get
+            {
+                var count = 0;
+                foreach (var item in _index)
+                {
+                    foreach (var kvp in item.Value)
+                    {
+                        count += kvp.Value.Count;
+                    }
+                }
+                return count;
+            }
         }
 
-        private bool _disposed;
         public void Dispose()
         {
             if (_disposed)
@@ -73,14 +82,18 @@ namespace Xbim.IO.Memory
         private IEnumerable<T> Get<T>(Type type, int key) where T : IPersistEntity
         {
             var index = GetIndex(type);
-            HashSet<int> labels;
-            if (index.TryGetValue(key, out labels))
+            if (index.TryGetValue(key, out HashSet<int> labels))
             {
                 foreach (var label in labels)
                 {
                     yield return (T)_entities[label];
                 }
             }
+        }
+
+        public void Clear()
+        {
+            _index.Clear();
         }
     }
 }

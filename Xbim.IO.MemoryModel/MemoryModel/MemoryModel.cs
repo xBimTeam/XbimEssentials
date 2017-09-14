@@ -293,7 +293,7 @@ namespace Xbim.IO.Memory
         /// </summary>
         public event DeletedEntityHandler EntityDeleted;
 
-        public IInverseCache BeginCaching()
+        public IInverseCache BeginInverseCaching()
         {
             if (CurrentTransaction != null)
                 throw new XbimException("Caching is not allowed within active transaction.");
@@ -868,15 +868,15 @@ namespace Xbim.IO.Memory
             return result;
         }
 
+        public IEntityCache BeginEntityCaching()
+        {
+            return EntityCacheReference = new MemoryEntityCache(this);
+        }
 
         public IGeometryStore GeometryStore
         {
             get { return _geometryStore ?? (_geometryStore = new InMemoryGeometryStore()); }
         }
-
-
-
-
 
         /// <summary>
         /// Returns a list of the handles to only the entities in this model
@@ -892,6 +892,29 @@ namespace Xbim.IO.Memory
         {
             get { return _entityFactory.SchemaVersion; }
         }
+
+        private WeakReference<MemoryEntityCache> _entityCacheReference;
+        internal MemoryEntityCache EntityCacheReference {
+            get
+            {
+                if (_entityCacheReference == null)
+                    return null;
+                if (_entityCacheReference.TryGetTarget(out MemoryEntityCache c))
+                    return c;
+                return null;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    _entityCacheReference = null;
+                    return;
+                }
+
+                _entityCacheReference = new WeakReference<MemoryEntityCache>(value);
+            }
+        }
+        public IEntityCache EntityCache => EntityCacheReference;
     }
 
     /// <summary>
