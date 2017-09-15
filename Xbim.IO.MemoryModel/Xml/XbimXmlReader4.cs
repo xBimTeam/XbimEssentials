@@ -165,8 +165,7 @@ namespace Xbim.IO.Xml
         {
             //type defined by xml attribute has always a priority over the name of the element
             var typeName = (input.GetAttribute("type", _xsi) ?? input.LocalName).ToUpper();
-            ExpressType expType;
-            if (_metadata.TryGetExpressType(typeName, out expType))
+            if (_metadata.TryGetExpressType(typeName, out ExpressType expType))
                 return expType;
 
             //try to replace WRAPPER keyword
@@ -185,9 +184,8 @@ namespace Xbim.IO.Xml
             if (expType == null)
                 throw new XbimParserException(typeName + "is not an IPersistEntity type");
 
-            bool isRef;
-            var id = GetId(input, out isRef);
-            if(!id.HasValue)
+            var id = GetId(input, out bool isRef);
+            if (!id.HasValue)
                 throw new XbimParserException("Wrong entity XML format");
 
             var entity = _getOrCreate(id.Value, expType.Type);
@@ -363,8 +361,7 @@ namespace Xbim.IO.Xml
                 var sValue = input.ReadElementContentAsString();
                 if (property.EnumerableType == expType.Type)
                 {
-                    IPropertyValue pValue;
-                    InitPropertyValue(expType.UnderlyingType, sValue, out pValue);
+                    InitPropertyValue(expType.UnderlyingType, sValue, out IPropertyValue pValue);
                     entity.Parse(pIndex, pValue, pos);
                     return;
                 }
@@ -472,8 +469,7 @@ namespace Xbim.IO.Xml
                     var underType = meta.UnderlyingComplexType;
                     foreach (var v in values)
                     {
-                        IPropertyValue pv;
-                        if(InitPropertyValue(underType, v, out pv))
+                        if (InitPropertyValue(underType, v, out IPropertyValue pv))
                             entity.Parse(pIndex, pv, pos);
                     }
                     return;
@@ -491,8 +487,7 @@ namespace Xbim.IO.Xml
                     var meta = _metadata.ExpressType(type);
                     type = meta.UnderlyingType;
                 }
-                IPropertyValue pVal;
-                if (InitPropertyValue(type, value, out pVal))
+                if (InitPropertyValue(type, value, out IPropertyValue pVal))
                     entity.Parse(pIndex, pVal, pos);
                 return;
             }
@@ -533,8 +528,7 @@ namespace Xbim.IO.Xml
 
                 for (var i = 0; i < values.Length; i++)
                 {
-                    IPropertyValue pValue;
-                    InitPropertyValue(valType, values[i], out pValue);
+                    InitPropertyValue(valType, values[i], out IPropertyValue pValue);
                     var idx = i / cardinality;
                     entity.Parse(pIndex, pValue, new [] {idx});
                 }
@@ -575,7 +569,6 @@ namespace Xbim.IO.Xml
         {
             isRefType = false;
             int? nextId = null;
-            ExpressType expressType;
             var strId = input.GetAttribute("id");
             if (string.IsNullOrEmpty(strId))
             {
@@ -584,8 +577,7 @@ namespace Xbim.IO.Xml
             }
             if (!string.IsNullOrEmpty(strId)) //must be a new instance or a reference to an existing one  
             {
-                int lookup;
-                if (!_idMap.TryGetValue(strId, out lookup))
+                if (!_idMap.TryGetValue(strId, out int lookup))
                 {
                     ++_lastId;
                     nextId = _lastId;
@@ -595,7 +587,7 @@ namespace Xbim.IO.Xml
                     nextId = lookup;
             }
             else if (
-                IsExpressEntity(input.LocalName, out expressType) && 
+                IsExpressEntity(input.LocalName, out ExpressType expressType) && 
                 !typeof(IExpressValueType).GetTypeInfo().IsAssignableFrom(expressType.Type)) //its a type with no identity, make one
             {
                 ++_lastId;

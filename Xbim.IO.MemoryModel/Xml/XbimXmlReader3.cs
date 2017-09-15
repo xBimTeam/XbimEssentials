@@ -15,7 +15,7 @@ namespace Xbim.IO.Xml
     // ReSharper disable once InconsistentNaming
     public delegate void WriteXMLEntityEventHandler( IPersistEntity entity, int count);
 
-    public class IfcXmlReader
+    public class XbimXmlReader3
     {
         public event ReportProgressDelegate ProgressStatus;
         private readonly ExpressMetaData _metadata;
@@ -33,7 +33,7 @@ namespace Xbim.IO.Xml
         /// <param name="finish">Delegate which will be called once the entity is finished (no changes will be made to it)
         /// This is useful for a DB when this is the point when it can be serialized to DB</param>
         /// <param name="metadata">Metadata model used to inspect Express types and their properties</param>
-        public IfcXmlReader(GetOrCreateEntity create, FinishEntity finish, ExpressMetaData metadata)
+        public XbimXmlReader3(GetOrCreateEntity create, FinishEntity finish, ExpressMetaData metadata)
         {
             if (create == null) throw new ArgumentNullException("create");
             if (finish == null) throw new ArgumentNullException("finish");
@@ -43,7 +43,7 @@ namespace Xbim.IO.Xml
             _metadata = metadata;
         }
 
-        static IfcXmlReader()
+        static XbimXmlReader3()
         {
             Primitives = new Dictionary<string, StepParserType>
             {
