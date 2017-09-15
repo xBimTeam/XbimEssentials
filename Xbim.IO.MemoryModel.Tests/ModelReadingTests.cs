@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
 using Xbim.Common;
 using Xbim.IO.Memory;
 
@@ -16,6 +17,18 @@ namespace Xbim.IfcCore.UnitTests
             {
                 Assert.IsTrue(mm.Instances.Count == 579);
             }
+        }
+
+        [TestMethod]
+        [DeploymentItem("TestFiles/SmallModelIfc2x3.ifc")]
+        public void OpenReadStepFormatTest()
+        {
+            using (var file = File.OpenRead("TestFiles/SmallModelIfc2x3.ifc"))
+            using (var mm = MemoryModel.OpenReadStep21(file))
+            {
+                Assert.IsTrue(mm.Instances.Count == 579);
+            }
+
         }
 
         [TestMethod]
@@ -45,6 +58,17 @@ namespace Xbim.IfcCore.UnitTests
                 Assert.IsTrue(mm.Instances.Count == 52);
             }
         }
+
+        [TestMethod]
+        [DeploymentItem("TestFiles/4walls1floorSite.ifcxml")]
+        public void OpenReadIfc2x3XmlFormatTest()
+        {
+            using (var mm = MemoryModel.OpenRead("TestFiles/4walls1floorSite.ifcxml"))
+            {
+                Assert.IsTrue(mm.Instances.Count == 579);
+            }
+        }
+
         [TestMethod]
         [DeploymentItem("TestFiles/SmallModelIfc4.ifc")]
         public void OpenReadSchemaVersionTest()
