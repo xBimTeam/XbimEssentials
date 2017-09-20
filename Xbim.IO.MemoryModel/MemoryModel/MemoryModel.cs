@@ -377,7 +377,7 @@ namespace Xbim.IO.Memory
             }
         }
 
-        public virtual IModelFactors ModelFactors { get; private set; }
+        public virtual IModelFactors ModelFactors { get;  set; }
         public ExpressMetaData Metadata { get; private set; }
 
 
