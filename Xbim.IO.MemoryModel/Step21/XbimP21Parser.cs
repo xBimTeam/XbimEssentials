@@ -55,10 +55,10 @@ namespace Xbim.IO.Step21
 
         protected readonly ExpressMetaData Metadata;
 
-        public XbimP21Parser(Stream strm, ExpressMetaData metadata, long streamSize)
+        public XbimP21Parser(Stream strm, long streamSize)
             : base(strm)
         {
-            Metadata = metadata;
+            //Metadata = metadata;
             var entityApproxCount = 5000;
             if (streamSize > 0)
             {
@@ -71,9 +71,9 @@ namespace Xbim.IO.Step21
             ErrorCount = 0;
         }
 
-        protected XbimP21Parser(ExpressMetaData metadata)
+        protected XbimP21Parser()
         {
-            Metadata = metadata;
+            //Metadata = metadata;
             const int entityApproxCount = 5000;
             _entities = new Dictionary<long, IPersist>(entityApproxCount);
             _deferredReferences = new List<DeferredReference>(entityApproxCount/2); //assume 50% deferred
@@ -210,7 +210,7 @@ namespace Xbim.IO.Step21
             {
                 var p21 = _processStack.Peek();
                 p21.Entity = EntityCreate(entityTypeName, p21.EntityLabel, InHeader, out int[] reqProps);
-                p21.RequiredParameters = reqProps;
+                //p21.RequiredParameters = reqProps;
             }
             if (Cancel) YYAccept();
         }
@@ -320,7 +320,7 @@ namespace Xbim.IO.Step21
                 PropertyValue.Init(_processStack.Pop().Entity);
                 CurrentInstance = _processStack.Peek();
                 if (CurrentInstance.Entity != null)
-                    CurrentInstance.ParameterSetter(CurrentInstance.CurrentParamIndex, PropertyValue, NestedIndex);
+                    CurrentInstance.Entity.Parse(CurrentInstance.CurrentParamIndex, PropertyValue, NestedIndex);
             }
             catch (Exception )
             {
@@ -365,7 +365,7 @@ namespace Xbim.IO.Step21
             try
             {
                 if (CurrentInstance.Entity != null)
-                    CurrentInstance.ParameterSetter(CurrentInstance.CurrentParamIndex, PropertyValue, NestedIndex);
+                    CurrentInstance.Entity.Parse(CurrentInstance.CurrentParamIndex, PropertyValue, NestedIndex);
             }
             catch (Exception )
             {
@@ -423,7 +423,7 @@ namespace Xbim.IO.Step21
             if (_deferListItems) return false;
             try
             {
-                if (_entities.TryGetValue(refId, out IPersist refEntity) && host != null)
+                if ( host != null && _entities.TryGetValue(refId, out IPersist refEntity) )
                 {
                     PropertyValue.Init(refEntity);
                     (host).Parse(paramIndex, PropertyValue, listNextLevel);

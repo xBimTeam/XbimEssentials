@@ -78,16 +78,16 @@ namespace Xbim.IO.Parser
         public int[] RequiredParameters;
 
        
-        public ParameterSetter ParameterSetter
-        {
-            get
-            {
-                if (RequiredParameters == null || RequiredParameters.Contains(CurrentParamIndex))
-                    return (Entity).Parse;
-                else
-                    return ParameterEater;
-            }
-        }
+        //public ParameterSetter ParameterSetter
+        //{
+        //    get
+        //    {
+        //        //if (RequiredParameters == null || RequiredParameters.Contains(CurrentParamIndex))
+        //            return Entity.Parse;
+        //        //else
+        //        //    return ParameterEater;
+        //    }
+        //}
 
         private void ParameterEater(int i, IPropertyValue v, int[] nestedIndex)
         {

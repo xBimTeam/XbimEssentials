@@ -249,7 +249,6 @@ namespace Xbim.IO.Memory
         private void InitFromEntityFactory(IEntityFactory entityFactory)
         {
             _entityFactory = entityFactory ?? throw new ArgumentNullException("entityFactory");
-            Metadata = ExpressMetaData.GetMetadata(entityFactory.GetType().GetTypeInfo().Module);
         }
 
         /// <summary>
@@ -378,8 +377,18 @@ namespace Xbim.IO.Memory
         }
 
         public virtual IModelFactors ModelFactors { get;  set; }
-        public ExpressMetaData Metadata { get; private set; }
 
+        private ExpressMetaData _metadata;
+
+        public ExpressMetaData Metadata {
+            get
+            {
+                return _metadata ?? 
+                    (_metadata = ExpressMetaData.GetMetadata(_entityFactory.GetType().GetTypeInfo().Module));
+            }
+        }
+
+        
 
         public virtual void ForEach<TSource>(IEnumerable<TSource> source, Action<TSource> body) where TSource : IPersistEntity
         {
@@ -559,7 +568,7 @@ namespace Xbim.IO.Memory
 
         public int LoadStep21Part(Stream data)
         {
-            var parser = new PartialParser(data, Metadata)
+            var parser = new PartialParser(data)
             {
                 Logger = Logger
             };
@@ -568,7 +577,7 @@ namespace Xbim.IO.Memory
 
         public int LoadStep21Part(string data)
         {
-            var parser = new PartialParser(data, Metadata)
+            var parser = new PartialParser(data)
             {
                 Logger = Logger
             };
@@ -607,8 +616,7 @@ namespace Xbim.IO.Memory
                 if (label == null)
                     return _entityFactory.New(name);
 
-                var typeId = Metadata.ExpressTypeId(name);
-                var ent = _entityFactory.New(this, typeId, (int)label, true);
+                var ent = _entityFactory.New(this, name, (int)label, true);
 
                 // if entity is null do not add so that the file load operation can survive an illegal entity
                 // e.g. an abstract class instantiation.
@@ -617,7 +625,7 @@ namespace Xbim.IO.Memory
                 else
                 {
                     var msg = $"Error in file at label {label} for type {name}.";
-                    if (Metadata.ExpressType(typeId).Type.GetTypeInfo().IsAbstract)
+                    if (Metadata.ExpressType(name).Type.GetTypeInfo().IsAbstract)
                     {
                         msg = string.Format("Illegal element in file; cannot instantiate the abstract type {0} at label {1}.", name, label);
                     }
@@ -660,7 +668,7 @@ namespace Xbim.IO.Memory
         /// <returns>Number of errors in parsing. Always check this to be null or the model might be incomplete.</returns>
         public virtual int LoadStep21(Stream stream, long streamSize, ReportProgressDelegate progDelegate = null)
         {
-            var parser = new XbimP21Parser(stream, Metadata, streamSize)
+            var parser = new XbimP21Parser(stream, streamSize)
             {
                 Logger = Logger
             };
@@ -718,8 +726,8 @@ namespace Xbim.IO.Memory
                     }
                 }
 
-                var typeId = Metadata.ExpressTypeId(name);
-                var ent = _entityFactory.New(this, typeId, (int)label, true);
+                //var typeId = Metadata.ExpressTypeId(name);
+                var ent = _entityFactory.New(this, name, (int)label, true);
 
                 // if entity is null do not add so that the file load operation can survive an illegal entity
                 // e.g. an abstract class instantiation.
@@ -728,7 +736,7 @@ namespace Xbim.IO.Memory
                 else
                 {
                     var msg = $"Error in file at label {label} for type {name}.";
-                    if (Metadata.ExpressType(typeId).Type.GetTypeInfo().IsAbstract)
+                    if (Metadata.ExpressType(name).Type.GetTypeInfo().IsAbstract)
                     {
                         msg = string.Format("Illegal element in file; cannot instantiate the abstract type {0} at label {1}.", name, label);
                     }
