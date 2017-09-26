@@ -24,7 +24,6 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
-using Xbim.IO.Optimized;
 using Xbim.IO.Parser;
 using Xbim.IO.Step21.Parser;
 
@@ -55,15 +54,13 @@ namespace Xbim.IO.Step21
             get { return ListNestLevel > 0 ? _nestedIndex.ToArray() : null; }
         }
 
-        //private Optimized.Scanner _scanner;
-        private IO.Parser.Scanner _scanner;
+        private Scanner _scanner;
         private bool _inHeader;
 
         public XbimP21Scanner(Stream strm, long streamSize)
         {
-            _scanner = new IO.Parser.Scanner(strm);
-            //_scanner = new Optimized.Scanner();
-            //_scanner.SetSource(new XbimScanBuffer(strm));
+            _scanner = new Scanner(strm);
+            //_scanner = new Scanner(new XbimScanBuffer(strm));
 
             var entityApproxCount = 50000;
             if (streamSize > 0)
@@ -76,15 +73,15 @@ namespace Xbim.IO.Step21
             _deferredReferences = new List<DeferredReference>(entityApproxCount / 2); //assume 50% deferred
         }
 
-        //public XbimP21Scanner(string data)
-        //{
-        //    _scanner = new Scanner();
-        //    _scanner.SetSource(data, 0);
+        public XbimP21Scanner(string data)
+        {
+            _scanner = new Scanner();
+            _scanner.SetSource(data, 0);
 
-        //    var entityApproxCount = 50000;
-        //    _entities = new Dictionary<long, IPersist>(entityApproxCount);
-        //    _deferredReferences = new List<DeferredReference>(entityApproxCount / 2); //assume 50% deferred
-        //}
+            var entityApproxCount = 50000;
+            _entities = new Dictionary<long, IPersist>(entityApproxCount);
+            _deferredReferences = new List<DeferredReference>(entityApproxCount / 2); //assume 50% deferred
+        }
 
         public void Parse()
         { 
@@ -254,6 +251,12 @@ namespace Xbim.IO.Step21
 
         protected void NewEntity(string entityLabel)
         {
+            var label = GetLabel(entityLabel);
+            NewEntity(label);
+        }
+
+        protected void NewEntity(int entityLabel)
+        {
             CurrentInstance = new Part21Entity(entityLabel);
             // Console.WriteLine(CurrentSemanticValue.strVal);
             _processStack.Push(CurrentInstance);
@@ -369,13 +372,45 @@ namespace Xbim.IO.Step21
             }
         }
 
+        private int GetLabel(string value)
+        {
+            var label = 0;
+            var order = 0;
+            // iterate from the end, skip thi first character '#'
+            for (int i = value.Length - 1; i > 0; i--)
+            {
+                var component = value[i] - '0';
+                label += component * magnitudes[order++];
+            }
+            return label;
+        }
+
+        private static readonly int[] magnitudes = new int[]
+        {
+            1,
+            10,
+            100,
+            1000,
+            10000,
+            100000,
+            1000000,
+            10000000,
+            100000000,
+            1000000000
+        };
+
         protected void SetObjectValue(string value)
         {
-            var refId = Convert.ToInt32(value.TrimStart('#'));
-            if (!TrySetObjectValue(CurrentInstance.Entity, CurrentInstance.CurrentParamIndex, refId, NestedIndex))
+            var label = GetLabel(value);
+            SetObjectValue(label);
+        }
+
+        protected void SetObjectValue(int value)
+        {
+            if (!TrySetObjectValue(CurrentInstance.Entity, CurrentInstance.CurrentParamIndex, value, NestedIndex))
             {
                 _deferredReferences.Add(new DeferredReference(CurrentInstance.CurrentParamIndex,
-                                                              CurrentInstance.Entity, refId, NestedIndex));
+                                                              CurrentInstance.Entity, value, NestedIndex));
                 if (ListNestLevel != 0) _deferListItems = true;
             }
             if (ListNestLevel == 0)
