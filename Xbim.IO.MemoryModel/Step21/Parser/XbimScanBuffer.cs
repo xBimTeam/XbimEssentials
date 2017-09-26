@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Xbim.IO.Optimized
+namespace Xbim.IO.Parser
 {
     public class XbimScanBuffer : ScanBuff
     {
@@ -18,6 +18,7 @@ namespace Xbim.IO.Optimized
         private Encoding _encoding = Encoding.ASCII;
         private const byte hash = (byte)'#';
         private const byte zero = (byte)'0';
+        private const byte markOffset = 5;
 
         public XbimScanBuffer(Stream stream)
         {
@@ -42,13 +43,10 @@ namespace Xbim.IO.Optimized
             var data = GetSubArray(begin, limit);
             var label = 0;
             var order = 0;
-            for (int i = data.Length - 1; i >= 0; i--)
+            // iterate from the end, skip thi first character '#'
+            for (int i = data.Length - 1; i > 0; i--)
             {
-                var component = data[i];
-                if (component == hash) //skip hash in the label
-                    continue;
-
-                component -= zero;
+                var component = data[i] - zero;
                 label += component * _magnitudes[order++];
             }
             return label;
@@ -130,14 +128,22 @@ namespace Xbim.IO.Optimized
 
         public override void Mark()
         {
+            if (_bufferPosition < markOffset)
+                return;
+
             // swap buffers
             var temp = _prevBuffer;
             _prevBuffer = _buffer;
             _buffer = temp;
 
-            _bufferOffset += _bufferPosition;
-            _prevBufferPosition = _bufferPosition;
-            _bufferPosition = 0;
+
+            _bufferOffset += _bufferPosition - markOffset;
+            _prevBufferPosition = _bufferPosition - markOffset;
+            _bufferPosition = markOffset;
+
+            //copy mark offset data to avoid data reading using both previous and current buffer most of the time
+            for (int i = 0; i < markOffset; i++)
+                _buffer[i] = _prevBuffer[_prevBufferPosition + i];
         }
     }
 }

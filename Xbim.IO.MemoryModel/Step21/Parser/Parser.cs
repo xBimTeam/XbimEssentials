@@ -50,6 +50,11 @@ namespace Xbim.IO.Parser
 
     public class Part21Entity
     {
+        public Part21Entity(int label)
+        {
+            EntityLabel = label;
+        }
+
         public Part21Entity(string label)
         {
             EntityLabel = Convert.ToInt64(label.TrimStart('#'));
