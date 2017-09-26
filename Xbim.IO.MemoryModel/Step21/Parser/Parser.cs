@@ -29,6 +29,8 @@ namespace Xbim.IO.Parser
     {
         private ILogger _logger;
         public ILogger Logger { get { return _logger; } set { _logger = value; } }
+
+
         public override void yyerror(string format, params object[] args)
         {
             var errmsg = string.Format(format, args);

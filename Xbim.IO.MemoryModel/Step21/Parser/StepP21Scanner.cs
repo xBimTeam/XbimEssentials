@@ -6,9 +6,9 @@
 //
 //  GPLEX Version:  1.2.2
 //  Machine:  DESKTOP-VAJP4OB
-//  DateTime: 26/09/2017 10:19:45
+//  DateTime: 26/09/2017 10:21:53
 //  UserName: Martin
-//  GPLEX input file <StepP21Lex.LEX - 26/09/2017 08:34:40>
+//  GPLEX input file <StepP21Scanner.LEX - 26/09/2017 10:21:49>
 //  GPLEX frame file <embedded resource>
 //
 //  Option settings: verbose, parser, minimize
@@ -31,8 +31,9 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Diagnostics.CodeAnalysis;
 
+using Xbim.IO.Parser;
 
-namespace Xbim.IO.Parser
+namespace Xbim.IO.Optimized
 {   
     /// <summary>
     /// Summary Canonical example of GPLEX automaton
@@ -131,12 +132,6 @@ namespace Xbim.IO.Parser
         const int COMMENT = 1;
 
 #region user code
-public static int Pass = 1;
-	public static bool emitPass = true;
-	public void SetValue()
-	{
-		yylval.strVal=yytext;
-	}
 #endregion user code
 
         int state;
@@ -2003,7 +1998,7 @@ int NextState() {
         case 11: // Recognized '[^)]',	Shortest string "&"
         case 12: // Recognized '[^)]',	Shortest string "'"
         case 18: // Recognized '[^)]',	Shortest string "."
-SetValue();  return((int)Tokens.MISC);
+return((int)Tokens.MISC);
             break;
         case 3: // Recognized '"\t"',	Shortest string "\t"
 ;
@@ -2033,7 +2028,7 @@ return((int)Tokens.OVERRIDE);
         case 20: // Recognized '[\-\+0-9][0-9]*',	Shortest string "0"
         case 63: // Recognized '[\-\+0-9][0-9]*',	Shortest string "00"
         case 74: // Recognized '[\-\+0-9][0-9]*',	Shortest string "+0"
-SetValue();  return((int)Tokens.INTEGER);
+return((int)Tokens.INTEGER);
             break;
         case 17: // Recognized '[,]',	Shortest string ","
 return (',');
@@ -2078,7 +2073,7 @@ return ('=');
         case 59: // Recognized '[a-zA-Z0-9_]+',	Shortest string "DAT"
         case 60: // Recognized '[a-zA-Z0-9_]+',	Shortest string "DATA"
         case 64: // Recognized '[a-zA-Z0-9_]+',	Shortest string "00E"
-SetValue(); return((int)Tokens.TYPE);
+return((int)Tokens.TYPE);
             break;
         case 32: // Recognized 'STEP;',	Shortest string "STEP;"
 return((int)Tokens.ISOSTEPSTART);
@@ -2110,12 +2105,12 @@ return((int)Tokens.DATA);
         case 62: // Recognized '[\-\+\.0-9][\.0-9]+((#INF)|(#IND))?',	Shortest string "+."
         case 67: // Recognized '[\-\+\.0-9][\.0-9]+((#INF)|(#IND))?',	Shortest string "+.#IND"
         case 69: // Recognized '[\-\+\.0-9][\.0-9]+((#INF)|(#IND))?',	Shortest string ".0"
-SetValue(); return((int)Tokens.FLOAT);
+return((int)Tokens.FLOAT);
             break;
         case 65: // Recognized '[\-\+\.0-9][\.0-9]+E[\-\+0-9][0-9]*',	Shortest string "+.E+"
         case 66: // Recognized '[\-\+\.0-9][\.0-9]+E[\-\+0-9][0-9]*',	Shortest string "00E0"
         case 73: // Recognized '[\-\+\.0-9][\.0-9]+E[\-\+0-9][0-9]*',	Shortest string ".0E0"
-SetValue(); return((int)Tokens.FLOAT);
+return((int)Tokens.FLOAT);
             break;
         case 68: // Recognized '"/*"',	Shortest string "/*"
 BEGIN(COMMENT);
@@ -2124,34 +2119,34 @@ BEGIN(COMMENT);
 return((int)Tokens.NONDEF);
             break;
         case 71: // Recognized '[\.][a-zA-Z0-9_ ]+[\.]',	Shortest string ".\x20."
-SetValue(); return((int)Tokens.ENUM);
+return((int)Tokens.ENUM);
             break;
         case 72: // Recognized '[\.][TF][\.]',	Shortest string ".F."
-SetValue(); return((int)Tokens.BOOLEAN);
+return((int)Tokens.BOOLEAN);
             break;
         case 75: // Recognized '[\']([\001-\046\050-\377]|(\'\')|(\\S\\.))*[\']',	Shortest string "''"
         case 76: // Recognized '[\']([\001-\046\050-\377]|(\'\')|(\\S\\.))*[\']',	Shortest string "'\\S\\'"
-SetValue();  return((int)Tokens.STRING);
+return((int)Tokens.STRING);
             break;
         case 77: // Recognized '&SCOPE',	Shortest string "&SCOPE"
 return((int)Tokens.SCOPE);
             break;
         case 78: // Recognized '#[0-9]+',	Shortest string "#0"
-SetValue(); return((int)Tokens.IDENTITY);
+return((int)Tokens.IDENTITY);
             break;
         case 79: // Recognized '#[0-9]+/=',	Shortest string "#0="
 _yytrunc(1); 
-SetValue(); return((int)Tokens.ENTITY);
+return((int)Tokens.ENTITY);
             break;
         case 80: // Recognized '#[0-9]+[ \t]*/=',	Shortest string "#0\t="
 _yytrunc(1); 
-SetValue(); return((int)Tokens.ENTITY);
+return((int)Tokens.ENTITY);
             break;
         case 81: // Recognized '[\"][0-9A-Fa-f]+[\"]',	Shortest string "\"0\""
-SetValue(); return((int)Tokens.HEXA);
+return((int)Tokens.HEXA);
             break;
         case 82: // Recognized '![a-zA-Z0-9_]+',	Shortest string "!0"
-SetValue(); return((int)Tokens.TYPE);
+return((int)Tokens.TYPE);
             break;
         case 83: // In <COMMENT> Recognized '"*/"',	Shortest string "*/"
 BEGIN(INITIAL);
