@@ -292,13 +292,13 @@ namespace Xbim.IO.Memory
             {
                 _internal.Remove(key,entity);
                 removed =_collection.Remove(entity.EntityLabel);
-                _naturalOrder.Remove(entity.EntityLabel);
+                _naturalOrder?.Remove(entity.EntityLabel);
             };
             Action undo = () =>
             {
                 _internal.Add(key,entity);
                 _collection.Add(entity.EntityLabel, entity);
-                _naturalOrder.Add(entity.EntityLabel);
+                _naturalOrder?.Add(entity.EntityLabel);
             };
 
             if (!_model.IsTransactional)

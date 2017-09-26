@@ -668,7 +668,7 @@ namespace Xbim.IO.Memory
         /// <returns>Number of errors in parsing. Always check this to be null or the model might be incomplete.</returns>
         public virtual int LoadStep21(Stream stream, long streamSize, ReportProgressDelegate progDelegate = null)
         {
-            var parser = new XbimP21Parser(stream, streamSize)
+            var parser = new XbimP21Scanner(stream, streamSize)
             {
                 Logger = Logger
             };
