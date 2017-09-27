@@ -510,7 +510,15 @@ namespace Xbim.IO.Memory
                     }
                 }
 
-                var typeId = Metadata.ExpressTypeId(name);
+                // ignore entities of unknown type instead of throwing fatal exception
+                var type = Metadata.ExpressType(name);
+                if (null == type)
+                {
+                    Log.Error(string.Format("Error in file at label {0} for type {1} - type is unknown", label, name));
+                    return null;
+                }
+
+                var typeId = type.TypeId;
                 var ent = _instances.Factory.New(this, typeId, (int)label, true);
 
                 // if entity is null do not add so that the file load operation can survive an illegal entity
