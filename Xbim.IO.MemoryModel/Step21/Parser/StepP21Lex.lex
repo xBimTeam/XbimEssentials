@@ -1,6 +1,6 @@
 %namespace Xbim.IO.Parser
 %x COMMENT
-%option verbose, summary
+%option verbose, summary, noCompressNext, noPersistBuffer
 
 %{
 	public static int Pass = 1;

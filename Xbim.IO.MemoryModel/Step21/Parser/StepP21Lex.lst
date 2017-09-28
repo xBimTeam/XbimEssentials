@@ -11,11 +11,11 @@ Start condition COMMENT:
 =============================================================================
 GPLEX: NFSA built.    7 msec
 =============================================================================
-GPLEX: DFSA built.    8 msec
+GPLEX: DFSA built.   17 msec
 =============================================================================
-GPLEX: DFSA minimized.   15 msec
+GPLEX: DFSA minimized.   11 msec
 =============================================================================
-GPLEX: Shortest strings found.    0 msec
+GPLEX: Shortest strings found.    1 msec
 =============================================================================
 DFSA Summary
 =============================================================================
@@ -25,13 +25,13 @@ Start condition INITIAL:
 Start condition COMMENT:
   number of dfsa states = 3, number of accept states = 1
 =============================================================================
-GPLEX: C# file emitted.   31 msec
+GPLEX: C# file emitted.   18 msec
 =============================================================================
 GPLEX Summary
 =============================================================================
 Total number of states = 110, total accept states = 83, backup states = 14
 Original state number was 133, minimized machine has 110 states
-Nextstate table compression was 84.10%, 4,477 entries Vs 28,160
+- Redundant row compression 28.18%, 20,224 entries Vs 28,160
 
 Backup state report --- 
 In <0>, after "\"" automaton could accept "[^)]" in state 8
