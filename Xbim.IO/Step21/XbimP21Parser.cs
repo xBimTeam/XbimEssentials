@@ -217,6 +217,12 @@ namespace Xbim.IO.Step21
 
         protected override void EndEntity()
         {
+            // Check if stack is empty to avoid exception
+            if (0 == _processStack.Count)
+            {
+                Logger.Error("Stack is empty");
+                return;
+            }
             var p21 = _processStack.Pop();
             //Debug.Assert(_processStack.Count == 0);
             CurrentInstance = null;
