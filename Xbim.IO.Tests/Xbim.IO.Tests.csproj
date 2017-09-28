@@ -182,6 +182,9 @@
     <None Include="TestFiles\InvalidType.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="TestFiles\Issue107.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TestFiles\LakesideRestaurant.cobieZip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
