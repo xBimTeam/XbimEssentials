@@ -29,6 +29,8 @@ namespace Xbim.IO.Parser
     {
         private ILogger _logger;
         public ILogger Logger { get { return _logger; } set { _logger = value; } }
+
+
         public override void yyerror(string format, params object[] args)
         {
             var errmsg = string.Format(format, args);
@@ -48,6 +50,11 @@ namespace Xbim.IO.Parser
 
     public class Part21Entity
     {
+        public Part21Entity(int label)
+        {
+            EntityLabel = label;
+        }
+
         public Part21Entity(string label)
         {
             EntityLabel = Convert.ToInt64(label.TrimStart('#'));

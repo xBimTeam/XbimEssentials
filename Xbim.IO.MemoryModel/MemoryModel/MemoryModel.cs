@@ -568,7 +568,7 @@ namespace Xbim.IO.Memory
 
         public int LoadStep21Part(Stream data)
         {
-            var parser = new PartialParser(data)
+            var parser = new XbimP21Scanner(data, -1)
             {
                 Logger = Logger
             };
@@ -577,7 +577,7 @@ namespace Xbim.IO.Memory
 
         public int LoadStep21Part(string data)
         {
-            var parser = new PartialParser(data)
+            var parser = new XbimP21Scanner(data)
             {
                 Logger = Logger
             };
@@ -585,7 +585,7 @@ namespace Xbim.IO.Memory
         }
 
 
-        private int LoadStep21Part(PartialParser parser)
+        private int LoadStep21Part(XbimP21Scanner parser)
         {
             if (Header == null)
                 Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty, this);
@@ -668,7 +668,7 @@ namespace Xbim.IO.Memory
         /// <returns>Number of errors in parsing. Always check this to be null or the model might be incomplete.</returns>
         public virtual int LoadStep21(Stream stream, long streamSize, ReportProgressDelegate progDelegate = null)
         {
-            var parser = new XbimP21Parser(stream, streamSize)
+            var parser = new XbimP21Scanner(stream, streamSize)
             {
                 Logger = Logger
             };

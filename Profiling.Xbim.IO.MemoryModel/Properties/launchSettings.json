@@ -2,7 +2,7 @@
   "profiles": {
     "Profiling.Xbim.IO.MemoryModel": {
       "commandName": "Project",
-      "commandLineArgs": "\"C:\\Users\\Steve\\Documents\\IfcModels\\Clinic_MEP_20110906_optimized.ifc\""
+      "commandLineArgs": "c:\\Users\\Martin\\Source\\Samples\\LakesideRestaurant.ifc"
     }
   }
 }
