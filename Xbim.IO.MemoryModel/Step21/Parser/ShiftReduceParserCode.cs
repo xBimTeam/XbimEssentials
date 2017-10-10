@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Diagnostics.CodeAnalysis;
 
+
 namespace QUT.Gppg {
     /// <summary>
     /// Abstract class for GPPG shift-reduce parsers.
@@ -748,7 +749,7 @@ namespace QUT.Gppg {
         /// <summary>
         /// The index of this state in the states array.
         /// </summary>
-        internal int number;
+        public int number;
 #endif
         internal Dictionary<int, int> ParserTable;   // Terminal -> ParseAction
         internal Dictionary<int, int> Goto;          // NonTerminal -> State;
