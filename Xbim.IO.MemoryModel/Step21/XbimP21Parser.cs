@@ -198,10 +198,7 @@ namespace Xbim.IO.Step21
                 // then attaches it to a new Part21Entity, this will be processed later from the _processStack
                 // to debug value initialisation place a breakpoint on the Parse() function of 
                 // StepFileName, StepFileSchema or StepFileDescription classes.
-                CurrentInstance = new Part21Entity(t)
-                {
-                    RequiredParameters = reqParams
-                };
+                CurrentInstance = new Part21Entity(t);
                 if (CurrentInstance != null) _processStack.Push(CurrentInstance);
             }
             else
@@ -348,10 +345,7 @@ namespace Xbim.IO.Step21
         protected override void BeginNestedType(string value)
         {
             if (EntityCreate != null)
-                CurrentInstance = new Part21Entity(EntityCreate(value, null, InHeader, out int[] reqProps))
-                {
-                    RequiredParameters = reqProps
-                };
+                CurrentInstance = new Part21Entity(EntityCreate(value, null, InHeader, out int[] reqProps));
             _processStack.Push(CurrentInstance);
             if (Cancel) YYAccept();
         }

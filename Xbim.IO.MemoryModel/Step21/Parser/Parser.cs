@@ -82,7 +82,6 @@ namespace Xbim.IO.Parser
 
 
         public int CurrentParamIndex = -1;
-        public int[] RequiredParameters;
 
        
         //public ParameterSetter ParameterSetter

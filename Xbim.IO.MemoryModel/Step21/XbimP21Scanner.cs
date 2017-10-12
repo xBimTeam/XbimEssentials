@@ -346,14 +346,11 @@ namespace Xbim.IO.Step21
             if (_inHeader)
             {
                 // instantiates an empty IPersist from the header information
-                var t = EntityCreate(entityTypeName, null, _inHeader, out int[] reqParams);
+                var t = EntityCreate(entityTypeName, null, _inHeader);
                 // then attaches it to a new Part21Entity, this will be processed later from the _processStack
                 // to debug value initialisation place a breakpoint on the Parse() function of 
                 // StepFileName, StepFileSchema or StepFileDescription classes.
-                CurrentInstance = new Part21Entity(t)
-                {
-                    RequiredParameters = reqParams
-                };
+                CurrentInstance = new Part21Entity(t);
                 if (CurrentInstance != null) _processStack.Push(CurrentInstance);
             }
             else
@@ -361,7 +358,7 @@ namespace Xbim.IO.Step21
                 if (ListNestLevel == -1)
                 {
                     var p21 = _processStack.Peek();
-                    p21.Entity = EntityCreate(entityTypeName, p21.EntityLabel, _inHeader, out int[] reqProps);
+                    p21.Entity = EntityCreate(entityTypeName, p21.EntityLabel, _inHeader);
                 }
                 else
                 {
@@ -542,10 +539,7 @@ namespace Xbim.IO.Step21
         protected void BeginNestedType(string value)
         {
             if (EntityCreate != null)
-                CurrentInstance = new Part21Entity(EntityCreate(value, null, _inHeader, out int[] reqProps))
-                {
-                    RequiredParameters = reqProps
-                };
+                CurrentInstance = new Part21Entity(EntityCreate(value, null, _inHeader));
             _processStack.Push(CurrentInstance);
             _isInNestedType = true;
         }
@@ -610,6 +604,6 @@ namespace Xbim.IO.Step21
         }
     }
 
-    public delegate IPersist CreateEntityDelegate(string className, long? label, bool headerEntity, out int[] i);
+    public delegate IPersist CreateEntityDelegate(string className, long? label, bool headerEntity);
 
 }
