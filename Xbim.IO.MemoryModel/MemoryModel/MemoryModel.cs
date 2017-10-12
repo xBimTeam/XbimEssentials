@@ -572,7 +572,7 @@ namespace Xbim.IO.Memory
             {
                 Logger = Logger
             };
-            return LoadStep21Part(parser);
+            return LoadStep21(parser);
         }
 
         public int LoadStep21Part(string data)
@@ -581,20 +581,22 @@ namespace Xbim.IO.Memory
             {
                 Logger = Logger
             };
-            return LoadStep21Part(parser);
+            return LoadStep21(parser);
         }
 
 
-        private int LoadStep21Part(XbimP21Scanner parser)
+        private int LoadStep21(XbimP21Scanner parser)
         {
             if (Header == null)
                 Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty, this);
 
-            parser.EntityCreate += (string name, long? label, bool header, out int[] ints) =>
+            if (_entityFactory == null && _factoryResolver == null)
             {
-                //allow all attributes to be parsed
-                ints = null;
+                    throw new XbimParserException("EntityFactory is not defined and no resolver is specified to create one. Data can't be created.");
+            }
 
+            parser.EntityCreate += (string name, long? label, bool header) =>
+            {
                 if (header)
                 {
                     switch (name)
@@ -611,6 +613,14 @@ namespace Xbim.IO.Memory
                         default:
                             return null;
                     }
+                }
+
+                if (_entityFactory == null)
+                {
+                    _entityFactory = _factoryResolver(Header.FileSchema.Schemas);
+                    if (_entityFactory == null)
+                        throw new XbimParserException($"Entity factory resolver didn't resolve factory for schema '{string.Join(", ", Header.FileSchema.Schemas)}'");
+                    InitFromEntityFactory(_entityFactory);
                 }
 
                 if (label == null)
@@ -646,7 +656,7 @@ namespace Xbim.IO.Memory
                 {
                     foreach (var s in _entityFactory.SchemasIds)
                     {
-                        Header.FileSchema.Schemas.Add(s.ToUpperInvariant());
+                        Header.FileSchema.Schemas.Add(s);
                     }
                 }
             }
@@ -654,6 +664,19 @@ namespace Xbim.IO.Memory
             {
                 var position = parser.CurrentPosition;
                 throw new XbimParserException(string.Format("Parser failed on line {0}, column {1}", position.EndLine, position.EndColumn), e);
+            }
+
+            //fix case if necessary
+            for (int i = 0; i < Header.FileSchema.Schemas.Count; i++)
+            {
+                var id = Header.FileSchema.Schemas[i];
+                var sid = _entityFactory.SchemasIds.FirstOrDefault(s => string.Equals(s, id, StringComparison.OrdinalIgnoreCase));
+                if (sid == null)
+                    throw new XbimParserException("Mismatch between schema defined in the file and schemas available in the data model.");
+
+                //if the case is different set it to the one from entity factory
+                if (id != sid)
+                    Header.FileSchema.Schemas[i] = sid;
             }
 
             return parser.ErrorCount;
@@ -673,93 +696,15 @@ namespace Xbim.IO.Memory
                 Logger = Logger
             };
             if (progDelegate != null) parser.ProgressStatus += progDelegate;
-            var first = true;
-            Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty, this);
-            parser.EntityCreate += (string name, long? label, bool header, out int[] ints) =>
-            {
-                //allow all attributes to be parsed
-                ints = null;
 
-                if (header)
-                {
-                    switch (name)
-                    {
-                        case "FILE_DESCRIPTION":
-                            return Header.FileDescription;
-                        case "FILE_NAME":
-                            return Header.FileName;
-                        case "FILE_SCHEMA":
-                            return Header.FileSchema;
-                        default:
-                            return null;
-                    }
-                }
-
-                if (_entityFactory == null)
-                {
-                    if (_factoryResolver == null)
-                        throw new XbimParserException("EntityFactory is not defined and no resolver is specified to create one. Data can't be created.");
-                    _entityFactory = _factoryResolver(Header.FileSchema.Schemas);
-                    if (_entityFactory == null)
-                        throw new XbimParserException($"Entity factory resolver didn't resolve factory for schema '{string.Join(", ", Header.FileSchema.Schemas)}'");
-                    InitFromEntityFactory(_entityFactory);
-                }
-
-                if (label == null)
-                    return _entityFactory.New(name);
-                //if this is a first non-header entity header is read completely by now. 
-                //So we should check if the schema declared in the file is the one declared in EntityFactory
-                if (first)
-                {
-                    first = false;
-                    //fix case if necessary
-                    for (int i = 0; i < Header.FileSchema.Schemas.Count; i++)
-                    {
-                        var id = Header.FileSchema.Schemas[i];
-                        var sid = _entityFactory.SchemasIds.FirstOrDefault(s => string.Equals(s, id, StringComparison.OrdinalIgnoreCase));
-                        if (sid == null)
-                            throw new Exception("Mismatch between schema defined in the file and schemas available in the data model.");
-
-                        //if the case is different set it to the one from entity factory
-                        if (id != sid)
-                            Header.FileSchema.Schemas[i] = sid;
-                    }
-                }
-
-                //var typeId = Metadata.ExpressTypeId(name);
-                var ent = _entityFactory.New(this, name, (int)label, true);
-
-                // if entity is null do not add so that the file load operation can survive an illegal entity
-                // e.g. an abstract class instantiation.
-                if (ent != null)
-                    _instances.InternalAdd(ent);
-                else
-                {
-                    var msg = $"Error in file at label {label} for type {name}.";
-                    if (Metadata.ExpressType(name).Type.GetTypeInfo().IsAbstract)
-                    {
-                        msg = string.Format("Illegal element in file; cannot instantiate the abstract type {0} at label {1}.", name, label);
-                    }
-                    Logger?.LogError(msg);
-                }
-
-                //make sure that new added entities will have higher labels to avoid any clashes
-                if (label >= _instances.CurrentLabel)
-                    _instances.CurrentLabel = (int)label;
-                return ent;
-            };
             try
             {
-                parser.Parse();
+                return LoadStep21(parser);
             }
-            catch (Exception e)
+            finally
             {
-                var position = parser.CurrentPosition;
-                throw new XbimParserException(string.Format("Parser failed on line {0}, column {1}", position.EndLine, position.EndColumn), e);
+                if (progDelegate != null) parser.ProgressStatus -= progDelegate;
             }
-
-            if (progDelegate != null) parser.ProgressStatus -= progDelegate;
-            return parser.ErrorCount;
         }
 
         /// <summary>
