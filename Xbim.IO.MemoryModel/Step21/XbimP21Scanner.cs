@@ -193,14 +193,23 @@ namespace Xbim.IO.Step21
                     Logger?.LogError(e.Message);
                     return false;
                 }
+                //other exceptions might occure but those should just make the parser to wait for the next start of entity
+                //and start from there
                 catch (Exception e)
                 {
+                    _errorCount++;
                     Logger?.LogError(e.Message);
+                    if (_errorCount > MaxErrorCount)
+                    {
+                        Logger?.LogError($"Too many errors in the input file {ErrorCount}");
+                        return false;
+                    }
+
 
                     // clear current entity stack to make sure there are no residuals
                     _processStack.Clear();
 
-                    // scan until next entity
+                    // scan until the beginning of next entity
                     var entityToken = (int)Tokens.ENTITY;
                     while (tok != eofToken && tok != entityToken)
                     {
