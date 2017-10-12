@@ -31,6 +31,13 @@ using Xbim.IO.Step21.Parser;
 
 namespace Xbim.IO.Step21
 {
+    /// <summary>
+    /// This class is meant to replace original parser which was generated using GPPG.
+    /// Actual implementation of the original parser was actually only scanner with little
+    /// added value but it had significant overhead on processing spead. This implementation
+    /// uses the same methods but binds them to the scanner directly. This cuts off part of the
+    /// structure security but it also cuts off processing time by about 20%.
+    /// </summary>
     public class XbimP21Scanner
     {
         private ILogger _logger;
@@ -48,6 +55,8 @@ namespace Xbim.IO.Step21
         private int _percentageParsed;
         private bool _deferListItems;
         private readonly List<int> _nestedIndex = new List<int>();
+
+        public bool Cancel = false;
 
         public int[] NestedIndex
         {
@@ -83,103 +92,139 @@ namespace Xbim.IO.Step21
             _deferredReferences = new List<DeferredReference>(entityApproxCount / 2); //assume 50% deferred
         }
 
-        public void Parse()
-        { 
+        public bool Parse()
+        {
+            var eofToken = (int)Tokens.EOF;
             var tok = _scanner.yylex();
-            while (tok != (int)Tokens.EOF)
+            while (tok != eofToken && !Cancel)
             {
-                if (tok >= 63)
+                try
                 {
-                    Tokens t = (Tokens)tok;
-                    switch (t)
+                    if (tok >= 63)
                     {
-                        case Tokens.HEADER:
-                            BeginHeader();
-                            break;
-                        case Tokens.ENDSEC:
-                            EndSec();
-                            break;
-                        case Tokens.DATA:
-                            BeginData();
-                            break;
-                        case Tokens.ENTITY:
-                            NewEntity(_scanner.yylval.strVal);
-                            break;
-                        case Tokens.TYPE:
-                            SetType(_scanner.yylval.strVal);
-                            break;
-                        case Tokens.INTEGER:
-                            SetIntegerValue(_scanner.yylval.strVal);
-                            break;
-                        case Tokens.FLOAT:
-                            SetFloatValue(_scanner.yylval.strVal);
-                            break;
-                        case Tokens.STRING:
-                            SetStringValue(_scanner.yylval.strVal);
-                            break;
-                        case Tokens.BOOLEAN:
-                            SetBooleanValue(_scanner.yylval.strVal);
-                            break;
-                        case Tokens.IDENTITY:
-                            SetObjectValue(_scanner.yylval.strVal);
-                            break;
-                        case Tokens.HEXA:
-                            SetHexValue(_scanner.yylval.strVal);
-                            break;
-                        case Tokens.ENUM:
-                            SetEnumValue(_scanner.yylval.strVal);
-                            break;
-                        case Tokens.NONDEF:
-                            SetNonDefinedValue();
-                            break;
-                        case Tokens.OVERRIDE:
-                            SetOverrideValue();
-                            break;
+                        Tokens t = (Tokens)tok;
+                        switch (t)
+                        {
+                            case Tokens.HEADER:
+                                BeginHeader();
+                                break;
+                            case Tokens.ENDSEC:
+                                EndSec();
+                                break;
+                            case Tokens.DATA:
+                                BeginData();
+                                break;
+                            case Tokens.ENTITY:
+                                NewEntity(_scanner.yylval.strVal);
+                                break;
+                            case Tokens.TYPE:
+                                SetType(_scanner.yylval.strVal);
+                                break;
+                            case Tokens.INTEGER:
+                                SetIntegerValue(_scanner.yylval.strVal);
+                                break;
+                            case Tokens.FLOAT:
+                                SetFloatValue(_scanner.yylval.strVal);
+                                break;
+                            case Tokens.STRING:
+                                SetStringValue(_scanner.yylval.strVal);
+                                break;
+                            case Tokens.BOOLEAN:
+                                SetBooleanValue(_scanner.yylval.strVal);
+                                break;
+                            case Tokens.IDENTITY:
+                                SetObjectValue(_scanner.yylval.strVal);
+                                break;
+                            case Tokens.HEXA:
+                                SetHexValue(_scanner.yylval.strVal);
+                                break;
+                            case Tokens.ENUM:
+                                SetEnumValue(_scanner.yylval.strVal);
+                                break;
+                            case Tokens.NONDEF:
+                                SetNonDefinedValue();
+                                break;
+                            case Tokens.OVERRIDE:
+                                SetOverrideValue();
+                                break;
 
-                        case Tokens.TEXT:
-                        case Tokens.error:
-                        case Tokens.ILLEGALCHAR:
-                            throw new XbimParserException("Unexpected scanner token 'TEXT'");
+                            case Tokens.TEXT:
+                            case Tokens.error:
+                            case Tokens.ILLEGALCHAR:
+                                throw new XbimParserException($"Unexpected scanner token {t.ToString()}, line {_scanner.yylloc.StartLine}, column {_scanner.yylloc.StartColumn}");
+                            case Tokens.SCOPE:
+                            case Tokens.ENDSCOPE:
+                            case Tokens.ISOSTEPSTART:
+                            case Tokens.ISOSTEPEND:
+                            case Tokens.MISC:
+                            case Tokens.EOF:
+                            default:
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        char c = (char)tok;
+                        switch (c)
+                        {
+                            case '(':
+                                BeginList();
+                                break;
+                            case ')':
+                                EndList();
+                                break;
+                            case ';':
+                                EndEntity();
+                                break;
+                            case '/':
+                            case ',':
+                            case '=':
+                            default:
+                                break;
+                        }
+                    }
 
-                        case Tokens.SCOPE:
-                        case Tokens.ENDSCOPE:
-                        case Tokens.ISOSTEPSTART:
-                        case Tokens.ISOSTEPEND:
-                        case Tokens.MISC:
-                        case Tokens.EOF:
-                        default:
-                            break;
+                    // get next token
+                    tok = _scanner.yylex();
+                }
+                //XbimParserException is a reason to terminate execution
+                catch (XbimParserException e)
+                {
+                    Logger?.LogError(e.Message);
+                    return false;
+                }
+                catch (Exception e)
+                {
+                    Logger?.LogError(e.Message);
+
+                    // clear current entity stack to make sure there are no residuals
+                    _processStack.Clear();
+
+                    // scan until next entity
+                    var entityToken = (int)Tokens.ENTITY;
+                    while (tok != eofToken && tok != entityToken)
+                    {
+                        tok = _scanner.yylex();
                     }
                 }
-                else
-                {
-                    char c = (char)tok;
-                    switch (c)
-                    {
-                        case '(':
-                            BeginList();
-                            break;
-                        case ')':
-                            EndList();
-                            break;
-                        case ';':
-                            EndEntity();
-                            break;
-                        case '/':
-                        case ',':
-                        case '=':
-                        default:
-                            break;
-                    }
-                }
-
-                tok = _scanner.yylex();
             }
             EndParse();
+            return ErrorCount == 0;
         }
 
-
-        public int ErrorCount { get; protected set; } = 0;
+        private int _errorCount = 0;
+        public int ErrorCount
+        {
+            get { return _errorCount; }
+            protected set
+            {
+                _errorCount = value;
+                if (_errorCount > MaxErrorCount)
+                {
+                    throw new XbimParserException($"Too many errors in the input file ({_errorCount})");
+                }
+            }
+        }
 
         public LexLocation CurrentPosition { get { return _scanner.yylloc; } }
 
@@ -249,13 +294,30 @@ namespace Xbim.IO.Step21
                 EndNestedType();
         }
 
+        /// <summary>
+        /// From the resiliance point of view this is a check point.
+        /// It needs to make sure that previous entity was finished correctly.
+        /// If it wasn't it should log the error, clear the state and start from local point.
+        /// </summary>
+        /// <param name="entityLabel">Entity Label to create for the new entity</param>
         protected void NewEntity(string entityLabel)
         {
+            //last entity wasn't properly finished
+            if (_processStack.Count > 0)
+            {
+                var last = _processStack.Pop();
+                Logger.LogError($"Entity #{last.EntityLabel}={last.Entity?.GetType().Name.ToUpperInvariant()} wasn't closed and finished properly.");
+                _processStack.Clear();
+
+                ErrorCount++;
+            }
+
+            //continue processing anyway because this is a great new start
             var label = GetLabel(entityLabel);
             NewEntity(label);
         }
 
-        protected void NewEntity(int entityLabel)
+        private void NewEntity(int entityLabel)
         {
             CurrentInstance = new Part21Entity(entityLabel);
             // Console.WriteLine(CurrentSemanticValue.strVal);
@@ -314,6 +376,7 @@ namespace Xbim.IO.Step21
                 {
                     var msg = string.Format("Duplicate entity label: #{0}", p21.EntityLabel);
                     Logger?.LogError(msg, ex);
+                    ErrorCount++;
                 }
             }
         }
@@ -372,6 +435,16 @@ namespace Xbim.IO.Step21
             }
         }
 
+        /// <summary>
+        /// We already know the shape of the input data exacly
+        /// from scanner regex matching so we can convert directly
+        /// without any security checks. This is significantly faster
+        /// than Convert.ToInt32() which has to examine data again.
+        /// This is very frequently called piece of code at the same time
+        /// and brings considerable performance savings.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         private int GetLabel(string value)
         {
             var label = 0;
@@ -385,6 +458,9 @@ namespace Xbim.IO.Step21
             return label;
         }
 
+        /// <summary>
+        /// Direct magnitudes list for positions in the integer string
+        /// </summary>
         private static readonly int[] magnitudes = new int[]
         {
             1,
@@ -432,8 +508,6 @@ namespace Xbim.IO.Step21
             }
             catch (Exception)
             {
-                if (ErrorCount > MaxErrorCount)
-                    throw new XbimParserException("Too many errors in file, parser execution terminated");
                 ErrorCount++;
                 var mainEntity = _processStack.Last();
                 if (mainEntity != null)
@@ -476,8 +550,6 @@ namespace Xbim.IO.Step21
             }
             catch (Exception)
             {
-                if (ErrorCount > MaxErrorCount)
-                    throw new XbimParserException("Too many errors in file, parser execution terminated");
                 ErrorCount++;
                 var mainEntity = _processStack.Last();
                 if (mainEntity != null)
@@ -519,8 +591,6 @@ namespace Xbim.IO.Step21
             }
             catch (Exception)
             {
-                if (ErrorCount > MaxErrorCount)
-                    throw new XbimParserException("Too many errors in file, parser execution terminated");
                 ErrorCount++;
                 Logger?.LogError("Entity #{0,-5} {1}, error at parameter {2}",
                                            refId, host.GetType().Name.ToUpper(), paramIndex + 1
