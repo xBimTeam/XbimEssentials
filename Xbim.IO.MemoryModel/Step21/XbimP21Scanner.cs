@@ -52,7 +52,6 @@ namespace Xbim.IO.Step21
         private List<DeferredReference> _deferredReferences;
         private double _streamSize = -1;
         public static int MaxErrorCount = 100;
-        private int _percentageParsed;
         private bool _deferListItems;
         private readonly List<int> _nestedIndex = new List<int>();
 
@@ -86,8 +85,9 @@ namespace Xbim.IO.Step21
         {
             _scanner = new Scanner();
             _scanner.SetSource(data, 0);
+            _streamSize = data.Length;
 
-            var entityApproxCount = 50000;
+            var entityApproxCount = (int)_streamSize/50;
             _entities = new Dictionary<long, IPersist>(entityApproxCount);
             _deferredReferences = new List<DeferredReference>(entityApproxCount / 2); //assume 50% deferred
         }
@@ -246,6 +246,7 @@ namespace Xbim.IO.Step21
                                                       defRef.ReferenceId);
             }
             _deferredReferences.Clear();
+            ProgressStatus?.Invoke(100, "Parsing finished.");
         }
 
         protected void BeginHeader()
@@ -326,19 +327,22 @@ namespace Xbim.IO.Step21
             NewEntity(label);
         }
 
+        private int _reportEntityCount = 0;
         private void NewEntity(int entityLabel)
         {
             CurrentInstance = new Part21Entity(entityLabel);
             // Console.WriteLine(CurrentSemanticValue.strVal);
             _processStack.Push(CurrentInstance);
-            if (_streamSize == -1 || ProgressStatus == null)
+            if (_streamSize < 0 || ProgressStatus == null)
+                return;
+
+            if (_reportEntityCount++ < 500)
                 return;
 
             double pos = _scanner.Buffer.Pos;
-            var newPercentage = Convert.ToInt32(pos / _streamSize * 100.0);
-            if (newPercentage <= _percentageParsed) return;
-            _percentageParsed = newPercentage;
-            ProgressStatus(_percentageParsed, "Parsing");
+            var percentage = Convert.ToInt32(pos / _streamSize * 100.0);
+            _reportEntityCount = 0;
+            ProgressStatus(percentage, "Parsing");
         }
 
         protected void SetType(string entityTypeName)
