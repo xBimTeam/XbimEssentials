@@ -20,7 +20,7 @@ namespace Xbim.Common.XbimExtensions
 
             for (var i = 0; i < numVertices; i++)
             {
-                vertices.Add(br.ReadPointFloat3D());
+                vertices.Add(br.ReadPoint3D());
             }
             var numFaces = br.ReadInt32();
             var faces = new List<XbimFaceTriangulation>(numFaces);
@@ -77,6 +77,14 @@ namespace Xbim.Common.XbimExtensions
             double y = br.ReadSingle();
             double z = br.ReadSingle();
             return new XbimPoint3D(x,y,z);
+        }
+
+        public static XbimPoint3D ReadPoint3D(this BinaryReader br)
+        {
+            double x = br.ReadDouble();
+            double y = br.ReadDouble();
+            double z = br.ReadDouble();
+            return new XbimPoint3D(x, y, z);
         }
 
         public static XbimPackedNormal ReadPackedNormal(this BinaryReader br)
