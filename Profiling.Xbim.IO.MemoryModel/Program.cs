@@ -3,13 +3,18 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Xbim.Common.Step21;
-using Xbim.Ifc2x3;
+using Xbim.Ifc4;
+using Xbim.Ifc2x3.TopologyResource;
+using Xbim.Ifc2x3.GeometricModelResource;
+using Xbim.Ifc2x3.GeometryResource;
 using Xbim.IO.Memory;
 using Xbim.IO.Parser;
 using Xbim.IO.Step21;
 using ValueType = Xbim.IO.Parser.ValueType;
+using Xbim.Ifc4.Interfaces;
 
 namespace Profiling.Xbim.IO
 {
@@ -17,16 +22,50 @@ namespace Profiling.Xbim.IO
     {
         static void Main(string[] args)
         {
-            var fileName = args[0];
-            var sw = Stopwatch.StartNew();
-            using (var file = File.OpenRead(fileName))
-            using (var mm = MemoryModel.OpenReadStep21(file))
-            {
+            var ignoreNamespaces = new[] { "GeometricConstraintResource", "GeometricModelResource", "GeometryResource", "ProfileResource", "TopologyResource", "RepresentationResource" };
+            var ignoreTypes = typeof(EntityFactory)
+                .Assembly.GetTypes()
+                .Where(t => t.IsClass && t.IsPublic && !t.IsAbstract && ignoreNamespaces.Any(ns => t.Namespace.EndsWith(ns)))
+                .Select(t => t.Name.ToUpperInvariant())
+                .ToList();
 
+            var fileName = @"c:\Users\Martin\Source\Samples\LakesideRestaurant.ifc";
+            var sw = Stopwatch.StartNew();
+            var count = 0L;
+            var wallCount = 0;
+            var relProps = 0;
+            using (var file = File.OpenRead(fileName))
+            using (var mm = MemoryModel.OpenReadStep21(file, null, null, ignoreTypes))
+            {
+                sw.Stop();
+
+                count = mm.Instances.Count;
+                wallCount = mm.Instances.OfType<IIfcWall>().Count();
+                relProps = mm.Instances.OfType<IIfcRelDefinesByProperties>().Count();
+                var mem = GC.GetTotalMemory(true);
+
+                Console.WriteLine($"Opening memory model: {sw.ElapsedMilliseconds}ms, number of entities: {count}");
+                Console.WriteLine($"Number of walls: {wallCount}, number of IfcRelDefinesByProperties: {relProps}");
+                Console.WriteLine($"Memory: {mem/1000000}MB");
             }
 
-            sw.Stop();
-            Console.WriteLine($"Opening memory model: {sw.ElapsedMilliseconds}ms");
+
+            sw.Restart();
+            using (var file = File.OpenRead(fileName))
+            using (var mm = MemoryModel.OpenReadStep21(file, null, null))
+            {
+                sw.Stop();
+
+                count = mm.Instances.Count;
+                wallCount = mm.Instances.OfType<IIfcWall>().Count();
+                relProps = mm.Instances.OfType<IIfcRelDefinesByProperties>().Count();
+                var mem = GC.GetTotalMemory(true);
+
+                Console.WriteLine($"Opening memory model: {sw.ElapsedMilliseconds}ms, number of entities: {count}");
+                Console.WriteLine($"Number of walls: {wallCount}, number of IfcRelDefinesByProperties: {relProps}");
+                Console.WriteLine($"Memory: {mem/1000000}MB");
+            }
+
             sw.Restart();
 
             //using (var file = File.OpenRead(fileName))
@@ -36,7 +75,7 @@ namespace Profiling.Xbim.IO
             //    var s = new XbimP21Scanner(file, file.Length);
             //    var header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty, m);
             //    s.EntityCreate = (string name, long? label, bool inHeader, out int[] i) => {
-                    
+
             //        //allow all attributes to be parsed
             //        i = null;
 

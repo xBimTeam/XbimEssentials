@@ -55,6 +55,9 @@ namespace Xbim.IO.Step21
         private bool _deferListItems;
         private readonly List<int> _nestedIndex = new List<int>();
 
+        public HashSet<string> SkipTypes { get; } = new HashSet<string>();
+        private HashSet<long> SkipEntities { get; } = new HashSet<long>();
+
         public bool Cancel = false;
 
         public int[] NestedIndex
@@ -94,6 +97,7 @@ namespace Xbim.IO.Step21
 
         public bool Parse()
         {
+            var skipping = SkipTypes.Any();
             var eofToken = (int)Tokens.EOF;
             var tok = _scanner.yylex();
             while (tok != eofToken && !Cancel)
@@ -118,7 +122,21 @@ namespace Xbim.IO.Step21
                                 NewEntity(_scanner.yylval.strVal);
                                 break;
                             case Tokens.TYPE:
-                                SetType(_scanner.yylval.strVal);
+                                var type = _scanner.yylval.strVal;
+                                if (skipping && SkipTypes.Contains(type))
+                                {
+                                    var current = _processStack.Pop();
+                                    SkipEntities.Add(current.EntityLabel);
+                                    int endEntityToken = ';';
+                                    while (tok != endEntityToken)
+                                    {
+                                        tok = _scanner.yylex();
+                                    }
+                                }
+                                else
+                                {
+                                    SetType(type);
+                                }
                                 break;
                             case Tokens.INTEGER:
                                 SetIntegerValue(_scanner.yylval.strVal);
@@ -239,7 +257,7 @@ namespace Xbim.IO.Step21
 
         protected void EndParse()
         {
-            foreach (var defRef in _deferredReferences)
+            foreach (var defRef in _deferredReferences.Where(dr => !SkipEntities.Contains(dr.ReferenceId)))
             {
                 if (!TrySetObjectValue(defRef.HostEntity, defRef.ParameterIndex, defRef.ReferenceId, defRef.NestedIndex))
                     Logger?.LogWarning("Entity #{0,-5} is referenced but could not be instantiated",
@@ -592,7 +610,7 @@ namespace Xbim.IO.Step21
                 if (host != null && _entities.TryGetValue(refId, out IPersist refEntity))
                 {
                     PropertyValue.Init(refEntity);
-                    (host).Parse(paramIndex, PropertyValue, listNextLevel);
+                    host.Parse(paramIndex, PropertyValue, listNextLevel);
                     return true;
                 }
             }
