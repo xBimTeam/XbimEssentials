@@ -689,13 +689,14 @@ namespace Xbim.IO.Memory
         /// <param name="streamSize"></param>
         /// <param name="progDelegate"></param>
         /// <returns>Number of errors in parsing. Always check this to be null or the model might be incomplete.</returns>
-        public virtual int LoadStep21(Stream stream, long streamSize, ReportProgressDelegate progDelegate = null)
+        public virtual int LoadStep21(Stream stream, long streamSize, ReportProgressDelegate progDelegate = null, IEnumerable<string> ignoreTypes = null)
         {
             var parser = new XbimP21Scanner(stream, streamSize)
             {
                 Logger = Logger
             };
             if (progDelegate != null) parser.ProgressStatus += progDelegate;
+            if (ignoreTypes != null) ignoreTypes.ToList().ForEach(t => parser.SkipTypes.Add(t));
 
             try
             {
@@ -800,7 +801,7 @@ namespace Xbim.IO.Memory
         /// <param name="logger">Logger</param>
         /// <param name="progressDel">Progress delegate</param>
         /// <returns>New memory model</returns>
-        public static MemoryModel OpenReadStep21(Stream stream, ILogger logger = null, ReportProgressDelegate progressDel = null)
+        public static MemoryModel OpenReadStep21(Stream stream, ILogger logger = null, ReportProgressDelegate progressDel = null, IEnumerable<string> ignoreTypes = null)
         {
             var model = new MemoryModel((IEnumerable<string> schemas) => {
                 var schema = GetStepFileXbimSchemaVersion(schemas);
@@ -816,7 +817,7 @@ namespace Xbim.IO.Memory
                         return null;
                 }
             }, logger);
-            model.LoadStep21(stream, stream.Length, progressDel);
+            model.LoadStep21(stream, stream.Length, progressDel, ignoreTypes);
             return model;
         }
 
