@@ -84,12 +84,12 @@ namespace Xbim.Tessellator
         /// let r be the negated result (this evaluates (uw)(v->s)), then
         /// r is guaranteed to satisfy MIN(u->t,w->t) less than or equal r less than or equal MAX(u->t,w->t).
         /// </summary>
-        public static float EdgeEval(MeshUtils.Vertex u, MeshUtils.Vertex v, MeshUtils.Vertex w)
+        public static double EdgeEval(MeshUtils.Vertex u, MeshUtils.Vertex v, MeshUtils.Vertex w)
         {
             Debug.Assert(VertLeq(u, v) && VertLeq(v, w));
 
-            float gapL = v._s - u._s;
-            float gapR = w._s - v._s;
+            double gapL = v._s - u._s;
+            double gapR = w._s - v._s;
 
             if (gapL + gapR > 0.0f)
             {
@@ -106,12 +106,12 @@ namespace Xbim.Tessellator
         /// is cheaper to evaluate. Returns > 0, == 0 , or less than 0
         /// as v is above, on, or below the edge uw.
         /// </summary>
-        public static float EdgeSign(MeshUtils.Vertex u, MeshUtils.Vertex v, MeshUtils.Vertex w)
+        public static double EdgeSign(MeshUtils.Vertex u, MeshUtils.Vertex v, MeshUtils.Vertex w)
         {
           //  Debug.Assert(VertLeq(u, v) && VertLeq(v, w));
 
-            float gapL = v._s - u._s;
-            float gapR = w._s - v._s;
+            double gapL = v._s - u._s;
+            double gapR = w._s - v._s;
 
             if (gapL + gapR > 0.0f)
             {
@@ -130,12 +130,12 @@ namespace Xbim.Tessellator
 // ReSharper restore CompareOfFloatsByEqualityOperator
         }
 
-        public static float TransEval(MeshUtils.Vertex u, MeshUtils.Vertex v, MeshUtils.Vertex w)
+        public static double TransEval(MeshUtils.Vertex u, MeshUtils.Vertex v, MeshUtils.Vertex w)
         {
             Debug.Assert(TransLeq(u, v) && TransLeq(v, w));
 
-            float gapL = v._t - u._t;
-            float gapR = w._t - v._t;
+            double gapL = v._t - u._t;
+            double gapR = w._t - v._t;
 
             if (gapL + gapR > 0.0f)
             {
@@ -147,12 +147,12 @@ namespace Xbim.Tessellator
             return 0.0f;
         }
 
-        public static float TransSign(MeshUtils.Vertex u, MeshUtils.Vertex v, MeshUtils.Vertex w)
+        public static double TransSign(MeshUtils.Vertex u, MeshUtils.Vertex v, MeshUtils.Vertex w)
         {
             Debug.Assert(TransLeq(u, v) && TransLeq(v, w));
 
-            float gapL = v._t - u._t;
-            float gapR = w._t - v._t;
+            double gapL = v._t - u._t;
+            double gapR = w._t - v._t;
 
             if (gapL + gapR > 0.0f)
             {
@@ -174,7 +174,7 @@ namespace Xbim.Tessellator
             return VertLeq(e._Org, e.Dst);
         }
 
-        public static float VertL1Dist(MeshUtils.Vertex u, MeshUtils.Vertex v)
+        public static double VertL1Dist(MeshUtils.Vertex u, MeshUtils.Vertex v)
         {
             return Math.Abs(u._s - v._s) + Math.Abs(u._t - v._t);
         }
@@ -185,7 +185,7 @@ namespace Xbim.Tessellator
             eDst._Sym._winding += eSrc._Sym._winding;
         }
 
-        public static float Interpolate(float a, float x, float b, float y)
+        public static double Interpolate(double a, double x, double b, double y)
         {
             a = a < 0.0f ? 0.0f : a;
             b = b < 0.0f ? 0.0f : b;
@@ -210,7 +210,7 @@ namespace Xbim.Tessellator
         /// </summary>
         public static void EdgeIntersect(MeshUtils.Vertex o1, MeshUtils.Vertex d1, MeshUtils.Vertex o2, MeshUtils.Vertex d2, MeshUtils.Vertex v)
         {
-            float z1, z2;
+            double z1, z2;
 
             // This is certainly not the most efficient way to find the intersection
             // of two line segments, but it is very numerically stable.

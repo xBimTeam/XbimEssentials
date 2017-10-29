@@ -1366,5 +1366,10 @@ namespace Xbim.IO.Esent
         {
             get { return InstanceCache.InstanceHandles.ToList(); }
         }
+
+        public IfcSchemaVersion SchemaVersion
+        {
+            get { return Factory.SchemaVersion; }
+        }
     }
 }

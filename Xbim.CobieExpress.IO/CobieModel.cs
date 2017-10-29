@@ -130,7 +130,7 @@ namespace Xbim.CobieExpress.IO
             }
         }
 
-        public void ExportToTable(string file, out string report, ModelMapping mapping = null)
+        public void ExportToTable(string file, out string report, ModelMapping mapping = null, Stream template = null)
         {
             var ext = (Path.GetExtension(file) ?? "").ToLower();
             if (ext != ".xls" && ext != ".xlsx")
@@ -138,15 +138,15 @@ namespace Xbim.CobieExpress.IO
 
             mapping = mapping ?? ModelMapping.Load(Properties.Resources.COBieUK2012);
             var storage = GetTableStore(this, mapping);
-            storage.Store(file);
+            storage.Store(file, template);
             report = storage.Log.ToString();
         }
 
-        public void ExportToTable(Stream file, ExcelTypeEnum typeEnum, out string report, ModelMapping mapping = null)
+        public void ExportToTable(Stream file, ExcelTypeEnum typeEnum, out string report, ModelMapping mapping = null, Stream template = null)
         {
             mapping = mapping ?? ModelMapping.Load(Properties.Resources.COBieUK2012);
             var storage = GetTableStore(this, mapping);
-            storage.Store(file, typeEnum);
+            storage.Store(file, typeEnum, template);
             report = storage.Log.ToString();
         }
 
@@ -306,6 +306,11 @@ namespace Xbim.CobieExpress.IO
         public IInverseCache InverseCache
         {
             get { return _model.InverseCache; }
+        }
+
+        public IfcSchemaVersion SchemaVersion
+        {
+            get { return _model.SchemaVersion; }
         }
 
         private void InitEvents()

@@ -398,12 +398,20 @@ namespace Xbim.IO.Memory
                         return ent;
         }
 
-        public virtual void LoadZip(string file, ReportProgressDelegate progDelegate = null)
+        /// <summary>
+        /// Loads the content of the model from ZIP archive. If the actual model file inside the archive is XML
+        /// it is supposed to have an extension containing 'XML' like '.ifcxml', '.stpxml' or similar.
+        /// </summary>
+        /// <param name="file"></param>
+        /// <param name="progDelegate"></param>
+        /// <returns>number of parsing errors for step files, -1 otherwise.</returns>
+        public virtual int LoadZip(string file, ReportProgressDelegate progDelegate = null)
         {
             using (var stream = File.OpenRead(file))
             {
-                LoadZip(stream, progDelegate);
+                var errors = LoadZip(stream, progDelegate);
                 stream.Close();
+                return errors;
             }
         }
 
@@ -413,14 +421,13 @@ namespace Xbim.IO.Memory
         /// </summary>
         /// <param name="stream">Input stream of the ZIP archive</param>
         /// <param name="progDelegate"></param>
-        public virtual void LoadZip(Stream stream, ReportProgressDelegate progDelegate = null)
+        /// <returns>number of parsing errors for step files, -1 otherwise.</returns>
+        public virtual int LoadZip(Stream stream, ReportProgressDelegate progDelegate = null)
         {
             using (var zipStream = new ZipInputStream(stream))
             {
                 var entry = zipStream.GetNextEntry();
-
-                var extension = Path.GetExtension(entry.Name) ?? "";
-                var xml = extension.ToLower().Contains("xml");
+               
                 using (var zipFile = new ZipFile(stream))
                 {
                     while (entry != null)
@@ -434,17 +441,21 @@ namespace Xbim.IO.Memory
                         {
                             using (var reader = zipFile.GetInputStream(entry))
                             {
+                                var errors = -1;
+                                var extension = Path.GetExtension(entry.Name) ?? "";
+                                var xml = extension.ToLower().Contains("xml");
                                 if (xml)
                                     LoadXml(reader, entry.Size, progDelegate);
                                 else
-                                    LoadStep21(reader, entry.Size, progDelegate);
+                                    errors = LoadStep21(reader, entry.Size, progDelegate);
 
                                 reader.Close();
-                                return;
+                                return errors;
                             }
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
+                            Log.Error(ex.Message, ex);
                             //if it crashed try next entry if available
                             entry = zipStream.GetNextEntry();
                         }
@@ -454,6 +465,7 @@ namespace Xbim.IO.Memory
 
                 zipStream.Close();
             }
+            return -1;
         }
 
         /// <summary>
@@ -510,7 +522,15 @@ namespace Xbim.IO.Memory
                     }
                 }
 
-                var typeId = Metadata.ExpressTypeId(name);
+                // ignore entities of unknown type instead of throwing fatal exception
+                var type = Metadata.ExpressType(name);
+                if (null == type)
+                {
+                    Log.Error(string.Format("Error in file at label {0} for type {1} - type is unknown", label, name));
+                    return null;
+                }
+
+                var typeId = type.TypeId;
                 var ent = _instances.Factory.New(this, typeId, (int)label, true);
 
                 // if entity is null do not add so that the file load operation can survive an illegal entity
@@ -539,7 +559,7 @@ namespace Xbim.IO.Memory
             catch (Exception e)
             {
                 var position = parser.CurrentPosition;
-                throw new XbimParserException(string.Format("Parser failed on line {0}, column {1}", position.EndLine, position.EndColumn), e);
+                throw new XbimParserException(string.Format("Parser failed on line {0}, column {1}, see inner exception for details.", position.EndLine, position.EndColumn), e);
             }
             
             if (progDelegate != null) parser.ProgressStatus -= progDelegate;
@@ -751,7 +771,10 @@ namespace Xbim.IO.Memory
             get { return _instances.Select(e => new XbimInstanceHandle(this, e.EntityLabel)).ToList(); }
         }
 
-       
+        public IfcSchemaVersion SchemaVersion
+        {
+            get { return _entityFactory.SchemaVersion; }
+        }
     }
 
     /// <summary>

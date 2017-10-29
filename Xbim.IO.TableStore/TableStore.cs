@@ -94,7 +94,7 @@ namespace Xbim.IO.TableStore
             Mapping.Init(MetaData);
         }
 
-        public void Store(string path)
+        public void Store(string path, Stream template = null)
         {
             if (path == null)
                 throw new ArgumentNullException("path");
@@ -108,7 +108,7 @@ namespace Xbim.IO.TableStore
             using (var file = File.Create(path))
             {
                 var type = ext == "xlsx" ? ExcelTypeEnum.XLSX : ExcelTypeEnum.XLS;
-                Store(file, type);
+                Store(file, type, template:template);
                 file.Close();
             }
 

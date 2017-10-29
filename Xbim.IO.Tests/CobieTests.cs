@@ -177,6 +177,87 @@ namespace Xbim.MemoryModel.Tests
             }
         }
 
+        [TestMethod]
+        public void ExcelRoundTrip()
+        {
+
+            using (var model = new CobieModel(CreateTestModel()))
+            {
+                string excelExported = "exported.xlsx";
+                string report;
+                model.ExportToTable(excelExported, out report);
+                Assert.IsTrue(File.Exists(excelExported));
+                Assert.IsTrue(string.IsNullOrWhiteSpace(report));
+
+                using (var imported = CobieModel.ImportFromTable(excelExported, out report))
+                {
+                    //Assert.IsTrue(string.IsNullOrWhiteSpace(report));
+
+                    CompareTrees(model, imported);
+
+                    //CompareTrees(model, model);
+                }
+            }
+
+        }
+
+        private void CompareTrees(IModel left, IModel right)
+        {
+            var facilityLeft = left.Instances.FirstOrDefault<CobieFacility>();
+            var facilityRight = right.Instances.FirstOrDefault<CobieFacility>();
+
+            CompareTrees(facilityLeft, facilityRight);
+        }
+
+        private void CompareTrees(CobieFacility facilityLeft, CobieFacility facilityRight)
+        {
+            Assert.AreEqual(facilityLeft.ExternalId, facilityRight.ExternalId);
+            Assert.AreEqual(facilityLeft.AltExternalId, facilityRight.AltExternalId);
+            Assert.AreEqual(facilityLeft.Name, facilityRight.Name);
+
+            Assert.AreEqual(facilityLeft.Floors.Count(), facilityRight.Floors.Count(), "Floor count missmatch");
+
+            if (facilityLeft.Floors.Count() == facilityRight.Floors.Count())
+            {
+                for (int i=0; i<facilityLeft.Floors.Count(); ++i)
+                {
+                    var floorLeft = facilityLeft.Floors.ElementAt(i);
+                    var floorRight = facilityLeft.Floors.ElementAt(i);
+
+                    CompareTrees(floorLeft, floorRight);
+                }
+            }
+        }
+
+        private void CompareTrees(CobieFloor floorLeft, CobieFloor floorRight)
+        {
+            Assert.AreEqual(floorLeft.ExternalId, floorRight.ExternalId);
+            Assert.AreEqual(floorLeft.AltExternalId, floorRight.AltExternalId);
+            Assert.AreEqual(floorLeft.Name, floorRight.Name);
+
+            Assert.AreEqual(floorLeft.Spaces.Count(), floorRight.Spaces.Count(), "Space count missmatch");
+
+            if (floorLeft.Spaces.Count() == floorRight.Spaces.Count())
+            {
+                for (int i = 0; i < floorLeft.Spaces.Count(); ++i)
+                {
+                    var spaceLeft = floorLeft.Spaces.ElementAt(i);
+                    var spaceRight = floorLeft.Spaces.ElementAt(i);
+
+                    CompareTrees(spaceLeft, spaceRight);
+                }
+            }
+        }
+
+        private void CompareTrees(CobieSpace spaceLeft, CobieSpace spaceRight)
+        {
+            Assert.AreEqual(spaceLeft.ExternalId, spaceRight.ExternalId);
+            Assert.AreEqual(spaceLeft.AltExternalId, spaceRight.AltExternalId);
+            Assert.AreEqual(spaceLeft.Name, spaceRight.Name);
+
+            Assert.AreEqual(spaceLeft.Components.Count(), spaceRight.Components.Count(), "Component count missmatch");
+        }
+
         private IO.Memory.MemoryModel CreateTestModel()
         {
             var model = new IO.Memory.MemoryModel(new EntityFactory());

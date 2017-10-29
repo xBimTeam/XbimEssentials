@@ -273,6 +273,8 @@ namespace Xbim.IO.TableStore
             if (Mapping == null) return;
 
             var cell = row.GetCell(Mapping.ColumnIndex);
+            if (cell == null)
+                return;
             var valType = Store.GetConcreteType(this, cell);
             if (valType == null)
                 return;
