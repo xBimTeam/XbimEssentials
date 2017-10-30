@@ -145,11 +145,13 @@ namespace Xbim.IO.Tests
             }
         }
 
+       
+
+
         [TestMethod]
         [DeploymentItem("TestFiles")]
         public void ResourceReleaseTest()
         {
-
             using (var model = IfcStore.Open("SampleHouse4.ifc", null, 0))
             {
                 var geomStore = model.GeometryStore;

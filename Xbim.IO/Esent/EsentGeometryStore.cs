@@ -1,12 +1,12 @@
 ﻿using System;
 using log4net;
 using Xbim.Common.Geometry;
+using static Xbim.IO.Esent.EsentModel;
 
 namespace Xbim.IO.Esent
 {
     internal class EsentGeometryStore : IGeometryStore
     {
-
         private static readonly ILog Log = LogManager.GetLogger("Xbim.IO.Esent.EsentGeometryStore");
 
         private readonly EsentModel _esentModel;
@@ -19,12 +19,27 @@ namespace Xbim.IO.Esent
         public EsentGeometryStore(EsentModel esentModel )
         {           
             _esentModel = esentModel;
-           
         }
 
         public EsentModel Model
         {
             get { return _esentModel; }
+        }
+
+        private TableStatus _tableStatus = EsentModel.TableStatus.Unknown;
+
+        private TableStatus TableStatus
+        {
+            get
+            {
+                if (_tableStatus == TableStatus.Unknown)
+                {
+                    _tableStatus = _esentModel.Cache.HasTable(EsentShapeGeometryCursor.GeometryTableName)
+                        ? TableStatus.Found
+                        : TableStatus.Missing;
+                }
+                return _tableStatus;
+            }
         }
 
 
@@ -119,6 +134,8 @@ namespace Xbim.IO.Esent
         {
             get
             {
+                if (TableStatus == TableStatus.Missing)
+                    return true;
                 EsentShapeGeometryCursor shapeGeometryCursor = null;
                 try
                 {
@@ -132,13 +149,13 @@ namespace Xbim.IO.Esent
                 }
                 catch (Exception)
                 {
-                    Log.InfoFormat("Esent model {0} does not contain geometry tables.", _esentModel.DatabaseName);
+                    Log.WarnFormat("Esent model {0} does not contain geometry tables.", _esentModel.DatabaseName);
                     return true;
                 }
                 finally
                 {
-                    if(shapeGeometryCursor!=null) _esentModel.FreeTable(shapeGeometryCursor);
-
+                    if(shapeGeometryCursor!=null)
+                        _esentModel.FreeTable(shapeGeometryCursor);
                 }
             }
         }
