@@ -748,7 +748,7 @@ namespace QUT.Gppg {
         /// <summary>
         /// The index of this state in the states array.
         /// </summary>
-        internal int number;
+        public int number;
 #endif
         internal Dictionary<int, int> ParserTable;   // Terminal -> ParseAction
         internal Dictionary<int, int> Goto;          // NonTerminal -> State;
