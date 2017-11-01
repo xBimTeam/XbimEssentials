@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Xbim.CobieExpress.IO.Resolvers;
 using Xbim.Common;
 using Xbim.Common.Geometry;
@@ -159,6 +160,13 @@ namespace Xbim.CobieExpress.IO
             using (var txn = loaded.BeginTransaction("Loading XLSX"))
             {
                 storage.LoadFrom(file);
+
+                //assign all levels to facility because COBie XLS standard contains this implicitly
+                var facility = loaded.Instances.FirstOrDefault<CobieFacility>();
+                var floors = loaded.Instances.OfType<CobieFloor>().ToList();
+                if (facility != null && floors.Any())
+                    floors.ForEach(f => f.Facility = facility);
+
                 txn.Commit();
             }
 
