@@ -200,9 +200,9 @@ namespace Xbim.Tessellator
 
                     foreach (var vert in triangulatedMesh.Vertices)                 
                     {                      
-                        binaryWriter.Write(vert.X);
-                        binaryWriter.Write(vert.Y);
-                        binaryWriter.Write(vert.Z);   
+                        binaryWriter.Write((float)vert.X);
+                        binaryWriter.Write((float)vert.Y);
+                        binaryWriter.Write((float)vert.Z);   
                     }
                     facesCount = (uint) triangulatedMesh.Faces.Count;
                     binaryWriter.Write(facesCount);
@@ -360,9 +360,9 @@ namespace Xbim.Tessellator
                
                 foreach (var v in triangulations.SelectMany(t=>t.Vertices))
                 {    
-                    binaryWriter.Write(v.X);
-                    binaryWriter.Write(v.Y);
-                    binaryWriter.Write(v.Z);
+                    binaryWriter.Write((float)v.X);
+                    binaryWriter.Write((float)v.Y);
+                    binaryWriter.Write((float)v.Z);
                 }
                 shapeGeometry.BoundingBox = boundingBox;
                 //now write out the faces
