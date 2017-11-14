@@ -731,7 +731,7 @@ namespace Xbim.IO.Esent
         {
             using (var reader = new FileStream(toImportIfcFilename, FileMode.Open, FileAccess.Read))
             {
-                ImportStep(xbimDbName, reader, reader.Length, progressHandler, keepOpen, cacheEntities);
+                ImportStep(xbimDbName, reader, reader.Length, progressHandler, keepOpen, cacheEntities, codePageOverride);
             }
         }
 
